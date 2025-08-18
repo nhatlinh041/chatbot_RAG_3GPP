@@ -1,0 +1,511 @@
+{
+  "metadata": {
+    "specification_id": "ts_23.240",
+    "version": "18.0.0",
+    "title": "3GPP TS 23.240",
+    "file_path": "/content/drive/MyDrive/RAG_thesis/data/23_series/23240-i00/23240-i00.docx"
+  },
+  "export_info": {
+    "export_date": "2025-07-26T09:30:17.437178",
+    "total_chunks": 52
+  },
+  "chunks": [
+    {
+      "chunk_id": "ts_23.240_1",
+      "section_id": "1",
+      "section_title": "Scope",
+      "content": "The present document defines the stage 2 architecture description to the 3GPP Generic User Profile (GUP), which includes the elements necessary to realise the stage 1 requirements in TS 22.240 [1].\nThe present document includes the GUP reference architecture with descriptions of functional entities, and their interfaces and procedures, as well as the high-level information model for the GUP data.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_22.240"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.240_2",
+      "section_id": "2",
+      "section_title": "References",
+      "content": "The following documents contain provisions which, through reference in this text, constitute provisions of the present document.\n-\tReferences are either specific (identified by date of publication, edition number, version number, etc.) or non‑specific.\n-\tFor a specific reference, subsequent revisions do not apply.\n-\tFor a non-specific reference, the latest version applies.  In the case of a reference to a 3GPP document (including a GSM document), a non-specific reference implicitly refers to the latest version of that document in the same Release as the present document.\n[1]\t3GPP TS 22.240: \"Stage 1 Service Requirement for the 3GPP Generic User Profile (GUP)\".\n[2]\tLiberty Discovery Service Specification, http://www.projectliberty.org/.\n[3]\tLiberty ID-WSF SOAP Binding Specification, http://www.projectliberty.org/.\n[4]\tLiberty ID-WSF Data Services Template, http://www.projectliberty.org/.\n[5]\tLiberty ID-WSF Security and Privacy Overview, http://www.projectliberty.org/.\n[6]\tLiberty ID-WSF Security Mechanisms, http://www.projectliberty.org/.\n[7]\t3GPP TS 23.141: \"Presence Service; Architecture and functional description\".",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_22.240",
+        "ts_23.141"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.240_3.1",
+      "section_id": "3.1",
+      "section_title": "Definitions",
+      "content": "For the purposes of the present document the following definitions apply:\n3GPP Generic User Profile (GUP): The 3GPP Generic User Profile is the collection of user related data which affects the way in which an individual user experiences services and which may be accessed in a standardized manner as described in this specification.\nGUP Component: A GUP component is logically an individual part of the Generic User Profile.\nData Element: the indivisible unit of Generic User Profile information.\nData Element Group: A pre-defined set of Data Elements and/or other Data Element Groups closely related to each other. One or more Data Element Groups can constitute the GUP Component.\nData Description Method: A method describing how to define the data contained in the Generic User Profile.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.240_3.2",
+      "section_id": "3.2",
+      "section_title": "Symbols",
+      "content": "For the purposes of the present document the following symbols apply:\nRg\tReference Point between Applications and the GUP Server.\nRp\tReference Point between the GUP Server and GUP Data Repositories, and between Applications and GUP Data Repositories.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.240_3.3",
+      "section_id": "3.3",
+      "section_title": "Abbreviations",
+      "content": "For the purposes of the present document the following abbreviations apply:\nFFS\tFor Further Study\nGUP\t3GPP Generic User Profile\nHPLMN\tHome PLMN\nLCS\tLocation services\nOSA\tOpen Service Access\nPLMN\tPublic Land Mobile Network\nRAF\tRepository Access Function\nUE\tUser Equipment\nXML\teXtensible Markup Language",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.240_4.1.1",
+      "section_id": "4.1.1",
+      "section_title": "Harmonized access interface",
+      "content": "The GUP harmonized access interface is the interface which can be used by the GUP suppliers and GUP consumers to access, manage and transfer the profile data. This application layer interface is independent of the profile structure.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.240_4.1.2",
+      "section_id": "4.1.2",
+      "section_title": "Single point of access",
+      "content": "There exists for each Profile a single point of access, which knows the location of the various components of the Profile. A discovery service, e.g. Liberty Discovery Service Specification [2] may be used to get the contact reference information for this access point if not known by other means.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.240_4.1.3",
+      "section_id": "4.1.3",
+      "section_title": "Authentication of profile access",
+      "content": "A GUP functionality exists that is responsible to authenticate applications. Authentication is a vital function to be passed before any kind of access to GUP data is granted. GUP shall adopt generic mechanisms such as used for the OSA framework approach. More specifically GUP shall use authentication mechanisms from Liberty Alliance Project as specified in Liberty ID-WSF Security and Privacy Overview [5], Liberty Discovery Service [2] and Liberty ID-WSF Security Mechanisms [6].",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.240_4.1.4",
+      "section_id": "4.1.4",
+      "section_title": "Authorization of profile access",
+      "content": "A GUP functionality exists that is responsible to authorise applications to access GUP data based on User specific or common privacy rules. All attempts to access the GUP data are to be authorized according to the defined policies which shall include the requestor information, the requested data, the target subscriber and the performed operation, or some of those.\nGUP shall use authorization mechanisms from Liberty Alliance Project as specified in Liberty ID-WSF Security and Privacy Overview [5] and Liberty ID-WSF Security Mechanisms [6].\nThe GUP data structures need to satisfy the requirement to provide the authorization information on the different levels: profile, component or data element. In addition to the generic authorization data, additional service specific data may be defined (e.g. for LCS). The same applies for the authorization decision logic. The execution of the authorization logic leads to a decision whether a requestor is allowed to make the request at all, and additionally to which part of data the requestor has the appropriate access rights with regard to the nature of the request.\nGUP provides mechanisms for the different GUP entities for managing the authorization data.\nBoth HPLMN based applications and non-HPLMN based applications are expected to send requests to the GUP Server. The GUP server shall have functionality to apply different authorization criteria, policy control and load control to HPLMN and non-HPLMN applications. Policy control and load control are out of the scope of the present document.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.240_4.1.5",
+      "section_id": "4.1.5",
+      "section_title": "Privacy control",
+      "content": "The tight connection of authentication, authorization and subscriber specific privacy requirements results in privacy control. Privacy control implies a centralized management for access rights including the subscriber's privacy requirements.\nGUP shall use privacy control mechanisms and other privacy related features from Liberty Alliance Project as specified in Liberty ID-WSF Security and Privacy Overview [5] and Liberty ID-WSF Security Mechanisms [6].",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.240_4.1.6",
+      "section_id": "4.1.6",
+      "section_title": "Synchronization of data storage",
+      "content": "The GUP data repository holds the master copy of the GUP component data. Applications or GUP server may copy (i.e. read) the component data or request synchronization. The present document defines how the data is requested and sent. What is thereafter done with the data by the application or GUP server is beyond the scope of the present document.\nSynchronization means that the changes to the master copy of the data are propagated to the entities that request synchronization. The synchronization request specifies which data are monitored for changes. It is also possible to request that all changes are reported.\nSynchronization may cause heavy processing load to the involved entities, thus some policies are required in the implementations but those are not specified for the time being. However the GUP interfaces should carry sufficient data for enabling the load control mechanisms to work.\nThe entity under a heavy processing load has the responsibility to handle the error cases and conditions and to reach the synchronization as fast as possible. All the unresolved errors or load balancing actions that affect synchronization shall be reported.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.240_4.1.7",
+      "section_id": "4.1.7",
+      "section_title": "Access of profile from visited network",
+      "content": "Access to GUP from a visited network shall follow the single point of access principle.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.240_4.1.8",
+      "section_id": "4.1.8",
+      "section_title": "Location of Profile Components",
+      "content": "A GUP functionality exists that keeps information where GUP data are located.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.240_4.1.9",
+      "section_id": "4.1.9",
+      "section_title": "Charging for profile access",
+      "content": "The GUP Server shall be capable of providing charging information, e.g. to enable transaction/event based charging.\nSome GUP Data Repositories may provide charging information, while other GUP Data Repositories do not provide charging information.\nMechanisms are needed to permit the GUP Server to know which GUP Data Repositories are (and are not) producing their own charging information. When the GUP Data Repository is capable of producing charging information, mechanisms are needed for the correlation of the charging information produced by GUP Server and GUP Data Repository.\nThe charging information may also be used for other event logging, customer care, privacy auditing, etc. functions.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.240_4.2",
+      "section_id": "4.2",
+      "section_title": "GUP functional entities",
+      "content": "The GUP reference architecture as shown in Figure 4.1 consists of:\n-\tGUP Server;\n-\tRepository Access Function (RAF);\n-\tGUP Data Repositories;\n-\tRg and Rp reference points;\n-\tApplications.\nFigure 4.1: GUP reference architecture\nAn example of mapping the GUP reference architecture to current infrastructure environment is shown in Figure 4.2.\nFigure 4.2: An example of mapping the GUP reference architecture to current infrastructure environment",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_4.1",
+        "figure_4.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.240_4.2.1",
+      "section_id": "4.2.1",
+      "section_title": "GUP Server",
+      "content": "The GUP Server is a functional entity providing a single point of access to the Generic User Profile data of a particular subscriber. The reference architecture does not specify or limit the physical location of the GUP Server enabling flexibility in the implementations. However, the GUP Server shall be located in the home operator network of the targeted subscriber.\nThe GUP Server includes the following main functionalities:\n-\tSingle point of access for reading and managing generic user profile data of a particular subscriber.\n-\tLocation of Profile Components.\n-\tAuthentication of profile requests.\n-\tAuthorization of profile requests.\n-\tSynchronization of Profile Components.\nThe GUP Server may support two modes of operation:\n-\tProxy mode (see figure 4.3). The Application requests user related data located in the GUP Data Repositories from the GUP Server. After taking care of needed actions specified for the GUP Server (and depending on the type of the request) the GUP Server makes requests to the corresponding GUP Data Repositories and receives responses from them. Finally the Application gets a response to the original request from the GUP Server. Depending on the type of the request also possible subsequent responses are delivered through the GUP Server.\n-\tRedirect mode (see figure 4.4). The Application requests user related data located in the GUP Data Repositories from the GUP Server. After taking care of needed actions specified for the GUP Server (and depending on the type of the request) the GUP Server returns to the Application the information (e.g. address of GUP Data Repository(s)) to allow the Application to request the information from the GUP Data Repositories. The Application then directly requests the information from the GUP Data Repositories.\nThe Proxy mode is the default mode of operation. Redirect capability and preference for the applied mode may be indicated by the application with the Requestor data parameter when accessing the GUP Server. The GUP Server decides which mode is selected for the different requests. In addition to the Requestor data parameter, the decision is based on the capabilities of the GUP Server and the related Repository Access Functions (RAF) as well as on the service configuration and policy data in the GUP Server related to the particular application. These service configuration and policy data are out of the scope of GUP standardisation. If the Redirect mode is not supported by the GUP Server the response is always sent according to the Proxy mode.\nFigure 4.3: GUP Server acting as a Proxy Server\nFigure 4.4: GUP Server acting as a Redirect Server.",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_4.3",
+        "figure_4.4"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.240_4.2.1.1",
+      "section_id": "4.2.1.1",
+      "section_title": "Single point of access",
+      "content": "The GUP Server shall accept data management related requests from the applications via the Rg reference point, and either convey the corresponding GUP component specific requests to GUP Data Repositories via Rp reference point or redirect the Application to convey the requests to the GUP Data Repositories. Note that one data request from an application to the GUP Server can cause sending of several GUP Data Repository requests by the GUP Server or Application. Also mapping to proprietary interfaces instead of Rp is possible in implementations.\nIn Proxy mode the GUP Server shall receive the results of the requests from GUP Data Repositories and deliver the results back to the requestor (Application). In case of responses from several GUP Data Repositories the GUP Server shall combine separate XML documents received from the repositories and deliver the composed information to the requestor. In redirect mode the Application will receive the results of the requests from the GUP Data Repositories.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.240_4.2.1.2",
+      "section_id": "4.2.1.2",
+      "section_title": "Location of profile components",
+      "content": "The GUP Server stores information about the GUP Components and the locations of data repositories of GUP Components related to each subscriber. Thus e.g. the separate GUP components composing the whole User Profile of a certain subscriber can be located and identified. The application shall be able to affect where a new GUP Component is created by the GUP Server. It is beyond this specification how the GUP server gets the component locations in the cases when it is not involved in the creation of those components.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.240_4.2.1.3",
+      "section_id": "4.2.1.3",
+      "section_title": "Authentication of profile request",
+      "content": "The GUP Server shall make sure that the application requesting user profile data is properly authenticated. The authentication is based on the identification of the requesting application and/or the identification of the possible subscriber requesting the user profile data. The GUP Server may rely on the authentication made by other trusted entities.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.240_4.2.1.4",
+      "section_id": "4.2.1.4",
+      "section_title": "Authorization of profile request",
+      "content": "The GUP Server shall take care of the authorization of the access to the user profile data. The authorization itself may be handled by a separate entity in the network, or alternatively by the RAF or GUP Data Repository. The authorization shall be based on the requestor information, the requested data, the target subscriber and the performed operation, or some of them. The authorization rules of the requested data shall be defined at least in the GUP Component level in GUP Server. (Note that the authorization may be based on also on finer granularity of the data content.) It shall be possible to manage the authorization data via the Rg and Rp reference points.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.240_4.2.1.5",
+      "section_id": "4.2.1.5",
+      "section_title": "Synchronization of profile components",
+      "content": "In proxy mode, the GUP Server shall convey the data synchronization requests from the applications to the RAFs in the same way as the other profile requests. Also the related change notifications from the RAFs are passed on to the requesting application. This requires that some kind of book keeping about the synchronization requests implemented. In redirect mode the GUP server shall redirect the Application to the RAFs in the same way as the other profile requests.\nThe GUP Server may store a copy of the actual data from the GUP Data Repository, but it is up to the local policy of the GUP Server.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.240_4.2.1.6",
+      "section_id": "4.2.1.6",
+      "section_title": "Additional functionality",
+      "content": "The GUP Server may take part in the charging of the data management operations concerning the profile.\nThe GUP Server may take part in the rate and/or size limiting of the data operations towards the profile.\nThe GUP Server may utilise a discovery service to register its contact reference information.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.240_4.2.2",
+      "section_id": "4.2.2",
+      "section_title": "Repository Access Function (RAF)",
+      "content": "The Repository Access Function (RAF) realizes the harmonized access interface. It hides the implementation details of the data repositories from the GUP infrastructure. The RAF performs protocol and data transformation where needed.\nThe protocol between the RAF and the GUP data repository is out of the standardization scope. It is recommended that the protocol used should support GUP requirements.\nThe RAF may take part in the authorization of access to such GUP information, which are under the control of the RAF. In addition, the authorization data may be managed via the Rp reference point.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.240_4.2.3",
+      "section_id": "4.2.3",
+      "section_title": "GUP Data Repository",
+      "content": "Each GUP Data Repository stores the primary master copy of one or several profile components. The RAF provides for the standardized access to the GUP Data Repository. The storage formats or the interface between the RAF and GUP Data Repository are not specified by GUP. It is presumed that the RAF and the GUP Data Repository are usually co-located in the same network element.\nThe GUP Data Repository may contain also the authorization data depending on the authorization model and architecture.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.240_4.2.4",
+      "section_id": "4.2.4",
+      "section_title": "Reference Points",
+      "content": "Reference Points in the GUP Reference Architecture:\n1.\tReference point RgThis reference point shall allow applications to create, read, modify and delete any user profile data using the harmonized access interface. The GUP Server locates the data repositories responsible of the storage of the requested profile component(s) and in case of proxy mode carries out the requested operation on the data. The reference point Rg shall support interworking to other mechanisms that support parts of the user profile outside the scope of 3GPP e.g. Liberty ID-WSF SOAP Binding Specification [3] and Liberty ID-WSF Data Services Template [4].\nIn the redirect mode, the GUP Server returns the locations of the GUP Data Repositories and the application can then send the requested operations via reference point Rp directly to the corresponding GUP Data Repositories.\nThe reference point Rg carries user related data, and therefore shall be protected by security mechanisms.\n2.\tReference point RpThis reference point shall allow the GUP Server or applications, excluding external applications (e.g. located in a third party application or in the UE), to create, read, modify and delete user profile data using the harmonized access interface. Rp is an intra-operator reference point. External applications and third party GUP data repositories shall be connected to the GUP Server only using the Rg reference point.\nThe reference point Rp carries user related data, and therefore shall be protected by security mechanisms.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.240_4.2.5",
+      "section_id": "4.2.5",
+      "section_title": "Applications",
+      "content": "The applications that may apply GUP reference points Rg and Rp may be targeted for different purposes e.g. for value added services or subscription management. Both operator's own applications and third party applications are covered. The latter ones shall apply Rg reference point.\nAdditionally the applications may utilise a discovery service to discover the contact reference information if not found out by other means. A discovery service e.g., as specified in Liberty Discovery Service Specification [2], may also act as Trusted Authority providing essential security related information (e.g. preferences in terms of peer entity and message authentication mechanism to be used and authentication and/or authorization assertions). Different policies may be followed in the use of discovery service. It may be used by different applications in different ways: per each operation, occasionally or not at all. In general terms, third party applications belonging to external security domains shall use a discovery service as a normal step, but in operator's services it may not be needed at all.\nApplications have different authorization rights to the GUP data of different subscribers as agreed between the parties.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.240_4.2.6",
+      "section_id": "4.2.6",
+      "section_title": "Message flow of using GUP",
+      "content": "For an application requesting GUP data component(s) a message flow is described in the following:\n-\tThe application requests a GUP component(s) via Single Point of Access (Rg) from the GUP server. The application will indicate if it can support the Redirect mode.\n-\tThe GUP server authenticates the application. Note that also separate authentication services may be applied.\n-\tThe GUP Server identifies the level of authorization the Application is allowed to access the GUP data.\n-\tThe GUP Server identifies the location of the GUP component(s).\nAt this point the GUP Server may (see figure 4.5 below)\n-\tAccess the GUP component(s) by means of the Harmonized Access Interface (Rp) or by other means outside the scope of GUP.\n-\tRespond to the application with the result of the request, optionally combining results from different GUP data repositories.\nOr, depending on GUP data repositories choice and if the application has indicated that it can support the Redirect mode (see figure 4.6 below)\n-\tRespond to the application with reference(s) to the component(s) and additionally authorization credentials with limited lifetime. Note that authorization credentials from other sources are not excluded.\n-\tThe application uses the reference(s) and the authorization credentials to access GUP data repositories by means of the Rp reference point.\nPrivacy rules may stay together with the data it applies to at the data repository where the data is stored. In this case this privacy rules shall apply. Optionally, the GUP Server may apply additional privacy rules. However the GUP Server must never \"bypass\" existing privacy rules.\nThe following figures show the message flows for both cases as described.\nFigure 4.5: An Example of Application requesting GUP data component(s) message flow (Proxy mode)\nFigure 4.6: An Application requesting GUP data component(s) message flow (Redirect mode)",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_4.5",
+        "figure_4.6"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.240_4.3",
+      "section_id": "4.3",
+      "section_title": "Rg reference point procedures",
+      "content": "This clause defines the procedures applied in the Rg reference point between the applications and the GUP Server. This reference point supports also third party profile access. Rg can be used e.g. to create the whole user profile or some components in it, to read any piece of data in the profile or to modify those. There are means to authorise all requests and protect the user's privacy in all operations. Rg is applied to control the data stored in the different GUP components identified by a resource identity and the component type. The resource identity contains either a subscriber identity or a generic component identification, which is given to components that are not bound to a single subscriber.\nThere are the following procedures:\n-\tCreate\n-\tDelete\n-\tModify\n-\tList\n-\tQuery\n-\tSubscribe\n-\tUnsubscribe\n-\tNotify\nInstead of proxying the requests (or handling them by itself) the GUP Server may also apply the redirect mode of operation for applications that support redirect mode, which implies that the GUP Server responds to the request with the redirection information such as redirection address and authorisation assertions. Redirection can be made with Create, Delete, Modify, Query and Subscribe procedures.",
+      "chunk_type": "procedure",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.240_4.3.1",
+      "section_id": "4.3.1",
+      "section_title": "Create procedure",
+      "content": "Create procedure is used by the application to create a new user profile or new components to an existing profile. The procedure is always related to a single resource identity which is given in the request. Additionally the Create procedure shall carry the component types and the data to be created to each component. At least one component shall be provided. Creation of the first component implies profile creation. The component type identifies what data are concerned i.e. not just the data typing. It is presumed that the profile data structure is already known by the both parties. No new type of data can be defined by this procedure, only the data contents are provided. Furthermore the application shall provide the necessary data for authentication and authorization of this create function (e.g. credentials, assertions and identifications).\nThe outcome of the procedure shall be provided in a separate response message. If the requestor data indicated that the application is able to receive redirect instructions, the GUP server may decide to return redirect instructions based on policies set by the operator in the GUP server. After this response the procedure is terminated without any other specified results or retained information in the GUP Server.\nTable 4.1: Request data of Create procedure\nParameter\nDescription\nUse\nResource Identity\nSpecifies the resource identity with its type (e.g. SIP URI public ID).\nMandatory\nComponent data\nSpecifies which components are addressed and provides the data for those. There may be several Component data elements corresponding to several created components. At least one element must be present. See the table below for the more detailed contents.\nMandatory\nRequestor data\nSpecifies the data related to the requestor. These data may be used as input in the authentication and authorization process. E.g. end user and application identification, credentials or privacy policy information.\nOptional\nTable 4.2: Contents of Component data parameter\nParameter\nDescription\nUse\nComponent type\nSpecifies the type of the created component. The Component type identifies the applied component data definitions.\nMandatory\nData\nSpecifies the GUP component data according to the specified Component type.\nMandatory\nTable 4.3: Response data of Create procedure\nParameter\nDescription\nUse\nRedirection data\nSpecifies the redirection instructions and assertions.\nOptional\nStatus\nIndicates whether:\n1. The procedure was carried out successfully,\n2. The request was redirected, or\n3. A failure was detected.\nFor the proxy mode 1 or 3 can be indicated. For the redirect mode 2 or 3 can be indicated. The possible failure is described in sufficient detail.\nMandatory (like the response itself)",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "table_4.1",
+        "table_4.2",
+        "table_4.3"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.240_4.3.2",
+      "section_id": "4.3.2",
+      "section_title": "Delete procedure",
+      "content": "Delete procedure is used by the application to remove a profile or selected GUP components from the repository. The attached resource identity and the component type are specified. If no component type is provided, the whole user profile identified by the resource identity will be deleted. The application shall provide the necessary data for authentication and authorization purposes (e.g. credentials, assertions and identifications).\nThe outcome of the procedure shall be provided in a separate response message. If the requestor data indicated that the application is able to receive redirect instructions, the GUP server may decide to return redirect instructions based on policies set by the operator in the GUP server. After this response the procedure is terminated without any other specified results or retained information in the GUP Server.\nTable 4.4: Request data of Delete procedure\nParameter\nDescription\nUse\nResource identity\nSpecifies the resource identity with its type (e.g. SIP URI public ID).\nMandatory\nComponent types\nSpecifies the types of the components.\nOptional\nRequestor data\nSpecifies the data related to the requestor. These data may be used as input in the authentication and authorization process. E.g. end user and application identification, credentials or privacy policy information.\nOptional\nTable 4.5: Response data of Delete procedure\nParameter\nDescription\nUse\nRedirection data\nSpecifies the redirection instructions and assertions.\nOptional\nStatus\nIndicates whether:\n1. The procedure was carried out successfully,\n2. The request was redirected, or\n3. A failure was detected.\nFor the proxy mode 1 or 3 can be indicated. For the redirect mode 2 or 3 can be indicated. The possible failure is described in sufficient detail.\nMandatory (like the response itself)\n4.3.2a\tList procedure\nList procedure is used by the application to list the existing profile items in the various GUP Data Repositories, and it is needed to handle large number of items. Different search criteria may be given as input. Only the references (i.e. resource identities and component types) are returned by the procedure. The listing may optionally operate sequentially, and then only a selected number of items is returned in one listing. The application shall provide the necessary data for authentication and authorization purposes (e.g. credentials, assertions and identifications).\nThe outcome of the procedure shall be provided in a separate response message.\nTable 4.5a: Request data of List procedure\nParameter\nDescription\nUse\nSearch criteria\nSpecifies which profiles are to be listed. The criteria may include at least resource identity (or part of it) and/or component type.\nMandatory\nRequestor data\nSpecifies the data related to the requestor. These data may be used as input in the authentication and authorization process. E.g. end user and application identification, credentials or privacy policy information.\nOptional\nTable 4.5b: Response data of List procedure\nParameter\nDescription\nUse\nListing data\nProvides the listed data (several elements). See the table below for the contents of a single element.\nMandatory\nEnd indication\nIndicates that the end of list has been reached.\nOptional\nStatus\nIndicates whether:\n1. The procedure was carried out successfully,\n2. The request was redirected, or\n3. A failure was detected.\nFor the proxy mode 1 or 3 can be indicated. For the redirect mode 2 or 3 can be indicated. The possible failure is described in sufficient detail.\nMandatory\nTable 4.5c: Contents of Listing data parameter\nParameter\nDescription\nUse\nResource identity\nSpecifies the resource identity with its type (e.g. SIP URI public ID).\nMandatory\nComponent types\nSpecifies the component types which are linked to the Resource identity and match with the search criteria.\nMandatory",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "table_4.4",
+        "table_4.5"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.240_4.3.3",
+      "section_id": "4.3.3",
+      "section_title": "Modify procedure",
+      "content": "Modify procedure is used by the application to change the data in the GUP components. Also adding and deleting data is possible by Modify procedure, but it cannot create a new component. The modified data are identified by the resource identity and the data reference. The modification may concern the whole component or any lower level piece of data referenced in the procedure invocation. The contents for the entire referenced data shall be provided. Several individual changes to different components can be made with one procedure invocation. It must be noted that if modification of one component fails, the other changes cannot always be rolled back (implementation specific feature). However the response data shall specify which modifications were not accomplished. It is also possible to add more similar type of data elements to an existing array type of element. The requestor shall provide the necessary data for authentication and authorization purposes (e.g. credentials, assertions and identifications).\nThe outcome of the procedure shall be provided in a separate response message. If the requestor data indicated that the application is able to receive redirect instructions, the GUP server may decide to return redirect instructions based on policies set by the operator in the GUP server. After this response the procedure is terminated without any other specified results or retained information in the GUP Server.\nTable 4.6: Request data of Modify procedure\nParameter\nDescription\nUse\nResource identity\nSpecifies the resource identity with its type (e.g. SIP URI public ID).\nMandatory\nModification data\nSpecifies which data are addressed and how those are changed. There may be several Modification data items corresponding to several individual modifications. These modifications may concern the same or different components. See the table below for the contents of one modification.\nMandatory\nRequestor data\nSpecifies the data related to the requestor. These data may be used as input in the authentication and authorization process. E.g. end user and application identification, credentials or privacy policy information.\nOptional\nTable 4.7: Contents of Modification data parameter\nParameter\nDescription\nUse\nData reference\nSpecifies which data are modified or expanded. The reference identifies both the component type and the possible deeper level data reference. The reference must be unique in a way that it refers only to one data item.\nMandatory\nNew data\nSpecifies the data to be stored in the GUP component. It is expected that all the data elements in the referenced data structure are given.\nMandatory\nOverwrite indication\nSpecifies if the data are added to the existing data or replaces those. Default action is \"insert\".\nOptional\nTable 4.8: Response data of Modify procedure\nParameter\nDescription\nUse\nRedirection data\nSpecifies the redirection instructions and assertions.\nOptional\nStatus\nIndicates whether:\n1. The procedure was carried out successfully,\n2. The request was redirected, or\n3. A failure was detected.\nFor the proxy mode 1 or 3 can be indicated. For the redirect mode 2 or 3 can be indicated. The possible failure is described in sufficient detail.\nMandatory (like the response itself)",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "table_4.6",
+        "table_4.7",
+        "table_4.8"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.240_4.3.4",
+      "section_id": "4.3.4",
+      "section_title": "Query procedure",
+      "content": "Query procedure is used by the application to retrieve the data in the user profile or its specific components. The queried data are identified by the resource identity and the data reference. The data retrieval may concern the whole profile, component or any parts of a component as referenced in the invocation. The requestor shall provide the necessary data for authentication and authorization purposes (e.g. credentials, assertions and identifications).\nThe retrieved data shall be provided in a separate response message. If the requestor data indicated that the application is able to receive redirect instructions, the GUP server may decide to return redirect instructions based on policies set by the operator in the GUP server. After this response the procedure is terminated without any other specified results or retained information in the GUP Server.\nTable 4.9: Request data of Query procedure\nParameter\nDescription\nUse\nResource identity\nSpecifies the resource identity with its type (e.g. SIP URI public ID).\nMandatory\nData references\nSpecifies which data are read. The data reference identifies the component type and the deeper level reference (if the whole component is not meant to be read). Multiple references may be given. It is also possible to refer to the profile root which implies that the whole profile data are queried.\nMandatory\nRequestor data\nSpecifies the data related to the requestor. These data may be used as input in the authentication and authorization process. E.g. end user and application identification, credentials or privacy policy information.\nOptional\nTable 4.10: Response data of Query procedure\nParameter\nDescription\nUse\nData\nContains the retrieved data as indicated by the Data references.\nMandatory\nRedirection data\nSpecifies the redirection instructions and assertions.\nOptional\nStatus\nIndicates whether:\n1. The procedure was carried out successfully,\n2. The request was redirected, or\n3. A failure was detected.\nFor the proxy mode 1 or 3 can be indicated. For the redirect mode 2 or 3 can be indicated. The possible failure is described in sufficient detail.\nMandatory",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "table_4.9",
+        "table_4.10"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.240_4.3.5",
+      "section_id": "4.3.5",
+      "section_title": "Subscribe procedure",
+      "content": "Subscribe procedure is used by the application to request notifications about changes in the GUP component data. The subscribed data are identified by the resource identity and the data reference. Furthermore the application can identify which elements are to be monitored for changes if it is not interested in all changes. Data synchronization can be performed by Subscribe and Notify procedures. The GUP Server returns the identification of the subscription request to provide means for the application to link the notifications of Notify procedure to the related subscribe requests. With Subscribe procedure an application can also request a list of all its subscriptions to notifications from the GUP Server. The GUP Server shall provide all the application's subscriptions to notifications in the response message.\nA filtering data parameter is defined to facilitate performance optimization. This may be left partly vendor/operator specific. The requestor shall provide the necessary data for authentication and authorization purposes (e.g. credentials, assertions and identifications).\nThe outcome of the procedure shall be provided in a separate response message. If the requestor data indicated that the application is able to receive redirect instructions, the GUP server may decide to return redirect instructions based on policies set by the operator in the GUP server. After this response the procedure is terminated without any other specified results or retained information in the GUP Server.\nTable 4.11: Request data of Subscribe procedure\nParameter\nDescription\nUse\nResource identity\nSpecifies the resource identity with its type (e.g. SIP URI public ID).\nThis parameter may be absent only when List of subscriptions parameter is present, otherwise this parameter shall always be present.\nConditional\nNotification Reference\nSpecifies the call-back address of the Requestor.  The GUP server shall send the notifications to this address.\nMandatory\nList of subscriptions\nIndicates that the application requests the list of all its subscriptions from the GUP server.\nOptional\nData references\nSpecifies which data are monitored for changes. The reference identifies both the component type and the possible deeper level data reference. Multiple references may be given. Any change within the referenced data structure causes a notification to be sent. If the parameter is absent, all modifications are notified.\nOptional\nRequestor data\nSpecifies the data related to the requestor. These data may be used as input in the authentication and authorization process. E.g. end user and application identification, credentials or privacy policy information.\nOptional\nFilter data\nSpecifies additional conditions for sending notifications to optimize the performance e.g. when immediate synchronization is not required. The parameter specifies also whether the initial data values are requested to be reported.\nOptional\nTable 4.12: Response data of Subscribe procedure\nParameter\nDescription\nUse\nInvoke identifications\nContains the invoke identification assigned by the GUP Server for this request.\nWhen the application has requested the list of all its subscriptions, this parameter will contain all the invoke identifications assigned by the GUP Server to the application.\nMandatory (unless the request is redirected or fails)\nRedirection data\nSpecifies the redirection instructions and assertions.\nOptional\nStatus\nIndicates whether:\n1. The procedure was carried out successfully,\n2. The request was redirected, or\n3. A failure was detected.\nFor the proxy mode 1 or 3 can be indicated. For the redirect mode 2 or 3 can be indicated. The possible failure is described in sufficient detail.\nMandatory (like the response itself)",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "table_4.11",
+        "table_4.12"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.240_4.3.6",
+      "section_id": "4.3.6",
+      "section_title": "Unsubscribe procedure",
+      "content": "Unsubscribe procedure is used by the application to cancel one or several existing subscriptions. The outcome of the procedure shall be provided in a separate response message.\nTable 4.13: Request data of Unsubscribe procedure\nParameter\nDescription\nUse\nInvoke identifications\nSpecifies one or several invoke identifications assigned by the GUP Server for the subscriptions.\nMandatory\nTable 4.14: Response data of Unsubscribe procedure\nParameter\nDescription\nUse\nStatus\nIndicates whether the procedure was carried out successfully or whether some failure was detected. The possible errors are described in sufficient detail.\nMandatory (like the response itself)",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "table_4.13",
+        "table_4.14"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.240_4.3.7",
+      "section_id": "4.3.7",
+      "section_title": "Notify procedure",
+      "content": "Notify procedure is invoked by the GUP Server when the data which was identified in Subscribe procedure changes or when the invoked Subscribe procedure requested sending of all the initial values of the referenced data. The procedure identifies the changed data and provides the new values.\nThe outcome of the procedure shall be provided in a separate response message.\nTable 4.15: Request data of Notify procedure\nParameter\nDescription\nUse\nInvoke identification\nSpecifies the invoke identification assigned by the GUP Server for this subscription.\nMandatory\nNotified data\nSpecifies which data are reported together with the data itself. Multiple pieces of data may be provided.\nMandatory\nTable 4.16: Response data of Notify procedure (optional)\nParameter\nDescription\nUse\nStatus\nIndicates whether the procedure was carried out successfully or whether some failure was detected. The possible errors are described in sufficient detail.\nMandatory (however the whole response is optional)",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "table_4.15",
+        "table_4.16"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.240_4.3.8",
+      "section_id": "4.3.8",
+      "section_title": "Common information definitions",
+      "content": "The information elements that are applied in several procedures of Rg reference point are described in this clause.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.240_4.3.8.1",
+      "section_id": "4.3.8.1",
+      "section_title": "Requestor data",
+      "content": "The Requestor data contain the information that the sender of the request provides in order to facilitate the authentication and authorization functions. The access control and user privacy functions work based on these data. Also an unspecified Additional info parameter is defined to carry data e.g. for monitoring or accounting purposes. All the elements are optional. However at least one shall be present if the parameter is applied.\nTable 4.17: Requestor data\nElement\nDescription\nUse\nSubscriber identification\nSpecifies the end user being served.\nOptional\nApplication identification\nSpecifies the application being served. The GUP Server has to link the Application identification to the actual sender of the request by the appropriate means taking into account the applied security measures and domains.\nOptional\nCredentials\nContains authentication information.\nOptional\nAuthorization assertion\nContains the assertion for authorization. The nature of the assertion must be for one time use to prevent replay and cut-and-paste attacks. E.g. digest or signature mechanisms may be applied.\nOptional\nPrivacy policy\nInformation about the applied privacy policy.\nOptional\nRedirection indications\nSpecifies if the application being served is able to handle returned redirect requests or if it specifically desires to apply the redirect mode. However the GUP Server decides which mode is used. If the parameter is missing, it is presumed that no such capability exists with the application.\nOptional\nAdditional info\nAdditional unspecified information related to the requestor or request.\nOptional",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_4.17"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.240_4.3.8.2",
+      "section_id": "4.3.8.2",
+      "section_title": "Redirection data",
+      "content": "The Redirection data is returned to the requester if redirection is called for. These data contain the address where the request is to be redirected to and the authorisation assertions optionally provided by the GUP Server, which may this way carry out at least part of the authorisation on behalf of the RAF (or Data Repository). The RAF (or the GUP Data Repository) takes the final decision whether the authorisation is accepted or not.\nTable 4.17a: Redirection data\nElement\nDescription\nUse\nRedirection address\nSpecifies the address (e.g. URI) where the request is to be redirected.\nOptional\nAuthorisation assertion\nContains the assertion for authorisation. This may be placed in the Requestor data item in the subsequent requests over Rp reference point.\nOptional",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_4.17"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.240_4.3.9",
+      "section_id": "4.3.9",
+      "section_title": "Error handling and common error types",
+      "content": "The basic principle in error handling is that all errors in carrying out the procedures lead to complete abortion of the requested operation. However if e.g. multiple modifications with separate data references are made with one procedure invocation, it is possible that part of these are completed even if some would fail. The procedure error responses identify the error type together with more detailed information about the cause of the error.\nThe common error types which can be applied to all procedures contain:\nTable 4.18: Common error types\nError\nDescription\nInvalid operation\nThe operation is invalid or unsupported.\nInvalid parameter\nThe given parameter of the operation is invalid.\nUnauthorized operation\nThere was no authority for the requested operation.\nData unavailable\nThe requested data were not available.\nUnexpected error\nAn unexpected error condition was met.\nAuthentication error\nThe authentication of the requestor has failed.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_4.18"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.240_4.4",
+      "section_id": "4.4",
+      "section_title": "Rp reference point procedures",
+      "content": "This clause defines the procedures applied in the Rp reference point. The application or GUP server acts as the active requestor towards the Repository Access Function (RAF) entities e.g. to read or modify the data. It is assumed that the both ends share initially the same data structure definitions. Rp is applied to control the data stored in the different user profile components identified by a resource identity and the component type. The resource identity contains either a subscriber identity or a generic component identification which is given to components that are not bound to a single subscriber.\nThere are the following procedures:\n-\tCreate Component\n-\tDelete Component\n-\tModify Data\n-\tList Data\n-\tRead Data\n-\tSubscribe To Data\n-\tUnsubscribe To Data\n-\tNotify Data\n-\tDefine Data",
+      "chunk_type": "procedure",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.240_4.4.1",
+      "section_id": "4.4.1",
+      "section_title": "Create Component procedure",
+      "content": "Create Component procedure is used by the application to add a new profile component in the contacted repository. The attached resource identity and the created component type are specified along with the created data. The component type identifies what data are concerned i.e. not just the data typing. It is presumed that the profile data structure is already known by the both parties. No new type of data can be defined by this procedure, only the data contents are provided. The requestor shall provide the necessary data for authorization purposes (e.g. assertions and identifications).\nThis procedure is synchronous in nature but it is also possible to define a separate response message.\nTable 4.19: Request data of Create Component procedure\nParameter\nDescription\nUse\nResource Identity\nSpecifies the resource identity with its type (e.g. SIP URI public ID).\nMandatory\nComponent type\nSpecifies the type of the created component. This is needed because several types may be supported by one RAF. The Component type identifies the applied component data definitions.\nMandatory\nRequestor data\nSpecifies the data related to the requestor. These data may be used as input in the authorization process. E.g. end user and application identification. See clause 4.4.9.\nOptional\nComponent data\nSpecifies the profile component data according to the specified Component type.\nMandatory\nTable 4.20: Response data of Create Component procedure\nParameter\nDescription\nUse\nStatus\nIndicates whether the procedure was carried out successfully or whether some failure was detected. The possible errors are described in sufficient detail.\nMandatory (like the response itself)",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "clause_4.4.9",
+        "table_4.19",
+        "table_4.20"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.240_4.4.2",
+      "section_id": "4.4.2",
+      "section_title": "Delete Component procedure",
+      "content": "Delete Component procedure is used by the application to remove a profile component from the contacted repository. The attached resource identity and the component type is specified. The requestor shall provide the necessary data for authorization purposes (e.g. assertions and identifications).\nThis procedure is synchronous in nature but it is also possible to define a separate response message.\nTable 4.21: Request data of Delete Component procedure\nParameter\nDescription\nUse\nResource identity\nSpecifies the resource identity with its type (e.g. SIP URI public ID).\nMandatory\nComponent type\nSpecifies the type of the component.\nMandatory\nRequestor data\nSpecifies the data related to the requestor. These data may be used as input in the authorization process. E.g. end user and application identification. See clause 4.4.9.\nOptional\nTable 4.22: Response data of Delete Component procedure\nParameter\nDescription\nUse\nStatus\nIndicates whether the procedure was carried out successfully or whether some failure was detected. The possible errors are described in sufficient detail.\nMandatory (like the response itself)\n4.4.2a\tList Data procedure\nList Data procedure is used by the application to list the existing profile items in the various GUP Data Repositories, and it is needed to handle large number of items. Different search criteria may be given as input. Only the references (i.e. resource identities and component types) are returned by the procedure. The listing may optionally operate sequentially, and then only a selected number of items is returned in one listing. The application shall provide the necessary data for authentication and authorization purposes (e.g. credentials, assertions and identifications).\nThe outcome of the procedure shall be provided in a separate response message.\nTable 4.22a: Request data of List Data procedure\nParameter\nDescription\nUse\nSearch criteria\nSpecifies which profiles are to be listed. The criteria may include at least resource identity (or part of it) and/or component type.\nMandatory\nRequestor data\nSpecifies the data related to the requestor. These data may be used as input in the authentication and authorization process. E.g. end user and application identification, credentials or privacy policy information.\nOptional\nTable 4.22b: Response data of List Data procedure\nParameter\nDescription\nUse\nListing data\nProvides the listed data (several elements). See the table below for the contents of a single element.\nMandatory\nEnd indication\nIndicates that the end of list has been reached.\nOptional\nStatus\nIndicates whether the procedure was carried out successfully or whether some failure was detected. The possible errors are described in sufficient detail.\nMandatory\nTable 4.22c: Contents of Listing data parameter\nParameter\nDescription\nUse\nResource identity\nSpecifies the resource identity with its type (e.g. SIP URI public ID).\nMandatory\nComponent types\nSpecifies the component types which are linked to the resource identity and match with the search criteria.\nMandatory",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "clause_4.4.9",
+        "table_4.21",
+        "table_4.22"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.240_4.4.3",
+      "section_id": "4.4.3",
+      "section_title": "Modify Data procedure",
+      "content": "Modify Data procedure is used by the application to change the data in a profile component. The component is identified by the resource identity and the component type. The modification may concern the whole component or any lower level piece of data referenced in the procedure invocation. The contents for the entire referenced data shall be provided. Several individual changes to the component can be made with one procedure invocation. It is also possible to add more similar type of data elements to an existing array type of element. The requestor shall provide the necessary data for authorization purposes (e.g. assertions and identifications).\nThis procedure is synchronous in nature but it is also possible to define a separate response message.\nTable 4.23: Request data of Modify Data procedure\nParameter\nDescription\nUse\nResource identity\nSpecifies the resource identity with its type (e.g. SIP URI public ID).\nMandatory\nComponent type\nSpecifies the type of the component.\nMandatory\nModified data\nSpecifies which data are addressed and how those are changed. There may be several modified data items corresponding to several individual modifications. See the table below for the contents of one modification.\nMandatory\nRequestor data\nSpecifies the data related to the requestor. These data may be used as input in the authorization process. E.g. end user and application identification. See clause 4.4.9.\nOptional\nTable 4.24: Contents of Modified data parameter\nParameter\nDescription\nUse\nData reference\nSpecifies which data are modified or expanded. The reference may indicate the whole component or any deeper level piece of data. The reference must be unique in a way that it refers only to one data item.\nMandatory\nNew data\nSpecifies the data to be stored in the profile component. It is expected that all the data elements in the referenced data structure are given.\nMandatory\nOverwrite indication\nSpecifies if the data are added to the existing data or replaces those. Default action is \"insert\".\nOptional\nTable 4.25: Response data of Modify Data procedure\nParameter\nDescription\nUse\nStatus\nIndicates whether the procedure was carried out successfully or whether some failure was detected. The possible errors are described in sufficient detail.\nMandatory (like the response itself)",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "clause_4.4.9",
+        "table_4.23",
+        "table_4.24",
+        "table_4.25"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.240_4.4.4",
+      "section_id": "4.4.4",
+      "section_title": "Read Data procedure",
+      "content": "Read Data procedure is used by the application to retrieve the data in a profile component. The component is identified by the resource identity and the component type. The data retrieval may concern the whole component or any parts of it as referenced in the invocation. The requestor shall provide the necessary data for authorization purposes (e.g. assertions and identifications).\nTable 4.26: Request data of Read Data procedure\nParameter\nDescription\nUse\nResource identity\nSpecifies the resource identity with its type (e.g. SIP URI public ID).\nMandatory\nComponent type\nSpecifies the type of the component.\nMandatory\nData references\nSpecifies which data are read. The data reference may point to a piece of data on any level in the data structure (also to the whole component). Multiple references may be given.\nMandatory\nRequestor data\nSpecifies the data related to the requestor. These data may be used as input in the authorization process. E.g. end user and application identification. See clause 4.4.9.\nOptional\nTable 4.27: Response data of Read Data procedure\nParameter\nDescription\nUse\nData\nContains the retrieved data as indicated by the Data references. All the data under the referenced one are returned. Multiple packets of data are given if so requested.\nMandatory\nStatus\nIndicates whether the procedure was carried out successfully or whether some failure was detected. The possible errors are described in sufficient detail.\nMandatory (like the response itself)\nThis procedure is synchronous in nature but it is also possible to define a separate response message.",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "clause_4.4.9",
+        "table_4.26",
+        "table_4.27"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.240_4.4.5",
+      "section_id": "4.4.5",
+      "section_title": "Subscribe To Data procedure",
+      "content": "Subscribe To Data procedure is used by the application to request notifications about changes in the profile component data. The component is identified by the resource identity and the component type. Furthermore the application can identify which elements are to be monitored for changes if it is not interested in all changes. Data synchronization can be performed by Subscribe To Data and Notify Data procedures. The RAF returns the identification of the subscription request to provide means for the application to link the notifications of Notify Data procedure to the related subscribe requests. With Subscribe To Data procedure an application can also request a list of all its subscriptions to notifications from the RAF. The RAF shall provide all the application's subscriptions to notifications in the response message.\nA filtering data parameter is defined to facilitate performance optimization. This may be left partly vendor/operator specific. The requestor shall provide the necessary data for authorization purposes (e.g. assertions and identifications).\nTable 4.28: Request data of Subscribe To Data procedure\nParameter\nDescription\nUse\nResource identity\nSpecifies the resource identity with its type (e.g. SIP URI public ID).\nThis parameter may be absent only when List of subscriptions parameter is present, otherwise this parameter shall always be present.\nConditional\nNotification Reference\nSpecifies the call-back address of the Requestor.  The RAF shall send the notifications to this address.\nMandatory\nList of subscriptions\nIndicates that the application requests the list of all its subscriptions from the RAF.\nOptional\nComponent type\nSpecifies the type of the component.\nMandatory\nData references\nSpecifies which data are monitored for changes. Multiple references may be given. Any change within the referenced data structure causes a notification to be sent. If the parameter is absent, all modifications are notified.\nOptional\nRequestor data\nSpecifies the data related to the requestor. These data may be used as input in the authorization process. E.g. end user and application identification. See clause 4.4.9.\nOptional\nFilter data\nSpecifies additional conditions for sending notifications to optimize the performance e.g. when immediate synchronization is not required. The parameter specifies also whether the initial data values are requested to be reported.\nOptional\nTable 4.29: Response data of Subscribe To Data procedure\nParameter\nDescription\nUse\nInvoke identifications\nContains the invoke identification assigned by the RAF for this request.\nWhen the application has requested the list of all its subscriptions, this parameter will contain all the invoke identifications assigned by the RAF to the application.\nMandatory\nStatus\nIndicates whether the procedure was carried out successfully or whether some failure was detected. The possible errors are described in sufficient detail.\nMandatory (like the response itself)",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "clause_4.4.9",
+        "table_4.28",
+        "table_4.29"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.240_4.4.6",
+      "section_id": "4.4.6",
+      "section_title": "Unsubscribe To Data procedure",
+      "content": "Unsubscribe To Data procedure is used by the application to cancel one or several existing subscriptions.\nTable 4.30: Request data of Unsubscribe To Data procedure\nParameter\nDescription\nUse\nInvoke identifications\nSpecifies one or several invoke identifications assigned by the RAF for the subscriptions.\nMandatory\nTable 4.31: Response data of Unsubscribe To Data procedure\nParameter\nDescription\nUse\nStatus\nIndicates whether the procedure was carried out successfully or whether some failure was detected. The possible errors are described in sufficient detail.\nMandatory (like the response itself)",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "table_4.30",
+        "table_4.31"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.240_4.4.7",
+      "section_id": "4.4.7",
+      "section_title": "Notify Data procedure",
+      "content": "Notify Data procedure is invoked by the RAF when the data which was identified in Subscribe To Data procedure changes or when the invoked Subscribe To Data procedure requested sending of all the initial values of the referenced data. The procedure identifies the changed data and provides the new values.\nTable 4.32: Request data of Notify Data procedure\nParameter\nDescription\nUse\nInvoke identification\nSpecifies the invoke identification assigned by the RAF for this subscription.\nMandatory\nNotified data\nSpecifies which data are reported together with the data itself. Multiple pieces of data may be provided.\nMandatory\nTable 4.33: Response data of Notify Data procedure (optional)\nParameter\nDescription\nUse\nStatus\nIndicates whether the procedure was carried out successfully or whether some failure was detected. The possible errors are described in sufficient detail.\nMandatory (however the whole response is optional)",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "table_4.32",
+        "table_4.33"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.240_4.4.8",
+      "section_id": "4.4.8",
+      "section_title": "Define Data procedure",
+      "content": "Define Data procedure is used by the application to define new data elements to the profile component data structure. The names and types for the new data are specified. This procedure facilitates extension of the profile data with new, proprietary data. Subsequently these data can be handled by the above described procedures e.g. modified by the Modify Data procedure.",
+      "chunk_type": "procedure",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.240_4.4.9",
+      "section_id": "4.4.9",
+      "section_title": "Common information definitions",
+      "content": "The information elements that are applied in several procedures are described in this clause.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.240_4.4.9.1",
+      "section_id": "4.4.9.1",
+      "section_title": "Requestor data",
+      "content": "The Requestor data contain the information that the sender of the request provides in order to facilitate the authorization functions. The access control and user privacy functions work based on these data. Also an unspecified Additional info parameter is defined to carry data e.g. for monitoring or accounting purposes. All the elements are optional. However at least one shall be present if the parameter is applied.\nTable 4.34: Requestor data\nElement\nDescription\nUse\nSubscriber identification\nSpecifies the end user being served.\nOptional\nApplication identification\nSpecifies the application being served. The RAF has to link the Application identification to the actual sender of the request by the appropriate means taking into account the applied security measures and domains.\nOptional\nAuthorization assertion\nContains the assertion for authorization. The nature of the assertion must be for one time use to prevent replay and cut-and-paste attacks. E.g. digest or signature mechanisms may be applied. The provisioning of the assertions or any related shared secrets is beyond Rp reference point specifications.\nOptional\nAdditional info\nAdditional unspecified information related to the requestor or request.\nOptional",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_4.34"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.240_4.4.10",
+      "section_id": "4.4.10",
+      "section_title": "Error handling and common error types",
+      "content": "The basic principle in error handling is that all errors in carrying out the procedures lead to complete abortion of the requested operation. The procedure error responses identify the error type together with more detailed information about the cause of the error.\nThe common error types which can be applied to all procedures contain:\nTable 4.35: Common error types\nError\nDescription\nInvalid operation\nThe operation is invalid or unsupported.\nInvalid parameter\nThe given parameter of the operation is invalid.\nUnauthorized operation\nThere was no authority for the requested operation.\nData unavailable\nThe requested data were not available.\nUnexpected error\nAn unexpected error condition was met.\nAuthentication error\nThe authentication of the requestor has failed.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_4.35"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.240_5",
+      "section_id": "5",
+      "section_title": "GUP information model",
+      "content": "A Generic User Profile consists of a number of independent GUP Components. However, a GUP Component may contain (i.e. reference) other GUP components e.g. to enable reuse of data.\nThe GUP Component has a unique identity within the Generic User Profile. In addition to the component type the component identity contains either a subscriber identity or more generic identification depending on which kind of component is in question. A GUP Component can be retrieved through one RAF, and it may consist of a number of GUP Components, Data Element Groups and/or Data Elements.\nA GUP Component contains zero or more Data Element Groups. The Data Element Group contains indivisible Data Elements and/or Data Element Groups. The nested Data Elements Groups allow deeper hierarchical structures. The Data Element Group in the lowest hierarchical level contains one or more Data Elements. The Data Element Groups inside a GUP Component may be of the same or different types.\nAlternatively the GUP Component may contain zero or more Data Elements without the Data Element Groups. A GUP component shall have at least one Data Element Group or Data Element.\nA Composite Datatype is used to define the structure of the whole GUP Component. The structure includes definition about what kind of Data Element Groups and/or which Data Elements belong to the defined GUP Component as well as the data types and valid values of the data.\nThe UML Class Diagram below illustrates the basic concepts of the GUP Information Model.\nFigure 5.1: The basic concepts of GUP\nGUP defines an Authorisation Component, which is just like any other GUP Component. This implies that the same capabilities as for any GUP Component (e.g. identities and structure) are also applied to the Authorisation Component. The Authorisation Component is able to reference any element of the GUP Information Model and define the authorisation regarding those elements. The Authorisation Component may be either subscriber specific or common to several subscribers and/or elements of the GUP Information Model.\nNote that any GUP Component may include additional data items, which are used (e.g. by RAF) for the authorisation purposes but those are seen as a part of the data specific to a certain GUP Component, and thus not a part of the generic authorisation specified by GUP.\nFigure 5.2 presents an example structure of Generic User Profile with the terms used in the UML Class Diagram. Note that the data structure may be also deeper than shown in the example figure, e.g., the Data Element Groups might consist of nested Data Element Groups.\nFigure 5.2: Example structure of GUP information\nOne purpose of the example structure is to clarify the intended relation between the UML Class Diagram and the hierarchical structure of GUP in terms of XML. Use of XML fulfils the requirements for the architectural structure of the GUP information model.\nEach Generic User Profile consists of one or several GUP Components depending on the nature of the user related data. GUP Components are independent XML documents. The Generic User Profile is thus formed of a number of XML documents.\nEach GUP Component consists of GUP Components, Data Elements and/or Data Element Groups as defined in the component specific definitions. In XML terms the Data Elements are XML elements. The Data Element Group is a structured XML element with an arbitrarily deep data structure.\nAnnex A (informative):Examples of 3GPP Generic User Profile usage\nExample 1: GUP Usage with Subscription Management\nAn application is accessing targeted subscriber's subscription data (HSS GUP Component) stored in the HSS. It is assumed that RAF is implemented in the HSS and the targeted HSS GUP Component has been created by using the Create Component procedure. The application in this case can be e.g. a Subscription Management application, a service application or any third party application that is interested in the subscription data of a specific subscriber in operator A's network.\nThe example of the interworking interface diagram is shown in Figure A.2. In this example GUP Server is working in the proxy mode of operation.\nFigure A.2: An Example of the Interworking Diagram between GUP and an Application\nThe interworking steps between the Application, GUP Server and HSS are summarised below:\nStep 1: Application A invokes a Query procedure to the GUP Server including the targeted subscriber's public user identity joe.doe@operatorA.com in the Resource Identity parameter. The HSS GUP Component will be included in the Data Reference parameter clarifying the targeted data (component type) that the application is interested in. Also specific data (i.e. XML Data Element) within one GUP Component can be requested. Application A's identity is included in the Requestor data parameter for the identification and authorisation purposes of the request.\nStep 2: GUP Server authenticates the application and authorises the request with the result that Application A is allowed to access the HSS GUP Component of the subscriber joe.doe@operatorA.com.\nStep 3: GUP Server locates the target GUP Data Repository (RAF address), i.e. that the HSS GUP Component of the subscriber joe.doe@operatorA.com is located in the HSS 1, and invokes Read data procedure to HSS 1.\nStep 4: HSS 1 makes an internal query by using the public user identity joe.doe@operatorA.com and returns a response to Read data procedure to the GUP Server including the requested HSS GUP Component data of the subscriber joe.doe@operatorA.com.\nStep 5: GUP Server passes the received response to Query procedure further to Application A.\nThe GUP Server may retrieve authorisation GUP Components from a RAF, if it does not hold sufficient information by itself to carry out the authorisation.\nIf necessary, e.g. when the application requests several GUP Components, or the whole profile including several GUP components in different repositories, GUP Server can invoke several requests to various RAFs and combine responses to one response when returning a response to the application.\nAnnex B (informative):3GPP Generic User Profile candidates\nThis table lists the Generic User Profile candidates grouped per GUP access. It gives for each data access, the supplier, the consumer and the data repository. The applied categorization of the data in the table does not imply similar GUP component structure.\nGUP access\nSupplier\nData repository\nDescription of the data\nConsumer\nGeneral user data for IMS\nAS manager\nAS\nISIM subscriber data for IMS:\n- Private & Public SIP URI of the user\n- Settings back up/restore\n- Preferences (e.g. languages)\n- Phone books\n- Buddy list\n- Available services\n- Service capabilities\n- Active service profile\nS-CSCF\nMMS VASP applications\nRef TS 23.141 [7]\nAS manager\nAS\nMMS application specific data:\n- Authorization\n- Confidentiality\n- Charging information\n- Message distribution\nMMS server\nPrivacy control settings of the user\nAS manager\nAS\nPrivacy control data of the user:\n- Privacy settings for standardized service like Presence\n- Privacy setting of non standardized services\nUE-ISIM\nPLMN specific user information\nO&M\nHSS\nPLMN specific user information:\n- User addresses (e.g. MSISDNs, URLs)\n- WAP parameters (e.g. standard WAP gateway)\n- GPRS parameters\n- Preferred access technologies (e.g. UTRAN, GERAN, WLAN etc…)\nS-CSCF\nAS\nAuthorized and subscribed service information for CS & PS\nO&M\nHSS-HLR\nHSS-HLR\nAuthorized and subscribed service information:\n- Subscriber ID (IMSI, MSISDNs)\n- General subscription information\n- Subscription restrictions\n- Basic & Supplementary services\n- Charging plans\n- Operator determined barring data is FFS\n- SMS subscription\n- MMS subscription\nMSC/VLR\nGMSC\nSGSN\nGGSN\nMMS server\nCSE handling of user subscriptions for\nCS & PS\nCSE\nHSS-HLR\n- Forwarding & barring information\n- CAMEL subscription information\nCSE\nAuthorized and subscribed service information for IMS\nO&M\nHSS\nAuthorized and subscribed service information:\n- IM Subscriber ID (Private User ID, Public ID)\n- Subscribed media\n- Billing policy\n- Initial filter criteria\n- Service keys & triggering aspects\n- Authorized services that the subscriber may subscribe to\n- Services the subscriber actually has subscribed to\nS-CSCF\nAS\nCAMEL services for IMS\nO&M\nHSS-HLR\nCAMEL subscription information for IMS\nIM-SSF\nAnnex C (informative):Change history\nChange history\nDate\nTSG #\nTSG Doc.\nCR\nRev\nSubject/Comment\nOld\nNew\n2003-06\nSA#20\nSP-030310\nRaised to v.6.0.0 after approval at SA#20\n2.0.0\n6.0.0\n2003-09\nSA#21\nSP-030381\n001\n1\nRg reference point compliance with Liberty Alliance Project ID-WSF\n6.0.0\n6.1.0\n2003-09\nSA#21\nSP-030381\n002\n1\nIntroduction of discovery service\n6.0.0\n6.1.0\n2003-09\nSA#21\nSP-030381\n003\n1\nCorrections to Rg reference point descriptions\n6.0.0\n6.1.0\n2003-09\nSA#21\nSP-030381\n004\n1\nRemoval of GMLC as example\n6.0.0\n6.1.0\n2003-12\nSA#22\nSP-030659\n007\n1\nSelection of the GUP Server mode of operation\n6.1.0\n6.2.0\n2003-12\nSA#22\nSP-030659\n009\n1\nNotification Reference\n6.1.0\n6.2.0\n2003-12\nSA#22\nSP-030659\n010\n2\nSubscribe Operation, Subscription Status\n6.1.0\n6.2.0\n2003-12\nSA#22\nSP-030659\n011\n1\nGUP information model improvement\n6.1.0\n6.2.0\n2003-12\nSA#22\nSP-030659\n012\n1\nGUP Annex B terminal Capability negotiation for IMS\n6.1.0\n6.2.0\n2004-03\nSA#23\nSP-040038\n006\n4\nAdding a listing function\n6.2.0\n6.3.0\n2004-03\nSA#23\nSP-040038\n013\n2\nRg reference point alignment with Liberty ID-WSF\n6.2.0\n6.3.0\n2004-03\nSA#23\nSP-040038\n014\nGeneralizing the subscriber identity term to resource identity\n6.2.0\n6.3.0\n2004-03\nSA#23\nSP-040038\n015\n1\nAuthorization enhancements\n6.2.0\n6.3.0\n2004-03\nSA#23\nSP-040038\n016\nAuthorization model alignment with GUP Information Model\n6.2.0\n6.3.0\n2004-06\nSA#24\nSP-040321\n017\n1\nGUP Server in Home operator network\n6.3.0\n6.4.0\n2004-06\nSA#24\nSP-040321\n018\n1\nRp Intra-operator interface\n6.3.0\n6.4.0\n2004-06\nSA#24\nSP-040321\n019\n1\nGUP Authentication failure\n6.3.0\n6.4.0\n2004-06\nSA#24\nSP-040321\n020\nRemoval of editor's note on existing profile components\n6.3.0\n6.4.0\n2004-06\nSA#24\nSP-040321\n021\n1\nAddition of an example in Annex A\n6.3.0\n6.4.0\n2004-06\nSA#24\nSP-040321\n022\n2\nClarification of requirement for component location management\n6.3.0\n6.4.0\n2004-09\nSA#25\nSP-040525\n024\n1\nAddition of missing security aspects\n6.4.0\n6.5.0\n2004-12\nSA#26\nSP-040757\n025\nRemoval of UE as GUP Data Repository\n6.5.0\n6.6.0\n2005-03\nSA#27\nSP-050109\n026\nUse of Discovery Service as Trusted Authority\n6.6.0\n6.7.0\n2007-06\nSP-36\n-\n-\n-\nUpdate to Rel-7 version (MCC)\n6.7.0\n7.0.0\n2008-12\nSP-42\n-\n-\n-\nUpdate to Rel-8 version (MCC)\n7.0.0\n8.0.0\n2008-12\nSP-46\n-\n-\n-\nUpdate to Rel-9 version (MCC)\n8.0.0\n9.0.0\n2011-03\nSP-51\n-\n-\n-\nUpdate to Rel-10 version (MCC)\n9.0.0\n10.0.0\n2012-09\n-\n-\n-\n-\nUpdate to Rel-11 version (MCC)\n10.0.0\n11.0.0\n2014-09\nSP-65\n-\n-\n-\nUpdate to Rel-12 version (MCC)\n11.0.0\n12.0.0\n2015-12\n-\n-\n-\n-\nUpdate to Rel-13 version (MCC)\n12.0.0\n13.0.0\n2017-03\n-\n-\n-\n-\nUpdate to Rel-14 version (MCC)\n13.0.0\n14.0.0\n2018-06\nSP-80\n-\n-\n-\nUpdate to Rel-15 version (MCC)\n14.0.0\n15.0.0\n2020-07\nSP-88E\n-\n-\n-\nUpdate to Rel-16 version (MCC)\n15.0.0\n16.0.0\n2022-03\nSP-95E\n-\n-\n-\nUpdate to Rel-17 version (MCC)\n16.0.0\n17.0.0\n2024-03\n-\n-\n-\n-\nUpdate to Rel-18 version (MCC)\n17.0.0\n18.0.0",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_5.1",
+        "figure_5.2",
+        "ts_23.141",
+        "ts_6.2",
+        "ts_6.3",
+        "ts_6.4"
+      ]
+    }
+  ]
+}

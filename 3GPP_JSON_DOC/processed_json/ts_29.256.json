@@ -1,0 +1,501 @@
+{
+  "metadata": {
+    "specification_id": "ts_29.256",
+    "version": "18.4.0",
+    "title": "3GPP TS 29.256",
+    "file_path": "/content/drive/MyDrive/RAG_thesis/data/29_series/29256-i40/29256-i40.docx"
+  },
+  "export_info": {
+    "export_date": "2025-07-26T08:58:41.449132",
+    "total_chunks": 42
+  },
+  "chunks": [
+    {
+      "chunk_id": "ts_29.256_1",
+      "section_id": "1",
+      "section_title": "Scope",
+      "content": "The present document specifies the stage 3 protocol and data model for the UAS-NF functionality of the Nnef Service Based Interface. It provides stage 3 protocol definitions and message flows, and specifies the API for each service offered by the NEF (UAS-NF).\nThe 5G System stage 2 architecture and procedures are specified in 3GPP TS 23.501 [2] and 3GPP TS 23.502 [3].\nThe Technical Realization of the Service Based Architecture and the Principles and Guidelines for Services Definition are specified in 3GPP TS 29.500 [4] and 3GPP TS 29.501 [5].\nThe Uncrewed Aerial System Network Function (UAS-NF) provides the UAS-specific NEF services to NF service consumers (e.g. AMF, SMF). The UAS-NF is functionality within the NEF.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.501",
+        "ts_23.502",
+        "ts_29.500",
+        "ts_29.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.256_2",
+      "section_id": "2",
+      "section_title": "References",
+      "content": "The following documents contain provisions which, through reference in this text, constitute provisions of the present document.\n-\tReferences are either specific (identified by date of publication, edition number, version number, etc.) or non‑specific.\n-\tFor a specific reference, subsequent revisions do not apply.\n-\tFor a non-specific reference, the latest version applies. In the case of a reference to a 3GPP document (including a GSM document), a non-specific reference implicitly refers to the latest version of that document in the same Release as the present document.\n[1]\t3GPP TR 21.905: \"Vocabulary for 3GPP Specifications\".\n[2]\t3GPP TS 23.501: \"System Architecture for the 5G System; Stage 2\".\n[3]\t3GPP TS 23.502: \"Procedures for the 5G System; Stage 2\".\n[4]\t3GPP TS 29.500: \"5G System; Technical Realization of Service Based Architecture; Stage 3\".\n[5]\t3GPP TS 29.501: \"5G System; Principles and Guidelines for Services Definition; Stage 3\".\n[6]\t3GPP TS 23.256: \"Support of Uncrewed Aerial Systems (UAS) connectivity, identification and tracking; Stage 2\".\n[7]\t3GPP TR 21.900: \"Technical Specification Group working methods\".\n[8]\tIETF RFC 9113: \"HTTP/2\".\n[9]\tOpenAPI Initiative, \"OpenAPI 3.0.0 Specification\", https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.0.md.\n[10]\tIETF RFC 8259: \"The JavaScript Object Notation (JSON) Data Interchange Format\".\n[11]\t[11]\tIETF RFC 9457: \"Problem Details for HTTP APIs\".\n[12]\t3GPP TS 33.501: \"Security architecture and procedures for 5G system\".\n[13]\tIETF RFC 6749: \"The OAuth 2.0 Authorization Framework\".\n[14]\t3GPP TS 29.510: \"Network Function Repository Services; Stage 3\".\n[15]\t3GPP TS 29.571: \"5G System; Common Data Types for Service Based Interfaces; Stage 3\".\n[16]\t3GPP TS 24.501: \"Non-Access-Stratum (NAS) protocol for 5G System (5GS); Stage 3\".",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905",
+        "ts_23.501",
+        "ts_23.502",
+        "ts_29.500",
+        "ts_29.501",
+        "ts_23.256",
+        "ts_21.900",
+        "ts_33.501",
+        "ts_29.510",
+        "ts_29.571",
+        "ts_24.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.256_3.1",
+      "section_id": "3.1",
+      "section_title": "Terms",
+      "content": "For the purposes of the present document, the terms given in 3GPP TR 21.905 [1] and the following apply. A term defined in the present document takes precedence over the definition of the same term, if any, in 3GPP TR 21.905 [1].\nFor the purposes of the present document, the terms and definitions given in 3GPP TS 23.256 [6] shall apply.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905",
+        "ts_23.256"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.256_3.2",
+      "section_id": "3.2",
+      "section_title": "Symbols",
+      "content": "For the purposes of the present document, the following symbols apply:",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.256_3.3",
+      "section_id": "3.3",
+      "section_title": "Abbreviations",
+      "content": "For the purposes of the present document, the abbreviations given in 3GPP TR 21.905 [1] and the following apply. An abbreviation defined in the present document takes precedence over the definition of the same abbreviation, if any, in 3GPP TR 21.905 [1].\nAA\tAuthorization/Authentication\nBRID\tBroadcast Remote Identification\nBVLOS\tBeyond Visual Line of Sight\nC2\tCommand and Control\nNRID\tNetworked Remote Identification\nPEI\tPermanent Equipment Identifier\nRID\tRemote Identification\nTPAE\tThird Party Authorized Entity\nUAS\tUncrewed Aerial System\nUAV\tUncrewed Aerial Vehicle\nUSS\tUAS Service Supplier\nUTM\tUncrewed Aerial System Traffic Management\nUUAA\tUSS UAV AA\nUUID\tUniversal Unique Identifier",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.256_4.1",
+      "section_id": "4.1",
+      "section_title": "Introduction",
+      "content": "Within the 5GC, the NEF (UAS-NF) offers services to the AMF, SMF, and PCF via the Nnef service based interface, and the NEF (UAS-NF) offers services to the SMF+PGW-C via the Nnef service based interface for UUAA-SM and C2 procedure supported in EPS (see 3GPP TS 23.256 [6]).\nFigure 4.1-1 provides the reference model (in service based interface representation and in reference point representation), with focus on the NEF (UAS-NF) and the scope of the present specification.\nFigure 4.1-1: Reference model – NEF (UAS-NF)\nThe functionalities supported by the NEF (UAS-NF) are listed in clause 4.3.2 of 3GPP TS 23.256 [6].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.256_clause_4.3.2",
+        "ts_23.256_figure_4.1-1",
+        "figure_4.1-1",
+        "ts_23.256"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.256_5.1",
+      "section_id": "5.1",
+      "section_title": "Introduction",
+      "content": "The table 5.1-1 shows the NEF (UAS-NF) Services and Service Operations:\nTable 5.1-1 List of NEF (UAS-NF) Services\nService Name\nService Operations\nOperation Semantics\nExample Consumer(s)\nMapped Service Operation\nNnef_Authentication\nAuthenticateAuthorize\nRequest/Response\nAMF, SMF, SMF+PGW-C\nNnef_Authentication_AuthenticateAuthorize\nNotification\nSubscribe/Notify\nAMF, SMF, SMF+PGW-C\nNnef_Authentication_Notification",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.256_5.2.1",
+      "section_id": "5.2.1",
+      "section_title": "Service Description",
+      "content": "The service allows communication of authentication and authorization messages between AMF/SMF and external AF (USS). An NF as service consumer (e.g. AMF, SMF, SMF+PGW-C) can authenticate or subscribe to receive notifications from NEF (UAS-NF) related to reauthentication, update authorization data or revoke authorization of the UAV.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.256_5.2.2.1",
+      "section_id": "5.2.2.1",
+      "section_title": "Introduction",
+      "content": "The Nnef_Authentication service supports following service operations:\n-\tAuthenticateAuthorize\n-\tNotification",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.256_5.2.2.2.1",
+      "section_id": "5.2.2.2.1",
+      "section_title": "General",
+      "content": "The AuthenticateAuthorize service operation is used during the following procedure:\n-\tUUAA-MM and UUAA-SM procedures (see 3GPP TS 23.256 [6], clause 5.2.2 and clause 5.2.3, respectively)\n-\tC2 authorization (see 3GPP TS 23.256 [6], clause 5.2.5 and clause 5.4)\nThe AuthenticateAuthorize service operation is invoked by an NF Service Consumer (e.g. an AMF, SMF, SMF+PGW-C) towards the NEF (UAS-NF), when UUAA-MM is done at 5GS registration, UUAA-SM is done at PDU session establishment, or for Authorization for C2 in 5GS or EPS.\nThe NF Service Consumer (e.g. the AMF or the SMF or the SMF+PGW-C) shall send the authentication message to NEF (UAS-NF) by sending the HTTP POST request towards the UAV Authentications resource as shown in Figure 5.2.2.2.1-1.\nFigure 5.2.2.2.1-1: AuthenticateAuthorize Service Operation\n1.\tThe NF Service Consumer shall send a POST request to the resource representing the UAV Authentications resource of the NEF (UAS-NF) with a \"UAVAuthInfo\" object in the request body, including:\n-\tgpsi IE set to GPSI (in the format of External Identifier) of the UAV;\n-\tserviceLevelId IE set to Service Level Device Identity;\n-\tauthMsg IE contains the service-level AA message\n. This IE is deprecated; the \"authContainer\" IE should be used instead.\n-\t\"authContainer\" IE that contains one or more authentication message(s) in the AA container provided by the UE (see 3GPP TS 23.256 [6]). This IE deprecates the \"authMsg\" IE.\n-\tauthNotificationURI IE provides the notification URI to receive notifications related to authentication;\n-\tauthServerAddress IE provides the Authorization Server Address, e.g. Authorization Server FQDN. This IE is not included for intermediate round-trip authentication messages;\n-\tnfType IE carries the NF type of the  NF service consumer (e.g. AMF or SMF or SMF+PGW-C); and\n-\tuserLocInfo IE provides the user location information (e.g. cell Id).\nIf the NF Service Consumer is SMF or SMF+PGW-C, the \"UAVAuthInfo\" also may include:\n-\tipAddr IE carries the IP Address associated with the PDU session;\n-\tpei IE carries the PEI;\nIf the NF Service Consumer is SMF or SMF+PGW-C, for UUAA-MM and UUAA-SM procedures the \"UAVAuthInfo\" also may include:\n-\tdnn IE carries the DNN which can be used by NEF (UAS-NF) later on to create a subscription at SMF; and\n-\tsNssai IE carries the S-NSSAI which can be used by NEF (UAS-NF) later on to create a subscription at SMF.\n2a.\tOn success, the NEF (UAS-NF) shall store the result and return \"200 OK\".\nFor intermediate round-trip messages, the content (i.e. UAVAuthResponse) shall contain the GPSI of the UAV and Service Level Device Identity. The content optionally includes \"authContainer\", see 3GPP  TS 23.256 [6] for further details.\nFor the final NEF (UAS-NF) to NF service consumer message, the content (i.e. UAVAuthResponse) shall contain the GPSI of the UAV, notifyCorrId attribute and \"authResult\" attribute. If the UAV is authenticated successfully, the NEF (UAS-NF) shall set the \"authResult\" attribute to \"AUTH_SUCCESS\". \"authMsg\" and \"authResult\" attributes are deprecated; the attribute \"authContainer\" should be used instead. The content shall contain the authorized Service Level Device Identity and \"authContainer\" content delivering the AA result, configuration information to the UAV. The AMF forwards the message transparently to UE over NAS MM.\n2b.\tOn failure or redirection, one of the HTTP status codes listed in Table 6.1.7.3-1 shall be returned. For a 4xx/5xx response, the message body containing a ProblemDetails structure with the \"cause\" attribute set to one of the application errors listed in Table 6.1.7.3-1.\nIf the NEF (UAS-NF) cannot successfully fulfil the received HTTP POST request due to an internal error or an error in the HTTP POST request, the NEF (UAS-NF) shall send the HTTP error response as specified in clause 6.1.7.\nIf the UAV authentication is failed, the NEF (UAS-NF) shall reject the request with an HTTP \"403 Forbidden\" response message including the \"cause\" attribute of the ProblemDetails data structure set to \"AUTHENTICATION_FAILURE\". NEF (UAS-NF) shall also include an indication of uasResourceRelease received from the USS to indicate if the PDU sessions associated with the \"DNN(s) subject to aerial services\" can be released or not, during re-authentication failure, when the service operation is used during Re-authentication procedure.\nIn above steps, while there is no expected response from the USS in the case of time out, the NEF(UAS-NF) shall return HTTP status code \"504 Gateway Timeout\", with the message body containing a ProblemDetails structure with the \"cause\" attribute set to \"PEER_NOT_RESPONDING\".",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_23.256_clause_5.2.2",
+        "clause_5.2.3",
+        "ts_23.256_clause_5.2.5",
+        "clause_5.4",
+        "clause_6.1.7",
+        "table_6.1.7.3-1",
+        "figure_5.2.2.2.1-1",
+        "ts_23.256"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.256_5.2.2.3.1",
+      "section_id": "5.2.2.3.1",
+      "section_title": "General",
+      "content": "The AuthNotify service operation is used during the following procedure:\n-\tUSS Initiated reauthentication (see 3GPP TS 23.256 [6], clause 5.2.4)\n-\tUSS Initiated update authorization data or revoke authorization of the UAV\nThe AuthNotify service operation is invoked by the NEF (UAS-NF) to inform a NF Service Consumer (e.g. AMF, SMF, SMF+PGW-C), when USS triggers reauthentication, update authorization data or revoke authorization of the UAV. NEF (UAS-NF) shall determine the NF service consumer based on the previously stored UUAA context during the successful UUAA procedure as defined in clause 5.2.2.2.\nThe NEF (UAS-NF) shall send the AuthNotify request by sending the HTTP POST method towards the Notification URI as shown in Figure 5.2.2.3.1-1.\nFigure 5.2.2.3.1-1: AuthNotify Service Operation\n1.\tThe NEF (UAS-NF) shall send a POST request towards the Notification URI received in the Authenticate service operation request (See clause 5.2.2.2.1). If the AMF for UUAA-MM has changed, the NEF (UAS-NF) should discover the Notification URI of the new AMF via NRF (in the default notification subscription with the \"UUAA_MM_AUTH_NOTIFICATION\" notification type). The NEF (UAS-NF) shall be able to determine the NF type of the NF service consumer by nfType IE received in the Authenticate service operation request. The request body shall contain an \"AuthNotification\" object containing the reauthentication information or update authorization information or revoke authorization indication.\nWhen the procedure is used for reauthentication or reauthorization/update authorization information, the AuthNotification object includes:\n- the gpsi IE set to the GPSI (in the format of External Identifier) of the given UAV required to be reauthenticated;\n- serviceLevelId IE set to the Service Level Device Identity of the UAV;\n- authMsg IE contains the service-level AA message. This IE is deprecated; the \"authContainer\" IE should be used instead.\n- \"authContainer\" IE that contains AA related data provided by the UE (see 3GPP TS 23.256 [6]). This IE deprecates the \"authMsg\" IE.\n- notifType IE set to REAUTH used for reauthentication and/or notifType IE set to UPDATEAUTH used for update authorization data; and\n- notifyCorrId IE set to the notification correlation ID;\nWhen the procedure is used for authorization revocation, the AuthNotification object includes:\n- the gpsi IE set to the GPSI (in the format of External Identifier) of the given UAV;\n- serviceLevelId IE set to the Service Level Device Identity of the UAV;\n- notifType IE set to REVOKE; and\n- notifyCorrId IE set to the notification correlation ID;\n2a.\tOn success, \"204 No content\" shall be returned without response body. If the NF Service consumer remove the successful UUAA result during UUAA Revocation procedure, the NEF (UAS-NF) shall remove the UUAA context (see clause 5.2.7 of 3GPP TS 23.256 [6]).\n2b.\tOn failure or redirection, one of the HTTP status code listed in Table 6.1.5.2.3.1-3 shall be returned. For a 4xx/5xx response, the response body should contain a \"ProblemDetails\" object.\nIf the NF service consumer cannot successfully fulfil the received HTTP POST request due to an internal error or an error in the HTTP POST request, the NF service consumer shall send an HTTP error response as specified in clause 6.1.7.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_23.256_clause_5.2.4",
+        "clause_5.2.2.2",
+        "clause_5.2.2.2.1",
+        "ts_23.256_clause_5.2.7",
+        "clause_6.1.7",
+        "table_6.1.5.2.3.1-3",
+        "figure_5.2.2.3.1-1",
+        "ts_23.256"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.256_6.1.1",
+      "section_id": "6.1.1",
+      "section_title": "Introduction",
+      "content": "The Nnef_Authentication shall use the Nnef_Authentication API.\nThe API URI of the Nnef_Authentication API shall be:\n{apiRoot}/<apiName>/<apiVersion>\nThe request URIs used in HTTP requests from the NF service consumer towards the NF service producer shall have the Resource URI structure defined in clause 4.4.1 of 3GPP TS 29.501 [5], i.e.:\n{apiRoot}/<apiName>/<apiVersion>/<apiSpecificResourceUriPart>\nwith the following components:\n-\tThe {apiRoot} shall be set as described in 3GPP TS 29.501 [5].\n-\tThe <apiName> shall be \"nnef-authentication\".\n-\tThe <apiVersion> shall be \"v1\".\n-\tThe <apiSpecificResourceUriPart> shall be set as described in clause 6.1.3.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.501_clause_4.4.1",
+        "clause_6.1.3",
+        "ts_29.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.256_6.1.2.1",
+      "section_id": "6.1.2.1",
+      "section_title": "General",
+      "content": "HTTP/2, IETF RFC 9113 [8], shall be used as specified in clause 5 of 3GPP TS 29.500 [4].\nHTTP/2 shall be transported as specified in clause 5.3 of 3GPP TS 29.500 [4].\nThe OpenAPI [9] specification of HTTP messages and content bodies for the Nnef_Authentication API is contained in Annex A.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.500_clause_5",
+        "ts_29.500_clause_5.3",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.256_6.1.2.2.1",
+      "section_id": "6.1.2.2.1",
+      "section_title": "General",
+      "content": "See clause 5.2.2 of 3GPP TS 29.500 [4] for the usage of HTTP standard headers.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.500_clause_5.2.2",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.256_6.1.2.2.2",
+      "section_id": "6.1.2.2.2",
+      "section_title": "Content type",
+      "content": "JSON, IETF RFC 8259 [10], shall be used as content type of the HTTP bodies specified in the present specification as specified in clause 5.4 of 3GPP TS 29.500 [4]. The use of the JSON format shall be signalled by the content type \"application/json\".\n\"Problem Details\" JSON object shall be used to indicate additional details of the error in a HTTP response body and shall be signalled by the content type \"application/problem+json\", as defined in IETF RFC 9457 [11].",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_5.4",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.256_6.1.2.3",
+      "section_id": "6.1.2.3",
+      "section_title": "HTTP custom headers",
+      "content": "The mandatory HTTP custom header fields specified in clause 5.2.3.2 of 3GPP TS 29.500 [4] shall be applicable.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_5.2.3.2",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.256_6.1.3.1",
+      "section_id": "6.1.3.1",
+      "section_title": "Overview",
+      "content": "This clause describes the structure for the Resource URIs and the resources and methods used for the service.\nFigure 6.1.3.1-1 depicts the resource URIs structure for the Nnef_Authentication API.\nFigure 6.1.3.1-1: Resource URI structure of the Nnef_Authentication API\nTable 6.1.3.1-1 provides an overview of the resources and applicable HTTP methods.\nTable 6.1.3.1-1: Resources and methods overview\nResource name\nResource URI\nHTTP method or custom operation\nDescription\nuav-authentications\n/uav-authentications\nPOST\nA UAV authentication",
+      "chunk_type": "definition",
+      "cross_references": [
+        "table_6.1.3.1-1",
+        "figure_6.1.3.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.256_6.1.3.2",
+      "section_id": "6.1.3.2",
+      "section_title": "Resource: uav-authentications",
+      "content": "The resource represents UAV Authentications to be done with the NEF (UAS-NF).",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.256_6.1.3.2.2",
+      "section_id": "6.1.3.2.2",
+      "section_title": "Resource Definition",
+      "content": "Resource URI: {apiRoot}/nnef-authentication/<apiVersion>/uav-authentications\nThis resource shall support the resource URI variables defined in table 6.1.3.2.2-1.\nTable 6.1.3.2.2-1: Resource URI variables for this resource\nName\nData type\nDefinition\napiRoot\nstring\nSee clause 6.1.1",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_6.1.1",
+        "table_6.1.3.2.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.256_6.1.3.2.3.1",
+      "section_id": "6.1.3.2.3.1",
+      "section_title": "POST",
+      "content": "This method performs UAV authentication.\nThis method shall support the URI query parameters specified in table 6.1.3.2.3.1-1.\nTable 6.1.3.2.3.1-1: URI query parameters supported by the POST method on this resource\nName\nData type\nP\nCardinality\nDescription\nApplicability\nn/a\nThis method shall support the request data structures specified in table 6.1.3.2.3.1-2 and the response data structures and response codes specified in table 6.1.3.2.3.1-3.\nTable 6.1.3.2.3.1-2: Data structures supported by the POST Request Body on this resource\nData type\nP\nCardinality\nDescription\nUAVAuthInfo\nM\n1\nRepresents the data to be used for UAV authentication\nTable 6.1.3.2.3.1-3: Data structures supported by the POST Response Body on this resource\nData type\nP\nCardinality\nResponse\ncodes\nDescription\nUAVAuthResponse\nM\n1\n200 OK\nSuccessful request of UAV authentication and authorization. If C2 authorization request is sent during UUAA-SM, the final response indicates that at least UUAA has succeeded.\nRedirectResponse\nO\n0..1\n307 Temporary Redirect\nTemporary redirection.\n(NOTE 2)\nRedirectResponse\nO\n0..1\n308 Permanent Redirect\nPermanent redirection.\n(NOTE 2)\nUAVAuthFailure\nO\n0..1\n403 Forbidden\nThis represents that the UAV authentication is failed, the \"cause\" attribute of the ProblemDetails data structure set to one of the following application errors:\n- AUTHENTICATION_FAILURE\n- SERVICE_NOT_ALLOWED\nSee table 6.1.7.3-1 for the description of these errors.\nProblemDetails\nO\n0..1\n504 Gateway Timeout\nThe \"cause\" attribute may be used to indicate the following application error:\n- PEER_NOT_RESPONDING\nSee table 6.1.7.3-1 for the description of the error.\nNOTE 1:\tThe mandatory HTTP error status code for the POST method listed in Table 5.2.7.1-1 of 3GPP TS 29.500 [4] also apply.\nNOTE 2:\tRedirectResponse may be inserted by an SCP, see clause 6.10.9.1 of 3GPP TS 29.500 [4].\nTable 6.1.3.2.3.1-4: Headers supported by the 307 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located on an alternative service instance within the same NEF (UAS-NF) or NEF (UAS-NF) (service) set.\nFor the case, when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target NF (service) instance ID towards which the request is redirected\nTable 6.1.3.2.3.1-5: Headers supported by the 308 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located on an alternative service instance within the same NEF (UAS-NF) or UAS-NF/NEF (service) set.\nFor the case, when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target NF (service) instance ID towards which the request is redirected",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_6.10.9.1",
+        "table_6.1.3.2.3.1-1",
+        "table_6.1.3.2.3.1-2",
+        "table_6.1.3.2.3.1-3",
+        "table_6.1.7.3-1",
+        "ts_29.500_table_5.2.7.1-1",
+        "ts_29.500_table_6.1.3.2.3.1-4",
+        "table_6.1.3.2.3.1-5",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.256_6.1.3.2.4",
+      "section_id": "6.1.3.2.4",
+      "section_title": "Resource Custom Operations",
+      "content": "None",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.256_6.1.5.1",
+      "section_id": "6.1.5.1",
+      "section_title": "General",
+      "content": "This clause specifies the notifications provided by the Nnef_Authentication service.\nNotifications shall comply to clause 6.2 of 3GPP TS 29.500 [4] and clause 4.6.2.3 of 3GPP TS 29.501 [5].",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.500_clause_6.2",
+        "ts_29.500_clause_4.6.2.3",
+        "ts_29.501_clause_4.6.2.3",
+        "ts_29.500",
+        "ts_29.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.256_6.1.5.2.1",
+      "section_id": "6.1.5.2.1",
+      "section_title": "Description",
+      "content": "The NF Service Consumer (e.g. the AMF or SMF or SMF+PGW-C) provides the Notification URI for getting notified about reauthentication requested by the USS. The NEF (UAS-NF) shall notify the NF Service Consumer when reauthentication is requested by the USS.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.256_6.1.5.2.2",
+      "section_id": "6.1.5.2.2",
+      "section_title": "Target URI",
+      "content": "The Notification URI \"{notifUri}\" shall be used with the callback URI variables defined in table 6.1.5.2.2-1.\nTable 6.1.5.2.2-1: Callback URI variables\nName\nDefinition\nnotificationUri\nString formatted as URI with the Callback Uri",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.1.5.2.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.256_6.1.5.2.3",
+      "section_id": "6.1.5.2.3",
+      "section_title": "Standard Methods",
+      "content": "6.1.5.2.3.1\tPOST\nThis method shall support the request data structures specified in table 6.1.5.2.3.1-1 and the response data structures and response codes specified in table 6.1.5.2.3.1-2.\nTable 6.1.5.2.3.1-1: Data structures supported by the POST Request Body\nData type\nP\nCardinality\nDescription\nAuthNotification\nM\n1\nContains the reauthentication information.\nTable 6.1.5.2.3.1-2: Data structures supported by the POST Response Body\nData type\nP\nCardinality\nResponse codes\nDescription\nn/a\n204 No Content\nSuccessful notification of reauthentication\nRedirectResponse\nO\n0..1\n307 Temporary Redirect\nTemporary redirection.\n(NOTE 2)\nRedirectResponse\nO\n0..1\n308 Permanent Redirect\nPermanent redirection.\n(NOTE 2)\nNOTE 1:\tThe mandatory HTTP error status codes for the POST method listed in Table 5.2.7.1-1 of 3GPP TS 29.500 [4] also apply, with response body containing an object of ProblemDetails data type (see clause 5.2.7 of 3GPP TS 29.500 [4]).\nNOTE 2:\tRedirectResponse may be inserted by an SCP, see clause 6.10.9.1 of 3GPP TS 29.500 [4].\nTable 6.1.5.2.3.1-4: Headers supported by the 307 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nA URI pointing to the endpoint of NF service consumer to which the notification should be sent. For the case, when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target NF (service) instance ID towards which the notification is redirected.\nTable 6.1.5.2.3.1-5: Headers supported by the 308 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nA URI pointing to the endpoint of NF service consumer to which the notification should be sent. For the case, when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target NF (service) instance ID towards which the notification is redirected.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_5.2.7",
+        "ts_29.500_clause_6.10.9.1",
+        "table_6.1.5.2.3.1-1",
+        "table_6.1.5.2.3.1-2",
+        "ts_29.500_table_5.2.7.1-1",
+        "ts_29.500_table_6.1.5.2.3.1-4",
+        "table_6.1.5.2.3.1-5",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.256_6.1.6.1",
+      "section_id": "6.1.6.1",
+      "section_title": "General",
+      "content": "This clause specifies the application data model supported by the API.\nTable 6.1.6.1-1 specifies the data types defined for the Nnef_Authentication service based interface protocol.\nTable 6.1.6.1-1: Nnef_Authentication specific Data Types\nData type\nClause defined\nDescription\nApplicability\nUAVAuthInfo\n6.1.6.2.2\nInformation within Authenticate Request\nAuthNotification\n6.1.6.2.3\nInformation within notification\nUAVAuthResponse\n6.1.6.2.4\nInformation within Authenticate Response\nUAVAuthFailure\n6.1.6.2.5\nInformation within Authenticate Response\nAuthResult\n6.1.6.3.3\nEnumeration indicating authentication result\nNotifType\n6.1.6.3.4\nEnumeration Notification type\nAuthContainer\n6.1.6.2.6\nCarries the AA related data\nTable 6.1.6.1-2 specifies data types re-used by the Nnef_Authentication service based interface protocol from other specifications, including a reference to their respective specifications and when needed, a short description of their use within the Nnef_Authentication service based interface.\nTable 6.1.6.1-2: Nnef_Authentication re-used Data Types\nData type\nReference\nComments\nApplicability\nIpAddr\n3GPP TS 29.571 [15]\nIP address\nPei\n3GPP TS 29.571 [15]\nPermanent Equipment Identifier\nUri\n3GPP TS 29.571 [15]\nUri\nGpsi\n3GPP TS 29.571 [15]\nGPSI\nExtSnssai\n3GPP TS 29.571 [15]\nExt Snssai\nDnn\n3GPP TS 29.571 [15]\nDNN information\nUserLocation\n3GPP TS 29.571 [15]\nUser location\nRedirectResponse\n3GPP TS 29.571 [15]\nContains redirection related information\nNFType\n3GPP TS 29.510 [14]\nNF Type\nRefToBinaryData\n3GPP TS 29.571 [15]\nauthMsg data, AA message payload data\nBytes\n3GPP TS 29.571 [15]\nBinary data encoded as a base64 character string\nAmbr\n3GPP TS 29.571 [15]\nAMBR",
+      "chunk_type": "definition",
+      "cross_references": [
+        "table_6.1.6.1-1",
+        "table_6.1.6.1-2",
+        "ts_29.571",
+        "ts_29.510"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.256_6.1.6.2.1",
+      "section_id": "6.1.6.2.1",
+      "section_title": "Introduction",
+      "content": "This clause defines the structures to be used in resource representations.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.256_6.1.6.2.2",
+      "section_id": "6.1.6.2.2",
+      "section_title": "Type: UAVAuthInfo",
+      "content": "Table 6.1.6.2.2-1: Definition of type UAVAuthInfo\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\ngpsi\nGpsi\nM\n1\nGPSI of the UAV\nserviceLevelId\nstring\nM\n1\nService Level Device Identity of the UAV\nipAddr\nIpAddr\nO\n0..1\nThis IE may be present if the NF Service Consumer is the SMF or SMF+PGW-C.\nWhen present, this IE indicates the IP address associated with the PDU session.\nauthMsg\nRefToBinaryData\nO\n0..1\nContains the service-level AA message. This attribute is deprecated; the attribute \"authContainer\" should be used instead.\nauthContainer\narray(AuthContainer)\nO\n1..N\nContains the AA related data without the \"authResult\" attribute. This attribute deprecates \"authMsg\" attribute.\npei\nPei\nO\n0..1\nThis IE may be present if the NF Service Consumer is the SMF or SMF+PGW-C.\nWhen present, PEI associated with the UAV.\nauthServerAddress\nstring\nO\n0..1\nProvides the Authorization Server Address, e.g. Authorization Server FQDN.\nauthNotificationURI\nUri\nC\n0..1\nThis IE shall be present in the initial authentication message.\nIt carries the notification URI to receive authentication related notifications\ndnn\nDnn\nC\n0..1\nThis IE shall be present if the NF Service Consumer is the SMF or SMF+PGW-C.\nWhen present, this IE indicates DNN associated with the PDU session.\nsNssai\nExtSnssai\nC\n0..1\nThis IE shall be present if the NF Service Consumer is the SMF.\nWhen present, this IE indicates the S-NSSAI associated with the PDU session.\nueLocInfo\nUserLocation\nO\n0..1\nThis IE shall contain the UE location information if it is available.\nnfType\nNFType\nM\n1\nNFType of the NF service consumer.\nPossible NFType values supported in this release of the specification are\n-\tAMF\n-\tSMF",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.1.6.2.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.256_6.1.6.2.3",
+      "section_id": "6.1.6.2.3",
+      "section_title": "Type: AuthNotification",
+      "content": "Table 6.1.6.2.3-1: Definition of type AuthNotification\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\ngpsi\nGpsi\nM\n1\nGPSI of the UAV\nserviceLevelId\nstring\nM\n1\nService Level Device Identity of the UAV\nauthMsg\nRefToBinaryData\nC\n0..1\nContains the service-level AA message.\nThis IE may be present if the notifType is set to \"UPDATEAUTH\". This attribute is deprecated; the attribute \"authContainer\" should be used instead.\nauthContainer\narray(AuthContainer)\nC\n1..N\nContains the AA related data, including optionally the \"authResult\" attribute. This IE shall be present if the notifType is set to \"UPDATEAUTH\". This attribute deprecates \"authMsg\" attribute.\nnotifType\nNotifType\nM\n1\nThis IE shall contain the notification type.\nnotifyCorrId\nstring\nM\n1\nThis IE shall contain the Notification Correlation Id.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.1.6.2.3-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.256_6.1.6.2.4",
+      "section_id": "6.1.6.2.4",
+      "section_title": "Type: UAVAuthResponse",
+      "content": "Table 6.1.6.2.4-1: Definition of type UAVAuthResponse\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\ngpsi\nGpsi\nM\n1\nGPSI of the UAV\nauthResult\nAuthResult\nC\n0..1\nThis IE shall be present for the final NEF (UAS-NF) to NF service consumer message.\nConveys the UAV authentication result. This attribute is deprecated; the attribute \"authContainer\" should be used instead.\nauthMsg\nRefToBinaryData\nO\n0..1\nContains the service-level AA message. This attribute is deprecated; the attribute \"authContainer\" should be used instead.\nauthContainer\narray(AuthContainer)\nC\n1..N\nContains the AA related data, including the \"authResult\" attribute in the final AA response. This attribute shall be present for the final AA response message. This attribute deprecates \"authMsg\" attribute.\nserviceLevelId\nstring\nO\n0..1\nThis IE contains the authorized Service Level Device Identity\nnotifyCorrId\nstring\nO\n0..1\nWhen present, this IE shall contain the Notification Correlation Id.\nauthSessAmbr\nAmbr\nO\n0..1\nThis attribute contains DN Authorized Session-AMBR.\nauthProfIndex\nstring\nO\n0..1\nThis attribute contains DN authorization profile index.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.1.6.2.4-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.256_6.1.6.2.5",
+      "section_id": "6.1.6.2.5",
+      "section_title": "Type: UAVAuthFailure",
+      "content": "Table 6.1.6.2.5-1: Definition of type UAVAuthFailure\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\nerror\nProblemDetails\nM\n1\nRepresents the application error information. The application level error cause shall be encoded in the \"cause\" attribute.\nuasResourceRelease\nboolean\nC\n0..1\nThis IE shall be present and used to indicate if the PDU sessions associated with the \"DNN(s) subject to aerial services\" can be released or not, during re-authentication failure.\nIt shall be included if the \"cause\" attribute of the ProblemDetails data structure set to \"AUTHENTICATION_FAILURE\".\nWhen present, it shall be set as follows:\n- true: the PDU sessions associated with the \"DNN(s) subject to aerial services\" release is requested;\n- false (default): the PDU sessions associated with the \"DNN(s) subject to aerial services\" release is not requested.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.1.6.2.5-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.256_6.1.6.2.6",
+      "section_id": "6.1.6.2.6",
+      "section_title": "Type: AuthContainer",
+      "content": "Table 6.1.6.2.6-1: Definition of type AuthContainer\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\nauthMsgType\nBytes\nO\n0..1\nThis IE, when present, carries the Service-level-AA payload type specified in clause 9.11.2.15 of 3GPP TS 24.501 [16].\nauthMsgPayload\nRefToBinaryData\nO\n0..1\nAA message payload data.\nauthResult\nAuthResult\nC\n0..1\nShall be present for the final AA response conveying the AA result.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_24.501_clause_9.11.2.15",
+        "table_6.1.6.2.6-1",
+        "ts_24.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.256_6.1.6.3.1",
+      "section_id": "6.1.6.3.1",
+      "section_title": "Introduction",
+      "content": "This clause defines simple data types and enumerations that can be referenced from data structures defined in the previous clauses.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.256_6.1.6.3.2",
+      "section_id": "6.1.6.3.2",
+      "section_title": "Simple data types",
+      "content": "The simple data types defined in table 6.1.6.3.2-1 shall be supported.\nTable 6.1.6.3.2-1: Simple data types\nType Name\nType Definition\nDescription\nApplicability",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.1.6.3.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.256_6.1.6.3.3",
+      "section_id": "6.1.6.3.3",
+      "section_title": "Enumeration: AuthResult",
+      "content": "The enumeration AuthResult represents the result of authentication and/or authorization. It shall comply with the provisions defined in table 6.1.5.3.3-1.\nTable 6.1.6.3.3-1: Enumeration AuthResult\nEnumeration value\nDescription\nApplicability\n\"AUTH_SUCCESS\"\nThe UAV authentication or C2 Authorization has succeeded.\n\"AUTH_FAIL\"\nThe UAV authentication or C2 Authorization has failed.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.1.5.3.3-1",
+        "table_6.1.6.3.3-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.256_6.1.6.3.4",
+      "section_id": "6.1.6.3.4",
+      "section_title": "Enumeration: NotifType",
+      "content": "The enumeration NotifType represents the type of notification. It shall comply with the provisions defined in table 6.1.6.3.4-1.\nTable 6.1.6.3.4-1: Enumeration NotifType\nEnumeration value\nDescription\nApplicability\n\"REAUTH\"\nThe UAV needs to be reauthenticated.\n\"UPDATEAUTH\"\nAuthorization data needs to be updated to UAV.\n\"REVOKE\"\nRevoke UAV authentication and authorization",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.1.6.3.4-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.256_6.1.7.1",
+      "section_id": "6.1.7.1",
+      "section_title": "General",
+      "content": "For the Nnef_Authentication API, HTTP error responses shall be supported as specified in clause 4.8 of 3GPP TS 29.501 [5]. Protocol errors and application errors specified in table 5.2.7.2-1 of 3GPP TS 29.500 [4] shall be supported for an HTTP method if the corresponding HTTP status codes are specified as mandatory for that HTTP method in table 5.2.7.1-1 of 3GPP TS 29.500 [4].\nIn addition, the requirements in the following clauses are applicable for the Nnef_Authentication API.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.501_clause_4.8",
+        "ts_29.500_table_5.2.7.2-1",
+        "ts_29.500_table_5.2.7.1-1",
+        "ts_29.501",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.256_6.1.7.2",
+      "section_id": "6.1.7.2",
+      "section_title": "Protocol Errors",
+      "content": "No specific procedures for the Nnef_Authentication service are specified.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.256_6.1.7.3",
+      "section_id": "6.1.7.3",
+      "section_title": "Application Errors",
+      "content": "The application errors defined for the Nnef_Authentication service are listed in Table 6.1.7.3-1.\nTable 6.1.7.3-1: Application errors\nApplication Error\nHTTP status code\nDescription\nAUTHENTICATION_FAILURE\n403 Forbidden\nThe UAV authentication is failed\nSERVICE_NOT_ALLOWED\n403 Forbidden\nUAS services not allowed\nPEER_NOT_RESPONDING\n504 Gateway Timeout\nNo response is received from the remote peer (i.e. USS) when time out.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.1.7.3-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.256_6.1.8",
+      "section_id": "6.1.8",
+      "section_title": "Feature negotiation",
+      "content": "The optional features in table 6.1.8-1 are defined for the Nnef_Authentication API. They shall be negotiated using the extensibility mechanism defined in clause 6.6 of 3GPP TS 29.500 [4].\nTable 6.1.8-1: Supported Features\nFeature number\nFeature Name\nDescription",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_6.6",
+        "table_6.1.8-1",
+        "ts_29.500_table_6.1.8-1",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.256_6.1.9",
+      "section_id": "6.1.9",
+      "section_title": "Security",
+      "content": "As indicated in 3GPP TS 33.501 [12] and 3GPP TS 29.500 [4], the access to the Nnef_Authentication API may be authorized by means of the OAuth2 protocol (see IETF RFC 6749 [13]), based on local configuration, using the \"Client Credentials\" authorization grant, where the NRF (see 3GPP TS 29.510 [14]) plays the role of the authorization server.\nIf OAuth2 is used, an NF Service Consumer, prior to consuming services offered by the Nnef_Authentication API, shall obtain a \"token\" from the authorization server, by invoking the Access Token Request service, as described in 3GPP TS 29.510 [14], clause 5.4.2.2.\nNOTE:\tWhen multiple NRFs are deployed in a network, the NRF used as authorization server is the same NRF that the NF Service Consumer used for discovering the Nnef_Authentication service.\nThe Nnef_Authentication API defines a single scope \"nnef-authentication\" for the entire service, and it does not define any additional scopes at resource or operation level.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.510_clause_5.4.2.2",
+        "ts_33.501",
+        "ts_29.500",
+        "ts_29.510"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.256_6.1.10",
+      "section_id": "6.1.10",
+      "section_title": "HTTP redirection",
+      "content": "An HTTP request may be redirected to a different Nnef_Authentication service instance when using direct or indirect communications (see 3GPP TS 29.500 [4]).\nAn SCP that reselects a different NEF (UAS-NF) producer instance will return the NF Instance ID of the new NEF (UAS-NF) producer instance in the 3gpp-Sbi-Producer-Id header, as specified in clause 6.10.3.4 of 3GPP TS 29.500 [4].\nIf an NEF (UAS-NF) redirects a service request to a different NEF (UAS-NF) using an 307 Temporary Redirect or 308 Permanent Redirect status code, the identity of the new NEF (UAS-NF) towards which the service request is redirected shall be indicated in the 3gpp-Sbi-Target-Nf-Id header of the 307 Temporary Redirect or 308 Permanent Redirect response as specified in clause 6.10.9.1 of 3GPP TS 29.500 [4].\nAnnex A (normative):OpenAPI specification\nA.1\tGeneral\nThis Annex specifies the formal definition of the API(s) defined in the present specification. It consists of OpenAPI 3.0.0 specifications in YAML format, following guidelines in 3GPP TS 29.501 [5].\nThis Annex takes precedence when being discrepant to other parts of the specification with respect to the encoding of information elements and methods within the API(s).\nNOTE 1:\tThe semantics and procedures, as well as conditions, e.g. for the applicability and allowed combinations of attributes or values, not expressed in the OpenAPI definitions but defined in other parts of the specification also apply.\nInformative copies of the OpenAPI specification files contained in this 3GPP Technical Specification are available on a Git-based repository that uses the GitLab software version control system (see clause 5.3.1 of 3GPP TS 29.501 [5] and clause 5B of 3GPP TR 21.900 [7]).\nA.2\tNnef_Authentication API\nopenapi: 3.0.0\ninfo:\ntitle: Nnef_Authentication\nversion: '1.1.0'\ndescription: |\nNEF Auth Service.\n© 2024, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).\nAll rights reserved.\nexternalDocs:\ndescription: >\n3GPP TS 29.256 V18.4.0; 5G System;Uncrewed Aerial Systems Network Function (UAS-NF);\nAerial Management Services; Stage 3\nurl: https://www.3gpp.org/ftp/Specs/archive/29_series/29.256/\nservers:\n- url: '{apiRoot}/nnef-authentication/v1'\nvariables:\napiRoot:\ndefault: https://example.com\ndescription: apiRoot as defined in clause 4.4 of 3GPP TS 29.501\nsecurity:\n- {}\n- oAuth2ClientCredentials:\n- nnef-authentication\npaths:\n/uav-authentications:\npost:\nsummary:  UAV authentication\ntags:\n- UAV authentication\nrequestBody:\ndescription: UAV authentication\nrequired: true\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/UAVAuthInfo'\nresponses:\n'200':\ndescription: UAV Auth response or message exchange\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/UAVAuthResponse'\n'307':\n$ref: 'TS29571_CommonData.yaml#/components/responses/307'\n'308':\n$ref: 'TS29571_CommonData.yaml#/components/responses/308'\n'400':\n$ref: 'TS29571_CommonData.yaml#/components/responses/400'\n'403':\ndescription: UAV authentication failure\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/UAVAuthFailure'\n'504':\n$ref: 'TS29571_CommonData.yaml#/components/responses/504'\ndefault:\n$ref: 'TS29571_CommonData.yaml#/components/responses/default'\ncallbacks:\nauthNotification:\n'{$request.body#/authNotification }':\npost:\nrequestBody:\nrequired: true\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/AuthNotification'\nresponses:\n'204':\ndescription: Successful Notification response\n'307':\n$ref: 'TS29571_CommonData.yaml#/components/responses/307'\n'308':\n$ref: 'TS29571_CommonData.yaml#/components/responses/308'\n'400':\n$ref: 'TS29571_CommonData.yaml#/components/responses/400'\ndefault:\n$ref: 'TS29571_CommonData.yaml#/components/responses/default'\ncomponents:\nsecuritySchemes:\noAuth2ClientCredentials:\ntype: oauth2\nflows:\nclientCredentials:\ntokenUrl: '{nrfApiRoot}/oauth2/token'\nscopes:\nnnef-authentication: Access to the Nnef_authentication API\nschemas:\n#\n# STRUCTURED DATA TYPES\n#\nUAVAuthInfo:\ndescription: UAV auth data\ntype: object\nrequired:\n- gpsi\n- serviceLevelId\n- nfType\nproperties:\ngpsi:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Gpsi'\nserviceLevelId:\ntype: string\nauthNotificationURI:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Uri'\nipAddr:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/IpAddr'\npei:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Pei'\nauthServerAddress:\ntype: string\nauthMsg:\nallOf:\n- $ref: 'TS29571_CommonData.yaml#/components/schemas/RefToBinaryData'\ndeprecated: true\nauthContainer:\ntype: array\nitems:\n$ref: '#/components/schemas/AuthContainer'\nminItems: 1\nueLocInfo:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/UserLocation'\ndnn:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Dnn'\nsNssai:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/ExtSnssai'\nnfType:\n$ref: 'TS29510_Nnrf_NFManagement.yaml#/components/schemas/NFType'\nUAVAuthResponse:\ndescription: UAV auth response data\ntype: object\nrequired:\n- gpsi\nproperties:\ngpsi:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Gpsi'\nserviceLevelId:\ntype: string\nauthMsg:\nallOf:\n- $ref: 'TS29571_CommonData.yaml#/components/schemas/RefToBinaryData'\ndeprecated: true\nauthContainer:\ntype: array\nitems:\n$ref: '#/components/schemas/AuthContainer'\nminItems: 1\nauthResult:\nallOf:\n- $ref: '#/components/schemas/AuthResult'\ndeprecated: true\nnotifyCorrId:\ntype: string\nauthSessAmbr:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Ambr'\nauthProfIndex:\ntype: string\nAuthNotification:\ndescription: UAV related notification\ntype: object\nrequired:\n- gpsi\n- serviceLevelId\n- notifType\n- notifyCorrId\nproperties:\ngpsi:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Gpsi'\nserviceLevelId:\ntype: string\nnotifyCorrId:\ntype: string\nauthMsg:\nallOf:\n- $ref: 'TS29571_CommonData.yaml#/components/schemas/RefToBinaryData'\ndeprecated: true\nauthContainer:\ntype: array\nitems:\n$ref: '#/components/schemas/AuthContainer'\nminItems: 1\nnotifType:\n$ref: '#/components/schemas/NotifType'\nUAVAuthFailure:\ndescription: UAV auth failure\ntype: object\nrequired:\n- error\nproperties:\nerror:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/ProblemDetails'\nuasResourceRelease:\ntype: boolean\ndefault: false\nAuthContainer:\ndescription: Authentication/Authorization data\ntype: object\nproperties:\nauthMsgType:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Bytes'\nauthMsgPayload:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/RefToBinaryData'\nauthResult:\n$ref: '#/components/schemas/AuthResult'\n#\n# SIMPLE DATA TYPES\n#\n#\n# ENUMERATIONS\n#\nAuthResult:\ndescription: Enumeration representing the result of authentication and/or authorization.\nanyOf:\n- type: string\nenum:\n- AUTH_SUCCESS\n- AUTH_FAIL\n- type: string\nNotifType:\ndescription: Enumeration representing the type of notification.\nanyOf:\n- type: string\nenum:\n- REAUTH\n- UPDATEAUTH\n- REVOKE\n- type: string\nAnnex B (informative):Change history\nChange history\nDate\nMeeting\nTDoc\nCR\nRev\nCat\nSubject/Comment\nNew version\n2021-04\nCT4#103-e\nC4-212292\nInitial TS skeleton.\n0.0.0\n2021-04\nCT4#103-e\nC4-212598\nAdded scope, introduction, references, and abbreviations.\n0.1.0\n2021-05\nCT4#104-e\nC4-213529\nAligned introduction terminology. Added, updated references.\n0.2.0\n2021-08\nCT4#105-e\nC4-214758\nAligned interfaces, added Nnef_Auth service.\n0.3.0\n2021-10\nCT4#106-e\nC4-215522\nSeveral alignments with stage-2, clean-up, added OpenAPI for Nnef_Auth.\n0.4.0\n2021-11\nCT4#107-e\nC4-216474\nSeveral further alignments with stage-2: aligned API and operation names, terminology. Further clean-up done.\n0.5.0\n2021-12\nCT#94\nCP-213160\nV1.0.0 presented for information\n1.0.0\n2022-01\nCT4#107bis-e\nC4-220456\nSeveral consistency issues addressed. Implemented pCRs C4-220121, C4-220122, C4-220285, C4-220291, C4-220292, C4-220293, and C4-220387\n1.1.0\n2022-02\nCT4#108-e\nC4-221594\nFurther consistency issues addressed. Implemented pCRs C4-221324, C4-221494, C4-221519, and C4-221340.\n1.2.0\n2022-03\nCT#95e\nCP-220109\nTS presented for approval\n2.0.0\n2022-03\nCT#95e\nTS approved\n17.0.0\n2022-06\nCT#96e\nCP-221044\n0001\n1\nAdd Notification Correlation id\n17.1.0\n2022-06\nCT#96e\nCP-221044\n0002\n1\nIndication of UAS service release\n17.1.0\n2022-06\nCT#96e\nCP-221044\n0004\nRemoval of revoke cause\n17.1.0\n2022-06\nCT#96e\nCP-221028\n0005\nRemove the apiVersion placeholder from the resource URI variables table\n17.1.0\n2022-06\nCT#96e\nCP-221282\n0007\n1\n29.256 Rel-17 API version and External doc update\n17.1.0\n2022-09\nCT#97e\nCP-222036\n0009\nFix for formatting of OpenAPI description field\n17.2.0\n2022-09\nCT#97e\nCP-222058\n0010\n29.256 Rel-17 API version and External doc update\n17.2.0\n2022-12\nCT#98e\nCP-223056\n0008\n2\nCorrections for Auth message type\n17.3.0\n2022-12\nCT#98e\nCP-223066\n0011\n29.256 Rel-17 API version and External doc update\n17.3.0\n2023-03\nCT#99\nCP-230082\n0012\n1\nRejecting PDN connection for C2 communication when UAS service is not allowed\n17.4.0\n2023-03\nCT#99\nCP-230068\n0014\nMiscellaneous corrections\n18.0.0\n2023-06\nCT#100\nCP-231027\n0013\n5\nF\nLocation header and missing Redirection clause\n18.1.0\n2023-09\nCT#101\nCP-232047\n0018\n1\nA\nAuthorization Notification Callbackfor UUAA-MM after AMF Change\n18.2.0\n2023-09\nCT#101\nCP-232046\n0017\n-\nB\nClarification on Direct C2 authorization procedure\n18.2.0\n2023-12\nCT#102\nCP-233027\n0020\n-\nF\nHTTP RFCs obsoleted by IETF RFC 9113\n18.3.0\n2023-12\nCT#102\nCP-233030\n0021\n-\nF\nProblemDetails RFC 7807 obsoleted by 9457\n18.3.0\n2024-06\nCT#104\nCP-241028\n0022\n1\nF\nCallbacks\n18.4.0\n2024-06\nCT#104\nCP-241058\n0024\n1\nA\nCorrection on the policy parameters\n18.4.0\n2024-06\nCT#104\nCP-241052\n0027\nF\n29.256 Rel-18 API version and External doc update\n18.4.0",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.500_clause_6.10.3.4",
+        "ts_29.500_clause_6.10.9.1",
+        "ts_29.501_clause_5.3.1",
+        "ts_29.501_clause_5",
+        "ts_29.501_clause_4.4",
+        "clause_18.1.0",
+        "table_17.1.0",
+        "ts_29.500",
+        "ts_29.501",
+        "ts_21.900",
+        "ts_29.256"
+      ]
+    }
+  ]
+}

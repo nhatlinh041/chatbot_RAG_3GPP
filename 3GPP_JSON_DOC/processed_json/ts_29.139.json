@@ -1,0 +1,236 @@
+{
+  "metadata": {
+    "specification_id": "ts_29.139",
+    "version": "18.0.0",
+    "title": "3GPP TS 29.139",
+    "file_path": "/content/drive/MyDrive/RAG_thesis/data/29_series/29139-i00/29139-i00.docx"
+  },
+  "export_info": {
+    "export_date": "2025-07-26T09:11:27.229395",
+    "total_chunks": 23
+  },
+  "chunks": [
+    {
+      "chunk_id": "ts_29.139_1",
+      "section_id": "1",
+      "section_title": "Scope",
+      "content": "The present document specifies the H(e)NB – SeGW interface. The interface is used for the interworking between a 3GPP system and a Fixed Broadband Access network defined by Broadband Forum. The interworking procedure provides the IP connectivity to a 3GPP UE using a H(e)NB connected to a Fixed Broadband Access network as specified in 3GPP TS 23.139 [2].\nThe specification covers the QoS aspects and Tunnel management procedures.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.139"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.139_2",
+      "section_id": "2",
+      "section_title": "References",
+      "content": "The following documents contain provisions which, through reference in this text, constitute provisions of the present document.\n-\tReferences are either specific (identified by date of publication, edition number, version number, etc.) or non‑specific.\n-\tFor a specific reference, subsequent revisions do not apply.\n-\tFor a non-specific reference, the latest version applies. In the case of a reference to a 3GPP document (including a GSM document), a non-specific reference implicitly refers to the latest version of that document in the same Release as the present document.\n[1]\t3GPP TR 21.905: \"Vocabulary for 3GPP Specifications\".\n[2]\t3GPP TS 23.139: \"3GPP System-Fixed Broadband Access Network Interworking; Stage 2\".\n[3]\t3GPP TS 24.139: \"3GPP System-Fixed Broadband Access Network Interworking; Stage 3\".\n[4]\tIETF RFC 2474 (December 1998): \"Definition of the Differentiated Services Field (DS Field) in the IPv4 and IPv6 Headers\".\n[5]\tIETF RFC 5996: \" Internet Key Exchange Protocol Version 2 (IKEv2)\".\n[6]\tIETF RFC 3948: \"UDP Encapsulation of IPsec ESP Packets\".\n[7]\t3GPP TS 33.320: \"Security of Home Node B (HNB) / Home evolved Node B (HeNB)\".",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905",
+        "ts_23.139",
+        "ts_24.139",
+        "ts_33.320"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.139_3.1",
+      "section_id": "3.1",
+      "section_title": "Definitions",
+      "content": "For the purposes of the present document, the terms and definitions given in TR 21.905 [1] and the following apply. A term defined in the present document takes precedence over the definition of the same term, if any, in TR 21.905 [1].\nH(e)NB Reflective QoS function: H(e)NB Reflective QoS function is a H(e)NB function in order to support QoS for uplink traffic over a Fixed Broadband Access network as specified in 3GPP TS 23.139 [2].\nH(e)NB local IP address Info: H(e)NB local IP address Info is defined as either the public IPv4 address or IPv6 address assigned to the H(e)NB by the Fixed Broadband Access Network domain, or the public IPv4 address and the UDP port number used by the NATed RG that is used for this H(e)NB. The public IPv4 address used by the NATed RG is assigned by the Fixed Broadband Access Network domain.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_21.905",
+        "ts_23.139"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.139_3.2",
+      "section_id": "3.2",
+      "section_title": "Abbreviations",
+      "content": "For the purposes of the present document, the abbreviations given in TR 21.905 [1] and the following apply. An abbreviation defined in the present document takes precedence over the definition of the same abbreviation, if any, in TR 21.905 [1].\nDSCP\tDifferentiated Services Code Point\nH(e)NB\tHome (e)NodeB\nNAT\tNetwork Address Translation\nNAT-T\tNAT Traversal\nSeGW\tSecurity Gateway",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.139_4.1.1",
+      "section_id": "4.1.1",
+      "section_title": "Control Plane for H(e)NB – SeGW",
+      "content": "Legend:\n-\tIKEv2 Protocol: This protocol is used to between H(e)NB and SeGW. The IKEv2 protocol is defined in IETF RFC 5996 [5].\nFigure 4.1.1-1: Control Plane for H(e)NB - SeGW Interface over IPv4 transport network\nLegend:\n-\tIKEv2 Protocol: This protocol is used to between H(e)NB and SeGW. The IKEv2 protocol is defined in RFC 5996 [5].\nFigure 4.1.1-2: Control Plane for H(e)NB - SeGW Interface over IPv6 transport network",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_4.1.1-1",
+        "figure_4.1.1-2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.139_4.1.2",
+      "section_id": "4.1.2",
+      "section_title": "User Plane for H(e)NB – SeGW",
+      "content": "Legend:\n-\tUDP: UDP encapsulation is used if NAT is detected between the H(e)NB and the SeGW.\nFigure 4.1.2-1: User Plane for H(e)NB - SeGW Interface over IPv4 transport network\nFigure 4.1.2-2: User Plane for H(e)NB - SeGW Interface over IPv6 transport network",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_4.1.2-1",
+        "figure_4.1.2-2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.139_5.1",
+      "section_id": "5.1",
+      "section_title": "General",
+      "content": "At interworking with a Fixed Broadband Access network, QoS is provided by DSCP marking as specified in IETF RFC 2474 [4].",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.139_5.2.1",
+      "section_id": "5.2.1",
+      "section_title": "General",
+      "content": "The H(e)NB shall support DSCP marking on the IPsec header when forwarding the UE uplink traffic.\nBased on H(e)NB configuration either the QCI mapping or the Reflective QoS may be used.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.139_5.2.2",
+      "section_id": "5.2.2",
+      "section_title": "QCI mapping",
+      "content": "The QCI mapping table contains a one-to-one mapping from QCI value to DSCP marking value. The QCI mapping table is configured in the H(e)NB by the operator.\nWhen forwarding an uplink IP packet, the H(e)NB shall perform a lookup in the QCI mapping table based on the QCI value of the EPS bearer/PDP context before the IPsec tunnel encapsulation. The H(e)NB shall set the DSCP marking value of the IPsec header according to the matched QCI mapping table entry.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.139_5.2.3",
+      "section_id": "5.2.3",
+      "section_title": "Reflective QoS",
+      "content": "To support the H(e)NB Reflective QoS function for uplink traffic, the H(e)NB shall create and maintain the uplink DSCP marking rules for each active PDN connection as specified for UE Reflective QoS function in 3GPP TS 24.139 [3].\nWhen forwarding an uplink IP packet, the H(e)NB shall perform a lookup in the DSCP marking table based on the n-tuple of the IP header before the IPsec tunnel encapsulation. If a matching entry is found, the H(e)NB shall set the DSCP marking value of the IPsec header according to the matched DSCP marking rule. If no matching entry is found, the H(e)NB shall copy the DSCP field of the outer IP header into the IPsec header before forwarding to the SeGW.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_24.139"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.139_5.3",
+      "section_id": "5.3",
+      "section_title": "SeGW procedures",
+      "content": "When receiving a downlink data packet, the SeGW shall copy the DSCP marking value from the outer IP header into the IPsec header before forwarding to the H(e)NB using the IPsec tunnel, as specified in 3GPP TR 23.139 [2].",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "ts_23.139"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.139_6.1",
+      "section_id": "6.1",
+      "section_title": "General",
+      "content": "The tunnel is an IPsec tunnel established via an IKEv2 protocol exchange IETF RFC 5996 [5] between the H(e)NB and the SeGW which is through the Fixed Broadband Access Network.\nIn an IPv4 Fixed Broadband Access Network, NAT can be deployed between the H(e)NB and the SeGW, e.g. in a Residence Gateway. A H(e)NB behind the NAT shall invoke the NAT traversal procedure for IKEv2. The IPsec tunnel is encapsulated over UDP in the Tunnel-Mode as specified in IETF RFC 5996 [5].",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.139_6.2.1.1",
+      "section_id": "6.2.1.1",
+      "section_title": "IP address allocation",
+      "content": "The SeGW shall provide the IP address to the H(e)NB for the communication with the EPC network.\nFor dynamic IP address allocation, the H(e)NB shall include the requested IP address type (IPv4 address or IPv6 address) that needs to be configured in an IKEv2 CFG_REQUEST Configuration Payload in the IKE_AUTH request message as defined in IETF RFC 5996 [5] after reception of the IKE_SA_INIT response from the SeGW.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.139_6.2.1.2",
+      "section_id": "6.2.1.2",
+      "section_title": "NAT Traversal",
+      "content": "NAT can be deployed in an IPv4 Fixed Broadband Access Network. IKEv2 NAT Traversal specified in section 2.23 of IETF RFC 5996 [5] shall be supported by H(e)NB.\nIf NAT is detected between the H(e)NB and SeGW, the following procedures shall be performed:\n-\tUDP-Encapsulated ESP as defined in IETF RFC 5996 [5];\n-\tsending the NAT-keepalive packet to keep NAT mapping alive if no other packet to the SeGW has been sent in M seconds as defined in the IETF RFC 3948 [6];\nNOTE:\tM is a locally configurable parameter with a default value of 20 seconds as defined in the IETF RFC 3948 [6].",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_2.23"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.139_6.2.1.3",
+      "section_id": "6.2.1.3",
+      "section_title": "H(e)NB NATed Tunnel-IP address discovery",
+      "content": "If NAT is detected between the H(e)NB and SeGW, the H(e)NB shall request the SeGW to return the H(e)NB local IP address information by including the EXTERNAL_SOURCE_IP4_NAT_INFO attribute as defined in subclause 7.1.1.1 in the CFG_REQUEST Configuration Payload within the IKE_AUTH request message. The length field of the attribute shall be set to zero. The NATed IPv4 Address field and UDP Port number field shall be absent.\nIf the H(e)NB subsequently receives the EXTERNAL_SOURCE_IP4_NAT_INFO attribute in the CFG_REPLY configuration payload from the SeGW, the H(e)NB shall report the IP address received in EXTERNAL_SOURCE_IP4_NAT_INFO attribute as the H(e)NB local IP address to the MME/SGSN.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_7.1.1.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.139_6.2.2",
+      "section_id": "6.2.2",
+      "section_title": "Tunnel modification",
+      "content": "NAT mappings can change when the UDP port number is reassigned by the NAT, and/or H(e)NB local IP address is reallocated due to NAT restart.\nUpon NAT remapping, the SeGW initiates the tunnel disconnection procedure as specified in subclause 6.3.3. Then the H(e)NB shall re-initiate the tunnel establishment procedure as specified in sub-clause 6.2.1.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_6.3.3",
+        "clause_6.2.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.139_6.2.3",
+      "section_id": "6.2.3",
+      "section_title": "Tunnel disconnection",
+      "content": "The H(e)NB shall use the procedures defined in IETF RFC 5996 [5] to disconnect an IPsec tunnel to the SeGW.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.139_6.3.1.1",
+      "section_id": "6.3.1.1",
+      "section_title": "IP address allocation",
+      "content": "For dynamic IP address allocation, upon receipt of an IKE_AUTH request message from the H(e)NB requesting the IP address, the SeGW shall include the remote IP address information in the IKEv2 Configuration Payload (CFG_REPLY) of the final IKE_AUTH response message to the H(e)NB. The SeGW shall assign either an IPv4 or an IPv6 address to the H(e)NB via a single CFG_REPLY Configuration Payload.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.139_6.3.1.2",
+      "section_id": "6.3.1.2",
+      "section_title": "NAT Traversal",
+      "content": "NAT can be deployed in an IPv4 Fixed Broadband Access Network. IKEv2 NAT Traversal specified in section 2.23 of IETF RFC 5996 [5] shall be supported by SeGW.\nIf NAT is detected between the H(e)NB and SeGW, the SeGW shall use UDP-Encapsulated ESP as defined in IETF RFC 5996 [5].",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_2.23"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.139_6.3.1.3",
+      "section_id": "6.3.1.3",
+      "section_title": "H(e)NB NATed Tunnel-IP address discovery",
+      "content": "If the SeGW receives the EXTERNAL_SOURCE_IP4_NAT_INFO attribute as defined in subclause 7.1.1.1 in the CFG_REQUEST configuration payload within IKE_AUTH request message, the SeGW shall provide the H(e)NB local IP address information (i.e. NATed IPv4 address and UDP port number) to the H(e)NB by including the EXTERNAL_SOURCE_IP4_NAT_INFO attribute in the CFG_REPLY configuration payload within the IKE_AUTH response message.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_7.1.1.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.139_6.3.2",
+      "section_id": "6.3.2",
+      "section_title": "Tunnel modification",
+      "content": "NAT mappings can change when the UDP port number is reassigned by the NAT, and/or H(e)NB local IP address is reallocated due to NAT restart.\nIf NAT remapping is detected by the SeGW, the SeGW shall initiate the tunnel disconnection procedure (see subclause 6.3.3).\nNOTE:\tNo procedures are defined in current release of specification to enable the SeGW to send the modified H(e)NB local IP address information to the H(e)NB during the lifetime of IKEv2 security association.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_6.3.3"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.139_6.3.3",
+      "section_id": "6.3.3",
+      "section_title": "Tunnel disconnection",
+      "content": "The SeGW shall use the procedures defined in IETF RFC 5996 [5] to disconnect an IPsec tunnel to the H(e)NB.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.139_7.1.1.1",
+      "section_id": "7.1.1.1",
+      "section_title": "EXTERNAL_SOURCE_IP4_NAT_INFO attribute",
+      "content": "The format of the EXTERNAL_SOURCE_IP4_NAT_INFO attribute follows the definition of Configuration Attributes as specified in IETF RFC 5996 [5], section 3.15.1. The format is shown in figure 7.1.1.1-1 as below. The length of the EXTERNAL_SOURCE_IP4_NAT_INFO attribute is 0 or 6 bytes.\n7\n6\n5\n4\n3\n2\n1\n0\nOctets\nR\nAttribute Type\n1\nAttribute Type\n2\nLength\n3, 4\nNATed IPv4 Address\n5 - 8\nUDP Port number\n9 - 10\nFigure 7.1.1.1-1: EXTERNAL_SOURCE_IP4_NAT_INFO attribute\nThe R bit in the first octet is as defined in IETF RFC 5996 [5].\nThe Attribute Type indicating EXTERNAL_SOURCE_IP4_NAT_INFO is of the value 23.\nAnnex A (informative):Change history\nChange history\nDate\nMeeting\nTDoc\nCR\nRev\nCat\nSubject/Comment\nNew version\n2012-12\nCT#58\nCP-120895\nV2.0.0 presented for approval\n11.0.0\n2012-12\nCT#58\nCP-120697\n0001\n-\nRemoval of invalid reference and editor's note\n11.1.0\n2014-09\n-\n-\n-\n-\nUpdate to Rel-12 version (MCC)\n12.0.0\n2015-12\n-\n-\n-\n-\nUpdate to Rel-13 version (MCC)\n13.0.0\n2016-03\nCT#71\nCP-160019\n0004\n1\nComplete the EXTERNAL_SOURCE_IP4_NAT_INFO attribute information according to IANA registration\n13.1.0\n2017-03\nCT#75\n-\n-\n-\nUpdate to Rel-14 version (MCC)\n14.0.0\n2018-06\nCT#80\n-\n-\n-\nUpdate to Rel-15 version (MCC)\n15.0.0\n2020-07\nCT#88e\n-\n-\n-\nUpdate to Rel-16 version (MCC)\n16.0.0\n2022-04\n-\n-\n-\n-\n-\nUpdate to Rel-17 version (MCC)\n17.0.0\n2024-03\n-\n-\n-\n-\n-\nUpdate to Rel-18 version (MCC)\n18.0.0",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_3.15.1",
+        "figure_7.1.1.1-1"
+      ]
+    }
+  ]
+}

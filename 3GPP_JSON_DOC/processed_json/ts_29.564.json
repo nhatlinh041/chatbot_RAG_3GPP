@@ -1,0 +1,1098 @@
+{
+  "metadata": {
+    "specification_id": "ts_29.564",
+    "version": "18.7.0",
+    "title": "3GPP TS 29.564",
+    "file_path": "/content/drive/MyDrive/RAG_thesis/data/29_series/29564-i70/29564-i70.docx"
+  },
+  "export_info": {
+    "export_date": "2025-07-26T08:47:37.565877",
+    "total_chunks": 94
+  },
+  "chunks": [
+    {
+      "chunk_id": "ts_29.564_1",
+      "section_id": "1",
+      "section_title": "Scope",
+      "content": "The present document specifies the stage 3 protocol and data model for the Nupf Service Based Interface. It provides stage 3 protocol definitions and message flows, and specifies the API for each service offered by the UPF.\nThe 5G System stage 2 architecture and procedures are specified in 3GPP TS 23.501 [2], 3GPP TS 23.502 [3] and 3GPP TS 23.548[14].\nThe Technical Realization of the Service Based Architecture and the Principles and Guidelines for Services Definition are specified in 3GPP TS 29.500 [4] and 3GPP TS 29.501 [5].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.501",
+        "ts_23.502",
+        "ts_23.548",
+        "ts_29.500",
+        "ts_29.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.564_2",
+      "section_id": "2",
+      "section_title": "References",
+      "content": "The following documents contain provisions which, through reference in this text, constitute provisions of the present document.\n-\tReferences are either specific (identified by date of publication, edition number, version number, etc.) or non‑specific.\n-\tFor a specific reference, subsequent revisions do not apply.\n-\tFor a non-specific reference, the latest version applies. In the case of a reference to a 3GPP document (including a GSM document), a non-specific reference implicitly refers to the latest version of that document in the same Release as the present document.\n[1]\t3GPP TR 21.905: \"Vocabulary for 3GPP Specifications\".\n[2]\t3GPP TS 23.501: \"System Architecture for the 5G System; Stage 2\".\n[3]\t3GPP TS 23.502: \"Procedures for the 5G System; Stage 2\".\n[4]\t3GPP TS 29.500: \"5G System; Technical Realization of Service Based Architecture; Stage 3\".\n[5]\t3GPP TS 29.501: \"5G System; Principles and Guidelines for Services Definition; Stage 3\".\n[6]\tOpenAPI: \"OpenAPI Specification Version 3.0.0\", https://spec.openapis.org/oas/v3.0.0.\n[7]\t3GPP TR 21.900: \"Technical Specification Group working methods\".\n[8]\t3GPP TS 33.501: \"Security architecture and procedures for 5G system\".\n[9]\tIETF RFC 6749: \"The OAuth 2.0 Authorization Framework\".\n[10]\t3GPP TS 29.510: \"5G System; Network Function Repository Services; Stage 3\".\n[11]\tIETF RFC 9113: \"HTTP/2\".\n[12]\tIETF RFC 8259: \"The JavaScript Object Notation (JSON) Data Interchange Format\".\n[13]\tIETF RFC 9457: \"Problem Details for HTTP APIs\".\n[14]\t3GPP TS 23.548: \"5G System Enhancements for Edge Computing; Stage 2\".\n[15]\t3GPP TS 29.244: \"Interface between the Control Plane and the User Plane Nodes; Stage 3\".\n[16]\t3GPP TS 29.571: \"5G System; Common Data Types for Service Based Interfaces; Stage 3\".\n[17]\t3GPP TS 23.288: \"Architecture enhancements for 5G System (5GS) to support network data analytics services\".\n[18]\t3GPP TS 24.539: \"5G System (5GS); Network to TSN translator (TT) protocol aspects; Stage 3\".\n[19]\t3GPP TS 29.512: \"5G System; Session Management Policy Control Service; Stage 3\".\n[20]\t3GPP TS 29.122: \"Technical Specification Group Core Network and Terminals; T8 reference point for Northbound APIs\".",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905",
+        "ts_23.501",
+        "ts_23.502",
+        "ts_29.500",
+        "ts_29.501",
+        "ts_21.900",
+        "ts_33.501",
+        "ts_29.510",
+        "ts_23.548",
+        "ts_29.244",
+        "ts_29.571",
+        "ts_23.288",
+        "ts_24.539",
+        "ts_29.512",
+        "ts_29.122"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.564_3.1",
+      "section_id": "3.1",
+      "section_title": "Definitions",
+      "content": "For the purposes of the present document, the terms and definitions given in 3GPP TR 21.905 [1] and the following apply. A term defined in the present document takes precedence over the definition of the same term, if any, in 3GPP TR 21.905 [1].",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_21.905"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.564_3.2",
+      "section_id": "3.2",
+      "section_title": "Symbols",
+      "content": "None in this release.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.564_3.3",
+      "section_id": "3.3",
+      "section_title": "Abbreviations",
+      "content": "For the purposes of the present document, the abbreviations given in 3GPP TR 21.905 [1] and the following apply. An abbreviation defined in the present document takes precedence over the definition of the same abbreviation, if any, in 3GPP TR 21.905 [1].\nAF\tApplication Function\nDCCF\tData Collection Coordination Function\nL-UPF\tLocal User Plane Function\nL-NEF\tLocal Network Exposure Function\nMFAF\tMessaging Framework Adaptor Function\nNAT\tNetwork Address Translation\nNEF\tNetwork Exposure Function\nNWDAF\tNetwork Data Analytics Function\nUPF\tUser Plane Function\nSMF\tSession Management Function\nTSCTSF\tTime Sensitive Communication and Time Synchronization Function\nTSN\tTime Sensitive Networking",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.564_4.1",
+      "section_id": "4.1",
+      "section_title": "Introduction",
+      "content": "Within the 5GC, the UPF offers services to the NEF, AF, SMF, NWDAF, DCCF, MFAF, TSCTSF and TSN AF via the Nupf service based interface (see 3GPP TS 23.501 [2], 3GPP TS 23.502 [3], 3GPP TS 23.288 [17] and 3GPP TS 23.548 [14]).\nFigure 4.1-1 provides the reference model (in service based interface representation and in reference point representation), with focus on the UPF.\nFigure 4.1-1: Reference model – UPF\nThe UPF supports the following functionalities which are provided via Service Based Interface:\n-\tSubscription to notifications of events exposed by the UPF;\n-\tNotification about UPF events; and\n-\tTranslation of (NATed) Public UE IP address and port to (5GC) Private UE IP address.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.288_figure_4.1-1",
+        "figure_4.1-1",
+        "ts_23.501",
+        "ts_23.502",
+        "ts_23.288",
+        "ts_23.548"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.564_5.1",
+      "section_id": "5.1",
+      "section_title": "Introduction",
+      "content": "The UPF offers the following services via the Nupf interface:\n-\tNupf_EventExposure Service\n-\tNupf_GetUEPrivateIPaddrAndIdentifiers\nTable 5.1-1 summarizes the SBI services produced by the UPF:\nTable 5.1-1: NF Services provided by UPF\nService Name\nDescription\nExample Consumers\nNupf_EventExposure\nThis service exposes UPF related information to other NFs\nSMF, NWDAF, NEF, AF, TSCTSF, TSN AF, DCCF, MFAF\nNupf_GetUEPrivateIPaddrAndIdentifiers\nThis service provides the private UE IP address information of a PDU session from the (NATed) public IP address and port number\nNEF\nTable 5.1-2 summarizes the corresponding APIs defined for this specification.\nTable 5.1-2: API Descriptions\nService Name\nClause\nDescription\nOpenAPI Specification File\napiName\nAnnex\nNupf_EventExposure\n6.1\nUPF Event Exposure Service\nTS29564_Nupf_EventExposure.yaml\nnupf-ee\nA.2\nNupf_GetUEPrivateIPaddrAndIdentifiers\n6.2\nUPF Get UE Private IP address and Identifiers Service\nTS29564_Nupf_GetUEPrivateIPaddrAndIdentifiers.yaml\nnupf-gueip\nA.3",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.1-1",
+        "table_5.1-2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.564_5.2.1.1",
+      "section_id": "5.2.1.1",
+      "section_title": "Service operations",
+      "content": "The Nupf_EventExposure service enables NF service consumers to subscribe to UPF events and/or the UPF to send notifications about UPF events to NF service consumers.\nThe Nupf_EventExposure service supports the service operations defined in Table 5.2.1.1-1.\nTable 5.2.1.1-1: Service operations supported by the Nupf_EventExposure service\nService Operations\nDescription\nOperation\nSemantics\nExample Consumer(s)\nSubscribe\nSubscribe to UPF events\nSubscribe/Notify\nNWDAF, SMF, DCCF\nUnsubscribe\nUnsubscribe from UPF events\nSubscribe/Notify\nNWDAF, SMF, DCCF\nNotify\nNotification about UPF events\nSubscribe/Notify\nNEF, AF, NWDAF, TSCTSF, TSNAF, DCCF, MFAF",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.2.1.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.564_5.2.1.2",
+      "section_id": "5.2.1.2",
+      "section_title": "Subscription to UPF events",
+      "content": "The UPF exposes UPF events via the Nupf_EventExposure service as defined in Table 5.2.1.2-1.\nTable 5.2.1.2-1: Subscriptions to UPF events\nSubscription\nProtocol used for the subscription\nto UPF\nDescription\nSubscription via SMF\nPFCP\nThe NF service consumer creates the subscription for the event of interest via the SMF. The SMF instructs the UPF to report the events directly to the NF service consumer via the N4 interface as specified in 3GPP TS 29.244 [15].\nUpon occurrence of the event of interest, the UPF sends a notification directly to the NF service consumer using the Nupf_EventExposure Notify service operation.\nNupf_EventExposure Subscribe\nThe NF service consumer creates the subscription for the event of interest via the SMF. The SMF subscribes to the UPF using the Nupf_EventExposure Subscribe service operation.\nUpon occurrence of the event of interest, the UPF sends a notification directly to the NF Service Consumer using the Nupf_EventExposure Notify service operation.\nSubscription\nto UPF\nNupf_EventExposure Subscribe\nThe NF service consumer creates the subscription for the event of interest to the UPF using the Nupf_EventExposure Subscribe service operation.\nUpon occurrence of the event of interest, the UPF sends a notification directly to the NF Service Consumer using the Nupf_EventExposure Notify service operation\nClause 5.2.1.3 decribes which of the above subscriptions shall be used for each event type supported by the Nupf_EventExposure service.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_5.2.1.3",
+        "table_5.2.1.2-1",
+        "ts_29.244"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.564_5.2.1.3.1",
+      "section_id": "5.2.1.3.1",
+      "section_title": "General",
+      "content": "The Nupf_EventExposure service supports the events defined in this clause.\nSee also clauses 4.15.4.5.1 and 5.2.26.2.1 of 3GPP TS 23.502 [3].",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_23.502"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.564_5.2.1.3.2",
+      "section_id": "5.2.1.3.2",
+      "section_title": "QoS Monitoring",
+      "content": "Table 5.2.1.3.2-1: QoS Monitoring event\nDescription\nThis event provides QoS flow performance information, i.e. QoS monitoring results for the QoS parameter(s) to be measured.\nThe following QoS parameters may be measured and/or reported:\n-\tPacket delay monitoring: DL, UL and/or Round-Trip packet delay between UE and PSA UPF of specific QoS flow(s) of the PDU session.\n-\tData rate monitoring: UL and/or DL data rate measurement for a QoS flow.\n-\tCongestion information of a QoS flow on the UL and/or DL directions received from the NG-RAN.\nSubscription type\nSubscription via SMF using PFCP\nSubscription inputs to UPF\n- QFI(s) of a specific PDU session\n- requested QoS measurements\n- UPF event consumer notification URI\n- Notification correlation ID\n- Reporting suggestion information (i.e. Report urgency, Reporting time information)\nSee clauses 5.24.4, 5.24.5 and 5.39 of 3GPP TS 29.244 [15].\nReport type\nContinuous (event triggered) Report (for Packet Delay, Data Rate and Congestion Information).\nPeriodic Report (for Packet Delay and Data Rate)",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.2.1.3.2-1",
+        "ts_29.244"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.564_5.2.1.3.3",
+      "section_id": "5.2.1.3.3",
+      "section_title": "User Data Usage Measures",
+      "content": "Table 5.2.1.3.3-1: User Data Usage Measures event\nDescription\nThis event provides information of user data usage of a PDU session:\n-\tVolume Measurement: measurements of data volume exchanged (UL, DL and/or overall) and/or number of packets exchanged (UL, DL and/or overall) determined for the requested Granularity of Measurements.\n-\tThroughput Measurement: measurements of data throughput (UL and DL) determined for the requested Granularity of Measurements.\n-\tApplication related information: URL(s) and/or Domain information (domain name and protocol) detected for the target traffic. This Type of Measurement requires that Application Id(s) or Traffic Filtering Information is provided (i.e. this measurement is not possible to be applied for all traffic handled by the UPF).\nSubscription type\nSubscription via SMF using Nupf_EventExposure Subscribe, if the target is:\n- PDU session(s) of a specific UE or a group of UEs; or\n- PDU session(s) of any UE and the subscription includes at least one of the following parameters: AoI, BSSID/SSID and DNAI.\nSubscription to the UPF, if the target is PDU session(s) of any UE and the subscription does not need to include any of the following parameters: AoI, BSSID/SSID and DNAI.\nSubscription inputs to UPF\nRequired:\n- UE IP address (for an IP PDU session type), SUPI (for a non-IP PDU session type) or \"Any UE\"\n- Type of Measurement (i.e. Volume, Throughput, Application related information)\n- UPF event consumer notification URI\n- Notification correlation ID\nOptional:\n- DNN\n- S-NSSAI\n- either Application ID(s) or Traffic filters\n- Granularity of Measurement (i.e. required granularity for the information reported, i.e. per PDU session, per data flow or per application)\n- Reporting suggestion information (i.e. Report urgency, Reporting time information)\nReport type\nOne-Time Report\nPeriodic Report",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.2.1.3.3-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.564_5.2.1.3.4",
+      "section_id": "5.2.1.3.4",
+      "section_title": "User Data Usage Trends",
+      "content": "Table 5.2.1.3.4-1: User Data Usage Trends event\nDescription\nThis event provides statistics related to user data usage of a PDU session:\n-\tThroughput Statistic Measurement (average and/or peak throughput) over the measurement period determined for the requested Granularity of Measurements.\nSubscription type\nSubscription via SMF using Nupf_EventExposure Subscribe, if the target is:\n- PDU session(s) of a specific UE or a group of UEs; or\n- PDU session(s) of any UE and the subscription includes at least one of the following parameters: AoI, BSSID/SSID and DNAI.\nSubscription to the UPF, if the target is PDU session(s) of any UE and the subscription does not need to include any of the following parameters: AoI, BSSID/SSID and DNAI.\nSubscription inputs to UPF\nRequired:\n- UE IP address (for an IP PDU session type), SUPI (for a non-IP PDU session type) or \"Any UE\"\n- UPF event consumer notification URI\n- Notification correlation ID\nOptional:\n- DNN\n- S-NSSAI\n- either Application ID(s) or Traffic filters\n- Granularity of Measurement (i.e. required granularity for the information reported, i.e per PDU session, per data flow or per application)\n- Reporting suggestion information (i.e. Report urgency, Reporting time information)\nReport type\nOne-Time Report\nPeriodic Report",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.2.1.3.4-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.564_5.2.1.3.5",
+      "section_id": "5.2.1.3.5",
+      "section_title": "TSC Management Information",
+      "content": "Table 5.2.1.3.5-1: TSC Management Information event\nDescription\nThis event provides TSC Management Information.\nSubscription type\nSubscription via SMF using PFCP\nSubscription inputs to UPF\n- UPF event consumer notification URI\n- Notification correlation ID\nSee clauses 5.26.3.2 of 3GPP TS 29.244 [15] and clauses 6.2.1 and 6.3.1 of 3GPP TS 24.539 [18].\nReport type\nContinuous (event triggered) Report.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.2.1.3.5-1",
+        "ts_29.244",
+        "ts_24.539"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.564_5.2.2.1",
+      "section_id": "5.2.2.1",
+      "section_title": "Introduction",
+      "content": "The service operations defined for the Nupf_EventExposure service are as follows:\n-\tSubscribe: It enables an NF service consumer to subscribe to UPF event exposure notifications..\n-\tUnsubscribe: It enables an NF service consumer to unsubscribe from UPF event exposure notifications.\n-\tNotify: It allows the UPF to send event notifications directly to NF service consumers.\nNOTE:\tThe Subscribe and Unsubscribe service operations only apply to UPF events that can be subscribed using the Nupf service based interface (see clauses 5.2.1.2 and 5.2.1.3).",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.564_5.2.2.2.1",
+      "section_id": "5.2.2.2.1",
+      "section_title": "General",
+      "content": "The Subscribe service operation is used by a NF Service Consumer to subscribe to UPF event exposure notifications, e.g. for the purpose of UPF data collection for a specified PDU session or any UE.\nNOTE:\tNF service consumers can only be SMF, NWDAF or DCCF in this release of the specification.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.564_5.2.2.2.2",
+      "section_id": "5.2.2.2.2",
+      "section_title": "Creation of a subscription",
+      "content": "An NF Service Consumer shall invoke the Subscribe service operation towards the UPF to create a subscription to monitor at least one UPF event. The NF Service Consumer may subscribe to multiple events in a subscription. A subscription may be associated with one UE's PDU session or with any UE.\nThe NF Service Consumer shall request to create a new subscription by using the HTTP method POST with the URI of the subscriptions collection, see clause 6.1.3.2.\nFigure 5.2.2.2.2-1 Subscription creation\n1.\tThe NF Service Consumer shall send a POST request to create a subscription resource in the UPF. The content of the POST request shall contain a representation of the individual subscription resource to be created.\nThe NF Service Consumer shall include the following information in the HTTP message body:\n-\tNF ID, indicating the identity of the network function instance creating the subscription;\n-\tTarget of Event Reporting, indicating the target(s) to be monitored, i.e.\n-\ta specific PDU Session of a UE identified with a UE IP address for an IP PDU session type;\n-\ta specific PDU Session of a UE identified with a SUPI (and S-NSSAI/DNN) for a non-IP PDU session type; or\n-\tany UE (identified by the \"anyUE\" flag);\n-\tList of UPF events requested to be subscribed;\n-\tType of measurement, for UPF events supporting multiple types of measurement, e.g. for a subscription to the UserDataUsageMeasures event;\n-\tEvent Reporting Mode, indicating how the events shall be reported (One-time Report or Periodic Report); and\n-\tUPF event consumer notification URI, indicating the address where to send the event notifications generated by the subscription.\nThe NF Service Consumer may include the following information in the HTTP message body:\n-\tThe S-NSSAI and/or the DNN of PDU sessions to which the subscription applies;\n-\teither one or more Application ID(s) or traffic filters identifying the traffic to be monitored by the subscription;\n-\tGranularity of Measurement, indicating that the granularity of the required measurements is per PDU Session, per data flow or per application;\n-\tReporting period, defining the period for periodic reporting;\n-\tMaximum number of reports, defining the maximum number of reports after which the event subscription ceases to exist;\n-\tExpiry time, suggested by the NF Service Consumer representing the time up to which the subscription is desired to be kept active and the time after which the subscribed event(s) shall stop generating reports;\n-\tReporting suggestion information, i.e. Report urgency indicating whether the event report can be delayed (i.e. it is delay-tolerant) and if so, the Reporting time information defining the last valid reporting time for the UPF to report the detected event;\n-\tDeactivate notification flag, indicating that the notification of the available events shall be muted until the event consumer NF (e.g. NWDAF or DCCF) provides the retrieval notification flag to retrieve the stored events;\n-\tImmediate Report Flag per event, indicating an immediate report to be generated with the current event status;\n-\tNotification Correlation ID, indicating the correlation identity to be signaled in the event notifications generated by the subscription;\n-\tSampling ratio, defining the random subset of PDU sessions among target PDU sessions, in which case the UPF shall only report the event(s) related to the selected subset of PDU sessions;\n-\tpartitioningCriteria, defining the criteria for partitioning PDU sessions before applying the sampling ratio; and/or\n-\tMuting Exception Instructions, which specify instructions to apply to the subscription and the stored events when an exception occurs at the UPF while the event is muted (e.g., the buffer of stored event reports is full, or the number of stored event reports exceeds a certain number), if the EEMM feature is supported (see clause 6.1.8).\n2a.\tOn success (i.e. if the request is accepted), the UPF shall include a HTTP Location header to provide the location of the newly created resource (subscription) together with the status code 201 in the response message indicating that the requested resource is created.If the NF Service Consumer has included more than one events in the event subscription and some of the events cannot be subscribed, the UPF shall accept the request and provide the successfully subscribed event(s) in the CreatedEventSubscription.If the NF Service Consumer has included the Immediate Report Flag with the value true in the event subscription, and if the current status of the events subscribed are available, the UPF shall include the current status of the events subscribed in the response. Otherwise, the UPF shall generate reports for the events and notify the NF service consumer using the Nupf_EventExposure_Notify service operation. If the events with the Immediate Report Flag set to true are subscribed via an SMF, the notification shall be sent to the actual NF service consumer directly, i.e. the current status of the events subscribed shall not be included in the subscription creation response.\nIf the NF Service Consumer has set the event reporting option to ONE_TIME and if the UPF has included the current status of the events subscribed in the response, then the UPF shall not do any subsequent event notification for the corresponding events.\nThe response, based on operator policy and taking into account the expiry time included in the request, may contain the expiry time, as determined by the UPF, after which the subscription becomes invalid. Once the subscription expires, if the NF Service Consumer wants to keep receiving notifications, it shall create a new subscription in the UPF. The UPF shall not provide the same expiry time for many subscriptions in order to avoid all of them expiring and recreating the subscription at the same time. If the expiry time is not included in the response, the NF Service Consumer shall consider the subscription to be valid without an expiry time.\nIf the sampling ratio (\"sampRatio\") attribute is included in the subscription without a partitioningCriteria, the UPF shall select a random subset of PDU sessions among target PDU sessions according to the sampling ratio and only report the event(s) related to the selected subset of PDU sessions. If the partitioningCriteria attribute is also included along with sampling ratio, the UPF shall apply the sampling ratio on the group of PDU sessions determined according to the partitioning criteria.\nIf the \"notifFlag\" attribute is included and set to \"DEACTIVATE\" in the request by e.g. the NWDAF or DCCF, the UPF shall mute the event notification and store the available events. Additionally, if the UPF supports the EEMM feature (see clause 6.1.8) and if the NF service consumer includes event muting instructions in the request, the UPF should evaluate the received event muting instructions against to local actions (if configured) and, if the subscription creation request is accepted, the UPF may indicate the following information to the NF service consumer in the response:\n-\tthe maximum number of notifications that the UPF expects to be able to store for the subscription;\n-\tan estimate of the duration for which notifications can be buffered.\n2b.\tOn failure or redirection, one of the HTTP status code listed in Table 6.1.3.2.3.1-3 shall be returned. For a 4xx/5xx response, the message body shall contain a ProblemDetails structure with the \"cause\" attribute set to one of the application error listed in Table 6.1.3.2.3.1-3.\nIf the UPF supports the EEMM features (see clause 6.1.8), the NF service consumer sets the \"notifFlag\" attribute to \"DEACTIVATE\" and event muting instructions in the request, but the UPF cannot accept the received instructions, the UPF may reject the request with a 403 Forbidden response and the application error \"MUTING_EXC_INSTR_NOT_ACCEPTED\".\nFor a subscription request targeting a PDU session, if the UPF cannot find a unique PDU session due to no DNN and/or S-NSSAI being received in the request, the UPF shall reject the request with a 403 Forbidden response and the application error \"REJECTION_DUE_TO_NO_DNN_SNSSAI\" (see clause 4.4.1.2 of 3GPP TS 23.502 [3]).",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_6.1.3.2",
+        "clause_6.1.8",
+        "ts_23.502_clause_4.4.1.2",
+        "table_6.1.3.2.3.1-3",
+        "figure_5.2.2.2.2-1",
+        "ts_23.502"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.564_5.2.2.2.3",
+      "section_id": "5.2.2.2.3",
+      "section_title": "Modification of a subscription",
+      "content": "The service operation is invoked by a NF Service Consumer, towards the UPF, when it needs to modify an existing subscription previously created at the UPF.\nThe NF Service Consumer shall modify the subscription by using the HTTP method PATCH with the URI of the individual subscription resource (see clause 6.1.3.3) to be modified.\nFigure 5.2.2.2.3-1: Modification of a subscription\n1.\tThe NF service consumer shall send a PATCH request to the resource representing a subscription. The modification may be for the events subscribed or for updating the event report options, or the NF Id.\n2a.\tOn success, the request is accepted, and all the modification instructions in the PATCH request have been implemented, the UPF shall respond with \"204 No Content\".\n2b.\tOn success, the request is accepted, but some of the modification instructions in the PATCH request have been discarded, the UPF shall respond with \"200 OK\" including PatchResult to indicate the failed modifications.\n2c.\tOn failure or redirection, one of the HTTP status code listed in Table 6.1.3.3.3.2-3 shall be returned. For a 4xx/5xx response, the message body may contain a ProblemDetails structure with the \"cause\" attribute set to one of the application errors listed in Table 6.1.3.3.3.2-3.\n5.2.2.2A\tUnsubscribe\n5.2.2.2A.1\tGeneral\nThe Unsubscribe service operation is invoked by a NF Service Consumer towards the UPF to delete an existing subscription previously created at the UPF.\nThe NF Service Consumer shall unsubscribe from a subscription by using the HTTP method DELETE with the URI of the individual subscription resource (see clause 6.1.3.3) to be deleted.\nFigure 5.2.2.2A.1-1 Unsubscribing from UPF events\n1.\tThe NF Service Consumer shall send a DELETE request to delete an existing subscription resource in the UPF.\n2a.\tOn success (i.e. if the request is accepted), the UPF shall reply with the status code 204 in the response message to indicate that the resource identified by the subscription ID has been successfully deleted.\n2b.\tOn failure or redirection, one of the HTTP status code listed in Table 6.1.3.3.3.1-3 shall be returned. For a 4xx/5xx response, the message body shall contain a ProblemDetails structure with the \"cause\" attribute set to one of the application error listed in Table 6.1.3.3.3.1-3.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_6.1.3.3",
+        "table_6.1.3.3.3.2-3",
+        "table_6.1.3.3.3.1-3",
+        "figure_5.2.2.2.3-1",
+        "figure_5.2.2.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.564_5.2.2.3.1",
+      "section_id": "5.2.2.3.1",
+      "section_title": "General",
+      "content": "The Notify service operation is invoked by the UPF, to send a notification, towards the notification URI, when certain event included in the subscription has taken place. See Figure 5.2.2.3.2-1.\nFor the events \"USER_DATA_USAGE_MEASURES\" and \"USER_DATA_USAGE_TRENDS\", the UPF shall use the HTTP method POST, using the notification URI received in the subscription creation as specified in clause 5.2.2.2.2, including e.g. the subscription ID, Event ID(s) for which event has happened, notification correlation ID provided by the NF service consumer at the time of event subscription, to send a notification.\nIf the subscription is targeting PDU sessions of any UE, i.e. the \"anyUe\" is set to true in the subscription creation request, the UPF shall perform the requested measurementsfor every PDU session that matches the event filter information (i.e. S-NSSAIs, DNNs, either Application ID(s) or traffic filters) and send notification(s) with multiple NotificationItem IEs within the NotificationData wherein each NotificationItem shall correspond to a report on one subscribed event per PDU session. If the subscription request included a sampling ratio, the notification may include the sampling ratio achieved by the UPF.\nFor the events \"QOS_MONITORING\" and \"TSC_MNGT_INFO\", the UPF shall use the HTTP method POST, using the notification URI received from the SMF via N4 interface, see clause 5.33.5 of 3GPP TS 29.244 [15].\nFor the event \"USER_DATA_USAGE_MEASURES\", the event notification may contain following information:\n-\tVolume Measurement: measurements of data volume exchanged (UL, DL and/or overall) and/or number of packets exchanged (UL, DL and/or overall) determined for the requested Granularity of Measurements.\n-\tThroughput Measurement: measurements of data throughput (UL and DL) determined for the requested Granularity of Measurements.\n-\tApplication related Information: URLs and/or Domain information (Domain name and protocol) detected in the target traffic identified by the information included in the subscription request, e.g. an application id.\nWhen the granularity of the measurement is per data flow, the notification shall include the packet filter set and the Applications Identifier if available.\nFor the event \"USER_DATA_USAGE_TRENDS\", the event notification may contain following information:\n-\tThroughput Statistic Measurement (average and/or peak throughput) over the measurement determined for the requested Granularity of Measurements.\nWhen the granularity of the measurement is per data flow, the notification shall include the packet filter set and the Applications Identifier if available.\nFor the event \"QOS_MONITORING\", this service operation is used by the UPF to send the following types of event notifications:\n-\tPeriodic notification on the downlink packet delay, uplink packet delay, and/or the round trip packet delay between the UPF (PSA) and UE;\n-\tEvent triggered notification on the downlink packet delay, uplink packet delay, and/or the round trip packet delay between the UPF (PSA) and UE, i.e. when the packet delay exceeds a defined threshold;\n-\tNotification on the downlink packet delay, uplink packet delay, and/or the round trip packet delay between the UPF (PSA) and UE when the PDU session is released.\n-\tEvent triggered notification of congestion information of the QoS flow on the UL and/or DL directions received from the NG-RAN, upon a change of the congestion information.\nFor the event \"TSC_MNGT_INFO\", the event notification may contain the following information:\n-\tPort Management Information Container(s) for one or more NW-TT ports and/or\n-\ta User Plane Node Management Information Container.\nThe event notification shall also contain the following information:\n-\tthe related NW-TT port number(s), if Port Management Information Container(s) is present; and\n-\tthe notification correlation ID received from the SMF, if any.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_5.2.2.2.2",
+        "ts_29.244_clause_5.33.5",
+        "figure_5.2.2.3.2-1",
+        "ts_29.244"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.564_5.2.2.3.2",
+      "section_id": "5.2.2.3.2",
+      "section_title": "UPF sends notification on subscribed events",
+      "content": "Figure 5.2.2.3.2-1: UPF sends notification on subscribed events\n1.\tThe UPF shall send a POST request to the eventNotificationUri as provided by the SMF during the provisioning of Session Reporting Rule (see clause 7.5.2.9 of 3GPP TS 29.244 [15]) or received in the subscription creation as specified in clause 5.2.2.2.2.\n2a.\tUpon success, the NF Service Consumer responds with \"204 No Content\".\n2b.\tOn failure or redirection:\n-\tIf the NF Service Consumer does not consider the \"eventNotificationUri\" as a valid notification URI, the NF Service Consumer shall return \"404 Not Found\" status code with the ProblemDetails IE providing details of the error.\n-\tIn the case of redirection, the NF service consumer shall return 3xx status code, which shall contain a Location header with an URI pointing to the endpoint of another NF service consumer endpoint.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.244_clause_7.5.2.9",
+        "clause_5.2.2.2.2",
+        "figure_5.2.2.3.2-1",
+        "ts_29.244"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.564_5.3.1",
+      "section_id": "5.3.1",
+      "section_title": "Service Description",
+      "content": "The Nupf_GetUEPrivateIPaddrAndIdentifiers Service enables the UPF to provide the UE IP address information of a PDU session and optionally UE identifiers (e.g. SUPI, GPSI), e.g. to provide the (private) UE IP address when being queried with a NATed UE IP Address, to the NF service consumer (e.g. a NEF), when the NAT functionality of the UE IP address is deployed within the UPF.\nTable 5.3.1-1 lists the service operations that are supported by the Nupf_GetUEPrivateIPaddrAndIdentifiers service.\nTable 5.3.1-1: Service operations supported by the Nupf_GetUEPrivateIPaddrAndIdentifiers service\nService Operations\nDescription\nOperation\nSemantics\nExample Consumers\nGet\nRetrieve the UE IP address information of a PDU session, to get e.g., UE's private IP address and optionally the associated IP domain.\nRequest / Response\nNEF",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.3.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.564_5.3.2.1",
+      "section_id": "5.3.2.1",
+      "section_title": "Introduction",
+      "content": "See Table 5.3.1-1 for an overview of the service operations supported by the Nupf_GetUEPrivateIPaddrAndIdentifiers service.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.3.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.564_5.3.2.2.1",
+      "section_id": "5.3.2.2.1",
+      "section_title": "General",
+      "content": "The Get service operation is used in the following procedure:\n-\tAF specific UE ID retrieval as specified in clause 4.15.10 of 3GPP TS 23.502 [3] ;\n-\tAF traffic influence request without HPLMN DNN, S-NSSAI information for a single UE, private IP address or public IP address owned by VPLMN as specified in clause 4.3.6.5.3 of 3GPP TS 23.502 [3];\n-\tAF traffic influence request without HPLMN DNN, S-NSSAI information for a single UE, UE IP address owned and assigned by HPLMN as specified in clause 4.3.6.5.4 of 3GPP TS 23.502 [3].\nThis service operation is consumed by querying the \"ue-ip-info\" resource. The request is sent to the UPF hosting the IP address in the query.\nFigure 5.3.2.2.1-1: Retrieval of UE IP Info for a PDU session\n1.\tThe NF Service Consumer shall send an HTTP GET request to the resource URI of \"ue-ip-info\". The input filter criteria for the discovery request shall be included in query parameters, e.g. the UE (public) IP address and Port Number, and optionally DNN and S-NSSAI.\n2a.\tOn success, \"200 OK\" shall be returned. The response body shall include a UeIpInfo object which contains relevant attributes matching the query parameters included in the request message.\n2b.\tOn failure, one of the HTTP status code listed in Table 6.2.3.2.3.1-3 shall be returned. For a 4xx/5xx response, the message body may contain a ProblemDetails structure with the \"cause\" attribute set to one of the application errors listed in Table 6.2.3.2.3.1-3, where applicable.On redirection, \"307 Temporary Redirect\" or \"308 Permanent Redirect\" shall be returned. A RedirectResponse IE may be included in the content of POST response.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_23.502_clause_4.15.10",
+        "ts_23.502_clause_4.3.6.5.3",
+        "ts_23.502_clause_4.3.6.5.4",
+        "table_6.2.3.2.3.1-3",
+        "figure_5.3.2.2.1-1",
+        "ts_23.502"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.564_6.1.1",
+      "section_id": "6.1.1",
+      "section_title": "API URI",
+      "content": "The Nupf_EventExposure shall use the Nupf_EventExposure API.\nThe API URI of the Nupf_EventExposure API shall be:\n{apiRoot}/<apiName>/<apiVersion>\nThe request URIs used in HTTP requests from the NF service consumer towards the NF service producer shall have the Resource URI structure defined in clause 4.4.1 of 3GPP TS 29.501 [5], i.e.:\n{apiRoot}/<apiName>/<apiVersion>/<apiSpecificResourceUriPart>\nwith the following components:\n-\tThe {apiRoot} shall be set as described in 3GPP TS 29.501 [5].\n-\tThe <apiName> shall be \"nupf-ee\".\n-\tThe <apiVersion> shall be \"v1\".\n-\tThe <apiSpecificResourceUriPart> shall be set as described in clause 6.1.3.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.501_clause_4.4.1",
+        "clause_6.1.3",
+        "ts_29.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.564_6.1.2.1",
+      "section_id": "6.1.2.1",
+      "section_title": "General",
+      "content": "HTTP/2, IETF RFC 9113 [11], shall be used as specified in clause 5 of 3GPP TS 29.500 [4].\nHTTP/2 shall be transported as specified in clause 5.3 of 3GPP TS 29.500 [4].\nThe OpenAPI [6] specification of HTTP messages and content bodies for the Nupf_EventExposure API is contained in Annex A.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.500_clause_5",
+        "ts_29.500_clause_5.3",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.564_6.1.2.2.1",
+      "section_id": "6.1.2.2.1",
+      "section_title": "General",
+      "content": "See clause 5.2.2 of 3GPP TS 29.500 [4] for the usage of HTTP standard headers.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.500_clause_5.2.2",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.564_6.1.2.2.2",
+      "section_id": "6.1.2.2.2",
+      "section_title": "Content type",
+      "content": "JSON, IETF RFC 8259 [12], shall be used as content type of the HTTP bodies specified in the present specification as specified in clause 5.4 of 3GPP TS 29.500 [4]. The use of the JSON format shall be signalled by the content type \"application/json\".\n\"Problem Details\" JSON object shall be used to indicate additional details of the error in a HTTP response body and shall be signalled by the content type \"application/problem+json\", as defined in IETF RFC 9457 [13].",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_5.4",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.564_6.1.2.3",
+      "section_id": "6.1.2.3",
+      "section_title": "HTTP custom headers",
+      "content": "The mandatory HTTP custom header fields specified in clause 5.2.3.2 of 3GPP TS 29.500 [4] shall be supported, and the optional HTTP custom header fields specified in clause 5.2.3.3 of 3GPP TS 29.500 [4] may be supported.\nIn this release of this specification, no custom headers specific to the Nupf_EventExposure service are defined.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_5.2.3.2",
+        "ts_29.500_clause_5.2.3.3",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.564_6.1.3.1",
+      "section_id": "6.1.3.1",
+      "section_title": "Overview",
+      "content": "Figure 6.1.3.1-1: Resource URI structure of the nupf-ee API\nTable 6.1.3.1-1 provides an overview of the resources and applicable HTTP methods.\nTable 6.1.3.1-1: Resources and methods overview\nResource name\nResource URI\nHTTP method or custom operation\nDescription\n(service operation)\nEventExposureSubscriptions\n(Collection)\n/ee-subscriptions\nPOST\nSubscribe service operation, creating a new subscription .\nIndividual subscription\n(Document)\n/ee-subscriptions/{subscriptionId}\nDELETE\nUnsubscribe service operation\nPATCH\nSubscribe service operation, modification of a subscription",
+      "chunk_type": "definition",
+      "cross_references": [
+        "table_6.1.3.1-1",
+        "figure_6.1.3.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.564_6.1.3.2.1",
+      "section_id": "6.1.3.2.1",
+      "section_title": "Description",
+      "content": "This resource represents a collection of subscriptions created by NF service consumers of Nupf_EventExposure service.\nThis resource is modelled as the Collection resource archetype (see clause C.2 of 3GPP TS 29.501 [5]).",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.564_6.1.3.2.2",
+      "section_id": "6.1.3.2.2",
+      "section_title": "Resource Definition",
+      "content": "Resource URI: {apiRoot}/nupf-ee/<apiVersion>/ee-subscriptions\nThis resource shall support the resource URI variables defined in table 6.1.3.2.2-1.\nTable 6.1.3.2.2-1: Resource URI variables for this resource\nName\nData type\nDefinition\napiRoot\nstring\nSee clause 6.1.1\napiVersion\nstring\nSee clause 6.1.1",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_6.1.1",
+        "table_6.1.3.2.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.564_6.1.3.2.3",
+      "section_id": "6.1.3.2.3",
+      "section_title": "Resource Standard Methods",
+      "content": "6.1.3.2.3.1\tPOST\nThis method shall support the URI query parameters specified in table 6.1.3.2.3.1-1.\nTable 6.1.3.2.3.1-1: URI query parameters supported by the POST method on this resource\nName\nData type\nP\nCardinality\nDescription\nApplicability\nn/a\nThis method shall support the request data structures specified in table 6.1.3.2.3.1-2 and the response data structures and response codes specified in table 6.1.3.2.3.1-3.\nTable 6.1.3.2.3.1-2: Data structures supported by the POST Request Body on this resource\nData type\nP\nCardinality\nDescription\nCreateEventSubscription\nM\n1\nContent of the Subscribe request to create a subscription.\nTable 6.1.3.2.3.1-3: Data structures supported by the POST Response Body on this resource\nData type\nP\nCardinality\nResponse\ncodes\nDescription\nCreatedEventSubscription\nM\n1\n201 Created\nRepresents successful creation of an UPF Event Subscription\nRedirectResponse\nO\n0..1\n307 Temporary Redirect\nTemporary redirection.\n(NOTE 2)\nRedirectResponse\nO\n0..1\n308 Permanent Redirect\nPermanent redirection.\n(NOTE 2)\nProblemDetails\nO\n0..1\n403 Forbidden\nIndicates the creation of subscription has failed due to application error.\nThe \"cause\" attribute may be used to indicate one of the following application errors:\n-\tPDU_SESSION_NOT_SERVED_BY_UPF\n-\tMUTING_EXC_INSTR_NOT_ACCEPTED\n-\tREJECTION_DUE_TO_NO_DNN_SNSSAI\nProblemDetails\nO\n0..1\n501 Not Implemented\nThe \"cause\" attribute may be used to indicate one of the following application errors:\n-\tUNSUPPORTED_EVENT_TYPE\nNOTE 1:\tThe mandatory HTTP error status code for the POST method listed in Table 5.2.7.1-1 of 3GPP TS 29.500 [4] also apply, with response body containing an object of ProblemDetails data type (see clause 5.2.7 of 3GPP TS 29.500 [4]).\nNOTE 2:\tRedirectResponse may be inserted by an SCP, see clause 6.10.9.1 of 3GPP TS 29.500 [4].\nTable 6.1.3.2.3.1-4: Headers supported by the 201 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nContains the URI of the newly created resource, according to the structure: {apiRoot}/nupf-ee/<apiVersion>/ee-subscriptions/{subscriptionId}\nTable 6.1.3.2.3.1-5: Headers supported by the 307 Response Code on this endpoint\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located on an alternative service instance. For the case, when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target NF (service) instance ID towards which the request is redirected\nTable 6.1.3.2.3.1-6: Headers supported by the 308 Response Code on this endpoint\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located on an alternative service instance. For the case, when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target NF (service) instance ID towards which the request is redirected",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_5.2.7",
+        "ts_29.500_clause_6.10.9.1",
+        "table_6.1.3.2.3.1-1",
+        "table_6.1.3.2.3.1-2",
+        "table_6.1.3.2.3.1-3",
+        "ts_29.500_table_5.2.7.1-1",
+        "ts_29.500_table_6.1.3.2.3.1-4",
+        "table_6.1.3.2.3.1-5",
+        "table_6.1.3.2.3.1-6",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.564_6.1.3.2.4",
+      "section_id": "6.1.3.2.4",
+      "section_title": "Resource Custom Operations",
+      "content": "None.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.564_6.1.3.3.1",
+      "section_id": "6.1.3.3.1",
+      "section_title": "Description",
+      "content": "This resource represents an individual of subscription created by NF service consumers of Nupf_EventExposure service.\nThis resource is modelled as the Document resource archetype (see clause C.1 of 3GPP TS 29.501 [5]).",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.564_6.1.3.3.2",
+      "section_id": "6.1.3.3.2",
+      "section_title": "Resource Definition",
+      "content": "Resource URI: {apiRoot}/nupf-ee/<apiVersion>/ee-subscriptions/{subscriptionId}\nThis resource shall support the resource URI variables defined in table 6.1.3.3.2-1.\nTable 6.1.3.3.2-1: Resource URI variables for this resource\nName\nData type\nDefinition\napiRoot\nstring\nSee clause 6.2.1\napiVersion\nstring\nSee clause 6.2.1.\nsubscriptionId\nstring\nString identifies an individual subscription to the UPF event exposure service",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_6.2.1",
+        "table_6.1.3.3.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.564_6.1.3.3.3",
+      "section_id": "6.1.3.3.3",
+      "section_title": "Resource Standard Methods",
+      "content": "6.1.3.3.3.1\tDELETE\nThis method shall support the URI query parameters specified in table 6.1.3.3.3.1-1.\nTable 6.1.3.3.3.1-1: URI query parameters supported by the DELETE method on this resource\nName\nData type\nP\nCardinality\nDescription\nn/a\nThis method shall support the request data structures specified in table 6.1.3.3.3.1-2 and the response data structures and response codes specified in table 6.1.3.3.3.1-3.\nTable 6.1.3.3.3.1-2: Data structures supported by the DELETE Request Body on this resource\nData type\nP\nCardinality\nDescription\nn/a\nTable 6.1.3.3.3.1-3: Data structures supported by the DELETE Response Body on this resource\nData type\nP\nCardinality\nResponse\ncodes\nDescription\nn/a\n204 No Content\nRedirectResponse\nO\n0..1\n307 Temporary Redirect\nTemporary redirection.\n(NOTE 2)\nRedirectResponse\nO\n0..1\n308 Permanent Redirect\nPermanent redirection.\n(NOTE 2)\nProblemDetails\nO\n0..1\n404 Not Found\nIndicates the modification of subscription has failed due to application error.\nThe \"cause\" attribute may be used to indicate one of the following application errors:\n-\tSUBSCRIPTION_NOT_FOUND\nNOTE 1:\tThe mandatory HTTP error status code for the DELETE method listed in Table 5.2.7.1-1 of 3GPP TS 29.500 [4] also apply, with response body containing an object of ProblemDetails data type (see clause 5.2.7 of 3GPP TS 29.500 [4]).\nNOTE 2:\tRedirectResponse may be inserted by an SCP, see clause 6.10.9.1 of 3GPP TS 29.500 [4].\nTable 6.1.3.3.3.1-4: Headers supported by the 307 Response Code on this endpoint\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located on an alternative service instance. For the case, when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target NF (service) instance ID towards which the request is redirected\nTable 6.1.3.3.3.1-5: Headers supported by the 308 Response Code on this endpoint\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located on an alternative service instance. For the case, when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target NF (service) instance ID towards which the request is redirected\n6.1.3.3.3.2\tPATCH\nThis method shall support the URI query parameters specified in table 6.1.3.3.3.2-1.\nTable 6.1.3.3.3.2-1: URI query parameters supported by the PATCH method on this resource\nName\nData type\nP\nCardinality\nDescription\nn/a\nThis method shall support the request data structures specified in table 6.1.3.3.3.2-2 and the response data structures and response codes specified in table 6.1.3.3.3.2-3.\nTable 6.1.3.3.3.2-2: Data structures supported by the PATCH Request Body on this resource\nData type\nP\nCardinality\nDescription\narray(PatchItem)\nM\n1..N\nItems describe the modifications to the Event Subscription\nTable 6.1.3.3.3.2-3: Data structures supported by the PATCH Response Body on this resource\nData type\nP\nCardinality\nResponse\ncodes\nDescription\nn/a\n204 No Content\nUpon success, an empty response body shall be returned. (NOTE 2)\nPatchResult\nM\n1\n200 OK\nUpon success, the execution report is returned. (NOTE 2)\nRedirectResponse\nO\n0..1\n307 Temporary Redirect\nTemporary redirection.\n(NOTE 3)\nRedirectResponse\nO\n0..1\n308 Permanent Redirect\nPermanent redirection.\n(NOTE 3)\nProblemDetails\nO\n0..1\n403 Forbidden\nOne or more attributes are not allowed to be modified.\nThe \"cause\" attribute may be used to indicate one of the following application errors:\n- \tMODIFICATION_NOT_ALLOWED, see 3GPP TS 29.500 [4] table 5.2.7.2-1.\n-\tMUTING_EXC_INSTR_NOT_ACCEPTED\nProblemDetails\nO\n0..1\n404 Not Found\nThe \"cause\" attribute may be used to indicate one of the following application errors:\n- \tSUBSCRIPTION_NOT_FOUND, see 3GPP TS 29.500 [4] table 5.2.7.2-1.\nNOTE 1:\tThe mandatory HTTP error status code for the PATCH method listed in Table 5.2.7.1-1 of 3GPP TS 29.500 [4] also apply, with response body containing an object of ProblemDetails data type (see clause 5.2.7 of 3GPP TS 29.500 [4]).\nNOTE 2:\tIf all the modification instructions in the PATCH request have been implemented, the UPF shall respond with 204 No Content response; if some of the modification instructions in the PATCH request have been discarded, the UPF shall respond with PatchResult.\nNOTE 3:\tRedirectResponse may be inserted by an SCP, see clause 6.10.9.1 of 3GPP TS 29.500 [4].\nTable 6.1.3.3.3.2-4: Headers supported by the 307 Response Code on this endpoint\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located on an alternative service instance. It is implementation specific how the alternative URI is determined. For the case, when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target NF (service) instance ID towards which the request is redirected\nTable 6.1.3.3.3.2-5: Headers supported by the 308 Response Code on this endpoint\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located on an alternative service instance. It is implementation specific how the alternative URI is determined. For the case, when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target NF (service) instance ID towards which the request is redirected",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_5.2.7",
+        "ts_29.500_clause_6.10.9.1",
+        "table_6.1.3.3.3.1-1",
+        "table_6.1.3.3.3.1-2",
+        "table_6.1.3.3.3.1-3",
+        "ts_29.500_table_5.2.7.1-1",
+        "ts_29.500_table_6.1.3.3.3.1-4",
+        "table_6.1.3.3.3.1-5",
+        "table_6.1.3.3.3.2-1",
+        "table_6.1.3.3.3.2-2",
+        "table_6.1.3.3.3.2-3",
+        "ts_29.500_table_5.2.7.2-1",
+        "ts_29.500_table_6.1.3.3.3.2-4",
+        "table_6.1.3.3.3.2-5",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.564_6.1.3.3.4",
+      "section_id": "6.1.3.3.4",
+      "section_title": "Resource Custom Operations",
+      "content": "None.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.564_6.1.5.1",
+      "section_id": "6.1.5.1",
+      "section_title": "General",
+      "content": "Notifications shall comply to clause 6.2 of 3GPP TS 29.500 [4] and clause 4.6.2.3 of 3GPP TS 29.501 [5].\nTable 6.1.5.1-1: Notifications overview\nNotification\nCallback URI\nHTTP method or custom operation\nDescription\n(service operation)\nEvent Notification\n{eventNotificationUri} (This URI is either provided by NF service consumer via Nupf interface, or it is provided via N4 interface during the provisioning of Session Reporting Rule)\nPOST\nNotify about the events that UPF exposes and to which the NF service consumer may subscribe to.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.500_clause_6.2",
+        "ts_29.500_clause_4.6.2.3",
+        "ts_29.501_table_6.1.5.1-1",
+        "ts_29.501_clause_4.6.2.3",
+        "ts_29.500",
+        "ts_29.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.564_6.1.5.2.1",
+      "section_id": "6.1.5.2.1",
+      "section_title": "Description",
+      "content": "The Event Notification is used by the UPF to report one or several observed Events to a NF service consumer that has subscribed to such Notifications.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.564_6.1.5.2.2",
+      "section_id": "6.1.5.2.2",
+      "section_title": "Target URI",
+      "content": "The POST method shall be used for Event Notification and the URI shall be the Event Notification URI provided by the SMF during the provisioning of Session Reporting Rule, see clause 5.33.5 of 3GPP TS 29.244 [15], or by NF Service Consumer during creation of the subscription as specified in clause 5.2.2.2.2.\nResource URI: {eventNotificationUri}\nSupport of URI query parameters is specified in table 6.1.5.2.2-1.\nTable 6.1.5.2.2-1: Callback URI variables\nName\nData type\nP\nCardinality\nDescription\nn/a\nSupport of request data structures is specified in table 6.1.5.2.2-2, and support of response data structures and response codes is specified in table 6.1.5.2.2-3.\nTable 6.1.5.2.2-2: Data structures supported by the POST Request Body\nData type\nP\nCardinality\nDescription\nNotificationData\nM\n1\nRepresentation of the event notification.\nTable 6.1.5.2.2-3: Data structures supported by the POST Response Body\nData type\nP\nCardinality\nResponse\ncodes\nDescription\nn/a\n204 No Content\nThis case represents a successful notification of the event.\nProblemDetails\nO\n0..1\n404 Not Found\nIf the NF Service Consumer considers the \"eventNotificationUri\" and/or \"Notification Correlation ID\" is not recognized, the NF Service Consumer shall return \"404 Not Found\" status code\nRedirectResponse\nO\n0..1\n307 Temporary Redirect\nTemporary redirection.\n(NOTE 2)\nRedirectResponse\nO\n0..1\n308 Permanent Redirect\nPermanent redirection.\n(NOTE 2)\nNOTE 1:\tThe mandatory HTTP error status codes for the POST method listed in Table 5.2.7.1-1 of 3GPP TS 29.500 [4] other than those specified in the table above also apply, with a ProblemDetails data type (see clause 5.2.7 of 3GPP TS 29.500 [4]).\nNOTE 2:\tRedirectResponse may be inserted by an SCP, see clause 6.10.9.1 of 3GPP TS 29.500 [4].\nTable 6.1.5.2.2-4: Headers supported by the 307 Response Code on this endpoint\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nA URI pointing to the endpoint of the NF service consumer instance to which the request should be sent. For the case, when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target NF instance ID towards which the notification is redirected\nTable 6.1.5.2.2-5: Headers supported by the 308 Response Code on this endpoint\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nA URI pointing to the endpoint of the NF service consumer instance to which the request should be sent. For the case, when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target NF instance ID towards which the notification is redirected",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.244_clause_5.33.5",
+        "clause_5.2.2.2.2",
+        "ts_29.500_clause_5.2.7",
+        "ts_29.500_clause_6.10.9.1",
+        "table_6.1.5.2.2-1",
+        "table_6.1.5.2.2-2",
+        "table_6.1.5.2.2-3",
+        "ts_29.500_table_5.2.7.1-1",
+        "ts_29.500_table_6.1.5.2.2-4",
+        "table_6.1.5.2.2-5",
+        "ts_29.244",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.564_6.1.6.1",
+      "section_id": "6.1.6.1",
+      "section_title": "General",
+      "content": "This clause specifies the application data model supported by the API.\nTable 6.1.6.1-1 specifies the data types defined for the Nupf_EventExposure service.\nTable 6.1.6.1-1: Nupf_EventExposure specific Data Types\nData type\nClause defined\nDescription\nApplicability\nNotificationData\n6.1.6.2.2\nThe list of NotificationItems\nNotificationItem\n6.1.6.2.3\nRepresents a report on one subscribed event\nQosMonitoringMeasurement\n6.1.6.2.4\nQoS Monitoring Measurement information\nUserDataUsageMeasurements\n6.1.6.2.5\nUser Data Usage Measurements\nVolumeMeasurement\n6.1.6.2.6\nVolume Measurement\nThroughputMeasurement\n6.1.6.2.7\nThroughput Measurement\nApplicationRelatedInformation\n6.1.6.2.8\nApplication Related Information\nThroughputStatisticsMeasurement\n6.1.6.2.9\nThroughput Statistics Measurement\nDomainInformation\n6.1.6.2.10\nDomain Name and Domain Name Protocol\nUpfEventSubscription\n6.1.6.2.11\nRepresents an individual event subscription resource on UPF\nUpfEventMode\n6.1.6.2.12\nDescribes how the reports shall be generated for a subscribed event\nUpfEvent\n6.1.6.2.13\nDescribes an event to be subscribed\nCreateEventSubscription\n6.1.6.2.14\nData within a create UPF event subscription request\nCreatedEventSubscription\n6.1.6.2.15\nData within a create UPF event subscription response\nReportingSuggestionInformation\n6.1.6.2.16\nReporting Suggestion Information\nTscManagementInfo\n6.1.6.2.17\nTSC Management Information\nEventType\n6.1.6.3.3\nEvent Type\nUpfEventTrigger\n6.1.6.3.4\nDescribes how the UPF generates the report for the event\nMeasurementType\n6.1.6.3.5\nType of Measurement\nGranularityOfMeasurement\n6.1.6.3.6\nGranularity Of Measurement\nDnProtocol\n6.1.6.3.7\nDomain Name Protocol\nReportingUrgency\n6.1.6.3.8\nReporting Urgency\nTable 6.1.6.1-2 specifies data types re-used by the Nupf_EventExposure service from other specifications, including a reference to their respective specifications and when needed, a short description of their use within the Nupf_EventExposure service.\nTable 6.1.6.1-2: Nupf_EventExposure re-used Data Types\nData type\nReference\nComments\nApplicability\nDateTime\n3GPP TS 29.571 [16]\nDate time\nDnn\n3GPP TS 29.571 [16]\nDNN\nGpsi\n3GPP TS 29.571 [16]\nGPSI\nSnssai\n3GPP TS 29.571 [16]\nS-NSSAI\nUint32\n3GPP TS 29.571 [16]\nUint32\nMacAddr48\n3GPP TS 29.571 [16]\nMAC Address\nIpv4Addr\n3GPP TS 29.571 [16]\nIPv4 address\nIpv6Prefix\n3GPP TS 29.571 [16]\nIPv6 address prefix\nUint64\n3GPP TS 29.571 [16]\nUnsigned 64-bit integer\nBitRate\n3GPP TS 29.571 [16]\nBit rate\nPacketRate\n3GPP TS 29.571 [16]\nPacket rate\nTrafficVolume\n3GPP TS 29.571 [16]\nTraffic Volume\nApplicationId\n3GPP TS 29.571 [16]\nThe application identifier.\nDurationSec\n3GPP TS 29.571 [16]\nNotificationFlag\n3GPP TS 29.571 [16]\nNotification flag.\nPartitioningCriteria\n3GPP TS 29.571 [16]\nUsed to partition UEs before applying sampling.\nProblemDetails\n3GPP TS 29.571 [16]\nSamplingRatio\n3GPP TS 29.571 [16]\nSampling Ratio.\nUri\n3GPP TS 29.571 [16]\nIpAddr\n3GPP TS 29.571 [16]\nSupportedFeatures\n3GPP TS 29.571 [16]\nSupi\n3GPP TS 29.571 [16]\nPei\n3GPP TS 29.571 [16]\nUinteger\n3GPP TS 29.571 [16]\nUnsigned Integer\nPortManagementContainer\n3GPP TS 29.512 [19]\nPMIC\nBridgeManagementContainer\n3GPP TS 29.512 [19]\nUMIC\nFlowInformation\n3GPP TS 29.512 [19]\nIP or Ethernet Flow Information\nPatchItem\n3GPP TS 29.571 [16]\nPatch item of JSON PATCH\nPatchResult\n3GPP TS 29.571 [16]\nPatch result of JSON PATCH\nMutingExceptionInstructions\n3GPP TS 29.571 [16]\nMuting exception instructions.\nMutingNotificationsSettings\n3GPP TS 29.571 [16]\nMuting notifications settings.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "table_6.1.6.1-1",
+        "table_6.1.6.1-2",
+        "ts_6.1",
+        "ts_29.571",
+        "ts_29.512"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.564_6.1.6.2.1",
+      "section_id": "6.1.6.2.1",
+      "section_title": "Introduction",
+      "content": "This clause defines the structures to be used in resource representations.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.564_6.1.6.2.2",
+      "section_id": "6.1.6.2.2",
+      "section_title": "Type: NotificationData",
+      "content": "Table 6.1.6.2.2-1: Definition of type NotificationData\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\nnotificationItems\narray(NotificationItem)\nM\n1..N\nList of NotificationItem, whereby each entry shall correspond to a report for one subscribed event per PDU session.\ncorrelationId\nstring\nC\n0..1\nThe UPF shall include this attribute in the notification if the \"Notification Correlation ID\" IE was received via N4 interface (see clause 7.5.2.9 of 3GPP TS 29.244 [15]) or if the notifyCorrelationId IE was received in the Nupf_EventExposure Subscribe request.\nWhen present, it shall be set to the notification correlation ID received via the N4 or Nupf interface.\nachievedSampRatio\nSamplingRatio\nO\n0..1\nThis IE may be included for an event subscription for any UE to indicate the ratio of the random subset of target PDU sessions achieved by the UPF.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.244_clause_7.5.2.9",
+        "table_6.1.6.2.2-1",
+        "ts_29.244"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.564_6.1.6.2.3",
+      "section_id": "6.1.6.2.3",
+      "section_title": "Type: NotificationItem",
+      "content": "Table 6.1.6.2.3-1: Definition of type NotificationItem\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\neventType\nEventType\nM\n1\nThe event type of the event for which the notification is generated.\nueIpv4Addr\nIpv4Addr\nC\n0..1\nIPv4 address of the UE (NOTE 1, NOTE 3)\nueIpv6Prefix\nIpv6Prefix\nC\n0..1\nIPv6 address prefix of the UE (NOTE 1, NOTE 3)\nueMacAddr\nMacAddr48\nO\n0..1\nMAC address of the UE.\n(NOTE 2, NOTE 3)\ndnn\nDnn\nO\n0..1\nWhen present, this attribute indicates the DNN of the PDU session for which the notification is generated.\nsnssai\nSnssai\nO\n0..1\nWhen present, this attribute indicates the S-NSSAI of the PDU session for which the notification is generated.\ngpsi\nGpsi\nO\n0..1\nWhen present, this attribute indicates the GPSI of the UE for which the notification is generated.\nsupi\nSupi\nO\n0..1\nSubscription Permanent Identifier\ntimeStamp\nDateTime\nM\n1\nThe value represents the UTC time when the information in this report was generated.\nstartTime\nDateTime\nO\n0..1\nWhen present, this attribute shall provide the timestamp when the information measured for generating this report was started.\nqosMonitoringMeasurement\nQosMonitoringMeasurement\nC\n0..1\nThis attribute shall be present if eventType is set to \"QOS_MONITORING\".\nuserDataUsageMeasurements\narray(UserDataUsageMeasurements)\nC\n1..N\nThis IE shall be present if eventType is set to \"USER_DATA_USAGE_MEASURES\" or \"USER_DATA_USAGE_TRENDS\".\ntscMngtInfo\nTscManagementInfo\nC\n0..1\nThis attribute shall be present if eventType is set to \"TSC_MNGT_INFO\".\nNOTE 1:\tAt least one of ueIpv4Addr and ueIpv6Prefix shall be present if the subscription applies to an IP PDU session.\nNOTE 2:\tAn NF service consumer subscribing to receive QoS Monitoring Measurement report for an ethernet PDU session shall accept the NotificationItem having neither ueIpv4Addr nor ueIpv6Prefix.\nNOTE 3:\tAt least one of ueIpv4Addr, ueIpv6Prefix and ueMacAddr shall be present.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.1.6.2.3-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.564_6.1.6.2.4",
+      "section_id": "6.1.6.2.4",
+      "section_title": "Type: QosMonitoringMeasurement",
+      "content": "Table 6.1.6.2.4-1: Definition of type QosMonitoringMeasurement\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\ndlPacketDelay\nUint32\nO\n0..1\nWhen present, the value of this attribute is set to the measured downlink packet delay in millisecond (ms).\nulPacketDelay\nUint32\nO\n0..1\nWhen present, the value of this attribute is set to the measured uplink packet delay in millisecond (ms).\nrtrPacketDelay\nUint32\nO\n0..1\nWhen present, the value of this attribute is set to the measured round trip packet delay in millisecond (ms).\nmeasureFailure\nboolean\nC\n0..1\nThis IE shall be present to report packet delay measurement failure.\nWhen present, it shall be set to true to indicate the report is sent due to packet delay measurement failure. This IE is named as the \"PLMF\" flag over PFCP interface. See also clauses 5.24.4.3 and 8.2.171 in 3GPP TS 29.244 [15].\ndlAveThroughput\nBitRate\nO\n0..1\nWhen present, this IE shall indicate the average data throughput in downlink direction as specified in clause 5.39.3.4 of 3GPP TS 29.244 [15].\nulAveThroughput\nBitRate\nO\n0..1\nWhen present, this IE shall indicate the average data throughput in uplink direction as specified in clause 5.39.3.4 of 3GPP TS 29.244 [15].\ndlCongestion\ninteger\nO\n0..1\nWhen present, this IE shall contain the Downlink congestion information, expressed as an integer value in the range 0 to 10000, representing the percentage of congestion level in the downlink direction, up to two decimal points, for the QoS flow.\nMinimum = 0. Maximum = 10000.\nExample: the value 9574 corresponds to a percentage of 95.74%.\nulCongestion\ninteger\nO\n0..1\nWhen present, this IE shall contain the Uplink congestion information, expressed as an integer value in the range 0 to 10000, representing the percentage of congestion level in the uplink direction, up to two decimal points, for the QoS flow.\nMinimum = 0. Maximum = 10000.\nExample: the value 9574 corresponds to a percentage of 95.74%.\ndefaultQosFlowInd\nboolean\nC\n0..1\nThe IE shall be present when the SMF has indicated that the QoS Monitoring is for a QoS flow associated with the default QoS rule in the QoS Monitoring per QoS flow Control Information as specified in 3GPP TS 29.244 [15].\nWhen present, this IE shall indicate whether the QoS measurements is for a  QoS flow associated with the default QoS rule.\n- true: Qos Monitoring Measurement is for a QoS flow associated with the default QoS rule;\n- false(default): Qos Monitoring Measurement is not for a QoS flow associated with the default QoS rule.\nNOTE:\tEither the flowInfos IE or the appIds IE should be present, not both.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.244_clause_5.39.3.4",
+        "table_6.1.6.2.4-1",
+        "ts_29.244"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.564_6.1.6.2.5",
+      "section_id": "6.1.6.2.5",
+      "section_title": "Type: UserDataUsageMeasurements",
+      "content": "Table 6.1.6.2.5-1: Definition of type UserDataUsageMeasurements\nAttribute name\nData type\nP\nCardinality\nDescription\nappId\nApplicationId\nC\n0..1\nWhen present, this IE shall contain the application identifier. This IE shall be included if the requested granularity of measurement was set to \"PER_APPLICATION\".\nThis IE may be present if the requested granularity of measurement was set to \"PER FLOW\".\n(NOTE)\nflowInfo\nFlowInformation\nC\n0..1\nWhen present, this IE shall contain the IP or Ethernet data flow information. This IE shall be included if the requested granularity of measurement was set to \"PER FLOW\".\n(NOTE)\nvolumeMeasurement\nVolumeMeasurement\nC\n0..1\nThis attribute shall be present if eventType is set to \"USER_DATA_USAGE_MEASURES\" and measurementType is set to \"VOLUME_MEASUREMENT\".\nthroughputMeasurement\nThroughputMeasurement\nC\n0..1\nThis attribute shall be present if eventType is set to \"USER_DATA_USAGE_MEASURES\" and measurementType is set to \"THROUGHPUT_MEASUREMENT\".\napplicationRelatedInformation\nApplicationRelatedInformation\nC\n0..1\nThis attribute shall be present if eventType is set to \"USER_DATA_USAGE_MEASURES\" and measurementType is set to \"APPLICATION_RELATED_INFORMATION\".\nthroughputStatisticsMeasurement\nThroughputStatisticsMeasurement\nC\n0..1\nThis attribute shall be present if eventType is set to \"USER_DATA_USAGE_TRENDS\".\nNOTE:\tWhen neither appId nor flowInfo is present, the measurements (i.e., the volumeMeasurement and/or the throughputMeasurement, and/or the applicationRelatedInformation and/or the throughputStatisticsMeasurement) shall correspond to the user plane measurements of the PDU session. When appId is present, the measurements shall correspond to user plane measurements of the application identified by the appId. When flowInfo is present, the measurement shall correspond to user plane measurements for the data flow identified by the flowInfo.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.1.6.2.5-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.564_6.1.6.2.6",
+      "section_id": "6.1.6.2.6",
+      "section_title": "Type: VolumeMeasurement",
+      "content": "Table 6.1.6.2.6-1: Definition of type VolumeMeasurement\nAttribute name\nData type\nP\nCardinality\nDescription\ntotalVolume\nTrafficVolume\nO\n0..1\nWhen present, this IE shall indicate the total volume (bytes) of user plane traffic for both the uplink and downlink directions.\nulVolume\nTrafficVolume\nO\n0..1\nWhen present, this IE shall indicate the volume (bytes) of user plane traffic for the uplink direction.\ndlVolume\nTrafficVolume\nO\n0..1\nWhen present, this IE shall indicate the volume (bytes) of user plane traffic for the downlink direction.\ntotalNbOfPackets\nUint64\nO\n0..1\nWhen present, this IE shall indicate the total number of user plane packets for both uplink and downlink directions.\nulNbOfPackets\nUint64\nO\n0..1\nWhen present, this IE shall indicate the number of user plane packets for the uplink direction.\ndlNbOfPackets\nUint64\nO\n0..1\nWhen present, this IE shall indicate the number of user plane packets for the downlink direction.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.1.6.2.6-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.564_6.1.6.2.7",
+      "section_id": "6.1.6.2.7",
+      "section_title": "Type: ThroughputMeasurement",
+      "content": "Table 6.1.6.2.7-1: Definition of type ThroughputMeasurement\nAttribute name\nData type\nP\nCardinality\nDescription\nulThroughput\nBitRate\nO\n0..1\nWhen present, this IE shall indicate the measurement of data throughput in uplink direction.\ndlThroughput\nBitRate\nO\n0..1\nWhen present, this IE shall indicate the measurement of data throughput in downlink direction.\nulPacketThroughput\nPacketRate\nO\n0..1\nWhen present, this IE shall indicate the measurement of packet throughput in uplink direction.\ndlPacketThroughput\nPacketRate\nO\n0..1\nWhen present, this IE shall indicate the measurement of packet throughput in downlink direction.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.1.6.2.7-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.564_6.1.6.2.8",
+      "section_id": "6.1.6.2.8",
+      "section_title": "Type: ApplicationRelatedInformation",
+      "content": "Table 6.1.6.2.8-1: Definition of type ApplicationRelatedInformation\nAttribute name\nData type\nP\nCardinality\nDescription\nurls\narray(Uri)\nO\n1..N\nThis IE may be present if available. When present, it shall contain a list of URLs detected in the traffic identified by the information included in the subscription request, e.g. an application id.\ndomainInfoList\narray(DomainInformation)\nO\n1..N\nThis IE may be present if available. When present, it shall contain a list of Domain information detected in the traffic identified by the information included in the subscription request, e.g. an application id.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.1.6.2.8-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.564_6.1.6.2.9",
+      "section_id": "6.1.6.2.9",
+      "section_title": "Type: ThroughputStatisticsMeasurement",
+      "content": "Table 6.1.6.2.9-1: Definition of type ThroughputStatisticsMeasurement\nAttribute name\nData type\nP\nCardinality\nDescription\nulAverageThroughput\nBitRate\nO\n0..1\nWhen present, this IE shall indicate the average throughput in uplink direction over the measurement period.\ndlAverageThroughput\nBitRate\nO\n0..1\nWhen present, this IE shall indicate the average throughput in downlink direction over the measurement period.\nulPeakThroughput\nBitRate\nO\n0..1\nWhen present, this IE shall indicate the peak throughput in uplink direction over the measurement period.\ndlPeakThroughPut\nBitRate\nO\n0..1\nWhen present, this IE shall indicate the peak throughput in downlink direction over the measurement period.\nulAveragePacketThroughput\nPacketRate\nO\n0..1\nWhen present, this IE shall indicate the average packet throughput in uplink direction.\ndlAveragePacketThroughput\nPacketRate\nO\n0..1\nWhen present, this IE shall indicate the average packet throughput in downlink direction.\nulPeakPacketThroughput\nPacketRate\nO\n0..1\nWhen present, this IE shall indicate the Peak packet throughput in uplink direction.\ndlPeakPacketThroughput\nPacketRate\nO\n0..1\nWhen present, this IE shall indicate the Peak packet throughput in downlink direction.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.1.6.2.9-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.564_6.1.6.2.10",
+      "section_id": "6.1.6.2.10",
+      "section_title": "Type: DomainInformation",
+      "content": "Table 6.1.6.2.10-1: Definition of type: DomainInformation\nAttribute name\nData type\nP\nCardinality\nDescription\ndomainName\nFqdn\nM\n1\nThis IE shall contain a domain name.\ndomainNameProtocol\nDnProtocol\nO\n0..1\nThis IE may be present to contain the Domain Name Protocol.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.1.6.2.10-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.564_6.1.6.2.11",
+      "section_id": "6.1.6.2.11",
+      "section_title": "Type: UpfEventSubscription",
+      "content": "Table 6.1.6.2.11-1: Definition of type UpfEventSubscription\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\neventList\narray(UpfEvent)\nM\n1..N\nThis IE shall describe the events requested to be subscribed in a subscription request or the events successfully subscribed for this subscription in a subscription response.\neventNotifyUri\nUri\nM\n1\nThis IE shall identify the recipient address of the notifications sent by the UPF for this subscription.\nnotifyCorrelationId\nstring\nM\n1\nThis IE shall contain the notification correlation ID. The UPF shall include this notification correlation ID in the notifications. The value of this IE shall be unique per subscription for a given NF service consumer.\neventReportingMode\nUpfEventMode\nM\n1\nThis IE shall describe how the reports of the event shall be generated.\nnfId\nNfInstanceId\nM\n1\nThis IE shall indicate the instance identity of the network function creating the subscription.\nueIpAddress\nIpAddr\nC\n0..1\nThe IE shall be present if the event subscription targets one specific UE's PDU session, for an IP PDU session type. When present, the IE shall indicate the IP address of the UE's PDU Session.\n(NOTE)\nsupi\nSupi\nC\n0..1\nThe IE shall be present if the event subscription targets one specific UE's PDU session, for a non-IP PDU session type, and the UPF is allowed by local SMF configuration to receive the SUPI associated with a N4 session.\n(NOTE 1, NOTE 2)\nanyUe\nboolean\nC\n0..1\nThis IE shall be present if the event subscription targets any UE.\nWhen present, it shall be set as follows:\ntrue: the subscription applies to any UE.\nfalse (default): the subscription applies to a specific UE.\n(NOTE 1)\ndnn\nDnn\nO\n0..1\nData Network Name.\nsnssai\nSnssai\nO\n0..1\nA single Network Slice Selection Assistance Information.\nNOTE 1:\tEither information about a single UE (i.e. ueIpAddress or supi) or anyUe set to true shall be included.\nNOTE 2:\tUPF event Exposure targeting a UE is not supported for non-IP PDU session types, when the UPF is not allowed by local SMF configuration to receive the SUPI associated with a N4 session.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.1.6.2.11-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.564_6.1.6.2.12",
+      "section_id": "6.1.6.2.12",
+      "section_title": "Type: UpfEventMode",
+      "content": "Table 6.1.6.2.12-1: Definition of type UpfEventMode\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\ntrigger\nUpfEventTrigger\nM\n1\nDescribes how the reports are triggered.\nmaxReports\ninteger\nC\n0..1\nThis IE may be present if the trigger is set to \"PERIODIC\". When present, this IE shall indicate the maximum number of reports that can be generated by each subscribed event in the subscription.\nIf the UPF event subscription is for a list of events, this parameter shall be applied to each individual event in the list.\nexpiry\nDateTime\nC\n0..1\nThis IE shall be included in an event subscription response, if, based on operator policy and taking into account the expiry time included in the request, the UPF needs to include an expiry time.\nThis IE may be included in an event subscription request.\nWhen present, this IE shall represent the time after which the subscribed event(s) shall stop generating report and the subscription becomes invalid. If the trigger value included in an event subscription response is \"ONE_TIME\" and if an event report is included in the subscription response, then the value of the expiry included in the response shall be an immediate timestamp.\nrepPeriod\nDurationSec\nC\n0..1\nThis IE shall be present if the trigger is set to \"PERIODIC\". When present, this IE shall indicate the time period for the event reports.\nWhen the Event Subscription is for \"ANY UE\", the NF Consumer should set the \"repPeriod\" to a value which does not lead to a potential overload in the UPF.\nsampRatio\nSamplingRatio\nO\n0..1\nThis IE may be included in an event subscription request for any UE to indicate the ratio of the random subset of target PDU sessions. Event reports shall only relate to the subset.\nIf the UPF event subscription is for a list of UPF event, this parameter shall be applied to each individual event.\npartitioningCriteria\narray(PartitioningCriteria)\nO\n1..N\nThis IE may be included in an event subscription request for any UE if the sampRatio IE is provided.\nWhen present, this IE shall define the criteria for determining the PDU sessions for which the sampling ratio shall apply.\n(NOTE)\nnotifFlag\nNotificationFlag\nO\n0..1\nIndicates the notification flag, which is used to mute/unmute notifications and to retrieve events stored during a period of muted notifications.\nmutingExcInstructions\nMutingExceptionInstructions\nO\n0..1\nThis IE may be included by NWDAF or DCCF in the event subscription request, if the notifFlag IE is present and set to \"DEACTIVATE\".\nWhen present, it shall indicate the instructions for the subscription and stored events when an exception (e.g. the buffer of stored event reports is full, or the number of stored event reports exceeds a certain number) occurs at UPF while the events are muted.\nSee 3GPP TS 23.288 [17], clause 6.2.7.2.\nWrite-Only: true\nEEMM\nmutingNotSettings\nMutingNotificationsSettings\nO\n0..1\nThis IE may be included in the event subscription response if the event notifications muting is activated.\nThis IE Indicates the UPF muting notification settings.\nSee 3GPP TS 23.288 [17], clause 6.2.7.2.\nRead-Only: true\nEEMM\nNOTE:\tIn this release of specification, the partitioningCriteria values defined in 3GPP TS 29.571 [16] that apply to UPF Event Exposure are SNSSAI and DNN.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.288_clause_6.2.7.2",
+        "table_6.1.6.2.12-1",
+        "ts_23.288",
+        "ts_29.571"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.564_6.1.6.2.13",
+      "section_id": "6.1.6.2.13",
+      "section_title": "Type: UpfEvent",
+      "content": "Table 6.1.6.2.13-1: Definition of type UpfEvent\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\ntype\nEventType\nM\n1\nDescribes the UPF event type to be reported\nimmediateFlag\nboolean\nO\n0..1\nIndicates if an immediate event report containing the currently available value / status of the event is requested. The report contains the value / status of the event currently available at the UPF at the time of the subscription.\nThe default value is false.\nmeasurementTypes\narray(MeasurementType)\nC\n1..N\nThis IE shall be present if the type IE is set to \"USER_DATA_USAGE_MEASURES\".\nWhen present, this IE shall indicate the types of requested measurements.\nappIds\narray(ApplicationId)\nO\n1..N\nContains the application identifiers.\n(NOTE 1, NOTE 2)\ntrafficFilters\narray(FlowInformation)\nO\n1..N\nIdentifies IP or Ethernet packet filters.\n(NOTE 1, NOTE 2)\ngranularityOfMeasurement\nGranularityOfMeasurement\nO\n0..1\nIndicates the granularity of measurement.\n(NOTE 2)\nreportingSuggestionInfo\nReportingSuggestionInformation\nC\n0..1\nThe IE should be present if the event notification can be delayed, i.e. it is delay tolerant.\nNOTE 1:\tEither the appIds IE or the trafficFilters IE may be present, not both.\nNOTE 2: \tIf the appIds or trafficFilters is provided, the granularityOfMeasurement shall not be set to \"PER_SESSION\". If neither appIds nor trafficFilters is provided, the granularityOfMeasurement may be set to \"PER_SESSION\", \"PER_APPLICATION\" or \"PER_FLOW\" to request the UPF to provide measurements with the corresponding granularity.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.1.6.2.13-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.564_6.1.6.2.14",
+      "section_id": "6.1.6.2.14",
+      "section_title": "Type: CreateEventSubscription",
+      "content": "Table 6.1.6.2.14-1: Definition of type CreateEventSubscription\nAttribute name\nData type\nP\nCardinality\nDescription\nsubscription\nUpfEventSubscription\nM\n1\nRepresents the UPF Event Subscription resource to be created.\nsupportedFeatures\nSupportedFeatures\nC\n0..1\nThis IE shall be present if at least one optional feature defined in clause 6.1.8 is supported.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_6.1.8",
+        "table_6.1.6.2.14-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.564_6.1.6.2.15",
+      "section_id": "6.1.6.2.15",
+      "section_title": "Type: CreatedEventSubscription",
+      "content": "Table 6.1.6.2.15-1: Definition of type CreatedEventSubscription\nAttribute name\nData type\nP\nCardinality\nDescription\nsubscription\nUpfEventSubscription\nM\n1\nRepresents the newly created UPF Event Subscription resource.\nsubscriptionId\nUri\nM\n1\nRepresents the URI of the newly created UPF Event Subscription resource. This shall contain an absolute URI set to the Resource URI specified in clause 6.1.3.3.2. (NOTE)\nreportList\narray(NotificationItem)\nO\n1..N\nRepresents the immediate event reports (i.e. the current value / status of the events subscribed), if available.\nsupportedFeatures\nSupportedFeatures\nC\n0..1\nThis IE shall be present if at least one optional feature defined in clause 6.1.8 is supported.\nNOTE:\t3GPP TS 23.502 [3] specifies this attribute as \"Subscription Correlation ID\".",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_6.1.3.3.2",
+        "clause_6.1.8",
+        "table_6.1.6.2.15-1",
+        "ts_23.502"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.564_6.1.6.2.16",
+      "section_id": "6.1.6.2.16",
+      "section_title": "Type: ReportingSuggestionInformation",
+      "content": "Table 6.1.6.2.16-1: Definition of type ReportingSuggestionInformation\nAttribute name\nData type\nP\nCardinality\nDescription\nreportingUrgency\nReportingUrgency\nM\n1\nIndicates whether the event report is delay tolerant.\nreportingTimeInfo\nDurationSec\nC\n0..1\nThis IE shall be present if the Reporting urgency information indicates it is delay tolerant. When present, this IE shall define the latest time for the UPF to report the detected event.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.1.6.2.16-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.564_6.1.6.2.17",
+      "section_id": "6.1.6.2.17",
+      "section_title": "Type: TscManagementInfo",
+      "content": "Table 6.1.6.2.17-1: Definition of type TscManagementInfo\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\npmics\narray(PortManagementContainer)\nO\n1..N\nWhen present, this IE shall contain a Port Management Information Container for one or more NW-TT ports.\numic\nBridgeManagementContainer\nO\n0..1\nWhen present, this IE shall contain a User Plane Node Management Information Container.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.1.6.2.17-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.564_6.1.6.3.1",
+      "section_id": "6.1.6.3.1",
+      "section_title": "Introduction",
+      "content": "This clause defines simple data types and enumerations that can be referenced from data structures defined in the previous clauses.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.564_6.1.6.3.2",
+      "section_id": "6.1.6.3.2",
+      "section_title": "Simple data types",
+      "content": "No specific simple data types are defined in this release.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.564_6.1.6.3.3",
+      "section_id": "6.1.6.3.3",
+      "section_title": "Enumeration: EventType",
+      "content": "The enumeration EventType represents the type of event to which the NF service consumer may subscribe to and for which the notification is generated. It shall comply with the provisions defined in table 6.1.6.3.3-1.\nTable 6.1.6.3.3-1: Enumeration EventType\nEnumeration value\nDescription\nApplicability\n\"QOS_MONITORING\"\nQoS Monitoring Measurement (see clause 5.2.1.3.2)\n\"USER_DATA_USAGE_MEASURES\"\nUser Data Usage Measures (see clause 5.2.1.3.3)\n\"USER_DATA_USAGE_TRENDS\"\nUser Data Usage Trends (see clause 5.2.1.3.4)\n\"TSC_MNGT_INFO\"\nTSC Management Information",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_5.2.1.3.2",
+        "clause_5.2.1.3.3",
+        "clause_5.2.1.3.4",
+        "table_6.1.6.3.3-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.564_6.1.6.3.4",
+      "section_id": "6.1.6.3.4",
+      "section_title": "Enumeration: UpfEventTrigger",
+      "content": "Table 6.1.6.3.4-1: Enumeration UpfEventTrigger\nEnumeration value\nDescription\n\"ONE_TIME\"\nDefines that UPF should generate report for the event only once. After reporting, the subscription to this event is terminated.\n\"PERIODIC\"\nDefines that UPF should periodically generate reports for the event, until the subscription to this event ends, due to end of report duration or up to the maximum number of reports or the event being unsubscribed explicitly.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.1.6.3.4-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.564_6.1.6.3.5",
+      "section_id": "6.1.6.3.5",
+      "section_title": "Enumeration: MeasurementType",
+      "content": "Table 6.1.6.3.5-1: Enumeration MeasurementType\nEnumeration value\nDescription\n\"VOLUME_MEASUREMENT\"\nMeasures of data volume exchanged (UL, DL and/or overall and/or number of packets exchanged (UL, DL and/or overall).\n(NOTE)\n\"THROUGHPUT_MEASUREMENT\"\nMeasures of data throughput (UL and DL).\n(NOTE)\n\"APPLICATION_RELATED_INFO\"\nURL/s and/or Domain name/s detected in the traffic identified by the information included in the subscription request, e.g. an application id.\n(NOTE)\nNOTE:\tThis value may be used for the \"USER_DATA_USAGE_MEASURES\" event type.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.1.6.3.5-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.564_6.1.6.3.6",
+      "section_id": "6.1.6.3.6",
+      "section_title": "Enumeration: GranularityOfMeasurement",
+      "content": "Table 6.1.6.3.6-1: Enumeration GranularityOfMeasurement\nEnumeration value\nDescription\n\"PER_APPLICATION\"\nIndicates that the granularity of the requested measurements is per application.\n\"PER_SESSION\"\nIndicates that the granularity of the requested measurements is per PDU Session.\n\"PER_FLOW\"\nIndicates that granularity of the requested measurements is per data flow.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.1.6.3.6-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.564_6.1.6.3.7",
+      "section_id": "6.1.6.3.7",
+      "section_title": "Enumeration: DnProtocol",
+      "content": "Table 6.1.6.3.7-1: Enumeration DnProtocol\nEnumeration value\nDescription\n\"DNS_QNAME\"\nIdentifies the DNS protocol and the question name in DNS query.\n\"TLS_SNI\"\nIdentifies the Server Name Indication in TLS ClientHello message.\n\"TLS_SAN\"\nIdentifies the Subject Alternative Name in TLS ServerCertificate message.\n\"TLS_SCN\"\nIdentifies the Subject Common Name in TLS ServerCertificate message.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.1.6.3.7-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.564_6.1.6.3.8",
+      "section_id": "6.1.6.3.8",
+      "section_title": "Enumeration: ReportingUrgency",
+      "content": "Table 6.1.6.3.8-1: Enumeration ReportingUrgency\nEnumeration value\nDescription\n\"DELAY_TOLERANT\"\nThe event report is delay tolerant.\n\"NON_DELAY_TOLERANT\"\nThe event report is not delay tolerant.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.1.6.3.8-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.564_6.1.7.1",
+      "section_id": "6.1.7.1",
+      "section_title": "General",
+      "content": "For the Nupf_EventExposure API, HTTP error responses shall be supported as specified in clause 4.8 of 3GPP TS 29.501 [5]. Protocol errors and application errors specified in table 5.2.7.2-1 of 3GPP TS 29.500 [4] shall be supported for an HTTP method if the corresponding HTTP status codes are specified as mandatory for that HTTP method in table 5.2.7.1-1 of 3GPP TS 29.500 [4].\nIn addition, the requirements in the following clauses are applicable for the Nupf_EventExposure API.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.501_clause_4.8",
+        "ts_29.500_table_5.2.7.2-1",
+        "ts_29.500_table_5.2.7.1-1",
+        "ts_29.501",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.564_6.1.7.2",
+      "section_id": "6.1.7.2",
+      "section_title": "Protocol Errors",
+      "content": "No specific procedures for the Nupf_EventExposure service are specified in this release.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.564_6.1.7.3",
+      "section_id": "6.1.7.3",
+      "section_title": "Application Errors",
+      "content": "The common application errors defined in the Table 5.2.7.2-1 in 3GPP TS 29.500 [4] may also be used for the Nupf_EventExposure service, and the following application errors listed in Table 6.1.7.3-1 are specific for the Nupf_EventExposure service.\nTable 6.2.7.3-1: Application errors\nApplication Error\nHTTP status code\nDescription\nPDU_SESSION_NOT_SERVED_BY_UPF\n403 Forbidden\nIndicates the creation of a subscription towards a PDU session has failed due to an application error when the PDU session is not served by the UPF.\nMUTING_EXC_INSTR_NOT_ACCEPTED\n403 Forbidden\nIndicates the UPF does not accept the received muting exception instructions.\nREJECTION_DUE_TO_NO_DNN_SNSSAI\n403 Forbidden\nIndicates the creation of a subscription towards a PDU session has failed due to an application error when the UPF cannot find a unique PDU session due to no DNN and/or S-NSSAI received.\nSUBSCRIPTION_NOT_FOUND\n404 Not Found\nIndicates the deletion of subscription has failed due to an application error when the subscription is not found in the UPF.\nUNSUPPORTED_EVENT_TYPE\n501 Not Implemented\nThe request for creation of a subscription is rejected because none of the events is supported by the UPF.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.500_table_5.2.7.2-1",
+        "table_6.1.7.3-1",
+        "table_6.2.7.3-1",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.564_6.1.8",
+      "section_id": "6.1.8",
+      "section_title": "Feature negotiation",
+      "content": "The optional features listed in table 6.2.8-1 are defined for the Nupf_EventExposure API. They shall be negotiated using the extensibility mechanism defined in clause 6.6 of 3GPP TS 29.500 [4].\nTable 6.1.8-1: Supported Features\nFeature number\nFeature Name\nM/O\nDescription\n1\nEEMM\nO\nEvent Exposure Muting Mechanism\nAn UPF supporting this feature shall support the handling of event muting exception instructions as specified in clause 6.2.7.2 of 3GPP TS 23.288 [17].",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_6.6",
+        "ts_23.288_clause_6.2.7.2",
+        "table_6.2.8-1",
+        "ts_29.500_table_6.1.8-1",
+        "ts_29.500",
+        "ts_23.288"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.564_6.1.9",
+      "section_id": "6.1.9",
+      "section_title": "Security",
+      "content": "As indicated in 3GPP TS 33.501 [8], the access to the Nupf_EventExposure API may be authorized by means of the OAuth2 protocol (see IETF RFC 6749 [9]), using the \"Client Credentials\" authorization grant, where the NRF (see 3GPP TS 29.510 [10]) plays the role of the authorization server.\nIf Oauth2 authorization is used, an NF Service Consumer, prior to consuming services offered by the Nupf_EventExposure API, shall obtain a \"token\" from the authorization server, by invoking the Access Token Request service, as described in 3GPP TS 29.510 [10], clause 5.4.2.2.\nNOTE:\tWhen multiple NRFs are deployed in a network, the NRF used as authorization server is the same NRF that the NF Service Consumer used for discovering the Nupf_EventExposure service.\nThe Nupf_EventExposure API defines scopes for OAuth2 authorization as specified in 3GPP TS 33.501 [8]; it defines a single scope consisting on the name of the service (i.e., \"nupf-ee\"), and it does not define any additional scopes at resource or operation level.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.510_clause_5.4.2.2",
+        "ts_33.501",
+        "ts_29.510"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.564_6.1.10",
+      "section_id": "6.1.10",
+      "section_title": "HTTP redirection",
+      "content": "An HTTP request may be redirected to a different UPF service instance when using direct or indirect communications (see 3GPP TS 29.500 [4]).\nAn SCP that reselects a different UPF producer instance will return the NF Instance ID of the new UPF producer instance in the 3gpp-Sbi-Producer-Id header, as specified in clause 6.10.3.4 of 3GPP TS 29.500 [4].\nIf an UPF redirects a service request to a different UPF using an 307 Temporary Redirect or 308 Permanent Redirect status code, the identity of the new UPF towards which the service request is redirected shall be indicated in the 3gpp-Sbi-Target-Nf-Id header of the 307 Temporary Redirect or 308 Permanent Redirect response as specified in clause 6.10.9.1 of 3GPP TS 29.500 [4].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.500_clause_6.10.3.4",
+        "ts_29.500_clause_6.10.9.1",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.564_6.2.1",
+      "section_id": "6.2.1",
+      "section_title": "Introduction",
+      "content": "The Nupf_GetUEPrivateIPaddrAndIdentifiers service shall use the Nupf_GetUEPrivateIPaddrAndIdentifiers API.\nThe API URI of the Nupf_GetUEPrivateIPaddrAndIdentifiers Service API shall be:\n{apiRoot}/<apiName>/<apiVersion>\nThe request URI used in HTTP requests from the NF service consumer towards the NF service producer shall have the Resource URI structure defined in clause 4.4.1 of 3GPP TS 29.501 [5], i.e.:\n{apiRoot}/<apiName>/<apiVersion>/<apiSpecificResourceUriPart>\nwith the following components:\n-\tThe {apiRoot} shall be set as described in 3GPP TS 29.501 [5].\n-\tThe <apiName> shall be \"nupf-gueip\".\n-\tThe <apiVersion> shall be \"v1\".\n-\tThe <apiSpecificResourceUriPart> shall be set as described in clause 6.2.3.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.501_clause_4.4.1",
+        "clause_6.2.3",
+        "ts_29.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.564_6.2.2.1",
+      "section_id": "6.2.2.1",
+      "section_title": "General",
+      "content": "HTTP/2, IETF RFC 9113 [11], shall be used as specified in clause 5 of 3GPP TS 29.500 [4].\nHTTP/2 shall be transported as specified in clause 5.3 of 3GPP TS 29.500 [4].\nThe OpenAPI [6] specification of HTTP messages and content bodies for the Nupf_GetUEPrivateIPaddrAndIdentifiers API is contained in Annex A.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.500_clause_5",
+        "ts_29.500_clause_5.3",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.564_6.2.2.2.1",
+      "section_id": "6.2.2.2.1",
+      "section_title": "General",
+      "content": "See clause 5.2.2 of 3GPP TS 29.500 [4] for the usage of HTTP standard headers.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.500_clause_5.2.2",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.564_6.2.2.2.2",
+      "section_id": "6.2.2.2.2",
+      "section_title": "Content type",
+      "content": "JSON, IETF RFC 8259 [12], shall be used as content type of the HTTP bodies specified in the present specification as specified in clause 5.4 of 3GPP TS 29.500 [4]. The use of the JSON format shall be signalled by the content type \"application/json\".\n\"Problem Details\" JSON object shall be used to indicate additional details of the error in a HTTP response body and shall be signalled by the content type \"application/problem+json\", as defined in IETF RFC 9457 [13].",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_5.4",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.564_6.2.2.3",
+      "section_id": "6.2.2.3",
+      "section_title": "HTTP custom headers",
+      "content": "The mandatory HTTP custom header fields specified in clause 5.2.3.2 of 3GPP TS 29.500 [4] shall be supported, and the optional HTTP custom header fields specified in clause 5.2.3.3 of 3GPP TS 29.500 [4] may be supported.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_5.2.3.2",
+        "ts_29.500_clause_5.2.3.3",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.564_6.2.3.1",
+      "section_id": "6.2.3.1",
+      "section_title": "Overview",
+      "content": "Figure 6.2.3.1-1: Resource URI structure of the Nupf_GetUEPrivateIPaddrAndIdentifiers API\nTable 6.2.3.1-1 provides an overview of the resources and applicable HTTP methods.\nTable 6.2.3.1-1: Resources and methods overview\nResource name\nResource URI\nHTTP method or custom operation\nDescription\nUE IP Address Info\n(Document)\n/ue-ip-info\nGET\nNupf_GetUEPrivateIPaddrAndIdentifiers_Get",
+      "chunk_type": "definition",
+      "cross_references": [
+        "table_6.2.3.1-1",
+        "figure_6.2.3.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.564_6.2.3.2.1",
+      "section_id": "6.2.3.2.1",
+      "section_title": "Description",
+      "content": "This resource represents the UE IP Address Info of all the PDU sessions served by the UPF.\nThis resource is modelled with the Document archetype (see clause C.1 of 3GPP TS 29.501 [5]).",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.564_6.2.3.2.2",
+      "section_id": "6.2.3.2.2",
+      "section_title": "Resource Definition",
+      "content": "Resource URI: {apiRoot}/nupf-gueip/<apiVersion>/ue-ip-info\nThis resource shall support the resource URI variables defined in table 6.2.3.2.2-1.\nTable 6.2.3.2.2-1: Resource URI variables for this resource\nName\nDefinition\napiRoot\nSee clause 6.2.1\napiVersion\nSee clause 6.2.1",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_6.2.1",
+        "table_6.2.3.2.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.564_6.2.3.2.3",
+      "section_id": "6.2.3.2.3",
+      "section_title": "Resource Standard Methods",
+      "content": "6.2.3.2.3.1\tGET\nThis operation retrieves the UE IP Info of a PDU session, which contains the UE's PDU Session (private) IP address and optionally UE identifiers (e.g. SUPI, GPSI), by querying the UPF with the NATed UE's public IP address and an optional Port number, and optionally the DNN and S-NSSAI.\nThis method shall support the URI query parameters specified in table 6.2.3.2.3.1-1.\nTable 6.2.3.2.3.1-1: URI query parameters supported by the GET method on this resource\nName\nData type\nP\nCardinality\nDescription\nApplicability\nue-ipv4-address\nIpv4Addr\nC\n0..1\nUE's IPv4 address (NOTE)\nue-ipv6-prefix\nIpv6Prefix\nC\n0..1\nUE's IPv6 Prefix (NOTE)\nport-number\ninteger\nO\n0..1\nUDP or TCP Port\ndnn\nDnn\nO\n0..1\nDNN of the PDU session\nsnssai\nSnssai\nO\n0..1\nS-NSSAI of the PDU session\nNOTE:\tEither the ue-ipv4-address or the ue-ipv6-prefix shall be present.\nThis method shall support the request data structures specified in table 6.2.3.2.3.1-2 and the response data structures and response codes specified in table 6.2.3.2.3.1-3.\nTable 6.2.3.2.3.1-2: Data structures supported by the GET Request Body on this resource\nData type\nP\nCardinality\nDescription\nn/a\nTable 6.2.3.2.3.1-3: Data structures supported by the GET Response Body on this resource\nData type\nP\nCardinality\nResponse\ncodes\nDescription\nUeIpInfo\nM\n1\n200 OK\nThe response body contains a UeIpInfo for a PDU session which contains attributes that are matching the queryparameter.\nRedirectResponse\nO\n0..1\n307 Temporary Redirect\nTemporary redirection.\n(NOTE 2)\nRedirectResponse\nO\n0..1\n308 Permanent Redirect\nPermanent redirection.\n(NOTE 2)\nProblemDetails\nO\n0..1\n404 Not Found\nThe \"cause\" attribute may be used to indicate the following application error:\n- NO_MATCHING_UE_IP_ADDRESS\nSee table 6.2.7.3-1 for the description of this error.\nNOTE 1:\tThe mandatory HTTP error status code for the GET method listed in Table 5.2.7.1-1 of 3GPP TS 29.500 [4] also apply, with response body containing an object of ProblemDetails data type (see clause 5.2.7 of 3GPP TS 29.500 [4]).\nNOTE 2:\tRedirectResponse may be inserted by an SCP, see clause 6.10.9.1 of 3GPP TS 29.500 [4].\nTable 6.2.3.2.3.1-4: Headers supported by the 307 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located on an alternative service instance. For the case, when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target NF (service) instance ID towards which the request is redirected, see clause 6.10.9.1 in 3GPP TS 29.500 [4].\nTable 6.2.3.2.3.1-5: Headers supported by the 308 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located on an alternative service instance. For the case, when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target NF (service) instance ID towards which the request is redirected.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.500_clause_5.2.7",
+        "ts_29.500_clause_6.10.9.1",
+        "table_6.2.3.2.3.1-1",
+        "table_6.2.3.2.3.1-2",
+        "table_6.2.3.2.3.1-3",
+        "table_6.2.7.3-1",
+        "ts_29.500_table_5.2.7.1-1",
+        "ts_29.500_table_6.2.3.2.3.1-4",
+        "ts_29.500_table_6.2.3.2.3.1-5",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.564_6.2.3.2.4",
+      "section_id": "6.2.3.2.4",
+      "section_title": "Resource Custom Operations",
+      "content": "None.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.564_6.2.4",
+      "section_id": "6.2.4",
+      "section_title": "Custom Operations without associated resources",
+      "content": "None",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.564_6.2.5.1",
+      "section_id": "6.2.5.1",
+      "section_title": "General",
+      "content": "None.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.564_6.2.6.1",
+      "section_id": "6.2.6.1",
+      "section_title": "General",
+      "content": "This clause specifies the application data model supported by the API.\nTable 6.2.6.1-1 specifies the data types defined for the Nupf_GetUEPrivateIPaddrAndIdentifiers service based interface protocol.\nTable 6.2.6.1-1: Nupf_GetUEPrivateIPaddrAndIdentifiers specific Data Types\nData type\nClause defined\nDescription\nApplicability\nUeIpInfo\n6.2.6.2.2\nA UeIpInfo for a PDU session\nTable 6.2.6.1-2 specifies data types re-used by the Nupf_GetUEPrivateIPaddrAndIdentifiers service based interface protocol from other specifications, including a reference to their respective specifications and when needed, a short description of their use within the Nupf_GetUEPrivateIPaddrAndIdentifiers service based interface.\nTable 6.2.6.1-2: Nupf_GetUEPrivateIPaddrAndIdentifiers re-used Data Types\nData type\nReference\nComments\nApplicability\nDnn\n3GPP TS 29.571 [16]\nDNN\nSnssai\n3GPP TS 29.571 [16]\nS-NSSAI\nIpv4Addr\n3GPP TS 29.571 [16]\nIPv4 address\nIpv6Prefix\n3GPP TS 29.571 [16]\nIPv6 address prefix\nSupi\n3GPP TS 29.571 [16]\nSUPI\nGpsi\n3GPP TS 29.571 [16]\nGPSI",
+      "chunk_type": "definition",
+      "cross_references": [
+        "table_6.2.6.1-1",
+        "table_6.2.6.1-2",
+        "ts_29.571"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.564_6.2.6.2.1",
+      "section_id": "6.2.6.2.1",
+      "section_title": "Introduction",
+      "content": "This clause defines the structures to be used in resource representations.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.564_6.2.6.2.2",
+      "section_id": "6.2.6.2.2",
+      "section_title": "Type: UeIpInfo",
+      "content": "Table 6.2.6.2.2-1: Definition of type UeIpInfo\nAttribute name\nData type\nP\nCardinality\nDescription\nprivateIpv4Address\nIpv4Address\nC\n0..1\nWhen present, this IE shall contain the Private IPv4 IP address.\n(NOTE)\nipDomain\nstring\nO\n0..1\nWhen present, this IE contains the IP domain of the private IPv4 address.\nprivateIpv6Prefix\nIpv6Prefix\nC\n0..1\nWhen present, this IE shall contain the Private IPv6 Prefix.\n(NOTE)\npublicIpv4Address\nIpv4Address\nO\n0..1\nWhen present, this IE shall contain the public (NATed) IPv4 IP address.\npublicIpv6Prefix\nIpv6Prefix\nO\n0..1\nWhen present, this IE shall contain the public (NATed) IPv6 Prefix.\nportNumber\nUint16\nO\n0..1\nWhen present, this IE shall contain the port number for the source UDP or TCP port when Port Address Translation is used.\ndnn\nDnn\nO\n0..1\nWhen present, this IE shall contain the DNN of the PDU Session.\nsnssai\nSnssai\nO\n0..1\nWhen present, this IE shall contain the S-NSSAI of the PDU Session.\nhplmnSnssai\nSnssai\nO\n0..1\nThis IE may be included by a V-UPF acting as (local) PSA for a HR-SBO PDU session.\nWhen present, it shall contain the HPLMN S-NSSAI of the PDU session.\nsupi\nSupi\nO\n0..1\nWhen present, this IE shall contain the SUPI of the UE.\ngpsi\nGpsi\nO\n0..1\nWhen present, this IE shall contain the GPSI of the UE.\nhrsboInd\nboolean\nC\n0..1\nThis IE shall be included by a V-UPF and set to true if the PDU session is working in HR-SBO mode.\nThe presence of this IE with the value false shall be prohibited.\nNOTE:\tEither the privateIpv4Address or the privateIpv6Prefix shall be present when the request is to retrieve the UE private IP address.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.2.6.2.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.564_6.2.6.3.1",
+      "section_id": "6.2.6.3.1",
+      "section_title": "Introduction",
+      "content": "This clause defines simple data types and enumerations that can be referenced from data structures defined in the previous clauses.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.564_6.2.7.1",
+      "section_id": "6.2.7.1",
+      "section_title": "General",
+      "content": "For the Nupf_GetUEPrivateIPaddrAndIdentifiers API, HTTP error responses shall be supported as specified in clause 4.8 of 3GPP TS 29.501 [5]. Protocol errors and application errors specified in table 5.2.7.2-1 of 3GPP TS 29.500 [4] shall be supported for an HTTP method if the corresponding HTTP status codes are specified as mandatory for that HTTP method in table 5.2.7.1-1 of 3GPP TS 29.500 [4].\nIn addition, the requirements in the following clauses are applicable for the Nupf_GetUEPrivateIPaddrAndIdentifiers API.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.501_clause_4.8",
+        "ts_29.500_table_5.2.7.2-1",
+        "ts_29.500_table_5.2.7.1-1",
+        "ts_29.501",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.564_6.2.7.2",
+      "section_id": "6.2.7.2",
+      "section_title": "Protocol Errors",
+      "content": "No specific procedures for the Nupf_GetUEPrivateIPaddrAndIdentifiers service are specified.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.564_6.2.7.3",
+      "section_id": "6.2.7.3",
+      "section_title": "Application Errors",
+      "content": "The application errors defined for the Nupf_GetUEPrivateIPaddrAndIdentifiers service are listed in Table 6.2.7.3-1.\nTable 6.2.7.3-1: Application errors\nApplication Error\nHTTP status code\nDescription\nNO_MATCHING_UE_IP_ADDRESS\n404 Not Found\nThere is no UE IP address matching the query parameters.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.2.7.3-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.564_6.2.8",
+      "section_id": "6.2.8",
+      "section_title": "Feature negotiation",
+      "content": "The optional features in table 6.2.8-1 are defined for the Nupf_GetUEPrivateIPaddrAndIdentifiers API. They shall be negotiated using the extensibility mechanism defined in clause 6.6 of 3GPP TS 29.500 [4].\nTable 6.2.8-1: Supported Features\nFeature number\nFeature Name\nDescription",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_6.6",
+        "table_6.2.8-1",
+        "ts_29.500_table_6.2.8-1",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.564_6.2.9",
+      "section_id": "6.2.9",
+      "section_title": "Security",
+      "content": "As indicated in 3GPP TS 33.501 [8] and 3GPP TS 29.500 [4], the access to the Nupf_GetUEPrivateIPaddrAndIdentifiers API may be authorized by means of the OAuth2 protocol (see IETF RFC 6749 [9]), based on local configuration, using the \"Client Credentials\" authorization grant, where the NRF (see 3GPP TS 29.510 [10]) plays the role of the authorization server.\nIf OAuth2 is used, an NF Service Consumer, prior to consuming services offered by the Nupf_GetUEPrivateIPaddrAndIdentifiers API, shall obtain a \"token\" from the authorization server, by invoking the Access Token Request service, as described in 3GPP TS 29.510 [10], clause 5.4.2.2.\nNOTE:\tWhen multiple NRFs are deployed in a network, the NRF used as authorization server is the same NRF that the NF Service Consumer used for discovering the Nupf_GetUEPrivateIPaddrAndIdentifiers service.\nThe Nupf_GetUEPrivateIPaddrAndIdentifiers API defines a single scope \"nupf-gueip\" for the entire service, and it does not define any additional scopes at resource or operation level.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.510_clause_5.4.2.2",
+        "ts_33.501",
+        "ts_29.500",
+        "ts_29.510"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.564_6.2.10",
+      "section_id": "6.2.10",
+      "section_title": "HTTP redirection",
+      "content": "An HTTP request may be redirected to a different UPF service instance when using direct or indirect communications (see 3GPP TS 29.500 [4]).\nAn SCP that reselects a different UPF producer instance will return the NF Instance ID of the new UPF producer instance in the 3gpp-Sbi-Producer-Id header, as specified in clause 6.10.3.4 of 3GPP TS 29.500 [4].\nIf an UPF redirects a service request to a different UPF using an 307 Temporary Redirect or 308 Permanent Redirect status code, the identity of the new UPF towards which the service request is redirected shall be indicated in the 3gpp-Sbi-Target-Nf-Id header of the 307 Temporary Redirect or 308 Permanent Redirect response as specified in clause 6.10.9.1 of 3GPP TS 29.500 [4].\nAnnex A (normative):OpenAPI specification\nA.1\tGeneral\nThis Annex specifies the formal definition of the API(s) defined in the present specification. It consists of OpenAPI specifications in YAML format.\nThis Annex takes precedence when being discrepant to other parts of the specification with respect to the encoding of information elements and methods within the API(s).\nNOTE 1:\tThe semantics and procedures, as well as conditions, e.g. for the applicability and allowed combinations of attributes or values, not expressed in the OpenAPI definitions but defined in other parts of the specification also apply.\nInformative copies of the OpenAPI specification files contained in this 3GPP Technical Specification are available on a Git-based repository that uses the GitLab software version control system (see 3GPP TS 29.501 [5] clause 5.3.1 and 3GPP TR 21.900 [7] clause 5B).\nA.2\tNupf_EventExposure API\nopenapi: 3.0.0\ninfo:\ntitle: 'UPF Event Exposure Service'\nversion: 1.1.1\ndescription: |\nUPF Event Exposure Service.\n© 2024, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).\nAll rights reserved.\nexternalDocs:\ndescription: 3GPP TS 29.564 V18.6.0; 5G System; User Plane Function Services; Stage 3.\nurl: https://www.3gpp.org/ftp/Specs/archive/29_series/29.564/\nservers:\n- url: '{apiRoot}/nupf-ee/v1'\nvariables:\napiRoot:\ndefault: https://example.com\ndescription: apiRoot as defined in clause 4.4 of 3GPP TS 29.501\nsecurity:\n- {}\n- oAuth2ClientCredentials:\n- nupf-ee\npaths:\n/ee-subscriptions:\npost:\nsummary: Nupf_EventExposure Subscribe service Operation\noperationId: CreateSubscription\ntags:\n- Subscriptions (Collection)\nrequestBody:\nrequired: true\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/CreateEventSubscription'\nresponses:\n'201':\ndescription: Successful creation of an UPF Event Subscription\nheaders:\nLocation:\ndescription: 'Contains the URI of the newly created resource, according to the structure: {apiRoot}/nupf-ee/<apiVersion>/ee-subscriptions/{subscriptionId}'\nrequired: true\nschema:\ntype: string\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/CreatedEventSubscription'\n'307':\n$ref: 'TS29571_CommonData.yaml#/components/responses/307'\n'308':\n$ref: 'TS29571_CommonData.yaml#/components/responses/308'\n'400':\n$ref: 'TS29571_CommonData.yaml#/components/responses/400'\n'401':\n$ref: 'TS29571_CommonData.yaml#/components/responses/401'\n'403':\n$ref: 'TS29571_CommonData.yaml#/components/responses/403'\n'404':\n$ref: 'TS29571_CommonData.yaml#/components/responses/404'\n'411':\n$ref: 'TS29571_CommonData.yaml#/components/responses/411'\n'413':\n$ref: 'TS29571_CommonData.yaml#/components/responses/413'\n'415':\n$ref: 'TS29571_CommonData.yaml#/components/responses/415'\n'429':\n$ref: 'TS29571_CommonData.yaml#/components/responses/429'\n'500':\n$ref: 'TS29571_CommonData.yaml#/components/responses/500'\n'501':\n$ref: 'TS29571_CommonData.yaml#/components/responses/501'\n'502':\n$ref: 'TS29571_CommonData.yaml#/components/responses/502'\n'503':\n$ref: 'TS29571_CommonData.yaml#/components/responses/503'\ndefault:\n$ref: 'TS29571_CommonData.yaml#/components/responses/default'\ncallbacks:\neeNotification:\n'{eventNotificationUri}':\n# The URI in {eventNotificationUri} is provided via N4 interface during provisioning of Session Reporting Rule or in the Nupf_EventExposure Subscribe request.\npost:\nrequestBody:\nrequired: true\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/NotificationData'\nresponses:\n'204':\ndescription: No Content, Notification was succesfull\n'307':\ndescription: Temporary Redirect\ncontent:\napplication/json:\nschema:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/RedirectResponse'\nheaders:\nLocation:\ndescription: 'The URI pointing to the resource located on the redirect target NF service consumer'\nrequired: true\nschema:\ntype: string\n'308':\ndescription: Permanent Redirect\ncontent:\napplication/json:\nschema:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/RedirectResponse'\nheaders:\nLocation:\ndescription: 'The URI pointing to the resource located on the redirect target NF service consumer'\nrequired: true\nschema:\ntype: string\n'400':\n$ref: 'TS29571_CommonData.yaml#/components/responses/400'\n'401':\n$ref: 'TS29571_CommonData.yaml#/components/responses/401'\n'403':\n$ref: 'TS29571_CommonData.yaml#/components/responses/403'\n'404':\n$ref: 'TS29571_CommonData.yaml#/components/responses/404'\n'411':\n$ref: 'TS29571_CommonData.yaml#/components/responses/411'\n'413':\n$ref: 'TS29571_CommonData.yaml#/components/responses/413'\n'415':\n$ref: 'TS29571_CommonData.yaml#/components/responses/415'\n'429':\n$ref: 'TS29571_CommonData.yaml#/components/responses/429'\n'500':\n$ref: 'TS29571_CommonData.yaml#/components/responses/500'\n'502':\n$ref: 'TS29571_CommonData.yaml#/components/responses/502'\n'503':\n$ref: 'TS29571_CommonData.yaml#/components/responses/503'\ndefault:\n$ref: 'TS29571_CommonData.yaml#/components/responses/default'\n/ee-subscriptions/{subscriptionId}:\npatch:\nsummary: Nupf_EventExposure Subscribe Modify service Operation\noperationId: ModifySubscription\nparameters:\n- name: subscriptionId\nin: path\nrequired: true\ndescription: Unique ID of the subscription to be modified\nschema:\ntype: string\nrequestBody:\ncontent:\napplication/json-patch+json:\nschema:\ntype: array\nitems:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/PatchItem'\nminItems: 1\nrequired: true\nresponses:\n'200':\ndescription: Expected response to a valid request\ncontent:\napplication/json:\nschema:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/PatchResult'\n'204':\ndescription: Successful response\n'307':\n$ref: 'TS29571_CommonData.yaml#/components/responses/307'\n'308':\n$ref: 'TS29571_CommonData.yaml#/components/responses/308'\n'400':\n$ref: 'TS29571_CommonData.yaml#/components/responses/400'\n'401':\n$ref: 'TS29571_CommonData.yaml#/components/responses/401'\n'403':\n$ref: 'TS29571_CommonData.yaml#/components/responses/403'\n'404':\n$ref: 'TS29571_CommonData.yaml#/components/responses/404'\n'411':\n$ref: 'TS29571_CommonData.yaml#/components/responses/411'\n'413':\n$ref: 'TS29571_CommonData.yaml#/components/responses/413'\n'415':\n$ref: 'TS29571_CommonData.yaml#/components/responses/415'\n'429':\n$ref: 'TS29571_CommonData.yaml#/components/responses/429'\n'500':\n$ref: 'TS29571_CommonData.yaml#/components/responses/500'\n'502':\n$ref: 'TS29571_CommonData.yaml#/components/responses/502'\n'503':\n$ref: 'TS29571_CommonData.yaml#/components/responses/503'\ndefault:\n$ref: 'TS29571_CommonData.yaml#/components/responses/default'\ndelete:\nsummary: Nupf_EventExposure UnSubscribe service Operation\noperationId: DeleteSubscription\nparameters:\n- name: subscriptionId\nin: path\nrequired: true\ndescription: Unique ID of the subscription to be deleted\nschema:\ntype: string\nresponses:\n'204':\ndescription: Subsription deleted successfully\n'307':\n$ref: 'TS29571_CommonData.yaml#/components/responses/307'\n'308':\n$ref: 'TS29571_CommonData.yaml#/components/responses/308'\n'400':\n$ref: 'TS29571_CommonData.yaml#/components/responses/400'\n'401':\n$ref: 'TS29571_CommonData.yaml#/components/responses/401'\n'403':\n$ref: 'TS29571_CommonData.yaml#/components/responses/403'\n'404':\n$ref: 'TS29571_CommonData.yaml#/components/responses/404'\n'411':\n$ref: 'TS29571_CommonData.yaml#/components/responses/411'\n'413':\n$ref: 'TS29571_CommonData.yaml#/components/responses/413'\n'415':\n$ref: 'TS29571_CommonData.yaml#/components/responses/415'\n'429':\n$ref: 'TS29571_CommonData.yaml#/components/responses/429'\n'500':\n$ref: 'TS29571_CommonData.yaml#/components/responses/500'\n'502':\n$ref: 'TS29571_CommonData.yaml#/components/responses/502'\n'503':\n$ref: 'TS29571_CommonData.yaml#/components/responses/503'\ndefault:\n$ref: 'TS29571_CommonData.yaml#/components/responses/default'\ncomponents:\nsecuritySchemes:\noAuth2ClientCredentials:\ntype: oauth2\nflows:\nclientCredentials:\ntokenUrl: '{nrfApiRoot}/oauth2/token'\nscopes:\nnupf-ee: Access to the Nupf_EventExposure API\nschemas:\n# API specific definitions\n# STRUCTURED DATA TYPES\nNotificationData:\ndescription: the list of NotificationItems\ntype: object\nrequired:\n- notificationItems\nproperties:\nnotificationItems:\ntype: array\nitems:\n$ref: '#/components/schemas/NotificationItem'\nminItems: 1\ncorrelationId:\ntype: string\nachievedSampRatio:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/SamplingRatio'\nNotificationItem:\ndescription: represents a report on one subscribed event\ntype: object\nrequired:\n- eventType\n- timeStamp\nanyOf:\n- required: [ ueIpv4Addr ]\n- required: [ ueIpv6Prefix ]\n- required: [ ueMacAddr ]\nproperties:\neventType:\n$ref: '#/components/schemas/EventType'\nueIpv4Addr:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Ipv4Addr'\nueIpv6Prefix:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Ipv6Prefix'\nueMacAddr:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/MacAddr48'\ndnn:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Dnn'\nsnssai:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Snssai'\ngpsi:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Gpsi'\nsupi:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Supi'\ntimeStamp:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/DateTime'\nstartTime:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/DateTime'\nqosMonitoringMeasurement:\n$ref: '#/components/schemas/QosMonitoringMeasurement'\ntscMngtInfo:\n$ref: '#/components/schemas/TscManagementInfo'\nuserDataUsageMeasurements:\ntype: array\nitems:\n$ref: '#/components/schemas/UserDataUsageMeasurements'\nminItems: 1\nUpfEventSubscription:\ndescription: UPF Event Subscription\ntype: object\nproperties:\neventList:\ntype: array\nitems:\n$ref: '#/components/schemas/UpfEvent'\nminItems: 1\neventNotifyUri:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Uri'\nnotifyCorrelationId:\ntype: string\neventReportingMode:\n$ref: '#/components/schemas/UpfEventMode'\nnfId:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/NfInstanceId'\nueIpAddress:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/IpAddr'\nanyUe:\ntype: boolean\ndefault: false\nsupi:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Supi'\ndnn:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Dnn'\nsnssai:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Snssai'\nrequired:\n- eventList\n- eventNotifyUri\n- notifyCorrelationId\n- eventReportingMode\n- nfId\nUpfEventMode:\ndescription: UPF Event Mode\ntype: object\nproperties:\ntrigger:\n$ref: '#/components/schemas/UpfEventTrigger'\nmaxReports:\ntype: integer\nexpiry:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/DateTime'\nrepPeriod:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/DurationSec'\nsampRatio:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/SamplingRatio'\npartitioningCriteria:\ntype: array\nitems:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/PartitioningCriteria'\nminItems: 1\nnotifFlag:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/NotificationFlag'\nmutingExcInstructions:\nwriteOnly: true\nallOf:\n- $ref: 'TS29571_CommonData.yaml#/components/schemas/MutingExceptionInstructions'\nmutingNotSettings:\nreadOnly: true\nallOf:\n- $ref: 'TS29571_CommonData.yaml#/components/schemas/MutingNotificationsSettings'\nrequired:\n- trigger\nUpfEvent:\ndescription: UPF Event\ntype: object\nproperties:\ntype:\n$ref: '#/components/schemas/EventType'\nimmediateFlag:\ntype: boolean\ndefault: false\nmeasurementTypes:\ntype: array\nitems:\n$ref: '#/components/schemas/MeasurementType'\nminItems: 1\nappIds:\ntype: array\nitems:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/ApplicationId'\nminItems: 1\ntrafficFilters:\ntype: array\nitems:\n$ref: 'TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/FlowInformation'\nminItems: 1\ngranularityOfMeasurement:\n$ref: '#/components/schemas/GranularityOfMeasurement'\nreportingSuggestionInfo:\n$ref: '#/components/schemas/ReportingSuggestionInformation'\nrequired:\n- type\nCreateEventSubscription:\ndescription: Data within UPF Create Event Subscription Request\ntype: object\nproperties:\nsubscription:\n$ref: '#/components/schemas/UpfEventSubscription'\nsupportedFeatures:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'\nrequired:\n- subscription\nCreatedEventSubscription:\ndescription: Data within UPF Create Event Subscription Response\ntype: object\nproperties:\nsubscription:\n$ref: '#/components/schemas/UpfEventSubscription'\nsubscriptionId:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Uri'\nreportList:\ntype: array\nitems:\n$ref: '#/components/schemas/NotificationItem'\nminItems: 1\nsupportedFeatures:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'\nrequired:\n- subscription\n- subscriptionId\nReportingSuggestionInformation:\ndescription: Reporting Suggestion Information\ntype: object\nproperties:\nreportingUrgency:\n$ref: '#/components/schemas/ReportingUrgency'\nreportingTimeInfo:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/DurationSec'\nrequired:\n- reportingUrgency\nQosMonitoringMeasurement:\ndescription: QoS Monitoring Measurement information\ntype: object\nproperties:\ndlPacketDelay:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Uint32'\nulPacketDelay:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Uint32'\nrtrPacketDelay:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Uint32'\nmeasureFailure:\ntype: boolean\nenum:\n- true\ndlAveThroughput:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/BitRate'\nulAveThroughput:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/BitRate'\ndlCongestion:\ntype: integer\nminimum: 0\nmaximum: 10000\nulCongestion:\ntype: integer\nminimum: 0\nmaximum: 10000\ndefaultQosFlowInd:\ntype: boolean\ndefault: false\nTscManagementInfo:\ndescription: TSC Management Information\ntype: object\nproperties:\npmics:\ntype: array\nitems:\n$ref: 'TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/PortManagementContainer'\nminItems: 1\numic:\n$ref: 'TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/BridgeManagementContainer'\nUserDataUsageMeasurements:\ndescription: >\nUser Data Usage Measurements either for the PDU session, or the app-id, or the data flow\ntype: object\nproperties:\nappId:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/ApplicationId'\nflowInfo:\n$ref: 'TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/FlowInformation'\nvolumeMeasurement:\n$ref: '#/components/schemas/VolumeMeasurement'\nthroughputMeasurement:\n$ref: '#/components/schemas/ThroughputMeasurement'\napplicationRelatedInformation:\n$ref: '#/components/schemas/ApplicationRelatedInformation'\nthroughputStatisticsMeasurement:\n$ref: '#/components/schemas/ThroughputStatisticsMeasurement'\nVolumeMeasurement:\ndescription: Volume Measurement information\ntype: object\nproperties:\ntotalVolume:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/TrafficVolume'\nulVolume:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/TrafficVolume'\ndlVolume:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/TrafficVolume'\ntotalNbOfPackets:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Uint64'\nulNbOfPackets:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Uint64'\ndlNbOfPackets:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Uint64'\nThroughputMeasurement:\ndescription: Throughput Measurement information\ntype: object\nproperties:\nulThroughput:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/BitRate'\ndlThroughput:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/BitRate'\nulPacketThroughput:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/PacketRate'\ndlPacketThroughput:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/PacketRate'\nApplicationRelatedInformation:\ndescription: Application Related Information\ntype: object\nproperties:\nurls:\ntype: array\nitems:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Uri'\nminItems: 1\ndomainInfoList:\ntype: array\nitems:\n$ref: '#/components/schemas/DomainInformation'\nminItems: 1\nThroughputStatisticsMeasurement:\ndescription: Throughput Statistics Measurement\ntype: object\nproperties:\nulAverageThroughput:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/BitRate'\ndlAverageThroughput:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/BitRate'\nulPeakThroughput:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/BitRate'\ndlPeakThroughPut:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/BitRate'\nulAveragePacketThroughput:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/PacketRate'\ndlAveragePacketThroughput:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/PacketRate'\nulPeakPacketThroughput:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/PacketRate'\ndlPeakPacketThroughput:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/PacketRate'\nDomainInformation:\ndescription: Domain Information\ntype: object\nproperties:\ndomainName:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Fqdn'\ndomainNameProtocol:\n$ref: '#/components/schemas/DnProtocol'\nrequired:\n- domainName\n# ENUMS\nEventType:\ndescription: Event Type\nanyOf:\n- type: string\nenum:\n- QOS_MONITORING\n- USER_DATA_USAGE_MEASURES\n- USER_DATA_USAGE_TRENDS\n- TSC_MNGT_INFO\n- type: string\nUpfEventTrigger:\ndescription: Upf Event Trigger\nanyOf:\n- type: string\nenum:\n- ONE_TIME\n- PERIODIC\n- type: string\nMeasurementType:\ndescription: Measurement Type\nanyOf:\n- type: string\nenum:\n- VOLUME_MEASUREMENT\n- THROUGHPUT_MEASUREMENT\n- APPLICATION_RELATED_INFO\n- type: string\nGranularityOfMeasurement:\ndescription: Granularity Of Measurement\nanyOf:\n- type: string\nenum:\n- PER_APPLICATION\n- PER_SESSION\n- PER_FLOW\n- type: string\nDnProtocol:\ndescription: Domain Name Protocol\nanyOf:\n- type: string\nenum:\n- DNS_QNAME\n- TLS_SNI\n- TLS_SAN\n- TLS_SCN\n- type: string\nReportingUrgency:\ndescription: Reporting Urgency\nanyOf:\n- type: string\nenum:\n- DELAY_TOLERANT\n- NON_DELAY_TOLERANT\n- type: string\n# SIMPLE TYPES\nA.3\tNupf_GetUEPrivateIPaddrAndIdentifiers API\nopenapi: 3.0.0\ninfo:\nversion: '1.0.0'\ntitle: 'UPF GET UE Private IP address and Identifiers Service'\ndescription: |\nNupf_GetUEPrivateIPaddrAndIdentifiers Service.\n© 2024, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).\nAll rights reserved.\nexternalDocs:\ndescription: 3GPP TS 29.564 V18.5.0; 5G System; 5G System; User Plane Function Services; Stage 3\nurl: 'https://www.3gpp.org/ftp/Specs/archive/29_series/29.564/'\nservers:\n- url: '{apiRoot}/nupf-gueip/v1'\nvariables:\napiRoot:\ndefault: https://example.com\ndescription: apiRoot as defined in clause 4.4 of 3GPP TS 29.501\nsecurity:\n- {}\n- oAuth2ClientCredentials:\n- nupf-gueip\npaths:\n/ue-ip-info:\nget:\nsummary: Search UeIpInfo for a PDU session from the UeIpInfo\noperationId: SearchUeIpInfo\ntags:\n- UE IP Info_Get\nparameters:\n- name: snssai\nin: query\ndescription: Slice of the PDU session\nschema:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Snssai'\n- name: dnn\nin: query\ndescription: Dnn of the PDU session\nschema:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Dnn'\n- name: ue-ipv4-address\nin: query\ndescription: IPv4 address of the UE\nschema:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Ipv4Addr'\n- name: ue-ipv6-prefix\nin: query\ndescription: IPv6 prefix of the UE\nschema:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Ipv6Prefix'\n- name: port-number\nin: query\ndescription: UDP or TCP port associated with the public address\nschema:\ntype: integer\nminimum: 0\nmaximum: 65535\nresponses:\n'200':\ndescription: Successful response\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/UeIpInfo'\n'307':\ndescription: Temporary Redirect\ncontent:\napplication/json:\nschema:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/RedirectResponse'\nheaders:\nLocation:\ndescription: The URI pointing to the resource located on the redirect target UPF\nschema:\ntype: string\n'308':\ndescription: Permanent Redirect\ncontent:\napplication/json:\nschema:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/RedirectResponse'\nheaders:\nLocation:\ndescription: The URI pointing to the resource located on the redirect target UPF\nschema:\ntype: string\n'400':\n$ref: 'TS29571_CommonData.yaml#/components/responses/400'\n'401':\n$ref: 'TS29571_CommonData.yaml#/components/responses/401'\n'403':\n$ref: 'TS29571_CommonData.yaml#/components/responses/403'\n'404':\n$ref: 'TS29571_CommonData.yaml#/components/responses/404'\n'406':\n$ref: 'TS29571_CommonData.yaml#/components/responses/406'\n'411':\n$ref: 'TS29571_CommonData.yaml#/components/responses/411'\n'413':\n$ref: 'TS29571_CommonData.yaml#/components/responses/413'\n'415':\n$ref: 'TS29571_CommonData.yaml#/components/responses/415'\n'429':\n$ref: 'TS29571_CommonData.yaml#/components/responses/429'\n'500':\n$ref: 'TS29571_CommonData.yaml#/components/responses/500'\n'501':\n$ref: 'TS29571_CommonData.yaml#/components/responses/501'\n'503':\n$ref: 'TS29571_CommonData.yaml#/components/responses/503'\ndefault:\n$ref: 'TS29571_CommonData.yaml#/components/responses/default'\ncomponents:\nsecuritySchemes:\noAuth2ClientCredentials:\ntype: oauth2\nflows:\nclientCredentials:\ntokenUrl: '{nrfApiRoot}/oauth2/token'\nscopes:\nnupf-gueip: Access to the Nupf_GetUEPrivateIPaddrAndIdentifiers API\nschemas:\nUeIpInfo:\ndescription: a UE IP Address Info for a PDU session\ntype: object\nproperties:\nprivateIpv4Address:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Ipv4Addr'\nipDomain:\ntype: string\nprivateIpv6Prefix:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Ipv6Prefix'\npublicIpv4Address:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Ipv4Addr'\npublicIpv6Prefix:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Ipv6Prefix'\nportNumber:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Uint16'\ndnn:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Dnn'\nsnssai:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Snssai'\nhplmnSnssai:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Snssai'\nsupi:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Supi'\ngpsi:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Gpsi'\nhrsboInd:\ntype: boolean\nenum:\n- true\nAnnex B (informative):Change history\nChange history\nDate\nMeeting\nTDoc\nCR\nRev\nCat\nSubject/Comment\nNew version\n2021-09\nCT4#105e\nC4-214754\nVersion after CT4#105-e including agreed pCRs:\nC4-214464\nC4-214465\nC4-214559\n0.1.0\n2021-10\nCT4#106e\nC4-215518\nVersion after CT4#106-e including agreed pCRs:\nC4-215441\nC4-215443\nC4-215532\nC4-215536\n0.2.0\n2021-11\nCT4#107e\nC4-216471\nVersion after CT4#107-e including agreed pCRs:\nC4-216524\nC4-216525\n0.3.0\n2021-12\nCT#94e\nCP-213167\nV1.0.0 presented for information\n1.0.0\n2022-01\nCT4#107bis-e\nC4-220453\nVersion after CT4#107bis-e including agreed pCRs:\nC4-220146\nC4-220147\nC4-220148\nC4-220149\n1.1.0\n2022-02\nCT4#108-e\nC4-221591\nEditorial corrections of the rapporteur\n1.2.0\n2022-03\nCT#95-e\nCP-220106\nTS presented for approval\n2.0.0\n2022-03\nCT#95-e\nTS approved\n17.0.0\n2022-06\nCT#96-e\nCP-221034\n0001\n2\nB\nResolving Editor's Note on Notification Information\n17.1.0\n2022-06\nCT#96-e\nCP-221051\n0003\nF\n29.564 Rel-17 API version and External doc update\n17.1.0\n2022-09\nCT#97-e\nCP-222029\n0005\nF\nDescription fields\n17.2.0\n2022-09\nCT#97-e\nCP-222029\n0004\n1\nF\nReporting Packet Delay Measurement Failure to AF/NEF when direct reporting applies\n17.2.0\n2022-09\nCT#97-e\nCP-222029\n0006\n1\nF\nAdd MAC address information in NotificationItem\n17.2.0\n2022-09\nCT#97-e\nCP-222058\n0008\nF\n29.564 Rel-17 API version and External doc update\n17.2.0\n2023-03\nCT#99\nCP-230034\n0010\n1\nB\nService operations of the UPF event exposure service\n18.0.0\n2023-03\nCT#99\nCP-230034\n0011\n1\nB\nSubscriptions to UPF events\n18.0.0\n2023-03\nCT#99\nCP-230034\n0012\n1\nB\nUPF events supported by the UPF event exposure service\n18.0.0\n2023-03\nCT#99\nCP-230034\n0014\n1\nB\nUnsubscribe service operation\n18.0.0\n2023-03\nCT#99\nCP-230034\n0015\n1\nB\nResource URI structure of the UPF event exposure API\n18.0.0\n2023-03\nCT#99\nCP-230034\n0017\n1\nB\nSecurity of UPF Event Exposure service\n18.0.0\n2023-03\nCT#99\nCP-230034\n0022\n1\nB\nService operations of Nupf_EventExposure service\n18.0.0\n2023-03\nCT#99\nCP-230034\n0019\n1\nB\nNupf_GetPrivateUEIPaddr service operation and API\n18.0.0\n2023-03\nCT#99\nCP-230034\n0021\n1\nB\nResource and data type of Nupf_GetPrivateUEIPaddr service\n18.0.0\n2023-03\nCT#99\nCP-230034\n0009\n3\nB\nUpdates to the Introduction of TS 29.564\n18.0.0\n2023-03\nCT#99\nCP-230034\n0013\n2\nB\nSubscribe service operation\n18.0.0\n2023-03\nCT#99\nCP-230034\n0023\n2\nB\nResource for Nupf_EventExposure service\n18.0.0\n2023-03\nCT#99\nCP-230071\n0029\nF\n29.564 Rel-18 API version and External doc update\n18.0.0\n2023-06\nCT#100\nCP-231027\n0027\n4\nF\nLocation header and missing Redirection clause\n18.1.0\n2023-06\nCT#100\nCP-231035\n0030\nF\nCorrection on DNN and S-NSSAI in Nupf_GetPrivateUEIPaddr_Get Operation\n18.1.0\n2023-06\nCT#100\nCP-231035\n0035\nB\nSupport for Data rate monitoring\n18.1.0\n2023-06\nCT#100\nCP-231035\n0032\n1\nF\nCreation of a Subscription for Nupf_eventexposure\n18.1.0\n2023-06\nCT#100\nCP-231259\n0033\n3\nB\nData types for Nupf_eventexposure service notify operation and openAPI\n18.1.0\n2023-06\nCT#100\nCP-231260\n0024\n3\nB\nData types for Nupf_eventexposure service subscribe operation and openAPI\n18.1.0\n2023-06\nCT#100\nCP-231035\n0036\n1\nB\nIncluding SUPI in the response\n18.1.0\n2023-06\nCT#100\nCP-231035\n0038\n1\nB\nUPF exposure of TSC Management Information\n18.1.0\n2023-06\nCT#100\nCP-231035\n0039\n1\nB\nNF ID in Nupf_EventExposure_Subscribe Request and Fixing Incorrect References\n18.1.0\n2023-06\nCT#100\nCP-231035\n0040\n1\nB\nModification of a subscription for UPF events\n18.1.0\n2023-06\nCT#100\nCP-231035\n0041\n1\nB\nResource and data type of modification of a subscription for UPF events\n18.1.0\n2023-06\nCT#100\nCP-231057\n0037\n1\nB\nUPF exposure of congestion information\n18.1.0\n2023-06\nCT#100\nCP-231070\n0045\nF\n29.564 Rel-18 API version and External doc update\n18.1.0\n2023-09\nCT#101\nCP-232038\n0046\nF\nConsumers of the UPF Event Exposure service\n18.2.0\n2023-09\nCT#101\nCP-232038\n0053\nB\nApplicability of the value \"CONTINUOUS\" for UpfEventTrigger\n18.2.0\n2023-09\nCT#101\nCP-232038\n0055\nF\nRedirectResponse Description\n18.2.0\n2023-09\nCT#101\nCP-232038\n0056\nB\nThe Immediate Report Flag\n18.2.0\n2023-09\nCT#101\nCP-232038\n0047\n1\nF\nSubscription type for User Data Usage Measures / Trends\n18.2.0\n2023-09\nCT#101\nCP-232038\n0054\n1\nB\nDomain Name Protocol\n18.2.0\n2023-09\nCT#101\nCP-232038\n0058\n2\nB\nThe partitioning criteria for the UPF Event Exposure\n18.2.0\n2023-09\nCT#101\nCP-232038\n0057\n2\nB\nMultiple PDU Sessions in a NotificationItem\n18.2.0\n2023-09\nCT#101\nCP-232054\n0050\n1\nB\nQoS flow description in QoS monitoring report\n18.2.0\n2023-09\nCT#101\nCP-232054\n0048\n2\nB\nData rate monitoring\n18.2.0\n2023-09\nCT#101\nCP-232054\n0049\n3\nB\nExposure of congestion information\n18.2.0\n2023-09\nCT#101\nCP-232060\n0059\nF\n29.564 Rel-18 API version and External doc update\n18.2.0\n2023-09\nCT#101\nCP-232067\n0052\n1\nA\nSupport of an Ethernet PDU Session\n18.2.0\n2023-12\nCT#102\nCP-233028\n0069\n1\nF\nHTTP RFCs obsoleted by IETF RFC 9113\n18.3.0\n2023-12\nCT#102\nCP-233030\n0075\nF\nProblemDetails RFC 7807 obsoleted by 9457\n18.3.0\n2023-12\nCT#102\nCP-233032\n0064\nF\nMiscellaneous corrections\n18.3.0\n2023-12\nCT#102\nCP-233032\n0066\nF\nList and description of events supported by the Nupf_EventExposure service\n18.3.0\n2023-12\nCT#102\nCP-233032\n0068\nB\nReporting Suggestion Information\n18.3.0\n2023-12\nCT#102\nCP-233032\n0063\n1\nF\nCorrection on dnn and reportingUrgency attributes\n18.3.0\n2023-12\nCT#102\nCP-233032\n0073\nB\nAchieved sampling ratio in Nupf_EventExposure_Notify\n18.3.0\n2023-12\nCT#102\nCP-233032\n0074\n1\nB\nIndication of QoS Flow associated with the default QoS Rule\n18.3.0\n2023-12\nCT#102\nCP-233032\n0072\n1\nB\nNupf_GetPrivateUEIPaddr_Get response with GPSI\n18.3.0\n2023-12\nCT#102\nCP-233038\n0065\nB\nUPF GetPrivateUEIPaddr service extensions for HR-SBO PDU sessions\n18.3.0\n2023-12\nCT#102\nCP-233045\n0061\n2\nB\nMuting enhancements\n18.3.0\n2023-12\nCT#102\nCP-233053\n0071\n1\nF\nPer QoS flow data rate monitoring\n18.3.0\n2023-12\nCT#102\nCP-233060\n0077\nF\n29.564 Rel-18 API version and External doc update\n18.3.0\n2024-03\nCT#103\nCP-240033\n0080\n1\nB\nChange the Nupf_GetPrivateUEIPaddr service as Nupf_GetUEPrivateIPaddrAndIdentifiers service\n18.4.0\n2024-03\nCT#103\nCP-240033\n0082\n1\nB\nDNN and S-NSSAI for UPF exposure service\n18.4.0\n2024-03\nCT#103\nCP-240033\n0086\n1\nB\nEditor Note cleanup for Nupf_EventExposure Service\n18.4.0\n2024-03\nCT#103\nCP-240034\n0085\n1\nF\nUpdate the description of QoS Monitoring event\n18.4.0\n2024-03\nCT#103\nCP-240034\n0078\n1\nB\nEncoding of UL/DL Congestion Information\n18.4.0\n2024-03\nCT#103\nCP-240034\n0081\n1\nF\nAppId and flow information in the QoS Monitoring Measurement\n18.4.0\n2024-03\nCT#103\nCP-240056\n0087\nF\n29.564 Rel-18 API version and External doc update\n18.4.0\n2024-06\nCT#104\nCP-241028\n0091\n2\nB\nReturning UNSUPPORTED_EVENT_TYPE\n18.5.0\n2024-06\nCT#104\nCP-241028\n0096\n1\nF\nCorrect the api name of Nupf_GetUEPrivateIPaddrAndIdentifiers service\n18.5.0\n2024-06\nCT#104\nCP-241031\n0092\n1\nB\nApplication Function influence on traffic routing in HR-SBO\n18.5.0\n2024-06\nCT#104\nCP-241032\n0089\n1\nF\nInput parameters of Nupf_GetPrivateUEIPaddr_Get Request\n18.5.0\n2024-06\nCT#104\nCP-241032\n0093\n1\nF\nCorrection of Nupf_GetUEPrivateIPaddrAndIdentifiers API\n18.5.0\n2024-06\nCT#104\nCP-241032\n0095\nF\nUE ID corrections\n18.5.0\n2024-06\nCT#104\nCP-241032\n0094\n1\nF\nCorrections to the Nupf_EventExposure service\n18.5.0\n2024-06\nCT#104\nCP-241052\n0097\nF\n29.564 Rel-18 API version and External doc update\n18.5.0\n2024-09\nCT#105\nCP-242040\n0101\nF\nCorrect application error for the GetUEPrivateIpAddrAndIdentifiers service\n18.6.0\n2024-09\nCT#105\nCP-242040\n0103\nF\nCorrect Upf event subscription for per S-NSSAI and/or DNN\n18.6.0\n2024-09\nCT#105\nCP-242040\n0102\n1\nF\nCorrect data type UeIpInfo for the GetUEPrivateIpAddrAndIdentifiers serviceS\n18.6.0\n2024-09\nCT#105\nCP-242040\n0104\n1\nF\nCorrection on presence condition of appId\n18.6.0\n2024-09\nCT#105\nCP-242040\n0099\n4\nF\nUPF event exposure for Ethernet PDU sessions\n18.6.0\n2024-09\nCT#105\nCP-242054\n0106\nF\n29.564 Rel-18 API version and External doc update\n18.6.0\n2024-12\nCT#106\nCP-243030\n0117\n1\nF\nCorrections on dlPeakThroughput and throughputStatisticMeasurements attributes R18\n18.7.0",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.500_clause_6.10.3.4",
+        "ts_29.500_clause_6.10.9.1",
+        "ts_29.501_clause_5.3.1",
+        "ts_29.501_clause_5",
+        "ts_29.501_clause_4.4",
+        "clause_18.1.0",
+        "ts_29.500",
+        "ts_29.501",
+        "ts_21.900",
+        "ts_29.564",
+        "ts_18.0",
+        "ts_18.1",
+        "ts_18.3"
+      ]
+    }
+  ]
+}

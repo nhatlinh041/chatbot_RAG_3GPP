@@ -1,0 +1,406 @@
+{
+  "metadata": {
+    "specification_id": "ts_29.524",
+    "version": "18.1.0",
+    "title": "3GPP TS 29.524",
+    "file_path": "/content/drive/MyDrive/RAG_thesis/data/29_series/29524-i10/29524-i10.docx"
+  },
+  "export_info": {
+    "export_date": "2025-07-26T09:06:33.495096",
+    "total_chunks": 39
+  },
+  "chunks": [
+    {
+      "chunk_id": "ts_29.524_1",
+      "section_id": "1",
+      "section_title": "Scope",
+      "content": "The present document specifies the mapping:\n-\tperformed by the AMF between HTTP responses (Status Codes and Protocol or Application Errors) returned by 5GC NFs to the AMF and 5GMM Cause values sent to UEs;\n-\tperformed by the SMF between HTTP responses (Status Codes and Protocol or Application Errors) returned by 5GC NFs to SMF and 5GSM Cause values sent to UEs;\n-\tperformed by the SMF between N4 errors returned by the UPF and 5GSM Cause values sent to UEs.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.524_2",
+      "section_id": "2",
+      "section_title": "References",
+      "content": "The following documents contain provisions which, through reference in this text, constitute provisions of the present document.\n-\tReferences are either specific (identified by date of publication, edition number, version number, etc.) or non‑specific.\n-\tFor a specific reference, subsequent revisions do not apply.\n-\tFor a non-specific reference, the latest version applies. In the case of a reference to a 3GPP document (including a GSM document), a non-specific reference implicitly refers to the latest version of that document in the same Release as the present document.\n[1]\t3GPP TR 21.905: \"Vocabulary for 3GPP Specifications\".\n[2]\t3GPP TS 29.244: \"Interface between the Control Plane and the User Plane Nodes\".\n[3]\t3GPP TS 24.501: \"Non-Access-Stratum (NAS) protocol for 5G System (5GS); Stage 3\".\n[4]\t3GPP TS 29.531: \"5G System; Network Slice Selection Services; Stage 3\".\n[5]\t3GPP TS 29.503: \"5G System; Unified Data Management Services; Stage 3\".\n[6]\t3GPP TS 29.512: \"5G System; Session Management Policy Control Service; Stage 3\".\n[7]\t3GPP TS 29.509: \"5G System; Authentication Server Services; Stage 3\".\n[8]\t3GPP TS 29.502: \"5G System; Session Management Services; Stage 3\".\n[9]\t3GPP TS 29.508: \"5G System, Session Management Event Exposure Service; Stage 3\".\n[10]\t3GPP TS 29.540: \"5G System; SMS Services; Stage3 \".\n[11]\t3GPP TS 29.511: \"5G System; Equipment Identity Register Services; Stage 3\".\n[12]\t3GPP TS 29.507: \"5G System; Access and Mobility Policy Control Service; Stage 3\".\n[13]\t3GPP TS 29.525: \"5G System; UE Policy Control Service; Stage 3\".\n[xx]\t3GPP TS 29.536: \"5G System; Network Slice Admission Control Services; Stage 3\".",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905",
+        "ts_29.244",
+        "ts_24.501",
+        "ts_29.531",
+        "ts_29.503",
+        "ts_29.512",
+        "ts_29.509",
+        "ts_29.502",
+        "ts_29.508",
+        "ts_29.540",
+        "ts_29.511",
+        "ts_29.507",
+        "ts_29.525",
+        "ts_29.536"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.524_3.1",
+      "section_id": "3.1",
+      "section_title": "Abbreviations",
+      "content": "For the purposes of the present document, the abbreviations given in 3GPP TR 21.905 [1] and the following apply. An abbreviation defined in the present document takes precedence over the definition of the same abbreviation, if any, in 3GPP TR 21.905 [1].\n5GC\t5G Core Network\nAMF\tAccess and Mobility Management Function\nHTTP\tHypertext Transfer Protocol\nNF\tNetwork Function\nNSSF\tNetwork Slice Selection Function\nPCF\tPolicy Control Function\nSMF\tSession Management Function\nUDM\tUnified Data Management",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.524_4.1",
+      "section_id": "4.1",
+      "section_title": "General",
+      "content": "This clause defines the mapping performed by the AMF between HTTP responses (status codes and Protocol or Application Errors) returned by NF services contacted by the AMF and the5GMM cause values sent to UEs.\nNo mapping is required for:\n-\tthe Nsmsf_SMService_Activate, Nsmsf_SMService_Deactivate and Nsmsf_SMService_UplinkSMS operations described in 3GPP TS 29.540 [10].\n-\tthe Npcf_AMPolicyControl service operations described in 3GPP TS 29.507 [12].\n-\tthe Npcf_UEPolicyControl service operations described in 3GPP TS 29.525 [13].",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.540",
+        "ts_29.507",
+        "ts_29.525"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.524_4.2.1",
+      "section_id": "4.2.1",
+      "section_title": "General",
+      "content": "This clause defines the mapping performed by the AMF between HTTP responses (status codes and Protocol or Application Errors) returned by AUSF services to the AMF and the 5GMM cause values sent to UEs.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.524_4.2.2.1",
+      "section_id": "4.2.2.1",
+      "section_title": "General",
+      "content": "This clause defines the mapping for the Nausf_UEAuthentication service (see 3GPP TS 29.509 [7]). It also contains the mapping in case of a 200 OK is returned but the Authentication has failed.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.509"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.524_4.2.2.2",
+      "section_id": "4.2.2.2",
+      "section_title": "Mapping from HTTP to 5GMM causes values – Request rejected by AUSF",
+      "content": "Table .4.2.2-1: Mapping from HTTP to 5GMM cause values – Request rejected by AUSF\nHTTP status code on N12\nProtocol or Application Error\n5GMM cause to UE\n403 Forbidden\nSERVING_NETWORK_NOT_AUTHORIZED\nCause #11 – PLMN not allowed\nCause #73 – Serving network not authorized\nCause #12 – Tracking area not allowed\nCause #15 – No suitable cells in tracking area\n(NOTE1)\nAUTHENTICATION_REJECTED\nN/A (NOTE 2)\nINVALID_HN_PUBLIC_KEY_IDENTIFIER\nN/A (NOTE 2)\nINVALID_HN_PUBLIC_KEY_IDENTIFIER\nN/A (NOTE 2)\n404 Not Found\nCONTEXT_NOT_FOUND\nN/A (NOTE 2)\nUSER_NOT_FOUND\n504 Gateway Timeout\nUPSTREAM_SERVER_ERROR\nN/A (NOTE 2)\nNETWORK_FAILURE\nN/A (NOTE 2)\n500 Internal Server Error\nAV_GENERATION_PROBLEM\nN/A (NOTE 2)\n501 Not Implemented\nUNSUPPORTED_PROTECTION_SCHEME\nN/A (NOTE 2)\nNOTE 1:\t.One of these 5GMM causes may be used.\nNOTE 2:\tThere is no corresponding mapping since the Authentication is rejected and the Authentication Reject message does not have a 5GMM cause.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.524_4.2.2.3",
+      "section_id": "4.2.2.3",
+      "section_title": "Mapping from HTTP to 5GMM cause values – Request accepted by AUSF",
+      "content": "Table .4.2.2.3-1: Mapping from HTTP to 5GMM cause values – Request accepted by AUSF\nHTTP status code on N12\nProtocol or Application Error\n5GMM cause to UE\n200 OK\nThe \"authResult\" in \"ConfirmationDataResponse\" is set to \"AUTHENTICATION_FAILURE\" (see clause 6.1.6.2.8 of 3GPP TS 29.509 [7]).\nCause #3 – Illegal UE\nThe \"authResult\" in \"EapSession\" is set to \"AUTHENTICATION_FAILURE\" (see clause 6.1.6.2.8 of 3GPP TS 29.509 [7]).\nCause #3 – Illegal UE",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.509_clause_6.1.6.2.8",
+        "ts_29.509"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.524_4.3.1",
+      "section_id": "4.3.1",
+      "section_title": "General",
+      "content": "This clause defines the mapping performed by the AMF between HTTP responses (status codes and Protocol or Application Errors) returned by SMF services to the AMF and the 5GMM cause values sent to UEs.\nThe AMF may invoke SMF service operations upon receipt of:\n-\t5GSM messages (e.g. PDU Session establishment request) piggybacked in 5GMM UL NAS TRANSPORT message;\n-\t5GMM Service Request or Registration Request messages, to establish the user-plane resources of a PDU session.\nA 5GMM cause is defined in:\n-\tthe DL NAS TRANSPORT message;\n-\tthe PDU session reactivation result error cause IE of a REGISTRATION ACCEPT or SERVICE ACCEPT message;\n-\tthe REGISTRATION REJECT or SERVICE REJECT message.\nThe AMF shall support mapping the status code and/or Protocol or Application Error received from the SMF to a 5GMM cause code, where 3GPP TS 24.501 [3] requires a 5GMM Cause to be included in the 5GMM message sent to the UE.\nNOTE:\tREGISTRATION REJECT and SERVICE REJECT messages are rejected only due to 5GMM-specific reasons, i.e. not for problems specific to session management.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_24.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.524_4.3.2.1",
+      "section_id": "4.3.2.1",
+      "section_title": "General",
+      "content": "This clause defines the mapping for the Nsmf_PDUSession service (see 3GPP TS 29.502 [8]).",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.502"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.524_4.3.2.2",
+      "section_id": "4.3.2.2",
+      "section_title": "Mapping from HTTP to 5GMM Cause Values",
+      "content": "Table 4.3.2.2-1: Mapping from HTTP to 5GMM cause values – Request rejected by SMF\nHTTP status code on N11\nProtocol or Application Error\n5GMM cause to UE\n200 OK\nThe upCnxState IE is set to DEACTIVATED and the Cause IE set to \"INSUFFICIENT_UP_RESOURCES\" (see clause 5.2.2.3.2.2 of 3GPP TS 29.502 [8])\n(NOTE 2)\n#92 - Insufficient user-plane resources for the PDU session\n403 Forbidden\nOUT_OF_LADN_SERVICE_AREA\n#43 - LADN not available\n403 Forbidden\nPRIORITIZED_SERVICES_ONLY\n#28 - Restricted service area\n404 Not Found\nCONTEXT_NOT_FOUND\nN/A (NOTE 1)\n504 Gateway Timeout\nNETWORK_FAILURE\nN/A (NOTE 1)\nNOTE 1:\tAn N1 SM cause is included by the SMF in the HTTP error response in this case.\nNOTE 2:\tThis corresponds to the scenario where NG-RAN cannot establish user plane resources during the activation of the User Plane connection of a PDU session.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.502_clause_5.2.2.3.2.2",
+        "table_4.3.2.2-1",
+        "ts_29.502"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.524_4.4.1",
+      "section_id": "4.4.1",
+      "section_title": "General",
+      "content": "This clause defines the mapping performed by the AMF between HTTP responses (status codes and Protocol or Application Errors) returned by UDM services to AMF and the 5GMM cause values sent to UEs.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.524_4.4.2.1",
+      "section_id": "4.4.2.1",
+      "section_title": "General",
+      "content": "This clause defines the mapping for the Nudm_UEContextManagement service is described in 3GPP TS 29.503 [5]).",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.503"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.524_4.4.2.1",
+      "section_id": "4.4.2.1",
+      "section_title": "Mapping from HTTP to NAS cause values – Request rejected by UDM",
+      "content": "Table 4.4.2.1-1: Mapping from HTTP to 5GMM cause values – Request rejected by UDM\nHTTP status code on N8\nProtocol or Application Error\n5GMM cause to UE\n403 Forbidden\nUNKNOWN_5GS_SUBSCRIPTION\n#27 – N1 mode not allowed\nACCESS_NOT_ALLOWED\n#15 \"No suitable cells in tracking area\", or\n#12 \"Tracking area not allowed\" or\n#72 – Non-3GPP access to 5GCN not allowed (NOTE)\nRAT_NOT ALLOWED\n#15 \"No suitable cells in tracking area\", or\n#13 \"Roaming not allowed in this tracking area\", or\n#12 \"Tracking area not allowed\"\n(NOTE)\nNO_PS_SUBSCRIPTION\n#7 – 5GS services not allowed\nROAMING_NOT_ALLOWED\n#11 \"PLMN not allowed\" or\n#13 \"Roaming not allowed in this tracking area\",\n(NOTE)\n404 Not Found\nCONTEXT_NOT_FOUND\n#9 \"UE identity cannot be derived by the network\"\n404 Not Found\nUSER_NOT_FOUND\n#3 \"Illegal UE\"\n422 Unprocessable Entity\nUNPROCESSABLE_REQUEST\n#111 protocol error unspecified\nNOTE:\tAny of those NAS Cause Code values may be sent to the UE, depending on operator's choice.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_4.4.2.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.524_4.4.3.1",
+      "section_id": "4.4.3.1",
+      "section_title": "General",
+      "content": "This clause defines the mapping for the Nudm_SubscriberDataManagement service is described in 3GPP TS 29.503 [5]).",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.503"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.524_4.4.3.2",
+      "section_id": "4.4.3.2",
+      "section_title": "Mapping from HTTP to NAS cause values – Request rejected by UDM due to N8 failure",
+      "content": "Table 4.4.x.2-1: Mapping from HTTP to 5GMM cause values – Request rejected by UDM due to N8 failures when consuming Nudm_SubscriberDataManagement service\nHTTP status code on N8\nProtocol or Application Error\n5GMM cause to UE\n404 Not Found\nUSER_NOT_FOUND\nDATA_NOT_FOUND\n#3   \"Illegal UE\"\n#27 \"N1 mode not allowed\"\nNOTE:\tAny of those NAS Cause Code values may be sent to the UE, depending on operator's choice.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_4.4"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.524_4.5.1",
+      "section_id": "4.5.1",
+      "section_title": "General",
+      "content": "This clause defines the mapping performed by the AMF between HTTP responses (status code and Protocol or Application Errors) returned by the EIR to the AMF and the 5GMM cause values sent to UEs.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.524_4.5.2.1",
+      "section_id": "4.5.2.1",
+      "section_title": "General",
+      "content": "This clause defines the mapping for the N5g-eir_EquipmentIdentityCheck service (see 3GPP TS 29.511 [11]).",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.511"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.524_4.5.2.2",
+      "section_id": "4.5.2.2",
+      "section_title": "Mapping from HTTP to NAS cause values – Request accepted by EIR",
+      "content": "Table 4.5.2.2-1: Mapping from HTTP to 5GMM cause values – Request accepted by EIR\nHTTP Status on N17\nProtocol or Application information\n5GMM cause to UE\n200 OK\nEquipment Status is set to \"BLACKLISTED\", which indicates that the equipment is in the prohibited list.\n#6 \"Illegal ME\"",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_4.5.2.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.524_4.6.1",
+      "section_id": "4.6.1",
+      "section_title": "General",
+      "content": "This clause defines the mapping performed by the AMF between HTTP responses (Status Code and Protocol or Application Errors) returned by the NSSF to the AMF and the 5GMM cause values sent to UEs.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.524_4.6.2.1",
+      "section_id": "4.6.2.1",
+      "section_title": "General",
+      "content": "This clause defines the mapping for the Nnssf_NSSelection service (see 3GPP TS 29.531 [4]).",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.531"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.524_4.6.2.2",
+      "section_id": "4.6.2.2",
+      "section_title": "Mapping from HTTP to 5GMM Cause Values",
+      "content": "Table 4.6.2.2-1: Mapping from HTTP to 5GMM cause values – Request rejected by NSSF\nHTTP status code on N22\nProtocol or Application Error\n5GMM cause to UE\n403 Forbidden\nSNSSAI_NOT_SUPPORTED\n#62 – No Network Slices available",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_4.6.2.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.524_4.7.1",
+      "section_id": "4.7.1",
+      "section_title": "General",
+      "content": "This clause defines the mapping performed by the AMF between HTTP responses (Status Code and Protocol or Application Errors) returned by the NSACF to the AMF and the 5GMM cause values sent to UEs.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.524_4.7.2.1",
+      "section_id": "4.7.2.1",
+      "section_title": "General",
+      "content": "This clause defines the mapping for the Nnsacf_NSAC service (see 3GPP TS 29.536 [14]).",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.536"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.524_4.7.2.2",
+      "section_id": "4.7.2.2",
+      "section_title": "Mapping from HTTP to 5GMM Cause Values",
+      "content": "Table 4.7.2.2-1: Mapping from HTTP to 5GMM cause values – Request rejected by NSACF\nHTTP status code on N81\nProtocol or Application Error\n5GMM cause to UE\n403 Forbidden\nALL_SLICE_FAILED\n#62 – No network slices available\n(NOTE)\nNOTE: \tAMF shall reject the registration with 5GMM Cause #62 as specified in clause 4.6.2.5 of 3GPP TS 24.501 [3] if it receives application error of ALL_SLICE_FAILED and there is no S-NSSAI allowed for the UE.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_24.501_clause_4.6.2.5",
+        "table_4.7.2.2-1",
+        "ts_24.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.524_5.1",
+      "section_id": "5.1",
+      "section_title": "General",
+      "content": "This clause describes the mapping performed by the SMF between HTTP responses (status Code and Protocol or Application Errors) returned by NF services contacted by the SMF and the corresponding 5GSM cause values sent to UEs (in5GSMmessages).\nNo mapping is required for the Nsmf_PDUSession service over N11 since the SMF includes the 5GSM cause in 5GSM messages sent in N1 SM Information (see 3GPP TS 29.502 [5]).\nNo mapping is required for the Nsmf_PDUSession service over N16 since the 5GSM cause is generated at the H-SMF and provided to the V-SMF in N1 SM Information (see 3GPP TS 29.502 [9]).\nNo mapping is required for the Nsmf_EventExposure service specified in 3GPP TS 29.508 [9]",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.502",
+        "ts_29.508"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.524_5.2.1",
+      "section_id": "5.2.1",
+      "section_title": "General",
+      "content": "This clause defines the mapping performed by the SMF between HTTP responses (status code and Protocol or Application Errors) returned by the PCF to the SMF and the 5GSM causes sent to UEs.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.524_5.2.2.1",
+      "section_id": "5.2.2.1",
+      "section_title": "General",
+      "content": "This clause defines the mapping for the Npcf_SMPolicyControl service (see 3GPPTS 29.512 [6]).",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.512"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.524_5.2.2.2",
+      "section_id": "5.2.2.2",
+      "section_title": "Mapping from HTTP to 5GSM cause values – Request rejected by PCF",
+      "content": "Table 5.2.2.2-1: Mapping from HTTP to 5GSM cause values – Request rejected by PCF\nHTTP status code on N7\nProtocol or Application Error\n5GSM cause to UE\n400 Bad Request\nUSER_UNKNOWN\nCause #29 - User authentication or authorization failed\nERROR_INITIAL_PARAMETERS\nCause #31 - Request rejected, unspecified\nERROR_TRIGGER_EVENT\nCause #31 - Request rejected, unspecified\n403 Forbidden\nERROR_TRAFFIC_MAPPING_INFO_REJECTED\nCause #29 - User authentication or authorization failed\nPOLICY_CONTEXT_DENIED\nCause #29 - User authentication or authorization failed (NOTE)\nVALIDATION_CONDITION_NOT_MET\nCause #29 - User authentication or authorization failed\nEXCEEDED_UE_SLICE_DATA_RATE\nCause #69 - Insufficient resources for specific slice\nEXCEEDED_SLICE_DATA_RATE\nCause #69 - Insufficient resources for specific slice\nEXCEEDED_GROUP_DATA_RATE\nCause #69 - Insufficient resources for specific slice\nNOTE:\tUpon receiving the cause POLICY CONTEXT DENIED, the SMF may reject the request, or it may accept the request based on the local policy.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.2.2.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.524_5.3.1",
+      "section_id": "5.3.1",
+      "section_title": "General",
+      "content": "This clause defines the mapping performed by the SMF between HTTP responses (status codes and Protocol or Application Errors) returned by the UDM to the SMF and the 5GSM causes sent to UEs.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.524_5.3.2.1",
+      "section_id": "5.3.2.1",
+      "section_title": "General",
+      "content": "This clause defines the mapping for the Nudm_UEContextManagement service (see 3GPP TS 29.503 [5]).",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.503"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.524_5.3.2.2",
+      "section_id": "5.3.2.2",
+      "section_title": "Mapping from HTTP to 5GSM cause values – Request rejected by UDM due to N10 failures",
+      "content": "Table 5.3.2.2-1: Mapping from HTTP to 5GSM cause values – Request rejected by UDM due to N10 failures\nHTTP status code on N10\nProtocol or Application Error\n5GSM cause to UE\n403 Forbidden\nROAMING_NOT_ALLOWED\n#29 \"User authentication or authorization failed\"\nDNN_NOT ALLOWED\n#27 \"Missing or unknown DNN\" or\n#67 \"Insufficient resources for specific slice and DNN\"\n#70 \"Missing or unknown DNN in a slice\"\n(NOTE)\n404 Not Found\nUSER NOT FOUND\n#29 \"User authentication or authorization failed\"\nNOTE:\tAny of those NAS Cause Code values may be sent to the UE, depending on operator's choice.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.3.2.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.524_5.3.3.1",
+      "section_id": "5.3.3.1",
+      "section_title": "General",
+      "content": "This clause defines the mapping for the Nudm_SubscriberDataManagement service (see 3GPP TS 29.503 [5]).",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.503"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.524_5.3.3.2",
+      "section_id": "5.3.3.2",
+      "section_title": "Mapping from HTTP to 5GSM cause values – Request rejected by UDM due to N10 failures",
+      "content": "Table 5.3.3.2-1: Mapping from HTTP to 5GSM cause values – Request rejected by UDM due to N10 failures when consuming Nudm_SubscriberDataManagement service\nHTTP status code on N10\nProtocol or Application Error\n5GSM cause to UE\n404 Not Found\nUSER NOT FOUND\nDATA_NOT_FOUND\n#29 \"User authentication or authorization failed\"#33 \"Requested service option not subscribed\"\nNOTE:\tAny of those NAS Cause Code values may be sent to the UE, depending on operator's choice.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.3.3.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.524_5.4.1",
+      "section_id": "5.4.1",
+      "section_title": "General",
+      "content": "N4 error handling and cause codes are defined in 3GPP TS 29.244 [2].\nThe receipt of an N4 error may trigger error handling in SMF. This clause defines the mapping performed by the SMF between when an error received on N4 interface cannot be resolved by SMF and results in the SMF sending a 5GSM message to the UE.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.244"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.524_5.4.2",
+      "section_id": "5.4.2",
+      "section_title": "Mapping from N4 to 5GSM cause values",
+      "content": "Table 5.4.2-1: Mapping from N4 to 5GSM cause values – Request rejected by SMF due to N4 failures\nN4 Cause Code\n5GSM cause to UE\nCause value\nDecimal\nError description\nCause value\nError description\n64\nRequest rejected (reason not specified)\n#31\nRequest rejected, unspecified\n74\nPFCP entity in congestion\n#26\n#38\n#69\n#67\nInsufficient resources\nNetwork Failure\nInsufficient resources for specific slice\nInsufficient resources for specific slice and DNN\n77\nSystem failure\n#31\nRequest rejected, unspecified",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.4.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.524_5.5.1",
+      "section_id": "5.5.1",
+      "section_title": "General",
+      "content": "This clause defines the mapping performed by the SMF between HTTP responses (Status Code and Protocol or Application Errors) returned by the NSACF to the SMF and the 5GSM cause values sent to UEs.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.524_5.5.2.1",
+      "section_id": "5.5.2.1",
+      "section_title": "General",
+      "content": "This clause defines the mapping for the Nnsacf_NSAC service (see 3GPP TS 29.536 [14]).",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.536"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.524_5.5.2.2",
+      "section_id": "5.5.2.2",
+      "section_title": "Mapping from HTTP to 5GSM Cause Values",
+      "content": "Table 5.X.2.2-1: Mapping from HTTP to 5GSM cause values – Request rejected by NSACF\nHTTP status code on N81\nProtocol or Application Error\n5GSM cause to UE\n403 Forbidden\nALL_SLICE_FAILED\n#69 –Insufficient resources for specific slice\nAnnex A (informative):Change history\nChange history\nDate\nMeeting\nTDoc\nCR\nRev\nCat\nSubject/Comment\nNew version\n2018-10\nCT4#86Bis\nFirst version of this new TS including:\nC4-187375 (Skeleton)\nC4-187378 (N11 – 5GMM)\nC4-187391 (N8 – 5GMM – Request rejected)\nC4-187589  (Scope)\nC4-187390 (N4 – 5GMM)\n0.1.0\n2018-12\nCT4#87\nThe following agreed documents are included:\nC4-188418 (NSSF)\nC4-188484 (Nsmf_PDUSession N11 and N16)\nC4-188486 (Cause 5GMM)\nC4-188609 (N4)\nC4-188637 (N8 and 5GMM)\nC4-188638 (EIR)\nC4-188640 (N10 and 5GSM)\nC4-188641 (N7)\nC4-188642 (Nausf)\nC4-188643 (N11  5GMM)\nC4-188647 (Clean-up) (Conclusion from C4-188384 was wrongly reported to be included in 5GSM General Clause while it applied to 5GMM – corrected by Rapporteur).\nC4-188648 (General 5GSM)\n0.2.0\n2018-12\nCT#82\nCP-183104\nSent for information and approval\n1.0.0\n2018-12\nCT#82\nCP-183104\nApproved in CT#82\n15.0.0\n2019-03\nCT#83\nCP-190031\n0001\n2\nF\nCorrections on cause mapping in clause 4\n15.1.0\n2019-03\nCT#83\nCP-190031\n003\n1\nF\nMapping between N11 causes and 5GMM causes\n15.1.0\n2019-03\nCT#83\nCP-190031\n0008\n1\nF\nRemove EN's in 5.2.2.2\n15.1.0\n2019-03\nCT#83\nCP-190031\n0004\n2\nF\nCorrections to 5GMM and 5GSM causes mappings\n15.1.0\n2019-06\nCT#84\nCP-191037\n0012\n-\nF\nCause mapping updates\n15.2.0\n2019-06\nCT#84\nCP-191037\n0013\n1\nF\nCorrection on cause mapping regarding no subscription\n15.2.0\n2019-06\nCT#84\nCP-191037\n0014\n2\nF\nEssential Correction on Error mapping for NSSF Services\n15.2.0\n2019-06\nCT#84\nCP-191037\n0015\n1\nF\nEssential Correction on mapping for N4 to SBI\n15.2.0\n2019-06\nCT#84\nCP-191037\n0016\n1\nF\nCause mapping corrections\n15.2.0\n2019-06\nCT#84\nCP-191037\n0017\n1\nF\nAdd a mapping for N10\n15.2.0\n2019-12\nCT#86\nCP-193036\n0019\n2\nF\nAdd new mapping towards Cause #62 (No Network Slices available)\n16.0.0\n2020-06\nCT#88e\nCP-201034\n0020\n1\nF\nCorrection of the mapping between PCF service causes and 5GSM causes\n16.1.0\n2021-03\nCT#91e\nCP-210027\n0022\n1\nD\nUse of inclusive terminology\n17.0.0\n2021-03\nCT#91e\nCP-210028\n0023\n1\nF\nERROR CONFLICTING REQUEST\n17.0.0\n2021-06\nCT#92e\nCP-211146\n0024\nF\nEditorial Correction\n17.1.0\n2021-09\nCT#93e\nCP-212230\n0025\n1\nB\nCause Mapping for NSAC\n17.2.0\n2021-12\nCT#94e\nCP-213086\n0026\n-\nF\nMapping for the cause from Nudm_SubscriberDataManagement\n17.3.0\n2023-12\nCT#102\nCP-233064\n0028\n1\nF\nCause mapping for EXCEEDED_UE_SLICE_DATA_RATE and EXCEEDED_SLICE_DATA_RATE\n17.4.0\n2023-12\nCT#102\nCP-233047\n0027\n-\nB\nCause mapping for EXCEEDED_GROUP_DATA_RATE\n18.0.0\n2024-03\nCT#103\nCP+240042\n0029\n1\nB\nCause Mapping for Network Slice Operations\n18.1.0",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_4",
+        "table_5"
+      ]
+    }
+  ]
+}

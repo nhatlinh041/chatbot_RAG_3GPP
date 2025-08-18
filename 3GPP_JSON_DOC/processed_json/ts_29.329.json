@@ -1,0 +1,714 @@
+{
+  "metadata": {
+    "specification_id": "ts_29.329",
+    "version": "18.0.0",
+    "title": "3GPP TS 29.329",
+    "file_path": "/content/drive/MyDrive/RAG_thesis/data/29_series/29329-i00/29329-i00.docx"
+  },
+  "export_info": {
+    "export_date": "2025-07-26T08:51:03.983172",
+    "total_chunks": 76
+  },
+  "chunks": [
+    {
+      "chunk_id": "ts_29.329_1",
+      "section_id": "1",
+      "section_title": "Scope",
+      "content": "The present document defines a transport protocol for use in the IP multimedia (IM) Core Network (CN) subsystem based on the Diameter base protocol as specified in IETF RFC 6733 [15].\nThe present document is applicable to:\n-\tThe Sh interface between an AS and the HSS.\n-\tThe Sh interface between an SCS and the HSS.\nWhenever it is possible this document specifies the requirements for this protocol by reference to specifications produced by the IETF within the scope of Diameter base protocol as specified in IETF RFC 6733 [15]. Where this is not possible, extensions to the Diameter base protocol as specified in IETF RFC 6733 [15] are defined within this document.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.329_2",
+      "section_id": "2",
+      "section_title": "References",
+      "content": "The following documents contain provisions, which through reference in this text constitute provisions of the present document.\n-\tReferences are either specific (identified by date of publication, edition number, version number, etc.) or non‑specific.\n-\tFor a specific reference, subsequent revisions do not apply.\n-\tFor a non-specific reference, the latest version applies.  In the case of a reference to a 3GPP document (including a GSM document), a non-specific reference implicitly refers to the latest version of that document in the same Release as the present document.\n[1]\t3GPP TS 29.328 \"IP Multimedia (IM) Subsystem Sh interface; signalling flows and message contents\".\n[2]\t3GPP TS 33.210 \"3G Security; Network Domain Security; IP Network Layer Security\".\n[3]\tIETF RFC 2960 \"Stream Control Transmission Protocol\".\n[4]\tVoid.\n[5]\tIETF RFC 2234 \"Augmented BNF for syntax specifications\".\n[6]\t3GPP TS 29.229 \"Cx and Dx Interfaces based on the Diameter protocol; protocol details\".\n[7]\tIETF RFC 3589 \"Diameter Command Codes for Third Generation Partnership Project (3GPP) Release 5\".\n[8]\tITU-T Recommendation E.164: \"The international public telecommunication numbering plan\".\n[9]\t3GPP TR 33.978 \"Security aspects of early IP Multimedia Subsystem (IMS) (Release 6)\".\n[10]\t3GPP TS 29.364 \"IMS Application Server Service Data Descriptions for AS interoperability\".\n[11]\t3GPP TS 29.002 \"Mobile Application Part (MAP) specification\".\n[12]\tIETF RFC 7683: \"Diameter Overload Indication Conveyance\".\n[13]\tIETF RFC 7944: \"Diameter Routing Message Priority\".\n[14]\tIETF RFC 8583: \"Diameter Load Information Conveyance\".\n[15]\tIETF RFC 6733: \"Diameter Base Protocol\".\n[16]]\t3GPP TS 29.336: \"Home Subscriber Server (HSS) diameter interfaces for interworking with packet data networks and applications\".",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.328",
+        "ts_33.210",
+        "ts_29.229",
+        "ts_33.978",
+        "ts_29.364",
+        "ts_29.002",
+        "ts_29.336"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.329_3.1",
+      "section_id": "3.1",
+      "section_title": "Definitions",
+      "content": "Refer to IETF RFC 6733 [15] for the definitions of some terms used in this document.\nFor the purposes of the present document, the following terms and definitions apply.\nAttribute-Value Pair: see IETF RFC 6733 [15], it corresponds to an Information Element in a Diameter message.\nServer: SIP-server.\nUser data: user profile data.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.329_3.2",
+      "section_id": "3.2",
+      "section_title": "Abbreviations",
+      "content": "For the purposes of the present document, the following abbreviations apply:\nAAA\tAuthentication, Authorization and Accounting\nAS\tApplication Server\nABNF\tAugmented Backus-Naur Form\nAVP\tAttribute-Value Pair\nCN\tCore Network\nDRMP\tDiameter Routing Message Priority\nDSCP\tDifferentiated Services Code Point\nHSS\tHome Subscriber Server\nIANA\tInternet Assigned Numbers Authority\nIETF\tInternet Engineering Task Force\nIMS\tIP Multimedia Subsystem\nNDS\tNetwork Domain Security\nRFC\tRequest For Comment\nSCTP\tStream Control Transport Protocol\nUCS\tUniversal Character Set\nURL\tUniform Resource Locator\nUTF\tUCS Transformation Formats",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.329_4",
+      "section_id": "4",
+      "section_title": "General",
+      "content": "he Diameter base protocol as specified in IETF RFC 6733 [15] shall apply except as modified by the defined support of the methods and the defined support of the commands and AVPs, result and event codes specified in clause 6 of this specification. Unless otherwise specified, the procedures (including error handling and unrecognised information handling) are unmodified.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_6"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.329_5",
+      "section_id": "5",
+      "section_title": "Use of the Diameter base protocol",
+      "content": "The same clarifications of clause 5 of 3GPP TS 29.229 [6] shall apply to the Sh interface. An exception is that the application identifier for this application is defined in chapter 6.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.229_clause_5",
+        "ts_29.229"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.329_6",
+      "section_id": "6",
+      "section_title": "Diameter application for Sh interface",
+      "content": "This clause specifies a Diameter application that allows a Diameter server and a Diameter client:\n-\tto download and update transparent and non-transparent user data\n-\tto request and send notifications on changes on user data\nThe Sh interface protocol is defined as an IETF vendor specific Diameter application, where the vendor is 3GPP. The vendor identifier assigned by IANA to 3GPP ( http://www.iana.org/assignments/enterprise-numbers) is 10415.\nThe Diameter application identifier assigned to the Sh interface application is 16777217 (allocated by IANA).",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.329_6.1",
+      "section_id": "6.1",
+      "section_title": "Command-Code values",
+      "content": "This clause defines Command-Code values for this Diameter application.\nEvery command is defined by means of the ABNF syntax (as defined in RFC 2234 [5]), according to the Command Code Format (CCF) specification defined in IETF RFC 6733 [15]. Whenever the definition and use of an AVP is not specified in this document, what is stated in 3GPP TS 29.229 [6] shall apply.\nNOTE:\tAs the Diameter commands described in this specification have been defined based on the former specification of the Diameter base protocol, the Vendor-Specific-Application-Id AVP is still listed as a required AVP (an AVP indicated as {AVP}) in the command code format specifications defined in this specification to avoid backward compatibility issues, even if the use of this AVP has been deprecated in the new specification of the Diameter base protocol (IETF RFC 6733 [15]).\nThe command codes for the Sh interface application are taken from the range allocated by IANA in IETF RFC 3589 [7] as assigned in this specification. For these commands, the Application-ID field shall be set to 16777217 (application identifier of the Sh interface application, allocated by IANA).\nThe following Command Codes are defined in this specification:\nTable 6.1.1: Command-Code values\nCommand-Name\nAbbreviation\nCode\nClause\nUser-Data-Request\nUDR\n306\n6.1.1\nUser-Data-Answer\nUDA\n306\n6.1.2\nProfile-Update-Request\nPUR\n307\n6.1.3\nProfile-Update-Answer\nPUA\n307\n6.1.4\nSubscribe-Notifications-Request\nSNR\n308\n6.1.5\nSubscribe-Notifications-Answer\nSNA\n308\n6.1.6\nPush-Notification-Request\nPNR\n309\n6.1.7\nPush-Notification-Answer\nPNA\n309\n6.1.8",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.1.1",
+        "ts_29.229"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.329_6.1.1",
+      "section_id": "6.1.1",
+      "section_title": "User-Data-Request (UDR) Command",
+      "content": "The User-Data-Request (UDR) command, indicated by the Command-Code field set to 306 and the 'R' bit set in the Command Flags field, is sent by a Diameter client to a Diameter server in order to request user data.\nMessage Format\n< User-Data -Request> ::=\t< Diameter Header: 306, REQ, PXY, 16777217 >\n< Session-Id >\n[ DRMP ]\n{ Vendor-Specific-Application-Id }\n{ Auth-Session-State }\n{ Origin-Host }\n{ Origin-Realm }\n[ Destination-Host ]\n{ Destination-Realm }\n*[ Supported-Features ]\n{ User-Identity }\n[ Wildcarded-Public-Identity ]\n[ Wildcarded-IMPU ]\n[ Server-Name ]\n*[ Service-Indication ]\n*{ Data-Reference }\n*[ Identity-Set ]\n[ Requested-Domain ]\n[ Current-Location ]\n*[ DSAI-Tag ]\n[ Session-Priority ]\n[ User-Name ]\n[ Requested-Nodes ]\n[ Serving-Node-Indication ]\n[ Pre-paging-Supported ]\n[ Local-Time-Zone-Indication ]\n[ UDR-Flags ]\n[ Call-Reference-Info ]\n[ OC-Supported-Features ]\n*[ AVP ]\n*[ Proxy-Info ]\n*[ Route-Record ]",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.329_6.1.2",
+      "section_id": "6.1.2",
+      "section_title": "User-Data-Answer (UDA) Command",
+      "content": "The User-Data-Answer (UDA) command, indicated by the Command-Code field set to 306 and the 'R' bit cleared in the Command Flags field, is sent by a server in response to the User-Data-Request command. The Experimental-Result AVP may contain one of the values defined in clause 6.2 or in 3GPP TS 29.229 [6].\nMessage Format\n< User-Data-Answer > ::=\t< Diameter Header: 306, PXY, 16777217 >\n< Session-Id >\n[ DRMP ]\n{ Vendor-Specific-Application-Id }\n[ Result-Code ]\n[ Experimental-Result ]\n{ Auth-Session-State }\n{ Origin-Host }\n{ Origin-Realm }\n*[ Supported-Features ]\n[ Wildcarded-Public-Identity ]\n[ Wildcarded-IMPU ]\n[ User-Data ]\n[ OC-Supported-Features ]\n[ OC-OLR ]\n*[ Load ]\n*[ AVP ]\n[ Failed-AVP ]\n*[ Proxy-Info ]\n*[ Route-Record ]",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.229_clause_6.2",
+        "ts_29.229"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.329_6.1.3",
+      "section_id": "6.1.3",
+      "section_title": "Profile-Update-Request (PUR) Command",
+      "content": "The Profile-Update-Request (PUR) command, indicated by the Command-Code field set to 307 and the 'R' bit set in the Command Flags field, is sent by a Diameter client to a Diameter server in order to update user data in the server.\nMessage Format\n< Profile-Update-Request > ::=\t< Diameter Header: 307, REQ, PXY, 16777217 >\n< Session-Id >\n[ DRMP ]\n{ Vendor-Specific-Application-Id }\n{ Auth-Session-State }\n{ Origin-Host }\n{ Origin-Realm }\n[ Destination-Host ]\n{ Destination-Realm }\n*[ Supported-Features ]\n{ User-Identity }\n[ Wildcarded-Public-Identity ]\n[ Wildcarded-IMPU ]\n[ User-Name ]\n*{ Data-Reference }\n{ User-Data }\n[ OC-Supported-Features ]\n*[ AVP ]\n*[ Proxy-Info ]\n*[ Route-Record ]\nNOTE:\tMore than one Data-Reference AVP may be present in the message only if both the AS and the HSS support the Update-Eff-Enhance feature. How the AS knows whether the HSS supports the Update-Eff-Enhance feature is implementation issue, e.g. the AS can get the information from a previous PUA message.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.329_6.1.4",
+      "section_id": "6.1.4",
+      "section_title": "Profile-Update-Answer (PUA) Command",
+      "content": "The Profile-Update-Answer (PUA) command, indicated by the Command-Code field set to 307 and the 'R' bit cleared in the Command Flags field, is sent by a server in response to the Profile-Update-Request command. The Experimental-Result AVP may contain one of the values defined in clause 6.2 or in 3GPP TS 29.229 [6].\nMessage Format\n< Profile-Update-Answer > ::=< Diameter Header: 307, PXY, 16777217 >\n< Session-Id >\n[ DRMP ]\n{ Vendor-Specific-Application-Id }\n[ Result-Code ]\n[ Experimental-Result ]\n{ Auth-Session-State }\n{ Origin-Host }\n{ Origin-Realm }\n[ Wildcarded-Public-Identity ]\n[ Wildcarded-IMPU ]\n[ Repository-Data-ID ]\n[ Data-Reference ]\n*[ Supported-Features ]\n[ OC-Supported-Features ]\n[ OC-OLR ]\n*[ Load ]\n*[ AVP ]\n[ Failed-AVP ]\n*[ Proxy-Info ]\n*[ Route-Record ]\nNOTE:\tThe Data-Reference AVP may be present in the message only if both the AS and the HSS support the Update-Eff-Enhance feature.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.229_clause_6.2",
+        "ts_29.229"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.329_6.1.5",
+      "section_id": "6.1.5",
+      "section_title": "Subscribe-Notifications-Request (SNR) Command",
+      "content": "The Subscribe-Notifications-Request (SNR) command, indicated by the Command-Code field set to 308 and the 'R' bit set in the Command Flags field, is sent by a Diameter client to a Diameter server in order to request notifications of changes in user data.\nMessage Format\n< Subscribe-Notifications-Request > ::=\t< Diameter Header: 308, REQ, PXY, 16777217 >\n< Session-Id >\n[ DRMP ]\n{ Vendor-Specific-Application-Id }\n{ Auth-Session-State }\n{ Origin-Host }\n{ Origin-Realm }\n[ Destination-Host ]\n{ Destination-Realm }\n*[ Supported-Features ]\n{ User-Identity }\n[ Wildcarded-Public-Identity ]\n[ Wildcarded-IMPU ]\n*[ Service-Indication ]\n[ Send-Data-Indication ]\n[ Server-Name ]\n{ Subs-Req-Type }\n*{ Data-Reference }\n*[ Identity-Set ]\n[ Expiry-Time ]\n*[ DSAI-Tag ]\n[One-Time-Notification]\n[ User-Name ]\n[ OC-Supported-Features ]\n*[ AVP ]\n*[ Proxy-Info ]\n*[ Route-Record ]",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.329_6.1.6",
+      "section_id": "6.1.6",
+      "section_title": "Subscribe-Notifications-Answer (SNA) Command",
+      "content": "The Subscribe-Notifications-Answer command, indicated by the Command-Code field set to 308 and the 'R' bit cleared in the Command Flags field, is sent by a server in response to the Subscribe-Notifications-Request command. The Result-Code or Experimental-Result AVP may contain one of the values defined in clause 6.2 or in 3GPP TS 29.229 [6].\nMessage Format\n< Subscribe-Notifications-Answer > ::=\t< Diameter Header: 308, PXY, 16777217 >\n< Session-Id >\n[ DRMP ]\n{ Vendor-Specific-Application-Id }\n{ Auth-Session-State }\n[ Result-Code ]\n[ Experimental-Result ]\n{ Origin-Host }\n{ Origin-Realm }\n[ Wildcarded-Public-Identity ]\n[ Wildcarded-IMPU ]\n*[ Supported-Features ]\n[ User-Data ]\n[ Expiry-Time ]\n[ OC-Supported-Features ]\n[ OC-OLR ]\n*[ Load ]\n*[ AVP ]\n[ Failed-AVP ]\n*[ Proxy-Info ]\n*[ Route-Record ]",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.229_clause_6.2",
+        "ts_29.229"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.329_6.1.7",
+      "section_id": "6.1.7",
+      "section_title": "Push-Notification-Request (PNR) Command",
+      "content": "The Push-Notification-Request (PNR) command, indicated by the Command-Code field set to 309 and the 'R' bit set in the Command Flags field, is sent by a Diameter server to a Diameter client in order to notify changes in the user data in the server.\nMessage Format\n< Push-Notification-Request > ::=\t< Diameter Header:  309, REQ, PXY, 16777217 >\n< Session-Id >\n[ DRMP ]\n{ Vendor-Specific-Application-Id }\n{ Auth-Session-State }\n{ Origin-Host }\n{ Origin-Realm }\n{ Destination-Host }\n{ Destination-Realm }\n*[ Supported-Features ]\n{ User-Identity }\n[ Wildcarded-Public-Identity ]\n[ Wildcarded-IMPU ]\n[ User-Name ]\n{ User-Data }\n*[ AVP ]\n*[ Proxy-Info ]\n*[ Route-Record ]",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.329_6.1.8",
+      "section_id": "6.1.8",
+      "section_title": "Push-Notifications-Answer (PNA) Command",
+      "content": "The Push-Notifications-Answer (PNA) command, indicated by the Command-Code field set to 309 and the 'R' bit cleared in the Command Flags field, is sent by a client in response to the Push-Notification-Request command. The Experimental-Result AVP may contain one of the values defined in clause 6.2 or in 3GPP TS 29.229 [6].\nMessage Format\n< Push-Notification-Answer > ::=< Diameter Header: 309, PXY, 16777217 >\n< Session-Id >\n[ DRMP ]\n{ Vendor-Specific-Application-Id }\n[ Result-Code ]\n[ Experimental-Result ]\n{ Auth-Session-State }\n{ Origin-Host }\n{ Origin-Realm }\n*[ Supported-Features ]\n*[ AVP ]\n[ Failed-AVP ]\n*[ Proxy-Info ]\n*[ Route-Record ]",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.229_clause_6.2",
+        "ts_29.229"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.329_6.2",
+      "section_id": "6.2",
+      "section_title": "Result-Code AVP values",
+      "content": "This clause defines new result code values that must be supported by all Diameter implementations that conform to this specification. The result codes defined in 3GPP TS 29.229 [6] are also applicable. When one of the result codes defined here is included in a response, it shall be inside an Experimental-Result AVP and Result-Code AVP shall be absent.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.229"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.329_6.2.1",
+      "section_id": "6.2.1",
+      "section_title": "Success",
+      "content": "Result codes that fall within the Success category are used to inform a peer that a request has been successfully completed.\nNo result codes within this category have been defined so far.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.329_6.2.2",
+      "section_id": "6.2.2",
+      "section_title": "Permanent Failures",
+      "content": "Errors that fall within the Permanent Failures category are used to inform the peer that the request failed, and should not be attempted again.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.329_6.2.2.1",
+      "section_id": "6.2.2.1",
+      "section_title": "DIAMETER_ERROR_USER_DATA_NOT_RECOGNIZED (5100)",
+      "content": "The data received by the AS is not supported or recognized.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.329_6.2.2.2",
+      "section_id": "6.2.2.2",
+      "section_title": "DIAMETER_ERROR_OPERATION_NOT_ALLOWED (5101)",
+      "content": "The requested operation is not allowed for the user",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.329_6.2.2.3",
+      "section_id": "6.2.2.3",
+      "section_title": "DIAMETER_ERROR_USER_DATA_CANNOT_BE_READ (5102)",
+      "content": "The requested user data is not allowed to be read.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.329_6.2.2.4",
+      "section_id": "6.2.2.4",
+      "section_title": "DIAMETER_ERROR_USER_DATA_CANNOT_BE_MODIFIED (5103)",
+      "content": "The requested user data is not allowed to be modified.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.329_6.2.2.5",
+      "section_id": "6.2.2.5",
+      "section_title": "DIAMETER_ERROR_USER_DATA_CANNOT_BE_NOTIFIED (5104)",
+      "content": "The requested user data is not allowed to be notified on changes.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.329_6.2.2.6",
+      "section_id": "6.2.2.6",
+      "section_title": "DIAMETER_ERROR_TOO_MUCH_DATA (5008)",
+      "content": "The size of the data pushed to the receiving entity exceeds its capacity. This error code is defined in 3GPP TS 29.229 [6].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.229"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.329_6.2.2.7",
+      "section_id": "6.2.2.7",
+      "section_title": "DIAMETER_ERROR_TRANSPARENT_DATA OUT_OF_SYNC (5105)",
+      "content": "The request to update the repository data at the HSS could not be completed because the requested update is based on an out-of-date version of the repository data.  That is, the sequence number in the Sh-Update Request message, does not match with the immediate successor of the associated sequence number stored for that repository data at the HSS.  It is also used where an AS tries to create a new set of repository data when the identified repository data already exists in the HSS.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.329_6.2.2.8",
+      "section_id": "6.2.2.8",
+      "section_title": "DIAMETER_ERROR_FEATURE_UNSUPPORTED (5011)",
+      "content": "See 3GPP TS 29.229 [6] clause 6.2.2.11.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.229_clause_6.2.2.11",
+        "ts_29.229"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.329_6.2.2.9",
+      "section_id": "6.2.2.9",
+      "section_title": "DIAMETER_ERROR_SUBS_DATA_ABSENT (5106)",
+      "content": "The Application Server requested to subscribe to changes to Repository Data that is not present in the HSS.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.329_6.2.2.10",
+      "section_id": "6.2.2.10",
+      "section_title": "DIAMETER_ERROR_NO_SUBSCRIPTION_TO_DATA (5107)",
+      "content": "The AS received a notification of changes of some information to which it is not subscribed.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.329_6.2.2.11",
+      "section_id": "6.2.2.11",
+      "section_title": "DIAMETER_ERROR_DSAI_NOT_AVAILABLE (5108)",
+      "content": "The Application Server addressed a DSAI not configured in the HSS.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.329_6.2.2.12",
+      "section_id": "6.2.2.12",
+      "section_title": "DIAMETER_ERROR_IDENTITIES_DONT_MATCH (5002)",
+      "content": "See 3GPP TS 29.229 [6]",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.229"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.329_6.2.3",
+      "section_id": "6.2.3",
+      "section_title": "Transient Failures",
+      "content": "Errors that fall within the transient failures category are those used to inform a peer that the request could not be satisfied at the time that it was received. The request may be able to be satisfied in the future.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.329_6.2.3.1",
+      "section_id": "6.2.3.1",
+      "section_title": "DIAMETER_USER_DATA_NOT_AVAILABLE (4100)",
+      "content": "The requested user data is not available at this time to satisfy the requested operation.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.329_6.2.3.2",
+      "section_id": "6.2.3.2",
+      "section_title": "DIAMETER_PRIOR_UPDATE_IN_PROGRESS (4101)",
+      "content": "The request to update data at the HSS could not be completed for one of the following reasons:\n-\tIf the Data Reference is Repository Data, then the related Repository Data is currently being updated by another entity;\n-\tIf the Data Reference is other than Repository Data, then the related data is currently being updated.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.329_6.3",
+      "section_id": "6.3",
+      "section_title": "AVPs",
+      "content": "The following table describes the Diameter AVPs defined for the Sh interface protocol, their AVP Code values, types, possible flag values and whether the AVP may or not be encrypted.\nTable 6.3.1: Diameter Multimedia Application AVPs\nAVP Flag rules\nAttribute Name\nAVP Code\nClause defined\nValue Type\nMust\nMay\nShould not\nMust not\nMay Encrypt\nUser-Identity\n700\n6.3.1\nGrouped\nM, V\nNo\nMSISDN\n701\n6.3.2\nOctetString\nM, V\nNo\nUser-Data\n702\n6.3.3\nOctetString\nM, V\nNo\nData-Reference\n703\n6.3.4\nEnumerated\nM, V\nNo\nService-Indication\n704\n6.3.5\nOctetString\nM, V\nNo\nSubs-Req-Type\n705\n6.3.6\nEnumerated\nM, V\nNo\nRequested-Domain\n706\n6.3.7\nEnumerated\nM, V\nNo\nCurrent-Location\n707\n6.3.8\nEnumerated\nM, V\nNo\nIdentity-Set\n708\n6.3.10\nEnumerated\nV\nM\nNo\nExpiry-Time\n709\n6.3.16\nTime\nV\nM\nNo\nSend-Data-Indication\n710\n6.3.17\nEnumerated\nV\nM\nNo\nServer-Name\n602\n6.3.9\nUTF8String\nM, V\nNo\nSupported-Features\n628\n6.3.11\nGrouped\nV\nM\nNo\nFeature-List-ID\n629\n6.3.12\nUnsigned32\nV\nM\nNo\nFeature-List\n630\n6.3.13\nUnsigned32\nV\nM\nNo\nSupported-Applications\n631\n6.3.14\nGrouped\nV\nM\nNo\nPublic-Identity\n601\n6.3.15\nUTF8String\nM, V\nNo\nDSAI-Tag\n711\n6.3.18\nOctetString\nM, V\nNo\nWildcarded-Public-Identity\n634\n6.3.19\nUTF8String\nV\nM\nNo\nWildcarded-IMPU\n636\n6.3.20\nUTF8String\nV\nM\nNo\nSession-Priority\n650\n6.3.21\nEnumerated\nV\nM\nNo\nOne-Time-Notification\n712\n6.3.22\nEnumerated\nV\nM\nNo\nRequested-Nodes\n713\n6.3.7A\nUnsigned32\nV\nM\nNo\nServing-Node-Indication\n714\n6.3.23\nEnumerated\nV\nM\nNo\nRepository-Data-ID\n715\n6.3.24\nGrouped\nV\nM\nNo\nSequence-Number\n716\n6.3.25\nUnsigned32\nV\nM\nNo\nPre-paging-Supported\n717\n6.3.26\nEnumerated\nV\nM\nNo\nLocal-Time-Zone-Indication\n718\n6.3.27\nEnumerated\nV\nM\nNo\nUDR-Flags\n719\n6.3.28\nUnsigned32\nV\nM\nNo\nCall-Reference-Info\n720\n6.3.29\nGrouped\nV\nM\nNo\nCall-Reference-Number\n721\n6.3.30\nOctetString\nV\nM\nNo\nAS-Number\n722\n6.3.31\nOctetString\nV\nM\nNo\nOC-Supported-Features\n621\nNOTE 3\n6.3.32\nGrouped\nM, V\nNo\nOC-OLR\n623\nNOTE 3\n6.3.33\nGrouped\nM, V\nNo\nDRMP\n301\nNOTE 4\n6.3.34\nEnumerated\nM, V\nNo\nLoad\nNOTE 5\n6.3.35\nGrouped\nM, V\nNo\nNOTE 1:\tThe AVP header bit denoted as 'M', indicates whether support of the AVP is required. The AVP header bit denoted as 'V', indicates whether the optional Vendor-ID field is present in the AVP header. For further details, see 3GPP TS 29.229 [6].\nNOTE 2:\tIf the M-bit is set for an AVP and the receiver does not understand the AVP, it shall return a rejection. If the M-bit is not set for an AVP, the receiver shall not return a rejection, whether or not it understands the AVP. If the receiver understands the AVP but the M-bit value does not match with the definition in this table, the receiver shall ignore the M-bit.\nNOTE 3:\tThe value of these attributes is defined in IETF RFC 7683 [12].\nNOTE 4:\tThe value of this attribute is defined in IETF RFC 7944 [13].\nNOTE 5:\tThe value of this attribute is defined in IETF RFC 8583 [14].\nThe following table specifies the Diameter AVPs re-used by the Sh interface protocol from existing Diameter Applications, including a reference to their respective specifications and when needed, a short description of their use within Sh.\nTable 6.3/2: Sh re-used Diameter AVPs\nAttribute Name\nReference\nComments\nM-bit\nExternal-Identifier\n3GPP TS 29.336 [16]\nMust set\nNOTE 1:\tThe M-bit settings for re-used AVPs override those of the defining specifications that are referenced. Values include: \"Must set\", \"Must not set\". If the M-bit setting is blank, then the defining specification applies.\nNOTE 2:\tIf the M-bit is set for an AVP and the receiver does not understand the AVP, it shall return a rejection. If the M-bit is not set for an AVP, the receiver shall not return a rejection, whether or not it understands the AVP. If the receiver understands the AVP but the M-bit value does not match with the definition in this table, the receiver shall ignore the M-bit.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.3.1",
+        "table_6.3",
+        "ts_29.229",
+        "ts_29.336"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.329_6.3.1",
+      "section_id": "6.3.1",
+      "section_title": "User-Identity AVP",
+      "content": "The User-Identity AVP is of type Grouped. This AVP contains either a Public- Identity AVP or an MSISDN AVP or an External-Identifier AVP.\nAVP format\nUser-Identity ::= <AVP header: 700 10415>\n[Public-Identity]\n[MSISDN]\n[External-Identifier]\n*[AVP]",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.329_6.3.2",
+      "section_id": "6.3.2",
+      "section_title": "MSISDN AVP",
+      "content": "The MSISDN AVP is of type OctetString. This AVP contains an MSISDN, in international number format as described in ITU-T Rec E.164 [8], encoded as a TBCD-string, i.e. digits from 0 through 9 are encoded 0000 to 1001; 1111 is used as a filler when there is an odd number of digits; bits 8 to 5 of octet n encode digit 2n; bits 4 to 1 of octet n encode digit 2(n-1)+1.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.329_6.3.3",
+      "section_id": "6.3.3",
+      "section_title": "User-Data AVP",
+      "content": "The User-Data AVP is of type OctetString. This AVP contains the user data requested in the UDR/UDA, SNR/SNA and PNR/PNA operations and the data to be modified in the PUR/PUA operation. The exact content and format of this AVP is described in 3GPP TS 29.328 [1] Annex C as Sh-Data.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.328"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.329_6.3.4",
+      "section_id": "6.3.4",
+      "section_title": "Data-Reference AVP",
+      "content": "The Data-Reference AVP is of type Enumerated, and indicates the type of the requested user data in the operation UDR and SNR. Its exact values and meaning is defined in 3GPP TS 29.328 [1]. The following values are defined (more details are given in 3GPP TS 29.328 [1]):\nRepositoryData (0)\nIMSPublicIdentity (10)\nIMSUserState (11)\nS-CSCFName (12)\nInitialFilterCriteria (13)\nThis value is used to request initial filter criteria relevant to the requesting AS\nLocationInformation (14)\nUserState (15)\nChargingInformation (16)\nMSISDN (17)\nPSIActivation (18)\nDSAI (19)\nServiceLevelTraceInfo (21)\nIPAddressSecureBindingInformation (22)\nServicePriorityLevel (23)\nSMSRegistrationInfo (24)\nUEReachabilityForIP (25)\nTADSinformation (26)\nSTN-SR (27)\nUE-SRVCC-Capability (28)\nExtendedPriority (29)\nCSRN (30)\nReferenceLocationInformation (31)\nIMSI (32)\nIMSPrivateUserIdentity (33)\nIMEISV (34)\nUE-5G-SRVCC-Capability (35)\nNOTE:\tValue 20 is reserved.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.328"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.329_6.3.5",
+      "section_id": "6.3.5",
+      "section_title": "Service-Indication AVP",
+      "content": "The Service-Indication AVP is of type OctetString. This AVP contains the Service Indication that identifies a service or a set of services in an AS and the related repository data in the HSS. Standardized values of Service-Indication identifying a standardized service or  set of services in the AS and standardized format of the related repository data are defined in 3GPP TS 29.364 [10].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.364"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.329_6.3.6",
+      "section_id": "6.3.6",
+      "section_title": "Subs-Req-Type AVP",
+      "content": "The Subs-Req-Type AVP is of type Enumerated, and indicates the type of the subscription-to-notifications request. The following values are defined:\nSubscribe (0)\nThis value is used by an AS to subscribe to notifications of changes in data.\nUnsubscribe (1)\nThis value is used by an AS to unsubscribe to notifications of changes in data.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.329_6.3.7",
+      "section_id": "6.3.7",
+      "section_title": "Requested-Domain AVP",
+      "content": "The Requested-Domain AVP is of type Enumerated, and indicates the access domain for which certain data (e.g. user state) are requested. The following values are defined:\nCS-Domain (0)\nThe requested data apply to the CS domain.\nPS-Domain (1)\nThe requested data apply to the PS domain.\n6.3.7A\tRequested-Nodes AVP\nThe Requested-Nodes AVP is of type Unsigned32 and it shall contain a bit mask. The meaning of the bits shall be as defined in table 6.3.7A/1:\nTable 6.3.7A/1: Requested-Nodes\nBit\nName\nDescription\n0\nMME\nThe requested data apply to the MME\n1\nSGSN\nThe requested data apply to the SGSN\n2\n3GPP-AAA-SERVER-TWAN\nThe requested data apply to the 3GPP AAA Server for TWAN\n3\nAMF\nThe requested data apply to the AMF (for 3GPP access)",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.3.7"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.329_6.3.8",
+      "section_id": "6.3.8",
+      "section_title": "Current-Location AVP",
+      "content": "The Current-Location AVP is of type Enumerated, and indicates whether an active location retrieval has to be initiated or not:\nDoNotNeedInitiateActiveLocationRetrieval (0)\nThe request indicates that the initiation of an active location retrieval is not required.\nInitiateActiveLocationRetrieval (1)\nIt is requested that an active location retrieval is initiated.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.329_6.3.9",
+      "section_id": "6.3.9",
+      "section_title": "Server-Name AVP",
+      "content": "The Server-Name contains a SIP-URL used to identify an AS. See 3GPP TS 29.229 [6] for further description of this AVP.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.229"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.329_6.3.10",
+      "section_id": "6.3.10",
+      "section_title": "Identity-Set AVP",
+      "content": "The Identity-Set AVP is of type Enumerated and indicates the requested set of IMS Public Identities.  The following values are defined:\nALL_IDENTITIES (0)\nREGISTERED_IDENTITIES (1)\nIMPLICIT_IDENTITIES (2)\nALIAS_IDENTITIES (3)",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.329_6.3.11",
+      "section_id": "6.3.11",
+      "section_title": "Supported-Features AVP",
+      "content": "See 3GPP TS 29.229 [6] clause 6.3.29.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.229_clause_6.3.29",
+        "ts_29.229"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.329_6.3.12",
+      "section_id": "6.3.12",
+      "section_title": "Feature-List-ID AVP",
+      "content": "See 3GPP TS 29.229 [6] clause 6.3.30.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.229_clause_6.3.30",
+        "ts_29.229"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.329_6.3.13",
+      "section_id": "6.3.13",
+      "section_title": "Feature-List AVP",
+      "content": "See 3GPP TS 29.229 [6] clause 6.3.31.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.229_clause_6.3.31",
+        "ts_29.229"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.329_6.3.14",
+      "section_id": "6.3.14",
+      "section_title": "Supported-Applications AVP",
+      "content": "See 3GPP TS 29.229 [6] clause 6.3.32.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.229_clause_6.3.32",
+        "ts_29.229"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.329_6.3.15",
+      "section_id": "6.3.15",
+      "section_title": "Public-Identity AVP",
+      "content": "The Public-Identity AVP contains a Public User Identity. See 3GPP TS 29.229 [6] for the definition of this AVP.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.229"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.329_6.3.16",
+      "section_id": "6.3.16",
+      "section_title": "Expiry-Time AVP",
+      "content": "The Expiry-Time AVP is of type Time.  This AVP contains the expiry time of subscriptions to notifications in the HSS.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.329_6.3.17",
+      "section_id": "6.3.17",
+      "section_title": "Send-Data-Indication AVP",
+      "content": "The Send-Data-Indication AVP is of type Enumerated. If present it indicates that the sender requests the User-Data. The following values are defined:\nUSER_DATA_NOT_REQUESTED (0)\nUSER_DATA_REQUESTED (1)",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.329_6.3.18",
+      "section_id": "6.3.18",
+      "section_title": "DSAI-Tag AVP",
+      "content": "The DSAI-Tag AVP is of type OctetString. This AVP contains the DSAI-Tag identifying the instance of the Dynamic Service Activation Information being accessed for the Public Identity.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.329_6.3.19",
+      "section_id": "6.3.19",
+      "section_title": "Wildcarded-Public-Identity AVP",
+      "content": "See 3GPP TS 29.229 [6] clause 6.3.35 for the definition of theWildcarded-Public-Identity AVP. This AVP only contains a Wildcarded PSI over Sh interface.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.229_clause_6.3.35",
+        "ts_29.229"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.329_6.3.20",
+      "section_id": "6.3.20",
+      "section_title": "Wildcarded-IMPU AVP",
+      "content": "See 3GPP TS 29.229 [6] clause 6.3.43.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.229_clause_6.3.43",
+        "ts_29.229"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.329_6.3.21",
+      "section_id": "6.3.21",
+      "section_title": "Session-Priority AVP",
+      "content": "See 3GPP TS 29.229 [6] clause 6.3.56.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.229_clause_6.3.56",
+        "ts_29.229"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.329_6.3.22",
+      "section_id": "6.3.22",
+      "section_title": "One-Time-Notification AVP",
+      "content": "The One-Time-Notification AVP is of type Enumerated. If present it indicates that the sender requests to be notified only one time. The following values are defined:\nONE_TIME_NOTIFICATION_REQUESTED (0)\nThis AVP is only applicable to UE reachability for IP (25)",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.329_6.3.23",
+      "section_id": "6.3.23",
+      "section_title": "Serving-Node-Indication AVP",
+      "content": "The Serving-Node-Indication AVP is of type Enumerated. If present it indicates that the sender does not require any location information other than the Serving Node Addresses/Identities requested (e.g. MME name, VLR number). Other location information (e.g. Global Cell ID, Tracking Area ID) may be absent. The following values are defined:\nONLY_SERVING_NODES_REQUIRED (0)",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.329_6.3.24",
+      "section_id": "6.3.24",
+      "section_title": "Repository-Data-ID AVP",
+      "content": "The Repository-Data-ID AVP is of type Grouped. This AVP shall contain a Service-Indication AVP and a Sequence-Number AVP.\nAVP format\nRepository-Data-ID ::= <AVP header: 715 10415>\n{Service-Indication}\n{Sequence-Number}\n*[AVP]",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.329_6.3.25",
+      "section_id": "6.3.25",
+      "section_title": "Sequence-Number AVP",
+      "content": "The Sequence-Number AVP is of type Unsigned32. This AVP contains a number associated to a repository data.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.329_6.3.26",
+      "section_id": "6.3.26",
+      "section_title": "Pre-paging-Supported AVP",
+      "content": "The Pre-paging-Supported AVP is of type Enumerated. It indicates whether the sender supports pre-paging or not. The following values are defined:\nPREPAGING_NOT_SUPPORTED (0)\nPREPAGING_SUPPORTED (1)\nIf this AVP is not present in the command, the default value is PREPAGING_NOT_SUPPORTED (0).",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.329_6.3.27",
+      "section_id": "6.3.27",
+      "section_title": "Local-Time-Zone-Indication AVP",
+      "content": "The Local-Time-Zone-Indication AVP is of type Enumerated. If present it indicates that the Local Time Zone information (time zone and daylight saving time) of the visited network where the UE is attached is requested with or without other location information. The following values are defined:\nONLY_LOCAL_TIME_ZONE_REQUESTED (0)\nLOCAL_TIME_ZONE_WITH_LOCATION_INFO_REQUESTED (1)",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.329_6.3.28",
+      "section_id": "6.3.28",
+      "section_title": "UDR-Flags",
+      "content": "The UDR-Flags AVP is of type Unsigned32 and it shall contain a bit mask. The meaning of the bits shall be as defined in 3GPP TS 29.328 [1].\nTable 6.3.28/1: UDR-Flags\nBit\nName\n0\nLocation-Information-EPS-Supported\n1\nRAT-Type-Requested\nNOTE:\tBits not defined in this table shall be cleared by the sender of the request and discarded by the receiver of the request.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.328_table_6.3.28",
+        "ts_29.328"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.329_6.3.29",
+      "section_id": "6.3.29",
+      "section_title": "Call-Reference-Info AVP",
+      "content": "The Call-Reference-Info AVP is of type Grouped. This AVP shall contain a Call-Reference-Number AVP and an AS-Number AVP.\nAVP format\nCall-Reference-Info ::= <AVP header: 720 10415>\n{Call-Reference-Number}\n{AS-Number}\n*[AVP]",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.329_6.3.30",
+      "section_id": "6.3.30",
+      "section_title": "Call-Reference-Number AVP",
+      "content": "The Call-Reference-Number AVP is of type OctetString. The exact content and format of this AVP is described in 3GPP TS 29.002 [11].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.002"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.329_6.3.31",
+      "section_id": "6.3.31",
+      "section_title": "AS-Number AVP",
+      "content": "The AS-Number AVP is of type OctetString. The exact content and format of this AVP corresponds to the gmsc-address parameter described in 3GPP TS 29.002 [11].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.002"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.329_6.3.32",
+      "section_id": "6.3.32",
+      "section_title": "OC-Supported-Features",
+      "content": "The OC-Supported-Features AVP is of type Grouped and it is defined in IETF RFC 7683 [12]. This AVP is used to support Diameter overload control mechanism.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.329_6.3.33",
+      "section_id": "6.3.33",
+      "section_title": "OC-OLR",
+      "content": "The OC-OLR AVP is of type Grouped and it is defined in IETF RFC 7683 [12]. This AVP is used to support Diameter overload control mechanism.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.329_6.3.34",
+      "section_id": "6.3.34",
+      "section_title": "DRMP AVP",
+      "content": "The DRMP AVP is of type Enumerated and it is defined in IETF RFC 7944 [13]. This AVP allows the HSS/SLF and the AS/OSA SCS to indicate the relative priority of Diameter messages. The DRMP AVP may be used to set the DSCP marking for transport of the associated Diameter message.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.329_6.3.35",
+      "section_id": "6.3.35",
+      "section_title": "Load",
+      "content": "The Load AVP is of type Grouped and it is defined in IETF RFC 8583 [14]. This AVP is used to support the Diameter load control mechanism.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.329_6.4",
+      "section_id": "6.4",
+      "section_title": "Use of namespaces",
+      "content": "This clause contains the namespaces that have either been created in this specification, or the values assigned to existing namespaces managed by IANA.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.329_6.4.1",
+      "section_id": "6.4.1",
+      "section_title": "AVP codes",
+      "content": "This specification assigns the AVP values from the AVP Code namespace managed by 3GPP for its Diameter vendor-specific applications. See clause 6.3 for the assignment of the namespace in this specification.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_6.3"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.329_6.4.2",
+      "section_id": "6.4.2",
+      "section_title": "Experimental-Result-Code AVP values",
+      "content": "This specification has assigned Experimental-Result-Code AVP values 4100-4101 and 5100-5105. See clause 6.2.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_6.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.329_6.4.3",
+      "section_id": "6.4.3",
+      "section_title": "Command Code values",
+      "content": "This specification assigns the values 306-309 from the range allocated by IANA to 3GPP in IETF RFC 3589 [7].",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.329_6.4.4",
+      "section_id": "6.4.4",
+      "section_title": "Application-ID value",
+      "content": "IANA has allocated the value 16777217 for the 3GPP Sh interface application.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.329_7.1",
+      "section_id": "7.1",
+      "section_title": "Version Control",
+      "content": "The version control mechanisms specified in 3GPP TS 29.229 [6] clauses 7.1, 7.2 and 7.3 apply to this specification.\nThe following table of features shall apply to the Sh interface.\nTable 7.1.1: Features of feature list 1 used in Sh\nFeature bit\nFeature\nM/O\nDescription\n0\nNotif-Eff\nM\nThis feature is applicable to the UDR/UDA, SNR/SNA and PNR/PNA command pairs. It requires support in both the HSS and the AS.\nIf multiple subscriptions to notifications are associated with a Public User Identity, the HSS may combine the notifications for multiple Data References and/or Service Indications and/or Identity Sets into a single Push-Notification-Request message.\nThe User-Data-Request / Answer and the Subscribe-Notifications-Request / Answer allow multiple Data References, Service Indications and Identity Sets.\nThe User-Data-Answer and Push-Notification-Request allow combining multiple DataReference items resulting in the User Data AVP including a single XML document with the separable XML clauses populated.\n1\nUpdate-Eff\nO\nThis feature is applicable to the PUR/PUA commands. If both the HSS and the AS support this feature, a PUR command where the Data reference type is Repository Data, may contain an XML document with several Repository Data instances.\n2\nUpdate-Eff-Enhance\nO\nThis feature is an enhancement of the Update-Eff feature and requires Update-Eff is supported. It is applicable to the PUR/PUA commands. If both the HSS and the AS support this feature, a PUR command may contain an XML document with several Data instances.\n3\nAdditional-MSISDN\nO\nThis feature is applicable to UDR/UDA commands.\nIt requires support in both HSS and AS.\nIf enabled, it extends the information returned with DataReference=17. Instead of returning only MSISDN, it includes ExtendedMSISDN. See 3GPP TS 29.328 [1] for more information.\nFeature bit: The order number of the bit within the Supported-Features AVP, e.g. \"1\".\nFeature: A short name that can be used to refer to the bit and to the feature, e.g. \"MOM\".\nM/O: Defines if the implementation of the feature is mandatory (\"M\") or optional (\"O\").\nDescription: A clear textual description of the feature.\nThe following table shall apply to the Sh interface; the column Application identifier lists the used application identifiers on Sh and 3GPP.\nTable 7.1.2: Application identifiers used in Sh\nApplication identifier\nFirst applied\n16777217\n3GPP Rel-5\nAnnex A (informative):Change history\nChange history\nDate\nMeeting\nTDoc\nCR\nRev\nCat\nSubject/Comment\nNew version\nJune 2002\nCN#16\nNP-020266\nVersion 2.0.1 present in CN#16 for approval\n5.0.0\nSep 2002\nCN#17\nNP-020450\n2\n1\nCancellation of subscriptions to notifications\n5.1.0\nSep 2002\nCN#17\nNP-020450\n3\n1\nAddition of AVPs to User-Data-Request\n5.1.0\nDec 2002\nCN#18\nNP-020592\n6\n-\nError handling in HSS when being updated with too much data\n5.2.0\nMar 2003\nCN#19\nNP-030102\n005\n1\nInitial Filter Criteria\n5.3.0\nMar 2003\nCN#19\nNP-030102\n007\n2\nUpdate after Diameter has become RFC\n5.3.0\nMar 2003\nCN#19\nNP-030102\n011\n-\nMissing code-point in Data-Reference AVP\n5.3.0\nMar 2003\nCN#19\nNP-030102\n013\n-\nRegistration State Alignment\n5.3.0\nMar 2003\nCN#19\nNP-030102\n008\n-\nCorrection of the Application Server Identification type for Initial Filter Criteria usage\n5.3.0\nMar 2003\nCN#19\nNP-030102\n009\n-\nClarification on Sh interface for charging purposes\n5.3.0\nJun 2003\nCN#20\nNP-030216\n014\n1\nCo-ordination of Update of Repository Data\n5.4.0\nJun 2003\nCN#20\nNP-030216\n015\n1\nCommand code correction for UDA plus editorial corrections\n5.4.0\nJun 2003\nCN#20\nNP-030216\n016\n-\nCorrection on Current-Location AVP values\n5.4.0\nJun 2003\nCN#20\nNP-030216\n018\n-\nCorrection to the use of User-Identity\n5.4.0\nJun 2003\nCN#20\nNP-030216\n019\n1\nCorrection to the use of Data-Reference\n5.4.0\nDec 2003\nCN#22\nEditorial changes in application IDs and references [4] and [7].\n5.4.1\nMar 2004\nCN#23\nNP-040135\n031\n1\nAdd MSISDN to set of Data that may be downloaded\n5.5.0\nMar 2004\nCN#23\nNP-040055\n032\n2\nIntroduction of 'Identity-Set' AVP\n6.0.0\nJun 2004\nCN#24\nNP-040216\n037\n-\nCorrection to description of Data Reference AVP value 10\n6.1.0\nJun 2004\nCN#24\nNP-040216\n035\n1\nCorrection of reference for definition of MSISDN\n6.1.0\nSep 2004\nCN#25\nNP-040394\n043\n-\nIncorrect Data-Reference AVP in Subscriber Notification Answer Command\n6.2.0\nSep 2004\nCN#25\nNP-040395\n046\n1\nApplication version control\n6.2.0\nSep 2004\nCN#25\nNP-040394\n041\n1\nPublic-Identity is unspecified for the Sh interface\n6.2.0\nSep 2004\nCN#25\nNP-040395\n045\n1\nSingle Public_Identity required in Grouped User-Identity AVP\n6.2.0\nSep 2004\nCN#25\nNP-040394\n049\n-\nCorrection of the Application-Id code\n6.2.0\nSep 2004\nCN#25\nNP-040412\n051\n1\nRe-numbering of 3GPP specific AVP codes\n6.2.0\nDec 2004\nCN#26\nNP-040578\n053\n-\nSh ABNF corrections\n6.3.0\nMar 2005\nCN#27\nNP-050031\n057\n1\nIntroduction of Failed AVP\n6.4.0\nMar 2005\nCN#27\nNP-050031\n064\n-\nSh-Update needs to include Data-Reference to be future proof\n6.4.0\nJun 2005\nCT#28\nCP-050216\n069\n-\nSh UDR correction\n6.5.0\nJun 2005\nCT#28\nCP-050087\n070\n-\nCorrection of references\n6.5.0\nJun 2005\nCT#28\nCP-050087\n071\n1\nCorrections to message parameters\n6.5.0\nJun 2005\nCT#28\nCP-050087\n072\n1\nMiscellaneous Corrections\n6.5.0\nJun 2005\nCT#28\nCP-050216\n074\n-\nCorrection to allow realm based routing\n6.5.0\nSep 2005\nCT#29\nCP-050424\n075\n-\nIdentity-Set correction\n6.6.0\nSep 2005\nCT#29\nCP-050422\n095\n1\nState the condition for encryption of the Data Reference\n6.6.0\nSep 2005\nCT#29\nCP-050423\n097\n1\nEarly IMS Security based protection for the Ut interface\n6.6.0\nDec 2005\nCT#30\nCP-050625\n098\n3\nNotification & Query Efficiency\n7.0.0\nDec 2005\nCT#30\nCP-050625\n099\n1\nManagement of subscriptions\n7.0.0\nMar 2006\nCT#31\nCP-060084\n0100\n1\nUser-Data in the response to Sh-Subs-Notif\n7.1.0\nMar 2006\nCT#31\nCP-060084\n0101\n3\nNew error indications for the Sh-Subs-Notif procedure\n7.1.0\nJun 2006\nCT#32\nCP-060319\n0105\n2\nSh interface efficiency improvement\n7.2.0\nSep 2006\nCT#33\nCP-060417\n0107\n2\nIntroduction of Activation State Information for IMS (DSAI)\n7.3.0\nSep 2006\nCT#33\nCP-060417\n0108\n-\nAddition of AVPs in SNR and SNA\n7.3.0\nSep 2006\nCT#33\nCP-060417\n0110\n1\nPublic User Identity Grouping Information\n7.3.0\nSep 2006\nCT#33\nCP-060405\n0112\n-\nMissing Data Reference value\n7.3.0\nSep 2006\nCT#33\nCP-060417\n0113\n1\nErrors to be sent in response to Sh-Notif\n7.3.0\nSep 2007\nCT#37\nCP-070527\n0118\n-\nDefine User-Data AVP\n7.4.0\nSep 2007\nCT#37\nCP-070527\n0119\n1\nWildcarded PSI as key in the Sh Interface\n7.4.0\nNov 2007\nCT#38\nCP-070743\n0120\n-\nABNF correction for UDR and SNR\n7.5.0\nNov 2007\nCT#38\nCP-070743\n0121\n1\nPNR for Subscriptions to Notifications for all Identity Sets\n7.5.0\nMar 2008\nCT#39\nCP-080019\n0122\n-\nWildcarded Public User Identities\n8.0.0\nJun 2008\nCT#40\nCP-080267\n0123\n1\nDSAI Corrections\n8.1.0\nJun 2008\nCT#40\nCP-080702\n0130\n1\nService Indication for standardized services\n8.2.0\nJun 2008\nCT#40\nCP-080883\n0132\n1\nCorrection of Identity-Set AVP\n8.2.0\nMar 2009\nCT#43\nCP-090042\n0134\n1\nAliasesRepositoryData removal\n8.3.0\nJun 2009\nCT#44\nCP-090305\n0136\nMissing data-reference for GIBA\n8.4.0\nDec 2009\nCT#46\nCP-090778\n0138\nSession-Priority AVP\n8.5.0\nDec 2009\nCT#46\nUpgraded unchanged from Rel-8\n9.0.0\nMar 2010\nCT#47\nCP-100033\n0143\n1\nIP-SM-GW UE reachability handling over Sh\n9.1.0\nMar 2010\nCT#47\nCP-100048\n0144\n1\nSh handling of T-ADS\n9.1.0\nMar 2010\nCT#47\nCP-100206\n0148\n3\nEPS Subcsriber State and Location Information Request\n9.1.0\nJun 2010\nCT#48\nCP-100275\n0149\nEPS state and location retrieval\n9.2.0\nJun 2010\nCT#48\nCP-100279\n0154\n1\n9.2.0\nSep 2010\nCT#49\nCP-100447\n0157\n1\nCorrection to the Value of Data-Reference AVP\n9.3.0\nSep 2010\nCT#49\nCP-100454\n0160\n1\nCorrection on Requested-Domain\n9.3.0\nSep 2010\nCT#49\nCP-100466\n0158\n2\nUsage of IMSI and IMPI for user identification over Sh\n10.0.0\nSep 2010\nCT#49\nCP-100466\n0159\n3\nLocation data including only serving node address\n10.0.0\nSep 2010\nCT#49\nCP-100466\n0163\n3\nUpdate-Eff feature\n10.0.0\nDec 2010\nCT#50\nCP-100699\n0164\n2\nEnhanced SRVCC\n10.1.0\nMar 2011\nCT#51\nCP-110257\n0168\n2\nMPS over Sh\n10.2.0\nMar 2011\nCT#51\nCP-110075\n0170\n2\nRetrieval of CSRN from HSS\n10.2.0\nJun 2011\nCT#52\nCP-110370\n0175\n1\nPre-paging Support Indicator for CSRN\n10.3.0\nJun 2011\nCT#52\nCP-110370\n0176\n1\nClarification on Notif-Eff description for SNR/SNA\n10.3.0\nJun 2011\nCT#52\nCP-110370\n0177\n-\nMissing Repository-Data-ID AVP in PUA\n10.3.0\nJun 2011\nCT#52\nCP-110383\n0173\n2\nReference Location over Sh interface\n11.0.0\nDec 2011\nCT#54\nCP-110781\n0189\n-\nCorrection on Wildcarded Public Identity\n11.1.0\nMar 2012\nCT#55\nCP-120035\n0194\n2\nUpdate of Multiple Data Instances in Sh-Update\n11.2.0\nJun 2012\nCT#56\nCP-120240\n0195\n3\nLocal Time for NPLI\n11.3.0\nSep 2012\nCT#57\nCP-120481\n0197\nA-MSISDN handling over Sh\n11.4.0\nSep 2012\nCT#57\nCP-120481\n0198\n1\nLocal Time Zone\n11.4.0\nDec 2012\nCT#58\nCP-120743\n0202\n1\nEPS LocationInformation Support\n11.5.0\nMar 2013\nCT#59\nCP-130020\n0208\n1\nPS Location Info request with RAT-type\n11.6.0\nMar 2013\nCT#59\nCP-130020\n0210\n1\nPre-paging-Supported and Local-Time-Zone-Indication AVPs\n11.6.0\nMar 2013\nCT#59\nCP-130031\n0200\n1\nSh IMSI retrieval\n12.0.0\nJun 2013\nCT#60\nCP-130374\n0211\n1\nMTRR on Sh\n12.1.0\nMar 2014\nCT#63\nCP-140027\n0214\n1\nMultiple notification due to the Update-Eff feature\n12.2.0\nJun 2014\nCT#64\nCP-140262\n0217\n-\nPrivate User Identity retrieval\n12.3.0\nJun 2014\nCT#64\nCP-140262\n0218\n-\nUE Reachability for IP\n12.3.0\nSep 2014\nCT#65\nCP-140515\n0219\n-\nSession-Priority reference\n12.4.0\nSep 2014\nCT#65\nCP-140509\n0220\n1\nDiameter Overload Control Over Sh\n12.4.0\nDec 2014\nCT#66\nCP-140773\n0222\n-\nM-bit clarification\n12.5.0\nDec 2014\nCT#66\nCP-140779\n0223\n-\nRetrieval of TWAN-Id over Sh\n12.5.0\nDec 2014\nCT#66\nCP-140790\n0224\n-\nDOIC reference update\n12.5.0\nDec 2015\nCT#70\nCP-150759\n0226\n1\nUpdate reference to DOIC new IETF RFC\n12.6.0\nDec 2015\nCT#70\nCP-150849\n0227\n4\nSupport of the DRMP AVP over Sh/Dh\n13.0.0\n2016-09\nCT#73\nCP-160431\n0228\n1\nRequest to update data while a previous update request is in progress\n14.0.0\n2016-12\nCT#74\nCP-160649\n0236\n1\nRAT type included in EPS location information\n14.1.0\n2016-12\nCT#74\nCP-160681\n0237\n1\nLoad Control\n14.1.0\n2016-12\nCT#74\nCP-160664\n0239\n1\nCorrection to change IETF drmp draft version to official RFC 7944\n14.1.0\n2017-03\nCT#75\nCP-170035\n0241\n-\nNotif-Eff feature description correction\n14.2.0\n2017-03\nCT#75\nCP-170035\n0245\n1\nUDR flag description\n14.2.0\n2017-03\nCT#75\nCP-170048\n0243\n1\nUpdate of reference for the Diameter base protocol\n14.2.0\n2017-03\nCT#75\nCP-170048\n0244\n-\nCardinality of the Failed-AVP AVP in answer\n14.2.0\n2017-06\nCT#76\nCP-171018\n0248\n1\nSupport for signaling transport level packet marking\n14.3.0\n2017-06\nCT#76\nCP-171040\n0246\n1\nExternal Identifier on Sh\n15.0.0\n2018-06\nCT#80\nCP-181131\n0249\n-\nRequested Node AMF\n15.1.0\n2019-09\nCT#85\nCP-192094\n0251\n2\ndraft-ietf-dime-load published as RFC 8583\n15.2.0\n2020-07\nCT#88e\n-\n-\n-\nUpdate to Rel-16 version (MCC)\n16.0.0\n2020-12\nCT#91e\nCP-203022\n0253\n1\nIncomplete implemented CR\n16.1.0\n2021-03\nCT#91e\nCP-210044\n0354\n-\nIMEISV and 5G SRVCC Capability missing in Data Reference AVP\n16.2.0\n2022-04\n-\n-\n-\n-\n-\nUpdate to Rel-17 version (MCC)\n17.0.0\n2024-03\n-\n-\n-\n-\n-\nUpdate to Rel-18 version (MCC)\n18.0.0",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_7.1.1",
+        "table_7.1.2",
+        "ts_29.229",
+        "ts_29.328",
+        "ts_7.5"
+      ]
+    }
+  ]
+}

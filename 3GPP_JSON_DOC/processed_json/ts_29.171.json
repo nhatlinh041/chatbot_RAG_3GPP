@@ -1,0 +1,1004 @@
+{
+  "metadata": {
+    "specification_id": "ts_29.171",
+    "version": "18.0.0",
+    "title": "3GPP TS 29.171",
+    "file_path": "/content/drive/MyDrive/RAG_thesis/data/29_series/29171-i00/29171-i00.docx"
+  },
+  "export_info": {
+    "export_date": "2025-07-26T09:16:31.000007",
+    "total_chunks": 102
+  },
+  "chunks": [
+    {
+      "chunk_id": "ts_29.171_1",
+      "section_id": "1",
+      "section_title": "Scope",
+      "content": "The present document specifies the procedures and information coding for LCS Application Protocol (LCS-AP) that is needed to support the location services in E-UTRAN. The LCS-AP message set is applicable to the SLs interface between the E-SMLC and the MME. LCS-AP is developed in accordance to the general principles stated in 3GPP TS 23.271 [3].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.271"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.171_2",
+      "section_id": "2",
+      "section_title": "References",
+      "content": "The following documents contain provisions which, through reference in this text, constitute provisions of the present document.\n-\tReferences are either specific (identified by date of publication, edition number, version number, etc.) or non‑specific.\n-\tFor a specific reference, subsequent revisions do not apply.\n-\tFor a non-specific reference, the latest version applies. In the case of a reference to a 3GPP document (including a GSM document), a non-specific reference implicitly refers to the latest version of that document in the same Release as the present document.\n[1]\t3GPP TR 21.905: \"Vocabulary for 3GPP Specifications\".\n[2]\t3GPP TS 36.305: \"Stage 2 functional specification of User Equipment (UE) positioning in E-UTRAN\".\n[3]\t3GPP TS 23.271: \"Functional stage 2 description of Location Services (LCS)\".\n[4]\tIETF RFC 4960: \"Stream Control Transmission Protocol\".\n[5]\tTIA/EIA/IS-J-STD-036 (2000): \"Wireless Enhanced Emergency Services\".\n[6]\t3GPP TS 23.032: \"Universal Geographical Area Description (GAD)\".\n[7]\t3GPP TS 36.413: \"S1 Application Protocol (S1AP)\".\n[8]\tITU-T Recommendation X.680 (07/2002): \"Information Technology - Abstract Syntax Notation One (ASN.1): Specification of basic notation\".\n[9]\tITU-T Recommendation X.681 (07/2002): \"Information Technology - Abstract Syntax Notation One (ASN.1): Information object specification\".\n[10]\t3GPP TS 22.071: \"Location Services (LCS); Service Description; Stage1\".\n[11]\t3GPP TS 23.003: \"Numbering, addressing and identification\".\n[12]\tITU-T Recommendation X.691 (07/2002): \"Information Technology - ASN.1 encoding rules - Specification of Packed Encoding Rules (PER)\".\n[13]\tIETF RFC 4119: \"A Presence-based GEOPRIV Location Object Format\".\n[14]\tIETF RFC 5139: \"Revised Civic Location Format for Presence Information Data Format Location Object\".\n[15]\tIETF RFC 6848: \"Specifying Civic Address Extensions in the Presence Information Data Format Location Object (PIDF-LO)\".\n[16]\tIETF RFC 5905: \"Network Time Protocol Version 4: Protocol and Algorithms Specification\".\n[17]\t3GPP TS 24.301: \"Non-Access-Stratum (NAS) protocol for Evolved Packet System (EPS); Stage 3\".\n[18]\tIETF RFC 4776: \"Dynamic Host Configuration Protocol (DHCPv4 and DHCPv6) Option for Civic Addresses Configuration Information\".",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905",
+        "ts_36.305",
+        "ts_23.271",
+        "ts_23.032",
+        "ts_36.413",
+        "ts_22.071",
+        "ts_23.003",
+        "ts_24.301"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.171_3.1",
+      "section_id": "3.1",
+      "section_title": "Definitions",
+      "content": "For the purposes of the present document, the terms and definitions given in TR 21.905 [1] and the following apply. A term defined in the present document takes precedence over the definition of the same term, if any, in TR 21.905 [1].\nElementary Procedure: LCS-AP protocol consists of Elementary Procedures (EPs). An LCS-AP Elementary Procedure is a unit of interaction between the MME and the E-SMLC. An EP consists of an initiating message and possibly a response message. Two kinds of EPs are used:\n-\tClass 1: Elementary Procedures with response (success or failure),\n-\tClass 2: Elementary Procedures without response.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_21.905"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.171_3.2",
+      "section_id": "3.2",
+      "section_title": "Abbreviations",
+      "content": "For the purposes of the present document, the abbreviations given in TR 21.905 [1] and the following apply. An abbreviation defined in the present document takes precedence over the definition of the same abbreviation, if any, in TR 21.905 [1].\nCID\tCell-ID (positioning method)\nE-CID\tEnhanced Cell-ID (positioning method)\nE-SMLC\tEnhanced Serving Mobile Location Centre\nE-UTRAN\tEnvolved Universal Terrestrial Radio Access Network\nGNSS\tGlobal Navigation Satellite System\nGPS\tGlobal Positioning System\nLCS\tLoCation Services\nLCS-AP\tLCS Application Protocol\nLPP\tLTE Positioning Protocol\nLPPa\tLTE Positioning Protocol Annex\nLTE\tLong Term Evolution\nMBS\tMetropolitan Beacon System\nMO-LR\tMobile Originated Location Request\nMT-LR\tMobile Terminated Location Request\nNI-LR\tNetwork Induced Location Request\nMME\tMobility Management Entity\nOTDOA\tObserved Time Difference Of Arrival\nPDU\tProtocol Data Unit\nSCTP\tStream Control Transmission Protocol\nSET\tSUPL Enabled Terminal\nSLP\tSUPL Location Platform\nSUPL\tSecure User Plane Location\nTA\tTiming Advanced\nUE\tUser Equipment\nU-TDOA\tUplink Time Difference Of Arrival",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.171_4.1",
+      "section_id": "4.1",
+      "section_title": "General",
+      "content": "Figure 4.1-1 below shows the architecture applicable to the positioning of a UE with E-UTRAN access. The SLs interface is used to convey LCS-AP messages and parameters between the MME to the E-SMLC. It is also used for tunnelling LTE Positioning Protocols (LPP between the E-SMLC and the target UE, LPPa between the E-SMLC and the eNB), which are transparent to the MME as described in 3GPP TS 36.305 [2].\nFigure 4.1-1 Positioning Interfaces in E-UTRAN",
+      "chunk_type": "definition",
+      "cross_references": [
+        "figure_4.1-1",
+        "ts_36.305_figure_4.1-1",
+        "ts_36.305"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.171_5.1",
+      "section_id": "5.1",
+      "section_title": "General",
+      "content": "The LCS-AP is a logical interface between the MME and the E-SMLC. This clause specifies the standards for signaling transport to be used across LCS-AP.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.171_5.2",
+      "section_id": "5.2",
+      "section_title": "Protocol Layering",
+      "content": "Figure 5.2-1 below shows the protocol layering used to support the transfer of LCS-AP PDUs between an E-SMLC and a MME. The LTE Positioning Protocols (LPP and LPPa) can be carried in LCS-AP messages which are transparent to the MME.\nFigure 5.2-1 Protocol Layering for LCS-AP",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_5.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.171_5.3",
+      "section_id": "5.3",
+      "section_title": "Usage of SCTP Associations",
+      "content": "SCTP (see IETF RFC 4960 [4]) shall be supported as the transport layer of LCS-AP messages.\nSemi-permanent SCTP associations shall be established between MME and E-SMLC, i.e. the SCTP associations shall remain up under normal circumstances.\nLocal multi-homing should be supported. Remote multi-homing shall be supported.\nMultiple local SCTP endpoints may be supported. Multiple remote SCTP endpoints shall be supported. When multiple local or remote SCTP endpoints are configured, several simultaneous SCTP associations shall be supported between MME and E-SMLC.\nThe MME shall establish the SCTP association. Since under normal operation there should always be an SCTP association established between an MME and an E-SMLC, if the E-SMLC needs to initiate a message towards an MME it shall do so over an existing SCTP association already established with that MME.\nWhen an entity detects that an SCTP association has been lost, all resources for transactions open on that association shall be released.\nThe registered port number for LCS-AP is 9082. The registered payload protocol identifier for LCS-AP is 29.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.171_6.1",
+      "section_id": "6.1",
+      "section_title": "General",
+      "content": "The LCS-AP interface can be divided into the following procedures:\n-\tLocation service request procedure\n-\tLocation information exchange procedure\nThe E-UTRAN positioning capabilities are intended to be forward compatible to other access types and other position methods, in an effort to reduce the amount of additional positioning support needed in the future.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.171_6.2.1.1",
+      "section_id": "6.2.1.1",
+      "section_title": "General",
+      "content": "The purpose of the location service request procedure is to obtain the location estimate for a target UE in E-UTRAN.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.171_6.2.1.2",
+      "section_id": "6.2.1.2",
+      "section_title": "Successful Operation",
+      "content": "Figure 6.2.1.2-1 Location Service Request Procedure, Successful Operation\nThe initiator (MME) of the location service request procedure sends a LCS-AP Location Request message to the E-SMLC associated with the current or last known serving cell for the target UE and starts the timer T3x01. The message contains the following mandatory (M), conditional (C) and optional (O) information, where conditional parameters are required if available.\n-\tCorrelation ID (M)\n-\tLocation Type (M)\n-\tCell Identifier (M)\n-\tLCS Client Type (C)\n-\tLCS Priority (C)\n-\tLCS Service Type ID (C)\n-\tLCS QoS (C)\n-\tUE Positioning Capability (O)\n-\tInclude Velocity (O)\n-\tIMSI of target UE (O)\n-\tIMEI of target UE (O)\n-\tAPDU (O)\n-\tRAT Type (O)\n-\tCoverage Level (O)\n-\tUE Country Determination Indication (O)\nThe Correlation ID is assigned by the MME and enables association of the location response with the location request when more than one location service request procedure is ongoing for the UE with the same E-SMLC.\nThe Location Type IE indicates the type of Location Information being requested. The following types are supported:\n-\tCurrent geographic location estimate\n-\tLocation assistance data for the target UE\n-\tLast known location estimate\nIf the location estimate is requested, the E-SMLC performs positioning procedure on the target UE using a particular position method or a combination of more than one positioning method based on the UE capability. If UE capability is unknown, the E-SMLC may request UE position capability through LPP as defined in 3GPP TS 36.305 [2]. If the location estimate is requested and the UE Country Determination Indication is set to \"required\", the E-SMLC shall map the location estimate to the country or the area in the country or international area.\nAlternatively, if assistance data was requested, the E-SMLC may provide positioning assistance data to the UE. The E-SMLC may invoke the following LCS-AP procedures to get assistance data:\n-\tConnection Oriented Information Transfer\n-\tConnectionless Information Transfer\nOtherwise, if a last known location estimate is requested, the E-SMLC obtains a geographic location estimate using only the information provided in the LCS-AP Location Request message. The E-SMLC shall not attempt to obtain location information for the target UE from either the E-UTRAN or the target UE (e.g. because the UE may not be currently reachable).\nIf a location estimate or a last known location estimate was requested and was subsequently obtained, the E-SMLC shall return a LCS-AP Location Response to the initiator of the location request using the same SCTP association as the location request. This message contains the following mandatory (M), conditional (C) and optional parameters (O).\n-\tCorrelation ID (M)\n-\tLocation Estimate (M).\n-\tAccuracy Fulfilment Indicator (O).\n-\tVelocity estimate (C).\n-\tPositioning Data (C).\n-\tE-UTRAN Cell Identifier (O).\n-\tCell Portion ID (O).\n-\tCivic Address (O).\n-\tBarometric Pressure (O).\n-\tUE Area Indication (O).\nIf assistance data was instead requested for an UE and the E-SMLC was able successfully to transfer this to the UE, the E-SMLC shall return a LCS-AP Location Response to the initiator of the location request (MME). This message shall contain no parameters. The absence of a LCS Cause parameter in this case implies that the transfer was successful.\nIf the MME receives the LCS-AP Location Response for corresponding request message, the MME shall stop the timer T3x01.",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_6.2.1.2-1",
+        "ts_36.305"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.171_6.2.1.3",
+      "section_id": "6.2.1.3",
+      "section_title": "Unsuccessful Operation",
+      "content": "If the E-SMLC is unable to obtain any of the location information requested or if requested LCS assistance data could not be transferred, the E-SMLC shall return a LCS-AP Location Response to the initiator of the Location Request carrying the following parameters:\n-\tCorrelation ID (M)\n-\tLCS Cause (M)\n-\tPositioning Data (O)\nThe E-SMLC shall use the same SCTP association for the Location Response as was used for the request.\nIf the MME receives the LCS-AP Location Response for corresponding request message, the MME shall stop the timer T3x01.\nOn the expiry of the timer T3x01, the MME shall abort the procedure, release any resources allocated for this location request procedure and notify the node that triggered the Location Request about the error.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.171_6.2.2.1.1",
+      "section_id": "6.2.2.1.1",
+      "section_title": "General",
+      "content": "The Connection Oriented Information transfer procedure enables two-way transfer of LPP and LPPa messages between an E-SMLC and a MME. The procedure is only valid while a location request procedure for the target UE is ongoing. This procedure makes use of the same SCTP association as the location request procedure for the particular target UE.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.171_6.2.2.1.2",
+      "section_id": "6.2.2.1.2",
+      "section_title": "Successful Operation",
+      "content": "Figure 6.2.2.1.2-1 Connection Oriented Information, Successful Operation\nThe initiator of the procedure (E-SMLC or MME) with a LPP or LPPa message to transfer concerning a particular target UE sends a LCS-AP Connection Oriented Information message to a recipient carrying the following parameters:\n-\tCorrelation ID (M)\n-\tPayload Type (M)\n-\tAPDU (M);\nThe Correlation ID in this message is the Correlation ID used for the Location Request. It shall be present for a message transfer from the E-SMLC to the MME and for a message transfer from the MME to the E-SMLC.\nThe Payload Type shall be present to indicate the type of the APDU. The supported information types are LPP and LPPa.\nThe APDU shall contain an LPP APDU when communicating between the E-SMLC and the target UE or an LPPa APDU when communicating between the E-SMLC and serving eNB. The MME shall forward this to the serving eNB for the target UE.\nIf the intended recipient is the E-SMLC for a target UE, the message is terminated in the E-SMLC. The E-SMLC shall then perform interpretation of the APDU.",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_6.2.2.1.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.171_6.2.2.1.3",
+      "section_id": "6.2.2.1.3",
+      "section_title": "Abnormal Conditions",
+      "content": "At an intermediate entity, if a received LCS-AP Connection Oriented Information message contains unrecognized information or if the message cannot be sent on, the message shall be discarded.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.171_6.2.2.2.1",
+      "section_id": "6.2.2.2.1",
+      "section_title": "General",
+      "content": "The Connectionless Information transfer procedure enables two-way transfer of LPPa messages between an E-SMLC and a MME when there is no existing signalling connection association. This procedure can be used to query eNBs for the information not related to a UE connection, such as Timing information on the eNB.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.171_6.2.2.2.2",
+      "section_id": "6.2.2.2.2",
+      "section_title": "Successful Operation",
+      "content": "Figure 6.2.2.2.2-1 Connectionless Information Procedure, Successful Operation\nThe initiator of the procedure (either E-SMLC or MME) sends a LCS-AP Connectionless Information message to a recipient carrying the following parameters:\n-\tSource Entity (M)\n-\tDestination Entity (M)\n-\tAPDU (M)\n-\tReturn Error Request (O)\nThe source entity identifies the sender. The recipient entity identifies the final destination. The APDU contains a LPPa APDU to be transferred. The Return Error Request may be included to request notification in the event of unsuccessful transfer and indicate the type of notification needed. If the recipient entity is not the final destination, the recipient shall transfer the LCS-AP Connectionless Information message to either the final destination or an intermediate entity capable of forward it to the final destination.",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_6.2.2.2.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.171_6.2.2.2.3",
+      "section_id": "6.2.2.2.3",
+      "section_title": "Unsuccessful Operation",
+      "content": "If the message cannot be transferred by an intermediate entity or destination entity and the Return Error Request is not included, the message shall be discarded. If the Return Error Request is included, the intermediate or destination entity shall, depending on the Return Error Request type, send a LCS-AP Connectionless Information message to, or towards, the original source containing the following parameters:\n-\tSource Entity (M)\n-\tDestination Entity (M)\n-\tAPDU (M)\n-\tReturn Error Cause (M)\nThe Source entity shall indicate the Destination Entity in the original received message. The Destination Entity shall indicate the Source Entity in the original message. The Return Error cause shall indicate the reason for unsuccessful transfer. The APDU shall contain any originally received APDU.\nIf a received LCS-AP Connectionless Information message containing a Return Error Cause cannot be transferred by an intermediate entity, it shall be discarded with no return error message.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.171_6.2.2.2.4",
+      "section_id": "6.2.2.2.4",
+      "section_title": "Abnormal Conditions",
+      "content": "At an intermediate entity, if a received LCS-AP Connectionless Information message contains unrecognized or invalid information, the message shall be discarded.\nAt the recipient entity, if a received LCS-AP Connectionless Information message contains invalid or unrecognized information as defined for LCS-AP, the message shall be discarded.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.171_6.2.3.1",
+      "section_id": "6.2.3.1",
+      "section_title": "General",
+      "content": "The purpose of the ciphering keys delivery procedure is to enable the E-SMLC to send ciphering keys for broadcast assistance data to the MME so that the MME can then distribute the ciphering keys to suitably subscribed UEs.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.171_6.2.3.2",
+      "section_id": "6.2.3.2",
+      "section_title": "Successful Operation",
+      "content": "Figure 6.2.3.2-1 Ciphering Keys Delivery Procedure, Successful Operation\nThe initiator (E-SMLC) of the ciphering keys delivery procedure sends a Ciphering Key Data message to the MME and starts the timer T3x03. The message contains the following mandatory (M) information:\n-\tCiphering Data (M):\nIf the MME is able to successfully store all ciphering data sets included in the Ciphering Key Data message, the MME sends a Ciphering Key Data Result message. The message contains the following mandatory (M) information:\n-\tCiphering Data Ack (M)\nIf the E-SMLC receives the Ciphering Key Data Result message, the E-SMLC shall stop the timer T3x03.",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_6.2.3.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.171_6.2.3.3",
+      "section_id": "6.2.3.3",
+      "section_title": "Unsuccessful Operation",
+      "content": "If the MME is unable to successfully store one or more ciphering data sets included in the Ciphering Key Data message, the MME shall return a Ciphering Key Data Result message carrying the following mandatory (M) information:\n-\tCiphering Data Error Report (M)\nIf the E-SMLC receives the Ciphering Key Data Result message message, the E-SMLC shall stop the timer T3x03.\nOn the expiry of the timer T3x03, the E-SMLC shall abort the procedure and release any resources allocated for this ciphering keys delivery procedure.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.171_6.3.1.1",
+      "section_id": "6.3.1.1",
+      "section_title": "General",
+      "content": "The purpose of the Location Abort procedure is to cancel an ongoing positioning attempt or the request for assistance data. This message can be sent from the MME to the E-SMLC. This procedure makes use of the same SCTP association as the location request procedure for the particular target UE.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.171_6.3.1.2",
+      "section_id": "6.3.1.2",
+      "section_title": "Normal Operation",
+      "content": "Figure 6.3.1.2-1 Location Abort Procedure, Normal Operation\nThe MME sends a LCS-AP Location Abort Request message to the E-SMLC across the SLs interface. The message contains a LCS Cause parameter indicating the reason of cancellation.\nOn receipt of this message, the E-SMLC shall stop the positioning transactions of the target UE and may release any resources previously allocated. The E-SMLC shall return a LCS-AP Location Response message containing the LCS Cause received in Location Abort Request and, optionally, positioning data.  The E-SMLC may also optionally include in this response any \"best-effort\" location estimate that it has already determined prior to receiving the LCS-AP Location Abort Request.",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_6.3.1.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.171_6.3.1.3",
+      "section_id": "6.3.1.3",
+      "section_title": "Abnormal Conditions",
+      "content": "At the recipient entity, if no ongoing location transaction for the target UE is found, the recipient entity shall discard the received LCS-AP Location Abort Request message with no return error message.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.171_6.3.2.1",
+      "section_id": "6.3.2.1",
+      "section_title": "General",
+      "content": "The Reset procedure is an optional procedure applicable to the LCS-AP. It enables an E-SMLC or a MME that has undergone a failure with loss of location service transactions to indicate this to a partner entity. The recipient entity can then release its own connection and transaction resources. The Reset procedure may not be applicable when only a limited part of an E-SMLC or a MME has suffered a failure, since error recovery procedures specific to individual connections and transactions may then be used. The Reset procedure applies to all transactions initiated on a single SCTP association.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.171_6.3.2.2",
+      "section_id": "6.3.2.2",
+      "section_title": "Normal Operation",
+      "content": "Figure 6.3.2.2-1 Reset Procedure, Normal Operation\nIn the event of a failure at an E-SMLC or a MME that results in the loss of location service transactions, a LCS-AP Reset Request message may be sent to the partner entity across the SLs interface. The message contains a LCS Cause parameter indicating the reason for the reset. The sending entity shall ensure that all information on location service transactions for the SCTP association on which the Reset Request was sent is reinitialized to indicate no existing transactions.\nOn receiving a LCS-AP Reset Request message, the recipient entity (E-SMLC or MME) shall clear all references and state information for the location service transactions on the SCTP association on which the Reset Request was received and shall release any associated resources. The recipient entity shall then return a LCS-AP Reset Acknowledge message using the same SCTP association as the Reset Request.\nIf the initiating entity (E-SMLC or MME) received the LCS-AP Reset Acknowledge message, it shall stop the timer T3x02.",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_6.3.2.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.171_6.3.2.3",
+      "section_id": "6.3.2.3",
+      "section_title": "Abnormal Conditions",
+      "content": "On the first expiry of the timer T3x02, the Source entity (E-SMLC or MME) shall resend the LCS-AP Reset Request message and shall reset and restart timer T3x02. This retransmission is repeated a maximum of \"n\" times, where \"n\" is an O&M administered parameter. Following \"n\" unsuccessful reset attempts, the procedure shall be terminated and maintenance shall be informed.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.171_6.4.1",
+      "section_id": "6.4.1",
+      "section_title": "Abnormal Conditions",
+      "content": "If an ongoing location request is pre-empted at the initiator by an inter-eNB handover and MME relocation, or if the main signalling link to the target UE is released by the MME, or if a main signalling link failure indicated by the serving eNodeB persists for more than a certain timeout interval or if there is a timeout waiting for the positioning response, or any other abnormal conditions for which the positioning procedure cannot be maintained, the MME shall send a LCS-AP Location Abort message to the E-SMLC to terminate the positioning procedure.\nFor Intra-MME handovers, the location session between the MME and E-SMLC is not affected. Application layer impacts on these handovers are handled by higher protocol layers.\nIf the E-SMLC cannot proceed with positioning due to some protocol violation or error condition (e.g. inter-eNB handover), it shall return a LCS-AP Location Response message to the initiator containing a LCS cause and, optionally, positioning data.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.171_6.4.2",
+      "section_id": "6.4.2",
+      "section_title": "Overload",
+      "content": "If an E-SMLC is in overload condition, it may reject a LCS-AP Location Request by returning a LCS-AP Location Response containing a LCS Cause parameter indicating congestion. The initiator of the location requests (i.e. MME) may reduce the frequency of later location requests until rejection due to overload has ceased. In reducing the frequency of location service requests, the MME shall reduce lower priority requests, to zero if necessary, before reducing the frequency of higher priority requests. An E-SMLC shall similarly reject location requests of a lower priority, to zero if necessary, due to overload before rejecting location requests of a higher priority. An E-SMLC in overload condition may optionally employ the following procedures to alleviate overload:\na)\tAllow higher priority location service requests to pre-empt lower priority requests for which location service procedures are already in progress.\nb)\tAbort lower priority location service requests already in progress.\nc)\tReduce the supported QoS for lower priority requests for a location estimate – e.g. by reducing accuracy or increasing response time.\nd)\tEmploy UE based positioning methods, where supported by the target UE and the E-SMLC, rather than UE assisted or network based methods (except TA).\nThe priority of a location request shall be defined according to the value in the LCS Priority parameter. If this parameter is absent in a LCS-AP Location Request, the lowest priority shall be assumed.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.171_7.1",
+      "section_id": "7.1",
+      "section_title": "General",
+      "content": "This clause describes the structure of the messages and information elements required for the LCS-AP messages.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.171_7.2",
+      "section_id": "7.2",
+      "section_title": "Message Formats",
+      "content": "LCS-AP ASN.1 definition conforms to ITU-T Recommendations ITU-T Recommendation X.680 (07/2002) [8] and ITU-T Recommendation X.681 (07/2002) [9]. The ASN.1 definition specifies the structure and content of LCS-AP messages. The LCS-AP messages may contain any IEs specified in the object set definitions for that message without the order or number of occurrence being restricted by ASN.1. However, for this version of the standard, a sending entity shall construct a LCS-AP message according to the PDU definitions module and with the following additional rules (Note that in the following IE means an IE in the object set with an explicit id. If one IE needed to appear more than once in one object set, then the different occurrences have different IE ids):\n-\tIEs shall be ordered (in an IE container) in the order they appear in object set definitions.\n-\tObject set definitions specify how many times IEs may appear. An IE shall appear exactly once if the presence field in an object has value \"mandatory\". An IE may appear at most once if the presence field in an object has value \"optional\" or \"conditional\". If in a tabular format there is multiplicity specified for an IE (i.e. an IE list) then in the corresponding ASN.1 definition the list definition is separated into two parts. The first part defines an IE container list where the list elements reside. The second part defines list elements. The IE container list appears as an IE of its own. For this version of the standard an IE container list may contain only one kind of list elements.\nIf a LCS-AP message that is not constructed as defined above is received, this shall be considered as Abstract Syntax Error, and the message shall be handled as defined for Abstract Syntax error.\nFor the handling of unknown, unforeseen and erroneous protocol data, please refer to 3GPP TS 36.413 [7].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_36.413"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.171_7.3",
+      "section_id": "7.3",
+      "section_title": "LCS-AP Messages",
+      "content": "The following attributes are used for the tabular description of the messages and information elements: Presence, Range Criticality and Assigned Criticality. Their definition and use can be found in 3GPP TS 36.413 [7].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_36.413"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.171_7.3.1",
+      "section_id": "7.3.1",
+      "section_title": "LCS-AP Location Request message",
+      "content": "This message is sent by the MME to request a location estimate for a target UE and contains sufficient information to enable location according to the required QoS using any positioning method supported. The message is also used to request LCS assistance data transfer to an UE.\nDirection: MME → E-SMLC\nTable 7.3.1-1: Location Request message contents\nIE/Group Name\nPresence\nRange\nIE type and reference\nSemantics description\nCriticality\nAssigned Criticality\nMessage Type\nM\n7.4.2\nYES\nreject\nCorrelation ID\nM\n7.4.28\nYES\nreject\nLocation Type\nM\n7.4.3\nYES\nreject\nE-UTRAN Cell Identifier\nM\nE-CGI / 7.4.4\nYES\nignore\nLCS Client Type\nO\n7.4.5\nYES\nreject\nLCS Priority\nO\n7.4.6\nYES\nreject\nLCS QoS\nO\n7.4.7\nYES\nreject\nLCS Service Type ID\nO\n7.4.30\nYES\nignore\nUE Positioning Capability\nO\n7.4.8\nYES\nreject\nInclude Velocity\nO\n7.4.9\nYES\nreject\nIMSI\nO\n7.4.10\nYES\nignore\nIMEI\nO\n7.4.11\nYES\nignore\nMultiple APDUs\n0..3\nAPDU\nM\n7.4.18\nYES\nreject\nRAT Type\nO\n7.4.34\nYES\nignore\nCoverage Level\nO\n7.4.35\nYES\nignore\nUE Country Determination Indication\nO\n7.4.47\nYES\nignore\nNOTE:\tThe IMSI should be sent preferably if known. The IMEI may be sent if the IMSI is not known, or in addition to the IMSI for the purpose of allowing correlation between the two identities.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_7.3.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.171_7.3.2",
+      "section_id": "7.3.2",
+      "section_title": "LCS-AP Location Response message",
+      "content": "This message is sent in response to a LCS-AP Location Request to return a successful location estimate for a target UE or to indicate some failure in obtaining this. The message is also sent in response to a LCS-AP Location Request to return an indication that LCS assistance data has been successfully delivered to an UE.\nDirection: E-SMLC → MME\nTable 7.3.2-1: Location Response message contents\nIE/Group Name\nPresence\nRange\nIE type and reference\nSemantics description\nCriticality\nAssigned Criticality\nMessage Type\nM\n7.4.2\nYES\nreject\nCorrelation ID\nM\n7.4.28\nYES\nreject\nLocation Estimate\nO\nGeographic Area / 7.4.12\nYES\nreject\nPositioning Data\nO\n7.4.13\nYES\nreject\nVelocity Estimate\nO\n7.4.14\nYES\nreject\nAccuracy Fulfilment Indicator\nO\n7.4.15\nYES\nreject\nLCS Cause\nO\n7.4.16\nYES\nignore\nE-UTRAN Cell Identifier\nO\nE-CGI / 7.4.4\nYES\nignore\nCell Portion ID\nO\n7.4.31\nYES\nignore\nCivic Address\nO\n7.4.32\nYES\nignore\nBarometric Pressure\nO\n7.4.33\nYES\nignore\nUE Area Indication\nO\n7.4.48\nYES\nignore",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_7.3.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.171_7.3.3",
+      "section_id": "7.3.3",
+      "section_title": "LCS-AP Location Abort Request message",
+      "content": "This message is sent by the MME to abort the positioning attempt or the request for assistance data.\nDirection: MME → E-SMLC\nTable 7.3.3-1: Location Abort Request message contents\nIE/Group Name\nPresence\nRange\nIE type and reference\nSemantics description\nCriticality\nAssigned Criticality\nMessage Type\nM\n7.4.2\nYES\nreject\nCorrelation ID\nM\n7.4.28\nYES\nreject\nLCS Cause\nM\n7.4.16\nYES\nignore",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_7.3.3-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.171_7.3.4",
+      "section_id": "7.3.4",
+      "section_title": "LCS-AP Connection Oriented Information message",
+      "content": "This message is sent in association with an existing signalling connection between an E-SMLC and another entity to transfer information between the E-SMLC and other entity belonging to a higher level protocol.\nDirection: E-SMLC → MME or MME → E-SMLC\nTable 7.3.4-1: Connection Oriented Information message contents\nIE/Group Name\nPresence\nRange\nIE type and reference\nSemantics description\nCriticality\nAssigned Criticality\nMessage Type\nM\n7.4.2\nYES\nreject\nCorrelation ID\nM\n7.4.28\nYES\nreject\nPayload Type\nM\n7.4.17\nYES\nreject\nAPDU\nM\n7.4.18\nYES\nreject",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_7.3.4-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.171_7.3.5",
+      "section_id": "7.3.5",
+      "section_title": "LCS-AP Connectionless Information message",
+      "content": "This message conveys signalling information associated with a higher protocol level between an E-SMLC and another entity when there is no existing signalling connection association.\nDirection: E-SMLC → MME or MME → E-SMLC\nTable 7.3.5-1: Connectionless Information message contents\nIE/Group Name\nPresence\nRange\nIE type and reference\nSemantics description\nCriticality\nAssigned Criticality\nMessage Type\nM\n7.4.2\nYES\nreject\nSource Identity\nM\nNetwork Element / 7.4.19\nYES\nreject\nDestination Identity\nM\nNetwork Element / 7.4.19\nYES\nreject\nAPDU\nM\n7.4.18\nYES\nreject\nReturn Error Request\nO\n7.4.20\nYES\nreject\nReturn Error Cause\nO\n7.4.21\nYES\nignore",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_7.3.5-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.171_7.3.6",
+      "section_id": "7.3.6",
+      "section_title": "LCS-AP Reset Request message",
+      "content": "This message is sent to indicate a failure in the sending entity with loss of location service transactions that were established or were being established.\nDirection: E-SMLC → MME or MME → E-SMLC\nTable 7.3.6-1: Reset Request message contents\nIE/Group Name\nPresence\nRange\nIE type and reference\nSemantics description\nCriticality\nAssigned Criticality\nMessage Type\nM\n7.4.2\nYES\nreject\nLCS Cause\nM\n7.4.16\nYES\nignore",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_7.3.6-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.171_7.3.7",
+      "section_id": "7.3.7",
+      "section_title": "LCS-AP Reset Acknowledge message",
+      "content": "This message is sent in response to a LCS-AP Reset message to indicate that references and resources associated with location service transactions towards the entity sending the LCS-AP Reset have been released.\nDirection: E-SMLC → MME or MME → E-SMLC\nTable 7.3.7-1: Reset Acknowledge message contents\nIE/Group Name\nPresence\nRange\nIE type and reference\nSemantics description\nCriticality\nAssigned Criticality\nMessage Type\nM\n7.4.2\nYES\nreject",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_7.3.7-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.171_7.3.8",
+      "section_id": "7.3.8",
+      "section_title": "LCS-AP Ciphering Key Data message",
+      "content": "This message is used by the E-SMLC to send ciphering keys for broadcast assistance data to the MME.\nDirection: E-SMLC → MME\nTable 7.3.8-1: Ciphering Key Data message contents\nIE/Group Name\nPresence\nRange\nIE type and reference\nSemantics description\nCriticality\nAssigned Criticality\nMessage Type\nM\n7.4.2\nYES\nreject\nCiphering Data\nM\n7.4.36\nYES\nreject",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_7.3.8-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.171_7.3.9",
+      "section_id": "7.3.9",
+      "section_title": "LCS-AP Ciphering Key Data Result message",
+      "content": "This message is used by the MME to indicate to the E-SMLC whether the MME was able to successfully store the ciphering data sets received from the E-SMLC in a Ciphering Data Key message.\nDirection: MME → E-SMLC\nTable 7.3.9-1: Ciphering Key Data Result message contents\nIE/Group Name\nPresence\nRange\nIE type and reference\nSemantics description\nCriticality\nAssigned Criticality\nMessage Type\nM\n7.4.2\nYES\nreject\nCiphering Data Ack\nC\n7.4.37\nYES\nreject\nCiphering Data Error Report\nC\n7.4.38\nYES\nreject",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_7.3.9-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.171_7.4.1",
+      "section_id": "7.4.1",
+      "section_title": "General",
+      "content": "When specifying information elements which are to be represented by bit strings, if not otherwise specifically stated in the semantics description of the concerned IE or elsewhere, the following principle applies with regards to the ordering of bits:\n-\tThe first bit (leftmost bit) contains the most significant bit (MSB)\n-\tThe last bit (rightmost bit) contains the least significant bit (LSB)\n-\tWhen importing bit strings from other specifications, the first bit of the bit string contains the first bit of the concerned information",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.171_7.4.2",
+      "section_id": "7.4.2",
+      "section_title": "Message Type",
+      "content": "The Message Type IE uniquely identifies the message being sent. It is mandatory for all messages.\nTable 7.4.2-1: Message Type\nIE/Group Name\nPresence\nRange\nIE type and reference\nSemantics description\nProcedure Code\nM\nINTEGER (0..255)\n\"0\" = LCS-AP LOCATION SERVICE REQUEST\n\"1\" = LCS-AP CONNECTION ORIENTED INFORMATION TRANSFER\n\"2\" = LCS-AP CONNECTIONLESS INFORMATION TRANSFER\n\"3\" = LCS-AP LOCATION ABORT\n\"4\" = LCS-AP RESET\n\"5\" = LCS-AP CIPHERING KEY DATA\nType of Message\nM\nENUMERATED (Initiating Message, Successful Outcome, Unsuccessful Outcome, …)",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_7.4.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.171_7.4.3",
+      "section_id": "7.4.3",
+      "section_title": "Location Type",
+      "content": "This parameter defines the type of location information being requested.\nTable 7.4.3-1: Location Type\nIE/Group Name\nPresence\nRange\nIE type and reference\nSemantics description\nLocation Type\nM\nENUMERATED (geographic location, assistance information,\n…,\nlast known location)",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_7.4.3-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.171_7.4.4",
+      "section_id": "7.4.4",
+      "section_title": "E-CGI",
+      "content": "This parameter gives the current cell location of the target UE or the last known cell location for the case when the Location Type IE is set to last known location. The E-UTRAN Cell Global Identifier (ECGI) is used to globally identify a cell.\nTable 7.4.4-1: ECGI\nIE/Group Name\nPresence\nRange\nIE type and reference\nSemantics description\nPLMN Identity\nM\n7.4.27\nCell Identity\nM\nBIT STRING (28)\nThe leftmost bits of the Cell Identity correspond to the eNB ID (defined in 7.4.19).",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_7.4.4-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.171_7.4.5",
+      "section_id": "7.4.5",
+      "section_title": "LCS Client Type",
+      "content": "This parameter defines the type of the originating LCS Client. It shall be included if the Location Type indicates a request for a location estimate and may be included in other cases to assist an SMLC to appropriately prioritize a location request.\nTable 7.4.5-1: LCS Client Type\nIE/Group Name\nPresence\nRange\nIE type and reference\nSemantics description\nClient Type\nM\nENUMERATED\n(Emergency Services, Value Added Services, PLMN Operator Services, Lawful Intercept Services, PLMN Operator - broadcast services, PLMN Operator - O&M, PLMN Operator - anonymous statistics, PLMN Operator - Target MS service support,\n…)\nIdentifies the category of LCS client.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_7.4.5-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.171_7.4.6",
+      "section_id": "7.4.6",
+      "section_title": "LCS Priority",
+      "content": "This parameter defines the priority of the location request.\nTable 7.4.6-1: LCS Priority\nIE/Group Name\nPresence\nRange\nIE type and reference\nSemantics description\nLCS Priority\nM\nOCTET STRING (SIZE(1))\n0= highest priority\n1= normal priority\nall other values treated as 1\nFor details, refer to 3GPP TS 22.071 [10].",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_7.4.6-1",
+        "ts_22.071"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.171_7.4.7",
+      "section_id": "7.4.7",
+      "section_title": "LCS QoS",
+      "content": "This parameter provides the required Quality of Service for the LCS Request. Quality of Service may include horizontal accuracy, vertical accuracy and allowed response time.\nTable 7.4.7-1: LCS QoS\nIE/Group Name\nPresence\nRange\nIE type and reference\nSemantics description\nHorizontal Accuracy\nO\nINTEGER(\n0..127)\nbit 8 = 0\nbits 7-1 = 7 bit Uncertainty Code defined in 3GPP TS 23.032 [6].\nThe horizontal location error should be less than the error indicated by the uncertainty code with 67% confidence.\nVertical Requested\nO\nENUMERATED(\nVertical Coordinate Is Not Requested (0),\nVertical Coordinate Is Requested (1) )\nDefault value if this IE is not present is: Vertical Coordinate Is Not Requested (0).\nVertical Accuracy\nO\nINTEGER(\n0..127)\nbit 8 = 0\nbits 7-1 = 7 bit Vertical Uncertainty Code defined in 3GPP TS 23.032 [6].\nThe vertical location error should be less than the error indicated by the uncertainty code with 67% confidence.\nIf the vertical requested IE is not present or present with a value of 0, then this vertical accuracy will be ignored, if present.\nResponse Time\nO\nENUMERATED\n(Low Delay(0),\nDelay Tolerant (1),\n…)\nFor details, refer to 3GPP TS 22.071 [10].",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_7.4.7-1",
+        "ts_23.032",
+        "ts_22.071"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.171_7.4.8",
+      "section_id": "7.4.8",
+      "section_title": "UE Positioning Capability",
+      "content": "This parameter provides information about the LCS capabilities of the target UE.\nTable 7.4.8-1: UE Positioning Capability\nIE/Group Name\nPresence\nRange\nIE Type and Reference\nSemantics Description\nCriticality\nAssigned Criticality\nLPP Support\nM\nBOOLEAN\nDefines if the UE supports LPP or not. TRUE means supported.\n–",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_7.4.8-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.171_7.4.9",
+      "section_id": "7.4.9",
+      "section_title": "Include Velocity",
+      "content": "This parameter indicates if the Velocity of the target UE is requested in the Location Response.\nTable 7.4.9-1: Include Velocity\nIE/Group Name\nPresence\nRange\nIE type and reference\nSemantics description\nVelocity Indicator\nO\nENUMERATED (requested,\nnot requested,\n…)\nSpecify if Velocity of UE is requested.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_7.4.9-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.171_7.4.10",
+      "section_id": "7.4.10",
+      "section_title": "IMSI",
+      "content": "This parameter identifies the IMSI of the target UE.\nTable 7.4.10-1: IMSI\nIE/Group Name\nPresence\nRange\nIE type and reference\nSemantics description\nIMSI\nM\nOCTET STRING (SIZE (3..8))\nThe number of decimal digits shall be from 6 to 15 starting with the digits from the PLMN identity. It is encoded with TBCD String, two digits per octet.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_7.4.10-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.171_7.4.11",
+      "section_id": "7.4.11",
+      "section_title": "IMEI",
+      "content": "This parameter identifies the IMEI of the target UE.\nTable 7.4.11-1: IMEI\nIE/Group Name\nPresence\nRange\nIE type and reference\nSemantics description\nIMEI\nM\nOCTET STRING (SIZE (8))\nRefers to International Mobile Station Equipment Identity and Software Version Number (SVN) defined in TS 3GPP TS 23.003 [11].\nThis IE is 16 digits encoded with TBCD String, two digits per octet.\nIf the SVN is not present the last octet shall contain the digit 0 as filler.\nIf present the SVN shall be included in the last octet.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_7.4.11-1",
+        "ts_23.003"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.171_7.4.12",
+      "section_id": "7.4.12",
+      "section_title": "Geographic Area",
+      "content": "This parameter provides a location estimate for the target UE in the case of a successful location attempt.\nTable 7.4.12-1: Geographic Area\nIE/Group Name\nPresence\nRange\nIE type and reference\nSemantics description\nCHOICE Geographical Area\n>Point\nEllipsoid point\n>>Geographical\nCoordinates\nM\n7.4.23\n>Point With Uncertainty\nEllipsoid point with uncertainty circle\n>>Geographical\nCoordinates\nM\n7.4.23\n>>Uncertainty Code\nM\nINTEGER (\n0..127)\nThe uncertainty \"r\" expressed in meters is derived from the \"Uncertainty Code\" k by\nr = 10x(1.1k-1)\n>Ellipsoid point with\nuncertainty Ellipse\n>>Geographical\nCoordinates\nM\n7.4.23\n>>Uncertainty Ellipse\nM\n7.4.24\n>>Confidence\nM\nINTEGER (\n0..100)\nIn percentage\n>Polygon\nList of Ellipsoid points\n>>Polygon Point\n1..<maxnoofPoints>\nThe minimum number of points allowed is 3.\n>>>Geographical\nCoordinates\nM\n7.4.23\n>Ellipsoid point with\naltitude\n>>Geographical\nCoordinates\nM\n7.4.23\n>>Altitude and direction\nM\n7.4.22\n>Ellipsoid point with\naltitude and uncertainty\nEllipsoid\n>>Geographical\nCoordinates\nM\n7.4.23\n>>Altitude and direction\nM\n7.4.22\n>>Uncertainty Ellipse\nM\n7.4.24\n>>Uncertainty Altitude\nM\nINTEGER (\n0..127)\nThe uncertainty altitude \"h\" expressed in metres is derived from the \"Uncertainty Altitude\" k, by:\nh=45x(1.025k-1)\n>>Confidence\nM\nINTEGER (\n0..100)\nIn percentage\n>Ellipsoid Arc\n>>Geographical\nCoordinates\nM\n7.4.23\n>>Inner radius\nM\nINTEGER (\n0..216-1)\nThe relation between the value (N) and the radius (r) in meters it describes is 5N≤ r <5(N+1), except for N=216-1 for which the range is extended to include all grater values of (r).\n>>Uncertainty radius\nM\nINTEGER (\n0..127)\nThe uncertainty \"r\" is derived from the \"Uncertainty radius\" k by\nr = 10x(1.1k-1)\n>>Offset angle\nM\nINTEGER (\n0..179)\nThe relation between the value (N) and the angle (a) in degrees it describes is 2N≤ a <2(N+1)\n>>Included angle\nM\nINTEGER (\n0..179)\nThe relation between the value (N) and the angle (a) in degrees it describes is 2N< a ≤2(N+1)\n>>Confidence\nM\nINTEGER (\n0..100)\n>High Accuracy Ellipsoid point with uncertainty Ellipse\n>>High Accuracy Geographical Coordinates\nM\n7.4.41\n>>High Accuracy Uncertainty Ellipse\nM\n7.4.42\n>>Confidence\nM\nINTEGER (\n0..100)\nIn percentage\n>High Accuracy Ellipsoid point with Scalable uncertainty Ellipse\n>>High Accuracy Geographical Coordinates\nM\n7.4.41\n>>High Accuracy Scalable Uncertainty Ellipse\nM\n7.4.45\n>>Confidence\nM\nINTEGER (\n0..100)\nIn percentage\n>High Accuracy Ellipsoid point with altitude and uncertainty Ellipsoid\n>>High Accuracy Geographical Coordinates\nM\n7.4.41\n>>High Accuracy Altitude\nM\n7.4.43\n>>High Accuracy Uncertainty Ellipse\nM\n7.4.42\n>>Confidence\nM\nINTEGER (\n0..100)\nIn percentage\n>>High Accuracy Uncertainty Altitude\nM\nINTEGER (\n0..255)\nThe high accuracy uncertainty altitude \"h\" expressed in metres is derived from the high accuracy uncertainty code \"k\", by:\nh=0.3x(1.02k-1)\n>>Vertical Confidence\nM\nINTEGER (\n0..100)\nIn percentage\n>High Accuracy Ellipsoid point with altitude and scalable uncertainty Ellipsoid\n>>High Accuracy Geographical Coordinates\nM\n7.4.41\n>>High Accuracy Altitude\nM\n7.4.43\n>>High Accuracy Scalable Uncertainty Ellipse\nM\n7.4.45\n>>Confidence\nM\nINTEGER (\n0..100)\nIn percentage\n>>High Accuracy Scalable Uncertainty Altitude\nM\n7.4.46\n>>Vertical Confidence\nM\nINTEGER (\n0..100)\nIn percentage\nTable 7.4.12-2: Range bound\nRange bound\nExplanation\nmaxnoofPoints\nMaximum no. of points in polygon. Value is 15.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_7.4.12-1",
+        "table_7.4.12-2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.171_7.4.13",
+      "section_id": "7.4.13",
+      "section_title": "Positioning Data",
+      "content": "This parameter provides additional information for the positioning attempt from the E-SMLC.\nTable 7.4.13-1: Positioning Data\nIE/Group Name\nPresence\nRange\nIE type and reference\nSemantics description\nPosition Data\nM\n>Positioning Data Set\nO\n>>Positioning Method and Usage\n1..<maxSet>\nOCTET STRING (1)\nCoding of positioning method (bits 8-4):\n00000 Cell ID\n00001 Reserved\n00010 E-CID\n00011 Reserved\n00100 OTDOA\n00101 Reserved\n00110 Reserved\n00111 Reserved\n01000 U-TDOA\n01001 Reserved\n01010 Reserved\n01011 Reserved\n01100 to 01111 reserved for other location technologies\n10000 to 11111 reserved for network specific positioning methods\nCoding of usage (bits 3-1):\n000 Attempted unsuccessfully due to failure or interruption - not used.\n001 Attempted successfully: results not used to generate location - not used.\n010 Attempted successfully: results used to verify but not generate location - not used.\n011 Attempted successfully: results used to generate location.\n100 Attempted successfully: case where UE supports multiple mobile based positioning methods and the actual method or methods used by the UE cannot be determined.\n>GNSS Positioning Data Set\nO\n>>GNSS Positioning Method and Usage\nO\n1..<maxGNSSSet>\nOCTET STRING (1)\nCoding of Method (Bits 8-7) :\n00 : UE-Based\n01 : UE-Assisted\n10 : Conventional\n11 : Reserved\nCoding of GNSS ID (Bits 6-4) :\n000 : GPS\n001 : Galileo\n010 : SBAS\n011 : Modernized GPS\n100 : QZSS\n101 : GLONASS\n110 : BDS\n111 : NavIC\nCoding of usage (bits 3-1):\n000\tAttempted unsuccessfully due to failure or interruption\n001\tAttempted successfully: results not used to generate location\n010\tAttempted successfully: results used to verify but not generate location\n011 Attempted successfully: results used to generate location\n100 Attempted successfully: case where UE supports multiple mobile based positioning methods and the actual method or methods used by the UE cannot be determined.\n>Additional Positioning Data Set\nO\n>>Additional Positioning Method and Usage\n1 to <maxAddPosSet>\nOCTET STRING (SIZE(1))\nCoding of positioning method (bits 8-7):\n00 UE-Based;\n01 UE-Assisted;\n10 Standalone;\n11 Reserved.\nCoding of Additional Positioning ID (bits 6-4):\n000 Barometric Pressure;\n001 WLAN;\n010 Bluetooth;\n011 MBS;\n100 Motion-Sensor(s);\nother values reserved.\nCoding of usage (bits 3-1):\n000\tAttempted unsuccessfully due to failure or interruption\n001\tAttempted successfully: results not used to generate location\n010\tAttempted successfully: results used to verify but not generate location\n011 Attempted successfully: results used to generate location\n100 Attempted successfully: case where UE supports multiple mobile based positioning methods and the actual method or methods used by the UE cannot be determined.\nTable 7.4.13-2: Range bound\nRange bound\nExplanation\nmaxSet\nMaximum size of the data set. Value is 9.\nmaxGNSSSet\nMaximum size of the data. Value is 9.\nmaxAddPosSet\nMaximum size of the data Value is 8.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_7.4.13-1",
+        "table_7.4.13-2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.171_7.4.14",
+      "section_id": "7.4.14",
+      "section_title": "Velocity Estimate",
+      "content": "This parameter provides the velocity estimate for the target UE.\nTable 7.4.14-1: Velocity Estimate\nIE/Group Name\nPresence\nRange\nIE type and reference\nSemantics description\nChoice Velocity Estimate\n>Horizontal Velocity\nHorizontal speed and bearing (the direction of travel).\n>>Horizontal Speed and Bearing\nM\n7.4.25\n>Horizontal with Vertical Velocity\nHorizontal speed and bearing (the direction of travel) as well as vertical speed and the direction (upward or downward)\n>>Horizontal Speed and Bearing\nM\n7.4.25\n>>Vertical Velocity\nM\n7.4.26\n>Horizontal Velocity with Uncertainty\nHorizontal speed, bearing (the direction of travel), and the uncertainty of the reported speed.\n>>Horizontal Speed and Bearing\nM\n7.4.25\n>>Uncertainty Speed\nM\nINTEGER\n(0..255)\nUncertainty speed is encoded in increments of 1 kilometer per hour using an 8 bit binary coded number (N). The value of N gives the uncertainty speed except for N=255 which indicates that the uncertainty is not specified\n>Horizontal with Vertical Velocity and Uncertainty\nHorizontal speed and bearing (the direction of travel) as well as vertical speed and the direction (upward or downward) and the uncertainty of the reported speed.\n>>Horizontal Speed and Bearing\nM\n7.4.25\n>>Vertical Velocity\nM\n7.4.26\n>>Horizontal Uncertainty Speed\nM\nINTEGER(0..255)\nHorizontal Uncertainty Speed is encoded in increments of 1 kilometer per hour using an 8 bit binary coded number (N). The value of N gives the uncertainty speed except for N=255 which indicates that the uncertainty is not specified\n>>Vertical Uncertainty Speed\nM\nINTEGER(0..255)\nVertical Uncertainty Speed is encoded in increments of 1 kilometer per hour using an 8 bit binary coded number (N). The value of N gives the uncertainty speed except for N=255 which indicates that the uncertainty is not specified",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_7.4.14-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.171_7.4.15",
+      "section_id": "7.4.15",
+      "section_title": "Accuracy Fulfilment Indicator",
+      "content": "This parameter whether the returned position estimate satisfies the requested accuracy or not.\nTable 7.4.15-1: Accuracy Fulfilment Indicator\nIE/Group Name\nPresence\nRange\nIE type and reference\nSemantics description\nAccuracy Fulfilment Indicator\nO\nENUMERATED (requested accuracy fulfilled,requested accuracy not fulfilled,…)\nIndicates if the requested accuracy is fulfilled or not.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_7.4.15-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.171_7.4.16",
+      "section_id": "7.4.16",
+      "section_title": "LCS Cause",
+      "content": "The LCS Cause is included if and only if a requested location estimate was not successfully obtained (e.g. location estimate not available), requested LCS assistance data was not successfully transferred to the UE or location-related data has been lost. The parameter provides the reason for the failure.\nTable 7.4.16-1: LCS Cause\nIE/Group Name\nPresence\nRange\nIE Type and Reference\nSemantics Description\nCHOICE Cause Group\n>Radio Network Layer\n>>Radio Network Layer Cause\nM\nENUMERATED(\nUnspecified\n...)\n>Transport Layer\n>>Transport Layer Cause\nM\nENUMERATED(Transport Resource Unavailable,\nUnspecified,\n...)\n>Protocol\n>>Protocol Cause\nM\nENUMERATED(Transfer Syntax Error,Abstract Syntax Error (Reject),Abstract Syntax Error (Ignore and Notify),Message not Compatible with Receiver State,\nSemantic Error,Unspecified,\nAbstract Syntax Error (Falsely Constructed Message),\n...)\n>Misc\n>>Misc Cause\nM\nENUMERATED(Processing Overload,Hardware Failure,O&M Intervention,Unspecified, ...,Ciphering Key Data Lost)",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_7.4.16-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.171_7.4.17",
+      "section_id": "7.4.17",
+      "section_title": "Payload Type",
+      "content": "This parameter indicates the type of APDU included in LCS-AP Connected Oriented Information message. The supported information types are LPP and LPPa.\nTable 7.4.17-1: Payload Type\nIE/Group Name\nPresence\nRange\nIE type and reference\nSemantics description\nPayload Type\nM\nENUMERATED\n(LPP,\nLPPa,\n…)",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_7.4.17-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.171_7.4.18",
+      "section_id": "7.4.18",
+      "section_title": "APDU",
+      "content": "This parameter contains an embedded APDU. For information transfer between an E-SMLC and an eNB this shall be an LPPa APDU. For information transfer between an E-SMLC and a target UE, this shall be an LPP APDU.\nTable 7.4.18-1: APDU\nIE/Group Name\nPresence\nRange\nIE type and reference\nSemantics description\nAPDU\nM\nOCTET STRING\nThis IE contains a message whose content and encoding are defined according to the Payload Type.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_7.4.18-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.171_7.4.19",
+      "section_id": "7.4.19",
+      "section_title": "Network Element",
+      "content": "This parameter identifies the source or destination of the message. The network element is identified by association with either an eNB ID or the identity of an E-SMLC.\nTable 7.4.19-1: Network Element\nIE/Group Name\nPresence\nRange\nIE type and reference\nSemantics description\nCHOICE Network Element\nM\n>Global eNB ID\nThe global identity of the eNB\n>>PLMN Identity\n7.4.27\n>>eNB ID\n7.4.29\n>E-SMLC Identity\nINTEGER (0..255)\nThe identity of the E-SMLC (an index to identify an specific E-SMLC among all the available E-SMLCs in the network)",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_7.4.19-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.171_7.4.20",
+      "section_id": "7.4.20",
+      "section_title": "Return Error Request",
+      "content": "This parameter may be included to request an error response if LCS-AP message cannot be delivered successfully to its final destination. This parameter shall not be included if the Return Error cause is present.\nTable 7.4.20-1: Return Error Type\nIE/Group Name\nPresence\nRange\nIE type and reference\nSemantics description\nReturn Error Type\nM\nENUMERATED (\nYes,\nNo\n)",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_7.4.20-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.171_7.4.21",
+      "section_id": "7.4.21",
+      "section_title": "Return Error Cause",
+      "content": "This parameter indicates an error response for a LCS-AP connectionless information message that could not be delivered to its final destination. The APDU should be present and the same as the APDU in the original undelivered message. The source and destination identities shall be included and the same as the destination and source identities, respectively, in the original undelivered message.\nTable 7.4.21-1: Return Error Cause\nIE/Group Name\nPresence\nRange\nIE type and reference\nSemantics description\nReturn Error Cause\nM\nENUMERATED (systemfailure, protocolerror, destinationunkown, destinationunreachable, congestion,…)",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_7.4.21-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.171_7.4.22",
+      "section_id": "7.4.22",
+      "section_title": "Altitude and direction",
+      "content": "Table 7.4.22-1: Altitude and direction\nIE/Group Name\nPresence\nRange\nIE type and reference\nSemantics description\nDirection of Altitude\nM\nENUMERATED (Height, Depth)\nAltitude\nM\nINTEGER (\n0..215-1)\nThe relation between the value (N) and the altitude (a) in meters it describes is N ≤ a < N+1, except for N=215-1 for which the range is extended to include all greater values of (a).",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_7.4.22-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.171_7.4.23",
+      "section_id": "7.4.23",
+      "section_title": "Geographical Coordinates",
+      "content": "This IE contains the geographical coordinates.\nTable 7.4.23-1: Geographical Coordinates\nIE/Group Name\nPresence\nRange\nIE type and reference\nSemantics description\nLatitude Sign\nM\nENUMERATED (North, South)\nDegrees Of Latitude\nM\nINTEGER (\n0..223-1)\nThe IE value (N) is derived by this formula:\nN223 X /90  N+1\nX being the latitude in degree (0°.. 90°)\nDegrees Of Longitude\nM\nINTEGER (\n-223..223-1)\nThe IE value (N) is derived by this formula:\nN224 X /360  N+1\nX being the longitude in degree (-180°..+180°)",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_7.4.23-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.171_7.4.24",
+      "section_id": "7.4.24",
+      "section_title": "Uncertainty Ellipse",
+      "content": "This IE contains the uncertainty ellipse of a geographical area.\nTable 7.4.24-1: Uncertainty Ellipse\nIE/Group Name\nPresence\nRange\nIE type and reference\nSemantics description\nUncertainty semi-major\nM\nINTEGER (0..127)\nThe uncertainty \"r\" is derived from the \"uncertainty code\" k by r = 10x(1.1k-1)\nUncertainty semi-minor\nM\nINTEGER (0..127)\nThe uncertainty \"r\" is derived from the \"uncertainty code\" k by r = 10x(1.1k-1)\nOrientation of major axis\nM\nINTEGER (0..89)\nThe relation between the IE value (N) and the angle (a) in degrees it describes is 2N≤ a <2(N+1)",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_7.4.24-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.171_7.4.25",
+      "section_id": "7.4.25",
+      "section_title": "Horizontal Speed and Bearing",
+      "content": "This IE contains the two components of horizontal velocity: speed and bearing\nTable 7.4.25-1: Horizontal Speed and Bearing\nIE/Group Name\nPresence\nRange\nIE type and reference\nSemantics description\nBearing\nM\nINTEGER\n(0..359)\nThe direction of movement is given in degrees where '0' represents North, '90' represents East, etc.\nHorizontal Speed\nM\nINTEGER\n(0..< 211-1)\nThe relationship between (N) and the horizontal speed (h) in kilometers per hour it describes is:\nN ≤ h < N + 0.5\t(N=0)\nN – 0.5 ≤ h < N + 0.5\t(0<N<211-1)\nN – 0.5 ≤ h(N = 211-1)",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_7.4.25-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.171_7.4.26",
+      "section_id": "7.4.26",
+      "section_title": "Vertical Velocity",
+      "content": "This IE contains the two components of vertical velocity: speed and direction\nTable 7.4.26-1: Vertical Velocity\nIE/Group Name\nPresence\nRange\nIE type and reference\nSemantics description\nVertical Speed\nM\nINTEGER\n(0..28-1)\nThe relationship between (N) and the vertical speed (v) in kilometers per hour it describes is:\nN ≤ v < N + 0.5\t(N = 0)\nN – 0.5 ≤ v < N + 0.5    (0 < N < 28-1)\nN – 0.5 ≤ v (N = 28-1)\nVertical Speed Direction\nENUMERATED (upward, downward)",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_7.4.26-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.171_7.4.27",
+      "section_id": "7.4.27",
+      "section_title": "PLMN Identity",
+      "content": "This information element indicates the PLMN Identity.\nTable 7.4.27-1: PLMN Identity\nIE/Group Name\nPresence\nRange\nIE type and reference\nSemantics description\nPLMN identity\nM\nOCTET STRING (SIZE (3))\n- digits 0 to 9, encoded 0000 to 1001,\n- 1111 used as filler digit,\ntwo digits per octet,\n- bits 4 to 1 of octet n encoding digit 2n-1\n- bits 8 to 5 of octet n encoding digit 2n\n-The Selected PLMN identity consists of 3 digits from MCC followed by either -a filler digit plus 2 digits from MNC (in case of 2 digit MNC) or -3 digits from MNC (in case of a 3 digit MNC).",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_7.4.27-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.171_7.4.28",
+      "section_id": "7.4.28",
+      "section_title": "Correlation ID",
+      "content": "This IE indicates a specific location session. It is used in order to correlate request/response and an ongoing location session.\nTable 7.4.28-1: Correlation ID\nIE/Group Name\nPresence\nRange\nIE type and reference\nSemantics description\nCorrelation ID\nM\nOCTET STRING (SIZE (4))\nThe identifier of a location session in E-UTRAN. It should be unique for all concurrently active location sessions in a particular MME.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_7.4.28-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.171_7.4.29",
+      "section_id": "7.4.29",
+      "section_title": "eNB ID",
+      "content": "This information element is used to identify an eNB.\nTable 7.4.29-1: eNB ID\nIE/Group Name\nPresence\nRange\nIE type and reference\nSemantics description\nCHOICE eNB ID\n>Macro eNB ID\nBIT STRING (20)\nEqual to the 20 leftmost bits of the Cell Identity IE contained in the E-UTRAN CGI IE (see clause 7.4.4) of each cell served by the eNB\n>Home eNB ID\nBIT STRING (28)\nEqual to the Cell Identity IE contained in the E-UTRAN CGI IE (see clause 7.4.4) of the cell served by the eNB\n>Short Macro eNB ID\nBIT STRING (18)\nEqual to the 18 leftmost bits of the Cell Identity IE contained in the E-UTRAN CGI IE (see clause 7.4.4) of each cell served by the eNB\n>Long Macro eNB ID\nBIT STRING (21)\nEqual to the 21 leftmost bits of the Cell Identity IE contained in the E-UTRAN CGI IE (see clause 7.4.4) of each cell served by the eNB",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_7.4.4",
+        "table_7.4.29-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.171_7.4.30",
+      "section_id": "7.4.30",
+      "section_title": "LCS Service Type ID",
+      "content": "This parameter defines the service type ID for the location request.\nTable 7.4.30-1: LCS Service Type ID\nIE/Group Name\nPresence\nRange\nIE type and reference\nSemantics description\nLCS Service Type ID\nO\nINTEGER(\n0..127)\nIdentifies the type of service requested. The meaning of the different service types is defined in 3GPP TS 22.071 [10].",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_7.4.30-1",
+        "ts_22.071"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.171_7.4.31",
+      "section_id": "7.4.31",
+      "section_title": "Cell Portion ID",
+      "content": "This parameter gives the current Cell Portion location of the target UE. The Cell Portion ID is the unique identifier for a cell portion within a cell.\nTable 7.4.31-1: Cell Portion\nIE/Group Name\nPresence\nRange\nIE type and reference\nSemantics description\nCell Portion ID\nM\nINTEGER (0..255,..., 256..4095)",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_7.4.31-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.171_7.4.32",
+      "section_id": "7.4.32",
+      "section_title": "Civic Address",
+      "content": "This information element contains a location estimate for the target UE expressed as a Civic address.\nTable 7.4.32-1: Civic Address\nIE/Group Name\nPresence\nRange\nIE type and reference\nSemantics description\nCivic Address\nO\nOCTET STRING\nThis IE contains a UTF-8 encoded PIDF-LO XML document as defined in IETF RFC 4119 [13]. The document shall only contain a civic address using the namespaces \"urn:ietf:params:xml:ns:pidf:geopriv10:civicAddr\" per IETF RFC 5139 [14] and \"urn:ietf:params:xml:ns:pidf:geopriv10:civicAddr:ext\" per IETF RFC 6848 [15].",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_7.4.32-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.171_7.4.33",
+      "section_id": "7.4.33",
+      "section_title": "Barometric Pressure",
+      "content": "This information element contains the barometric pressure measurement as reported by the target UE.\nTable 7.4.33-1: Barometric Pressure\nIE/Group Name\nPresence\nRange\nIE type and reference\nSemantics description\nBarometric Pressure\nO\nINTEGER (30000..115000)\nThis IE specifies the measured uncompensated atmospheric pressure in units of Pascal (Pa).",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_7.4.33-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.171_7.4.34",
+      "section_id": "7.4.34",
+      "section_title": "RAT Type",
+      "content": "This parameter provides the serving RAT type for the target UE or the last known serving RAT type for the case when the Location Type IE is set to last known location.\nTable 7.4.34-1: RAT Type\nIE/Group Name\nPresence\nRange\nIE type and reference\nSemantics description\nRAT Type\nO\nENUMERATED (lte-wb, nb-iot, lte-m, …)\nThis IE provides the serving RAT type.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_7.4.34-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.171_7.4.35",
+      "section_id": "7.4.35",
+      "section_title": "Coverage Level",
+      "content": "This parameter defines the type of coverage level being requested.\nTable 7.4.35-1: Coverage Level\nIE/Group Name\nPresence\nRange\nIE type and reference\nSemantics description\nCoverage Level\nO\nENUMERATED (Extended Coverage,\n…)",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_7.4.35-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.171_7.4.36",
+      "section_id": "7.4.36",
+      "section_title": "Ciphering Data",
+      "content": "This parameter contains the ciphering data sets sent by the E-SMLC to the MME.\nTable 7.4.36-1: Ciphering Data\nIE/Group Name\nPresence\nRange\nIE type and reference\nSemantics description\nCiphering Data\nM\n>Ciphering Data Set\nM\n1..<maxCipherSet>\n7.4.39\nTable 7.4.36-2: Range bound\nRange bound\nExplanation\nmaxCipherSet\nMaximum size of the data set. Value is 16",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_7.4.36-1",
+        "table_7.4.36-2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.171_7.4.37",
+      "section_id": "7.4.37",
+      "section_title": "Ciphering Data Ack",
+      "content": "This parameter contains the ciphering data acknowledgement information sent by the MME to the E-SMLC.\nTable 7.4.37-1: Ciphering Data Ack\nIE/Group Name\nPresence\nRange\nIE type and reference\nSemantics description\nCiphering Data Ack\nM\nThis IE contains the list of ciphering set IDs for which the MME is sending an acknowledgement\n>Ciphering Set ID\nM\n1..<maxCipherSet>\nINTEGER\n(0..65535)\nTable 7.4.37-2: Range bound\nRange bound\nExplanation\nmaxCipherSet\nMaximum size of the data set. Value is 16",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_7.4.37-1",
+        "table_7.4.37-2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.171_7.4.38",
+      "section_id": "7.4.38",
+      "section_title": "Ciphering Data Error Report",
+      "content": "This parameter contains a list of ciphering data sets with the associated outcome of storage attempt at the MME.\nTable 7.4.38-1: Ciphering Data Error Report\nIE/Group Name\nPresence\nRange\nIE type and reference\nSemantics description\nCiphering Data Error Report\nM\n>Ciphering Data Error Report Contents\nM\n1..<maxCipherSet>\n7.4.40\nTable 7.4.38-2: Range bound\nRange bound\nExplanation\nmaxCipherSet\nMaximum size of the data set. Value is 16",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_7.4.38-1",
+        "table_7.4.38-2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.171_7.4.39",
+      "section_id": "7.4.39",
+      "section_title": "Ciphering Data Set",
+      "content": "This parameter contains a ciphering data set sent by the E-SMLC to the MME.\nTable 7.4.39-1: Ciphering Data Set\nIE/Group Name\nPresence\nRange\nIE type and reference\nSemantics description\nCiphering Data Set\nM\n>Ciphering Set ID\nM\nINTEGER\n(0..65535)\n>Ciphering Key\nM\nOCTET STRING (SIZE(16))\n>c0\nM\nBIT STRING (SIZE (1..128))\n>SIB Types\nM\nOCTET STRING (SIZE(4))\nThis IE contains a bitmap indicating the positioning SIB types for which the ciphering data set is applicable:\n--\ta bit set to 0 indicates that the ciphering data set is not applicable to the corresponding positioning SIB type\n-\ta bit set to 1 indicates that the ciphering data set is applicable to the corresponding positioning SIB type\nThe mapping of the bits to the positioning SIB types is as follows:\n--\tbit 8 in the first octet maps to positioning SIB Type 1-1\n--\tbit 7 in the first octet maps to positioning SIB Type 1-2\n--\tbit 6 in the first octet maps to positioning SIB Type 1-3\n--\tbit 5 in the first octet maps to positioning SIB Type 1-4\n--\tbit 4 in the first octet maps to positioning SIB Type 1-5\n--\tbit 3 in the first octet maps to positioning SIB Type 1-6\n--\tbit 2 in the first octet maps to positioning SIB Type 1-7\n--\tbit 1 in the first octet maps to positioning SIB Type 2-1\n--\tbit 8 in the second octet maps to positioning SIB Type 2-2\n--\tbit 7 in the second octet maps to positioning SIB Type 2-3\n--\tbit 6 in the second octet maps to positioning SIB Type 2-4\n--\tbit 5 in the second octet maps to positioning SIB Type 2-5\n--\tbit 4 in the second octet maps to positioning SIB Type 2-6\n--\tbit 3 in the second octet maps to positioning SIB Type 2-7\n--\tbit 2 in the second octet maps to positioning SIB Type 2-8\n--\tbit 1 in the second octet maps to positioning SIB Type 2-9\n--\tbit 8 in the third octet maps to positioning SIB Type 2-10\n--\tbit 7 in the third octet maps to positioning SIB Type 2-11\n--\tbit 6 in the third octet maps to positioning SIB Type 2-12\n--\tbit 5 in the third octet maps to positioning SIB Type 2-13\n--\tbit 4 in the third octet maps to positioning SIB Type 2-14\n--\tbit 3 in the third octet maps to positioning SIB Type 2-15\n--\tbit 2 in the third octet maps to positioning SIB Type 2-16\n--\tbit 1 in the third octet maps to positioning SIB Type 2-17\n--\tbit 8 in the fourth octet maps to positioning SIB Type 2-18\n--\tbit 7 in the fourth octet maps to positioning SIB Type 2-19\n--\tbit 6 in the fourth octet maps to positioning SIB Type 3-1\nBits 5 to 1 in the fourth octets are spare and shall be coded as zero.\n>SIB Types Ext\nO\nOCTET STRING (SIZE(4))\nThis IE contains extension of the bitmap SIB Types indicating the positioning SIB types for which the ciphering data set is applicable:\n--\ta bit set to 0 indicates that the ciphering data set is not applicable to the corresponding positioning SIB type\n-- a bit set to 1 indicates that the ciphering data set is applicable to the corresponding positioning SIB type\nThe mapping of the bits to the positioning SIB types is as follows:\n--\tbit 8 in the first octet maps to positioning SIB Type 1-8\n--\tbit 7 in the first octet maps to positioning SIB Type 2-20\n--\tbit 6 in the first octet maps to positioning SIB Type 2-21\n--\tbit 5 in the first octet maps to positioning SIB Type 2-22\n--\tbit 4 in the first octet maps to positioning SIB Type 2-23\n--\tbit 3 in the first octet maps to positioning SIB Type 2-24\n--\tbit 2 in the first octet maps to positioning SIB Type 2-25\nAny unassigned bits are spare and shall be coded as zero. In the absence of this IE, the ciphering data set is not applicable for any of the positioning SIB types mapped by this IE.\n>Validity Start time\nM\nOCTET STRING (SIZE(4))\nThis IE contains the UTC time when the ciphering data set becomes valid, encoded in the same format as the first four octets of the 64-bit timestamp format as defined in clause 6 of IETF RFC 5905 [16].\n>Validity Duration\nM\nINTEGER\n(0..65535)\nIn minutes\n>TAIs List\nO\nOCTET STRING (SIZE (7..97))\nThis IE contains the TAIs of the tracking areas for which the ciphering data set is applicable. It is encoded as octets 2 to n of the Tracking area identity list IE specified in clause 9.9.3.33 of 3GPP TS 24.301 [17].\nIf this IE is omitted, the ciphering data set is valid in the entire PLMN.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_6",
+        "ts_24.301_clause_9.9.3.33",
+        "table_7.4.39-1",
+        "ts_24.301"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.171_7.4.40",
+      "section_id": "7.4.40",
+      "section_title": "Ciphering Data Error Report Contents",
+      "content": "This parameter contains a ciphering data set ID with the associated outcome of storage attempt at the MME.\nTable 7.4.40-1: Ciphering Data Error Report Contents\nIE/Group Name\nPresence\nRange\nIE type and reference\nSemantics description\nCiphering Data Error Report Contents\nM\n>Ciphering Set ID\nM\nINTEGER\n(0..65535)\nThis IE contains the list of ciphering set IDs for which the MME is sending an acknowledgement\n>Storage outcome\nM\nENUMERATED (\nSuccessful, Failed\n)",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_7.4.40-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.171_7.4.41",
+      "section_id": "7.4.41",
+      "section_title": "High Accuracy Geographical Coordinates",
+      "content": "This IE contains the high accuracy geographical coordinates.\nTable 7.4.41-1: High Accuracy Geographical Coordinates\nIE/Group Name\nPresence\nRange\nIE type and reference\nSemantics description\nHigh Accuracy Degrees Of Latitude\nM\nINTEGER (\n-231..231-1)\nThe IE value (N) is derived by this formula:\nN = 231 X /90\nX being the latitude in degree (-90°.. +90°)\nHigh Accuracy Degrees Of Longitude\nM\nINTEGER (\n-231..231-1)\nThe IE value (N) is derived by this formula:\nN = 231 X /180\nX being the longitude in degree (-180°..+180°)",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_7.4.41-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.171_7.4.42",
+      "section_id": "7.4.42",
+      "section_title": "High Accuracy Uncertainty Ellipse",
+      "content": "This IE contains the high accuracy uncertainty ellipse of a geographical area, using the range (0..255) for high-accuracy uncertainty code \"k\", as specified in 3GPP TS 23.032 [6].\nTable 7.4.42-1: High Accuracy Uncertainty Ellipse\nIE/Group Name\nPresence\nRange\nIE type and reference\nSemantics description\nHigh Accuracy Uncertainty semi-major\nM\nINTEGER (0..255)\nThe high accuracy uncertainty \"r\" is derived from the high accuracy uncertainty code \"k\" by:\nr = 0.3x(1.02k-1)\nHigh Accuracy Uncertainty semi-minor\nM\nINTEGER (0..255)\nThe high accuracy uncertainty \"r\" is derived from the high accuracy uncertainty code \"k\" by:\nr = 0.3x(1.02k-1)\nOrientation of major axis\nM\nINTEGER (0..179)\nAngle in degrees between the major axis and north",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.032_table_7.4.42-1",
+        "ts_23.032"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.171_7.4.43",
+      "section_id": "7.4.43",
+      "section_title": "High Accuracy Altitude",
+      "content": "Table 7.44.3-1: High Accuracy Altitude\nIE/Group Name\nPresence\nRange\nIE type and reference\nSemantics description\nHigh Accuracy Altitude\nM\nINTEGER (-64000..1280000)\nThe relation between the IE value (N) and the altitude a (in metres) it encodes is described by the following equation:a=N x 2-7",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_7.44.3-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.171_7.4.44",
+      "section_id": "7.4.44",
+      "section_title": "High Accuracy Extended Uncertainty Ellipse",
+      "content": "This IE contains the high accuracy extended uncertainty ellipse of a geographical area, using the range (0..255) for High Accuracy Extended Uncertainty code \"k\", as specified in 3GPP TS 23.032 [6].\nTable 7.4.44-1: High Accuracy Extended Uncertainty Ellipse\nIE/Group Name\nPresence\nRange\nIE type and reference\nSemantics description\nHigh Accuracy Extended Uncertainty semi-major\nM\nINTEGER (0..255)\nThe high accuracy extended uncertainty \"r\" is derived from the high accuracy extended uncertainty code \"k\", as specified in 3GPP TS 23.032 [6]\nHigh Accuracy Extended Uncertainty semi-minor\nM\nINTEGER (0..255)\nThe high accuracy extended uncertainty \"r\" is derived from the high accuracy extended uncertainty code \"k\", as specified in 3GPP TS 23.032 [6]\nOrientation of major axis\nM\nINTEGER (0..179)\nAngle in degrees between the major axis and north",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.032_table_7.4.44-1",
+        "ts_23.032"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.171_7.4.45",
+      "section_id": "7.4.45",
+      "section_title": "High Accuracy Scalable Uncertainty Ellipse",
+      "content": "Table 7.4.45-1: High Accuracy Scalable Uncertainty Ellipse\nIE/Group Name\nPresence\nRange\nIE type and reference\nSemantics description\nCHOICE High Accuracy Scalable Uncertainty Ellipse\n>High Accuracy Uncertainty Ellipse\n7.4.42\n>High Accuracy Extended Uncertainty Ellipse\n7.4.44",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_7.4.45-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.171_7.4.46",
+      "section_id": "7.4.46",
+      "section_title": "High Accuracy Scalable Uncertainty Altitude",
+      "content": "Table 7.4.46-1: High Accuracy Scalable Uncertainty Altitude\nIE/Group Name\nPresence\nRange\nIE type and reference\nSemantics description\nCHOICE High Accuracy Scalable Uncertainty Altitude\n>High Accuracy Uncertainty Altitude\nINTEGER (\n0..255)\nThe high accuracy uncertainty altitude \"h\" expressed in metres is derived from the high accuracy uncertainty code \"k\", by:\nh=0.3x(1.02k-1)\n>High Accuracy Extended Uncertainty Altitude\nINTEGER (\n0..255)\nThe high accuracy extended uncertainty \"r\" is derived from the high accuracy extended uncertainty code \"k\", as specified in 3GPP TS 23.032 [6]",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_7.4.46-1",
+        "ts_23.032"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.171_7.4.47",
+      "section_id": "7.4.47",
+      "section_title": "UE Country Determination Indication",
+      "content": "This parameter indicates whether the determining of geographical area identified by the country, area within a country or international area where UE is located for PLMN selection verification is required or not.\nTable 7.4.47-1: UE Country Determination Indication\nIE/Group Name\nPresence\nRange\nIE type and reference\nSemantics description\nUE Country Determination Indication\nO\nENUMERATED (required,not required,…)\nIndicates if the determining of geographical area identified by the country, area within a country or international area where UE is located for PLMN selection verification is required or not.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_7.4.47-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.171_7.4.48",
+      "section_id": "7.4.48",
+      "section_title": "UE Area Indication",
+      "content": "This parameter contains a country, area within a country or international area indication where UE is located.\nTable 7.4.48-1: UE Area Indication\nIE/Group Name\nPresence\nRange\nIE type and reference\nSemantics description\nCountry\nO\nOCTET STRING\nIncludes the country or the area of country where the UE is located.\nThis IE contains two-letter ISO 3166 country code in capital ASCII letters, e.g., DE or US.\nIETF RFC 4776 [18]\nInternational Area Indication\nO\nENUMERATED (\nYes,\n…)\nIndicates the UE is located in international area.\nNOTE:\tEither Country or International Area Indication shall be present.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_7.4.48-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.171_7.5.1",
+      "section_id": "7.5.1",
+      "section_title": "General",
+      "content": "LCS-AP ASN.1 definition conforms to [8] and [9].\nThe ASN.1 definition specifies the structure and content of LCS-AP messages. LCS-AP messages can contain any IEs specified in the object set definitions for that message without the order or number of occurrence being restricted by ASN.1. However, for this version of the standard, a sending entity shall construct a LCS-AP message according to the PDU definitions module and with the following additional rules (Note that in the following IE means an IE in the object set with an explicit id. If one IE needed to appear more than once in one object set, then the different occurrences have different IE ids):\n-\tIEs shall be ordered (in an IE container) in the order they appear in object set definitions.\n-\tObject set definitions specify how many times IEs may appear. An IE shall appear exactly once if the presence field in an object has value \"mandatory\". An IE may appear at most once if the presence field in an object has value \"optional\" or \"conditional\". If in a tabular format there is multiplicity specified for an IE (i.e. an IE list) then in the corresponding ASN.1 definition the list definition is separated into two parts. The first part defines an IE container list where the list elements reside. The second part defines list elements. The IE container list appears as an IE of its own. For this version of the standard an IE container list may contain only one kind of list elements.\nIf a LCS-AP message that is not constructed as defined above is received, this shall be considered as Abstract Syntax Error, and the message shall be handled as defined for Abstract Syntax error in clause 10 of [7].",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_10"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.171_7.5.2",
+      "section_id": "7.5.2",
+      "section_title": "Usage of protocol extension mechanism for non-standard use",
+      "content": "The protocol extension mechanism for non-standard use may be used:\n-\tfor special operator- (and/or vendor) specific features considered not to be part of the basic functionality, i.e. the functionality required for a complete and high-quality specification in order to guarantee multi-vendor interoperability.\n-\tby vendors for research purposes, e.g. to implement and evaluate new algorithms/features before such features are proposed for standardisation.\nThe extension mechanism shall not be used for basic functionality. Such functionality shall be standardised.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.171_7.5.3",
+      "section_id": "7.5.3",
+      "section_title": "Elementary procedure definitions",
+      "content": "-- **************************************************************\n--\n-- Elementary Procedure definitions\n--\n-- **************************************************************\nLCS-AP-PDU-Descriptions {\nitu-t (0) identified-organization (4) etsi (0) mobileDomain (0)\neps-Access (21) modules (3) lcs-AP (4) version1 (1) lcs-AP-PDU-Descriptions (0)}\nDEFINITIONS AUTOMATIC TAGS ::=\nBEGIN\n-- **************************************************************\n--\n-- IE parameter types from other modules.\n--\n-- **************************************************************\nIMPORTS\nCriticality,\nProcedureCode\nFROM LCS-AP-CommonDataTypes\nLocation-Request,\nLocation-Response,\nLocation-Abort-Request,\nConnection-Oriented-Information,\nConnectionless-Information,\nReset-Request,\nReset-Acknowledge,\nCiphering-Key-Data,\nCiphering-Key-Data-Result\nFROM LCS-AP-PDU-Contents\nid-Location-Service-Request,\nid-Connection-Oriented-Information-Transfer,\nid-Connectionless-Information-Transfer,\nid-Location-Abort,\nid-Reset,\nid-Ciphering-Key-Data-Delivery\nFROM LCS-AP-Constants;\n-- **************************************************************\n--\n-- Interface Elementary Procedure Class\n--\n-- **************************************************************\nLCS-AP-ELEMENTARY-PROCEDURE ::= CLASS {\n&InitiatingMessage\t,\n&SuccessfulOutcome\t\tOPTIONAL,\n&UnsuccessfulOutcome\t\tOPTIONAL,\n&procedureCode\tProcedureCode\tUNIQUE,\n&criticality\tCriticality\tDEFAULT ignore\n}\nWITH SYNTAX {\nINITIATING MESSAGE\t&InitiatingMessage\n[SUCCESSFUL OUTCOME\t&SuccessfulOutcome]\n[UNSUCCESSFUL OUTCOME\t&UnsuccessfulOutcome]\nPROCEDURE CODE\t&procedureCode\n[CRITICALITY\t&criticality]\n}\n-- **************************************************************\n--\n-- Interface PDU Definition\n--\n-- **************************************************************\nLCS-AP-PDU ::= CHOICE {\ninitiatingMessage\tInitiatingMessage,\nsuccessfulOutcome\tSuccessfulOutcome,\nunsuccessfulOutcome\tUnsuccessfulOutcome,\n...\n}\nInitiatingMessage ::= SEQUENCE {\nprocedureCode\tLCS-AP-ELEMENTARY-PROCEDURE.&procedureCode\t({LCS-AP-ELEMENTARY-PROCEDURES}),\ncriticality\tLCS-AP-ELEMENTARY-PROCEDURE.&criticality\t({LCS-AP-ELEMENTARY-PROCEDURES}{@procedureCode}),\nvalue\tLCS-AP-ELEMENTARY-PROCEDURE.&InitiatingMessage\t({LCS-AP-ELEMENTARY-PROCEDURES}{@procedureCode})\n}\nSuccessfulOutcome ::= SEQUENCE {\nprocedureCode\tLCS-AP-ELEMENTARY-PROCEDURE.&procedureCode\t({LCS-AP-ELEMENTARY-PROCEDURES}),\ncriticality\tLCS-AP-ELEMENTARY-PROCEDURE.&criticality\t({LCS-AP-ELEMENTARY-PROCEDURES}{@procedureCode}),\nvalue\tLCS-AP-ELEMENTARY-PROCEDURE.&SuccessfulOutcome\t({LCS-AP-ELEMENTARY-PROCEDURES}{@procedureCode})\n}\nUnsuccessfulOutcome ::= SEQUENCE {\nprocedureCode\tLCS-AP-ELEMENTARY-PROCEDURE.&procedureCode\t({LCS-AP-ELEMENTARY-PROCEDURES}),\ncriticality\tLCS-AP-ELEMENTARY-PROCEDURE.&criticality\t({LCS-AP-ELEMENTARY-PROCEDURES}{@procedureCode}),\nvalue\tLCS-AP-ELEMENTARY-PROCEDURE.&UnsuccessfulOutcome\t({LCS-AP-ELEMENTARY-PROCEDURES}{@procedureCode})\n}\n-- **************************************************************\n--\n-- Interface Elementary Procedure List\n--\n-- **************************************************************\nLCS-AP-ELEMENTARY-PROCEDURES LCS-AP-ELEMENTARY-PROCEDURE ::= {\nLCS-AP-ELEMENTARY-PROCEDURES-CLASS-1\t|\nLCS-AP-ELEMENTARY-PROCEDURES-CLASS-2\t,\n...\n}\nLCS-AP-ELEMENTARY-PROCEDURES-CLASS-1 LCS-AP-ELEMENTARY-PROCEDURE ::= {\nlocation-Service-Request\t\t|\nconnectionless-Information-Transfer\t|\nlocation-Abort\t\t|\nreset\t\t\t|\nciphering-Key-Data-Delivery\t\t,\n...\n}\nLCS-AP-ELEMENTARY-PROCEDURES-CLASS-2 LCS-AP-ELEMENTARY-PROCEDURE ::= {\nconnection-Oriented-Information-Transfer\t,\n...\n}\n-- **************************************************************\n--\n-- Interface Elementary Procedures\n--\n-- **************************************************************\nlocation-Service-Request LCS-AP-ELEMENTARY-PROCEDURE ::= {\nINITIATING MESSAGE\tLocation-Request\nSUCCESSFUL OUTCOME\tLocation-Response\nUNSUCCESSFUL OUTCOME\tLocation-Response\nPROCEDURE CODE\tid-Location-Service-Request\nCRITICALITY\treject\n}\nconnection-Oriented-Information-Transfer LCS-AP-ELEMENTARY-PROCEDURE ::= {\nINITIATING MESSAGE\tConnection-Oriented-Information\nPROCEDURE CODE\tid-Connection-Oriented-Information-Transfer\nCRITICALITY\treject\n}\nconnectionless-Information-Transfer LCS-AP-ELEMENTARY-PROCEDURE ::= {\nINITIATING MESSAGE\tConnectionless-Information\nUNSUCCESSFUL OUTCOME\tConnectionless-Information\nPROCEDURE CODE\tid-Connectionless-Information-Transfer\nCRITICALITY\treject\n}\nlocation-Abort LCS-AP-ELEMENTARY-PROCEDURE ::= {\nINITIATING MESSAGE\tLocation-Abort-Request\nSUCCESSFUL OUTCOME\tLocation-Response\nPROCEDURE CODE\tid-Location-Abort\nCRITICALITY\treject\n}\nreset LCS-AP-ELEMENTARY-PROCEDURE ::= {\nINITIATING MESSAGE\tReset-Request\nSUCCESSFUL OUTCOME\tReset-Acknowledge\nPROCEDURE CODE\tid-Reset\nCRITICALITY\treject\n}\nciphering-Key-Data-Delivery LCS-AP-ELEMENTARY-PROCEDURE ::= {\nINITIATING MESSAGE\tCiphering-Key-Data\nSUCCESSFUL OUTCOME\tCiphering-Key-Data-Result\nUNSUCCESSFUL OUTCOME\tCiphering-Key-Data-Result\nPROCEDURE CODE\tid-Ciphering-Key-Data-Delivery\nCRITICALITY\treject\n}\nEND",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.171_7.5.4",
+      "section_id": "7.5.4",
+      "section_title": "PDU definitions",
+      "content": "-- **************************************************************\n--\n-- PDU definitions for LCS-AP.\n--\n-- **************************************************************\nLCS-AP-PDU-Contents {\nitu-t (0) identified-organization (4) etsi (0) mobileDomain (0)\neps-Access (21) modules (3) lcs-AP (4) version1 (1) lcs-AP-PDU-Contents (1)}\nDEFINITIONS AUTOMATIC TAGS ::=\nBEGIN\n-- **************************************************************\n--\n-- IE parameter types from other modules.\n--\n-- **************************************************************\nIMPORTS\nAPDU,\nAccuracy-Fulfillment-Indicator,\nBarometric-Pressure,\nCell-Portion-ID,\nCiphering-Data,\nCiphering-Data-Ack,\nCiphering-Data-Error-Report,\nCivic-Address,\nCorrelation-ID,\nCoverage-Level,\nE-CGI,\nGeographical-Area,\nIMSI,\nIMEI,\nInclude-Velocity,\nLCS-Cause,\nLCS-Client-Type,\nLCS-Service-Type-ID,\nLCS-Priority,\nLCS-QoS,\nLocation-Type,\nMultipleAPDUs,\nNetwork-Element,\nPayload-Type,\nPositioning-Data,\nRAT-Type,\nReturn-Error-Type,\nReturn-Error-Cause,\nUE-Positioning-Capability,\nVelocity-Estimate,\nUE-Country-Determination-Indication,\nUE-Area-Indication\nFROM LCS-AP-IEs\nProtocolExtensionContainer{},\nProtocolIE-Container{},\nLCS-AP-PROTOCOL-EXTENSION,\nLCS-AP-PROTOCOL-IES\nFROM LCS-AP-Containers\nid-Accuracy-Fulfillment-Indicator,\nid-APDU,\nid-Barometric-Pressure,\nid-Cell-Portion-ID,\nid-Ciphering-Data,\nid-Ciphering-Data-Ack,\nid-Ciphering-Data-Error-Report,\nid-Civic-Address,\nid-Correlation-ID,\nid-Coverage-Level,\nid-Destination-ID,\nid-E-UTRAN-Cell-Identifier,\nid-Include-Velocity,\nid-IMEI,\nid-IMSI,\nid-LCS-Client-Type,\nid-LCS-Priority,\nid-LCS-QOS,\nid-LCS-Cause,\nid-LCS-Service-Type-ID,\nid-Location-Estimate,\nid-Location-Type,\nid-MultipleAPDUs,\nid-Payload-Type,\nid-Positioning-Data,\nid-RAT-Type,\nid-Return-Error-Request,\nid-Return-Error-Cause,\nid-Source-Identity,\nid-UE-Positioning-Capability,\nid-Velocity-Estimate,\nid-UE-Country-Determination-Indication,\nid-UE-Area-Indication\nFROM LCS-AP-Constants;\n-- **************************************************************\n--\n-- Location-Request\n--\n-- **************************************************************\nLocation-Request ::= SEQUENCE {\nprotocolIEs\tProtocolIE-Container    \t{ { Location-Request-IEs} },\nprotocolExtensions\tProtocolExtensionContainer\t{ { Location-Request-Extensions} } OPTIONAL,\n...\n}\nLocation-Request-IEs LCS-AP-PROTOCOL-IES ::= {\n{ ID id-Correlation-ID\tCRITICALITY reject\tTYPE Correlation-ID\tPRESENCE mandatory } |\n{ ID id-Location-Type\tCRITICALITY reject\tTYPE Location-Type\tPRESENCE mandatory } |\n{ ID id-E-UTRAN-Cell-Identifier\tCRITICALITY ignore\tTYPE E-CGI\t\tPRESENCE mandatory  } |\n{ ID id-LCS-Client-Type\tCRITICALITY reject\tTYPE LCS-Client-Type\tPRESENCE optional  } |\n{ ID id-LCS-Priority\tCRITICALITY reject\tTYPE LCS-Priority\tPRESENCE optional  } |\n{ ID id-LCS-QOS\t\tCRITICALITY reject\tTYPE LCS-QoS\t\tPRESENCE optional  } |\n{ ID id-UE-Positioning-Capability\tCRITICALITY reject\tTYPE UE-Positioning-Capability\tPRESENCE optional  } |\n{ ID id-Include-Velocity\tCRITICALITY reject\tTYPE Include-Velocity\tPRESENCE optional  } |\n{ ID id-IMSI\t\tCRITICALITY ignore\tTYPE IMSI\t\tPRESENCE optional  } |\n{ ID id-IMEI\t\tCRITICALITY ignore\tTYPE IMEI\t\tPRESENCE optional  } |\n{ ID id-MultipleAPDUs\tCRITICALITY reject\tTYPE MultipleAPDUs\tPRESENCE optional  } |\n{ ID id-RAT-Type\t\tCRITICALITY ignore\tTYPE RAT-Type\t\tPRESENCE optional  } |\n{ ID id-Coverage-Level\tCRITICALITY ignore\tTYPE Coverage-Level\tPRESENCE optional},\n...\n}\nLocation-Request-Extensions LCS-AP-PROTOCOL-EXTENSION ::= {\n{ ID id-LCS-Service-Type-ID\tCRITICALITY ignore\tEXTENSION LCS-Service-Type-ID\tPRESENCE optional  } |\n{ ID id-UE-Country-Determination-Indication\tCRITICALITY ignore\tTYPE UE-Country-Determination-Indication\tPRESENCE optional},\n...\n}\n-- **************************************************************\n--\n-- Location-Response\n--\n-- **************************************************************\nLocation-Response ::= SEQUENCE {\nprotocolIEs\tProtocolIE-Container      { {Location-Response-IEs} },\nprotocolExtensions\tProtocolExtensionContainer { {Location-Response-Extensions} } OPTIONAL,\n...\n}\nLocation-Response-IEs LCS-AP-PROTOCOL-IES ::= {\n{ ID id-Correlation-ID\t\tCRITICALITY reject\tTYPE Correlation-ID\t\tPRESENCE mandatory } |\n{ ID id-Location-Estimate\tCRITICALITY reject\tTYPE Geographical-Area\t\tPRESENCE optional  } |\n{ ID id-Positioning-Data\tCRITICALITY reject\tTYPE Positioning-Data\t\tPRESENCE optional  } |\n{ ID id-Velocity-Estimate\tCRITICALITY reject\tTYPE Velocity-Estimate\t\tPRESENCE optional  } |\n{ ID id-Accuracy-Fulfillment-Indicator\tCRITICALITY reject\tTYPE Accuracy-Fulfillment-Indicator\tPRESENCE optional  } |\n{ ID id-LCS-Cause\t\tCRITICALITY ignore\tTYPE LCS-Cause\t\tPRESENCE optional  } ,\n...\n}\nLocation-Response-Extensions LCS-AP-PROTOCOL-EXTENSION ::= {\n{ ID id-E-UTRAN-Cell-Identifier\tCRITICALITY ignore\tEXTENSION E-CGI\tPRESENCE optional  } |\n{ ID id-Cell-Portion-ID\t\tCRITICALITY ignore\tEXTENSION Cell-Portion-ID\tPRESENCE optional  } |\n{ ID id-Civic-Address\t\tCRITICALITY ignore\tEXTENSION Civic-Address\tPRESENCE optional  } |\n{ ID id-Barometric-Pressure\t\tCRITICALITY ignore\tEXTENSION Barometric-Pressure\tPRESENCE optional  } |\n{ ID id-UE-Area-Indication\t\tCRITICALITY ignore\tEXTENSION UE-Area-Indication\tPRESENCE optional  },\n...\n}\n-- **************************************************************\n--\n-- Location-Abort\n--\n-- **************************************************************\nLocation-Abort-Request ::= SEQUENCE {\nprotocolIEs\tProtocolIE-Container      { {Location-Abort-Request-IEs} },\nprotocolExtensions\tProtocolExtensionContainer { {Location-Abort-Request-Extensions} } OPTIONAL,\n...\n}\nLocation-Abort-Request-IEs LCS-AP-PROTOCOL-IES ::= {\n{ ID id-Correlation-ID\t\tCRITICALITY reject\tTYPE Correlation-ID\tPRESENCE mandatory } |\n{ ID id-LCS-Cause\t\tCRITICALITY ignore\tTYPE LCS-Cause\tPRESENCE mandatory } ,\n...\n}\nLocation-Abort-Request-Extensions LCS-AP-PROTOCOL-EXTENSION ::= {\n...\n}\n-- **************************************************************\n--\n-- Connection-Oriented-Information\n--\n-- **************************************************************\nConnection-Oriented-Information ::= SEQUENCE {\nprotocolIEs\tProtocolIE-Container      { {Connection-Oriented-Information-IEs} },\nprotocolExtensions\tProtocolExtensionContainer { {Connection-Oriented-Information-Extensions} } OPTIONAL,\n...\n}\nConnection-Oriented-Information-IEs LCS-AP-PROTOCOL-IES ::= {\n{ ID id-Correlation-ID\tCRITICALITY reject\tTYPE Correlation-ID\tPRESENCE optional  } |\n{ ID id-Payload-Type\tCRITICALITY reject\tTYPE Payload-Type\tPRESENCE optional  } |\n{ ID id-APDU\tCRITICALITY reject\tTYPE APDU\t\tPRESENCE optional  } ,\n...\n}\nConnection-Oriented-Information-Extensions LCS-AP-PROTOCOL-EXTENSION ::= {\n...\n}\n-- **************************************************************\n--\n-- Connectionless-Information\n--\n-- **************************************************************\nConnectionless-Information ::= SEQUENCE {\nprotocolIEs\tProtocolIE-Container      { {Connectionless-Information-IEs} },\nprotocolExtensions\tProtocolExtensionContainer { {Connectionless-Information-Extensions} } OPTIONAL,\n...\n}\nConnectionless-Information-IEs LCS-AP-PROTOCOL-IES ::= {\n{ ID id-Source-Identity\tCRITICALITY reject\tTYPE Network-Element\tPRESENCE mandatory } |\n{ ID id-Destination-ID\tCRITICALITY reject\tTYPE Network-Element\tPRESENCE mandatory } |\n{ ID id-APDU\t\tCRITICALITY reject\tTYPE APDU\t\tPRESENCE mandatory } |\n{ ID id-Return-Error-Request\tCRITICALITY reject\tTYPE Return-Error-Type\tPRESENCE optional  } |\n{ ID id-Return-Error-Cause\tCRITICALITY ignore\tTYPE Return-Error-Cause\tPRESENCE optional  } ,\n...\n}\nConnectionless-Information-Extensions LCS-AP-PROTOCOL-EXTENSION ::= {\n...\n}\n-- **************************************************************\n--\n-- Reset-Request\n--\n-- **************************************************************\nReset-Request ::= SEQUENCE {\nprotocolIEs\tProtocolIE-Container    \t{ {Reset-Request-IEs} },\nprotocolExtensions\tProtocolExtensionContainer\t{ {Reset-Request-Extensions} } OPTIONAL,\n...\n}\nReset-Request-IEs LCS-AP-PROTOCOL-IES ::= {\n{ ID id-LCS-Cause\tCRITICALITY ignore\tTYPE LCS-Cause\tPRESENCE mandatory } ,\n...\n}\nReset-Request-Extensions LCS-AP-PROTOCOL-EXTENSION ::= {\n...\n}\n-- **************************************************************\n--\n-- Reset-Acknowledge\n--\n-- **************************************************************\nReset-Acknowledge\t::= SEQUENCE {\nprotocolIEs\tProtocolIE-Container      { { Reset-Acknowledge-IEs} },\nprotocolExtensions\tProtocolExtensionContainer { { Reset-Acknowledge-Extensions} } OPTIONAL,\n...\n}\nReset-Acknowledge-IEs LCS-AP-PROTOCOL-IES ::= {\n...\n}\nReset-Acknowledge-Extensions LCS-AP-PROTOCOL-EXTENSION ::= {\n...\n}\n-- **************************************************************\n--\n-- Ciphering-Key-Data\n--\n-- **************************************************************\nCiphering-Key-Data ::= SEQUENCE {\nprotocolIEs\tProtocolIE-Container    \t{ {Ciphering-Key-Data-IEs} },\nprotocolExtensions\tProtocolExtensionContainer\t{ {Ciphering-Key-Data-Extensions} } OPTIONAL,\n...\n}\nCiphering-Key-Data-IEs LCS-AP-PROTOCOL-IES ::= {\n{ ID id-Ciphering-Data\tCRITICALITY reject\tTYPE Ciphering-Data\tPRESENCE mandatory } ,\n...\n}\nCiphering-Key-Data-Extensions LCS-AP-PROTOCOL-EXTENSION ::= {\n...\n}\n-- **************************************************************\n--\n-- Ciphering-Key-Data-Result\n--\n-- **************************************************************\nCiphering-Key-Data-Result ::= SEQUENCE {\nprotocolIEs\tProtocolIE-Container    \t{ {Ciphering-Key-Data-Result-IEs} },\nprotocolExtensions\tProtocolExtensionContainer\t{ {Ciphering-Key-Data-Result-Extensions} } OPTIONAL,\n...\n}\nCiphering-Key-Data-Result-IEs LCS-AP-PROTOCOL-IES ::= {\n{ ID id-Ciphering-Data-Ack\tCRITICALITY reject\tTYPE Ciphering-Data-Ack\tPRESENCE conditional } |\n{ ID id-Ciphering-Data-Error-Report\tCRITICALITY reject\tTYPE Ciphering-Data-Error-Report\tPRESENCE conditional } ,\n...\n}\nCiphering-Key-Data-Result-Extensions LCS-AP-PROTOCOL-EXTENSION ::= {\n...\n}\nEND",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.171_7.5.5",
+      "section_id": "7.5.5",
+      "section_title": "Information element definitions",
+      "content": "-- **************************************************************\n--\n-- Information Element Definitions\n--\n-- **************************************************************\nLCS-AP-IEs {\nitu-t (0) identified-organization (4) etsi (0) mobileDomain (0)\neps-Access (21) modules (3) lcs-AP (4) version1 (1) lcs-AP-IEs (2)}\nDEFINITIONS AUTOMATIC TAGS ::=\nBEGIN\nIMPORTS\nmax-No-Of-Points,\nmax-Set,\nmax-GNSS-Set,\nmax-Add-Pos-Set,\nmax-Cipher-Set,\nid-Additional-PositioningDataSet\nFROM LCS-AP-Constants\nCriticality,\nProcedureCode,\nTriggeringMessage,\nProtocolIE-ID\nFROM LCS-AP-CommonDataTypes\nProtocolExtensionContainer{},\nLCS-AP-PROTOCOL-EXTENSION\nFROM LCS-AP-Containers;\n-- A\nAPDU\t::=\tOCTET STRING\nAccuracy-Fulfillment-Indicator ::= ENUMERATED {\nrequested-accuracy-fulfilled,\nrequested-accuracy-not-fulfilled,\n...\n}\nAdditional-PositioningDataSet ::= SEQUENCE(SIZE(1..max-Add-Pos-Set)) OF Additional-PositioningMethodAndUsage\nAdditional-PositioningMethodAndUsage ::= OCTET STRING (SIZE(1))\nAltitude ::= INTEGER (0..65535)\n-- The valid value for this IE is 0 to 32767.\n-- Reception of value greater than 32767 shall be mapped to the value 32767.\nAltitude-And-Direction ::= SEQUENCE {\ndirection-Of-Altitude\tDirection-Of-Altitude,\naltitude\tAltitude,\n...\n}\nAngle ::= INTEGER (0..179)\n-- B\nBarometric-Pressure ::= INTEGER (30000..115000)\nBearing ::= INTEGER (0..359)\n-- C\nC0                  ::= BIT STRING (SIZE (1..128))\nCellIdentity\t::= BIT STRING (SIZE (28))\nCell-Portion-ID\t::= INTEGER (0..255,..., 256..4095)\nCiphering-Data\t::= SEQUENCE(SIZE(1..max-Cipher-Set)) OF Ciphering-Data-Set\nCiphering-Data-Ack\t::= SEQUENCE(SIZE(1..max-Cipher-Set)) OF Ciphering-Set-ID\nCiphering-Data-Error-Report\t::= SEQUENCE(SIZE(1..max-Cipher-Set)) OF Ciphering-Data-Error-Report-Contents\nCiphering-Data-Set\t::= SEQUENCE {\nciphering-Set-ID\tCiphering-Set-ID,\nciphering-Key\tCiphering-Key,\nc0\t\tC0,\nsib-Types\tSIB-Types,\nvalidity-Start-Time\tValidity-Start-Time,\nvalidity-Duration\tValidity-Duration,\ntais-List\tTAIs-List,\n...\n}\nCiphering-Data-Error-Report-Contents\t::= SEQUENCE {\nciphering-Set-ID\tCiphering-Set-ID,\nstorage-Outcome\tStorage-Outcome,\n...\n}\nCiphering-Set-ID ::= INTEGER (0..65535)\nCiphering-Key ::= OCTET STRING (SIZE (16))\nCivic-Address\t::=\tOCTET STRING\nConfidence\t::= INTEGER (0..100)\nCorrelation-ID\t::=\tOCTET STRING (SIZE (4))\nCountry\t::=\tOCTET STRING\n-- D\nDegreesLatitude\t::= INTEGER (0..8388607)\t-- 23 bit field\nDegreesLongitude\t::= INTEGER (-8388608..8388607)\t-- 24 bit field\nDirection-Of-Altitude ::= ENUMERATED {\nheight,\ndepth\n}\n-- E\nE-CGI\t\t::= SEQUENCE {\npLMNidentity\tPLMN-ID,\ncell-ID\t\tCellIdentity,\niE-Extensions\tProtocolExtensionContainer { { E-CGI-ExtIEs} } OPTIONAL,\n...}\nE-CGI-ExtIEs LCS-AP-PROTOCOL-EXTENSION ::= {\n...\n}\nCoverage-Level\t::= ENUMERATED {\nextendedcoverage,\n...\n}\nEllipsoid-Point-With-Uncertainty-Ellipse  ::= SEQUENCE {\ngeographical-Coordinates\tGeographical-Coordinates,\nuncertainty-Ellipse\tUncertainty-Ellipse,\nconfidence\t\tConfidence,\niE-Extensions\tProtocolExtensionContainer { { Ellipsoid-Point-With-Uncertainty-Ellipse-ExtIEs} } OPTIONAL,\n...}\nEllipsoid-Point-With-Uncertainty-Ellipse-ExtIEs LCS-AP-PROTOCOL-EXTENSION ::= {\n...\n}\nEllipsoid-Point-With-Altitude\t::= SEQUENCE {\ngeographical-Coordinates\tGeographical-Coordinates,\naltitude-And-Direction\tAltitude-And-Direction,\niE-Extensions\tProtocolExtensionContainer { { Ellipsoid-Point-With-Altitude-ExtIEs} } OPTIONAL,\n...}\nEllipsoid-Point-With-Altitude-ExtIEs LCS-AP-PROTOCOL-EXTENSION ::= {\n...\n}\nEllipsoid-Point-With-Altitude-And-Uncertainty-Ellipsoid\t::= SEQUENCE {\ngeographical-Coordinates\tGeographical-Coordinates,\naltitude-And-Direction\tAltitude-And-Direction,\nuncertainty-Ellipse\tUncertainty-Ellipse,\nuncertainty-Altitude\tUncertainty-Altitude,\nconfidence\t\tConfidence,\niE-Extensions\tProtocolExtensionContainer { { Ellipsoid-Point-With-Altitude-And-Uncertainty-Ellipsoid-ExtIEs} } OPTIONAL,\n...}\nEllipsoid-Point-With-Altitude-And-Uncertainty-Ellipsoid-ExtIEs LCS-AP-PROTOCOL-EXTENSION ::= {\n...\n}\nEllipsoid-Arc\t\t::= SEQUENCE {\ngeographical-Coordinates\tGeographical-Coordinates,\ninner-Radius\tInner-Radius,\nuncertainty-Radius\tUncertainty-Code,\noffset-Angle\tAngle,\nincluded-Angle\tAngle,\nconfidence\t\tConfidence,\niE-Extensions\tProtocolExtensionContainer { { Ellipsoid-Arc-ExtIEs} } OPTIONAL,\n...\n}\nEllipsoid-Arc-ExtIEs LCS-AP-PROTOCOL-EXTENSION ::= {\n...\n}\nENB-ID\t::= CHOICE {\nmacro-eNB-ID\tMacro-eNB-ID,\nhome-eNB-ID\tHome-eNB-ID,\n...,\nshort-macro-eNB-ID\tShort-Macro-eNB-ID,\nlong-macro-eNB-ID\tLong-Macro-eNB-ID\n}\nE-SMLC-ID ::= INTEGER (0..255)\n-- F\n-- G\nGeographical-Area\t::= CHOICE {\npoint\t\t\t\tPoint,\npoint-With-Uncertainty\t\t\tPoint-With-Uncertainty,\nellipsoidPoint-With-Uncertainty-Ellipse\t\tEllipsoid-Point-With-Uncertainty-Ellipse,\npolygon\t\t\t\tPolygon,\nellipsoid-Point-With-Altitude\t\tEllipsoid-Point-With-Altitude,\nellipsoid-Point-With-Altitude-And-Uncertainty-Ellipsoid\tEllipsoid-Point-With-Altitude-And-Uncertainty-Ellipsoid,\nellipsoid-Arc\t\t\tEllipsoid-Arc,\n...,\nhigh-Accuracy-Ellipsoid-Point-With-Uncertainty-Ellipse\tHigh-Accuracy-Ellipsoid-Point-With-Uncertainty-Ellipse,\nhigh-Accuracy-Ellipsoid-Point-With-Altitude-And-Uncertainty-Ellipsoid\tHigh-Accuracy-Ellipsoid-Point-With-Altitude-And-Uncertainty-Ellipsoid,\nhigh-Accuracy-Ellipsoid-Point-With-Scalable-Uncertainty-Ellipse\tHigh-Accuracy-Ellipsoid-Point-With-Scalable-Uncertainty-Ellipse,\nhigh-Accuracy-Ellipsoid-Point-With-Altitude-And-Scalable-Uncertainty-Ellipsoid\tHigh-Accuracy- Accuracy-Ellipsoid-Point-With-Altitude-And-Scalable-Uncertainty-Ellipsoid\n}\nGeographical-Coordinates\t::= SEQUENCE {\nlatitudeSign\tLatitudeSign,\ndegreesLatitude\tDegreesLatitude,\ndegreesLongitude\tDegreesLongitude,\niE-Extensions\tProtocolExtensionContainer { {Geographical-Coordinates-ExtIEs} } OPTIONAL,\n...\n}\nGeographical-Coordinates-ExtIEs LCS-AP-PROTOCOL-EXTENSION ::= {\n...\n}\nGlobal-eNB-ID\t::= SEQUENCE {\npLMN-ID\tPLMN-ID,\neNB-ID\tENB-ID\n}\nGNSS-Positioning-Method-And-Usage ::= OCTET STRING (SIZE (1))\nGNSS-Positioning-Data-Set ::= SEQUENCE (SIZE (1..max-GNSS-Set)) OF GNSS-Positioning-Method-And-Usage\n-- H\nHigh-Accuracy-Altitude ::= INTEGER (-64000..1280000)\nHigh-Accuracy-DegreesLatitude\t::= INTEGER(-2147483648..2147483647)\nHigh-Accuracy-DegreesLongitude\t::= INTEGER(-2147483648..2147483647)\nHigh-Accuracy-Ellipsoid-Point-With-Uncertainty-Ellipse  ::= SEQUENCE {\nhigh-Accuracy-Geographical-Coordinates\tHigh-Accuracy-Geographical-Coordinates,\nhigh-Accuracy-Uncertainty-Ellipse\tHigh-Accuracy-Uncertainty-Ellipse,\nconfidence\t\tConfidence,\niE-Extensions\tProtocolExtensionContainer { { High-Accuracy-Ellipsoid-Point-With-Uncertainty-Ellipse-ExtIEs} } OPTIONAL,\n...}\nHigh-Accuracy-Ellipsoid-Point-With-Uncertainty-Ellipse-ExtIEs LCS-AP-PROTOCOL-EXTENSION ::= {\n...\n}\nHigh-Accuracy-Ellipsoid-Point-With-Scalable-Uncertainty-Ellipse  ::= SEQUENCE {\nhigh-Accuracy-Geographical-Coordinates\tHigh-Accuracy-Geographical-Coordinates,\nhigh-Accuracy-Scalable-Uncertainty-Ellipse\tHigh-Accuracy-Scalable-Uncertainty-Ellipse,\nconfidence\t\tConfidence,\niE-Extensions\tProtocolExtensionContainer { { High-Accuracy-Ellipsoid-Point-With-Scalable-Uncertainty-Ellipse-ExtIEs} } OPTIONAL,\n...}\nHigh-Accuracy-Ellipsoid-Point-With-Scalable-Uncertainty-Ellipse-ExtIEs LCS-AP-PROTOCOL-EXTENSION ::= {\n...\n}\nHigh-Accuracy-Ellipsoid-Point-With-Altitude-And-Uncertainty-Ellipsoid\t::= SEQUENCE {\nhigh-Accuracy-Geographical-Coordinates\tHigh-Accuracy-Geographical-Coordinates,\nhigh-Accuracy-Altitude\tHigh-Accuracy-Altitude,\nhigh-Accuracy-Uncertainty-Ellipse\tHigh-Accuracy-Uncertainty-Ellipse,\nconfidence\t\tConfidence,\nhigh-Accuracy-Uncertainty-Altitude\tHigh-Accuracy-Uncertainty-Code,\nvertical-Confidence\tConfidence,\niE-Extensions\tProtocolExtensionContainer { { High-Accuracy-Ellipsoid-Point-With-Altitude-And-Uncertainty-Ellipsoid-ExtIEs} } OPTIONAL,\n...}\nHigh-Accuracy-Ellipsoid-Point-With-Altitude-And-Uncertainty-Ellipsoid-ExtIEs LCS-AP-PROTOCOL-EXTENSION ::= {\n...\n}\nHigh-Accuracy-Ellipsoid-Point-With-Altitude-And-Scalable-Uncertainty-Ellipsoid\t::= SEQUENCE {\nhigh-Accuracy-Geographical-Coordinates\tHigh-Accuracy-Geographical-Coordinates,\nhigh-Accuracy-Altitude\tHigh-Accuracy-Altitude,\nhigh-Accuracy-Scalable-Uncertainty-Ellipse\tHigh-Accuracy-Scalable-Uncertainty-Ellipse,\nconfidence\t\tConfidence,\nhigh-Accuracy-Scalable-Uncertainty-Altitude\tHigh-Accuracy-Scalable-Uncertainty-Altitude,\nvertical-Confidence\tConfidence,\niE-Extensions\tProtocolExtensionContainer { { High-Accuracy-Ellipsoid-Point-With-Altitude-And-Scalable-Uncertainty-Ellipsoid-ExtIEs} } OPTIONAL,\n...}\nHigh-Accuracy-Ellipsoid-Point-With-Altitude-And-Scalable-Uncertainty-Ellipsoid-ExtIEs LCS-AP-PROTOCOL-EXTENSION ::= {\n...\n}\nHigh-Accuracy-Geographical-Coordinates\t::= SEQUENCE {\nhigh-Accuracy-DegreesLatitude\tHigh-Accuracy-DegreesLatitude,\nhigh-Accuracy-DegreesLongitude\tHigh-Accuracy-DegreesLongitude,\niE-Extensions\tProtocolExtensionContainer { { High-Accuracy-Geographical-Coordinates-ExtIEs} } OPTIONAL,\n...\n}\nHigh-Accuracy-Geographical-Coordinates-ExtIEs LCS-AP-PROTOCOL-EXTENSION ::= {\n...\n}\nHigh-Accuracy-Uncertainty-Code ::= INTEGER (0..255)\nHigh-Accuracy-Extended-Uncertainty-Code ::= INTEGER (0..255)\nHigh-Accuracy-Uncertainty-Ellipse\t::= SEQUENCE {\nhigh-Accuracy-Uncertainty-SemiMajor\tHigh-Accuracy-Uncertainty-Code,\nhigh-Accuracy-Uncertainty-SemiMinor\tHigh-Accuracy-Uncertainty-Code,\norientation-Major-Axis\tINTEGER (0..179),\niE-Extensions\tProtocolExtensionContainer { { High-Accuracy-Uncertainty-Ellipse-ExtIEs} } OPTIONAL,\n...\n}\nHigh-Accuracy-Uncertainty-Ellipse-ExtIEs LCS-AP-PROTOCOL-EXTENSION ::= {\n...\n}\nHigh-Accuracy-Extended-Uncertainty-Ellipse\t::= SEQUENCE {\nhigh-Accuracy-Extended-Uncertainty-SemiMajor\tHigh-Accuracy-Extended-Uncertainty-Code,\nhigh-Accuracy-Extended-Uncertainty-SemiMinor\tHigh-Accuracy-Extended-Uncertainty-Code,\norientation-Major-Axis\tINTEGER (0..179),\niE-Extensions\tProtocolExtensionContainer { { High-Accuracy-Extended-Uncertainty-Ellipse-ExtIEs} } OPTIONAL,\n...\n}\nHigh-Accuracy-Extended-Uncertainty-Ellipse-ExtIEs LCS-AP-PROTOCOL-EXTENSION ::= {\n...\n}\nHigh-Accuracy-Scalable-Uncertainty-Ellipse\t::= CHOICE {\nhigh-Accuracy-Uncertainty-Ellipse\tHigh-Accuracy-Uncertainty-Ellipse,\nhigh-Accuracy-Extended-Uncertainty-Ellipse\tHigh-Accuracy-Extended-Uncertainty-Ellipse\n}\nHigh-Accuracy-Scalable-Uncertainty-Altitude\t::= CHOICE {\nhigh-Accuracy-Uncertainty-Altitude\tHigh-Accuracy-Uncertainty-Code,\nhigh-Accuracy-Extended-Uncertainty-Altitude\tHigh-Accuracy-Extended-Uncertainty-Code\n}\nHome-eNB-ID ::= BIT STRING (SIZE (28))\nHorizontal-Accuracy ::= INTEGER (0..127)\nHorizontal-Speed-And-Bearing\t::= SEQUENCE {\nbearing\t\tINTEGER (0..359),\nhorizontal-Speed\tINTEGER (0..2047)\n}\nHorizontal-Velocity\t::= SEQUENCE {\nhorizontal-Speed-And-Bearing\tHorizontal-Speed-And-Bearing,\niE-Extensions\tProtocolExtensionContainer { { Horizontal-Velocity-ExtIEs} } OPTIONAL,\n...\n}\nHorizontal-Velocity-ExtIEs LCS-AP-PROTOCOL-EXTENSION ::= {\n...\n}\nHorizontal-With-Vertical-Velocity\t::= SEQUENCE {\nhorizontal-Speed-And-Bearing\tHorizontal-Speed-And-Bearing,\nvertical-Velocity\tVertical-Velocity,\niE-Extensions\t\tProtocolExtensionContainer { { Horizontal-With-Vertical-Velocity-ExtIEs} } OPTIONAL,\n...\n}\nHorizontal-With-Vertical-Velocity-ExtIEs LCS-AP-PROTOCOL-EXTENSION ::= {\n...\n}\nHorizontal-Velocity-With-Uncertainty\t::= SEQUENCE {\nhorizontal-Speed-And-Bearing\tHorizontal-Speed-And-Bearing,\nuncertainty-Speed\t\tINTEGER (0..255),\niE-Extensions\t\tProtocolExtensionContainer { { Horizontal-Velocity-With-Uncertainty-ExtIEs} } OPTIONAL,\n...\n}\nHorizontal-Velocity-With-Uncertainty-ExtIEs LCS-AP-PROTOCOL-EXTENSION ::= {\n...\n}\nHorizontal-With-Vertical-Velocity-And-Uncertainty ::= SEQUENCE {\nhorizontal-Speed-And-Bearing\tHorizontal-Speed-And-Bearing,\nvertical-Velocity\tVertical-Velocity,\nhorizontal-Uncertainty-Speed\tINTEGER (0..255),\nvertical-Uncertainty-Speed\tINTEGER (0..255),\niE-Extensions\t\tProtocolExtensionContainer { { Horizontal-With-Vertical-Velocity-And-Uncertainty-ExtIEs} } OPTIONAL,\n...\n}\nHorizontal-With-Vertical-Velocity-And-Uncertainty-ExtIEs LCS-AP-PROTOCOL-EXTENSION ::= {\n...\n}\n-- I\nIMSI\t::=\tOCTET STRING (SIZE (3..8))\nIMEI\t::=\tOCTET STRING (SIZE (8))\nInclude-Velocity\t::= ENUMERATED {\nrequested,\nnot-Requested,\n...\n}\nInner-Radius\t::= INTEGER (0..65535)\t-- 16 bit field\nInternational-Area-Indication\t::= ENUMERATED {\nyes,\n...\n}\n-- J\n-- K\n-- L\nLatitudeSign\t::= ENUMERATED {\nnorth,\nsouth\n}\nLocation-Type\t::= ENUMERATED {\ngeographic-Information,\nassistance-Information,\n...,\nlast-known-location\n}\nLCS-Cause\t::= CHOICE {\nradio-Network-Layer\tRadio-Network-Layer-Cause,\ntransport-Layer\tTransport-Layer-Cause,\nprotocol\tProtocol-Cause,\nmisc\tMisc-Cause\n}\nLCS-Client-Type\t::= ENUMERATED {\nemergency-Services,\nvalue-Added-Services,\npLMN-Operator-Services,\nlawful-Intercept-Services,\npLMN-Operator-broadcast-Services,\npLMN-Operator-OM,\npLMN-Operator-Anonymous-Statistics,\npLMN-Operator-Target-MS-Service-Support,\n...\n}\nLCS-Priority\t::=\tOCTET STRING (SIZE (1))\nLCS-QoS\t\t::= SEQUENCE {\nhorizontal-Accuracy\tHorizontal-Accuracy\tOPTIONAL,\nvertical-Requested\tVertical-Requested\tOPTIONAL,\nvertical-Accuracy\tVertical-Accuracy\tOPTIONAL,\nresponse-Time\tResponse-Time\tOPTIONAL,\n...\n}\nLCS-Service-Type-ID\t::= INTEGER (0..127)\nLong-Macro-eNB-ID ::= BIT STRING (SIZE (21))\n-- M\nMacro-eNB-ID ::= BIT STRING (SIZE (20))\nMessage-Identifier ::= BIT STRING (SIZE (16))\nMisc-Cause\t::= ENUMERATED {\nprocessing-Overload,\nhardware-Failure,\no-And-M-Intervention,\nunspecified,\n...,\nciphering-key-data-lost\n}\nMultipleAPDUs ::= SEQUENCE (SIZE (1.. 3)) OF APDU\n-- N\nNetwork-Element\t::= CHOICE {\nglobal-eNB-ID\tGlobal-eNB-ID,\ne-SMLC-ID\tE-SMLC-ID\n}\n-- O\nOrientation-Major-Axis ::= INTEGER (0..89)\n-- P\nPayload-Type ::= ENUMERATED {\nlPP,\nlPPa,\n...\n}\nPLMN-ID ::= TBCD-STRING\nPoint\t\t::= SEQUENCE {\ngeographical-Coordinates\tGeographical-Coordinates,\niE-Extensions\tProtocolExtensionContainer { {Point-ExtIEs} } OPTIONAL,\n...\n}\nPoint-ExtIEs LCS-AP-PROTOCOL-EXTENSION ::= {\n...\n}\nPoint-With-Uncertainty\t::= SEQUENCE {\ngeographical-Coordinates\tGeographical-Coordinates,\nuncertainty-Code\tUncertainty-Code,\niE-Extensions\tProtocolExtensionContainer { {Point-With-Uncertainty-ExtIEs} } OPTIONAL,\n...}\nPoint-With-Uncertainty-ExtIEs LCS-AP-PROTOCOL-EXTENSION ::= {\n...\n}\nPolygon ::= SEQUENCE (SIZE (1..max-No-Of-Points)) OF Polygon-Point\nPolygon-Point ::= SEQUENCE {\ngeographical-Coordinates\tGeographical-Coordinates,\niE-Extensions\tProtocolExtensionContainer { {Polygon-Point-ExtIEs} } OPTIONAL,\n...\n}\nPolygon-Point-ExtIEs LCS-AP-PROTOCOL-EXTENSION ::= {\n...\n}\nPositioning-Data\t::= SEQUENCE {\npositioning-Data-Set\tPositioning-Data-Set  OPTIONAL,\ngNSS-Positioning-Data-Set\tGNSS-Positioning-Data-Set OPTIONAL,\niE-Extensions\tProtocolExtensionContainer { { Positioning-Data-ExtIEs} } OPTIONAL,\n...\n}\nPositioning-Data-ExtIEs LCS-AP-PROTOCOL-EXTENSION ::= {\n{ ID id-Additional-PositioningDataSet\tCRITICALITY ignore\tEXTENSION Additional-PositioningDataSet\tPRESENCE optional },\n...\n}\nPositioning-Data-Set  ::= SEQUENCE (SIZE (1..max-Set)) OF Positioning-Method-And-Usage\nPositioning-Method-And-Usage\t::=\tOCTET STRING (SIZE (1))\nProtocol-Cause\t::= ENUMERATED {\ntransfer-Syntax-Error,abstract-Syntax-Error-Reject,abstract-Syntax-Error-Ignore-And-Notify,message-Not-Compatible-With-Receiver-State,\nsemantic-Error,unspecified,\nabstract-Syntax-Error,\n...\n}\n-- Q\n-- R\nRadio-Network-Layer-Cause\t::= ENUMERATED {\nunspecified,\n...\n}\nRAT-Type\t::= ENUMERATED {\nlte-wb,\nnb-iot,\n...,\nlte-m\n}\nResponse-Time\t::= ENUMERATED {\nlow-Delay(0),\ndelay-Tolerant(1),\n...\n}\nReturn-Error-Type ::= ENUMERATED {\nyes,\nno\n}\nReturn-Error-Cause ::= ENUMERATED {\nsystem-Failure,\nprotocol-Error,\ndestination-Unknown,\ndestination-Unreachable,\ncongestion,\n...\n}\n-- S\nShort-Macro-eNB-ID ::= BIT STRING (SIZE (18))\nSIB-Types ::= OCTET STRING (SIZE (4))\nStorage-Outcome ::= ENUMERATED {\nsuccessful,\nfailed\n}\n-- T\nTAIs-List ::= OCTET STRING (SIZE (7..97))\nTBCD-STRING ::= OCTET STRING (SIZE (3))\nTransport-Layer-Cause\t::= ENUMERATED {\ntranport-Resource-Unavailable,\nunspecified,\n...\n}\n-- U\nUncertainty-Altitude ::= INTEGER (0..127)\nUncertainty-Code  ::= INTEGER (0..127)\nUncertainty-Ellipse\t::= SEQUENCE {\nuncertainty-SemiMajor\tUncertainty-Code,\nuncertainty-SemiMinor\tUncertainty-Code,\norientation-Major-Axis\tOrientation-Major-Axis\n}\nUE-Positioning-Capability\t::= SEQUENCE {\nlPP\t\tBOOLEAN,\n...\n}\nUE-Country-Determination-Indication\t::= ENUMERATED {\nrequired,\nnot-required,\n...\n}\nUE-Area-Indication ::= SEQUENCE {\ncountry\t\tCountry,\ninternational-area-indication\t\tInternational-Area-Indication\n}\n-- V\nValidity-Duration ::= INTEGER (0..65535)\nValidity-Start-Time ::= OCTET STRING (SIZE (4))\nVelocity-Estimate ::= CHOICE {\nhorizontal-Velocity\t\t\tHorizontal-Velocity,\nhorizontal-With-Vertical-Velocity\t\tHorizontal-With-Vertical-Velocity,\nhorizontal-Velocity-With-Uncertainty\tHorizontal-Velocity-With-Uncertainty,\nhorizontal-With-Vertical-Velocity-And-Uncertainty\tHorizontal-With-Vertical-Velocity-And-Uncertainty,\n...\n}\nVertical-Requested\t::= ENUMERATED {\nvertical-coordinate-Is-Not-Requested(0),\nvertical-coordinate-Is-Requested(1)\n}\nVertical-Accuracy ::= INTEGER (0..127)\nVertical-Velocity ::= SEQUENCE {\nvertical-Speed\t\t\tINTEGER (0..255),\nvertical-Speed-Direction\t\tVertical-Speed-Direction\n}\nVertical-Speed-Direction ::= ENUMERATED {\nupward,\ndownward\n}\n-- W\n-- X\n-- Y\nEND",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.171_7.5.6",
+      "section_id": "7.5.6",
+      "section_title": "Common definitions",
+      "content": "-- **************************************************************\n--\n-- Common definitions\n--\n-- **************************************************************\nLCS-AP-CommonDataTypes {\nitu-t (0) identified-organization (4) etsi (0) mobileDomain (0)\neps-Access (21) modules (3) lcs-AP (4) version1 (1) lcs-AP-CommonDataTypes (3)}\nDEFINITIONS AUTOMATIC TAGS ::=\nBEGIN\nCriticality\t::= ENUMERATED { reject, ignore, notify }\nPresence\t::= ENUMERATED { optional, conditional, mandatory }\nProcedureCode\t::= INTEGER (0..255)\nProtocolExtensionID\t::= INTEGER (0..65535)\nProtocolIE-ID\t::= INTEGER (0..65535)\nTriggeringMessage\t::= ENUMERATED {initiating-message, successful-outcome, unsuccessful-outcome, outcome}\nEND",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.171_7.5.7",
+      "section_id": "7.5.7",
+      "section_title": "Constant definitions",
+      "content": "-- **************************************************************\n--\n-- Constant definitions\n--\n-- **************************************************************\nLCS-AP-Constants {\nitu-t (0) identified-organization (4) etsi (0) mobileDomain (0)\neps-Access (21) modules (3) lcs-AP (4) version1 (1) lcs-AP-Constants (4)}\nDEFINITIONS AUTOMATIC TAGS ::=\nBEGIN\n-- **************************************************************\n--\n-- Elementary Procedures\n--\n-- **************************************************************\nid-Location-Service-Request\t\tINTEGER ::= 0\nid-Connection-Oriented-Information-Transfer\tINTEGER ::= 1\nid-Connectionless-Information-Transfer\tINTEGER ::= 2\nid-Location-Abort\t\tINTEGER ::= 3\nid-Reset\t\t\tINTEGER ::= 4\nid-Ciphering-Key-Data-Delivery\t\tINTEGER ::= 5\n-- **************************************************************\n--\n-- IEs\n--\n-- **************************************************************\nid-Accuracy-Fulfillment-Indicator\tINTEGER ::= 0\nid-APDU\t\tINTEGER ::= 1\nid-Correlation-ID\t\tINTEGER ::= 2\nid-Destination-ID\t\tINTEGER ::= 3\nid-E-UTRAN-Cell-Identifier\tINTEGER ::= 4\nid-Include-Velocity\t\tINTEGER ::= 5\nid-IMEI\t\tINTEGER ::= 6\nid-IMSI\t\tINTEGER ::= 7\nid-LCS-Client-Type\t\tINTEGER ::= 8\nid-LCS-Priority\t\tINTEGER ::= 9\nid-LCS-QOS\t\tINTEGER ::= 10\nid-LCS-Cause\t\tINTEGER ::= 11\nid-Location-Estimate\tINTEGER ::= 12\nid-Location-Type\t\tINTEGER ::= 13\nid-MultipleAPDUs\t\tINTEGER ::= 14\nid-Payload-Type\t\tINTEGER ::= 15\nid-Positioning-Data\t\tINTEGER ::= 16\nid-Return-Error-Request\tINTEGER ::= 17\nid-Return-Error-Cause\tINTEGER ::= 18\nid-Source-Identity\t\tINTEGER ::= 19\nid-UE-Positioning-Capability\tINTEGER ::= 20\nid-Velocity-Estimate\tINTEGER ::= 21\nid-LCS-Service-Type-ID\tINTEGER ::= 22\nid-Cell-Portion-ID\t\tINTEGER ::= 23\nid-Civic-Address\t\tINTEGER ::= 24\nid-Barometric-Pressure\tINTEGER ::= 25\nid-Additional-PositioningDataSet\tINTEGER ::= 26\nid-RAT-Type\t\tINTEGER ::= 27\nid-Ciphering-Data\t\tINTEGER ::= 28\nid-Ciphering-Data-Ack\tINTEGER ::= 29\nid-Ciphering-Data-Error-Report\tINTEGER ::= 30\nid-Coverage-Level\t\tINTEGER ::= 31\nid-UE-Country-Determination-Indication\t\tINTEGER ::= 32\nid-UE-Area-Indication\t\tINTEGER ::= 33\n-- **************************************************************\n--\n-- Extension constants\n--\n-- **************************************************************\n-- **************************************************************\n--\n-- Lists\n--\n-- **************************************************************\nmax-No-Of-Points\tINTEGER ::= 15\nmax-Set\t\tINTEGER ::= 9\nmax-GNSS-Set\tINTEGER ::= 9\nmax-Add-Pos-Set\tINTEGER ::= 8\nmax-Cipher-Set\tINTEGER ::= 16\nmaxProtocolExtensions\tINTEGER ::= 65535\nmaxProtocolIEs\tINTEGER ::= 65535\nEND",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.171_7.5.8",
+      "section_id": "7.5.8",
+      "section_title": "Container Definitions",
+      "content": "-- **************************************************************\n--\n-- Container definitions\n--\n-- **************************************************************\nLCS-AP-Containers {\nitu-t (0) identified-organization (4) etsi (0) mobileDomain (0)\neps-Access (21) modules (3) lcs-AP (4) version1 (1) lcs-AP-Containers (5)}\nDEFINITIONS AUTOMATIC TAGS ::=\nBEGIN\n-- **************************************************************\n--\n-- IE parameter types from other modules.\n--\n-- **************************************************************\nIMPORTS\nCriticality,\nPresence,\nProtocolExtensionID,\nProtocolIE-ID\nFROM LCS-AP-CommonDataTypes\nmaxProtocolExtensions,\nmaxProtocolIEs\nFROM LCS-AP-Constants;\n-- **************************************************************\n--\n-- Class Definition for Protocol IEs\n--\n-- **************************************************************\nLCS-AP-PROTOCOL-IES ::= CLASS {\n&id\tProtocolIE-ID\tUNIQUE,\n&criticality\tCriticality\tDEFAULT ignore,\n&Value,\n&presence\tPresence\n}\nWITH SYNTAX {\nID\t\t&id\nCRITICALITY\t&criticality\nTYPE\t&Value\nPRESENCE\t&presence\n}\n-- **************************************************************\n--\n-- Class Definition for Protocol Extensions\n--\n-- **************************************************************\nLCS-AP-PROTOCOL-EXTENSION ::= CLASS {\n&id\tProtocolExtensionID\tUNIQUE,\n&criticality\tCriticality\tDEFAULT ignore,\n&Extension,\n&presence\tPresence\n}\nWITH SYNTAX {\nID\t\t&id\nCRITICALITY\t&criticality\nEXTENSION\t&Extension\nPRESENCE\t&presence\n}\n-- **************************************************************\n--\n-- Container for Protocol IEs\n--\n-- **************************************************************\nProtocolIE-Container {LCS-AP-PROTOCOL-IES : IEsSetParam} ::=\nSEQUENCE (SIZE (0..maxProtocolIEs)) OF\nProtocolIE-Field {{IEsSetParam}}\nProtocolIE-Field {LCS-AP-PROTOCOL-IES : IEsSetParam} ::= SEQUENCE {\nid\tLCS-AP-PROTOCOL-IES.&id\t({IEsSetParam}),\ncriticality\tLCS-AP-PROTOCOL-IES.&criticality\t({IEsSetParam}{@id}),\nvalue\tLCS-AP-PROTOCOL-IES.&Value\t({IEsSetParam}{@id})\n}\n-- **************************************************************\n--\n-- Container Lists for Protocol IE Containers\n--\n-- **************************************************************\nProtocolIE-ContainerList {INTEGER : lowerBound, INTEGER : upperBound, LCS-AP-PROTOCOL-IES : IEsSetParam} ::=\nSEQUENCE (SIZE (lowerBound..upperBound)) OF\nProtocolIE-Container {{IEsSetParam}}\n-- **************************************************************\n--\n-- Container for Protocol Extensions\n--\n-- **************************************************************\nProtocolExtensionContainer {LCS-AP-PROTOCOL-EXTENSION : ExtensionSetParam} ::=\nSEQUENCE (SIZE (1..maxProtocolExtensions)) OF\nProtocolExtensionField {{ExtensionSetParam}}\nProtocolExtensionField {LCS-AP-PROTOCOL-EXTENSION : ExtensionSetParam} ::= SEQUENCE {\nid\tLCS-AP-PROTOCOL-EXTENSION.&id\t({ExtensionSetParam}),\ncriticality\tLCS-AP-PROTOCOL-EXTENSION.&criticality\t({ExtensionSetParam}{@id}),\nextensionValue\tLCS-AP-PROTOCOL-EXTENSION.&Extension\t({ExtensionSetParam}{@id})\n}\nEND",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.171_7.5.9",
+      "section_id": "7.5.9",
+      "section_title": "Message transfer syntax",
+      "content": "LCS-AP shall use the ASN.1 Basic Packed Encoding Rules (BASIC-PER) Aligned Variant as transfer syntax as specified in ITU-T Recommendation X.691 [12].",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.171_7.6",
+      "section_id": "7.6",
+      "section_title": "Handling of unknown, unforeseen and erroneous protocol data",
+      "content": "Clause 10 of 3GPP TS 36.413 [7] is applicable for the purposes of the present document.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_36.413_clause_10",
+        "ts_36.413"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.171_8.1",
+      "section_id": "8.1",
+      "section_title": "General",
+      "content": "The description of timers in the following tables should be considered a brief summary.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.171_8.2",
+      "section_id": "8.2",
+      "section_title": "Timers of LCS-AP",
+      "content": "Table 8.2.1: LCS-AP timers\nTIMER NUM.\nTIMER VALUE\nCAUSE OF START\nNORMAL STOP\nON EXPIRY\nT3x01\nThis value can be operator configurable, based on the received QoS response time.\nA Location Request procedure started in the MME.\nLocation Response message is received\nMME shall send Abort message to E-SMLC and return error to the requesting entity\nT3x02\n3 seconds\nA Reset message is sent\nReset Acknowledge message is received\nRetransmission of the Reset message\nT3x03\nThis value can be operator configurable\nA Ciphering Keys Delivery procedure started in the E-SMLC\nCiphering Key Data Result message is received\nE-SMLC shall abort the procedure and release any resources allocated for the procedure\nAnnex A (informative):Change history\nDate\nTSG #\nTSG Doc.\nCR\nRev\nCev\nSubject/Comment\nNew\n2010-03\nCP-47\nCP-100054\n3GPP TS presented for approval in CT#47\n9.0.0\n2010-06\nCP-48\nCP-100286\n0001\nF\nCorrection to Positioning Data Element\n9.1.0\n0003\nF\nCorrection to Cell ID Category\n2010-06\nCP-48\nCP-100417\n0002\n3\nF\nProvide Service Type ID to E-SMLC\n10.0.0\n2010-09\nCP-49\nCP-100463\n0006\n1\nF\nDefine message transfer syntax in LCS-AP\n10.1.0\nF\nAdd LCS-AP port identifier, payload protocol identifier and Elementary Procedure number\n2011-03\nCP-51\nCP-110054\n0014\n2\nF\nFix mismatches between technical description and ASN.1 coding\n10.2.0\n2011-06\nCP-52\nCP-110365\n0016\n1\nF\nProtocol Layering for LCS-AP\n10.3.0\n2011-09\nCP-53\nCP-110579\n0020\n1\nF\nPolygon encoding correction\n11.0.0\n2012-03\nCP-55\nCP-120038\n0021\n2\nF\nUse of multiple SCTP associations between MME and E-SMLC\n11.1.0\n2012-12\nCP-58\nCP-120880\n0023\n1\nF\nMandatory Correlation ID in Connection Oriented Information\n11.2.0\n2013-06\nCP-60\nCP-130287\n0024\n1\nF\nAPDU in Connection Oriented Information message\n11.3.0\n2013-12\nCP-62\nCP-130631\n0025\n1\nF\nAdding E-SMLC provided Cell info and Cell Portion\n12.0.0\n2014-06\nCP-64\nCP-140269\n0026\n-\nF\nValue range of Cell-Portion-ID\n12.1.0\n2015-09\nCP-69\nCP-150441\n0027\n1\nF\nClarification on the MME behaviour upon expiration of timer T3x01\n13.0.0\n2015-12\nCP-70\nCP-150740\n0033\n-\nF\nASN.1 Corrections\n13.1.0\n2015-12\nCP-70\nCP-150766\n0029\n2\nF\nIndoor Positioning support in LCS-AP\n13.1.0\n2016-03\nCP/71\nCP-160024\n0034\n-\nF\nImplementation Error in CR#29\n13.2.0\n2016-12\nCT#74\nCP-160668\n0035\n1\nF\nConsistency for UE-Based positioning method in LPP\n14.0.0\n2016-12\nCT#74\nCP-160668\n0036\n1\nF\nCell Portion ID Extension\n14.0.0\n2017-06\nCT#76\nCP-171030\n0037\n3\nF\nEnhancements to Location Services for CIoT\n14.1.0\n2017-06\nCT#76\nCP-171030\n0038\n1\nF\nLocation service message size adaptation according to coverage level\n14.1.0\n2017-06\nCT#76\nCP-171025\n0039\n2\nF\nLCS-AP corrections\n14.1.0\n2017-12\nCT#78\nCP-173020\n0042\n-\nF\nIntroduction of New types of eNB ID\n14.2.0\n2018-06\nCT#80\nCP-181124\n0043\n1\nF\nCiphering keys delivery to support broadcast of ciphered assistance data in E-UTRAN\n15.0.0\n2018-09\nCT#81\nCP-182077\n0045\n-\nF\nUpdate of SIB Types information in Ciphering Data Set\n15.1.0\n2019-03\nCT#83\nCP-190034\n0046\n1\nF\nLTE-M RAT Type\n15.2.0\n2019-09\nCT#85\nCP-192095\n0047\n-\nF\nCiphering key lost\n15.3.0\n2019-09\nCT#85\nCP-192095\n0050\n1\nF\nCorrection of ASN.1 errors\n15.3.0\n2019-09\nCT#85\nCP-192095\n0051\n1\nF\nAddition of High Accuracy location estimates\n15.3.0\n2019-09\nCT#85\nCP-192093\n0053\n1\nF\nCorrection on Coverage Level\n15.3.0\n2019-12\nCT#86\nCP-193034\n0054\n-\nF\nAdding Motion-Sensor Method\n15.4.0\n2020-07\nCT#88e\n-\n-\n-\n-\nUpdate to Rel-16 version (MCC)\n16.0.0\n2020-09\nCT#89e\nCP-202112\n0055\n1\nF\nUpdating positioning SIBs in Ciphering Data Set\n16.1.0\n2020-12\nCT#90e\nCP-203023\n0058\n1\nA\nEssential Corrections to \"High Accuracy Uncertainty Ellipse\" type definition\n16.2.0\n2021-12\nCT#94e\nCP-213142\n0059\n1\nF\nHigh Accuracy GAD Shape with Scalable Uncertainty\n16.3.0\n2022-03\nCT#95e\nCP-220093\n0060\n1\nB\nPLMN Verification\n17.0.0\n2022-09\nCT#97e\nCP-222066\n0062\n-\nA\nASN.1 correction on Geographical-Area\n17.1.0\n2022-12\nCT#98e\nCP-223072\n0064\n-\nA\nCorrection on High Accuracy Altitude\n17.2.0\n2022-12\nCT#98e\nCP-223053\n0065\n-\nF\nCorrection on country verification for satellite access\n17.2.0\n2023-06\nCT#100\nCP-231094\n0069\n-\nA\nRemove Mandatory Presence Requirement for CHOICE Alternatives\n17.3.0\n2023-06\nCT#100\nCP-231092\n0067\n1\nA\nMissing GNSS IDs\n17.3.0\n2024-03\n-\n-\n-\n-\nUpdate to Rel-18 version (MCC)\n18.0.0",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_8.2.1"
+      ]
+    }
+  ]
+}

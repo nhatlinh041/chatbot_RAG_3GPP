@@ -1,0 +1,824 @@
+{
+  "metadata": {
+    "specification_id": "ts_29.673",
+    "version": "18.4.0",
+    "title": "3GPP TS 29.673",
+    "file_path": "/content/drive/MyDrive/RAG_thesis/data/29_series/29673-i40/29673-i40.docx"
+  },
+  "export_info": {
+    "export_date": "2025-07-26T08:50:43.379993",
+    "total_chunks": 66
+  },
+  "chunks": [
+    {
+      "chunk_id": "ts_29.673_1",
+      "section_id": "1",
+      "section_title": "Scope",
+      "content": "The present document specifies the stage 3 protocol and data model for the Nucmf Service Based Interface. It provides stage 3 protocol definitions and message flows, and specifies the API for each service offered by the Nucmf.\nThe 5G System stage 2 architecture and procedures are specified in 3GPP TS 23.501 [2] and 3GPP TS 23.502 [3].\nThe Technical Realization of the Service Based Architecture and the Principles and Guidelines for Services Definition are specified in 3GPP TS 29.500 [4] and 3GPP TS 29.501 [5].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.501",
+        "ts_23.502",
+        "ts_29.500",
+        "ts_29.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.673_2",
+      "section_id": "2",
+      "section_title": "References",
+      "content": "The following documents contain provisions which, through reference in this text, constitute provisions of the present document.\n-\tReferences are either specific (identified by date of publication, edition number, version number, etc.) or non‑specific.\n-\tFor a specific reference, subsequent revisions do not apply.\n-\tFor a non-specific reference, the latest version applies. In the case of a reference to a 3GPP document (including a GSM document), a non-specific reference implicitly refers to the latest version of that document in the same Release as the present document.\n[1]\t3GPP TR 21.905: \"Vocabulary for 3GPP Specifications\".\n[2]\t3GPP TS 23.501: \"System Architecture for the 5G System; Stage 2\".\n[3]\t3GPP TS 23.502: \"Procedures for the 5G System; Stage 2\".\n[4]\t3GPP TS 29.500: \"5G System; Technical Realization of Service Based Architecture; Stage 3\".\n[5]\t3GPP TS 29.501: \"5G System; Principles and Guidelines for Services Definition; Stage 3\".\n[6]\tOpenAPI: \"OpenAPI Specification Version 3.0.0\", https://spec.openapis.org/oas/v3.0.0.[7]\t3GPP TR 21.900: \"Technical Specification Group working methods\".\n[8]\t3GPP TS 33.501: \"Security architecture and procedures for 5G system\".\n[9]\tIETF RFC 6749: \"The OAuth 2.0 Authorization Framework\".\n[10]\t3GPP TS 29.510: \"5G System; Network Function Repository Services; Stage 3\".\n[11]\tIETF RFC 9113: \"Hypertext Transfer Protocol Version 2 (HTTP/2)\".\n[12]\tIETF RFC 8259: \"The JavaScript Object Notation (JSON) Data Interchange Format\".\n[13]\tIETF RFC 9457: \"Problem Details for HTTP APIs\".\n[14]\t3GPP TS 29.571: \"5G System; Common Data Types for Service Based Interfaces; Stage 3\".\n[15]\t3GPP TS 38.413: \"NG Radio Access Network (NG-RAN); NG Application Protocol (NGAP)\".\n[16]\t3GPP TS 29.274: \"3GPP Evolved Packet System (EPS); Evolved General Packet Radio Service (GPRS) Tunnelling Protocol for Control plane (GTPv2-C); Stage 3\".\n[17]\t3GPP TS 36.413: \"Evolved Universal Terrestrial Radio Access Network (E-UTRAN); S1 Application Protocol (S1AP)\"",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905",
+        "ts_23.501",
+        "ts_23.502",
+        "ts_29.500",
+        "ts_29.501",
+        "ts_21.900",
+        "ts_33.501",
+        "ts_29.510",
+        "ts_29.571",
+        "ts_38.413",
+        "ts_29.274",
+        "ts_36.413"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.673_3.1",
+      "section_id": "3.1",
+      "section_title": "Terms",
+      "content": "void",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.673_3.2",
+      "section_id": "3.2",
+      "section_title": "Symbols",
+      "content": "void",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.673_3.3",
+      "section_id": "3.3",
+      "section_title": "Abbreviations",
+      "content": "For the purposes of the present document, the abbreviations given in 3GPP TR 21.905 [1] and the following apply. An abbreviation defined in the present document takes precedence over the definition of the same abbreviation, if any, in 3GPP TR 21.905 [1].\nMME\tMobility Management Entity\nUCMF\tUE radio Capability Management Function",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.673_4.1",
+      "section_id": "4.1",
+      "section_title": "Introduction",
+      "content": "Within the 5GC, the UCMF offers services to the NF (e.g. AMF and MME) via the Nucmf service based interface (see 3GPP TS 23.501 [2] and 3GPP TS 23.502 [3]).\nFigure 4.1-1 provides the reference model (in service based interface representation and in reference point representation), with focus on the UCMF and the scope of the present specification.\nFigure 4.1-1: Reference model – UCMF\nThe functionalities supported by the UCMF are listed in clause 6.2.5 of 3GPP TS 23.501 [2].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.501_clause_6.2.5",
+        "ts_23.501_figure_4.1-1",
+        "figure_4.1-1",
+        "ts_23.501",
+        "ts_23.502"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.673_5.1",
+      "section_id": "5.1",
+      "section_title": "Introduction",
+      "content": "The UCMF supports the following services.\nTable 5.1-1: NF Services provided by UCMF\nService Name\nDescription\nExample Consumer\nNucmf_UECapabilityManagement\nAllows the NF consumer to resolve UE Radio Capability ID (either Manufacturer-assigned or PLMN-assigned) into the corresponding UE radio access capability and the corresponding UE Radio Capability for Paging.\nAllows the NF consumer to obtain a PLMN-assigned UE Radio Capability ID for a specific UE radio access capability.\nAllows the NF consumer to subscribe or unsubscribe for notifications of UCMF dictionary entries.\nAllows the NF consumer to be notified about creation and deletion of UCMF dictionary entries.\nAMF, MME",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.673_5.2.1",
+      "section_id": "5.2.1",
+      "section_title": "Service Description",
+      "content": "The Nucmf_UECapabilityManagement service operates on the dictionary entries for the mapping between UE Radio Capability ID and UE Radio Access Capability Information. The service operations exposed by this service allow service consumer NF, e.g. an AMF:\n-\tto retrieve UE radio access capability information with a UE Radio Capability ID (either Manufacturer-assigned or PLMN-assigned);\n-\tto obtain a PLMN-assigned UE Radio Capability ID for a specific UE radio access capability information;\n-\tto subscribe or unsubscribe for notifications of UCMF dictionary entries;\n-\tto be notified about creation and deletion of UCMF dictionary entries;\nThe Nucmf_UECapabilityManagement service supports the following service operations;\nTable 5.2.1-1: Service operations supported by the Nucmf_UECapabilityManagement service\nService Operations\nDescription\nOperation\nSemantics\nExample Consumer(s)\nResolve\nRetrieve UE radio access capability information from the dictionary entry identified by the UE Radio Capability ID (either Manufacturer-assigned or PLMN-assigned)\nRequest/Response\nAMF, MME\nAssign\nRequest to assign a UE Radio Capability ID by providing the UE Radio Capability Information. See 3GPP TS 23.502 clause 5.2.18.3.2.\nRequest/Response\nAMF, MME\nSubscribe\nSubscribe for notifications of UCMF dictionary entries.\nSubscribe/Notify\nAMF, MME\nUnsubscribe\nUnsubscribe for notifications of UCMF dictionary entries.\nSubscribe/Notify\nAMF, MME\nNotify\nTo be notified about creation and deletion of UCMF dictionary entries.\nSubscribe/Notify\nAMF, MME",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.502_clause_5.2.18.3.2",
+        "table_5.2.1-1",
+        "ts_23.50"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.673_5.2.2.1",
+      "section_id": "5.2.2.1",
+      "section_title": "Introduction",
+      "content": "See Table 5.2.1-1 for an overview of the service operations supported by the Nucmf_UECapabilityManagement service.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.2.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.673_5.2.2.2.1",
+      "section_id": "5.2.2.2.1",
+      "section_title": "General",
+      "content": "The Resolve service operation shall be used to retrieve UE Radio Access Capability Information from a dictionary entry stored in the UCMF, by a NF service consumer, e.g. an AMF, when:\n-\tit has received an unknown UE Radio Capability ID, which is either Manufacturer-assigned or PLMN-assigned;\nThe NF Service Consumer (e.g. AMF) shall retrieve UE Radio Access Capability Information by using the HTTP GET method as shown in Figure 5.2.2.2.1-1.\nFigure: 5.2.2.2.1-1 Retrieve UE Radio Access Capability Information\n1.\tThe NF Service Consumer, e.g. an AMF, shall send an HTTP GET request to the resource URI Dictionary Entries collection resource. The query parameters are a Manufacturer-assigned or a PLMN-assigned UE Radio Capability ID, and the Coding format (e.g. 5GS or EPS) in which UE Radio Access Capability Information needs to be provided.\n2a.\tOn success, \"200 OK\" shall be returned. The response body shall contain UE Radio Access Capability Information in the requested Coding format stored in the dictionary entry that is matching the UE Radio Capability ID in query, and may contain a PLMN-assigned UE Radio Capability ID if the query parameter is a Manufacturer-assigned UE Radio Capability ID and if the PLMN-assigned UE Radio Capability ID mechanism is used in the network.\n2b.\tOn failure or redirection, one of the HTTP status code listed in Table 6.1.3.3.3.2-3 shall be returned.  For a 4xx/5xx response, the message body may contain a ProblemDetails structure with the \"cause\" attribute set to one of the application errors listed in Table 6.1.3.3.3.2-2, where applicable.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "table_6.1.3.3.3.2-3",
+        "table_6.1.3.3.3.2-2",
+        "figure_5.2.2.2.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.673_5.2.2.2.2",
+      "section_id": "5.2.2.2.2",
+      "section_title": "Retrieve a Dictionary Entry",
+      "content": "The Resolve service operation may be used to retrieve a dictionary entry stored in the UCMF, by a NF service consumer, e.g. an AMF, when it has the Dictionary Entry ID available.\nThe NF Service Consumer (e.g. AMF) shall retrieve a Dictionary Entry by using the HTTP GET method as shown in Figure 5.2.2.2.1-1.\nFigure 5.2.2.2.1-1 Retrieve a dictionary entry\n1.\tThe NF Service Consumer, e.g. an AMF, shall send an HTTP GET request to an individual Dictionary Entry resource. The query parameter is the Coding Format (e.g. 5GS or EPS) in which UE Radio Access Capability Information needs to be provided.\n2a.\tOn success, \"200 OK\" shall be returned. The response body shall the dictionary entry information for the given Dictionary Entry ID.\n2b.\tOn failure or redirection, one of the HTTP status code listed in Table 6.1.3.3.3.2-3 shall be returned.  For a 4xx/5xx response, the message body may contain a ProblemDetails structure with the \"cause\" attribute set to one of the application errors listed in Table 6.1.3.3.3.2-3, where applicable.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.1.3.3.3.2-3",
+        "figure_5.2.2.2.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.673_5.2.2.3",
+      "section_id": "5.2.2.3",
+      "section_title": "Service Operation Assign",
+      "content": "The Assign service operation shall be used by the service consumer NF (e.g. AMF) to obtain a PLMN-assigned UE Radio Capability ID from the UCMF for a specific UE radio access capability information. The UCMF shall create a new dictionary entry and assign a PLMN-assigned UE Radio Capability ID unless such dictionary entry already exists and a PLMN-assigned UE Radio Capability ID has already been assigned to the given UE radio access capability information in the UCMF. The NF service consumer, e.g. an AMF, may consume the service by providing the UE Radio Access Capability Information retrieved from the UE, and Type Allocation Code of PEI of the UE, e.g. when it hasn't received any UE Radio Capability ID.\nThe NF Service Consumer (e.g. AMF) shall obtain the PLMN Assigned UE Radio Capability ID by using the HTTP POST method as shown in Figure 5.2.2.3.1-1.\nFigure 5.2.2.3-1 Create a dictionary entry\n1.\tThe NF Service Consumer shall send a POST request to the resource representing the Dictionary Entries collection resource of the UCMF. The content of the POST request shall contain:\n-\tthe UE Radio Access Capability Information for the current radio configuration of the UE in 5GS format, or EPS format, or both the formats;\n-\tthe Type Allocation Code of the PEI of the UE.\n2a.\tOn success, the UCMF shall check whether for the provided input a dictionary entry already exists and a PLMN Assigned UE Radio Capability ID has already been assigned. If so \"201 Created\" shall be returned, the content of the POST response shall contain already assigned PLMN Assigned UE Radio Capability ID included in DicEntryCreatedData and the \"Location\" header shall be present and shall contain the URI of the already existing resource. Otherwise a new dictionary entry shall be created and \"201 Created\" shall be returned, the content of the POST response shall contain the newly assigned PLMN Assigned UE Radio Capability ID included in DicEntryCreatedData and the \"Location\" header shall be present and shall contain the URI of the newly created resource.\n2b.\tOn failure or redirection, one of the HTTP status code listed in Table 6.1.3.2.3.2-3 shall be returned.  For a 4xx/5xx response, the message body may contain a ProblemDetails structure with the \"cause\" attribute set to one of the application errors listed in Table 6.1.3.3.3.2-2, where applicable. A UCMF configured to operate in Mode of Operation A (3GPPP TS 23.501, Clause 5.4.4.1a) shall reject the operation if the request does not contain UE Radio Access Capability Information in both the formats and the UCMF is not able to find match of the received UE Radio Access Capability Information in its database.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_23.501_clause_5.4.4.1",
+        "table_6.1.3.2.3.2-3",
+        "table_6.1.3.3.3.2-2",
+        "figure_5.2.2.3.1-1",
+        "figure_5.2.2.3-1",
+        "ts_23.50"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.673_5.2.2.4.1",
+      "section_id": "5.2.2.4.1",
+      "section_title": "General",
+      "content": "The Subscribe service operation shall be used by a NF Service Consumer, e.g. an AMF, to create a subscription in the UCMF, to get notifications for one or more new dictionary entries creation or for the deletion of one or more PLMN Assigned UE Radio Capability IDs.\nThe NF Service Consumer shall request to create a new subscription by using HTTP method POST with URI of the subscriptions collection, see clause 6.1.3.4. A ucmfNotificationUri shall be provided in the CreateSubscription to be used by the UCMF to send notifications later. See Figure 5.2.2.4.1-1.\nFigure 5.2.2.4.1-1 Create a subscription\n1.\tThe NF Service Consumer shall send a POST request to create a subscription resource in the UCMF. The content of the POST request shall contain a representation of the individual subscription resource to be created. The request may contain an expiry time, suggested by the NF Service Consumer as a hint, representing the time upto which the subscription is desired to be kept active and the time after which the subscribed event(s) shall stop generating report.\n2a.\tOn success, the request is accepted, the UCMF shall include a HTTP Location header to provide the location of a newly created resource (subscription) together with the status code 201 indicating the requested resource is created in the response message. The UCMF may also include the highest dictionary entry ID which has been allocated. (NOTE)\nNOTE:\tTo enable the AMF to retrieve the dictionary entries in the UCMF according to the highest dictionary entry ID, where the AMF assumes that the Dictionary entry IDs are allocated by the UCMF in incremental order of sequence. When the UCMF does not to allocate dictionary entry IDs in incremental order of sequence, the UCMF can set the dicEntryID to 1 to indicate this, since the dicEntryID attribute is mandatory in the CreatedSubscription (see clause 6.1.6.2.7).\nThe response, based on operator policy and taking into account the expiry time included in the request, may contain the expiry time, as determined by the UCMF, after which the subscription becomes invalid. Once the subscription expires, if the NF Service Consumer wants to keep receiving notifications, it shall create a new subscription in the UCMF. The UCMF shall not provide the same expiry time for many subscriptions in order to avoid all of them expiring and recreating the subscription at the same time. If the expiry time is not included in the response, the NF Service Consumer shall consider the subscription to be valid without an expiry time.\n2b.\tOn failure or redirection, one of the HTTP status code listed in Table 6.1.3.4.3.1-3 shall be returned. For a 4xx/5xx response, the message body may contain a ProblemDetails structure with the \"cause\" attribute set to one of the application errors listed in Table 6.1.3.4.3.1-3.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_6.1.3.4",
+        "clause_6.1.6.2.7",
+        "table_6.1.3.4.3.1-3",
+        "figure_5.2.2.4.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.673_5.2.2.5.1",
+      "section_id": "5.2.2.5.1",
+      "section_title": "General",
+      "content": "The Unsubscribe service operation is used by a NF Service Consumer, e.g. AMF, towards the UCMF, to remove an existing subscription previously created by itself at the UCMF.\nThe NF Service Consumer shall unsubscribe to the subscription by using HTTP method DELETE with the URI of the individual subscription resource (see clause 6.1.3.5) to be deleted. See Figure 5.2.2.5.1-1.\nFigure 5.2.2.5.1-1 Unsubscribe a subscription\n1.\tThe NF Service Consumer shall send a DELETE request to delete an existing subscription resource in the UCMF.\n2a.\tOn success, the request is accepted, the UCMF shall reply with the status code 204 indicating the resource identified by subscription ID is successfully deleted in the response message.\n2b.\tOn failure or redirection, one of the HTTP status code listed in Table 6.1.3.5.3.2-3 shall be returned. For a 4xx/5xx response, the message body may contain a ProblemDetails structure with the \"cause\" attribute set to one of the application error listed in Table 6.1.3.5.3.2-3.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_6.1.3.5",
+        "table_6.1.3.5.3.2-3",
+        "figure_5.2.2.5.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.673_5.2.2.6.1",
+      "section_id": "5.2.2.6.1",
+      "section_title": "General",
+      "content": "The Notify service operation is used by the UCMF, to send a notification, towards the notification URI, when certain event included in the subscription has taken place.\nThe UCMF shall use the HTTP method POST, using the notification URI received in the subscription creation as specified in clause 5.2.2.4.1. See Figure 5.2.2.6.1-1.\nFigure 5.2.2.6.1-1 Notify\n1.\tThe UCMF shall send a POST request to send a notification. The content of the POST request shall contain an event type indicating whether creation of dictionary entries, deletion of PLMN assigned IDs or new version of PLMN assigned IDs is notified. If new Dictionary entries are created, in the Post request message, the UCMF shall set either a dictionary entry data ID to indicate the highest DicEntryId that has been allocated in the UCMF if the UCMF has allocated dictionary entry IDs in incremental order of sequence, or set the dictionary entry data ID to 1 otherwise, and in this case, the UCMF shall include an array of DicEntryData for the new dictionary entries.\n2a.\tOn success, \"204 No content\" shall be returned by the NF Service Consumer.\n2b.\tOn failure or redirection, the appropriate HTTP status code listed in Table 6.1.5.2.3.1-3 shall be returned. For a 4xx/5xx response, the message body may contain appropriate additional error information.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_5.2.2.4.1",
+        "table_6.1.5.2.3.1-3",
+        "figure_5.2.2.6.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.673_6.1.1",
+      "section_id": "6.1.1",
+      "section_title": "Introduction",
+      "content": "The Nucmf_UECapabilityManagement service shall use the Nucmf_UECapabilityManagement API.\nThe API URI of the Nucmf_UECapabilityManagement API shall be:\n{apiRoot}/<apiName>/<apiVersion>\nThe request URI used in HTTP requests from the NF service consumer towards the NF service producer shall have the Resource URI structure defined in clause 4.4.1 of 3GPP TS 29.501 [5], i.e.:\n{apiRoot}/<apiName>/<apiVersion>/<apiSpecificResourceUriPart>\nwith the following components:\n-\tThe {apiRoot} shall be set as described in 3GPP TS 29.501 [5].\n-\tThe <apiName> shall be \"nucmf-uecm\".\n-\tThe <apiVersion> shall be \"v1\".\n-\tThe <apiSpecificResourceUriPart> shall be set as described in clause 5.3.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.501_clause_4.4.1",
+        "clause_5.3",
+        "ts_29.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.673_6.1.2.1",
+      "section_id": "6.1.2.1",
+      "section_title": "General",
+      "content": "HTTP/2, IETF RFC 9113 [11], shall be used as specified in clause 5 of 3GPP TS 29.500 [4].\nHTTP/2 shall be transported as specified in clause 5.3 of 3GPP TS 29.500 [4].\nThe OpenAPI [6] specification of HTTP messages and content bodies for the <API Name> API is contained in Annex A.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.500_clause_5",
+        "ts_29.500_clause_5.3",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.673_6.1.2.2.1",
+      "section_id": "6.1.2.2.1",
+      "section_title": "General",
+      "content": "See clause 5.2.2 of 3GPP TS 29.500 [4] for the usage of HTTP standard headers.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.500_clause_5.2.2",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.673_6.1.2.2.2",
+      "section_id": "6.1.2.2.2",
+      "section_title": "Content type",
+      "content": "JSON, IETF RFC 8259 [12], shall be used as content type of the HTTP bodies specified in the present specification as specified in clause 5.4 of 3GPP TS 29.500 [4]. The use of the JSON format shall be signalled by the content type \"application/json\".\n\"Problem Details\" JSON object shall be used to indicate additional details of the error in a HTTP response body and shall be signalled by the content type \"application/problem+json\", as defined in IETF RFC 9457 [13].\nMultipart messages shall also be supported (see clause 6.1.2.4) using the content type \"multipart/related\", comprising:\n-\tone JSON body part with the \"application/json\" content type; and\n-\tone or more binary body parts with 3gpp vendor specific content subtypes.\nThe 3gpp vendor specific content subtypes defined in Table 6.1.2.2.2-1 shall be supported.\nTable 6.1.2.2.2-1: 3GPP vendor specific content subtypes\ncontent subtype\nDescription\nvnd.3gpp.ngap\nBinary encoded content, encoding NG Application Protocol (NGAP) IEs, as specified in clause 9.3 of 3GPP TS 38.413 [15] (ASN.1 encoded).\nvnd.3gpp.s1ap\nBinary encoded content, encoding S1 Application Protocol (S1AP) IEs, as specified in clause 9.2 of 3GPP TS 36.413 [17] (ASN.1 encoded).\nNOTE:\tUsing 3GPP vendor content subtypes allows to describe the nature of the opaque content (e.g. NGAP or 5GS NAS information) without having to rely on metadata in the JSON content.\nSee clause 6.1.2.4 for the binary contents supported in the binary body part of multipart messages.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_5.4",
+        "clause_6.1.2.4",
+        "ts_38.413_clause_9.3",
+        "ts_36.413_clause_9.2",
+        "table_6.1.2.2.2-1",
+        "ts_29.500",
+        "ts_38.413",
+        "ts_36.413"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.673_6.1.2.3",
+      "section_id": "6.1.2.3",
+      "section_title": "HTTP custom headers",
+      "content": "The mandatory HTTP custom header fields specified in clause 5.2.3.2 of 3GPP TS 29.500 [4] shall be applicable.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_5.2.3.2",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.673_6.1.2.4",
+      "section_id": "6.1.2.4",
+      "section_title": "HTTP multipart messages",
+      "content": "HTTP multipart messages shall be supported to transfer opaque UE Radio Access Capability Information, in the following service operations (and HTTP messages):\n-\tResolve Response (GET Response);\n-\tAssign Request (POST);\nHTTP multipart message shall include one JSON body part and one or more binary body parts comprising the OCTET STRING of the UE Radio Capability IE (i.e. excluding the IEI, Criticality and octet string length indicator, see also Annex B of 3GPP TS 29.274 [16]) as specified in clause 9.3.1.74 of 3GPP TS 38.413 [15]) and clause 9.2.1.27 of 3GPP TS 36.413 [17], or the UE Radio Access Capability for Paging IE as specified in clause 9.2.1.98 of 3GPP TS 36.413 [17] and as specified in clause 9.3.1.68 of 3GPP TS 38.413 [15].\nThe JSON body part shall be the \"root\" body part of the multipart message. It shall be encoded as the first body part of the multipart message. The \"Start\" parameter does not need to be included.\nThe multipart message shall include a \"type\" parameter (see IETF RFC 2387 [10]) specifying the media type of the root body part, i.e. \"application/json\".\nNOTE:\tThe \"root\" body part (or \"root\" object) is the first body part the application processes when receiving a multipart/related message, see IETF RFC 2387 [10]. The default root is the first body within the multipart/related message. The \"Start\" parameter indicates the root body part, e.g. when this is not the first body part in the message.\nFor each binary body part in a HTTP multipart message, the binary body part shall include a Content-ID header (see IETF RFC 2045 [12]), and the JSON body part shall include an attribute, defined with the RefToBinaryData type, that contains the value of the Content-ID header field of the referenced binary body part.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.274_clause_9.3.1.74",
+        "ts_38.413_clause_9.2.1.27",
+        "ts_36.413_clause_9.2.1.98",
+        "ts_36.413_clause_9.3.1.68",
+        "ts_38.413_clause_9.3.1.74",
+        "ts_36.413_clause_9.2.1.27",
+        "ts_38.413_clause_9.3.1.68",
+        "ts_29.274",
+        "ts_38.413",
+        "ts_36.413"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.673_6.1.3.1",
+      "section_id": "6.1.3.1",
+      "section_title": "Overview",
+      "content": "Figure 6.1.3.1-1: Resource URI structure of the Nucmf_UECapabilityManagement API\nTable 6.1.3.1-1 provides an overview of the resources and applicable HTTP methods.\nTable 6.1.3.1-1: Resources and methods overview\nResource name\nResource URI\nHTTP method or custom operation\nDescription\nDictionary Entries collection\n/dic-entries\nPOST\nNucmf_UECapabilityManagement_Assign\nGET\nNucmf_UECapabilityManagement_Resolve\nIndividual Dictionary Entry\n/dic-entries/{dicEntryId}\nGET\nNucmf_UECapabilityManagement_Resolve\nSubscriptions collection\n/subscriptions\nPOST\nNucmf_UECapabilityManagement_Subscribe\nIndividual subscription\n/subscriptions/{subscriptionId}\nDELETE\nNucmf_UECapabilityManagement_Unsubscribe",
+      "chunk_type": "definition",
+      "cross_references": [
+        "table_6.1.3.1-1",
+        "figure_6.1.3.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.673_6.1.3.2.1",
+      "section_id": "6.1.3.2.1",
+      "section_title": "Description",
+      "content": "This resource represents the collection of the individual dictionary entries created in the UCMF, where each individual dictionary entry includes the mapping information between UE Radio Capability ID and UE Radio Access Capability Information, Type Allocation Code and Software version of a PEI.\nThis resource is modelled with the Collection resource archetype (see clause C.2 of 3GPP TS 29.501 [5]).",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.673_6.1.3.2.2",
+      "section_id": "6.1.3.2.2",
+      "section_title": "Resource Definition",
+      "content": "Resource URI: {apiRoot}/nucmf-ucm/<apiVersion>/dic-entries\nThis resource shall support the resource URI variables defined in table 6.1.3.2.2-1.\nTable 6.1.3.2.2-1: Resource URI variables for this resource\nName\nDefinition\napiRoot\nSee clause 6.1.1\napiVersion\nSee clause 6.1.1",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_6.1.1",
+        "table_6.1.3.2.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.673_6.1.3.2.3.1",
+      "section_id": "6.1.3.2.3.1",
+      "section_title": "GET",
+      "content": "This operation retrieves the UE Radio Access Capability Information from a dictionary entry stored in the UCMF, by querying with a Manufacturer-assigned or PLMN-assigned UE Radio Capability ID, or the TAC and the SVN as part of the IMEI/IMEISV of the UE.\nThis method shall support the URI query parameters specified in table 6.1.3.2.3.1-1.\nTable 6.1.3.2.3.1-1: URI query parameters supported by the GET method on this resource\nName\nData type\nP\nCardinality\nDescription\nApplicability\nue-radio-capa-id\nUeRadioCapaId\nM\n1\nPLMN assigned or Manufacturer assigned UE Radio Capability ID used to retrieve a dictionary entry.\nrac-format\nRacFormat\nC\n0..1\nCoding format in which UE Radio Access Capability Information needs to be provided. See the clause 6.1.6.3.4.\nsupported-features\nSupportedFeatures\nC\n0..1\nThis IE shall be present if at least one feature defined in clause 6.1.8 is supported.\nThis method shall support the request data structures specified in table 6.1.3.2.3.1-2 and the response data structures and response codes specified in table 6.1.3.2.3.1-3.\nTable 6.1.3.2.3.1-2: Data structures supported by the GET Request Body on this resource\nData type\nP\nCardinality\nDescription\nn/a\nTable 6.1.3.2.3.1-3: Data structures supported by the GET Response Body on this resource\nData type\nP\nCardinality\nResponse\ncodes\nDescription\nDicEntryData\nM\n1\n200 OK\nThe response body contains a dictionary entry that is matching the querying parameter.\nRedirectResponse\nO\n0..1\n307 Temporary Redirect\nTemporary redirection.\nRedirectResponse\nO\n0..1\n308 Permanent Redirect\nPermanent redirection.\nProblemDetails\nO\n0..1\n400 Bad Request\nThe response body contains the error reason of the request message.\nProblemDetails\nO\n0..1\n404 Not Found\nThe \"cause\" attribute may be used to indicate the following application error:\n- NO_DICTIONARY_ENTRY_FOUND\n- OUT_DATED_VERSION_ID_IN_RAC_ID\nSee table 6.1.7.3-1 for the description of this error.\nNOTE:\tThe manadatory HTTP error status code for the GET method listed in Table 5.2.7.1-1 of 3GPP TS 29.500 [4] also apply, with response body containing an object of ProblemDetails data type (see clause 5.2.7 of 3GPP TS 29.500 [4]).\nTable 6.1.3.2.3.1-4: Headers supported by the 307 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located on an alternative service instance within the same UCMF or UCMF (service) set.\nFor the case, when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target NF (service) instance ID towards which the request is redirected\nTable 6.1.3.2.3.1-5: Headers supported by the 308 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located on an alternative service instance within the same UCMF or UCMF (service) set.\nFor the case, when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target NF (service) instance ID towards which the request is redirected",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_6.1.6.3.4",
+        "clause_6.1.8",
+        "ts_29.500_clause_5.2.7",
+        "ts_29.500_clause_6.10.9.1",
+        "table_6.1.3.2.3.1-1",
+        "table_6.1.3.2.3.1-2",
+        "table_6.1.3.2.3.1-3",
+        "table_6.1.7.3-1",
+        "ts_29.500_table_5.2.7.1-1",
+        "ts_29.500_table_6.1.3.2.3.1-4",
+        "table_6.1.3.2.3.1-5",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.673_6.1.3.2.3.2",
+      "section_id": "6.1.3.2.3.2",
+      "section_title": "POST",
+      "content": "This method creates an individual dictionary entry resource in the UCMF unless such dictionary entry already exists.\nThis method shall support the URI query parameters specified in table 6.1.3.2.3.2-1.\nTable 6.1.3.2.3.2-1: URI query parameters supported by the POST method on this resource\nName\nData type\nP\nCardinality\nDescription\nn/a\nThis method shall support the request data structures specified in table 6.1.3.2.3.2-2 and the response data structures and response codes specified in table 6.1.3.2.3.2-3.\nTable 6.1.3.2.3.2-2: Data structures supported by the POST Request Body on this resource\nData type\nP\nCardinality\nDescription\nDicEntryCreateData\nM\n1\nContains UE Radio Access Capability Information and type Allocation Code.\nTable 6.1.3.2.3.2-3: Data structures supported by the POST Response Body on this resource\nData type\nP\nCardinality\nResponse\ncodes\nDescription\nDicEntryCreatedData\nM\n1\n201 Created\nThe response body contains the assigned UE Radio Capability ID.\nRedirectResponse\nO\n0..1\n307 Temporary Redirect\nTemporary redirection.\nRedirectResponse\nO\n0..1\n308 Permanent Redirect\nPermanent redirection.\nProblemDetails\nO\n0..1\n400 Bad Request\nThe response body contains the error reason of the request message.\nNOTE:\tThe manadatory HTTP error status code for the POST method listed in Table 5.2.7.1-1 of 3GPP TS 29.500 [4] also apply.\nTable 6.1.3.2.3.2-4: Headers supported by the 307 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located on an alternative service instance within the same UCMF or UCMF (service) set.\nFor the case, when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target NF (service) instance ID towards which the request is redirected\nTable 6.1.3.2.3.2-5: Headers supported by the 308 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located on an alternative service instance within the same UCMF or UCMF (service) set.\nFor the case, when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target NF (service) instance ID towards which the request is redirected",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_6.10.9.1",
+        "table_6.1.3.2.3.2-1",
+        "table_6.1.3.2.3.2-2",
+        "table_6.1.3.2.3.2-3",
+        "ts_29.500_table_5.2.7.1-1",
+        "ts_29.500_table_6.1.3.2.3.2-4",
+        "table_6.1.3.2.3.2-5",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.673_6.1.3.2.4",
+      "section_id": "6.1.3.2.4",
+      "section_title": "Resource Custom Operations",
+      "content": "None.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.673_6.1.3.3.1",
+      "section_id": "6.1.3.3.1",
+      "section_title": "Description",
+      "content": "This resource represents an individual Dictionary Entry for the mapping information between UE Radio Capability ID(s) and UE Radio Access Capability information, identified by the Dictionary Entry ID.\nThis resource is modelled as the Document resource archetype (see clause C.1 of 3GPP TS 29.501 [5]).",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.673_6.1.3.3.2",
+      "section_id": "6.1.3.3.2",
+      "section_title": "Resource Definition",
+      "content": "Resource URI:{apiRoot}/nucmf-ucm/<apiVersion>/dic-entries/{dicEntryId}\nThis resource shall support the resource URI variables defined in table 6.1.3.3.2-1.\nTable 6.1.3.3.2-1: Resource URI variables for this resource\nName\nDefinition\napiRoot\nSee clause 6.1.1\napiVersion\nSee clause 6.1.1.\ndicEntryId\nInteger with range 1-4294967295.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_6.1.1",
+        "table_6.1.3.3.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.673_6.1.3.3.3.1",
+      "section_id": "6.1.3.3.3.1",
+      "section_title": "GET",
+      "content": "This operation retrieves an individual dictionary entry resource for the mapping information between UE Radio Capability ID(s) and UE Radio Access Capability information, stored in the UCMF, identified by the dicEntryId.\nThis method shall support the URI query parameters specified in table 6.1.3.2.3.1-1.\nTable 6.1.3.3.3.1-1: URI query parameters supported by the GET method on this resource\nName\nData type\nP\nCardinality\nDescription\nApplicability\nrac-format\nRacFormat\nC\n0..1\nCoding format in which UE Radio Access Capability Information needs to be provided. See the clause 6.1.6.3.4.\nsupported-features\nSupportedFeatures\nC\n0..1\nThis IE shall be present if at least one feature defined in clause 6.1.8 is supported.\nThis method shall support the request data structures specified in table 6.1.3.2.3.1-2 and the response data structures and response codes specified in table 6.1.3.2.3.1-3.\nTable 6.1.3.3.3.1-2: Data structures supported by the GET Request Body on this resource\nData type\nP\nCardinality\nDescription\nn/a\nTable 6.1.3.3.3.1-3: Data structures supported by the GET Response Body on this resource\nData type\nP\nCardinality\nResponse\ncodes\nDescription\nDicEntryData\nM\n1\n200 OK\nThe response body contains a dictionary entry for the given Dictionary Entry ID.\nRedirectResponse\nO\n0..1\n307 Temporary Redirect\nTemporary redirection.\nRedirectResponse\nO\n0..1\n308 Permanent Redirect\nPermanent redirection.\nProblemDetails\nO\n0..1\n404 Not Found\nThe \"cause\" attribute may be used to indicate the following application error:\n- NO_DICTIONARY_ENTRY_FOUND\nSee table 6.1.7.3-1 for the description of this error.\nNOTE:\tThe manadatory HTTP error status code for the GET method listed in Table 5.2.7.1-1 of 3GPP TS 29.500 [4] also apply, with response body containing an object of ProblemDetails data type (see clause 5.2.7 of 3GPP TS 29.500 [4]).\nTable 6.1.3.3.3.1-4: Headers supported by the 307 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located on an alternative service instance within the same UCMF or UCMF (service) set.\nFor the case, when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target NF (service) instance ID towards which the request is redirected\nTable 6.1.3.3.3.1-5: Headers supported by the 308 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located on an alternative service instance within the same UCMF or UCMF (service) set.\nFor the case, when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target NF (service) instance ID towards which the request is redirected",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_6.1.6.3.4",
+        "clause_6.1.8",
+        "ts_29.500_clause_5.2.7",
+        "ts_29.500_clause_6.10.9.1",
+        "table_6.1.3.2.3.1-1",
+        "table_6.1.3.3.3.1-1",
+        "table_6.1.3.2.3.1-2",
+        "table_6.1.3.2.3.1-3",
+        "table_6.1.3.3.3.1-2",
+        "table_6.1.3.3.3.1-3",
+        "table_6.1.7.3-1",
+        "ts_29.500_table_5.2.7.1-1",
+        "ts_29.500_table_6.1.3.3.3.1-4",
+        "table_6.1.3.3.3.1-5",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.673_6.1.3.4.1",
+      "section_id": "6.1.3.4.1",
+      "section_title": "Description",
+      "content": "This resource represents a collection of subscriptions in the UCMF, created by NF service consumers of Nucmf_UECapabilityManagement service.\nThis resource is modelled as the Collection resource archetype (see clause C.2 of 3GPP TS 29.501 [5]).",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.673_6.1.3.4.2",
+      "section_id": "6.1.3.4.2",
+      "section_title": "Resource Definition",
+      "content": "Resource URI: {apiRoot}/nucmf-ucm/<apiVersion>/subscriptions\nThis resource shall support the resource URI variables defined in table 6.1.3.4.2-1.\nTable 6.1.3.4.2-1: Resource URI variables for this resource\nName\nDefinition\napiRoot\nSee clause 6.1.1\napiVersion\nSee clause 6.1.1.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_6.1.1",
+        "table_6.1.3.4.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.673_6.1.3.4.3.1",
+      "section_id": "6.1.3.4.3.1",
+      "section_title": "POST",
+      "content": "This method shall support the URI query parameters specified in table 6.1.3.4.3.1-1.\nTable 6.1.3.4.3.1-1: URI query parameters supported by the POST method on this resource\nName\nData type\nP\nCardinality\nDescription\nn/a\nThis method shall support the request data structures specified in table 6.1.3.4.3.1-2 and the response data structures and response codes specified in table 6.1.3.4.3.1-3.\nTable 6.1.3.4.3.1-2: Data structures supported by the POST Request Body on this resource\nData type\nP\nCardinality\nDescription\nCreateSubscription\nM\n1\nThe Subscription to be created by a NF Service consumer, e.g. an AMF.\nTable 6.1.3.4.3.1-3: Data structures supported by the POST Response Body on this resource\nData type\nP\nCardinality\nResponse\ncodes\nDescription\nCreatedSubscription\nM\n1\n201 Created\nRepresents successful creation of a Subscription in the UCMF\nRedirectResponse\nO\n0..1\n307 Temporary Redirect\nTemporary redirection. The response shall include a Location header field containing a different URI, or the same URI if a request is redirected to the same target resource via a different SCP. In the former case, the URI shall be an alternative URI of the resource located on an alternative service instance within the same UCMF or UCMF (service) set.\nRedirectResponse\nO\n0..1\n308 Permanent Redirect\nPermanent redirection. The response shall include a Location header field containing a different URI, or the same URI if a request is redirected to the same target resource via a different SCP. In the former case, the URI shall be an alternative URI of the resource located on an alternative service instance within the same UCMF or UCMF (service) set.\nProblemDetails\nO\n0..1\n400 Bad Request\nThe response body contains the error reason of the request message.\nNOTE:\tThe mandatory HTTP error status code for the POST method listed in Table 5.2.7.1-1 of 3GPP TS 29.500 [4] also apply, with response body containing an object of ProblemDetails data type (see clause 5.2.7 of 3GPP TS 29.500 [4]).\nTable 6.1.3.4.3.1-4: Headers supported by the 307 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located on an alternative service instance within the same UCMF or UCMF (service) set.\nOr the same URI, if a request is redirected to the same target resource via a different SCP.\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target NF (service) instance ID towards which the request is redirected\nTable 6.1.3.4.3.1-5: Headers supported by the 308 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located on an alternative service instance within the same UCMF or UCMF (service) set.\nOr the same URI, if a request is redirected to the same target resource via a different SCP.\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target NF (service) instance ID towards which the request is redirected",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_5.2.7",
+        "table_6.1.3.4.3.1-1",
+        "table_6.1.3.4.3.1-2",
+        "table_6.1.3.4.3.1-3",
+        "ts_29.500_table_5.2.7.1-1",
+        "ts_29.500_table_6.1.3.4.3.1-4",
+        "table_6.1.3.4.3.1-5",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.673_6.1.3.4.4",
+      "section_id": "6.1.3.4.4",
+      "section_title": "Resource Custom Operations",
+      "content": "None.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.673_6.1.3.5.1",
+      "section_id": "6.1.3.5.1",
+      "section_title": "Description",
+      "content": "This resource represents an individual of subscription in the UCMF, created earlier by a NF Service Consumer of Nucmf_UECapabilityManagement service.\nThis resource is modelled as the Document resource archetype (see clause C.1 of 3GPP TS 29.501 [5]).",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.673_6.1.3.5.2",
+      "section_id": "6.1.3.5.2",
+      "section_title": "Resource Definition",
+      "content": "Resource URI: {apiRoot}/nucmf-ucm/<apiVersion>/subscriptions/{subscriptionId}\nThis resource shall support the resource URI variables defined in table 6.1.3.5.2-1.\nTable 6.1.3.5.2-1: Resource URI variables for this resource\nName\nDefinition\napiRoot\nSee clause 6.1.1\napiVersion\nSee clause 6.1.1.\nsubscriptionId\nString identifies an individual subscription in the UCMF.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_6.1.1",
+        "table_6.1.3.5.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.673_6.1.3.5.3.2",
+      "section_id": "6.1.3.5.3.2",
+      "section_title": "DELETE",
+      "content": "This method shall support the URI query parameters specified in table 6.1.3.5.3.2-1.\nTable 6.1.3.5.3.2-1: URI query parameters supported by the DELETE method on this resource\nName\nData type\nP\nCardinality\nDescription\nn/a\nThis method shall support the request data structures specified in table 6.1.3.5.3.2-2 and the response data structures and response codes specified in table 6.1.3.5.3.2-3.\nTable 6.1.3.5.3.2-2: Data structures supported by the DELETE Request Body on this resource\nData type\nP\nCardinality\nDescription\nn/a\nTable 6.1.3.5.3.2-3: Data structures supported by the DELETE Response Body on this resource\nData type\nP\nCardinality\nResponse\ncodes\nDescription\nn/a\n204 No Content\nRedirectResponse\nO\n0..1\n307 Temporary Redirect\nTemporary redirection.\nRedirectResponse\nO\n0..1\n308 Permanent Redirect\nPermanent redirection.\nProblemDetails\nO\n0..1\n404 Not Found\nIndicates the modification of subscription has failed due to application error.\nThe \"cause\" attribute may be used to indicate the following application error:\n-\tSUBSCRIPTION_NOT_FOUND.\nNOTE:\tThe mandatory HTTP error status code for the DELETE method listed in Table 5.2.7.1-1 of 3GPP TS 29.500 [4] also apply, with response body containing an object of ProblemDetails data type (see clause 5.2.7 of 3GPP TS 29.500 [4]).\nTable 6.1.3.5.3.2-4: Headers supported by the 307 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located on an alternative service instance within the same UCMF or UCMF (service) set.\nFor the case, when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target NF (service) instance ID towards which the request is redirected\nTable 6.1.3.5.3.2-5: Headers supported by the 308 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located on an alternative service instance within the same UCMF or UCMF (service) set.\nFor the case, when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target NF (service) instance ID towards which the request is redirected",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_5.2.7",
+        "ts_29.500_clause_6.10.9.1",
+        "table_6.1.3.5.3.2-1",
+        "table_6.1.3.5.3.2-2",
+        "table_6.1.3.5.3.2-3",
+        "ts_29.500_table_5.2.7.1-1",
+        "ts_29.500_table_6.1.3.5.3.2-4",
+        "table_6.1.3.5.3.2-5",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.673_6.1.3.5.4",
+      "section_id": "6.1.3.5.4",
+      "section_title": "Resource Custom Operations",
+      "content": "None.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.673_6.1.4",
+      "section_id": "6.1.4",
+      "section_title": "Custom Operations without associated resources",
+      "content": "None.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.673_6.1.5.1",
+      "section_id": "6.1.5.1",
+      "section_title": "General",
+      "content": "Notifications shall comply to clause 6.2 of 3GPP TS 29.500 [4] and clause 4.6.2.3 of 3GPP TS 29.501 [5].",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.500_clause_6.2",
+        "ts_29.500_clause_4.6.2.3",
+        "ts_29.501_clause_4.6.2.3",
+        "ts_29.500",
+        "ts_29.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.673_6.1.5.2.1",
+      "section_id": "6.1.5.2.1",
+      "section_title": "Description",
+      "content": "The UCMF Notification is used by the UCMF to report one or several observed Events to a NF service consumer that has subscribed to such Notifications via the Individual Notification Subscription Resource.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.673_6.1.5.2.2",
+      "section_id": "6.1.5.2.2",
+      "section_title": "Target URI",
+      "content": "The Callback URI \"{ucmfNotificationUri}\" shall be used with the callback URI variables defined in table 6.1.5.2.2-1.\nTable 6.1.5.2.2-1: Callback URI variables for this resource\nName\nDefinition\nucmfNotificationUri\nString formatted as URI with the UCMF Callback Uri",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.1.5.2.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.673_6.1.5.2.3.1",
+      "section_id": "6.1.5.2.3.1",
+      "section_title": "POST",
+      "content": "This method shall support the request data structures specified in table 6.1.5.2.3.1-1 and the response data structures and response codes specified in table 6.1.5.2.3.1-1.\nTable 6.1.5.2.3.1-2: Data structures supported by the POST Request Body on this resource\nData type\nP\nCardinality\nDescription\nUcmfNotification\nM\n1\nRepresents the notification to be delivered\nTable 6.1.5.2.3.1-3: Data structures supported by the POST Response Body on this resource\nData type\nP\nCardinality\nResponse codes\nDescription\nn/a\n204 No Content\nRedirectResponse\nO\n0..1\n307 Temporary Redirect\nTemporary redirection.\nRedirectResponse\nO\n0..1\n308 Permanent Redirect\nPermanent redirection.\nNOTE:\tThe mandatory HTTP error status codes for the POST method listed in Table 5.2.7.1-1 of 3GPP TS 29.500 [4] also apply.\nTable 6.1.5.2.3.1-4: Headers supported by the 307 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nA URI pointing to the endpoint of the NF service consumer to which the notification should be sent.\nFor the case, when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target NF (service) instance ID towards which the notification is redirected\nTable 6.1.5.2.3.1-5: Headers supported by the 308 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nA URI pointing to the endpoint of the NF service consumer to which the notification should be sent.\nFor the case, when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target NF (service) instance ID towards which the notification is redirected",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_6.10.9.1",
+        "table_6.1.5.2.3.1-1",
+        "table_6.1.5.2.3.1-2",
+        "table_6.1.5.2.3.1-3",
+        "ts_29.500_table_5.2.7.1-1",
+        "ts_29.500_table_6.1.5.2.3.1-4",
+        "table_6.1.5.2.3.1-5",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.673_6.1.6.1",
+      "section_id": "6.1.6.1",
+      "section_title": "General",
+      "content": "This clause specifies the application data model supported by the API.\nTable 6.1.6.1-1 specifies the data types defined for the Nucmf_UECapabilityManagement service based interface protocol.\nTable 6.1.6.1-1: Nucmf_UECapabilityManagement specific Data Types\nData type\nClause defined\nDescription\nApplicability\nDicEntryData\n6.1.6.2.2\nA dictionary entry for a UE radio capability ID in the UCMF\nDicEntryCreateData\n6.1.6.2.3\nData for a creating a dictionary entry request\nDicEntryCreatedData\n6.1.6.2.4\nData for a creating a dictionary entry response\nUeRadioCapaId\n6.1.6.2.5\nUE Radio Capability ID\nCreateSubscription\n6.1.6.2.6\nData for a creating a subscription request\nCreatedSubscription\n6.1.6.2.7\nData for a creating a subscription response\nUcmfNotification\n6.1.6.2.8\nData for a notification request from a UCMF\nManAssOpRequestlist\n6.1.6.2.9\nManufacturer Assigned operation requested list\nEventType\n6.1.6.3.3\nRacFormat\n6.1.6.3.4\nThe encoding type of the UE's Radio Access Capability Information\nTable 6.1.6.1-2 specifies data types re-used by the Nucmf_UECapabilityManagement service based interface protocol from other specifications, including a reference to their respective specifications and when needed, a short description of their use within the N<NF> service based interface.\nTable 6.1.6.1-2: Nucmf_UECapabilityManagement re-used Data Types\nData type\nReference\nComments\nApplicability\nPlmnAssiUeRadioCapId\n3GPP TS 29.571 [14]\nPLMN Assigned UE Radio Capability ID\nManAssiUeRadioCapId\n3GPP TS 29.571 [14]\nManufacturer Assigned UE Radio Capability ID\nTypeAllocationCode\n3GPP TS 29.571 [14]\nType Allocation Code\nNfInstanceId\n3GPP TS 29.571 [14]\nNF Instance ID\nDateTime\n3GPP TS 29.571 [14]\nA date-time format defined in OpenAPI Specification [6]\nSupportedFeatures\n3GPP TS 29.571 [14]\nSupported Features\nProblemDetails\n3GPP TS 29.571 [14]\nDetailed problems in failure case\nRedirectResponse\n3GPP TS 29.571 [14]\nResponse body of the redirect response message.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "table_6.1.6.1-1",
+        "table_6.1.6.1-2",
+        "ts_29.571"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.673_6.1.6.2.1",
+      "section_id": "6.1.6.2.1",
+      "section_title": "Introduction",
+      "content": "This clause defines the structures to be used in resource representations.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.673_6.1.6.2.2",
+      "section_id": "6.1.6.2.2",
+      "section_title": "Type: DicEntryData",
+      "content": "Table 6.1.6.2.2-1: Definition of type DicEntryData\nAttribute name\nData type\nP\nCardinality\nDescription\ndicEntryId\nDicEntryId\nC\n0..1\nIdentifier of the Dictionary Entry\nplmnAssiUeRadioCapId\nPlmnAssiUeRadioCapId\nC\n0..1\nThis IE shall include a PLMN Assigned UE Radio Capability ID if allocated in the dictionary entry.\nmanAssiUeRadioCapId\nManAssiUeRadioCapId\nC\n0..1\nThis IE shall include a Manufacturer Assigned UE Radio Capability ID if available in the dictionary entry.\ntypeAllocationCode\nTypeAllocationCode\nM\n1\nThis IE shall contain the Type Allocation Code in corresponding to the UE Radio Access Capability in the dictionary entry.\nueRadioCapability5GS\nRefToBinaryData\nC\n0..1\nThis IE shall be included to contain the UE Radio Access Capability Information encoded either as OCTET STRING of UE Radio Capability IE as specified in clause 9.3.1.74 of 3GPP TS 38.413 [15], when the message is sent to AMF, otherwise it may be included.\nueRadioCapabilityEPS\nRefToBinaryData\nC\n0..1\nThis IE shall be included to contain the UE Radio Access Capability Information encoded as OCTET STRING of UE Radio Capability IE as specified in clause 9.2.1.27 of 3GPP TS 36.413 [x], when the message is sent to MME, otherwise it may be included.\nueRadioCap5GSForPaging\nRefToBinaryData\nO\n0..1\nMay be present if ueRadioCapability5GS is present.\nIf present it shall contain the UE Radio Access Capability Information for paging encoded as OCTET STRING of UE Radio Capability for Paging IE as specified in clause 9.3.1.68 of 3GPP TS 38.413 [15], when the message is sent to AMF\nueRadioCapEPSForPaging\nRefToBinaryData\nO\n0..1\nMay be present if ueRadioCapabilityEPS is present.\nIf present it shall contain the UE Radio Access Capability Information for paging encoded as OCTET STRING of UE Radio Capability for Paging IE as specified in clause 9.2.1.98 of 3GPP TS 36.413 [17], when the message is sent to MME, otherwise it may be included.\nNOTE:\tThe information in the dictionary entry which is included as the query parameter(s) or URI variable in the request message shall not be present.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_38.413_clause_9.3.1.74",
+        "ts_36.413_clause_9.2.1.27",
+        "ts_38.413_clause_9.3.1.68",
+        "ts_36.413_clause_9.2.1.98",
+        "table_6.1.6.2.2-1",
+        "ts_38.413",
+        "ts_36.413"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.673_6.1.6.2.3",
+      "section_id": "6.1.6.2.3",
+      "section_title": "Type: DicEntryCreateData",
+      "content": "Table 6.1.6.2.3-1: Definition of type DicEntryCreateData\nAttribute name\nData type\nP\nCardinality\nDescription\ntypeAllocationCode\nTypeAllocationCode\nM\n1\nThis IE shall contain the Type Allocation Code in corresponding to the UE Radio Access Capability in the dictionary entry.\nueRadioCapability5GS\nRefToBinaryData\nC\n0..1\nThis IE shall be included to contain the UE Radio Access Capability Information encoded as OCTET STRING of UE Radio Capability IE specified in clause 9.3.1.74 of 3GPP TS 38.413 [15].\nueRadioCapabilityEPS\nRefToBinaryData\nC\n0..1\nThis IE shall be included to contain the UE Radio Access Capability Information encoded as OCTET STRING of UE Radio Capability IE specified in clause 9.2.1.27 of 3GPP TS 36.413 [17]. (NOTE)\nsupportedFeatures\nSupportedFeatures\nC\n0..1\nThis IE shall be present if at least one feature defined in clause 6.1.8 is supported.\nueRadioCap5GSForPaging\nRefToBinaryData\nO\n0..1\nMay be present if ueRadioCapability5GS is present.\nIf present it shall contain the UE Radio Access Capability Information for paging encoded as OCTET STRING of UE Radio Capability for Paging IE as specified in clause 9.3.1.68 of 3GPP TS 38.413 [15].\nueRadioCapEPSForPaging\nRefToBinaryData\nO\n0..1\nMay be present if ueRadioCapabilityEPS is present.\nIf present it shall contain the UE Radio Access Capability Information for paging encoded as OCTET STRING of UE Radio Capability for Paging IE as specified in clause 9.2.1.98 of 3GPP TS 36.413 [17].\nNOTE:\tAt least one of ueRadioCapability5GS or ueRadioCapabilityEPS shall be present.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_38.413_clause_9.3.1.74",
+        "ts_36.413_clause_9.2.1.27",
+        "clause_6.1.8",
+        "ts_38.413_clause_9.3.1.68",
+        "ts_36.413_clause_9.2.1.98",
+        "table_6.1.6.2.3-1",
+        "ts_38.413",
+        "ts_36.413"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.673_6.1.6.2.4",
+      "section_id": "6.1.6.2.4",
+      "section_title": "Type: DicEntryCreatedData",
+      "content": "Table 6.1.6.2.4-1: Definition of type DicEntryCreatedData\nAttribute name\nData type\nP\nCardinality\nDescription\nplmnAssiUeRadioCapId\nPlmnAssiUeRadioCapId\nM\n1\nThis IE shall include a PLMN Assigned UE Radio Capability ID if allocated.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.1.6.2.4-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.673_6.1.6.2.5",
+      "section_id": "6.1.6.2.5",
+      "section_title": "Type: UeRadioCapaId",
+      "content": "Table 6.1.6.2.5-1: Definition of type UeRadioCapaId\nAttribute name\nData type\nP\nCardinality\nDescription\nplmnAssiUeRadioCapId\nPlmnAssiUeRadioCapId\nC\n0..1\nThis IE shall include a PLMN Assigned UE Radio Capability ID. (NOTE)\nmanAssiUeRadioCapId\nManAssiUeRadioCapId\nC\n0..1\nThis IE shall include a Manufacturer Assigned UE Radio Capability ID. (NOTE)\nNOTE:\tOnly one of plmnAssiUeRadioCapId and manAssiUeRadioCapId shall be present during retrieving UE Radio Access Capability Information. (See clause 6.1.3.2.3.1)",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_6.1.3.2.3.1",
+        "table_6.1.6.2.5-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.673_6.1.6.2.6",
+      "section_id": "6.1.6.2.6",
+      "section_title": "Type: CreateSubscription",
+      "content": "Table 6.1.6.2.6-1: Definition of type CreateSubscription\nAttribute name\nData type\nP\nCardinality\nDescription\nnfId\nNfInstanceId\nC\n0..1\nThis IE shall contain the NF Instance ID of the service consumer, e.g. an AMF, if it is available.\nucmfNotificationUri\nUri\nM\n1\nThis IE shall contain the callback URI on which the subscribed events shall be notified.\nsuggestedExpires\nDateTime\nO\n0..1\nIf present, indicates the point in time at which the subscription expires, which is suggested by the service consumer.\nsupportedFeatures\nSupportedFeatures\nC\n0..1\nThis IE shall be present if at least one feature defined in clause 6.1.8 is supported.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_6.1.8",
+        "table_6.1.6.2.6-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.673_6.1.6.2.7",
+      "section_id": "6.1.6.2.7",
+      "section_title": "Type: CreatedSubscription",
+      "content": "Table 6.1.6.2.7-1: Definition of type CreatedSubscription\nAttribute name\nData type\nP\nCardinality\nDescription\ndicEntryId\nDicEntryId\nM\n1\nThis IE shall contain the highest DicEntryId that has been allocated in the UCMF or the value 1 to indicate that the UCMF took the option not to allocate dictionary entry IDs in incremental order of sequence. See cause 5.2.2.4.1.\nconfirmedExpires\nDateTime\nO\n0..1\nIf present, indicates the point in time at which the subscription expires, which is confirmed by the service producer.\nsupportedFeatures\nSupportedFeatures\nC\n0..1\nThis IE shall be present if at least one feature defined in clause 6.1.8 is supported.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_6.1.8",
+        "table_6.1.6.2.7-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.673_6.1.6.2.8",
+      "section_id": "6.1.6.2.8",
+      "section_title": "Type: UcmfNotification",
+      "content": "Table 6.1.6.2.8-1: Definition of type UcmfNotification\nAttribute name\nData type\nP\nCardinality\nDescription\ndicEntryId\nDicEntryId\nM\n1\nThis IE shall contain the highest DicEntryId that has been allocated in the UCMF or the value 1 to indicate that the UCMF took the option not to allocate dictionary entry IDs in incremental order of sequence. See cause 5.2.2.4.1.\n(NOTE)\neventType\nEventType\nM\n1\nThis IE shall contain the different events type included in the notification.\nmanAssOpRequestlist\nManAssOpRequestlist\nC\n0..1\nThis IE shall be present to contain the Manufacturer Assigned operation requested list which includes a list of PLMN Assigned UE Radio Capability IDs or a list of TACs if the event type indicates the deletion of one or more PLMN Assigned UE Radio Capability IDs as specified in 3GPP TS 23.501 [2].\nversionId\nUinteger\nO\n0..1\nUinteger with the range between 0 and 255.\nThis IE may be present if eventType indicates to notify a new version id of PLMN Assigned UE Radio Capability Id(s).\nnewDicEntries\narray(DicEntryData)\nO\n1..N\nList of dictionary entries that have newly been created in the UCMF. May be present if event type indicates the creation of one or more PLMN Assigned UE Radio Capability IDs as specified in 3GPP TS 23.501 [2]. (NOTE)\nNOTE:\tWhen dicEntryId takes a value different from 1 it indicates the highest dictionary entry allocated in the UCMF. This information may be used by the AMF to build up copy of the UCMF's dictionary by retrieving dictionary entries step by step in a background process using the Resolve service operation, see clause 5.2.2.2.2. In this case newDicEntries may be absent.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_5.2.2.2.2",
+        "table_6.1.6.2.8-1",
+        "ts_23.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.673_6.1.6.2.9",
+      "section_id": "6.1.6.2.9",
+      "section_title": "Type: ManAssOpRequestlist",
+      "content": "Table 6.1.6.2.9-1: Definition of type ManAssOpRequestlist\nAttribute name\nData type\nP\nCardinality\nDescription\nplmnAssiUeRadioCapId\narray(PlmnAssiUeRadioCapId)\nC\n0..N\nThis IE shall contain a list of PLMN Assigned UE Radio Capability IDs. (NOTE)\nThe UCMF shall always provide a complete list (potentially empty) of PLMN Assigned UE Radio Capability IDs to enable the AMF to overwrite the existing list.\ntypeAllocationCode\narray (TypeAllocationCode)\nC\n0..N\nThis IE shall contain a list of Type Allocation Codes in corresponding to the PLMN Assigned UE Radio Capability IDs. (NOTE)\nThe UCMF shall always provide a complete list (potentially empty) of Type Allocation Codes to enable the AMF to overwrite the existing list.\nNOTE:\tEither plmnAssiUeRadioCapId or typeAllocationCode shall be present, not for both.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.1.6.2.9-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.673_6.1.6.3.1",
+      "section_id": "6.1.6.3.1",
+      "section_title": "Introduction",
+      "content": "This clause defines simple data types and enumerations that can be referenced from data structures defined in the previous clauses.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.673_6.1.6.3.2",
+      "section_id": "6.1.6.3.2",
+      "section_title": "Simple data types",
+      "content": "The simple data types defined in table 6.1.6.3.2-1 shall be supported.\nTable 6.1.6.3.2-1: Simple data types\nType Name\nType Definition\nDescription\nApplicability\nDicEntryId\nInteger\ninteger with range 1-4294967295.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.1.6.3.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.673_6.1.6.3.3",
+      "section_id": "6.1.6.3.3",
+      "section_title": "Enumeration: EventType",
+      "content": "The enumeration EventType represents different type of events included in a notification from the UCMF. It shall comply with the provisions defined in table 6.1.5.3.3-1.\nTable 6.1.6.3.3-1: Enumeration EventType\nEnumeration value\nDescription\nApplicability\n\"CREATION_OF_DICTIONARY_ENTRY\"\nNew dictionary entries are created in the UCMF.\n\"DELETION_OF_PLMN_ASSIGNED_IDS\"\nOne or more PLMN-assigned UE Radio Capability IDs are deleted.\n\"NEW_VERSION_ID_OF_PLMN_ASSIGNED_IDs\"\nNotify a new version id of PLMN Assigned UE Radio Capability Id(s).",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.1.5.3.3-1",
+        "table_6.1.6.3.3-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.673_6.1.6.3.4",
+      "section_id": "6.1.6.3.4",
+      "section_title": "Enumeration: RacFormat",
+      "content": "The enumeration RacFormat represents the encoding type of the UE's Radio Access Capability Information.\nTable 6.1.6.3.4-1: Enumeration racFormat\nEnumeration value\nDescription\nApplicability\n\"5GS\"\nThis value indicates UE Radio Access Capability Information shall be encoded as OCTET STRING of UE Radio Capability IE specified in clause 9.3.1.74 of 3GPP TS 38.413 [15].\n\"EPS\"\nThis value indicates UE Radio Access Capability Information shall be encoded as OCTET STRING of UE Radio Capability IE specified in clause 9.2.1.27 of 3GPP TS 36.413 [17].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_38.413_clause_9.3.1.74",
+        "ts_36.413_clause_9.2.1.27",
+        "table_6.1.6.3.4-1",
+        "ts_38.413",
+        "ts_36.413"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.673_6.1.6.4",
+      "section_id": "6.1.6.4",
+      "section_title": "Data types describing alternative data types or combinations of data types",
+      "content": "None.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.673_6.1.6.5",
+      "section_id": "6.1.6.5",
+      "section_title": "Binary data",
+      "content": "6.1.6.5.1\tIntroduction\nThis clause defines the binary data that shall be supported in a binary body part in an HTTP multipart message (see clauses 6.1.2.2.2 and 6.1.2.4).",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.673_6.1.6.5.2",
+      "section_id": "6.1.6.5.2",
+      "section_title": "UE Radio Capability Information",
+      "content": "UeRadioCapability5GS shall be encoded with the OCTET STRING of UE Radio Capability IE (i.e. excluding the IEI, Criticality and octet string length indicator, see also Annex B of 3GPP TS 29.274 [16]) as specified in clause 9.3.1.74 of 3GPP TS 38.413 [15], using the vnd.3gpp.ngap content-type.\nUeRadioCapabilityEPS shall be encoded with the OCTET STRING of UE Radio Capability IE (i.e. excluding the IEI, Criticality and octet string length indicator, see also Annex B of 3GPP TS 29.274 [16]) as specified in clause 9.2.1.27 of 3GPP TS 36.413 [17], using the vnd.3gpp.s1ap content-type.\nueRadioCap5GSForPaging shall be encoded as OCTET STRING of UE Radio Capability for Paging IE as specified in clause 9.3.1.68 of 3GPP TS 38.413 [15].\nueRadioCapEPSForPaging shall be encoded as OCTET STRING of UE Radio Capability for Paging IE as specified in clause 9.2.1.98 of 3GPP TS 36.413 [17].",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.274_clause_9.3.1.74",
+        "ts_29.274_clause_9.2.1.27",
+        "ts_38.413_clause_9.3.1.68",
+        "ts_36.413_clause_9.2.1.98",
+        "ts_38.413_clause_9.3.1.74",
+        "ts_36.413_clause_9.2.1.27",
+        "ts_29.274",
+        "ts_38.413",
+        "ts_36.413"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.673_6.1.7.1",
+      "section_id": "6.1.7.1",
+      "section_title": "General",
+      "content": "For the Nucmf_UECapabilityManagement  API, HTTP error responses shall be supported as specified in clause 4.8 of 3GPP TS 29.501 [5]. Protocol errors and application errors specified in table 5.2.7.2-1 of 3GPP TS 29.500 [4] shall be supported for an HTTP method if the corresponding HTTP status codes are specified as mandatory for that HTTP method in table 5.2.7.1-1 of 3GPP TS 29.500 [4].\nIn addition, the requirements in the following clauses are applicable for the Nucmf_UECapabilityManagement  API.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.501_clause_4.8",
+        "ts_29.500_table_5.2.7.2-1",
+        "ts_29.500_table_5.2.7.1-1",
+        "ts_29.501",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.673_6.1.7.2",
+      "section_id": "6.1.7.2",
+      "section_title": "Protocol Errors",
+      "content": "No specific procedures for the Nucmf_UECapabilityManagement  service are specified.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.673_6.1.7.3",
+      "section_id": "6.1.7.3",
+      "section_title": "Application Errors",
+      "content": "The application errors defined for the Nucmf_UECapabilityManagement  service are listed in Table 6.1.7.3-1.\nTable 6.1.7.3-1: Application errors\nApplication Error\nHTTP status code\nDescription\nNO_DICTIONARY_ENTRY_FOUND\n404\nThere is no dictionary entry matching the UE Radio Capability ID in query.\nOUT_DATED_VERSION_ID_IN_RAC_ID\n404\nThe version id in the requested PLMN Assigned UE Radio Capability Id is out-dated.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.1.7.3-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.673_6.1.8",
+      "section_id": "6.1.8",
+      "section_title": "Feature negotiation",
+      "content": "The features in table 6.1.8-1 are defined for the Nucmf_UECapabilityManagement API. They shall be negotiated using the extensibility mechanism defined in clause 6.6 of 3GPP TS 29.500 [4].\nTable 6.1.8-1: Supported Features\nFeature number\nFeature Name\nM/O\nDescription\n1\nES3XX\nM\nExtended Support of HTTP 307/308 redirection\nAn NF Service Consumer (e.g. AMF) that supports this feature shall support handling of HTTP 307/308 redirection for any service operation of the UECapabilityManagement service. An NF Service Consumer that does not support this feature does only support HTTP redirection as specified for 3GPP Release 15.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_6.6",
+        "table_6.1.8-1",
+        "ts_29.500_table_6.1.8-1",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.673_6.1.9",
+      "section_id": "6.1.9",
+      "section_title": "Security",
+      "content": "As indicated in 3GPP TS 33.501 [8] and 3GPP TS 29.500 [4], the access to the Nucmf_UECapabilityManagement API may be authorized by means of the OAuth2 protocol (see IETF RFC 6749 [9]), based on local configuration, using the \"Client Credentials\" authorization grant, where the NRF (see 3GPP TS 29.510 [10]) plays the role of the authorization server.\nIf OAuth2 is used, an NF Service Consumer, prior to consuming services offered by the Nucmf_UECapabilityManagement API, shall obtain a \"token\" from the authorization server, by invoking the Access Token Request service, as described in 3GPP TS 29.510 [10], clause 5.4.2.2.\nNOTE:\tWhen multiple NRFs are deployed in a network, the NRF used as authorization server is the same NRF that the NF Service Consumer used for discovering the Nucmf_UECapabilityManagement service.\nThe Nucmf_UECapabilityManagement API defines  the following scopes for OAuth2 authorization.\nTable 6.1.9-1: Oauth2 scopes defined in Nucmf_UECapabilityManagement API\nScope\nDescription\n\"nucmf-uecm\"\nAccess to the Nucmf_UECapabilityManagement API\n\"nucmf-uecm:dictionary:read\"\nAccess to read dictionaries\n\"nucmf-uecm:dictionary:create\"\nAccess to create dictionary entries\n\"nucmf-uecm:subscription:create\"\nAccess to create subscriptions\n\"nucmf-uecm:subscription:modify\"\nAccess to update subscriptions",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.510_clause_5.4.2.2",
+        "table_6.1.9-1",
+        "ts_33.501",
+        "ts_29.500",
+        "ts_29.510"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.673_6.1.10",
+      "section_id": "6.1.10",
+      "section_title": "HTTP redirection",
+      "content": "An HTTP request may be redirected to a different UCMF service instance, within the same UCMF or a different UCMF of an UCMF set, e.g. when an UCMF service instance is part of an UCMF (service) set or when using indirect communications (see 3GPP TS 29.500 [4]). See also the ES3XX feature in clause 6.1.8.\nAn SCP that reselects a different UCMF producer instance will return the NF Instance ID of the new UCMF producer instance in the 3gpp-Sbi-Producer-Id header, as specified in clause 6.10.3.4 of 3GPP TS 29.500 [4].\nIf an UCMF within an UCMF set redirects a service request to a different UCMF of the set using an 307 Temporary Redirect or 308 Permanent Redirect status code, the identity of the new UCMF towards which the service request is redirected shall be indicated in the 3gpp-Sbi-Target-Nf-Id header of the 307 Temporary Redirect or 308 Permanent Redirect response as specified in clause 6.10.9.1 of 3GPP TS 29.500 [4].\nAnnex A (normative):OpenAPI specification\nA.1\tGeneral\nThis Annex specifies the formal definition of the API(s) defined in the present specification. It consists of OpenAPI 3.0.0 specifications in YAML format.\nThis Annex takes precedence when being discrepant to other parts of the specification with respect to the encoding of information elements and methods within the API(s).\nNOTE :\tThe semantics and procedures, as well as conditions, e.g. for the applicability and allowed combinations of attributes or values, not expressed in the OpenAPI definitions but defined in other parts of the specification also apply.\nInformative copies of the OpenAPI specification files contained in this 3GPP Technical Specification are available on a Git-based repository, that uses the GitLab software version control system (see 3GPP TS 29.501 [5] clause 5.3.1 and 3GPP TR 21.900 [7] clause 5B).\nA.2\tNucmf_UECapabilityManagement API\nopenapi: 3.0.0\ninfo:\ntitle: Nucmf_UECapabilityManagement\nversion: 1.2.0\ndescription: |\nNucmf_UECapabilityManagement Service.\n© 2024, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).\nAll rights reserved.\nexternalDocs:\ndescription: 3GPP TS 29.673 V18.4.0; 5G System; UE Radio Capability Management Services\nurl: 'https://www.3gpp.org/ftp/Specs/archive/29_series/29.673/'\nservers:\n- url: '{apiRoot}/nucmf-uecm/v1'\nvariables:\napiRoot:\ndefault: https://example.com\ndescription: apiRoot as defined in clause 4.4 of 3GPP TS 29.501\nsecurity:\n- {}\n- oAuth2ClientCredentials:\n- nucmf-uecm\npaths:\n/dic-entries:\nget:\nsummary: retrieve a dictionary entry matching query parameters\noperationId: RetrieveDictionaryEntry\ntags:\n- Dictionary Entry (Store)\nsecurity:\n- {}\n- oAuth2ClientCredentials:\n- nucmf-uecm\n- oAuth2ClientCredentials:\n- nucmf-uecm\n- nucmf-uecm:dictionary:read\nparameters:\n- name: ue-radio-capa-id\nin: query\nrequired: true\ndescription: UE Radio Capability ID, either PLMN Assigned or Manufacturer Assigned\nschema:\n$ref: '#/components/schemas/UeRadioCapaId'\n- name: rac-format\nin: query\ndescription: Encoding format of RAC Info\nschema:\n$ref: '#/components/schemas/RacFormat'\n- name: supported-features\nin: query\ndescription: supported features of the NF consumer\nschema:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'\nresponses:\n'200':\ndescription: Expected response to a valid request\ncontent:\nmultipart/related:  # message with binary body part(s)\nschema:\ntype: object\nproperties: # Request parts\njsonData:\n$ref: '#/components/schemas/DicEntryData'\nbinaryDataUeRadioCapability5GS:\ntype: string\nformat: binary\nbinaryDataUeRadioCapabilityEPS:\ntype: string\nformat: binary\nbinaryDataUeRadioCap5GSForPaging:\ntype: string\nformat: binary\nbinaryDataUeRadioCapEPSForPaging:\ntype: string\nformat: binary\nencoding:\njsonData:\ncontentType:  application/json\nbinaryDataUeRadioCapability5GS:\ncontentType:  application/vnd.3gpp.ngap\nheaders:\nContent-Id:\nschema:\ntype: string\nbinaryDataUeRadioCapabilityEPS:\ncontentType:  application/vnd.3gpp.s1ap\nheaders:\nContent-Id:\nschema:\ntype: string\nbinaryDataUeRadioCap5GSForPaging:\ncontentType:  application/vnd.3gpp.ngap\nheaders:\nContent-Id:\nschema:\ntype: string\nbinaryDataUeRadioCapEPSForPaging:\ncontentType:  application/vnd.3gpp.s1ap\nheaders:\nContent-Id:\nschema:\ntype: string\n'307':\n$ref: 'TS29571_CommonData.yaml#/components/responses/307'\n'308':\n$ref: 'TS29571_CommonData.yaml#/components/responses/308'\n'400':\n$ref: 'TS29571_CommonData.yaml#/components/responses/400'\n'401':\n$ref: 'TS29571_CommonData.yaml#/components/responses/401'\n'403':\n$ref: 'TS29571_CommonData.yaml#/components/responses/403'\n'404':\n$ref: 'TS29571_CommonData.yaml#/components/responses/404'\n'406':\n$ref: 'TS29571_CommonData.yaml#/components/responses/406'\n'411':\n$ref: 'TS29571_CommonData.yaml#/components/responses/411'\n'413':\n$ref: 'TS29571_CommonData.yaml#/components/responses/413'\n'415':\n$ref: 'TS29571_CommonData.yaml#/components/responses/415'\n'429':\n$ref: 'TS29571_CommonData.yaml#/components/responses/429'\n'500':\n$ref: 'TS29571_CommonData.yaml#/components/responses/500'\n'501':\n$ref: 'TS29571_CommonData.yaml#/components/responses/501'\n'502':\n$ref: 'TS29571_CommonData.yaml#/components/responses/502'\n'503':\n$ref: 'TS29571_CommonData.yaml#/components/responses/503'\ndefault:\n$ref: 'TS29571_CommonData.yaml#/components/responses/default'\npost:\nsummary: Create a dictionary entry in the UCMF\ntags:\n- a dictionary entry (Document)\noperationId: CreateDictionaryEntry\nsecurity:\n- {}\n- oAuth2ClientCredentials:\n- nucmf-uecm\n- oAuth2ClientCredentials:\n- nucmf-uecm\n- nucmf-uecm:dictionary:create\nrequestBody:\ncontent:\nmultipart/related:  # message with binary body part(s)\nschema:\ntype: object\nproperties: # Request parts\njsonData:\n$ref: '#/components/schemas/DicEntryCreateData'\nbinaryDataUeRadioCapability5GS:\ntype: string\nformat: binary\nbinaryDataUeRadioCapabilityEPS:\ntype: string\nformat: binary\nbinaryDataUeRadioCap5GSForPaging:\ntype: string\nformat: binary\nbinaryDataUeRadioCapEPSForPaging:\ntype: string\nformat: binary\nencoding:\njsonData:\ncontentType:  application/json\nbinaryDataUeRadioCapability5GS:\ncontentType:  application/vnd.3gpp.ngap\nheaders:\nContent-Id:\nschema:\ntype: string\nbinaryDataUeRadioCapabilityEPS:\ncontentType:  application/vnd.3gpp.s1ap\nheaders:\nContent-Id:\nschema:\ntype: string\nbinaryDataUeRadioCap5GSForPaging:\ncontentType:  application/vnd.3gpp.ngap\nheaders:\nContent-Id:\nschema:\ntype: string\nbinaryDataUeRadioCapEPSForPaging:\ncontentType:  application/vnd.3gpp.s1ap\nheaders:\nContent-Id:\nschema:\ntype: string\nresponses:\n'201':\ndescription: Dictionary Created\nheaders:\nLocation:\ndescription: 'Contains the URI of the newly created resource, according to the structure: {apiRoot}/nucmf-uecm/<apiVersion>/dic-entries/{dicEntryId}'\nrequired: true\nschema:\ntype: string\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/DicEntryCreatedData'\n'307':\n$ref: 'TS29571_CommonData.yaml#/components/responses/307'\n'308':\n$ref: 'TS29571_CommonData.yaml#/components/responses/308'\n'400':\n$ref: 'TS29571_CommonData.yaml#/components/responses/400'\n'401':\n$ref: 'TS29571_CommonData.yaml#/components/responses/401'\n'403':\n$ref: 'TS29571_CommonData.yaml#/components/responses/403'\n'404':\n$ref: 'TS29571_CommonData.yaml#/components/responses/404'\n'411':\n$ref: 'TS29571_CommonData.yaml#/components/responses/411'\n'413':\n$ref: 'TS29571_CommonData.yaml#/components/responses/413'\n'415':\n$ref: 'TS29571_CommonData.yaml#/components/responses/415'\n'429':\n$ref: 'TS29571_CommonData.yaml#/components/responses/429'\n'500':\n$ref: 'TS29571_CommonData.yaml#/components/responses/500'\n'501':\n$ref: 'TS29571_CommonData.yaml#/components/responses/501'\n'502':\n$ref: 'TS29571_CommonData.yaml#/components/responses/502'\n'503':\n$ref: 'TS29571_CommonData.yaml#/components/responses/503'\ndefault:\n$ref: 'TS29571_CommonData.yaml#/components/responses/default'\n/dic-entries/{dicEntryId}:\nget:\nsummary: Get an individual dictionary entry via dicEntryId\noperationId: GetDicEntry\ntags:\n- dic Entry Id (Document)\nsecurity:\n- {}\n- oAuth2ClientCredentials:\n- nucmf-uecm\n- oAuth2ClientCredentials:\n- nucmf-uecm\n- nucmf-uecm:dictionary:read\nparameters:\n- name: dicEntryId\nin: path\ndescription: the ID of a dictionary entry in the UCMF\nrequired: true\nschema:\n$ref: '#/components/schemas/DicEntryId'\n- name: rac-format\nin: query\ndescription: Encoding format of of RAC Info\nschema:\n$ref: '#/components/schemas/RacFormat'\n- name: supported-features\nin: query\ndescription: supported features of the NF consumer\nschema:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'\nresponses:\n'200':\ndescription: Expected response to a valid request\ncontent:\nmultipart/related:  # message with binary body part(s)\nschema:\ntype: object\nproperties: # Request parts\njsonData:\n$ref: '#/components/schemas/DicEntryData'\nbinaryDataUeRadioCapability5GS:\ntype: string\nformat: binary\nbinaryDataUeRadioCapabilityEPS:\ntype: string\nformat: binary\nbinaryDataUeRadioCap5GSForPaging:\ntype: string\nformat: binary\nbinaryDataUeRadioCapEPSForPaging:\ntype: string\nformat: binary\nencoding:\njsonData:\ncontentType:  application/json\nbinaryDataUeRadioCapability5GS:\ncontentType:  application/vnd.3gpp.ngap\nheaders:\nContent-Id:\nschema:\ntype: string\nbinaryDataUeRadioCapabilityEPS:\ncontentType:  application/vnd.3gpp.s1ap\nheaders:\nContent-Id:\nschema:\ntype: string\nbinaryDataUeRadioCap5GSForPaging:\ncontentType:  application/vnd.3gpp.ngap\nheaders:\nContent-Id:\nschema:\ntype: string\nbinaryDataUeRadioCapEPSForPaging:\ncontentType:  application/vnd.3gpp.s1ap\nheaders:\nContent-Id:\nschema:\ntype: string\n'307':\n$ref: 'TS29571_CommonData.yaml#/components/responses/307'\n'308':\n$ref: 'TS29571_CommonData.yaml#/components/responses/308'\n'400':\n$ref: 'TS29571_CommonData.yaml#/components/responses/400'\n'401':\n$ref: 'TS29571_CommonData.yaml#/components/responses/401'\n'403':\n$ref: 'TS29571_CommonData.yaml#/components/responses/403'\n'404':\n$ref: 'TS29571_CommonData.yaml#/components/responses/404'\n'406':\n$ref: 'TS29571_CommonData.yaml#/components/responses/406'\n'411':\n$ref: 'TS29571_CommonData.yaml#/components/responses/411'\n'413':\n$ref: 'TS29571_CommonData.yaml#/components/responses/413'\n'415':\n$ref: 'TS29571_CommonData.yaml#/components/responses/415'\n'429':\n$ref: 'TS29571_CommonData.yaml#/components/responses/429'\n'500':\n$ref: 'TS29571_CommonData.yaml#/components/responses/500'\n'501':\n$ref: 'TS29571_CommonData.yaml#/components/responses/501'\n'502':\n$ref: 'TS29571_CommonData.yaml#/components/responses/502'\n'503':\n$ref: 'TS29571_CommonData.yaml#/components/responses/503'\ndefault:\n$ref: 'TS29571_CommonData.yaml#/components/responses/default'\n/subscriptions:\npost:\nsummary: Nucmf_UECapabilityManagement Subscribe service Operation\noperationId: CreateIndividualSubcription\ntags:\n- Subscriptions (Collection)\nsecurity:\n- {}\n- oAuth2ClientCredentials:\n- nucmf-uecm\n- oAuth2ClientCredentials:\n- nucmf-uecm\n- nucmf-uecm:subscription:create\nrequestBody:\nrequired: true\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/CreateSubscription'\nresponses:\n'201':\ndescription: Success\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/CreatedSubscription'\nheaders:\nLocation:\ndescription: 'Contains the URI of the newly created resource, according to the structure: {apiRoot}/nucmf-uecm/<apiVersion>/subscriptions/{subscriptionId}'\nrequired: true\nschema:\ntype: string\n'307':\n$ref: 'TS29571_CommonData.yaml#/components/responses/307'\n'308':\n$ref: 'TS29571_CommonData.yaml#/components/responses/308'\n'400':\n$ref: 'TS29571_CommonData.yaml#/components/responses/400'\n'401':\n$ref: 'TS29571_CommonData.yaml#/components/responses/401'\n'403':\n$ref: 'TS29571_CommonData.yaml#/components/responses/403'\n'404':\n$ref: 'TS29571_CommonData.yaml#/components/responses/404'\n'411':\n$ref: 'TS29571_CommonData.yaml#/components/responses/411'\n'413':\n$ref: 'TS29571_CommonData.yaml#/components/responses/413'\n'415':\n$ref: 'TS29571_CommonData.yaml#/components/responses/415'\n'429':\n$ref: 'TS29571_CommonData.yaml#/components/responses/429'\n'500':\n$ref: 'TS29571_CommonData.yaml#/components/responses/500'\n'502':\n$ref: 'TS29571_CommonData.yaml#/components/responses/502'\n'503':\n$ref: 'TS29571_CommonData.yaml#/components/responses/503'\ndefault:\n$ref: 'TS29571_CommonData.yaml#/components/responses/default'\ncallbacks:\nmyNotification:\n'{$request.body#/ucmfNotificationUri}':\npost:\nrequestBody:\nrequired: true\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/UcmfNotification'\nresponses:\n'204':\ndescription: No Content, Notification was succesfull\n'307':\n$ref: 'TS29571_CommonData.yaml#/components/responses/307'\n'308':\n$ref: 'TS29571_CommonData.yaml#/components/responses/308'\n'400':\n$ref: 'TS29571_CommonData.yaml#/components/responses/400'\n'401':\n$ref: 'TS29571_CommonData.yaml#/components/responses/401'\n'403':\n$ref: 'TS29571_CommonData.yaml#/components/responses/403'\n'404':\n$ref: 'TS29571_CommonData.yaml#/components/responses/404'\n'411':\n$ref: 'TS29571_CommonData.yaml#/components/responses/411'\n'413':\n$ref: 'TS29571_CommonData.yaml#/components/responses/413'\n'415':\n$ref: 'TS29571_CommonData.yaml#/components/responses/415'\n'429':\n$ref: 'TS29571_CommonData.yaml#/components/responses/429'\n'500':\n$ref: 'TS29571_CommonData.yaml#/components/responses/500'\n'502':\n$ref: 'TS29571_CommonData.yaml#/components/responses/502'\n'503':\n$ref: 'TS29571_CommonData.yaml#/components/responses/503'\ndefault:\n$ref: 'TS29571_CommonData.yaml#/components/responses/default'\n/subscriptions/{subscriptionId}:\ndelete:\nsummary: unsubscribe from notifications\noperationId: DeleteIndividualSubcription\ntags:\n- IndividualSubscription (Document)\nsecurity:\n- {}\n- oAuth2ClientCredentials:\n- nucmf-uecm\n- oAuth2ClientCredentials:\n- nucmf-uecm\n- nucmf-uecm:subscription:modify\nparameters:\n- name: subscriptionId\nin: path\ndescription: Event Subscription ID\nrequired: true\nschema:\ntype: string\nresponses:\n'204':\ndescription: No Content. Resource was succesfully deleted\n'307':\n$ref: 'TS29571_CommonData.yaml#/components/responses/307'\n'308':\n$ref: 'TS29571_CommonData.yaml#/components/responses/308'\n'400':\n$ref: 'TS29571_CommonData.yaml#/components/responses/400'\n'401':\n$ref: 'TS29571_CommonData.yaml#/components/responses/401'\n'403':\n$ref: 'TS29571_CommonData.yaml#/components/responses/403'\n'404':\n$ref: 'TS29571_CommonData.yaml#/components/responses/404'\n'429':\n$ref: 'TS29571_CommonData.yaml#/components/responses/429'\n'500':\n$ref: 'TS29571_CommonData.yaml#/components/responses/500'\n'502':\n$ref: 'TS29571_CommonData.yaml#/components/responses/502'\n'503':\n$ref: 'TS29571_CommonData.yaml#/components/responses/503'\ndefault:\n$ref: 'TS29571_CommonData.yaml#/components/responses/default'\ncomponents:\nsecuritySchemes:\noAuth2ClientCredentials:\ntype: oauth2\nflows:\nclientCredentials:\ntokenUrl: '{nrfApiRoot}/oauth2/token'\nscopes:\nnucmf-uecm: Access to the Nucmf_UECapabilityManagement API\nnucmf-uecm:dictionary:read: Access to read dictionaries\nnucmf-uecm:dictionary:create: Access to create dictionary entitries\nnucmf-uecm:subscription:create: Access to create subscriptions\nnucmf-uecm:subscription:modify: Access to update subscriptions\nschemas:\nDicEntryData:\ndescription: A dictionary entry for a UE radio capability ID in the UCMF\ntype: object\nrequired:\n- typeAllocationCode\nproperties:\ndicEntryId:\n$ref: '#/components/schemas/DicEntryId'\ntypeAllocationCode:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/TypeAllocationCode'\nplmnAssiUeRadioCapId:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/PlmnAssiUeRadioCapId'\nmanAssiUeRadioCapId:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/ManAssiUeRadioCapId'\nueRadioCapability5GS:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/RefToBinaryData'\nueRadioCapabilityEPS:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/RefToBinaryData'\nueRadioCap5GSForPaging:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/RefToBinaryData'\nueRadioCapEPSForPaging:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/RefToBinaryData'\nDicEntryCreateData:\ndescription: Data for a creating a dictionary entry request\ntype: object\nrequired:\n- typeAllocationCode\nproperties:\ntypeAllocationCode:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/TypeAllocationCode'\nueRadioCapability5GS:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/RefToBinaryData'\nueRadioCapabilityEPS:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/RefToBinaryData'\nsupportedFeatures:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'\nueRadioCap5GSForPaging:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/RefToBinaryData'\nueRadioCapEPSForPaging:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/RefToBinaryData'\nDicEntryCreatedData:\ndescription: Data for a creating a dictionary entry response\ntype: object\nrequired:\n- plmnAssiUeRadioCapId\nproperties:\nplmnAssiUeRadioCapId:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/PlmnAssiUeRadioCapId'\nUeRadioCapaId:\ndescription: UE Radio Capability ID\ntype: object\nproperties:\nplmnAssiUeRadioCapId:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/PlmnAssiUeRadioCapId'\nmanAssiUeRadioCapId:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/ManAssiUeRadioCapId'\nCreateSubscription:\ndescription: Data for a creating a subscription request\ntype: object\nrequired:\n- ucmfNotificationUri\nproperties:\nnfId:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/NfInstanceId'\nucmfNotificationUri:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Uri'\nsuggestedExpires:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/DateTime'\nsupportedFeatures:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'\nCreatedSubscription:\ndescription: Data for a creating a subscription response\ntype: object\nrequired:\n- dicEntryId\nproperties:\ndicEntryId:\n$ref: '#/components/schemas/DicEntryId'\nconfirmedExpires:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/DateTime'\nsupportedFeatures:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'\nUcmfNotification:\ndescription: Data for a notification request from a UCMF\ntype: object\nrequired:\n- dicEntryId\n- eventType\nproperties:\ndicEntryId:\n$ref: '#/components/schemas/DicEntryId'\neventType:\n$ref: '#/components/schemas/EventType'\nmanAssOpRequestlist:\n$ref: '#/components/schemas/ManAssOpRequestlist'\nversionId:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Uinteger'\nnewDicEntries:\ntype: array\nitems:\n$ref: '#/components/schemas/DicEntryData'\nminItems: 1\nManAssOpRequestlist:\ndescription: Manufacturer Assigned operation requested list\ntype: object\noneOf:\n- required: [plmnAssiUeRadioCapId]\n- required: [typeAllocationCode]\nproperties:\nplmnAssiUeRadioCapId:\ntype: array\nitems:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/PlmnAssiUeRadioCapId'\ntypeAllocationCode:\ntype: array\nitems:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/TypeAllocationCode'\n#\n# SIMPLE DATA TYPES\n#\nDicEntryId:\ntype: integer\nminimum: 0\nmaximum: 4294967295\n#\n# ENUMERATIONS\n#\nEventType:\nanyOf:\n- type: string\nenum:\n- CREATION_OF_DICTIONARY_ENTRY\n- DELETION_OF_PLMN_ASSIGNED_IDS\n- NEW_VERSION_ID_OF_PLMN_ASSIGNED_IDs\n- type: string\nRacFormat:\nanyOf:\n- type: string\nenum:\n- 5GS\n- EPS\n- type: string\nAnnex B (informative):Change history\nChange history\nDate\nMeeting\nTDoc\nCR\nRev\nCat\nSubject/Comment\nNew version\n2019-09\nCT4#93\nC4-193849\nInitial draft\n0.1.0\n2019-10\nCT4#94\nC4-194356\nSubscribe, Unsubscribe and Notify\n0.2.0\n2019-10\nCT4#94\nC4-194357\nIndividual dictionary entry resource\n0.2.0\n2019-11\nCT4#95\nC4-195436\nData type and openAPI related to Resolve, Assign\n0.3.0\n2019-11\nCT4#95\nC4-195438\nData type and openAPI related to (un)Subscribe/Notify\n0.3.0\n2019-12\nCT#86\nCP-193069\nTS presented for information\n1.0.0\n2020-03\nCT4#96e\nC4-200622\nUcmfNotification for deletion\n1.1.0\n2020-03\nCT4#96e\nC4-200623\nOther alignment with stage 2 requirements\n1.1.0\n2020-03\nCT#87e\nCP-200067\nTS presented for approval\n2.0.0\n2020-03\nCT#87e\nApproved at CT#87e\n16.0.0\n2020-06\nCT#88e\nCP-201279\n0001\n2\nB\nMultiple RAC Coding Format Support in RACS Operation\n16.1.0\n2020-06\nCT#88e\nCP-201035\n0003\nF\nStorage of YAML files in ETSI Forge\n16.1.0\n2020-06\nCT#88e\nCP-201035\n0004\nB\nNew application error at receiving out-dated UE RAC-ID\n16.1.0\n2020-06\nCT#88e\nCP-201035\n0005\n1\nB\nPopulating New Version Id via Notification\n16.1.0\n2020-06\nCT#88e\nCP-201187\n0006\nF\n3GPP TS 29.673 API version update Rel-16\n16.1.0\n2020-09\nCT#89e\nCP-202108\n0007\nF\nDicEntryId in DicEntryData\n16.2.0\n2020-09\nCT#89e\nCP-202108\n0008\nF\nUE Radio Capability ID retrieval\n16.2.0\n2020-09\nCT#89e\nCP-202108\n0009\nF\nOptionality of ProblemDetails in TS29.673 cleanup\n16.2.0\n2020-09\nCT#89e\nCP-202096\n0010\nF\n29.673 Rel-16 API version and External doc update\n16.2.0\n2020-12\nCT#90e\nCP-203047\n0011\n1\nF\nTAC is mandatory in DicEntryData\n16.3.0\n2020-12\nCT#90e\nCP-203036\n0012\n29.673 Rel-16 API version and External doc update\n16.3.0\n2021-03\nCT#91e\nCP-210043\n0014\nF\nStorage of YAML files\n17.0.0\n2021-03\nCT#91e\nCP-210037\n0015\n1\nF\nHTTP 3xx redirection\n17.0.0\n2021-03\nCT#91e\nCP-210034\n0016\n1\nF\nOpenAPI Reference\n17.0.0\n2021-03\nCT#91e\nCP-210054\n0018\nF\n29.673 Rel-16 API version and External doc update\n17.0.0\n2021-06\nCT#92e\nCP-211028\n0019\nF\nData Type Description for Nucmf_UECapabilityManagement Service API\n17.1.0\n2021-06\nCT#92e\nCP-211028\n0021\n1\nF\nEventType Data Type\n17.1.0\n2021-06\nCT#92e\nCP-211059\n0023\nA\nRedirect Response for Nucmf_UECapabilityManagement\n17.1.0\n2021-06\nCT#92e\nCP-211050\n0024\nF\n29.673 Rel-17 API version and External doc update\n17.1.0\n2021-09\nCT#93e\nCP-212065\n0027\n1\nA\nHandling of UE Radio Capability for Paging\n17.2.0\n2021-09\nCT#93e\nCP-212060\n0029\nA\n3xx description correction for SCP\n17.2.0\n2021-09\nCT#93e\nCP-212059\n0030\nF\n29.673 Rel-17 API version and External doc update\n17.2.0\n2021-12\nCT#94e\nCP-213120\n0034\nF\n307/308 redirection\n17.3.0\n2021-12\nCT#94e\nCP-213130\n0033\n1\nA\nBinary Information for UE Radio Capability for Paging\n17.3.0\n2021-12\nCT#94e\nCP-213121\n0035\nF\n29.673 Rel-17 API version and External doc update\n17.3.0\n2022-06\nCT#96e\nCP-221051\n0038\nF\n29.673 Rel-17 API version and External doc update\n17.4.0\n2022-12\nCT#98\nCP-223028\n0040\n1\nF\nMissing Mandatory Status Codes in OpenAPI\n18.0.0\n2022-12\nCT#98\nCP-223033\n0041\nF\n29.673 Rel-18 API version and External doc update\n18.0.0\n2023-06\nCT#100\nCP-231026\n0042\n2\nF\nLocation header description\n18.1.0\n2023-06\nCT#100\nCP-231027\n0044\n1\nB\nOAuth2 scopes in the Nucmf API\n18.1.0\n2023-12\nCT#102\nCP-233031\n0046\n1\nF\nProblemDetails RFC 7807 obsoleted by 9457\n18.2.0\n2023-12\nCT#102\nCP-233031\n0047\n1\nF\nHTTP RFCs obsoleted by IETF RFC 9110, 9111 and 9113\n18.2.0\n2024-03\nCT#103\nCP-240053\n0048\n3\nF\nHighest allocated DicEntryId\n18.3.0\n2024-03\nCT#103\nCP-240071\n0051\nA\nCorrection on ManAssOpRequestlist\n18.3.0\n2024-03\nCT#103\nCP-240056\n0052\nF\n29.673 Rel-18 API version and External doc update\n18.3.0\n2024-06\nCT#104\nCP-241064\n0056\n1\nA\nDefinition of UcmfNotification\n18.4.0\n2024-06\nCT#104\nCP-241028\n0057\nF\nThe term Payload is replaced with Content due to RFC 9113\n18.4.0\n2024-06\nCT#104\nCP-241050\n0059\nF\nFeature negotiation correction\n18.4.0\n2024-06\nCT#104\nCP-241052\n0060\nF\n29.673 Rel-18 API version and External doc update\n18.4.0",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_6.1.8",
+        "ts_29.500_clause_6.10.3.4",
+        "ts_29.500_clause_6.10.9.1",
+        "ts_29.501_clause_5.3.1",
+        "ts_29.501_clause_5",
+        "ts_29.501_clause_4.4",
+        "ts_29.500",
+        "ts_29.501",
+        "ts_21.900",
+        "ts_29.673",
+        "ts_1.1"
+      ]
+    }
+  ]
+}

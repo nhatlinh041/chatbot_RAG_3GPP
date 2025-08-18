@@ -1,0 +1,989 @@
+{
+  "metadata": {
+    "specification_id": "ts_29.526",
+    "version": "18.7.0",
+    "title": "3GPP TS 29.526",
+    "file_path": "/content/drive/MyDrive/RAG_thesis/data/29_series/29526-i70/29526-i70.docx"
+  },
+  "export_info": {
+    "export_date": "2025-07-26T08:55:42.199590",
+    "total_chunks": 84
+  },
+  "chunks": [
+    {
+      "chunk_id": "ts_29.526_1",
+      "section_id": "1",
+      "section_title": "Scope",
+      "content": "The present document specifies the stage 3 protocol and data model for the Nnssaaf Service Based Interface. It provides stage 3 protocol definitions and message flows, and specifies the API for each service offered by the NSSAAF.\nThe 5G System stage 2 architecture and procedures are specified in 3GPP TS 23.501 [2] and 3GPP TS 23.502 [3].\nThe Technical Realization of the Service Based Architecture and the Principles and Guidelines for Services Definition are specified in 3GPP TS 29.500 [4] and 3GPP TS 29.501 [5].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.501",
+        "ts_23.502",
+        "ts_29.500",
+        "ts_29.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.526_2",
+      "section_id": "2",
+      "section_title": "References",
+      "content": "The following documents contain provisions which, through reference in this text, constitute provisions of the present document.\n-\tReferences are either specific (identified by date of publication, edition number, version number, etc.) or non‑specific.\n-\tFor a specific reference, subsequent revisions do not apply.\n-\tFor a non-specific reference, the latest version applies. In the case of a reference to a 3GPP document (including a GSM document), a non-specific reference implicitly refers to the latest version of that document in the same Release as the present document.\n[1]\t3GPP TR 21.905: \"Vocabulary for 3GPP Specifications\".\n[2]\t3GPP TS 23.501: \"System Architecture for the 5G System; Stage 2\".\n[3]\t3GPP TS 23.502: \"Procedures for the 5G System; Stage 2\".\n[4]\t3GPP TS 29.500: \"5G System; Technical Realization of Service Based Architecture; Stage 3\".\n[5]\t3GPP TS 29.501: \"5G System; Principles and Guidelines for Services Definition; Stage 3\".\n[6]\tOpenAPI: \"OpenAPI Specification Version 3.0.0\", https://spec.openapis.org/oas/v3.0.0.\n[7]\t3GPP TR 21.900: \"Technical Specification Group working methods\".\n[8]\t3GPP TS 33.501: \"Security architecture and procedures for 5G system\".\n[9]\tIETF RFC 6749: \"The OAuth 2.0 Authorization Framework\".\n[10]\t3GPP TS 29.510: \"5G System; Network Function Repository Services; Stage 3\".\n[11]\tIETF RFC 9113: \"HTTP/2\".\n[12]\tIETF RFC 8259: \"The JavaScript Object Notation (JSON) Data Interchange Format\".\n[13]\tIETF RFC 9457: \"Problem Details for HTTP APIs\".\n[14]\tIETF RFC 4648: \"The Base16, Base32 and Base64 Data Encodings\".\n[15]\t3GPP TS 29.503: \"5G System; Unified Data Management Services; Stage 3\".\n[16]\t3GPP TS 29.518: \"5G System; Access and Mobility Management Services; Stage 3\".\n[17]\t3GPP TS 29.536: \"5G System; Network Slice Admission Control Services; Stage 3\".\n[18]\t3GPP TS 29.509: \"5G System; Authentication Server Services; Stage 3\".\n[19]\t3GPP TS 29.571: \"5G System; Common Data Types for Service Based Interfaces; Stage 3\".",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905",
+        "ts_23.501",
+        "ts_23.502",
+        "ts_29.500",
+        "ts_29.501",
+        "ts_21.900",
+        "ts_33.501",
+        "ts_29.510",
+        "ts_29.503",
+        "ts_29.518",
+        "ts_29.536",
+        "ts_29.509",
+        "ts_29.571"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.526_3.1",
+      "section_id": "3.1",
+      "section_title": "Definitions",
+      "content": "For the purposes of the present document, the terms and definitions given in 3GPP TR 21.905 [1] and the following apply. A term defined in the present document takes precedence over the definition of the same term, if any, in 3GPP TR 21.905 [1].",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_21.905"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.526_3.2",
+      "section_id": "3.2",
+      "section_title": "Abbreviations",
+      "content": "For the purposes of the present document, the abbreviations given in 3GPP TR 21.905 [1] and the following apply. An abbreviation defined in the present document takes precedence over the definition of the same abbreviation, if any, in 3GPP TR 21.905 [1].\nNSSAA\tNetwork Slice-Specific Authentication and Authorization\nNSSAAF\tNetwork Slice-specific and SNPN Authentication and Authorization Function\nSNPN\tStandalone Non-Public Network",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.526_4.1",
+      "section_id": "4.1",
+      "section_title": "Introduction",
+      "content": "Within the 5GC, the NSSAAF offers services to the AMF and the AUSF via the Nnssaaf service-based interface.\nThe AMF shall make use of the NSSAAF service when it needs to invoke network slice-specific authentication and authorization for a specific UE and a specific S-NSSAI (see 3GPP TS 23.502 [3] clause 4.2.9.2, and 3GPP TS 33.501 [14] clause 16.2 and 16.3).\nThe NSSAAF service shall also be used by the AMF to receive slice re-authentication notification or slice authorization revocation notification sent from the AAA-S (see 3GPP TS 23.502 [3] clause 4.2.9.3, 4.2.9.4 and 3GPP TS 33.501 [14] clause 16.3 and 16.4).\nThe AUSF shall make use of the NSSAAF service when it needs to invoke a primary authentication in SNPN with Credentials holder using AAA server; the AUSF shall also make use of this service during the UE onboarding procedure in SNPN scenarios, when the Default Credentials Server (DCS) uses an AAA server for primary authentication.\nFigure 4.1-1 provides the reference model with focus on the NSSAAF.\nFigure 4.1-1: Reference model – NSSAAF",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_23.502_clause_4.2.9.2",
+        "ts_33.501_clause_16.2",
+        "ts_23.502_clause_4.2.9.3",
+        "ts_33.501_clause_16.3",
+        "figure_4.1-1",
+        "ts_23.502",
+        "ts_33.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.526_5.1",
+      "section_id": "5.1",
+      "section_title": "Introduction",
+      "content": "The NSSAAF offers the following services via the Nnssaaf interface:\n-\tNnssaaf_NSSAA Service\n-\tNnssaaf_AIW Service\nTable 5.1-1 summarizes the corresponding APIs defined for this specification.\nTable 5.1-1: API Descriptions\nService Name\nClause\nDescription\nOpenAPI Specification File\napiName\nAnnex\nNnssaaf_NSSAA\n5.2\nSlice-specific authentication and authorization service\nTS29526_Nnssaaf_NSSAA.yaml\nnnssaaf-nssaa\nA.2\nNnssaaf_AIW\n5.3\nAAA Interworking service\nTS29526_Nnssaaf_AIW.yaml\nnnssaaf-aiw\nA.3",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.526_5.2.1",
+      "section_id": "5.2.1",
+      "section_title": "Service Description",
+      "content": "The Nnssaaf_NSSAA service provides slice-specific authentication and authorization for a given UE. The NSSAAF is acting as NF Service Producer, while the AMF is the NF Service Consumer.\nFollowing functionalities are provided by the Nnssaaf_NSSAA service:\n-\tPerform slice-specific authentication and authorization for a given UE;\n-\tTrigger slice-specific re-authentication to a given UE;\n-\tRevoke the slice-specific authentication and authorization for a given UE.\nThe Nnssaaf_NSSAA service supports the following service operations.\nTable 5.2.1-1: Service operations supported by the Nnssaaf_NSSAA service\nService Operations\nDescription\nOperation\nSemantics\nExample Consumer(s)\nAuthenticate\nPerform slice-specific authentication and authorization for a given UE.\nRequest/Response\nAMF\nRe-Authentication Notification\nRequest slice-specific re-authentication and re-authorization for a given UE.\nCallback\nAMF\nRevocation Notification\nRequest revocation of slice-specific authentication and authorization result for a given UE.\nCallback\nAMF",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.2.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.526_5.2.2.1",
+      "section_id": "5.2.2.1",
+      "section_title": "Introduction",
+      "content": "See Table 5.2.1-1 for an overview of the service operations supported by the Nnssaaf_NSSAA service.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.2.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.526_5.2.2.2.1",
+      "section_id": "5.2.2.2.1",
+      "section_title": "General",
+      "content": "The Authenticate service operation permits the NF Service Consumer (i.e. the AMF) to initiate slice-specific authentication and authorization, e.g. during a UE Registration procedure or upon reception of a re-authentication notification from the NSSAAF (see clause 5.2.2.3). The NSSAAF may relay the EAP message to an AAA-S and collect the result of slice-specific authentication and authorization from the AAA-S, as specified in clause 4.2.9.2 of 3GPP TS 23.502 [3], and clause 16.3 of 3GPP TS 33.501 [8].\nThe NF Service Consumer (i.e. the AMF) shall send a POST request to the resource representing slice authentication collection (i.e. …/slice-authentications) to request the NSSAAF to create the corresponding resource context and perform slice-specific authentication and authorization.\nFigure 5.2.2.2.1-1: Slice-Specific Authentication and Authorization\n1.\tThe NF Service Consumer (AMF) shall send a POST request to the NSSAAF, targeting the resource of slice authentication collection (i.e. …/slice-authentications), to perform slice-specific authentication and authorization.\nThe HTTP content shall contain the slice authentication information, which includes:\n-\tUE ID (i.e. GPSI), if multiple GPSIs received from the UDM, the NF Service Consumer shall include any one of the GPSIs.\n-\tS-NSSAI\n-\tEAP ID Response message (if it is received from the UE), or the EAP ID Response message with EAP ID stored, or the EAP ID Response message with Null value (if EAP ID is not requested or received);\n-\toptionally, the callback URI of the AMF to receive re-authentication notification from the NSSAAF;\n-\toptionally, the callback URI of the AMF to receive revocation notification from the NSSAAF.\nBased on local policy, the AMF may determine to provide callback URI(s) for receiving re-authentication notification or revocation notification. For example, the callback URIs are provided for an UE identified with low mobility characteristic.\nIf Slice-Specific Authentication and Authorization is triggered by the AMF during a Registration procedure as described in clause 4.2.9.2 of 3GPP TS 23.502 [3], the AMF shall set \"status\" attribute for the given slice listed in \"nssaaStatusList\" attribute to \"PENDING\" (See 3GPP TS 29.518 [16]).\n2.\tThe NSSAAF creates slice authentication context for the UE, and starts the slice-specific authentication and authorization procedure. If the AAA-S is involved in slice-specific authentication and authorization procedure, the NSSAAF shall forward the EAP ID Response message to the AAA-S if the EAP ID Response message does not contain the Null value. Depending on the result, either step 3a or step 3b is performed. The NSSAAF obtains the AAA-S address from local configuration, based on S-NSSAI.\n3a.\tOn success, \"201 Created\" shall be returned. The \"Location\" header shall contain the URI of the created resource (e.g. .../slice-authentications/{authCtxId}). The content shall contain the slice authentication context, which includes the EAP message generated by the NSSAAF or from the AAA-S. The NF Service Consumer (i.e. the AMF) shall forward the received EAP message to the UE in NAS message, as specified in clause 4.2.9.2 of 3GPP TS 23.502 [3].\n3b.\tOn failure, one of the HTTP status code listed in Table 6.1.7.3-1 shall be returned. For a 4xx/5xx response, the message body containing a ProblemDetails structure with the \"cause\" attribute set to one of the application error listed in Table 6.1.7.3-1. If the slice is not authorized, the NSSAAF shall use the \"SLICE_AUTH_REJECTED\" application error code.\n3c.\tOn redirection, the appropriate HTTP status code (e.g. \"307 Temporary Redirect\") shall be returned. A RedirectResponse IE may be included in the content of POST response, as specified in table 6.1.3.2.3.1-3.\n4.\tOnce receiving EAP message from the UE, the NF Service Consumer (i.e. the AMF) shall send a PUT request to the NSSAAF, targeting the resource of the slice authentication context (i.e. …/slice-authentications/{authCtxId}).\nThe HTTP content shall carry the slice authentication confirmation data which includes:\n-\tUE ID (i.e. GPSI)\n-\tS-NSSAI\n-\tEAP Message (which is received from the UE)\n5.\tThe NSSAAF checks and confirms the slice-specific authentication and authorization. If the AAA-S is involved, the NSSAAF shall forward the EAP Message to the AAA-S to confirm the slice-specific authentication and authorization. Depending on the result, either step 6a or step 6b is performed.\n6a.\tOn success, \"200 OK\" shall be returned. The content shall contain the slice authentication confirmation response, which includes the EAP message (e.g. EAP success/failure message) generated by the NSSAAF or from the AAA-S. The NF Service Consumer (i.e. the AMF) shall forward the EAP message to the UE in NAS message.\nIf the UE is authenticated, the NSSAAF shall set the \"authResult\" attribute to \"EAP_SUCCESS\". If failed to authenticate the UE, the \"authResult\" attribute shall be set to \"EAP_FAILURE\".\nIf subsequent EAP message exchange is needed between the UE and the NSSAAF(AAA-S), the NSSAAF shall not include SliceAuthResult in the response message.\n6b.\tOn failure, one of the HTTP status codes listed in Table 6.1.7.3-1 shall be returned. For a 4xx/5xx response, the message body containing a ProblemDetails structure with the \"cause\" attribute set to one of the application error listed in Table 6.1.7.3-1.\n6c.\tOn redirection, the appropriate HTTP status code (e.g. \"307 Temporary Redirect\") shall be returned. A RedirectResponse IE may be included in the content of POST response, as specified in table 6.1.3.3.3.1-3.\n7-9.\tIf subsequent EAP message exchange is needed between the UE and the NSSAAF to finish the EAP based authentication, step 7-9 are performed. On failure, one of the HTTP status codes listed in Table 6.1.7.3-1 shall be returned. For a 4xx/5xx response, the message body containing a ProblemDetails structure with the \"cause\" attribute set to one of the application error listed in Table 6.1.7.3-1. On redirection, the appropriate HTTP status code (e.g. \"307 Temporary Redirect\") shall be returned, and a RedirectResponse IE may be included in the message body, as specified in table 6.1.3.3.3.1-3.\nIn above steps, if the AAA-S is involved in the slice-specific authentication and authorization procedure while there is no expected response from the AAA-S in the case of time out, the NSSAAF shall return HTTP status code \"504 Gateway Timeout\", with the message body containing a ProblemDetails structure with the \"cause\" attribute set to \"TIMED_OUT_REQUEST\".\nAfter the completion of slice-specific authentication and authorization procedure, it is up to implementation whether the NSSAAF stores the slice authentication context and related resources for a configured period, or deletes the context and resource immediately, e.g. depending on the potential need for AAA-S initiated slice-specific re-authentication/revocation notification.\nIf the slice-specific authentication and authorization was successful (i.e. \"authResult\" attribute received from NSSAAF in step 6a is set to \"EAP_SUCCESS\"), the AMF shall set \"status\" attribute for the given slice listed in \"nssaaStatusList\" attribute to \"EAP_SUCCESS\" (see 3GPP TS 29.518 [16]).\nIf the slice-specific authentication and authorization finally fails (i.e. \"authResult\" attribute received from NSSAAF in step 6a is set to \"EAP_FAILURE\"), the AMF shall set \"status\" attribute for the given slice listed in \"nssaaStatusList\" attribute to \"EAP_FAILURE\" (see 3GPP TS 29.518 [16]). In this case, if there are PDU sessions previously established corresponding to the S-NSSAIs required to be authenticated, the AMF should additionally trigger the release of those PDU sessions.\nIf the slice-specific authentication and authorization cannot be completed, then:\n-\tIf it is due to receiving a response with HTTP status code \"504 Gateway Timeout\" or due to lack of response from the NSSAAF during an NSSAA procedure, the AMF may later re-initiate slice-specific authentication and authorization procedure based on its policy. The AMF should wait for a configured period before re-initiating slice-specific authentication and authorization procedure. If the retry attempts are exhausted, the AMF stops the slice-specific authentication and authorization procedure.\nNOTE 1:\tIt is recommended to limit the number of retry attempts as described in 3GPP TS 29.500 [4].\n-\tIf it is due to the UE becoming unreachable during an NSSAA procedure, the AMF stops the slice-specific authentication and authorization procedure.\n-\tIf the AMF stops the slice-specific authentication and authorization procedure (i.e. after exhausting the retry attempts or when the UE becomes unreachable), the AMF shall keep the \"status\" attribute set to \"PENDING\", for the given slice(s) listed in \"nssaaStatusList\" attribute (see 3GPP TS 29.518 [16]).\nNOTE 2:\tThe AMF initiates the slice-specific authentication and authorization for S-NSSAIs in \"PENDING\" status at next UE uplink activity.\nIf an S-NSSAI subject to the NSSAA is rejected due to Network Slice Admission Control as the total number of UEs exceeds the maximum number of UEs allowed to be registered to this slice as specified in clause 5.2.2.2.2 of 3GPP TS 29.536 [17]), the AMF shall keep the \"status\" attribute stored as not impacted (see clause 4.2.9.1 of 3GPP TS 23.502 [3] and 3GPP TS 29.518 [16]).",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_5.2.2.3",
+        "ts_23.502_clause_4.2.9.2",
+        "ts_23.502_clause_16.3",
+        "ts_29.536_clause_5.2.2.2.2",
+        "ts_23.502_clause_4.2.9.1",
+        "table_6.1.7.3-1",
+        "table_6.1.3.2.3.1-3",
+        "table_6.1.3.3.3.1-3",
+        "figure_5.2.2.2.1-1",
+        "ts_33.501_clause_16.3",
+        "ts_23.502",
+        "ts_33.501",
+        "ts_29.518",
+        "ts_29.500",
+        "ts_29.536"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.526_5.2.2.3.1",
+      "section_id": "5.2.2.3.1",
+      "section_title": "General",
+      "content": "The Re-Authentication Notification service operation shall be used by the NSSAAF to notify the AMF to re-initiate slice-specific authentication and authorization for a given UE, as specified in clause 4.2.9.3 of 3GPP TS 23.502 [3], and clause 16.4 of 3GPP TS 33.501 [8].\nIf there are two different AMFs serving the UE (e.g. the NSSAAF retrieves two different AMFs from the UDM), the NSSAAF may determine to send the re-authentication notification to both AMFs. Or, the NSSAAF may first send re-authentication notification to one of the AMF, and then send revocation notification to another AMF if EAP authentication fails in first AMF. If EAP authentication succeeds in first AMF then NSSAAF does not notify the other AMF.\nUpon receiving the Network Slice-Specific Re-authentication and Re-authorization from an AAA-S, the NSSAAF shall verify whether the AAA-S is authorized to request the procedure, by checking its local configuration. If the AAA-S is authorized to request the re-authentication, the NSSAAF shall notify the NF Service Consumer (i.e. the AMF) by using the HTTP POST method as shown in Figure 5.2.2.3.1-1.\nFigure 5.2.2.3.1-1: Re-authentication Notification\n1.\tThe NSSAAF shall send a POST request to the callback URI used to receiving re-authentication notification, which is either provided by the NF Service Consumer (i.e. the AMF), or retrieved from the AMF profile stored in the NRF (in default notification subscription for \"NSSAA_REAUTH_NOTIFICATION\" notification type). If the NF Service Consumer is located in a different PLMN (i.e. the AMF in VPLMN for a roaming UE), the NSSAAF shall use the inter-PLMN callback URI to deliver the notification if the inter-PLMN callback URI is present in the default notification subscription.\nThe content of the POST request shall contain the SliceAuthReauthNotification data structure, within which:\n-\tthe notificationType set to the SliceAuthNotificationType of \"SLICE_RE_AUTH\";\n-\tthe gpsi set to the GPSI of the given UE required to be re-authenticated;\n-\tthe snssai set to the S-NSSAI required to be re-authenticated;\n-\tthe supi set to the SUPI of the given UE required to be re-authenticated.\nNOTE:\tThe NSSAAF can obtain the SUPI of the UE in the response of a previous Nudm_UECM_Get used by the NSSAAF to retrieve the AMF ID.\n2a.\tOn success, \"204 No Content\" shall be returned and the content of the POST response shall be empty.\nAfter responding the request, the NF Service Consumer (i.e. the AMF) shall send NAS message to the UE to trigger re-authentication and re-authorization for the given slice.\nThe AMF then decides to execute the Slice-Specific Authentication and Authorization if needed as described in clause 5.2.2.2.1.\nIf the S-NSSAI is not in the Mapping Of Allowed NSSAI, the AMF removes any status of the corresponding S-NSSAI subject to Slice-Specific Authentication and Authorization in the UE context it may have kept, so that an Slice-Specific Authentication and Authorization procedure is executed next time the UE requests to register with the S-NSSAI.\nNOTE:\tDuring NSSAA re-authentication procedure for an S-NSSAI, if the S-NSSAI has to be replaced with Alternative S-NSSAI, the AMF continues with the NSSAA procedure unaffected as specified in clause 5.15.19 of 3GPP TS 23.501 [2].\n2b.\tOn failure, one of the HTTP status code (e.g. \"404 Not Found\") listed in Table 6.1.7.3-1 shall be returned.\nFor a 4xx/5xx response, the message body shall contain a ProblemDetails structure with the \"cause\" attribute set to one of the application error listed in Table 6.1.7.3-1.\n2c.\tOn redirection, the appropriate HTTP status code (e.g. \"307 Temporary Redirect\") shall be returned. A RedirectResponse IE may be included in the  of POST response, as specified in table 6.1.5.2.3.1-2.\nIf the NF Service Consumer (i.e. the AMF) is not able to handle the request, but knows that another NF Service Consumer (i.e. the AMF) is able to handle it, it shall reply with an HTTP 3xx redirect response pointing to the URI of the new NF Service Consumer (i.e. the AMF).",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_23.502_clause_4.2.9.3",
+        "ts_23.502_clause_16.4",
+        "clause_5.2.2.2.1",
+        "ts_23.501_clause_5.15.19",
+        "table_6.1.7.3-1",
+        "table_6.1.5.2.3.1-2",
+        "figure_5.2.2.3.1-1",
+        "ts_33.501_clause_16.4",
+        "ts_23.502",
+        "ts_33.501",
+        "ts_23.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.526_5.2.2.4.1",
+      "section_id": "5.2.2.4.1",
+      "section_title": "General",
+      "content": "The Revocation Notification service operation shall be used by the NSSAAF to notify the AMF to revoke slice-specific authentication and authorization result, as specified in clause 4.2.9.4 of 3GPP TS 23.502 [3], and clause 16.5 of 3GPP TS 33.501 [8], and may trigger the AMF to release the corresponding PDU sessions associated to the indicated slice.\nIf there are two different AMFs serving the UE (e.g. the NSSAAF retrieves two different AMFs from the UDM), the NSSAAF may determine to send revocation notification to both AMFs.\nUpon receiving the Network Slice-Specific Authorization Revocation procedure from an AAA-S, the NSSAAF shall verify whether the AAA-S is authorized to request the procedure, by checking its local configuration. If the AAA-S is authorized to request the revocation, the NSSAAF shall notify the NF Service Consumer (i.e. the AMF) by using the HTTP POST method as shown in Figure 5.2.2.4.1-1.\nFigure 5.2.2.4.1-1: Revocation Notification\n1.\tThe NSSAAF shall send a POST request to the revocation notification callback URI, which is either provided by the NF Service Consumer (i.e. the AMF), or retrieved from the AMF profile stored in the NRF (in default notification subscription for \"NSSAA_REVOC_NOTIFICATION\" notification type). If the NF Service Consumer is located in a different PLMN (i.e. the AMF in VPLMN for a roaming UE), the NSSAAF shall use the inter-PLMN callback URI to deliver the notification if the inter-PLMN callback URI is present in the default notification subscription.\nThe content of the POST request shall contain the SliceAuthRevocNotification data structure, within which:\n-\tthe notificationType set to the SliceAuthNotificationType of \"SLICE_REVOCATION\";\n-\tthe gpsi set to the GPSI of the given UE for whom the slice-specific authorization revocation is required;\n-\tthe snssai set to the S-NSSAI for which the slice-specific authorization revocation is required;\n-\tthe supi set to the SUPI of the given UE for whom the slice-specific authorization revocation is required.\nNOTE:\tThe NSSAAF can obtain the SUPI of the UE in the response of a previous Nudm_UECM_Get used by the NSSAAF to retrieve the AMF ID.\n2a.\tOn success, \"204 No Content\" shall be returned and the content of the POST response shall be empty.\nOn receiving the request, the NF Service Consumer (i.e. the AMF) shall revoke the slice-specific authentication and authorization result for the given UE. If there is PDU session associated to the given slice, the AMF shall trigger the PDU session release to the SMF, with appropriate cause value.\nThe AMF shall remove the \"status\" for the given slice in \"nssaaStatusList\" attribute (see 3GPP TS 29.518 [16]).\n2b.\tOn failure, one of the HTTP status code (e.g. \"404 Not Found\") listed in Table 6.1.7.3-1 shall be returned.\nFor a 4xx/5xx response, the message body shall contain a ProblemDetails structure with the \"cause\" attribute set to one of the application error listed in Table 6.1.7.3-1.\n2c.\tOn redirection, the appropriate HTTP status code (e.g. \"307 Temporary Redirect\") shall be returned. A RedirectResponse IE may be included in the content of POST response, as specified in table 6.1.5.3.3.1-2.\nIf the NF Service Consumer (i.e. the AMF) is not able to handle the request, but knows that another NF Service Consumer (i.e. the AMF) is able to handle it, it shall reply with an HTTP 307/308 redirect response pointing to the URI of the new NF Service Consumer (i.e. the AMF).",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_23.502_clause_4.2.9.4",
+        "ts_23.502_clause_16.5",
+        "table_6.1.7.3-1",
+        "table_6.1.5.3.3.1-2",
+        "figure_5.2.2.4.1-1",
+        "ts_33.501_clause_16.5",
+        "ts_23.502",
+        "ts_33.501",
+        "ts_29.518"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.526_5.3.1",
+      "section_id": "5.3.1",
+      "section_title": "Service Description",
+      "content": "The Nnssaaf_AIW service provides primary Authentication and Authorization service to the consumer NF (AUSF) by relaying EAP or EAP-TTLS inner method messages towards an AAA Server and performing related protocol conversion as needed. The NSSAAF is acting as NF Service Producer, while the AUSF is the NF Service Consumer.\nFollowing functionalities are provided by the Nnssaaf_AIW service:\n-\tPerform primary authentication and authorization for a given UE towards an AAA Server.\nThe Nnssaaf_AIW service supports the following service operations.\nTable 5.3.1-1: Service operations supported by the Nnssaaf_AIW service\nService Operations\nDescription\nOperation\nSemantics\nExample Consumer(s)\nAuthenticate\nPerform primary authentication and authorization for a given UE towards an AAA Server.\nRequest/Response\nAUSF",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.3.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.526_5.3.2.1",
+      "section_id": "5.3.2.1",
+      "section_title": "Introduction",
+      "content": "See Table 5.3.1-1 for an overview of the service operations supported by the Nnssaaf_AIW service.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.3.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.526_5.3.2.2.1",
+      "section_id": "5.3.2.2.1",
+      "section_title": "General",
+      "content": "The Authenticate service operation permits the NF Service Consumer (i.e., the AUSF) to perform authentication and authorization for a given UE towards an AAA Server.\nThe NF Service Consumer (i.e., the AUSF) shall send a POST request to the resource representing authentication collection (i.e., …/authentications) to request the NSSAAF to create the corresponding resource context and perform primary authentication and authorization.\nFigure 5.3.2.2.1-1: AAA Interworking Authentication and Authorization\n1.\tThe NF Service Consumer (AUSF) shall send a POST request (AuthInfo) to the NSSAAF, targeting the resource of authentication collection (i.e. …/authentications), to perform authentication and authorization.\nThe content of the request shall contain the authentication information, which may include:\n-\tUE ID (i.e. SUPI)\n-\tEAP-ID Response message\n-\tEAP-TTLS Inner Method Container\n2.\tThe NSSAAF creates an authentication context for the UE and starts the authentication and authorization procedure. The NSSAAF shall send an authentication request message to the AAA-S. Depending on the result, either step 3a or step 3b is performed. The NSSAAF obtains the AAA-S address from local configuration.\n3a.\tOn success, \"201 Created\" shall be returned (AuthContext). The \"Location\" header shall contain the URI of the created resource (e.g. .../ authentications/{authCtxId}). The content of the response shall contain the authentication context, which includes the EAP message generated by the AAA-S.\n3b.\tOn failure, one of the HTTP status code listed in Table 6.2.7.3-1 shall be returned with the message body containing a ProblemDetails structure with the \"cause\" attribute set to one of the application errors listed in Table 6.2.7.3-1.\n4.\tOnce receiving EAP message from the UE, the NF Service Consumer (i.e., the AUSF) shall send a PUT request (AuthConfirmationData) to the NSSAAF, targeting the resource of the authentication context (i.e. …/authentications/{authCtxId}).\nThe content of the request shall carry the authentication confirmation data which includes:\n-\tUE ID (i.e., SUPI)\n-\tEAP Message (which is received from the UE)\n5.\tThe NSSAAF shall forward the EAP Message to the AAA-S to confirm the authentication and authorization. Depending on the result, either step 6a or step 6b is performed.\n6a.\tOn success, \"200 OK\" shall be returned (AuthConfirmationResponse). The content of the response shall contain the authentication confirmation response, which includes the EAP message (e.g., EAP success/failure message) generated by the AAA-S.\nIf the UE is authenticated, the NSSAAF shall set the \"authResult\" attribute to \"EAP_SUCCESS\"; the response message shall contain the MSK received from the AAA-S and may contain the address of the SNPN UE onboarding Provisioning Servers (PVS).\nIf failed to authenticate the UE, the \"authResult\" attribute shall be set to \"EAP_FAILURE\".\nIf subsequent EAP message exchange is needed between the UE and the NSSAAF (AAA-S), the NSSAAF shall not include AuthResult in the response message.\n6b.\tOn failure or redirection, one of the HTTP status codes listed in Table 6.2.7.3-1 shall be returned with the message body containing a ProblemDetails structure with the \"cause\" attribute set to one of the application errors listed in Table 6.2.7.3-1.\n7-9.\tIf subsequent EAP message exchange is needed between the UE and the NSSAAF to finish the EAP based authentication, steps 7-9 are performed. On failure or redirection, one of the HTTP status codes listed in Table 6.2.7.3-1 shall be returned with the message body containing a ProblemDetails structure with the \"cause\" attribute set to one of the application errors listed in Table 6.2.7.3-1.\nIn above steps, if there is no expected response from the AAA-S in the case of time out, the NSSAAF shall return HTTP status code \"504 Gateway Timeout\", with the message body containing a ProblemDetails structure with the \"cause\" attribute set to \"TIMED_OUT_REQUEST\".",
+      "chunk_type": "definition",
+      "cross_references": [
+        "table_6.2.7.3-1",
+        "figure_5.3.2.2.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.526_6.1.1",
+      "section_id": "6.1.1",
+      "section_title": "Introduction",
+      "content": "The Nnssaaf_NSSAA service shall use the Nnssaaf_NSSAA API.\nThe API URI of the Nnssaaf_NSSAA API shall be:\n{apiRoot}/<apiName>/<apiVersion>\nThe request URIs used in HTTP request from the NF service consumer towards the NF service producer shall have the Resource URI structure defined in clause 4.4.1 of 3GPP TS 29.501 [5], i.e.:\n{apiRoot}/<apiName>/<apiVersion>/<apiSpecificResourceUriPart>\nwith the following components:\n-\tThe {apiRoot} shall be set as described in 3GPP TS 29.501 [5].\n-\tThe <apiName> shall be \"nnssaaf-nssaa\".\n-\tThe <apiVersion> shall be \"v1\".\n-\tThe <apiSpecificResourceUriPart> shall be set as described in clause 6.1.3.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.501_clause_4.4.1",
+        "clause_6.1.3",
+        "ts_29.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.526_6.1.2.1",
+      "section_id": "6.1.2.1",
+      "section_title": "General",
+      "content": "HTTP/2, IETF RFC 9113 [11], shall be used as specified in clause 5 of 3GPP TS 29.500 [4].\nHTTP/2 shall be transported as specified in clause 5.3 of 3GPP TS 29.500 [4].\nThe OpenAPI [6] specification of HTTP messages and content bodies for the Nnssaaf_NSSAA API is contained in Annex A.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.500_clause_5",
+        "ts_29.500_clause_5.3",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.526_6.1.2.2.1",
+      "section_id": "6.1.2.2.1",
+      "section_title": "General",
+      "content": "See clause 5.2.2 of 3GPP TS 29.500 [4] for the usage of HTTP standard headers.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.500_clause_5.2.2",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.526_6.1.2.2.2",
+      "section_id": "6.1.2.2.2",
+      "section_title": "Content type",
+      "content": "JSON, IETF RFC 8259 [12], shall be used as content type of the HTTP bodies specified in the present specification as specified in clause 5.4 of 3GPP TS 29.500 [4]. The use of the JSON format shall be signalled by the content type \"application/json\".\n\"Problem Details\" JSON object shall be used to indicate additional details of the error in a HTTP response body and shall be signalled by the content type \"application/problem+json\", as defined in IETF RFC 9457 [13].",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_5.4",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.526_6.1.2.3",
+      "section_id": "6.1.2.3",
+      "section_title": "HTTP custom headers",
+      "content": "The mandatory HTTP custom header fields specified in clause 5.2.3.2 of 3GPP TS 29.500 [4] shall be applicable.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_5.2.3.2",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.526_6.1.3.1",
+      "section_id": "6.1.3.1",
+      "section_title": "Overview",
+      "content": "The structure of the Resource URIs of the Nnssaaf_NSSAA service is shown in Figure 6.1.3.1-1\nFigure 6.1.3.1-1: Resource URI structure of the NSSAA API\nTable 6.1.3.1-1 provides an overview of the resources and applicable HTTP methods.\nTable 6.1.3.1-1: Resources and methods overview\nResource name\nResource URI\nHTTP method or custom operation\nDescription\nslice-authentications\n(Collection)\n/<apiVersion>/slice-authentications\nPOST\nInitiate the slice-specific authentication and authorization process by providing inputs related to the UE and a specific slice.\nslice-authentication\n(Document)\n/<apiVersion>/slice-authentications/{authCtxId}\nPUT\nPut the UE response from the EAP process.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "table_6.1.3.1-1",
+        "figure_6.1.3.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.526_6.1.3.2.1",
+      "section_id": "6.1.3.2.1",
+      "section_title": "Description",
+      "content": "This resource represents a collection of the slice-authentication resources generated by the NSSAAF.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.526_6.1.3.2.2",
+      "section_id": "6.1.3.2.2",
+      "section_title": "Resource Definition",
+      "content": "Resource URI: {apiRoot}/nnssaaf-nssaa /<apiVersion>/slice-authentications\nThis resource shall support the resource URI variables defined in table 6.1.3.2.2-1.\nTable 6.1.3.2.2-1: Resource URI variables for this resource\nName\nData type\nDefinition\napiRoot\nstring\nSee clause 6.1.1\napiVersion\nstring\nSee clause 6.1.1",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_6.1.1",
+        "table_6.1.3.2.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.526_6.1.3.2.3",
+      "section_id": "6.1.3.2.3",
+      "section_title": "Resource Standard Methods",
+      "content": "6.1.3.2.3.1\tPOST\nThis method shall support the URI query parameters specified in table 6.1.3.2.3.1-1.\nTable 6.1.3.2.3.1-1: URI query parameters supported by the POST method on this resource\nName\nData type\nP\nCardinality\nDescription\nApplicability\nn/a\nThis method shall support the request data structures specified in table 6.1.3.2.3.1-2 and the response data structures and response codes specified in table 6.1.3.2.3.1-3.\nTable 6.1.3.2.3.1-2: Data structures supported by the POST Request Body on this resource\nData type\nP\nCardinality\nDescription\nSliceAuthInfo\nM\n1\nContains the GPSI, S-NSSAI, and EAP ID Response from the UE, etc.\nTable 6.1.3.2.3.1-3: Data structures supported by the  POST Response Body on this resource\nData type\nP\nCardinality\nResponse\ncodes\nDescription\nSliceAuthContext\nM\n1\n201 Created\nThis case indicates the corresponding resource has been created by the NSSAAF for the requested slice-specific authentication and authorization, and further EAP process is required.\nThe HTTP response shall include a \"Location\" header that contains the resource URI of the created resource.\nRedirectResponse\nO\n0..1\n307 Temporary Redirect\nTemporary redirection.\n(NOTE 2)\nRedirectResponse\nO\n0..1\n308 Permanent Redirect\nPermanent redirection.\n(NOTE 2)\nProblemDetails\nO\n0..1\n400 Bad Request\nThis case represents the failure to start slice-specific authentication and authorization because of input parameter error.\nProblemDetails\nO\n0..1\n403 Forbidden\nThis case represents when the UE or the slice is not allowed to be authenticated.\nThe \"cause\" attribute may be used to indicate one of the following application errors:\n- SLICE_AUTH_REJECTED\nProblemDetails\nO\n0..1\n404 Not Found\nThis case represents the user or user context is not found.\nThe \"cause\" attribute may be used to indicate one of the following application errors:\n- CONTEXT_NOT_FOUND\n- USER_NOT_FOUND\nProblemDetails\nO\n0..1\n504 Gateway Time out\nThis case represents network error or remote peer (i.e. AAA-S) error, e.g. not reachable, no response and time out.\nThe \"cause\" attribute may be used to indicate one of the following application errors:\n- NETWORK_FAILURE\n- UPSTREAM_SERVER_ERROR\n- TIME_OUT_REQUEST\nNOTE 1:\tThe mandatory HTTP error status code for the POST method listed in Table 5.2.7.1-1 of 3GPP TS 29.500 [4] also apply.\nNOTE 2:\tRedirectResponse may be inserted by an SCP, see clause 6.10.9.1 of 3GPP TS 29.500 [4].\nTable 6.1.3.2.3.1-4: Headers supported by the POST method on this resource\nName\nData type\nP\nCardinality\nDescription\nn/a\nTable 6.1.3.2.3.1-5: Headers supported by the 201 response code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nURI\nM\n1\nURI of created resource for the slice authentication context.\nThe URI structure is defined in clause 6.1.3.3.1.\nTable 6.1.3.2.3.1-6: Headers supported by the 307 Response Code on this endpoint\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nURI pointing to the resource of another NF service producer to which the request should be sent.\nFor the case, when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].\nTable 6.1.3.2.3.1-7: Headers supported by the 308 Response Code on this endpoint\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nURI pointing to the resource of another NF service producer to which the request should be sent.\nFor the case, when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_6.10.9.1",
+        "clause_6.1.3.3.1",
+        "table_6.1.3.2.3.1-1",
+        "table_6.1.3.2.3.1-2",
+        "table_6.1.3.2.3.1-3",
+        "ts_29.500_table_5.2.7.1-1",
+        "ts_29.500_table_6.1.3.2.3.1-4",
+        "table_6.1.3.2.3.1-5",
+        "table_6.1.3.2.3.1-6",
+        "ts_29.500_table_6.1.3.2.3.1-7",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.526_6.1.3.2.4",
+      "section_id": "6.1.3.2.4",
+      "section_title": "Resource Custom Operations",
+      "content": "There is no Resource Custom Operations in the current version of this API.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.526_6.1.3.3.1",
+      "section_id": "6.1.3.3.1",
+      "section_title": "Description",
+      "content": "The sub-resource \"slice-authentication\" is generated by the NSSAAF. This subresource should not persist after the slice-specific authentication and authorization process finishes.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.526_6.1.3.3.2",
+      "section_id": "6.1.3.3.2",
+      "section_title": "Resource Definition",
+      "content": "Resource URI: {apiRoot}/nnssaaf-nssaa/<apiVersion>/slice-authentications/{authCtxId}\nThis resource shall support the resource URI variables defined in table 6.1.3.3.2-1.\nTable 6.1.3.3.2-1: Resource URI variables for this resource\nName\nData type\nDefinition\napiRoot\nstring\nSee clause 6.1.1\napiVersion\nstring\nSee clause 6.1.1\nauthCtxId\nstring\nThe slice authentication context ID, which is of data type SliceAuthCtxId defined in clause 6.1.6.3.2.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_6.1.1",
+        "clause_6.1.6.3.2",
+        "table_6.1.3.3.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.526_6.1.3.3.3",
+      "section_id": "6.1.3.3.3",
+      "section_title": "Resource Standard Methods",
+      "content": "6.1.3.3.3.1\tPUT\nThis method shall support the URI query parameters specified in table 6.1.3.3.3.1-1.\nTable 6.1.3.3.3.1-1: URI query parameters supported by the PUT method on this resource\nName\nData type\nP\nCardinality\nDescription\nApplicability\nn/a\nThis method shall support the request data structures specified in table 6.1.3.3.3.1-2 and the response data structures and response codes specified in table 6.1.3.3.3.1-3.\nTable 6.1.3.3.3.1-2: Data structures supported by the PUT Request Body on this resource\nData type\nP\nCardinality\nDescription\nSliceAuthConfirmationData\nM\n1\nContains the EAP message generated by the UE and provided to the AMF.\nTable 6.1.3.3.3.1-3: Data structures supported by the PUT Response Body on this resource\nData type\nP\nCardinality\nResponse\ncodes\nDescription\nSliceAuthConfirmationResponse\nM\n1\n200 OK\nThis case indicates that the NSSAAF has performed the slice-specific authentication. The response body shall contain the result of the slice-specific authentication and authorization.\nRedirectResponse\nO\n0..1\n307 Temporary Redirect\nTemporary redirection.\n(NOTE 2)\nRedirectResponse\nO\n0..1\n308 Permanent Redirect\nPermanent redirection.\n(NOTE 2)\nProblemDetails\nO\n0..1\n400 Bad Request\nThis case represents a slice-specific authentication failure because of input parameter error. This indicates that the NSSAAF was not able to process the slice-specific authentication.\nProblemDetails\nO\n0..1\n403 Forbidden\nThis case represents when the UE or the slice is not allowed to be authenticated.\nThe \"cause\" attribute may be used to indicate one of the following application errors:\n- SLICE_AUTH_REJECTED\nProblemDetails\nO\n0..1\n404 Not Found\nThis case represents the UE or UE related context is not found.\nThe \"cause\" attribute may be used to indicate one of the following application errors:\n- CONTEXT_NOT_FOUND\n- USER_NOT_FOUND\nProblemDetails\nO\n0..1\n504 Gateway Time out\nThis case represents network error or remote peer (i.e. AAA-S) error, e.g. not reachable, no response when time out.\nThe \"cause\" attribute may be used to indicate one of the following application errors:\n- NETWORK_FAILURE\n- UPSTREAM_SERVER_ERROR\n- TIMED_OUT_REQUEST\nNOTE 1:\tThe mandatory HTTP error status code for the PUT method listed in Table 5.2.7.1-1 of 3GPP TS 29.500 [4] also apply.\nNOTE 2:\tRedirectResponse may be inserted by an SCP, see clause 6.10.9.1 of 3GPP TS 29.500 [4].\nTable 6.1.3.3.3.1-4: Headers supported by the PUT method on this resource\nName\nData type\nP\nCardinality\nDescription\nn/a\nTable 6.1.3.3.3.1-5: Headers supported by the 200 response code on this resource\nName\nData type\nP\nCardinality\nDescription\nn/a\nTable 6.1.3.3.3.1-6: Headers supported by the 307 Response Code on this endpoint\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nURI pointing to the resource of another NF service producer to which the request should be sent.\nFor the case, when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].\nTable 6.1.3.3.3.1-7: Headers supported by the 308 Response Code on this endpoint\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nURI pointing to the resource of another NF service producer to which the request should be sent.\nFor the case, when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_6.10.9.1",
+        "table_6.1.3.3.3.1-1",
+        "table_6.1.3.3.3.1-2",
+        "table_6.1.3.3.3.1-3",
+        "ts_29.500_table_5.2.7.1-1",
+        "ts_29.500_table_6.1.3.3.3.1-4",
+        "table_6.1.3.3.3.1-5",
+        "table_6.1.3.3.3.1-6",
+        "ts_29.500_table_6.1.3.3.3.1-7",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.526_6.1.3.3.4",
+      "section_id": "6.1.3.3.4",
+      "section_title": "Resource Custom Operations",
+      "content": "There is no Resource Custom Operations in the current version of this API.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.526_6.1.4.1",
+      "section_id": "6.1.4.1",
+      "section_title": "Overview",
+      "content": "There is no Custom Operation in the current version of this API.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.526_6.1.5.1",
+      "section_id": "6.1.5.1",
+      "section_title": "General",
+      "content": "Notifications shall comply to clause 6.2 of 3GPP TS 29.500 [4] and clause 4.6.2.3 of 3GPP TS 29.501 [5].\nTable 6.1.5.1-1: Notifications overview\nNotification\nResource URI\nHTTP method or custom operation\nDescription\n(service operation)\nRe-authentication Notification\n{reauthNotifUri}\n(NF Service Consumer provided callback reference)\nPOST\nRe-authentication Notification\nRevocation Notification\n{revocNotifUri}\n(NF Service Consumer provided callback reference)\nPOST\nRevocation Notification",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.500_clause_6.2",
+        "ts_29.500_clause_4.6.2.3",
+        "ts_29.501_table_6.1.5.1-1",
+        "ts_29.501_clause_4.6.2.3",
+        "ts_29.500",
+        "ts_29.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.526_6.1.5.2.1",
+      "section_id": "6.1.5.2.1",
+      "section_title": "Description",
+      "content": "The Re-authentication Notification is used by the NSSAAF to trigger the NF Service Consumer (i.e. the AMF) to re-initiate slice-specific authentication and authorization for a given UE.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.526_6.1.5.2.2",
+      "section_id": "6.1.5.2.2",
+      "section_title": "Target URI",
+      "content": "The Notification URI \"{reauthNotifUri}\" shall be used with the resource URI variables defined in table 6.1.5.2.2-1.\nTable 6.1.5.2.2-1: Resource URI variables for this resource\nName\nDefinition\nreauthNotifUri\nString formatted as URI which carries the re-authentication notification URI.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.1.5.2.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.526_6.1.5.2.3",
+      "section_id": "6.1.5.2.3",
+      "section_title": "Standard Methods",
+      "content": "6.1.5.2.3.1\tPOST\nThis method shall support the request data structures specified in table 6.1.5.2.3.1-1 and the response data structures and response codes specified in table 6.1.5.2.3.1-2.\nTable 6.1.5.2.3.1-1: Data structures supported by the POST Request Body on this resource\nData type\nP\nCardinality\nDescription\nSliceAuthReauthNotification\nM\n1\nSliceAuthReauthNotification which carries the re-authentication notification for a given UE.\nTable 6.1.5.2.3.1-2: Data structures supported by the POST Response Body on this resource\nData type\nP\nCardinality\nResponse codes\nDescription\nn/a\n204 No Content\nSuccessful notification of the re-authentication.\nRedirectResponse\nO\n0..1\n307 Temporary Redirect\nTemporary redirection.\n(NOTE 2)\nRedirectResponse\nO\n0..1\n308 Permanent Redirect\nPermanent redirection.\n(NOTE 2)\nNOTE 1:\tThe mandatory HTTP error status codes for the POST method listed in Table 5.2.7.1-1 of 3GPP TS 29.500 [4] also apply.\nNOTE 2:\tRedirectResponse may be inserted by an SCP, see clause 6.10.9.1 of 3GPP TS 29.500 [4].\nTable 6.1.5.2.3.1-3: Headers supported by the 307 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nA URI pointing to the endpoint of NF service consumer to which the notification should be sent. For the case, when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].\nTable 6.1.5.2.3.1-4: Headers supported by the 308 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nA URI pointing to the endpoint of NF service consumer to which the notification should be sent. For the case, when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_6.10.9.1",
+        "table_6.1.5.2.3.1-1",
+        "table_6.1.5.2.3.1-2",
+        "ts_29.500_table_5.2.7.1-1",
+        "ts_29.500_table_6.1.5.2.3.1-3",
+        "ts_29.500_table_6.1.5.2.3.1-4",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.526_6.1.5.3.1",
+      "section_id": "6.1.5.3.1",
+      "section_title": "Description",
+      "content": "The Revocation Notification is used by the NSSAAF to trigger the NF Service Consumer (i.e. the AMF) to revoke the slice-specific authentication and authorization result for a given UE.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.526_6.1.5.3.2",
+      "section_id": "6.1.5.3.2",
+      "section_title": "Target URI",
+      "content": "The Notification URI \"{revocNotifUri}\" shall be used with the resource URI variables defined in table 6.1.5.3.2-1.\nTable 6.1.5.3.2-1: Resource URI variables for this resource\nName\nDefinition\nrevocNotifUri\nString formatted as URI which carries the revocation notification URI.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.1.5.3.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.526_6.1.5.3.3",
+      "section_id": "6.1.5.3.3",
+      "section_title": "Standard Methods",
+      "content": "6.1.5.3.3.1\tPOST\nThis method shall support the request data structures specified in table 6.1.5.3.3.1-1 and the response data structures and response codes specified in table 6.1.5.3.3.1-2.\nTable 6.1.5.3.3.1-1: Data structures supported by the POST Request Body on this resource\nData type\nP\nCardinality\nDescription\nSliceAuthRevocNotification\nM\n1\nSliceAuthRevocNotification which carries the revocation notification for a given UE.\nTable 6.1.5.3.3.1-2: Data structures supported by the POST Response Body on this resource\nData type\nP\nCardinality\nResponse codes\nDescription\nn/a\n204 No Content\nSuccessful notification of the revocation.\nRedirectResponse\nO\n0..1\n307 Temporary Redirect\nTemporary redirection.\n(NOTE 2)\nRedirectResponse\nO\n0..1\n308 Permanent Redirect\nPermanent redirection.\n(NOTE 2)\nNOTE 1:\tThe mandatory HTTP error status codes for the POST method listed in Table 5.2.7.1-1 of 3GPP TS 29.500 [4] also apply.\nNOTE 2:\tRedirectResponse may be inserted by an SCP, see clause 6.10.9.1 of 3GPP TS 29.500 [4].\nTable 6.1.5.3.3.1-3: Headers supported by the 307 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nA URI pointing to the endpoint of NF service consumer to which the notification should be sent. For the case, when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].\nTable 6.1.5.3.3.1-4: Headers supported by the 308 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nA URI pointing to the endpoint of NF service consumer to which the notification should be sent. For the case, when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_6.10.9.1",
+        "table_6.1.5.3.3.1-1",
+        "table_6.1.5.3.3.1-2",
+        "ts_29.500_table_5.2.7.1-1",
+        "ts_29.500_table_6.1.5.3.3.1-3",
+        "ts_29.500_table_6.1.5.3.3.1-4",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.526_6.1.6.1",
+      "section_id": "6.1.6.1",
+      "section_title": "General",
+      "content": "This clause specifies the application data model supported by the API.\nTable 6.1.6.1-1 specifies the data types defined for the Nnssaaf service based interface protocol.\nTable 6.1.6.1-1: Nnssaaf specific Data Types\nData type\nClause defined\nDescription\nApplicability\nSliceAuthInfo\n6.1.6.2.2\nContains the GPSI, S-NSSAI, EAP ID Response, etc.\nSliceAuthContext\n6.1.6.2.3\nContains the information of the resource created for slice-specific authentication and authorization.\nSliceAuthConfirmationData\n6.1.6.2.4\nContains the EAP message from the UE for EAP process.\nSliceAuthConfirmationResponse\n6.1.6.2.5\nContains the slice-specific authentication and authorization result from the NSSAAF to the UE.\nSliceAuthReauthNotification\n6.1.6.2.6\nContains the re-authentication notification for slice-specific authentication and authorization.\nSliceAuthRevocNotification\n6.1.6.2.7\nContains the revocation notification for slice-specific authentication and authorization.\nSliceAuthCxtId\n6.1.6.3.2\nContains the resource ID of slice authentication context.\nEapMessage\n6.1.6.3.2\nContains the string formatted EAP message.\nSliceNotificationType\n6.1.6.3.3\nNotification type of slice-specification authentication and authorization.\nTable 6.1.6.1-2 specifies data types re-used by the Nnssaaf service based interface protocol from other specifications, including a reference to their respective specifications and when needed, a short description of their use within the Nnssaaf service based interface.\nTable 6.1.6.1-2: Nnssaaf re-used Data Types\nData type\nReference\nComments\nApplicability\nProblemDetails\n3GPP TS 29.571 [16]\nCommon Data Type used in response bodies\nRedirectResponse\n3GPP TS 29.571 [16]\nRedirect Response\nGpsi\n3GPP TS 29.571 [16]\nGPSI\nSnssai\n3GPP TS 29.571 [16]\nS-NSSAI\nAuthStatus\n3GPP TS 29.571 [16]\nSlice Authentication Status\nSupi\n3GPP TS 29.571 [16]\nSUPI of the UE",
+      "chunk_type": "definition",
+      "cross_references": [
+        "table_6.1.6.1-1",
+        "table_6.1.6.1-2",
+        "ts_29.571"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.526_6.1.6.2",
+      "section_id": "6.1.6.2",
+      "section_title": "Structured data types",
+      "content": "The following clause defines the structures to be used in resource representations.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.526_6.1.6.2.1",
+      "section_id": "6.1.6.2.1",
+      "section_title": "Introduction",
+      "content": "This clause defines the structures to be used in resource representations.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.526_6.1.6.2.2",
+      "section_id": "6.1.6.2.2",
+      "section_title": "Type: SliceAuthInfo",
+      "content": "Table 6.1.6.2.2-1: Definition of type SliceAuthInfo\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\ngpsi\nGpsi\nM\n1\nContains the GPSI of the UE.\nsnssai\nSnssai\nM\n1\nContains the S-NSSAI for authentication.\neapIdRsp\nEapMessage\nM\n1\nContains the EAP ID Responses message from the UE.\nIf no EAP ID Responses message is received or requested, it shall contain the Null value.\namfInstanceId\nNfInstanceId\nO\n0..1\nThis IE may be present, if the AMF determines to provide the re-authentication/revocation notification URI to the NSSAAF.\nWhen present, it shall contain the NF Instance Id of the AMF.\nreauthNotifUri\nUri\nO\n0..1\nThis IE may be present, e.g. if the AMF determines the UE with low mobility characteristic.\nWhen present, it shall contain the re-authentication notification URI.\nrevocNotifUri\nUri\nO\n0..1\nThis IE may be present, e.g. if the AMF determines the UE with low mobility characteristic.\nWhen present, it shall contain the revocation notification URI.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.1.6.2.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.526_6.1.6.2.3",
+      "section_id": "6.1.6.2.3",
+      "section_title": "Type: SliceAuthContext",
+      "content": "Table 6.1.6.2.3-1: Definition of type SliceAuthContext\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\ngpsi\nGpsi\nM\n1\nContains the GPSI of the UE.\nsnssai\nSnssai\nM\n1\nContains the S-NSSAI for authentication.\nauthCtxId\nSliceAuthCtxId\nM\n1\nIndicates the resource ID uniquely identifying the slice authentication context, generated by the NSSAAF.\neapMessage\nEapMessage\nM\n1\nContains the EAP message to be sent to the UE.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.1.6.2.3-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.526_6.1.6.2.4",
+      "section_id": "6.1.6.2.4",
+      "section_title": "Type: SliceAuthConfirmationData",
+      "content": "Table 6.1.6.2.4-1: Definition of type SliceAuthConfirmationData\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\ngpsi\nGpsi\nM\n1\nContains the GPSI of the UE.\nsnssai\nSnssai\nM\n1\nContains the S-NSSAI for authentication.\neapMessage\nEapMessage\nM\n1\nContains the EAP message received from the UE.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.1.6.2.4-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.526_6.1.6.2.5",
+      "section_id": "6.1.6.2.5",
+      "section_title": "Type: SliceAuthConfirmationResponse",
+      "content": "Table 6.1.6.2.5-1: Definition of type SliceAuthConfirmationResponse\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\ngpsi\nGpsi\nM\n1\nContains the GPSI of the UE.\nsnssai\nSnssai\nM\n1\nContains the S-NSSAI for authentication.\neapMessage\nEapMessage\nM\n1\nContains the EAP success/failure message needs to be sent to the UE.\nauthResult\nAuthStatus\nO\n0..1\nWhen present, it shall indicate the result of slice-specific authentication and authorization.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.1.6.2.5-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.526_6.1.6.2.6",
+      "section_id": "6.1.6.2.6",
+      "section_title": "Type: SliceAuthReauthNotification",
+      "content": "Table 6.1.6.2.6-1: Definition of type SliceAuthReauthNotification\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\nnotifType\nSliceAuthNotificationType\nM\n1\nIndicate the type of slice authentication notification.\ngpsi\nGpsi\nM\n1\nContains the GPSI of the UE.\nsnssai\nSnssai\nM\n1\nContains the S-NSSAI for authentication.\nsupi\nSupi\nC\n0..1\nThis IE should be sent by the NSSAAF to the AMF, if available.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.1.6.2.6-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.526_6.1.6.2.7",
+      "section_id": "6.1.6.2.7",
+      "section_title": "Type: SliceAuthRevocNotification",
+      "content": "Table 6.1.6.2.7-1: Definition of type SliceAuthRevocNotification\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\nnotifType\nSliceAuthNotificationType\nM\n1\nIndicate the type of slice authentication notification.\ngpsi\nGpsi\nM\n1\nContains the GPSI of the UE.\nsnssai\nSnssai\nM\n1\nContains the S-NSSAI for authentication.\nsupi\nSupi\nC\n0..1\nThis IE should be sent by the NSSAAF to the AMF, if available.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.1.6.2.7-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.526_6.1.6.3.1",
+      "section_id": "6.1.6.3.1",
+      "section_title": "Introduction",
+      "content": "This clause defines simple data types and enumerations that can be referenced from data structures defined in the previous clauses.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.526_6.1.6.3.2",
+      "section_id": "6.1.6.3.2",
+      "section_title": "Simple data types",
+      "content": "The simple data types defined in table 6.1.6.3.2-1 shall be supported.\nTable 6.1.6.3.2-1: Simple data types\nType Name\nType Definition\nDescription\nApplicability\nSliceAuthCtxId\nstring\nThe resource ID uniquely identifying the slice authentication context, generated by the NSSAAF.\nEapMessage\nstring\nThe EAP packet is encoded using base64 (see IETF RFC 4648 [14]) and represented as a String.\nFormat: byte",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.1.6.3.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.526_6.1.6.3.3",
+      "section_id": "6.1.6.3.3",
+      "section_title": "Enumeration: SliceAuthNotificationType",
+      "content": "The enumeration SliceAuthNotificationType represents the notification type of slice-specific authentication and authorization. It shall comply with the provisions defined in table 6.1.6.3.3-1.\nTable 6.1.6.3.3-1: Enumeration SliceAuthNotificationType\nEnumeration value\nDescription\nApplicability\nSLICE_RE_AUTH\nThis value is used to indicate the re-authentication is needed\nSLICE_REVOCATION\nThis value is used to indicate the previous slice-specific authentication and authorization shall be revoked.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.1.6.3.3-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.526_6.1.6.4",
+      "section_id": "6.1.6.4",
+      "section_title": "Data types describing alternative data types or combinations of data types",
+      "content": "There is no alternative data types defined in this specification.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.526_6.1.6.5",
+      "section_id": "6.1.6.5",
+      "section_title": "Binary data",
+      "content": "There is no binary data type defined in this specification.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.526_6.1.7.1",
+      "section_id": "6.1.7.1",
+      "section_title": "General",
+      "content": "For the Nnssaaf_NSSAA API, HTTP error responses shall be supported as specified in clause 4.8 of 3GPP TS 29.501 [5]. Protocol errors and application errors specified in table 5.2.7.2-1 of 3GPP TS 29.500 [4] shall be supported for an HTTP method if the corresponding HTTP status codes are specified as mandatory for that HTTP method in table 5.2.7.1-1 of 3GPP TS 29.500 [4].\nIn addition, the requirements in the following clauses are applicable for the Nnssaaf_NSSAA API.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.501_clause_4.8",
+        "ts_29.500_table_5.2.7.2-1",
+        "ts_29.500_table_5.2.7.1-1",
+        "ts_29.501",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.526_6.1.7.2",
+      "section_id": "6.1.7.2",
+      "section_title": "Protocol Errors",
+      "content": "No specific procedures for the Nnssaaf_NSSAA service are specified.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.526_6.1.7.3",
+      "section_id": "6.1.7.3",
+      "section_title": "Application Errors",
+      "content": "The application errors defined for the Nnssaaf_NSSAA  service are listed in Table 6.1.7.3-1.\nTable 6.1.7.3-1: Application errors\nApplication Error\nHTTP status code\nDescription\nRESOURCE_TEMP_MOVED\n307 Temporary Redirect\nIndicates that the NSSAAF is not able to handle the request, but points to the URI of another NSSAAF.\nRESOURCE_MOVED\n308 Permanent Redirect\nIndicates that the NSSAAF is not able to handle the request, but points to the URI of another NSSAAF.\nSLICE_AUTH_REJECTED\n403 Forbidden\nThe user cannot be authenticated, e.g. authentication request rejected by the AAA-S.\nCONTEXT_NOT_FOUND\n404 Not Found\nThe NSSAAF cannot find the resource corresponding to the URI provided by the NF Service Consumer, i.e. the resource identified by the authCtxId does not exist in the NSSAAF.\nUSER_NOT_FOUND\n404 Not Found\nThe user does not exist in the HPLMN.\nUPSTREAM_SERVER_ERROR\n504 Gateway Timeout\nError happens in reaching the remote peer (i.e. the AAA-S).\nNETWORK_FAILURE\n504 Gateway Timeout\nThe request is rejected due to a network problem.\nTIMED_OUT_REQUEST\n504 Gateway Timeout\nNo response is received from the remote peer (i.e. the AAA-S) when time out.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.1.7.3-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.526_6.1.8",
+      "section_id": "6.1.8",
+      "section_title": "Feature negotiation",
+      "content": "The optional features in table 6.1.8-1 are defined for the Nnssaaf_NSSAA API. They shall be negotiated using the extensibility mechanism defined in clause 6.6 of 3GPP TS 29.500 [4].\nTable 6.1.8-1: Supported Features\nFeature number\nFeature Name\nDescription",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_6.6",
+        "table_6.1.8-1",
+        "ts_29.500_table_6.1.8-1",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.526_6.1.9",
+      "section_id": "6.1.9",
+      "section_title": "Security",
+      "content": "As indicated in 3GPP TS 33.501 [8] and 3GPP TS 29.500 [4], the access to the Nnssaaf_NSSAA API may be authorized by means of the OAuth2 protocol (see IETF RFC 6749 [9]), based on local configuration, using the \"Client Credentials\" authorization grant, where the NRF (see 3GPP TS 29.510 [10]) plays the role of the authorization server.\nIf OAuth2 is used, an NF Service Consumer, prior to consuming services offered by the Nnssaaf_NSSAA API, shall obtain a \"token\" from the authorization server, by invoking the Access Token Request service, as described in 3GPP TS 29.510 [10], clause 5.4.2.2.\nNOTE:\tWhen multiple NRFs are deployed in a network, the NRF used as authorization server is the same NRF that the NF Service Consumer used for discovering the Nnssaaf_NSSAA service.\nThe Nnssaaf_NSSAA API defines a single scope \"nnssaaf-nssaa\" for the entire service, and it does not define any additional scopes at resource or operation level.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.510_clause_5.4.2.2",
+        "ts_33.501",
+        "ts_29.500",
+        "ts_29.510"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.526_6.1.10",
+      "section_id": "6.1.10",
+      "section_title": "HTTP redirection",
+      "content": "An HTTP request may be redirected to a different NSSAAF service instance when using direct or indirect communications (see 3GPP TS 29.500 [4]).\nAn SCP that reselects a different NSSAAF producer instance will return the NF Instance ID of the new NSSAAF producer instance in the 3gpp-Sbi-Producer-Id header, as specified in clause 6.10.3.4 of 3GPP TS 29.500 [4].\nIf an NSSAAF redirects a service request to a different NSSAAF using an 307 Temporary Redirect or 308 Permanent Redirect status code, the identity of the new NSSAAF towards which the service request is redirected shall be indicated in the 3gpp-Sbi-Target-Nf-Id header of the 307 Temporary Redirect or 308 Permanent Redirect response as specified in clause 6.10.9.1 of 3GPP TS 29.500 [4].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.500_clause_6.10.3.4",
+        "ts_29.500_clause_6.10.9.1",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.526_6.2.1",
+      "section_id": "6.2.1",
+      "section_title": "Introduction",
+      "content": "The Nnssaaf_AIW service shall use the Nnssaaf_AIW API.\nThe API URI of the Nnssaaf_AIW API shall be:\n{apiRoot}/<apiName>/<apiVersion>\nThe request URIs used in HTTP request from the NF service consumer towards the NF service producer shall have the Resource URI structure defined in clause 4.4.1 of 3GPP TS 29.501 [5], i.e.:\n{apiRoot}/<apiName>/<apiVersion>/<apiSpecificResourceUriPart>\nwith the following components:\n-\tThe {apiRoot} shall be set as described in 3GPP TS 29.501 [5].\n-\tThe <apiName> shall be \"nnssaaf-aiw\".\n-\tThe <apiVersion> shall be \"v1\".\n-\tThe <apiSpecificResourceUriPart> shall be set as described in clause 6.2.3.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.501_clause_4.4.1",
+        "clause_6.2.3",
+        "ts_29.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.526_6.2.2.1",
+      "section_id": "6.2.2.1",
+      "section_title": "General",
+      "content": "HTTP/2, IETF RFC 9113 [11], shall be used as specified in clause 5 of 3GPP TS 29.500 [4].\nHTTP/2 shall be transported as specified in clause 5.3 of 3GPP TS 29.500 [4].\nThe OpenAPI [6] specification of HTTP messages and content bodies for the Nnssaaf_AIW API is contained in Annex A.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.500_clause_5",
+        "ts_29.500_clause_5.3",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.526_6.2.2.2.1",
+      "section_id": "6.2.2.2.1",
+      "section_title": "General",
+      "content": "See clause 5.2.2 of 3GPP TS 29.500 [4] for the usage of HTTP standard headers.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.500_clause_5.2.2",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.526_6.2.2.2.2",
+      "section_id": "6.2.2.2.2",
+      "section_title": "Content type",
+      "content": "JSON, IETF RFC 8259 [12], shall be used as content type of the HTTP bodies specified in the present specification as specified in clause 5.4 of 3GPP TS 29.500 [4]. The use of the JSON format shall be signalled by the content type \"application/json\".\n\"Problem Details\" JSON object shall be used to indicate additional details of the error in a HTTP response body and shall be signalled by the content type \"application/problem+json\", as defined in IETF RFC 9457 [13].",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_5.4",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.526_6.2.2.3",
+      "section_id": "6.2.2.3",
+      "section_title": "HTTP custom headers",
+      "content": "The mandatory HTTP custom header fields specified in clause 5.2.3.2 of 3GPP TS 29.500 [4] shall be applicable.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_5.2.3.2",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.526_6.2.3.1",
+      "section_id": "6.2.3.1",
+      "section_title": "Overview",
+      "content": "The structure of the Resource URIs of the Nnssaaf_AIW service is shown in Figure 6.2.3.1-1\nFigure 6.2.3.1-1: Resource URI structure of the AIW API\nTable 6.2.3.1-1 provides an overview of the resources and applicable HTTP methods.\nTable 6.2.3.1-1: Resources and methods overview\nResource name\nResource URI\nHTTP method or custom operation\nDescription\nauthentications\n(Collection)\n/authentications\nPOST\nInitiate the authentication and authorization process by providing inputs related to the UE.\nauthentication\n(Document)\n/authentications/{authCtxId}\nPUT\nPut the UE response from the EAP process.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "table_6.2.3.1-1",
+        "figure_6.2.3.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.526_6.2.3.2.1",
+      "section_id": "6.2.3.2.1",
+      "section_title": "Description",
+      "content": "This resource represents a collection of the authentication resources generated by the NSSAAF.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.526_6.2.3.2.2",
+      "section_id": "6.2.3.2.2",
+      "section_title": "Resource Definition",
+      "content": "Resource URI: {apiRoot}/nnssaaf-aiw/<apiVersion>/authentications\nThis resource shall support the resource URI variables defined in table 6.2.3.2.2-1.\nTable 6.2.3.2.2-1: Resource URI variables for this resource\nName\nData type\nDefinition\napiRoot\nstring\nSee clause 6.2.1\napiVersion\nstring\nSee clause 6.2.1",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_6.2.1",
+        "table_6.2.3.2.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.526_6.2.3.2.3",
+      "section_id": "6.2.3.2.3",
+      "section_title": "Resource Standard Methods",
+      "content": "6.2.3.2.3.1\tPOST\nThis method shall support the URI query parameters specified in table 6.2.3.2.3.1-1.\nTable 6.2.3.2.3.1-1: URI query parameters supported by the POST method on this resource\nName\nData type\nP\nCardinality\nDescription\nApplicability\nn/a\nThis method shall support the request data structures specified in table 6.2.3.2.3.1-2 and the response data structures and response codes specified in table 6.2.3.2.3.1-3.\nTable 6.2.3.2.3.1-2: Data structures supported by the POST Request Body on this resource\nData type\nP\nCardinality\nDescription\nAuthInfo\nM\n1\nContains the SUPI, EAP ID Response from the UE, etc.\nTable 6.2.3.2.3.1-3: Data structures supported by the POST Response Body on this resource\nData type\nP\nCardinality\nResponse\ncodes\nDescription\nAuthContext\nM\n1\n201 Created\nThis case indicates the corresponding resource has been created by the NSSAAF for the requested authentication and authorization, and further EAP process is required.\nThe HTTP response shall include a \"Location\" header that contains the resource URI of the created resource.\nRedirectResponse\nO\n0..1\n307 Temporary Redirect\nTemporary redirection.\n(NOTE 2)\nRedirectResponse\nO\n0..1\n308 Permanent Redirect\nPermanent redirection.\n(NOTE 2)\nProblemDetails\nO\n0..1\n400 Bad Request\nThis case represents the failure to start authentication and authorization because of input parameter error.\nProblemDetails\nO\n0..1\n403 Forbidden\nThis case represents when the UE is not allowed to be authenticated.\nProblemDetails\nO\n0..1\n404 Not Found\nThis case represents the user or user context is not found.\nThe \"cause\" attribute may be used to indicate one of the following application errors:\n- CONTEXT_NOT_FOUND\n- USER_NOT_FOUND\nProblemDetails\nO\n0..1\n504 Gateway Time out\nThis case represents network error or remote peer (i.e. AAA-S) error, e.g. not reachable, no response and time out.\nThe \"cause\" attribute may be used to indicate one of the following application errors:\n- NETWORK_FAILURE\n- UPSTREAM_SERVER_ERROR\n- TIME_OUT_REQUEST\nNOTE 1:\tThe mandatory HTTP error status code for the POST method listed in Table 5.2.7.1-1 of 3GPP TS 29.500 [4] also apply.\nNOTE 2:\tRedirectResponse may be inserted by an SCP, see clause 6.10.9.1 of 3GPP TS 29.500 [4].\nTable 6.2.3.2.3.1-4: Headers supported by the POST method on this resource\nName\nData type\nP\nCardinality\nDescription\nn/a\nTable 6.2.3.2.3.1-5: Headers supported by the 201 response code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nURI\nM\n1\nURI of created resource for the authentication context.\nThe URI structure is defined in clause 6.2.3.3.1.\nTable 6.2.3.2.3.1-6: Headers supported by the 307 Response Code on this endpoint\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nURI pointing to the resource of another NF service producer to which the request should be sent.\nFor the case, when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].\nTable 6.2.3.2.3.1-7: Headers supported by the 308 Response Code on this endpoint\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nURI pointing to the resource of another NF service producer to which the request should be sent.\nFor the case, when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_6.10.9.1",
+        "clause_6.2.3.3.1",
+        "table_6.2.3.2.3.1-1",
+        "table_6.2.3.2.3.1-2",
+        "table_6.2.3.2.3.1-3",
+        "ts_29.500_table_5.2.7.1-1",
+        "ts_29.500_table_6.2.3.2.3.1-4",
+        "table_6.2.3.2.3.1-5",
+        "table_6.2.3.2.3.1-6",
+        "ts_29.500_table_6.2.3.2.3.1-7",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.526_6.2.3.3.1",
+      "section_id": "6.2.3.3.1",
+      "section_title": "Description",
+      "content": "The sub-resource \"authentication\" is generated by the NSSAAF. This subresource should not persist after the authentication and authorization process finishes.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.526_6.2.3.3.2",
+      "section_id": "6.2.3.3.2",
+      "section_title": "Resource Definition",
+      "content": "Resource URI: {apiRoot}/nnssaaf-aiw/<apiVersion>/authentications/{authCtxId}\nThis resource shall support the resource URI variables defined in table 6.2.3.3.2-1.\nTable 6.2.3.3.2-1: Resource URI variables for this resource\nName\nData type\nDefinition\napiRoot\nstring\nSee clause 6.2.1\napiVersion\nstring\nSee clause 6.2.1\nauthCtxId\nstring\nThe authentication context ID, which is of data type AuthCtxId defined in clause 6.2.6.3.2.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_6.2.1",
+        "clause_6.2.6.3.2",
+        "table_6.2.3.3.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.526_6.2.3.3.3",
+      "section_id": "6.2.3.3.3",
+      "section_title": "Resource Standard Methods",
+      "content": "6.2.3.3.3.1\tPUT\nThis method shall support the URI query parameters specified in table 6.2.3.3.3.1-1.\nTable 6.2.3.3.3.1-1: URI query parameters supported by the PUT method on this resource\nName\nData type\nP\nCardinality\nDescription\nApplicability\nn/a\nThis method shall support the request data structures specified in table 6.2.3.3.3.1-2 and the response data structures and response codes specified in table 6.2.3.3.3.1-3.\nTable 6.2.3.3.3.1-2: Data structures supported by the PUT Request Body on this resource\nData type\nP\nCardinality\nDescription\nAuthConfirmationData\nM\n1\nContains the EAP message generated by the UE and provided to the AUSF.\nTable 6.2.3.3.3.1-3: Data structures supported by the PUT Response Body on this resource\nData type\nP\nCardinality\nResponse\ncodes\nDescription\nAuthConfirmationResponse\nM\n1\n200 OK\nThis case indicates that the NSSAAF has performed the authentication. The response body shall contain the result of the authentication and authorization.\nRedirectResponse\nO\n0..1\n307 Temporary Redirect\nTemporary redirection.\n(NOTE 2)\nRedirectResponse\nO\n0..1\n308 Permanent Redirect\nPermanent redirection.\n(NOTE 2)\nProblemDetails\nO\n0..1\n400 Bad Request\nThis case represents an authentication failure because of input parameter error. This indicates that the NSSAAF was not able to process the authentication.\nProblemDetails\nO\n0..1\n403 Forbidden\nThis case represents when the UE is not allowed to be authenticated.\nProblemDetails\nO\n0..1\n404 Not Found\nThis case represents the UE or UE related context is not found.\nThe \"cause\" attribute may be used to indicate one of the following application errors:\n- CONTEXT_NOT_FOUND\n- USER_NOT_FOUND\nProblemDetails\nO\n0..1\n504 Gateway Time out\nThis case represents network error or remote peer (i.e. AAA-S) error, e.g. not reachable, no response when time out.\nThe \"cause\" attribute may be used to indicate one of the following application errors:\n- NETWORK_FAILURE\n- UPSTREAM_SERVER_ERROR\n- TIMED_OUT_REQUEST\nNOTE 1:\tThe mandatory HTTP error status code for the PUT method listed in Table 5.2.7.1-1 of 3GPP TS 29.500 [4] also apply.\nNOTE 2:\tRedirectResponse may be inserted by an SCP, see clause 6.10.9.1 of 3GPP TS 29.500 [4].\nTable 6.2.3.3.3.1-4: Headers supported by the PUT method on this resource\nName\nData type\nP\nCardinality\nDescription\nn/a\nTable 6.2.3.3.3.1-5: Headers supported by the 200 response code on this resource\nName\nData type\nP\nCardinality\nDescription\nn/a\nTable 6.2.3.3.3.1-6: Headers supported by the 307 Response Code on this endpoint\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nURI pointing to the resource of another NF service producer to which the request should be sent.\nFor the case, when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].\nTable 6.2.3.3.3.1-7: Headers supported by the 308 Response Code on this endpoint\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nURI pointing to the resource of another NF service producer to which the request should be sent.\nFor the case, when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_6.10.9.1",
+        "table_6.2.3.3.3.1-1",
+        "table_6.2.3.3.3.1-2",
+        "table_6.2.3.3.3.1-3",
+        "ts_29.500_table_5.2.7.1-1",
+        "ts_29.500_table_6.2.3.3.3.1-4",
+        "table_6.2.3.3.3.1-5",
+        "table_6.2.3.3.3.1-6",
+        "ts_29.500_table_6.2.3.3.3.1-7",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.526_6.2.4",
+      "section_id": "6.2.4",
+      "section_title": "Custom Operations without associated resources",
+      "content": "There are no Custom Operation in the current version of this API.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.526_6.2.5",
+      "section_id": "6.2.5",
+      "section_title": "Notifications",
+      "content": "There are no Notifications in the current version of this API.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.526_6.2.6.1",
+      "section_id": "6.2.6.1",
+      "section_title": "General",
+      "content": "This clause specifies the application data model supported by the API.\nTable 6.2.6.1-1 specifies the data types defined for the Nnssaaf service based interface protocol.\nTable 6.2.6.1-1: Nnssaaf_AIW specific Data Types\nData type\nClause defined\nDescription\nApplicability\nAuthInfo\n6.2.6.2.2\nContains the SUPI, EAP ID Response, etc.\nAuthContext\n6.2.6.2.3\nContains the information of the resource created for authentication and authorization.\nAuthConfirmationData\n6.2.6.2.4\nContains the EAP message from the UE for EAP process.\nAuthConfirmationResponse\n6.2.6.2.5\nContains the authentication and authorization result from the NSSAAF to the UE.\nAuthCxtId\n6.2.6.3.2\nContains the resource ID of authentication context.\nTable 6.2.6.1-2 specifies data types re-used by the Nnssaaf_AIW service based interface from other specifications, including a reference to their respective specifications and when needed, a short description of their use within the Nnssaaf_AIW service based interface.\nTable 6.2.6.1-2: Nnssaaf re-used Data Types\nData type\nReference\nComments\nApplicability\nProblemDetails\n3GPP TS 29.571 [16]\nCommon Data Type used in response bodies\nRedirectResponse\n3GPP TS 29.571 [16]\nRedirect Response\nAuthStatus\n3GPP TS 29.571 [16]\nAuthentication Status\nSupi\n3GPP TS 29.571 [16]\nSUPI of the UE\nSupportedFeatures\n3GPP TS 29.571 [16]\nSupported Features\nServerAddressingInfo\n3GPP TS 29.571 [16]\nAddressing information (FQNDs and/or IP addresses) of a server.\nEapMessage\n3GPP TS 29.526\nSee clause 6.1.6.3.2\nMsk\n3GPP TS 29.509 [18]",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.526_clause_6.1.6.3.2",
+        "table_6.2.6.1-1",
+        "table_6.2.6.1-2",
+        "ts_29.571",
+        "ts_29.526",
+        "ts_29.509"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.526_6.2.6.2.1",
+      "section_id": "6.2.6.2.1",
+      "section_title": "Introduction",
+      "content": "This clause defines the structures to be used in resource representations.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.526_6.2.6.2.2",
+      "section_id": "6.2.6.2.2",
+      "section_title": "Type: AuthInfo",
+      "content": "Table 6.2.6.2.2-1: Definition of type AuthInfo\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\nsupi\nSupi\nM\n1\nContains the SUPI of the UE.\neapIdRsp\nEapMessage\nC\n0..1\nContains the EAP Identity Response message. (NOTE)\nttlsInnerMethodContainer\nEapMessage\nC\n0..1\nContains the EAP-TTLS inner method messages. It is included when EAP-TTLS is used, after the initial EAP-TLS exchange. (NOTE)\nsupportedFeatures\nSupportedFeatures\nC\n0..1\nThis IE shall be present if at least one optional feature defined in clause 6.2.9 is supported.\nNOTE:\tEither eapIdRsp or ttlsInnerMethodContainer shall be present, but not both.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_6.2.9",
+        "table_6.2.6.2.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.526_6.2.6.2.3",
+      "section_id": "6.2.6.2.3",
+      "section_title": "Type: AuthContext",
+      "content": "Table 6.2.6.2.3-1: Definition of type AuthContext\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\nsupi\nSupi\nM\n1\nContains the SUPI of the UE.\nauthCtxId\nAuthCtxId\nM\n1\nIndicates the resource ID uniquely identifying the authentication context, generated by the NSSAAF.\neapMessage\nEapMessage\nC\n0..1\nContains the EAP message to be sent to the UE. (NOTE)\nttlsInnerMethodContainer\nEapMessage\nC\n0..1\nContains the EAP-TTLS inner method messages. It is included when EAP-TTLS is used, after the initial EAP exchange. (NOTE)\nsupportedFeatures\nSupportedFeatures\nC\n0..1\nThis IE shall be present if at least one optional feature defined in clause 6.2.9 is supported.\nNOTE:\tEither eapIdRsp or ttlsInnerMethodContainer shall be present, but not both.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_6.2.9",
+        "table_6.2.6.2.3-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.526_6.2.6.2.4",
+      "section_id": "6.2.6.2.4",
+      "section_title": "Type: AuthConfirmationData",
+      "content": "Table 6.2.6.2.4-1: Definition of type AuthConfirmationData\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\nsupi\nSupi\nM\n1\nContains the SUPI of the UE.\neapMessage\nEapMessage\nM\n1\nContains the EAP message received from the UE.\nsupportedFeatures\nSupportedFeatures\nC\n0..1\nThis IE shall be present if at least one optional feature defined in clause 6.2.9 is supported.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_6.2.9",
+        "table_6.2.6.2.4-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.526_6.2.6.2.5",
+      "section_id": "6.2.6.2.5",
+      "section_title": "Type: AuthConfirmationResponse",
+      "content": "Table 6.2.6.2.5-1: Definition of type AuthConfirmationResponse\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\nsupi\nSupi\nM\n1\nContains the SUPI of the UE.\neapMessage\nEapMessage\nM\n1\nContains the EAP success/failure message needs to be sent to the UE.\nauthResult\nAuthStatus\nO\n0..1\nWhen present, it shall indicate the result of authentication and authorization.\npvsInfo\narray(ServerAddressingInfo)\nO\n1..N\nWhen present, it shall contain the FQDN(s) and/or IP address(es) of the SNPN UE onboarding Provisioning Servers.\nmsk\nMsk\nC\n0..1\nThis IE shall be present if MSK is received from AAA-S after successful authentication, as specified in clause I.2.2.2 of 3GPP TS 33.501 [8].\nsupportedFeatures\nSupportedFeatures\nC\n0..1\nThis IE shall be present if at least one optional feature defined in clause 6.2.9 is supported.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_6.2.9",
+        "table_6.2.6.2.5-1",
+        "ts_33.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.526_6.2.6.3.1",
+      "section_id": "6.2.6.3.1",
+      "section_title": "Introduction",
+      "content": "This clause defines simple data types and enumerations that can be referenced from data structures defined in the previous clauses.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.526_6.2.6.3.2",
+      "section_id": "6.2.6.3.2",
+      "section_title": "Simple data types",
+      "content": "The simple data types defined in table 6.2.6.3.2-1 shall be supported.\nTable 6.2.6.3.2-1: Simple data types\nType Name\nType Definition\nDescription\nApplicability\nAuthCtxId\nstring\nThe resource ID uniquely identifying the authentication context, generated by the NSSAAF.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.2.6.3.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.526_6.2.7.1",
+      "section_id": "6.2.7.1",
+      "section_title": "General",
+      "content": "For the Nnssaaf_AIW API, HTTP error responses shall be supported as specified in clause 4.8 of 3GPP TS 29.501 [5]. Protocol errors and application errors specified in table 5.2.7.2-1 of 3GPP TS 29.500 [4] shall be supported for an HTTP method if the corresponding HTTP status codes are specified as mandatory for that HTTP method in table 5.2.7.1-1 of 3GPP TS 29.500 [4].\nIn addition, the requirements in the following clauses are applicable for the Nnssaaf_AIW API.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.501_clause_4.8",
+        "ts_29.500_table_5.2.7.2-1",
+        "ts_29.500_table_5.2.7.1-1",
+        "ts_29.501",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.526_6.2.7.2",
+      "section_id": "6.2.7.2",
+      "section_title": "Protocol Errors",
+      "content": "No specific procedures for the Nnssaaf_AIW service are specified.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.526_6.2.7.3",
+      "section_id": "6.2.7.3",
+      "section_title": "Application Errors",
+      "content": "The application errors defined for the Nnssaaf_AIW service are listed in Table 6.2.7.3-1.\nTable 6.2.7.3-1: Application errors\nApplication Error\nHTTP status code\nDescription\nRESOURCE_TEMP_MOVED\n307 Temporary Redirect\nIndicates that the NSSAAF is not able to handle the request, but points to the URI of another NSSAAF.\nRESOURCE_MOVED\n308 Permanent Redirect\nIndicates that the NSSAAF is not able to handle the request, but points to the URI of another NSSAAF.\nCONTEXT_NOT_FOUND\n404 Not Found\nThe NSSAAF cannot find the resource corresponding to the URI provided by the NF Service Consumer, i.e. the resource identified by the authCtxId does not exist in the NSSAAF.\nUSER_NOT_FOUND\n404 Not Found\nThe user does not exist.\nUPSTREAM_SERVER_ERROR\n504 Gateway Timeout\nError happens in reaching the remote peer (i.e., the AAA-S).\nNETWORK_FAILURE\n504 Gateway Timeout\nThe request is rejected due to a network problem.\nTIMED_OUT_REQUEST\n504 Gateway Timeout\nNo response is received from the remote peer (i.e., the AAA-S) when time out.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.2.7.3-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.526_6.2.8",
+      "section_id": "6.2.8",
+      "section_title": "Feature negotiation",
+      "content": "The optional features in table 6.2.8-1 are defined for the Nnssaaf_AIW API. They shall be negotiated using the extensibility mechanism defined in clause 6.6 of 3GPP TS 29.500 [4].\nTable 6.2.8-1: Supported Features\nFeature number\nFeature Name\nDescription",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_6.6",
+        "table_6.2.8-1",
+        "ts_29.500_table_6.2.8-1",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.526_6.2.9",
+      "section_id": "6.2.9",
+      "section_title": "Security",
+      "content": "As indicated in 3GPP TS 33.501 [8] and 3GPP TS 29.500 [4], the access to the Nnssaaf_AIW API may be authorized by means of the OAuth2 protocol (see IETF RFC 6749 [9]), based on local configuration, using the \"Client Credentials\" authorization grant, where the NRF (see 3GPP TS 29.510 [10]) plays the role of the authorization server.\nIf OAuth2 is used, an NF Service Consumer, prior to consuming services offered by the Nnssaaf_AIW API, shall obtain a \"token\" from the authorization server, by invoking the Access Token Request service, as described in 3GPP TS 29.510 [10], clause 5.4.2.2.\nNOTE:\tWhen multiple NRFs are deployed in a network, the NRF used as authorization server is the same NRF that the NF Service Consumer used for discovering the Nnssaaf_AIW service.\nThe Nnssaaf_AIW API defines a single scope \"nnssaaf-aiw\" for the entire service, and it does not define any additional scopes at resource or operation level.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.510_clause_5.4.2.2",
+        "ts_33.501",
+        "ts_29.500",
+        "ts_29.510"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.526_6.2.10",
+      "section_id": "6.2.10",
+      "section_title": "HTTP redirection",
+      "content": "An HTTP request may be redirected to a different NSSAAF service instance when using direct or indirect communications (see 3GPP TS 29.500 [4]).\nAn SCP that reselects a different NSSAAF producer instance will return the NF Instance ID of the new NSSAAF producer instance in the 3gpp-Sbi-Producer-Id header, as specified in clause 6.10.3.4 of 3GPP TS 29.500 [4].\nIf an NSSAAF redirects a service request to a different NSSAAF using an 307 Temporary Redirect or 308 Permanent Redirect status code, the identity of the new NSSAAF towards which the service request is redirected shall be indicated in the 3gpp-Sbi-Target-Nf-Id header of the 307 Temporary Redirect or 308 Permanent Redirect response as specified in clause 6.10.9.1 of 3GPP TS 29.500 [4].\nAnnex A (normative):OpenAPI specification\nA.1\tGeneral\nThis Annex specifies the formal definition of the API(s) defined in the present specification. It consists of OpenAPI 3.0.0 specifications in YAML format.\nThis Annex takes precedence when being discrepant to other parts of the specification with respect to the encoding of information elements and methods within the API(s).\nNOTE :\tThe semantics and procedures, as well as conditions, e.g. for the applicability and allowed combinations of attributes or values, not expressed in the OpenAPI definitions but defined in other parts of the specification also apply.\nInformative copies of the OpenAPI specification files contained in this 3GPP Technical Specification are available on a Git-based repository hosted, that uses the GitLab software version control system (see 3GPP TS 29.501 [5] clause 5.3.1 and 3GPP TR 21.900 [7] clause 5B).\nA.2\tNnssaaf_NSSAA API\nopenapi: 3.0.0\ninfo:\ntitle: Nnssaaf_NSSAA\nversion: 1.2.1\ndescription: |\nNetwork Slice-Specific Authentication and Authorization Service.\n© 2025, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).\nAll rights reserved.\nexternalDocs:\ndescription: 3GPP TS29.526, NSSAA Service, version 18.7.0.\nurl: https://www.3gpp.org/ftp/Specs/archive/29_series/29.526/\nservers:\n- url: '{apiRoot}/nnssaaf-nssaa/v1'\nvariables:\napiRoot:\ndefault: https://example.com\ndescription: apiRoot as defined in clause 4.4 of 3GPP TS 29.501\nsecurity:\n- {}\n- oAuth2ClientCredentials:\n- nnssaaf-nssaa\npaths:\n/slice-authentications:\npost:\nsummary: Create slice authentication context\noperationId: CreateSliceAuthenticationContext\ntags:\n- Slice Authentication Context Creation\nrequestBody:\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/SliceAuthInfo'\nrequired: true\nresponses:\n'201':\ndescription: SliceAuthContext\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/SliceAuthContext'\nheaders:\nLocation:\ndescription: 'Contains the URI of the newly created resource according to the structure: {apiRoot}/nnssaaf-nssaa/<apiVersion>/slice-authentications/{authCtxId}'\nrequired: true\nschema:\ntype: string\n'307':\n$ref: 'TS29571_CommonData.yaml#/components/responses/307'\n'308':\n$ref: 'TS29571_CommonData.yaml#/components/responses/308'\n'400':\ndescription: Bad Request from the AMF\ncontent:\napplication/problem+json:\nschema:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/ProblemDetails'\n'401':\n$ref: 'TS29571_CommonData.yaml#/components/responses/401'\n'403':\ndescription: Forbidden due to slice authentication rejected\ncontent:\napplication/problem+json:\nschema:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/ProblemDetails'\n'404':\ndescription: User does not exist\ncontent:\napplication/problem+json:\nschema:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/ProblemDetails'\n'411':\n$ref: 'TS29571_CommonData.yaml#/components/responses/411'\n'413':\n$ref: 'TS29571_CommonData.yaml#/components/responses/413'\n'415':\n$ref: 'TS29571_CommonData.yaml#/components/responses/415'\n'429':\n$ref: 'TS29571_CommonData.yaml#/components/responses/429'\n'500':\n$ref: 'TS29571_CommonData.yaml#/components/responses/500'\n'502':\n$ref: 'TS29571_CommonData.yaml#/components/responses/502'\n'503':\n$ref: 'TS29571_CommonData.yaml#/components/responses/503'\n'504':\ndescription: Network error or remote peer error\ncontent:\napplication/problem+json:\nschema:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/ProblemDetails'\ncallbacks:\nreauthenticationNotification:\n'{$request.body#/reauthNotifUri}':\npost:\nrequestBody:\nrequired: true\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/SliceAuthReauthNotification'\nresponses:\n'204':\ndescription: slice re-authentication notification response\n'307':\ndescription: Temporary Redirect\ncontent:\napplication/json:\nschema:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/RedirectResponse'\nheaders:\nLocation:\ndescription: 'The URI pointing to the resource located on the redirect target'\nrequired: true\nschema:\ntype: string\n'308':\ndescription: Permanent Redirect\ncontent:\napplication/json:\nschema:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/RedirectResponse'\nheaders:\nLocation:\ndescription: 'The URI pointing to the resource located on the redirect target'\nrequired: true\nschema:\ntype: string\n'400':\n$ref: 'TS29571_CommonData.yaml#/components/responses/400'\n'401':\n$ref: 'TS29571_CommonData.yaml#/components/responses/401'\n'403':\n$ref: 'TS29571_CommonData.yaml#/components/responses/403'\n'404':\n$ref: 'TS29571_CommonData.yaml#/components/responses/404'\n'411':\n$ref: 'TS29571_CommonData.yaml#/components/responses/411'\n'413':\n$ref: 'TS29571_CommonData.yaml#/components/responses/413'\n'415':\n$ref: 'TS29571_CommonData.yaml#/components/responses/415'\n'429':\n$ref: 'TS29571_CommonData.yaml#/components/responses/429'\n'500':\n$ref: 'TS29571_CommonData.yaml#/components/responses/500'\n'502':\n$ref: 'TS29571_CommonData.yaml#/components/responses/502'\n'503':\n$ref: 'TS29571_CommonData.yaml#/components/responses/503'\ndefault:\ndescription: Unexpected error\nrevocationNotification:\n'{$request.body#/revocNotifUri}':\npost:\nrequestBody:\nrequired: true\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/SliceAuthRevocNotification'\nresponses:\n'204':\ndescription: slice revocation notification response\n'307':\ndescription: Temporary Redirect\ncontent:\napplication/json:\nschema:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/RedirectResponse'\nheaders:\nLocation:\ndescription: 'The URI pointing to the resource located on the redirect target'\nrequired: true\nschema:\ntype: string\n'308':\ndescription: Permanent Redirect\ncontent:\napplication/json:\nschema:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/RedirectResponse'\nheaders:\nLocation:\ndescription: 'The URI pointing to the resource located on the redirect target'\nrequired: true\nschema:\ntype: string\n'400':\n$ref: 'TS29571_CommonData.yaml#/components/responses/400'\n'401':\n$ref: 'TS29571_CommonData.yaml#/components/responses/401'\n'403':\n$ref: 'TS29571_CommonData.yaml#/components/responses/403'\n'404':\n$ref: 'TS29571_CommonData.yaml#/components/responses/404'\n'411':\n$ref: 'TS29571_CommonData.yaml#/components/responses/411'\n'413':\n$ref: 'TS29571_CommonData.yaml#/components/responses/413'\n'415':\n$ref: 'TS29571_CommonData.yaml#/components/responses/415'\n'429':\n$ref: 'TS29571_CommonData.yaml#/components/responses/429'\n'500':\n$ref: 'TS29571_CommonData.yaml#/components/responses/500'\n'502':\n$ref: 'TS29571_CommonData.yaml#/components/responses/502'\n'503':\n$ref: 'TS29571_CommonData.yaml#/components/responses/503'\ndefault:\ndescription: Unexpected error\n/slice-authentications/{authCtxId}:\nput:\nsummary: Confirm the slice authentication result\noperationId: ConfirmSliceAuthentication\ntags:\n- Confirm Slice Authentication\nparameters:\n- name: authCtxId\nin: path\nrequired: true\nschema:\ntype: string\nrequestBody:\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/SliceAuthConfirmationData'\nresponses:\n'200':\ndescription: Request processed (EAP success or Failure)\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/SliceAuthConfirmationResponse'\n'307':\n$ref: 'TS29571_CommonData.yaml#/components/responses/307'\n'308':\n$ref: 'TS29571_CommonData.yaml#/components/responses/308'\n'400':\ndescription: Bad Request\ncontent:\napplication/problem+json:\nschema:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/ProblemDetails'\n'401':\n$ref: 'TS29571_CommonData.yaml#/components/responses/401'\n'403':\n$ref: 'TS29571_CommonData.yaml#/components/responses/403'\n'404':\n$ref: 'TS29571_CommonData.yaml#/components/responses/404'\n'411':\n$ref: 'TS29571_CommonData.yaml#/components/responses/411'\n'413':\n$ref: 'TS29571_CommonData.yaml#/components/responses/413'\n'415':\n$ref: 'TS29571_CommonData.yaml#/components/responses/415'\n'429':\n$ref: 'TS29571_CommonData.yaml#/components/responses/429'\n'500':\ndescription: Internal Server Error\ncontent:\napplication/problem+json:\nschema:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/ProblemDetails'\n'502':\n$ref: 'TS29571_CommonData.yaml#/components/responses/502'\n'503':\n$ref: 'TS29571_CommonData.yaml#/components/responses/503'\n'504':\ndescription: Network error or remote peer error\ncontent:\napplication/problem+json:\nschema:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/ProblemDetails'\ncomponents:\nsecuritySchemes:\noAuth2ClientCredentials:\ntype: oauth2\nflows:\nclientCredentials:\ntokenUrl: '{nrfApiRoot}/oauth2/token'\nscopes:\nnnssaaf-nssaa: Access to the nnssaaf-nssaa API\nschemas:\n#\n# COMPLEX TYPES:\n#\nSliceAuthInfo:\ndescription: >\nThis data type contains the GPSI, S-NSSAI, EAP response ID from the UE.\ntype: object\nproperties:\ngpsi:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Gpsi'\nsnssai:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Snssai'\neapIdRsp:\n$ref: '#/components/schemas/EapMessage'\namfInstanceId:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/NfInstanceId'\nreauthNotifUri:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Uri'\nrevocNotifUri:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Uri'\nrequired:\n- gpsi\n- snssai\n- eapIdRsp\nSliceAuthContext:\ndescription: >\nThis data type includes information of the resource created for slice-specific        authentication and authorization.\ntype: object\nproperties:\ngpsi:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Gpsi'\nsnssai:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Snssai'\nauthCtxId:\n$ref: '#/components/schemas/SliceAuthCtxId'\neapMessage:\n$ref: '#/components/schemas/EapMessage'\nrequired:\n- gpsi\n- snssai\n- authCtxId\n- eapMessage\nSliceAuthConfirmationData:\ndescription: >\nThis data type contains the EAP message generated by the UE and it is        provided to an AMF.\ntype: object\nproperties:\ngpsi:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Gpsi'\nsnssai:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Snssai'\neapMessage:\n$ref: '#/components/schemas/EapMessage'\nrequired:\n- gpsi\n- snssai\n- eapMessage\nSliceAuthConfirmationResponse:\ndescription: >\nThis data type includes information about the result of slice-specific        authentication and authorization from the NSSAAF to the UE.\ntype: object\nproperties:\ngpsi:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Gpsi'\nsnssai:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Snssai'\neapMessage:\n$ref: '#/components/schemas/EapMessage'\nauthResult:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/AuthStatus'\nrequired:\n- gpsi\n- snssai\n- eapMessage\nSliceAuthReauthNotification:\ndescription: >\nThis data type includes information about the re-authentication notification for        authentication and authorization.\ntype: object\nproperties:\nnotifType:\n$ref: '#/components/schemas/SliceAuthNotificationType'\ngpsi:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Gpsi'\nsnssai:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Snssai'\nsupi:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Supi'\nrequired:\n- notifType\n- gpsi\n- snssai\nSliceAuthRevocNotification:\ndescription: >\nThis data type includes information about a revocation notification for a given UE.\ntype: object\nproperties:\nnotifType:\n$ref: '#/components/schemas/SliceAuthNotificationType'\ngpsi:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Gpsi'\nsnssai:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Snssai'\nsupi:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Supi'\nrequired:\n- notifType\n- gpsi\n- snssai\n#\n# SIMPLE TYPES:\n#\nSliceAuthCtxId:\ntype: string\ndescription: contains the resource ID of slice authentication context\nnullable: false\nEapMessage:\ntype: string\nformat: byte\ndescription: contains an EAP packet\nnullable: true\n#\n# ENUMS:\n#\nSliceAuthNotificationType:\ntype: string\nenum:\n- SLICE_RE_AUTH\n- SLICE_REVOCATION\nA.3\tNnssaaf_AIW API\nopenapi: 3.0.0\ninfo:\ntitle: Nnssaaf_AIW\nversion: 1.1.0\ndescription: |\nAAA Interworking Authentication and Authorization Service.\n© 2024, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).\nAll rights reserved.\nexternalDocs:\ndescription: 3GPP TS29.526, NSSAA Service, version 18.6.0.\nurl: https://www.3gpp.org/ftp/Specs/archive/29_series/29.526/\nservers:\n- url: '{apiRoot}/nnssaaf-aiw/v1'\nvariables:\napiRoot:\ndefault: https://example.com\ndescription: apiRoot as defined in clause 4.4 of 3GPP TS 29.501\nsecurity:\n- {}\n- oAuth2ClientCredentials:\n- nnssaaf-aiw\npaths:\n/authentications:\npost:\nsummary: Create authentication context\noperationId: CreateAuthenticationContext\ntags:\n- Authentications (Collections)\nrequestBody:\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/AuthInfo'\nrequired: true\nresponses:\n'201':\ndescription: AuthContext successfully created\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/AuthContext'\nheaders:\nLocation:\ndescription: 'Contains the URI of the newly created resource according to the structure: {apiRoot}/nnssaaf-aiw/<apiVersion>/authentications/{authCtxId}'\nrequired: true\nschema:\ntype: string\n'307':\n$ref: 'TS29571_CommonData.yaml#/components/responses/307'\n'308':\n$ref: 'TS29571_CommonData.yaml#/components/responses/308'\n'400':\n$ref: 'TS29571_CommonData.yaml#/components/responses/400'\n'401':\n$ref: 'TS29571_CommonData.yaml#/components/responses/401'\n'403':\n$ref: 'TS29571_CommonData.yaml#/components/responses/403'\n'404':\n$ref: 'TS29571_CommonData.yaml#/components/responses/404'\n'411':\n$ref: 'TS29571_CommonData.yaml#/components/responses/411'\n'413':\n$ref: 'TS29571_CommonData.yaml#/components/responses/413'\n'415':\n$ref: 'TS29571_CommonData.yaml#/components/responses/415'\n'429':\n$ref: 'TS29571_CommonData.yaml#/components/responses/429'\n'500':\n$ref: 'TS29571_CommonData.yaml#/components/responses/500'\n'502':\n$ref: 'TS29571_CommonData.yaml#/components/responses/502'\n'503':\n$ref: 'TS29571_CommonData.yaml#/components/responses/503'\n'504':\n$ref: 'TS29571_CommonData.yaml#/components/responses/504'\n/authentications/{authCtxId}:\nput:\nsummary: Confirm the authentication result\noperationId: ConfirmAuthentication\ntags:\n- Authentication (Document)\nparameters:\n- name: authCtxId\nin: path\nrequired: true\nschema:\ntype: string\nrequestBody:\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/AuthConfirmationData'\nresponses:\n'200':\ndescription: Request processed (EAP success or Failure)\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/AuthConfirmationResponse'\n'307':\n$ref: 'TS29571_CommonData.yaml#/components/responses/307'\n'308':\n$ref: 'TS29571_CommonData.yaml#/components/responses/308'\n'400':\n$ref: 'TS29571_CommonData.yaml#/components/responses/400'\n'401':\n$ref: 'TS29571_CommonData.yaml#/components/responses/401'\n'403':\n$ref: 'TS29571_CommonData.yaml#/components/responses/403'\n'404':\n$ref: 'TS29571_CommonData.yaml#/components/responses/404'\n'411':\n$ref: 'TS29571_CommonData.yaml#/components/responses/411'\n'413':\n$ref: 'TS29571_CommonData.yaml#/components/responses/413'\n'415':\n$ref: 'TS29571_CommonData.yaml#/components/responses/415'\n'429':\n$ref: 'TS29571_CommonData.yaml#/components/responses/429'\n'500':\n$ref: 'TS29571_CommonData.yaml#/components/responses/500'\n'502':\n$ref: 'TS29571_CommonData.yaml#/components/responses/502'\n'503':\n$ref: 'TS29571_CommonData.yaml#/components/responses/503'\n'504':\n$ref: 'TS29571_CommonData.yaml#/components/responses/504'\ncomponents:\nsecuritySchemes:\noAuth2ClientCredentials:\ntype: oauth2\nflows:\nclientCredentials:\ntokenUrl: '{nrfApiRoot}/oauth2/token'\nscopes:\nnnssaaf-aiw: Access to the nnssaaf-aiw API\nschemas:\n#\n# COMPLEX TYPES:\n#\nAuthInfo:\ntype: object\nproperties:\nsupi:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Supi'\neapIdRsp:\n$ref: 'TS29526_Nnssaaf_NSSAA.yaml#/components/schemas/EapMessage'\nttlsInnerMethodContainer:\n$ref: 'TS29526_Nnssaaf_NSSAA.yaml#/components/schemas/EapMessage'\nsupportedFeatures:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'\nrequired:\n- supi\nAuthContext:\ntype: object\nproperties:\nsupi:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Supi'\nauthCtxId:\n$ref: '#/components/schemas/AuthCtxId'\neapMessage:\n$ref: 'TS29526_Nnssaaf_NSSAA.yaml#/components/schemas/EapMessage'\nttlsInnerMethodContainer:\n$ref: 'TS29526_Nnssaaf_NSSAA.yaml#/components/schemas/EapMessage'\nsupportedFeatures:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'\nrequired:\n- supi\n- authCtxId\nAuthConfirmationData:\ntype: object\nproperties:\nsupi:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Supi'\neapMessage:\n$ref: 'TS29526_Nnssaaf_NSSAA.yaml#/components/schemas/EapMessage'\nsupportedFeatures:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'\nrequired:\n- supi\n- eapMessage\nAuthConfirmationResponse:\ntype: object\nproperties:\nsupi:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Supi'\neapMessage:\n$ref: 'TS29526_Nnssaaf_NSSAA.yaml#/components/schemas/EapMessage'\nauthResult:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/AuthStatus'\npvsInfo:\ntype: array\nitems:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/ServerAddressingInfo'\nminItems: 1\nmsk:\n$ref: 'TS29509_Nausf_UEAuthentication.yaml#/components/schemas/Msk'\nsupportedFeatures:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'\nrequired:\n- supi\n- eapMessage\n#\n# SIMPLE TYPES:\n#\nAuthCtxId:\ntype: string\ndescription: contains the resource ID of authentication context\nnullable: false\n#\n# ENUMS:\n#\nAnnex B (informative):Change history\nChange history\nDate\nMeeting\nTDoc\nCR\nRev\nCat\nSubject/Comment\nNew version\n2020-06\nCT4#98E\nC4-203683\nTS skeleton.\n0.1.0\n2020-06\nCT4#98E\nC4-202084\nC4-202085\nC4-202086\nC4-203709\nC4-203710\nImplementation of pCRs agreed in CT4#98E\n0.2.0\n2020-06\nCT#88e\nCP-201193\nTS presented for information and approval.\n1.0.0\n2020-06\nCT#88e\nTS approved at CT#88e\n16.0.0\n2020-09\nCT#89\nCP-202104\n0005\n1\nF\nUpdate References\n16.1.0\n2020-09\nCT#89\nCP-202104\n0007\n1\nF\nRelease PDU Session if NSSAA Re-Authentication and Re-Authorization Fails\n16.1.0\n2020-09\nCT#89\nCP-202104\n0008\n1\nF\nNSSAA status management\n16.1.0\n2020-12\nCT#90\nCP-203054\n0009\n2\nF\nAmendments for stateless NF support\n16.2.0\n2020-12\nCT#90\nCP-203040\n0010\n-\nF\nRemove Editor's Notes on AAA Server Address\n16.2.0\n2020-12\nCT#90\nCP-203048\n0011\n1\nF\nStorage of YAML files in 3GPP Forge\n16.2.0\n2020-12\nCT#90\nCP-203040\n0012\n1\nF\nAMF behaviour for NSSAA procedure due to temporal NW failure\n16.2.0\n2020-12\nCT#90\nCP-203036\n0013\n-\nF\nAPI version and External doc update\n16.2.0\n2021-03\nCT#91\nCP-210049\n0014\n-\nF\nIncorrect Media Type\n16.3.0\n2021-03\nCT#91\nCP-210054\n0016\n-\nF\n29.526 Rel-16 API version and External doc update\n16.3.0\n2021-03\nCT#91\nCP-210034\n0015\n1\nF\nOpenAPI Reference\n17.0.0\n2021-06\nCT#92\nCP-211068\n0018\n1\nF\nUnsuccessful cases for handling of NSSAA status in AMF\n17.1.0\n2021-06\nCT#92\nCP-211028\n0019\n-\nF\nTS Clean-up\n17.1.0\n2021-06\nCT#92\nCP-211068\n0021\n1\nF\nSUPI in Notifications from NSSAAF\n17.1.0\n2021-06\nCT#92\nCP-211059\n0023\n1\nF\nRedirect Response\n17.1.0\n2021-06\nCT#92\nCP-211050\n0024\n-\nF\n29.526 Rel-17 API version and External doc update\n17.1.0\n2021-09\nCT#93\nCP-212045\n0026\n1\nF\nAttack from AAA-S\n17.2.0\n2021-09\nCT#93\nCP-212070\n0028\n1\nF\nNSSAA procedure from two different AMFs\n17.2.0\n2021-09\nCT#93\nCP-212060\n0031\n-\nF\n3xx description correction for SCP\n17.2.0\n2021-09\nCT#93\nCP-212026\n0032\n-\nF\nBase64 Encoding of binary attributes in JSON objects\n17.2.0\n2021-09\nCT#93\nCP-212045\n0033\n-\nF\nRe-authentication Request when S-NSSAI is not in use\n17.2.0\n2021-09\nCT#93\nCP-212059\n0034\n-\nF\n29.526 Rel-17 API version and External doc update\n17.2.0\n2021-09\nCT#94\nCP-213139\n0036\n2\nF\nRemove AMF behaviour related to back-off timer from NSSAA procedure\n17.3.0\n2021-12\nCT#94\nCP-213085\n0037\n-\nF\nMiscellaneous corrections\n17.3.0\n2021-12\nCT#94\nCP-213139\n0039\n1\nF\nCorrection to Re-Authentication / Revocation Notification Procedure\n17.3.0\n2021-12\nCT#94\nCP-213092\n0041\n1\nF\nClarification of NSAC and exposure service\n17.3.0\n2021-12\nCT#94\nCP-213120\n0042\n-\nF\n307/308 redirection\n17.3.0\n2022-12\nCT#95\nCP-220047\n0043\n1\nF\nChanging the Title of the TS 29.526\n17.4.0\n2022-03\nCT#95\nCP-220047\n0051\n3\nB\nAIW Service\n17.4.0\n2022-03\nCT#95\nCP-220026\n0053\n1\nF\n3xx Redirect Response\n17.4.0\n2022-03\nCT#95\nCP-220075\n0055\n1\nF\nIncorrect Service Name\n17.4.0\n2022-03\nCT#95\nCP-220025\n0057\n-\nF\nEAP ID Response message\n17.4.0\n2022-03\nCT#95\nCP-220066\n0058\n-\nF\n29.526 Rel-17 API version and External doc update\n17.4.0\n2022-06\nCT#96\nCP-221051\n0061\n-\nF\n29.526 Rel-17 API version and External doc update\n17.5.0\n2022-09\nCT#97\nCP-222056\n0063\n-\nF\nMultiple GPSIs\n17.6.0\n2022-12\nCT#98\nCP-223049\n0066\n1\nF\nMSK in Primary Authentication Successful Response\n17.7.0\n2022-12\nCT#98\nCP-223066\n0068\n-\nF\n29.526 Rel-17 API version and External doc update\n17.7.0\n2022-12\nCT#98\nCP-223028\n0065\n1\nF\nMissing Mandatory Status Codes in OpenAPI\n18.0.0\n2022-12\nCT#98\nCP-223033\n0067\n-\nF\n29.526 Rel-18 API version and External doc update\n18.0.0\n2023-03\nCT#99\nCP-230066\n0070\n1\nF\nCorrections on the reference number\n18.1.0\n2023-06\nCT#100\nCP-231027\n0069\n4\nF\nLocation header and missing Redirection clause\n18.2.0\n2023-06\nCT#100\nCP-231073\n0074\n1\nF\nDefault Notification for Inter-PLMN Access\n18.2.0\n2023-09\nCT#101\nCP-232058\n0075\n-\nF\nMajor API version\n18.3.0\n2023-09\nCT#101\nCP-232271\n0076\n1\nF\n29.526 Rel-18 API version and External doc update\n18.3.0\n2023-12\nCT#102\nCP-233027\n0077\n-\nF\nObsoleted HTTP/2 RFCs\n18.4.0\n2023-12\nCT#102\nCP-233027\n0078\n-\nF\nProblemDetails RFC 7807 obsoleted by 9457\n18.4.0\n2024-03\nCT#103\nCP-240072\n0081\n-\nA\nAttribute name alignment for Notification Type\n18.5.0\n2024-03\nCT#103\nCP-240053\n0082\n-\nF\nAAA-S server address\n18.5.0\n2024-06\nCT#104\nCP-241028\n0083\n1\nF\nCallbacks\n18.6.0\n2024-06\nCT#104\nCP-241042\n0084\n1\nF\nNSSAA in network slice replacement\n18.6.0\n2024-06\nCT#104\nCP-241050\n0085\n1\nF\nMiscellaneous corrections\n18.6.0\n2024-06\nCT#104\nCP-241028\n0086\n1\nF\nMissing Description fields in Network slice specific authentication and authorization (Nnssaaf_NSSAA API)\n18.6.0\n2024-06\nCT#104\nCP-241052\n0087\n-\nF\n29.526 Rel-18 API version and External doc update\n18.6.0\n2025-03\nCT#107\nCP-250024\n0088\n-\nF\nError Correction to the OpenAPI\n18.7.0\n2025-03\nCT#107\nCP-250136\n0090\n-\nF\n29.526 Rel-18 API version and External doc update\n18.7.0",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.500_clause_6.10.3.4",
+        "ts_29.500_clause_6.10.9.1",
+        "ts_29.501_clause_5.3.1",
+        "ts_29.501_clause_5",
+        "ts_29.501_clause_4.4",
+        "clause_18.2.0",
+        "ts_29.500",
+        "ts_29.501",
+        "ts_21.900",
+        "ts_17.2",
+        "ts_29.526"
+      ]
+    }
+  ]
+}

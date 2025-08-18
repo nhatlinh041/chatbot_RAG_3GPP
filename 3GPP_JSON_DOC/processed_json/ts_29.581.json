@@ -1,0 +1,934 @@
+{
+  "metadata": {
+    "specification_id": "ts_29.581",
+    "version": "18.5.0",
+    "title": "3GPP TS 29.581",
+    "file_path": "/content/drive/MyDrive/RAG_thesis/data/29_series/29581-i50/29581-i50.docx"
+  },
+  "export_info": {
+    "export_date": "2025-07-26T08:50:53.725088",
+    "total_chunks": 80
+  },
+  "chunks": [
+    {
+      "chunk_id": "ts_29.581_1",
+      "section_id": "1",
+      "section_title": "Scope",
+      "content": "The present document specifies the stage 3 protocol and data model for the Nmbstf Service Based Interface. It provides stage 3 protocol definitions and message flows, and specifies the API for each service offered by the MBSTF.\nThe 5G System stage 2 architecture and procedures are specified in 3GPP TS 23.501 [2] and 3GPP TS 23.502 [3]. The 5G Multicast-Broadcast Session Management Services for 5G System is specified in 3GPP TS 23.247 [15] and the User Service Architecture for 5G Multicast-Broadcast Services is specified in 3GPP TS 26.502 [17].\nThe Technical Realization of the Service Based Architecture and the Principles and Guidelines for Services Definition are specified in 3GPP TS 29.500 [4] and 3GPP TS 29.501 [5].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.501",
+        "ts_23.502",
+        "ts_23.247",
+        "ts_26.502",
+        "ts_29.500",
+        "ts_29.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.581_2",
+      "section_id": "2",
+      "section_title": "References",
+      "content": "The following documents contain provisions which, through reference in this text, constitute provisions of the present document.\n-\tReferences are either specific (identified by date of publication, edition number, version number, etc.) or non‑specific.\n-\tFor a specific reference, subsequent revisions do not apply.\n-\tFor a non-specific reference, the latest version applies. In the case of a reference to a 3GPP document (including a GSM document), a non-specific reference implicitly refers to the latest version of that document in the same Release as the present document.\n[1]\t3GPP TR 21.905: \"Vocabulary for 3GPP Specifications\".\n[2]\t3GPP TS 23.501: \"System Architecture for the 5G System; Stage 2\".\n[3]\t3GPP TS 23.502: \"Procedures for the 5G System; Stage 2\".\n[4]\t3GPP TS 29.500: \"5G System; Technical Realization of Service Based Architecture; Stage 3\".\n[5]\t3GPP TS 29.501: \"5G System; Principles and Guidelines for Services Definition; Stage 3\".\n[6]\tOpenAPI: \"OpenAPI Specification Version 3.0.0\", https://spec.openapis.org/oas/v3.0.0.\n[7]\t3GPP TR 21.900: \"Technical Specification Group working methods\".\n[8]\t3GPP TS 33.501: \"Security architecture and procedures for 5G system\".\n[9]\tIETF RFC 6749: \"The OAuth 2.0 Authorization Framework\".\n[10]\t3GPP TS 29.510: \"5G System; Network Function Repository Services; Stage 3\".\n[11]\tIETF RFC 9113: \"HTTP/2\".\n[12]\tIETF RFC 8259: \"The JavaScript Object Notation (JSON) Data Interchange Format\".\n[13]\tIETF RFC 9457: \"Problem Details for HTTP APIs\".\n[14]\tIETF RFC 6902: \"JavaScript Object Notation (JSON) Patch\".\n[15]\t3GPP TS 23.247: \"Architectural enhancements for 5G multicast-broadcast services; Stage 2\".\n[16]\t3GPP TS 29.571: \"5G System; Common Data Types for Service Based Interfaces; Stage 3\".\n[17]\t3GPP TS 26.502: \"5G multicast–broadcast services; User Service architecture; Stage 2\".\n[18]\t3GPP TS 29.580: \"5G System; Multicast/Broadcast Service Function services; Stage 3\".",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905",
+        "ts_23.501",
+        "ts_23.502",
+        "ts_29.500",
+        "ts_29.501",
+        "ts_21.900",
+        "ts_33.501",
+        "ts_29.510",
+        "ts_23.247",
+        "ts_29.571",
+        "ts_26.502",
+        "ts_29.580"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.581_3.1",
+      "section_id": "3.1",
+      "section_title": "Definitions",
+      "content": "For the purposes of the present document, the terms and definitions given in 3GPP TR 21.905 [1] and the following apply. A term defined in the present document takes precedence over the definition of the same term, if any, in 3GPP TR 21.905 [1].\nFor the definitions of the basic SBI notions (e.g. apiRoot, API URI, Callback URI, etc.), SBI specific abbreviations (e.g. CRUD, YAML, etc.), special characters, operators and delimiters that are used by SBI specifications, see clause 3 in 3GPP TS 29.501 [5].",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.501_clause_3",
+        "ts_21.905",
+        "ts_29.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.581_3.2",
+      "section_id": "3.2",
+      "section_title": "Symbols",
+      "content": "For the purposes of the present document, the following symbols apply:",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.581_3.3",
+      "section_id": "3.3",
+      "section_title": "Abbreviations",
+      "content": "For the purposes of the present document, the abbreviations given in 3GPP TR 21.905 [1] and the following apply. An abbreviation defined in the present document takes precedence over the definition of the same abbreviation, if any, in 3GPP TR 21.905 [1].\n5MBS\t5G Multicast-Broadcast Services\nAF\tApplication Function\nAS\tApplication server\nDNN\tData Network Name\nMBSF\tMulticast/Broadcast Service Function\nMBSTF\tMulticast/Broadcast Service Transport Function\nMB-SMF\tMulticast/Broadcast Session Management Function\nMB-UPF\tMulticast/Broadcast User Plane Function\nNEF\tNetwork Exposure Function\nNF\tNetwork Function\nS-NSSAI\tSingle Network Slice Selection Assistance Information\nURI\tUniform Resource Identifier",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.581_4.1",
+      "section_id": "4.1",
+      "section_title": "General",
+      "content": "Within the 5GC, the MBSTF offers services to the MBSF via the Nmbstf service based interface (see 3GPP TS 23.501 [2] and 3GPP TS 26.502 [17]).\nFigures 4.1 provides the reference model (in service based interface representation and in reference point representation), with focus on the MBSTF and the scope of the present specification.\nFigure 4-1: Reference model – MBSTF\nNmb2 is the reference point between MBSF and MBSTF.\nThe functionalities supported by the MBSTF are listed in clause 5.3.2.12 of 3GPP TS 23.247 [15].\nThe services and service operations provided by the Nmbstf interface are listed in clause 7.3 of 3GPP TS 26.502 [17].",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_23.247_clause_5.3.2.12",
+        "ts_26.502_clause_7.3",
+        "figure_4-1",
+        "ts_23.501",
+        "ts_26.502",
+        "ts_23.247"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.581_5.1",
+      "section_id": "5.1",
+      "section_title": "Introduction",
+      "content": "Table 5.1-1 summarizes the SBI services produced by the MBSTF.\nTable 5.1-1: NF Services provided by MBSTF\nService Name\nDescription\nExample Consumers\nNmbstf_MBSDistributionSession\nManage (e.g. Create, Modify, Delete) a new MBS Distribution Session within the MBSTF.\nMBSF\nTable 5.1-2 summarizes the corresponding APIs defined for this specification.\nTable 5.1-2: API Descriptions\nService Name\nClause\nDescription\nOpenAPI Specification File\napiName\nAnnex\nNmbstf_MBSDistributionSession\n5.2\nMBSTF Distribution Session Service\nTS29581_ Nmbstf_DistSession.yaml\nnmbstf-distsession\nA.2",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.1-1",
+        "table_5.1-2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.581_5.2.1",
+      "section_id": "5.2.1",
+      "section_title": "Service Description",
+      "content": "The Nmbstf_MBSDistributionSession service operates on MBS distribution sessions. The following are the key functionalities of this NF service:\n-\tCreation, modification, retrieval and deletion of MBS Distribution Sessions\nTable 5.2.1-1 lists the service operations that are supported by the Nmbstf_MBSDistributionSession service.\nTable 5.2.1-1: Service operations supported by the Nmbstf_MBSDistributionSession service\nService Operations\nDescription\nOperation\nSemantics\nExample Consumers\nCreate\nCreate a new MBS Distribution Session within the MBSTF\nRequest / Response\nMBSF\nUpdate\nUpdate an existing MBS Distribution Session\nRequest / Response\nMBSF\nDestroy\nDelete an existing MBS Distribution Session\nRequest / Response\nMBSF\nRetrieve\nRetrieve the parameters of an existing MBS Distribution Session\nRequest / Response\nMBSF\nStatusSubscribe\nSubscribe to notifications related to an MBS Distribution Session\nSubscribe/\nNotify\nMBSF\nStatusUnsubscribe\nUnsubscribe from notifications related to an MBS Distribution Session\nMBSF\nStatusNotify\nNotify event(s) related to an MBS Distribution Session\nMBSF",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.2.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.581_5.2.2.1",
+      "section_id": "5.2.2.1",
+      "section_title": "Introduction",
+      "content": "See Table 5.2.1-1 for an overview of the service operations supported by the Nmbstf_MBSDistributionSession service.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.2.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.581_5.2.2.2.1",
+      "section_id": "5.2.2.2.1",
+      "section_title": "General",
+      "content": "The Create service operation shall be used to create a new MBS Distribution Session within the MBSTF (see clauses 5.2, 4.5.2 of 3GPP TS 26.502 [17]).\nThe NF Service Consumer (e.g. MBSF) shall create an MBS Distribution session in the MBSTF by using the HTTP POST method as shown in Figure 5.2.2.2.1-1.\nFigure 5.2.2.2.1-1: MBS Distribution session creation\n1.\tThe NF Service Consumer shall send a POST request (CreateReqData) targeting the MBS Distribution Sessions collection resource of the MBSTF. The content of the POST request shall contain the following information:\n-\tThe baseline parameters for an MBS Distribution Session including Distribution Session Identifier, and;\n-\tAdditional MBS Distribution Session parameters for Object Distribution Method, or;\n-\tAdditional MBS Distribution Session parameters for Packet Distribution Method;\n2a.\tOn success, the MBSTF shall return a \"201 Created\" response. The \"Location\" header shall be present and shall contain the URI of the created resource. The content of the POST response (CreateRspData) shall contain a representation of the created MBS session.\n2b.\tOn failure, one of the HTTP status code listed in Table 6.1.3.2.3.1-3 shall be returned. The message body shall contain a ProblemDetails structure with the \"cause\" attribute set to one of the application errors listed in Table 6.1.3.2.3.1-3.\n2c.\tOn redirection, \"307 Temporary Redirect\" or \"308 Permanent Redirect\" shall be returned. A RedirectResponse IE shall be included in the content of POST response.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "table_6.1.3.2.3.1-3",
+        "figure_5.2.2.2.1-1",
+        "ts_26.502"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.581_5.2.2.3.1",
+      "section_id": "5.2.2.3.1",
+      "section_title": "General",
+      "content": "The Update service operation shall be used to update an existing MBS Distribution Session within the MBSTF (see clauses 5.2, 4.5.2 of 3GPP TS 26.502 [17]).\nThe NF Service Consumer (e.g. MBSF) shall update an MBS Distribution session in the MBSTF by using the HTTP PATCH method as shown in Figure 5.2.2.3.1-1.\nFigure 5.2.2.3.1-1: MBS Distribution session update\n1.\tThe NF Service Consumer shall send a PATCH request (PatchData) to update the MBS distribution session.\n2a.\tOn success, the MBSTF shall return \"204 No Content\";\n2b.\tOn success, the MBSTF shall return \"200 OK\" containing new resource representation of MBS distribution session;\n2c.\tOn failure, one of the HTTP status code listed in Table 6.1.3.3.3.1-3 shall be returned. The message body shall contain a ProblemDetails structure with the \"cause\" attribute set to one of the application errors listed in Table 6.1.3.3.3.1-3.\n2d.\tOn redirection, \"307 Temporary Redirect\" or \"308 Permanent Redirect\" shall be returned. A RedirectResponse IE shall be included in the content of PATCH response.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "table_6.1.3.3.3.1-3",
+        "figure_5.2.2.3.1-1",
+        "ts_26.502"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.581_5.2.2.4.1",
+      "section_id": "5.2.2.4.1",
+      "section_title": "General",
+      "content": "The Destroy service operation shall be used to delete an existing MBS Distribution Session within the MBSTF (see clauses 5.2, 4.5.2 of 3GPP TS 26.502 [17]).\nThe NF Service Consumer (e.g. MBSF) shall delete an MBS Distribution session in the MBSTF by using the HTTP DELETE method as shown in Figure 5.2.2.4.1-1.\nFigure 5.2.2.4.1-1: MBS Distribution session deletion\n1.\tThe NF Service Consumer shall send a DELETE request (distSessionRef) to release the MBS distribution session.\n2a.\tOn success, the MBSTF shall delete the MBS distribution session and return a \"204 No Content\" response.\n2b.\tOn failure, one of the HTTP status code listed in Table 6.1.3.3.3.2-3 shall be returned. The message body shall contain a ProblemDetails structure with the \"cause\" attribute set to one of the application errors listed in Table 6.1.3.3.3.2-3.\n2c.\tOn redirection, \"307 Temporary Redirect\" or \"308 Permanent Redirect\" shall be returned. A RedirectResponse IE shall be included in the content of DELETE response.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "table_6.1.3.3.3.2-3",
+        "figure_5.2.2.4.1-1",
+        "ts_26.502"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.581_5.2.2.5.1",
+      "section_id": "5.2.2.5.1",
+      "section_title": "General",
+      "content": "The Retrieve service operation shall be used to retrieve the parameters of an existing MBS Distribution Session within the MBSTF (see clauses 5.2, 4.5.2 of 3GPP TS 26.502 [17]).\nThe NF Service Consumer (e.g. MBSF) shall retrieve an MBS Distribution session in the MBSTF by using the HTTP GET method as shown in Figure 5.2.2.5.1-1.\nFigure 5.2.2.5.1-1: MBS Distribution session retrieval\n1.\tThe NF Service Consumer shall send a GET request to the resource representing the MBS distribution session (distSessionRef).\n2a.\tOn success, the MBSTF shall respond with \"200 OK\" with the message body containing parameters of the distribution session (distSession).\n2b.\tOn failure, one of the HTTP status code listed in Table 6.1.3.3.3.3-3 shall be returned. The message body shall contain a ProblemDetails structure with the \"cause\" attribute set to one of the application errors listed in Table 6.1.3.3.3.3-3.\n2c.\tOn redirection, \"307 Temporary Redirect\" or \"308 Permanent Redirect\" shall be returned. A RedirectResponse IE shall be included in the content of GET response.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "table_6.1.3.3.3.3-3",
+        "figure_5.2.2.5.1-1",
+        "ts_26.502"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.581_5.2.2.6.1",
+      "section_id": "5.2.2.6.1",
+      "section_title": "General",
+      "content": "The StatusSubscribe service operation shall be used by an NF Service Consumer (e.g. MBSF) to create a subscription to the MBSTF notifications related to the event(s) of an MBS distribution session.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.581_5.2.2.6.2",
+      "section_id": "5.2.2.6.2",
+      "section_title": "Subscription creation",
+      "content": "The NF Service Consumer (e.g. MBSF) shall subscribe to MBSTF service notifications by using the HTTP POST method as shown in Figure 5.2.2.6.2-1.\nFigure 5.2.2.6.2-1: Subscribing to MBSTF notifications\n1.\tThe NF Service Consumer shall send a POST request (StatusSubscribeReqData) to the resource URI representing the subscriptions collection resource in the MBSTF. The content of the POST request shall contain:\n-\tthe list of MBS distribution session events requested to be subscribed.\n-\tthe Notification URI , indicating the address where the MBSTF shall send the notifications;\nThe request body may also contain:\n-\tan expiry time suggested by the NF Service Consumer, representing the time span during which the subscription is desired to be kept active; and\n-\tNotification Correlation ID;\n2a.\tOn success, the MBSTF shall return a \"201 Created\" response. The \"Location\" header shall be present and shall contain the URI of the created resource. The content of the POST response (StatusSubscribeRspData) shall include:\n-\tthe Distribution Session Identifier;\n-\tthe list of events successfully subscribed;\n-\tthe expiry time after which the subscription becomes invalid.\n2b.\tOn failure, one of the HTTP status code listed in the data structures supported by the POST Response Body (see Table 6.1.3.4.3.1-3) shall be returned. The message body shall contain a ProblemDetails structure with the \"cause\" attribute set to one of the application error listed in the same Table 6.1.3.4.3.1-3).\n2c.\tOn redirection, \"307 Temporary Redirect\" or \"308 Permanent Redirect\" shall be returned. A RedirectResponse IE shall be included in the content of POST response.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.1.3.4.3.1-3",
+        "figure_5.2.2.6.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.581_5.2.2.6.3",
+      "section_id": "5.2.2.6.3",
+      "section_title": "Subscription update",
+      "content": "When the StatusSubscribe service operation is used for updating a subscription, the NF Service Consumer (e.g. MBSF) shall update its subscription to MBSTF notifications by using the HTTP PATCH method as shown in Figure 5.2.2.6.3-1.\nFigure 5.2.2.6.3-1: Updating a subscription to MBSTF notifications\n1.\tThe NF Service Consumer shall send a PATCH request to update the individual subscription resource in the MBSTF (/dist-sessions/{distSessionRef}/subscriptions/{subscriptionId}). The message body contains an array(PatchItem), where each PatchItem type indicates a requested change to the DistSessionSubscription data structure (see clause 6.1.6.2.10). The following information may be requested to be modified with array(PatchItem) structure (see Table 6.1.3.5.3.2-2):\n-\tNotification URI (callback URI), indicating the address where the MBSTF shall send the notifications;\n-\tNew expiration time;\n2a.\tOn success, the MBSTF shall return a \"200 Ok\" response with a representation of the modified subscription (DistSessionSubscription data structure (see clause 6.1.6.2.10)).\n2b.\tOn failure, one of the HTTP status code listed in Table 6.1.3.5.3.2-3 shall be returned. The message body shall contain a ProblemDetails structure with the \"cause\" attribute set to one of the application errors listed in Table 6.1.3.5.3.2-3.\n2c.\tOn redirection, \"307 Temporary Redirect\" or \"308 Permanent Redirect\" shall be returned. A RedirectResponse IE shall be included in the content of PATCH response.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_6.1.6.2.10",
+        "table_6.1.3.5.3.2-2",
+        "table_6.1.3.5.3.2-3",
+        "figure_5.2.2.6.3-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.581_5.2.2.7.1",
+      "section_id": "5.2.2.7.1",
+      "section_title": "General",
+      "content": "The StatusUnsubscribe service operation shall be used by an NF Service Consumer (e.g. MBSF) to unsubscribe from the MBSTF notifications related to an MBS distribution session.\nThe NF Service Consumer (e.g. MBSF) shall unsubscribe from MBSTF notifications by using the HTTP DELETE method as shown in Figure 5.2.2.7.1-1.\nFigure 5.2.2.7.1-1: Unsubscribing from MBSTF notifications\n1.\tThe NF Service Consumer shall send a DELETE request to the resource URI representing the individual subscription document resource in the MBSTF.\n2.\tOn success, the MBSTF shall return a \"204 No Content\" response.\n2b.\tOn failure, one of the HTTP status code listed in the data structures supported by the DELETE Response Body (see Table 6.1.3.5.3.1-3) shall be returned. The message body shall contain a ProblemDetails structure with the \"cause\" attribute set to one of the application error listed in the same Table 6.1.3.5.3.1-3.\n2c.\tOn redirection, \"307 Temporary Redirect\" or \"308 Permanent Redirect\" shall be returned. A RedirectResponse IE shall be included in the content of DELETE response.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "table_6.1.3.5.3.1-3",
+        "figure_5.2.2.7.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.581_5.2.2.8.1",
+      "section_id": "5.2.2.8.1",
+      "section_title": "General",
+      "content": "The StatusNotify service operation shall be used by the MBSTF to notify a subscribed NF Service Consumer (e.g. MBSF) about the events related to an MBS distribution session.\nThe MBSTF shall notify the NF Service Consumer (e.g. MBSF) by using the HTTP POST method to the callback URI received earlier in the subscription as shown in Figure 5.2.2.8.1-1.\nFigure 5.2.2.8.1-1: MBTSMF notifications\n1.\tThe MBSTF shall send a POST request (StatusNotifyReqData) to the callback URI ({notifUri}) of the subscribed NF Service Consumer. The content of the POST request shall contain:\n-\tNotification Correlation ID, if this information was provided during subscription;\n-\tthe list of MBS distribution session events to be reported:\n-\treport a DATA_INGEST_FAILURE event when the MBSTF failed to ingest data from the AF/AS;\n-\treport a SESSION_DEACTIVATED event when the MBS distribution session is deactivated;\n-\treport a SESSION_ACTIVATED event when the MBS distribution session is activated.\n-\treport a SERVICE_MANAGEMENT_FAILURE event when the MBS distribution session failed to start.\n-\treport a DATA_INGEST_SESSION_ESTABLISHED event when the User Data Ingest Session corresponding to the distribution session is successfully established.\n-\treport a DATA_INGEST_SESSION_TERMINATED event when the User Data Ingest Session corresponding to the distribution session is stopped at the end of the current active period.\n2a.\tOn success, the MBSF shall return a \"204 No Content\" response.\n2b.\tOn failure, one of the HTTP status code listed in the data structures supported by the POST Response Body (see Table 6.1.5.2.3.1-2) shall be returned. The message body shall contain a ProblemDetails structure with the \"cause\" attribute set to one of the application error listed in the same Table 6.1.5.2.3.1-2).\n2c.\tOn redirection, \"307 Temporary Redirect\" or \"308 Permanent Redirect\" shall be returned. A RedirectResponse IE shall be included in the content of POST response.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "table_6.1.5.2.3.1-2",
+        "figure_5.2.2.8.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.581_6.1.1",
+      "section_id": "6.1.1",
+      "section_title": "Introduction",
+      "content": "The Nmbstf_MBSDistributionSession service shall use the Nmbstf-distsession API.\nThe API URI of the Nmbstf_MBSDistributionSession API shall be:\n{apiRoot}/<apiName>/<apiVersion>\nThe request URIs used in HTTP requests from the NF service consumer towards the NF service producer shall have the Resource URI structure defined in clause 4.4.1 of 3GPP TS 29.501 [5], i.e.:\n{apiRoot}/<apiName>/<apiVersion>/<apiSpecificResourceUriPart>\nwith the following components:\n-\tThe {apiRoot} shall be set as described in 3GPP TS 29.501 [5].\n-\tThe <apiName> shall be \"nmbstf-distsession\".\n-\tThe <apiVersion> shall be \"v1\".\n-\tThe <apiSpecificResourceUriPart> shall be set as described in clause 6.1.3.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.501_clause_4.4.1",
+        "clause_6.1.3",
+        "ts_29.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.581_6.1.2.1",
+      "section_id": "6.1.2.1",
+      "section_title": "General",
+      "content": "HTTP/2, IETF RFC 9113 [11], shall be used as specified in clause 5 of 3GPP TS 29.500 [4].\nHTTP/2 shall be transported as specified in clause 5.3 of 3GPP TS 29.500 [4].\nThe OpenAPI [6] specification of HTTP messages and content bodies for the Nmbstf-distsession API is contained in Annex A.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.500_clause_5",
+        "ts_29.500_clause_5.3",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.581_6.1.2.2.1",
+      "section_id": "6.1.2.2.1",
+      "section_title": "General",
+      "content": "See clause 5.2.2 of 3GPP TS 29.500 [4] for the usage of HTTP standard headers.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.500_clause_5.2.2",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.581_6.1.2.2.2",
+      "section_id": "6.1.2.2.2",
+      "section_title": "Content type",
+      "content": "JSON, IETF RFC 8259 [12], shall be used as content type of the HTTP bodies specified in the present specification as specified in clause 5.4 of 3GPP TS 29.500 [4]. The use of the JSON format shall be signalled by the content type \"application/json\".\n\"Problem Details\" JSON object shall be used to indicate additional details of the error in a HTTP response body and shall be signalled by the content type \"application/problem+json\", as defined in IETF RFC 9457 [13].",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_5.4",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.581_6.1.2.3",
+      "section_id": "6.1.2.3",
+      "section_title": "HTTP custom headers",
+      "content": "The mandatory HTTP custom header fields specified in clause 5.2.3.2 of 3GPP TS 29.500 [4] shall be supported, and the optional HTTP custom header fields specified in clause 5.2.3.3 of 3GPP TS 29.500 [4] may be supported.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_5.2.3.2",
+        "ts_29.500_clause_5.2.3.3",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.581_6.1.3.1",
+      "section_id": "6.1.3.1",
+      "section_title": "Overview",
+      "content": "Figure 6.1.3.1-1 describes the resource URI structure of the Nmbstf_MBSDistributionSession API.\nFigure 6.1.3.1-1: Resource URI structure of the Nmbstf_MBSDistributionSession API\nTable 6.1.3.1-1 provides an overview of the resources and applicable HTTP methods.\nTable 6.1.3.1-1: Resources and methods overview\nResource purpose/name\nResource URI (relative path after API URI)\nHTTP method or custom operation\nDescription (service operation)\nMBS Distribution sessions collection\n/dist-sessions\nPOST\nCreate\nIndividual MBS Distribution session\n/dist-sessions/{distSessionRef}\nPATCH\nUpdate\nGET\nRetrieve\nDELETE\nDestroy\nSubscriptions collection for MBS Distribution sessions\n/dist-sessions/{distSessionRef}/subscriptions\nPOST\nStatusSubscribe\n(to create a subscription)\nIndividual subscription for an MBS Distribution session\n/dist-sessions/{distSessionRef}/subscriptions/{subscriptionId}\nDELETE\nStatusUnsubscribe\nPATCH\nStatusSubscribe\n(to update or renew a subscription)",
+      "chunk_type": "definition",
+      "cross_references": [
+        "table_6.1.3.1-1",
+        "figure_6.1.3.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.581_6.1.3.2.1",
+      "section_id": "6.1.3.2.1",
+      "section_title": "Description",
+      "content": "This resource represents the collection of the MBS Distribution sessions created in the MBSTF.\nThis resource is modelled with the Collection resource archetype (see clause C.2 of 3GPP TS 29.501 [5]).",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.581_6.1.3.2.2",
+      "section_id": "6.1.3.2.2",
+      "section_title": "Resource Definition",
+      "content": "Resource URI: {apiRoot}/nmbstf-distSession/<apiVersion>/dist-sessions\nThis resource shall support the resource URI variables defined in table 6.1.3.2.2-1.\nTable 6.1.3.2.2-1: Resource URI variables for this resource\nName\nData type\nDefinition\napiRoot\nstring\nSee clause 6.1.1\napiVersion\nstring\nSee clause 6.1.1",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_6.1.1",
+        "table_6.1.3.2.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.581_6.1.3.2.3.1",
+      "section_id": "6.1.3.2.3.1",
+      "section_title": "POST",
+      "content": "This method creates an individual MBS distribution session resource in the MBSTF.\nThis method shall support the URI query parameters specified in table 6.1.3.2.3.1-1.\nTable 6.1.3.2.3.1-1: URI query parameters supported by the POST method on this resource\nName\nData type\nP\nCardinality\nDescription\nApplicability\nn/a\nThis method shall support the request data structures specified in table 6.1.3.2.3.1-2 and the response data structures and response codes specified in table 6.1.3.2.3.1-3.\nTable 6.1.3.2.3.1-2: Data structures supported by the POST Request Body on this resource\nData type\nP\nCardinality\nDescription\nCreateReqData\nM\n1\nRepresentation of the MBS distribution session to be created in the MBSTF\nTable 6.1.3.2.3.1-3: Data structures supported by the POST Response Body on this resource\nData type\nP\nCardinality\nResponse\ncodes\nDescription\nCreateRspData\nM\n1\n201 Created\nSuccessful creation of an MBS session\nRedirectResponse\nO\n0..1\n307 Temporary Redirect\nTemporary redirection.\n(NOTE 2)\nRedirectResponse\nO\n0..1\n308 Permanent Redirect\nPermanent redirection.\n(NOTE 2)\nNOTE 1:\tThe mandatory HTTP error status code for the POST method listed in Table 5.2.7.1-1 of 3GPP TS 29.500 [4] also apply.\nNOTE 2:\tRedirectResponse may be inserted by an SCP, see clause 6.10.9.1 of 3GPP TS 29.500 [4].\nTable 6.1.3.2.3.1-4: Headers supported by the POST method on this resource\nName\nData type\nP\nCardinality\nDescription\nTable 6.1.3.2.3.1-5: Headers supported by the 201 response code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nContains the URI of the newly created resource, according to the structure: {apiRoot}/nmbstf-distSession/<apiVersion>/dist-sessions/{distSessionRef}\nTable 6.1.3.2.3.1-6: Headers supported by the 307 response code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located on an alternative service instance within the same MBSTF or MBSTF (service) set.\nFor the case, when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target MBSTF (service) instance ID towards which the request is redirected\nTable 6.1.3.2.3.1-7: Headers supported by the 308 response code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located on an alternative service instance within the same MBSTF or MBSTF (service) set.\nFor the case, when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target MBSTF (service) instance ID towards which the request is redirected",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_6.10.9.1",
+        "table_6.1.3.2.3.1-1",
+        "table_6.1.3.2.3.1-2",
+        "table_6.1.3.2.3.1-3",
+        "ts_29.500_table_5.2.7.1-1",
+        "ts_29.500_table_6.1.3.2.3.1-4",
+        "table_6.1.3.2.3.1-5",
+        "table_6.1.3.2.3.1-6",
+        "table_6.1.3.2.3.1-7",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.581_6.1.3.2.4",
+      "section_id": "6.1.3.2.4",
+      "section_title": "Resource Custom Operations",
+      "content": "None",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.581_6.1.3.3.1",
+      "section_id": "6.1.3.3.1",
+      "section_title": "Description",
+      "content": "This resource represents an individual MBS distribution session created in the MBSTF.\nThis resource is modelled with the Document resource archetype (see clause C.1 of 3GPP TS 29.501 [5]).",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.581_6.1.3.3.2",
+      "section_id": "6.1.3.3.2",
+      "section_title": "Resource Definition",
+      "content": "Resource URI: {apiRoot}/nmbstf-distSession/<apiVersion>/dist-sessions/{distSessionRef}\nThis resource shall support the resource URI variables defined in table 6.1.3.3.2-1.\nTable 6.1.3.3.2-1: Resource URI variables for this resource\nName\nData type\nDefinition\napiRoot\nstring\nSee clause 6.1.1\napiVersion\nstring\nSee clause 6.1.1\ndistSessionRef\nstring\nMBS distribution session reference assigned by the MBSTF during the Create service operation",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_6.1.1",
+        "table_6.1.3.3.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.581_6.1.3.3.3.1",
+      "section_id": "6.1.3.3.3.1",
+      "section_title": "PATCH",
+      "content": "This method updates an individual MBS distribution session resource in the MBSTF.\nThis method shall support the URI query parameters specified in table 6.1.3.3.3.1-1.\nTable 6.1.3.3.3.1-1: URI query parameters supported by the PATCH method on this resource\nName\nData type\nP\nCardinality\nDescription\nApplicability\nn/a\nThis method shall support the request data structures specified in table 6.1.3.3.3.1-2 and the response data structures and response codes specified in table 6.1.3.3.3.1-3.\nTable 6.1.3.3.3.1-2: Data structures supported by the PATCH Request Body on this resource\nData type\nP\nCardinality\nDescription\narray(PatchItem)\nM\n1..N\nList of changes to be made to the MBS session resource, according to the JSON PATCH format specified in IETF RFC 6902 [16].\nTable 6.1.3.3.3.1-3: Data structures supported by the PATCH Response Body on this resource\nData type\nP\nCardinality\nResponse\ncodes\nDescription\nn/a\n204 No Content\nSuccessful response\nDistSession\nM\n1\n200 OK\nUpon success, a response body containing the updated representation of Distribution Session shall be returned\nRedirectResponse\nO\n0..1\n307 Temporary Redirect\nTemporary redirection.\n(NOTE 2)\nRedirectResponse\nO\n0..1\n308 Permanent Redirect\nPermanent redirection.\n(NOTE 2)\nNOTE 1:\tThe mandatory HTTP error status code for the PATCH method listed in Table 5.2.7.1-1 of 3GPP TS 29.500 [4] also apply.\nNOTE 2:\tRedirectResponse may be inserted by an SCP, see clause 6.10.9.1 of 3GPP TS 29.500 [4].\nTable 6.1.3.3.3.1-4: Headers supported by the 307 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located on an alternative service instance within the same MBSTF or MBSTF (service) set.\nFor the case, when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target MBSTF (service) instance ID towards which the request is redirected\nTable 6.1.3.3.3.1-5: Headers supported by the 308 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located on an alternative service instance within the same MBSTF or MBSTF (service) set.\nFor the case, when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target MBSTF (service) instance ID towards which the request is redirected",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_6.10.9.1",
+        "table_6.1.3.3.3.1-1",
+        "table_6.1.3.3.3.1-2",
+        "table_6.1.3.3.3.1-3",
+        "ts_29.500_table_5.2.7.1-1",
+        "ts_29.500_table_6.1.3.3.3.1-4",
+        "table_6.1.3.3.3.1-5",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.581_6.1.3.3.3.2",
+      "section_id": "6.1.3.3.3.2",
+      "section_title": "DELETE",
+      "content": "This method deletes an individual MBS distribution session resource in the MBSTF.\nThis method shall support the URI query parameters specified in table 6.1.3.3.3.2-1.\nTable 6.1.3.3.3.2-1: URI query parameters supported by the DELETE method on this resource\nName\nData type\nP\nCardinality\nDescription\nApplicability\nn/a\nThis method shall support the request data structures specified in table 6.1.3.3.3.2-2 and the response data structures and response codes specified in table 6.1.3.3.3.2-3.\nTable 6.1.3.3.3.2-2: Data structures supported by the DELETE Request Body on this resource\nData type\nP\nCardinality\nDescription\nn/a\nTable 6.1.3.3.3.2-3: Data structures supported by the DELETE Response Body on this resource\nData type\nP\nCardinality\nResponse\ncodes\nDescription\nn/a\n204 No Content\nSuccessful response\nRedirectResponse\nO\n0..1\n307 Temporary Redirect\nTemporary redirection.\n(NOTE 2)\nRedirectResponse\nO\n0..1\n308 Permanent Redirect\nPermanent redirection.\n(NOTE 2)\nNOTE 1:\tThe mandatory HTTP error status code for the DELETE method listed in Table 5.2.7.1-1 of 3GPP TS 29.500 [4] also apply.\nNOTE 2:\tRedirectResponse may be inserted by an SCP, see clause 6.10.9.1 of 3GPP TS 29.500 [4].\nTable 6.1.3.3.3.2-4: Headers supported by the 307 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located on an alternative service instance within the same MBSTF or MBSTF (service) set.\nFor the case, when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target MBSTF (service) instance ID towards which the request is redirected\nTable 6.1.3.3.3.2-5: Headers supported by the 308 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located on an alternative service instance within the same MBSTF or MBSTF (service) set.\nFor the case, when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target MB-STF (service) instance ID towards which the request is redirected",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_6.10.9.1",
+        "table_6.1.3.3.3.2-1",
+        "table_6.1.3.3.3.2-2",
+        "table_6.1.3.3.3.2-3",
+        "ts_29.500_table_5.2.7.1-1",
+        "ts_29.500_table_6.1.3.3.3.2-4",
+        "table_6.1.3.3.3.2-5",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.581_6.1.3.3.3.3",
+      "section_id": "6.1.3.3.3.3",
+      "section_title": "GET",
+      "content": "This method retrieves an individual MBS distribution session resource in the MBSTF.\nThis method shall support the URI query parameters specified in table 6.1.3.3.3.3-1.\nTable 6.1.3.3.3.3-1: URI query parameters supported by the GET method on this resource\nName\nData type\nP\nCardinality\nDescription\nApplicability\nn/a\nThis method shall support the request data structures specified in table 6.1.3.3.3.3-2 and the response data structures and response codes specified in table 6.1.3.3.3.3-3.\nTable 6.1.3.3.3.3-2: Data structures supported by the GET Request Body on this resource\nData type\nP\nCardinality\nDescription\nn/a\nTable 6.1.3.3.3.3-3: Data structures supported by the GET Response Body on this resource\nData type\nP\nCardinality\nResponse\ncodes\nDescription\nDistSession\nM\n1\n200 OK\nSuccessful response containing representation of the MBS Distribution Session\nRedirectResponse\nO\n0..1\n307 Temporary Redirect\nTemporary redirection.\n(NOTE 2)\nRedirectResponse\nO\n0..1\n308 Permanent Redirect\nPermanent redirection.\n(NOTE 2)\nNOTE 1:\tThe mandatory HTTP error status code for the GET method listed in Table 5.2.7.1-1 of 3GPP TS 29.500 [4] also apply.\nNOTE 2:\tRedirectResponse may be inserted by an SCP, see clause 6.10.9.1 of 3GPP TS 29.500 [4].\nTable 6.1.3.3.3.3-4: Headers supported by the 307 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located on an alternative service instance within the same MBSTF or MBSTF (service) set.\nFor the case, when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target MBSTF (service) instance ID towards which the request is redirected\nTable 6.1.3.3.3.3-5: Headers supported by the 308 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located on an alternative service instance within the same MBSTF or MBSTF (service) set.\nFor the case, when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target MBSTF (service) instance ID towards which the request is redirected",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_6.10.9.1",
+        "table_6.1.3.3.3.3-1",
+        "table_6.1.3.3.3.3-2",
+        "table_6.1.3.3.3.3-3",
+        "ts_29.500_table_5.2.7.1-1",
+        "ts_29.500_table_6.1.3.3.3.3-4",
+        "table_6.1.3.3.3.3-5",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.581_6.1.3.3.4",
+      "section_id": "6.1.3.3.4",
+      "section_title": "Resource Custom Operations",
+      "content": "None.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.581_6.1.3.4.1",
+      "section_id": "6.1.3.4.1",
+      "section_title": "Description",
+      "content": "This resource represents the collection of the individual subscriptions for an MBS distribution session created in the MBSTF with StatusSubscribe service operation.\nThis resource is modelled with the Collection resource archetype (see clause C.2 of 3GPP TS 29.501 [5]).",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.581_6.1.3.4.2",
+      "section_id": "6.1.3.4.2",
+      "section_title": "Resource Definition",
+      "content": "Resource URI: {apiRoot}/nmbstf-distSession/<apiVersion>/dist-sessions/{distSessionRef}/subscriptions\nThis resource shall support the resource URI variables defined in table 6.1.3.4.2-1.\nTable 6.1.3.4.2-1: Resource URI variables for this resource\nName\nData type\nDefinition\napiRoot\nstring\nSee clause 6.1.1\napiVersion\nstring\nSee clause 6.1.1\ndistSessionRef\nstring\nMBS distribution session reference assigned by the MBSTF during the Create service operation",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_6.1.1",
+        "table_6.1.3.4.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.581_6.1.3.4.3.1",
+      "section_id": "6.1.3.4.3.1",
+      "section_title": "POST",
+      "content": "This method creates an individual subscription resource for an MBS distribution session in the MBSTF with StatusSubscribe service operation.\nThis method shall support the URI query parameters specified in table 6.1.3.4.3.1-1.\nTable 6.1.3.4.3.1-1: URI query parameters supported by the POST method on this resource\nName\nData type\nP\nCardinality\nDescription\nApplicability\nn/a\nThis method shall support the request data structures specified in table 6.1.3.4.3.1-2 and the response data structures and response codes specified in table 6.1.3.4.3.1-3.\nTable 6.1.3.4.3.1-2: Data structures supported by the POST Request Body on this resource\nData type\nP\nCardinality\nDescription\nStatusSubscribeReqData\nM\n1\nData within the StatusSubscribe Request\nTable 6.1.3.4.3.1-3: Data structures supported by the POST Response Body on this resource\nData type\nP\nCardinality\nResponse\ncodes\nDescription\nStatusSubscribeRspData\nM\n1\n201 Created\nData within the StatusSubscribe Response\nRedirectResponse\nO\n0..1\n307 Temporary Redirect\nTemporary redirection.\n(NOTE 2)\nRedirectResponse\nO\n0..1\n308 Permanent Redirect\nPermanent redirection.\n(NOTE 2)\nNOTE 1:\tThe mandatory HTTP error status code for the POST method listed in Table 5.2.7.1-1 of 3GPP TS 29.500 [4] also apply.\nNOTE 2:\tRedirectResponse may be inserted by an SCP, see clause 6.10.9.1 of 3GPP TS 29.500 [4].\nTable 6.1.3.4.3.1-4: Headers supported by the POST method on this resource\nName\nData type\nP\nCardinality\nDescription\nTable 6.1.3.4.3.1-5: Headers supported by the 201 response code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nContains the URI of the newly created resource, according to the structure: {apiRoot}/nmbstf-distSession/<apiVersion>/dist-sessions/{distSessionRef}/subscriptions/{subscriptionId}\nTable 6.1.3.4.3.1-6: Headers supported by the 307 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located on an alternative service instance within the same MBSTF or MBSTF (service) set.\nFor the case, when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target MBSTF (service) instance ID towards which the request is redirected\nTable 6.1.3.4.3.1-7: Headers supported by the 308 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located on an alternative service instance within the same MBSTF or MBSTF (service) set.\nFor the case, when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target MBSTF (service) instance ID towards which the request is redirected",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_6.10.9.1",
+        "table_6.1.3.4.3.1-1",
+        "table_6.1.3.4.3.1-2",
+        "table_6.1.3.4.3.1-3",
+        "ts_29.500_table_5.2.7.1-1",
+        "ts_29.500_table_6.1.3.4.3.1-4",
+        "table_6.1.3.4.3.1-5",
+        "table_6.1.3.4.3.1-6",
+        "table_6.1.3.4.3.1-7",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.581_6.1.3.4.4",
+      "section_id": "6.1.3.4.4",
+      "section_title": "Resource Custom Operations",
+      "content": "None.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.581_6.1.3.5.1",
+      "section_id": "6.1.3.5.1",
+      "section_title": "Description",
+      "content": "This resource represents an individual subscription for an MBS distribution session in the MBSTF, which can be deleted with StatusUnsubscribe service operation or updated with StatusSubscribe service operation.\nThis resource is modelled with the Document resource archetype (see clause C.1 of 3GPP TS 29.501 [5]).",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.581_6.1.3.5.2",
+      "section_id": "6.1.3.5.2",
+      "section_title": "Resource Definition",
+      "content": "Resource URI: {apiRoot}/nmbstf-distsession/<apiVersion>/dist-sessions/{distSessionRef}/subscriptions/{subscriptionId}\nThis resource shall support the resource URI variables defined in table 6.1.3.5.2-1.\nTable 6.1.3.5.2-1: Resource URI variables for this resource\nName\nData type\nDefinition\napiRoot\nstring\nSee clause 6.1.1\napiVersion\nstring\nSee clause 6.1.1\ndistSessionRef\nstring\nMBS distribution session reference assigned by the MBSTF during the Create service operation\nsubscriptionId\nstring\nSubscription identifier assigned by the MBSTF during the creation of the subscription",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_6.1.1",
+        "table_6.1.3.5.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.581_6.1.3.5.3.1",
+      "section_id": "6.1.3.5.3.1",
+      "section_title": "DELETE",
+      "content": "This method deletes an individual subscription resource for an MBS distribution session in the MBSTF with StatusUnsubscribe service operation.\nThis method shall support the URI query parameters specified in table 6.1.3.5.3.1-1.\nTable 6.1.3.5.3.1-1: URI query parameters supported by the DELETE method on this resource\nName\nData type\nP\nCardinality\nDescription\nApplicability\nn/a\nThis method shall support the request data structures specified in table 6.1.3.5.3.1-2 and the response data structures and response codes specified in table 6.1.3.5.3.1-3.\nTable 6.1.3.5.3.1-2: Data structures supported by the DELETE Request Body on this resource\nData type\nP\nCardinality\nDescription\nn/a\nTable 6.1.3.5.3.1-3: Data structures supported by the DELETE Response Body on this resource\nData type\nP\nCardinality\nResponse\nCodes\nDescription\nn/a\n204 No Content\nSuccessful deletion\nRedirectResponse\nO\n0..1\n307 Temporary Redirect\nTemporary redirection.\n(NOTE 2)\nRedirectResponse\nO\n0..1\n308 Permanent Redirect\nPermanent redirection.\n(NOTE 2)\nNOTE 1:\tThe mandatory HTTP error status code for the POST method listed in Table 5.2.7.1-1 of 3GPP TS 29.500 [4] also apply.\nNOTE 2:\tRedirectResponse may be inserted by an SCP, see clause 6.10.9.1 of 3GPP TS 29.500 [4].\nTable 6.1.3.5.3.1-4: Headers supported by the 307 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located on an alternative service instance within the same MBSTF or MBSTF (service) set.\nFor the case, when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target MBSTF (service) instance ID towards which the request is redirected\nTable 6.1.3.5.3.1-5: Headers supported by the 308 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located on an alternative service instance within the same MBSTF or MBSTF (service) set.\nFor the case, when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target MBSTF (service) instance ID towards which the request is redirected",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_6.10.9.1",
+        "table_6.1.3.5.3.1-1",
+        "table_6.1.3.5.3.1-2",
+        "table_6.1.3.5.3.1-3",
+        "ts_29.500_table_5.2.7.1-1",
+        "ts_29.500_table_6.1.3.5.3.1-4",
+        "table_6.1.3.5.3.1-5",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.581_6.1.3.5.3.2",
+      "section_id": "6.1.3.5.3.2",
+      "section_title": "PATCH",
+      "content": "This method updates an individual subscription resource for an MBS distribution session in the MBSTF with StatusSubscribe service operation for the subscription update (see clause 5.2.2.6.3).\nThis method shall support the URI query parameters specified in table 6.1.3.5.3.2-1.\nTable 6.1.3.5.3.2-1: URI query parameters supported by the PATCH method on this resource\nName\nData type\nP\nCardinality\nDescription\nApplicability\nn/a\nThis method shall support the request data structures specified in table 6.1.3.5.3.2-2 and the response data structures and response codes specified in table 6.1.3.5.3.2-3.\nTable 6.1.3.5.3.2-2: Data structures supported by the PATCH Request Body on this resource\nData type\nP\nCardinality\nDescription\narray(PatchItem)\nM\n1..N\nIt shall contain the list of changes to be made to the Status Subscription (i.e. DistSessionSubscription data type), according to the JSON PATCH format specified in IETF RFC 6902 [16].\nTable 6.1.3.5.3.2-3: Data structures supported by the PATCH Response Body on this resource\nData type\nP\nCardinality\nResponse\ncodes\nDescription\nDistSessionSubscription\nM\n1\n200 OK\nUpon success, a response body shall be returned containing the updated Status Subscription.\nRedirectResponse\nO\n0..1\n307 Temporary Redirect\nTemporary redirection.\n(NOTE 2)\nRedirectResponse\nO\n0..1\n308 Permanent Redirect\nPermanent redirection.\n(NOTE 2)\nNOTE 1:\tThe mandatory HTTP error status code for the POST method listed in Table 5.2.7.1-1 of 3GPP TS 29.500 [4] also apply.\nNOTE 2:\tRedirectResponse may be inserted by an SCP, see clause 6.10.9.1 of 3GPP TS 29.500 [4].\nTable 6.1.3.5.3.2-4: Headers supported by the PATCH method on this resource\nName\nData type\nP\nCardinality\nDescription\nTable 6.1.3.5.3.2-5: Headers supported by the 200 response code on this resource\nName\nData type\nP\nCardinality\nDescription\nTable 6.1.3.5.3.2-6: Headers supported by the 307 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located on an alternative service instance within the same MBSTF or MBSTF (service) set.\nFor the case, when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target MBSTF (service) instance ID towards which the request is redirected\nTable 6.1.3.5.3.2-7: Headers supported by the 308 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located on an alternative service instance within the same MBSTF or MBSTF (service) set.\nFor the case, when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target MBSTF (service) instance ID towards which the request is redirected",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_5.2.2.6.3",
+        "ts_29.500_clause_6.10.9.1",
+        "table_6.1.3.5.3.2-1",
+        "table_6.1.3.5.3.2-2",
+        "table_6.1.3.5.3.2-3",
+        "ts_29.500_table_5.2.7.1-1",
+        "ts_29.500_table_6.1.3.5.3.2-4",
+        "table_6.1.3.5.3.2-5",
+        "table_6.1.3.5.3.2-6",
+        "table_6.1.3.5.3.2-7",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.581_6.1.3.5.4",
+      "section_id": "6.1.3.5.4",
+      "section_title": "Resource Custom Operations",
+      "content": "None.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.581_6.1.4",
+      "section_id": "6.1.4",
+      "section_title": "Custom Operations without associated resources",
+      "content": "None",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.581_6.1.5.1",
+      "section_id": "6.1.5.1",
+      "section_title": "General",
+      "content": "Notifications shall comply to clause 6.2 of 3GPP TS 29.500 [4] and clause 4.6.2.3 of 3GPP TS 29.501 [5].\nTable 6.1.5.1-1: Notifications overview\nNotification\nCallback URI\nHTTP method or custom operation\nDescription\n(service operation)\nEvent Notification\nNotifUri\nPOST\nStatusNotify",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.500_clause_6.2",
+        "ts_29.500_clause_4.6.2.3",
+        "ts_29.501_table_6.1.5.1-1",
+        "ts_29.501_clause_4.6.2.3",
+        "ts_29.500",
+        "ts_29.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.581_6.1.5.2.1",
+      "section_id": "6.1.5.2.1",
+      "section_title": "Description",
+      "content": "The Event Notification is used by the NF service producer to report one or several observed Events to a NF service consumer that has subscribed to such Notifications.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.581_6.1.5.2.2",
+      "section_id": "6.1.5.2.2",
+      "section_title": "Target URI",
+      "content": "The Callback URI \"{notifUri}\" shall be used with the callback URI variables defined in table 6.1.5.2.2-1.\nTable 6.1.5.2.2-1: Callback URI variables\nName\nDefinition\nnotifUri\nString formatted as URI with the Callback Uri",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.1.5.2.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.581_6.1.5.2.3",
+      "section_id": "6.1.5.2.3",
+      "section_title": "Standard Methods",
+      "content": "6.1.5.2.3.1\tPOST\nThis method shall support the request data structures specified in table 6.1.5.2.3.1-1 and the response data structures and response codes specified in table 6.1.5.2.3.1-2.\nTable 6.1.5.2.3.1-1: Data structures supported by the POST Request Body\nData type\nP\nCardinality\nDescription\nStatusNotifyReqData\nM\n1\nData within the StatusNotify Request\nTable 6.1.5.2.3.1-2: Data structures supported by the POST Response Body\nData type\nP\nCardinality\nResponse codes\nDescription\nn/a\n204 No Content\nSuccessful response\nRedirectResponse\nO\n0..1\n307 Temporary Redirect\nTemporary redirection.\nRedirectResponse\nO\n0..1\n308 Permanent Redirect\nPermanent redirection.\nNOTE:\tThe mandatory HTTP error status codes for the POST method listed in Table 5.2.7.1-1 of 3GPP TS 29.500 [4] also apply.\nTable 6.1.5.2.3.1-3: Headers supported by the 307 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nA URI pointing to the endpoint of the NF service consumer to which the notification should be sent. For the case, when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target NF (service) instance ID towards which the request is redirected\nTable 6.1.5.2.3.1-4: Headers supported by the 308 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nA URI pointing to the endpoint of the NF service consumer to which the notification should be sent. For the case, when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target NF (service) instance ID towards which the request is redirected",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_6.10.9.1",
+        "table_6.1.5.2.3.1-1",
+        "table_6.1.5.2.3.1-2",
+        "ts_29.500_table_5.2.7.1-1",
+        "ts_29.500_table_6.1.5.2.3.1-3",
+        "table_6.1.5.2.3.1-4",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.581_6.1.6.1",
+      "section_id": "6.1.6.1",
+      "section_title": "General",
+      "content": "This clause specifies the application data model supported by the API.\nTable 6.1.6.1-1 specifies the data types defined for the Nmbstf_MBSDistributionSession service based interface protocol.\nTable 6.1.6.1-1: Nmbstf_MBSDistributionSession specific Data Types\nData type\nClause defined\nDescription\nApplicability\nCreateReqData\n6.1.6.2.2\nData within the Create Request\nCreateRspData\n6.1.6.2.3\nData within the Create Response\nDistSession\n6.1.6.2.4\nData specific to distribution session\nObjDistributionData\n6.1.6.2.5\nData specific to Object Distribution Method\nPktDistributionData\n6.1.6.2.6\nData specific to Packet Distribution Method\nStatusSubscribeReqData\n6.1.6.2.7\nData within Subscription creation request\nStatusSubscribeRspData\n6.1.6.2.8\nData within Subscription creation response\nStatusNotifyReqData\n6.1.6.2.9\nData within Notification request\nDistSessionSubscription\n6.1.6.2.10\nData specific to subscription request\nDistSessionEventReportList\n6.1.6.2.11\nMBS distribution session event report list\nDistSessionEventReport\n6.1.6.2.12\nMBS distribution session event report\nUpTrafficFlowInfo\n6.1.6.2.13\nIP Multicast Address and Port Number\nMbStfIngestAddr\n6.1.6.2.14\nMBSTF Ingest Addresses\nExtSsm\n6.1.6.2.15\nSSM and Port Number\nDistSessionState\n6.1.6.3.3\nMBS distribution session state\nObjDistributionOperatingMode\n6.1.6.3.4\nOperating Mode for Object distribution method\nObjAcquisitionMethod\n6.1.6.3.5\nObject acquisition method\nPktDistributionOperatingMode\n6.1.6.3.6\nOperating Mode for Packet distribution method\nDistSessionEventType\n6.1.6.3.7\nMBS distribution session event type\nPktIngestMethod\n6.1.6.3.8\nPacket Ingest Method\nTable 6.1.6.1-2 specifies data types re-used by the Nmbstf_MBSDistributionSession service based interface protocol from other specifications, including a reference to their respective specifications and when needed, a short description of their use within the Nmbstf_MBSDistributionSession service based interface.\nTable 6.1.6.1-2: Nmbstf_MBSDistributionSession re-used Data Types\nData type\nReference\nComments\nApplicability\nTunnelAddress\n3GPP TS 29.571 [16]\nTunnel Address (UDP/IP)\nBitRate\n3GPP TS 29.571 [16]\nBit Rate\nPacketDelBudget\n3GPP TS 29.571 [16]\nMaximum Delay\nUri\n3GPP TS 29.571 [16]\nUniform resource identifier\nDateTime\n3GPP TS 29.571 [16]\nData and Time\nNfInstanceId\n3GPP TS 29.571 [16]\nNF Instance Identifier\nUinteger\n3GPP TS 29.571 [16]\nUnsigned Integer\nIpAddr\n3GPP TS 29.571 [16]\nIP Address\nSsm\n3GPP TS 29.571 [16]\nSource Specific Multicast Address\nFECConfig\n3GPP TS 29.580 [18]\nFEC Configuration\nRedirectResponse\n3GPP TS 29.571 [16]\nContains redirection related information.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "table_6.1.6.1-1",
+        "table_6.1.6.1-2",
+        "ts_29.571",
+        "ts_29.580"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.581_6.1.6.2.1",
+      "section_id": "6.1.6.2.1",
+      "section_title": "Introduction",
+      "content": "This clause defines the structures to be used in resource representations.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.581_6.1.6.2.2",
+      "section_id": "6.1.6.2.2",
+      "section_title": "Type: CreateReqData",
+      "content": "Table 6.1.6.2.2-1: Definition of type CreateReqData\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\ndistSession\nDistSession\nM\n1\nMBS Distribution Session to be created.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.1.6.2.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.581_6.1.6.2.3",
+      "section_id": "6.1.6.2.3",
+      "section_title": "Type: CreateRspData",
+      "content": "Table 6.1.6.2.3-1: Definition of type CreateRspData\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\ndistSession\nDistSession\nM\n1\nRepresentation of the created MBS session",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.1.6.2.3-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.581_6.1.6.2.4",
+      "section_id": "6.1.6.2.4",
+      "section_title": "Type: DistSession",
+      "content": "Table 6.1.6.2.4-1: Definition of type DistSession\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\ndistSessionId\nstring\nM\n1\nAn identifier for this MBS Distribution Session assigned by the MBSF that is unique within the scope of the MBS User Service (see clause 4.5.3 of 3GPP TS 26.502)\ndistSessionState\nDistSessionState\nM\n1\nThe current state of the MBS Distribution Session (see clause 4.6.1 of 3GPP TS 26.502)\nmbUpfTunAddr\nTunnelAddress\nM\n1\nThe tunnel endpoint address of the MB‑UPF that supports this MBS Distribution Session at reference point Nmb9 or the tunnel endpoint address of the MBMS-GW at reference point SGi-mb.\nWrite-Only: true\nmbmsGwTunAddr\nTunnelAddress\nO\n0..1\nThis IE may be present to contain the tunnel endpoint address of the MBMS-GW at reference point SGi-mb when the mbUpfTunAddr is also present which contains the tunnel endpoint address of the MB‑UPF that supports this MBS Distribution Session at reference point Nmb9.\nWrite-Only: true\nupTrafficFlowInfo\nUpTrafficFlowInfo\nC\n0..1\nDetails of the traffic flow to be used by the MBSTF for this MBS Distribution Session, including the multicast group destination address and port number.\nShall be present in case of Object Distribution Method and Packet Distribution Method in Packet Proxy Mode.\nWrite-Only: true\nmbr\nBitRate\nM\n1\nThe maximum bit rate for this MBS Distribution Session\nWrite-Only: true\nmaxDelay\nPacketDelBudget\nO\n0..1\nThe maximum end-to-end distribution delay that is tolerated for this MBS Distribution Session by the MBS Application Provider\nWrite-Only: true\nobjDistributionData\nObjDistributionData\nC\n0..1\nAdditional MBS Distribution Session parameters for Object Distribution Method (NOTE 1)\npktDistributionData\nPktDistributionData\nC\n0..1\nAdditional MBS Distribution Session parameters for Packet Distribution Method (NOTE 1)\nfecInformation\nFECConfig\nO\n0..1\nConfiguration for FEC information added by the MBSTF to protect this MBS Distribution Session.\ndscpMarking\nstring\nO\n0..1\nDSCP Marking to be applied to outgoing traffic.\nIt shall be encoded as two octet string in hexadecimal representation. The first octet shall contain the DSCP value in the IPv4 Type-of-Service or the IPv6 Traffic-Class field and the second octet shall contain the ToS/Traffic Class mask field, which shall be set to \"0xFC\".\nWrite-Only: true\ndistSessionSubscription\nDistSessionSubscription\nO\n0..1\nContains the parameters to request the creation of a subscription to one or more event(s) related to the MBS distribution session.\nNOTE 1:\tEither the objDistributionData IE or the pktDistributionData IE shall be present in a request/response.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_26.502_clause_4.5.3",
+        "ts_26.502_clause_4.6.1",
+        "table_6.1.6.2.4-1",
+        "ts_26.502"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.581_6.1.6.2.5",
+      "section_id": "6.1.6.2.5",
+      "section_title": "Type: ObjDistributionData",
+      "content": "Table 6.1.6.2.5-1: Definition of type ObjDistributionData\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\nobjDistributionOperatingMode\nObjDistributionOperatingMode\nM\n1\nOperating Mode for the Object distribution method\nobjAcquisitionMethod\nObjAcquisitionMethod\nM\n1\nIndicates whether the objects(s) are to be pushed into the MBSTF by the MBS Application Provider or whether they are to be pulled from the MBS Application Provider by the MBSTF\nobjAcquisitionIdsPull\narray(Uri)\nC\n1..N\nRepresents the URL(s) (expressed as path(es) relative to the object ingest base URL provided in the \"objIngestBaseUrl\" attribute) pointing to the root object(s) to be pulled by the MBSTF and then distributed during this MBS Distribution Session.\nThis attribute shall be provided, when available.\nSee clause 6.1 of 3GPP TS 26.502 [17]\n(NOTE 2, NOTE 5)\nobjAcquisitionIdPush\nUri\nC\n0..1\nRepresents the URL (expressed as a path relative to the object ingest base URL provided in the \"objIngestBaseUrl\" attribute) pointing to the root object(s) to be pushed to the MBSTF and then distributed during this MBS Distribution Session.\nThis attribute shall be provided, when available.\nSee clause 6.1 of 3GPP TS 26.502 [17]\n(NOTE 2, NOTE 5)\nobjIngestBaseUrl\nUri\nC\n0..1\nRepresents the object ingest base URL. It contains a URL prefix that is replaced by the object distribution base URL by the MBSTF to derive the object distribution URI prior to the distribution of ingested objects.\nShall be present if the object Distribution base URL (within the \"objDistributionBaseUrl\") is present.\n(NOTE 3, NOTE 4)\nobjDistributionBaseUrl\nUri\nO\n0..1\nRepresents the object distribution base URL. It contains a URL prefix with which the MBSTF replaces the object ingest base URL to derive the object distribution URL prior to the distribution of ingested objects.\n(NOTE 4)\nNOTE 1:\tvoid.\nNOTE 2:\tEither the \"objAcquisitionIdsPull\" attribute or the \"objAcquisitionIdsPush\" attribute shall be provided, when available.\nNOTE 3:\tWhen the \"objAcquisitionMethod\" attribute is set to \"PULL\", this attribute may be provided by the MBSF during the creation and/or update/modification of the MBS Distribution Session (if received from the AF). When the \"objAcquisitionMethod\" attribute is set to \"PUSH\", this attribute may be provided by the MBSTF in the response to the creation and/or update/modification request of the MBS Distribution Session.\nNOTE 4:\tWhen the \"objDistributionBaseUrl\" attribute is omitted, nothing is replaced/removed from the object ingest URL when deriving the object distribution URL.\nNOTE 5:\tFor group message delivery, the NEF transforms the group message payload into a file, so as an object to be ingested and distributed by the MBSTF using PULL or PUSH Method as specified in 3GPP TS 23.247 [15].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_26.502_clause_6.1",
+        "table_6.1.6.2.5-1",
+        "ts_26.502",
+        "ts_23.247"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.581_6.1.6.2.6",
+      "section_id": "6.1.6.2.6",
+      "section_title": "Type: PktDistributionData",
+      "content": "Table 6.1.6.2.6-1: Definition of type PktDistributionData\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\npktDistributionOperatingMode\nPktDistributionOperatingMode\nM\n1\nOperating Mode for the Packet distribution method\npktIngestMethod\nPktIngestMethod\nC\n1\nIndicates whether packets are ingested using multicast or unicast ingest. It shall be present if operating mode of the packet distribution method is set to \"PACKET_PROXY\".\nmbStfIngestAddr\nMbStfIngestAddr\nM\n1\nThe endpoint addresses used by the MBS Application Provider and MBSTF to establish a connection at reference point Nmb8 prior to the commencement of MBS User Data Ingest Session.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.1.6.2.6-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.581_6.1.6.2.7",
+      "section_id": "6.1.6.2.7",
+      "section_title": "Type: StatusSubscribeReqData",
+      "content": "Table 6.1.6.2.7-1: Definition of type StatusSubscribeReqData\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\nsubscription\nDistSessionSubscription\nM\n1\nSubscription to be created",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.1.6.2.7-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.581_6.1.6.2.8",
+      "section_id": "6.1.6.2.8",
+      "section_title": "Type: StatusSubscribeRspData",
+      "content": "Table 6.1.6.2.8-1: Definition of type StatusSubscribeRspData\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\nsubscription\nDistSessionSubscription\nM\n1\nSubscription created\nreportList\nDistSessionEventReportList\nC\n0..1\nImmediate event reports, if requested in the request and if corresponding information is available.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.1.6.2.8-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.581_6.1.6.2.9",
+      "section_id": "6.1.6.2.9",
+      "section_title": "Type: StatusNotifyReqData",
+      "content": "Table 6.1.6.2.9-1: Definition of type StatusSubscribeReqData\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\nreportList\nDistSessionEventReportList\nM\n1\nReported MBS session events",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.1.6.2.9-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.581_6.1.6.2.10",
+      "section_id": "6.1.6.2.10",
+      "section_title": "Type: DistSessionSubscription",
+      "content": "Table 6.1.6.2.10-1: Definition of type DistSessionSubscription\nAttribute name\nData type\nP\nCardinality\nDescription\neventList\narray(DistSessionEventType)\nM\n1..N\nList of MBS distribution session events subscribed\nnotifyUri\nUri\nM\n1\nURI where the NF service consumer requests to receive notifications.\nWrite-Only: true\nnotifyCorrelationId\nstring\nO\n0..1\nNotification Correlation ID\nWrite-Only: true\nexpiryTime\nDateTime\nO\n0..1\nWhen present in the subscription creation request, it shall indicate the time up to which the subscription is desired to be kept active and after which the subscribed events shall stop generating notifications.\nWhen present in a subscription response, it shall indicate the expiry time after which the subscription becomes invalid.\nnfcInstanceId\nNfInstanceId\nC\n0..1\nNF Instance ID of the NF Service Consumer\nThis IE shall be present if available.\nWrite-Only: true\ndistSessionSubscUri\nUri\nC\n0..1\nThis IE shall be present in the response to an MBS distribution session creation request that includes a subscription to events about the MBS distribution session and the subscription was created successfully. When present, it shall contain the URI of the individual subscription resource.\nRead-Only: true\n(NOTE)\nNOTE:\tWhen an MBS distribution session status subscription is created separately (i.e. after) an MBS distribution session creation, the Location header returned in the MBS distribution session status subscription creation response contains the URI of the created subscription.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.1.6.2.10-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.581_6.1.6.2.11",
+      "section_id": "6.1.6.2.11",
+      "section_title": "Type: DistSessionEventReportList",
+      "content": "Table 6.1.6.2.11-1: Definition of type DistSessionEventReportList\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\neventReportList\narray(DistSessionEventReport)\nM\n1..N\nList of MBS distribution session events to report\nnotifyCorrelationId\nstring\nC\n0..1\nNotification Correlation ID.\nThis IE shall be present if a Notification Correlation ID is available in the subscription.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.1.6.2.11-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.581_6.1.6.2.12",
+      "section_id": "6.1.6.2.12",
+      "section_title": "Type: DistSessionEventReport",
+      "content": "Table 6.1.6.2.12-1: Definition of type DistSessionEventReport\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\neventType\nDistSessionEventType\nM\n1\nMBS distribution session event type\ntimeStamp\nDateTime\nC\n0..1\nThis IE shall contain the time at which the event is generated. This IE should be present, if available.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.1.6.2.12-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.581_6.1.6.2.13",
+      "section_id": "6.1.6.2.13",
+      "section_title": "Type: UpTrafficFlowInfo",
+      "content": "Table 6.1.6.2.13-1: Definition of type UpTrafficFlowInfo\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\ndestIpAddr\nIpAddr\nM\n1\nMulticast group destination Address\nportNumber\nUinteger\nM\n1\nPort Number",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "table_6.1.6.2.13-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.581_6.1.6.2.14",
+      "section_id": "6.1.6.2.14",
+      "section_title": "Type: MbStfIngestAddr",
+      "content": "Table 6.1.6.2.14-1: Definition of type MbStfIngestAddr\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\nafEgressTunAddr\nTunnelAddress\nC\n0..1\nAF side endpoint address and port for establishment of unicast tunnel at reference point Nmb8 prior to the commencement of MBS User Data Ingest Session.\nThe MBSTF shall use this information to validate the source IP address and port of incoming packets pertaining to the MBS User Data Ingest Session from the MBS Application Provider.\nThis IE shall be included if the packet distribution method is used and when the operating mode is set to \"PACKET_FORWARD_ONLY\", or when the operating mode is set to \"PACKET_PROXY\" while the packet ingest method is set to \"UNICAST\".\nThis shall be present only in the Create request over the Nmb2, Nmb10 and Nmb5 interfaces.\nWrite-Only: true\nmbStfIngressTunAddr\nTunnelAddress\nC\n0..1\nMBSTF side endpoint address and port for establishment of unicast tunnel at reference point Nmb8 prior to the commencement of MBS User Data Ingest Session.\nIt is applicable only if operating mode of the packet distribution method is set to \"PACKET_FORWARD_ONLY\".\nThis shall be present only in either the response to the Create (or Retrieve) request over the Nmb2, Nmb10 and Nmb5 interfaces, or a notification request over the Nmb10 and Nmb5 interfaces.\nRead-Only: true\nafSsm\nExtSsm\nC\n0..1\nAF side Source specific multicast address and port to which MBSTF issues an IGMP Join to ingest multicast UDP/IP datagrams.\nIt is applicable only if operating mode of the packet distribution method is set to \"PACKET_PROXY\" and packet ingest method is set to \"MULTICAST\".\nThis shall be present only in the Create request over the Nmb2, Nmb10 and Nmb5 interfaces.\nWrite-Only: true\nmbStfListenAddr\nTunnelAddress\nC\n0..1\nMBSTF side endpoint address and port for to receive unicast-addressed UDP/IP datagrams.\nIt is applicable only if operating mode of the packet distribution method is set to \"PACKET_PROXY\" and packet ingest method is set to \"UNICAST\".\nThis shall be present only in the response to the Create (or Retrieve) request over the Nmb2, Nmb10 and Nmb5 interfaces, or a notification request over the Nmb10 and Nmb5 interfaces.\nRead-Only: true",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.1.6.2.14-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.581_6.1.6.2.15",
+      "section_id": "6.1.6.2.15",
+      "section_title": "Type: ExtSsm",
+      "content": "Table 6.1.6.2.15-1: Definition of type ExtSsm\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\nssm\nSsm\nM\n1\nSource Specific Multicast Address consisting of multicast source IP address and the destination multicast address\nportNumber\nUinteger\nM\n1\nSource Port",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.1.6.2.15-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.581_6.1.6.3.1",
+      "section_id": "6.1.6.3.1",
+      "section_title": "Introduction",
+      "content": "This clause defines simple data types and enumerations that can be referenced from data structures defined in the previous clauses.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.581_6.1.6.3.2",
+      "section_id": "6.1.6.3.2",
+      "section_title": "Simple data types",
+      "content": "None",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.581_6.1.6.3.3",
+      "section_id": "6.1.6.3.3",
+      "section_title": "Enumeration: DistSessionState",
+      "content": "The enumeration DistSessionState represents the current state of the MBS Distribution Session. It shall comply with the values defined in table 6.1.6.3.3-1.\nTable 6.1.6.3.3-1: Enumeration DistSessionState\nEnumeration value\nDescription\nApplicability\n\"INACTIVE\"\nDistribution Session in Inactive\n\"ESTABLISHED\"\nDistribution Session in Established\n\"ACTIVE\"\nDistribution Session in Active\n\"DEACTIVATING\"\nDistribution Session in Released",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.1.6.3.3-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.581_6.1.6.3.4",
+      "section_id": "6.1.6.3.4",
+      "section_title": "Enumeration: ObjDistributionOperatingMode",
+      "content": "The enumeration ObjDistributionOperatingMode defines the mode of data ingestion for Object distribution method. It shall comply with the values defined in table 6.1.6.3.4-1.\nTable 6.1.6.3.4-1: Enumeration ObjDistributionOperatingMode\nEnumeration value\nDescription\nApplicability\n\"SINGLE\"\nEach object ingested by the MBSTF is distributed once\n\"COLLECTION\"\nA set of objects described by a manifest is ingested by the MBSTF and distributed once\n\"CAROUSEL\"\nA set of one or more objects described by a manifest is ingested by the MBSTF and distributed according to a repetition pattern specified in the manifest\n\"STREAMING\"\nA sequence of objects is ingested by the MBSTF and streamed in real time",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.1.6.3.4-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.581_6.1.6.3.5",
+      "section_id": "6.1.6.3.5",
+      "section_title": "Enumeration: ObjAcquisitionMethod",
+      "content": "The enumeration ObjAcquisitionMethod indicates whether the objects(s) are to be pushed into the MBSTF by the MBS Application Provider or whether they are to be pulled from the MBS Application Provider by the MBSTF. It shall comply with the values defined in table 6.1.6.3.5-1.\nTable 6.1.6.3.5-1: Enumeration ObjAcquisitionMethod\nEnumeration value\nDescription\nApplicability\n\"PULL\"\nMBSTF Pulls objects from AF/AS\n\"PUSH\"\nAF/AS Pushes objects into MBSTF",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.1.6.3.5-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.581_6.1.6.3.6",
+      "section_id": "6.1.6.3.6",
+      "section_title": "Enumeration: PktDistributionOperatingMode",
+      "content": "The enumeration PktDistributionOperatingMode defines the mode of data ingestion for Packet distribution method. It shall comply with the values defined in table 6.1.6.3.6-1.\nTable 6.1.6.3.6-1: Enumeration PktDistributionOperatingMode\nEnumeration value\nDescription\nApplicability\n\"PACKET_PROXY\"\nThe payloads of UDP packets ingested by the MBSTF are forwarded to the MB-UPF in new UDP packets (Layer 4 proxying)\n\"PACKET_FORWARD_ONLY\"\nThe payloads of IP packets ingested by the MBSTF are forwarded to the MB-UPF in new IP packets (Layer 3 proxying)",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.1.6.3.6-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.581_6.1.6.3.7",
+      "section_id": "6.1.6.3.7",
+      "section_title": "Enumeration: DistSessionEventType",
+      "content": "The enumeration DistSessionEventType defines the status of the MBS distribution session that NF consumer wants to subscribe to. It shall comply with the values defined in table 6.1.6.3.7-1.\nTable 6.1.6.3.7-1: Enumeration DistSessionEventType\nEnumeration value\nDescription\nApplicability\n\"DATA_INGEST_FAILURE\"\nMBSTF failed to ingest data from AF/AS\n\"SESSION_DEACTIVATED\"\nSession released in MBSTF\n\"SESSION_ACTIVATED\"\nDelivery started towards MB-UPF\n\"SERVICE_MANAGEMENT_FAILURE\"\nMBS distribution session failed to start\n\"DATA_INGEST_SESSION_ESTABLISHED\"\nMBSTF successfully established the User Data Ingest Session corresponding to the distribution session.\n\"DATA_INGEST_SESSION_TERMINATED\"\nMBSTF stopped the User Data Ingest Session corresponding to the distribution session at the end of the current active period.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.1.6.3.7-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.581_6.1.6.3.8",
+      "section_id": "6.1.6.3.8",
+      "section_title": "Enumeration: PktIngestMethod",
+      "content": "The enumeration PktIngestMethod defines the mode of data ingestion for Packet distribution method. It shall comply with the values defined in table 6.1.6.3.8-1.\nTable 6.1.6.3.8-1: Enumeration PktIngestMethod\nEnumeration value\nDescription\nApplicability\n\"MULTICAST\"\nMulticast Ingest Mode\n\"UNICAST\"\nUnicast Ingest Mode",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.1.6.3.8-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.581_6.1.6.4",
+      "section_id": "6.1.6.4",
+      "section_title": "Data types describing alternative data types or combinations of data types",
+      "content": "None",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.581_6.1.6.5",
+      "section_id": "6.1.6.5",
+      "section_title": "Binary data",
+      "content": "None",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.581_6.1.7.1",
+      "section_id": "6.1.7.1",
+      "section_title": "General",
+      "content": "For the Nmbstf-distsession API, HTTP error responses shall be supported as specified in clause 4.8 of 3GPP TS 29.501 [5]. Protocol errors and application errors specified in table 5.2.7.2-1 of 3GPP TS 29.500 [4] shall be supported for an HTTP method if the corresponding HTTP status codes are specified as mandatory for that HTTP method in table 5.2.7.1-1 of 3GPP TS 29.500 [4].\nIn addition, the requirements in the following clauses are applicable for the Nmbstf-distsession API.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.501_clause_4.8",
+        "ts_29.500_table_5.2.7.2-1",
+        "ts_29.500_table_5.2.7.1-1",
+        "ts_29.501",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.581_6.1.7.2",
+      "section_id": "6.1.7.2",
+      "section_title": "Protocol Errors",
+      "content": "No specific procedures for the Nmbstf-distsession service are specified.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.581_6.1.7.3",
+      "section_id": "6.1.7.3",
+      "section_title": "Application Errors",
+      "content": "The application errors defined for the Nmbstf-distsession service are listed in Table 6.1.7.3-1.\nTable 6.1.7.3-1: Application errors\nApplication Error\nHTTP status code\nDescription",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.1.7.3-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.581_6.1.8",
+      "section_id": "6.1.8",
+      "section_title": "Feature negotiation",
+      "content": "The optional features in table 6.1.8-1 are defined for the Nmbstf-distsession API. They shall be negotiated using the extensibility mechanism defined in clause 6.6 of 3GPP TS 29.500 [4].\nTable 6.1.8-1: Supported Features\nFeature number\nFeature Name\nDescription",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_6.6",
+        "table_6.1.8-1",
+        "ts_29.500_table_6.1.8-1",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.581_6.1.9",
+      "section_id": "6.1.9",
+      "section_title": "Security",
+      "content": "As indicated in 3GPP TS 33.501 [8] and 3GPP TS 29.500 [4], the access to the Nmbstf-distsession API may be authorized by means of the OAuth2 protocol (see IETF RFC 6749 [9]), based on local configuration, using the \"Client Credentials\" authorization grant, where the NRF (see 3GPP TS 29.510 [10]) plays the role of the authorization server.\nIf OAuth2 is used, an NF Service Consumer, prior to consuming services offered by the Nmbstf-distsession API, shall obtain a \"token\" from the authorization server, by invoking the Access Token Request service, as described in 3GPP TS 29.510 [10], clause 5.4.2.2.\nNOTE:\tWhen multiple NRFs are deployed in a network, the NRF used as authorization server is the same NRF that the NF Service Consumer used for discovering the Nmbstf-distsession service.\nThe Nmbstf-distsession API defines a single scope \"nmbstf-distsession \" for the entire service, and it does not define any additional scopes at resource or operation level.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.510_clause_5.4.2.2",
+        "ts_33.501",
+        "ts_29.500",
+        "ts_29.510"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.581_6.1.10",
+      "section_id": "6.1.10",
+      "section_title": "HTTP redirection",
+      "content": "An HTTP request may be redirected to a different MBSTF service instance within the same MBSTF, or to a different MBSTF of an MBSTF set, when using direct or indirect communications (see 3GPP TS 29.500 [4]).\nAn SCP that reselects a different MBSTF producer instance will return the NF Instance ID of the new MBSTF producer instance in the 3gpp-Sbi-Producer-Id header, as specified in clause 6.10.3.4 of 3GPP TS 29.500 [4].\nIf an MBSTF redirects a service request to a different MBSTF using an 307 Temporary Redirect or 308 Permanent Redirect status code, the identity of the new MBSTF towards which the service request is redirected shall be indicated in the 3gpp-Sbi-Target-Nf-Id header of the 307 Temporary Redirect or 308 Permanent Redirect response as specified in clause 6.10.9.1 of 3GPP TS 29.500 [4].\nAnnex A (normative):OpenAPI specification\nA.1\tGeneral\nThis Annex specifies the formal definition of the API(s) defined in the present specification. It consists of OpenAPI specifications in YAML format.\nThis Annex takes precedence when being discrepant to other parts of the specification with respect to the encoding of information elements and methods within the API(s).\nNOTE 1:\tThe semantics and procedures, as well as conditions, e.g. for the applicability and allowed combinations of attributes or values, not expressed in the OpenAPI definitions but defined in other parts of the specification also apply.\nInformative copies of the OpenAPI specification files contained in this 3GPP Technical Specification are available on a Git-based repository that uses the GitLab software version control system (see 3GPP TS 29.501 [5] clause 5.3.1 and 3GPP TR 21.900 [7] clause 5B).\nA.2\tNmbstf_DistSession API\nopenapi: 3.0.0\ninfo:\ntitle: Nmbstf-distsession\nversion: 1.1.0\ndescription: |\nMBSTF Distribution Session Service.\n© 2024, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).\nAll rights reserved.\nexternalDocs:\ndescription: 3GPP TS 29.581 V18.5.0; 5G System; MBSDistribution Service.\nurl: https://www.3gpp.org/ftp/Specs/archive/29_series/29.581/\nservers:\n- url: '{apiRoot}/nmbstf-distsession/v1'\nvariables:\napiRoot:\ndefault: https://example.com\ndescription: apiRoot as defined in clause 4.4 of 3GPP TS 29.501\nsecurity:\n- {}\n- oAuth2ClientCredentials:\n- nmbstf-distsession\npaths:\n/dist-sessions:\npost:\nsummary:  Create\ntags:\n- MBS distribution sessions collection\noperationId: Create\nrequestBody:\ndescription: >\nRepresentation of the MBS distribution session to be created in the MBSTF\nCreates an individual MBS distribution session resource in the MBSTF.\nrequired: true\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/CreateReqData'\nresponses:\n'201':\ndescription: >\nSuccessful creation of an MBS session\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/CreateRspData'\nheaders:\nLocation:\ndescription: >\n'Contains the URI of the newly created resource, according to the structure:\n{apiRoot}/nmbstf-distsession/<apiVersion>/dist-sessions/{distSessionRef}'\nrequired: true\nschema:\ntype: string\n'307':\n$ref: 'TS29571_CommonData.yaml#/components/responses/307'\n'308':\n$ref: 'TS29571_CommonData.yaml#/components/responses/308'\n'400':\n$ref: 'TS29571_CommonData.yaml#/components/responses/400'\n'401':\n$ref: 'TS29571_CommonData.yaml#/components/responses/401'\n'403':\n$ref: 'TS29571_CommonData.yaml#/components/responses/403'\n'404':\n$ref: 'TS29571_CommonData.yaml#/components/responses/404'\n'411':\n$ref: 'TS29571_CommonData.yaml#/components/responses/411'\n'413':\n$ref: 'TS29571_CommonData.yaml#/components/responses/413'\n'415':\n$ref: 'TS29571_CommonData.yaml#/components/responses/415'\n'429':\n$ref: 'TS29571_CommonData.yaml#/components/responses/429'\n'500':\n$ref: 'TS29571_CommonData.yaml#/components/responses/500'\n'502':\n$ref: 'TS29571_CommonData.yaml#/components/responses/502'\n'503':\n$ref: 'TS29571_CommonData.yaml#/components/responses/503'\ndefault:\n$ref: 'TS29571_CommonData.yaml#/components/responses/default'\n/dist-sessions/{distSessionRef}:\npatch:\nsummary:  Updates an individual MBS distribution session resource in the MBSTF.\ntags:\n- Individual MBS distribution session\noperationId: Update\nparameters:\n- name: distSessionRef\nin: path\nrequired: true\ndescription: Unique ID of the MBS distribution session\nschema:\ntype: string\nrequestBody:\ndescription: Data within the Update Request\nrequired: true\ncontent:\napplication/json-patch+json:\nschema:\ntype: array\nitems:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/PatchItem'\nminItems: 1\nresponses:\n'204':\ndescription: >\nSuccessful modification of the MBS distribution session without content in the response.\n'200':\ndescription: >\nSuccessful response containing the updated representation of Distribution Session.\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/DistSession'\n'307':\n$ref: 'TS29571_CommonData.yaml#/components/responses/307'\n'308':\n$ref: 'TS29571_CommonData.yaml#/components/responses/308'\n'400':\n$ref: 'TS29571_CommonData.yaml#/components/responses/400'\n'401':\n$ref: 'TS29571_CommonData.yaml#/components/responses/401'\n'403':\n$ref: 'TS29571_CommonData.yaml#/components/responses/403'\n'404':\n$ref: 'TS29571_CommonData.yaml#/components/responses/404'\n'411':\n$ref: 'TS29571_CommonData.yaml#/components/responses/411'\n'413':\n$ref: 'TS29571_CommonData.yaml#/components/responses/413'\n'415':\n$ref: 'TS29571_CommonData.yaml#/components/responses/415'\n'429':\n$ref: 'TS29571_CommonData.yaml#/components/responses/429'\n'500':\n$ref: 'TS29571_CommonData.yaml#/components/responses/500'\n'502':\n$ref: 'TS29571_CommonData.yaml#/components/responses/502'\n'503':\n$ref: 'TS29571_CommonData.yaml#/components/responses/503'\ndefault:\n$ref: 'TS29571_CommonData.yaml#/components/responses/default'\ndelete:\nsummary:  Deletes an individual MBS distribution session resource in the MBSTF.\ntags:\n- Individual MBS distribution session\noperationId: Destroy\nparameters:\n- name: distSessionRef\nin: path\nrequired: true\ndescription: Unique ID of the MBS distribution session\nschema:\ntype: string\nresponses:\n'204':\ndescription: >\nSuccessful release of the MBS distribution session without content in the response.\n'307':\n$ref: 'TS29571_CommonData.yaml#/components/responses/307'\n'308':\n$ref: 'TS29571_CommonData.yaml#/components/responses/308'\n'400':\n$ref: 'TS29571_CommonData.yaml#/components/responses/400'\n'401':\n$ref: 'TS29571_CommonData.yaml#/components/responses/401'\n'403':\n$ref: 'TS29571_CommonData.yaml#/components/responses/403'\n'404':\n$ref: 'TS29571_CommonData.yaml#/components/responses/404'\n'429':\n$ref: 'TS29571_CommonData.yaml#/components/responses/429'\n'500':\n$ref: 'TS29571_CommonData.yaml#/components/responses/500'\n'502':\n$ref: 'TS29571_CommonData.yaml#/components/responses/502'\n'503':\n$ref: 'TS29571_CommonData.yaml#/components/responses/503'\ndefault:\n$ref: 'TS29571_CommonData.yaml#/components/responses/default'\nget:\nsummary:  Retrieves an individual MBS distribution session resource in the MBSTF.\ntags:\n- Individual MBS distribution session\noperationId: Retrieve\nparameters:\n- name: distSessionRef\nin: path\nrequired: true\ndescription: Unique ID of the MBS distribution session\nschema:\ntype: string\nresponses:\n'200':\ndescription: successful retrieval of MBS distribution session parameters\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/DistSession'\n'307':\n$ref: 'TS29571_CommonData.yaml#/components/responses/307'\n'308':\n$ref: 'TS29571_CommonData.yaml#/components/responses/308'\n'400':\n$ref: 'TS29571_CommonData.yaml#/components/responses/400'\n'401':\n$ref: 'TS29571_CommonData.yaml#/components/responses/401'\n'403':\n$ref: 'TS29571_CommonData.yaml#/components/responses/403'\n'404':\n$ref: 'TS29571_CommonData.yaml#/components/responses/404'\n'429':\n$ref: 'TS29571_CommonData.yaml#/components/responses/429'\n'500':\n$ref: 'TS29571_CommonData.yaml#/components/responses/500'\n'502':\n$ref: 'TS29571_CommonData.yaml#/components/responses/502'\n'503':\n$ref: 'TS29571_CommonData.yaml#/components/responses/503'\ndefault:\n$ref: 'TS29571_CommonData.yaml#/components/responses/default'\n/dist-sessions/{distSessionRef}/subscriptions:\npost:\nsummary:  StatusSubscribe creating a subscription\ntags:\n- Subscriptions collection for MBS distribution session\noperationId: StatusSubscribe\nparameters:\n- name: distSessionRef\nin: path\nrequired: true\ndescription: Unique ID of the MBS distribution session\nschema:\ntype: string\nrequestBody:\ndescription: Data within the StatusSubscribe Request\nrequired: true\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/StatusSubscribeReqData'\nresponses:\n'201':\ndescription: Data within a successful StatusSubscribe Response\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/StatusSubscribeRspData'\n'307':\n$ref: 'TS29571_CommonData.yaml#/components/responses/307'\n'308':\n$ref: 'TS29571_CommonData.yaml#/components/responses/308'\n'400':\n$ref: 'TS29571_CommonData.yaml#/components/responses/400'\n'401':\n$ref: 'TS29571_CommonData.yaml#/components/responses/401'\n'403':\n$ref: 'TS29571_CommonData.yaml#/components/responses/403'\n'404':\n$ref: 'TS29571_CommonData.yaml#/components/responses/404'\n'411':\n$ref: 'TS29571_CommonData.yaml#/components/responses/411'\n'413':\n$ref: 'TS29571_CommonData.yaml#/components/responses/413'\n'415':\n$ref: 'TS29571_CommonData.yaml#/components/responses/415'\n'429':\n$ref: 'TS29571_CommonData.yaml#/components/responses/429'\n'500':\n$ref: 'TS29571_CommonData.yaml#/components/responses/500'\n'502':\n$ref: 'TS29571_CommonData.yaml#/components/responses/502'\n'503':\n$ref: 'TS29571_CommonData.yaml#/components/responses/503'\ndefault:\n$ref: 'TS29571_CommonData.yaml#/components/responses/default'\ncallbacks:\nstatusNotification:\n'{$request.body#/notifUri}':\npost:\nparameters:\n- name: Content-Encoding\nin: header\ndescription: Content-Encoding, described in IETF RFC 9110\nschema:\ntype: string\nrequestBody:\ndescription: Notification Payload\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/StatusNotifyReqData'\nresponses:\n'204':\ndescription: Expected response to a successful callback processing\nheaders:\nAccept-Encoding:\ndescription: Accept-Encoding, described in IETF RFC 9110\nschema:\ntype: string\n'307':\n$ref: 'TS29571_CommonData.yaml#/components/responses/307'\n'308':\n$ref: 'TS29571_CommonData.yaml#/components/responses/308'\n'400':\n$ref: 'TS29571_CommonData.yaml#/components/responses/400'\n'401':\n$ref: 'TS29571_CommonData.yaml#/components/responses/401'\n'403':\n$ref: 'TS29571_CommonData.yaml#/components/responses/403'\n'404':\n$ref: 'TS29571_CommonData.yaml#/components/responses/404'\n'411':\n$ref: 'TS29571_CommonData.yaml#/components/responses/411'\n'413':\n$ref: 'TS29571_CommonData.yaml#/components/responses/413'\n'415':\n$ref: 'TS29571_CommonData.yaml#/components/responses/415'\n'429':\n$ref: 'TS29571_CommonData.yaml#/components/responses/429'\n'500':\n$ref: 'TS29571_CommonData.yaml#/components/responses/500'\n'501':\n$ref: 'TS29571_CommonData.yaml#/components/responses/501'\n'503':\n$ref: 'TS29571_CommonData.yaml#/components/responses/503'\ndefault:\n$ref: 'TS29571_CommonData.yaml#/components/responses/default'\n/dist-sessions/{distSessionRef}/subscriptions/{subscriptionId}:\ndelete:\nsummary:  StatusUnSubscribe to unsubscribe from the Status Subscription\ntags:\n- Individual Subscription for an MBS session\noperationId: StatusUnSubscribe\nparameters:\n- name: subscriptionId\nin: path\nrequired: true\ndescription: Unique ID of the subscription\nschema:\ntype: string\n- name: distSessionRef\nin: path\nrequired: true\ndescription: Unique ID of the MBS distribution session\nschema:\ntype: string\nresponses:\n'204':\ndescription: Successful deletion of the subscription\n'307':\n$ref: 'TS29571_CommonData.yaml#/components/responses/307'\n'308':\n$ref: 'TS29571_CommonData.yaml#/components/responses/308'\n'400':\n$ref: 'TS29571_CommonData.yaml#/components/responses/400'\n'401':\n$ref: 'TS29571_CommonData.yaml#/components/responses/401'\n'403':\n$ref: 'TS29571_CommonData.yaml#/components/responses/403'\n'404':\n$ref: 'TS29571_CommonData.yaml#/components/responses/404'\n'429':\n$ref: 'TS29571_CommonData.yaml#/components/responses/429'\n'500':\n$ref: 'TS29571_CommonData.yaml#/components/responses/500'\n'502':\n$ref: 'TS29571_CommonData.yaml#/components/responses/502'\n'503':\n$ref: 'TS29571_CommonData.yaml#/components/responses/503'\ndefault:\n$ref: 'TS29571_CommonData.yaml#/components/responses/default'\npatch:\nsummary:  StatusSubscribe to modify (update or renew) an individual subscription\ntags:\n- Individual Subscription for an MBS distribution session\noperationId: StatusSubscribeMod\nparameters:\n- name: subscriptionId\nin: path\nrequired: true\ndescription: Unique ID of the individual subscription to be modified\nschema:\ntype: string\n- name: distSessionRef\nin: path\nrequired: true\ndescription: Unique ID of the MBS distribution session\nschema:\ntype: string\nrequestBody:\ndescription: Data to be modified in the DistSessionSubscription\nrequired: true\ncontent:\napplication/json-patch+json:\nschema:\ntype: array\nitems:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/PatchItem'\nminItems: 1\nresponses:\n'200':\ndescription: Successful modification of the individual Status Subscription\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/DistSessionSubscription'\n'307':\n$ref: 'TS29571_CommonData.yaml#/components/responses/307'\n'308':\n$ref: 'TS29571_CommonData.yaml#/components/responses/308'\n'400':\n$ref: 'TS29571_CommonData.yaml#/components/responses/400'\n'401':\n$ref: 'TS29571_CommonData.yaml#/components/responses/401'\n'403':\n$ref: 'TS29571_CommonData.yaml#/components/responses/403'\n'404':\n$ref: 'TS29571_CommonData.yaml#/components/responses/404'\n'411':\n$ref: 'TS29571_CommonData.yaml#/components/responses/411'\n'413':\n$ref: 'TS29571_CommonData.yaml#/components/responses/413'\n'415':\n$ref: 'TS29571_CommonData.yaml#/components/responses/415'\n'429':\n$ref: 'TS29571_CommonData.yaml#/components/responses/429'\n'500':\n$ref: 'TS29571_CommonData.yaml#/components/responses/500'\n'502':\n$ref: 'TS29571_CommonData.yaml#/components/responses/502'\n'503':\n$ref: 'TS29571_CommonData.yaml#/components/responses/503'\ndefault:\n$ref: 'TS29571_CommonData.yaml#/components/responses/default'\ncomponents:\nsecuritySchemes:\noAuth2ClientCredentials:\ntype: oauth2\nflows:\nclientCredentials:\ntokenUrl: '{nrfApiRoot}/oauth2/token'\nscopes:\nnmbstf-distsession: Access to the nmbstf-distsession API\nschemas:\n#\n# STRUCTURED DATA TYPES\n#\nCreateReqData:\ndescription: Data within Create Request\ntype: object\nproperties:\ndistSession:\n$ref: '#/components/schemas/DistSession'\nrequired:\n- distSession\nCreateRspData:\ndescription: Data within Create Response\ntype: object\nproperties:\ndistSession:\n$ref: '#/components/schemas/DistSession'\nrequired:\n- distSession\nDistSession:\ndescription: Mbs Distribution Session Information\ntype: object\nproperties:\ndistSessionId:\ntype: string\ndistSessionState:\n$ref: '#/components/schemas/DistSessionState'\nmbUpfTunAddr:\nwriteOnly: true\nallOf:\n- $ref: 'TS29571_CommonData.yaml#/components/schemas/TunnelAddress'\nmbmsGwTunAddr:\nwriteOnly: true\nallOf:\n- $ref: 'TS29571_CommonData.yaml#/components/schemas/TunnelAddress'\nupTrafficFlowInfo:\nwriteOnly: true\nallOf:\n- $ref: '#/components/schemas/UpTrafficFlowInfo'\nmbr:\nwriteOnly: true\nallOf:\n- $ref: 'TS29571_CommonData.yaml#/components/schemas/BitRate'\nmaxDelay:\nwriteOnly: true\nallOf:\n- $ref: 'TS29571_CommonData.yaml#/components/schemas/PacketDelBudget'\nobjDistributionData:\n$ref: '#/components/schemas/ObjDistributionData'\npktDistributionData:\n$ref: '#/components/schemas/PktDistributionData'\nfecInformation:\n$ref: 'TS29580_Nmbsf_MBSUserDataIngestSession.yaml#/components/schemas/FECConfig'\ndscpMarking:\ntype: string\nwriteOnly: true\ndistSessionSubscription:\n$ref: '#/components/schemas/DistSessionSubscription'\nrequired:\n- distSessionId\n- distSessionState\n- mbUpfTunAddr\n- mbr\noneOf:\n- required: [ objDistributionData ]\n- required: [ pktDistributionData ]\nObjDistributionData:\ndescription: Info for Object Distribution Method\ntype: object\nproperties:\nobjDistributionOperatingMode:\n$ref: '#/components/schemas/ObjDistributionOperatingMode'\nobjAcquisitionMethod:\n$ref: '#/components/schemas/ObjAcquisitionMethod'\nobjAcquisitionIdsPull:\ntype: array\nitems:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Uri'\nminItems: 1\nobjAcquisitionIdPush:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Uri'\nobjIngestBaseUrl:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Uri'\nobjDistributionBaseUrl:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Uri'\nrequired:\n- objDistributionOperatingMode\n- objAcquisitionMethod\nnot:\nrequired: [ objAcquisitionIdsPull, objAcquisitionIdPush ]\nPktDistributionData:\ndescription: Info for Packet Distribution Method\ntype: object\nproperties:\npktDistributionOperatingMode:\n$ref: '#/components/schemas/PktDistributionOperatingMode'\npktIngestMethod:\n$ref: '#/components/schemas/PktIngestMethod'\nmbStfIngestAddr:\n$ref: '#/components/schemas/MbStfIngestAddr'\nrequired:\n- pktDistributionOperatingMode\n- mbStfIngestAddr\nStatusSubscribeReqData:\ndescription: Data within the StatusSubscribe Request\ntype: object\nproperties:\nsubscription:\n$ref: '#/components/schemas/DistSessionSubscription'\nrequired:\n- subscription\nStatusSubscribeRspData:\ndescription: Data within StatusSubscribe Response\ntype: object\nproperties:\nsubscription:\n$ref: '#/components/schemas/DistSessionSubscription'\nreportList:\n$ref: '#/components/schemas/DistSessionEventReportList'\nrequired:\n- subscription\nStatusNotifyReqData:\ndescription: Status Notification\ntype: object\nproperties:\nreportList:\n$ref: '#/components/schemas/DistSessionEventReportList'\nrequired:\n- reportList\nDistSessionSubscription:\ndescription: Data within the Status Subscription\ntype: object\nproperties:\nnfcInstanceId:\nwriteOnly: true\nallOf:\n- $ref: 'TS29571_CommonData.yaml#/components/schemas/NfInstanceId'\neventList:\ntype: array\nitems:\n$ref: '#/components/schemas/DistSessionEventType'\nminItems: 1\nnotifyUri:\nwriteOnly: true\nallOf:\n- $ref: 'TS29571_CommonData.yaml#/components/schemas/Uri'\nnotifyCorrelationId:\ntype: string\nwriteOnly: true\nexpiryTime:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/DateTime'\ndistSessionSubscUri:\nreadOnly: true\nallOf:\n- $ref: 'TS29571_CommonData.yaml#/components/schemas/Uri'\nrequired:\n- eventList\n- notifyUri\nDistSessionEventReportList:\ndescription: List of Event Reports\ntype: object\nproperties:\neventReportList:\ntype: array\nitems:\n$ref: '#/components/schemas/DistSessionEventReport'\nminItems: 1\nnotifyCorrelationId:\ntype: string\nrequired:\n- eventReportList\nDistSessionEventReport:\ndescription: Data related to a specific event\ntype: object\nproperties:\neventType:\n$ref: '#/components/schemas/DistSessionEventType'\ntimeStamp:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/DateTime'\nrequired:\n- eventType\nUpTrafficFlowInfo:\ndescription: IP Multicast Address and Port Number\ntype: object\nproperties:\ndestIpAddr:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/IpAddr'\nportNumber:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Uinteger'\nrequired:\n- destIpAddr\n- portNumber\nMbStfIngestAddr:\ndescription: MBSTF Ingest Addresses\ntype: object\nproperties:\nafEgressTunAddr:\nwriteOnly: true\nallOf:\n- $ref: 'TS29571_CommonData.yaml#/components/schemas/TunnelAddress'\nmbStfIngressTunAddr:\nreadOnly: true\nallOf:\n- $ref: 'TS29571_CommonData.yaml#/components/schemas/TunnelAddress'\nafSsm:\nwriteOnly: true\nallOf:\n- $ref: '#/components/schemas/ExtSsm'\nmbStfListenAddr:\nreadOnly: true\nallOf:\n- $ref: 'TS29571_CommonData.yaml#/components/schemas/TunnelAddress'\nExtSsm:\ndescription: SSM and Port Number\ntype: object\nproperties:\nssm:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Ssm'\nportNumber:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Uinteger'\nrequired:\n- ssm\n- portNumber\n#\n# SIMPLE DATA TYPES\n#\n#\n# ENUMERATIONS\n#\nDistSessionState:\ndescription: Current State of MBS distribution session\nanyOf:\n- type: string\nenum:\n- INACTIVE\n- ESTABLISHED\n- ACTIVE\n- DEACTIVATING\n- type: string\nObjDistributionOperatingMode:\ndescription: Mode of data ingestion for Object distribution method\nanyOf:\n- type: string\nenum:\n- SINGLE\n- COLLECTION\n- CAROUSEL\n- STREAMING\n- type: string\nObjAcquisitionMethod:\ndescription: Object Acquisition Method\nanyOf:\n- type: string\nenum:\n- PULL\n- PUSH\n- type: string\nPktDistributionOperatingMode:\ndescription: Mode of data ingestion for Packet distribution method\nanyOf:\n- type: string\nenum:\n- PACKET_PROXY\n- PACKET_FORWARD_ONLY\n- type: string\nDistSessionEventType:\ndescription: Status Event Type\nanyOf:\n- type: string\nenum:\n- DATA_INGEST_FAILURE\n- SESSION_DEACTIVATED\n- SESSION_ACTIVATED\n- SERVICE_MANAGEMENT_FAILURE\n- DATA_INGEST_SESSION_ESTABLISHED\n- DATA_INGEST_SESSION_TERMINATED\n- type: string\nPktIngestMethod:\ndescription: Packet Ingest Method\nanyOf:\n- type: string\nenum:\n- MULTICAST\n- UNICAST\n- type: string\nAnnex B (informative):Change history\nChange history\nDate\nMeeting\nTDoc\nCR\nRev\nCat\nSubject/Comment\nNew version\n2022-03\nCT4 #109e\nC4-222344\nImplementation of following pCRs: C4-222320, C4-222321, C4-222322, C4-222323, C4-222324, C4-222325, C4-222326\n0.1.0\n2022-05\nCT4 #110e\nC4-223453\nImplementation of following pCRs: C4-223027, C4-223044, C4-223047, C4-223325, C4-223326, C4-223330, C4-223423, C4-223511\n0.2.0\n2022-06\nCT#96\nCP-221081\nTS presented for information and approval\n1.0.0\n2022-06\nCT#96\nCP-221081\nTS approved at CT#96\n17.0.0\n2022-09\nCT#97e\nCP-222031\n0003\nF\nCorrections to MBS Distribution Session parameters\n17.1.0\n2022-09\nCT#97e\nCP-222031\n0004\nF\nUpdates to Operating Mode Descriptions\n17.1.0\n2022-09\nCT#97e\nCP-222031\n0005\nF\nEditor's Note on Security Requirements\n17.1.0\n2022-09\nCT#97e\nCP-222031\n0006\n1\nF\nDescription of notification events in Nmbstf_DistSession\n17.1.0\n2022-09\nCT#97e\nCP-222031\n0007\nF\nClarification on the use of afEgressTunAddr\n17.1.0\n2022-09\nCT#97e\nCP-222031\n0008\nF\nAlign terminology of operating mode PACKET_PROXY and PACKET_FORWARD_ONLY\n17.1.0\n2022-09\nCT#97e\nCP-222031\n0009\nD\nEditorial errors for the headings\n17.1.0\n2022-09\nCT#97e\nCP-222031\n0010\nF\nCorrections for the StatusSubscribe service operation\n17.1.0\n2022-09\nCT#97e\nCP-222031\n0011\nF\nCorrections for the Nmbstf_DistSession API\n17.1.0\n2022-09\nCT#97e\nCP-222031\n0012\n1\nF\nClarification for the attributes in the data type distSession\n17.1.0\n2022-09\nCT#97e\nCP-222031\n0013\n1\nF\nMiscellaneous updates and corrections to the data model of the Nmbstf_DistSession API\n17.1.0\n2022-09\nCT#97e\nCP-222058\n0014\nF\n29.581 Rel-17 API version and External doc update\n17.1.0\n2022-12\nCT#98\nCP-223036\n0017\nF\nClarification on Object Distribution Method\n17.2.0\n2022-12\nCT#98\nCP-223036\n0018\nF\nMiscellaneous corrections\n17.2.0\n2022-12\nCT#98\nCP-223097\n0015\n2\nF\nAdd mbmsGwTunAddr attibute in DistSession data type\n17.2.0\n2022-12\nCT#98\nCP-223036\n0016\n1\nF\nCorrections on data type of the user plane traffice flow information\n17.2.0\n2022-12\nCT#98\nCP-223066\n0020\nF\n29.581 Rel-17 API version and External doc update\n17.2.0\n2023-03\nCT#99\nCP-230077\n0021\nF\nCorrect datatype and add event to DistSessionEvent\n17.3.0\n2023-03\nCT#99\nCP-230077\n0023\nF\nDatatype ObjDistributionData correction\n17.3.0\n2023-03\nCT#99\nCP-230077\n0025\n1\nF\nEssential corrections to the MBSTF APIs\n17.3.0\n2023-03\nCT#99\nCP-230089\n0027\nF\n29.581 Rel-17 API version and External doc update\n17.3.0\n2023-03\nCT#99\nCP-230036\n0022\n1\nB\nSupport of group message delivery\n18.0.0\n2023-06\nCT#100\nCP-231027\n0024\n4\nF\nLocation header and missing Redirection clause\n18.1.0\n2023-06\nCT#100\nCP-231038\n0029\n1\nA\nRemove objRepairBaseUrl from OpenAPI\n18.1.0\n2023-06\nCT#100\nCP-231070\n0032\nF\n29.581 Rel-18 API version and External doc update\n18.1.0\n2023-09\nCT#101\nCP-232064\n0037\n1\nF\nCorrect the object acquisition identifier\n18.2.0\n2023-12\nCT#102\nCP-233056\n0041\n1\nF\nAdditional Notification Events\n18.3.0\n2023-12\nCT#102\nCP-233027\n0044\nF\nHTTP RFCs obsoleted by IETF RFC 9113/9110\n18.3.0\n2023-12\nCT#102\nCP-233063\n0043\nF\nRemove security key exchange between MBSF and MBSTF\n18.3.0\n2023-12\nCT#102\nCP-233060\n0045\nF\n29.581 Rel-18 API version and External doc update\n18.3.0\n2024-03\nCT#103\nCP-240053\n0047\nF\nDistSession Subscription and Miscellaneous Corrections\n18.4.0\n2024-03\nCT#103\nCP-240028\n0048\nF\nProblemDetails RFC 7807 obsoleted by 9457\n18.4.0\n2024-03\nCT#103\nCP-240053\n0049\nF\nCorrection on data type cardinality\n18.4.0\n2024-03\nCT#103\nCP-240056\n0050\nF\n29.581 Rel-18 API version and External doc update\n18.4.0\n2024-06\nCT#104\nCP-241052\n0051\nF\n29.581 Rel-18 API version and External doc update\n18.5.0",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.500_clause_6.10.3.4",
+        "ts_29.500_clause_6.10.9.1",
+        "ts_29.501_clause_5.3.1",
+        "ts_29.501_clause_5",
+        "ts_29.501_clause_4.4",
+        "clause_18.1.0",
+        "ts_29.500",
+        "ts_29.501",
+        "ts_21.900",
+        "ts_29.581",
+        "ts_17.1",
+        "ts_18.3"
+      ]
+    }
+  ]
+}

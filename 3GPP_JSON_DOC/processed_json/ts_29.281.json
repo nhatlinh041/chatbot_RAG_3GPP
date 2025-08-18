@@ -1,0 +1,917 @@
+{
+  "metadata": {
+    "specification_id": "ts_29.281",
+    "version": "18.3.0",
+    "title": "3GPP TS 29.281",
+    "file_path": "/content/drive/MyDrive/RAG_thesis/data/29_series/29281-i30/29281-i30.docx"
+  },
+  "export_info": {
+    "export_date": "2025-07-26T08:54:00.505999",
+    "total_chunks": 84
+  },
+  "chunks": [
+    {
+      "chunk_id": "ts_29.281_1",
+      "section_id": "1",
+      "section_title": "Scope",
+      "content": "The present document defines the user plane of GTP used on:\n-\tthe Gn and Gp interfaces of the General Packet Radio Service (GPRS);\n-\tthe Iu, Gn and Gp interfaces of the UMTS system;\n-\tthe S1-U, S11-U, S2a, S2b, X2, S4, S5, S8, S12, M1 and Sn interfaces of the Evolved Packet System (EPS);\n-\tthe F1-U, Xn, W1-U, N3, N9, N19, N3mb and N19mb interfaces of the 5G System (5GS).\nThis definition ensures full backwards compatibility with RNC, SGSN and GGSN implementations according to release 7 of 3GPP TS 29.060 [6].\nNOTE:\tReleases previous to Release-8 have used 3GPP TS 29.060 [6] as normative definition of the user plane of GTP. This shall be considered when essential corrections are included in the present document or in pre-release-8 version of 3GPP TS 29.060 [6].\nFallback from GTPv1-U to GTPv0-U shall not be supported. Therefore, 3GPP Rel-8 and onwards GTPv1-U entity should not listen to the well-known GTPv0 port 3386. If GTPv1 entity listens to the GTPv0 port, the entity shall silently discard any received GTPv0-U message.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.060"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.281_2",
+      "section_id": "2",
+      "section_title": "References",
+      "content": "The following documents contain provisions which, through reference in this text, constitute provisions of the present document.\n-\tReferences are either specific (identified by date of publication, edition number, version number, etc.) or non‑specific.\n-\tFor a specific reference, subsequent revisions do not apply.\n-\tFor a non-specific reference, the latest version applies. In the case of a reference to a 3GPP document (including a GSM document), a non-specific reference implicitly refers to the latest version of that document in the same Release as the present document.\n[1]\t3GPP TR 21.905: \"Vocabulary for 3GPP Specifications\".\n[2]\t3GPP TS 23.003: \"Numbering, addressing and identification\".\n[3]\t3GPP TS 23.007: \"Restoration procedures\".\n[4]\t3GPP TS 23.060: \"General Packet Radio Service (GPRS); Service description; Stage 2\".\n[5]\t3GPP TS 23.401: \"General Packet Radio Service (GPRS) enhancements for Evolved Universal Terrestrial Radio Access Network (E-UTRAN) access\".\n[6]\t3GPP TS 29.060: \"General Packet Radio Service (GPRS); GPRS Tunnelling Protocol (GTP) across the Gn and Gp interface\".\n[7]\t3GPP TS 29.274: \"3GPP Evolved Packet System; Evolved GPRS Tunnelling Protocol for EPS (GTPv2)\".\n[8]\t3GPP TS 32.295: \"Telecommunication management; Charging management; Charging Data Record (CDR) transfer\".\n[9]\tIETF RFC 768 (STD 0006): \"User Datagram Protocol\", J. Postel.\n[10]\tIETF RFC 791 (STD 0005): \"Internet Protocol\", J. Postel.\n[11]\tIETF RFC 4291: \"IP Version 6 Addressing Architecture\".\n[12]\t3GPP TS 33.210: \"3G security; Network Domain Security (NDS); IP network layer security\".\n[13]\t3GPP TS 23.121: \"Architectural requirements for Release 1999\".\n[14]\t3GPP TS 43.129: \"Packet-switched handover for GERAN A/Gb mode; Stage 2\".\n[15]\tIETF RFC 2460: \"Internet Protocol, Version 6 (IPv6) Specification\".\n[16]\t3GPP TS 25.413: \"UTRAN Iu interface RANAP signalling\".\n[17]\t3GPP TS 36.300: \"Evolved Universal Terrestrial Radio Access (E-UTRA) and Evolved Universal Terrestrial Radio Access Network (E-UTRAN); Overall description; Stage 2\".\n[18]\t3GPP TS 23.246: \"Multimedia Broadcast/Multicast Service (MBMS); Architecture and functional description; Stage 2\".\n[19]\tIETF RFC 4604 (2006): \"Using Internet Group Management Protocol Version 3 (IGMPv3) and Multicast Listener Discovery Protocol Version 2 (MLDv2) for Source-Specific Multicast\".\n[20]\tIETF RFC 4607 (2006): \"Source-Specific Multicast for IP\".\n[21]\t3GPP TS 33.102: \"3G Security; Security architecture\".\n[22]\t3GPP TS 33.401: \"3GPP System Architecture Evolution (SAE): Security architecture \".\n[23]\t3GPP TS 23.402: \"Architecture enhancements for non-3GPP accesses\".\n[24]\t3GPP TS 36.323: \"Evolved Universal Terrestrial Radio Access (E-UTRA); Packet Data Convergence Protocol (PDCP) specification\".\n[25]\t3GPP TS 36.425: \"E-UTRAN X2 interface user plane protocol\".\n[26]\tIETF RFC 2474, \"Definition of the Differentiated Services Field (DS Field) in the IPv4 and IPv6 Headers\".\n[27]\t3GPP TS 36.465: \"Evolved Universal Terrestrial Radio Access (E-UTRAN) and Wireless LAN (WLAN) Xw interface user plane protocol\".\n[28]\t3GPP TS 23.501: \"System Architecture for the 5G System; Stage 2\".\n[29]\t3GPP TS 23.502: \"Procedures for the 5G System; Stage 2\".\n[30]\t3GPP TS 38.425: \"NG-RAN; NR user plane protocol\".\n[31]\t3GPP TS 38.415: \"NG-RAN; PDU Session User Plane Protocol\".\n[32]\t3GPP TS 33.250: \"Security assurance specification for the PGW network product class\".\n[33]\t3GPP TS 23.527: \"5G System; Restoration Procedures\".\n[34]\t3GPP TS 38.300: \"NR; NR and NG-RAN Overall Description; Stage 2\".\n[35]\t3GPP TS 38.323: \"NR; Packet Data Convergence Protocol (PDCP) specification\".\n[36]\tIETF RFC 8200: \"Internet Protocol, Version 6 (IPv6) Specification\"\n[37]\tIETF RFC 6437: \"IPv6 Flow Label Specification\".\n[38]\t3GPP TS 37.340: \"Evolved Universal Terrestrial Radio Access (E-UTRA) and NR; Multi-connectivity; Stage 2\".\n[39]\t3GPP TS 29.244: \"Interface between the Control Plane and the User Plane Nodes\".\n[40]\t3GPP TS 23.247: \"Architectural enhancements for 5G multicast-broadcast services\".\n[41]\tIETF RFC 5905: \"Network Time Protocol Version 4: Protocol and Algorithms Specification\".\n[42]\t3GPP TS 37.470: \"W1 interface; General aspects and principles\".",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905",
+        "ts_23.003",
+        "ts_23.007",
+        "ts_23.060",
+        "ts_23.401",
+        "ts_29.060",
+        "ts_29.274",
+        "ts_32.295",
+        "ts_33.210",
+        "ts_23.121",
+        "ts_43.129",
+        "ts_25.413",
+        "ts_36.300",
+        "ts_23.246",
+        "ts_33.102",
+        "ts_33.401",
+        "ts_23.402",
+        "ts_36.323",
+        "ts_36.425",
+        "ts_36.465",
+        "ts_23.501",
+        "ts_23.502",
+        "ts_38.425",
+        "ts_38.415",
+        "ts_33.250",
+        "ts_23.527",
+        "ts_38.300",
+        "ts_38.323",
+        "ts_37.340",
+        "ts_29.244",
+        "ts_23.247",
+        "ts_37.470"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.281_3.1",
+      "section_id": "3.1",
+      "section_title": "Definitions",
+      "content": "For the purposes of the present document, the terms and definitions given in TR 21.905 [1] and the following apply. A term defined in the present document takes precedence over the definition of the same term, if any, in TR 21.905 [1].\nCommon Tunnel Endpoint Identifier (C-TEID): Unambiguously identifies a tunnel endpoint in the receiving GTP-U protocol entity for a given UDP/IP endpoint. The sending end side of a GTP tunnel locally assigns the C-TEID value used in the TEID field and signals it to the destination Tunnel Endpoint using a control plane message.\nGTP-U Message: GTP-U (user plane) messages are either user plane messages or signalling messages. User plane messages are used to carry user data packets between GTP-U entities. Signalling messages are sent between network nodes for path management and tunnel management.GTP-U peer: node implementing at least one side of any of the GTP user plane based protocols. RNC, SGSN, GGSN, eNodeB, SGW, ePDG, gNB, N3IWF, UPF, PGW or TWAN or MME.\nGTP-U Tunnel: A GTP-U tunnel is identified in each node with a TEID, an IP address and a UDP port number. A GTP-U tunnel is necessary to enable forwarding packets between GTP-U entities.\nGTP-U Tunnel Endpoint: A GTP-U tunnel endpoint identifies a user plane context (e.g EPS bearer, PDU session or a RAB) for which a received GTP-U packet is intended. A given GTP-U tunnel endpoint may receive GTP-U packets from more than one source GTP-U peer (See clause 4.3.0).UDP/IP Path: Connection-less unidirectional or bidirectional path defined by two end-points. An IP address and a UDP port number define an end-point. A UDP/IP path carries GTP messages between network nodes related to one or more GTP tunnels.\nGTP-PDU: GTP Protocol Data Unit (PDU) is a GTP-U message, which may be either a G-PDU or a signalling message.\nG-PDU: User data packet (T-PDU) plus GTP-U header, sent between GTP network nodes.\nSignalling Message: A GTP-U message (GTP-PDU that is not a G-PDU) sent between GTP network nodes. These may be Path Management messages or Tunnel Management messages.\nT-PDU: A user data packet, for example an IP datagram, sent between a UE and a network entity in an external packet data network. A T-PDU is the payload that is tunnelled in the GTP-U tunnel.\nTunnel Endpoint Identifier (TEID): Unambiguously identifies a tunnel endpoint in the receiving GTP-U protocol entity for a given UDP/IP endpoint. The receiving end side of a GTP tunnel locally assigns the TEID value the transmitting side has to use. The TEID values are exchanged between tunnel endpoints using control plane message.\nTrusted WLAN Access Network: see 3GPP TS 23.402 [23].",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_4.3.0",
+        "ts_21.905",
+        "ts_23.402"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.281_3.2",
+      "section_id": "3.2",
+      "section_title": "Abbreviations",
+      "content": "For the purposes of the present document, the abbreviations given in TR 21.905 [1] and the following apply. An abbreviation defined in the present document takes precedence over the definition of the same abbreviation, if any, in TR 21.905 [1].\nC-TEID\tCommon Tunnel Endpoint IDentifier\nEN-DC\tE-UTRA-NR Dual Connectivity\nePDG\tEvolved Packet Data Gateway\nGSN\tGPRS Support Node\nGGSN\tGateway GPRS Support Node\nG-PDU\tGTP encapsulated user Plane Data Unit\nGTP\tGPRS Tunnelling Protocol\nGTP-C\tGTP Control\nGTP-U\tGTP User\nIE\tInformation Element\nIGMP\tInternet Group Management Protocol\nIP\tInternet Protocol\nIPv4\tInternet Protocol version 4\nIPv6\tInternet Protocol version 6\nMME\tMobility Management Entity\nPDU\tPacket Data Unit\nPGW\tPDN Gateway\nQoS\tQuality of Service\nRANAP\tRadio Access Network Application Part\nRNC\tRadio Network Controller\nSGSN\tServing GPRS Support Node\nSGW\tServing Gateway\nTEID\tTunnel Endpoint IDentifier\nT-PDU\tTransport PDU\nTWAN\tTrusted WLAN Access Network\nUDP\tUser Datagram Protocol\nUTRAN\tUMTS Terrestrial Radio Access Network",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.281_4.1",
+      "section_id": "4.1",
+      "section_title": "GTP Path",
+      "content": "For the definition of UDP/IP Path and GTP Endpoint, see 3GPP TS 29.060 [6].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.060"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.281_4.2.1",
+      "section_id": "4.2.1",
+      "section_title": "GTP-U Tunnel description",
+      "content": "GTP-U Tunnels are used to carry encapsulated T-PDUs and signalling messages between a given pair of GTP-U Tunnel Endpoints. The Tunnel Endpoint ID (TEID) which is present in the GTP header shall indicate which tunnel a particular T-PDU belongs to. In this manner, packets are multiplexed and de-multiplexed by GTP-U between a given pair of Tunnel Endpoints. The TEID value to be used in the TEID field shall be signalled to the peer GTP-U entity using a control plane protocol like GTPv1-C, GTPv2-C, RANAP or S1-AP.\nIn what follows we refer to the outer GTPv1-U IP packet as the IP packet that carries a GTPv1-U packet. The inner IP packet in a GTPv1-U packet (T-PDU) is either\n-\tAn IP packet sent to the UE/MS in the downlink direction over one or more tunnels from the external network identified by the APN.\n-\tAn IP packet sent from a UE/MS in the uplink direction over one or more tunnels to the external network identified by the APN.\nNOTE 1:\tNot all tunnels in 3GPP networks will necessarily be GTPv1-U,\nNOTE 2:\tThe inner MTU size of the GTPv1-U tunnel is typically not the same as the outer MTU size of the IP path carrying the outer IP packets.\nThe maximum size of a T-PDU that may be transmitted without fragmentation by GGSN or the MS is defined in 3GPP TS 23.060 [4].",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_23.060"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.281_4.2.2",
+      "section_id": "4.2.2",
+      "section_title": "IP transport",
+      "content": "According to IETF RFC 791 [10], any IPv4 router in the backbone may fragment the outer IPv4 GTPv1-U packet with a flag of DF=0.\nUnnecessary fragmentation should be avoided when possible due to the following;\n-\tFragmentation is bandwidth inefficient, since the complete IP header is duplicated in each fragment.\n-\tFragmentation is CPU intensive since more fragments require more processing at both GTPv1-U endpoints and IP routers. It also requires additional memory at the receiver.\n-\tIf one fragment is lost, the complete packet has to be discarded. The reason is there is no selective retransmission of IP fragments provided in IPv4 or IPv6.\nRecommendations on how to set the default inner MTU size at the PDN GW and UE/MS to avoid IP fragmentation of both inner IP packets (in the PDN GW or UE/MS) and outer IP packets in the backbone are specified in clause 9.3 of 3GPP TS 23.060 [4].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.060_clause_9.3",
+        "ts_23.060"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.281_4.2.3",
+      "section_id": "4.2.3",
+      "section_title": "GTP-U Tunnel IP transport",
+      "content": "Functionality for IP transport and IP fragmentation at a RAN node on the Iu interface or S12 is defined in 3GPP TS 25.414 [16].\nFunctionality for IP transport and IP fragmentation at an eNodeB on the S1-U and X2 interface is defined in 3GPP TS 36.300 [17].\nFunctionality for IP transport and IP fragmentation at an NG-RAN on the N3 and Xn interface is defined in 3GPP TS 38.300 [34].\nFunctionality for IP transport and IP fragmentation for interconnecting an ng-eNB-CU and an ng-eNB-DU of an ng-eNB within an NG-RAN on the W1-U interface is defined in 3GPP TS 37.470 [42].\nThe outer GTPv1-U packet layer shall support IPv4 as defined by IETF RFC 791 [10] and should support IPv6 as defined by IETF RFC  8200 [36].\nThe following text as well as clauses 4.2.4 and 4.2.5 apply only to core network GTPv1-U endpoints.\nGTPv1-U tunnel endpoints do not need to change the hopcount/TTL or to perform any IP routing functions in respect to inner IP packet other than the functions explicitly stated here. However, other co-located functions may do so. For example, the GGSN/PGW/UPF may change the hopcount/TTL as the IP datagram enters/leaves the Gi/SGi/N6 interface from/to the GTPv1-U tunnel interface and IP packets may be discarded or rejected at any point by a co-located function due to local policy and/or QoS (the policy enforcement point).",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_25.414",
+        "ts_36.300",
+        "ts_38.300",
+        "ts_37.470"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.281_4.2.4",
+      "section_id": "4.2.4",
+      "section_title": "Ingress GTP tunnel (GTPv1-U sending endpoint)",
+      "content": "An inner IP packet shall be encapsulated at the GTPv1-U sender with a GTP header, UDP and IP header. If the resulting outer IP packet is larger than the MTU of the first link towards the destination GTPv1-U endpoint, fragmentation of the IP packet shall be performed by the sender as per IETF RFC 791 [10] for an  outer  layer of IPv4 and IETF RFC 8200 [36] for an outer layer of IPv6. The GTPv1-U sender should preferably fragment the IP packet to the smallest MTU of any link between GTPv1-U sender and GTPv1-U receiver.\nFragmentation policy of the inner datagram is implementation dependent but shall interwork with IETF RFC 791 [10] for inner IPv4 datagrams and IETF RFC  8200 [36] for inner IPv6 packets.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.281_4.2.5",
+      "section_id": "4.2.5",
+      "section_title": "Egress GTP tunnel (GTPv1-U receiving endpoint)",
+      "content": "The GTPv1-U receiving endpoint packets shall reassemble any IP fragments in datagrams received from the GTPv1-U sending endpoint as per IETF RFC 791 [10] for outer IPv4 datagrams and as per IETF RFC 8200 [36] for outer IPv6 datagrams. The IP reassembly buffer in the receiving endpoint shall be at least the inner MTU size plus the size of the tunnel headers (outer IP header, outer UDP header, and GTP header, including any GTP extension headers).\nThe completely reassembled IP packet shall then be passed to the IP/UDP/GTPv1-U layers to extract the inner IP packet which is then processed further according to the receiving node's functionality.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.281_4.2.6.1",
+      "section_id": "4.2.6.1",
+      "section_title": "General",
+      "content": "In GPRS and EPS, MBMS data may be delivered between the GGSN and RNC, or between the MBMS GW and the eNodeB or RNC, using IP multicast transport, as specified in clause 6.5 of 3GPP TS 23.246 [18].\nIn 5GS, MBS data may be delivered between the 5GC and NG-RAN using 5GC Individual MBS traffic delivery (applicable only to multicast MBS sessions) and/or 5GC Shared MBS traffic delivery (applicable to broadcast and multicast MBS sessions), as specified in clause 4.1 of 3GPP TS 23.247 [40]. The user plane from the MB-UPF to NG-RANs (for 5GC Shared MBS traffic delivery) and the user plane from the MB-UPF to UPFs (for 5GC Individual MBS traffic delivery) may use IP multicast transport via a common GTP-U tunnel per MBS session, or use unicast transport via separate GTP-U tunnels at NG-RAN or at UPF per MBS session, as specified in clause 6.7 of 3GPP TS 23.247 [40].\nSpecific requirements for IP multicast distribution of user plane data are specified in clause 4.2.6.2.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_23.246_clause_6.5",
+        "ts_23.247_clause_4.1",
+        "ts_23.247_clause_6.7",
+        "clause_4.2.6.2",
+        "ts_23.246",
+        "ts_23.247"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.281_4.2.6.2",
+      "section_id": "4.2.6.2",
+      "section_title": "IP multicast distribution of User Plane Data",
+      "content": "When using IP multicast transport, GTP-U Multicast Tunnels shall be used for unidirectional transfer of the encapsulated T-PDUs from one GTP-U Tunnel Endpoint acting as an IP multicast source to multiple GTP-U Tunnel Endpoints acting as IP multicast listeners. The Common Tunnel Endpoint ID (C-TEID) which is present in the GTP header shall indicate which tunnel a particular T-PDU belongs to. The C-TEID value to be used in the TEID field shall be allocated at the source Tunnel Endpoint and signalled to the destination Tunnel Endpoint using a control plane protocol, i.e. GTPv1-C and RANAP, GTPv2-C and S1-AP, 5GC SBIs and/or NGAP. One C-TEID shall be allocated per MBMS bearer service or per MBS session.\nThe destination IP address in the outer GTPv1-U IP header shall be an address in the multicast address range as specified in IETF RFC 4607 [20].\nIf the RNC decides to receive IP multicast packets, then the RNC shall join the IP multicast group as specified by IETF RFC 4604 [19] and IETF RFC 4607 [20].\nIf the eNodeB supports MBMS as specified in 3GPP TS 23.246 [18], it shall join the IP multicast group as specified in IETF RFC 4604 [19] and IETF RFC 4607 [20].\nIf the gNB supports MBS as specified in 3GPP TS 23.247 [40], it shall join the IP multicast group as specified in IETF RFC 4604 [19] and IETF RFC 4607 [20].\nThe characteristics for point-to-multipoint GTP-U Multicast Tunnels used for MBMS or MBS are the same as for a point-to-point GTP-U Tunnels unless specified otherwise. The differences are specified in clause 7.1.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_7.1",
+        "ts_23.246",
+        "ts_23.247"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.281_4.3.0",
+      "section_id": "4.3.0",
+      "section_title": "General",
+      "content": "The GTP-U protocol entity provides packet transmission and reception services to user plane entities in the RNC, SGSN, GGSN, eNodeB, SGW, ePDG, PGW, TWAN, MME, gNB, N3IWF, UPF and MB-UPF. The GTP-U protocol entity receives traffic from a number of GTP-U tunnel endpoints and transmits traffic to a number of GTP-U tunnel endpoints. There is a GTP-U protocol entity per IP address.\nThe TEID in the GTP-U header is used to de-multiplex traffic incoming from remote tunnel endpoints so that it is delivered to the User plane entities in a way that allows multiplexing of different users, different packet protocols and different QoS levels. The GTP-U protocol supports the possibility for one GTP-U tunnel endpoint to receive packets from multiple remote GTP-U endpoints. This may be used in the following scenarios:\n-\tTracking Area Update procedure with Serving GW change and data forwarding as specified in clause 5.3.3.1A of 3GPP TS 23.401 [5], if the above capability is supported by the receiving eNB;\n-\tDual connectivity in 5GC as specified in clause 5.11.1 of 3GPP TS 23.501 [28], where the master and secondary NG-RAN may be assigned the same uplink F-TEID of the UPF by the SMF for uplink traffic of the same PDU session; and\n-\tIPv6 multihoming scenario as specified in clause 5.6.4.3 of 3GPP TS 23.501 [28], where the downlink traffic from multiple PDU Session Anchors of the same PDU session may be assigned the same N9 F-TEID of the branching point UPF by the SMF.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_23.401_clause_5.3.3.1",
+        "ts_23.501_clause_5.11.1",
+        "ts_23.501_clause_5.6.4.3",
+        "ts_23.401",
+        "ts_23.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.281_4.3.1",
+      "section_id": "4.3.1",
+      "section_title": "Handling of Sequence Numbers",
+      "content": "This functionality is provided only when the S bit is set to 1 in the GTP-U header.\nFor PGW, SGW, ePDG, eNodeB, TWAN, MME, gNB, N3IWF, and UPF, the usage of sequence numbers in G-PDUs is optional, but if GTP-U protocol entities in these nodes are relaying G-PDUs to other nodes, then they shall relay the sequence numbers as well For all other cases, the PGW, SGW, ePDG, eNodeB, TWAN, MME, gNB, N3IWF and UPF should set the \"S\" flag to 0 in the GTPv1 header which then indicates that the sequence number is not used in the T-PDU.\nAn RNC, SGSN or GGSN shall reorder out of sequence T-PDUs when in sequence delivery is required. This is optional at the SGSN for UTRAN access. The GTP-U protocol entity shall deliver to the user plane entity only in sequence T‑PDUs and notify the sequence number associated to each of them. The notification of the sequence number is not necessary at the GGSN, but it is mandatory at the SGSN and RNC. The user plane entity shall provide a sequence number to the GTP-U layer together with T-PDUs to be transmitted in sequence. GTP-U protocol entities at the GGSN may optionally generate autonomously the sequence number, but should be able to use sequence numbers provided by the user plane entity. The sequence number is handled on a per GTP-U Tunnel (that is TEID) basis. During relocations and handovers, if a buffered packet is forwarded from the source to the target GTP-U protocol entity along with PDCP T-PDU extension headers, the source of the T-PDU may be considered different and may not relay the sequence numbers.\nWhen the sequence number is included in the GTP-U header, a user plane entity acting as a relay of T-PDUs between GTP-U protocol entities, or between PDCP (or SNDCP) protocol entities and GTP-U protocol entities, shall relay the sequence numbers between those entities as well. In this way it is possible to keep consistent values of sequence numbers from the GGSN to the UE (MS in GPRS) by relaying the sequence number across the CN GTP-U bearer, the Iu GTP-U bearer and the Radio bearer (via PDCP or SNDCP N-PDU numbers). This functionality is beneficial during SRNS relocation.\nFor GTP-U signalling messages having a response message defined for a request message, Sequence Number shall be a message number valid for a path. Within a given set of continuous Sequence Numbers from 0 to 65535, a given Sequence Number shall, if used, unambiguously define a GTP-U signalling request message sent on the path (see clause Reliable delivery of signalling messages). The Sequence Number in a signalling response message shall be copied from the signalling request message that the GTP-U entity is replying to. For GTP-U messages not having a defined response message for a request message, i.e. for messages Supported Extension Headers Notification and Error Indication, the Sequence Number shall be ignored by the receiver.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.281_4.4.0",
+      "section_id": "4.4.0",
+      "section_title": "GTP-PDU Stacks",
+      "content": "The protocol stack for a GTP-PDU G-PDU is shown in Figure 4.4-1. The protocol stack for a GTP-PDU signaling message is shown in Figure 4.4-2.\nFigure: 4.4-1 G-PDU Protocol Stack\nNOTE:\tT-PDU may contain an IP Datagram, Ethernet or unstructured PDU Data frames as specified in 3GPP TS 23.501 [28].\nFigure: 4.4-2 Signalling Message Protocol Stack",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_4.4-1",
+        "figure_4.4-2",
+        "ts_23.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.281_4.4.1",
+      "section_id": "4.4.1",
+      "section_title": "UDP/IP",
+      "content": "UDP/IP is the only path protocol defined to transfer GTP messages in the version 1 of GTP.\nA GTPv1-U peer shall support the User Datagram Protocol (UDP) as defined by IETF RFC 768 [9] shall be used.\nA GTPv1-U peer shall support IPv4 as defined by IETF RFC 791 [10] and should support IPv6 as defined by IETF RFC 8200 [36].\nThe DSCP marking as defined by IETF RFC 2474 [26] shall be set:\n-\tbased on the QCI, and optionally the ARP priority level, of the associated EPS bearer, as described in clause 4.7.3 of 3GPP TS 23.401 [5];\n-\tbased on the 5QI and ARP of the associated 5G QoS Flow, as described in clause 5.7.1.6 and clause 5.7.1.7 of 3GPP TS 23.501 [28].",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_23.401_clause_4.7.3",
+        "clause_5.7.1.6",
+        "ts_23.501_clause_5.7.1.7",
+        "ts_23.401",
+        "ts_23.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.281_4.4.2.0",
+      "section_id": "4.4.2.0",
+      "section_title": "General",
+      "content": "For the GTP-U messages described below (other than the Echo Response message, see clause 4.4.2.2), the UDP Source Port or the Flow Label field (see IETF RFC 6437 [37]) should be set dynamically by the sending GTP-U entity to help balancing the load in the transport network.\nWhen using GTP-U over IPv6 (see IETF RFC 8200 [36]), the UDP checksum shall not be set to zero by the sending GTP-U entity unless it is ensured that the peer GTP-U entity and the path in-between supports UDP zero checksum.\nNOTE 1:\tGTP-U entities complying with an earlier version of the specification or on path IPv6 middleboxes can implement IPv6 as specified in IETF RFC 2460 [15] and discard UDP packets containing a zero checksum.\nNOTE 2:\tHow a sending GTP-U entity knows whether the peer GTP-U entity and the path in-between supports UDP zero checksum is out of scope of this specification.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_4.4.2.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.281_4.4.2.1",
+      "section_id": "4.4.2.1",
+      "section_title": "Echo Request Message",
+      "content": "The UDP Destination Port number for GTP-U request messages is 2152. It is the registered port number for GTP-U.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.281_4.4.2.2",
+      "section_id": "4.4.2.2",
+      "section_title": "Echo Response Message",
+      "content": "The UDP Destination Port value shall be the value of the UDP Source Port of the corresponding request message.\nThe UDP Source Port shall be the value from the UDP Destination Port of the corresponding request message.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.281_4.4.2.3",
+      "section_id": "4.4.2.3",
+      "section_title": "Encapsulated T-PDUs",
+      "content": "The UDP Destination Port number shall be 2152. It is the registered port number for GTP-U.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.281_4.4.2.4",
+      "section_id": "4.4.2.4",
+      "section_title": "Error Indication",
+      "content": "The UDP destination port for the Error Indication shall be the user plane UDP port (2152).\nNOTE:\tIn network deployments including non-GTP-aware stateful firewalls, those firewalls must be configured to allow response messages coming from a different UDP port and IP address than the triggering message.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.281_4.4.2.5",
+      "section_id": "4.4.2.5",
+      "section_title": "Supported Extension Headers Notification",
+      "content": "The UDP destination port for the Supported Extension Headers Notification shall be the user plane UDP port (2152).",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.281_4.4.2.6",
+      "section_id": "4.4.2.6",
+      "section_title": "End Marker",
+      "content": "The UDP Destination Port number shall be 2152. It is the registered port number for GTP-U.\nThe UDP Destination Port and UDP Source Port shall be the same as those of the corresponding GTP-U tunnel for which the End Marker message is sent.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.281_4.4.2.7",
+      "section_id": "4.4.2.7",
+      "section_title": "Tunnel Status",
+      "content": "The UDP destination port for the Tunnel Status shall be the user plane UDP port (2152).",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.281_4.4.3.1",
+      "section_id": "4.4.3.1",
+      "section_title": "Echo Request Message",
+      "content": "The IP Source Address shall be an IP address of the source GTP-U entity from which the message is originating.\nThe IP Destination Address in a GTP request message shall be an IP address of the destination GTP-U entity.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.281_4.4.3.2",
+      "section_id": "4.4.3.2",
+      "section_title": "Echo Response Message",
+      "content": "The IP Source Address shall be copied from the IP destination address of the GTP request message to which this GTP‑U entity is replying.\nThe IP Destination Address shall be copied from the IP Source Address of the GTP request message to which this GTP‑U entity is replying.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.281_4.4.3.3",
+      "section_id": "4.4.3.3",
+      "section_title": "Encapsulated T-PDUs",
+      "content": "The IP Source Address shall be an IP address of the source GTP-U entity from which the message is originating.\nThe IP Destination Address shall be an IP address of the destination GTP-U entity.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.281_4.4.3.4",
+      "section_id": "4.4.3.4",
+      "section_title": "Error Indication",
+      "content": "The IP source address shall be an address of the source GTP-U entity from which the message is originated\nNOTE:\tIn network deployments including non-GTP-aware stateful firewalls, those firewalls must be configured to allow response messages coming from a different UDP port and IP address than the triggering message.\nThe IP destination address for Error Indication shall be the source address of the GTP-PDU that is the cause for this GTP-U entity to send this message.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.281_4.4.3.5",
+      "section_id": "4.4.3.5",
+      "section_title": "Supported Extension Headers Notification",
+      "content": "The IP Source Address for the Supported Extension Headers Notification shall be copied from the IP destination address of the GTP message that triggered the GTP-U entity to send this message.\nThe IP Destination Address for the Supported Extension Headers Notification shall be copied from the IP source address of the GTP message that triggered the GTP-U entity to send this message.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.281_4.4.3.6",
+      "section_id": "4.4.3.6",
+      "section_title": "End Marker",
+      "content": "The IP Source Address shall be an IP address of the source GTP-U entity from which the message is originating.\nThe IP Destination Address shall be an IP address of the destination GTP-U entity.\nThe IP Destination Address and IP Source Address shall be the same as those of the corresponding GTP-U tunnel for which the End Marker message is sent.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.281_4.4.3.7",
+      "section_id": "4.4.3.7",
+      "section_title": "Tunnel Status",
+      "content": "The IP Source Address shall be an IP address of the source GTP-U entity from which the message is originating.\nThe IP Destination Address shall be an IP address of the destination GTP-U entity.\nThe IP Destination Address and IP Source Address shall be the same as the corresponding GTP-U tunnel (to send G-PDU) for which the Tunnel Staus message is sent.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.281_4.5",
+      "section_id": "4.5",
+      "section_title": "Transmission Order and Bit Definitions",
+      "content": "As specified in 3GPP TS 29.060 [6], clause 5.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.060_clause_5",
+        "ts_29.060"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.281_4.6",
+      "section_id": "4.6",
+      "section_title": "New Functionality",
+      "content": "With regard to the previous releases, the present specification may define some new functions. Such new functions shall ensure full backwards compatibility with Pre-Rel-8 nodes conforming to 3GPP TS 29.060 [6]. If the new functions are specified with the Extension Headers, bits 8 and 7 of the Extension Header Type shall be set to 0, 0 respectively or 0, 1 respectively. If the new functions are specified with Information Elements, such Information Elements shall be TLV-encoded and optional.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.060"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.281_5.1",
+      "section_id": "5.1",
+      "section_title": "General format",
+      "content": "The GTP-U header is a variable length header whose minimum length is 8 bytes. There are three flags that are used to signal the presence of additional optional fields: the PN flag, the S flag and the E flag. The PN flag is used to signal the presence of N-PDU Numbers. The S flag is used to signal the presence of the GTP Sequence Number field. The E flag is used to signal the presence of the Extension Header field, used to enable future extensions of the GTP header defined in this document, without the need to use another version number. If and only if one or more of these three flags are set, the fields Sequence Number, N-PDU and Extension Header shall be present. The sender shall set all the bits of the unused fields to zero. The receiver shall not evaluate the unused fields. For example, if only the E flag is set to 1, then the N-PDU Number and Sequence Number fields shall also be present, but will not have meaningful values and shall not be evaluated.\nAlways present fields:\n-\tVersion field: This field is used to determine the version of the GTP-U protocol. The version number shall be set to '1'.\n-\tProtocol Type (PT): This bit is used as a protocol discriminator between GTP (when PT is '1') and GTP' (when PT is '0'). GTP is described in this document and the GTP' protocol in 3GPP TS 32.295 [8]. Note that the interpretation of the header fields may be different in GTP' than in GTP.\n-\tExtension Header flag (E): This flag indicates the presence of a meaningful value of the Next Extension Header field. When it is set to '0', the Next Extension Header field either is not present or, if present, shall not be interpreted. When it is set to '1', the Next Extension Header field is present, and shall be interpreted, as described below in this clause.\n-\tSequence number flag (S): This flag indicates the presence of a meaningful value of the Sequence Number field. When it is set to '0', the Sequence Number field either is not present or, if present, shall not be interpreted. When it is set to '1', the Sequence Number field is present, and shall be interpreted, as described below in this clause.For the Echo Request, Echo Response, Error Indication and Supported Extension Headers Notification messages, the S flag shall be set to '1'. Since the use of Sequence Numbers is optional for G-PDUs, the PGW, SGW, ePDG, eNodeB and TWAN should set the flag to '0'. However, when a G-PDU (T-PDU+header) is being relayed by the Indirect Data Forwarding for Inter RAT HO procedure, then if the received G-PDU has the S flag set to '1', then the relaying entity shall set S flag to '1' and forward the G-PDU (T-PDU+header). In an End marker and Tunnel Status messages the S flag shall be set to '0'.\n-\tN-PDU Number flag (PN): This flag indicates the presence of a meaningful value of the N-PDU Number field. When it is set to '0', the N-PDU Number field either is not present, or, if present, shall not be interpreted. When it is set to '1', the N-PDU Number field is present, and shall be interpreted, as described below in this clause.\n-\tMessage Type: This field indicates the type of GTP-U message.\n-\tLength: This field indicates the length in octets of the payload, i.e. the rest of the packet following the mandatory part of the GTP header (that is the first 8 octets). The Sequence Number, the N-PDU Number or any Extension headers shall be considered to be part of the payload, i.e. included in the length count.\n-\tTunnel Endpoint Identifier (TEID): This field unambiguously identifies a tunnel endpoint in the receiving GTP‑U protocol entity. The receiving end side of a GTP tunnel locally assigns the TEID value the transmitting side has to use. The TEID value shall be assigned in a non-predictable manner for PGW S5/S8/S2a/S2b interfaces (see 3GPP TS 33.250 [32]). The TEID shall be used by the receiving entity to find the PDP context, except for the following cases:\n-\tThe Echo Request/Response and Supported Extension Headers notification messages, where the Tunnel Endpoint Identifier shall be set to all zeroes.\n-\tThe Error Indication message where the Tunnel Endpoint Identifier shall be set to all zeros.\n-\tWhen setting up a GTP-U tunnel, the GTP-U entity shall not assign the value 'all zeros' to its own TEID. However, for backward compatibility, if a GTP-U entity receives (via respective control plane message) a peer's TEID that is set to the value 'all zeros', the GTP-U entity shall accept this value as valid and send the subsequent G-PDU with the TEID field in the header set to the value 'all zeros'.\nOptional fields:\n-\tSequence Number: If Sequence Number field is used for G-PDUs (T-PDUs+headers), an increasing sequence number for T-PDUs is transmitted via GTP-U tunnels, when transmission order must be preserved. For Supported Extension Headers Notification and Error Indication messages, the Sequence Number shall be ignored by the receiver, even though the S flag is set to '1'.\n-\tN-PDU Number: This field is used at the Inter SGSN Routeing Area Update procedure and some inter-system handover procedures (e.g. between 2G and 3G radio access networks). This field is used to co-ordinate the data transmission for acknowledged mode of communication between the MS and the SGSN. The exact meaning of this field depends upon the scenario. (For example, for GSM/GPRS to GSM/GPRS, the SNDCP N-PDU number is present in this field).\n-\tNext Extension Header Type: This field defines the type of Extension Header that follows this field in the GTP‑PDU.\nBits\nOctets\n8\n7\n6\n5\n4\n3\n2\n1\n1\nVersion\nPT\n(*)\nE\nS\nPN\n2\nMessage Type\n3\nLength (1st Octet)\n4\nLength (2nd Octet)\n5\nTunnel Endpoint Identifier (1st Octet)\n6\nTunnel Endpoint Identifier (2nd Octet)\n7\nTunnel Endpoint Identifier (3rd Octet)\n8\nTunnel Endpoint Identifier (4th Octet)\n9\nSequence Number (1st Octet)1) 4)\n10\nSequence Number (2nd Octet)1) 4)\n11\nN-PDU Number2) 4)\n12\nNext Extension Header Type3) 4)\nNOTE 0:\t(*) This bit is a spare bit. It shall be sent as '0'. The receiver shall not evaluate this bit.\nNOTE 1:\t1) This field shall only be evaluated when indicated by the S flag set to 1.\nNOTE 2:\t2) This field shall only be evaluated when indicated by the PN flag set to 1.\nNOTE 3:\t3) This field shall only be evaluated when indicated by the E flag set to 1.\nNOTE 4:\t4) This field shall be present if and only if any one or more of the S, PN and E flags are set.\nFigure 5.1-1: Outline of the GTP-U Header",
+      "chunk_type": "definition",
+      "cross_references": [
+        "figure_5.1-1",
+        "ts_32.295",
+        "ts_33.250"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.281_5.2.1",
+      "section_id": "5.2.1",
+      "section_title": "General format of the GTP-U Extension Header",
+      "content": "The format of GTP-U Extension Headers is depicted in figure 5.2.1-1. The Extension Header Length field specifies the length of the particular Extension header in 4 octets units. The Next Extension Header Type field specifies the type of any Extension Header that may follow a particular Extension Header. If no such Header follows, then the value of the Next Extension Header Type shall be 0.\nOctets      1\nExtension Header Length\n2 – m\nExtension Header Content\nm+1\nNext Extension Header Type\nFigure 5.2.1-1: Outline of the Extension Header Format\nThe length of the Extension header shall be defined in a variable length of 4 octets, i.e. m+1 = n*4 octets, where n is a positive integer.\nBits 7 and 8 of the Next Extension Header Type define how the recipient shall handle unknown Extension Types, see Figure 5.2.1-2. The recipient of an extension header of unknown type but marked as 'comprehension not required' for that recipient shall read the 'Next Extension Header Type' field (using the Extension Header Length field to identify its location in the GTP-PDU).\nThe recipient of an extension header of unknown type, but marked as 'comprehension required' for that recipient, shall:\n-\tIf the message with the unknown extension header was a request or a G-PDU, send a Supported Extension Headers Notification to the originator of the GTP-PDU, discard the message and log an error.\nBits 7 and 8 of the Next Extension Header Type have the following meaning:\nBits\n8      7\nMeaning\n0       0\nComprehension of this extension header is not required. An Intermediate Node shall forward it to any Receiver Endpoint\n0       1\nComprehension of this extension header is not required. An Intermediate Node shall discard the Extension Header Content and not forward it to any Receiver Endpoint. Other extension headers shall be treated independently of this extension header.\n1       0\nComprehension of this extension header is required by the Endpoint Receiver but not by an Intermediate Node. An Intermediate Node shall forward the whole field to the Endpoint Receiver.\n1        1\nComprehension of this header type is required by recipient (either Endpoint Receiver or Intermediate Node)\nFigure 5.2.1-2: Definition of bits 7 and 8 of the Extension Header Type\nAn Endpoint Receiver is the ultimate receiver of the GTP-PDU (e.g. an RNC or the GGSN for the GTP-U plane). An Intermediate Node is a node that handles GTP but is not the ultimate endpoint (e.g. an SGSN for the GTP-U plane traffic between GGSN and RNC).\nNext Extension Header Field Value\nType of Extension Header\n0000 0000\nNo more extension headers\n0000 0001\nReserved - Control Plane only.\n0000 0010\nReserved - Control Plane only.\n0000 0011\nLong PDCP PDU Number.\nSee NOTE 2.\n0010 0000\nService Class Indicator\n0100 0000\nUDP Port. Provides the UDP Source Port of the triggering message.\n1000 0001\nRAN Container\n1000 0010\nLong PDCP PDU Number.\nSee NOTE 3.\n1000 0011\nXw RAN Container\n1000 0100\nNR RAN Container\n1000 0101\nPDU Session Container. See NOTE 4.\n1000 0110\nPDU Set Information Container. See NOTE 5, NOTE 6\n1100 0000\nPDCP PDU Number [4]-[5]. See NOTE 1.\n1100 0001\nReserved - Control Plane only.\n1100 0010\nReserved - Control Plane only.\nNOTE 1:\tAs an exception to the comprehension rule specified above, for a G-PDU with a Next Extension Header Field set to the value \"1100 0000\", the SGW shall consider this corresponding extension header as 'comprehension not required'.\nNOTE 2:\tThis value shall be used by a source eNB or gNB complying with this release of the specification.\nNOTE 3:\tThis value shall not be used by a source eNB or gNB complying with this release of the specification. It may be received from a source eNB complying with an earlier release of the specification, i.e. not supporting the extension header value \"0000 0011\".\nNOTE 4:\tFor a GTP-PDU with several Extension Headers including at least the PDU Session Container, the PDU Session Container should be the first Extension Header.\nNOTE 5:\tFor a GTP-PDU with several Extension Headers including at least the PDU Session Container and the PDU Set Information Container, the PDU Set Information Container should be the second Extension Header, after the PDU Session Container. If the PDU Session Container is not included, the PDU Set Information Container should be the first Extension Header.\nNOTE 6:\tWhen QFI is present in both the PDU Session Container and the PDU Set Information Container, the QFI value shall be the same in both GTP-U extension headers\nFigure 5.2.1-3: Definition of Extension Header Type",
+      "chunk_type": "definition",
+      "cross_references": [
+        "figure_5.2.1-1",
+        "figure_5.2.1-2",
+        "figure_5.2.1-3"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.281_5.2.2",
+      "section_id": "5.2.2",
+      "section_title": "Extension Header types",
+      "content": "Extension header types marked as \"Reserved – Control Plane only\" in figure 5.2.1-3 are not used in the GTP user plane. These extension header types are defined in 3GPP TS 29.060 [6].\nThe following clauses define the format of the extension header types applicable to the GTP user plane.",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_5.2.1-3",
+        "ts_29.060"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.281_5.2.2.1",
+      "section_id": "5.2.2.1",
+      "section_title": "UDP Port",
+      "content": "This extension header may be transmitted in Error Indication messages to provide the UDP Source Port of the G-PDU that triggered the Error Indication. It is 4 octets long, and therefore the Length field has value 1.\nBits\nOctets\n8\n7\n6\n5\n4\n3\n2\n1\n1\n0x01\n2-3\nUDP Port number\n4\nNext Extension Header Type (note)\nNOTE:\tThe value of this field is 0 if no other Extension header follows.\nFigure 5.2.2.1-1: UDP Port Extension Header",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_5.2.2.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.281_5.2.2.2",
+      "section_id": "5.2.2.2",
+      "section_title": "PDCP PDU Number",
+      "content": "This extension header is transmitted, for example in UTRAN, at SRNS relocation time, to provide the PDCP sequence number of not yet acknowledged N-PDUs. It is 4 octets long, and therefore the Length field has value 1.\nWhen used during a handover procedure between two eNBs at the X2 interface (direct DL data forwarding) or via the S1 interface (indirect DL data forwarding) in E-UTRAN, bit 8 of octet 2 is spare and shall be set to zero.\nWhen used during a handover procedure between two NG-RANs at the Xn interface (direct DL data forwarding) or via the N3 interface (indirect DL data forwarding), bits 5-8 of octet 2 are spare and shall be set to zero.\nNOTE 1:\tThe PDCP PDU number field of the PDCP PDU number extension header has a maximum value which requires 15 bits (see 3GPP TS 36.323 [24]); thus, bit 8 of octet 2 is spare.\nNOTE 2:\tThe PDCP PDU number field of the PDCP PDU number extension header has a maximum value which requires 12 bits (see 3GPP TS 38.323 [35]); thus, bit 5-8 of octet 2 are spare.\nBits\nOctets\n8\n7\n6\n5\n4\n3\n2\n1\n1\n0x01\n2\nPDCP PDU number\n3\nPDCP PDU number.\n4\nNext Extension Header Type (Note 3)\nNOTE 3:\tThe value of this field is 0 if no other Extension header follows.\nFigure 5.2.2.2-1: PDCP PDU Number Extension Header\n5.2.2.2A\tLong PDCP PDU Number\nThis extension header is used for direct X2 or indirect S1 DL data forwarding during a Handover procedure between two eNBs. This extension header is also used for direct Xn or indirect N3 DL data forwarding during a Handover procedure between two NG-RANs. The Long PDCP PDU number extension header is 8 octets long, and therefore the Length field has value 2.\nThe PDCP PDU number field of the Long PDCP PDU number extension header has a maximum value which requires 18 bits (see 3GPP TS 36.323 [24] and 3GPP TS 38.323 [35]). Bit 2 of octet 2 is the most significant bit and bit 1 of octet 4 is the least significant bit, see Figure 5.2.2.2A-1. Bits 8 to 3 of octet 2, and Bits 8 to 1 of octets 5 to 7 shall be set to 0.\nNOTE:\tA G-PDU which includes a PDCP PDU Number contains either the extension header PDCP PDU Number or Long PDCP PDU Number.\nBits\nOctets\n8\n7\n6\n5\n4\n3\n2\n1\n1\n0x02\n2\nSpare\nPDCP PDU number\n3\nPDCP PDU number\n4\nPDCP PDU number\n5\nSpare\n6\nSpare\n7\nSpare\n8\nNext Extension Header Type (Note 1)\nNOTE 1:\tThe value of this field is 0 if no other Extension header follows.\nFigure 5.2.2.2A-1: Long PDCP PDU Number Extension Header",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_5.2.2.2-1",
+        "figure_5.2.2.2",
+        "ts_36.323",
+        "ts_38.323"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.281_5.2.2.3",
+      "section_id": "5.2.2.3",
+      "section_title": "Service Class Indicator",
+      "content": "This extension header identifies the service class indicator (SCI) associated with the T-PDU carried by the downlink G-PDU. This information may be used by the A/Gb mode GERAN access for improved radio utilisation (see clause 5.3.5.3 of 3GPP TS 23.060 [4]).\nIn this version of the specification, this extension header may be transmitted over the Gn/Gp, S5/S8 and S4 interface. An eNodeB, RNC or MME shall ignore this information if received over the S1-U, S12, Iu, S11-U or any other interfaces not defined above, but still shall handle the G-PDU.\nNOTE1:\tThis extension header is also sent over the S1-U, S12, Iu interface and S11-U if the SGW receives the Service Class Indicator from S5/S8 for a UE having a user plane connection with an RNC or an eNodeB. This can happen when the PGW does not have an accurate knowledge of the current RAT of the user e.g. after a handover from GERAN to (E)UTRAN.\nIt is 4 octets long and therefore the Length field has the value 1.\nBits\nOctets\n8\n7\n6\n5\n4\n3\n2\n1\n1\n0x01\n2\nService Class Indicator\n3\nSpare\n4\nNext Extension Header Type (note)\nNOTE:\tThe value of this field is 0 if no other Extension header follows.\nFigure 5.2.2.3-1: Service Class Indicator Extension Header\nIf the bit 8 of octet 2 is set to 0, this indicates an operator specific Service Class Indicator value is included. Otherwise, it shall indicate that a standardised SCI is included.\nNOTE 2:\tNo standardized SCI value is defined in this release, it is intended to standardize SCIs in a future release.\nBits 8 to 1 of the octet 2 represent the binary coded value of the SCI, applications with similar Radio Resource Management treatment in GERAN shall be represented by the same value.\nThe octet 2 is coded as shown in Table 5.2.2.3-1.\nBits 8 to 1 of the octet 3 are spare bits and shall be set to zero.\nTable 5.2.2.3-1: Service Class Indicator\nService Class Indicator (SCI), octet 2\nBit\n8\n0                             Operator-specific SCI\nBits\n7 6 5 4 3 2 1\n0 0 0 0 0 0 0\nto\n0 0 0 1 1 1 1           Operator-specific SCIs\n0 0 1 0 0 0 0\nto\n1 1 1 1 1 1 1\t   Spare for future use\nBit\n8\n1                             Standardised SCI\nBits\n7 6 5 4 3 2 1\n0 0 0 0 0 0 0\nto\n1 1 1 1 1 1 1\t   Spare for future use",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.060_clause_5.3.5.3",
+        "table_5.2.2.3-1",
+        "figure_5.2.2.3-1",
+        "ts_23.060"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.281_5.2.2.4",
+      "section_id": "5.2.2.4",
+      "section_title": "RAN Container",
+      "content": "This extension header may be transmitted in a G-PDU over the X2 user plane interface between the eNBs. The RAN Container has a variable length and its content is specified in 3GPP TS 36.425 [25]. A G-PDU message with this extension header may be sent without a T-PDU.\nBits\nOctets\n8\n7\n6\n5\n4\n3\n2\n1\n1\n0xn\n2-(4n -1)\nRAN Container\n4n\nNext Extension Header Type (NOTE)\nNOTE:\tThe value of this field is '0' if no other Extension header follows.\nFigure 5.2.2.4-1: RAN Container Extension Header",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_5.2.2.4-1",
+        "ts_36.425"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.281_5.2.2.5",
+      "section_id": "5.2.2.5",
+      "section_title": "Xw RAN Container",
+      "content": "This extension header may be transmitted in a G-PDU over the Xw user plane interface between the eNB and the WLAN Termination (WT). The Xw RAN Container has a variable length and its content is specified in 3GPP TS 36.465 [27]. A G-PDU message with this extension header may be sent without a T-PDU.\nBits\nOctets\n8\n7\n6\n5\n4\n3\n2\n1\n1\n0xn\n2-(4n -1)\nXw RAN Container\n4n\nNext Extension Header Type (NOTE)\nNOTE:\tThe value of this field is '0' if no other Extension header follows.\nFigure 5.2.2.5-1: Xw RAN Container Extension Header",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_5.2.2.5-1",
+        "ts_36.465"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.281_5.2.2.6",
+      "section_id": "5.2.2.6",
+      "section_title": "NR RAN Container",
+      "content": "This extension header may be transmitted in a G-PDU over the X2-U, Xn-U and F1-U user plane interfaces, within NG-RAN and, for EN-DC, within E-UTRAN. The NR RAN Container has a variable length and its content is specified in 3GPP TS 38.425 [30]. A G-PDU message with this extension header may be sent without a T-PDU.\nBits\nOctets\n8\n7\n6\n5\n4\n3\n2\n1\n1\n0xn\n2-(4n -1)\nNR RAN Container\n4n\nNext Extension Header Type (NOTE)\nNOTE:\tThe value of this field is '0' if no other Extension header follows.\nFigure 5.2.2.6-1: NR RAN Container Extension Header",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_5.2.2.6-1",
+        "ts_38.425"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.281_5.2.2.7",
+      "section_id": "5.2.2.7",
+      "section_title": "PDU Session Container",
+      "content": "This extension header shall be transmitted in:\n-\tG-PDUs over the N3 and N9 user plane interfaces, between NG-RAN and UPF, or between two UPFs;\n-\tG-PDUs over the N3mb and N19mb user plane interfaces, between the MB-UPF and NG-RAN, or between the MB-UPF and UPF;  and\n-\tin End Marker packets over data forwarding tunnels in 5GS, for data forwarding between 5GS and EPS.\nThe PDU Session Container has a variable length and its content is specified in 3GPP TS 38.415 [31].\nA G-PDU message with this extension header may be sent without a T-PDU, e.g. when the G-PDU message is used as a dummy GTP-U packet for QoS Monitoring per QoS flow as specified in clause 5.33.3.2 of 3GPP TS 23.501 [28], where the PDU Session Container contains QoS Monitoring related parameters. An Intermediate UPF between the PSA UPF and the NG-RAN shall forward any received such G-PDU messages together with the GTP-U PDU Session Container extension header to the next GTP-U entity.\nBits\nOctets\n8\n7\n6\n5\n4\n3\n2\n1\n1\n0xn\n2-(4n -1)\nPDU Session Container\n4n\nNext Extension Header Type (NOTE)\nNOTE:\tThe value of this field is '0' if no other Extension header follows.\nFigure 5.2.2.7-1: PDU Session Container Extension Header",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_23.501_clause_5.33.3.2",
+        "figure_5.2.2.7-1",
+        "ts_38.415",
+        "ts_23.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.281_5.2.2.8",
+      "section_id": "5.2.2.8",
+      "section_title": "PDU Set Information Container",
+      "content": "This extension header may be transmitted in:\n-\tG-PDUs over the N3 and N9 user plane interfaces, between NG-RAN and UPF, or between two UPFs;\n-\tG-PDUs over the Xn-U and F1-U user plane interfaces, between two NG-RANs, or within NG-RAN.\nThe PDU Set Information Container has a variable length and its content is specified in 3GPP TS 38.415 [30] for PDU Set Information user plane protocol.\nBits\nOctets\n8\n7\n6\n5\n4\n3\n2\n1\n1\n0xn\n2-(4n -1)\nPDU Set Information Container\n4n\nNext Extension Header Type (NOTE)\nNOTE:\tThe value of this field is '0' if no other Extension header follows.\nFigure 5.2.2.8-1: PDU Set Information Container Extension Header",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_5.2.2.8-1",
+        "ts_38.415"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.281_6.1",
+      "section_id": "6.1",
+      "section_title": "General",
+      "content": "GTP-U defines a set of messages between the two ends of the user plane of the interfaces Iu, Gn, Gp, S1-U, S11-U, S2a, S2b, S4, S5, S8, S12, X2, M1, Sn, Xn, N3, N9 and N19.\nGTP-U messages are sent across a GTP user plane tunnel. A GTP-U message may be either a signalling message across the user plane tunnel, or a G-PDU message.\n-\tGTP-U signalling messages are used for user plane path management, or for user plane tunnel management.\n-\tG-PDU is a vanilla user plane message, which carries the original packet (T-PDU). In G-PDU message, GTP-U header is followed by a T-PDU.\nA T-PDU is an original packet, for example an IP datagram, Ethernet frame or unstructured PDU Data, from an UE, or from a network node in an external packet data network.\nThe complete range of message types defined for GTPv1 is defined in 3GPP TS 29.060 [6]. The table below includes those applicable to GTP user plane. The three columns to the right define which of the three protocols sharing the common header of GTPv1 (GTP-C, GTP-U or GTP') might implement the specific message type.\nTable 6.1-1: Messages in GTP-U\nMessage Type value (Decimal)\nMessage\nReference\nGTP-C\nGTP-U\nGTP'\n1\nEcho Request\nX\nX\nx\n2\nEcho Response\nX\nX\nx\n3-25\nReserved in 3GPP TS 32.295 [8] and 3GPP TS 29.060 [6]\n26\nError Indication\nX\n27-30\nReserved in 3GPP TS 29.060 [6]\n31\nSupported Extension Headers Notification\nX\nX\n32-252\nReserved in 3GPP TS 29.060 [6]\n253\nTunnel Status\nX\n254\nEnd Marker\nX\n255\nG-PDU\nX",
+      "chunk_type": "definition",
+      "cross_references": [
+        "table_6.1-1",
+        "ts_29.060",
+        "ts_32.295"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.281_6.2",
+      "section_id": "6.2",
+      "section_title": "Presence requirements of Information Elements",
+      "content": "As specified in 3GPP TS 29.060 [6], clause 7.1.1.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.060_clause_7.1.1",
+        "ts_29.060"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.281_7.1",
+      "section_id": "7.1",
+      "section_title": "General",
+      "content": "GTP-U Tunnels are used to carry encapsulated T-PDUs and signalling messages between a given pair of GTP-U Tunnel Endpoints. The Tunnel Endpoint ID (TEID) which is present in the GTP header shall indicate which tunnel a particular T-PDU belongs to. In this manner, packets are multiplexed and de-multiplexed by GTP-U between a given pair of Tunnel Endpoints. The TEID value to be used in the TEID field shall be negotiated for instance during the GTP-C Create PDP Context and the RAB assignment procedures that take place on the control plane.\nFor IP Multicast Distribution of User Plane Data for MBMS and MBS:\n-\tthe TEID value to be used in the TEID field shall be allocated at the source Tunnel Endpoint and signalled to the destination Tunnel Endpoint as specified in clause 4.2.6;\n-\tbecause of the point-to-multipoint characteristics of IP Multicast Distribution, the path management messages Echo Request and Echo Response, the tunnel management message Error Indication, the message Supported Extension Headers Notification and the message End Marker shall not be used.\nUser payload is transmitted in G-PDU packets. A G-PDU is a packet including a GTP-U header and a T-PDU. A G-PDU may include extension headers. A G-PDU shall not include any information element.\nGTP-U signalling messages are classified into path management messages, defined in clause 7.2 of the present document, and tunnel management messages, defined in clause 7.3 of the present document.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_4.2.6",
+        "clause_7.2",
+        "clause_7.3"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.281_7.2.1",
+      "section_id": "7.2.1",
+      "section_title": "Echo Request",
+      "content": "A GTP-U peer may send an Echo Request on a path to the other GTP-U peer to find out if it is alive (see clause Path Failure). Echo Request messages may be sent for each path in use. A path is considered to be in use if at least one PDP context, EPS Bearer, PDU Session, MBMS UE context, or MBMS bearer context uses the path to the other GTP-U peer. When and how often an Echo Request message may be sent is implementation specific but an Echo Request shall not be sent more often than every 60 s on each path. This doesn't prevent resending an Echo Request with the same sequence number according to the T3-RESPONSE timer.\nEven if there is no path in use, a GTP-U peer shall be prepared to receive an Echo Request at any time and it shall reply with an Echo Response. The optional Private Extension contains vendor or operator specific information.\nHandling of the Recovery Time Stamp is specified in 3GPP TS 23.007 [3] and 3GPP TS 23.527 [33].\nTable 7.2.1-1: Information Elements in an Echo Request\nInformation element\nPresence requirement\nReference\nRecovery Time Stamp\nOptional\n8.7\nPrivate Extension\nOptional\n8.6\nFor the GTP-U tunnel setup between two nodes for forwarding user traffic, e.g. between eNodeBs for direct forwarding over X2, Echo Request path maintenance message shall not be sent except if the forwarded data and the normal data are sent over the same path.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.007_table_7.2.1-1",
+        "ts_23.007",
+        "ts_23.527"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.281_7.2.2",
+      "section_id": "7.2.2",
+      "section_title": "Echo Response",
+      "content": "The message shall be sent as a response to a received Echo Request.\nThe Restart Counter value in the Recovery information element shall not be used, i.e. it shall be set to zero by the sender and shall be ignored by the receiver. The Recovery information element is mandatory due to backwards compatibility reasons.\nHandling of the Recovery Time Stamp is specified in 3GPP TS 23.007 [3] and 3GPP TS 23.527 [33].The optional Private Extension contains vendor or operator specific information.\nTable 7.2.2-1: Information Elements in an Echo Response\nInformation element\nPresence requirement\nReference\nRecovery\nMandatory\n8.2\nRecovery Time Stamp\nOptional\n8.7\nPrivate Extension\nOptional\n8.6",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_7.2.2-1",
+        "ts_23.007",
+        "ts_23.527"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.281_7.2.3",
+      "section_id": "7.2.3",
+      "section_title": "Supported Extension Headers Notification",
+      "content": "This message indicates a list of supported Extension Headers that the GTP entity on the identified IP address can support. This message is sent only in case a GTP entity was required to interpret a mandatory Extension Header but the GTP entity was not yet upgraded to support that extension header. The GTP endpoint sending this message is marked as not enabled to support some extension headers (as derived from the supported extension header list). The peer GTP entity may retry to use all the extension headers with that node, in an attempt to verify it has been upgraded. Implementers should avoid repeated attempts to use unknown extension headers with an endpoint that has signalled its inability to interpret them.\nTable 7.2.3-1: Information Elements in Supported Extension Headers Notification\nInformation element\nPresence requirement\nReference\nExtension Header Type List\nMandatory\n8.5",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_7.2.3-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.281_7.3.1",
+      "section_id": "7.3.1",
+      "section_title": "Error Indication",
+      "content": "When a GTP-U node receives a G-PDU for which no EPS Bearer context, PDP context, PDU Session, MBMS Bearer context, or RAB exists, the GTP-U node shall discard the G-PDU. If the TEID of the incoming G-PDU is different from the value 'all zeros' the GTP-U node shall also return a GTP error indication to the originating node. GTP entities may include the \"UDP Port\" extension header (Type 0x40), in order to simplify the implementation of mechanisms that can mitigate the risk of Denial-of-Service attacks in some scenarios.\nHandling of the received Error Indication and the Recovery Time Stamp is specified in 3GPP TS 23.007 [3] and 3GPP TS 23.527 [33].\nThe information element Tunnel Endpoint Identifier Data I shall be the TEID fetched from the G-PDU that triggered this procedure.\nThe information element GTP-U Peer Address shall be the destination address (e.g. destination IP address, MBMS Bearer Context) fetched from the original user data message that triggered this procedure. A GTP-U Peer Address can be a GGSN, SGSN, RNC, PGW, SGW, ePDG, eNodeB, TWAN, MME, gNB, N3IWF, or UPF address. The TEID and GTP-U peer Address together uniquely identify the related PDP context, RAB, PDU session or EPS bearer in the receiving node.\nThe optional Private Extension contains vendor or operator specific information.\nTable 7.3.1-1: Information Elements in an Error Indication\nInformation element\nPresence requirement\nReference\nTunnel Endpoint Identifier Data I\nMandatory\n8.3\nGTP-U Peer Address\nMandatory\n8.4\nRecovery Time Stamp\nOptional\n8.7\nPrivate Extension\nOptional\n8.6",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_7.3.1-1",
+        "ts_23.007",
+        "ts_23.527"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.281_7.3.2.1",
+      "section_id": "7.3.2.1",
+      "section_title": "General",
+      "content": "The End Marker message indicates the end of the payload stream on a given tunnel, i.e. a G-PDU that arrives after an End Marker message on this tunnel may be silently discarded. Table 7.3.2.1-1 specifies the information element included in the End Marker message.\nIf an End Marker message is received with a TEID for which there is no context, then the receiver shall ignore this message.\nThe optional Private Extension contains vendor or operator specific information.\nTable 7.3.2.1-1: Information Elements in End Marker message\nInformation element\nPresence requirement\nReference\nPrivate Extension\nOptional\n8.6",
+      "chunk_type": "definition",
+      "cross_references": [
+        "table_7.3.2.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.281_7.3.2.2",
+      "section_id": "7.3.2.2",
+      "section_title": "End Marker in EPS",
+      "content": "The End Marker message(s) shall be sent after sending the last G-PDU that needs to be sent on a GTP-U tunnel as specified in 3GPP TS 23.401 [5] or after receiving an End Marker Indication as specified in clause 5.7.1 of 3GPP TS 23.402 [23].\nThe End Marker message(s) shall be sent for each GTP-U tunnel, except for the case of an E-UTRAN Initiated E-RAB modification procedure. During an E-UTRAN Initiated E-RAB modification procedure, the SGW shall send End marker message(s) to the eNodeB on the old S1-U tunnel for the tunnel(s) that are switched, i.e. if the S1 eNodeB F-TEID of the GTP-U tunnel provided by the MME in a Modify Bearer Request or Modify Access Bearer Request is not the same as the one previously stored in the SGW. Each GTP-U tunnel is identified with a respective TEID value in the GTP-U header.\nAn MME may receive End Marker packets over an S11-U tunnel during the following procedures:\n-\tInter-MME TAU procedure;\n-\tEstablishment of S1-U bearer during Data Transport in Control Plane CIoT EPS optimisation.\nThe MME shall discard the End Marker packets. The MME may also initiate the release of the corresponding S11-U resources; however the release of the S11-U resources is implementation dependent.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_23.402_clause_5.7.1",
+        "ts_23.401",
+        "ts_23.402"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.281_7.3.2.3",
+      "section_id": "7.3.2.3",
+      "section_title": "End Marker in 5GS",
+      "content": "The End Marker message(s) shall also be sent after sending the last G-PDU that needs to be sent on a GTP-U tunnel or after receiving an End Marker Indication as specified in 3GPP TS 23.501 [28] and 3GPP TS 23.502 [29]. End marker packets sent over data forward tunnels in 5GS, for data forwarding between 5GS and EPS, shall be sent with the PDU Session Container extension header including the Qos Flow Identifier of one of the QoS flows mapped to the same E-RAB.\nFor QoS Flows transferred to and from Secondary RAN Node in Dual Connectivity (see clause 4.14.1 of 3GPP TS 23.502 [29]), end marker packets shall be sent over old tunnel for the transferred QoS flows without the Qos Flow Identifier included as specified in 3GPP TS 37.340 [38].\nEnd Marker messages shall not be sent over the N19 interface.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_23.502_clause_4.14.1",
+        "ts_23.501",
+        "ts_23.502",
+        "ts_37.340"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.281_7.3.3",
+      "section_id": "7.3.3",
+      "section_title": "Tunnel Status",
+      "content": "The Tunnel Status message is optional. A GTP-U entity, if it supports the message, may send one or more Tunnel Status message to the peer GTP-U entity to provide the status information related to the corresponding GTP-U tunnel in the sending GTP-U entity. Table 7.3.2.1-1 specifies the information element included in the Tunnel Status message.\nIf a Tunnel Status message is received with a TEID for which there is no context, or the message is not supported, then the receiver shall ignore this message.\nThe optional Private Extension contains vendor or operator specific information.\nTable 7.3.3-1: Information Elements in Tunnel Status message\nInformation element\nPresence requirement\nReference\nGTP-U Tunnel Status Information\nMandatory\n8.7\nPrivate Extension\nOptional\n8.6",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_7.3.2.1-1",
+        "table_7.3.3-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.281_8.1",
+      "section_id": "8.1",
+      "section_title": "Information Element Types",
+      "content": "A GTP-U Signalling message may contain several information elements. The TLV (Type, Length, Value) or TV (Type, Value) encoding format shall be used for the GTP information elements. The information elements shall be sorted, with the Type fields in ascending order, in the signalling messages. The Length field contains the length of the information element excluding the Type and Length field.\nFor all the length fields, bit 8 of the lowest numbered octet is the most significant bit and bit 1 of the highest numbered octet is the least significant bit.\nWithin information elements, certain fields may be described as spare. These bits shall be transmitted with the value defined for them. To allow for future features, the receiver shall not evaluate these bits.\nThe most significant bit in the Type field is set to 0 when the TV format is used and set to 1 for the TLV format.\nFigure 8.1-1: Type field for TV and TLV format\nThe complete range of information element types defined for GTPv1 is defined in 3GPP TS 29.060 [6]. The table below includes those applicable to GTP user plane.\nTable 8.1-1: Information Elements\nIE Type Value\nFormat\nInformation Element\nReference\n0-13\nTV\nReserved in 3GPP TS 29.060 [6]\n14\nTV\nRecovery\n8.2\n15\nTV\nReserved in 3GPP TS 29.060 [6]\n16\nTV\nTunnel Endpoint Identifier Data I\n8.3\n17-132\nTV/TLV\nReserved in 3GPP TS 29.060 [6]\n133\nTLV\nGSN Address. See NOTE 1.\n8.4\n134-140\nTLV\nReserved in 3GPP TS 29.060 [6]\n141\nTLV\nExtension Header Type List\n8.5\n142-229\nTLV\nReserved in 3GPP TS 29.060 [6]\n230\nTLV\nGTP-U Tunnel Status Information\n8.7\n231\nTLV\nRecovery Time Stamp\n8.8\n232-237\nTLV\nSpare. For future use.\n238-254\nTLV\nReserved in 3GPP TS 29.060 [6]\n255\nTLV\nPrivate Extension\n8.6\nNOTE 1:\tThis IE is named as \" GTP-U Peer Address\" in the rest of this specification.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_8.1-1",
+        "figure_8.1-1",
+        "ts_29.060"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.281_8.2",
+      "section_id": "8.2",
+      "section_title": "Recovery",
+      "content": "The value of the restart counter shall be set to 0 by the sending entity and ignored by the receiving entity. This information element is used in GTP user plane due to backwards compatibility reasons.\nFigure 8.2-1: Restart Counter Information Element",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "figure_8.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.281_8.3",
+      "section_id": "8.3",
+      "section_title": "Tunnel Endpoint Identifier Data I",
+      "content": "The Tunnel Endpoint Identifier Data I information element contains the Tunnel Endpoint Identifier used by a GTP entity for the user plane.\nBits\nOctets\n8\n7\n6\n5\n4\n3\n2\n1\n1\nType = 16 (Decimal)\n2 - 5\nTunnel Endpoint Identifier Data I\nFigure 8.3-1: Tunnel Endpoint Identifier Data I Information Element",
+      "chunk_type": "parameter",
+      "cross_references": [
+        "figure_8.3-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.281_8.4",
+      "section_id": "8.4",
+      "section_title": "GTP-U Peer Address",
+      "content": "The GTP-U peer Address information element contains the address of a GTP. The Length field may have only two values (4 or 16) that determine if the Value field contains IPv4 or IPv6 address.\nThe IPv4 address structure is defined in RFC 791 [10].\nThe IPv6 address structure is defined in RFC 4291 [11].\nThe encoded address might belong not only to a GSN, but also to an RNC, eNodeB, SGW, ePDG, gNB, N3IWF, UPF, PGW or TWAN.\nFigure 8.4-1: GTP-U Peer Address Information Element",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_8.4-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.281_8.5",
+      "section_id": "8.5",
+      "section_title": "Extension Header Type List",
+      "content": "This information element contains a list of 'n' Extension Header Types. The length field is set to the number of extension header types included.\nFigure 8.5-1: Extension Header Type List Information Element",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_8.5-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.281_8.6",
+      "section_id": "8.6",
+      "section_title": "Private Extension",
+      "content": "The Private Extension information element contains vendor specific information. The Extension Identifier is a value defined in the Private Enterprise number list in the most recent \"Assigned Numbers\" RFC (RFC 1700 or later).\nThis is an optional information element that may be included in any GTP Signalling message. A signalling message may include more than one information element of the Private Extension type.\nFigure 8.6-1: Private Extension Information Element",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_8.6-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.281_8.7",
+      "section_id": "8.7",
+      "section_title": "GTP-U Tunnel Status Information",
+      "content": "The GTP-U Tunnel Status Information contains the status information related to the corresponding GTP-U tunnel in the sending GTP-U entity.\nBits\nOctets\n8\n7\n6\n5\n4\n3\n2\n1\n1\nType = 230 (decimal)\n2 to 3\nLength = n\n4\nSpare\nSPOC\n5 to (n+3)\nThese octet(s) is/are present only if explicitly specified\nFigure 8.7-1: GTP-U Tunnel Status Information\nThe octet 4 shall be encoded as follows:\n-\tBit 1 – SPOC (Start Pause Of Charging): when set to \"1\", this indicates a request to the receiving GTP-U entity to stop usage measurement for the URR(s) with the Applicable for Start of Pause of Charging Flag set to \"1\" as specified in 3GPP TS 29.244 [39] for the PFCP session (identified by the IP address and TEID of the header of the Tunnel Status message). The GTP-U entity shall forward Tunnel Status message to the upstream GTP-U entity if it is not a PSA UPF or PGW-U connecting to N6/SGi interface.\n-\tBit 2 to 8 – Spare, for future use and set to \"0\".",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_8.7-1",
+        "ts_29.244"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.281_8.8",
+      "section_id": "8.8",
+      "section_title": "Recovery Time Stamp",
+      "content": "The Recovery Time Stamp IE is coded as shown in Figure 8.8-1. It indicates the UTC time when the GTP-U entity started. Octets 4 to 7 are encoded in the same format as the first four octets of the 64-bit timestamp format as defined in clause 6 of IETF RFC 5905 [41].\nNOTE:\tThe encoding is defined as the time in seconds relative to 00:00:00 on 1 January 1900.\nBits\nOctets\n8\n7\n6\n5\n4\n3\n2\n1\n1\nType = 231 (decimal)\n2 to 3\nLength = n\n4 to 7\nRecovery Time Stamp value\n8 to (n+3)\nThese octet(s) is/are present only if explicitly specified\nFigure 8.8-1: Recovery Time Stamp",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_6",
+        "figure_8.8-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.281_9.1",
+      "section_id": "9.1",
+      "section_title": "Protocol Errors",
+      "content": "As specified in 3GPP TS 29.060 [6], clauses 11.1.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.060"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.281_9.2",
+      "section_id": "9.2",
+      "section_title": "Path Failure",
+      "content": "Path failure handling procedures are specified in 3GPP TS 23.007 [17] and 3GPP TS 23.527 [33].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.007",
+        "ts_23.527"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.281_10",
+      "section_id": "10",
+      "section_title": "Security",
+      "content": "Network domain security is specified in 3GPP TS 33.102 [21] and 3GPP TS 33.401 [22].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_33.102",
+        "ts_33.401"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.281_11",
+      "section_id": "11",
+      "section_title": "Reliable Delivery of Signalling Messages",
+      "content": "Each path maintains a queue with signalling messages to be sent to the peer. The message at the front of the queue, if it is a request for which a response has been defined, shall be sent with a Sequence Number, and shall be held in a path list until a response is received. Each path has its own list. The Sequence Number shall be unique for each outstanding request message sourced from the same IP/UDP endpoint.\nThe T3-RESPONSE timer shall be started when a signalling request message (for which a response has been defined) is sent. A signalling message request or response has probably been lost if a response has not been received before the T3-RESPONSE timer expires. At the expiry of the timer the request is retransmitted if the total number of request attempts is less than N3‑REQUESTS times.\nAll received request messages shall be responded to and all response messages associated with a certain request shall always include the same information. Duplicated response messages shall be discarded. A response message without a matching outstanding request should be considered as a duplicate.\nIf a GTP protocol entity is not successful with the transfer of a signalling message, it shall inform the upper layer of the unsuccessful transfer so that the controlling upper entity may take the necessary measures.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.281_12.1",
+      "section_id": "12.1",
+      "section_title": "General",
+      "content": "The GTP system parameters defined here and their recommended values shall not be fixed, but shall be possible to configure as described in clause 'Reliable delivery of messages'.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.281_12.2",
+      "section_id": "12.2",
+      "section_title": "Timers",
+      "content": "The timer T3-RESPONSE holds the maximum wait time for a response of a request message.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.281_12.3",
+      "section_id": "12.3",
+      "section_title": "Others",
+      "content": "The counter N3-REQUESTS holds the maximum number of attempts made by GTP to send a request message. The recommended value is 5.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.281_13.1",
+      "section_id": "13.1",
+      "section_title": "General",
+      "content": "There are user packets sent between network nodes without a GTP-U reference point defined. The scenarios and applicability of GTP-U tunnelling are described in the following clauses.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.281_13.2",
+      "section_id": "13.2",
+      "section_title": "Tunnelling between SGWs",
+      "content": "GTP T-PDU tunnelling is applicable from the old SGW to the new S GW only when indirect forwarding is applicable during a S1-based Handover procedure or inter-RAT handover procedure with SGW Relocation, as described in the 3GPP TS 23.401 [5].For the GTP-U tunnel setup between SGWs, path maintenance messages do not need to be sent.\nGTP T-PDU tunnelling is applicable from the old SGW to the forwarding SGW during a TAU/RAU with SGW change procedure when indirect data forwarding is used to forward DL data buffered in the old SGW to the UE via the forwarding SGW, as described in the clause 5.3.3.1A of 3GPP TS 23.401 [5].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.401_clause_5.3.3.1",
+        "ts_23.401"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.281_13.3",
+      "section_id": "13.3",
+      "section_title": "Transfer of the user plane data between PDN GWs",
+      "content": "GTP shall not specify tunnelling between PDN GWs. Transfer of UE-to-UE traffic between PDN GWs shall use the SGi interface.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.281_13.4",
+      "section_id": "13.4",
+      "section_title": "Tunnelling between SGSNs",
+      "content": "T-PDUs, stored in the old SGSN and not yet sent to the MS, shall be tunnelled to the new SGSN as a part of the Inter SGSN Routeing Update procedure described in 3GPP TS 23.060 [4]. Some T-PDUs may still be on their way from the GGSN/PGW to the old SGSN because they have been sent before the tunnel change. These T-PDUs shall also be tunnelled to the new SGSN.\nFor intersystem SRNS Relocation, the establishment of the GTP tunnel(s) for the forwarding of G-PDUs is as described in the 3GPP TS 23.121 [13] and in the 3GPP TS 23.060 [4] specifications.\nFor PS Handover, the establishment of the GTP tunnel(s) for the forwarding of G-PDUs is as described in the 3GPP TS 43.129 [14].\nThe GTP T-PDU tunnelling between SGSNs is applicable also for RAU interaction with a Gn/Gp SGSN when forwarding DL data buffered in the old Gn/Gp SGSN to the UE, via the new SGSN (e.g. when direct tunnel is not established) as described in the 3GPP TS 23.060 [4].",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_23.060",
+        "ts_23.121",
+        "ts_43.129"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.281_13.5",
+      "section_id": "13.5",
+      "section_title": "Tunnelling between Source RNC and Target RNC",
+      "content": "For the 3G-3G SRNS Relocation, the establishment of the GTP tunnel for the forwarding of G-PDUs between source and target RNC, is as described in the 3GPP TS 23.121 [13] and in the 3GPP TS 23.060 [4] specifications.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.121",
+        "ts_23.060"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.281_13.6",
+      "section_id": "13.6",
+      "section_title": "Transfer of the user plane data between GGSNs",
+      "content": "GTP shall not specify tunnelling between GGSNs. Transfer of MS-to-MS traffic between GGSNs shall use the Gi interface.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.281_13.7",
+      "section_id": "13.7",
+      "section_title": "Tunnelling between RNC and eNodeB",
+      "content": "GTP T-PDU tunnelling is applicable between RNC and eNodeB during an inter-RAT handover between E-UTRAN and UTRAN Iu mode procedure as described in the 3GPP TS 23.401 [5].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.401"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.281_13.8",
+      "section_id": "13.8",
+      "section_title": "Tunnelling between SGSN and eNodeB",
+      "content": "GTP T-PDU tunnelling is applicable between SGSN and eNodeB during an inter-RAT handover between E-UTRAN and GERAN A/Gb mode/UTRAN Iu mode procedure as described in the 3GPP TS 23.401 [5].\nGTP T-PDU tunnelling between SGSN and eNodeB is applicable also for a TAU interaction with a Gn/Gp SGSN when  forwarding DL data buffered in the old Gn/Gp SGSN to the UE via the target eNodeB, if such forwarding is supported by the eNodeB as described in the clause 5.3.3.1A of 3GPP TS 23.401 [5].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.401_clause_5.3.3.1",
+        "ts_23.401"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.281_13.9",
+      "section_id": "13.9",
+      "section_title": "Tunnelling between Source eNodeB and Target eNodeB",
+      "content": "GTP T-PDU tunnelling is applicable between eNodeBs during an X2-based handover and E-UTRAN initiated E-RAB modification procedure as described in the 3GPP TS 23.401 [5].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.401"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.281_13.10",
+      "section_id": "13.10",
+      "section_title": "Tunnelling between SGSN and RNC",
+      "content": "GTP T-PDU tunnelling between SGSN and RNC is applicable also for a TAU interaction with a Gn/Gp SGSN when forwarding DL data buffered in the old Gn/Gp SGSN to the UE, via the new RNC (e.g. when direct tunnel is established), if such forwarding is supported by the RNC as described in the clause 5.3.3.1A of 3GPP TS 23.401 [5].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.401_clause_5.3.3.1",
+        "ts_23.401"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.281_13.11",
+      "section_id": "13.11",
+      "section_title": "Tunnelling between SGSN and SGW",
+      "content": "GTP T-PDU tunnelling is applicable from the old Gn/Gp SGSN to the forwarding SGW during a TAU/RAU interaction with a Gn/Gp SGSN when indirect data forwarding is used to forward DL data buffered in the old Gn/Gp SGSN to the UE via the forwarding SGW, as described in the clause 5.3.3.1A of 3GPP TS 23.401 [5].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.401_clause_5.3.3.1",
+        "ts_23.401"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.281_13.12",
+      "section_id": "13.12",
+      "section_title": "Tunnelling between SGW and eNodeB",
+      "content": "GTP T-PDU tunnelling between SGW and eNodeB is applicable also for a TAU with SGW change procedure when  forwarding DL data buffered in the old SGW to the UE via the target eNodeB, if such forwarding is supported by the eNodeB as described in the clause 5.3.3.1A of 3GPP TS 23.401 [5].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.401_clause_5.3.3.1",
+        "ts_23.401"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.281_13.13",
+      "section_id": "13.13",
+      "section_title": "Tunnelling between SGW and RNC",
+      "content": "GTP T-PDU tunnelling between SGW and RNC is applicable also for a RAU with SGW change procedure when  forwarding DL data buffered in the old SGW to the UE via the new RNC when Direct Tunnel is used at the target side, if such forwarding is supported by the RNC as described in the clause 5.3.3.1A of 3GPP TS 23.401 [5].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.401_clause_5.3.3.1",
+        "ts_23.401"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.281_13.14",
+      "section_id": "13.14",
+      "section_title": "Tunnelling between SGW and SGSN",
+      "content": "GTP T-PDU tunnelling between SGW and SGSN is applicable also for a RAU with SGW change procedure when  forwarding DL data buffered in the old SGW to the UE via the new SGSN when Direct Tunnel is not used at the target side as described in the clause 5.3.3.1A of 3GPP TS 23.401 [5].\nAnnex A (Normative):PDU session user plane protocol over N9, N3mb and N19mb\nThe PDU session user plane protocol shall be supported over the N9, N3mb and N19mb interface as specified in 3GPP TS 38.415 [31].\nAnnex B (informative):Change history\nDate\nTSG #\nTSG Doc.\nCR\nRev\nCat\nSubject/Comment\nNew\n2008-12\nCT#42\nCP-080716\nV2.0.0 approved in CT#42\n8.0.0\n2009-03\nCT#43\nCP-090048\n0001\n1\nCorrection on GTP-U path failure\n8.1.0\n0002\nUDP Port Extension Header\n0003\n1\nCorrection to IP support\n0006\nHandling of End Marker packet\n2009-06\nCT#44\nCP-090481\n0007\n3\nGTP-U tunnelling over X2\n8.2.0\n0008\n2\nGTP-U updates for MBMS HSPA Evolution\n2009-09\nCT#45\nCP-090539\n0010\n1\nForwarding Tunnel Error Indication handling\n8.3.0\n0011\n1\nClarification on the usage of Echo Request\n0012\n2\nClarification to the Sequence Number usage in EPC\n0014\n3\nUpdating the Error Indication clause\n0016\nEliminating Editor's Notes\n0018\n1\nPath Failure text correction\n0019\n1\nSupport of NDS/IP for LTE\n2009-09\nCT#45\nCP-090559\n0013\n1\nMBMS for EPS support in GTPv1-U\n9.0.0\n2009-12\nCT#46\nCP-090773\n0023\n2\nEnd Marker in S1 based handover and Inter RAT handover procedures\n9.1.0\n0025\nGTP-U sequence number handling\n2010-03\nCT#47\nCP-100023\n0027\n1\nSequence Number corrections\n9.2.0\n2010-06\nCT#48\nCP-100287\n0028\n1\nMessage applicability of MBMS in GTP-U\n9.3.0\n2010-12\nCT#50\nCP-100686\n0031\n1\nAddition of GTP-U interface over S2b\n10.0.0\n0033\n2\nEnd Marker message\n0035\n1\nEcho Request & Echo Response\n2011-03\nCT#51\nCP-110258\n0037\n2\nTEID value 0 for GTP-U tunnel\n10.1.0\n0038\n3\nGTP-U protocol missing information\n0039\nScope of GTPv1\n2011-06\nCT#52\nCP-110374\n0040\neNB Error Indication Handling\n10.2.0\n0042\n1\nAddition of the MBMS reference points\n2011-09\nCT#53\nCP-110567\n0044\nUser plane path failure handling\n10.3.0\n2011-09\nCT#53\nCP-110580\n0043\nDefault inner MTU size\n11.0.0\nCP-110577\n0045\n1\nCorrection to references\n2011-12\nCT#54\nCP-110810\n0046\n1\nAdd the definition of C-TEID\n11.1.0\n0048\n1\nDynamic allocation of UDP source ports\n0049\nRequirement for sending Error Indication\n2012-03\nCT#55\nCP-120036\n0050\nTunnelling between eNodeB and RNC\n11.2.0\nCP-120036\n0053\n1\nGTP-U header\n0052\n1\nAddition of GTP based S2a\n2012-06\nCT#56\n0054\nTunnelling Scenarios\n11.3.0\n2012-09\nCT#57\nCP-120682\n0059\n6\nNew extension header in GTP-U for SIRIG\n11.4.0\n2012-12\nCT#58\nCP-120751\n0060\n2\nLength of PDCP PDU number\n11.5.0\nCP-120735\n0061\n-\nRemoval of editor's note in extension header in GTP-U for SIRIG\n2013-03\nCT#59\nCP-130021\n0062\n-\nClarification on support of GTP-U over the S2a interface\n11.6.0\n2014-09\nCT#65\nCP-140521\n0064\n2\nIntroduction of Dual Connectivity Function\n12.0.0\n0065\n-\nCorrect the ambiguous GTP-U PDU\n2014-12\nCT#66\nCP-140789\n0067\n1\nDefinition of  RAN Container for  flow control during X2UP handover\n12.1.0\nCP-140972\n0068\n1\nEnd Marker used in PMIP-based S5/S8 case\nCP-140972\n0069\n2\nCorrect the GSN Address IE name\n2015-09\nCT#69\nCP-150454\n0071\n2\nTunnelling scenarios for supporting High Latency communication\n13.0.0\nCP-150448\n0072\n3\nG-PDU extension header handling\n2016-03\nCT#71\nCP-160033\n0074\n1\nS11-U tunneling for MO/MT data transport in control plane (SGi based)\n13.1.0\nCP-160033\n0075\n1\nEnd Marker handling by MME\nCP-160038\n0076\n1\nComprehension requirement for PDCP PDU Number\nCP-160040\n0077\n2\n18 bits PDCP PDU Number\n2016-06\nCT#72\nCP-160228\n0078\n1\nHandling of End Marker packets over S11-U by MME\n13.2.0\n2017-03\nCT#75\nCP-170032\n0080\n1\nSupport for transport level packet marking over GTP-U interfaces\n14.0.0\n2017-06\nCT#76\nCP-171019\n0082\n-\nXw RAN Container for LTE-WLAN Aggregation (LWA)\n14.1.0\n2017-09\nCT#77\nCP-172025\n0083\n1\nGTP-U Extension Header Handling\n15.0.0\n2017-12\nCT#78\nCP-173034\n0084\n1\nSupports N3, N9 and Xn userplane interface\n15.1.0\n2018-03\nCT#79\nCP-180026\n0086\n1\nNew GTP-U extension header for 5GS\n15.2.0\n2018-03\nCT#79\nCP-180026\n0087\n1\nSupport End Marker in 5GS\n15.2.0\n2018-03\nCT#79\nCP-180026\n0089\n1\nNew GTP-U Extension Header for the PDU Session Container\n15.2.0\n2018-03\nCT#79\nCP-180023\n0088\n1\nUnpredictability of GTP TEID for PGW GTP-U\n15.2.0\n2018-06\nCT#80\nCP-181128\n0092\n1\nChange of Comprehension for 'Long PDCP PDU Number' extension header\n15.3.0\n2018-06\nCT#80\nCP-181132\n0093\n2\nFix the location of the PDU Session Container\n15.3.0\n2018-06\nCT#80\nCP-181132\n0095\n-\nUser Plane Protocol over N9\n15.3.0\n2018-09\nCT#81\nCP-182084\n0096\n1\nGeneral 5G Corrections\n15.4.0\n2018-09\nCT#81\nCP-182084\n0097\n2\nGTP-U Tunnel Endpoint Description\n15.4.0\n2018-09\nCT#81\nCP-182084\n0099\n1\nDSCP Marking on IPv4 Outer Header based on 5QI/ARP\n15.4.0\n2018-12\nCT#82\nCP-183092\n0100\n1\nT-PDU content\n15.5.0\n2018-12\nCT#82\nCP-183092\n0101\n-\nReferencing F1-U in the Introduction clause\n15.5.0\n2018-12\nCT#82\nCP-183092\n0102\n-\nData forwarding between 5GS and EPS\n15.5.0\n2018-12\nCT#82\nCP-183092\n0103\n-\nReceiving packets from multiple remote GTP-U endpoints\n15.5.0\n2019-09\nCT#85\nCP-192116\n0104\n1\nError Indication and Path Failure in 5GS\n15.6.0\n2019-12\nCT#85\nCP-193024\n0108\n1\nPDCP PDU Number\n15.7.0\n2019-12\nCT#85\nCP-193041\n0109\n-\nImplementing the conclusions of TR 29.892 for GTP-U\n16.0.0\n2019-12\nCT#85\nCP-193050\n0107\n-\nN19 user plane interface for 5G VN group communication\n16.0.0\n2020-09\nCT#89e\nCP-202099\n0110\n1\nEnd marker in EPS and 5GS\n16.1.0\n2021-03\nCT#91e\nCP-210056\n0114\n1\nEnd Marker in NG-RAN initiated QoS Flow mobility\n16.2.0\n2021-03\nCT#91e\nCP-210033\n0111\n1\nTunnel Status notifying Pause of Charging\n17.0.0\n2021-09\nCT#93e\nCP-212035\n0115\n-\nB\nGTP-U tunneling for N3mb and N19mb\n17.1.0\n2022-03\nCT#95e\nCP-220037\n0116\n1\nB\nDetecting of the restart of a GTP-U entity\n17.2.0\n2022-06\nCT#96\nCP-221023\n0117\n-\nF\nPDU Session Container used over N3mb and N19mb\n17.2.0\n2022-06\nCT#96\nCP-221046\n0119\n-\nF\nA G-PDU message without a T-PDU\n17.3.0\n2022-09\nCT#97e\nCP-222031\n0120\n1\nF\nMB-UPF\n17.4.0\n2023-06\nCT#100\nCP-231066\n0125\n-\nF\nAdding W1-U interface\n18.0.0\n2024-03\nCT#103\nCP-240034\n0128\n1\nB\nNew GTP-U Extension Header for the PDU Set Information Container\n18.1.0\n2024-09\nCT#105\nCP-242051\n0131\n1\nF\nCorrection on PDU Set Information Container Extension Header\n18.2.0\n2024-12\nCT#106\nCP-243020\n0133\n-\nA\nFixing the GTP-U Tunnel Status Information and Recovery Time Stamp IEs\n18.3.0",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.401_clause_5.3.3.1",
+        "clause_0016",
+        "clause_15.5.0",
+        "ts_23.401",
+        "ts_38.415",
+        "ts_15.5",
+        "ts_29.892"
+      ]
+    }
+  ]
+}

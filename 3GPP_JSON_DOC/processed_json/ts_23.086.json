@@ -1,0 +1,206 @@
+{
+  "metadata": {
+    "specification_id": "ts_23.086",
+    "version": "18.0.0",
+    "title": "3GPP TS 23.086",
+    "file_path": "/content/drive/MyDrive/RAG_thesis/data/23_series/23086-i00/23086-i00.docx"
+  },
+  "export_info": {
+    "export_date": "2025-07-26T09:35:44.009086",
+    "total_chunks": 20
+  },
+  "chunks": [
+    {
+      "chunk_id": "ts_23.086_0",
+      "section_id": "0",
+      "section_title": "Scope",
+      "content": "The present document gives the stage 2 description of the Advice of Charge (AoC) supplementary services.\nThe charging supplementary services currently defined are:\n-\tAdvice of Charge (Information)\t(AoCI)\t(clause 1);\n-\tAdvice of Charge (Charging)\t(AoCC)\t(clause 2).",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_1",
+        "clause_2"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.086_0.1",
+      "section_id": "0.1",
+      "section_title": "References",
+      "content": "The following documents contain provisions which, through reference in this text, constitute provisions of the present document.\n-\tReferences are either specific (identified by date of publication, edition number, version number, etc.) or non‑specific.\n-\tFor a specific reference, subsequent revisions do not apply.\n-\tFor a non-specific reference, the latest version applies.  In the case of a reference to a 3GPP document (including a GSM document), a non-specific reference implicitly refers to the latest version of that document in the same Release as the present document.\n[1]\t3GPP TR 21.905: \" Vocabulary for 3GPP Specifications \".\n[2]\t3GPP TS 22.024: \"Description of Charge Advice Information (CAI)\".\n[3]\t3GPP TS 22.086: \"Advice of Charge (AoC) Supplementary Services; Stage 1\".\n[4]\t3GPP TS 23.011: \"Technical Realization of Supplementary Services - General Aspects\".",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905",
+        "ts_22.024",
+        "ts_22.086",
+        "ts_23.011"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.086_0.2",
+      "section_id": "0.2",
+      "section_title": "Abbreviations",
+      "content": "Abbreviations used in the present document are listed in 3GPP TR 21.905 [1].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.086_1.1",
+      "section_id": "1.1",
+      "section_title": "Advice of Charge (Information) MSC SDL diagram",
+      "content": "The SDL diagram for the Advice of Charge (Information) supplementary service within the MSC is given in figure 1.1.\nNOTE 1:\tAoC (Information) is not applicable to emergency calls.\nNOTE 2:\tThe request of generation of the Charge Advice Information (CAI) applies to AoC initiation or charge modification.",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_1.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.086_1.2",
+      "section_id": "1.2",
+      "section_title": "Advice of Charge (Information) mobile equipment SDL diagram",
+      "content": "The SDL diagram for the Advice of Charge (Information) supplementary service within the mobile equipment is given in figure 1.2. This SDL indicates when charging calculations are started, amended and stopped, within the mobile equipment. The mobile equipment should start charging calculations as soon as possible after receiving the charging information. Charging calculations should be amended by the mobile equipment in accordance with GSM 02.24.\nNOTE:\tThe point at which the charging calculations are amended can occur before or after sending the AoC Acknowledge.\nCharging calculations are stopped when the call ends for any reason.\nThe reception of the CAI shall be acknowledged only if the MS supports the AoCI functionality specified in GSM 02.24 and GSM 02.86, however the network does not action this acknowledgement in the AoC (Information) case.",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_1.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.086_1.3",
+      "section_id": "1.3",
+      "section_title": "Advice of Charge (Information) information flow diagram",
+      "content": "The Advice of Charge (Information) information flow diagrams are shown in figure 1.3.\nFigure 1.1: SDL diagram of advice of charge (information) in the MSC\nFigure 1.2: SDL diagram of advice of charge (information) in the mobile equipment\nFigure 1.3: Information flow for Advice of Charge (Information)",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_1.3",
+        "figure_1.1",
+        "figure_1.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.086_1.4",
+      "section_id": "1.4",
+      "section_title": "Information stored in the HLR",
+      "content": "AoCI may have the following logical states (refer to GSM 03.11 for an explanation of the notation):\nProvisioning State\tRegistration State\tActivation State\tHLR Induction State\n(Not Provisioned,\tNot Applicable,\tNot Active,\tNot Induced)\n(Provisioned,\tNot Applicable,\tActive and Operative,\tNot Induced)\nThe HLR shall store the logical state of AoCI (which shall be one of the valid states listed above) on a per subscriber basis.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.086_1.5",
+      "section_id": "1.5",
+      "section_title": "State transition model",
+      "content": "The following figure shows the successful cases of transition between the applicable logic states of AoCI. The state changes are caused by actions of the service provider.\nNote that error cases are not shown in the diagram as they normally do not cause a state change. Additionally, some successful requests may not cause a state change. Hence they are not shown in the diagram.\nFigure 1.4: State transition model for AoCI",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_1.4"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.086_1.6",
+      "section_id": "1.6",
+      "section_title": "Transfer of Information from HLR to VLR",
+      "content": "If the provisioning state for AoCI is \"Provisioned\" then when the served subscriber registers on a VLR the HLR shall send that VLR information about the logical state of AoCI.\nIf the logical state of AoCI is changed while a subscriber is registered on a VLR, then the HLR shall inform the VLR of the new logical state of AoCI.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.086_1.7",
+      "section_id": "1.7",
+      "section_title": "Information stored in the VLR",
+      "content": "For the supplementary service AoCI the VLR shall store the service state information received from the HLR.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.086_1.8",
+      "section_id": "1.8",
+      "section_title": "Handover",
+      "content": "Handover will have no impact on AoC control procedure.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.086_2.1",
+      "section_id": "2.1",
+      "section_title": "Advice of Charge (Charging) MSC SDL diagram",
+      "content": "The SDL diagram for the Advice of Charge (Charging) supplementary service within the MSC is given in figure 2.1. At invocation of the Advice of Charge (Charging) supplementary service the network shall send the \"Charging\" MS the CAI. The network shall allow the call to proceed whilst waiting for an acknowledgement of the CAI. The waiting period is governed by Timer T(AoC). On expiry of T(AoC) the network shall initiate call clearing.\nNOTE 1:\tAoC (Charging) is not applicable to emergency calls.\nNOTE 2:\tThe request of generation of CAI applies to AoC initiation or charge modification.",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_2.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.086_2.2",
+      "section_id": "2.2",
+      "section_title": "Advice of Charge (Charging) mobile equipment SDL diagram",
+      "content": "The SDL diagram for the Advice of Charge (Charging) supplementary service within the mobile equipment is given in figure 2.2. The SDL indicates when charging calculations are started, amended and stopped, within the mobile equipment. The mobile equipment should start charging calculations as soon as possible after receiving the charging information. Charging calculations should be emended by the mobile equipment in accordance with GSM 02.24.\nNOTE:\tThe point at which charging calculations are amended can occur before or after sending the AoC Acknowledge.\nCharging calculations are stopped when the call ends for any reason.\nThe reception of the CAI shall be acknowledged only if the MS supports the AoCC functionality specified in GSM 02.24 and GSM 02.86.\nFor mobile originated calls, the MS shall prevent a call set-up attempt if the ACM value is equal to or greater than ACMmax.\nFor mobile terminated calls, a call set-up attempt shall be allowed even if the ACM value is equal to or greater than ACMmax. In this case, when the MS detects that this is a chargeable call and that the ACM value is equal to or greater than ACMmax then the call shall be released.\nDuring an active call, when the MS detects that ACM is equal to or greater than ACMmax then the MS shall release the call.",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_2.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.086_2.3",
+      "section_id": "2.3",
+      "section_title": "Advice of Charge (Charging) information flow diagram",
+      "content": "The Advice of Charge (Charging) information flow diagrams are shown in figure 2.3.",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_2.3"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.086_2.4",
+      "section_id": "2.4",
+      "section_title": "AoCC subscriber roaming requirements",
+      "content": "When an AoCC subscriber first roams into an MSC area not supporting AoCC, or the subscription is given to him while he is roaming in an MSC area not supporting AoCC the following applies:\nThe HLR shall indicate to the VLR that roaming is restricted in this MSC area due to unsupported feature, and it prevents further mobile terminated traffic. In this case the MS is not reachable.\nWhen entering an AoCC supporting area the AoCC related roaming restriction shall be removed in the HLR.\nWhen AoCC is withdrawn the AoCC related roaming restriction shall be removed in the HLR and VLR. This is independent from roaming restrictions due to other reasons.\nFigure 2.1: SDL diagram of advice of charge (charging) in the MSC\nFigure 2.2: SDL diagram of advice of charge (charging) in the mobile equipment\nFigure 2.3 (sheet 1 of 2): Information flow for Advice of Charge (Charging)\nFigure 2.3 (sheet 2 of 2): Information flow for Advice of Charge (Charging)",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_2.1",
+        "figure_2.2",
+        "figure_2.3"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.086_2.5",
+      "section_id": "2.5",
+      "section_title": "Information stored in the HLR",
+      "content": "AoCC may have the following logical states (refer to GSM 03.11 for an explanation of the notation):\nProvisioning State\tRegistration State\tActivation State\tHLR Induction State\n(Not Provisioned,\tNot Applicable,\tNot Active,\tNot Induced)\n(Provisioned,\tNot Applicable,\tActive and Operative,\tNot Induced)\nThe HLR shall store the logical state of AoCC (which shall be one of the valid states listed above) on a per subscriber basis.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.086_2.6",
+      "section_id": "2.6",
+      "section_title": "State transition model",
+      "content": "The following figure shows the successful cases of transition between the applicable logic states of AoCC. The state changes are caused by actions of the service provider.\nNote that error cases are not shown in the diagram as they normally do not cause a state change. Additionally, some successful requests may not cause a state change. Hence they are not shown in the diagram.\nFigure 2.4: State transition model for AoCC",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_2.4"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.086_2.7",
+      "section_id": "2.7",
+      "section_title": "Transfer of Information from HLR to VLR",
+      "content": "If the provisioning state for AoCC is \"Provisioned\" then when the served subscriber registers on a VLR the HLR shall send that VLR information about the logical state of AoCC.\nIf the logical state of AoCC is changed while a subscriber is registered on a VLR, then the HLR shall inform the VLR of the new logical state of AoCC.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.086_2.8",
+      "section_id": "2.8",
+      "section_title": "Information stored in the VLR",
+      "content": "For the supplementary service AoCC the VLR shall store the service state information received from the HLR.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.086_2.9",
+      "section_id": "2.9",
+      "section_title": "Handover",
+      "content": "Handover will have no impact on AoC control procedure.\nAnnex A (normative):Information stored in the MSC\nThe MSC shall have access to the following tables to enable the call handling function to generate the Charge Advice Information (CAI), see GSM 02.24. The table will give the CAI element values corresponding to service request, call destination, type of day and the time of day.\n-\tUnits per interval table\t(e1 values);\n-\tSeconds per internal table\t(e2 values);\n-\tScaling factor table\t(e3 values);\n-\tUnit increment table\t(e4 values);\n-\tUnits per data interval table\t(e5 values);\n-\tSegments per data interval table\t(e6 values);\n-\tInitial seconds per time interval table\t(e7 values).\nAnnex B (informative):Change history\nChange history\nDate\nMeeting\nTDoc\nCR\nRev\nCat\nSubject/Comment\nNew version\nApr 1999\nTransferred to 3GPP CN1\nCN#03\nApproved at CN#03\n3.0.0\nReference list updated from 2G to 3G\n3.0.1\nCN#09\n001\n1\nSDL refresh\n3.1.0\nCN#11\nRelease 4 after CN#11\n4.0.0\nCN#16\nRelease 5 after CN#16\n5.0.0\nCN#26\nRelease 6 after CN#26\n6.0.0\nCT#30\n0002\nIncorrect References\n6.1.0\nCT#36\nUpgraded unchanged from Rel-6\n7.0.0\nCT#42\nUpgraded unchanged from Rel-7\n8.0.0\nCT#46\n-\n-\nUpdate to Rel-9 version (MCC)\n9.0.0\n2011-03\n-\n-\nUpdate to Rel-10 version (MCC)\n10.0.0\n2012-09\n-\n-\nUpdate to Rel-11 version (MCC)\n2014-09\n-\n-\nUpdate to Rel-12 version (MCC)\n12.0.0\n2015-12\n-\n-\nUpdate to Rel-13 version (MCC)\n13.0.0\n2017-03\n-\n-\nUpdate to Rel-14 version (MCC)\n14.0.0\n2018-06\n-\n-\nUpdate to Rel-15 version (MCC)\n15.0.0\n2020-07\n-\n-\nUpdate to Rel-16 version (MCC)\n16.0.0\n2022-03\n-\n-\nUpdate to Rel-17 version (MCC)\n17.0.0\n2024-03\n-\n-\n-\n-\n-\nUpdate to Rel-18 version (MCC)\n18.0.0",
+      "chunk_type": "requirement",
+      "cross_references": []
+    }
+  ]
+}

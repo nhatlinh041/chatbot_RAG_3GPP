@@ -1,0 +1,997 @@
+{
+  "metadata": {
+    "specification_id": "ts_23.586",
+    "version": "18.7.0",
+    "title": "3GPP TS 23.586",
+    "file_path": "/content/drive/MyDrive/RAG_thesis/data/23_series/23586-i70/23586-i70.docx"
+  },
+  "export_info": {
+    "export_date": "2025-07-26T09:23:48.917316",
+    "total_chunks": 79
+  },
+  "chunks": [
+    {
+      "chunk_id": "ts_23.586_1",
+      "section_id": "1",
+      "section_title": "Scope",
+      "content": "The present document specifies the stage 2 of the Ranging based services and Sidelink positioning in 5G System for commercial, V2X and public safety use cases in in-coverage, partial coverage, and out-of-coverage of 5G network using 5G NR PC5 RAT.\nRadio aspects of Ranging based services and Sidelink positioning in 5GS are defined in TS 38.355 [12] and TS 38.305 [5].\nSecurity aspects of Ranging based services and Sidelink positioning in 5GS are defined in TS 33.533 [13].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_38.355",
+        "ts_38.305",
+        "ts_33.533"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.586_2",
+      "section_id": "2",
+      "section_title": "References",
+      "content": "The following documents contain provisions which, through reference in this text, constitute provisions of the present document.\n-\tReferences are either specific (identified by date of publication, edition number, version number, etc.) or non‑specific.\n-\tFor a specific reference, subsequent revisions do not apply.\n-\tFor a non-specific reference, the latest version applies. In the case of a reference to a 3GPP document (including a GSM document), a non-specific reference implicitly refers to the latest version of that document in the same Release as the present document.\n[1]\t3GPP TR 21.905: \"Vocabulary for 3GPP Specifications\".\n[2]\t3GPP TS 23.501: \"System architecture for the 5G System (5GS)\".\n[3]\t3GPP TS 23.502: \"Procedures for the 5G System (5GS)\".\n[4]\t3GPP TS 23.503: \"Policy and charging control framework for the 5G System (5GS); Stage 2\".\n[5]\t3GPP TS 38.305: \"NG Radio Access Network (NG-RAN); Stage 2 functional specification of User Equipment (UE) positioning in NG-RAN\".\n[6]\t3GPP TS 23.287: \"Architecture enhancements for 5G System (5GS) to support Vehicle-to-Everything (V2X) services\".\n[7]\t3GPP TS 23.304: \"Proximity based Services (ProSe) in the 5G System (5GS)\".\n[8]\t3GPP TS 23.273: \"5G System (5GS) Location Services (LCS); Stage 2\".\n[9]\t3GPP TS 37.355: \"LTE Positioning Protocol (LPP)\".\n[10]\t3GPP TS 23.222: \"Common API Framework for 3GPP Northbound APIs\".\n[11]\t3GPP TS 33.122: \"Security aspects of Common API Framework (CAPIF) for 3GPP northbound APIs\".\n[12]\t3GPP TS 38.355: \"NR; Sidelink Positioning Protocol (SLPP); Protocol Specification\".\n[13]\t3GPP TS 33.533: \"Security aspects of ranging based services and Sidelink positioning\".\n[14]\t3GPP TS 23.032: \"Universal Geographical Area Description (GAD)\".\n[15]\t3GPP TS 38.300: \"NR; NR and NG-RAN Overall Description; Stage 2\".\n[16]\t3GPP TS 24.080: \"Supplementary services specification; Formats and coding\".\n[17]\t3GPP TS 24.514: \"Ranging based services and sidelink positioning in 5G system (5GS); Stage 3\".",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905",
+        "ts_23.501",
+        "ts_23.502",
+        "ts_23.503",
+        "ts_38.305",
+        "ts_23.287",
+        "ts_23.304",
+        "ts_23.273",
+        "ts_37.355",
+        "ts_23.222",
+        "ts_33.122",
+        "ts_38.355",
+        "ts_33.533",
+        "ts_23.032",
+        "ts_38.300",
+        "ts_24.080",
+        "ts_24.514"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.586_3.1",
+      "section_id": "3.1",
+      "section_title": "Terms",
+      "content": "For the purposes of the present document, the terms given in TR 21.905 [1] and the following apply. A term defined in the present document takes precedence over the definition of the same term, if any, in TR 21.905 [1].\nLocated UE: A SL Reference UE of which the location is known or is able to be known using Uu based positioning. A Located UE can be used to determine the location of a Target UE using Sidelink Positioning.\nNetwork-based Operation: Operation of Ranging/Sidelink Positioning with the involvement of 5GC NFs for the service request handling and result calculation.\nNetwork-assisted Operation: Operation of Ranging/Sidelink Positioning with the involvement of 5GC NFs for the service request handling and assisting UE for the result calculation.\nPositioning: A functionality, which detects a geographical location and optionally, velocity (of e.g. a mobile terminal).\nRanging: Refers to the determination of the distance between two UEs or more UEs and/or the direction of one UE (i.e. Target UE) from another UE (i.e. SL Reference UE) via PC5 interface.\nRanging/SL Positioning Application Identifier: A globally unique identifier identifying a specific Ranging/SL Positioning application, which can be mapped to a V2X service type or a ProSe identifier.\nRelative location: An estimate of the UE position relative to other network elements or relative to other UEs.\nRelative velocity: An estimate of the UE velocity relative to another UE.\nSL Reference UE: A UE, supporting positioning of target UE, e.g. by transmitting and/or receiving reference signals for positioning, providing positioning-related information, etc. using Sidelink.\nNOTE 1:\tSL Reference UE is understood as \"Anchor UE\" in RAN WGs.\nSidelink Positioning: Positioning UE using PC5 to obtain absolute location, relative locationn, or ranging information.\nSL Positioning Client UE: A third-party UE, other than SL Reference UE and Target UE, which initiates Ranging/Sidelink positioning service request on behalf of the application residing on it.\nNOTE 2:\tThe SL Positioning Client UE does not have to support Ranging/Sidelink positioning capability, but a communication between the SL Positioning Client UE and SL Reference UE/Target UE has to be established, either via PC5 or via 5GC, for the transmission of the service request and the result.\nSL Positioning Server UE: A UE offering method determination, assistant data distribution. location calculation, SL-PRS configuration coordination and/or Located UE selection functionalities for Sidelink Positioning and Ranging based service. It interacts with other UEs over PC5 as necessary in order to determine Ranging/SL Position method, distribute assistant data and calculate the location of the Target UE. Target UE or SL Reference UE can act as SL Positioning Server UE if any of the functionalities is supported.\nTarget UE: A UE whose distance, direction and/or position is measured with the support from one or multiple SL Reference UEs using Sidelink in the Ranging based service and Sidelink positioning.\nUE-only Operation: Operation of Ranging/Sidelink Positioning in which the service request handling and result calculation are performed by UE.\nNOTE 3:\tFor UE-only Operation, the communication among UEs are over PC5.\nUser Info ID: The User Info ID is configured for Ranging/SL Positioning UE Discovery based on the policy of the HPLMN or via the Ranging/SL Positioning application server that allocates it. The definition of values of User Info ID is out of scope of this specification.\nApplication Layer ID: An identifier identifying a Ranging/Sidelink Positioning-enabled UE within the context of a specific application. The format of this identifier is outside the scope of 3GPP.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.586_3.2",
+      "section_id": "3.2",
+      "section_title": "Abbreviations",
+      "content": "For the purposes of the present document, the abbreviations given in TR 21.905 [1] and the following apply. An abbreviation defined in the present document takes precedence over the definition of the same abbreviation, if any, in TR 21.905 [1].\nLPP\tLTE Positioning Protocol\nRSPP\tRanging/SL Positioning Protocol\nSLPP\tSidelink Positioning Protocol",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.586_4.1",
+      "section_id": "4.1",
+      "section_title": "General concept",
+      "content": "Ranging based service provides the distance between two UEs or more UEs and/or the direction of one UE (i.e. Target UE) from another UE (i.e. SL Reference UE) via PC5 operations.\nSidelink Positioning provides absolute location, relative position, or Ranging information of a UE by using PC5 for the positioning. A Located UE can be used to determine the absolute location of a Target UE using Sidelink Positioning.\nThe operation of Ranging/Sidelink Positioning can be performed with Network-assisted Operation, Network-based Operation or UE-only Operation:\n-\tIn the Network-based Operation, 5GC NF(s) is involved for the service request handling and result calculation.\n-\tIn the UE-only Operation, the service request handling and result calculation are performed by UE.\n-\tIn the Network-assisted Operation, 5GC NF(s) is involved for the service request handling and assist UE for the result calculation.\nThe Ranging/Sidelink Positioning service request can be initiated by a UE (i.e. SL Positioning Client UE, Target UE, SL Reference UE), a 5GC NF, an LCS Client or an AF.\nWhen the direct Ranging/Sidelink positioning between the SL Reference UE and Target UE cannot be supported, Ranging/Sidelink Positioning between a SL Reference UE and a Target UE over PC5 may use assistance of another UE.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.586_4.2.1",
+      "section_id": "4.2.1",
+      "section_title": "Non-roaming reference architecture",
+      "content": "Figure 4.2.1-1 shows the high-level view of the non-roaming 5G System architecture for Ranging based services and Sidelink Positioning with service-based interfaces within the Control Plane.\nFigure 4.2.1-1: Reference architecture for Ranging based services and Sidelink positioning for non-roaming and same PLMN operation in SBI representation\nFigure 4.2.1-2: Non-roaming reference architecture for Location Services with ranging and Sidelink positioning in reference point representation\nNOTE:\tThe full 5GS architecture is defined in TS 23.501 [2].",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_4.2.1-1",
+        "figure_4.2.1-2",
+        "ts_23.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.586_4.2.2",
+      "section_id": "4.2.2",
+      "section_title": "Roaming reference architecture",
+      "content": "Figure 4.2.2-1 shows the high-level view of the roaming 5G System architecture for Ranging based services and Sidelink Positioning with service-based interfaces within the Control Plane. In this figure, UE A use a subscription of the HPLMN.\nFigure 4.2.2-1: Reference architecture for Ranging based services and Sidelink positioning for roaming and same PLMN operation",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_4.2.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.586_4.2.3",
+      "section_id": "4.2.3",
+      "section_title": "Inter-PLMN reference architecture",
+      "content": "Figure 4.2.3-1 shows a reference architecture for Ranging based services and Sidelink Positioning for Inter-PLMN non-roaming operation. In this case, the UE A and UE B have subscriptions from different PLMNs, i.e. PLMN-A and PLMN-B respectively.\nFigure 4.2.3-1: Reference architecture for Ranging based services and Sidelink positioning for inter-PLMN operations\nFigure 4.2.3-2 shows a reference architecture for Ranging based services and Sidelink Positioning for Inter-PLMN roaming operation. In this case, the UE A and UE B have subscriptions from different PLMNs, i.e. PLMN-A and PLMN-B respectively. UE A is roaming and registered to PLMN-C.\nFigure 4.2.3-1: Reference architecture for Sidelink Positioning and Ranging-based services for inter-PLMN operation with roaming",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_4.2.3-1",
+        "figure_4.2.3-2"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.586_4.2.4",
+      "section_id": "4.2.4",
+      "section_title": "Reference points",
+      "content": "SR1:\tThe reference point between the Sidelink (SL) Positioning and Ranging function in the UE and the SL Positioning/Ranging Server. This reference point is out of scope of this specification. It may be used for the configuration and application layer signalling.\nSR5:\tThe reference point between the Sidelink (SL) Positioning and Ranging function in UEs. It is carried over PC5-U of the PC5 reference point.\nPC5:\tThe reference point between the UEs. It also supports the Sidelink Positioning and Ranging operation defined by RAN WGs.\nN1:\tIn addition to the relevant functions defined in TS 23.501 [2] for N1, in the case of Ranging/SL Positioning Service, it is also used to convey the Ranging/SL Positioning policy and parameters (including service authorization) from AMF to UE, and to convey the UE's Ranging/SL Positioning Capability from UE to AMF.\nN2:\tIn addition to the relevant functions defined in TS 23.501 [2] for N2, in the case of Ranging/SL Positioning Service it is also used to convey the Ranging/SL Positioning policy and parameters (including service authorization) from AMF to NG-RAN.\nNL10:\tIn addition to the relevant functions defined in TS 23.273 [8], in the case of Ranging/SL Positioning Service, it used by LMF to get the location of Located UE/Reference UE from GMLC using the Application Layer ID.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.501",
+        "ts_23.273"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.586_4.2.5",
+      "section_id": "4.2.5",
+      "section_title": "Service-based interfaces",
+      "content": "Nlmf:\tIn addition to the relevant services defined in TS 23.273 [8], if the LMF support Ranging/SL Positioning service, it may be used to provide service to other NFs related to it.\nNgmlc:\tIn addition to the relevant services defined in TS 23.273 [8], if the GMLC support Ranging/SL Positioning service, it may be used to get the location of Located UE/Reference UE from GMLC using the Application Layer ID in case of Sidelink Positioning and Ranging operation and it may be used to request to retrieve the mapping information between Application Layer ID and GPSI for UEs belong to different PLMNs and to check those UEs' Ranging/SL Positioning privacy profile.\nNudm:\tIn addition to the relevant services defined in TS 23.501 [2] for Nudm, in the case of Ranging/SL Positioning service, services provided by UDM are used to get the related subscription information to AMF during Initial registration procedure or UE Configuration Update (UCU) procedure to inform AMF subscription information has changed.\nNpcf:\tIn addition to the relevant services defined in TS 23.501 [2] for Npcf, in the case of Ranging/SL Positioning service, services provided by H-PCF are used to provide SL Positioning and Ranging Service related parameters to V-PCF for UE and NG-RAN in the roaming case.\nNudr:\tIn addition to the relevant services defined in TS 23.501 [2] for Nudr, in the case of Ranging/SL Positioning service, services provided by UDR are used to notify the PCF and the UDM of the update of the SL Positioning and Ranging-based service related information.\nNamf:\tIn addition to the relevant services defined in TS 23.501 [2] for Namf, in the case of Ranging/SL Positioning service, services provided by AMF are consumed by PCF to provide the Ranging/SL Positioning service related parameters for the UE and the NG-RAN to AMF, and to enable the AMF create or update UE context related to Ranging/SL Positioning service.\nNnef:\tIn addition to the relevant services defined in TS 23.501 [2] for Nnef, in the case of Ranging/SL Positioning service, services provided by NEF are used by the Application Server to update Ranging/SL Positioning service related information of 5GC.\nNnrf:\tIn addition to the relevant services defined in TS 23.501 [2] for Nnrf, in the case of Ranging/SL Positioning service, services provided by NRF are used to discover the PCF that supports Ranging/SL Positioning.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.273",
+        "ts_23.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.586_4.3.1",
+      "section_id": "4.3.1",
+      "section_title": "UE",
+      "content": "In addition to the functions defined in TS 23.287 [6] and TS 23.304 [7], the UE may support the following functions:\n-\tReporting the following Ranging/SL Positioning Capabilities to 5GC over the N1 reference point:\n-\tCapability of supporting Ranging/SL Positioning over PC5 indicating that the UE supports:\n-\tRanging/SL Positioning operations over PC5 (i.e., for Target UE and SL Reference UE);\n-\tLocated UE;\n-\tSL Positioning Server UE.\n-\tProcedures for Ranging/SL Positioning over PC5.\n-\tProcedures to Network based SL Positioning, and Network assisted SL Positioning.\n-\tProcedures to UE-only SL Positioning.\n-\tProcedures to Ranging/SL Positioning service exposure.\n-\tIndicating UE Policy Provisioning Request in UE Policy Container for UE triggered Ranging/SL Positioning Policy provisioning, which requests one or multiple types of policies/parameters as listed below:\n-\tPolicy/parameters for Ranging/SL Positioning operations over PC5 (i.e. for Target UE and SL Reference UE);\n-\tPolicy/parameters for Located UE;\n-\tPolicy/parameters for SL Positioning Client UE;\n-\tPolicy/parameters for SL Positioning Server UE.\n-\tReceiving the Ranging/SL Positioning Policy from 5GC over N1 reference point.\n-\tFor UE-only Operation, determine Ranging/SL positioning method based on the positioning QoS requirement, UE's Ranging/Sidelink Positioning capability.\n-\tConfiguration of parameters for Ranging/SL Positioning over PC5. These parameters can be pre-configured in the UE, or, if in coverage, provisioned or updated by signalling over the N1 reference point from the PCF in the HPLMN or over SR1 reference point from the Ranging/SL Positioning Application Server.\n-\tReceiving the serving network supporting Ranging/SL Positioning in Registration Accept.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.287",
+        "ts_23.304"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.586_4.3.2",
+      "section_id": "4.3.2",
+      "section_title": "PCF",
+      "content": "In addition to the functions defined in TS 23.501 [2] and TS 23.503 [4], the PCF includes functions to provision the UE with necessary policies and parameters to use Ranging/SL Positioning services, as part of the UE Ranging/SL Positioning Policy information as defined in TS 23.503 [4] clause 4.2.2:\n-\tAuthorization policy and parameters for Ranging/Sidelink Positioning UE Discovery;\n-\tAuthorization policy and parameters for Ranging/SL Positioning over PC5;\n-\tAuthorization policy and parameters for Network based SL Positioning, and Network assisted SL Positioning;\n-\tAuthorization policy and parameters for Ranging/SL Positioning service exposure.\nThe PCF may update the Ranging/SL Positioning policy and parameters to the UE under certain conditions.\nWhen receiving the Ranging/SL Positioning Capability in Npcf_UEPolicyControl_Create Request from the AMF or when receiving the updated subscription data from UDR, the PCF generates the PC5 QoS parameters for RSPP transport over PC5 reference point used by NG-RAN corresponding to a UE as defined in clause 5.4.2 of TS 23.287 [6].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.503_clause_4.2.2",
+        "ts_23.287_clause_5.4.2",
+        "ts_23.501",
+        "ts_23.503",
+        "ts_23.287"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.586_4.3.3",
+      "section_id": "4.3.3",
+      "section_title": "AMF",
+      "content": "In addition to the functions defined in TS 23.287 [6] and TS 23.304 [7], the AMF performs the following functions:\n-\tSelect a PCF supporting Ranging/SL Positioning Policy/Parameter provisioning based on indication of Ranging/SL Positioning Capability as part of the \"5GMM capability\" in the Registration Request.\n-\tStore the Ranging/SL Positioning Capability.\n-\tSelect the LMF supporting Ranging/SL positioning and forward the Ranging/SL Positioning Capability of Target UE to LMF.\n-\tSelect a GMLC supporting Ranging/SL positioning and request the GMLC for Ranging/SL Positioning result.\n-\tForward the Ranging/SL Positioning Capability to PCF.\n-\tObtain from UDM the subscription information related to Ranging/SL positioning and store them as part of the UE context data.\n-\tProvision the NG-RAN with indication about the UE authorization status about Ranging/SL Positioning over PC5.\n-\tProvision the NG-RAN with \"Ranging/SL Positioning authorised\" information.\n-\tIndicate the UE serving network supports Ranging/SL Positioning.\nNOTE:\tThe Ranging/SL Positioning Support is configured in the AMF according to network capabilities.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.287",
+        "ts_23.304"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.586_4.3.4",
+      "section_id": "4.3.4",
+      "section_title": "UDM",
+      "content": "In addition to the functions defined in TS 23.287 [6] and TS 23.304 [7], the UDM performs the following functions:\n-\tSubscription management for Ranging/SL Positioning over PC5.\n-\tSubscription management for Ranging/SL Positioning service exposure.\n-\tContaining UE Ranging/SL Positioning privacy profile.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.287",
+        "ts_23.304"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.586_4.3.5",
+      "section_id": "4.3.5",
+      "section_title": "UDR",
+      "content": "In addition to the functions defined in TS 23.287 [6] and TS 23.304 [7], the UDR performs the following functions:\n-\tStores Ranging/SL Positioning service parameters.\n-\tStores the mapping between Application Layer ID and GPSI provisioned by AF in application data.\nNOTE:\tMapping between Application Layer ID and GPSI can be pre-provisioned by operator in application data.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.287",
+        "ts_23.304"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.586_4.3.6",
+      "section_id": "4.3.6",
+      "section_title": "NRF",
+      "content": "In addition to the functions defined in TS 23.287 [6] and TS 23.304 [7], the NRF performs the following functions:\n-\tPCF discovery by considering Ranging/SL Positioning Capability.\n-\tLMF discovery by considering Ranging/SL Positioning Capability.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.287",
+        "ts_23.304"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.586_4.3.7",
+      "section_id": "4.3.7",
+      "section_title": "NEF",
+      "content": "In addition to the functions defined in TS 23.287 [6] and TS 23.304 [7], the NEF supports the following:\n-\tTo enable AFs to provide service specific information to the 3GPP network, the NEF supports additional service parameters for Ranging/SL Positioning policy which can use the description of the clause 6.2.5 in TS 23.304 [7].\n-\tInteracting with GMLC for AFs and UEs in Ranging/SL Positioning procedures to perform 5GC-MT-LR (e.g. Forward location request from the AF including GPSI or Application Layer ID).\n-\tUpdate the UE subscription data stored in the UDR with Onboarding Enrolment Information.\n-\tProvide the GMLC with the GPSI of the UE based on Application Layer ID and ID mapping information stored in UDR application data.\n-\tProvide the GMLC with the Application Layer ID based on GPSI of the UE and ID mapping information stored in UDR application data.\n-\tRequest UDR to store as application data the GPSI and Application Layer ID mapping information provisioned by AF.\n-\tSupport UE Ranging/SL Positioning privacy profile provision from the AF.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.304_clause_6.2.5",
+        "ts_23.287",
+        "ts_23.304"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.586_4.3.8",
+      "section_id": "4.3.8",
+      "section_title": "LMF",
+      "content": "In addition to the functions defined in TS 23.273 [8], the LMF supports the following:\n-\tThe Network based SL Positioning and Network assisted SL Positioning;\n-\tDetermine using the Network based SL Positioning or Network assisted SL Positioning.\n-\tTrigger Ranging/Sidelink positioning.\n-\tExchange the Ranging/Sidelink Positioning capability.\n-\tExchange the Ranging/Sidelink Positioning assistant data.\n-\tExchange Ranging/Sidelink positioning signal measurement data/result.\n-\tSupport of receiving stored Ranging/Sidelink Positioning capability from AMF and support of providing updated Ranging/Sidelink Positioning capability to AMF.\n-\tDetermine to apply UE based Sidelink Positioning or Network based SL Positioning.\n-\tDetermine to use both Ranging/SL Positioning and Uu absolute Positioning based on the QoS requirement to obtain the location results (e.g. relative locations or distances and/or directions related to the UEs as defined in clause 4.4).\n-\tDetermine to use Uu absolute Positioning to obtain the location results (as defined in clause 4.4) when the Ranging/SL Positioning fails.\n-\tDetermine that Target UE or LMF selects Located UE.\n-\tDetermine Ranging/SL positioning method based on the positioning QoS requirement of Target UE or Ranging/SL Positioning QoS requirement, UE’s Ranging/Sidelink Positioning capability.\n-\tDetermine the required QoS for Located UE positioning.\n-\tIf the scheduled location time is absent, optionally determine the same scheduled location time for the Ranging/SL positioning and the positioning of the Located UE(s).\n-\tDetermine the location of the Target UE based on the Ranging/SL positioning measurement data and the location of Located UE(s) for Network based SL Positioning, or based on result reported by SL Positioning Server UE for Network assisted SL Positioning.\n-\tInteraction with GMLC to get the location of Located UE/SL Reference UE using the Application Layer ID.\n-\tDelivering the Ranging/Sidelink positioning service request/response for the Ranging service exposure to UE.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_4.4",
+        "ts_23.273"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.586_4.3.9",
+      "section_id": "4.3.9",
+      "section_title": "GMLC",
+      "content": "In addition to the functions defined in TS 23.273 [8], the GMLC supports the following:\n-\tenable trusted AFs and NFs to perform MT-LR by accessing GMLC directly with additional service parameters for Ranging/SL Positioning.\n-\tenable AFs and NFs to perform MT-LR by accessing GMLC through NEF with additional service parameters for Ranging/SL Positioning.\n-\tdetermine the serving AMF instances for the UEs involved in the Ranging/SL Positioning request and forward the request to respective serving AMF.\n-\treceive response from AMF and event reports from and return Ranging/SL Positioning result to NFs and AFs.\n-\tperform Application Layer ID to GPSI or GPSI to Application Layer ID resolution by querying NEF.\n-\tuse UE's Ranging/SL Positioning privacy profile received from UDM for verifying UE privacy.\n-\trequest Home GMLC of the UE(s) that belong to different PLMN(s) to retrieve the mapping information between GPSI and Application Layer ID (if needed) and to check those UE's Ranging/SL Positioning privacy profile.\nNOTE:\tWhen receiving location request by using SUPI of a UE from LCS client after translating SUPI to GPSI by using NUDM_sdm get service, GMLC performs Application Layer ID to GPSI or GPSI to Application Layer ID resolution by querying NEF with Nnef_UEid service operation defined in clause 5.2.6.27 of TS 23.502 [3].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.502_clause_5.2.6.27",
+        "ts_23.273",
+        "ts_23.502"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.586_4.3.10",
+      "section_id": "4.3.10",
+      "section_title": "AF",
+      "content": "In addition to the functions defined in TS 23.501 [2], the AF supports the following:\n-\tProvision mapping between Application Layer ID and GPSI to UDR in application data.\n-\tProvision the Ranging/Sidelink positioning service specific information.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.586_4.4.1",
+      "section_id": "4.4.1",
+      "section_title": "General",
+      "content": "Location results that may be obtained for a target UE are summarized here and defined in more detail in TS 23.032 [14].",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_23.032"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.586_4.4.2",
+      "section_id": "4.4.2",
+      "section_title": "Range and Direction",
+      "content": "A range refers to a straight line distance between the target UE and another UE, such as another target UE, a Located UE or a SL Reference UE. A direction refers to a direction to the target UE from another UE, such as another target UE, a Located UE or a SL Reference UE. A direction may also refer to a direction from the target UE to another UE, such as another target UE, a Located UE or a SL Reference UE.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.586_4.4.3",
+      "section_id": "4.4.3",
+      "section_title": "Relative Location",
+      "content": "A relative location refers to the location of a target UE relative to a network element or another UE. The relative location can be relative 2D location with uncertainty ellipse defined in clause 5.11 of TS 23.032 [14], or it can also be Relative 3D Location with uncertainty ellipsoid defined in clause 5.12 of TS 23.032 [14].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.032_clause_5.11",
+        "ts_23.032_clause_5.12",
+        "ts_23.032"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.586_4.4.4",
+      "section_id": "4.4.4",
+      "section_title": "Relative Velocity",
+      "content": "A relative velocity refers to the velocity of a target UE relative to another UE. A relative velocity of a target UE includes a radial component between the target UE and the other UE and a transverse component at right angles to the radial component.\nThe detailed definition of Relative Velocity is defined in clause 8.4a of TS 23.032 [14].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.032_clause_8.4",
+        "ts_23.032"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.586_5.1.1.1",
+      "section_id": "5.1.1.1",
+      "section_title": "General",
+      "content": "In 5GS, the parameters for Ranging/SL positioning service may be made available to the UE in following ways:\n-\tprovisioned in the ME; or\n-\tconfigured in the UICC; or\n-\tprovisioned in the ME and configured in the UICC; or\n-\tprovided or updated by the Ranging/SL positioning Application Server via PCF and/or PC1 reference point; or\n-\tprovided or updated by the PCF to the UE.\nThe UE shall apply any given parameter in the following priority order:\n-\tprovided or updated by the PCF (regardless whether the parameter is determined by the PCF itself or provided by the Ranging/SL positioning Application Server to the PCF), if available, otherwise;\n-\tprovided or updated by the Ranging/SL positioning Application Server via SR1 reference point, if available, otherwise;\n-\tconfigured in the UICC, if available, otherwise;\n-\tprovisioned in the ME, if available.\nThe parameters provided or updated by the Ranging/SL positioning Application Server via SR1 reference point may need to be complemented with configuration data from other sources listed above.\nNOTE:\tThe Ranging/SL positioning Application Server can provision the same Ranging/SL positioning parameters via 5GC or directly to the UE via SR1 reference point, and can revoke (e.g. delete) the Ranging/SL positioning parameters via 5GC in order for the provisioning via SR1 reference point to take effect.\nThe basic principles of service authorization and provisioning for Ranging/SL positioning service are as follows:\n-\tThe PCF in the HPLMN may configure a list of PLMNs where the UE is authorized to use Ranging/SL positioning.\n-\tThe UE is authorized to use Ranging/SL positioning only in the PLMN(s) indicated by the PCF, and the equivalent PLMNs thereof.\n-\tThe PCF in the HPLMN merges authorization information from home and other PLMNs and provides the UE with the final authorization information.\n-\tThe PCF in the VPLMN or HPLMN may revoke the authorization (via H-PCF when roaming) at any time by using the UE Configuration Update procedure for transparent UE Policy delivery procedure defined in clause 4.2.4.3 of TS 23.502 [3].\n-\tThe Ranging/SL positioning Policy/parameters provisioning to UE is controlled by the PCF and may be triggered by UE. The PCF provisions one or more of the Policy/parameters as specified in clause 5.1.1.2.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_23.502_clause_4.2.4.3",
+        "clause_5.1.1.2",
+        "ts_23.502"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.586_5.1.1.2",
+      "section_id": "5.1.1.2",
+      "section_title": "Policy/Parameter provisioned to UE",
+      "content": "The following sets of information for Ranging/SL positioning service is provisioned to the UE:\n-\tWhen the UE is served by NG-RAN, the PLMNs in which the UE is authorized to perform Ranging/SL positioning service over PC5 reference point for acquiring relative distance, relative direction, high accuracy relative distance and high accuracy relative direction.\n-\tWhen the UE is not served by NG-RAN, indicates whether the UE is authorized to perform Ranging/SL positioning service over PC5 reference point for acquiring relative distance, relative direction, high accuracy relative distance and high accuracy relative direction.\n-\tThe mapping between Ranging/SL positioning services (e.g. ProSe identifiers, V2X service types) and Ranging/SL positioning QoS parameters as defined in clause 5.7.2.\n-\tThe mapping between Ranging/SL positioning services (e.g. ProSe identifiers, V2X service types) and PQI values for RSPP transport QoS as defined in clause 5.7.3.\n-\tWhen the UE is served by NG-RAN, the authorized Ranging/SL Positioning role per PLMN, e.g. Located UE, SL Positioning Client UE, and SL Positioning Server UE.\n-\tWhen the UE is not served by NG-RAN, indicates the authorized Ranging/SL positioning role, e.g. Located UE and SL Positioning server UE.\n-\tWhen the UE is served by NG-RAN and when Network-based Operation is not supported by the 5GC network, whether it is allowed to use UE-only operation to perform Ranging/ SL Positioning.\n-\tUser Info ID for Ranging/SL Positioning UE discovery.\nNOTE 1:\tUser Info ID is expected to be assigned uniquely for Ranging/SL positioning.\nNOTE 2:\tUser Info ID can be assigned via the Ranging/SL Positioning application server that allocates it.\n-\tThe PCF provisions one or more of the following Ranging/SL Positioning Policy/parameters:\n-\tPolicy/parameters for Ranging/Sidelink Positioning UE Discovery & Selection as specified in clause 5.2.\n-\tPolicy/parameters for Ranging/Sidelink Positioning UE Control as specified in clause 5.3.\nNOTE 3:\tThe V2X capable UE and/or 5G-ProSe capable UE may get Policy/parameters as part of the V2X and/or 5G-ProSe authorization and provisioning.\n-\tPolicy/parameters for Ranging/Sidelink Positioning service exposure as specified in clause 5.6.\nNOTE 4:\tIn the present document, 'When the UE is \"served by NG-RAN\"' and 'When the UE is \"not served by NG-RAN\"' are applied to Ranging/SL Positioning service over PC5 reference point.",
+      "chunk_type": "parameter",
+      "cross_references": [
+        "clause_5.7.2",
+        "clause_5.7.3",
+        "clause_5.2",
+        "clause_5.3",
+        "clause_5.6"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.586_5.1.2",
+      "section_id": "5.1.2",
+      "section_title": "Authorisation and policy/parameter provisioning to NG-RAN",
+      "content": "The \"Ranging/Sidelink Positioning authorised\" information and the RSPP transport QoS parameters shall be provided to the NG-RAN node for scheduled resource allocation mode resource management.\nThe \"Ranging/Sidelink Positioning authorised\" information indicates whether the UE is authorized to perform Ranging/Sidelink Positioning over PC5.\nThe RSPP transport QoS parameters include parameters defined in clause 5.7.3, which are generated by the PCF and are provided to the AMF when receiving the Ranging/Sidelink Positioning Capability in Npcf_UEPolicyControl_Create Request from the AMF or when receiving the updated subscription data from UDR.\nDuring registration, the UE includes the Ranging/Sidelink Positioning Capability as defined in clause 4.3.1 as part of the \"5GMM capability\" in the Registration Request message. AMF determines whether the UE is authorised to perform Ranging and Sidelink Positioning based on UE's Ranging/Sidelink Positioning Capability and the Ranging/Sidelink Positioning Service Authorisation included in the subscription data received from UDM. The AMF stores the Ranging/Sidelink Positioning Capability in the UE context.\nIf the UE is authorised to perform Ranging based services and Sidelink Positioning, the \"Ranging/Sidelink Positioning authorised\" information and the RSPP transport QoS parameters shall be provided from the AMF to the NG-RAN node in a NGAP message during Registration procedure, Service Request procedure and N2 Handover procedure, and from source NG-RAN node to target NG-RAN node over Xn during Xn Handover procedure as defined in clause 6.3.",
+      "chunk_type": "parameter",
+      "cross_references": [
+        "clause_5.7.3",
+        "clause_4.3.1",
+        "clause_6.3"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.586_5.2.1",
+      "section_id": "5.2.1",
+      "section_title": "General",
+      "content": "Both Model A and Model B discovery as defined in clause 6.3.2 of TS 23.304 [7] are supported for the 5G ProSe capable UEs discovery (including commercial and public safety use cases). During Ranging/SL Positioning UE direct discovery, the discovery message indicates this discovery message is for \"Ranging/Sidelink Positioning\"; During Ranging/SL Positioning Group Member Discovery, the Application Layer Group ID indicates a Ranging/Sidelink Positioning group that the UE belongs to.\nNOTE:\tThe content type value indicates the discovery is for Ranging/Sidelink Positioning UE discovery. The details for Ranging/Sidelink Positioning UE discovery depends on stage 3.\nProcedures for V2X communication over PC5 reference point as defined in TS 23.287 [6] are supported for the V2X capable UEs discovery. When unicast mode V2X communication procedure as defined in clause 6.3.3 of TS 23.287 [6] is used, the Service Type in Layer-2 link establishment procedure indicates \"Ranging/Sidelink Positioning\"; when broadcast mode or groupcast mode V2X communication procedure as defined in clause 6.3.1 or clause 6.3.2 of TS 23.287 [6] is used, Service Type indicates \"Ranging/Sidelink Positioning\".\nThe role(s) of the discovered UE (e.g. Target UE, SL Reference UE, SL Positioning Server UE, Located UE) is (are) included in discovery message (for 5G ProSe capable UE) and unicast link establishment messages (for V2X capable UE) as RSPP specific meta data, which contents are defined in clause 6.11 of TS 38.355 [12]. More details on this and other information conveyed during discovery can be found in clause 6.4.\nThe procedures for Ranging/Sidelink Positioning UE Discovery & Selection are defined in clause 6.4.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_23.304_clause_6.3.2",
+        "ts_23.287_clause_6.3.3",
+        "ts_23.287_clause_6.3.1",
+        "ts_23.287_clause_6.3.2",
+        "ts_38.355_clause_6.11",
+        "clause_6.4",
+        "ts_23.304",
+        "ts_23.287",
+        "ts_38.355"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.586_5.2.2",
+      "section_id": "5.2.2",
+      "section_title": "Located UE Discovery & Selection",
+      "content": "When Sidelink Positioning is applied for Target UE in a SL-MO-LR, SL-MT-LR, 5GC-MO-LR or 5GC-MT-LR procedure, Located UE(s) may be discovered and selected:\n-\tWhen LMF determines to apply Sidelink Positioning for Target UE, LMF triggers the Target UE to perform discovery of the Located UE.\n-\tWhen the Target UE determines to apply Sidelink Positioning, the Target UE triggers the discovery of the Located UE.\nThe LMF may be pre-configured with the list of candidate Located UEs including e.g. the capability, stationary information and location information of the Located UE(s), e.g. RSU or the operator deployed Located UE. The LMF may provide to the Target UE a list of candidate Located UE(s).\nThe discovery of Located UEs follows the same principles as specified in clause 5.2.1. The UE can indicate its role \"Located UE\" in its list of supported roles during discovery, if it is authorized to be a Located UE in a given PLMN as per the Authorization and Provisioning for Ranging/SL positioning service as specified in clause 5.1.\nA Target UE may discover and select one or more Located UEs to be used in the Ranging/SL positioning procedures as specified in clauses 5.3 to 5.5.\nMultiple candidate Located UEs may be discovered, in that case, the Located UE(s) is selected from the candidate Located UE list. The Located UE(s) is selected based on:\n-\tCandidate list of Located UE(s), if available.\n-\tCapabilities of the candidate Located UE(s), e.g. the supported Sidelink Positioning methods.\n-\tThe required positioning QoS of Target UE, positioning QoS supported by the candidate Located UE(s).\n-\tWhether the serving PLMN of candidate Located UE(s) is same with serving PLMN of Target UE.\n-\tUE's information, candidate Located UE's location.\nWhen LMF determines SL positioning for target UE and trigger the discovery of the Located UE, LMF can decide that LMF or target UE selects Located UEs. If the decision is LMF selecting Located UEs, Target UE sends the multiple discovered candidate Located UEs to the LMF for the selection. After the LMF determines the selected Located UE(s), the LMF sends the selected Located UE(s) to the Target UE.\nIn this release of the specification, for UE Positioning assisted by Sidelink Positioning and involving 5GC, the Target UE shall discover and select Located UEs that are in the same serving PLMN of the Target UE as described in clause 5.5.1.\nLMF needs to provide located UE for discovery when AF request ranging between two UEs. Additionally, LMF may be provisioned with Located UEs that may be sent to target UE as candidate list of located UEs.\nNOTE:\tThe role of being \"Located UE\" is dynamic and can change over time, in particular if the Located UE is moving. Hence, the discovery results need to be refreshed if there is a (significant) delay between discovery and initiating of a ranging procedure with a discovered Located UE. How often this is done is up to UE implementation.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_5.2.1",
+        "clause_5.1",
+        "clause_5.5.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.586_5.2.3",
+      "section_id": "5.2.3",
+      "section_title": "SL Positioning Server UE Discovery & Selection",
+      "content": "SL Positioning Server UE (re-)Discovery & (re-)Selection is performed by the Target UE, when it meets one or more of the following criteria:\n-\tThe Target UE and the discovered SL Reference UEs are currently not served by a network supporting Ranging/SL Positioning (e.g. because they are out-of-coverage or the serving network does not support Ranging/SL Positioning). SL Reference UE and Target UE may indicate whether its serving network supports Ranging/SL Positioning or not to each other. The indication of serving network not supporting Ranging/SL Positioning is also used to notify each other when UE has no NAS connection available.\nNOTE:\tIf the serving network supports Ranging/SL Positioning, it can provide Ranging/SL Positioning Support indicator to UE as described in clause 6.3.2.\n-\tThe Target UE is not capable of performing SL Positioning Server UE functionalities or related positioning methods.\n-\tThe SL Reference UEs are not capable of performing SL Positioning Server UE functionalities or related positioning methods.\n-\tUE privacy check against the SL Positioning Server UE previously selected by the Target UE fails as defined in clause 6.3.7 of TS 33.533 [13].\nThe discovery of SL Positioning Server UE follows the same principles as specified in clause 5.2.1. The UE can indicate its role “SL Positioning Server UE” in its list of supported roles during discovery, if it is authorized to be a SL Positioning Server UE in a given PLMN as per the Authorization and Provisioning for Ranging/SL positioning service as specified in clause 5.1.\nThe Target UE shall discover and select a SL Positioning Server UEs that are in the same or different serving PLMN of the Target UE and the SL Reference UE(s).",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_6.3.2",
+        "ts_33.533_clause_6.3.7",
+        "clause_5.2.1",
+        "clause_5.1",
+        "ts_33.533"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.586_5.2.4",
+      "section_id": "5.2.4",
+      "section_title": "SL Reference UE Discovery & Selection",
+      "content": "When Ranging/Sidelink Positioning is applied for Target UE in a SL-MO-LR, SL-MT-LR, 5GC-MO-LR or 5GC-MT-LR procedure, SL Reference UE may be discovered and selected:\n-\tWhen LMF determines to apply Ranging/Sidelink Positioning for Target UE, LMF triggers the Target UE to perform discovery of the SL Reference UE.\n-\tWhen the Target UE determines to apply Ranging/Sidelink Positioning, the Target UE triggers the discovery of the SL Reference UE.\nThe discovery of SL Reference UEs follows the same principles as specified in clause 5.2.1. The UE can indicate its role \"SL Reference UE\" in its list of supported roles during discovery, if it is authorized for Ranging/SL positioning service as specified in clause 5.1.\nA Target UE may discover and select one or more SL Reference UEs to be used in the Ranging/SL positioning procedures as specified in clauses 5.3 to 5.5.\nWhen multiple candidate SL Reference UEs are discovered, the SL Reference UE(s) is selected based on:\n-\tCapabilities of the candidate SL Reference UE(s), e.g. the supported Sidelink Positioning methods.\n-\tThe required positioning QoS.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_5.2.1",
+        "clause_5.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.586_5.3.1",
+      "section_id": "5.3.1",
+      "section_title": "General",
+      "content": "Any UE supporting Ranging/SL Positioning, e.g. Target UE, SL Reference UE, Sidelink Positioning Server UE, Located UE, shall have a Ranging/SL Positioning layer, which is above the AS layer and handles service requests received from application layer to control the Ranging/SL Positioning operation. The Ranging/SL Positioning layer provides the support of authorization and provisioning as described in clause 5.1, the UE discovery and selection as described in clause 5.2, the Ranging/SL Positioning Protocol (RSPP), including protocols between UEs and the protocols between UE and LMF for Ranging/SL Positioning. Ranging/SL Positioning layer supports the Ranging/SL Positioning service sessions for one time or periodic ranging, ranging for straight line distance (range) or direction measurement or both. The Ranging/SL Positioning layer provides the ranging parameters to AS layer, including one time or periodic ranging, ranging for straight line distance (range) or direction measurement or both.\nNOTE 1:\tThe Ranging/SL Positioning Protocol (RSPP) mention above includes Sidelink Positioning Protocol (SLPP) defined in TS 38.355 [12], Supplementary Service messages defined in TS 24.080 [16] and Supplementary RSPP signalling messages defined in TS 24.514 [17].\nThe RSPP is exchanged over SR5 over PC5-U reference point between UEs (i.e. Target UE, SL Reference UE, Located UE and SL Positioning Server UE) to manage the Ranging/SL Positioning service sessions between UEs or among a group of UEs and between UE and LMF to manage the Ranging/SL Positioning service sessions between UE and LMF. Multiple UEs may be involved in a single Ranging/Sidelink Positioning session. When the Ranging/SL Positioning service session is among a group of UEs, the RSPP may provide group related identifier information for the PC5 transport layer handling. The transport of the RSPP over PC5-U is specified in clause 5.3.2. The transport of the RSPP between UE and LMF is specified in clause 5.3.3.\nNOTE 2:\tGroup management is out-of-scope of this specification.\nNOTE 3:\t\tRSPP signalling negotiation determines whether measurement results or Ranging/Sidelink Positioning results are exchanged over the SR5.\nNOTE 4:\tThe Ranging/Sidelink positioning supports the scheduled location time feature. A scheduled location time for Ranging/Sidelink positioning indicates a time in the future at which a relative location or distance/direction between two or more UEs is to be obtained.\nA LMF shall be involved when the Target UE is in the network coverage and the serving network is capable to support ranging functionalities. The details of Network based Ranging/SL Positioning operation, and Network assisted SL Positioning are described in detail in clause 5.5. When Network assisted Ranging/SL Positioning is used, the use of RSPP is necessary for Ranging/SL Positioning control.\nA SL Positioning Server UE can be discovered and selected for result calculation, method determination, assistant data distribution in the case of out-of-coverage or for UE-only Operation if the serving network does not support Ranging/SL Positioning. If the LMF capable for Ranging/SL Positioning is reachable by Target UE and/or SL Reference UE, the LMF can still decide a UE which acts as a SL Positioning Server UE to execute the result calculation. A SL Positioning Server UE can be co-located with a Target UE or SL Reference UE.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_5.1",
+        "clause_5.2",
+        "clause_5.3.2",
+        "clause_5.3.3",
+        "clause_5.5",
+        "ts_38.355",
+        "ts_24.080",
+        "ts_24.514"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.586_5.3.2.1",
+      "section_id": "5.3.2.1",
+      "section_title": "General",
+      "content": "Depending on type of the UE (e.g. V2X capable or 5G ProSe capable), V2X Communication procedures as defined in TS 23.287 [6] or 5G ProSe Direct Communication procedures as defined in TS 23.304 [7] are used for the RSPP transport between UEs over PC5:\n-\tFor V2X capable UEs, policies and parameters defined in TS 23.287 [6] clause 5.1.2.1 are used to determine the corresponding transport configurations for the RSPP signalling. The V2X service type shall take the value(s) defined for \"Ranging/SL Positioning Protocol\" in corresponding format in different regions, e.g. ITS-AID, PSID, or AID as described in TS 23.287 [6] clause 3.1.\n-\tFor 5G ProSe capable UEs, policies and parameters defined in TS 23.304 [7] clause 5.1.3.1 applies. To determine the parameters, the ProSe services (i.e. ProSe identifiers) shall take the value(s) defined for \"Ranging/SL Positioning Protocol\" in corresponding format described in TS 23.304 [7] clause 3.1.\nNOTE:\tFor a UE that is both V2X capable and 5G ProSe capable, separate RSPP sessions will be used, i.e. no V2X and 5G ProSe cross communication is supported.\nDepends on the policy and parameter configuration on the UE, the RSPP may be transported using different communication mode over PC5 (i.e. broadcast mode, groupcast mode or unicast mode), with associated QoS configurations. Procedures defined in clause 6.3 of TS 23.287 [6] and clause 5.3 of TS 23.304 [7] are used to support the corresponding communicated modes.\nRSPP messages are common for V2X capable UEs and 5G ProSe capable UEs. PC5-U is used as the transport layer for RSPP. The RSPP message is carried using \"Non-IP\" PDCP SDU type for V2X capable UEs as defined in clause 6.1.1 of TS 23.287 [6], and \"Unstructured\" PDCP SDU type for 5G ProSe capable UEs as defined in clause 6.1.2.2 of TS 23.304 [7].",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_23.287_clause_5.1.2.1",
+        "ts_23.287_clause_3.1",
+        "ts_23.304_clause_5.1.3.1",
+        "ts_23.304_clause_3.1",
+        "ts_23.287_clause_6.3",
+        "ts_23.287_clause_5.3",
+        "ts_23.287_clause_6.1.1",
+        "ts_23.304_clause_6.1.2.2",
+        "ts_23.304_clause_5.3",
+        "ts_23.287",
+        "ts_23.304"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.586_5.3.2.2",
+      "section_id": "5.3.2.2",
+      "section_title": "Identifiers used for RSPP transport over PC5",
+      "content": "As defined in clause 5.6.1 of TS 23.287 [6] and clause 5.8.2 of TS 23.304 [7], multiple identifiers need to be determined for the PC5 operations, depending on the communication mode used.\nFor broadcast mode, the destination Layer-2 ID and source Layer-2 ID(s) are chosen based on UE configuration, as defined in clause 5.6.1.2 of TS 23.287 [6] and clause 5.8.2.2 of TS 23.304 [7].\nFor groupcast mode, the RSPP may provide the group identifier information. The UE converts the provided group identifier information to a destination Layer-2 ID. If the RSPP does not provide the group information, the UE determines the destination Layer-2 ID based on configuration of the mapping between V2X Service type or ProSe Identifier and Layer-2 ID. Details of the identifier determination are described in clause 5.6.1.3 of TS 23.287 [6] and clause 5.8.2.3 of TS 23.304 [7].\nFor unicast mode, the UE needs to establish a unicast link to the peer UE. To support the mechanisms as defined in clause 5.6.1.4 of TS 23.287 [6] and clause 5.8.2.4 of TS 23.304 [7], the UE gets the Application Layer IDs of the UE and the peer UE from UE application layer or the SL-MT-LR request to establish the PC5 unicast link. When the Application Layer ID changes, the Layer-2 IDs used for the unicast link shall also be changed.\nBased on privacy configurations, the UE may periodically change its source Layer 2 ID, as defined in TS 23.287 [6] and TS 23.304 [7].",
+      "chunk_type": "parameter",
+      "cross_references": [
+        "ts_23.287_clause_5.6.1",
+        "ts_23.287_clause_5.8.2",
+        "ts_23.287_clause_5.6.1.2",
+        "ts_23.287_clause_5.8.2.2",
+        "ts_23.287_clause_5.6.1.3",
+        "ts_23.287_clause_5.8.2.3",
+        "ts_23.287_clause_5.6.1.4",
+        "ts_23.287_clause_5.8.2.4",
+        "ts_23.304_clause_5.8.2",
+        "ts_23.304_clause_5.8.2.2",
+        "ts_23.304_clause_5.8.2.3",
+        "ts_23.304_clause_5.8.2.4",
+        "ts_23.287",
+        "ts_23.304"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.586_5.3.3",
+      "section_id": "5.3.3",
+      "section_title": "Protocols between UE and LMF",
+      "content": "RSPP, including SLPP messages defined in TS 38.355 [12] and Supplementary Service messages defined in TS 24.080 [16], is used between UE and LMF.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_38.355",
+        "ts_24.080"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.586_5.5.1",
+      "section_id": "5.5.1",
+      "section_title": "General",
+      "content": "This feature is used to estimate the location of a Target UE with the assistance of the network by using the location of one or more Located UEs and the straight line distance (range) and/or direction between the Target UE and the Located UE(s).\nUE assisted mode, UE based mode or Network based positioning can be used to estimate the location of the Located UE as specified in TS 23.273 [8].\nWhen 5GC is involved for Sidelink Positioning, there can be Network based Operation for Sidelink Positioning (see clauses 5.5.2, 5.5.3) and Network-assisted Operation for SL Positioning (see clauses 5.5.4, 5.5.5).\nThe Network based SL Positioning and Network-assisted SL Positioning each has two cases:\n-\tWhen the Target UE can establish a NAS signalling connection (see clauses 5.5.2, 5.5.4); or\n-\tWhen the Target UE cannot establish a NAS signalling connection (see clauses 5.5.3, 5.5.5).\nIn this Release, for Network based SL Positioning and Network-assisted SL Positioning, positioning of a Target UE having no NAS signalling connection is not supported.\nIn this Release, UE Positioning using SL Positioning involving 5GC is only supported when Target UE and Located UE are registered in the same PLMN i.e. no support for inter PLMN UE Positioning using SL Positioning when the Target UE and Located UE are registered in different PLMNs. Roaming is supported when Target UE and Located UE are registered in the same PLMN, e.g. Target UE is registered in a VPLMN and Located UE is registered in its HPLMN.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_23.273"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.586_5.5.2",
+      "section_id": "5.5.2",
+      "section_title": "Network based SL Positioning for UE with NAS connection",
+      "content": "A UE with a NAS connection is in RM-REGISTERED state. The UE can enter CM-Connected state by performing UE triggered Service Request for 5GC-MO-LR or SL-MO-LR, performing Network triggered Service Request for 5GC-NI-LR, 5GC-MT-LR or SL-MT-LR. As the Target UE can establish a NAS signalling connection with the AMF, the functionality specified in TS 23.273 [8] for location services can be reused including e.g. 5GC-MO-LR, 5GC-MT-LR, 5GC-NI-LR, SL-MT-LR and SL-MO-LR with the additional functionality captured in this clause.\nNOTE 1:\tTarget UE can establish a NAS signalling connection directly or indirectly via a ProSe L2 UE-to-Network Relay.\n-\tThe Location Service is triggered via the AMF serving the Target UE. The location request comes either from an AF/external client via the GMLC, a 5G NF, or the Target UE.\n-\tThe LTE positioning protocol (LPP) as specified in TS 37.355 [9] is used between the Target UE and the LMF. When LCS procedures are used to estimate the location of the Located UE, LPP is used between Located UE and LMF.\n-\tThe LMF determines if UE Positioning using SL positioning will be applied, when the 5GC-MO-LR, 5GC-MT-LR or SL-MT-LR service is triggered. When LMF determines that UE Positioning using SL positioning is used, LMF may trigger the Target UE to perform the discovery of Located UE(s).\n-\tThe Target UE can determine if UE Positioning using SL positioning will be applied, when it is determined, the Target UE triggers the SL-MO-LR as described in clause 6.20.1 of TS 23.273 [8].\n-\tThe Target UE discovers Located UE(s) for UE Positioning using SL positioning. Optionally, to assist the Target UE the LMF may provide to the Target UE a list of candidate Located UE(s) with the Application Layer ID(s). In this case the LMF maintains the candidate list of Located UE(s) including e.g. the capability, the Application Layer ID and location information of the Located UE(s). If the Target UE selects the Located UE(s), the Target UE reports the UE identity i.e. Application Layer ID of the selected Located UE(s) to LMF, otherwise it reports the UE identity of all discovered Located UE(s) to the LMF.\n-\tThe Target UE and Located UE(s) perform Ranging/SL positioning. The Target UE includes the UE identity i.e. Application Layer ID of the Located UE(s) to the LMF together with the Ranging measurement data or estimation result. The LMF may interact with GMLC to get the location of Located UE.\n-\tThe LMF uses the location of Located UE(s) together with the Ranging/SL positioning measurement data or estimation results reported by Target UE and optionally also by Located UEs to estimate the location of the Target UE.\n-\tLMF may either determine the absolute location of the Target UE in geographic coordinate or local coordinate expressed by a coordinate ID. For the latter case, Coordinate ID may be provided by LCS client or AF and used for Located UE selection by the Target UE. Coordinate ID should be considered for Located UE selection if Coordinate ID is received from LMF to determine the Target UE location in local coordinates.\n-\tIn case the location of Located UE(s) is not known, the LMF interacts with GMLC a required QoS to get the location of Located UE. The Ranging/SL positioning and the positioning of the Located UE(s) can be scheduled with the same time using the scheduled location time, as specified in TS 23.273 [8], to improve the Target UE positioning accuracy.\nNOTE 2:\tThe LMF may need to compensate the time difference of the positioning of Target UE and Located UE with additional information, e.g. velocity.\n-\tThe LMF provides the UE location estimate to the Target UE over LPP, or to the AMF, and AMF forwards the UE location to the GMLC, or to the 5GC NF according to legacy functionality.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.273_clause_6.20.1",
+        "ts_23.273",
+        "ts_37.355"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.586_5.5.3",
+      "section_id": "5.5.3",
+      "section_title": "Network-based SL positioning for UE without NAS connection",
+      "content": "When Target UE cannot establish the NAS connection with AMF due to the Target UE being out of coverage and at least one of the discovered Located UEs can establish NAS connection for 5GC-MO-LR, the following principles are applied:\nNOTE 1:\t5GC-MT-LR is not applicable in this release of the specification.\n-\tThe Target UE performs the Located UE's discovery and selection.\n-\tThe Target UE and Located UE(s) perform Ranging/SL positioning.\n-\tThe Target UE selects at least one of the Located UEs that can use SL-MO-LR service for SL Positioning.\n-\tThe Target UE may transmit its ranging measurement data/results to the Located UE(s).\n-\tEach Located UE that can establish the NAS connection may report the Ranging/SL positioning measurement data or result and the routing identifier from Target UE to the LMF via the serving AMF of the Located UE. This may include ranging measurement data/results received from the Target UE. The endpoints for LPP messages are the LMF and the Located UE(s).\nNOTE 2:\tThe routing identifier indicates an LMF that manages the Target UE positioning, and also used to assist the LMF in identifying the Target UE positioning, as defined in clause 6.3.1 of TS 23.273 [8].\n-\tThe LMF may use the received information (i.e. Ranging/SL positioning measurement or estimation result with the same routing identifier) and the location of Located UE(s) to calculate the location of the Target UE, and provide the resulting location via the Located UE to the Target UE.\n-\tIf a LMF is aware of multiple Located UEs associated with the same Target UE based on the same routing identifier, it may perform the calculation using all information from these Located UEs.\n-\tIf the LMF has the Target UE context, the LMF may provide the resulting location via the GMLC to the LCS Client or AF as specified in clause 6.3 of TS 23.273 [8]. If the UE context was deleted, then this functionality cannot be performed.\nIn this Release, Network-based SL positioning for UE without NAS connection is not supported.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.273_clause_6.3.1",
+        "ts_23.273_clause_6.3",
+        "ts_23.273"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.586_5.5.4",
+      "section_id": "5.5.4",
+      "section_title": "Network-assisted SL Positioning for UE with NAS connection",
+      "content": "For Network-assisted SL Positioning for UE with NAS connection, the procedure is similar to that of the Network based SL Positioning for UE with NAS connection (in clause 5.5.2), with the following exceptions:\n-\tTarget UE performs result calculation.\n-\tThe LMF may provide assistance information, e.g. absolute location of the Located UE, in the SLPP message to the Target UEto assist the Sidelink Positioning result calculation.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_5.5.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.586_5.5.5",
+      "section_id": "5.5.5",
+      "section_title": "Network-assisted SL Positioning for UE without NAS connection",
+      "content": "For Network-assisted SL Positioning for UE without NAS connection, the procedure is similar to that of the Network based SL Positioning for UE without NAS connection (in clause 5.5.3), with the following exceptions:\n-\tThe LMF may decide to choose a SL Positioning Server UE, e.g. Located UE, for result calculation, as described in clause 5.3.1.\n-\tThe LMF may provide assistance information to the SL Positioning Server UE to assist the Sidelink Positioning result calculation.\nIn this Release, Network-assisted SL positioning for UE without NAS connection is not supported.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_5.5.3",
+        "clause_5.3.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.586_5.6.1",
+      "section_id": "5.6.1",
+      "section_title": "General",
+      "content": "Ranging/SL Positioning service can be exposed to the authorized SL Positioning Client UE, 5GC NF or AF to obtain the relative location or distance/direction result between two or more UEs capable of Ranging/SL Positioning.\nRanging/SL Positioning service also can be used by the authorized SL Positioning Client UE, 5GC NF, AF or the LCS client to obtain the absolute position of Target UE if the 5GC NF, AF or the LCS client determines that Ranging/SL Positioning is applicable.\nThe Ranging/SL Positioning service request includes the identifiers of the two or more UEs. When the service exposure is via PC5, the identifiers can be Ranging/SL Positioning Application Layer IDs.\nThe request may include the required QoS, the required location results (e.g. absolute locations, relative locations or distances and/or directions related to the UEs as defined in clause 4.4).\nThe service request may further include periodic or trigger event parameters, e.g. the time interval between successive location reports and the total number of reports, the trigger events, the duration of event reporting, the minimum and maximum time intervals between successive event reports, the maximum event sampling interval, whether location estimates shall be included in event reports, and whether only one location report is required or more than one. Trigger events can be;\n-\tthe relative location/distance between at least one pair of UEs of the indicated UEs is less than the threshold;\n-\tthe relative location/distance between at least one pair of UEs of the indicated UEs exceeds the threshold;\n-\tthe relative locations/distances between all UEs are less than the threshold; or\n-\tthe relative locations/distances between all UEs exceed the threshold.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_4.4"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.586_5.6.2.1",
+      "section_id": "5.6.2.1",
+      "section_title": "General",
+      "content": "The Ranging/SL Positioning service may be exposed to an authorized SL Positioning Client UE. The Client UE can initiate the Ranging/SL Positioning service through PC5 based on PC5 availability.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.586_5.6.2.2",
+      "section_id": "5.6.2.2",
+      "section_title": "Ranging/SL Positioning service exposure through PC5",
+      "content": "For Ranging/SL Positioning service exposure to a UE through PC5 in the following way:\n-\tSL Positioning Client UE discovers one of the two or more UEs described in clause 5.6.1, e.g. the SL Reference UE(s) or Target UE(s), using the Ranging/SL Positioning UE discovery procedure (refer to clause 6.4);\n-\tSL Positioning Client UE invokes the Ranging/SL Positioning service request to one of the discovered UE which will work as the Target UE, with the attributes described in clause 5.6.1. For absolute location, this service request includes the SL Positioning Client UE's user info and Target UE's user info, and may also include the user info for a list of candidate Located UE(s). For relative location or ranging information, the service request includes the SL Positioning Client UE's user info, Target UE's user info, and SL Reference UE's user info. The Ranging/SL Positioning service request/response is conveyed by PC5-U and handled in the Ranging/SL Positioning layer. The Ranging/SL positioning service request/response is handled as application layer traffic by V2X layer or 5G ProSe layer.\n-\tThe UE which received a SL positioning service request from SL Positioning Client UE triggers the authorization of SL Positioning Client UE for the Ranging/SL Positioning exposure service invocation during PC5 link establishment as specified in TS 33.533 [13], performs the Ranging/SL positioning control between SL Reference UE and Target UE (as defined in clause 5.3), and returns the Ranging/SL positioning result to SL Positioning Client UE.\n-\tUE privacy is based on the local configured privacy verification information to determine whether or not its location related information can be exposed to the peer UE or the SL Positioning Client UE or the SL Positioning Server UE. If the privacy profile allows location exposure, the UE accepts the request to expose its location related information and proceeds.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_5.6.1",
+        "clause_6.4",
+        "clause_5.3",
+        "ts_33.533"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.586_5.6.3",
+      "section_id": "5.6.3",
+      "section_title": "Service Exposure to the AF and 5GC NF",
+      "content": "The 5GS Ranging/SL Positioning service may be exposed to the AF either via direct interaction with the GMLC or via the NEF for an AF in untrusted domain. Thus, the ranging AF may contact GMLC directly or via NEF to provide a ranging or Sidelink positioning operation request.\nThe service exposure in clause 5.5 of TS 23.273 [8] is reused with enhancements. The request may include the attributes as described in clause 5.6.1. The result is returned by the GMLC to the AF directly or via NEF if needed. The detailed procedure is specified in clause 6.7.2.\nThe Ranging/SL Positioning result calculation is performed by LMF or UEs. When absolute positioning for one Target UE is requested, procedure as described in clause 5.5 is carried out.\nThe Ranging/SL Positioning service request may be initiated by a 5GC NF. In this case, the 5GC NF interacts with the GMLC directly.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.273_clause_5.5",
+        "clause_5.6.1",
+        "clause_6.7.2",
+        "clause_5.5",
+        "ts_23.273"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.586_5.7.1",
+      "section_id": "5.7.1",
+      "section_title": "General",
+      "content": "QoS of Ranging/SL Positioning includes two aspects:\n-\tRanging/SL Positioning QoS, which refers to the quality requirement of the Ranging/SL Positioning result\n-\tRSPP transport QoS, which refers to the quality requirement of the PC5-U communication for transmitting RSPP traffic.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.586_5.7.2",
+      "section_id": "5.7.2",
+      "section_title": "Handling of Ranging/SL Positioning QoS",
+      "content": "Ranging/SL Positioning QoS requirement may be provided in the Ranging/SL Positioning service request generated at the application layer, and is provided from the application layer to the Ranging/SL Positioning layer. Ranging/SL Positioning QoS requirement may be included in the Ranging/SL Positioning Service request from SL Positioning Client UE.\nThe Ranging/SL Positioning layer maps the Ranging/SL Positioning QoS requirement to the Ranging/SL Positioning QoS parameters and provides the Ranging/SL Positioning QoS parameters to the AS layer. If there is no received Ranging/SL Positioning QoS requirement from the application layer, the Ranging/SL Positioning layer determines the Ranging/SL Positioning QoS parameters based on the Ranging/SL positioning Policy/parameters as configured in the clause of 5.1.\nRanging/SL Positioning QoS information contains attributes defined in clause 4.1b of TS 23.273 [8] with the following additions:\n-\tThe accuracy attribute also includes\n-\tthe relative horizontal accuracy, and the relative vertical accuracy for relative positioning;\n-\tthe distance accuracy and direction accuracy for Ranging.\n-\tRange, which indicates the applicability of the QoS attributes in the Ranging/SL Positioning operation over PC5.\n-\tPriority level.\n-\tDelay Budget.\nNOTE:\tThe usage of Priority level and Delay Budget is described in TS 38.355 [12].\nRanging/SL Positioning QoS information is used for determination of Ranging/SL Positioning method. The Ranging/SL Positioning methods are defined in TS 38.355 [12].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.273_clause_4.1",
+        "ts_23.273",
+        "ts_38.355"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.586_5.7.3",
+      "section_id": "5.7.3",
+      "section_title": "Handling of RSPP transport QoS",
+      "content": "The V2X/ProSe layer handles the RSPP traffic as the V2X/ProSe application data packets for the QoS treatment. QoS handling mechanism of V2X as defined in clause 5.4 of TS 23.287 [6] or QoS handling mechanism of 5G ProSe as defined in clause 5.6.1 of TS 23.304 [7] is reused.\nPQI values as defined in TS 23.287 [6] and TS 23.304 [7] may be reused for RSPP transport QoS.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.287_clause_5.4",
+        "ts_23.304_clause_5.6.1",
+        "ts_23.287",
+        "ts_23.304"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.586_5.8",
+      "section_id": "5.8",
+      "section_title": "Subscription to Ranging/SL Positioning",
+      "content": "The subscription information in the UDM contains information to give the user permission to use 5G Ranging/SL Positioning.\nAt any time, the operator can amend or remove the UE subscription rights from subscription information in the UDM, or to revoke the user's permission to use Ranging/SL Positioning.\nThe following subscription information is defined for Ranging/SL Positioning:\n-\tsubscription for UE to perform Ranging/Sidelink Positioning over PC5.\n-\tsubscription for UE acting as Located UE.\n-\tsubscription for UE acting as SL positioning server UE.\n-\tRanging/SL positioning QoS parameters.\n-\tthe list of the PLMNs authorized for Ranging/SL Positioning services, including:\n-\tthe list of the PLMNs where the UE is authorised for Ranging/SL Positioning operation over PC5 reference point.\n-\tthe list of the PLMNs where the UE is authorised for Ranging/SL positioning service with Direct Discovery Model A, i.e. to announce or monitor or both.\n-\tthe list of the PLMNs where the UE is authorised for Ranging/SL positioning service with Direct Discovery Model B, i.e. to perform Discoverer operation or Discoveree operation or both.\n-\tthe list of the PLMNs where the UE is authorised to act as a Located UE.\n-\tthe list of the PLMNs where the UE is authorised to act as a SL positioning server UE.\n-\tthe list of the PLMNs where the UE is authorised to act as a SL positioning client UE.\n-\tSubscription for UE acting as SL Positioning Client UE.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.586_5.9",
+      "section_id": "5.9",
+      "section_title": "Charging",
+      "content": "For this Release, charging for Ranging based services and Sidelink Positioning is not supported.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.586_5.10",
+      "section_id": "5.10",
+      "section_title": "Security",
+      "content": "The TS 33.533 [13] specifies the security and privacy aspects of Ranging based services and Sidelink positioning in the 5G System (5GS) for commercial, V2X and public safety use cases, with the UE in coverage, partial coverage, and out-of-coverage of 5G network using 5G NR PC5 RAT.\nSecurity features and procedures for Ranging based services and Sidelink positioning include:\n-\tAuthorization for Ranging/SL positioning service;\n-\tincluding e.g. UE role authorization, authorization and privacy control for Ranging/SL Positioning service exposure;\n-\tSecurity and privacy protection for Ranging/SL positioning UE discovery;\n-\tSecurity and privacy protection for unicast communication of Ranging/SL positioning control; and\n-\tSecurity and privacy protection for broadcast/groupcast communication of Ranging/SL positioning control.\nThe UE Ranging/SL Positioning privacy profile, as specified in TS 33.533 [13], is used by the GMLC to check UE privacy in related Ranging/SL Positioning procedures as specified in TS 23.273 [8] and TS 33.533 [13]. In addition, the following applies:\n-\tThe Ranging/SL Positioning Privacy Indication included in the UE Ranging/SL Positioning privacy profile is used in the same way as specified in clause 5.4.2.3 of TS 23.273 [8], with that the Location Privacy Indication is replaced by the Ranging/SL Positioning Privacy Indication and the Location service is replaced by the Ranging/Sidelink Positioning service.\n-\tA UE can provision or update the Ranging/SL Positioning Privacy Indication using the procedure specified in clause 6.12 of TS 23.273 [8], with that the UE Location Privacy Indication is replaced by the Ranging/SL Positioning Privacy Indication and the LCS privacy is replaced by the Ranging/Sidelink Positioning privacy.\n-\tAn AF can provision or update the Ranging/SL Positioning Privacy Indication using the procedure specified in clause 4.15.6.2 of TS 23.502 [3].\n-\tA NF e.g. GMLC may subscribe to UDM notification of UE Ranging/SL Positioning privacy profile updates.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.273_clause_5.4.2.3",
+        "ts_23.273_clause_6.12",
+        "ts_23.502_clause_4.15.6.2",
+        "ts_33.533",
+        "ts_23.273",
+        "ts_23.502"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.586_5.11",
+      "section_id": "5.11",
+      "section_title": "UE-only Operation for SL Positioning using Located UE",
+      "content": "When LMF is not involved for SL Positioning/Ranging, e.g. the LMF in the serving network does not support SL Positioning, UE-only Operation SL Positioning is used, including Target UE as SL Positioning Server UE and Target UE not as SL Positioning Server UE.\nWhen the Target UE acts as a SL Positioning Server UE, the following principles applies:\n-\tThe Target UE performs the Located UE's discovery and selection when absolute location is requested.\n-\tFor absolute location, the Target UE obtains the location of the Located UE(s), and the Located UE(s) may trigger a 5GC-MO-LR to retrieve its location. The Target UE uses the location of Located UE(s) together with the Ranging/SL positioning measurement data or result to estimate its own location.\n-\tThe Ranging/Sidelink positioning and the positioning of the Located UE(s) can be scheduled with the same scheduled location time (as per TS 23.273 [8]) to improve the Target UE positioning accuracy.\nWhen the Target UE does not act as SL Positioning Server UE, the following principles applies:\n-\tThe Target UE performs the SL Positioning Server UE's discovery and selection.\n-\tThe Target UE requests its absolute location from the SL Positioning Server UE.\n-\tThe SL Positioning Server UE interacts with the Target UE to exchange UE capabilities, assistance data, Ranging/SL positioning measurement data, location results and location of Located UE(s).\n-\tThe SL Positioning Server UE can optionally determine to use the location of Located UE(s) together with the Ranging/SL positioning measurement data or result to estimate the absolute location of Target UE.\n-\tThe Target UE performs the Located UE's discovery and selection, and obtains the location of the Located UE(s).\n-\tThe SL Positioning Server UE returns the Ranging/SL positioning result to the Target UE.\n-\tThe Ranging/Sidelink positioning and the positioning of the Located UE(s) can be scheduled with the same scheduled location time (as per TS 23.273 [8]) to improve the Target UE positioning accuracy.\nWhen UE-only operation is triggered for the service request from a SL Positioning Client UE, the SL positioning client UE should send the service request to a discovered Target UE or SL Reference UE, the UE receiving the service request will work as the Target UE.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.273"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.586_5.12",
+      "section_id": "5.12",
+      "section_title": "Support of Concurrent Ranging/Sidelink Positioning Requests",
+      "content": "Concurrent Ranging/Sidelink Positioning Requests occur when any entity (e.g. UE, AMF, LMF, GMLC, NEF) receives/initiates multiple Ranging/Sidelink Positioning requests in the procedures defined in clause 6 for the estimate of the same Target UE and SL Reference UE within a time period. The multiple concurrent requests may be combined at the entities by executing one of the requests and using the same result information to satisfy the other requests without fully executing the latter.\nThe mechanism specified in clause 5.7 of TS 23.273 [8] applies with the following enhancements:\n-\tSL Reference UE ID, i.e. Application Layer ID, requested result content (i.e. straight line distance (range) and/or direction) and the scheduled time, if available, shall be considered for the entities to determine whether to combine the Ranging/Sidelink Positioning Requests.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_6",
+        "ts_23.273_clause_5.7",
+        "ts_23.273"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.586_6.2.1",
+      "section_id": "6.2.1",
+      "section_title": "General",
+      "content": "The procedures for service authorization and provisioning to UE may be initiated by the PCF (as described in clause 6.2.2), by the UE (as described in clause 6.2.4), or by the AF (as described in clause 6.2.5).",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_6.2.2",
+        "clause_6.2.4",
+        "clause_6.2.5"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.586_6.2.2",
+      "section_id": "6.2.2",
+      "section_title": "PCF based Service Authorization and Provisioning to UE",
+      "content": "For PCF based Service Authorization and Provisioning to UE, the Registration procedures as defined in clause 4.2.2.2 of TS 23.502 [3], UE Policy Association Establishment procedure as defined in clause 4.16.11 of TS 23.502 [3] and UE Policy Association Modification procedure as defined in clause 4.16.12 of TS 23.502 [3] apply with the following additions:\n-\tIf the UE indicates Ranging/SL Positioning Capability in the Registration Request message and if the UE is authorized to use Ranging/SL Positioning service based on subscription data, the AMF selects the PCF which supports Ranging/SL Positioning Policy/Parameter provisioning as described in clause 6.2.3 and establishes a UE policy association with the PCF for Ranging/SL Positioning Policy/Parameter delivery. The AMF reports the authorized Ranging/SL Positioning Capability to the selected PCF, which may determine the Ranging/SL Positioning Policy/Parameter based on the UE's authorized Ranging/SL Positioning Capability.\nThe PCF may update the Ranging/SL Positioning Policy/parameters to the UE in following conditions:\n-\tUE Mobility, e.g. UE moves from one PLMN to another PLMN. This is achieved by using the procedure of UE Policy Association Modification initiated by the AMF, as defined in clause 4.16.12.1 of TS 23.502 [3].\n-\tWhen there is a subscription change in the list of PLMNs where the UE is authorized to perform Ranging/SL Positioning services. This is achieved by using UE Policy Association Modification initiated by the PCF procedure as defined in clause 4.16.12.2 of TS 23.502 [3].\n-\tWhen there is a change of service specific parameter (including path selection policy) as described in clause 6.2.5 (performing the procedure in clause 4.15.6.7 of TS 23.502 [3]).\n-\tWhen the timer associated with some Policy/parameter expires.\n-\tWhen the UE determines that the Ranging/SL Positioning Policy/parameter(s) is invalid and performs UE triggered Policy Provisioning procedure to the PCF.\nIf the serving PLMN is removed from the list of PLMNs in the service authorization parameters, the service authorization is revoked in the UE.\nWhen the UE is roaming, the change of subscription resulting in updates of the service authorization parameters are transferred to the UE by H-PCF via V-PCF.\nThe UE may perform Ranging/SL Positioning UE triggered Policy Provisioning procedure to the PCF, after Registration procedure has been completed, as specified in clause 6.2.4 when the UE determines the Ranging/SL Positioning Policy/Parameter is invalid (e.g. Policy/Parameter is outdated, missing or invalid).\nWhen the UE disables a Ranging/SL Positioning capability, the PCF may stop updating the corresponding Ranging/SL Positioning Policy/parameter(s) and when the UE enables a Ranging/SL Positioning capability the PCF may need to provide or update the corresponding Ranging/SL Positioning Policy/parameter(s).",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.502_clause_4.2.2.2",
+        "ts_23.502_clause_4.16.11",
+        "ts_23.502_clause_4.16.12",
+        "clause_6.2.3",
+        "ts_23.502_clause_4.16.12.1",
+        "ts_23.502_clause_4.16.12.2",
+        "clause_6.2.5",
+        "ts_23.502_clause_4.15.6.7",
+        "clause_6.2.4",
+        "ts_23.502"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.586_6.2.3",
+      "section_id": "6.2.3",
+      "section_title": "PCF discovery",
+      "content": "PCF discovery and selection mechanism defined in clause 6.3.7.1 of TS 23.501 [2] applies with the following addition to enable a PCF instance is selected for Ranging/SL Positioning service and for UE:\n-\tBased on the indication from the UE and/or UE subscription data during the Registration procedure as specified in clause 6.5.2, the AMF may include the Ranging/SL Positioning Capability indication in the Nnrf_NFDiscovery_Request message as the optional input parameter. If provided, the NRF takes the information into account for discovering the PCF instance.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.501_clause_6.3.7.1",
+        "clause_6.5.2",
+        "ts_23.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.586_6.2.4",
+      "section_id": "6.2.4",
+      "section_title": "Procedure for UE triggered Ranging/SL Positioning Policy provisioning",
+      "content": "The procedure for UE triggered Ranging/SL Positioning Policy provisioning for V2X as specified in clause 6.2.4 of TS 23.287 [6] or for ProSe in clause 6.2.4 of TS 23.304 [7] is used to provide the 5G Ranging/SL Positioning Policy/Parameter as part of ProSe Policy or V2X Policy to UE.",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "ts_23.287_clause_6.2.4",
+        "ts_23.304_clause_6.2.4",
+        "ts_23.287",
+        "ts_23.304"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.586_6.2.5",
+      "section_id": "6.2.5",
+      "section_title": "AF-based service parameter provisioning for Ranging/SL Positioning over control plane",
+      "content": "For Ranging/SL Positioning service parameter provisioning (i.e. creating, updating and deleting), the procedure defined in clause 4.15.6.7 of TS 23.502 [3] is performed with the following considerations:\n-\tThe AF in TS 23.502 [3] is considered as Ranging/SL Positioning Application Server in this specification.\n-\tService Description indicates Ranging/SL Positioning service domain information.\n-\tService Parameters include parameters for Ranging/SL Positioning service, which consist of the Policy/Parameters that are to be provisioned to the UE as described in clause 5.1.1.2 and the mapping between Application Layer ID and GPSI as described in clause 4.3.10.\nNOTE:\tIt is assumed that the Ranging/SL Positioning service domain information is set based on the Service Level Agreement with the operator.",
+      "chunk_type": "parameter",
+      "cross_references": [
+        "ts_23.502_clause_4.15.6.7",
+        "clause_5.1.1.2",
+        "clause_4.3.10",
+        "ts_23.502"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.586_6.3.1",
+      "section_id": "6.3.1",
+      "section_title": "General",
+      "content": "In order to support PC5 radio resource control in NG-RAN, UE authorization status about Ranging/SL Positioning over PC5 and PC5 QoS parameters related to RSPP transport need to be made available in NG-RAN. This clause describes the corresponding procedures and aspects.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.586_6.3.2",
+      "section_id": "6.3.2",
+      "section_title": "Registration procedure",
+      "content": "The Registration procedure for UE is performed as defined in TS 23.502 [3] clause 4.2.2.2 with the following additions:\n-\tThe UE includes the Ranging/SL Positioning Capability as defined in clause 4.3.1 as part of the \"5GMM capability\" in the Registration Request message.\n-\tIf the Ranging/SL Positioning Capability is included in the \"5GMM capability\", the 5G ProSe Capability as defined in TS 23.304 [7] or the V2X Capability as defined in TS 23.287 [6] shall also be included.\n-\tThe AMF obtains the Ranging/SL positioning subscription data as part of the user subscription data from UDM during UE Registration procedure using Nudm_SDM service as defined in clause 4.2.2.2.2 of TS 23.502 [3].\n-\tThe AMF determines whether the UE is authorised to use Ranging/SL positioning services based on UE's Ranging/SL Positioning Capability and the Ranging/SL positioning Service Authorisation included in the subscription data received from UDM. The AMF stores the authorized Ranging/SL Positioning Capability.\n-\tThe AMF sends the authorized Ranging/SL Positioning Capability for Ranging/SL positioning operation to PCF. Based on the received Ranging/SL Positioning Capability from the AMF, the PCF provides the PC5 QoS parameters related to RSPP transport to AMF. The AMF stores such information as part of the UE context.\n-\tIf the UE is authorised to use Ranging/SL positioning services, then the AMF shall include in a NGAP message sent to NG-RAN:\n-\t\"Ranging/SL Positioning authorised\" information, as defined in clause 5.1.2.\n-\tthe PC5 QoS parameters related to RSPP transport used by the NG-RAN for the resource management of UE's PC5 transmission for Ranging/SL Positioning services in network scheduled mode.\n-\tIf the UE is authorised to use Ranging/SL positioning services, AMF may include Ranging/SL Positioning Support indicator in the Registration Accept message to indicate that the serving network supports Ranging/SL Positioning.\n-\tIf the UE is authorised to perform Ranging/SL Positioning, then the AMF should not initiate the release of the signalling connection after the completion of the Registration procedure. The release of the signalling connection relies on the decision of NG-RAN, as specified in TS 23.502 [3].",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "ts_23.502_clause_4.2.2.2",
+        "clause_4.3.1",
+        "ts_23.502_clause_4.2.2.2.2",
+        "clause_5.1.2",
+        "ts_23.502",
+        "ts_23.304",
+        "ts_23.287"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.586_6.3.3",
+      "section_id": "6.3.3",
+      "section_title": "Service Request procedure",
+      "content": "The Service Request procedures for UE in CM-IDLE state are performed as defined in TS 23.502 [3] clause 4.2.3.2 and clause 4.2.3.3 with the following additions:\n-\tIf the UE is authorised to use Ranging/SL positioning services, then the AMF shall include \"Ranging/SL Positioning authorised\" information in the NGAP message, indicating the UE is authorised to use Ranging/SL positioning services as described in clause 6.3.2.\n-\tThe AMF sends the PC5 QoS parameters related to RSPP transport to NG-RAN via N2 signalling. The PC5 QoS parameters related to RSPP transport may be stored in the UE context after the registration procedure. If the UE is authorised to use Ranging/SL positioning services but AMF does not have PC5 QoS parameters related to RSPP transport available, the AMF fetches the PC5 QoS parameters related to RSPP transport from the PCF.",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "ts_23.502_clause_4.2.3.2",
+        "clause_4.2.3.3",
+        "clause_6.3.2",
+        "ts_23.502"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.586_6.3.4",
+      "section_id": "6.3.4",
+      "section_title": "N2 Handover procedure",
+      "content": "The N2 based handover procedures for UE are performed as defined in TS 23.502 [3] clause 4.9.1.3 with the following additions:\n-\tIf the UE is authorised to use Ranging/SL positioning services, then the target AMF shall send the \"Ranging/SL Positioning authorised\" information and PC5 QoS parameters related to RSPP transport to the target NG-RAN in the NGAP Handover Request message.",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "ts_23.502_clause_4.9.1.3",
+        "ts_23.502"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.586_6.3.5",
+      "section_id": "6.3.5",
+      "section_title": "Xn Handover procedure",
+      "content": "The Xn based handover procedures for UE are performed as defined in TS 23.502 [3] clause 4.9.1.2 with the following additions:\n-\tIf the \"Ranging/SL Positioning authorised\" information is included in the UE context, then the source NG-RAN shall include a \"Ranging/SL Positioning authorised\" information and PC5 QoS parameters related to RSPP transport in the XnAP Handover Request message to the target NG-RAN.\n-\tIf the \"Ranging/SL Positioning authorised\" information is included in the UE context, then the AMF shall send the \"Ranging/SL Positioning authorised\" information and PC5 QoS parameters related to RSPP transport to the target NG-RAN in the Path Switch Request Acknowledge message.",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "ts_23.502_clause_4.9.1.2",
+        "ts_23.502"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.586_6.3.6",
+      "section_id": "6.3.6",
+      "section_title": "Subscriber Data Update Notification to AMF",
+      "content": "The procedure of Subscriber Data Update Notification to AMF is performed as defined in TS 23.502 [3] clause 4.5.1 with the following additions:\n-\tThe Nudm_SDM_Notification service operation may contain the Ranging/SL positioning service Authorisation.\n-\tThe AMF updates the UE Context with the above new Ranging/SL positioning service subscription data.\n-\tWhen the AMF updates UE context stored at NG-RAN, the UE context contains the Ranging/SL positioning service subscription data.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.502_clause_4.5.1",
+        "ts_23.502"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.586_6.3.7",
+      "section_id": "6.3.7",
+      "section_title": "Delivery of PC5 QoS parameters related to RSPP transport to NG-RAN",
+      "content": "The UE Policy Association Establishment procedure and UE Policy Association Modification procedure, as defined in TS 23.502 [3], is used to provide the AMF with PC5 QoS parameters related to RSPP transport used by NG-RAN. When receiving the Ranging/SL Positioning Capability in Npcf_UEPolicyControl_Create Request from the AMF or when receiving the updated subscription data from UDR, the PCF generates the PC5 QoS parameters related to RSPP transport used by NG-RAN corresponding to a UE.\nThe (V-)PCF provides the information to the AMF as follows:\n-\tIn the roaming case, the H-PCF includes the PC5 QoS parameters related to RSPP transport used by NG-RAN in the Npcf_UEPolicyControl_Create Response message or Npcf_UEPolicyControl UpdateNotify Request message sent to V-PCF in an N2 PC5 policy container, and V-PCF relays this N2 PC5 policy container as the N2 container in the Namf_Communication_N1N2MessageTransfer message sent to AMF.\n-\tIn the non-roaming case, the PCF includes the PC5 QoS parameters related to RSPP transport used by NG-RAN in an N2 container in Namf_Communication_N1N2MessageTransfer message sent to AMF.\nWhen the AMF receives the N2 PC5 policy container from (V-)PCF, the AMF stores such information as part of the UE context.\nIn the UE Configuration Update procedure triggered by UE Policy Association Establishment or UE Policy Association Modification:\n-\tThe AMF forwards the PC5 QoS parameters related to RSPP transport in the NGAP message to the NG-RAN if a N2 PC5 policy container is received in the Namf_Communication_N1N2MessageTransfer message.\nNOTE 1:\tIf the PC5 QoS parameters related to RSPP transport are provided to both NG-RAN and UE, both the N2 PC5 Policy Container and the UE Policy Container are included in the Namf_Communication_N1N2MessageTransfer message.\nNOTE 2:\tNon-UE specific PC5 QoS parameters, e.g. default PC5 QoS parameters, can also be locally configured in NG-RAN. How such configuration is performed is out of scope of this specification.",
+      "chunk_type": "parameter",
+      "cross_references": [
+        "ts_23.502"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.586_6.4.1",
+      "section_id": "6.4.1",
+      "section_title": "General",
+      "content": "The procedure for Ranging/Sidelink Positioning UE discovery with 5G ProSe capable UE uses both Model A discovery and Model B discovery as defined in clause 6.3.2 of TS 23.304 [7].\nThe procedure for Ranging/Sidelink Positioning UE discovery with V2X capable UE uses the procedures for V2X communication over PC5 reference point as defined in TS 23.287 [6].\nNOTE:\tApplication layer discovery is used for Ranging/Sidelink Positioning UE discovery with V2X capable UE that is out of scope of this specification.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_23.304_clause_6.3.2",
+        "ts_23.304",
+        "ts_23.287"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.586_6.4.2.1",
+      "section_id": "6.4.2.1",
+      "section_title": "Ranging/SL Positioning UE direct discovery",
+      "content": "As defined for the Model A and Model B discovery in TS 23.304 [7]:\n-\tModel A uses a single discovery protocol message (Announcement).\n-\tModel B uses two discovery protocol messages (Solicitation and Response).\nFigure 6.4.2.1-1 illustrates the procedure for Ranging/SL Positioning UE discovery with 5G ProSe capable UE using Model A discovery.\nFigure 6.4.2.1-1: Ranging/SL Positioning UE discovery in Model A\n1.\tThe Announcing UE (UE-1) sends a Ranging/SL Positioning Announcement message. The Ranging/SL Positioning Announcement message includes the Type of Discovery Message, security protection element, RSPP metadata information, the User Info ID of Announcing UE and optionally serving PLMN ID of Announcing UE.\nNOTE 1:\tThe content type value of the message indicates the Type of Discovery Message.\nAnnouncing UE can be SL Reference UE, Located UE and SL Positioning Server UE.\nThe Destination Layer-2 ID used to send the Ranging/SL Positioning Announcement message is configured in clause 5.2.\nThe Source Layer-2 ID to send the Ranging/SL Positioning Announcement message is self-assigned by the Announcing UE.\nAnnouncing UE sends the Announcement message only if it is authorized to be the corresponding UE role in RSPP metadata information.\nThe User Info ID of Announcing UE is the Announcing UE's Application Layer ID.\nA Monitoring UE determines the Destination Layer-2 ID for signalling reception based on the configuration in clause 5.2.\nA Monitoring UE selects the Announcing UE based on the information received in step 1.\nAnnouncing UE may include an indication of whether its serving network supports Ranging/SL Positioning.\nAnnouncing UE may include its serving PLMN ID in the Announcement message if its role is Located UE.\nThe contents of RSPP metadata information (e.g. the UE Role) are defined in clause 6.11 of TS 38.355 [12].\nNOTE 2:\tThe Serving PLMN ID can not be always included even for Located UE in coverage. In this Release, the Serving PLMN ID is included only when the Located UE is using the LCS framework to obtain the location information as descried in TS 23.273 [8].\nFigure 6.4.2.1-2 illustrates the procedure for Ranging/SL Positioning UE discovery with 5G ProSe capable in Model B discovery.\nFigure 6.4.2.1-2: Ranging/SL Positioning UE discovery in Model B\n1.\tThe Discoverer UE (UE-1) sends a Ranging/SL Positioning Solicitation message. The Ranging/SL Positioning Solicitation message includes the Type of Discovery Message, security protection element, optionally User Info ID of Discoveree UE, User Info ID of Discoverer UE and optionally RSPP metadata information.\nNOTE 3:\tThe content type value of the message indicates the Type of Discovery Message.\nThe Destination Layer-2 ID used to send the Ranging/SL Positioning Solicitation message is configured in clause 5.2.\nThe Source Layer-2 ID to send the Ranging/SL Positioning Solicitation message is self-assigned by the Discoverer UE.\nThe User Info ID of Discoverer UE is the discoverer UE's Application Layer ID.\nUser Info ID of Discoveree UE is to identify a specific UE that the discoverer UE would like to discover, which is identified by Discoveree UE's Application Layer ID.\nA Discoveree UE determines the Destination Layer-2 ID for signalling reception based on the configuration in clause 5.2.\nDiscoverer UE may include an indication of whether its serving network supports Ranging/SL Positioning.\nThe contents of RSPP metadata information (e.g., the UE Role) are defined in clause 6.11 of TS 38.355 [12].\n2\tThe Discoveree UE that matches the Ranging/SL Positioning solicitation message (e.g. RSPP metadata information) responds to the Discoverer UE with the Ranging/SL Positioning Response message. The Ranging/SL Positioning Response message includes Type of Discovery Message, security protection element, RSPP metadata information, optionally serving PLMN ID of Discoveree UE, user Info ID of the Discoveree UE.\nNOTE 4:\tThe content type value of the message indicates the Type of Discovery Message.\nThe Source Layer-2 ID used to send the Ranging/SL Positioning Response message is specified in clause 5.2.\nThe Destination Layer-2 ID is set to the Source Layer-2 ID of the received Ranging/SL Positioning Solicitation message.\nThe User Info ID of Discoveree UE is the Discoveree UE's Application Layer ID.\nDiscoveree UE sends the Response message only if it is authorized to be the corresponding UE role in the solicitation message.\nThe Discoverer UE selects the Discoveree UE based on the information received in step 2, when User Info ID of Discoveree UE is not included in Ranging/SL Positioning Solicitation message.\nDiscoveree UE may include an indication of whether its serving network supports Ranging/SL Positioning.\nDiscoveree UE may include its serving PLMN ID in the Ranging/SL Positioning Response message if its role is Located UE.\nThe contents of RSPP metadata information (e.g. the UE Role) are defined in clause 6.11 of TS 38.355 [12].\nNOTE 5:\tThe Serving PLMN ID can not be always included even for Located UE in coverage. In this Release, the Serving PLMN ID is included only when the Located UE is using the LCS framework to obtain the location information as descried in TS 23.273 [8].",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_5.2",
+        "ts_38.355_clause_6.11",
+        "figure_6.4.2.1-1",
+        "ts_23.273_figure_6.4.2.1-2",
+        "figure_6.4.2.1-2",
+        "ts_23.304",
+        "ts_38.355",
+        "ts_23.273"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.586_6.4.2.2",
+      "section_id": "6.4.2.2",
+      "section_title": "Ranging/SL Positioning group member discovery with 5G ProSe capable UE",
+      "content": "Figure 6.4.2-1 illustrates the procedure for Ranging/SL Positioning group member discovery with 5G ProSe capable in Model A discovery.\nFigure 6.4.2.2-1: Ranging/SL Positioning group member discovery in Model A\n1.\tThe Announcing UE sends a Ranging/SL Positioning Group member discovery Announcement message. The Announcement message includes the Type of Discovery Message, optionally serving PLMN ID of Announcing UE, User info ID of the Announcing UE, Group ID and RSPP metadata information.\nNOTE 1:\tThe content type value of the message indicates the Type of Discovery Message.\nThe Destination Layer-2 ID used to send and receive the Ranging/SL Positioning Group member discovery Announcement message is described in clause 5.8.1.2 of TS 23.304 [7].\nThe Source Layer-2 ID used to send and the Ranging/SL Positioning Group member discovery Announcement message is self-assigned by the Announcing UE.\nAnnouncing UE sends the Announcement message only if it is authorized to be the corresponding UE role in RSPP metadata information.\nThe User Info ID of Announcing UE is the Announcing UE's Application Layer ID.\nAnnouncing UE may include an indication of whether its serving network supports Ranging/SL Positioning.\nAnnouncing UE may include its serving PLMN ID in the Announcement message if its role is Located UE.\nThe contents of RSPP metadata information (e.g. the UE Role) are defined in clause 6.11 of TS 38.355 [12].\nNOTE 2:\tThe Serving PLMN ID can not be always included even for Located UE in coverage. In this Release, the Serving PLMN ID is included only when the Located UE is using the LCS framework to obtain the location information as descried in TS 23.273 [8].\nFigure 6.4.2.2-2 illustrates the procedure for Ranging/SL Positioning Group member discovery with 5G ProSe capable in Model B discovery.\nFigure 6.4.2.2-2: Ranging/SL Positioning Group member discovery in Model B\n1.\tThe Discoverer UE (UE-1) sends a Ranging/SL Positioning Group member discovery Solicitation message. The Solicitation message includes the Type of Discovery Message, User Info ID of Discoverer, Group ID, optionally User Info ID of Discoveree UE and optionally RSPP metadata information.\nNOTE 3:\tThe content type value of the message indicates the Type of Discovery Message.\nThe Destination Layer-2 ID used to send and receive the Solicitation message is described in clause 5.8.1.2 of TS 23.304 [7].\nThe Source Layer-2 ID to send the Ranging/SL Positioning Solicitation message is self-assigned by the Discoverer UE.\nThe User Info ID of Discoverer UE is the Discoverer UE's Application Layer ID.\nUser Info ID of Discoveree UE is to identify a specific UE that the discoverer UE would like to discover, which is identified by Discoveree UE's Application Layer ID.\nDiscoverer UE may include an indication of whether its serving network supports Ranging/SL Positioning.\nThe contents of RSPP metadata information (e.g. the UE Role) are defined in clause 6.11 of TS 38.355 [12].\n2\tThe Discoveree UE that matches the values of the parameters (including Group ID and User Info ID of Discoveree UE) contained in the Ranging/SL Positioning Group member discovery solicitation message, responds to the Discoverer UE with the Ranging/SL Positioning Group member discovery Response message. The Ranging/SL Positioning Response message includes Type of Discovery Message, optionally serving PLMN of Discoveree UE, the User Info ID of Discoveree, the RSPP metadata information and the Group ID.\nThe Source Layer-2 ID used to send the Ranging/SL Positioning Group member discovery Response message is self-assigned.\nThe Destination Layer-2 ID is set to the Source Layer-2 ID of the received Ranging/SL Positioning Group member discovery Solicitation message.\nDiscoveree UE sends the Response message only if it is authorized to be the corresponding UE role in the solicitation message.\nThe User Info ID of Discoveree UE is the Discoveree UE's Application Layer ID.\nDiscoveree UE may include an indication of whether its serving network supports Ranging/SL Positioning.\nDiscoveree UE may include its serving PLMN ID in the Ranging/SL Positioning Group member discovery Response message if its role is Located UE.\nThe contents of RSPP metadata information (e.g. the UE Role) are defined in clause 6.11 of TS 38.355 [12].\nNOTE 4:\tThe Serving PLMN ID can not be always included even for Located UE in coverage. In this Release, the Serving PLMN ID is included only when the Located UE is using the LCS framework to obtain the location information as descried in TS 23.273 [8].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.304_clause_5.8.1.2",
+        "ts_38.355_clause_6.11",
+        "figure_6.4.2-1",
+        "figure_6.4.2.2-1",
+        "ts_23.273_figure_6.4.2.2-2",
+        "figure_6.4.2.2-2",
+        "ts_23.304",
+        "ts_38.355",
+        "ts_23.273"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.586_6.4.3",
+      "section_id": "6.4.3",
+      "section_title": "Ranging/SL Positioning UE discovery with V2X capable UE",
+      "content": "The procedure for Ranging/SL Positioning UE discovery and selection with V2X capable UE uses the procedures of Layer-2 link establishment over PC5 reference point in clause 6.3.3 of TS 23.287 [6] as basis with following differences and clarifications:\n-\tThe Service Type in Layer-2 link establishment procedure indicates \"Ranging/Sidelink Positioning\" service, the Policy/Parameter provisioning for \"Ranging/Sidelink Positioning\" service is defined in clause 5.2.\n-\tIn step3, the UE determines the destination Layer-2 ID based on the configuration in clause 5.2 for the RSPP transport. The V2X service info indicates \"Ranging/Sidelink Positioning\" in the Direct Communication Request message. The Direct Communication Request message may include the RSPP metadata information. The UE may include an indication of whether its serving network supports Ranging/SL Positioning.\nThe contents of RSPP metadata information (e.g. the UE Role) are defined in clause 6.11 of TS 38.355 [12].\n-\tIn step 4, the QoS info is for the RSPP transport.\n-\tIn step 5, the Direct Communication Accept message includes the RSPP metadata information and optionally serving PLMN of Target UE for the Ranging/Sidelink Service oriented Layer-2 link establishment. The Target UE may include an indication of whether its serving network supports Ranging/SL Positioning.\nThe contents of RSPP metadata information (e.g. the UE Role) are defined in clause 6.11 of TS 38.355 [12].\nIf the role of Target UE is Located UE, the serving PLMN of Target UE is included in the Direct Communication Accept message.\nNOTE:\tThe Serving PLMN ID can not be always included even for Located UE in coverage. In this Release, the Serving PLMN ID is included only when the Located UE is using the LCS framework to obtain the location information as descried in TS 23.273 [8].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.287_clause_6.3.3",
+        "clause_5.2",
+        "ts_38.355_clause_6.11",
+        "ts_23.287",
+        "ts_38.355",
+        "ts_23.273"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.586_6.5.1.1",
+      "section_id": "6.5.1.1",
+      "section_title": "MO-LR Procedure for Network based SL Positioning for UE with NAS connection",
+      "content": "UE can trigger 5GC-MO-LR and the LMF determines that SL positioning will be used to determine the absolute location of the UE as specified in 5GC-MO-LR procedure using SL positioning in clause 6.20.2 of TS 23.273 [8] or the UE can trigger SL-MO-LR procedure defined in clause 6.20.1 of TS 23.273 [8] is performed with the following adaptations:\n-\tUE1 is the Target UE, and UE2/.../UEn is the Located UE.\n-\tIt is indicated in step 8 that location calculation assistance by the network is needed and absolute location is required.",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "ts_23.273_clause_6.20.2",
+        "ts_23.273_clause_6.20.1",
+        "ts_23.273"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.586_6.5.1.2",
+      "section_id": "6.5.1.2",
+      "section_title": "MT-LR Procedure for Network-based SL Positioning for UE with NAS connection",
+      "content": "5GC-MT-LR using SL positioning procedure as defined in clause 6.20.5 of TS 23.273 [8] is performed with the following adaptations:\n-\tThe LMF performs the absolute location estimation.",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "ts_23.273_clause_6.20.5",
+        "ts_23.273"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.586_6.5.2",
+      "section_id": "6.5.2",
+      "section_title": "Procedures for Network-based SL Positioning for UE without NAS connection",
+      "content": "The procedures for Network based SL positioning for UE without NAS connection apply to the following cases:\n-\twhen the Target UE initiates 5GC-MO-LR request to obtain its own absolute location and cannot establish a NAS connection or cannot be served by a Ranging/SL positioning capable LMF\n-\twhen the target UE detects an event configured by the network during an initial 5GC-MT-LR procedure when the Target UE has the NAS connection\nThe procedures for Network based SL positioning for UE without NAS connection takes the SL-MO-LR procedure in TS 23.273 [8] as baseline with following adaptations based on the functionalities described in clause 5.5.3:\n-\tUEx (one of the UE2/.../UEn) is the Target UE that cannot set up a NAS connection or that cannot be served by a Ranging/SL positioning capable LMF, and UE1 is Located UE that is in coverage and can be served by a Ranging/SL positioning capable LMF.\nNOTE:\tUE1 as the Located UE can be multiple.\n-\tIn step2, it is the UEx (Target UE) that performs UE1 (Located UE) discovery.\n-\tIn step 6, when the UEx(Target UE) initiates SL-MO-LR service request to UE1(Located UE), the UEx(Target UE) requests UE1(Located UE) to return the Target UE's absolute location and may indicate whether the absolute location should be transferred to an LCS client or AF. For transfer to an LCS Client or AF, Target UE ID and the Deferred routing ID may be included.\n-\tIt is the UE 1 as the Located UE that performs the SL-MO-LR with the step 8~23 with following adaptions:\n-\tIn Step 8: UE1(Located UE) sends SL-MO-LR request which indicates that the Target UE’s absolute location is required, may indicate that the location calculation assistance by the network is needed, and may indicate that location results need to be transferred to the LCS client or AF for UEx (Target UE). For transfer to the LCS Client or AF, the Target UE ID, i.e. Application Layer ID and the Deferred routing ID may be included along with the SL-MO-LR request. The SL positioning measurement data may be included in step 8.\n-\tThe LMF determines the network based calculation taking the obtained capability of UE in step 10 and step 11 into account.\n-\tThe LMF requests for the location information from the UE1(Located UE) in step14.\n-\tThe step17 for UE based calculate is not needed.\n-\tThe UE1(Located UE) returns the SL location measurement data to the LMF in step18.\n-\tWhen SL positioning measurement data was provided in step 8, step 12~17 may be omitted.\n-\tThe LMF calculates the location result (i.e. the absolute Location of Target UE) based on the SL location measurement data and the location of the UE1(Located UE) in step19, and provides the location of UEx(Target UE) to the UE1 (Located UE) in step 22.\n-\tIn case the LMF has the valuable UEx(Target UE) context based on the Deferred routing ID, then the LMF provides the resulting location of the UEx(Target UE) via the GMLC to the LCS Client or AF in step 22. In case the UEx(Target UE) context was deleted, transferring location of the UEx(Target UE) to the LCS Client or AF is not proceeded.\n-\tThe UE1 (Located UE) returns the absolute location result (i.e. the absolute Location of Target UE) to the UEx(Target UE) in step23 over PC5.\nIn this Release, Procedures for Network-based SL Positioning for UE without NAS connection is not supported.",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "clause_5.5.3",
+        "ts_23.273"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.586_6.5.3.1",
+      "section_id": "6.5.3.1",
+      "section_title": "MO-LR Procedure for Network-assisted SL Positioning for UE with NAS connection",
+      "content": "The procedures defined in this clause apply to Network-assisted SL Positioning for UE with NAS connection, as defined in clause 5.5.4, when the service request is initiated by the Target UE.\nIf the Located UE(s) is known to the Target UE (e.g. based on Located UE discovery and selection), SL-MO-LR procedure defined in clause 6.20.1 of TS 23.273 [8] is performed with the following adaptations:\n-\tUE1 is the Target UE, and UE2/.../UEn is the Located UE. UE1 provides application layer ID of UE2/.../UEn as the Located UE ID in the SL-MO-LR request.\n-\tIt is indicated in step 8 that absolute location of UE1 is required.\n-\tIt is indicated in step 15 that Network-assisted SL Positioning is applie.\n-\tIn step 19, the response includes absolute location of UE1.\n-\tStep 20 and step 23 are skipped.\nIf the Located UE(s) is not known to the Target UE, 5GC-MO-LR procedure using SL positioning defined in clause 6.20.2 of TS 23.273 [8] is performed.",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "clause_5.5.4",
+        "ts_23.273_clause_6.20.1",
+        "ts_23.273_clause_6.20.2",
+        "ts_23.273"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.586_6.5.3.2",
+      "section_id": "6.5.3.2",
+      "section_title": "MT-LR Procedure for Network-assisted SL Positioning for UE with NAS connection",
+      "content": "The procedures defined in this clause apply to Network-assisted SL Positioning for UE with NAS connection, as defined in clause 5.5.4, when the service request is initiated by the AF or LCS Client.\n5GC-MT-LR procedure using SL positioning defined in clause 6.20.5 of TS 23.273 [8] is performed.",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "clause_5.5.4",
+        "ts_23.273_clause_6.20.5",
+        "ts_23.273"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.586_6.5.4",
+      "section_id": "6.5.4",
+      "section_title": "Procedures for Network-assisted SL Positioning for UE without NAS connection",
+      "content": "The Procedures for Network-assisted SL Positioning for UE without NAS connection take the Procedures for Network based SL positioning for UE without NAS connection in clause 6.5.2 as baseline with following adaptations based on the functionalities defined in clause 5.5.5:\n-\tIn Step 8: UE1 (Located UE) may indicate that the assistance data or location calculation assistance is needed.\n-\tThe LMF determines the UE based calculation taking the obtained capability of UE in step 10 and step 11 into account.\n-\tThe LMF provides the assistance data to UE1 (Located UE) in step 12~13, and requests the UE1 (Located UE) to return the result to the LMF if the UE1 (Located UE) is the SL location server UE enabled in step14.\n-\tIf the UE1 (Located UE) is not SL server UE enabled, the LMF may select a SL Positioning Server UE to calculate the result, in this case the LMF provides the assistant data and the location of the UE1 (Located UE) to the selected SL Positioning Server UE in step 12-13, and ask for returning the calculation result in step14.\n-\tThe UE1 (Located UE) or a selected SL location server UE retunes the calculation result (i.e. the Target UE’s absolute location) to the LMF in step18.\nIn this Release, Procedures for Network-assisted SL Positioning for UE without NAS connection is not supported.",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "clause_6.5.2",
+        "clause_5.5.5"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.586_6.6",
+      "section_id": "6.6",
+      "section_title": "Procedure of UE only Sidelink Positioning for Target UE using Located UE",
+      "content": "This procedure is used to acquire absolute location of Target UE using Located UE, where LMF is not involved for SL Positioning/Ranging. The Located UE is assumed to already know its absolute location or can get its absolute location via the legacy 5GC-MO-LR Procedure, and its privacy profile allows its location to be shared with the Target UE.\nProcedures for Ranging/Sidelink Positioning control (UE-only operation) defined in clause 6.8 applies with the following adaptations:\n-\tUE1 is the Target UE, and UEs 2..n are Located UEs.\n-\tStep 1, the service request from Target UE application layer indicates that absolute location of the Target UE is required\n-\tBefore step 6, target UE sends a scheduled location time (Time T) to each Located UE. If the absolute location of Located UE is not known, 5GC-MO-LR procedure is triggered, as specified in clause 6.2 of TS 23.273 [8], with the Time T included in the 5GC-MO-LR Request. The QoS requirement for Target UE's positioning in step 1, may be used by the Target UE to derive the required QoS for Located UE(s) positioning. Target UE sends the required QoS for Located UE positioning to each Located UE, and the required QoS for Located UE positioning is included in the 5GC-MO-LR Request.\n-\tRanging/Sidelink positioning between target UE and each located UE is scheduled with the Time T.\n-\tStep  8 absolute location of the Target UE is calculated.",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "clause_6.8",
+        "ts_23.273_clause_6.2",
+        "ts_23.273"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.586_6.7.1.1",
+      "section_id": "6.7.1.1",
+      "section_title": "Procedures for Ranging/SL Positioning service exposure through PC5",
+      "content": "Figure 6.7.1-1: Service exposure to SL Positioning Client UE via PC5\n1.\tWhen a Ranging/SL Positioning service is triggered, SL Positioning Client UE may perform discovery procedure for the Ranging/SL Positioning service defined in clause 6.4 with following updates:\n-\tWhen SL positioning service is triggered, the client UE tries to discover the target UE and/or one or more SL Reference UE(s)/Located UE(s). When Model B discovery used, in the Solicitation message, target UE's user info is included and role of target UE and role of SL Reference UE/Located UE are indicated in the RSPP metadata.\n-\tWhen Ranging service is triggered, the client UE tries to discover UE1 and/or UE2. When Model B discovery used, in the Solicitation message, UE1's user info and UE2's user info are included and role of target UE is indicated in the RSPP metadata.\nDuring discovery for SL positioning service, the information of SL reference UE(s)/Located UE(s) is acquired.\n2.\tIf discovery procedure succeeds, the SL Positioning Client UE establishes a PC5 connection with the discovered UE.\nThe SL Positioning Client UE may receive a supplementary RSPP signalling message including list of SL Reference UE(s)/Located UE(s) from target UE over the PC5 connection.\n3.\tThe SL Positioning Client UE may select UE(s) to perform SL Positioning operation and select a UE (here UE1) to receive SL Positioning Service Request. The SL Positioning Client UE sends a SL Positioning Service Request using supplementary RSPP signalling message.\nFor absolute location, the SL Positioning Client UE sends a SL Positioning Service Request which includes info of SL Positioning Client UE, info of Target UE, and required positioning QoS. The Service Request may include info of list of candidate Located UE(s).\nFor relative location/ranging, the SL Positioning Client UE sends a SL Positioning Service Request which includes info of SL Positioning Client UE, info of Target UE, info of SL Reference UE(s), and required positioning QoS.\nFor ranging, if UE1 and UE2 are not in proximity, the SL Positioning Service Request is responded with reject by the receiving UE (either UE1 or UE2) and remaining steps are not performed.\n4.\tThe UE which received SL Positioning Service Request (here UE1) selects LMF or SL Positioning Server UE based on its status whether UE has NAS connection.\n-\tIf SL Positioning Server UE is selected (the Server UE can be the Target UE itself or a UE different from the Target UE), Ranging/SL Positioning operation is performed as described in clause 6.8.\n-\tIf LMF is selected, UE1 first checks with UE2/.../UEn about whether exposure to SL Positioning Client UE is allowed based on the procedure defined in clause 6.3.6.3 of TS 33.533 [13]. If the privacy check is successful, the Ranging/SL Positioning operation is then performed as described in clause 6.20.1 of TS 23.273 [8].\n5.\tThe Ranging/SL Positioning result is provided to the SL Positioning client UE by UE1.",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "clause_6.4",
+        "clause_6.8",
+        "ts_33.533_clause_6.3.6.3",
+        "ts_23.273_clause_6.20.1",
+        "figure_6.7.1-1",
+        "ts_33.533",
+        "ts_23.273"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.586_6.7.2",
+      "section_id": "6.7.2",
+      "section_title": "Procedures for Service Exposure to the AF",
+      "content": "SL-MT-LR procedure defined in clause 6.20.3 of TS 23.273 [8] is performed for Service Exposure to the 5GC NF, AF or the LCS Client.",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "ts_23.273_clause_6.20.3",
+        "ts_23.273"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.586_6.8",
+      "section_id": "6.8",
+      "section_title": "Procedures of Ranging/Sidelink Positioning control",
+      "content": "Either UE-only Operation or Network-based Operation is applied in the Ranging/Sidelink Positioning control procedures.\nUE-only Operation as specified in this clause is applied for the following cases:\n-\tNeither Target UE nor SL Reference UE is served by NG-RAN.\n-\tNetwork-based Operation is not supported by the 5GC network as described in clause 5.2.3.\n-\tResponse to SL-MO-LR request allows the UE only operation for a period of time by the network due to congestion.\nFor any other cases, Network-based Operation as specified in clauses 6.20 of TS 23.273 [8] is applied.\nFigure 6.8.1-1: Procedures for Ranging/Sidelink Positioning control (UE-only operation)\n1.\tUE1 (i.e. Target UE) may receive a Ranging/SL Positioning Service request from:\n1a.\tSL Positioning Client UE over PC5 during procedures for Ranging/SL Positioning service exposure through PC5 as defined in clause 6.7.1.1.\nFor absolute location, the service request includes the SL Positioning Client UE's user info and Target UE's user info, and required positioning QoS and may also include the user info for a list of candidate Located UE(s).\nFor relative location or ranging information, the service request includes the SL Positioning Client UE's user info, Target UE's user info, SL Reference UE's user info (UE2/.../UEn), and Ranging/SL Positioning QoS information.\n1b.\tRSPP application layer.\nThe service request includes type of the result (i.e. absolute location, relative location or ranging information) and the required QoS.\n2.\tIf exposure to SL Positioning Client UE is allowed by UE1, it discovers UE2/.../UEn (i.e. SL Reference UEs/Located UEs and optionally whether they support SL Positioning Server UE role) as defined in clause 6.4, if needed.\nNOTE 1:\tDetails of security related procedures during UE discovery are defined in clause 6.2 of TS 33.533 [13].\n3.\tIf none of UE1/.../UEn are served by NG-RAN or the serving network does not support Ranging/SL Positioning, UE-only Operation is applied.\n4.\tUE1 and UE2/.../UEn perform capability exchange using SLPP messages. Step 4 may be performed during step 7 with coordination of SL Positioning Server UE.\nBefore the step4, UE1 establishes the secure PC5 link with UE2/.../UEn.\nIn addition, if UE1 acts as SL Positioning Server, UE1 may also request for the absolute location of UE2/.../UEn from UE2/.../UEn using the supplementary RSPP signalling message, and if the absolute location is available and allowed to be shared (i.e. after privacy verification according to clause 6.3.7 of TS 33.533 [13]), the absolute location of UE2/.../UEn is transferred by UE2/.../UEn to UE1 by the supplementary RSPP signalling message; and\nUE1 selects the Located UEs (e.g. UEx/.../UEy) from UE2/.../UEn for the subsequent SL positioning/ranging operation (e.g., based on information received during discovery, Ranging/SL Positioning capability of UE1/UE2/.../UEn, the absolute location of UE2/.../UEn).\n5.\tIf UE1 does not support SL Positioning Server functionalities or UE1 opts to select a SL Positioning Server UE different from UE1, a SL Positioning Server UE (either co-located with a SL Reference UE/Located UE, or operated by a separate UE) is discovered (if not yet discovered in step 2) and selected. If a SL Positioning Server UE is co-located with a SL Reference UE/Located UE or operated by a separate UE, UE1 discovers and selects the SL Positioning Server UE as described in clauses 5.2.3 and 6.4. UE1 establishes the secure PC5 link with the selected SL Positioning Server UE.\nNOTE 2:\tUE1 may be able to perform the selection of the SL Positioning Server UE based on information obtained in step 2.\nIf the Located UE is served by NG-RAN, it may use 5GC-MO-LR procedure to retrieve its absolute location.\nNOTE 3:\tAfter step 5a and before step 5b, UE1 checks with UE2/.../UEn about whether exposure to SL Positioning Client UE and exposure to SL Positioning Server UE, if selected, are allowed based on the procedure defined in clause 6.3.7 of TS 33.533 [13]. The UEs from UE2/.../UEn may be down-selected based on the privacy check result. If UE privacy check against the SL Positioning Server UE fails, step 5a may be repeated to reselect a SL Positioning Server UE.\nNOTE 4:\tSteps 5a, 5b, 6, 7, 8a, 9, 11, 13 are performed only when SL Positioning Server UE is different from UE1.\n6.\tIf a SL Positioning server UE is selected, UE 1 sends a Ranging/SL positioning request using supplementary RSPP signalling message to the selected SL Positioning Server UE. This request indicates the other UEs 2 to n using the Application layer ID and indicates the Ranging/SL positioning result types needed (e.g. absolute locations, relative locations or distances and directions between pairs of UEs). The required QoS for Ranging/SL positioning is also indicated.\n7.\tThe SL Positioning Server UE sends requests to UE1 for capability of UE1 using the SLPP message and for the capabilities of UE2/.../UEn using the supplementary RSPP signalling (e.g. including SLPP containers that may contain Sidelink Positioning capability request for UE2/.../UEn) message with the corresponding Application Layer ID of UE2/.../UEn. UE1 responds to the SL Positioning Server UE with its own capability using SLPP message and the capabilities of UE2 to n using the supplementary RSPP signalling message (e.g. including SLPP containers that may contain Sidelink Positioning capability of UE2/.../UEn) with the corresponding Application Layer ID of UE2/.../UEn. If step 4 did not occur, UE1 retrieves capabilities from UE2/.../UEn using SLPP messages during this step.\nThe SL Positioning Server UE may downselect the UEs (e.g. UEx/.../UEy) from UE2/.../UEn for the subsequent SL positioning/ranging operation (e.g., based on UE capability).\n8.\tThe SL Positioning Server UE provides the Sidelink Positioning assistance data to UE1.\n8a.\tFor the Sidelink Positioning assistance data used by UE1, it is transmitted by SLPP message.\n8b.\tFor the Sidelink Positioning assistance data used by UEx/.../UEy, it is transmitted using the supplementary RSPP signalling messages (e.g. including SLPP containers that may contain Sidelink Positioning assistance data for UEx/.../UEy) with the corresponding Application Layer ID of UEx/.../UEy and then UE1 sends the assistance data to each UE (UEx/.../UEy) by SLPP messages.\n9.\tThe SL Positioning Server UE sends requests to UE1 for SL measurement information of UE 1 and UEx/.../UEy, if the SL Positioning Server UE performs the result calculation. For the SL measurement information of UE1, the request uses the SLPP message. For the SL measurement information of UEx/.../UEy, the request uses the supplementary RSPP signalling message (e.g. including SLPP container that may contain Sidelink Positioning location measurements request for UEx/.../UEy) with the corresponding Application Layer ID of UEx/.../UEy. In addition, the SL Positioning Server UE may also request for the absolute location of UEx/.../UEy via UE1 using the supplementary RSPP signalling message with the corresponding Application Layer ID of UEx/.../UEy. If the absolute location of UEx/.../UEy is available, then the absolute location of UEx/.../UEy is returned using a supplementary RSPP signalling message.\nNOTE 5:\tBased on implementation, when performing as a Located UE, UEx/.../UEy may locally check whether it is allowed to share its absolute location.\n10.\tIf a SL Positioning Server UE different from UE1 is selected in step 5, SL-PRS measurement is performed between UE1 and UEx/.../UEy and possibly also amongst UEx/.../UEy. The UE1 requests for the SL measurement information from UEx/.../UEy by the SLPP messages and/or the absolute locations of UEx/.../UEy from UEx/.../UEy by supplementary RSPP signalling messages if requested in step9 by SL Positioning Server UE. The SL-PRS measurement data is transferred to UE1 using SLPP messages.\n11.\tSL-PRS measurement data of UE1 is transferred by SLPP message to the SL Positioning Server UE and SL-PRS measurement data of UEx/.../UEy is transferred by UE1 using the supplementary RSPP signalling message (e.g. including SLPP container that may contain SL-PRS measurement data of UEx/.../UEy) with the corresponding Application Layer ID of UEx/.../UEy to the SL Positioning Server UE if requested in step 9 in order to perform result calculation. The absolute location of UEx/.../UEy as received in step 9 is transferred by UE1 to the SL Positioning Server UE by the supplementary RSPP signalling message with the corresponding Application Layer ID of UEx/.../UEy if requested in step9.\n12.\tBased on the result types requested in step 6, absolute location, relative location or ranging information is calculated at the SL Positioning Server UE.\nNOTE 6:\tDetails of step 4-12 are developed by RAN WGs.\nNOTE 7:\tThe supplementary RSPP signalling message mentioned above is conveyed by PC5-U and handled in the Ranging/SL Positioning layer, whose detailed design is left to stage 3.\n13.\tThe SL Positioning Server UE selected in step 5 sends a Ranging/SL positioning response using supplementary RSPP signalling message to UE1 including the result that is required in step 6.\n14.\tRanging/SL Positioning result is transferred to:\n14a.\tSL Positioning Client UE over PC5 during procedures for Ranging/SL Positioning service exposure through PC5 as defined in clause 6.7.1.1;\n14b.\tApplication layer.",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "clause_5.2.3",
+        "clause_6.7.1.1",
+        "clause_6.4",
+        "ts_33.533_clause_6.2",
+        "ts_33.533_clause_6.3.7",
+        "ts_23.273_figure_6.8.1-1",
+        "ts_23.273",
+        "ts_33.533"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.586_6.9",
+      "section_id": "6.9",
+      "section_title": "Protocol stack for RSPP transport",
+      "content": "PC5-U is used for RSPP messages transport.\nFor V2X capable UEs, the protocol stack for RSPP transport is depicted in Figure 6.9-1.\nLegend:\n-\tPC5-U: The SDAP/PDCP/RLC/MAC/PHY functionality is specified in TS 38.300 [15]. The PDCP SDU type \"Non-IP\" is specified in TS 23.287 [6].\nFigure 6.9-1: Protocol stack for V2X capable UE's RSPP transport\nFor ProSe capable UEs, the protocol stack for RSPP transport is depicted in Figure 6.9-2.\nLegend:\n-\tPC5-U: The SDAP/PDCP/RLC/MAC/PHY functionality is specified in TS 38.300 [15]. The PDCP SDU type \"Unstructured\" is specified in TS 23.304 [7].\nFigure 6.9-2: Protocol stack for ProSe capable UE's RSPP transport\nAnnex A (informative):Change history\nChange history\nDate\nMeeting\nTDoc\nCR\nRev\nCat\nSubject/Comment\nNew version\n2023-01\nSA2#154AHe\nS2-2301144\n-\n-\n-\nSkeleton of Ranging_SL TS 23.586.\n0.0.0\n2023-06\nSA#100\nSP-230501\n-\n-\n-\nPresentation to TSG SA for approval.\n1.0.0\n2023-06\nSA#100\n-\n-\n-\n-\nMCC editorial update for publication after TSG SA#100 approval\n18.0.0\n2023-09\nSA#101\nSP-230855\n0004\nF\nClarification on UE ID\n18.1.0\n2023-09\nSA#101\nSP-230855\n0009\n2\nF\nEditorial Changes\n18.1.0\n2023-09\nSA#101\nSP-230855\n0013\n2\nF\nApplication Layer ID translation to GPSI\n18.1.0\n2023-09\nSA#101\nSP-230855\n0014\n1\nF\nFix Ranging Architecture figures and interfaces\n18.1.0\n2023-09\nSA#101\nSP-230855\n0018\n1\nF\nCorrection on authorization information to NG-RAN\n18.1.0\n2023-09\nSA#101\nSP-230855\n0019\n2\nF\nCorrection on Ranging/SL Positioning Capability\n18.1.0\n2023-09\nSA#101\nSP-230855\n0022\n2\nF\nClarification on the UE based SL Positioning and Network-assisted mode\n18.1.0\n2023-09\nSA#101\nSP-230855\n0037\n-\nF\nRemove Editor's Note on feasibility of the location results\n18.1.0\n2023-12\nSA#102\nSP-231270\n0026\n4\nF\nUpdate on Procedures of Ranging/Sidelink Positioning control\n18.2.0\n2023-12\nSA#102\nSP-231270\n0031\n9\nF\nUpdates to the UE-only operation procedure\n18.2.0\n2023-12\nSA#102\nSP-231271\n0034\n4\nF\nUpdates to the network assisted SL positioning\n18.2.0\n2023-12\nSA#102\nSP-231271\n0045\n2\nF\nUpdate exposure via PC5 and add missing information in the subscription data\n18.2.0\n2023-12\nSA#102\nSP-231271\n0057\n2\nF\nSL Positioning for UE without NAS connection\n18.2.0\n2023-12\nSA#102\nSP-231271\n0061\n2\nF\nClarification on the discovery type for ProSe capable  UE\n18.2.0\n2023-12\nSA#102\nSP-231271\n0064\n3\nF\nCorrection on authorization for Ranging and Sidelink Positioning\n18.2.0\n2023-12\nSA#102\nSP-231271\n0065\n2\nF\nUpdate Selection Criteria based on RAN agreement\n18.2.0\n2023-12\nSA#102\nSP-231271\n0067\n2\nF\nClarification on SL positioning service exposure through PC5\n18.2.0\n2023-12\nSA#102\nSP-231271\n0070\n2\nF\nSL positioning operation with proximity indication\n18.2.0\n2023-12\nSA#102\nSP-231271\n0071\n1\nF\nCorrections to TS 23.586\n18.2.0\n2023-12\nSA#102\nSP-231271\n0082\n1\nF\nUpdate on Ranging/SL Positioning QoS\n18.2.0\n2023-12\nSA#102\nSP-231271\n0085\n1\nF\nUpdate Network Reject Use Case for UE only operation\n18.2.0\n2023-12\nSA#102\nSP-231271\n0088\n2\nF\nUpdates to the UE-only operation using Located UE\n18.2.0\n2023-12\nSA#102\nSP-231271\n0094\n1\nF\nCorrection to service exposure to SL Positioning Client UE for absolute position\n18.2.0\n2024-03\nSP-103\nSP-240108\n0046\n3\nF\nUpdate service exposure via control plane.\n18.3.0\n2024-03\nSP-103\nSP-240108\n0055\n2\nF\nCorrection/clarification to AF provisioning service parameters for Ranging/SL Positioning\n18.3.0\n2024-03\nSP-103\nSP-240108\n0056\n2\nF\nHandling ID translation and privacy check in case of UEs belong to different PLMNs\n18.3.0\n2024-03\nSP-103\nSP-240108\n0066\n3\nF\nUpdate on Application layer ID resolution\n18.3.0\n2024-03\nSP-103\nSP-240108\n0077\n1\nF\nAdd missing Ranging/SL Positioning security description\n18.3.0\n2024-03\nSP-103\nSP-240108\n0078\n1\nF\nUpdate parameter provisioning\n18.3.0\n2024-03\nSP-103\nSP-240109\n0087\n2\nF\nRanging capability and subscription\n18.3.0\n2024-03\nSP-103\nSP-240109\n0096\n-\nF\nClarification on the term and functionality\n18.3.0\n2024-03\nSP-103\nSP-240109\n0097\n1\nF\nModification to the Registration description\n18.3.0\n2024-03\nSP-103\nSP-240109\n0100\n-\nF\nProtocol stack for RSPP transport\n18.3.0\n2024-03\nSP-103\nSP-240109\n0101\n1\nF\nUpdate on Located UE Discovery and Selection\n18.3.0\n2024-03\nSP-103\nSP-240109\n0102\n-\nF\nUpdate on functional entity\n18.3.0\n2024-03\nSP-103\nSP-240109\n0103\n1\nF\nUpdate on Policy/Parameter and scheduled location time\n18.3.0\n2024-03\nSP-103\nSP-240109\n0105\n1\nF\nUpdates to discovery\n18.3.0\n2024-03\nSP-103\nSP-240109\n0106\n1\nF\nEN remove for the indication for capability exchange\n18.3.0\n2024-03\nSP-103\nSP-240109\n0107\n2\nF\nAdding SL Positioning Server UE discovery as part of the initial discovery procedure.\n18.3.0\n2024-03\nSP-103\nSP-240109\n0109\n1\nF\nUpdate about the usage of application layer ID\n18.3.0\n2024-03\nSP-103\nSP-240109\n0111\n1\nF\nUpdates SL positioning control using supplementary RSPP signalling message\n18.3.0\n2024-03\nSP-103\nSP-240109\n0112\n1\nF\nUpdate in the UE discovery and selection\n18.3.0\n2024-03\nSP-103\nSP-240109\n0114\n1\nF\nCorrections for alignments to TS 23.273/TS 23.586/SA3/RAN WGs\n18.3.0\n2024-03\nSP-103\nSP-240109\n0116\n1\nF\nCorrections for UE-only operation procedures\n18.3.0\n2024-03\nSP-103\nSP-240109\n0124\n1\nF\nUpdate on UE selection for Ranging\n18.3.0\n2024-03\nSP-103\nSP-240471\n0129\n1\nF\nRemove Ranging/SL Positioning service exposure through 5GC\n18.3.0\n2024-06\nSP-104\nSP-240601\n0131\n3\nF\nUpdate about the UE role in PC-5 service exposure scenario\n18.4.0\n2024-06\nSP-104\nSP-240601\n0132\n2\nF\nClarification on the partial coverage issue\n18.4.0\n2024-06\nSP-104\nSP-240601\n0136\n2\nF\nAdd reference to UE Ranging privacy profile for Ranging/SL Positioning service\n18.4.0\n2024-06\nSP-104\nSP-240601\n0137\n1\nF\nclarification on the service exposure\n18.4.0\n2024-06\nSP-104\nSP-240601\n0138\n1\nF\nClarification on the GPSI and Application Layer ID Mapping\n18.4.0\n2024-06\nSP-104\nSP-240601\n0141\n-\nF\nCleanups\n18.4.0\n2024-09\nSP-105\nSP-241250\n0142\n1\nF\nUpdate on SL Positioning using Located UE\n18.5.0\n2024-09\nSP-105\nSP-241250\n0144\n2\nF\nCorrection on the SL Positioning Server UE and LMF description\n18.5.0\n2024-09\nSP-105\nSP-241250\n0145\n1\nF\nRemove NAS available indication to SL positioning client UE\n18.5.0\n2024-09\nSP-105\nSP-241250\n0147\n1\nF\nClarifications and fixes to UE-only procedures\n18.5.0\n2024-09\nSP-105\nSP-241250\n0148\n2\nF\nUpdate for Charging\n18.5.0\n2024-09\nSP-105\nSP-241250\n0151\n2\nF\nTerms Alignment to TS 23.032\n18.5.0\n2024-12\nSP-106\nSP-241465\n0152\n1\nF\nUpdates on UE privacy checking for SA3 alignment\n18.6.0\n2025-03\nSP-107\nSP-250049\n0156\n-\nF\nCorrection to V2X discovery for Ranging\n18.7.0\n2025-03\nSP-107\nSP-250049\n0157\n-\nF\nUpdate for terminology alignment between relative location and relative position\n18.7.0\n2025-03\nSP-107\nSP-250049\n0158\n-\nF\nUpdate on application layer ID\n18.7.0\n2025-03\nSP-107\nSP-250049\n0159\n1\nF\nRange concept usage instead of undefined distance\n18.7.0",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_6.9-1",
+        "ts_23.287_figure_6.9-1",
+        "figure_6.9-2",
+        "ts_23.304_figure_6.9-2",
+        "ts_38.300",
+        "ts_23.287",
+        "ts_23.304",
+        "ts_23.586",
+        "ts_18.1",
+        "ts_23.273",
+        "ts_23.032"
+      ]
+    }
+  ]
+}

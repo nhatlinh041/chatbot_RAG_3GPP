@@ -1,0 +1,1412 @@
+{
+  "metadata": {
+    "specification_id": "ts_29.583",
+    "version": "18.1.1",
+    "title": "3GPP TS 29.583",
+    "file_path": "/content/drive/MyDrive/RAG_thesis/data/29_series/29583-i11/29583-i11.docx"
+  },
+  "export_info": {
+    "export_date": "2025-07-26T08:48:17.642202",
+    "total_chunks": 126
+  },
+  "chunks": [
+    {
+      "chunk_id": "ts_29.583_1",
+      "section_id": "1",
+      "section_title": "Scope",
+      "content": "The present document specifies the stage 3 protocol and data model for PIN-9 interface between the PIN application server and PIN server. It provides stage 3 protocol definitions and message flows, and specifies the API for each service offered by the PIN server over PIN-9 interface. The stage 2 functional requirements are defined in 3GPP TS 23.542 [10].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.542"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.583_2",
+      "section_id": "2",
+      "section_title": "References",
+      "content": "The following documents contain provisions which, through reference in this text, constitute provisions of the present document.\n-\tReferences are either specific (identified by date of publication, edition number, version number, etc.) or non‑specific.\n-\tFor a specific reference, subsequent revisions do not apply.\n-\tFor a non-specific reference, the latest version applies. In the case of a reference to a 3GPP document (including a GSM document), a non-specific reference implicitly refers to the latest version of that document in the same Release as the present document.\n[1]\t3GPP TR 21.905: \"Vocabulary for 3GPP Specifications\".\n[2]\t3GPP TS 29.122: \"T8 reference point for Northbound Application Programming Interfaces (APIs)\".\n[3]\t3GPP TS 29.501: \"5G System; Principles and Guidelines for Services Definition; Stage 3\".\n[4]\tOpenAPI: \"OpenAPI Specification Version 3.0.0\", https://spec.openapis.org/oas/v3.0.0.\n[5]\t3GPP TR 21.900: \"Technical Specification Group working methods\".\n[6]\t3GPP TS 23.222: \"Common API Framework for 3GPP Northbound APIs; Stage 2\".\n[7]\t3GPP TS 29.222: \"Common API Framework for 3GPP Northbound APIs; Stage 3\".\n[8]\t3GPP TS 33.122: \"Security aspects of Common API Framework (CAPIF) for 3GPP northbound APIs\".\n[9]\tIETF RFC 6749: \"The OAuth 2.0 Authorization Framework\".\n[10]\t3GPP TS 23.542: \"Application layer support for Personal IoT Network\".\n[11]\t3GPP TS 29.571: \"5G System; Common Data Types for Service Based Interfaces; Stage 3\".\n[12]\t3GPP TS 24.526: \"User Equipment (UE) policies for 5G System (5GS); Stage 3\".",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905",
+        "ts_29.122",
+        "ts_29.501",
+        "ts_21.900",
+        "ts_23.222",
+        "ts_29.222",
+        "ts_33.122",
+        "ts_23.542",
+        "ts_29.571",
+        "ts_24.526"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.583_3.1",
+      "section_id": "3.1",
+      "section_title": "Definitions",
+      "content": "For the purposes of the present document, the terms given in TR 21.905 [1] and the following apply. A term defined in the present document takes precedence over the definition of the same term, if any, in TR 21.905 [1].\nPersonal IoT Network (PIN): A configured and managed group of PIN Element(s) that are able to communicate with each other directly, communicate with each other via PIN Element(s) with Gateway Capability (i.e. PEGC(s)), or use a PEGC to communicate with devices or servers that are outside of the PIN via the 5G network. A PIN includes at least one PEGC and is managed by PIN Element(s) with Management Capability (i.e. PEMC(s)) with the support by an AF if AF is deployed.\nPIN Element with Gateway Capability (PEGC): A PIN Element with the ability to provide DN connectivity via the 5G network for other PIN Elements and/or is able to provide relay functionality for communication between PIN Elements. Only a UE is able to act as a PEGC.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_21.905"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.583_3.2",
+      "section_id": "3.2",
+      "section_title": "Abbreviations",
+      "content": "For the purposes of the present document, the abbreviations given in TR 21.905 [1] and the following apply. An abbreviation defined in the present document takes precedence over the definition of the same abbreviation, if any, in TR 21.905 [1].\nPAS\tPIN Application Server\nPEGC\tPIN Element with Gateway Capability\nPIN\tPersonal IoT Network\nPINAPP\tPersonal IoT Network Application",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.583_4",
+      "section_id": "4",
+      "section_title": "Overview",
+      "content": "The Personal IoT Network (PIN) Server forms part of the Application layer support for Personal IoT Networks defined in 3GPP TS 23.542 [10]. It is aimed to support the server-side functionalities required for managing the PIN. The PIN Server provides the following functionalities:\n-\tsupport PAS registration management procedure (see clause 5.2);\n-\tsupport PAS service switch subscription procedure (see clause 5.3); and\n-\tsupport PAS service continuity subscription procedure (see clause 5.4).\nFigure 4-1 shows the reference point representation of the architecture for Personal IoT Network Application.\nFigure 4-1: PINAPP architecture\nPIN-9 reference point exists between the application server and PIN server for the interactions related to enabling PINAPP.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_5.2",
+        "clause_5.3",
+        "clause_5.4",
+        "figure_4-1",
+        "ts_23.542"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.583_5.1",
+      "section_id": "5.1",
+      "section_title": "Introduction",
+      "content": "The PIN Server provides the following services:\n-\tPIN_ASRegistration\n-\tPIN_ASServiceSwitch\n-\tPIN_ASServiceContinuity\nTable 5.1-1 summarizes the corresponding APIs defined in this specification.\nTable 5.1-1: PIN server API Descriptions\nService Name\nClause\nDescription\nOpenAPI Specification File\nAPI Name\nAnnex\nPIN_ASRegistration\n5.2\nService for AS registration\nTS29583_PIN_ASRegistration.yaml\npin-as-registration\nA.2\nPIN_ASServiceSwitch\n5.3\nService for reporting service switch\nTS29583_PIN_ASServiceSwitch.yaml\npin-as-serviceswitch\nA.3\nPIN_ASServiceContinuity\n5.4\nService for reporting service continuity\nTS29583_PIN_ASServiceContinuity.yaml\npin-as-servicecontinuity\nA.4\nNOTE:\tWhen 3GPP TS 29.122 [2] is referenced for the common protocol and interface aspects for API definition in the clauses under clause 5, the PIN Server takes the role of the SCEF and the service consumer takes the role of the SCS/AS.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_5",
+        "table_5.1-1",
+        "ts_29.122"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.583_5.2.1",
+      "section_id": "5.2.1",
+      "section_title": "Service Description",
+      "content": "The PIN_ASRegistration API exposed by the PIN Server enables a service consumer to:\n-\tcreate/update/delete a PAS Registration.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.583_5.2.2.1",
+      "section_id": "5.2.2.1",
+      "section_title": "Introduction",
+      "content": "The service operation defined for PIN_ASRegistration API is shown in the table 5.2.2.1-1.\nTable 5.2.2.1-1: Operations of the PIN_ASRegistration API\nService operation name\nDescription\nInitiated by\nPIN_ASRegistration_Request\nThis service operation is used by the service consumer to register to the PIN server.\ne.g. PAS\nPIN_ASRegistration_Update\nThis service operation is used by the service consumer to update the registration information to the PIN server.\ne.g. PAS\nPIN_ASRegistration_Deregister\nThis service operation is used by the service consumer to deregister from the PIN server.\ne.g. PAS",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.2.2.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.583_5.2.2.2.1",
+      "section_id": "5.2.2.2.1",
+      "section_title": "General",
+      "content": "This service operation is used by the PAS to register to a PIN server.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.583_5.2.2.2.2",
+      "section_id": "5.2.2.2.2",
+      "section_title": "PAS Registration Creation",
+      "content": "Figure 5.2.2.2.2-1 depicts a scenario where a service consumer sends a request to the PIN Server to request the creation of the PAS Registration.\nFigure 5.2.2.2.2-1: Procedure for PAS Registration Creation\n1.\tIn order to request the creation of the PAS Registration to the PIN server, the service consumer shall send the HTTP POST request request to the PIN Server targeting the URI of the \"PAS Registrations\" collection resource, with the request body including the PASRegistration data structure.\n2a.\tUpon success, the PIN Server shall respond with an HTTP \"201 Created\" status code with the response body containing a representation of the created \"Individual PAS Registration\" resource within the PASRegistration data structure.\n2b.\tOn failure, the appropriate HTTP status code indicating the error shall be returned and appropriate additional error information should be returned in the HTTP POST response body, as specified in clause 6.1.7.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_6.1.7",
+        "figure_5.2.2.2.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.583_5.2.2.3.1",
+      "section_id": "5.2.2.3.1",
+      "section_title": "General",
+      "content": "This service operation is used by the service consumer to update the registration information at a given PIN server.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.583_5.2.2.3.2",
+      "section_id": "5.2.2.3.2",
+      "section_title": "Updating an existing Registration",
+      "content": "Figure 5.2.2.3.2-1: Procedure for update of a registration\n1.\tIn order toupdate an existing registration information, the service consumer shall send the HTTP PUT/PATCH request to the PIN server, targeting the URI of the corresponding \"Individual PAS Registration\" collection resource, with the request body either:\n-\tthe updated representation of the resource within the PASRegistration data structure, in case the HTTP PUT method is used; or\n-\tthe requested modifications to the resource within the PASRegistrationPatch data structure, in case the HTTP PATCH method is used.\nNOTE:\tAn alternative service consumer (i.e. other than the one that requested the creation of the targeted resource) can initiate this request.\n2a.\tUpon success, the PIN server shall updated the targeted \"Individual PAS Registration\" resource accordingly and respond with either:\n2b.\tOn failure, the PIN server shall send the error response as specified in clause 6.1.7.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_6.1.7",
+        "figure_5.2.2.3.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.583_5.2.2.4.1",
+      "section_id": "5.2.2.4.1",
+      "section_title": "General",
+      "content": "This service operation is used by the service consumer to deregister itself from a given PIN server.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.583_5.2.2.4.2",
+      "section_id": "5.2.2.4.2",
+      "section_title": "Deregistering the Registration",
+      "content": "Figure 5.2.2.4.2-1: Procedure for Deregistering the Registration\n1.\tIn order to request the deletion of an existing PAS registration information, the service consumer shall send an HTTP DELETE request to the PIN server targeting the corresponding \"Individual PAS Registration\" resource.\n2a.\tUpon success, the PIN server shall respond with an HTTP \"204 No Content\" status code.\n2b.\tOn failure, the appropriate HTTP status code indicating the error shall be returned and appropriate additional error information should be returned in the HTTP DELETE response body, as specified in clause 6.1.7.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_6.1.7",
+        "figure_5.2.2.4.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.583_5.3.1",
+      "section_id": "5.3.1",
+      "section_title": "Service Description",
+      "content": "The PIN_ASServiceSwitch API exposed by the PIN Server enables a service consumer to:\n-\tcreate/update/delete a Service Switch Information Subscription; and\n-\treceive Service Switch Information Notifications;",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.583_5.3.2.1",
+      "section_id": "5.3.2.1",
+      "section_title": "Introduction",
+      "content": "The service operation defined for PIN_ASServiceSwitch API is shown in the table 5.3.2.1-1.\nTable 5.3.2.1-1: Operations of the PIN_ASServiceSwitch API\nService operation name\nDescription\nInitiated by\nPIN_ASServiceSwitch_Subscribe\nThis service operation enables a service consumer to create/update/delete a Service Switch Information Subscription.\ne.g., PAS\nPIN_ASServiceSwitch_Notify\nThis service operation enables a service consumer to receive the Service Switch Information Notifications.\nPIN server",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.3.2.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.583_5.3.2.2.1",
+      "section_id": "5.3.2.2.1",
+      "section_title": "General",
+      "content": "This service operation is used by the service consumer to request the creation of a  Service Switch information.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.583_5.3.2.2.2",
+      "section_id": "5.3.2.2.2",
+      "section_title": "Service Switch Information Subscription Creation",
+      "content": "Figure 5.3.2.2.2-1: Procedure for PAS Subscription Creation\n1.\tIn order to subscribe to service switch information reporting, the service consumer shall send the HTTP POST request message to the PIN Server targeting the URI of the \"Service Switch Information Subscriptions\" collection resource, with the request body including the ServiceSwitchInfo data structure.\n2a.\tUpon success, the PIN Server shall respond with an HTTP \"201 Created\" status code with the response body containing a representation of the created \"Individual Service Switch Information Subscription\" resource within the ServiceSwitchInfo data structure.\n2b.\tOn failure, the appropriate HTTP status code indicating the error shall be returned and appropriate additional error information should be returned in the HTTP POST response body, as specified in clause 6.2.7.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_6.2.7",
+        "figure_5.3.2.2.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.583_5.3.2.3.1",
+      "section_id": "5.3.2.3.1",
+      "section_title": "General",
+      "content": "This service operation is used by the PIN server to notify a previously subscribed service consumer on:\n-\tthe service switch information.\nThe following procedures are supported by the \"PIN_ASServiceSwitch_Notify\" service operation:\n-\tService Switch Information Notification.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.583_5.3.2.3.2",
+      "section_id": "5.3.2.3.2",
+      "section_title": "Service Switch Information Notification",
+      "content": "Figure 5.3.2.3.2-1: Procedure for Service Switch Information Notification\n1.\tIn order to notify a previously subscribed service consumer on the service switch information, the service consumer shall send the HTTP POST request to the service consumer with the request URI set to \"{notifUri}\", where the \"notifUri\" variable is set to the value received from the service consumer during the creation/update of the corresponding Service Switch Information Subscription using the procedures defined in clauses 5.3.2.2 and 5.3.2.4, with the request body including the ServiceSwitchInfoNotification data structure.\n2a.\tUpon success, the service consumer shall respond to the PIN server with \"204 No Content\" status code to acknowledge the reception of the notification.\n2b.\tOn failure, the appropriate HTTP status code indicating the error shall be returned and appropriate additional error information should be returned in the HTTP POST response body, as specified in clause 6.2.7.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_6.2.7",
+        "figure_5.3.2.3.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.583_5.3.2.4.1",
+      "section_id": "5.3.2.4.1",
+      "section_title": "General",
+      "content": "This service operation is used by the service consumer to update a service switch subscription with the PIN Server.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.583_5.3.2.4.2",
+      "section_id": "5.3.2.4.2",
+      "section_title": "Service Switch Information Update",
+      "content": "Figure 5.3.2.4.2-1: Procedure for the Service Switch Information Update\n1.\tIn order to update an existing service switch information subscription, the service consumer shall send an HTTP PUT/PATCH request to the PIN Server, targeting the URI of the corresponding \"Individual Service Switch Information Subscription\" resource, with the request body including:\n-\tthe updated representation of the resource within the ServiceSwitchInfo data structure, in case the HTTP PUT method is used; or\n-\tthe requested modifications to the resource within the ServiceSwitchInfoPatch data structure, in case the HTTP PATCH method is used.\nNOTE:\tAn alternative service consumer (i.e. other than the one that requested the creation of the targeted resource) can initiate this request.\n2a.\tUpon success, the PIN Server shall update the targeted \"Individual Service Switch Information Subscription\" resource accordingly and respond with either:\n-\tan HTTP \"200 OK\" status code with the response body containing a representation of the updated \"Individual Service Switch Information Subscription\" resource within the ServiceSwitchInfo data structure; or\n-\tan HTTP \"204 No Content\" status code.\n2b.\tOn failure, the appropriate HTTP status code indicating the error shall be returned and appropriate additional error information should be returned in the HTTP POST response body, as specified in clause 6.2.7.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_6.2.7",
+        "figure_5.3.2.4.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.583_5.3.2.5.1",
+      "section_id": "5.3.2.5.1",
+      "section_title": "General",
+      "content": "This service operation is used by the service consumer to remove its subscription at PIN server, for reporting of service switch information.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.583_5.3.2.5.2",
+      "section_id": "5.3.2.5.2",
+      "section_title": "Unsubscribing the Service Switch Information",
+      "content": "Figure 5.3.2.5.2-1: Procedure for Unsubscribing the Service Switch Information\n1.\tIn order to request the deletion of an existing service switch information subscription, the service consumer shall send the HTTP DELETE request message to the PIN Server targeting the \"Individual Service Switch Information Subscription\" collection resource.\n2a.\tUpon success, the PIN Server shall respond with an HTTP \"204 No content\" status code.\n2b.\tOn failure, the appropriate HTTP status code indicating the error shall be returned and appropriate additional error information should be returned in the HTTP POST response body, as specified in clause 6.2.7.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_6.2.7",
+        "figure_5.3.2.5.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.583_5.4.1",
+      "section_id": "5.4.1",
+      "section_title": "Service Description",
+      "content": "The PIN_ASServiceContinuity service exposed by the PIN Server enables a service consumer to:\n-\tcreate/update/delete a Service Continuity Information Subscription; and\n-\treceive Service Continuity Information Notifications.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.583_5.4.2.1",
+      "section_id": "5.4.2.1",
+      "section_title": "Introduction",
+      "content": "The service operation defined for PIN_ASServiceContinuity API is shown in the table 5.4.2.1-1.\nTable 5.4.2.1-1: Operations of the PIN_ASServiceContinuity API\nService operation name\nDescription\nInitiated by\nPIN_ASServiceContinuity_Subscribe\nThis service operation enables a service consumer to create/update/delete a Service Continuity Information Subscription.\ne.g., PAS\nPIN_ASServiceContinuity_Notify\nThis service operation enables a service consumer to receive Service Continuity Information Notifications..\nPIN server",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.4.2.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.583_5.4.2.2.1",
+      "section_id": "5.4.2.2.1",
+      "section_title": "General",
+      "content": "This service operation is used by the service consumer to subscribe to PIN server, for reporting of service continuity information.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.583_5.4.2.2.2",
+      "section_id": "5.4.2.2.2",
+      "section_title": "Service Continuity Information Subscription Creation",
+      "content": "Figure 5.4.2.2.2-1: Procedure for Continuity Information Subscription Creation\n1.\tIn order to subscribe to service continuity information, the service consumer shall send the HTTP POST request to the PIN Server targeting the URI of the \"Service Continuity Information Subscriptions\" collection resource, with the request body including the ServiceContinuityInfo data structure.\n2a.\tUpon success, the PIN Server shall respond with an HTTP \"201 Created\" status code with the response body containing a representation of the created \"Individual Service Continuity Information Subscription\" resource within the ServiceContinuityInfo data structure.\n2b.\tOn failure, the appropriate HTTP status code indicating the error shall be returned and appropriate additional error information should be returned in the HTTP POST response body, as specified in clause 6.3.7.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_6.3.7",
+        "figure_5.4.2.2.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.583_5.4.2.3.1",
+      "section_id": "5.4.2.3.1",
+      "section_title": "General",
+      "content": "This service operation is used by the PIN server to notify the service consumer about the service continuity information.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.583_5.4.2.3.2",
+      "section_id": "5.4.2.3.2",
+      "section_title": "Service Continuity Information Notification",
+      "content": "Figure 5.4.2.3.2-1: Procedure for Service Continuity Information Notification\n1.\tIn order to notify a previously subscribed service continuity information, the service consumer shall send the HTTP POST request to the service consumer with the request URI set to \"{notifUri}\", where the \"notifUri\" variable is set to the value received from the service consumer during the creation/update of the corresponding Service Continuity Information Subscription using the procedures defined in clauses 5.4.2.2 and 5.4.2.4, with the request body including the ServiceContinuityInfoNotification data structure.\n2a.\tUpon success, the service consumer shall respond to the PIN server with \"204 No Content\" code to acknowledge the reception of the notification.\n2b.\tOn failure, the appropriate HTTP status code indicating the error shall be returned and appropriate additional error information should be returned in the HTTP POST response body, as specified in clause 6.3.7.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_6.3.7",
+        "figure_5.4.2.3.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.583_5.4.2.4.1",
+      "section_id": "5.4.2.4.1",
+      "section_title": "General",
+      "content": "This service operation is used by the service consumer to update a service continuity subscription with the PIN Server.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.583_5.4.2.4.2",
+      "section_id": "5.4.2.4.2",
+      "section_title": "Service Continuity Information Update",
+      "content": "Figure 5.4.2.4.2-1: Procedure for the Service Continuity Information Update\n1.\tIn order to update an existing service continuity information subscription, the service consumer shall send an HTTP PUT/PATCH request to the PIN Server, targeting the URI of the corresponding \"Individual Service Continuity Information Subscription\" resource, with the request body including either:\n-\tthe updated representation of the resource within the ServiceContinuityInfo data structure, in case the HTTP PUT method is used; or\n-\tthe requested modifications to the resource within the ServiceContinuityInfoPatch data structure, in case the HTTP PATCH method is used.\nNOTE:\tAn alternative service consumer (i.e. other than the one that requested the creation of the targeted resource) can initiate this request.\n2a.\tUpon success, the PIN Server shall updated the targeted \"Individual Service Continuity Information Subscription\" resource accordingly and respond with either:\n-\tan HTTP \"200 OK\" status code with the response body containing a representation of the updated \"Individual Service Continuity Information Subscription\" resource within the ServiceContinuityInfo data structure; or\n-\tan HTTP \"204 No Content\" status code.\n2b.\tOn failure, the appropriate HTTP status code indicating the error shall be returned and appropriate additional error information should be returned in the HTTP POST response body, as specified in clause 6.3.7.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_6.3.7",
+        "figure_5.4.2.4.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.583_5.4.2.5.1",
+      "section_id": "5.4.2.5.1",
+      "section_title": "General",
+      "content": "This service operation is used by the service consumer to remove its subscription at PIN server, for reporting of service continuity information.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.583_5.4.2.5.2",
+      "section_id": "5.4.2.5.2",
+      "section_title": "Unsubscribing the Service Continuity Information",
+      "content": "Figure 5.4.2.5.2-1: Procedure for Unsubscribing the Service Continuity Information\n1.\tIn order to request the deletion of an existing service continuity information subscription, the service consumer shall send the HTTP DELETE request to the PIN Server targeting the corresponding \"Individual Service Continuity Information Subscription\" resource.\n2a.\tUpon success, the PIN Server shall respond with an HTTP \"204 No content\" status code.\n2b.\tOn failure, the appropriate HTTP status code indicating the error shall be returned and appropriate additional error information should be returned in the HTTP POST response body, as specified in clause 6.3.7.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_6.3.7",
+        "figure_5.4.2.5.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.583_6.1.1",
+      "section_id": "6.1.1",
+      "section_title": "Introduction",
+      "content": "The PIN_ASRegistration service shall use the PIN_ASRegistration service API.\nThe API URI of the PIN_ASRegistration service API shall be:\n{apiRoot}/<apiName>/<apiVersion>\nThe request URIs used in HTTP requests shall have the Resource URI structure defined in clause 5.2.4 of 3GPP TS 29.122 [2], i.e.:\n{apiRoot}/<apiName>/<apiVersion>/<apiSpecificSuffixes>\nwith the following components:\n-\tThe {apiRoot} shall be set as described in clause 5.2.4 of 3GPP TS 29.122 [2].\n-\tThe <apiName> shall be \"pin-as-registration\".\n-\tThe <apiVersion> shall be \"v1\".\n-\tThe <apiSpecificSuffixes> shall be set as described in clause 5.2.4 of 3GPP TS 29.122 [2].\nNOTE:\tWhen 3GPP TS 29.122 [2] is referenced for the common protocol and interface aspects for API definition in the clauses under clause 5, the service producer (i.e. PIN Server) takes the role of the SCEF and the service consumer takes the role of the SCS/AS.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.122_clause_5.2.4",
+        "clause_5",
+        "ts_29.122"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.583_6.1.2",
+      "section_id": "6.1.2",
+      "section_title": "Usage of HTTP",
+      "content": "The provisions of clause 5.2.2 of 3GPP TS 29.122 [2] shall apply for the PIN_ASRegistration API.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.122_clause_5.2.2",
+        "ts_29.122"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.583_6.1.3.1",
+      "section_id": "6.1.3.1",
+      "section_title": "Overview",
+      "content": "This clause describes the structure for the Resource URIs and the resources and methods used for the service.\nFigure 6.1.3.1-1 depicts the resource URIs structure for the PIN_ASRegistration API.\nFigure 6.1.3.1-1: Resource URI structure of the PIN_ASRegistration API\nTable 6.1.3.1-1 provides an overview of the resources and applicable HTTP methods.\nTable 6.1.3.1-1: Resources and methods overview\nResource name\nResource URI\nHTTP method or custom operation\nDescription\nPAS Registrations\n/registrations\nPOST\nRequest the creation of a new PAS Registration.\nIndividual PAS Registration\n/registrations/{registrationId}\nGET\nRetrieve an individual PAS registration resource.\nPUT\nRequest the update of an existing Individual PAS Registration resource.\nPATCH\nRequest the modification of an existing Individual PAS Registration resource.\nDELETE\nRequest the deletion of an existing Individual PAS Registration resource.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "table_6.1.3.1-1",
+        "figure_6.1.3.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.583_6.1.3.2.1",
+      "section_id": "6.1.3.2.1",
+      "section_title": "Description",
+      "content": "This resource represents all the PAS that are registered to the PIN server.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.583_6.1.3.2.2",
+      "section_id": "6.1.3.2.2",
+      "section_title": "Resource Definition",
+      "content": "Resource URI: {apiRoot}/pin-as-registration/<apiVersion>/registrations\nThis resource shall support the resource URI variables defined in table 6.1.3.2.2-1.\nTable 6.1.3.2.2-1: Resource URI variables for this resource\nName\nData type\nDefinition\napiRoot\nstring\nSee clause 6.1.1.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_6.1.1",
+        "table_6.1.3.2.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.583_6.1.3.2.3.1",
+      "section_id": "6.1.3.2.3.1",
+      "section_title": "POST",
+      "content": "The POST method allows an service consumer to request the creation of a new PAS Registration.\nThis method shall support the URI query parameters specified in table 6.1.3.2.3.1-1.\nTable 6.1.3.2.3.1-1: URI query parameters supported by the POST Request Body on this resource\nName\nData type\nP\nCardinality\nDescription\nApplicability\nn/a\nThis method shall support the request data structures specified in table 6.1.3.2.3.1-2 and the response data structures and response codes specified in table 6.1.3.2.3.1-3.\nTable 6.1.3.2.3.1-2: Data structures supported by the POST Request Body on this resource\nData type\nP\nCardinality\nDescription\nPASRegistration\nM\n1\nPAS registration request information.\nTable 6.1.3.2.3.1-3: Data structures supported by the POST Response Body on this resource\nData type\nP\nCardinality\nResponse\ncodes\nDescription\nPASRegistration\nM\n1\n201 Created\nSuccessful case. The PAS Registration is successfully created and a representation of the created \"Individual PAS Registration \" resource is returned.\n.\nThe URI of the created resource shall be returned in the \"Location\" HTTP header.\nNOTE:\tThe mandatory HTTP error status code for the HTTP POST method listed in table 5.2.6-1 of 3GPP TS 29.122 [2] also apply.\nTable 6.1.3.2.3.1-4: Headers supported by the 201 response code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nContains the URI of the newly created resource, according to the structure:\n{apiRoot}/pin-as-registration/<apiVersion>/registrations/{registrationId}",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.1.3.2.3.1-1",
+        "table_6.1.3.2.3.1-2",
+        "table_6.1.3.2.3.1-3",
+        "ts_29.122_table_5.2.6-1",
+        "ts_29.122_table_6.1.3.2.3.1-4",
+        "ts_29.122"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.583_6.1.3.2.4",
+      "section_id": "6.1.3.2.4",
+      "section_title": "Resource Custom Operations",
+      "content": "None.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.583_6.1.3.3.1",
+      "section_id": "6.1.3.3.1",
+      "section_title": "Description",
+      "content": "This resource represents an \"Individual PAS Registration\" managed by the PIN server.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.583_6.1.3.3.2",
+      "section_id": "6.1.3.3.2",
+      "section_title": "Resource Definition",
+      "content": "Resource URI: {apiRoot}/pin-as-registration/<apiVersion>/registrations/{registrationId}\nThis resource shall support the resource URI variables defined in the table 6.1.3.3.2-1.\nTable 6.1.3.3.2-1: Resource URI variables for this resource\nName\nData Type\nDefinition\napiRoot\nstring\nSee clause 6.1.1.\nregistrationId\nstring\nRepresents the identifier of the \"Individual PAS Registration\" resource.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_6.1.1",
+        "table_6.1.3.3.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.583_6.1.3.3.3.1",
+      "section_id": "6.1.3.3.3.1",
+      "section_title": "GET",
+      "content": "The HTTP GET method allows a service consumer to retrieves an existing \"Individual PAS Registration\" resource at the PIN server.\nThis method shall support the URI query parameters specified in table 6.1.3.3.3.1-1.\nTable 6.1.3.3.3.1-1: URI query parameters supported by the GET method on this resource\nName\nData type\nP\nCardinality\nDescription\nn/a\nThis method shall support the request data structures specified in table 6.1.3.3.3.1-2 and the response data structures and response codes specified in table 6.1.3.3.3.1-3.\nTable 6.1.3.3.3.1-2: Data structures supported by the GET Request Body on this resource\nData type\nP\nCardinality\nDescription\nn/a\nTable 6.1.3.3.3.1-3: Data structures supported by the GET Response Body on this resource\nData type\nP\nCardinality\nResponse\ncodes\nDescription\nPASResgistration\nM\n1\n200 OK\nSuccessful case. The requested \"Individual PAS Registration\" resource is returned.\nn/a\n307 Temporary Redirect\nTemporary redirection. The response shall include a Location header field containing an alternative URI of the resource located in an alternative PIN server.\nRedirection handling is described in clause 5.2.10 of TS 29.122 [2].\nn/a\n308 Permanent Redirect\nPermanent redirection. The response shall include a Location header field containing an alternative URI of the resource located in an alternative PIN server.\nRedirection handling is described in clause 5.2.10 of TS 29.122 [6].\nNOTE:\tThe mandatory HTTP error status codes for the HTTP GET method listed in Table 5.2.6-1 of 3GPP TS 29.122 [2] shall also apply.\nTable 6.1.3.3.3.1-4: Headers supported by the 307 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located in an alternative PIN server.\nTable 6.1.3.3.3.1-5: Headers supported by the 308 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located in an alternative PIN server.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.122_clause_5.2.10",
+        "table_6.1.3.3.3.1-1",
+        "table_6.1.3.3.3.1-2",
+        "table_6.1.3.3.3.1-3",
+        "ts_29.122_table_5.2.6-1",
+        "table_6.1.3.3.3.1-4",
+        "table_6.1.3.3.3.1-5",
+        "ts_29.122"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.583_6.1.3.3.3.2",
+      "section_id": "6.1.3.3.3.2",
+      "section_title": "PUT",
+      "content": "The HTTP PUT method allows a service consumer to request the update of an existing \"Individual PAS Registration\" resource at the PIN server.\nThis method shall support the URI query parameters specified in the table 6.1.3.3.3.2-1.\nTable 6.1.3.3.3.2-1: URI query parameters supported by the PUT method on this resource\nName\nData type\nP\nCardinality\nDescription\nn/a\nThis method shall support the request data structures specified in table 6.1.3.3.3.2-2 and the response data structures and response codes specified in table 6.1.3.3.3.2-3.\nTable 6.1.3.3.3.2-2: Data structures supported by the PUT Request Body on this resource\nData type\nP\nCardinality\nDescription\nPASRegistration\nM\n1\nRepresents the updated representation of the existing \"Individual PAS Registration\" resource.\nTable 6.1.3.3.3.2-3: Data structures supported by the PUT Response Body on this resource\nData type\nP\nCardinality\nResponse\ncodes\nDescription\nPASRegistration\nM\n1\n200 OK\nSuccessful case. The \"Individual PAS Registration\" resource is successfully updated and a representation of the updated resource shall be returned in the response body.\nn/a\n204 No Content\nSuccessful case. The \"Individual PAS Registration\" resource is successfully updated and no content is returned in the response body.\nn/a\n307 Temporary Redirect\nTemporary redirection. The response shall include a Location header field containing an alternative URI of the resource located in an alternative PIN server.\nRedirection handling is described in clause 5.2.10 of TS 29.122 [2].\nn/a\n308 Permanent Redirect\nPermanent redirection. The response shall include a Location header field containing an alternative URI of the resource located in an alternative PIN server.\nRedirection handling is described in clause 5.2.10 of TS 29.122 [2].\nNOTE:\tThe mandatory HTTP error status codes for the HTTP PUT method listed in Table 5.2.6-1 of 3GPP TS 29.122 [2] shall also apply.\nTable 6.1.3.3.3.2-4: Headers supported by the 307 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located in an alternative PIN server.\nTable 6.1.3.3.3.2-5: Headers supported by the 308 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located in an alternative PIN server.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.122_clause_5.2.10",
+        "table_6.1.3.3.3.2-1",
+        "table_6.1.3.3.3.2-2",
+        "table_6.1.3.3.3.2-3",
+        "ts_29.122_table_5.2.6-1",
+        "table_6.1.3.3.3.2-4",
+        "table_6.1.3.3.3.2-5",
+        "ts_29.122"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.583_6.1.3.3.3.3",
+      "section_id": "6.1.3.3.3.3",
+      "section_title": "DELETE",
+      "content": "The HTTP DELETE method allows a service consumer to request the deletion of an existing \"Individual PAS Registration\" resource at the PIN server.\nThis method shall support the URI query parameters specified in the table 6.1.3.3.3.3-1.\nTable 6.1.3.3.3.3-1: URI query parameters supported by the DELETE method on this resource\nName\nData type\nP\nCardinality\nDescription\nn/a\nThis method shall support the request data structures specified in table 6.1.3.3.3.3-2 and the response data structures and response codes specified in table 6.1.3.3.3.3-3.\nTable 6.1.3.3.3.3-2: Data structures supported by the DELETE Request Body on this resource\nData type\nP\nCardinality\nDescription\nn/a\nTable 6.1.3.3.3.3-3: Data structures supported by the DELETE Response Body on this resource\nData type\nP\nCardinality\nResponse\ncodes\nDescription\nn/a\n204 No Content\nSuccessful case. The targeted \"Individual PAS Registration\" resource is successfully deleted.\nn/a\n307 Temporary Redirect\nTemporary redirection. The response shall include a Location header field containing an alternative URI of the resource located in an alternative PIN server.\nRedirection handling is described in clause 5.2.10 of TS 29.122 [2].\nn/a\n308 Permanent Redirect\nPermanent redirection. The response shall include a Location header field containing an alternative URI of the resource located in an alternative PIN server.\nRedirection handling is described in clause 5.2.10 of TS 29.122 [2].\nNOTE:\tThe mandatory HTTP error status codes for the HTTP DELETE method listed in Table 5.2.6-1 of 3GPP TS 29.122 [2] shall also apply.\nTable 6.1.3.3.3.3-4: Headers supported by the 307 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located in an alternative PIN server.\nTable 6.1.3.3.3.3-5: Headers supported by the 308 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located in an alternative PIN server.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.122_clause_5.2.10",
+        "table_6.1.3.3.3.3-1",
+        "table_6.1.3.3.3.3-2",
+        "table_6.1.3.3.3.3-3",
+        "ts_29.122_table_5.2.6-1",
+        "table_6.1.3.3.3.3-4",
+        "table_6.1.3.3.3.3-5",
+        "ts_29.122"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.583_6.1.3.3.3.4",
+      "section_id": "6.1.3.3.3.4",
+      "section_title": "PATCH",
+      "content": "The HTTP PATCH method allows a service consumer to request the modification of an existing \"Individual PAS Registration\" resource at the PIN server.\nThis method shall support the URI query parameters specified in the table 6.1.3.3.3.4-1.\nTable 6.1.3.3.3.4-1: URI query parameters supported by the PATCH method on this resource\nName\nData type\nP\nCardinality\nDescription\nn/a\nThis method shall support the request data structures specified in table 6.1.3.3.3.4-2 and the response data structures and response codes specified in table 6.1.3.3.3.4-3.\nTable 6.1.3.3.3.4-2: Data structures supported by the PATCH Request Body on this resource\nData type\nP\nCardinality\nDescription\nPASRegistrationPatch\nM\n1\nRepresents the parameters to request the modification of an existing \"Individual PAS Registration\" resource.\nTable 6.1.3.3.3.4-3: Data structures supported by the PATCH Response Body on this resource\nData type\nP\nCardinality\nResponse\ncodes\nDescription\nPASRegistration\nM\n1\n200 OK\nSuccessful case. The \"Individual PAS Registration\" resource is successfully modified and a representation of the updated resource shall be returned in the response body.\nn/a\n204 No Content\nSuccessful case. The \"Individual PAS Registration\" resource is successfully updated and no content is returned in the response body.\nn/a\n307 Temporary Redirect\nTemporary redirection. The response shall include a Location header field containing an alternative URI of the resource located in an alternative PIN server.\nRedirection handling is described in clause 5.2.10 of TS 29.122 [2].\nn/a\n308 Permanent Redirect\nPermanent redirection. The response shall include a Location header field containing an alternative URI of the resource located in an alternative PIN server.\nRedirection handling is described in clause 5.2.10 of TS 29.122 [6].\nNOTE:\tThe mandatory HTTP error status code for the HTTP PUT method listed in Table 5.2.6-1 of 3GPP TS 29.122 [2] shall also apply.\nTable 6.1.3.3.3.4-4: Headers supported by the 307 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located in an alternative PIN server.\nTable 6.1.3.3.3.4-5: Headers supported by the 308 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located in an alternative PIN server.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.122_clause_5.2.10",
+        "table_6.1.3.3.3.4-1",
+        "table_6.1.3.3.3.4-2",
+        "table_6.1.3.3.3.4-3",
+        "ts_29.122_table_5.2.6-1",
+        "table_6.1.3.3.3.4-4",
+        "table_6.1.3.3.3.4-5",
+        "ts_29.122"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.583_6.1.3.3.4",
+      "section_id": "6.1.3.3.4",
+      "section_title": "Resource Custom Operations",
+      "content": "None.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.583_6.1.4",
+      "section_id": "6.1.4",
+      "section_title": "Custom Operations without associated resources",
+      "content": "None.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.583_6.1.5",
+      "section_id": "6.1.5",
+      "section_title": "Notifications",
+      "content": "None.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.583_6.1.6.1",
+      "section_id": "6.1.6.1",
+      "section_title": "General",
+      "content": "This clause specifies the application data model supported by the PIN_ASRegistration API.\nTable 6.1.6.1-1 specifies the data types defined for the PIN_ASRegistration API.\nTable 6.1.6.1-1: PIN_ASRegistration API specific Data Types\nData type\nSection defined\nDescription\nApplicability\nConnectivityInfo\n6.1.6.2.3\nContains the connectivity information used to communicate with the PAS.\nPASRegistration\n6.1.6.2.2\nRepresents the PAS registration information.\nPASRegistrationPatch\n6.1.6.2.4\nRepresents the requested modifications to the PAS registration information.\nTable 6.1.6.1-2 specifies data types re-used by the PIN_ASRegistration API from other specifications, including a reference to their respective specifications, and when needed, a short description of their use within the PIN_ASRegistration API.\nTable 6.1.6.1-2: PIN_ASRegistration API re-used Data Types\nData type\nReference\nComments\nApplicability\nDateTime\n3GPP TS 29.122 [2]\nUsed to capture the expiration time of PAS registration.\nDateTimeRm\n3GPP TS 29.571 [11]\nUsed to capture the expiration time of PAS registration patch.\nFqdn\n3GPP TS 29.571 [11]\nUsed to express the Fully Qualified Domain Name of PAS end point.\nIpv4Addr\n3GPP TS 29.122 [2]\nIdentifies the IPv4 address of the PAS.\nIpv6Addr\n3GPP TS 29.122 [2]\nIdentifies the IPv6 address of the PAS.\nSupportedFeatures\n3GPP TS 29.571 [11]\nRepresents the list of supported feature(s) and used to negotiate the applicability of the optional features.\nUri\n3GPP TS 29.122 [2]\nRepresents a URI.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "table_6.1.6.1-1",
+        "table_6.1.6.1-2",
+        "ts_29.122",
+        "ts_29.571"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.583_6.1.6.2.1",
+      "section_id": "6.1.6.2.1",
+      "section_title": "Introduction",
+      "content": "This clause defines the structures to be used in resource representations.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.583_6.1.6.2.2",
+      "section_id": "6.1.6.2.2",
+      "section_title": "Type: PASRegistration",
+      "content": "Table 6.1.6.2.2-1: Definition of type PASRegistration\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\nconInfo\nConnectivityInfo\nM\n1\nContains the connectivity information used to communicate with the PAS.\npassId\nstring\nM\n1\nIdentifies the PIN service that provided by the PAS.\nexpTime\nDateTime\nO\n0..1\nIdentifies the expiration time for the PAS registration. To maintain an active registration status, a registration update is required before the expiration time. If the expiration time is not present, then it indicates that the registration of PAS never expires.\nsuppFeat\nSupportedFeatures\nC\n0..1\nContains the list of supported features among the ones defined in clause 6.1.8.\nThis attribute shall be present only when feature negotiation needs to take place.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_6.1.8",
+        "table_6.1.6.2.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.583_6.1.6.2.3",
+      "section_id": "6.1.6.2.3",
+      "section_title": "Type: ConnectivityInfo",
+      "content": "Table 6.1.6.2.3-1: Definition of type ConnectivityInfo\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\nfqdn\nFqdn\nO\n0..1\nFully Qualified Domain Name of the PAS.\nipv4Addr\nIpv4Addr\nO\n0..1\nIPv4 address of the PAS.\nipv6Addr\nIpv6Addr\nO\n0..1\nIPv6 address of the PAS.\nuri\nUri\nO\n0..1\nURI information of the PAS.\nNOTE:\tAt least one of the attributes shall be provided.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.1.6.2.3-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.583_6.1.6.2.4",
+      "section_id": "6.1.6.2.4",
+      "section_title": "Type: PASRegistrationPatch",
+      "content": "Table 6.1.6.2.4-1: Definition of type PASRegistrationPatch\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\npassId\nstring\nO\n0..1\nIdentifies the PIN service that provided by the PAS.\nconInfo\nConnectivityInfo\nO\n0..1\nContains the connectivity information used to communicate with the PAS.\nexpTime\nDateTimeRm\nO\n0..1\nIdentifies the expiration time for the PAS registration. If the expiration time is not present, then it indicates that the registration of PAS never expires.\nNOTE:\tAt least one of the attributes shall be provided.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.1.6.2.4-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.583_6.1.6.3.1",
+      "section_id": "6.1.6.3.1",
+      "section_title": "Introduction",
+      "content": "This clause defines simple data types and enumerations that can be referenced from data structures defined in the previous clauses.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.583_6.1.6.3.2",
+      "section_id": "6.1.6.3.2",
+      "section_title": "Simple data types",
+      "content": "The simple data types defined in table 6.1.6.3.2-1 shall be supported.\nTable 6.1.6.3.2-1: Simple data types\nType Name\nType Definition\nDescription\nApplicability\nn/a",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.1.6.3.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.583_6.1.7.1",
+      "section_id": "6.1.7.1",
+      "section_title": "General",
+      "content": "For the PIN_ASRegistration API, HTTP error responses shall be supported as specified in clause 5.2.6 of 3GPP TS 29.122 [2]. Protocol errors and application errors specified in clause 5.2.6 of 3GPP TS 29.122 [2] shall be supported for the HTTP status codes specified in table 5.2.6-1 of 3GPP TS 29.122 [2].\nIn addition, the requirements in the following clauses are applicable for the PIN_ASRegistration API.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.122_clause_5.2.6",
+        "ts_29.122_table_5.2.6-1",
+        "ts_29.122"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.583_6.1.7.2",
+      "section_id": "6.1.7.2",
+      "section_title": "Protocol Errors",
+      "content": "No specific procedures for the PIN_ASRegistration API are specified.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.583_6.1.7.3",
+      "section_id": "6.1.7.3",
+      "section_title": "Application Errors",
+      "content": "The application errors defined for the PIN_ASRegistration API are listed in Table 6.1.7.3-1.\nTable 6.1.7.3-1: Application errors\nApplication Error\nHTTP status code\nDescription\nn/a",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.1.7.3-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.583_6.1.8",
+      "section_id": "6.1.8",
+      "section_title": "Feature negotiation",
+      "content": "The optional features in table 6.1.8-1 are defined for the PIN_ASRegistration API. They shall be negotiated using the extensibility mechanism defined in clause 5.2.7 of 3GPP TS 29.122 [2].\nTable 6.1.8-1: Supported Features\nFeature number\nFeature Name\nDescription\nn/a",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.122_clause_5.2.7",
+        "table_6.1.8-1",
+        "ts_29.122_table_6.1.8-1",
+        "ts_29.122"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.583_6.1.9",
+      "section_id": "6.1.9",
+      "section_title": "Security",
+      "content": "The provisions of clause 6 of 3GPP TS 29.122 [2] shall apply for the PIN_ASRegistration API.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.122_clause_6",
+        "ts_29.122"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.583_6.2.1",
+      "section_id": "6.2.1",
+      "section_title": "Introduction",
+      "content": "The PIN_ASServiceSwitch service shall use the PIN_ASServiceSwitch API.\nThe API URI of the PIN_ASServiceSwitch API shall be:\n{apiRoot}/<apiName>/<apiVersion>\nThe request URIs used in HTTP requests shall have the Resource URI structure defined in clause 5.2.4 of 3GPP TS 29.122 [2], i.e.:\n{apiRoot}/<apiName>/<apiVersion>/<apiSpecificSuffixes>\nwith the following components:\n-\tThe {apiRoot} shall be set as described in clause 5.2.4 of 3GPP TS 29.122 [2].\n-\tThe <apiName> shall be \"pin-as-serviceswitch\".\n-\tThe <apiVersion> shall be \"v1\".\n-\tThe <apiSpecificSuffixes> shall be set as described in clause 5.2.4 of 3GPP TS 29.122 [2].\nNOTE:\tWhen 3GPP TS 29.122 [2] is referenced for the common protocol and interface aspects for API definition in the clauses under clause 5, the service producer (i.e. PIN Server) takes the role of the SCEF and the service consumer takes the role of the SCS/AS.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.122_clause_5.2.4",
+        "clause_5",
+        "ts_29.122"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.583_6.2.2",
+      "section_id": "6.2.2",
+      "section_title": "Usage of HTTP",
+      "content": "The provisions of clause 5.2.2 of 3GPP TS 29.122 [2] shall apply for the PIN_ASServiceSwitch API.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.122_clause_5.2.2",
+        "ts_29.122"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.583_6.2.3.1",
+      "section_id": "6.2.3.1",
+      "section_title": "Overview",
+      "content": "This clause describes the structure for the Resource URIs and the resources and methods used for the service.\nFigure 6.2.3.1-1 depicts the resource URIs structure for the PIN_ASServiceSwitch API.\nFigure 6.2.3.1-1: Resource URI structure of the PIN_ASServiceSwitch API\nTable 6.2.3.1-1 provides an overview of the resources and applicable HTTP methods.\nTable 6.2.3.1-1: Resources and methods overview\nResource name\nResource URI\nHTTP method or custom operation\nDescription\nService Switch Information Subscriptions\n/subscriptions\nPOST\nRequest the creation of a Service Switch Information Subscription.\nIndividual Service Switch Information Subscription\n/subscriptions/{subscriptionId}\nGET\nRetrieve an existing \"Individual Service Switch Information Subscription\" resource.\nPUT\nRequest the update of an existing \"Individual Service Switch Information Subscription\" resource.\nPATCH\nRequest the modification of an existing \"Individual Service Switch Information Subscription\" resource.\nDELETE\nRequest the deletion of an existing \"Individual Service Switch Information Subscription\" resource.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "table_6.2.3.1-1",
+        "figure_6.2.3.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.583_6.2.3.2.1",
+      "section_id": "6.2.3.2.1",
+      "section_title": "Description",
+      "content": "This resource represents the collection of Service Switch Information Subscriptions managed by the PIN server.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.583_6.2.3.2.2",
+      "section_id": "6.2.3.2.2",
+      "section_title": "Resource Definition",
+      "content": "Resource URI: {apiRoot}/pin-as-serviceswitch/<apiVersion>/subscriptions\nThis resource shall support the resource URI variables defined in the table 6.2.3.2.2-1.\nTable 6.2.3.2.2-1: Resource URI variables for this resource\nName\nData Type\nDefinition\napiRoot\nstring\nSee clause 6.2.1.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_6.2.1",
+        "table_6.2.3.2.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.583_6.2.3.2.3.1",
+      "section_id": "6.2.3.2.3.1",
+      "section_title": "POST",
+      "content": "The HTTP POST method allows a service consumer to request the creation of the Service Switch Information Subscription at the PIN server.\nThis method shall support the URI query parameters specified in the table 6.2.3.2.3.1-1.\nTable 6.2.3.2.3.1-1: URI query parameters supported by the POST method on this resource\nName\nData type\nP\nCardinality\nDescription\nn/a\nThis method shall support the request data structures specified in table 6.2.3.2.3.1-2 and the response data structures and response codes specified in table 6.2.3.2.3.1-3.\nTable 6.2.3.2.3.1-2: Data structures supported by the POST Request Body on this resource\nData type\nP\nCardinality\nDescription\nServiceSwitchInfo\nM\n1\nRepresents the parameters to request the creation of a Service Switch Information Subscription.\nTable 6.2.3.2.3.1-3: Data structures supported by the POST Response Body on this resource\nData type\nP\nCardinality\nResponse\ncodes\nDescription\nServiceSwitchInfo\nM\n1\n201 Created\nSuccessful case. The Service Switch Information Subscription is successfully created and a representation of the created \"Individual Service Switch Information Subscription\" resource shall be returned.\nThe URI of the created resource shall be returned in the \"Location\" HTTP header.\nNOTE:\tThe mandatory HTTP error status code for the POST method listed in Table 5.2.6-1 of 3GPP TS 29.122 [2] also apply.\nTable 6.2.3.2.3.1-4: Headers supported by the 201 response code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nContains the URI of the newly created resource, according to the structure: {apiRoot}/pin-as-serviceswitch/<apiVersion>/subscriptions/{subscriptionId}",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.2.3.2.3.1-1",
+        "table_6.2.3.2.3.1-2",
+        "table_6.2.3.2.3.1-3",
+        "ts_29.122_table_5.2.6-1",
+        "ts_29.122_table_6.2.3.2.3.1-4",
+        "ts_29.122"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.583_6.2.3.2.4",
+      "section_id": "6.2.3.2.4",
+      "section_title": "Resource Custom Operations",
+      "content": "None.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.583_6.2.3.3.1",
+      "section_id": "6.2.3.3.1",
+      "section_title": "Description",
+      "content": "This resource represents the \"Individual Service Switch Information Subscription\" managed by the PIN server.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.583_6.2.3.3.2",
+      "section_id": "6.2.3.3.2",
+      "section_title": "Resource Definition",
+      "content": "Resource URI: {apiRoot}/pin-as-serviceswitch/<apiVersion>/subscriptions/{subscriptionId}\nThis resource shall support the resource URI variables defined in the table 6.2.3.3.2-1.\nTable 6.2.3.3.2-1: Resource URI variables for this resource\nName\nData Type\nDefinition\napiRoot\nstring\nSee clause 6.2.1.\nsubscriptionId\nstring\nRepresents the identifier of the \"Individual Service Switch Information Subscription\" resource.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_6.2.1",
+        "table_6.2.3.3.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.583_6.2.3.3.3.1",
+      "section_id": "6.2.3.3.3.1",
+      "section_title": "GET",
+      "content": "The HTTP GET method allows a service consumer to retrieve an existing \"Individual Service Switch Information Subscription\" resourceat PIN server.\nThis method shall support the URI query parameters specified in the table 6.2.3.3.3.1-1.\nTable 6.2.3.3.3.1-1: URI query parameters supported by the GET method on this resource\nName\nData type\nP\nCardinality\nDescription\nn/a\nThis method shall support the request data structures specified in table 6.2.3.3.3.1-2 and the response data structures and response codes specified in table 6.2.3.3.3.1-3.\nTable 6.2.3.3.3.1-2: Data structures supported by the GET Request Body on this resource\nData type\nP\nCardinality\nDescription\nn/a\nTable 6.2.3.3.3.1-3: Data structures supported by the GET Response Body on this resource\nData type\nP\nCardinality\nResponse\ncodes\nDescription\nServiceSwitchInfo\nM\n1\n200 OK\nSuccessful case. The requested \"Individual Service Switch Information Subscription\" resource shall be returned.\nn/a\n307 Temporary Redirect\nTemporary redirection. The response shall include a Location header field containing an alternative URI of the resource located in an alternative PIN server.\nRedirection handling is described in clause 5.2.10 of TS 29.122 [2].\nn/a\n308 Permanent Redirect\nPermanent redirection. The response shall include a Location header field containing an alternative URI of the resource located in an alternative PIN server.\nRedirection handling is described in clause 5.2.10 of TS 29.122 [2].\nNOTE:\tThe mandatory HTTP error status codes for the HTTP GET method listed in Table 5.2.6-1 of 3GPP TS 29.122 [2] shall also apply.\nTable 6.2.3.3.3.1-4: Headers supported by the 307 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located in an alternative PIN server.\nTable 6.2.3.3.3.1-5: Headers supported by the 308 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located in an alternative PIN server.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.122_clause_5.2.10",
+        "table_6.2.3.3.3.1-1",
+        "table_6.2.3.3.3.1-2",
+        "table_6.2.3.3.3.1-3",
+        "ts_29.122_table_5.2.6-1",
+        "table_6.2.3.3.3.1-4",
+        "table_6.2.3.3.3.1-5",
+        "ts_29.122"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.583_6.2.3.3.3.2",
+      "section_id": "6.2.3.3.3.2",
+      "section_title": "PATCH",
+      "content": "The HTTP PUT method partially allows a service consumer to request the modification of an existing \"Individual Service Switch Information Subscription\" resource at the PIN server.\nThis method shall support the URI query parameters specified in the table 6.2.3.3.3.2-1.\nTable 6.2.3.3.3.2-1: URI query parameters supported by the PATCH method on this resource\nName\nData type\nP\nCardinality\nDescription\nn/a\nThis method shall support the request data structures specified in table 6.2.3.3.3.2-2 and the response data structures and response codes specified in table 6.2.3.3.3.2-3.\nTable 6.2.3.3.3.2-2: Data structures supported by the PATCH Request Body on this resource\nData type\nP\nCardinality\nDescription\nServiceSwitchInfoPatch\nM\n1\nRequest to parameters to request the modification of the \"Individual Service Switch Information Subscription\" resource.\nTable 6.2.3.3.3.2-3: Data structures supported by the PATCH Response Body on this resource\nData type\nP\nCardinality\nResponse\ncodes\nDescription\nServiceSwitchInfo\nM\n1\n200 OK\nSuccessful case. The \"Individual Service Switch Information Subscription\" resource is successfully modified and a representation of the updated resource shall be returned in the response body.\nn/a\n204 No Content\nSuccessful case. The \"Individual Service Switch Information Subscription\" resource is successfully updated and no content is returned in the response body.\nn/a\n307 Temporary Redirect\nTemporary redirection. The response shall include a Location header field containing an alternative URI of the resource located in an alternative PIN server.\nRedirection handling is described in clause 5.2.10 of TS 29.122 [2].\nn/a\n308 Permanent Redirect\nPermanent redirection. The response shall include a Location header field containing an alternative URI of the resource located in an alternative PIN server.\nRedirection handling is described in clause 5.2.10 of TS 29.122 [2].\nNOTE:\tThe mandatory HTTP error status codes for theHTTP PATCH method listed in Table 5.2.6-1 of 3GPP TS 29.122 [2] shall also apply.\nTable 6.2.3.3.3.2-4: Headers supported by the 307 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located in an alternative PIN server.\nTable 6.2.3.3.3.2-5: Headers supported by the 308 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located in an alternative PIN server.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.122_clause_5.2.10",
+        "table_6.2.3.3.3.2-1",
+        "table_6.2.3.3.3.2-2",
+        "table_6.2.3.3.3.2-3",
+        "ts_29.122_table_5.2.6-1",
+        "table_6.2.3.3.3.2-4",
+        "table_6.2.3.3.3.2-5",
+        "ts_29.122"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.583_6.2.3.3.3.3",
+      "section_id": "6.2.3.3.3.3",
+      "section_title": "PUT",
+      "content": "The HTTP PUT method allows a service consumer to request the update of an existing \"Individual Service Switch Information Subscription\" resource at the PIN server.\nThis method shall support the URI query parameters specified in the table 6.2.3.3.3.3-1.\nTable 6.2.3.3.3.3-1: URI query parameters supported by the PUT method on this resource\nName\nData type\nP\nCardinality\nDescription\nn/a\nThis method shall support the request data structures specified in table 6.2.3.3.3.3-2 and the response data structures and response codes specified in table 6.2.3.3.3.3-3.\nTable 6.2.3.3.3.3-2: Data structures supported by the PUT Request Body on this resource\nData type\nP\nCardinality\nDescription\nServiceSwitchInfo\nM\n1\nRepresents the updated representation of the \"Individual Service Switch Information Subscription\" resource.\nTable 6.2.3.3.3.3-3: Data structures supported by the PUT Response Body on this resource\nData type\nP\nCardinality\nResponse\ncodes\nDescription\nServiceSwitchInfo\nM\n1\n200 OK\nSuccessful case. The \"Individual Service Switch Information Subscription\" resource is successfully updated and a representation of the updated resource shall be returned in the response body.\nn/a\n204 No Content\nSuccessful case. The \"Individual Service Switch Information Subscription\" resource is successfully updated and no content is returned in the response body.\nn/a\n307 Temporary Redirect\nTemporary redirection. The response shall include a Location header field containing an alternative URI of the resource located in an alternative PIN server.\nRedirection handling is described in clause 5.2.10 of TS 29.122 [2].\nn/a\n308 Permanent Redirect\nPermanent redirection. The response shall include a Location header field containing an alternative URI of the resource located in an alternative PIN server.\nRedirection handling is described in clause 5.2.10 of TS 29.122 [2].\nNOTE:\tThe mandatory HTTP error status codes for the HTTP PUT method listed in Table 5.2.6-1 of 3GPP TS 29.122 [2] shall also apply.\nTable 6.2.3.3.3.3-4: Headers supported by the 307 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located in an alternative PIN server.\nTable 6.2.3.3.3.3-5: Headers supported by the 308 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located in an alternative PIN server.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.122_clause_5.2.10",
+        "table_6.2.3.3.3.3-1",
+        "table_6.2.3.3.3.3-2",
+        "table_6.2.3.3.3.3-3",
+        "ts_29.122_table_5.2.6-1",
+        "table_6.2.3.3.3.3-4",
+        "table_6.2.3.3.3.3-5",
+        "ts_29.122"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.583_6.2.3.3.3.4",
+      "section_id": "6.2.3.3.3.4",
+      "section_title": "DELETE",
+      "content": "The HTTP DELETE method allows a service consumer to request the deletion of an existing \"Individual Service Switch Information Subscription\" resource atthe PIN server.\nThis method shall support the URI query parameters specified in the table 6.2.3.3.3.4-1.\nTable 6.2.3.3.3.4-1: URI query parameters supported by the DELETE method on this resource\nName\nData type\nP\nCardinality\nDescription\nn/a\nThis method shall support the request data structures specified in table 6.2.3.3.3.4-2 and the response data structures and response codes specified in table 6.2.3.3.3.4-3.\nTable 6.2.3.3.3.4-2: Data structures supported by the DELETE Request Body on this resource\nData type\nP\nCardinality\nDescription\nn/a\nTable 6.2.3.3.3.4-3: Data structures supported by the DELETE Response Body on this resource\nData type\nP\nCardinality\nResponse\ncodes\nDescription\nn/a\n204 No Content\nSuccessful case. The targeted \"Individual Service Switch Information Subscription\" resource is successfully deleted.\nn/a\n307 Temporary Redirect\nTemporary redirection. The response shall include a Location header field containing an alternative URI of the resource located in an alternative PIN server.\nRedirection handling is described in clause 5.2.10 of TS 29.122 [2].\nn/a\n308 Permanent Redirect\nPermanent redirection. The response shall include a Location header field containing an alternative URI of the resource located in an alternative PIN server.\nRedirection handling is described in clause 5.2.10 of TS 29.122 [2].\nNOTE:\tThe mandatory HTTP error status code for the DELETE method listed in Table 5.2.6-1 of 3GPP TS 29.122 [2] also apply.\nTable 6.2.3.3.3.4-4: Headers supported by the 307 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located in an alternative PIN server.\nTable 6.2.3.3.3.4-5: Headers supported by the 308 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located in an alternative PIN server.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.122_clause_5.2.10",
+        "table_6.2.3.3.3.4-1",
+        "table_6.2.3.3.3.4-2",
+        "table_6.2.3.3.3.4-3",
+        "ts_29.122_table_5.2.6-1",
+        "ts_29.122_table_6.2.3.3.3.4-4",
+        "table_6.2.3.3.3.4-5",
+        "ts_29.122"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.583_6.2.3.3.4",
+      "section_id": "6.2.3.3.4",
+      "section_title": "Resource Custom Operations",
+      "content": "None.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.583_6.2.4",
+      "section_id": "6.2.4",
+      "section_title": "Custom Operations without associated resources",
+      "content": "None.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.583_6.2.5.0",
+      "section_id": "6.2.5.0",
+      "section_title": "General",
+      "content": "Table 6.2.5.1-1: Notifications overview\nNotification\nCallback URI\nHTTP method or custom operation\nDescription\n(service operation)\nService Switch Information Notification\n{notificationAddr}\nPOST\nThis service operation enables to notify a previously subscribed service consumer on Service Switch Information.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "table_6.2.5.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.583_6.2.5.1.1",
+      "section_id": "6.2.5.1.1",
+      "section_title": "Description",
+      "content": "The Service Switch Information Notification is used by the PIN server to notify a previously subscribed service consumer on Service Switch Information.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.583_6.2.5.1.2",
+      "section_id": "6.2.5.1.2",
+      "section_title": "Target URI",
+      "content": "The Callback URI {notificationAddr} shall be used with the callback URI variables defined in table 6.2.5.1.2-1.\nTable 6.2.5.1.2-1: Callback URI variables\nName\nData type\nDefinition\nnotificationAddr\nUri\nRepresents the callback URI encoded as a string formatted as a URI.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.2.5.1.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.583_6.2.5.1.3.1",
+      "section_id": "6.2.5.1.3.1",
+      "section_title": "POST",
+      "content": "This method shall support the request data structures specified in table 6.2.5.1.3.1-1 and the response data structures and response codes specified in table 6.2.5.1.3.1-2.\nTable 6.2.5.1.3.1-1: Data structures supported by the POST Request Body on this resource\nData type\nP\nCardinality\nDescription\nServiceSwitchInfoNotification\nM\n1\nRepresents a Service Switch Information Notification.\nTable 6.2.5.1.3.1-2: Data structures supported by the POST Response Body on this resource\nData type\nP\nCardinality\nResponse codes\nDescription\nn/a\n204 No Content\nSuccessful case. The Service Switch Information Notification is successfully received and acknowledged.\nn/a\n307 Temporary Redirect\nTemporary redirection. The response shall include a Location header field containing an alternative URI representing the end point of an alternative EAS where the notification should be sent.\nRedirection handling is described in clause 5.2.10 of TS 29.122 [2].\nn/a\n308 Permanent Redirect\nPermanent redirection. The response shall include a Location header field containing an alternative URI representing the end point of an alternative EAS where the notification should be sent.\nRedirection handling is described in clause 5.2.10 of TS 29.122 [2].\nNOTE:\tThe mandatory HTTP error status code for the POST method listed in Table 5.2.6-1 of 3GPP TS 29.122 [2] also apply.\nTable 6.2.5.1.3.1-3: Headers supported by the 307 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI representing the end point of an alternative PAS towards which the notification should be redirected.\nTable 6.2.5.1.3.1-4: Headers supported by the 308 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI representing the end point of an alternative PAS towards which the notification should be redirected.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.122_clause_5.2.10",
+        "table_6.2.5.1.3.1-1",
+        "table_6.2.5.1.3.1-2",
+        "ts_29.122_table_5.2.6-1",
+        "ts_29.122_table_6.2.5.1.3.1-3",
+        "table_6.2.5.1.3.1-4",
+        "ts_29.122"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.583_6.2.6.1",
+      "section_id": "6.2.6.1",
+      "section_title": "General",
+      "content": "This clause specifies the application data model supported by the API.\nTable 6.2.6.1-1 specifies the data types defined for the PIN_ASServiceSwitch API.\nTable 6.2.6.1-1: PIN_ASServiceSwitch API specific Data Types\nData type\nSection defined\nDescription\nApplicability\nEventType\n6.2.6.3.2\nRepresents the event type for service switch information subscription.\nServiceSwitchInfo\n6.2.6.2.2\nRepresents the service switch information subscription.\nServiceSwitchInfoPatch\n6.2.6.2.3\nUsed to request the partial update of service switch information subscription.\nServiceSwitchInfoNotification\n6.2.6.2.4\nService switch information for notification\nServiceSwitchReportInfo\n6.2.6.2.5\nList of notifications that include the information of the service switch.\nTable 6.2.6.1-2 specifies data types re-used by the PIN_ASServiceSwitch API from other specifications, including a reference to their respective specifications, and when needed, a short description of their use within the PIN_ASServiceSwitch API.\nTable 6.2.6.1-2: PIN_ASServiceSwitch API re-used Data Types\nData type\nReference\nComments\nApplicability\nDateTime\n3GPP TS 29.122 [2]\nUsed to capture the expiration time of PAS subscription for service switch information reporting.\nFlowInfo\n3GPP TS 29.122 [2]\nRepresents IP flow information.\nSupportedFeatures\n3GPP TS 29.571 [11]\nRepresents the list of supported feature(s) and used to negotiate the applicability of the optional features.\nUri\n3GPP TS 29.122 [2]\nRepresents a URI.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "table_6.2.6.1-1",
+        "table_6.2.6.1-2",
+        "ts_29.122",
+        "ts_29.571"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.583_6.2.6.2.2",
+      "section_id": "6.2.6.2.2",
+      "section_title": "Type: ServiceSwitchInfo",
+      "content": "Table 6.2.6.2.2-1: Definition of type ServiceSwitchInfo\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\nsubsEvent\nEventType\nM\n1\nIdentifies the event type for which the subscriber is to be notified.\nnotificationAddr\nUri\nM\n1\nURI where the notification should be delivered to. This attribute shall be present in HTTP POST message to PIN server and maybe present in HTTP PUT request.\npinId\nstring\nM\n1\nIdentifies a PIN. (see 3GPP TS 23.542 [10]).\nIts encoding shall comply with the UE policy part type URSP as defined in clause 5.2 of 3GPP TS 24.526 [12].\nexpTime\nDateTime\nO\n0..1\nIndicates the expiration time of the subscription. To maintain an active registration status, a registration update is required before the expiration time. If the expiration time is not present, then it indicates that the PAS subscription never expires.\nsuppFeat\nSupportedFeatures\nC\n0..1\nContains the list of supported features among the ones defined in clause 6.2.8.\nThis attribute shall be present only when feature negotiation needs to take place.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_24.526_clause_5.2",
+        "clause_6.2.8",
+        "table_6.2.6.2.2-1",
+        "ts_23.542",
+        "ts_24.526"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.583_6.2.6.2.3",
+      "section_id": "6.2.6.2.3",
+      "section_title": "Type: ServiceSwitchInfoPatch",
+      "content": "Table 6.2.6.2.3-1: Definition of type ServiceSwitchInfoPatch\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\nexpTime\nDateTime\nO\n0..1\nIndicates the proposed expiration time of the subscription.\nnotificationAddr\nUri\nO\n0..1\nUpdated URI where the service switch information notification should be delivered to.\npinId\nstring\nO\n0..1\nIdentifies a PIN. (see 3GPP TS 23.542 [10]).\nIts encoding shall comply with the UE policy part type URSP as defined in clause 5.2 of 3GPP TS 24.526 [12].\nsubsEvent\nEventType\nO\n0..1\nUpdated event type for which the subscriber is to be notified.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_24.526_clause_5.2",
+        "table_6.2.6.2.3-1",
+        "ts_23.542",
+        "ts_24.526"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.583_6.2.6.2.4",
+      "section_id": "6.2.6.2.4",
+      "section_title": "Type: ServiceSwitchInfoNotification",
+      "content": "Table 6.2.6.2.4-1: Definition of type ServiceSwitchInfoNotification\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\nsubsId\nstring\nM\n1\nContains the identifier of the subscription to which Service Switch Information Notification is related.\nrepInfo\nServiceSwitchReportInfo\nM\n1\nContains the report of the service switch information.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.2.6.2.4-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.583_6.2.6.2.5",
+      "section_id": "6.2.6.2.5",
+      "section_title": "Type: ServiceSwitchReportInfo",
+      "content": "Table 6.2.6.2.5-1: Definition of type ServiceSwitchReportInfo\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\nacId\nstring\nM\n1\nIdentifies an application client identifier.\npinId\nstring\nM\n1\nIdentifies a PIN. (see 3GPP TS 23.542 [10]).\nIts encoding shall comply with the UE policy part type URSP as defined in clause 5.2 of 3GPP TS 24.526 [12].\nsessionId\nstring\nM\n1\nIdentifies an application session.\ntargetPineId\nstring\nM\n1\nIdentifies the target PINE that the service is switched to.\nsessionDes\nFlowInfo\nO\n0..1\nIdentifies the descriptor of application traffic flows",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_24.526_clause_5.2",
+        "table_6.2.6.2.5-1",
+        "ts_23.542",
+        "ts_24.526"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.583_6.2.6.3.1",
+      "section_id": "6.2.6.3.1",
+      "section_title": "Introduction",
+      "content": "This clause defines simple data types and enumerations that can be referenced from data structures defined in the previous clauses.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.583_6.2.6.3.2",
+      "section_id": "6.2.6.3.2",
+      "section_title": "Enumeration: EventType",
+      "content": "The enumeration EventType represents the supported event type of service switch.\nTable 6.2.6.3.2-1: Enumeration EventType\nEnumeration value\nDescription\nApplicability\nSERVICE_SWITCH_INFO\nService switch happens in the PIN",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.2.6.3.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.583_6.2.7.1",
+      "section_id": "6.2.7.1",
+      "section_title": "General",
+      "content": "For the PIN_ASServiceSwitch API, HTTP error responses shall be supported as specified in clause 5.2.6 of 3GPP TS 29.122 [2]. Protocol errors and application errors specified in clause 5.2.6 of 3GPP TS 29.122 [2] shall be supported for the HTTP status codes specified in table 5.2.6-1 of 3GPP TS 29.122 [2].\nIn addition, the requirements in the following clauses are applicable for the PIN_ASServiceSwitch API.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.122_clause_5.2.6",
+        "ts_29.122_table_5.2.6-1",
+        "ts_29.122"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.583_6.2.7.2",
+      "section_id": "6.2.7.2",
+      "section_title": "Protocol Errors",
+      "content": "No specific protocol errors for the PIN_ASServiceSwitch API are specified.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.583_6.2.7.3",
+      "section_id": "6.2.7.3",
+      "section_title": "Application Errors",
+      "content": "The application errors defined for the PIN_ASServiceSwitch API are listed in Table 6.2.7.3-1.\nTable 6.2.7.3-1: Application errors\nApplication Error\nHTTP status code\nDescription\nApplicability",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.2.7.3-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.583_6.2.8",
+      "section_id": "6.2.8",
+      "section_title": "Feature negotiation",
+      "content": "The optional features in table 6.2.8-1 are defined for the PIN_ASServiceSwitch API. They shall be negotiated using the extensibility mechanism defined in clause 5.2.7 of 3GPP TS 29.122 [2].\nTable 6.2.8-1: Supported Features\nFeature number\nFeature Name\nDescription\nn/a",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.122_clause_5.2.7",
+        "table_6.2.8-1",
+        "ts_29.122_table_6.2.8-1",
+        "ts_29.122"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.583_6.2.9",
+      "section_id": "6.2.9",
+      "section_title": "Security",
+      "content": "The provisions of clause 6 of 3GPP TS 29.122 [2] shall apply for the PIN_ASServiceSwitch API.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.122_clause_6",
+        "ts_29.122"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.583_6.3.1",
+      "section_id": "6.3.1",
+      "section_title": "Introduction",
+      "content": "The PIN_ASServiceContinuity service shall use the PIN_ASServiceContinuity API.\nThe API URI of the PIN_ASServiceContinuity API shall be:\n{apiRoot}/<apiName>/<apiVersion>\nThe request URIs used in HTTP requests shall have the Resource URI structure defined in clause 5.2.4 of 3GPP TS 29.122 [2], i.e.:\n{apiRoot}/<apiName>/<apiVersion>/<apiSpecificSuffixes>\nwith the following components:\n-\tThe {apiRoot} shall be set as described in clause 5.2.4 of 3GPP TS 29.122 [2].\n-\tThe <apiName> shall be \"pin-as-servicecontinuity\".\n-\tThe <apiVersion> shall be \"v1\".\n-\tThe <apiSpecificSuffixes> shall be set as described in clause 5.2.4 of 3GPP TS 29.122 [2].\nNOTE:\tWhen 3GPP TS 29.122 [2] is referenced for the common protocol and interface aspects for API definition in the clauses under clause 5, the service producer (i.e. PIN Server) takes the role of the SCEF and the service consumer takes the role of the SCS/AS.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.122_clause_5.2.4",
+        "clause_5",
+        "ts_29.122"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.583_6.3.2",
+      "section_id": "6.3.2",
+      "section_title": "Usage of HTTP",
+      "content": "The provisions of clause 5.2.2 of 3GPP TS 29.122 [2] shall apply for the PIN_ASServiceContinuity API.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.122_clause_5.2.2",
+        "ts_29.122"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.583_6.3.3.1",
+      "section_id": "6.3.3.1",
+      "section_title": "Overview",
+      "content": "This clause describes the structure for the Resource URIs and the resources and methods used for the service.\nFigure 6.3.3.1-1 depicts the resource URIs structure for the PIN_ASServiceContinuity API.\nFigure 6.3.3.1-1: Resource URI structure of the PIN_ASServiceContinuity API\nTable 6.3.3.1-1 provides an overview of the resources and applicable HTTP methods.\nTable 6.3.3.1-1: Resources and methods overview\nResource name\nResource URI\nHTTP method or custom operation\nDescription\nService Continuity Information Subscriptions\n/subscriptions\nPOST\nRequest the creation of a Service Continuity Information Subscription.\nIndividual Service Continuity Information Subscription\n/subscriptions/{subscriptionId}\nGET\nRetrieve the Individual service continuity information subscription information identified by subscriptionId.\nPUT\nFully replace the individual service continuity information subscription identified by subscriptionId.\nPATCH\nPartially update the individual service continuity information subscription identified by subscriptionId.\nDELETE\nRemove the individual service continuity information subscription identified by subscriptionId.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "table_6.3.3.1-1",
+        "figure_6.3.3.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.583_6.3.3.2.1",
+      "section_id": "6.3.3.2.1",
+      "section_title": "Description",
+      "content": "This resource represents the collection of Service Continuity Information Subscriptions managed by the PIN server.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.583_6.3.3.2.2",
+      "section_id": "6.3.3.2.2",
+      "section_title": "Resource Definition",
+      "content": "Resource URI: {apiRoot}/pin-as-servicecontinuity/<apiVersion>/subscriptions\nThis resource shall support the resource URI variables defined in the table 6.3.3.2.2-1.\nTable 6.3.3.2.2-1: Resource URI variables for this resource\nName\nData Type\nDefinition\napiRoot\nstring\nSee clause 6.3.1.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_6.3.1",
+        "table_6.3.3.2.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.583_6.3.3.2.3.1",
+      "section_id": "6.3.3.2.3.1",
+      "section_title": "POST",
+      "content": "The HTTP POST method allows a service consumer to request the creation of a Service Continuity Information Subscription at the PIN server.\nThis method shall support the URI query parameters specified in the table 6.3.3.2.3.1-1.\nTable 6.3.3.2.3.1-1: URI query parameters supported by the POST method on this resource\nName\nData type\nP\nCardinality\nDescription\nn/a\nThis method shall support the request data structures specified in table 6.3.3.2.3.1-2 and the response data structures and response codes specified in table 6.3.3.2.3.1-3.\nTable 6.3.3.2.3.1-2: Data structures supported by the POST Request Body on this resource\nData type\nP\nCardinality\nDescription\nServiceContinuityInfo\nM\n1\nRepresents the parameters to request the creation of a new Service Continuity Information Subscription.\nTable 6.3.3.2.3.1-3: Data structures supported by the POST Response Body on this resource\nData type\nP\nCardinality\nResponse\ncodes\nDescription\nServiceContinuityInfo\nM\n1\n201 Created\nSuccessful case. The Service Continuity Information Subscription is successfully created and a representation of the created \"Individual Service Continuity Information Subscription\" resource shall be returned.\nThe URI of the created resource shall be returned in the \"Location\" HTTP header.\nNOTE:\tThe mandatory HTTP error status codes for the HTTP POST method listed in Table 5.2.6-1 of 3GPP TS 29.122 [2] shall also apply.\nTable 6.3.3.2.3.1-4: Headers supported by the 201 response code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nContains the URI of the newly created resource, according to the structure: {apiRoot}/pin-as-servicecontinuity/<apiVersion>/subscriptions/{subscriptionId}",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.3.3.2.3.1-1",
+        "table_6.3.3.2.3.1-2",
+        "table_6.3.3.2.3.1-3",
+        "ts_29.122_table_5.2.6-1",
+        "table_6.3.3.2.3.1-4",
+        "ts_29.122"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.583_6.3.3.2.4",
+      "section_id": "6.3.3.2.4",
+      "section_title": "Resource Custom Operations",
+      "content": "None.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.583_6.3.3.3.1",
+      "section_id": "6.3.3.3.1",
+      "section_title": "Description",
+      "content": "This resource represents an Individual Service Continuity Information Subscription managed by the PIN server.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.583_6.3.3.3.2",
+      "section_id": "6.3.3.3.2",
+      "section_title": "Resource Definition",
+      "content": "Resource URI: {apiRoot}/pin-as-servicecontinuity/<apiVersion>/subscriptions/{subscriptionId}\nThis resource shall support the resource URI variables defined in the table 6.3.3.3.2-1.\nTable 6.3.3.3.2-1: Resource URI variables for this resource\nName\nData Type\nDefinition\napiRoot\nstring\nSee clause 6.3.1.\nsubscriptionId\nstring\nRepresents the identifier of the \"Individual Service Continuity Information Subscription\" resource.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_6.3.1",
+        "table_6.3.3.3.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.583_6.3.3.3.3.1",
+      "section_id": "6.3.3.3.3.1",
+      "section_title": "GET",
+      "content": "The HTTP GET method allows a service consumer to retrieve an existing \"Individual Service Continuity Information Subscription\" resource at PIN server.\nThis method shall support the URI query parameters specified in the table 6.3.3.3.3.1-1.\nTable 6.3.3.3.3.1-1: URI query parameters supported by the GET method on this resource\nName\nData type\nP\nCardinality\nDescription\nn/a\nThis method shall support the request data structures specified in table 6.3.3.3.3.1-2 and the response data structures and response codes specified in table 6.3.3.3.3.1-3.\nTable 6.3.3.3.3.1-2: Data structures supported by the GET Request Body on this resource\nData type\nP\nCardinality\nDescription\nn/a\nTable 6.3.3.3.3.1-3: Data structures supported by the GET Response Body on this resource\nData type\nP\nCardinality\nResponse\ncodes\nDescription\nServiceContinuityInfo\nM\n1\n200 OK\nSuccessful case. The requested \"Individual Service Continuity Information Subscription\" resource shall be returned.\nn/a\n307 Temporary Redirect\nTemporary redirection. The response shall include a Location header field containing an alternative URI of the resource located in an alternative PIN server.\nRedirection handling is described in clause 5.2.10 of TS 29.122 [2].\nn/a\n308 Permanent Redirect\nPermanent redirection. The response shall include a Location header field containing an alternative URI of the resource located in an alternative PIN server.\nRedirection handling is described in clause 5.2.10 of TS 29.122 [2].\nNOTE:\tThe mandatory HTTP error status codes for the HTTP GET method listed in Table 5.2.6-1 of 3GPP TS 29.122 [2] shall also apply.\nTable 6.3.3.3.3.1-4: Headers supported by the 307 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located in an alternative PIN server.\nTable 6.3.3.3.3.1-5: Headers supported by the 308 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located in an alternative PIN server.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.122_clause_5.2.10",
+        "table_6.3.3.3.3.1-1",
+        "table_6.3.3.3.3.1-2",
+        "table_6.3.3.3.3.1-3",
+        "ts_29.122_table_5.2.6-1",
+        "table_6.3.3.3.3.1-4",
+        "table_6.3.3.3.3.1-5",
+        "ts_29.122"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.583_6.3.3.3.3.2",
+      "section_id": "6.3.3.3.3.2",
+      "section_title": "PATCH",
+      "content": "The HTTP PATCH method allows a service consumer to request the modification of an existing \"Individual Service Continuity Information Subscription\" resource at the PIN server.\nThis method shall support the URI query parameters specified in the table 6.3.3.3.3.2-1.\nTable 6.3.3.3.3.2-1: URI query parameters supported by the PATCH method on this resource\nName\nData type\nP\nCardinality\nDescription\nn/a\nThis method shall support the request data structures specified in table 6.3.3.3.3.2-2 and the response data structures and response codes specified in table 6.3.3.3.3.2-3.\nTable 6.3.3.3.3.2-2: Data structures supported by the PATCH Request Body on this resource\nData type\nP\nCardinality\nDescription\nServiceContinuityInfoPatch\nM\n1\nRepresents the parameters to request the modification of the \"Individual Service Continuity Information Subscription\" resource.\nTable 6.3.3.3.3.2-3: Data structures supported by the PATCH Response Body on this resource\nData type\nP\nCardinality\nResponse\ncodes\nDescription\nServiceContinuityInfo\nM\n1\n200 OK\nSuccessful case. The \"Individual Service Continuity Information Subscription\" resource is successfully modified and a representation of the updated resource shall be returned in the response body.\nn/a\n204 No Content\nSuccessful case. The \"Individual Service Continuity Information Subscription\" resource is successfully updated and no content is returned in the response body.\nn/a\n307 Temporary Redirect\nTemporary redirection. The response shall include a Location header field containing an alternative URI of the resource located in an alternative PIN server.\nRedirection handling is described in clause 5.2.10 of TS 29.122 [2].\nn/a\n308 Permanent Redirect\nPermanent redirection. The response shall include a Location header field containing an alternative URI of the resource located in an alternative PIN server.\nRedirection handling is described in clause 5.2.10 of TS 29.122 [2].\nNOTE:\tThe mandatory HTTP error status codes for the HTTP PATCH method listed in Table 5.2.6-1 of 3GPP TS 29.122 [2] shall also apply.\nTable 6.3.3.3.3.2-4: Headers supported by the 307 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located in an alternative PIN server.\nTable 6.3.3.3.3.2-5: Headers supported by the 308 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located in an alternative PIN server.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.122_clause_5.2.10",
+        "table_6.3.3.3.3.2-1",
+        "table_6.3.3.3.3.2-2",
+        "table_6.3.3.3.3.2-3",
+        "ts_29.122_table_5.2.6-1",
+        "table_6.3.3.3.3.2-4",
+        "table_6.3.3.3.3.2-5",
+        "ts_29.122"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.583_6.3.3.3.3.3",
+      "section_id": "6.3.3.3.3.3",
+      "section_title": "PUT",
+      "content": "The HTTP PUT method allows a service consumer to request the update of an existing \"Individual Service Continuity Information Subscription\" resource at the PIN server.\nThis method shall support the URI query parameters specified in the table 6.3.3.3.3.3-1.\nTable 6.3.3.3.3.3-1: URI query parameters supported by the PUT method on this resource\nName\nData type\nP\nCardinality\nDescription\nn/a\nThis method shall support the request data structures specified in table 6.3.3.3.3.3-2 and the response data structures and response codes specified in table 6.3.3.3.3.3-3.\nTable 6.3.3.3.3.3-2: Data structures supported by the PUT Request Body on this resource\nData type\nP\nCardinality\nDescription\nServiceContinuityInfo\nM\n1\nRepresents the updated representation of the \"Individual Service Continuity Information Subscription\" resource.\nTable 6.3.3.3.3.3-3: Data structures supported by the PUT Response Body on this resource\nData type\nP\nCardinality\nResponse\ncodes\nDescription\nServiceContinuityInfo\nM\n1\n200 OK\nSuccessful case. The \"Individual Service Continuity Information Subscription\" resource is successfully updated and a representation of the updated resource shall be returned in the response body.\nn/a\n204 No Content\nSuccessful case. The \"Individual Service Continuity Information Subscription\" resource is successfully updated and no content is returned in the response body.\nn/a\n307 Temporary Redirect\nTemporary redirection. The response shall include a Location header field containing an alternative URI of the resource located in an alternative PIN server.\nRedirection handling is described in clause 5.2.10 of TS 29.122 [2].\nn/a\n308 Permanent Redirect\nPermanent redirection. The response shall include a Location header field containing an alternative URI of the resource located in an alternative PIN server.\nRedirection handling is described in clause 5.2.10 of TS 29.122 [2].\nNOTE:\tThe mandatory HTTP error status codes for the HTTP PUT method listed in Table 5.2.6-1 of 3GPP TS 29.122 [2] shall also apply.\nTable 6.3.3.3.3.3-4: Headers supported by the 307 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located in an alternative PIN server.\nTable 6.3.3.3.3.3-5: Headers supported by the 308 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located in an alternative PIN server.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.122_clause_5.2.10",
+        "table_6.3.3.3.3.3-1",
+        "table_6.3.3.3.3.3-2",
+        "table_6.3.3.3.3.3-3",
+        "ts_29.122_table_5.2.6-1",
+        "table_6.3.3.3.3.3-4",
+        "table_6.3.3.3.3.3-5",
+        "ts_29.122"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.583_6.3.3.3.3.4",
+      "section_id": "6.3.3.3.3.4",
+      "section_title": "DELETE",
+      "content": "The HTTP DELETE method allows a service consumer to request the deletion of an existing \"Individual Service Continuity Information Subscription\" resource at the PIN server.\nThis method shall support the URI query parameters specified in the table 6.3.3.3.3.4-1.\nTable 6.3.3.3.3.4-1: URI query parameters supported by the DELETE method on this resource\nName\nData type\nP\nCardinality\nDescription\nn/a\nThis method shall support the request data structures specified in table 6.3.3.3.3.4-2 and the response data structures and response codes specified in table 6.3.3.3.3.4-3.\nTable 6.3.3.3.3.4-2: Data structures supported by the DELETE Request Body on this resource\nData type\nP\nCardinality\nDescription\nn/a\nTable 6.3.3.3.3.4-3: Data structures supported by the DELETE Response Body on this resource\nData type\nP\nCardinality\nResponse\ncodes\nDescription\nn/a\n204 No Content\nSuccessful case. The targeted \"Individual Service Continuity Information Subscription\" resource is successfully deleted.\nn/a\n307 Temporary Redirect\nTemporary redirection. The response shall include a Location header field containing an alternative URI of the resource located in an alternative PIN server.\nRedirection handling is described in clause 5.2.10 of TS 29.122 [2].\nn/a\n308 Permanent Redirect\nPermanent redirection. The response shall include a Location header field containing an alternative URI of the resource located in an alternative PIN server.\nRedirection handling is described in clause 5.2.10 of TS 29.122 [2].\nNOTE:\tThe mandatory HTTP error status codes for the HTTP DELETE method listed in Table 5.2.6-1 of 3GPP TS 29.122 [2] shall also apply.\nTable 6.3.3.3.3.4-4: Headers supported by the 307 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located in an alternative PIN server.\nTable 6.3.3.3.3.4-5: Headers supported by the 308 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located in an alternative PIN server.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.122_clause_5.2.10",
+        "table_6.3.3.3.3.4-1",
+        "table_6.3.3.3.3.4-2",
+        "table_6.3.3.3.3.4-3",
+        "ts_29.122_table_5.2.6-1",
+        "table_6.3.3.3.3.4-4",
+        "table_6.3.3.3.3.4-5",
+        "ts_29.122"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.583_6.3.3.3.4",
+      "section_id": "6.3.3.3.4",
+      "section_title": "Resource Custom Operations",
+      "content": "None.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.583_6.3.4",
+      "section_id": "6.3.4",
+      "section_title": "Custom Operations without associated resources",
+      "content": "None.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.583_6.3.5.0",
+      "section_id": "6.3.5.0",
+      "section_title": "General",
+      "content": "Table 6.3.5.1-1: Notifications overview\nNotification\nCallback URI\nHTTP method or custom operation\nDescription\n(service operation)\nService Continuity Information Notification\n{notificationAddr}\nPOST\nThis service operation enables to notify a previously subscribed service consumer on service continuity information.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "table_6.3.5.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.583_6.3.5.1.1",
+      "section_id": "6.3.5.1.1",
+      "section_title": "Description",
+      "content": "The Service Continuity Information Notification is used by the PIN server to notify a previously subscribed service consumer on service continuity information.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.583_6.3.5.1.2",
+      "section_id": "6.3.5.1.2",
+      "section_title": "Target URI",
+      "content": "The callback URI {notificationAddr} shall be used with the callback URI variables defined in table 6.3.5.1.2-1.\nTable 6.3.5.1.2-1: Callback URI variables\nName\nData type\nDefinition\nnotificationAddr\nUri\nRepresents the callback URI encoded as a string formatted as a URI.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.3.5.1.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.583_6.3.5.1.3.1",
+      "section_id": "6.3.5.1.3.1",
+      "section_title": "POST",
+      "content": "This method shall support the request data structures specified in table 6.3.5.1.3.1-1 and the response data structures and response codes specified in table 6.3.5.1.3.1-2.\nTable 6.3.5.1.3.1-1: Data structures supported by the POST Request Body on this resource\nData type\nP\nCardinality\nDescription\nServiceContinuityInfoNotification\nM\n1\nRepresents a Service Continuity Information Notification.\nTable 6.3.5.1.3.1-2: Data structures supported by the POST Response Body on this resource\nData type\nP\nCardinality\nResponse codes\nDescription\nn/a\n204 No Content\nSuccessful case. The Service Continuity Information Notification is successfully received and acknowledged.\nn/a\n307 Temporary Redirect\nTemporary redirection. The response shall include a Location header field containing an alternative URI representing the end point of an alternative EAS where the notification should be sent.\nRedirection handling is described in clause 5.2.10 of TS 29.122 [2].\nn/a\n308 Permanent Redirect\nPermanent redirection. The response shall include a Location header field containing an alternative URI representing the end point of an alternative EAS where the notification should be sent.\nRedirection handling is described in clause 5.2.10 of TS 29.122 [2].\nNOTE:\tThe mandatory HTTP error status codeS for the HTTP POST method listed in Table 5.2.6-1 of 3GPP TS 29.122 [2] shall also apply.\nTable 6.3.5.1.3.1-3: Headers supported by the 307 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI representing the end point of an alternative PAS towards which the notification should be redirected.\nTable 6.3.5.1.3.1-4: Headers supported by the 308 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI representing the end point of an alternative PAS towards which the notification should be redirected.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.122_clause_5.2.10",
+        "table_6.3.5.1.3.1-1",
+        "table_6.3.5.1.3.1-2",
+        "ts_29.122_table_5.2.6-1",
+        "table_6.3.5.1.3.1-3",
+        "table_6.3.5.1.3.1-4",
+        "ts_29.122"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.583_6.3.6.1",
+      "section_id": "6.3.6.1",
+      "section_title": "General",
+      "content": "This clause specifies the application data model supported by the API.\nTable 6.3.6.1-1 specifies the data types defined for the PIN_ASServiceContinuity API.\nTable 6.3.6.1-1: PIN_ASServiceContinuity API specific Data Types\nData type\nSection defined\nDescription\nApplicability\nEventType\n6.3.6.3.2\nRepresents the event type for service continuity information subscription.\nServiceContinuityInfo\n6.3.6.2.2\nRepresents the service continuity information subscription.\nServiceContinuityInfoPatch\n6.3.6.2.3\nUsed to request the partial update of service continuity information subscription.\nServiceContinuityInfoNotification\n6.3.6.2.4\nService continuity information for notification\nServiceContinuityReportInfo\n6.3.6.2.5\nList of notifications that include the information of the service continuity.\nTable 6.3.6.1-2 specifies data types re-used by the PIN_ASServiceContinuity API from other specifications, including a reference to their respective specifications, and when needed, a short description of their use within the PIN_ASServiceContinuity API.\nTable 6.3.6.1-2: PIN_ASServiceContinuity API re-used Data Types\nData type\nReference\nComments\nApplicability\nDateTime\n3GPP TS 29.122 [2]\nUsed to capture the expiration time of PAS subscription for service continuity information reporting.\nFlowInfo\n3GPP TS 29.122 [2]\nRepresents IP flow information.\nSupportedFeatures\n3GPP TS 29.571 [11]\nRepresents the list of supported feature(s) and used to negotiate the applicability of the optional features.\nUri\n3GPP TS 29.122 [2]\nRepresents a URI.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "table_6.3.6.1-1",
+        "table_6.3.6.1-2",
+        "ts_29.122",
+        "ts_29.571"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.583_6.3.6.2.2",
+      "section_id": "6.3.6.2.2",
+      "section_title": "Type: ServiceContinuityInfo",
+      "content": "Table 6.3.6.2.2-1: Definition of type ServiceContinuityInfo\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\nsubsEvent\nEventType\nM\n1\nIdentifies the event type for which the subscriber is to be notified.\nnotificationAddr\nUri\nM\n1\nURI where the notification should be delivered to. This attribute shall be present in HTTP POST to PIN server and maybe present in HTTP PUT request.\npinId\nstring\nM\n1\nIdentifies a PIN. (see 3GPP TS 23.542 [10]).\nIts encoding shall comply with the UE policy part type URSP as defined in clause 5.2 of 3GPP TS 24.526 [12].\nexpTime\nDateTime\nO\n0..1\nIndicates the expiration time of the subscription. To maintain an active registration status, a registration update is required before the expiration time. If the expiration time is not present, then it indicates that the PAS subscription never expires.\nsuppFeat\nSupportedFeatures\nC\n0..1\nContains the list of supported features among the ones defined in clause 6.3.8.\nThis attribute shall be present only when feature negotiation needs to take place.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_24.526_clause_5.2",
+        "clause_6.3.8",
+        "table_6.3.6.2.2-1",
+        "ts_23.542",
+        "ts_24.526"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.583_6.3.6.2.3",
+      "section_id": "6.3.6.2.3",
+      "section_title": "Type: ServiceContinuityInfoPatch",
+      "content": "Table 6.3.6.2.3-1: Definition of type ServiceContinuityInfoPatch\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\nexpTime\nDateTime\nO\n0..1\nIndicates the proposed expiration time of the subscription.\nnotificationAddr\nUri\nO\n0..1\nUpdated URI where the service continuity information notification should be delivered to.\npinId\nstring\nO\n0..1\nIdentifies a PIN. (see 3GPP TS 23.542 [10]).\nIts encoding shall comply with the UE policy part type URSP as defined in clause 5.2 of 3GPP TS 24.526 [12].\nsubsEvent\nEventType\nO\n0..1\nUpdated event type for which the subscriber is to be notified.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_24.526_clause_5.2",
+        "table_6.3.6.2.3-1",
+        "ts_23.542",
+        "ts_24.526"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.583_6.3.6.2.4",
+      "section_id": "6.3.6.2.4",
+      "section_title": "Type: ServiceContinuityInfoNotification",
+      "content": "Table 6.3.6.2.4-1: Definition of type ServiceContinuityInfoNotification\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\nsubsId\nstring\nM\n1\nIdentifies the individual service continuity information subscription for which the service continuity information notification is delivered.\nrepInfo\nServiceContinuityReportInfo\nM\n1\nList of service continuity report information applicable to the subscription identifier.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.3.6.2.4-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.583_6.3.6.2.5",
+      "section_id": "6.3.6.2.5",
+      "section_title": "Type: ServiceContinuityReportInfo",
+      "content": "Table 6.3.6.2.5-1: Definition of type ServiceContinuityReportInfo\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\nacId\nstring\nM\n1\nIdentifies an application client identifier.\npegcId\nstring\nM\n1\nIdentifies a PEGC.\npinId\nstring\nM\n1\nIdentifies a PIN. (see 3GPP TS 23.542 [10]).\nIts encoding shall comply with the UE policy part type URSP as defined in clause 5.2 of 3GPP TS 24.526 [12].\nserviceId\nstring\nM\n1\nIdentifies a PIN service.\nsessionId\nstring\nM\n1\nIdentifies an application session.\ntargetPineId\nstring\nM\n1\nIdentifies the target PINE.\nsessionDes\nFlowInfo\nO\n0..1\nIdentifies the descriptor of application traffic flows",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_24.526_clause_5.2",
+        "table_6.3.6.2.5-1",
+        "ts_23.542",
+        "ts_24.526"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.583_6.3.6.3.1",
+      "section_id": "6.3.6.3.1",
+      "section_title": "Introduction",
+      "content": "This clause defines simple data types and enumerations that can be referenced from data structures defined in the previous clauses.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.583_6.3.6.3.2",
+      "section_id": "6.3.6.3.2",
+      "section_title": "Enumeration: EventType",
+      "content": "The enumeration EventType represents the supported event type of service continuity.\nTable 6.3.6.3.2-1: Enumeration EventType\nEnumeration value\nDescription\nApplicability\nSERVICE_CONTINUITY_INFO\nService continuity happens in the PIN",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.3.6.3.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.583_6.3.7.1",
+      "section_id": "6.3.7.1",
+      "section_title": "General",
+      "content": "For the PIN_ASServiceContinuity API, HTTP error responses shall be supported as specified in clause 5.2.6 of 3GPP TS 29.122 [2]. Protocol errors and application errors specified in clause 5.2.6 of 3GPP TS 29.122 [2] shall be supported for the HTTP status codes specified in table 5.2.6-1 of 3GPP TS 29.122 [2].\nIn addition, the requirements in the following clauses are applicable for the PIN_ASServiceContinuity API.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.122_clause_5.2.6",
+        "ts_29.122_table_5.2.6-1",
+        "ts_29.122"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.583_6.3.7.2",
+      "section_id": "6.3.7.2",
+      "section_title": "Protocol Errors",
+      "content": "No specific protocol errors for the PIN_ASServiceContinuity API are specified.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.583_6.3.7.3",
+      "section_id": "6.3.7.3",
+      "section_title": "Application Errors",
+      "content": "The application errors defined for the PIN_ASServiceContinuity API are listed in Table 6.3.7.3-1.\nTable 6.3.7.3-1: Application errors\nApplication Error\nHTTP status code\nDescription\nApplicability",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.3.7.3-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.583_6.3.8",
+      "section_id": "6.3.8",
+      "section_title": "Feature negotiation",
+      "content": "The optional features in table 6.3.8-1 are defined for the PIN_ASServiceContinuity API. They shall be negotiated using the extensibility mechanism defined in clause 5.2.7 of 3GPP TS 29.122 [2].\nTable 6.3.8-1: Supported Features\nFeature number\nFeature Name\nDescription\nn/a",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.122_clause_5.2.7",
+        "table_6.3.8-1",
+        "ts_29.122_table_6.3.8-1",
+        "ts_29.122"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.583_6.3.9",
+      "section_id": "6.3.9",
+      "section_title": "Security",
+      "content": "The provisions of clause 6 of 3GPP TS 29.122 [2] shall apply for the PIN_ASServiceContinuity API.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.122_clause_6",
+        "ts_29.122"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.583_7.1",
+      "section_id": "7.1",
+      "section_title": "General",
+      "content": "When CAPIF is used with a PIN Server service, the PIN Server shall support the following functionalities as defined in 3GPP TS 29.222 [7]:\n-\tthe API exposing function and the related APIs over CAPIF-2/2e and CAPIF-3/3e reference points;\n-\tthe API publishing function and the related APIs over CAPIF-4/4e reference point;\n-\tthe API management function and the related APIs over CAPIF-5/5e reference point; and\n-\tat least one of the security methods for authentication and authorization, and the related security mechanisms.\nIn a centralized deployment as defined in 3GPP TS 23.222 [6], where the CAPIF core function and the API provider domain functions are co-located, the interactions between the CAPIF core function and the API provider domain functions may be independent of the CAPIF-3/3e, CAPIF-4/4e and CAPIF-5/5e reference points.\nWhen CAPIF is used with a PIN Server service, the PIN Server shall register all the northbound APIs features in the CAPIF Core Function.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.222",
+        "ts_23.222"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.583_7.2",
+      "section_id": "7.2",
+      "section_title": "Security",
+      "content": "When CAPIF is used for external exposure, before invoking an API exposed by the PIN Server, the service API consumer acting as an API invoker shall negotiate the security method (PKI, TLS-PSK or OAuth 2.0) with the CAPIF core function and ensure that the PIN Server has enough credentials to authenticate the service API consumer, as defined in clauses 5.6.2.2 and 6.2.2.2 of 3GPP TS 29.222 [7].\nIf PKI or TLS-PSK is selected as the security method to be used between the service API consumer and the PIN Server, upon API invocation, the PIN Server shall retrieve the authorization information from the CAPIF core function as described in clause 5.6.2.4 of 3GPP TS 29.222 [7].\nAs indicated in 3GPP TS 33.122 [8], the access to the PIN Server APIs may be authorized by means of the OAuth 2.0 protocol (see IETF RFC 6749 [9]), using the \"Client Credentials\" authorization grant, where the CAPIF core function (see 3GPP TS 29.222 [7]) plays the role of the authorization server.\nNOTE 1:\tIn this release, only \"Client Credentials\" authorization grant is supported.\nIf OAuth 2.0 is selected as the security method to be used between the service API consumer and the PIN Server, the service API consumer shall, prior to consuming the services offered by the PIN Server APIs, obtain a \"token\" from the authorization server, by invoking the Obtain_Authorization service operation as described in clause 5.6.2.3.2 of 3GPP TS 29.222 [7].\nThe PIN Server APIs do not define any scopes for OAuth 2.0 authorization. It is the PIN Server responsibility to check whether the service API consumer is authorized to use an API based on the provided \"token\". Once the PIN Server verifies the \"token\", it shall check whether the PIN Server identifier in the \"token\" matches its own published identifier, and whether the API name in the \"token\" matches its own published API name. If those checks are passed, the service API consumer has full authority to access any resource or operation provided by the invoked API.\nNOTE 2:\tFor the aforementioned security methods, the PIN Server needs to apply admission control according to access control policies after performing the authorization checks.\nAnnex A (normative):OpenAPI specification\nA.1\tGeneral\nThis Annex specifies the formal definition of the API(s) defined in the present specification. It consists of OpenAPI specifications in YAML format.\nThis Annex takes precedence when being discrepant to other parts of the specification with respect to the encoding of information elements and methods within the API(s).\nNOTE 1:\tThe semantics and procedures, as well as conditions, e.g. for the applicability and allowed combinations of attributes or values, not expressed in the OpenAPI definitions but defined in other parts of the specification also apply.\nInformative copies of the OpenAPI specification files contained in this 3GPP Technical Specification are available on a Git-based repository that uses the GitLab software version control system (see clause 5.3.1 of 3GPP TS 29.501 [5] and clause 5B of 3GPP TR 21.900 [7]).\nA.2\tPIN_ASRegistration API\nopenapi: 3.0.0\ninfo:\ntitle: PIN Server PAS Registration Service\nversion: 1.0.0\ndescription: |\nPIN Server PAS Registration Service.\n© 2024, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).\nAll rights reserved.\nexternalDocs:\ndescription: >\n3GPP TS 29.583 V18.1.0; Application layer support for Personal IoT Network (PINAPP);\nPersonal IoT Network (PIN) Server Services; Stage 3.\nurl: http://www.3gpp.org/ftp/Specs/archive/29_series/29.583/\nservers:\n- url: '{apiRoot}/pin-as-registration/v1'\nvariables:\napiRoot:\ndefault: https://example.com\ndescription: apiRoot as defined in clause 6.1 of 3GPP TS 29.583.\nsecurity:\n- {}\n- oAuth2ClientCredentials: []\npaths:\n/registrations:\npost:\nsummary: Create a new PAS Registration\noperationId: CreatePASRegistration\ntags:\n- PAS Registrations (Collection)\ndescription: Register a new PAS at the PIN Server.\nrequestBody:\nrequired: true\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/PASRegistration'\nresponses:\n'201':\ndescription: PAS information is registered successfully at PIN server.\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/PASRegistration'\nheaders:\nLocation:\ndescription: 'Contains the URI of the newly created resource'\nrequired: true\nschema:\ntype: string\n'400':\n$ref: 'TS29122_CommonData.yaml#/components/responses/400'\n'401':\n$ref: 'TS29122_CommonData.yaml#/components/responses/401'\n'403':\n$ref: 'TS29122_CommonData.yaml#/components/responses/403'\n'404':\n$ref: 'TS29122_CommonData.yaml#/components/responses/404'\n'411':\n$ref: 'TS29122_CommonData.yaml#/components/responses/411'\n'413':\n$ref: 'TS29122_CommonData.yaml#/components/responses/413'\n'415':\n$ref: 'TS29122_CommonData.yaml#/components/responses/415'\n'429':\n$ref: 'TS29122_CommonData.yaml#/components/responses/429'\n'500':\n$ref: 'TS29122_CommonData.yaml#/components/responses/500'\n'503':\n$ref: 'TS29122_CommonData.yaml#/components/responses/503'\ndefault:\n$ref: 'TS29122_CommonData.yaml#/components/responses/default'\n/registrations/{registrationId}:\nparameters:\n- name: registrationId\nin: path\ndescription: Registration Id.\nrequired: true\nschema:\ntype: string\nget:\nsummary: Get an Individual PAS Registration\noperationId: GetIndPASReg\ntags:\n- Individual PAS Registration (Document)\ndescription: Retrieve an Individual PAS registration resource.\nresponses:\n'200':\ndescription: OK (The PAS registration information at the PIN Server).\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/PASRegistration'\n'307':\n$ref: 'TS29122_CommonData.yaml#/components/responses/307'\n'308':\n$ref: 'TS29122_CommonData.yaml#/components/responses/308'\n'400':\n$ref: 'TS29122_CommonData.yaml#/components/responses/400'\n'401':\n$ref: 'TS29122_CommonData.yaml#/components/responses/401'\n'403':\n$ref: 'TS29122_CommonData.yaml#/components/responses/403'\n'404':\n$ref: 'TS29122_CommonData.yaml#/components/responses/404'\n'406':\n$ref: 'TS29122_CommonData.yaml#/components/responses/406'\n'429':\n$ref: 'TS29122_CommonData.yaml#/components/responses/429'\n'500':\n$ref: 'TS29122_CommonData.yaml#/components/responses/500'\n'503':\n$ref: 'TS29122_CommonData.yaml#/components/responses/503'\ndefault:\n$ref: 'TS29122_CommonData.yaml#/components/responses/default'\nput:\nsummary: Fully update an Individual PAS Registration\noperationId: UpdateIndPASReg\ntags:\n- Individual PAS Registration (Document)\nrequestBody:\nrequired: true\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/PASRegistration'\nresponses:\n'200':\ndescription: OK (The PAS registration information is updated successfully).\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/PASRegistration'\n'204':\ndescription: No Content. The PAS registration information is updated successfully.\n'307':\n$ref: 'TS29122_CommonData.yaml#/components/responses/307'\n'308':\n$ref: 'TS29122_CommonData.yaml#/components/responses/308'\n'400':\n$ref: 'TS29122_CommonData.yaml#/components/responses/400'\n'401':\n$ref: 'TS29122_CommonData.yaml#/components/responses/401'\n'403':\n$ref: 'TS29122_CommonData.yaml#/components/responses/403'\n'404':\n$ref: 'TS29122_CommonData.yaml#/components/responses/404'\n'411':\n$ref: 'TS29122_CommonData.yaml#/components/responses/411'\n'413':\n$ref: 'TS29122_CommonData.yaml#/components/responses/413'\n'415':\n$ref: 'TS29122_CommonData.yaml#/components/responses/415'\n'429':\n$ref: 'TS29122_CommonData.yaml#/components/responses/429'\n'500':\n$ref: 'TS29122_CommonData.yaml#/components/responses/500'\n'503':\n$ref: 'TS29122_CommonData.yaml#/components/responses/503'\ndefault:\n$ref: 'TS29122_CommonData.yaml#/components/responses/default'\npatch:\nsummary: Modify an Individual PAS Registration\noperationId: ModifyIndPASReg\ntags:\n- Individual PAS Registration (Document)\nrequestBody:\ndescription: Partial update an existing PAS registration resource.\nrequired: true\ncontent:\napplication/merge-patch+json:\nschema:\n$ref: '#/components/schemas/PASRegistrationPatch'\nresponses:\n'200':\ndescription: >\nThe Individual PAS registration is successfully modified and\nthe updated registration information is returned in the response.\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/PASRegistration'\n'204':\ndescription: No Content. The Individual PAS registration is successfully modified.\n'307':\n$ref: 'TS29122_CommonData.yaml#/components/responses/307'\n'308':\n$ref: 'TS29122_CommonData.yaml#/components/responses/308'\n'400':\n$ref: 'TS29122_CommonData.yaml#/components/responses/400'\n'401':\n$ref: 'TS29122_CommonData.yaml#/components/responses/401'\n'403':\n$ref: 'TS29122_CommonData.yaml#/components/responses/403'\n'404':\n$ref: 'TS29122_CommonData.yaml#/components/responses/404'\n'411':\n$ref: 'TS29122_CommonData.yaml#/components/responses/411'\n'413':\n$ref: 'TS29122_CommonData.yaml#/components/responses/413'\n'415':\n$ref: 'TS29122_CommonData.yaml#/components/responses/415'\n'429':\n$ref: 'TS29122_CommonData.yaml#/components/responses/429'\n'500':\n$ref: 'TS29122_CommonData.yaml#/components/responses/500'\n'503':\n$ref: 'TS29122_CommonData.yaml#/components/responses/503'\ndefault:\n$ref: 'TS29122_CommonData.yaml#/components/responses/default'\ndelete:\nsummary: Delete an Individual PAS Registration\noperationId: DeleteIndPASReg\ntags:\n- Individual PAS Registration (Document)\nresponses:\n'204':\ndescription: The individual PAS registration is deleted.\n'307':\n$ref: 'TS29122_CommonData.yaml#/components/responses/307'\n'308':\n$ref: 'TS29122_CommonData.yaml#/components/responses/308'\n'400':\n$ref: 'TS29122_CommonData.yaml#/components/responses/400'\n'401':\n$ref: 'TS29122_CommonData.yaml#/components/responses/401'\n'403':\n$ref: 'TS29122_CommonData.yaml#/components/responses/403'\n'404':\n$ref: 'TS29122_CommonData.yaml#/components/responses/404'\n'429':\n$ref: 'TS29122_CommonData.yaml#/components/responses/429'\n'500':\n$ref: 'TS29122_CommonData.yaml#/components/responses/500'\n'503':\n$ref: 'TS29122_CommonData.yaml#/components/responses/503'\ndefault:\n$ref: 'TS29122_CommonData.yaml#/components/responses/default'\ncomponents:\nsecuritySchemes:\noAuth2ClientCredentials:\ntype: oauth2\nflows:\nclientCredentials:\ntokenUrl: '{tokenUrl}'\nscopes: {}\nschemas:\n#\n# STRUCTURED DATA TYPES\n#\nPASRegistration:\ntype: object\ndescription: Represents an PAS registration information.\nproperties:\nconInfo:\n$ref: '#/components/schemas/ConnectivityInfo'\nexpTime:\n$ref: 'TS29122_CommonData.yaml#/components/schemas/DateTime'\npassId:\ntype: string\ndescription: Indentifies a PIN service\nsuppFeat:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'\nrequired:\n- conInfo\n- passId\nConnectivityInfo:\ntype: object\ndescription: Represents a connection information of PAS.\nproperties:\nfqdn:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Fqdn'\nipv4Addr:\n$ref: 'TS29122_CommonData.yaml#/components/schemas/Ipv4Addr'\nipv6Addr:\n$ref: 'TS29122_CommonData.yaml#/components/schemas/Ipv6Addr'\nuri:\n$ref: 'TS29122_CommonData.yaml#/components/schemas/Uri'\nanyOf:\n- required: [uri]\n- required: [fqdn]\n- required: [ipv4Addr]\n- required: [ipv6Addr]\nPASRegistrationPatch:\ntype: object\ndescription: Represents partial update request of individual PAS registration information.\nproperties:\nconInfo:\n$ref: '#/components/schemas/ConnectivityInfo'\nexpTime:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/DateTimeRm'\npassId:\ntype: string\ndescription: Identifies a PIN service provided by PAS.\nanyOf:\n- required: [conInfo]\n- required: [expTime]\n- required: [passId]\nA.3\tPIN_ASServiceSwitch API\nopenapi: 3.0.0\ninfo:\ntitle: PIN Server Service Switch Information Service\nversion: 1.0.0\ndescription: |\nPIN Server Service Switch Information Service.\n© 2024, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).\nAll rights reserved.\nexternalDocs:\ndescription: >\n3GPP TS 29.583 V18.1.0; Application layer support for Personal IoT Network (PINAPP);\nPersonal IoT Network (PIN) Server Services; Stage 3.\nurl: http://www.3gpp.org/ftp/Specs/archive/29_series/29.583/\nservers:\n- url: '{apiRoot}/pin-as-serviceswitch/v1'\nvariables:\napiRoot:\ndefault: https://example.com\ndescription: apiRoot as defined in clause 6.2 of 3GPP TS 29.583.\nsecurity:\n- {}\n- oAuth2ClientCredentials: []\npaths:\n/subscriptions:\npost:\nsummary: Creates a new Individual Service Switch Information Subscriptions resource\noperationId: CreateServiceSwitchInfo\ntags:\n- Service Switch Information Subscriptions (Collection)\ndescription: Create a Subscription for reporting service switch information to PAS.\nrequestBody:\nrequired: true\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/ServiceSwitchInfo'\nresponses:\n'201':\ndescription: >\nCreated. The Individual Service Switch Information Subscription resource is created\nsuccessfully\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/ServiceSwitchInfo'\nheaders:\nLocation:\ndescription: >\nContains the URI of the created Individual Service Switch Information\nSubscription resource.\nrequired: true\nschema:\ntype: string\n'400':\n$ref: 'TS29122_CommonData.yaml#/components/responses/400'\n'401':\n$ref: 'TS29122_CommonData.yaml#/components/responses/401'\n'403':\n$ref: 'TS29122_CommonData.yaml#/components/responses/403'\n'404':\n$ref: 'TS29122_CommonData.yaml#/components/responses/404'\n'411':\n$ref: 'TS29122_CommonData.yaml#/components/responses/411'\n'413':\n$ref: 'TS29122_CommonData.yaml#/components/responses/413'\n'415':\n$ref: 'TS29122_CommonData.yaml#/components/responses/415'\n'429':\n$ref: 'TS29122_CommonData.yaml#/components/responses/429'\n'500':\n$ref: 'TS29122_CommonData.yaml#/components/responses/500'\n'503':\n$ref: 'TS29122_CommonData.yaml#/components/responses/503'\ndefault:\n$ref: 'TS29122_CommonData.yaml#/components/responses/default'\ncallbacks:\nServiceSwitchInfoNotification:\n'{$request.body#/notificationAddr}':\npost:\nrequestBody:\nrequired: true\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/ServiceSwitchInfoNotification'\nresponses:\n'204':\ndescription: No Content (successful notification)\n'307':\n$ref: 'TS29122_CommonData.yaml#/components/responses/307'\n'308':\n$ref: 'TS29122_CommonData.yaml#/components/responses/308'\n'400':\n$ref: 'TS29122_CommonData.yaml#/components/responses/400'\n'401':\n$ref: 'TS29122_CommonData.yaml#/components/responses/401'\n'403':\n$ref: 'TS29122_CommonData.yaml#/components/responses/403'\n'404':\n$ref: 'TS29122_CommonData.yaml#/components/responses/404'\n'411':\n$ref: 'TS29122_CommonData.yaml#/components/responses/411'\n'413':\n$ref: 'TS29122_CommonData.yaml#/components/responses/413'\n'415':\n$ref: 'TS29122_CommonData.yaml#/components/responses/415'\n'429':\n$ref: 'TS29122_CommonData.yaml#/components/responses/429'\n'500':\n$ref: 'TS29122_CommonData.yaml#/components/responses/500'\n'503':\n$ref: 'TS29122_CommonData.yaml#/components/responses/503'\ndefault:\n$ref: 'TS29122_CommonData.yaml#/components/responses/default'\n/subscriptions/{subscriptionId}:\nparameters:\n- name: subscriptionId\nin: path\ndescription: Subscription Id.\nrequired: true\nschema:\ntype: string\nget:\nsummary: Read an Individual Service Switch Information Subscriptions resource\noperationId: ReadIndServiceSwitchInfo\ntags:\n- Individual Service Switch Information Subscription (Document)\nresponses:\n'200':\ndescription: OK (Successfully get the Service Switch information subscription).\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/ServiceSwitchInfo'\n'307':\n$ref: 'TS29122_CommonData.yaml#/components/responses/307'\n'308':\n$ref: 'TS29122_CommonData.yaml#/components/responses/308'\n'400':\n$ref: 'TS29122_CommonData.yaml#/components/responses/400'\n'401':\n$ref: 'TS29122_CommonData.yaml#/components/responses/401'\n'403':\n$ref: 'TS29122_CommonData.yaml#/components/responses/403'\n'404':\n$ref: 'TS29122_CommonData.yaml#/components/responses/404'\n'406':\n$ref: 'TS29122_CommonData.yaml#/components/responses/406'\n'429':\n$ref: 'TS29122_CommonData.yaml#/components/responses/429'\n'500':\n$ref: 'TS29122_CommonData.yaml#/components/responses/500'\n'503':\n$ref: 'TS29122_CommonData.yaml#/components/responses/503'\ndefault:\n$ref: 'TS29122_CommonData.yaml#/components/responses/default'\nput:\nsummary: Request the fullyupdate an Individual Service Switch Information Subscriptions resource.\noperationId: UpdateIndServiceSwitchInfo\ntags:\n- Individual Service Switch Information Subscription (Document)\nrequestBody:\nrequired: true\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/ServiceSwitchInfo'\nresponses:\n'200':\ndescription: OK (Successfully modified The individual Service Switch information).\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/ServiceSwitchInfo'\n'204':\ndescription: No Content.\n'400':\n$ref: 'TS29122_CommonData.yaml#/components/responses/400'\n'401':\n$ref: 'TS29122_CommonData.yaml#/components/responses/401'\n'403':\n$ref: 'TS29122_CommonData.yaml#/components/responses/403'\n'404':\n$ref: 'TS29122_CommonData.yaml#/components/responses/404'\n'411':\n$ref: 'TS29122_CommonData.yaml#/components/responses/411'\n'413':\n$ref: 'TS29122_CommonData.yaml#/components/responses/413'\n'415':\n$ref: 'TS29122_CommonData.yaml#/components/responses/415'\n'429':\n$ref: 'TS29122_CommonData.yaml#/components/responses/429'\n'500':\n$ref: 'TS29122_CommonData.yaml#/components/responses/500'\n'503':\n$ref: 'TS29122_CommonData.yaml#/components/responses/503'\ndefault:\n$ref: 'TS29122_CommonData.yaml#/components/responses/default'\npatch:\nsummary: Modify an Individual Service Switch Information Subscriptions resource\noperationId: ModifyIndServiceSwitchInfo\ntags:\n- Individual Service Switch Information Subscription (Document)\nrequestBody:\ndescription: Partial update an existing Individual ServiceSwitch information.\nrequired: true\ncontent:\napplication/merge-patch+json:\nschema:\n$ref: '#/components/schemas/ServiceSwitchInfoPatch'\nresponses:\n'200':\ndescription: >\nOK (The Individual ServiceSwitch information Subscription is successfully modified\nand the updated subscription information is returned in the response).\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/ServiceSwitchInfo'\n'204':\ndescription: >\nNo Content (The individual Service Switch information subscription was modified\nsuccessfully).\n'307':\n$ref: 'TS29122_CommonData.yaml#/components/responses/307'\n'308':\n$ref: 'TS29122_CommonData.yaml#/components/responses/308'\n'400':\n$ref: 'TS29122_CommonData.yaml#/components/responses/400'\n'401':\n$ref: 'TS29122_CommonData.yaml#/components/responses/401'\n'403':\n$ref: 'TS29122_CommonData.yaml#/components/responses/403'\n'404':\n$ref: 'TS29122_CommonData.yaml#/components/responses/404'\n'411':\n$ref: 'TS29122_CommonData.yaml#/components/responses/411'\n'413':\n$ref: 'TS29122_CommonData.yaml#/components/responses/413'\n'415':\n$ref: 'TS29122_CommonData.yaml#/components/responses/415'\n'429':\n$ref: 'TS29122_CommonData.yaml#/components/responses/429'\n'500':\n$ref: 'TS29122_CommonData.yaml#/components/responses/500'\n'503':\n$ref: 'TS29122_CommonData.yaml#/components/responses/503'\ndefault:\n$ref: 'TS29122_CommonData.yaml#/components/responses/default'\ndelete:\nsummary: Delete an Individual Service Switch Information Subscriptions resource.\noperationId: DeleteIndServiceSwitchInfo\ntags:\n- Individual Service Switch Information Subscription (Document)\nresponses:\n'204':\ndescription: The individual subscription is deleted.\n'307':\n$ref: 'TS29122_CommonData.yaml#/components/responses/307'\n'308':\n$ref: 'TS29122_CommonData.yaml#/components/responses/308'\n'400':\n$ref: 'TS29122_CommonData.yaml#/components/responses/400'\n'401':\n$ref: 'TS29122_CommonData.yaml#/components/responses/401'\n'403':\n$ref: 'TS29122_CommonData.yaml#/components/responses/403'\n'404':\n$ref: 'TS29122_CommonData.yaml#/components/responses/404'\n'429':\n$ref: 'TS29122_CommonData.yaml#/components/responses/429'\n'500':\n$ref: 'TS29122_CommonData.yaml#/components/responses/500'\n'503':\n$ref: 'TS29122_CommonData.yaml#/components/responses/503'\ndefault:\n$ref: 'TS29122_CommonData.yaml#/components/responses/default'\n# Components\ncomponents:\nsecuritySchemes:\noAuth2ClientCredentials:\ntype: oauth2\nflows:\nclientCredentials:\ntokenUrl: '{tokenUrl}'\nscopes: {}\nschemas:\n#\n# STRUCTURED DATA TYPES\n#\nServiceSwitchInfo:\ntype: object\ndescription: Represents an Individual Service Switch Information Subscription.\nproperties:\nsubsEvent:\n$ref: '#/components/schemas/EventType'\nnotificationAddr:\n$ref: 'TS29122_CommonData.yaml#/components/schemas/Uri'\npinId:\ntype: string\ndescription: Identifies a PIN.\nexpTime:\n$ref: 'TS29122_CommonData.yaml#/components/schemas/DateTime'\nsuppFeat:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'\nrequired:\n- subsEvent\n- notificationAddr\n- pinId\nServiceSwitchInfoPatch:\ntype: object\ndescription: Represents the partial update of Individual Service Switch Information.\nproperties:\nsubsEvent:\n$ref: '#/components/schemas/EventType'\nnotificationAddr:\n$ref: 'TS29122_CommonData.yaml#/components/schemas/Uri'\npinId:\ntype: string\ndescription: Identifies a PIN.\nexpTime:\n$ref: 'TS29122_CommonData.yaml#/components/schemas/DateTime'\nServiceSwitchInfoNotification:\ntype: object\ndescription: Represent the service switch information for notification.\nproperties:\nsubsId:\ntype: string\ndescription: >\nIdentifies the individual service switch information subscription for which\nthe service switch information notification is delivered.\nrepInfo:\n$ref: '#/components/schemas/ServiceSwitchReportInfo'\nrequired:\n- subsId\n- repInfo\nServiceSwitchReportInfo:\ntype: object\ndescription: List of notifications that include the information of the service switch.\nproperties:\nacId:\ntype: string\ndescription: Identifies an application client identifier.\npinId:\ntype: string\ndescription: Identifies a PIN.\nsessionId:\ntype: string\ndescription: Identifies an application session.\ntargetPineId:\ntype: string\ndescription: Identifies the PINE that the service is switched to.\nsessionDes:\n$ref: 'TS29122_CommonData.yaml#/components/schemas/FlowInfo'\nrequired:\n- acId\n- pinId\n- sessionId\n- targetPineId\n#\n# ENUMERATIONS\n#\nEventType:\nanyOf:\n- type: string\nenum:\n- SERVICE_SWITCH_INFO\n- type: string\ndescription: >\nThis string provides forward-compatibility with future extensions to the enumeration\nand is not used to encode content defined in the present version of this API.\ndescription: |\nIndicates service switch type.\nPossible values are:\n- SERVICE_SWITCH_INFO: Indicates service switch type(s).\nA.4\tPIN_ASServiceContinuity API\nopenapi: 3.0.0\ninfo:\ntitle: PIN Server Service Continuity Service\nversion: 1.0.0\ndescription: |\nPIN Server Service Continuity Information Service.\n© 2024, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).\nAll rights reserved.\nexternalDocs:\ndescription: >\n3GPP TS 29.583 V18.1.0; Application layer support for Personal IoT Network (PINAPP);\nPersonal IoT Network (PIN) Server Services; Stage 3.\nurl: http://www.3gpp.org/ftp/Specs/archive/29_series/29.583\nservers:\n- url: '{apiRoot}/pin-as-servicecontinuity/v1'\nvariables:\napiRoot:\ndefault: https://example.com\ndescription: apiRoot as defined in clause 6.3.1 of 3GPP TS 29.583.\nsecurity:\n- {}\n- oAuth2ClientCredentials: []\npaths:\n/subscriptions:\npost:\nsummary: Creates a new Individual Service Continuity Information Subscriptions resource\noperationId: CreateServiceContinuityInfo\ntags:\n- Service Continuity Information Subscriptions (Collection)\ndescription: Create a Subscription for reporting service continuity information to PAS.\nrequestBody:\nrequired: true\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/ServiceContinuityInfo'\nresponses:\n'201':\ndescription: >\nCreated. The individual Service Continuity information subscription resource is\ncreated successfully.\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/ServiceContinuityInfo'\nheaders:\nLocation:\ndescription: 'Contains the URI of the newly created resource'\nrequired: true\nschema:\ntype: string\n'400':\n$ref: 'TS29122_CommonData.yaml#/components/responses/400'\n'401':\n$ref: 'TS29122_CommonData.yaml#/components/responses/401'\n'403':\n$ref: 'TS29122_CommonData.yaml#/components/responses/403'\n'404':\n$ref: 'TS29122_CommonData.yaml#/components/responses/404'\n'411':\n$ref: 'TS29122_CommonData.yaml#/components/responses/411'\n'413':\n$ref: 'TS29122_CommonData.yaml#/components/responses/413'\n'415':\n$ref: 'TS29122_CommonData.yaml#/components/responses/415'\n'429':\n$ref: 'TS29122_CommonData.yaml#/components/responses/429'\n'500':\n$ref: 'TS29122_CommonData.yaml#/components/responses/500'\n'503':\n$ref: 'TS29122_CommonData.yaml#/components/responses/503'\ndefault:\n$ref: 'TS29122_CommonData.yaml#/components/responses/default'\ncallbacks:\nServiceContinuityInfoNotification:\n'{$request.body#/notificationAddr}':\npost:\nrequestBody:\nrequired: true\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/ServiceContinuityInfoNotification'\nresponses:\n'204':\ndescription: No Content (successful notification)\n'307':\n$ref: 'TS29122_CommonData.yaml#/components/responses/307'\n'308':\n$ref: 'TS29122_CommonData.yaml#/components/responses/308'\n'400':\n$ref: 'TS29122_CommonData.yaml#/components/responses/400'\n'401':\n$ref: 'TS29122_CommonData.yaml#/components/responses/401'\n'403':\n$ref: 'TS29122_CommonData.yaml#/components/responses/403'\n'404':\n$ref: 'TS29122_CommonData.yaml#/components/responses/404'\n'411':\n$ref: 'TS29122_CommonData.yaml#/components/responses/411'\n'413':\n$ref: 'TS29122_CommonData.yaml#/components/responses/413'\n'415':\n$ref: 'TS29122_CommonData.yaml#/components/responses/415'\n'429':\n$ref: 'TS29122_CommonData.yaml#/components/responses/429'\n'500':\n$ref: 'TS29122_CommonData.yaml#/components/responses/500'\n'503':\n$ref: 'TS29122_CommonData.yaml#/components/responses/503'\ndefault:\n$ref: 'TS29122_CommonData.yaml#/components/responses/default'\n/subscriptions/{subscriptionId}:\nparameters:\n- name: subscriptionId\nin: path\ndescription: Subscription Id.\nrequired: true\nschema:\ntype: string\nget:\nsummary: Read an Individual Service Continuity Information Subscriptions resource\noperationId: ReadIndServiceContinuityInfo\ntags:\n- Individual Service Continuity Information Subscription (Document)\nresponses:\n'200':\ndescription: OK (Successfully get the Service Continuity information subscription).\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/ServiceContinuityInfo'\n'307':\n$ref: 'TS29122_CommonData.yaml#/components/responses/307'\n'308':\n$ref: 'TS29122_CommonData.yaml#/components/responses/308'\n'400':\n$ref: 'TS29122_CommonData.yaml#/components/responses/400'\n'401':\n$ref: 'TS29122_CommonData.yaml#/components/responses/401'\n'403':\n$ref: 'TS29122_CommonData.yaml#/components/responses/403'\n'404':\n$ref: 'TS29122_CommonData.yaml#/components/responses/404'\n'406':\n$ref: 'TS29122_CommonData.yaml#/components/responses/406'\n'429':\n$ref: 'TS29122_CommonData.yaml#/components/responses/429'\n'500':\n$ref: 'TS29122_CommonData.yaml#/components/responses/500'\n'503':\n$ref: 'TS29122_CommonData.yaml#/components/responses/503'\ndefault:\n$ref: 'TS29122_CommonData.yaml#/components/responses/default'\nput:\nsummary: Update an Individual Service Continuity Information Subscriptions resource\noperationId: UpdateIndServiceContinuityInfo\ntags:\n- Individual Service Continuity Information Subscription (Document)\nrequestBody:\nrequired: true\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/ServiceContinuityInfo'\nresponses:\n'200':\ndescription: OK (Successfully modified The individual Service Continuity information).\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/ServiceContinuityInfo'\n'204':\ndescription: No Content.\n'400':\n$ref: 'TS29122_CommonData.yaml#/components/responses/400'\n'401':\n$ref: 'TS29122_CommonData.yaml#/components/responses/401'\n'403':\n$ref: 'TS29122_CommonData.yaml#/components/responses/403'\n'404':\n$ref: 'TS29122_CommonData.yaml#/components/responses/404'\n'411':\n$ref: 'TS29122_CommonData.yaml#/components/responses/411'\n'413':\n$ref: 'TS29122_CommonData.yaml#/components/responses/413'\n'415':\n$ref: 'TS29122_CommonData.yaml#/components/responses/415'\n'429':\n$ref: 'TS29122_CommonData.yaml#/components/responses/429'\n'500':\n$ref: 'TS29122_CommonData.yaml#/components/responses/500'\n'503':\n$ref: 'TS29122_CommonData.yaml#/components/responses/503'\ndefault:\n$ref: 'TS29122_CommonData.yaml#/components/responses/default'\npatch:\nsummary: Modify an Individual Service Continuity Information Subscriptions resource\noperationId: ModifyIndServiceContinuityInfo\ntags:\n- Individual Service Continuity Information Subscription (Document)\nrequestBody:\ndescription: Partial update an existing Individual ServiceContinuity information.\nrequired: true\ncontent:\napplication/merge-patch+json:\nschema:\n$ref: '#/components/schemas/ServiceContinuityInfoPatch'\nresponses:\n'200':\ndescription: >\nOK (The Individual ServiceContinuity information Subscription is successfully modified\nand the updated subscription information is returned in the response).\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/ServiceContinuityInfo'\n'204':\ndescription: >\nNo Content (The individual Service Continuity information subscription was modified\nsuccessfully).\n'307':\n$ref: 'TS29122_CommonData.yaml#/components/responses/307'\n'308':\n$ref: 'TS29122_CommonData.yaml#/components/responses/308'\n'400':\n$ref: 'TS29122_CommonData.yaml#/components/responses/400'\n'401':\n$ref: 'TS29122_CommonData.yaml#/components/responses/401'\n'403':\n$ref: 'TS29122_CommonData.yaml#/components/responses/403'\n'404':\n$ref: 'TS29122_CommonData.yaml#/components/responses/404'\n'411':\n$ref: 'TS29122_CommonData.yaml#/components/responses/411'\n'413':\n$ref: 'TS29122_CommonData.yaml#/components/responses/413'\n'415':\n$ref: 'TS29122_CommonData.yaml#/components/responses/415'\n'429':\n$ref: 'TS29122_CommonData.yaml#/components/responses/429'\n'500':\n$ref: 'TS29122_CommonData.yaml#/components/responses/500'\n'503':\n$ref: 'TS29122_CommonData.yaml#/components/responses/503'\ndefault:\n$ref: 'TS29122_CommonData.yaml#/components/responses/default'\ndelete:\nsummary: Delete an Individual Service Continuity Information Subscriptions resource\noperationId: DeleteIndServiceContinuityInfo\ntags:\n- Individual Service Continuity Information Subscription (Document)\nresponses:\n'204':\ndescription: The individual subscription is deleted.\n'307':\n$ref: 'TS29122_CommonData.yaml#/components/responses/307'\n'308':\n$ref: 'TS29122_CommonData.yaml#/components/responses/308'\n'400':\n$ref: 'TS29122_CommonData.yaml#/components/responses/400'\n'401':\n$ref: 'TS29122_CommonData.yaml#/components/responses/401'\n'403':\n$ref: 'TS29122_CommonData.yaml#/components/responses/403'\n'404':\n$ref: 'TS29122_CommonData.yaml#/components/responses/404'\n'429':\n$ref: 'TS29122_CommonData.yaml#/components/responses/429'\n'500':\n$ref: 'TS29122_CommonData.yaml#/components/responses/500'\n'503':\n$ref: 'TS29122_CommonData.yaml#/components/responses/503'\ndefault:\n$ref: 'TS29122_CommonData.yaml#/components/responses/default'\n# Components\ncomponents:\nsecuritySchemes:\noAuth2ClientCredentials:\ntype: oauth2\nflows:\nclientCredentials:\ntokenUrl: '{tokenUrl}'\nscopes: {}\nschemas:\nServiceContinuityInfo:\ntype: object\ndescription: Represents an Individual Service Continuity Information Subscription.\nproperties:\nsubsEvent:\n$ref: '#/components/schemas/EventType'\nnotificationAddr:\n$ref: 'TS29122_CommonData.yaml#/components/schemas/Uri'\npinId:\ntype: string\ndescription: Identifies a PIN.\nexpTime:\n$ref: 'TS29122_CommonData.yaml#/components/schemas/DateTime'\nsuppFeat:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'\nrequired:\n- subsEvent\n- notificationAddr\n- pinId\nServiceContinuityInfoPatch:\ntype: object\ndescription: Represents the partial update of Individual Service Continuity Information.\nproperties:\nsubsEvent:\n$ref: '#/components/schemas/EventType'\nnotificationAddr:\n$ref: 'TS29122_CommonData.yaml#/components/schemas/Uri'\npinId:\ntype: string\ndescription: Identifies a PIN.\nexpTime:\n$ref: 'TS29122_CommonData.yaml#/components/schemas/DateTime'\nServiceContinuityInfoNotification:\ntype: object\ndescription: Represent the service continuity information for notification.\nproperties:\nsubsId:\ntype: string\ndescription: >\nIdentifies the individual service continuity information subscription for which\nthe service continuity information notification is delivered.\nrepInfo:\n$ref: '#/components/schemas/ServiceContinuityReportInfo'\nrequired:\n- subsId\n- repInfo\nServiceContinuityReportInfo:\ntype: object\ndescription: List of notifications that include the information of the service continuity.\nproperties:\nacId:\ntype: string\ndescription: Identifies an application client identifier.\npinId:\ntype: string\ndescription: Identifies a PIN.\npegcId:\ntype: string\ndescription: Identifies a PEGC.\nserviceId:\ntype: string\ndescription: Identifies a PIN service.\nsessionId:\ntype: string\ndescription: Identifies an application session.\ntargetPineId:\ntype: string\ndescription: Identifies the PINE.\nsessionDes:\n$ref: 'TS29122_CommonData.yaml#/components/schemas/FlowInfo'\nrequired:\n- acId\n- pinId\n- pegcId\n- serviceId\n- sessionId\n- targetPineId\n#\n# ENUMERATIONS\n#\nEventType:\nanyOf:\n- type: string\nenum:\n- SERVICE_CONTINUITY_INFO\n- type: string\ndescription: >\nThis string provides forward-compatibility with future\nextensions to the enumeration and is not used to encode\ncontent defined in the present version of this API.\ndescription: |\nIndicates service continuity happens in a PIN.\nPossible values are:\n- SERVICE_CONTINUITY_INFO: Indicates service continuity happens in a PIN.\nAnnex B (informative):Change history\nChange history\nDate\nMeeting\nTDoc\nCR\nRev\nCat\nSubject/Comment\nNew version\n2023-03\nCT3#126\nTS skeleton for Application layer support for Personal IoT Network (PINAPP); Personal IoT Network (PIN) Server Services.\n0.0.0\n2023-04\nCT3#127e\nC3-231511\nInclusion of C3-231265\n0.1.0\n2023-09\nCT3#129\nC3-233739\nInclusion of C3-233576, C3-233688, C3-233689, C3-233690\nEditorial correction from the rapporteur.\n0.2.0\n2023-10\nCT3#130\nC3-234662\nInclusion of C3-234511, C3-234512, C3-234514, C3-234602, C3-234603\nEditorial correction from the rapporteur.\n0.3.0\n2023-11\nCT3#131\nC3-235465\nInclusion of C3-235521, C3-235522, C3-235546, C3-235552\nEditorial correction from the rapporteur.\n0.4.0\n2023-12\nCT#102\nCP-233291\nPresentation to TSG CT for information.\n1.0.0\n2024-03\nCT3#133\nC3-241655\nInclusion of C3-241545, C3-241546, C3-241547, C3-241575, C3-241592\nEditorial correction from the rapporteur.\n1.1.0\n2024-03\nCT#103\nCP-240216\nPresentation to TSG CT for approval.\n2.0.0\n2024-03\nCT#103\nCP-240216\nApproved by TSG CT.\n18.0.0\n2024-06\nCT#104\nCP-241110\n0001\n1\nF\nClarification on procedure name in overview clause\n18.1.0\n2024-06\nCT#104\nCP-241110\n0002\n3\nF\nCorrection on Service Switch Information Update\n18.1.0\n2024-06\nCT#104\nCP-241110\n0003\n1\nF\nSeveral OpenAPI Corrections\n18.1.0\n2024-06\nCT#104\nCP-241110\n0004\n-\nF\nCorrections to the data structures in the response body.\n18.1.0\n2024-06\nCT#104\nCP-241110\n0005\n2\nF\nCorrections to PIN_ASRegistration data model and open API\n18.1.0\n2024-06\nCT#104\nCP-241110\n0006\n1\nF\nCorrections on PIN_ASRegistration API\n18.1.0\n2024-06\nCT#104\nCP-241110\n0007\n1\nF\nCorrections on PIN_ASServiceContinuity API\n18.1.0\n2024-06\nCT#104\nCP-241110\n0008\n1\nF\nCorrections on PIN_ASServiceSwitch API\n18.1.0\n2024-06\nCT#104\nCP-241086\n0009\n-\nF\nUpdate of info and externalDocs fields\n18.1.0\n2024-07\nCT#104\nCorrection to fix OpenAPI parsing errors\n18.1.1",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.222_clause_5.6.2.4",
+        "ts_29.222_clause_5.6.2.3.2",
+        "ts_29.501_clause_5.3.1",
+        "ts_29.501_clause_5",
+        "ts_29.583_clause_6.1",
+        "ts_29.583_clause_6.2",
+        "ts_29.583_clause_6.3.1",
+        "clause_18.1.0",
+        "ts_29.222",
+        "ts_33.122",
+        "ts_29.501",
+        "ts_21.900",
+        "ts_29.583"
+      ]
+    }
+  ]
+}

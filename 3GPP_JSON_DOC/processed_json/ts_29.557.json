@@ -1,0 +1,631 @@
+{
+  "metadata": {
+    "specification_id": "ts_29.557",
+    "version": "18.4.0",
+    "title": "3GPP TS 29.557",
+    "file_path": "/content/drive/MyDrive/RAG_thesis/data/29_series/29557-i40/29557-i40.docx"
+  },
+  "export_info": {
+    "export_date": "2025-07-26T08:50:37.421257",
+    "total_chunks": 53
+  },
+  "chunks": [
+    {
+      "chunk_id": "ts_29.557_1",
+      "section_id": "1",
+      "section_title": "Scope",
+      "content": "The present document specifies the stage 3 protocol and data model for the Application Function ProSe Service of the 5G System. It provides stage 3 protocol definitions and message flows, and specifies the API for the Naf_ProSe service.\nThe 5G System stage 2 architecture and procedures are specified in 3GPP TS 23.501 [2], 3GPP TS 23.502 [3] and 3GPP TS 23.304 [14].\nThe Technical Realization of the Service Based Architecture and the Principles and Guidelines for Services Definition are specified in 3GPP TS 29.500 [4] and 3GPP TS 29.501 [5].\nThe Application Function ProSe Service is provided by the Application Function (AF). This service supports 5G ProSe Direct Discovery authorization.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.501",
+        "ts_23.502",
+        "ts_23.304",
+        "ts_29.500",
+        "ts_29.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.557_2",
+      "section_id": "2",
+      "section_title": "References",
+      "content": "The following documents contain provisions which, through reference in this text, constitute provisions of the present document.\n-\tReferences are either specific (identified by date of publication, edition number, version number, etc.) or non‑specific.\n-\tFor a specific reference, subsequent revisions do not apply.\n-\tFor a non-specific reference, the latest version applies. In the case of a reference to a 3GPP document (including a GSM document), a non-specific reference implicitly refers to the latest version of that document in the same Release as the present document.\n[1]\t3GPP TR 21.905: \"Vocabulary for 3GPP Specifications\".\n[2]\t3GPP TS 23.501: \"System Architecture for the 5G System; Stage 2\".\n[3]\t3GPP TS 23.502: \"Procedures for the 5G System; Stage 2\".\n[4]\t3GPP TS 29.500: \"5G System; Technical Realization of Service Based Architecture; Stage 3\".\n[5]\t3GPP TS 29.501: \"5G System; Principles and Guidelines for Services Definition; Stage 3\".\n[6]\tOpenAPI: \"OpenAPI Specification Version 3.0.0\", https://spec.openapis.org/oas/v3.0.0.\n[7]\t3GPP TR 21.900: \"Technical Specification Group working methods\".\n[8]\t3GPP TS 33.501: \"Security architecture and procedures for 5G system\".\n[9]\tIETF RFC 6749: \"The OAuth 2.0 Authorization Framework\".\n[10]\t3GPP TS 29.510: \"5G System; Network Function Repository Services; Stage 3\".\n[11]\tIETF RFC 9113: \"HTTP/2\".\n[12]\tIETF RFC 8259: \"The JavaScript Object Notation (JSON) Data Interchange Format\".\n[13]\tIETF RFC 9457: \"Problem Details for HTTP APIs\".\n[14]\t3GPP TS 23.304: \"Proximity based Services (ProSe) in the 5G System (5GS); Stage 2\".\n[15]\t3GPP TS 23.303: \"Proximity-based services (ProSe); Stage 2\".\n[16]\t3GPP TS 29.555: \"5G System; 5G Direct Discovery Name Management Services; Stage 3\".\n[17]\tIETF RFC 7396: \"JSON Merge Patch\".\n[18]\t3GPP TS 29.571: \"5G System; Common Data Types for Service Based Interfaces; Stage 3\".",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905",
+        "ts_23.501",
+        "ts_23.502",
+        "ts_29.500",
+        "ts_29.501",
+        "ts_21.900",
+        "ts_33.501",
+        "ts_29.510",
+        "ts_23.304",
+        "ts_23.303",
+        "ts_29.555",
+        "ts_29.571"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.557_3.1",
+      "section_id": "3.1",
+      "section_title": "Definitions",
+      "content": "For the purposes of the present document, the terms and definitions given in 3GPP TR 21.905 [1] and the following apply. A term defined in the present document takes precedence over the definition of the same term, if any, in 3GPP TR 21.905 [1].",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_21.905"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.557_3.2",
+      "section_id": "3.2",
+      "section_title": "Symbols",
+      "content": "Void.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.557_3.3",
+      "section_id": "3.3",
+      "section_title": "Abbreviations",
+      "content": "For the purposes of the present document, the abbreviations given in 3GPP TR 21.905 [1] and the following apply. An abbreviation defined in the present document takes precedence over the definition of the same abbreviation, if any, in 3GPP TR 21.905 [1].\n5G DDNMF\t5G Direct Discovery Name Management Function\n5G ProSe\t5G Proximity-based Services\nRPAUID\tRestricted ProSe Application User ID\nPDUID\tProSe Discovery UE ID",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.557_4",
+      "section_id": "4",
+      "section_title": "Overview",
+      "content": "The Application Function ProSe (Naf_ProSe) Service, as defined in clause 7.2.2 of 3GPP TS 23.304 [14], is provided by the Application Function (AF) which owns the functionality of ProSe Application Server.\nFigure 4-1 and figure 4-2 provide the reference architecture (in service-based interface representation and reference point representation), with focus on the ProSe Service of the Application Function.\nThe Naf_ProSe Service is part of the Naf service-based interface exhibited by the AF. The service is provided by the AF and consumed by NF service consumers (e.g., 5G DDNMF), as shown in figure 4-1 for the SBI representation and figure 4-2 for the reference point model.\nFigure 4-1: Naf_ProSe Service architecture, SBI representation\nFigure 4-2: Naf_ProSe Service architecture, reference point representation",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_23.304_clause_7.2.2",
+        "figure_4-1",
+        "figure_4-2",
+        "ts_23.304"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.557_5.1",
+      "section_id": "5.1",
+      "section_title": "Introduction",
+      "content": "Table 5.1-1 shows the Application Function ProSe Services and the corresponding Service Operations.\nTable 5.1-1: Application Function ProSe Services\nService Name\nService Operations\nOperation\nSemantics\nExample Consumer(s)\nNaf_ProSe\nDiscoveryAuthorization\nRequest/Response\n5G DDNMF\nDiscoveryAuthorizationUpdateNotify\nSubscribe/Notify\n5G DDNMF\nDiscoveryAuthorizationResultUpdate\nRequest/Response\n5G DDNMF\nTable 5.1-2 summarizes the corresponding APIs defined in this specification.\nTable 5.1-2: API Descriptions\nService Name\nClause\nDescription\nOpenAPI Specification File\napiName\nAnnex\nNaf_ProSe\n6.1\nApplication Function ProSe Service\nTS29557_Naf_ProSe\nnaf-prose\nA.2",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.1-1",
+        "table_5.1-2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.557_5.2.1",
+      "section_id": "5.2.1",
+      "section_title": "Service Description",
+      "content": "The Naf_ProSe Service enables NF service consumers (e.g., 5G DDNMF) to request authorization for a UE of a 5G ProSe Discovery request.\nThis service hence supports the following functionalities:\n-\tmapping of RPAUID and PDUID and authentication of the RPAUID(s) for restricted 5G ProSe Direct Discovery;\n-\tallocation of a ProSe Application Code Suffix pool, if open 5G ProSe Direct Discovery with application-controlled extension is used;\n-\tallocation of mask(s) for the ProSe Application Code Suffix(es), if open 5G ProSe Direct Discovery with application-controlled extension is used;\n-\tallocation of a ProSe Restricted Code Suffix pool, if restricted 5G ProSe Direct Discovery with application-controlled extension is used;\n-\tallocation of mask(s) for ProSe Restricted Code Suffix, if restricted 5G ProSe Direct Discovery with application-controlled extension is used; and\n-\tupdate of authorization information to revoke Restricted ProSe Direct Discovery permission(s).",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.557_5.2.2.1",
+      "section_id": "5.2.2.1",
+      "section_title": "Introduction",
+      "content": "The service operations defined for the Naf_ProSe Service are as follows:\n-\tDiscoveryAuthorization: It allows a NF service consumer (e.g. 5G DDNMF) to request the authorization for a UE of a 5G ProSe Direct Discovery request.\n-\tDiscoveryAuthorizationUpdateNotify: It allows an AF to update the authorization information to revoke discovery permissions related to some other users at the NF service consumer for Restricted ProSe Direct Discovery.\n-\tDiscoveryAuthorizationResultUpdate: It allows a NF service consumer (e.g. 5G DDNMF) to inform the AF of the revocation result associated to the update of authorization information for Restricted ProSe Direct Discovery.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.557_5.2.2.2.1",
+      "section_id": "5.2.2.2.1",
+      "section_title": "General",
+      "content": "The DiscoveryAuthorization service operation is used by a NF service consumer (e.g. 5G DDNMF) to obtain the authorization for a UE of a 5G ProSe Direct Discovery request, i.e. detect and identify other UEs in proximity using NR radio signals.\nThe following procedures are supported using the DiscoveryAuthorization Service Operation:\n-\tAuth Request procedures (see clause 6.3 of 3GPP TS 23.304 [14], and clause 5.3 of 3GPP TS 23.303 [15]).",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_23.304_clause_6.3",
+        "ts_23.304_clause_5.3",
+        "ts_23.303_clause_5.3",
+        "ts_23.304",
+        "ts_23.303"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.557_5.2.2.2.2",
+      "section_id": "5.2.2.2.2",
+      "section_title": "Auth Request procedures using DiscoveryAuthorization service operation",
+      "content": "These procedures are invoked by a NF service consumer (e.g., HPLMN 5G DDNMF) towards an AF to request the authorization for a UE to perform 5G ProSe Direct Discovery.\nFigure 5.2.2.2.2-1: Authorization of Discovery Request for a UE\n1.\tIn order to request the authorization for a UE of a 5G ProSe Direct Discovery request, the NF service consumer shall send an HTTP POST request with the request URI set to \"{apiRoot}/naf-prose/<apiVersion>/authorize-discovery\" and the request body containing the AuthDisReqData data structure, as described in figure 5.2.2.2.2-1.\nThe AuthDisReqData data structure shall contain the authorization request type related to the received 5G ProSe Direct Discovery request within the \"authRequestType\" attribute. The remaining content of the AuthDisReqData data structure differs according to the following cases, as defined in clauses 5.2.2.2.3, 5.2.2.2.4, 5.2.2.2.5, 5.2.2.2.6 and 5.2.2.2.7:\n-\tOpen 5G ProSe Direct Discovery request with application-controlled extension initiated by an announcing UE (see clause 5.3.3 of 3GPP TS 23.303 [15]). This is defined in clause 5.2.2.2.3.\n-\tOpen 5G ProSe Direct Discovery request with application-controlled extension initiated by a monitoring UE (see clause 5.3.3 of 3GPP TS 23.303 [15]). This is defined in clause 5.2.2.2.3.\n-\tRestricted 5G ProSe Direct Discovery request initiated by an announcing UE (see clause 5.3.3 of 3GPP TS 23.303 [15]). This is defined in clause 5.2.2.2.4.\n-\tRestricted 5G ProSe Direct Discovery request with application-controlled extension initiated by an announcing UE (see clause 5.3.3 of 3GPP TS 23.303 [15]). This is defined in clause 5.2.2.2.5.\n-\tRestricted 5G ProSe Direct Discovery request initiated by a monitoring UE (see clause 5.3.3 of 3GPP TS 23.303 [15]). This is defined in clause 5.2.2.2.4.\n-\tRestricted 5G ProSe Direct Discovery request with application-controlled extension initiated by a monitoring UE (see clause 5.3.3 of 3GPP TS 23.303 [15]). This is defined in clause 5.2.2.2.5.\n-\tRestricted 5G ProSe Direct Discovery request initiated by a discoveree UE (see clause 5.3.3A of 3GPP TS 23.303 [15]). This is defined in clause 5.2.2.2.6.\n-\tRestricted 5G ProSe Direct Discovery request initiated by a discoverer UE (see clause 5.3.3A of 3GPP TS 23.303 [15]). This is defined in clause 5.2.2.2.7.\n-\tRestricted 5G ProSe Direct Discovery match report (see clauses 5.3.4 and 5.3.4A of 3GPP TS 23.303 [15]). This is defined in clause 5.2.2.2.3.\n2a\tOn success, a response with HTTP \"200 OK\" status code shall be returned. The response body shall contain the parameters related to the 5G ProSe Direct Discovery authorization response data within the AuthDisResData data structure. The content of the AuthDisResData data structure also differs according to the above listed cases in step 1, as defined in clauses 5.2.2.2.3, 5.2.2.2.4, 5.2.2.2.5, 5.2.2.2.6 and 5.2.2.2.7.\n2b\tOn failure, one of the HTTP status codes listed in table 6.1.4.2.2-2 may be returned. For a 4xx/5xx response, the message body may contain a ProblemDetails structure with the \"cause\" attribute set to one of the application errors listed in table 6.1.7.3-1.",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "ts_23.303_clause_5.3.3",
+        "clause_5.2.2.2.3",
+        "clause_5.2.2.2.4",
+        "clause_5.2.2.2.5",
+        "clause_5.2.2.2.6",
+        "clause_5.2.2.2.7",
+        "table_6.1.4.2.2-2",
+        "table_6.1.7.3-1",
+        "figure_5.2.2.2.2-1",
+        "ts_23.303"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.557_5.2.2.2.3",
+      "section_id": "5.2.2.2.3",
+      "section_title": "Open 5G ProSe Direct Discovery (Model A) with application-controlled extension",
+      "content": "When Open 5G ProSe Direct Discovery (Model A) with application-controlled extension is used, the NF service consumer (e.g., 5G DDNMF) shall provide the following attributes within the AuthDisReqData data structure, as specified in clause 6.3 of 3GPP TS 23.304 [14] and clauses 5.3.3.2, 5.3.3.3, 5.3.3.4 and 5.3.3.5 of 3GPP TS 23.303 [15]:\n-\tWhen the 5G ProSe Direct Discovery request is initiated by an announcing UE:\n-\tthe ProSe Application ID within the \"proseAppId\" attribute, indicating what the UE is interested to announce;\n-\tthe allowed number of suffixes within the \"allowedSuffixNum\" attribute, indicating how many ProSe Application Code Suffixes the ProSe Application Server can assign for the UE;\n-\tthe application level container within the \"appLevelContainer\" attribute, containing the request and any relevant information for the 5G ProSe AF to assign a (set of) ProSe Application Code Suffix(es); and\n-\tthe authorization request type set to \"OPEN_DISCOVERY_EXTENSION_ANNOUNCE\" within the \"authRequestType\" attribute.\n-\tWhen the 5G ProSe Direct Discovery request is initiated by a monitoring UE:\n-\tthe ProSe Application ID(s) within the \"proseAppId\" attribute, indicating what the UE is interested to monitor;\n-\tthe application level container within the \"appLevelContainer\" attribute, containing the request and information corresponding to the ProSe Application Code Suffix; and\n-\tthe authorization request type set to \"OPEN_DISCOVERY_EXTENSION_MONITOR\" within the \"authRequestType\" attribute.\nIf the processing of the request is successful, the 5G ProSe AF shall provide the following attributes within the AuthDisResData data structure, also as specified in clause 6.3 of 3GPP TS 23.304 [14] and clauses 5.3.3.2, 5.3.3.3, 5.3.3.4 and 5.3.3.5 of 3GPP TS 23.303 [15]:\n-\tWhen the 5G ProSe Direct Discovery request is initiated by an announcing UE:\n-\tthe ProSe Application Code Suffix Pool within the \"proseAppCodeSuffixPool\" attribute, containing the Suffix(es) allocated by the 5G ProSe AF based on the inputs provided by the NF service consumer (e.g. 5G DDNMF) in the associated request; and\n-\tthe authorization response type set to \"OPEN_DISCOVERY_EXTENSION_ANNOUNCE_ACK\" within the \"authResponseType\" attribute.\n-\tWhen the 5G ProSe Direct Discovery request is initiated by a monitoring UE:\n-\tthe mask(s) for the ProSe Application Code Suffix(es) within the \"proseAppMasks\" attribute, corresponding to ProSe Application ID provided by the NF service consumer (e.g. 5G DDNMF) in the related request; and\n-\tthe authorization response type set to \"OPEN_DISCOVERY_EXTENSION_MONITOR_ACK\" within the \"authResponseType\" attribute.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_23.304_clause_6.3",
+        "ts_23.304",
+        "ts_23.303"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.557_5.2.2.2.4",
+      "section_id": "5.2.2.2.4",
+      "section_title": "Restricted 5G ProSe Direct Discovery (Model A)",
+      "content": "When Restricted 5G ProSe Direct Discovery (Model A) is used, the NF service consumer (e.g., 5G DDNMF) shall provide the following attributes within the AuthDisReqData data structure, as specified in clause 6.3 of 3GPP TS 23.304 [14] and clauses 5.3.3.2A, 5.3.3.3A, 5.3.3.4A and 5.3.3.5A of 3GPP TS 23.303 [15]:\n-\tWhen the 5G ProSe Direct Discovery request is initiated by an announcing UE:\n-\tthe RPAUID within the \"rpauid\" attribute, indicating what the UE is interested to announce; and\n-\tthe authorization request type set to \"RESTRICTED_DISCOVERY_ANNOUNCE\" within the \"authRequestType\" attribute.\n-\tWhen the 5G ProSe Direct Discovery request is initiated by a monitoring UE:\n-\tthe authorization request type set to either \"RESTRICTED_DISCOVERY_MONITOR\" or \"RESTRICTED_DISCOVERY_PERMISSION\" within the \"authRequestType\" attribute; and\n-\tif the authorization request type is set to \"RESTRICTED_DISCOVERY_MONITOR\":\n-\tthe RPAUID within the \"rpauid\" attribute, indicating the identity that the UE uses to obtain the permission to monitor; and\n-\tthe application level container within the \"appLevelContainer\" attribute, containing the Target RPAUID(s) indicating what the UE is interested to monitor;\notherwise,\n-\tif the authorization request type is set to \"RESTRICTED_DISCOVERY_PERMISSION\":\n-\tthe RPAUID within the \"rpauid\" attribute, indicating the identity that the UE uses to obtain the permission to monitor; and\n-\tthe target RPAUID within the \"targetRpauid\" attribute, containing the Target RPAUID.\nIf the processing of the request is successful, the 5G ProSe AF shall provide the following attributes within the AuthDisResData data structure, also as specified in clause 6.3 of 3GPP TS 23.304 [14] and clauses 5.3.3.2A, 5.3.3.3A, 5.3.3.4A and 5.3.3.5A of 3GPP TS 23.303 [15]:\n-\tWhen the 5G ProSe Direct Discovery request is initiated by an announcing UE:\n-\tthe PDUID(s) within the \"pduids\" attribute, containing the PDUID(s) corresponding to the provided RPAUID; and\n-\tthe authorization response type set to \"RESTRICTED_DISCOVERY_ANNOUNCE_ACK\" within the \"authResponseType\" attribute.\n-\tWhen the 5G ProSe Direct Discovery request is initiated by a monitoring UE:\n-\tthe authorization response type set to either \"RESTRICTED_DISCOVERY_MONITOR_ACK\" or \"RESTRICTED_DISCOVERY_PERMISSION_ACK\" within the \"authResponseType\" attribute; and\n-\tif the authorization response type is set to \"RESTRICTED_DISCOVERY_MONITOR_ACK\":\n-\tthe PDUID within the \"pduids\" attribute, containing the PDUID corresponding to the provided RPAUID;\n-\ta response application level container within the \"appLevelContainer\" attribute, containing the successfully authenticated Target RPAUID(s); and\n-\tN sets of Target PDUID - Target RPAUID - Metadata Indicator within the \"targetDataSet\" attribute, containing N sets of Target PDUID - Target RPAUID - Metadata Indicator (Each Target PDUID is returned with the corresponding Target RPAUID(s) that the RPAUID is allowed to discover);\nNOTE:\tThe Metadata Indicator is optional. It indicates whether there is metadata associated with the RPAUID, and if so, whether updating this metadata is allowed.\notherwise,\n-\tif the authorization response type is set to \"RESTRICTED_DISCOVERY_PERMISSION_ACK\":\n-\tthe target PDUID within the \"targetPduid\" attribute, containing the Target PDUID.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_23.304_clause_6.3",
+        "ts_23.304",
+        "ts_23.303"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.557_5.2.2.2.5",
+      "section_id": "5.2.2.2.5",
+      "section_title": "Restricted 5G ProSe Direct Discovery (Model A) with application-controlled extension",
+      "content": "When Restricted 5G ProSe Direct Discovery (Model A) is used, the NF service consumer (e.g., 5G DDNMF) shall provide the following attributes within the AuthDisReqData data structure, as specified in clause 6.3 of 3GPP TS 23.304 [14] and clauses 5.3.3.2A, 5.3.3.3A, 5.3.3.4A and 5.3.3.5A of 3GPP TS 23.303 [15]:\n-\tWhen the 5G ProSe Direct Discovery request is initiated by an announcing UE:\n-\tthe RPAUID within the \"rpauid\" attribute, indicating what the UE is interested to announce;\n-\tthe allowed number of suffixes within the \"allowedSuffixNum\" attribute, indicating how many ProSe Restricted Code Suffixes the ProSe Application Server can assign for the UE; and\n-\tthe authorization request type set to \"RESTRICTED_DISCOVERY_EXTENSION_ANNOUNCE\" within the \"authRequestType\" attribute.\n-\tWhen the 5G ProSe Direct Discovery request is initiated by a monitoring UE:\n-\tthe RPAUID within the \"rpauid\" attribute, indicating the identity that the UE uses to obtain the permission to monitor;\n-\tthe application level container within the \"appLevelContainer\" attribute, containing the Target RPAUID(s) indicating what the UE is interested to monitor; and\n-\tthe authorization request type set to \"RESTRICTED_DISCOVERY_EXTENSION_MONITOR\" within the \"authRequestType\" attribute.\nIf the processing of the request is successful, the 5G ProSe AF shall provide the following attributes within the AuthDisResData data structure, also as specified in clause 6.3 of 3GPP TS 23.304 [14] and clauses 5.3.3.2A, 5.3.3.3A, 5.3.3.4A and 5.3.3.5A of 3GPP TS 23.303 [15]:\n-\tWhen the 5G ProSe Direct Discovery request is initiated by an announcing UE:\n-\tthe PDUID(s) within the \"pduids\" attribute, containing the PDUID(s) corresponding to the provided RPAUID;\n-\tthe ProSe Restricted Code Suffix Pool within the \"restrictedCodeSuffixPool\" attribute, containing the Suffix(es) allocated by the 5G ProSe AF based on the inputs provided by the NF service consumer (e.g. 5G DDNMF) in the associated request; and\n-\tthe authorization response type set to \"RESTRICTED_DISCOVERY_EXTENSION_ANNOUNCE_ACK\" within the \"authResponseType\" attribute.\n-\tWhen the 5G ProSe Direct Discovery request is initiated by a monitoring UE:\n-\tthe PDUID within the \"pduids\" attribute, containing the PDUID corresponding to the provided RPAUID;\n-\ta response application level container within the \"appLevelContainer\" attribute, containing the successfully authenticated Target RPAUID(s);\n-\tN sets of Target PDUID - Target RPAUID - Metadata Indicator within the \"targetDataSet\" attribute, containing N sets of Target PDUID - Target RPAUID - Metadata Indicator (Each Target PDUID is returned with the corresponding Target RPAUID(s) that the RPAUID is allowed to discover); and\nNOTE:\tThe Metadata Indicator is optional. It indicates whether there is metadata associated with the RPAUID, and if so, whether updating this metadata is allowed.\n-\tthe authorization response type set to \"RESTRICTED_DISCOVERY_EXTENSION_MONITOR_ACK\" within the \"authResponseType\" attribute.\nThe AuthDisResData data structure may also include in this case:\n-\tthe mask(s) for the ProSe Restricted Code Suffix(es) within the \"proSeRestrictedMasks\" attribute, corresponding to each of the provided Target RPAUID(s).",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_23.304_clause_6.3",
+        "ts_23.304",
+        "ts_23.303"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.557_5.2.2.2.6",
+      "section_id": "5.2.2.2.6",
+      "section_title": "Restricted 5G ProSe Direct Discovery (Model B)",
+      "content": "When Restricted 5G ProSe Direct Discovery (Model B) is used, the NF service consumer (e.g. 5G DDNMF) shall provide the following attributes within the AuthDisReqData data structure, as specified in clause 6.3 of 3GPP TS 23.304 [14] and clauses 5.3.3A.2, 5.3.3A.3, 5.3.3A.4 and 5.3.3A.5 of 3GPP TS 23.303 [15]:\n-\tWhen the 5G ProSe Direct Discovery request is initiated by a discoveree UE:\n-\tthe RPAUID within the \"rpauid\" attribute, indicating what the UE is interested to announce; and\n-\tthe authorization request type set to \"RESTRICTED_DISCOVERY_RESPONSE\" within the \"authRequestType\" attribute.\n-\tWhen the 5G ProSe Direct Discovery request is initiated by a discoverer UE:\n-\tthe RPAUID within the \"rpauid\" attribute, indicating the identity that the UE uses to obtain the permission to discover;\n-\teither:\n-\tthe application level container within the \"appLevelContainer\" attribute (e.g. if the NF service consumer is the HPLMN 5G DDNMF), containing the Target RPAUID(s) indicating what the UE is interested to discover; or\n-\tthe target RPAUID within the \"targetRpauid\" attribute (if the NF service consumer is a 5G DDNMF located in another PLMN), containing the Target RPAUID;\nand\n-\tthe authorization request type set to \"RESTRICTED_DISCOVERY_QUERY\" within the \"authRequestType\" attribute.\nIf the processing of the request is successful, the 5G ProSe AF shall provide the following attributes within the AuthDisResData data structure, also as specified in clause 6.3 of 3GPP TS 23.304 [14] and clauses 5.3.3A.2, 5.3.3A.3, 5.3.3A.4 and 5.3.3A.5 of 3GPP TS 23.303 [15]:\n-\tWhen the 5G ProSe Direct Discovery request is initiated by a discoveree UE:\n-\tthe PDUID(s) within the \"pduids\" attribute, containing the PDUID(s) corresponding to the provided RPAUID; and\n-\tthe authorization response type set to \"RESTRICTED_DISCOVERY_RESPONSE_ACK\" within the \"authResponseType\" attribute.\n-\tWhen the 5G ProSe Direct Discovery request is initiated by a discoverer UE:\n-\tthe PDUID within the \"pduids\" attribute, containing the PDUID corresponding to the provided RPAUID;\n-\teither:\n-\tN sets of Target PDUID - Target RPAUID within the \"targetDataSet\" attribute (e.g. if the NF service consumer is the HPLMN 5G DDNMF and an application level container was received in the associated request), containing N sets of Target PDUID - Target RPAUID (Each Target PDUID is returned with the corresponding Target RPAUID(s) that the RPAUID is allowed to discover); or\n-\tthe target PDUID within the \"targetPduid\" attribute (if the NF service consumer is a 5G DDNMF located in another PLMN and only one target RPAUID was received in the associated request), containing the Target PDUID;\nand\n-\tthe authorization response type set to \"RESTRICTED_DISCOVERY_QUERY_ACK\" within the \"authResponseType\" attribute.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_23.304_clause_6.3",
+        "ts_23.304",
+        "ts_23.303"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.557_5.2.2.2.7",
+      "section_id": "5.2.2.2.7",
+      "section_title": "Restricted 5G ProSe Direct Discovery match report",
+      "content": "For a Restricted 5G ProSe Direct Discovery match report, the NF service consumer (e.g., 5G DDNMF) shall provide the following attributes within the AuthDisReqData data structure, as specified in clause 6.3 of 3GPP TS 23.304 [14] and clauses 5.3.4.1A, 5.3.4.2A, 5.3.4A.1 and 5.3.4A.2 of 3GPP TS 23.303 [15]:\n-\tthe RPAUID within the \"rpauid\" attribute, indicating what the UE is interested to announce;\n-\tthe target RPAUID within the \"targetRpauid\" attribute (if the NF service consumer is a 5G DDNMF located in another PLMN), containing the Target RPAUID; and\n-\tthe authorization request type set to \"RESTRICTED_DISCOVERY_MATCH\" within the \"authRequestType\" attribute.\nIf the processing of the request is successful, the 5G ProSe AF shall provide the following attributes within the AuthDisResData data structure, also as specified in clause 6.3 of 3GPP TS 23.304 [14] and clauses 5.3.4.1A, 5.3.4.2A, 5.3.4A.1 and 5.3.4A.2 of 3GPP TS 23.303 [15]:\n-\tthe PDUID within the \"pduids\" attribute, containing the PDUID corresponding to the provided RPAUID;\n-\tthe target PDUID within the \"targetPduid\" attribute, containing the Target PDUID;\n-\tthe metadata within the \"metaData\" attribute, corresponding to the Target PDUID; and\n-\tthe authorization response type set to \"RESTRICTED_DISCOVERY_MATCH_ACK\" within the \"authResponseType\" attribute.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_23.304_clause_6.3",
+        "ts_23.304",
+        "ts_23.303"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.557_5.2.2.3.1",
+      "section_id": "5.2.2.3.1",
+      "section_title": "General",
+      "content": "The DiscoveryAuthorizationUpdateNotify service operation is used by an AF to update the authorization information to revoke discovery permissions relating to some other users at the NF service consumer (e.g., 5G DDNMF) for Restricted ProSe Direct Discovery. See Figure 5.2.2.3.1-1.\nThe following procedures are supported using the DiscoveryAuthorizationUpdateNotify Service Operation:\n-\tAuth Update procedures (see 3GPP TS 23.303 [15], clause 5.3.6A.2).\nFigure 5.2.2.3.1-1: DiscoveryAuthorizationUpdate Notification\n1.\tThe AF shall send an HTTP POST request to the callback URI of the NF consumer (e.g. 5G DDNMF). The request body shall contain the AuthUpdateData data structure.\nThe callback URI is provided to the AF during the Auth Request procedures defined in clause 5.2.2.2.\n2a.\tOn success, a response with an HTTP \"204 No content\" status code shall be returned by the NF service consumer.\n2b.\tOn failure, one of the HTTP status codes listed in Table 6.1.5.2.3.1-2 may be returned. For a 4xx/5xx response, the message body may contain a ProblemDetails data structure with the \"cause\" attribute set to one of the application errors listed in Table 6.1.5.2.3.1-2.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_23.303_clause_5.3.6",
+        "clause_5.2.2.2",
+        "table_6.1.5.2.3.1-2",
+        "figure_5.2.2.3.1-1",
+        "ts_23.303"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.557_5.2.2.4.1",
+      "section_id": "5.2.2.4.1",
+      "section_title": "General",
+      "content": "The DiscoveryAuthorizationResultUpdate service operation is used by a NF service consumer (e.g., 5G DDNMF) to inform the AF of the result of the revocation request to update the authorization information for Restricted ProSe Direct Discovery. See Figure 5.2.2.4.1-1.\nThe following procedures are supported using the DiscoveryAuthorizationResultUpdate Service Operation:\n-\tAuth Update Result procedures (see 3GPP TS 23.303 [15], clause 5.3.6A.2).\nFigure 5.2.2.4.1-1: DiscoveryAuthorizationResultUpdate Request/Response\n1.\tIn order to inform the AF of the result of the revocation related to discovery authorization update, the NF service consumer shall send an HTTP POST request with the request URI set to \"{apiRoot}/naf-prose/<apiVersion>/authorize-update-result\" and the request body containing the AuthUpdateData data structure, as described in figure 5.2.2.4.1-1.\n2a\tOn success, a response with an HTTP \"204 No Content\" status code shall be returned by the AF.\n2b\tOn failure, one of the HTTP status codes listed in Table 6.1.4.3.2-2 may be returned. For a 4xx/5xx response, the message body may contain a ProblemDetails structure with the \"cause\" attribute set to one of the application errors listed in Table 6.1.4.3.2-2.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_23.303_clause_5.3.6",
+        "table_6.1.4.3.2-2",
+        "figure_5.2.2.4.1-1",
+        "ts_23.303"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.557_6.1.1",
+      "section_id": "6.1.1",
+      "section_title": "Introduction",
+      "content": "The Naf_ProSe shall use the Naf_ProSe API.\nThe API URI of the Naf_ProSe API shall be:\n{apiRoot}/<apiName>/<apiVersion>\nThe request URIs used in HTTP requests shall have the Resource URI structure defined in clause 4.4.1 of 3GPP TS 29.501 [5], i.e.:\n{apiRoot}/<apiName>/<apiVersion>/<apiSpecificResourceUriPart>\nwith the following components:\n-\tThe {apiRoot} shall be set as described in 3GPP TS 29.501 [5].\n-\tThe <apiName> shall be \"naf-prose \".\n-\tThe <apiVersion> shall be \"v1\".\n-\tThe <apiSpecificResourceUriPart> shall be set as described in clause 6.1.3.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.501_clause_4.4.1",
+        "clause_6.1.3",
+        "ts_29.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.557_6.1.2.1",
+      "section_id": "6.1.2.1",
+      "section_title": "General",
+      "content": "HTTP/2, IETF RFC 9113 [11], shall be used as specified in clause 5 of 3GPP TS 29.500 [4].\nHTTP/2 shall be transported as specified in clause 5.3 of 3GPP TS 29.500 [4].\nThe OpenAPI [6] specification of HTTP messages and content bodies for the Naf_ProSe API is contained in Annex A.2.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.500_clause_5",
+        "ts_29.500_clause_5.3",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.557_6.1.2.2.1",
+      "section_id": "6.1.2.2.1",
+      "section_title": "General",
+      "content": "See clause 5.2.2 of 3GPP TS 29.500 [4] for the usage of HTTP standard headers.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.500_clause_5.2.2",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.557_6.1.2.2.2",
+      "section_id": "6.1.2.2.2",
+      "section_title": "Content type",
+      "content": "JSON, IETF RFC 8259 [12], shall be used as content type of the HTTP bodies specified in the present specification as specified in clause 5.4 of 3GPP TS 29.500 [4]. The use of the JSON format shall be signalled by the content type \"application/json\".\n\"Problem Details\" JSON object shall be used to indicate additional details of the error in a HTTP response body and shall be signalled by the content type \"application/problem+json\", as defined in IETF RFC 9457 [13].\nJSON Merge Patch, as defined in IETF RFC 7396 [17], signalled by the content type \"application/merge-patch+json\".",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_5.4",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.557_6.1.2.3",
+      "section_id": "6.1.2.3",
+      "section_title": "HTTP custom headers",
+      "content": "The mandatory HTTP custom header fields specified in clause 5.2.3.2 of 3GPP TS 29.500 [4] shall be supported, and the optional HTTP custom header fields specified in clause 5.2.3.3 of 3GPP TS 29.500 [4] may be supported.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_5.2.3.2",
+        "ts_29.500_clause_5.2.3.3",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.557_6.1.3",
+      "section_id": "6.1.3",
+      "section_title": "Resources",
+      "content": "There are no resource defined for this API in this release of this specification.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.557_6.1.4.1",
+      "section_id": "6.1.4.1",
+      "section_title": "Overview",
+      "content": "The structure of the custom operation URIs of the Naf_ProSe Service is shown in figure 6.1.4.1-1.\nFigure 6.1.4.1-1: Custom operation URI structure of the Naf_ProSe API\nTable 6.1.4.1-1 provides an overview of the custom operations and applicable HTTP methods.\nTable 6.1.4.1-1: Custom operations\nCustom operation name\nCustom operation URI\nMapped HTTP method\nDescription\nAuthorizeDiscovery\n/authorize-discovery\nPOST\nEnables a service consumer to request to obtain the authorization for a 5G ProSe Discovery Request for a UE from the 5G DDNMF.\nAuthorizationUpdateResult\n/authorization-update-result\nPOST\nEnables a service consumer to request to inform the AF of the result of the revocation request to update the authorization information.\nThe custom operations shall support the URI variables defined in table 6.1.4.1-2.\nTable 6.1.4.1-2: URI variables for this custom operation\nName\nData type\nDefinition\napiRoot\nstring\nSee clause 6.1.1.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_6.1.1",
+        "table_6.1.4.1-1",
+        "table_6.1.4.1-2",
+        "figure_6.1.4.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.557_6.1.4.2.1",
+      "section_id": "6.1.4.2.1",
+      "section_title": "Description",
+      "content": "The custom operation enables a service consumer to request to obtain the authorization for a 5G ProSe Discovery Request for a UE from the 5G DDNMF.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.557_6.1.4.2.2",
+      "section_id": "6.1.4.2.2",
+      "section_title": "Operation Definition",
+      "content": "This operation shall support request data structures specified in table 6.1.4.2.2-1 and response data structures specified in table 6.1.4.2.2-2.\nTable 6.1.4.2.2-1: Data structures supported by the POST Request Body on this resource\nData type\nP\nCardinality\nDescription\nAuthDisReqData\nM\n1\nContains the request data to obtain the authorization for a UE of a 5G ProSe Discovery Request.\nTable 6.1.4.2.2-2: Data structures supported by the POST Response Body on this resource\nData type\nP\nCardinality\nResponse\ncodes\nDescription\nAuthDisResData\nM\n1\n200 OK\nContains the response data for the authorization of a 5G ProSe Direct Discovery Request for a UE.\nRedirectResponse\nO\n0..1\n307 Temporary Redirect\nTemporary redirection.\n(NOTE 3)\nRedirectResponse\nO\n0..1\n308 Permanent Redirect\nPermanent redirection.\n(NOTE 3)\nProblemDetails\nO\n0..1\n403 Forbidden\n(NOTE 2)\nNOTE 1:\tThe mandatory HTTP error status code for the POST method listed in table 5.2.7.1-1 of 3GPP TS 29.500 [4] also apply.\nNOTE 2:\tFailure cases are described in clause 6.1.7.3.\nNOTE 3:\tThe RedirectResponse data structure may be provided by an SCP (cf. clause 6.10.9.1 of 3GPP TS 29.500 [4]).\nTable 6.1.4.2.2-3: Headers supported by the 307 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nContains an alternative target URI of the resource custom operation located in an alternative AF (service) instance towards which the request is redirected.\nFor the case where the request is redirected to the same target via a different SCP, refer to clause 6.10.9.1 of 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nContains the identifier of the target AF (service) instance towards which the request should be redirected.\nTable 6.1.4.2.2-4: Headers supported by the 308 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nContains an alternative target URI of the resource custom operation located in an alternative AF (service) instance towards which the request is redirected.\nFor the case where the request is redirected to the same target via a different SCP, refer to clause 6.10.9.1 of 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nContains the identifier of the target AF (service) instance towards which the request should be redirected.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_6.1.7.3",
+        "ts_29.500_clause_6.10.9.1",
+        "table_6.1.4.2.2-1",
+        "table_6.1.4.2.2-2",
+        "ts_29.500_table_5.2.7.1-1",
+        "ts_29.500_table_6.1.4.2.2-3",
+        "table_6.1.4.2.2-4",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.557_6.1.4.3.1",
+      "section_id": "6.1.4.3.1",
+      "section_title": "Description",
+      "content": "The custom operation enables a service consumer to request to inform the AF of the result of the revocation request to update the authorization information.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.557_6.1.4.3.2",
+      "section_id": "6.1.4.3.2",
+      "section_title": "Operation Definition",
+      "content": "This operation shall support request data structures specified in table 6.1.4.3.2-1 and response data structures specified in table 6.1.4.3.2-2.\nTable 6.1.4.3.2-1: Data structures supported by the POST Request Body on this resource\nData type\nP\nCardinality\nDescription\nAuthUpdateData\nM\n1\nContains the result of the revocation request to update authorization information for Restricted ProSe Direct Discovery.\nTable 6.1.4.3.2-2: Data structures supported by the POST Response Body on this resource\nData type\nP\nCardinality\nResponse\ncodes\nDescription\nn/a\n204 No Content\nThis case represents successful report of discovery authorization update result.\nRedirectResponse\nO\n0..1\n307 Temporary Redirect\nTemporary redirection.\n(NOTE 3)\nRedirectResponse\nO\n0..1\n308 Permanent Redirect\nPermanent redirection.\n(NOTE 3)\nProblemDetails\nO\n0..1\n403 Forbidden\n(NOTE 2)\nNOTE 1:\tThe mandatory HTTP error status code for the POST method listed in table 5.2.7.1-1 of 3GPP TS 29.500 [4] also apply.\nNOTE 2:\tFailure cases are described in clause 6.1.7.3.\nNOTE 3:\tThe RedirectResponse data structure may be provided by an SCP (cf. clause 6.10.9.1 of 3GPP TS 29.500 [4]).\nTable 6.1.4.3.2-3: Headers supported by the 307 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nContains an alternative target URI of the resource custom operation located in an alternative AF (service) instance towards which the request is redirected.\nFor the case where the request is redirected to the same target via a different SCP, refer to clause 6.10.9.1 of 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nContains the identifier of the target AF (service) instance towards which the request should be redirected.\nTable 6.1.4.3.2-4: Headers supported by the 308 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nContains an alternative target URI of the resource custom operation located in an alternative AF (service) instance towards which the request is redirected.\nFor the case where the request is redirected to the same target via a different SCP, refer to clause 6.10.9.1 of 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nContains the identifier of the target AF (service) instance towards which the request should be redirected.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_6.1.7.3",
+        "ts_29.500_clause_6.10.9.1",
+        "table_6.1.4.3.2-1",
+        "table_6.1.4.3.2-2",
+        "ts_29.500_table_5.2.7.1-1",
+        "ts_29.500_table_6.1.4.3.2-3",
+        "table_6.1.4.3.2-4",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.557_6.1.5.1",
+      "section_id": "6.1.5.1",
+      "section_title": "General",
+      "content": "Notifications shall comply to clause 6.2 of 3GPP TS 29.500 [4] and clause 4.6.2.3 of 3GPP TS 29.501 [5].\nTable 6.1.5.1-1: Notifications overview\nNotification\nCallback URI\nHTTP method or custom operation\nDescription\nDiscoveryAuthorizationUpdateNotification\n{authUpdateCallbackUri}\nPOST\nUpdate the authorization information to revoke discovery permissions related to some other users in the NF service consumer (e.g. 5G DDNMF).",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.500_clause_6.2",
+        "ts_29.500_clause_4.6.2.3",
+        "ts_29.501_table_6.1.5.1-1",
+        "ts_29.501_clause_4.6.2.3",
+        "ts_29.500",
+        "ts_29.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.557_6.1.5.2.1",
+      "section_id": "6.1.5.2.1",
+      "section_title": "Description",
+      "content": "The DiscoveryAuthorizationUpdateNotification service operation is used by the AF to update the authorization information to revoke discovery permissions related to some other users in the NF service consumer (e.g. 5G DDNMF).",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.557_6.1.5.2.2",
+      "section_id": "6.1.5.2.2",
+      "section_title": "Target URI",
+      "content": "The Callback URI \"{authUpdateCallbackUri}\" shall be used with the callback URI variables defined in table 6.1.5.2.2-1.\nTable 6.1.5.2.2-1: Callback URI variables\nName\nDefinition\nauthUpdateCallbackUri\nContains a string formatted as URI with the Callback Uri",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.1.5.2.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.557_6.1.5.2.3.1",
+      "section_id": "6.1.5.2.3.1",
+      "section_title": "POST",
+      "content": "This method sends a discovery authorization update notification to the NF service consumer.\nThis method shall support the request data structures specified in table 6.1.5.2.3.1-1 and the response data structures and response codes specified in table 6.1.5.2.3.1-2.\nTable 6.1.5.2.3.1-1: Data structures supported by the POST Request Body\nData type\nP\nCardinality\nDescription\nAuthUpdateData\nM\n1\nContains the Discovery Authorization Update Notification.\nTable 6.1.5.2.3.1-2: Data structures supported by the POST Response Body\nData type\nP\nCardinality\nResponse\ncodes\nDescription\nn/a\n204 No Content\nThis case represents successful notification of the event.\nRedirectResponse\nO\n0..1\n307 Temporary Redirect\nTemporary redirection.\n(NOTE 3)\nRedirectResponse\nO\n0..1\n308 Permanent Redirect\nPermanent redirection.\n(NOTE 3)\nProblemDetails\nO\n0..1\n403 Forbidden\n(NOTE 2)\nNOTE 1:\tThe mandatory HTTP error status code for the POST method listed in table 5.2.7.1-1 of 3GPP TS 29.500 [4] also apply.\nNOTE 2:\tFailure cases are described in clause 6.1.7.3.\nNOTE 3:\tThe RedirectResponse data structure may be provided by an SCP (cf. clause 6.10.9.1 of 3GPP TS 29.500 [4]).\nTable 6.1.5.2.3-3: Headers supported by the 307 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nContains an alternative URI representing the end point of an alternative NF consumer (service) instance towards which the notification should be redirected.\nFor the case where the request is redirected to the same target via a different SCP, refer to clause 6.10.9.1 of 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nString\nO\n0..1\nContains the identifier of the target NF (service) instance towards which the notification request is redirected.\nTable 6.1.5.2.3-4: Headers supported by the 308 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nContains an alternative URI representing the end point of an alternative NF consumer (service) instance towards which the notification should be redirected.\nFor the case where the request is redirected to the same target via a different SCP, refer to clause 6.10.9.1 of 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nString\nO\n0..1\nContains the identifier of the target NF (service) instance towards which the notification request is redirected.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_6.1.7.3",
+        "ts_29.500_clause_6.10.9.1",
+        "table_6.1.5.2.3.1-1",
+        "table_6.1.5.2.3.1-2",
+        "ts_29.500_table_5.2.7.1-1",
+        "ts_29.500_table_6.1.5.2.3-3",
+        "table_6.1.5.2.3-4",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.557_6.1.6.1",
+      "section_id": "6.1.6.1",
+      "section_title": "General",
+      "content": "This clause specifies the application data model supported by the Naf_ProSe API.\nTable 6.1.6.1-1 specifies the data types defined for the Naf_ProSe service based interface.\nTable 6.1.6.1-1: Naf_ProSe specific Data Types\nData type\nClause defined\nDescription\nApplicability\nAllowedSuffixNum\n6.1.6.3.2\nRepresents the allowed number of suffixes.\nAppLevelContainer\n6.1.6.3.2\nRepresents an Application Layer Container.\nAuthDisReqData\n6.1.6.2.2\nRepresents data used to request the authorization for a UE of 5G ProSe Direct Discovery Request.\nAuthDisResData\n6.1.6.2.3\nRepresents the obtained authorization Data for a UE of 5G ProSe Direct Discovery Request.\nAuthRequestType\n6.1.6.3.3\nRepresents the authorization request type.\nAuthResponseType\n6.1.6.3.4\nRepresents the authorization response type.\nAuthUpdateData\n6.1.6.2.5\nRepresents the updated authorization information for Restricted ProSe Direct Discovery.\nBannedAuthData\n6.1.6.2.6\nRepresents a set of Banned RPAUID - Banned PDUID that are no longer allowed to discover the ProSe Restricted Code corresponding to the user's RPAUID for the Application ID associated with that AF.\nMetadataIndic\n6.1.6.3.5\nRepresents the Metadata Indicator.\nProSeRestrictedMask\n6.1.6.3.2\nRepresents a Prose Restricted Mask.\nRevocationResult\n6.1.6.3.6\nRepresents the revocation result of a set of Banned RPAUID - Banned PDUID for Restricted ProSe Direct Discovery.\nTargetData\n6.1.6.2.4\nRepresents a combination of Target PDUID - Target RPAUID - Metadata Indicator.\nTable 6.1.6.1-2 specifies data types re-used by the Naf_ProSe service based interface from other specifications, including a reference to their respective specifications, and when needed, a short description of their use within the Naf_ProSe Service based interface.\nTable 6.1.6.1-2: Naf_ProSe re-used Data Types\nData type\nReference\nComments\nApplicability\nProseApplicationId\n3GPP TS 29.555 [16]\nRepresents a string representing the ProSe Application ID.\nProseApplicationCodeSuffixPool\n3GPP TS 29.555 [16]\nRepresents a ProSe Application Code Suffix Pool.\nRpauid\n3GPP TS 29.555 [16]\nRepresents a Restricted ProSe Application User ID.\nPduid\n3GPP TS 29.555 [16]\nRepresents a ProSe Discovery UE ID.\nProseApplicationMask\n3GPP TS 29.555 [16]\nRepresents a Mask for a ProSe Application Code Suffix corresponding to a ProSe Applicantation ID.\nMetaData\n3GPP TS 29.555 [16]\nRepresents Metadata.\nRedirectResponse\n3GPP TS 29.571 [8]\nContains redirection related information.\nRestrictedCodeSuffixPool\n3GPP TS 29.555 [16]\nRepresents a ProSe Restricted Code Suffix pool.\nUri\n3GPP TS 29.571 [18]\nRepresents a URI.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "table_6.1.6.1-1",
+        "table_6.1.6.1-2",
+        "ts_29.555",
+        "ts_29.571"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.557_6.1.6.2.1",
+      "section_id": "6.1.6.2.1",
+      "section_title": "Introduction",
+      "content": "This clause defines the structures to be used in resource representations.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.557_6.1.6.2.2",
+      "section_id": "6.1.6.2.2",
+      "section_title": "Type: AuthDisReqData",
+      "content": "Table 6.1.6.2.2-1: Definition of type AuthDisReqData\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\nauthRequestType\nAuthRequestType\nM\n1\nThis attribute contains the authorization request type for 5G ProSe Direct Discovery.\nproseAppId\narray(ProseApplicationId)\nO\n1..N\nThis attribute contains the ProSe Application ID(s).\nThis attribute is applicable only when the \"authRequestType\" attribute contains an open discovery request type.\n(NOTE)\nallowedSuffixNum\nAllowedSuffixNum\nO\n0..1\nThis attribute contains the allowed number of suffixes.\nappLevelContainer\nAppLevelContainer\nO\n0..1\nThis attribute contains an application level container.\nrpauid\nRpauid\nO\n0..1\nThis attribute contains the RPAUID.\nThis attribute is applicable only when the \"authRequestType\" attribute contains a restricted discovery request type.\ntargetRpauid\nRpauid\nO\n0..1\nThis attribute contains the Target RPAUID.\nauthUpdateCallbackUri\nUri\nO\n0..1\nThis attribute contains the call-back URI of the NF service consumer (i.e. 5G DDNMF) for implicit subscription to notification of DiscoveryAuthorizationUpdateNotify.\nNOTE:\tIf provided, at least one array element shall be present within the \"proseAppId\" attribute.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.1.6.2.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.557_6.1.6.2.3",
+      "section_id": "6.1.6.2.3",
+      "section_title": "Type: AuthDisResData",
+      "content": "Table 6.1.6.2.3-1: Definition of type AuthDisResData\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\nauthResponseType\nAuthResponseType\nM\n1\nThis attribute contains the authorization response type for 5G ProSe Direct Discovery.\nproseAppCodeSuffixPool\nProseApplicationCodeSuffixPool\nO\n0..1\nThis attribute contains the ProSe Application Code Suffix Pool.\npduids\narray(Pduid)\nO\n0..N\nThis attribute contains the PDUID(s) corresponding to the provided RPAUID.\nrestrictedCodeSuffixPool\narray(RestrictedCodeSuffixPool)\nO\n0..N\nThis attribute contains a ProSe Restricted Code Suffix pool.\n(NOTE)\nproseAppMasks\narray(ProseApplicationMask)\nO\n0..N\nThis attribute contains the mask(s) for the ProSe Application Code Suffix(es) corresponding to the ProSe Application ID.\nproSeRestrictedMasks\narray(ProSeRestrictedMask)\nO\n0..N\nThis attribute contains the mask(s) for the ProSe Restricted Code Suffix(es) corresponding to each of the Target RPAUID(s).\nresAppLevelContainer\nAppLevelContainer\nO\n0..1\nThis attribute contains the Application Level Container.\ntargetDataSet\narray(TargetData)\nO\n0..N\nThis attribute contains N sets of Target PDUID - Target RPAUID - Metadata Indicator.\ntargetPduid\nPduid\nO\n0..1\nThis attribute contains the Target PDUID.\nmetaData\nMetaData\nO\n0..1\nThis attribute contains metadata corresponding to the Target PDUID.\nNOTE:\tIf provided, exactly one element shall be present in the attribute.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.1.6.2.3-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.557_6.1.6.2.4",
+      "section_id": "6.1.6.2.4",
+      "section_title": "Type: TargetData",
+      "content": "Table 6.1.6.2.4-1: Definition of type TargetData\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\ntargetRpauid\nRpauid\nM\n1\nThis attribute contains the target RPAUID.\npduid\nPduid\nM\n1\nThis attribute contains the target PDUID.\nmetadataIndic\nMetadataIndic\nO\n0..1\nThis attribute contains the Metadata Indicator to indicate whether there is metadata associated with the RPAUID, and if so, whether updates of metadata are allowed.\n(NOTE)\nNOTE:\tThe default value of metadataIndic is \"NO_METADATA\", if this attribute is not present.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.1.6.2.4-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.557_6.1.6.2.5",
+      "section_id": "6.1.6.2.5",
+      "section_title": "Type: AuthUpdateData",
+      "content": "Table 6.1.6.2.5-1: Definition of type AuthUpdateData\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\ntargetRpauid\nRpauid\nM\n1\nThis attribute contains the RPAUID of the user that would like to revoke discovery permissions of some other users in the AF.\nbannedAuthData\narray(BannedAuthData)\nM\n1..N\nThe attribute contains N sets of Banned RPAUID - Banned PDUID that are no longer allowed to discover the ProSe Restricted Code corresponding to the user's RPAUID for the Application ID associated with that AF.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.1.6.2.5-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.557_6.1.6.2.6",
+      "section_id": "6.1.6.2.6",
+      "section_title": "Type: BannedAuthData",
+      "content": "Table 6.1.6.2.6-1: Definition of type BannedAuthData\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\nbannedRpauid\nRpauid\nM\n1\nThe attribute contains a RPAUID within a Banned RPAUID - Banned PDUID set that is no longer allowed to discover the ProSe Restricted Code corresponding to the user's RPAUID for the Application ID associated with the AF.\nbannedPduid\nPduid\nM\n1\nThe attribute contains the PDUID within a Banned RPAUID - Banned PDUID set that is no longer allowed to discover the ProSe Restricted Code corresponding to the user's RPAUID for the Application ID associated with the AF.\nrevocationResult\nRevocationResult\nC\n0..1\nThe attribute contains the revocation result of a set of Banned RPAUID - Banned PDUID for Restricted ProSe Direct Discovery, which is only conveyed within a DiscoveryAuthorizationResultUpdate service operation.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.1.6.2.6-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.557_6.1.6.3.1",
+      "section_id": "6.1.6.3.1",
+      "section_title": "Introduction",
+      "content": "This clause defines simple data types and enumerations that can be referenced from data structures defined in the previous clauses.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.557_6.1.6.3.2",
+      "section_id": "6.1.6.3.2",
+      "section_title": "Simple data types",
+      "content": "The simple data types defined in table 6.1.6.3.2-1 shall be supported.\nTable 6.1.6.3.2-1: Simple data types\nType Name\nType Definition\nDescription\nApplicability\nAllowedSuffixNum\ninteger\nContains the allowed number of suffixes.\nAppLevelContainer\nsting\nContains the Application Level Container.\nProSeRestrictedMask\nstring\nContains the ProSe Restricted Mask.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.1.6.3.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.557_6.1.6.3.3",
+      "section_id": "6.1.6.3.3",
+      "section_title": "Enumeration: AuthRequestType",
+      "content": "The enumeration AuthRequestType represents the Authorization Request Type. It shall comply with the provisions of table 6.1.6.3.3-1.\nTable 6.1.6.3.3-1: Enumeration AuthRequestType\nEnumeration value\nDescription\nApplicability\nOPEN_DISCOVERY_EXTENSION_ANNOUNCE\nIndicates that the Authorization Request Type is \"open discovery with application-controlled extension/announce\".\nRESTRICTED_DISCOVERY_ANNOUNCE\nIndicates that the Authorization Request Type is \"restricted discovery/announce\".\nRESTRICTED_DISCOVERY_EXTENSION_ANNOUNCE\nIndicates that the Authorization Request Type is \"restricted discovery with application-controlled extension/announce\".\nOPEN_DISCOVERY_EXTENSION_MONITOR\nIndicates that the Authorization Request Type is \"open discovery with application-controlled extension/monitor\".\nRESTRICTED_DISCOVERY_MONITOR\nIndicates that the Authorization Request Type is \"restricted discovery/monitor\".\nRESTRICTED_DISCOVERY_EXTENSION_MONITOR\nIndicates that the Authorization Request Type is \"restricted discovery with application-controlled extension/monitor\".\nRESTRICTED_DISCOVERY_PERMISSION\nIndicates that the Authorization Request Type is \"restricted discovery/permission\".\nRESTRICTED_DISCOVERY_RESPONSE\nIndicates that the Authorization Request Type is \"restricted discovery/response\".\nRESTRICTED_DISCOVERY_QUERY\nIndicates that the Authorization Response Type is \"restricted discovery/query\".\nRESTRICTED_DISCOVERY_MATCH\nIndicates that the Authorization Response Type is \"restricted discovery/match\".",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.1.6.3.3-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.557_6.1.6.3.4",
+      "section_id": "6.1.6.3.4",
+      "section_title": "Enumeration: AuthResponseType",
+      "content": "The enumeration AuthRequestType represents the Authorization Response Type. It shall comply with the provisions defined in table 6.1.6.3.4-1.\nTable 6.1.6.3.4-1: Enumeration AuthResponseType\nEnumeration value\nDescription\nApplicability\nOPEN_DISCOVERY_EXTENSION_ANNOUNCE_ACK\nIndicates that the Authorization Response Type is \"open discovery with application-controlled extension/announce ack\".\nRESTRICTED_DISCOVERY_ANNOUNCE_ACK\nIndicates that the Authorization Response Type is \"restricted discovery/announce ack\".\nRESTRICTED_DISCOVERY_EXTENSION_ANNOUNCE_ACK\nIndicates that the Authorization Response Type is \"restricted discovery with application-controlled extension/announce ack\".\nOPEN_DISCOVERY_EXTENSION_MONITOR_ACK\nIndicates that the Authorization Response Type is \"open discovery with application-controlled extension/monitor ack\".\nRESTRICTED_DISCOVERY_MONITOR_ACK\nIndicates that the Authorization Response Type is \"restricted discovery/monitor ack\".\nRESTRICTED_DISCOVERY_EXTENSION_MONITOR_ACK\nIndicates that the Authorization Response Type is \"restricted discovery with application-controlled extension/monito ack\".\nRESTRICTED_DISCOVERY_PERMISSION_ACK\nIndicates that the Authorization Response Type is \"restricted discovery /permission ack\".\nRESTRICTED_DISCOVERY_RESPONSE_ACK\nIndicates that the Authorization Response Type is \"restricted discovery /response ack\".\nRESTRICTED_DISCOVERY_QUERY_ACK\nIndicates that the Authorization Response Type is \"restricted discovery /query ack\".\nRESTRICTED_DISCOVERY_MATCH_ACK\nIndicates that the Authorization Response Type is \"restricted discovery /match ack\".",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.1.6.3.4-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.557_6.1.6.3.5",
+      "section_id": "6.1.6.3.5",
+      "section_title": "Enumeration: MetadataIndic",
+      "content": "The enumeration MetadataIndic represents the possible options for metadata associated with a particular target RPAUID. It shall comply with the provisions of table 6.1.6.3.5-1.\nTable 6.1.6.3.5-1: Enumeration MetadataIndic\nEnumeration value\nDescription\nApplicability\nNO_METADATA\nIndicates that there is no metadata associated with the target RPAUID.\nMETADATA_UPDATE_DISALLOWED\nIndicates that there is metadata associated with the target RPAUID, but it is not allowed to update this metadata.\nMETADATA_UPDATE_ALLOWED\nIndicates that there is metadata associated with the target RPAUID, and it is allowed to update this metadata.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.1.6.3.5-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.557_6.1.6.3.6",
+      "section_id": "6.1.6.3.6",
+      "section_title": "Enumeration: RevocationResult",
+      "content": "The enumeration RevocationResult represents the revocation result of a set of Banned RPAUID - Banned PDUID for Restricted ProSe Direct Discovery. It shall comply with the provisions of table 6.1.6.3.6-1.\nTable 6.1.6.3.6-1: Enumeration MetadataIndic\nEnumeration value\nDescription\nApplicability\nREVOCATION_SUCCESSFUL\nIndicates the successful revocation for a set of Banned RPAUID - Banned PDUID for Restricted ProSe Direct Discovery.\nREVOCATION_NOT_SUCCESSFUL\nIndicates that unsuccessful revocation for a set of Banned RPAUID - Banned PDUID for Restricted ProSe Direct Discovery.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.1.6.3.6-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.557_6.1.6.4",
+      "section_id": "6.1.6.4",
+      "section_title": "Data types describing alternative data types or combinations of data types",
+      "content": "There are no data types describing alternative data types or combinations of data types defined for this API in this release of this specification.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.557_6.1.6.5.1",
+      "section_id": "6.1.6.5.1",
+      "section_title": "Binary Data Types",
+      "content": "Table 6.1.6.5.1-1: Binary Data Types\nName\nClause defined\nContent type",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.1.6.5.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.557_6.1.7.1",
+      "section_id": "6.1.7.1",
+      "section_title": "General",
+      "content": "For the Naf_ProSe API, HTTP error responses shall be supported as specified in clause 4.8 of 3GPP TS 29.501 [5]. Protocol errors and application errors specified in table 5.2.7.2-1 of 3GPP TS 29.500 [4] shall be supported for an HTTP method if the corresponding HTTP status codes are specified as mandatory for that HTTP method in table 5.2.7.1-1 of 3GPP TS 29.500 [4].\nIn addition, the requirements in the following clauses are applicable for the Naf_ProSe API.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.501_clause_4.8",
+        "ts_29.500_table_5.2.7.2-1",
+        "ts_29.500_table_5.2.7.1-1",
+        "ts_29.501",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.557_6.1.7.2",
+      "section_id": "6.1.7.2",
+      "section_title": "Protocol Errors",
+      "content": "Protocol errors handling shall be supported as specified in clause 5.2.7 of 3GPP TS 29.500 [4].",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_5.2.7",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.557_6.1.7.3",
+      "section_id": "6.1.7.3",
+      "section_title": "Application Errors",
+      "content": "The application errors defined for the Naf_ProSe service are listed in table 6.1.7.3-1.\nTable 6.1.7.3-1: Application errors\nApplication Error\nHTTP status code\nDescription\nUNSPECIFIED\n403 Forbidden\nThe request is rejected due to unspecified reasons.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.1.7.3-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.557_6.1.8",
+      "section_id": "6.1.8",
+      "section_title": "Feature negotiation",
+      "content": "The optional features in table 6.1.8-1 are defined for the Naf_ProSe API. They shall be negotiated using the extensibility mechanism defined in clause 6.6 of 3GPP TS 29.500 [4].\nTable 6.1.8-1: Supported Features\nFeature number\nFeature Name\nDescription",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_6.6",
+        "table_6.1.8-1",
+        "ts_29.500_table_6.1.8-1",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.557_6.1.9",
+      "section_id": "6.1.9",
+      "section_title": "Security",
+      "content": "As indicated in 3GPP TS 33.501 [8] and 3GPP TS 29.500 [4], the access to the Naf_ProSe API may be authorized by means of the OAuth2 protocol (see IETF RFC 6749 [9]), based on local configuration, using the \"Client Credentials\" authorization grant, where the NRF (see 3GPP TS 29.510 [10]) plays the role of the authorization server.\nIf OAuth2 is used, an NF service consumer, prior to consuming services offered by the Naf_ProSe API, shall obtain a \"token\" from the authorization server, by invoking the Access Token Request service, as described in clause 5.4.2.2 of 3GPP TS 29.510 [10].\nNOTE:\tWhen multiple NRFs are deployed in a network, the NRF used as authorization server is the same NRF that the NF service consumer used for discovering the Naf_ProSe service.\nThe Naf_ProSe API defines a single scope \"naf_prose\" for OAuth2 authorization (as specified in 3GPP TS 33.501 [8]) for the entire service, and it does not define any additional scopes at resource or operation level.\nAnnex A (normative):OpenAPI specification\nA.1\tGeneral\nThis Annex specifies the formal definition of the API(s) defined in the present specification. It consists of OpenAPI 3.0.0 specifications in YAML format.\nThis Annex shall take precedence when being discrepant to other parts of the specification with respect to the encoding of information elements and methods within the API(s).\nNOTE 1:\tThe semantics and procedures, as well as conditions, e.g. for the applicability and allowed combinations of attributes or values, not expressed in the OpenAPI definitions but defined in other parts of the specification also apply.\nInformative copies of the OpenAPI specification files contained in this 3GPP Technical Specification are available on a Git-based repository that uses the GitLab software version control system (see clause 5.3.1 of 3GPP TS 29.501 [5] and clause 5B of 3GPP TR 21.900 [7]).\nA.2\tNaf_ProSe API\nopenapi: 3.0.0\ninfo:\ntitle: Naf_ProSe API\nversion: 1.1.0\ndescription: |\nNaf_ProSe Service.\n© 2024, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).\nAll rights reserved.\nexternalDocs:\ndescription: >\n3GPP TS 29.557 V18.3.0; 5G System; Application Function ProSe Service; Stage 3.\nurl: https://www.3gpp.org/ftp/Specs/archive/29_series/29.557/\nservers:\n- url: '{apiRoot}/naf-prose/v1'\nvariables:\napiRoot:\ndefault: https://example.com\ndescription: apiRoot as defined in clause 4.4 of 3GPP TS 29.501\nsecurity:\n- {}\n- oAuth2ClientCredentials:\n- naf-prose\npaths:\n/authorize-discovery:\npost:\nsummary: Obtain the authorization of Discovery Request from 5G DDNMF for a UE.\noperationId: AuthorizeDiscovery\ntags:\n- Obtain the authorization of Discovery Request for a UE\nrequestBody:\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/AuthDisReqData'\nresponses:\n'200':\ndescription: Expected response to a valid request\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/AuthDisResData'\n'307':\n$ref: 'TS29571_CommonData.yaml#/components/responses/307'\n'308':\n$ref: 'TS29571_CommonData.yaml#/components/responses/308'\n'400':\n$ref: 'TS29571_CommonData.yaml#/components/responses/400'\n'401':\n$ref: 'TS29571_CommonData.yaml#/components/responses/401'\n'403':\n$ref: 'TS29571_CommonData.yaml#/components/responses/403'\n'404':\n$ref: 'TS29571_CommonData.yaml#/components/responses/404'\n'411':\n$ref: 'TS29571_CommonData.yaml#/components/responses/411'\n'413':\n$ref: 'TS29571_CommonData.yaml#/components/responses/413'\n'415':\n$ref: 'TS29571_CommonData.yaml#/components/responses/415'\n'429':\n$ref: 'TS29571_CommonData.yaml#/components/responses/429'\n'500':\n$ref: 'TS29571_CommonData.yaml#/components/responses/500'\n'502':\n$ref: 'TS29571_CommonData.yaml#/components/responses/502'\n'503':\n$ref: 'TS29571_CommonData.yaml#/components/responses/503'\ndefault:\ndescription: Unexpected error\ncallbacks:\nDiscoveryAuthorizationUpdateNotify:\n'{$request.body#/authUpdateCallbackUri}':\npost:\nrequestBody:\ndescription: >\nUpdate of authorization information to revoke discovery permissions\nrelating to some other users in the NF consumer for Restricted ProSe Direct\nDiscovery.\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/AuthUpdateData'\nresponses:\n'204':\ndescription: Expected response to a valid notification\n'307':\n$ref: 'TS29571_CommonData.yaml#/components/responses/307'\n'308':\n$ref: 'TS29571_CommonData.yaml#/components/responses/308'\n'400':\n$ref: 'TS29571_CommonData.yaml#/components/responses/400'\n'401':\n$ref: 'TS29571_CommonData.yaml#/components/responses/401'\n'403':\n$ref: 'TS29571_CommonData.yaml#/components/responses/403'\n'404':\n$ref: 'TS29571_CommonData.yaml#/components/responses/404'\n'411':\n$ref: 'TS29571_CommonData.yaml#/components/responses/411'\n'413':\n$ref: 'TS29571_CommonData.yaml#/components/responses/413'\n'415':\n$ref: 'TS29571_CommonData.yaml#/components/responses/415'\n'429':\n$ref: 'TS29571_CommonData.yaml#/components/responses/429'\n'500':\n$ref: 'TS29571_CommonData.yaml#/components/responses/500'\n'502':\n$ref: 'TS29571_CommonData.yaml#/components/responses/502'\n'503':\n$ref: 'TS29571_CommonData.yaml#/components/responses/503'\n'504':\n$ref: 'TS29571_CommonData.yaml#/components/responses/504'\ndefault:\n$ref: 'TS29571_CommonData.yaml#/components/responses/default'\n/authorization-update-result:\npost:\nsummary: >\nReport the result of update of authorization information to revoke discovery\npermissions relating to some other users in the NF consumer for Restricted ProSe Direct\nDiscovery.\noperationId: AuthorizationUpdateResult\ntags:\n- Authorization Information Update Result\nrequestBody:\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/AuthUpdateData'\nrequired: true\nresponses:\n'204':\ndescription: Expected response to a successful cancellation\n'307':\n$ref: 'TS29571_CommonData.yaml#/components/responses/307'\n'308':\n$ref: 'TS29571_CommonData.yaml#/components/responses/308'\n'400':\n$ref: 'TS29571_CommonData.yaml#/components/responses/400'\n'401':\n$ref: 'TS29571_CommonData.yaml#/components/responses/401'\n'403':\n$ref: 'TS29571_CommonData.yaml#/components/responses/403'\n'404':\n$ref: 'TS29571_CommonData.yaml#/components/responses/404'\n'411':\n$ref: 'TS29571_CommonData.yaml#/components/responses/411'\n'413':\n$ref: 'TS29571_CommonData.yaml#/components/responses/413'\n'415':\n$ref: 'TS29571_CommonData.yaml#/components/responses/415'\n'429':\n$ref: 'TS29571_CommonData.yaml#/components/responses/429'\n'500':\n$ref: 'TS29571_CommonData.yaml#/components/responses/500'\n'502':\n$ref: 'TS29571_CommonData.yaml#/components/responses/502'\n'503':\n$ref: 'TS29571_CommonData.yaml#/components/responses/503'\n'504':\n$ref: 'TS29571_CommonData.yaml#/components/responses/504'\ndefault:\n$ref: 'TS29571_CommonData.yaml#/components/responses/default'\ncomponents:\nsecuritySchemes:\noAuth2ClientCredentials:\ntype: oauth2\nflows:\nclientCredentials:\ntokenUrl: '{nrfApiRoot}/oauth2/token'\nscopes:\nnaf-prose: Access to the Naf_ProSe API\nschemas:\n# COMPLEX TYPES:\nAuthDisReqData:\ntype: object\ndescription: >\nRepresents Data used to request the authorization for a UE of a 5G ProSe Direct\nDiscovery request.\nrequired:\n- authRequestType\nproperties:\nauthRequestType:\n$ref: '#/components/schemas/AuthRequestType'\nproseAppId:\ntype: array\nitems:\n$ref: 'TS29555_N5g-ddnmf_Discovery.yaml#/components/schemas/ProseApplicationId'\nallowedSuffixNum:\n$ref: '#/components/schemas/AllowedSuffixNum'\nappLevelContainer:\n$ref: '#/components/schemas/AppLevelContainer'\nrpauid:\n$ref: 'TS29555_N5g-ddnmf_Discovery.yaml#/components/schemas/Rpauid'\ntargetRpauid:\n$ref: 'TS29555_N5g-ddnmf_Discovery.yaml#/components/schemas/Rpauid'\nauthUpdateCallbackUri:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Uri'\nAuthDisResData:\ntype: object\ndescription: >\nRepresents the obtained authorization Data for a UE of a 5G ProSe Direct Discovery\nrequest.\nrequired:\n- authResponseType\nproperties:\nauthResponseType:\n$ref: '#/components/schemas/AuthResponseType'\nproseAppCodeSuffixPool:\n$ref: 'TS29555_N5g-ddnmf_Discovery.yaml#/components/schemas/ProseApplicationCodeSuffixPool'\npduids:\ntype: array\nitems:\n$ref: 'TS29555_N5g-ddnmf_Discovery.yaml#/components/schemas/Pduid'\nrestrictedCodeSuffixPool:\ntype: array\nitems:\n$ref: 'TS29555_N5g-ddnmf_Discovery.yaml#/components/schemas/RestrictedCodeSuffixPool'\nproseAppMasks:\ntype: array\nitems:\n$ref: 'TS29555_N5g-ddnmf_Discovery.yaml#/components/schemas/ProseApplicationMask'\nproSeRestrictedMasks:\ntype: array\nitems:\n$ref: '#/components/schemas/ProSeRestrictedMask'\nresAppLevelContainer:\n$ref: '#/components/schemas/AppLevelContainer'\ntargetDataSet:\ntype: array\nitems:\n$ref: '#/components/schemas/TargetData'\ntargetPduid:\n$ref: 'TS29555_N5g-ddnmf_Discovery.yaml#/components/schemas/Pduid'\nmetaData:\n$ref: 'TS29555_N5g-ddnmf_Discovery.yaml#/components/schemas/MetaData'\nTargetData:\ntype: object\ndescription: Represents a set of Target PDUID - Target RPAUID - Metadata Indicator.\nrequired:\n- targetRpauid\n- pduid\nproperties:\ntargetRpauid:\n$ref: 'TS29555_N5g-ddnmf_Discovery.yaml#/components/schemas/Rpauid'\npduid:\n$ref: 'TS29555_N5g-ddnmf_Discovery.yaml#/components/schemas/Pduid'\nmetadataIndic:\n$ref: '#/components/schemas/MetadataIndic'\nAuthUpdateData:\ntype: object\ndescription: >\nRepresents the update data and resulting update data of authorization information\nfor Restricted ProSe Direct Discovery.\nrequired:\n- targetRpauid\n- bannedAuthData\nproperties:\ntargetRpauid:\n$ref: 'TS29555_N5g-ddnmf_Discovery.yaml#/components/schemas/Rpauid'\nbannedAuthData:\ntype: array\nitems:\n$ref: '#/components/schemas/BannedAuthData'\nminItems: 1\nBannedAuthData:\ntype: object\ndescription: Represents a set of Banned PDUID - Banned RPAUID.\nrequired:\n- bannedRpauid\n- bannedPduid\nproperties:\nbannedRpauid:\n$ref: 'TS29555_N5g-ddnmf_Discovery.yaml#/components/schemas/Rpauid'\nbannedPduid:\n$ref: 'TS29555_N5g-ddnmf_Discovery.yaml#/components/schemas/Pduid'\nrevocationResult:\n$ref: '#/components/schemas/RevocationResult'\n# SIMPLE TYPES:\nAllowedSuffixNum:\ndescription: contains the allowed number of suffixes.\ntype: integer\nAppLevelContainer:\ndescription: Contains the Application Level Container.\ntype: string\nProSeRestrictedMask:\ndescription: Contains a ProSe Restricted Mask.\ntype: string\n# ENUMS:\nAuthRequestType:\nanyOf:\n- type: string\nenum:\n- OPEN_DISCOVERY_EXTENSION_ANNOUNCE\n- RESTRICTED_DISCOVERY_ANNOUNCE\n- RESTRICTED_DISCOVERY_EXTENSION_ANNOUNCE\n- OPEN_DISCOVERY_EXTENSION_MONITOR\n- RESTRICTED_DISCOVERY_MONITOR\n- RESTRICTED_DISCOVERY_EXTENSION_MONITOR\n- RESTRICTED_DISCOVERY_PERMISSION\n- RESTRICTED_DISCOVERY_RESPONSE\n- RESTRICTED_DISCOVERY_QUERY\n- RESTRICTED_DISCOVERY_MATCH\n- type: string\ndescription: >\nThis string provides forward-compatibility with future extensions to the enumeration\nand is not used to encode content defined in the present version of this API.\ndescription: |\nRepresents the authorization request type.\nPossible values are:\n- OPEN_DISCOVERY_EXTENSION_ANNOUNCE: Indicates that the Authorization Request Type is\nopen discovery with application-controlled extension/announce.\n- RESTRICTED_DISCOVERY_ANNOUNCE: Indicates that the Authorization Request Type is restricted\ndiscovery/announce.\n- RESTRICTED_DISCOVERY_EXTENSION_ANNOUNCE: Indicates that the Authorization Request Type is\nrestricted discovery with application-controlled extension/announce.\n- OPEN_DISCOVERY_EXTENSION_MONITOR: Indicates that the Authorization Request Type is open\ndiscovery with application-controlled extension/monitor.\n- RESTRICTED_DISCOVERY_MONITOR: Indicates that the Authorization Request Type is restricted\ndiscovery/monitor.\n- RESTRICTED_DISCOVERY_EXTENSION_MONITOR: Indicates that the Authorization Request Type is\nrestricted discovery with application-controlled extension/monitor.\n- RESTRICTED_DISCOVERY_PERMISSION: Indicates that the Authorization Request Type is\nrestricted discovery/permission.\n- RESTRICTED_DISCOVERY_RESPONSE: Indicates that the Authorization Request Type is restricted\ndiscovery/response.\n- RESTRICTED_DISCOVERY_QUERY: Indicates that the Authorization Request Type is restricted\ndiscovery/query.\n- RESTRICTED_DISCOVERY_MATCH: Indicates that the Authorization Request Type is restricted\ndiscovery/match.\nAuthResponseType:\nanyOf:\n- type: string\nenum:\n- OPEN_DISCOVERY_EXTENSION_ANNOUNCE_ACK\n- RESTRICTED_DISCOVERY_ANNOUNCE_ACK\n- RESTRICTED_DISCOVERY_EXTENSION_ANNOUNCE_ACK\n- OPEN_DISCOVERY_EXTENSION_MONITOR_ACK\n- RESTRICTED_DISCOVERY_MONITOR_ACK\n- RESTRICTED_DISCOVERY_EXTENSION_MONITOR_ACK\n- RESTRICTED_DISCOVERY_PERMISSION_ACK\n- RESTRICTED_DISCOVERY_RESPONSE_ACK\n- RESTRICTED_DISCOVERY_QUERY_ACK\n- RESTRICTED_DISCOVERY_MATCH_ACK\n- type: string\ndescription: >\nThis string provides forward-compatibility with future extensions to the enumeration\nand is not used to encode content defined in the present version of this API.\ndescription: |\nRepresents the authorization response type.\nPossible values are:\n- OPEN_DISCOVERY_EXTENSION_ANNOUNCE_ACK: Indicates that the Authorization Response Type is\nopen discovery with application-controlled extension/announce ack.\n- RESTRICTED_DISCOVERY_ANNOUNCE_ACK: Indicates that the Authorization Response Type is\nrestricted discovery/announce ack.\n- RESTRICTED_DISCOVERY_EXTENSION_ANNOUNCE_ACK: Indicates that the Authorization Response\nType is restricted discovery with application-controlled extension/announce ack.\n- OPEN_DISCOVERY_EXTENSION_MONITOR_ACK: Indicates that the Authorization Response Type is\nopen discovery with application-controlled extension/monitor ack.\n- RESTRICTED_DISCOVERY_MONITOR_ACK: Indicates that the Authorization Response Type is\nrestricted discovery/monitor ack.\n- RESTRICTED_DISCOVERY_EXTENSION_MONITOR_ACK: Indicates that the Authorization Response Type\nis restricted discovery with application-controlled extension/monitor ack.\n- RESTRICTED_DISCOVERY_PERMISSION_ACK: Indicates that the Authorization Response Type is\nrestricted discovery/permission ack.\n- RESTRICTED_DISCOVERY_RESPONSE_ACK: Indicates that the Authorization Response Type is\nrestricted discovery/response ack.\n- RESTRICTED_DISCOVERY_QUERY_ACK: Indicates that the Authorization Response Type is\nrestricted discovery/query ack.\n- RESTRICTED_DISCOVERY_MATCH_ACK: Indicates that the Authorization Response Type is\nrestricted discovery/match ack.\nMetadataIndic:\nanyOf:\n- type: string\nenum:\n- NO_METADATA\n- METADATA_UPDATE_DISALLOWED\n- METADATA_UPDATE_ALLOWED\n- type: string\ndescription: >\nThis string provides forward-compatibility with future extensions to the enumeration\nand is not used to encode content defined in the present version of this API.\ndescription: |\nRepresents the Metadata Indicator.\nPossible values are:\n- NO_METADATA: This value may be used to indicate that there is no metadata associated with\nthe target RPAUID. This is the default value applicable if this IE is not supplied.\n- METADATA_UPDATE_DISALLOWED: This value shall be used to indicate that there exists\nmetadata associated with the target RPAUID, but the metadata is not allowed to be updated.\n- METADATA_UPDATE_ALLOWED: This value shall be used to indicate that there exists metadata\nassociated with the target RPAUID, and the metadata is allowed to be updated.\nRevocationResult:\nanyOf:\n- type: string\nenum:\n- REVOCATION_SUCCESSFUL\n- REVOCATION_NOT_SUCCESSFUL\n- type: string\ndescription: >\nThis string provides forward-compatibility with future extensions to the enumeration\nand is not used to encode content defined in the present version of this API.\ndescription: |\nRepresents the revocation result of a set of Banned RPAUID - Banned PDUID for Restricted\nProSe Direct Discovery.\nPossible values are:\n- REVOCATION_SUCCESSFUL: Indicates the successful revocation for a set of Banned RPAUID -\nBanned PDUID for Restricted ProSe Direct Discovery.\n- REVOCATION_NOT_SUCCESSFUL: Indicates that unsuccessful revocation for a set of Banned\nRPAUID - Banned PDUID for Restricted ProSe Direct Discovery.\nAnnex B (informative):Change history\nChange history\nDate\nMeeting\nTDoc\nCR\nRev\nCat\nSubject/Comment\nNew version\n2021-04\nCT3#115-e\nC3-212446\nDraft skeleton provided by the rapporteur.\n0.0.0\n2021-05\nCT3#116-e\nC3-213504\nImplementing the following p-CR agreed by CT3:C3-212447\nEditorial change from the rapporteur.\nSpecification number added.\n0.1.0\n2021-08\nCT3#117-e\nC3-214590\nImplementing the following p-CR agreed by CT3:C3-214021 and C3-214022.\nEditorial change from the rapporteur.\n0.2.0\n2021-09\nCT3#117-e\nC3-214590\nChange filename – removed Stable\n0.2.1\n2021-09\nCT#93-e\nCP-212188\nThe p-CRs are agreed in CT#93-e.\n0.2.1\n2021-10\nCT3#118-e\nC3-215453\nImplementing the following p-CR agreed by CT3:C3-215453\n0.3.0\n2021-12\nCT#94-e\nCP-213209\nPresentation for information\n1.0.0\n2022-01\nCT3#119bis-e\nC3-220451\nImplementing the following p-CR agreed by CT3:C3-220417\n1.1.0\n2022-02\nCT3#120-e\nC3-221556\nImplementing the following p-CR agreed by CT3:C3-221166\n1.2.0\n2022-03\nCT#95e\nCP-220157\nPresentation to TSG CT for approval\n2.0.0\n2022-03\nCT#95e\nCP-220157\nApproved by TSG CT\n17.0.0\n2022-06\nCT#96\nCP-221116\n0001\n1\nF\nAdding the missing description fields in the OpenAPI file\n17.1.0\n2022-06\nCT#96\nCP-221116\n0002\n1\nF\nMiscellaneous corrections\n17.1.0\n2022-06\nCT#96\nCP-221116\n0003\nF\nAPI URI of the Naf_ProSe API\n17.1.0\n2022-06\nCT#96\nCP-221152\n0004\nF\nUpdate of info and externalDocs fields\n17.1.0\n2022-09\nCT#97e\nCP-222132\n0005\n1\nF\nApplication errors reference update in the tables defining methods on the resources for Naf_ProSe API\n17.2.0\n2022-12\nCT#98e\nCP-223162\n0007\n1\nF\nCorrection to AuthDisResData data type\n17.3.0\n2022-12\nCT#98e\nCP-223162\n0008\n1\nF\nCorrection to AuthDisReqData data type\n17.3.0\n2022-12\nCT#98e\nCP-223162\n0009\n1\nF\nCorrections to DiscoveryAuthorization service operation\n17.3.0\n2022-12\nCT#98e\nCP-223162\n0011\n1\nF\nAdd the missing status codes for the HTTP operations\n17.3.0\n2022-12\nCT#98e\nCP-223162\n0012\n1\nF\nCorrections for data types and API of Naf_ProSe service\n17.3.0\n2022-12\nCT#98e\nCP-223188\n0017\nF\nUpdate of info and externalDocs fields\n17.3.0\n2022-12\nCT#98e\nCP-223191\n0006\nF\nAdding the mandatory error code 502 Bad Gateway\n18.0.0\n2022-12\nCT#98e\nCP-223192\n0010\n1\nF\nEnumeration definitions in the OpenAPI file\n18.0.0\n2022-12\nCT#98e\nCP-223199\n0013\n1\nF\nUpdate for the Naf_ProSe Service architecture\n18.0.0\n2022-12\nCT#98e\nCP-223190\n0018\nF\nUpdate of info and externalDocs fields\n18.0.0\n2023-03\nCT#99\nCP-230166\n0019\nF\nCorrection of the description fields in enumerations\n18.1.0\n2023-03\nCT#99\nCP-230161\n0020\nF\nUpdate of info and externalDocs fields\n18.1.0\n2023-12\nCT#102\nCP-233229\n0021\n1\nF\nHTTP RFC uplifting\n18.2.0\n2024-06\nCT#104\nCP-241136\n0022\n5\nB\nUpdates to Naf_ProSe API\n18.3.0\n2024-06\nCT#104\nCP-241093\n0023\nF\nAdd the missing 3gpp-Sbi-Target-Nf-Id custom header\n18.3.0\n2024-06\nCT#104\nCP-241094\n0024\n1\nF\nVarious essential corrections\n18.3.0\n2024-06\nCT#104\nCP-241086\n0025\nF\nUpdate of info and externalDocs fields\n18.3.0\n2024-09\nCT#105\nCP-242159\n0027\n1\nF\nCorrection of conditions for identifiers\n18.4.0",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.510_clause_5.4.2.2",
+        "ts_29.501_clause_5.3.1",
+        "ts_29.501_clause_5",
+        "ts_29.501_clause_4.4",
+        "table_0.2.1",
+        "ts_33.501",
+        "ts_29.500",
+        "ts_29.510",
+        "ts_29.501",
+        "ts_21.900",
+        "ts_29.557"
+      ]
+    }
+  ]
+}

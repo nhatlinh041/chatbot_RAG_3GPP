@@ -1,0 +1,235 @@
+{
+  "metadata": {
+    "specification_id": "ts_29.119",
+    "version": "18.0.0",
+    "title": "3GPP TS 29.119",
+    "file_path": "/content/drive/MyDrive/RAG_thesis/data/29_series/29119-i00/29119-i00.docx"
+  },
+  "export_info": {
+    "export_date": "2025-07-26T09:19:08.539787",
+    "total_chunks": 22
+  },
+  "chunks": [
+    {
+      "chunk_id": "ts_29.119_1",
+      "section_id": "1",
+      "section_title": "Scope",
+      "content": "The present document describes the signalling requirements and procedures used at network elements related to the GLR for GTP within the 3GPP system at the application level.\nThe present document gives the description of the systems needed only in the network utilising GLR as the delta document against 3GPP TS 29.060.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.060"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.119_1.1",
+      "section_id": "1.1",
+      "section_title": "References",
+      "content": "The following documents contain provisions which, through reference in this text, constitute provisions of the present document.\n-\tReferences are either specific (identified by date of publication, edition number, version number, etc.) or non‑specific.\n-\tFor a specific reference, subsequent revisions do not apply.\n-\tFor a non-specific reference, the latest version applies.  In the case of a reference to a 3GPP document (including a GSM document), a non-specific reference implicitly refers to the latest version of that document in the same Release as the present document.\n[1]\t3GPP TS 23.060: \"General Packet Radio Service (GPRS); Service description Stage2\".\n[2]\t3GPP TS 23.119: \"Gateway Location Register (GLR) – stage2\".\n[3]\t3GPP TS 24.008: \"Mobile radio interface layer 3 specification, Core Network Protocols – Stage 3\".\n[4]\t3GPP TS 29.002: \"Mobile Application Part (MAP) specification\".\n[5]\t3GPP TS 29.060: \"General Packet Radio Service (GPRS); GPRS Tunnelling Protocol (GTP) across the Gn and Gp Interface\".",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.060",
+        "ts_23.119",
+        "ts_24.008",
+        "ts_29.002",
+        "ts_29.060"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.119_2.1",
+      "section_id": "2.1",
+      "section_title": "Definitions",
+      "content": "For the purposes of the present document, the following terms and definitions apply.\nGateway Location Register:\tthis entity handles location management of roaming subscriber in visited network without involving HLR\nIntermediate GSN:\tthis entity is used as serving GSN towards home network and relay some PDU notification messages between serving GSN and Gateway GSN\nMM context:\tinformation sets held in MS and GSNs for a GPRS subscriber related to mobility management (MM)\nMM Context ID:\tIMSI or equivalent for use in conjunction with Anonymous Access (please refer to section GTP Header)\nPath:\tUDP/IP path and TCP/IP path are examples of paths that may be used to multiplex GTP tunnels\nPath Protocol:\tpath Protocol is the protocol(s) used as a bearer of GTP between GSNs\nPDP:\tpacket Data Protocol (PDP) is a network protocol used by an external packet data network interfacing to GPRS\nPDP Context:\tinformation sets held in MS and GSNs for a PDP address\nSignalling message:\tGTP signalling messages are exchanged between GSN pairs in a path. The signalling messages are used to transfer GSN capability information between GSN pairs and to create, update and delete GTP tunnels\nT-PDU:\toriginal packet, for example an IP datagram, from an MS or a network node in an external packet data network. A T-PDU is the payload that is tunnelled in the GTP tunnel\nTunnel Endpoint Identifier (TEID):\tthis field unambiguously identifies a tunnel endpoint in the receiving GTP-U or GTP-C protocol entity. The receiving end side of a GTP tunnel locally assigns the TEID value the transmitting side has to use. The TEID values are exchanged between tunnel endpoints using GTP-C messages",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.119_2.2",
+      "section_id": "2.2",
+      "section_title": "Abbreviations",
+      "content": "For the purposes of the present document, the following abbreviations apply:\nGGSN\tGateway GPRS support node\nGLR\tGateway Location Register\nGPRS\tGeneral Packet Radio Service\nGTP\tGPRS Tunnelling Protocol\nIM_GSN\tIntermediate GSN\nIP\tInternet Protocol\nGLR\tGateway Location Register\nSGSN\tServing GPRS support node\nTEID\tTunnel Endpoint IDentifier\nUDP\tUser Datagram Protocol",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.119_3",
+      "section_id": "3",
+      "section_title": "General",
+      "content": "The present document defines the GPRS Tunnelling Protocol (GTP) specific to the network with the GLR, i.e. the protocol between IM_GSN and other nodes (i.e. GGSN, SGSN and GTP-MAP protocol converting GSN). It includes only the GTP signalling but not data transfer procedures.\nThe interface between IM_GSM and GGSN is either intra-PLMN interface or inter-PLMN interface.\nFigure 1: Logical Architecture for PS domain in the network with GLR\nThe GTP protocol is implemented only by IM_GSNs, SGSNs and GGSNs. No other systems need to be aware of GTP. GPRS MSs are connected to a SGSN without being aware of GTP.\nIt is assumed that there will be a many-to-many relationship between IM_GSNs, SGSNs and GGSNs.  An IM_GSN may provide service to many GGSNs. A SGSN may provide service to many IM_GSNs and GGSNs.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "figure_1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.119_4",
+      "section_id": "4",
+      "section_title": "Transmission order and bit definitions",
+      "content": "Transmission order and bit definitions on the interface between the IM_GSN and other nodes in the network with GLR are the same as that used in the network without the GLR, see 3GPP TS 29.060.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.060"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.119_5",
+      "section_id": "5",
+      "section_title": "GTP header",
+      "content": "The GTP header used on interface between the IM_GSN and other nodes in the network with GLR is the same as that used in the network without the GLR, see 3GPP TS 29.060.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.060"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.119_6",
+      "section_id": "6",
+      "section_title": "GTP Message and Message Formats",
+      "content": "The only signalling plane exists between the IM_GSN and other nodes (i.e. GGSN, SGSN and GTP-MAP protocol converting GSN).",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.119_6.1",
+      "section_id": "6.1",
+      "section_title": "Signalling Message Formats",
+      "content": "GTP defines a set of signalling messages between two associated GSNs. The signalling messages to be used between the IM_GSN and other nodes are defined in the table below. For the GTP signalling messages to be used on other interfaces see 3GPP TS 29.060.\nTable 1: Signalling messages\nMessage Type value\n(Decimal)\nSignalling message\nReference\n3\nVersion Not Supported\n7.4.3 in 3GPP TS 29.060\n27\nPDU Notification Request\n7.5.12 in 3GPP TS 29.060\n28\nPDU Notification Response\n7.5.13 in 3GPP TS 29.060\n29\nPDU Notification Reject Request\n7.5.14 in 3GPP TS 29.060\n30\nPDU Notification Reject Response\n7.5.15 in 3GPP TS 29.060\n32\nSend Routeing Information for GPRS Request\n7.6.1 in 3GPP TS 29.060\n33\nSend Routeing Information for GPRS Response\n7.6.2 in 3GPP TS 29.060\n34\nFailure Report Request\n7.6.3 in 3GPP TS 29.060\n35\nFailure Report Response\n7.6.4 in 3GPP TS 29.060",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.060_table_1",
+        "ts_29.060"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.119_6.2",
+      "section_id": "6.2",
+      "section_title": "Path Management messages",
+      "content": "The messages, which are listed in following table, are used on the interface between the IM_GSN and other nodes. For the definitions of these messages and other messages used on the other interfaces refer to the corresponding sections in 3GPP TS 29.060.\nMessages\nSending node\nReceiving node\nVersion Not Supported\nIM_GSN\nGGSN, SGSN\nGGSN, SGSN\nIM_GSN",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.060"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.119_6.3",
+      "section_id": "6.3",
+      "section_title": "Tunnel Management messages",
+      "content": "In following table, only the messages used between the IM_GSN and GGSN and between the IM_GSN and SGSN are listed. For the definitions of these messages and other messages used on the other interfaces refer to the corresponding sections in 3GPP TS 29.060.\nMessages\nSending node\nReceiving node\nPDU Notification Request\nGGSN\nIM_GSN\nIM_GSN\nSGSN\nPDU Notification Response\nSGSN\nIM_GSN\nIM_GSN\nGGSN\nPDU Notification Reject Request\nSGSN\nIM_GSN\nIM_GSN\nGGSN\nPDU Notification Reject Response\nGGSN\nIM_GSN\nIM_GSN\nSGSN",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.060"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.119_6.4",
+      "section_id": "6.4",
+      "section_title": "Location Management message",
+      "content": "In the network with the GLR, The optional Location Management messages are defined to support the case when Network-Requested PDP Context Activation procedures are used and an IM_GSN does not have a SS7 MAP interface. GTP is then used to transfer signalling messages between the IM_GSN and a GTP-MAP protocol-converting GSN in the GPRS backbone network. The GTP-MAP protocol-converting GSN converts the signalling messages described in this section between GTP and MAP. The MAP messages are sent to and received from the GLR. The GTP-MAP protocol-converting function is described in 3GPP TS 23.060. The MAP protocol describing the corresponding procedures and messages is described in 3GPP TS 29.002. This alternative method is illustrated in Figure 2.\nFigure 2: IM_GSN - GLR Signalling via a GTP-MAP protocol-converter in a GSN\nIn following table, only the messages used between the IM_GSN and The GTP-MAP protocol-converting GSN are listed. For the definitions of these messages and other messages used on the other interfaces refer to the corresponding sections in 3GPP TS 29.060.\nMessages\nSending node\nReceiving node\nSend Routeing Information for GPRS Request\nIM_GSN\nGTP-MAP protocol-converting\nSend Routeing Information for GPRS Response\nGTP-MAP protocol-converting\nIM_GSN\nFailure Report Request\nIM_GSN\nGTP-MAP protocol-converting\nFailure Report Response\nGTP-MAP protocol-converting\nIM_GSN",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_2",
+        "ts_23.060",
+        "ts_29.002",
+        "ts_29.060"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.119_6.5",
+      "section_id": "6.5",
+      "section_title": "Mobility Management messages",
+      "content": "The messages belonging to the mobility management messages are not used on the interface between the IM_GSN and other nodes in the network with the GLR.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.119_6.6",
+      "section_id": "6.6",
+      "section_title": "Reliable delivery of signalling messages",
+      "content": "For the Reliability mechanism in the IM_GSN, see section 7.8 in 3GPP TS 29.060.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.060_clause_7.8",
+        "ts_29.060"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.119_6.7",
+      "section_id": "6.7",
+      "section_title": "Information element",
+      "content": "The format of information elements in the message used on the interface between the IM_GSN and other nodes in the network with GLR is the same as that in the network without the GLR. See 3GPP TS 29.060.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.060"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.119_7",
+      "section_id": "7",
+      "section_title": "Signalling Plane (GTP-C)",
+      "content": "The definition of signalling plane used in the network with the GLR is the same as that used in the network without the GLR, see in 3GPP TS 29.060.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.060"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.119_8",
+      "section_id": "8",
+      "section_title": "GTP-U",
+      "content": "GTP-U is not used on the interface between the IM_GSN and other nodes. For the definition of GTP-U on the other interfaces, see in 3GPP TS 29.060.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.060"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.119_9",
+      "section_id": "9",
+      "section_title": "Path Protocol",
+      "content": "The Path Protocol on the interface between the IM_GSN and other nodes in the network with the GLR is the same as that used in the network without the GLR. See 3GPP TS 29.060.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.060"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.119_10",
+      "section_id": "10",
+      "section_title": "Error handling",
+      "content": "The error handling on the interface between the IM_GSN and other nodes is the same as that in the network without the GLR. See 3GPP TS 29.060. One exception is that the IM_GSN doesn't have a Restart Counter because the IM_GSM stores no PDP and MM context and therefore the synchronisation of the status of these with other GSNs is not needed.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.060"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.119_11",
+      "section_id": "11",
+      "section_title": "Inter-PLMN GTP communication over the Gp Interface",
+      "content": "Refer to the corresponding section in 3GPP TS 29.060.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.060"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.119_12",
+      "section_id": "12",
+      "section_title": "IP, the networking technology used by GTP",
+      "content": "Refer to the corresponding section in 3GPP TS 29.060.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.060"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.119_13",
+      "section_id": "13",
+      "section_title": "GTP parameters",
+      "content": "The definitions and directions for use of the parameters in GTP (inc. timer values or counter values and so on) on the interface between the IM_GSN and other nodes is the same as that used in the network without the GLR. See 3GPP TS 29.060.\nAnnex A (informative):Change history\nChange history\nDate\nMeeting\nTDoc\nCR\nRev\nCat\nSubject/Comment\nNew version\nOct 1999\nThe GTP protocol part is separated from MAP protocol part, and new specification related to GTP issue is generated.\n0.0.1\nNov 1999\nFor approval by N2#8\n0.1.0\nDec 1999\nFor information and approval by TSG CN#6.\n1.0.0\nJan 2000\nOnly editorial modifications including some alignment with 29.060\n1.0.1\nMar 2000\nSubmitted for approval to TSG CN#07\n2.0.0\nMar 2000\nApproved by TSG CN#07\n3.0.0\nMar 2001\nApproved by TSG CN#11\n4.0.0\nJun 2002\nRel-5 created after CN#16\n5.0.0\nDec 2004\nRel-6 created after CN#26\n6.0.0\nJune 2007\nUpgraded unchanged from Rel-6 after CT#36\n7.0.0\nDec 2008\nUpgraded unchanged from Rel-7 after CT#42\n8.0.0\nDec 2009\nUpdate to Rel-9 version (MCC)\n9.0.0\nMar 2011\nUpdate to Rel-10 version (MCC)\n10.0.0\nSep 2012\nUpdate to Rel-11 version (MCC)\n11.0.0\nSep 2014\nUpdate to Rel-12 version (MCC)\n12.0.0\nDec 2015\nUpdate to Rel-13 version (MCC)\n13.0.0\nMar 2017\nUpdate to Rel-14 version (MCC)\n14.0.0\nJun 2018\nUpdate to Rel-15 version (MCC)\n15.0.0\n07-2020\nUpdate to Rel-16 version (MCC)\n16.0.0\n2022-03\n-\n-\n-\n-\n-\nUpdate to Rel-17 version (MCC)\n17.0.0\n2024-03\n-\n-\n-\n-\n-\nUpdate to Rel-18 version (MCC)\n18.0.0",
+      "chunk_type": "parameter",
+      "cross_references": [
+        "ts_29.060"
+      ]
+    }
+  ]
+}

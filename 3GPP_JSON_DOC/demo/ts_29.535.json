@@ -1,0 +1,583 @@
+{
+  "metadata": {
+    "specification_id": "ts_29.535",
+    "version": "18.6.0",
+    "title": "3GPP TS 29.535",
+    "file_path": "/content/drive/MyDrive/RAG_thesis/data/29_series/29535-i60/29535-i60.docx"
+  },
+  "export_info": {
+    "export_date": "2025-07-26T08:51:26.700794",
+    "total_chunks": 49
+  },
+  "chunks": [
+    {
+      "chunk_id": "ts_29.535_1",
+      "section_id": "1",
+      "section_title": "Scope",
+      "content": "The present document specifies the stage 3 protocol and data model for the AAnF Service Based Interface. It provides stage 3 protocol definitions and message flows, and specifies the API for each service offered by the AAnF.\nThe 5G System stage 2 architecture and procedures are specified in 3GPP TS 23.501 [2],  3GPP TS 23.502 [3] and 3GPP TS 33.535 [14].\nThe Technical Realization of the Service Based Architecture and the Principles and Guidelines for Services Definition are specified in 3GPP TS 29.500 [4] and 3GPP TS 29.501 [5].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.501",
+        "ts_23.502",
+        "ts_33.535",
+        "ts_29.500",
+        "ts_29.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.535_2",
+      "section_id": "2",
+      "section_title": "References",
+      "content": "The following documents contain provisions which, through reference in this text, constitute provisions of the present document.\n-\tReferences are either specific (identified by date of publication, edition number, version number, etc.) or non‑specific.\n-\tFor a specific reference, subsequent revisions do not apply.\n-\tFor a non-specific reference, the latest version applies. In the case of a reference to a 3GPP document (including a GSM document), a non-specific reference implicitly refers to the latest version of that document in the same Release as the present document.\n[1]\t3GPP TR 21.905: \"Vocabulary for 3GPP Specifications\".\n[2]\t3GPP TS 23.501: \"System Architecture for the 5G System; Stage 2\".\n[3]\t3GPP TS 23.502: \"Procedures for the 5G System; Stage 2\".\n[4]\t3GPP TS 29.500: \"5G System; Technical Realization of Service Based Architecture; Stage 3\".\n[5]\t3GPP TS 29.501: \"5G System; Principles and Guidelines for Services Definition; Stage 3\".\n[6]\tOpenAPI: \"OpenAPI Specification Version 3.0.0\", https://spec.openapis.org/oas/v3.0.0.\n[7]\t3GPP TR 21.900: \"Technical Specification Group working methods\".\n[8]\t3GPP TS 33.501: \"Security architecture and procedures for 5G system\".\n[9]\tIETF RFC 6749: \"The OAuth 2.0 Authorization Framework\".\n[10]\t3GPP TS 29.510: \"5G System; Network Function Repository Services; Stage 3\".\n[11]\tIETF RFC 9113: \"HTTP/2\".\n[12]\tIETF RFC 8259: \"The JavaScript Object Notation (JSON) Data Interchange Format\".\n[13]\tIETF RFC 9457: \"Problem Details for HTTP APIs\".\n[14]\t3GPP TS 33.535: \"Authentication and Key Management for Applications (AKMA) based on 3GPP credentials in the 5G System (5GS)\".\n[15]\t3GPP TS 29.571: \"5G System; Common Data Types for Service Based Interfaces; Stage 3\".\n[16]\t3GPP TS 29.522: \"5G System; Network Exposure Function Northbound APIs; Stage 3\".\n[17]\t3GPP TS 29.503: \"5G System; Network Exposure Function Northbound APIs; Stage 3\".\n[18]\t3GPP TS 29.122: \"T8 reference point for Northbound Application Programming Interfaces (APIs)\".",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905",
+        "ts_23.501",
+        "ts_23.502",
+        "ts_29.500",
+        "ts_29.501",
+        "ts_21.900",
+        "ts_33.501",
+        "ts_29.510",
+        "ts_33.535",
+        "ts_29.571",
+        "ts_29.522",
+        "ts_29.503",
+        "ts_29.122"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.535_3.1",
+      "section_id": "3.1",
+      "section_title": "Definitions",
+      "content": "For the purposes of the present document, the terms and definitions given in 3GPP TR 21.905 [1] and the following apply. A term defined in the present document takes precedence over the definition of the same term, if any, in 3GPP TR 21.905 [1].",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_21.905"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.535_3.2",
+      "section_id": "3.2",
+      "section_title": "Symbols",
+      "content": "No symbol applies in this release of the specification.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.535_3.3",
+      "section_id": "3.3",
+      "section_title": "Abbreviations",
+      "content": "For the purposes of the present document, the abbreviations given in 3GPP TR 21.905 [1] and the following apply. An abbreviation defined in the present document takes precedence over the definition of the same abbreviation, if any, in 3GPP TR 21.905 [1].\nAAnF\tAKMA Anchor Function\nAF\tApplication Function\nAKMA\tAuthentication and Key Management for Applications\nA-KID\tAKMA Key IDentifier\nAUSF\tAUthentication Server Function\nNEF\tNetwork Exposure Function\nGPSI\tGeneric Public Subscription Identifier",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.535_4.1",
+      "section_id": "4.1",
+      "section_title": "Introduction",
+      "content": "The AKMA Anchor Service is used for the AAnF to store AKMA related key material and provide AKMA Application Key information. The AAnF offers to other NFs the following service:\n-\tNaanf_AKMA.\nTable 4.1-1: Service provided by AAnF\nService Name\nDescription\nService Operations\nOperation\nSemantics\nExample Consumer(s)\nNaanf_AKMA\nThis service enables the NF service consumers to request the AAnF to store the AKMA related key material or get the AKMA Application Key information from the AAnF.\nAnchorKey_Register\nRequest/Response\nAUSF\nApplicationKey_Get\nRequest/Response\nAF, NEF\nNotify\nRequest/Response\nAF, NEF\nApplicationKey_AnonUser_Get\n(NOTE 2)\nRequest/Response\nAF\nContextRemove\nRequest/Response\nAUSF\nNOTE 1:\tThe service corresponds to the Naanf_AKMA service as defined in 3GPP TS 33.535 [14].\nNOTE 2:\tThe ApplicationKey_AnonUser_Get service operation is defined reusing the ApplicationKey_Get service operation.\nTable 4.1-2 summarizes the corresponding APIs defined for this specification.\nTable 4.1-2: API Descriptions\nService Name\nClause\nDescription\nOpenAPI Specification File\napiName\nAnnex\nNaanf_AKMA\n4.2\nAPI for Naanf_AKMA\nTS29535_Naanf_AKMA.yaml\nnaanf-akma\nAnnex A.2 Naanf_AKMA API",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_4.1-1",
+        "table_4.1-2",
+        "ts_33.535"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.535_4.2.1.1",
+      "section_id": "4.2.1.1",
+      "section_title": "Overview",
+      "content": "The Naanf_AKMA, as defined in 3GPP TS 33.535 [14] is provided by the AKMA Anchor Function (AAnF).\nThis service:\n-\tallows consumer NFs to store the AKMA related key material.\n-\tallows consumer NFs and the AFs to request the AKMA Application Key information for the UE.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_33.535"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.535_4.2.1.2",
+      "section_id": "4.2.1.2",
+      "section_title": "Service Architecture",
+      "content": "The 5G System Architecture is defined in 3GPP TS 23.501 [2]. The Authentication and Key Management for Applications architecture is defined in 3GPP TS 33.535 [14].\nThe Naanf_AKMA service is part of the Naanf service-based interface exhibited by the AAnF.\nKnown consumers of the Naanf_AKMA service are:\n-\tAUthentication Server Function (AUSF)\n-\tApplication Function (AF)\n-\tNetwork Exposure Function (NEF)\nFigure 4.2.1.2-1: Reference Architecture for the Naanf_AKMA Service; SBI representation\nFigure 4.2.1.2-2: Reference Architecture for the Naanf_AKMA Service; reference point representation",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_4.2.1.2-1",
+        "figure_4.2.1.2-2",
+        "ts_23.501",
+        "ts_33.535"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.535_4.2.1.3.1",
+      "section_id": "4.2.1.3.1",
+      "section_title": "AKMA Anchor Function (AAnF)",
+      "content": "The AKMA Anchor Function (AAnF) is a functional element that stores the AKMA Anchor Key (KAKMA), A-KID for AKMA service, which is received from the AUSF after the UE completes a successful 5G primary authentication. The AAnF also generates the key material to be used between the UE and the Application Function (AF) and maintains the UE AKMA context as defined in 3GPP TS 33.535 [14].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_33.535"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.535_4.2.1.3.2",
+      "section_id": "4.2.1.3.2",
+      "section_title": "NF Service Consumers",
+      "content": "The known NF service consumers are as follows:\nThe AUthentication Server Function (AUSF):\n-\tprovides the AKMA key material of the UE to the AAnF; and\n-\tnotify an NF service consumer on AKMA service disablement.\nThe Network Exposure Function (NEF):\n-\tenables and authorizes the external AF accessing AKMA service and forwards the request towards the AAnF;\n-\tperforms the AAnF selection.\nThe Application Function (AF):\n-\trequests for AKMA Application Key from the AAnF;\n-\tshall be authenticated and authorized by the operator network before receiving the KAF from the AAnF;\n-\tperforms the AAnF selection if the AF located inside the operator's network.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.535_4.2.2.1",
+      "section_id": "4.2.2.1",
+      "section_title": "Introduction",
+      "content": "Table 4.2.2.1-1: Operations of the Naanf_AKMA Service\nService operation name\nDescription\nInitiated by\nNaanf_AKMA_AnchorKey_Register\nThis service operation is used by an NF to store the AKMA related key material.\nAUSF\nNaanf_AKMA_ApplicationKey_Get\nThis service operation is used by an NF to request the AKMA Application Key information for the UE\nNEF, AF\nNaanf_AKMA_ApplicationKey_AnonUser_Get\nThis service operation is used by an AF to request the AKMA Application Key information for the UE when authorized AF are not expected to receive the SUPI of the UE\nAF\nNaanf_AKMA_ContextRemove\nThis service operation is used by an NF to delete the AKMA related key material.\nAUSF\nNaanf_AKMA_Notify\nThis service operation is used by the AAnF to notify a previously subscribed NF service consumer on AKMA service disablement.\nAAnF\nNaanf_AKMA_Notify\nThis service operation is used by the AAnF to notify a previously subscribed NF service consumer on AKMA service disablement.\nAAnF",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_4.2.2.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.535_4.2.2.2.1",
+      "section_id": "4.2.2.2.1",
+      "section_title": "General",
+      "content": "The procedures support:\n-\tstore the AKMA related key material by the NF service consumer to the AAnF as described in 3GPP TS 33.535 [14];",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_33.535"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.535_4.2.2.2.2",
+      "section_id": "4.2.2.2.2",
+      "section_title": "Store the AKMA related key material",
+      "content": "Figure 4.2.2.2.2-1 illustrates the registration of AKMA related key material at the AAnF.\nFigure 4.2.2.2.2-1: Registration of AKMA related key material\nIn order to store the AKMA related key material, the NF service consumer shall send an HTTP POST request message to the resource URI \"{apiRoot}/naanf-akma/<apiVersion>/register-anchorkey\" as shown in step 1 of figure 4.2.2.2.2-1, and the AkmaKeyInfo data structure as request body.\nThe AkmaKeyInfo data structure shall include:\n-\tSUPI as \"supi\" attribute;\n-\tA-KID as \"aKId\" attribute; and\n-\tKAKMA as \"kAkma\" attribute.\nIf the AAnF cannot successfully fulfil the received HTTP POST request due to an internal error or an error in the HTTP POST request, the AAnF shall send an HTTP error response as specified in clause 5.1.7.\nIf the AAnF determines the received HTTP POST request needs to be redirected, the AAnF shall send an HTTP redirect response as specified in clause 6.10.9 of 3GPP TS 29.500 [4].\nUpon successful reception of an HTTP POST request, the AAnF shall store the key material information and respond to the NF service consumer with a 200 OK status code, including the AkmaKeyInfo data structure as response body.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_5.1.7",
+        "ts_29.500_clause_6.10.9",
+        "figure_4.2.2.2.2-1",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.535_4.2.2.3.1",
+      "section_id": "4.2.2.3.1",
+      "section_title": "General",
+      "content": "The Naanf_AKMA_ApplicationKey_Get service operation is used by an NF service consumer to request the AKMA Application Key information for the UE.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.535_4.2.2.3.2",
+      "section_id": "4.2.2.3.2",
+      "section_title": "AKMA Application Key request",
+      "content": "Figure 4.2.2.3.2-1 shows a scenario where the NF service consumer sends a request to the AAnF to request and get the AKMA Application Key information for the UE (as shown in 3GPP TS 33.535 [14]).\nFigure 4.2.2.3.2-1: NF service consumer retrieve AKMA Application Key information\nThe NF service consumer shall invoke the Naanf_AKMA_ApplicationKey_Get service operation to retrieve the AKMA Application Key information. The NF service consumer shall send for this purpose an HTTP POST request with \"{apiRoot}/naanf-akma/<apiVersion>/retrieve-applicationkey\" as Resource URI, as shown in step 1 of figure 4.2.2.3.2-1, and the request body containing the AkmaAfKeyRequest data structure.\nIf the request corresponds to a Naanf_AKMA_ApplicationKey_AnonUser_Get request, then the AkmaAfKeyRequest shall contain the \"anonInd\" attribute set to \"true\".\nIf the AAnF determines the received HTTP POST request needs to be redirected, the AAnF shall send an HTTP redirect response as specified in clause 6.10.9 of 3GPP TS 29.500 [4].\nIf the AAnF cannot successfully fulfil the received HTTP POST request due to an internal error or an error in the HTTP POST request, the AAnF shall send an HTTP error response as specified in clause 5.1.7.\nThe AAnF shall also verify the presence of the UE specific KAKMA key identified by the A-KID.\n-\tIf KAKMA is not present in the AAnF, the AAnF shall reply with an HTTP \"403 Forbidden\" status code and the response message body including a ProblemDetails data structure with the \"cause\" attribute set to the \"K_AKMA_NOT_PRESENT\" application error specified in table 5.1.7.3-1.\n-\tIf KAKMA is present in the AAnF, the AAnF shall continue and process the request as specified below.\nUpon the reception of the HTTP POST request, the AAnF shall respond with an HTTP \"200 OK\" status code and the response message body containing the AkmaAfKeyData data structure which shall include:\n-\tKAF as \"kaf\" attribute;\n-\tKAF expiration time as \"expiry\" attribute; and\n-\tif the \"anonInd\" attribute was not present in the request or it was present and set to \"false\", the SUPI within the \"supi\" attribute or, if the \"AKMA_GPSI_Support\" feature is supported, either the SUPI within the \"supi\" attribute or the GPSI within the \"gpsi\" attribute.\nIf the requested AKMA Application Key information for the UE does not exist, the AAnF shall respond with \"204 No Content\".\nIf the NF service consumer is an NEF, and if UE identifier is required to relay to the AF based on local policy, the NEF invokes the Nudm_SubscriberDataManagement service defined in 3GPP TS 29.503 [17] to translate the SUPI to a GPSI (External Id), and then invoke the AKMA API to include the GPSI (External Id) in the response to the AF as defined in 3GPP TS 29.522 [16]. The NEF shall not send the SUPI to the AF.\nIf the AAnF identifies that the request is targeting a UE that is currently roaming (e.g. the AAnF have received a roaming status information reporting from the UDM indicating that the UE is currently roaming) and if the AKMA service is not allowed for the roaming UE (e.g., based on the local policy), the AAnF shall reply with an HTTP \"403 Forbidden\" status code with the response message body including a ProblemDetails data structure containing the \"cause\" attribute set to the \"ROAMING_AKMA_SERVICE_DENIED\" application error as specified in clause 5.1.7.3.\nNOTE:\tThe UE is considered as roaming if at least one of the serving PLMNs of the UE registered PLMN(s) is a VPLMN.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.500_clause_6.10.9",
+        "clause_5.1.7",
+        "clause_5.1.7.3",
+        "table_5.1.7.3-1",
+        "figure_4.2.2.3.2-1",
+        "ts_33.535_figure_4.2.2.3.2-1",
+        "ts_33.535",
+        "ts_29.500",
+        "ts_29.503",
+        "ts_29.522"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.535_4.2.2.4.1",
+      "section_id": "4.2.2.4.1",
+      "section_title": "General",
+      "content": "The Naanf_AKMA_ContextRemove service operation is used by an NF service consumer to request the AAnF to remove the AKMA related key material.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.535_4.2.2.4.2",
+      "section_id": "4.2.2.4.2",
+      "section_title": "AKMA Context removal",
+      "content": "Figure 4.2.2.4.2-1 shows a scenario where the NF service consumer sends a request to the AAnF to delete the AKMA related key material (as shown in 3GPP TS 33.535 [14]).\nFigure 4.2.2.4.2-1: NF service consumer request to remove the AKMA related key material\nThe NF service consumer shall invoke the Naanf_AKMA_ContextRemove service operation to request the AAnF to remove the AKMA related key material. The NF service consumer shall send an HTTP POST request with \"{apiRoot}/naanf-akma/<apiVersion>/remove-context\" as Resource URI, as shown in figure 4.2.2.4.2-1, step 1, to request to remove AKMA related key material according to the value of the \"CtxRemove\" data type in the request body.\nIf errors occur when processing the HTTP POST request, the AAnF shall send an HTTP error response as specified in clause 5.1.7.\nIf the AAnF determines the received HTTP POST request needs to be redirected, the AAnF shall send an HTTP redirect response as specified in clause 6.10.9 of 3GPP TS 29.500 [4].\nUpon the reception of the HTTP POST request, if the AKMA context (e.g. A-KID, KAKMA) for the UE has been removed successfully, the AAnF shall send an HTTP \"204 No Content\" response.\nIf the AKMA Context resource does not exist, the AAnF shall respond with \"404 Not Found\" and the \"cause\" attribute of the \"ProblemDetails\" data structure set to \"AKMA_CONTEXT_NOT_FOUND\".",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_5.1.7",
+        "ts_29.500_clause_6.10.9",
+        "figure_4.2.2.4.2-1",
+        "ts_33.535_figure_4.2.2.4.2-1",
+        "ts_33.535",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.535_4.2.2.5.1",
+      "section_id": "4.2.2.5.1",
+      "section_title": "General",
+      "content": "The Naanf_AKMA_Notify service operation is used by the AAnF to notify a previously subscribed service consumer on AKMA service disablement.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.535_4.2.2.5.2",
+      "section_id": "4.2.2.5.2",
+      "section_title": "AKMA Service Disablement Notification",
+      "content": "Figure 4.2.2.5.2-1 shows a scenario where the AAnF sends a notification to the NF service consumer on AKMA service disablement (see also 3GPP TS 33.535 [14]).\nFigure 4.2.2.5.2-1: AAnF notification to NF service consumer\nIn order to notify a previously subscribed service consumer on AKMA service disablement, the AAnF shall invoke the Naanf_AKMA_Notify service operation by sending an HTTP POST request to the NF service consumer using the notification URI received during the related AKMA application key request procedure, as specified in clause 4.2.2.3.2, and the request body including the ServiceDisableNotif data structure.\nUpon reception of the notification, the NF service consumer shall acknowledge the successful reception of the notification with a \"204 No Content\" status code.\nIf errors occur when processing the HTTP POST request, the NF service consumer shall send an appropriate HTTP error response as specified in clause 5.1.7. If the service consumer determines the received HTTP POST request needs to be redirected, the service consumer shall send an HTTP redirect response as specified in clause 6.10.9 of 3GPP TS 29.500 [4].",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_4.2.2.3.2",
+        "clause_5.1.7",
+        "ts_29.500_clause_6.10.9",
+        "figure_4.2.2.5.2-1",
+        "ts_33.535_figure_4.2.2.5.2-1",
+        "ts_33.535",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.535_5.1.1",
+      "section_id": "5.1.1",
+      "section_title": "Introduction",
+      "content": "The Naanf_AKMA service shall use the Naanf_AKMA API.\nThe API URI of the Naanf_AKMA API shall be:\n{apiRoot}/<apiName>/<apiVersion>\nThe request URIs used in HTTP requests from the NF service consumer towards the NF service producer shall have the Resource URI structure defined in clause 4.4.1 of 3GPP TS 29.501 [5], i.e.:\n{apiRoot}/<apiName>/<apiVersion>/<apiSpecificResourceUriPart>\nwith the following components:\n-\tThe {apiRoot} shall be set as described in 3GPP TS 29.501 [5].\n-\tThe <apiName> shall be \"naanf-akma\".\n-\tThe <apiVersion> shall be \"v1\".\n-\tThe <apiSpecificResourceUriPart> shall be set as described in clause 5.1.3 and 5.1.4.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.501_clause_4.4.1",
+        "clause_5.1.3",
+        "ts_29.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.535_5.1.2.1",
+      "section_id": "5.1.2.1",
+      "section_title": "General",
+      "content": "HTTP/2, IETF RFC 9113 [11], shall be used as specified in clause 5 of 3GPP TS 29.500 [4].\nHTTP/2 shall be transported as specified in clause 5.3 of 3GPP TS 29.500 [4].\nThe OpenAPI [6] specification of HTTP messages and content bodies for the Naanf_AKMA API is contained in Annex A.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.500_clause_5",
+        "ts_29.500_clause_5.3",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.535_5.1.2.2.1",
+      "section_id": "5.1.2.2.1",
+      "section_title": "General",
+      "content": "See clause 5.2.2 of 3GPP TS 29.500 [4] for the usage of HTTP standard headers.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.500_clause_5.2.2",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.535_5.1.2.2.2",
+      "section_id": "5.1.2.2.2",
+      "section_title": "Content type",
+      "content": "JSON, IETF RFC 8259 [12], shall be used as content type of the HTTP bodies specified in the present specification as specified in clause 5.4 of 3GPP TS 29.500 [4]. The use of the JSON format shall be signalled by the content type \"application/json\".\n\"Problem Details\" JSON object shall be used to indicate additional details of the error in a HTTP response body and shall be signalled by the content type \"application/problem+json\", as defined in IETF RFC 9457 [13].",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_5.4",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.535_5.1.2.3",
+      "section_id": "5.1.2.3",
+      "section_title": "HTTP custom headers",
+      "content": "The mandatory HTTP custom header fields specified in clause 5.2.3.2 of 3GPP TS 29.500 [4] shall be supported, and the optional HTTP custom header fields specified in clause 5.2.3.3 of 3GPP TS 29.500 [4] may be supported.\nIn this release of the specification, no specific custom headers are defined for the Naanf_AKMA Service API.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_5.2.3.2",
+        "ts_29.500_clause_5.2.3.3",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.535_5.1.3",
+      "section_id": "5.1.3",
+      "section_title": "Resources",
+      "content": "There are no resources defined for this API in this release of the specification.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.535_5.1.4.1",
+      "section_id": "5.1.4.1",
+      "section_title": "Overview",
+      "content": "The structure of the custom operation URIs of the Naanf_AKMA API is shown in figure 5.1.4.1-1.\nFigure 5.1.4.1-1: Custom operation URI structure of the Naanf_AKMA API\nTable 5.1.4.1-1 provides an overview of the custom operations and applicable HTTP methods defined for the Naanf_AKMA API.\nTable 5.1.4.1-1: Custom operations without associated resources\nOperation\nCustom operation URI\nMapped HTTP method\nDescription\nregister-anchorkey\n/register-anchorkey\nPOST\nRequest to store AKMA related key material in the AAnF.\nretrieve-applicationkey\n/retrieve-applicationkey\nPOST\nRequest to retrieve AKMA Application Key information.\nremove-context\n/remove-context\nPOST\nRequest to remove AKMA context in the AAnF.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "table_5.1.4.1-1",
+        "figure_5.1.4.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.535_5.1.4.2.1",
+      "section_id": "5.1.4.2.1",
+      "section_title": "Description",
+      "content": "The custom operation allows a NF service consumer to store AKMA related key material in the AAnF.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.535_5.1.4.2.2",
+      "section_id": "5.1.4.2.2",
+      "section_title": "Operation Definition",
+      "content": "This operation shall support the response data structures and response codes specified in tables 5.1.4.2.2-1 and 5.1.4.2.2-2.\nTable 5.1.4.2.2-1: Data structures supported by the POST Request Body on this resource\nData type\nP\nCardinality\nDescription\nAkmaKeyInfo\nM\n1\nAKMA related key material which is requested to be stored in the AAnF\nTable 5.1.4.2.2-2: Data structures supported by the POST Response Body on this resource\nData type\nP\nCardinality\nResponse\ncodes\nDescription\nAkmaKeyInfo\nM\n1\n200 OK\nThe AKMA related key material was stored successfully.\nRedirectResponse\nO\n0..1\n307 Temporary Redirect\nTemporary redirection, during the retrieval notification.\n(NOTE 2)\nRedirectResponse\nO\n0..1\n308 Permanent Redirect\nPermanent redirection, during the retrieval notification.\n(NOTE 2)\nNOTE 1:\tThe mandatory HTTP error status codes for the POST method listed in Table 5.2.7.1-1 of 3GPP TS 29.500 [4] also apply.\nNOTE 2:\tThe RedirectResponse data structure may be provided by an SCP (cf. clause 6.10.9.1 of 3GPP TS 29.500 [4]).\nTable 5.1.4.2.2-3: Headers supported by the 307 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nContains an alternative URI representing the end point of an alternative NF consumer (service) instance towards which the notification is redirected.\nFor the case where the notification is redirected to the same target via a different SCP, refer to clause 6.10.9.1 of 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target NF (service) instance towards which the notification request is redirected.\nTable 5.1.4.2.2-4: Headers supported by the 308 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nContains an alternative URI representing the end point of an alternative NF consumer (service) instance towards which the notification should be redirected.\nFor the case where the notification is redirected to the same target via a different SCP, refer to clause 6.10.9.1 of 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target NF (service) instance towards which the notification request is redirected.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.500_clause_6.10.9.1",
+        "table_5.1.4.2.2-1",
+        "table_5.1.4.2.2-2",
+        "ts_29.500_table_5.2.7.1-1",
+        "ts_29.500_table_5.1.4.2.2-3",
+        "table_5.1.4.2.2-4",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.535_5.1.4.3.1",
+      "section_id": "5.1.4.3.1",
+      "section_title": "Description",
+      "content": "The custom operation allows a NF service consumer to retrieve AKMA Application Key information for the UE.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.535_5.1.4.3.2",
+      "section_id": "5.1.4.3.2",
+      "section_title": "Operation Definition",
+      "content": "This operation shall support the response data structures and response codes specified in tables 5.1.4.3.2-1 and 5.1.4.3.2-2.\nTable 5.1.4.3.2-1: Data structures supported by the POST Request Body on this resource\nData type\nP\nCardinality\nDescription\nAkmaAfKeyRequest\nM\n1\nParameters to request to retrieve AKMA Application Key information.\nTable 5.1.4.3.2-2: Data structures supported by the POST Response Body on this resource\nData type\nP\nCardinality\nResponse\ncodes\nDescription\nAkmaAfKeyData\nM\n1\n200 OK\nThe requested AKMA Application Key information was returned successfully. (NOTE 2)\nn/a\n204 No Content\nIf the requested data does not exist, the AAnF shall respond with \"204 No Content\".\nRedirectResponse\nO\n0..1\n307 Temporary Redirect\nTemporary redirection, during the retrieval notification.\n(NOTE 4)\nRedirectResponse\nO\n0..1\n308 Permanent Redirect\nPermanent redirection, during the retrieval notification.\n(NOTE 4)\nProblemDetails\nO\n0..1\n403 Forbidden\n(NOTE 3)\nNOTE 1:\tThe manadatory HTTP error status code for the POST method listed in Table 5.2.7.1-1 of 3GPP TS 29.500 [4] also apply.\nNOTE 2:\tFor the \"AkmaAfKeyData\" data structure used in the current release of this specification, the “gpsi” attribute is not applicable and the \"supi\" attribute shall be included, except in the case of the anonymous user access procedure using the Naanf_AKMA_ApplicationKey_AnonUser_Get service operation, as defined in clause 6.2.2 of 3GPP TS 33.535 [14].\nNOTE 3:\tFailure cases are described in clause 5.1.7.3\nNOTE 4:\tThe RedirectResponse data structure may be provided by an SCP (cf. clause 6.10.9.1 of 3GPP TS 29.500 [4]).\nTable 5.1.4.3.2-3: Headers supported by the 307 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nContains an alternative URI representing the end point of an alternative NF consumer (service) instance towards which the notification should be redirected.\nFor the case where the notification is redirected to the same target via a different SCP, refer to clause 6.10.9.1 of 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target NF (service) instance towards which the notification request is redirected.\nTable 5.1.4.3.2-4: Headers supported by the 308 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nContains an alternative URI representing the end point of an alternative NF consumer (service) instance towards which the notification should be redirected.\nFor the case where the notification is redirected to the same target via a different SCP, refer to clause 6.10.9.1 of 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target NF (service) instance towards which the notification request is redirected.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_33.535_clause_6.2.2",
+        "clause_5.1.7.3",
+        "ts_29.500_clause_6.10.9.1",
+        "table_5.1.4.3.2-1",
+        "table_5.1.4.3.2-2",
+        "ts_29.500_table_5.2.7.1-1",
+        "ts_29.500_table_5.1.4.3.2-3",
+        "table_5.1.4.3.2-4",
+        "ts_29.500",
+        "ts_33.535"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.535_5.1.4.4.1",
+      "section_id": "5.1.4.4.1",
+      "section_title": "Description",
+      "content": "The custom operation allows a NF service consumer to delete the AKMA context for the UE.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.535_5.1.4.4.2",
+      "section_id": "5.1.4.4.2",
+      "section_title": "Operation Definition",
+      "content": "This operation shall support the response data structures and response codes specified in tables 5.1.4.4.2-1 and 5.1.4.4.2-2.\nTable 5.1.4.4.2-1: Data structures supported by the POST Request Body on this resource\nData type\nP\nCardinality\nDescription\nCtxRemove\nM\n1\nParameters to request to delete the AKMA context for the UE.\nTable 5.1.4.4.2-2: Data structures supported by the POST Response Body on this resource\nData type\nP\nCardinality\nResponse\ncodes\nDescription\nn/a\n204 No Content\nSuccessful case: The AKMA context matching the \"CtxRemove\" in the request body was deleted, the AAnF shall respond with \"204 No Content\".\nRedirectResponse\nO\n0..1\n307 Temporary Redirect\nTemporary redirection, during remove procedure. The response shall include a Location header field containing an alternative URI of the resource located in an alternative AAnF (service) instance.\nRedirectResponse\nO\n0..1\n308 Permanent Redirect\nPermanent redirection, during remove procedure. The response shall include a Location header field containing an alternative URI of the resource located in an alternative AAnF (service) instance.\nProblemDetails\nO\n0..1\n404 Not Found\n(NOTE 2)\nNOTE 1:\tThe manadatory HTTP error status code for the POST method listed in Table 5.2.7.1-1 of 3GPP TS 29.500 [4] also apply.\nNOTE 2:\tFailure cases are described in clause 5.1.7.3\nTable 5.1.4.4.2-3: Headers supported by the 307 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nString\nM\n1\nAn alternative URI of the resource located in an alternative AAnF (service) instance.\n3gpp-Sbi-Target-Nf-Id\nString\nO\n0..1\nIdentifier of the target AAnF (service) instance towards which the request is redirected.\nTable 5.1.4.4.2-4: Headers supported by the 308 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located in an alternative AAnF (service) instance.\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target AAnF (service) instance towards which the request is redirected.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_5.1.7.3",
+        "table_5.1.4.4.2-1",
+        "table_5.1.4.4.2-2",
+        "ts_29.500_table_5.2.7.1-1",
+        "table_5.1.4.4.2-3",
+        "table_5.1.4.4.2-4",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.535_5.1.5.1",
+      "section_id": "5.1.5.1",
+      "section_title": "General",
+      "content": "Notifications shall comply to clause 6.2 of 3GPP TS 29.500 [5] and clause 4.6.2.3 of 3GPP TS 29.501 [6].\nTable 5.1.5-1: Notifications overview\nNotification\nCallback URI\nHTTP method or custom operation\nDescription (service operation)\nAKMA Service Disablement Notification\n{notifUri}\nPOST\nEnables the AAnF to notify a previously subscribed NF service consumer on AKMA service disablement.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.500_clause_6.2",
+        "ts_29.500_clause_4.6.2.3",
+        "ts_29.501_table_5.1.5-1",
+        "ts_29.501_clause_4.6.2.3",
+        "ts_29.500",
+        "ts_29.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.535_5.1.5.2.1",
+      "section_id": "5.1.5.2.1",
+      "section_title": "Description",
+      "content": "The AKMA Service Disablement Notification is used by the AAnF to notify a previously subscribed NF service consumer on AKMA service disablement.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.535_5.1.5.2.2",
+      "section_id": "5.1.5.2.2",
+      "section_title": "Target URI",
+      "content": "The Callback URI \"{notifUri}\" shall be used with the callback URI variables defined in table 5.1.5.2.2-1.\nTable 5.1.5.2.2-1: Callback URI variables\nName\nData type\nDefinition\nnotifUri\nUri\nThe Notification URI provided by the NF service consumer during retrievel of AKMA application key as defined in table 5.1.4.3.2-1.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_5.1.5.2.2-1",
+        "table_5.1.4.3.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.535_5.1.5.2.3.1",
+      "section_id": "5.1.5.2.3.1",
+      "section_title": "POST",
+      "content": "This method shall support the request data structures specified in table 5.1.5.2.3.1-1 and the response data structures and response codes specified in table 5.1.5.2.3.1-2.\nTable 5.1.5.2.3.1-1: Data structures supported by the POST Request Body on this resource\nData type\nP\nCardinality\nDescription\nServiceDisableNotif\nM\n1\nRepresents the AKMA Service Disablement Notification.\nTable 5.1.5.2.3.1-2: Data structures supported by the POST Response Body on this resource\nData type\nP\nCardinality\nResponse codes\nDescription\nn/a\n204 No Content\nSuccessful case. The notification is successfully received and acknowledged.\nRedirectResponse\nO\n0..1\n307 Temporary Redirect\nTemporary redirection.\n(NOTE 2)\nRedirectResponse\nO\n0..1\n308 Permanent Redirect\nPermanent redirection.\n(NOTE 2)\nNOTE 1:\tThe mandatory HTTP error status codes for the HTTP POST method listed in table 5.2.7.1-1 of 3GPP TS 29.500 [4] shall also apply.\nNOTE 2:\tThe RedirectResponse data structure may be provided by an SCP (see clause 6.10.9.1 of 3GPP TS 29.500 [5]).\nTable 5.1.5.2.3.1-4: Headers supported by the 307 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nContains an alternative URI representing the end point of an alternative NF consumer (service) instance towards which the notification is redirected.\nFor the case where the notification is redirected to the same target via a different SCP, refer to clause 6.10.9.1 of 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target NF (service) instance towards which the notification request is redirected\nTable 5.1.5.2.3.1-5: Headers supported by the 308 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nContains an alternative URI representing the end point of an alternative NF consumer (service) instance towards which the notification is redirected.\nFor the case where the notification is redirected to the same target via a different SCP, refer to clause 6.10.9.1 of 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target NF (service) instance towards which the notification request is redirected",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_6.10.9.1",
+        "table_5.1.5.2.3.1-1",
+        "table_5.1.5.2.3.1-2",
+        "ts_29.500_table_5.2.7.1-1",
+        "ts_29.500_table_5.1.5.2.3.1-4",
+        "table_5.1.5.2.3.1-5",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.535_5.1.6.1",
+      "section_id": "5.1.6.1",
+      "section_title": "General",
+      "content": "This clause specifies the application data model supported by the Naanf_AKMA API.\nTable 5.1.6.1-1 specifies the data types defined for the Naanf_AKMA service based interface protocol.\nTable 5.1.6.1-1: Naanf_AKMA specific Data Types\nData type\nClause defined\nDescription\nApplicability\nAkmaKeyInfo\n5.1.6.2.2\nAKMA related key material.\nCtxRemove\n5.1.6.2.3\nIndicate the AKMA context to be remove.\nTable 5.1.6.1-2 specifies data types re-used by the Naanf_AKMA service based interface protocol from other specifications, including a reference to their respective specifications and when needed, a short description of their use within the Naanf_AKMA service based interface.\nTable 5.1.6.1-2: Naanf_AKMA re-used Data Types\nData type\nReference\nComments\nApplicability\nAKId\n3GPP TS 29.522 [16]\nAkmaAfKeyData\n3GPP TS 29.522 [16]\nParameters to present AKMA Application Key information.\nAkmaAfKeyRequest\n3GPP TS 29.522 [16]\nParameters to request to retrieve AKMA Application Key information.\nServiceDisableNotif\n3GPP TS 29.522 [16]\nRepresents the AKMA Service Disablement Notification.\nRoamingRestriction\nRedirectResponse\n3GPP TS 29.571 [15]\nContains redirection related information.\nSupi\n3GPP TS 29.571 [15]\nRepresents the SUPI.\nGpsi\n3GPP TS 29.571 [15]\nRepresents the GPSI.\nSupportedFeatures\n3GPP TS 29.571 [15]\nUsed to negotiate the applicability of the optional features.\nUri\n3GPP TS 29.122 [18]\nRepresents a URI.\nRoamingRestriction",
+      "chunk_type": "definition",
+      "cross_references": [
+        "table_5.1.6.1-1",
+        "table_5.1.6.1-2",
+        "ts_29.522",
+        "ts_29.571",
+        "ts_29.122"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.535_5.1.6.2.1",
+      "section_id": "5.1.6.2.1",
+      "section_title": "Introduction",
+      "content": "This clause defines the structures to be used in resource representations.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.535_5.1.6.2.2",
+      "section_id": "5.1.6.2.2",
+      "section_title": "Type: AkmaKeyInfo",
+      "content": "Table 5.1.6.2.2-1: Definition of type AkmaKeyInfo\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\nsupi\nSupi\nC\n0..1\nSUPI of the UE.\n(NOTE)\naKId\nAKId\nM\n1\nA-KID\nkAkma\nstring\nM\n1\nKAKMA\ngpsi\nGpsi\nC\n0..1\nGPSI of the UE.\n(NOTE)\nAKMA_GPSI_Support\nsuppFeat\nSupportedFeatures\nO\n0..1\nIndicates the list of Supported features used as described in clause 5.1.8.\nNOTE:\tWhen the \"AKMA_GPSI_Support\" feature is supported, the presence of \"supi\" attribute and the \"gpsi\" attribute are mutually exclusive. When the \"AKMA_GPSI_Support\" feature is not supported, only the \"supi\" attribute shall be present.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_5.1.8",
+        "table_5.1.6.2.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.535_5.1.6.2.3",
+      "section_id": "5.1.6.2.3",
+      "section_title": "Type: CtxRemove",
+      "content": "Table 5.1.6.2.3-1: Definition of type CtxRemove\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\nsupi\nSupi\nC\n0..1\nSUPI of UE\nNOTE:\tIn current release of specification, only \"supi\" can be used to indicate the AKMA context to be remove. The \"supi\" attribute shall be included.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.1.6.2.3-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.535_5.1.6.3.1",
+      "section_id": "5.1.6.3.1",
+      "section_title": "Introduction",
+      "content": "This clause defines simple data types and enumerations that can be referenced from data structures defined in the previous clauses.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.535_5.1.6.3.2",
+      "section_id": "5.1.6.3.2",
+      "section_title": "Simple data types",
+      "content": "None in this release of the specification.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.535_5.1.6.4",
+      "section_id": "5.1.6.4",
+      "section_title": "Data types describing alternative data types or combinations of data types",
+      "content": "None in this release of the specification.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.535_5.1.6.5",
+      "section_id": "5.1.6.5",
+      "section_title": "Binary data",
+      "content": "None in this release of the specification.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.535_5.1.7.1",
+      "section_id": "5.1.7.1",
+      "section_title": "General",
+      "content": "For the Naanf_AKMA API, HTTP error responses shall be supported as specified in clause 4.8 of 3GPP TS 29.501 [5]. Protocol errors and application errors specified in table 5.2.7.2-1 of 3GPP TS 29.500 [4] shall be supported for an HTTP method if the corresponding HTTP status codes are specified as mandatory for that HTTP method in table 5.2.7.1-1 of 3GPP TS 29.500 [4].\nIn addition, the requirements in the following clauses are applicable for the Naanf_AKMA API.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.501_clause_4.8",
+        "ts_29.500_table_5.2.7.2-1",
+        "ts_29.500_table_5.2.7.1-1",
+        "ts_29.501",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.535_5.1.7.2",
+      "section_id": "5.1.7.2",
+      "section_title": "Protocol Errors",
+      "content": "No specific procedures for the Naanf_AKMA service are specified.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.535_5.1.7.3",
+      "section_id": "5.1.7.3",
+      "section_title": "Application Errors",
+      "content": "The application errors defined for the Naanf_AKMA service are listed in Table 5.1.7.3-1.\nTable 5.1.7.3-1: Application errors\nApplication Error\nHTTP status code\nDescription\nApplicability\nK_AKMA_NOT_PRESENT\n403 Forbidden\nIndicates that the KAKMA identified by the A-KID provided in the AKMA Application Key retrieval request body is not present at the AAnF.\nROAMING_AKMA_SERVICE_DENIED\n403 Forbidden\nIndicates that the AAnF identifies the request is for a roaming UE and denies the request if the AKMA service is not allowed for the roaming UE.\nRoamingRestriction\nAKMA_CONTEXT_NOT_FOUND\n404 Not Found\nIndicates that the AKMA context to be deleted indicated by the \"CtxRemove\" Data type in the request body is not found.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.1.7.3-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.535_5.1.8",
+      "section_id": "5.1.8",
+      "section_title": "Feature negotiation",
+      "content": "The optional features in table 5.1.8-1 are defined for the Naanf_AKMA API. They shall be negotiated using the extensibility mechanism defined in clause 6.6 of 3GPP TS 29.500 [4].\nTable 5.1.8-1: Supported Features\nFeature number\nFeature Name\nDescription\n1\nAKMA_GPSI_Support\nThis feature indicates the support of sending the GPSI as an alternative UE ID to an internal AF based on local policy.\n2\nRoamingRestriction\nThis feature indicates the support of roaming UE detection by the network and the denial of the AKMA services to roaming UEs.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_6.6",
+        "table_5.1.8-1",
+        "ts_29.500_table_5.1.8-1",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.535_5.1.9",
+      "section_id": "5.1.9",
+      "section_title": "Security",
+      "content": "As indicated in 3GPP TS 33.501 [8] and 3GPP TS 29.500 [4], the access to the Naanf_AKMA API may be authorized by means of the OAuth2 protocol (see IETF RFC 6749 [9]), based on local configuration, using the \"Client Credentials\" authorization grant, where the NRF (see 3GPP TS 29.510 [10]) plays the role of the authorization server.\nIf OAuth2 is used, an NF Service Consumer, prior to consuming services offered by the Naanf_AKMA API, shall obtain a \"token\" from the authorization server, by invoking the Access Token Request service, as described in 3GPP TS 29.510 [10], clause 5.4.2.2.\nNOTE:\tWhen multiple NRFs are deployed in a network, the NRF used as authorization server is the same NRF that the NF Service Consumer used for discovering the Naanf_AKMA service.\nThe Naanf_AKMA API defines the following scopes for OAuth2 authorization as described in clause 4.10 of 3GPP TS 29.501 [5].\nTable 5.1.9-1: OAuth2 scopes defined in Naanf_AKMA API\nScope\nDescription\n\"naanf-akma\"\nAccess to the Naanf_AKMA API\n\"naanf-akma:anchorkey\"\nAccess to service operations applying to store and remove the AKMA related key material.\n\"naanf-akma:applicationkeyget\"\nAccess to service operations applying to request the AKMA Application Key information for the UE.\n\"naanf-akma:applicationkeyget: supi-access\"\nAccess to the Naanf_AKMA API to enable the returning of SUPI in the AKMA Application Key information for the UE.\nAnnex A (normative):OpenAPI specification\nA.1\tGeneral\nThis Annex specifies the formal definition of the API(s) defined in the present specification. It consists of OpenAPI 3.0.0 specifications in YAML format.\nThis Annex takes precedence when being discrepant to other parts of the specification with respect to the encoding of information elements and methods within the API(s).\nNOTE:\tThe semantics and procedures, as well as conditions, e.g. for the applicability and allowed combinations of attributes or values, not expressed in the OpenAPI definitions but defined in other parts of the specification also apply.\nInformative copies of the OpenAPI specification files contained in this 3GPP Technical Specification are available on a Git-based repository that uses the GitLab software version control system (see 3GPP TS 29.501 [5] clause 5.3.1 and 3GPP TR 21.900 [7] clause 5B).\nA.2\tNaanf_AKMA API\nopenapi: 3.0.0\ninfo:\ntitle: 3gpp-akma\nversion: 1.1.0\ndescription: |\nAPI for Naanf_AKMA.\n© 2024, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).\nAll rights reserved.\nexternalDocs:\ndescription: 3GPP TS 29.535 V18.4.0; 5G System; AKMA Anchor Services.\nurl: 'https://www.3gpp.org/ftp/Specs/archive/29_series/29.535/'\nsecurity:\n- {}\n- oAuth2ClientCredentials:\n- naanf-akma\nservers:\n- url: '{apiRoot}/naanf-akma/v1'\nvariables:\napiRoot:\ndefault: https://example.com\ndescription: apiRoot as defined in clause 4.4 of 3GPP TS 29.501.\npaths:\n/register-anchorkey:\npost:\nsummary: Store AKMA related key material.\noperationId: RegisterAKMAKey\ntags:\n- Register the AKMA related key material\nsecurity:\n- {}\n- oAuth2ClientCredentials:\n- naanf-akma\n- oAuth2ClientCredentials:\n- naanf-akma\n- naanf-akma:anchorkey\nrequestBody:\nrequired: true\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/AkmaKeyInfo'\nresponses:\n'200':\ndescription: The requested information was returned successfully.\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/AkmaKeyInfo'\n'307':\n$ref: 'TS29571_CommonData.yaml#/components/responses/307'\n'308':\n$ref: 'TS29571_CommonData.yaml#/components/responses/308'\n'400':\n$ref: 'TS29571_CommonData.yaml#/components/responses/400'\n'401':\n$ref: 'TS29571_CommonData.yaml#/components/responses/401'\n'403':\n$ref: 'TS29571_CommonData.yaml#/components/responses/403'\n'404':\n$ref: 'TS29571_CommonData.yaml#/components/responses/404'\n'411':\n$ref: 'TS29571_CommonData.yaml#/components/responses/411'\n'413':\n$ref: 'TS29571_CommonData.yaml#/components/responses/413'\n'415':\n$ref: 'TS29571_CommonData.yaml#/components/responses/415'\n'429':\n$ref: 'TS29571_CommonData.yaml#/components/responses/429'\n'500':\n$ref: 'TS29571_CommonData.yaml#/components/responses/500'\n'502':\n$ref: 'TS29571_CommonData.yaml#/components/responses/502'\n'503':\n$ref: 'TS29571_CommonData.yaml#/components/responses/503'\ndefault:\n$ref: 'TS29571_CommonData.yaml#/components/responses/default'\n/retrieve-applicationkey:\npost:\nsummary: Request to retrieve AKMA Application Key information.\noperationId: GetAKMAAPPKeyMaterial\ntags:\n- Retrieve the AKMA Application key material (Collection)\nsecurity:\n- {}\n- oAuth2ClientCredentials:\n- naanf-akma\n- oAuth2ClientCredentials:\n- naanf-akma\n- naanf-akma:applicationkeyget\nrequestBody:\nrequired: true\ncontent:\napplication/json:\nschema:\n$ref: 'TS29522_AKMA.yaml#/components/schemas/AkmaAfKeyRequest'\nresponses:\n'200':\ndescription: The requested information was returned successfully.\ncontent:\napplication/json:\nschema:\n$ref: 'TS29522_AKMA.yaml#/components/schemas/AkmaAfKeyData'\n'204':\ndescription: No Content (The requested AKMA Application material does not exist.)\n'307':\n$ref: 'TS29571_CommonData.yaml#/components/responses/307'\n'308':\n$ref: 'TS29571_CommonData.yaml#/components/responses/308'\n'400':\n$ref: 'TS29571_CommonData.yaml#/components/responses/400'\n'401':\n$ref: 'TS29571_CommonData.yaml#/components/responses/401'\n'403':\n$ref: 'TS29571_CommonData.yaml#/components/responses/403'\n'404':\n$ref: 'TS29571_CommonData.yaml#/components/responses/404'\n'411':\n$ref: 'TS29571_CommonData.yaml#/components/responses/411'\n'413':\n$ref: 'TS29571_CommonData.yaml#/components/responses/413'\n'415':\n$ref: 'TS29571_CommonData.yaml#/components/responses/415'\n'429':\n$ref: 'TS29571_CommonData.yaml#/components/responses/429'\n'500':\n$ref: 'TS29571_CommonData.yaml#/components/responses/500'\n'502':\n$ref: 'TS29571_CommonData.yaml#/components/responses/502'\n'503':\n$ref: 'TS29571_CommonData.yaml#/components/responses/503'\ndefault:\n$ref: 'TS29571_CommonData.yaml#/components/responses/default'\ncallbacks:\nServiceDisablementNotification:\n'{$request.body#/notifUri}':\npost:\nrequestBody:\ndescription: >\nRepresents the AKMA Service Disablement Notification.\nrequired: true\ncontent:\napplication/json:\nschema:\n$ref: 'TS29522_AKMA.yaml#/components/schemas/ServiceDisableNotif'\nresponses:\n'204':\ndescription: No content. The notification is successfully received and processed.\n'307':\n$ref: 'TS29122_CommonData.yaml#/components/responses/307'\n'308':\n$ref: 'TS29122_CommonData.yaml#/components/responses/308'\n'400':\n$ref: 'TS29122_CommonData.yaml#/components/responses/400'\n'401':\n$ref: 'TS29122_CommonData.yaml#/components/responses/401'\n'403':\n$ref: 'TS29122_CommonData.yaml#/components/responses/403'\n'404':\n$ref: 'TS29122_CommonData.yaml#/components/responses/404'\n'411':\n$ref: 'TS29122_CommonData.yaml#/components/responses/411'\n'413':\n$ref: 'TS29122_CommonData.yaml#/components/responses/413'\n'415':\n$ref: 'TS29122_CommonData.yaml#/components/responses/415'\n'429':\n$ref: 'TS29122_CommonData.yaml#/components/responses/429'\n'500':\n$ref: 'TS29122_CommonData.yaml#/components/responses/500'\n'503':\n$ref: 'TS29122_CommonData.yaml#/components/responses/503'\ndefault:\n$ref: 'TS29122_CommonData.yaml#/components/responses/default'\n/remove-context:\npost:\nsummary: Request to remove the AKMA related key material.\noperationId: RemoveContext\ntags:\n- Remove the AKMA Application key material (deletion)\nsecurity:\n- {}\n- oAuth2ClientCredentials:\n- naanf-akma\n- oAuth2ClientCredentials:\n- naanf-akma\n- naanf-akma:anchorkey\nrequestBody:\nrequired: true\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/CtxRemove'\nresponses:\n'204':\ndescription: No Content (The AKMA context for the UE has been removed successfully.)\n'307':\n$ref: 'TS29571_CommonData.yaml#/components/responses/307'\n'308':\n$ref: 'TS29571_CommonData.yaml#/components/responses/308'\n'400':\n$ref: 'TS29571_CommonData.yaml#/components/responses/400'\n'401':\n$ref: 'TS29571_CommonData.yaml#/components/responses/401'\n'403':\n$ref: 'TS29571_CommonData.yaml#/components/responses/403'\n'404':\n$ref: 'TS29571_CommonData.yaml#/components/responses/404'\n'411':\n$ref: 'TS29571_CommonData.yaml#/components/responses/411'\n'413':\n$ref: 'TS29571_CommonData.yaml#/components/responses/413'\n'415':\n$ref: 'TS29571_CommonData.yaml#/components/responses/415'\n'429':\n$ref: 'TS29571_CommonData.yaml#/components/responses/429'\n'500':\n$ref: 'TS29571_CommonData.yaml#/components/responses/500'\n'502':\n$ref: 'TS29571_CommonData.yaml#/components/responses/502'\n'503':\n$ref: 'TS29571_CommonData.yaml#/components/responses/503'\ndefault:\n$ref: 'TS29571_CommonData.yaml#/components/responses/default'\ncomponents:\nsecuritySchemes:\noAuth2ClientCredentials:\ntype: oauth2\nflows:\nclientCredentials:\ntokenUrl: '{nrfApiRoot}/oauth2/token'\nscopes:\nnaanf_akma: Access to the Naanf_AKMA API\nnaanf_akma:anchorkey: >\nAccess to service operations applying to store or remove the AKMA related key\nmaterial.\nnaanf_akma:applicationkeyget: >\nAccess to service operations applying to request the AKMA Application Key information\nfor the UE.\nnaanf-akma:applicationkeyget:supi-access: >\nReturn SUPI in the AKMA Application Key information for the UE.\nschemas:\nAkmaKeyInfo:\ndescription: Represents AKMA related key material.\ntype: object\nproperties:\nsuppFeat:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'\nsupi:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Supi'\ngpsi:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Gpsi'\naKId:\n$ref: 'TS29522_AKMA.yaml#/components/schemas/AKId'\nkAkma:\ntype: string\nrequired:\n- aKId\n- kAkma\noneOf:\n- required: [supi]\n- required: [gpsi]\nCtxRemove:\ndescription: >\nParameters to request to delete the AKMA context for the UE, the \"supi\" attribute shall be\nincluded.\ntype: object\nproperties:\nsupi:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Supi'\nAnnex B (informative):Change history\nChange history\nDate\nMeeting\nTDoc\nCR\nRev\nCat\nSubject/Comment\nNew version\n2020-11\nCT3#112e\nTS skeleton of AKMA Anchor Services.\n0.0.0\n2020-11\nCT3#112e\nInclusion of documents agreed in CT3#112e C3-205585, C3-205586.\n0.1.0\n2021-01\nCT3#113e\nInclusion of documents agreed in CT3#113e C3-210291, C3-210292, C3-210222, C3-210293, C3-210294, C3-210295.\n0.2.0\n2021-01\nCT3#113e\nInclusion of documents agreed in CT3#114e C3-211238. C3-21396, C3-211397, C3-211398,  C3-211399, C3-211400, and C3-211401.\n0.3.0\n2021-03\nCT#91e\nCP-210182\nSent to plenary for Approval\n1.0.0\n2021-03\nCT#91e\nCP-210182\nTS approved by plenary\n17.0.0\n2021-06\nCT#92e\nCP-211234\n0001\n1\nF\nAdding a missing description field to data type definitions in OpenAPI specification files of the Naanf_AKMA API\n17.1.0\n2021-06\nCT#92e\nCP-211214\n0002\n1\nF\nAdding a missing description field to data type definitions in OpenAPI specification files of the Naanf_AKMA API\n17.1.0\n2021-06\nCT#92e\nCP-211214\n0003\nF\nAdding Clause 5.1.4.3.1\n17.1.0\n2021-06\nCT#92e\nCP-211214\n0005\n1\nF\nCustom operation URI\n17.1.0\n2021-06\nCT#92e\nCP-211214\n0006\nF\nTerminology alignment of AKMA Application Key information\n17.1.0\n2021-06\nCT#92e\nCP-211234\n0007\n1\nF\nRedirect responses with \"application/json\" media type\n17.1.0\n2021-06\nCT#92e\nCP-211234\n0008\n1\nF\nOptional header clarification\n17.1.0\n2021-06\nCT#92e\nCP-211265\n0009\nF\nUpdate of OpenAPI version and TS version in externalDocs field\n17.1.0\n2021-09\nCT#93e\nCP-212220\n0011\n1\nF\nCR 0011 29.535 Rel-17 Correcting CR #0007 implementation\n17.2.0\n2021-12\nCT#94e\nCP-213218\n0012\n2\nB\nNaanf_AKMA_ContextRemove service operation\n17.3.0\n2021-12\nCT#94e\nCP-213218\n0014\n2\nF\nCorrection on Naanf_AKMA_ApplicationKey_Get service operation on sending UE ID to the AKMA AF\n17.3.0\n2021-12\nCT#94e\nCP-213246\n0015\nF\nUpdate of OpenAPI version and TS version in externalDocs field\n17.3.0\n2022-01\nUpdate of specification filename in the zip\n17.3.1\n2022-03\nCT#95e\nCP-220180\n0016\nB\nSpecifying the error case of KAKMA key not present in the AAnF\n17.4.0\n2022-03\nCT#95e\nCP-220180\n0017\n1\nF\nMiscellaneous corrections\n17.4.0\n2022-03\nCT#95e\nCP-220194\n0018\nF\nUpdate of info and externalDocs fields\n17.4.0\n2022-06\nCT#96\nCP-221159\n0019\nF\nUpdate of info and externalDocs fields\n17.5.0\n2022-09\nCT#97e\nCP-222096\n0020\n2\nF\nApplication errors reference update in the tables defining methods on the resources for Naanf_AKMA API\n17.6.0\n2022-09\nCT#97e\nCP-222096\n0021\n1\nF\nSupport for Naanf_AKMA_ApplicationKey_ AnonUser_Get service operation\n17.6.0\n2022-09\nCT#97e\nCP-222096\n0023\nF\nMissing redirection in AKMA Context removal procedure\n17.6.0\n2022-09\nCT#97e\nCP-222121\n0024\nF\nUpdate of info and externalDocs fields\n17.6.0\n2022-12\nCT#98e\nCP-223168\n0026\n1\nF\nCorrection for AKMA Application Key Request\n17.7.0\n2022-12\nCT#98e\nCP-223168\n0027\n1\nF\nCardinality for CtxRemove\n17.7.0\n2022-12\nCT#98e\nCP-223188\n0028\nF\nUpdate of info and externalDocs fields\n17.7.0\n2022-12\nCT#98e\nCP-223191\n0025\nF\nAdding the mandatory error code 502 Bad Gateway\n18.0.0\n2022-12\nCT#98e\nCP-223189\n0029\nF\nUpdate of info and externalDocs fields\n18.0.0\n2023-03\nCT#99\nCP-230167\n0030\n1\nB\nOAuth2 scopes in Naanf_AKMA API\n18.1.0\n2023-03\nCT#99\nCP-230166\n0031\nF\nMiscellaneous changes in Naanf_AKMA API\n18.1.0\n2023-03\nCT#99\nCP-230161\n0033\nF\nUpdate of info and externalDocs fields\n18.1.0\n2023-06\nCT#100\nCP-231131\n0034\n1\nF\nCorrection of a referenced clause number\n18.2.0\n2023-06\nCT#100\nCP-231261\n0037\n2\nB\nIncluding GPSI attribute support\n18.2.0\n2023-06\nCT#100\nCP-231132\n0040\n1\nF\nCorrections to the redirection mechanism description\n18.2.0\n2023-06\nCT#100\nCP-231141\n0041\nF\nUpdate of info and externalDocs fields\n18.2.0\n2023-09\nCT#101\nCP-232086\n0039\n2\nF\nSupport for SUPI access in AKMA Application Key information\n18.3.0\n2023-09\nCT#101\nCP-232085\n0042\nF\nUpdate of info and externalDocs fields\n18.3.0\n2023-12\nCT#102\nCP-233229\n0044\n1\nF\nIETF RFC 7540, RFC 7807 obsoleted by RFC 9113 and RFC 9457 respectively\n18.4.0\n2024-06\nCT#104\nCP-241095\n0046\n1\nB\nUpdate AKMA procedures to support Roaming restrictions.\n18.5.0\n2024-06\nCT#104\nCP-241085\n0048\nF\nUpdate of info and externalDocs fields\n18.5.0\n2024-07\nCT#105\nCorrection to fix OpenAPI parsing errors” in the comments\n18.5.1\n2024-12\nCT#106\nCP-243103\n0050\n1\nF\nCorrecting the name of the data type conveying the AKMA service disablement notification\n18.6.0",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.510_clause_5.4.2.2",
+        "ts_29.501_clause_4.10",
+        "ts_29.501_clause_5.3.1",
+        "ts_29.501_clause_5",
+        "ts_29.501_clause_4.4",
+        "clause_5.1.4.3.1",
+        "ts_29.501_table_5.1.9-1",
+        "ts_33.501",
+        "ts_29.500",
+        "ts_29.510",
+        "ts_29.501",
+        "ts_21.900",
+        "ts_29.535",
+        "ts_18.5"
+      ]
+    }
+  ]
+}

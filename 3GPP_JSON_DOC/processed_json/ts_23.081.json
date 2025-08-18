@@ -1,0 +1,452 @@
+{
+  "metadata": {
+    "specification_id": "ts_23.081",
+    "version": "18.0.0",
+    "title": "3GPP TS 23.081",
+    "file_path": "/content/drive/MyDrive/RAG_thesis/data/23_series/23081-i00/23081-i00.docx"
+  },
+  "export_info": {
+    "export_date": "2025-07-26T09:35:29.471937",
+    "total_chunks": 45
+  },
+  "chunks": [
+    {
+      "chunk_id": "ts_23.081_0",
+      "section_id": "0",
+      "section_title": "Scope",
+      "content": "The present document gives the stage 2 description of the call identification supplementary services.\nThe group line identification supplementary services are divided into the following four supplementary services:\n‑\tCalling line identification presentation\tCLIP\t(clause 1);\n‑\tCalling line identification restriction\tCLIR\t(clause 2);\n‑\tConnected line identification presentation\tCOLP\t(clause 3);\n‑\tConnected line identification restriction\tCOLR\t(clause 4).",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_1",
+        "clause_2",
+        "clause_3",
+        "clause_4"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.081_0.1",
+      "section_id": "0.1",
+      "section_title": "References",
+      "content": "The following documents contain provisions which, through reference in this text, constitute provisions of the present document.\n-\tReferences are either specific (identified by date of publication, edition number, version number, etc.) or non‑specific.\n-\tFor a specific reference, subsequent revisions do not apply.\n-\tFor a non-specific reference, the latest version applies.  In the case of a reference to a 3GPP document (including a GSM document), a non-specific reference implicitly refers to the latest version of that document in the same Release as the present document.\n[1]\t3GPP TS 21.905: \"3G Vocabulary\".\n[2]\t3GPP TS 23.011: \"Technical Realization of Supplementary Services - General Aspects.\n[3]\t3GPP TS 23.018 : \"Basic Call Handling; Technical realization\".\n[4]\t3GPP TS 22.081: \"Line Identification supplementary services - Stage 1\".",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905",
+        "ts_23.011",
+        "ts_23.018",
+        "ts_22.081"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.081_0.2.1.1",
+      "section_id": "0.2.1.1",
+      "section_title": "Definition of line identity",
+      "content": "The line identity is made up of the following information units:\n‑\tThe subscriber's international ISDN/MSISDN number;\n‑\tOptionally subaddress information.\nFor mobile originated calls, the ISDN/MSISDN shall always be provided within the network. The subaddress shall only be included if it is provided by the user (or user equipment).\nThe calling line identity is the line identity of the calling party. The connected line identity is the line identity of the connected party.\nThe additional calling line identity provides additional line information for the purpose of the calling line identification presentation service (CLIP). The additional connected line identity provides additional line information for the purpose of the connected line identification presentation service (COLP).\nFor mobile originating calls the user (or user equipment) has no possibility to provide an additional line identity. For mobile terminating calls the user (or user equipment) has no possibility to provide an additional connected line identity.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.081_0.2.1.2",
+      "section_id": "0.2.1.2",
+      "section_title": "Definition of presentation and screening indicators",
+      "content": "In addition to, or instead of, the line identity or additional line identity, the network may send a presentation indicator (PI) together with a Cause of no CLI (CoNC) and/or a screening indicator (SI) to the MS as follows:\n‑\tPresentation Indicator:\na)\tPresentation allowed;\nb)\tPresentation restricted;\nc)\tNumber not available.\n‑\tIf the Presentation Indicator indicates \"presentation restricted\" the Cause of no CLI may give a diagnostic:\na)\tUnavailable;\nb)\tRejected by user;\nc)\tInteraction with other services;\nd)\tCoin line/ Pay phone.\n‑\tScreening indicator:\na)\tUser provided, verified and passed;\nb)\tUser provided, not screened;\nc)\tnetwork provided.\nThe screening indicator applies to the ISDN/MSISDN or the number given as additional line identity respectively.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.081_0.2.2",
+      "section_id": "0.2.2",
+      "section_title": "Abbreviations",
+      "content": "Abbreviations used in the present document are listed in 3GPP TR 21.905.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.081_1.1.1",
+      "section_id": "1.1.1",
+      "section_title": "Interrogation",
+      "content": "Status check\nThe mobile subscriber can request the status of the supplementary service and be informed if the service is provided to him/her. This procedure is illustrated in figure 1.1.\nFigure 1.1: Interrogation of calling line identification presentation",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_1.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.081_1.2",
+      "section_id": "1.2",
+      "section_title": "Functions and information flows",
+      "content": "The following Mobile Additional Functions have been identified for the PLMN:\nMAF001\nDetermination of the calling line identification presentation subscription\nThe ability of a PLMN component to determine whether the sup­plementary service is provisioned for the mobile subscriber. See figure 1.2.\nLocation: VLR.\nMAF002\nDetermination of the calling party number for offering to the called party\nThe ability of a PLMN component to determine and to forward the calling line identity and related indications to the called party. See figure 1.3.\nLocation: destination MSC.\nThe information flow is shown in figure 1.9.\nFigure 1.2: MAF001 Determination of calling line identification presentation subscription(VLR)\nFigure 1.3: MAF002 Determination of the information for offering to the called party(destination MSC)\nFigure 1.4: Procedure Cause_of_no_CLI\nFigure 1.5: Addition of line identification information to Send Routeing Info message.\nFigure 1.6: Addition of line identification information to Provide Roaming Number message.\nFigure 1.7: Storing of Line Identification in destination VLR\nFigure 1.8: Addition of line identification information to Complete Call/Process Call Waiting message.\nFigure 1.9: Information flow for calling line identification presentation:mobile station or fixed terminal to mobile station\nNOTE:\t**:\tA subaddress may be received from the originating MS or the TE\tinfo:\tinformation\tSI: screening indicator\taSI: additional screening indicatorreq:\trequest\tPI: presentation indicator\tCoNC: cause of no CLIaPI: additional presentation indicator\tack:\tacknowledge\tLI: line identity\taLI: additional line identity\nNOTE:\tFor mapping rules of CLI parameters refer to Annex A.",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_1.2",
+        "figure_1.3",
+        "figure_1.9",
+        "figure_1.4",
+        "figure_1.5",
+        "figure_1.6",
+        "figure_1.7",
+        "figure_1.8"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.081_1.2.1",
+      "section_id": "1.2.1",
+      "section_title": "Optional capability to carry calling line identification",
+      "content": "When GMSC is performing Send Routing Info query it may pass calling line identification to the HLRb. The calling line identification shall be in international format. If the HLRb receives calling line identification within Send Routing Info it may pass unmodified calling line identification within Provide Roaming Number to the VLRb. HLR shall not pass calling line identification in the HPLMN nor in the case where sending of the CLI information is explicitly denied to the destination network..\nIf MSCb receives calling line identification only from signalling it shall use that parameter for presentation purposes i.e. normal handling as described in the previous clause applies.\nIf MSCb receives Cause of no CLI from signalling it shall be sent to the VLRb by Send Info for Incoming Call query.\nIf MSCb receives calling line identification and/or Cause of no CLI from VLRb and it supports the feature it shall use that parameter for presentation purposes. In this case calling line identification is stored in the VLRb and when the set-up message is processed the handling described in the previous clause is done using the stored calling line identification.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.081_1.2.2",
+      "section_id": "1.2.2",
+      "section_title": "Information elements used in the messages",
+      "content": "Table 1.2.2.1: Information elements used in messages\nInformation Element\nLogical Information element name\nInformation element Required\nInformation element description\nCalling Party Number\nSI\nPI\nLI\nM\nM\nM\nCalling Party Number contains screening indicator (SI), presentation indicator (PI) and line identity (LI) as mandatory information.\nGeneric Number\naSI\naPI\naLI\nM\nM\nM\nGeneric Number contains additional screening indicator (aSI), additional presentation indicator (aPI) and additional line identity (aLI) as mandatory information.\nCause of no CLI\nunavailable\nreject by user\ninteraction with other service\ncoin line/payphone\nM\nM\nM\nM\nCause of no CLI contains detailed Cause of no CLI (unavailable, reject by user, interaction with other service, coin line/payphone) as mandatory information.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_1.2.2.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.081_1.2.3",
+      "section_id": "1.2.3",
+      "section_title": "Parameters in Send Routeing Info and Provide Roaming Number for CLI",
+      "content": "Table 1.2.3.1: Messages between GMSC and HLR\nMessage\nMessage sender\nInformation element name\nInformation element Required\nInformation element description\nSend Routeing Info\nGMSC\n-\nCalling Party Number\nGeneric Number\n-\nC\nC\nRefer to 3GPP TS 23.018.\nIn addition:\nThe information element is present if GMSC received calling party number from originating network; otherwise it shall be absent.\nThe information element is present if GMSC received additional calling party number from originating network or from gsmSCF because of a CAMEL service; otherwise it shall be absent.\nTable 1.2.3.2: Messages between HLR and VLR\nMessage\nMessage sender\nInformation element name\nInformation element Required\nInformation element description\nProvide Roaming Number\nHLR\n-\nCalling Party Number\nGeneric Number\n-\nC\nC\nRefer to 3GPP TS 23.018.\nIn addition:\nThe information element is present if HLR received calling party number from GMSC and MS B is outside of home country; otherwise it shall be absent.\nThe information element is present if HLR received additional calling party number from GMSC and MS B is outside of home country; otherwise it shall be absent.",
+      "chunk_type": "parameter",
+      "cross_references": [
+        "table_1.2.3.1",
+        "table_1.2.3.2",
+        "ts_23.018"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.081_1.2.4",
+      "section_id": "1.2.4",
+      "section_title": "Messages between MSC and VLR in destination network",
+      "content": "Table 1.2.4.1: Messages between MSC and VLR\nMessage\nMessage sender\nInformation element name\nInformation element Required\nInformation element description\nComplete Call\nVLR\n-\nCalling Party Number\nGeneric Number\nCause of no CLI\n-\nC\nC\nC\nRefer to 3GPP TS 23.018.\nIn addition:\nThe information element is present if it is stored in VLR; otherwise it shall be absent.\nThe information element is present if it is stored in VLR; otherwise it shall be absent.\nThe information element is present if it is stored in VLR; otherwise it shall be absent.\nProcess Call Waiting\nVLR\n-\nCalling Party Number\nGeneric Number\nCause of no CLI\n-\nC\nC\nC\nRefer to 3GPP TS 23.018.\nIn addition:\nThe information element is present if it is stored in VLR; otherwise it shall be absent.\nThe information element is present if it is stored in VLR; otherwise it shall be absent.\nThe information element is present if it is stored in VLR; otherwise it shall be absent.\nSend Info for Incoming Call\nMSC\n-\nCause of no CLI\n-\nC\nRefer to 3GPP TS 23.018.\nIn addition:\nThe information element is present if MSC received Cause of no CLI; otherwise it shall be absent.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_1.2.4.1",
+        "ts_23.018"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.081_1.3",
+      "section_id": "1.3",
+      "section_title": "Information stored in the HLR",
+      "content": "CLIP may have the following logical states (refer to 3GPP TS 23.011 for an explanation of the notation):\nProvisioning State\tRegistration State\tActivation State\tHLR Induction State\n(Not Provisioned,\tNot Applicable,\tNot Active,\tNot Induced)\n(Provisioned,\tNot Applicable,\tActive and Operative,\tNot Induced)\nThe HLR shall store the logical state of CLIP (which shall be one of the valid states listed above) on a per subscriber basis.\nThe HLR shall also store the subscription option \"override category\" on a per subscriber basis.\nThis parameter takes one of the following values:\n1.\tyes;\n2.\tno.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.011"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.081_1.4",
+      "section_id": "1.4",
+      "section_title": "State transition model",
+      "content": "The following figure shows the successful cases of transition between the applicable logical states of CLIP. The state changes are caused by actions of the service provider.\nNote that error cases are not shown in the diagram as they normally do not cause a state change. Additionally, some successful requests may not cause a state change. Hence they are not shown in the diagram.\nFigure 1.9: State transition model for CLIP",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_1.9"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.081_1.5",
+      "section_id": "1.5",
+      "section_title": "Transfer of information from HLR to VLR",
+      "content": "If the provisioning state for CLIP is \"Provisioned\" then, when the subscriber registers on a VLR, the HLR shall send that VLR information about the logical state of CLIP. The HLR shall send the override category if the VLR is in the HPLMN country. The HLR may send the override category if the VLR is outside the HPLMN country.\nIf the logical state of CLIP or the override category is changed while a subscriber is registered on a VLR then the HLR shall inform the VLR of the new logical state of CLIP. If the override category is changed and the provisioning state of CLIP is \"Provisioned\" then the HLR shall inform the VLR about the new override category when the VLR is in the HPLMN country. The HLR may inform the VLR about the new override category when the VLR is outside the HPLMN country.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.081_1.6",
+      "section_id": "1.6",
+      "section_title": "Information stored in the VLR",
+      "content": "For CLIP, the VLR shall store the service state information and override category received from the HLR.\nIf not received from the HLR (case of roaming outside the HPLMN country), the override category shall be set to the default value \"no\".",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.081_1.7",
+      "section_id": "1.7",
+      "section_title": "Handover",
+      "content": "Handover will have no impact on the control procedures and the operation of the service.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.081_1.8",
+      "section_id": "1.8",
+      "section_title": "Interactions with other supplementary services",
+      "content": "See 3GPP TS 22.081 [4] clause 1.6.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_22.081_clause_1.6",
+        "ts_22.081"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.081_2.1.1",
+      "section_id": "2.1.1",
+      "section_title": "General",
+      "content": "If the originating party has calling line identification restriction provisioned and it is impossible to indicate to the terminating network (due to interworking) that the number should not be presented to the terminating party, the calling line identity shall not be delivered to the terminating network.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.081_2.1.2",
+      "section_id": "2.1.2",
+      "section_title": "Permanent mode",
+      "content": "If the subscriber has calling line identification restriction provisioned in permanent mode, the originating party's CLI shall not be presented to the terminating party (i.e. the terminating MS or TE), unless the terminating party has calling line identification presentation provisioned with the subscription option \"override category\" set (see clause 1).",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.081_2.1.3",
+      "section_id": "2.1.3",
+      "section_title": "Controlling presentation of the CLI when CLIR is provisioned in temporary mode",
+      "content": "A subscriber can have calling line identification restriction provisioned in temporary mode with one of two default values: presentation restricted or presentation allowed.\nIf the default value is set to presentation restricted, the default handling is not to present the originating party's CLI to the terminating party (i.e. the terminating MS or TE).\nHowever, it is possible for the originating subscriber to present his CLI to the terminating party. The originating subscriber must indicate during call set‑up that the CLI must be presented to the terminating party. This procedure is illustrated in figure 2.1.\nFigure 2.1: MS indicating presentation of CLI when CLIR is provisioned in temporary mode with default value \"presentation restricted\"\nIf the default value is set to presentation allowed, the default handling is to present the originating party's CLI to the terminating party (i.e. the terminating MS or TE).\nHowever, it is possible for the originating subscriber to restrict presentation of his CLI to the terminating party. The originating subscriber must indicate during call set‑up that CLI presentation must be restricted. This procedure is illustrated in figure 2.2.\nFigure 2.2: MS invoking CLIR, when CLIR is provisioned in temporary mode with default value \"presentation allowed\"",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_2.1",
+        "figure_2.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.081_2.1.4",
+      "section_id": "2.1.4",
+      "section_title": "Interrogation",
+      "content": "Data request\nThe mobile subscriber can request the data of the supplementary service.\nIn response the following information shall be given:\n‑\twhether the service is provided or not;\n‑\tif provided which mode is subscribed;\n‑\tif subscribed to the temporary mode: which default value.\nThis procedure is illustrated in figure 2.3.\nFigure 2.3: Interrogation of calling line identification restriction",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "figure_2.3"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.081_2.2",
+      "section_id": "2.2",
+      "section_title": "Functions and information flows",
+      "content": "The following Mobile Additional Functions have been identified for the PLMN:\nMAF003\nDetermination of the calling line identification restriction subscription\nThe ability of a PLMN component to determine whether the supplementary service is provisioned for the mobile subscriber. See figure 2.4.\nLocation: VLR.\nMAF004\nDetermination of the calling party number for offering to the called party\nThe ability of a PLMN component to determine and to forward the calling line identity and related indications to the called party. See figure 2.5.\nLocation: originating MSC.\nThe information flows are shown in figures 2.6 to 2.9.\nFigure 2.4: MAF003 Determination of calling line identification restriction subscription(VLR)\nFigure 2.5: MAF004 Determination of the presentation indicator(originating MSC)\nFigure 2.6: Procedure Cause_of_no_CLI_CLIR\nFigure 2.7: Information flow for calling line identification restriction in permanent or temporary mode with the default value \"presentation restricted\"\nNOTE:\t**:\tA subaddress may be received from the MS\tSI:\tscreening indicator\tPI:\tpresentation indicator\tLI:\tline identity\nFigure 2.8: Information flow for allowing presentation of the CLI when CLIR is provisioned in temporary mode with default value \"presentation restricted\"\nNOTE:\t**:\tA subaddress may be received from the MS\tSI:\tscreening indicator\tPI:\tpresentation indicator\tLI:\tline identity\tCLI:\tcalling line identity\nNOTE:\t**:\tA subaddress may be received from the MS\tSI:\tscreening indicator\tPI:\tpresentation indicator\tLI:\tline identity\nFigure 2.9: Information flow for calling line identification restriction in temporary mode with default value \"presentation allowed\"\nNOTE:\t**:\tA subaddress may be received from the MS\tSI:\tscreening indicator\tPI:\tpresentation indicator\tLI:\tline identity\tCLI:\tcalling line identity",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_2.4",
+        "figure_2.5",
+        "figure_2.6",
+        "figure_2.7",
+        "figure_2.8",
+        "figure_2.9"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.081_2.3",
+      "section_id": "2.3",
+      "section_title": "Information stored in the HLR",
+      "content": "CLIR may have the following logical states (refer to 3GPP TS 23.011 for an explanation of the notation):\nProvisioning State\tRegistration State\tActivation State\tHLR Induction State\n(Not Provisioned,\tNot Applicable,\tNot Active,\tNot Induced)\n(Provisioned,\tNot Applicable,\tActive and Operative,\tNot Induced)\nThe HLR shall store the logical state of CLIR (which shall be one of the valid states listed above) on a per subscriber basis.\nThe HLR shall also store the subscription option \"presentation mode\" on a per subscriber basis.\nThis parameter takes one of the following values:\n‑\tpermanent;\n‑\ttemporary (presentation restricted);\n‑\ttemporary (presentation allowed).",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.011"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.081_2.4",
+      "section_id": "2.4",
+      "section_title": "State transition model",
+      "content": "The following figure shows the successful cases of transition between the applicable logical states of CLIR. The state changes are caused by actions of the service provider.\nNote that error cases are not shown in the diagram as they normally do not cause a state change. Additionally, some successful requests may not cause a state change. Hence they are not shown in the diagram.\nFigure 2.10: State transition model for CLIR",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_2.10"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.081_2.5",
+      "section_id": "2.5",
+      "section_title": "Transfer of information from HLR to VLR",
+      "content": "When the subscriber registers on a VLR, the HLR shall send that VLR information about the logical state of CLIR and the presentation mode.\nIf the logical state of CLIR or the presentation mode is changed while a subscriber is registered on a VLR then the HLR shall inform the VLR of the new logical state of CLIR and (if the provisioning state is \"Provisioned\") the new presentation mode.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.081_2.6",
+      "section_id": "2.6",
+      "section_title": "Information stored in the VLR",
+      "content": "For CLIR, the VLR shall store the service state information and presentation mode received from the HLR.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.081_2.7",
+      "section_id": "2.7",
+      "section_title": "Handover",
+      "content": "Handover will have no impact on the control procedures and the operation of the service.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.081_2.8",
+      "section_id": "2.8",
+      "section_title": "Interworking",
+      "content": "The VPLMN needs to distinguish three cases in order to meet data privacy requirements in an environment where support of CLIP and CLIR is optional:\na)\tthe HPLMN supports CLIR, and CLIR is provisioned for the subscriber;\nb)\tthe HPLMN supports CLIR, but CLIR is not provisioned for the subscriber;\nc)\tthe HPLMN does not support CLIR.\nIn case a) the VPLMN must apply the CLIR subscription as indicated by the data sent by the HPLMN.\nIn case b) the VPLMN must not apply CLIR.\nIn case c) the VPLMN must apply an implicit CLIR subscription.\nTo allow the VPLMN to make this distinction, the HLR and VLR behave as follows:\n‑\tIf the HLR supports CLIR, but CLIR is not provisioned for the subscriber, the HLR shall inform the VLR that CLIR is not provisioned.\n‑\tIf the VLR supports CLIR, but the HLR does not support CLIR, the VLR shall behave in the same way as if CLIR (temporary (presentation restricted)) was provisioned for the subscriber, i.e. the calling line identity shall not be displayed to the called subscriber unless the called subscriber has CLIR override capability. When interrogating the service status the subscriber shall be informed that CLIR (temporary (presentation restricted)) is provided to him and is active.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.081_3.1.1",
+      "section_id": "3.1.1",
+      "section_title": "Interrogation",
+      "content": "Status check\nThe mobile subscriber can request the status of the supplementary service and be informed if the service is provided to him/her. This procedure is illustrated in figure 3.1.\nFigure 3.1: Interrogation of connected line identification presentation",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_3.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.081_3.1.2",
+      "section_id": "3.1.2",
+      "section_title": "Interactions with call forwarding supplementary services",
+      "content": "If the forwarding user selects the option that the calling user is not notified of the call forwarding, then the calling user shall receive no forwarding notification, and the calling user shall not receive the connected user's identity when the call is answered, unless the calling user has override capability.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.081_3.2",
+      "section_id": "3.2",
+      "section_title": "Functions and information flows",
+      "content": "The following Mobile Additional Functions have been identified for the PLMN:\nMAF005\nDetermination of the connected line identification presentation subscription\nThe ability of a PLMN component to determine whether the supplementary service is provisioned for the mobile subscriber. See figure 3.2.\nLocation: VLR.\nMAF006\nDetermination of the connected party number for offering to the calling party\nThe ability of a PLMN component to determine and to forward the connected line identity and related indications to the calling party. See figure 3.3.\nLocation: originating MSC.\nMAF039\nInteraction of connected line identification presentation with the call forwarding supplementary services\nThe ability of a PLMN component to determine the presentation indicator of the connected party number after invocation of a call forwarding service. See figure 3.4.\nLocation: forwarding MSC.\nThe information flow is shown in figure 3.5.\nFigure 3.2: MAF005  Determination of connected line identification presentation subscription(VLR)\nFigure 3.3: MAF006  Determination of the information for offering to the connected party(originating MSC) (CR A005r1)\nFigure 3.4: MAF039  Interaction between COLP and call forwarding services(forwarding MSC)\nFigure 3.5: Information flow for connected line identification presentation:mobile station to mobile station or fixed terminal\nNOTE:\tOR1:\tCOLP provisioned\tY: yes\tN: no\tOR2:\tPresentation Indicator Value\ta: allowed\tb: restricted\tc: not available\tOR3:\tOverride category\tOR4:\tadditional line identity available\tY: yes\tN: no\tOR5:\tCOL in case of override category\ta: LI\tb: aLI\t**:\tA connected subaddress may be received from the MS\tinfo:\tinformation\tSI: screening indicator\taSI: additional screening indicatorreq:\trequest\tPI: presentation indicator\tack:\tacknowledge\tLI: line identity\taLI: additional line identity",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_3.2",
+        "figure_3.3",
+        "figure_3.4",
+        "figure_3.5"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.081_3.3",
+      "section_id": "3.3",
+      "section_title": "Information stored in the HLR",
+      "content": "COLP may have the following logical states (refer to 3GPP TS 23.011 for an explanation of the notation):\nProvisioning State\tRegistration State\tActivation State\tHLR Induction State\n(Not Provisioned,\tNot Applicable,\tNot Active,\tNot Induced)\n(Provisioned,\tNot Applicable,\tActive and Operative,\tNot Induced)\nThe HLR shall store the logical state of COLP (which shall be one of the valid states listed above) on a per subscriber basis.\nThe HLR shall also store the subscription option \"override category\" on a per subscriber basis.\nThis parameter takes one of the following values:\n‑\tyes;\n‑\tno.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.011"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.081_3.4",
+      "section_id": "3.4",
+      "section_title": "State transition model",
+      "content": "The following figure shows the successful cases of transition between the applicable logical states of COLP. The state changes are caused by actions of the service provider.\nNote that error cases are not shown in the diagram as they normally do not cause a state change. Additionally, some successful requests may not cause a state change. Hence they are not shown in the diagram.\nFigure 3.6: State transition model for COLP",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_3.6"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.081_3.5",
+      "section_id": "3.5",
+      "section_title": "Transfer of information from HLR to VLR",
+      "content": "If the provisioning state for COLP is \"Provisioned\" then, when the subscriber registers on a VLR, the HLR shall send that VLR information about the logical state of COLP. The HLR shall send the override category if the VLR is in the HPLMN country. The HLR may send the override category if the VLR is outside the HPLMN country.\nIf the logical state of COLP or the override category is changed while a subscriber is registered on a VLR then the HLR shall inform the VLR of the new logical state of COLP. If the override category is changed and the provisioning state of COLP is \"Provisioned\" then the HLR shall inform the VLR about the new override category when the VLR is in the HPLMN country. The HLR may inform the VLR about the new override category when the VLR is outside of the HPLMN country.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.081_3.6",
+      "section_id": "3.6",
+      "section_title": "Information stored in the VLR",
+      "content": "For COLP, the VLR shall store the service state information and override category received from the HLR.\nIf not received from the HLR (case of roaming outside the HPLMN country), the override category shall be set to the default value \"no\".",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.081_3.7",
+      "section_id": "3.7",
+      "section_title": "Handover",
+      "content": "Handover will have no impact on the control procedures and the operation of the service.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.081_4.1.1",
+      "section_id": "4.1.1",
+      "section_title": "General",
+      "content": "If the terminating party has connected line identification restriction provisioned and it is impossible to indicate to the originating network (due to interworking) that the number should not be presented to the originating party, the connected line identity shall not be delivered to the originating network.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.081_4.1.2",
+      "section_id": "4.1.2",
+      "section_title": "Interrogation",
+      "content": "Status check\nThe mobile subscriber can request the status of the supplementary service and be informed if the service is provided to him/her. This procedure is illustrated in figure 4.1.\nFigure 4.1: Interrogation of connected line identification restriction",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_4.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.081_4.2",
+      "section_id": "4.2",
+      "section_title": "Functions and information flows",
+      "content": "The following Mobile Additional Functions have been identified for the PLMN:\nMAF040\nDetermination of the connected line identification restriction subscription\nThe ability of a PLMN component to determine whether the sup­plementary service is provisioned for the mobile subscriber. See figure 4.2.\nLocation: VLR.\nMAF041\nDetermination of the connected party number for offering to the calling party\nThe ability of a PLMN component to determine and to forward the connected line identity and related indications to the calling party. See figure 4.3.\nLocation: terminating MSC.\nThe information flow is shown in figures 4.4.\nFigure 4.2: MAF040  Determination of connected line identification restriction subscription(VLR)\nFigure 4.3: MAF041  Determination of the presentation indicator\nFigure 4.4: Information flow for connected line identification restriction:mobile station or fixed terminal to mobile station\nNOTE:\tOR1:\tCOLR provisioned\tY: yes\tN: no\tOR2:\tPresentation Indicator Value\ta: allowed\t\t\tb: restricted\tOR3:\tOverride category\t**:\tA subaddress may be received from the MS\tinfo:\tinformation\tSI: screening indicator\treq:\trequest\tPI: presentation indicator\tack:\tacknowledge\tLI: line identity",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_4.2",
+        "figure_4.3",
+        "figure_4.4"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.081_4.3",
+      "section_id": "4.3",
+      "section_title": "Information stored in the HLR",
+      "content": "COLR may have the following logical states (refer to 3GPP TS 23.011 for an explanation of the notation):\nProvisioning State\tRegistration State\tActivation State\tHLR Induction State\n(Not Provisioned,\tNot Applicable,\tNot Active,\tNot Induced)\n(Provisioned,\tNot Applicable,\tActive and Operative,\tNot Induced)\nThe HLR shall store the logical state of COLR (which shall be one of the valid states listed above) on a per subscriber basis.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.011"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.081_4.4",
+      "section_id": "4.4",
+      "section_title": "State transition model",
+      "content": "The following figure shows the successful cases of transition between the applicable logical states of COLR. The state changes are caused by actions of the service provider.\nNote that error cases are not shown in the diagram as they normally do not cause a state change. Additionally, some successful requests may not cause a state change. Hence they are not shown in the diagram.\nFigure 4.5: State transition model for COLR",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_4.5"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.081_4.5",
+      "section_id": "4.5",
+      "section_title": "Transfer of information from HLR to VLR",
+      "content": "When the subscriber registers on a VLR, the HLR shall send that VLR information about the logical state of COLR.\nIf the logical state of COLR is changed while a subscriber is registered on a VLR then the HLR shall inform the VLR of the new logical state of COLR.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.081_4.6",
+      "section_id": "4.6",
+      "section_title": "Information stored in the VLR",
+      "content": "For COLR, the VLR shall store the service state information received from the HLR.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.081_4.7",
+      "section_id": "4.7",
+      "section_title": "Handover",
+      "content": "Handover will have no impact on the control procedures and the operation of the service.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.081_4.8",
+      "section_id": "4.8",
+      "section_title": "Interworking",
+      "content": "The VPLMN needs to distinguish three cases in order to meet data privacy requirements in an environment where support of COLP and COLR is optional:\na)\tthe HPLMN supports COLR, and COLR is provisioned for the subscriber;\nb)\tthe HPLMN supports COLR, but COLR is not provisioned for the subscriber;\nc)\tthe HPLMN does not support COLR.\nIn case a) the VPLMN must apply the COLR subscription as indicated by the data sent by the HPLMN.\nIn case b) the VPLMN must not apply COLR.\nIn case c) the VPLMN must apply an implicit COLR subscription.\nTo allow the VPLMN to make this distinction, the HLR and VLR behave as follows:\n‑\tIf the HLR supports COLR, but COLR is not provisioned for the subscriber, the HLR shall inform the VLR that COLR is not provisioned.\n‑\tIf the VLR supports COLR, but the HLR does not support COLR, the VLR shall behave in the same way as if COLR was provisioned for the subscriber, i.e. the connected line identity shall not be displayed to the calling subscriber unless the calling subscriber has COLR override capability. When interrogating the service status the subscriber shall be informed that COLR is provided to him and is active.\nAnnex A (informative):Mapping of CLI\nThis annex defines the mapping rules of CLI parameters received via the NW-NW interface to CLI parameters to be sent to the MS.\nInformation received over the NW-NW interface\nInformation sent to the MS\npresentation indicator\nline identity\nadditional presentation indicator\nadditional line identity\nCause of No CLI\npresentation indicator\nline identity\nCause of No CLI\nCLIP not pro-vision-ed\n*\n*\n*\n*\n*\n-\n-\n-\nCLIP provisioned without override category\n-\n-\n-\n-\n-\nnot available\n-\n-\nnot available\n-\n-\n-\n-\nnot available\n-\n-\nallowed\ndigits\n-\n-\n-\nallowed\ndigits of line identity\n-\nallowed\ndigits\n+\ndigits\n-\nallowed\ndigits of additional line identity\n-\nrestricted\ndigits\n*\n*\n-\nrestricted\n-\n-\nrestricted\ndigits\n*\n*\nunavailable\nrestricted\n-\nunavailable\nrestricted\ndigits\n*\n*\nreject by user\nrestricted\n-\nreject by user\nrestricted\ndigits\n*\n*\ninteraction with other service\nrestricted\n-\ninteraction with other service\nrestricted\ndigits\n*\n*\npayphone\nrestricted\n-\npayphone\nrestricted by network\ndigits\n-\n-\n-\nnot available\n-\n-\nrestricted by network\ndigits\nallowed\ndigits\n-\nallowed\ndigits of additional line identity\n-\nInformation received over the NW-NW interface\nInformation sent to the MS\npresentation indicator\nline identity\nadditional presentation indicator\nadditional line identity\nCause of No CLI\npresentation indicator\nline identity\nCause of No CLI\nCLIP provisioned with override category\n-\n-\n-\n-\n-\nnot available\n-\n-\nnot available\n-\n-\n-\n-\nnot available\n-\n-\nallowed\ndigits\n-\n-\n-\nallowed\ndigits of line identity\n-\nallowed\ndigits\n+\ndigits\n-\nallowed\ndigits of additional line identity\n-\nrestricted\ndigits\n-\n-\n-\nrestricted\ndigits of line identity\n-\nrestricted\ndigits\n+\ndigits\n-\nrestricted\nNOTE 1\n-\nrestricted\ndigits\n+\ndigits\nunavailable\nrestricted\nNOTE 1\nunavailable\nrestricted\ndigits\n+\ndigits\nreject by user\nrestricted\nNOTE 1\nreject by user\nrestricted\ndigits\n+\ndigits\ninteraction with other service\nrestricted\nNOTE 1\ninteraction with other service\nrestricted\ndigits\n+\ndigits\npayphone\nrestricted\nNOTE 1\npayphone\nrestricted\ndigits\n-\n-\nunavailable\nrestricted\ndigits of line identity\nunavailable\nrestricted\ndigits\n-\n-\nreject by user\nrestricted\ndigits of line identity\nreject by user\nrestricted\ndigits\n-\n-\ninteraction with other service\nrestricted\ndigits of line identity\ninteraction with other service\nrestricted\ndigits\n-\n-\npayphone\nrestricted\ndigits of line identity\npayphone\nrestricted by network\ndigits\n-\n-\n-\nrestricted\ndigits of line identity\n-\nrestricted by network\ndigits\nallowed\ndigits\n-\nallowed\ndigits of additional line identity\n-\n-\tparameter not present\n*\tparameter absent or present, if present it may have any value\n+\tparameter present, it may have any value\nNOTE 1:\tNetwork Option to send either digits of the line identity or digits of additional line identity applies.\nAnnex B (informative):Change history\nChange history\nDate\nMeeting\nTDoc\nCR\nRev\nCat\nSubject/Comment\nNew version\nApr 1999\nTransferred to 3GPP CN1\nCN#03\nApproved at CN#03\n3.0.0\nUpgrade of references from 2G to 3G\n3.0.1\nCN#08\nEnhanced handling of presentation indicators for CLIP\n3.1.0\nCN#11\nRelease 4 after CN#11\n4.0.0\nCN#16\nRelease 5 after CN#16\n5.0.0\nCN#17\n0006\nCorrection of 'Cause of no CLI' handling in SDLs\n5.1.0\nCN#19\n0007r1\nCorrection to interworking between CLIP enhancement and CAMEL\n5.2.0\nCN#25\n0008\nEditorial correction of table definition\n6.0.0\nCT#36\nUpgraded unchanged from Rel-6\n7.0.0\nCT#42\nUpgraded unchanged from Rel-7\n8.0.0\nCT#46\n-\nUpdate to Rel-9 version (MCC)\n9.0.0\n2011-03\n-\nUpdate to Rel-10 version (MCC)\n10.0.0\n2011-12\n0009\nCLI interactions with ACR\n11.0.0\n2014-09\n-\nUpdate to Rel-12 version (MCC)\n12.0.0\n2015-12\n-\nUpdate to Rel-13 version (MCC)\n13.0.0\n2017-03\n-\nUpdate to Rel-14 version (MCC)\n14.0.0\n2018-06\n-\nUpdate to Rel-15 version (MCC)\n15.0.0\n2020-07\n-\nUpdate to Rel-16 version (MCC)\n16.0.0\n2022-03\n-\n-\n-\n-\n-\nUpdate to Rel-17 version (MCC)\n17.0.0\n2024-03\n-\n-\n-\n-\n-\nUpdate to Rel-18 version (MCC)\n18.0.0",
+      "chunk_type": "general",
+      "cross_references": []
+    }
+  ]
+}

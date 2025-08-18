@@ -1,0 +1,140 @@
+{
+  "metadata": {
+    "specification_id": "ts_23.096",
+    "version": "18.0.0",
+    "title": "3GPP TS 23.096",
+    "file_path": "/content/drive/MyDrive/RAG_thesis/data/23_series/23096-i00/23096-i00.docx"
+  },
+  "export_info": {
+    "export_date": "2025-07-26T09:34:28.246110",
+    "total_chunks": 13
+  },
+  "chunks": [
+    {
+      "chunk_id": "ts_23.096_1",
+      "section_id": "1",
+      "section_title": "Scope",
+      "content": "The present document gives the stage 2 description of the Name Identification Supplementary Services.\nThe group of Name Identification Supplementary Services contains the following Supplementary Service:\nCNAP -\tCalling name presentation (clause 4).",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_4"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.096_2",
+      "section_id": "2",
+      "section_title": "References",
+      "content": "The following documents contain provisions which, through reference in this text, constitute provisions of the present document.\n-\tReferences are either specific (identified by date of publication, edition number, version number, etc.) or non‑specific.\n-\tFor a specific reference, subsequent revisions do not apply.\n-\tFor a non-specific reference, the latest version applies.  In the case of a reference to a 3GPP document (including a GSM document), a non-specific reference implicitly refers to the latest version of that document in the same Release as the present document.\n[1]\t3GPP TR 21.905: \"Vocabulary for 3GPP Specifications \".\n[2]\t3GPP TS 22.004: \"General on Supplementary Services\".\n[3]\t3GPP TS 23.011: \"Technical Realization of Supplementary Services - General Aspects\".\n[4]\t3GPP TS 23.016: \"Subscriber Data Management - Stage 2\".\n[5]\t3GPP TS 23.081: \"Line Identification Supplementary Services - Stage 2\".",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905",
+        "ts_22.004",
+        "ts_23.011",
+        "ts_23.016",
+        "ts_23.081"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.096_3.1",
+      "section_id": "3.1",
+      "section_title": "Definitions",
+      "content": "Definition of name identity:\nThe name identity is made up of the following information unit:\n-\tThe name of the mobile subscriber for the purpose of calling name presentation - up to 80 characters of information associated with a specific calling party.\nThe calling name identity is the name identity of the calling party.\nDefinition of Presentation Indicator:\nIn addition to or instead of the name identity, the network may give a Presentation Indicator to the called mobile subscriber of the CNAP service. The following information may be given:\n-\tPresentation Indicator (PI) showing:\na)\tpresentation restricted, or\nb)\tname unavailable.\nCalling Name Information:\nThe calling name information of the calling party includes either the calling name identity or an indication of privacy or unavailability.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.096_3.2",
+      "section_id": "3.2",
+      "section_title": "Abbreviations",
+      "content": "In addition to the following abbreviations used in the present document, abbreviations are listed in 3GPP TR  21. 905 [1].\nCNAP\tCalling Name Presentation.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.096_4.1.1",
+      "section_id": "4.1.1",
+      "section_title": "Originating MSC Activities",
+      "content": "The originating MSC may include calling name information in the Setup.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.096_4.1.2",
+      "section_id": "4.1.2",
+      "section_title": "Terminating VMSC Activities",
+      "content": "The calling name identity shall be provided by the terminating VMSC to the MS. See Figure 3a/3b for details.\nThe procedures of the name database query are outside the scope of the present document.\nThe MSC shall determine the presentation indicator to be sent to the CNAP subscriber's MS by combining the presentation indicator in the calling line information (if available), the presentation indicator in the calling name information (if available) and the presentation indicator in the response from the name database (if applicable). The calling name shall be restricted if either the line or name indicator shows the information is to be restricted (and override category is not applicable). The precise handling depends on the structure of the name database and is therefore outside the scope of the present document. An example is shown in annex A.\nIf a name database query is not possible, e.g. calling line identity is unavailable, name database is not responding, or the name database response timer expires, then the MSC shall send a presentation indicator of name unavailable to the CNAP subscriber's MS.\nA character translation may be required by the terminating MSC since the name characters stored in the name database are not using the GSM default alphabet (name characters passed to the CNAP subscriber's MS use the GSM default alphabet). Display of calling name identity to the subscriber is outside the scope of the present document.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "figure_3"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.096_4.1.3",
+      "section_id": "4.1.3",
+      "section_title": "Interrogation",
+      "content": "Status check\nThe mobile subscriber can request the status of the supplementary service and be informed if the service is provided to him/her. This procedure is illustrated in figure 1.\nFigure 1: Interrogation of Calling Name Presentation",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.096_4.2",
+      "section_id": "4.2",
+      "section_title": "Functions and information flows",
+      "content": "The following Mobile Additional Functions (MAF) have been identified for the PLMN:\nMAF049\nDetermination of the calling name presentation subscription.\nThe ability of a PLMN component to determine whether the supplementary service is provisioned for the mobile subscriber. See figure 3a.\nLocation: VLR.\nMAF050\nDetermination of the calling party name for offering to the called party.\nThe ability of a PLMN component to determine and to forward the calling name identity and related indications to the called party. See figure 3b.\nLocation: destination MSC.\nThe information flow is shown in figure 4.\nFigure 2: MAF049 Determination of the calling name presentation subscription (VLR)\nObtain info from signalling\nObtain info from database\nFigure 3a: MAF050(CNAP) Determination of the information for offering to the called party (Sheet 1)\nFigure 3b: MAF050(CNAP) Determination of the information for offering to the called party (Sheet 2)\nFigure 4: Information Flow For Calling Name Presentation: Mobile Station Or Fixed Terminal To Mobile Station\nNOTE:\tOR1:\tCNAP provisioned\t\t\tY: yes\t\t\t\t\t\t\t\t\t\t\t\tN: no\tOR2:\tCalling Name Info\t\t\ta: allowed\t\tPresentation Indicator Value\tb: restricted\t\t\t\t\t\t\t\t\t\t\tc: unavailable\tOR3:\tOverride category\t\t\tY: yes\t\t\t\t\t\t\t\t\t\t\t\tN: no\tinfo:\tinformation\treq:\trequest\tack:\tacknowledge\tPI:\t\tpresentation indicator",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_3",
+        "figure_4",
+        "figure_2"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.096_4.3",
+      "section_id": "4.3",
+      "section_title": "Information stored in the HLR",
+      "content": "CNAP may have the following logical states (refer to 3GPP TS 23.011 for an explanation of the notation):\nProvision State\nRegistration State\nActivation State\nHLR Induced State\n(Not Provisioned,\nNot Applicable,\nNot Active,\nNot Induced)\n(Provisioned,\nNot Applicable,\nActive and Operative,\nNot Induced)\nThe HLR shall store the logical state of CNAP (which shall be one of the valid state listed above) on a per subscriber basis.\nThe HLR shall also store the subscription option \"override category\" on a per subscriber basis. The subscription options are: \"Yes\" or \"No\".",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.011"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.096_4.4",
+      "section_id": "4.4",
+      "section_title": "State Transition Model",
+      "content": "The following figure shows the successful cases of transition between the applicable logical states of CNAP. The state changes are caused by actions of the service provider.\nNote that error cases are not shown in the diagram as they normally do not cause change. Additionally, some successful requests may not cause a state change. Hence they are not shown in the diagram.\nFigure 5: State Transition model for CNAP",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_5"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.096_4.5",
+      "section_id": "4.5",
+      "section_title": "Transfer of information from HLR to VLR",
+      "content": "If the provisioning state for CNAP is \"provisioned\" then, when the subscriber registers on a VLR, the HLR shall send the VLR subscriber information about the logical state of CNAP. Please refer to GSM 03.16 for details related to the handling of supplementary service information between the HLR and VLR.\nIf the logical state of CNAP or the override category is changed while a subscriber is registered on a VLR, then the HLR shall inform the VLR of the logical state of CNAP. If the override category is changed and the provisioning state of CNAP is \"Provisioned\", then the HLR shall inform the VLR about the new override category when the VLR is in the HPLMN country. The HLR may inform the VLR about the new override category when the VLR is outside the HPLMN country.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.096_4.6",
+      "section_id": "4.6",
+      "section_title": "Information stored in the VLR",
+      "content": "For CNAP, the VLR shall store the service state information and override category received from the HLR. If not received from the HLR (in case of roaming outside the HPLMN country), the override category shall be set to the default value \"no\".",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.096_4.7",
+      "section_id": "4.7",
+      "section_title": "Handover",
+      "content": "Handover will have no impact on the control procedures and the operation of the service.\nAnnex A (normative for PCS1900):Calling Name Information Setting to the MS\nA name database query is performed using the calling party's line identity as specified in ANSI T1.641 \"Calling Name Identification Presentation\".\nThe calling name information, which contains the resulting presentation indicator, as shown in Table 1 is sent to the CNAP subscriber's MS.\nTable 1: Determination of Calling Name Information sent to CNAP subscriber's MS\nPresentation Indicator in Calling Name Information\nPresentation Indicator in Name Database\nCalling Name Information sent to the CNAP subscriber's MS\nPresentation\nPresentation Allowed\nAllowed\nPresentation Restricted\nCalling Name\nBlocking Toggle\nIdentity\nNo Indication\nPresentation Restricted\nNo Database Query performed\nPresentation Restricted1\nBlocking\nPresentation Allowed\nPresentation Restricted1\nToggle\nPresentation Restricted\nCalling Name Identity\nBlocking Toggle\nUnavailable 2\nNo Indication\nUnavailable 2\nNo\nPresentation Allowed\nCalling Name Identity\nIndication\nPresentation Restricted\nPresentation Restricted1\n(or No Calling Name\nBlocking Toggle\nUnavailable 2\nInformation present)\nNo Indication\nUnavailable 2\nNOTE1:\tIf the override category is set to yes, the MSC shall send the calling name identity and a presentation indicator of presentation restricted to the CNAP subscriber's MS.\nNOTE 2:\tThese combinations are unexpected: an indication of name unavailable is given.\nAnnex B (informative):Change history\nChange history\nDate\nMeeting\nTDoc\nCR\nRev\nCat\nSubject/Comment\nNew version\nApr 1999\nTransferred to 3GPP CN1\nCN#03\nApproved at CN#03\n3.0.0\nReferences updated from 2G to 3G\n3.0.1\nCN#11\nRelease 4 after CN#11\n4.0.0\nCN#16\nRelease 5 after CN#16\n5.0.0\nCN#26\nRelease 6 after CN#26\n6.0.0\nCT#30\n0001\nIncorrect reference\n6.1.0\nCT#35\nUpgraded unchanged from Rel-6\n7.0.0\nCT#42\nUpgraded unchanged from Rel-7\n8.0.0\nCT#46\n-\nUpdate to Rel-9 version (MCC)\n9.0.0\n2011-03\n-\nUpdate to Rel-10 version (MCC)\n10.0.0\n2012-09\n-\nUpdate to Rel-11 version (MCC)\n11.0.0\n2014-09\n-\nUpdate to Rel-12 version (MCC)\n12.0.0\n2015-12\n-\nUpdate to Rel-13 version (MCC)\n13.0.0\n2017-03\n-\nUpdate to Rel-14 version (MCC)\n14.0.0\n2018-06\n-\nUpdate to Rel-15 version (MCC)\n15.0.0\n2020-07\n-\nUpdate to Rel-16 version (MCC)\n16.0.0\n2022-03\n-\n-\n-\n-\n-\nUpdate to Rel-17 version (MCC)\n17.0.0\n2024-03\n-\n-\n-\n-\n-\nUpdate to Rel-18 version (MCC)\n18.0.0",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_1"
+      ]
+    }
+  ]
+}

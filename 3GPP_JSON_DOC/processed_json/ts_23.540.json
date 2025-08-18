@@ -1,0 +1,612 @@
+{
+  "metadata": {
+    "specification_id": "ts_23.540",
+    "version": "18.4.0",
+    "title": "3GPP TS 23.540",
+    "file_path": "/content/drive/MyDrive/RAG_thesis/data/23_series/23540-i40/23540-i40.docx"
+  },
+  "export_info": {
+    "export_date": "2025-07-26T09:28:07.392121",
+    "total_chunks": 55
+  },
+  "chunks": [
+    {
+      "chunk_id": "ts_23.540_1",
+      "section_id": "1",
+      "section_title": "Scope",
+      "content": "The present document defines the Stage 2 architecture, procedures and services to support service based short message service (SMS) in 5G system (5GS).",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.540_2",
+      "section_id": "2",
+      "section_title": "References",
+      "content": "The following documents contain provisions which, through reference in this text, constitute provisions of the present document.\n-\tReferences are either specific (identified by date of publication, edition number, version number, etc.) or non‑specific.\n-\tFor a specific reference, subsequent revisions do not apply.\n-\tFor a non-specific reference, the latest version applies. In the case of a reference to a 3GPP document (including a GSM document), a non-specific reference implicitly refers to the latest version of that document in the same Release as the present document.\n[1]\t3GPP TR 21.905: \"Vocabulary for 3GPP Specifications\".\n[2]\t3GPP TS 23.040: \"Technical realization of the Short Message Service (SMS)\".\n[3]\t3GPP TS 23.501: \"System architecture for the 5G System (5GS); Stage 2\".\n[4]\t3GPP TS 23.502: \"Procedures for the 5G System (5GS); Stage 2\".\n[5]\t3GPP TS 23.632: \"User data interworking, coexistence and migration; Stage 2\".\n[6]\t3GPP TS 29.540: \"5G System; SMS Services; Stage 3\".\n[7]\t3GPP TS 29.503: \"5G System; Unified Data Management Services; Stage 3\".\n[8]\t3GPP TS 24.011: \"Point-to-Point (PP) Short Message Service (SMS) support on mobile radio interface\".\n[9]\t3GPP TS 29.573: \"5G System; Public Land Mobile Network (PLMN) Interconnection; Stage 3\".\n[10]\t3GPP TS 29.510: \"5G System; Network Function Repository Services; Stage 3\".\n[11]\t3GPP TS 29.500: \"5G System; Technical Realization of Service Based Architecture; Stage 3\".\n[12]\tIETF RFC 6116: \"The E.164 to Uniform Resource Identifiers (URI) Dynamic Delegation Discovery System (DDDS) Application (ENUM) \".\n[13]\tIETF RFC 4002: \"IANA Registration for Enumservice 'web' and 'ft'\".\n[14]\tIETF RFC 6118: \"Update of Legacy IANA Registrations of Enumservices\".\n[15]\t3GPP TS 23.204: \"Support of Short Message Service (SMS) over generic 3GPP Internet Protocol (IP) access; Stage 2\".",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905",
+        "ts_23.040",
+        "ts_23.501",
+        "ts_23.502",
+        "ts_23.632",
+        "ts_29.540",
+        "ts_29.503",
+        "ts_24.011",
+        "ts_29.573",
+        "ts_29.510",
+        "ts_29.500",
+        "ts_23.204"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.540_3.1",
+      "section_id": "3.1",
+      "section_title": "Terms",
+      "content": "For the purposes of the present document, the terms given in 3GPP TR 21.905 [1] and the following apply. A term defined in the present document takes precedence over the definition of the same term, if any, in 3GPP TR 21.905 [1].\nalert‑SC: service element provided by a GSM/UMTS/EPS/5GS PLMN to inform an SC which has previously initiated unsuccessful short message delivery attempt(s) to a specific MS/UE, that the MS/UE is now recognized by the PLMN to have recovered operation.\nGateway MSC For Short Message Service (SMS‑GMSC): function of an MSC capable of receiving a short message from an SC, interrogating an HLR/HSS/UDM for routing information and SMS info, and delivering the short message to the VMSC/SGSN/MME/SMSF of the recipient MS/UE.\nInterworking MSC For Short Message Service (SMS‑IWMSC): function of an MSC capable of receiving a short message from within the PLMN and submitting it to the recipient SC.\nIP-Short-Message-Gateway (IP-SM-GW): function responsible for protocol interworking between the IP-based UE and the SC.\nService Centre (SC): function responsible for the relaying and store and forwarding of a short message between an SME and an MS/UE.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.540_3.2",
+      "section_id": "3.2",
+      "section_title": "Abbreviations",
+      "content": "For the purposes of the present document, the abbreviations given in 3GPP TR 21.905 [1] and the following apply. An abbreviation defined in the present document takes precedence over the definition of the same abbreviation, if any, in 3GPP TR 21.905 [1].\nGPSI\tGeneric Public Subscription Identifier\nMNPF\tMobile Number Portability Function\nMO SMS\tMobile Originated Short Message Service\nMT SMS\tMobile Terminated Short Message Service\nNAS\tNon-Access-Stratum\nNP\tNumber Portability\nNRF\tNetwork Repository Function\nSBA\tService Based Architecture\nSBI\tService Based Interface\nSCP\tService Communication Proxy\nSMS\tShort Message Service\nSM MO\tShort Message Mobile Originated\nSM MT\tShort Message Mobile Terminated\nSMSF\tShort Message Service Function\nSMSoNAS\tSMS over NAS\nUDM\tUnified Data Management",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.540_4.1",
+      "section_id": "4.1",
+      "section_title": "Architecture to support SBI-based SMS",
+      "content": "Figure 4.1-1 shows the non-roaming architecture to support SBI-based SMS.\nFigure 4.1-1: Non-roaming architecture for SBI-based SMS\nFigure 4.1-2a, Figure 4.1-2b Figure 4.1-2c and Figure 4.1-2d depict the non-roaming architecture to support SBI-based SMS, using the reference point representation showing how various network functions interact with each other\nFigure 4.1-2a: Non-roaming System Architecture for SBI-based MT SMS in reference point representation\nFigure 4.1-2b: Non-roaming System Architecture for SBI-based MO SMS in reference point representation\nFigure 4.1-2c: Architecture for SBI-based MSISDN-less MO SMS and device triggering in reference point representation\nFigure 4.1-2d: Architecture for NP status Retrieval from MNPF in reference point representation\nNOTE 1:\tThe newly introduced reference points for SMS_SBI are marked in red, and numbered from SM1 to SM15.",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_4.1-1",
+        "figure_4.1-2"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.540_4.2",
+      "section_id": "4.2",
+      "section_title": "Reference point to support SBI-based SMS",
+      "content": "Besides the reference point to support SMS over NAS described in clause 4.4.2.2 of TS 23.501 [3], the following reference points are needed to support SBI-based SMS:\nReference point SM1:\tReference point for routing information between SMS-GMSC and UDM.\nReference point SM2:\tReference point between SMS-IWMSC and UDM.\nReference point SM3:\tReference point for routing information between IP-SM-GW and UDM.\nReference point SM4:\tReference point for routing information between SMS Router and UDM.\nReference point SM5:\tReference point for SMS message transfer between SMS-GMSC and SMSF.\nReference point SM6:\tReference point for SMS message transfer between SMS-GMSC and SMS Router.\nReference point SM7:\tReference point for SMS message transfer between SMSF and SMS Router.\nReference point SM8:\tReference point for SMS message transfer between SMS-GMSC and IP-SM-GW.\nReference point SM9:\tReference point for SMS message transfer between SMSF and IP-SM-GW\nReference point SM10:\tReference point for SMS message transfer between SMS-IWMSC and SMSF.\nReference point SM11:\tReference point for SMS message transfer between SMS-SC and NEF.\nReference point SM12:\tReference point for SMS message transfer between SMS-GMSC and MNPF.\nReference point SM13:\tReference point for SMS message transfer between SCP and MNPF.\nReference point SM14:\tReference point for SMS message transfer between NRF and MNPF.\nReference point SM15:\tReference point for SMS message transfer between IP-SM-GW and SMS-IWMSC.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.501_clause_4.4.2.2",
+        "ts_23.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.540_4.3",
+      "section_id": "4.3",
+      "section_title": "Service based interface to support SBI-based SMS",
+      "content": "Besides the service based interfaces to support SMS over NAS described in clause 4.4.2.3 of TS 23.501 [3], the following service based interfaces are needed to support SBI-based SMS.\nNudm:\tService-based interface exhibited by UDM\nNnrf:\tService-based interface exhibited by NRF\nNgmsc:\tService-based interface exhibited by SMS-GMSC\nNiwmsc:\tService-based interface exhibited by SMS-IWMSC\nNipsmgw:\tService-based interface exhibited by IP-SM-GW\nNrouter:\tService-based interface exhibited by SMS Router\nNnef:\tService-based interface exhibited by NEF\nNmnpf:\tService-based interface exhibited by MNPF",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.501_clause_4.4.2.3",
+        "ts_23.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.540_5.1.1",
+      "section_id": "5.1.1",
+      "section_title": "General",
+      "content": "The procedure is used to support the Mobile Terminated short message transfer for SBI-based interfaces as defined in clause 4.1, which is based on Short message mobile terminated procedure defined in clause 10.1 of 3GPP TS 23.040 [2] and clauses 4.13.3.6, 4.13.3.7 and 4.13.3.8 of 3GPP TS 23.502 [4].\nThis new services introduced in this procedure can be registered in NRF, and discovered by NF service consumers.\nSMSF/SMS Router/IP-SM-GW should indicate whether it supports SMS_SBI or not. For the case of SMSF/IP-SM-GW, \"SBI support indication\" should be brought when SMSF/IP-SM-GW registers in UDM. For the case of SMS Router, \"SBI support indication\" should be configured locally in UDM, together with the SMS Router address. UDM stores the \"SBI support indication\" indication and provides it to the SMS-GMSC during Routing Info retrieval. SMS-GMSC selects legacy or SBI based protocol based on the indication received during Routing Info retrieval.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_4.1",
+        "ts_23.040_clause_10.1",
+        "ts_23.040",
+        "ts_23.502"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.540_5.1.2",
+      "section_id": "5.1.2",
+      "section_title": "Successful Mobile Terminated short message transfer without SMS Router/ IP-SM-GW",
+      "content": "Figure 5.1.2-1: MT SMS over NAS without SMS Router/ IP-SM-GW\n1.\tMT SMS interaction between SC and SMS-GMSC follow the current procedure as defined in 3GPP TS 23.040 [2].\n2a.\tSMS-GMSC invokes the Nnrf_NFDiscovery to discover and select the UDM instance(s), supporting SMS SBI interfaces, and managing the user subscriptions of the GPSI. The SMS-GMSC may need to retrieve the PLMN ID of the recipients GPSI before the discovery of the UDM instance based on the GPSI-to-Subscription-Network resolution procedure defined in clause 5.1.7.\n2b.\tIf no UDM supporting SMS SBI could be discovered, the NRF indicates so to SMS-GMSC (by not including any UDM instance in the discovery response), and SMS-GMSC shall quit the SBI-based procedure and fallback to legacy (MAP/Diameter) protocol based procedures, as defined in TS 23.040 [2],\nor if a UDM supporting SMS SBI is discovered and selected, NRF returns the IP addresses or FQDNs of the serving UDM to provide Nudm_UECM_SendRoutingInfoForSM service to SMS-GMSC.\n3.\tSMS-GMSC invokes Nudm_UECM_SendRoutingInfoForSM (GPSI) to the UDM to get the routing information of the nodes available for MT SMS delivery, in this case the registered serving SMSF instances for all access types for the UE.\n4.\tThe UDM shall check the registration/reachability flags to determine the potential target nodes and responds to the SMS-GMSC by sending Nudm_UECM_SendRoutingInfoForSM response, in this procedure the SMSF instance Id and the indication for SMSF SMS_SBI support are included in the response message. The UDM shall include the SMSF for 3GPP access and the SMSF for non-3GPP access separately, if both the SMSFs are currently known to be valid for the UE.\n5.\tThe SMS-GMSC forwards the SMS message to the SMSF. If the SMS-GMSC has more than one SMSF address to use for SMS transport towards the UE, then the SMS-GMSC chooses which SMSF address to use first, based on operator local policy.\nThe SMS-GMSC selects protocol based on the indication for SMSF SMS_SBI support.\nIf SMSF indicates it supports SMS_SBI, SMS-GMSC forwards the SMS message to the SMSF by invoking Nsmsf_SMService_MtForwardSm service operation.\nIf SMSF indicates that it does not support SMS_SBI, SMS-GMSC should forward SMS message to SMSF by legacy MAP/Diameter protocol. And the following steps follow the procedures for legacy MT SMS message transfer, as illustrated in Figure 15a of TS23.040 [2].\n6.\tMT SMS over NAS procedure between SMSF, AMF and UE is same as the definition in step 4a to 6b of Figure 4.13.3.6-1 of 3GPP TS 23.502 [4].\n7.\tThe SMSF delivers the delivery report to SMS-GMSC by sending the Nsmsf_SMService_MtForwardSm response to the SMS-GMSC.\n8.\tThe SMS-GMSC updates the SM-Delivery Report Status to UDM by invoking Nudm_SMReportStatus_Request.\n9.\tUDM responses Nudm_SMReportStatus_Request response to SMS-GMSC.\n10.\tThe SMS-GMSC delivers the delivery report to SC as defined in TS 23.040 [2].\n11.\tMT SMS over NAS procedure between SMSF, AMF and UE is same as the definition in step 6c to 6d of Figure 4.13.3.6-1 of 3GPP TS 23.502 [4].",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_5.1.7",
+        "figure_5.1.2-1",
+        "figure_15",
+        "ts_23.502_figure_4.13.3.6-1",
+        "ts_23.040",
+        "ts_23.502"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.540_5.1.3",
+      "section_id": "5.1.3",
+      "section_title": "Successful Mobile Terminated short message transfer via SMS Router",
+      "content": "Figure 5.1.3-1: MT SMS over NAS via SMS Router\n1.\tMT SMS interaction between SC and SMS-GMSC follow the current procedure as defined in 3GPP TS 23.040 [2].\n2a.\tSMS-GMSC invokes the Nnrf_NFDiscovery to discover and select the UDM instance(s), supporting SMS SBI interfaces, and managing the user subscriptions of the GPSI. The SMS-GMSC may need to retrieve the PLMN ID of the recipients GPSI before the discovery of the UDM instance based on the GPSI-to-Subscription-Network resolution procedure defined in clause 5.1.7.\n2b.\tIf no UDM supporting SMS SBI could be discovered, the NRF indicates so to SMS-GMSC (by not including any UDM instance in the discovery response), and SMS-GMSC shall quit the SBI-based procedure and fallback to legacy (MAP/Diameter) protocol based procedures, as defined in TS 23.040 [2],\nor if a UDM supporting SMS SBI is discovered and selected, NRF returns the IP addresses or FQDNs of the serving UDM to provide Nudm_UECM_SendRoutingInfoForSM service to SMS-GMSC.\n3.\tSMS-GMSC invokes Nudm_UECM_SendRoutingInfoForSM (GPSI) to the UDM to get the serving node information for all access types for the UE.\n4.\tThe UDM shall check the registration/reachability flags to determine the potential target nodes, e.g. SMSF. For MT SM transfer via SMS Router, the UDM shall invoke the Nrouter_SMService_RoutingInfo to provide the SMSF Instance Id to the SMS Router. The address of the SMS Router to be contacted by the UDM may be configured locally.\nNOTE:\tIf the SMS Router is SBI-capable, the UDM can use normal SBI-based service discovery to consume its services.\n5.\tThe SMS Router shall send Nrouter_SMService_RoutingInfo response to the UDM.\n6.\tUDM responds to the SMS-GMSC by sending Nudm_UECM_SendRoutingInfoForSM response, including SMS Router address, the indication for SMSF SMS_SBI support and the indication for SMS Router SMS_SBI support.\n7-8.\tThe SMS-GMSC forwards the SMS message to the SMS Router, and then SMS Router forwards the SMS message to the SMSF. If the SMS Router has more than one SMSF address to use for SMS transport towards the UE, then the SMS Router chooses which SMSF address to use first, based on operator local policy.\nThe SMS-GMSC selects protocol based on the indications for SMSF SMS_SBI support and SMS Router SMS_SBI support.\nIf both SMSF and SMS Router indicate support for SMS_SBI, SMS-GMSC discovers the appropriate service instance(s) of the target SMS Router and forwards the SMS message to the SMS Router by invoking Nrouter_SMService_MtForwardSm service operation. And then the SMS Router forwards the SMS message to the SMSF by invoking Nsmsf_SMService_MtForwardSm service operation.\nIf SMSF or SMS Router indicates that it does not support SMS_SBI, SMS-GMSC should forward SMS message to SMS Router by legacy MAP/Diameter protocol. Then SMS Router forwards the SMS message to the SMSF by legacy MAP/Diameter protocol. The following steps follow the procedures for legacy MT SMS message transfer, as illustrated in Figure 15aa of TS23.040.\n9.\tMT SMS over NAS procedure between SMSF, AMF and UE is same as the definition in step 4a to 6b of Figure 4.13.3.6-1 in 3GPP TS 23.502 [4].\n10.\tThe SMSF delivers the delivery report to SMS Router by sending the Nsmsf_SMService_MtForwardSm response to the SMS Router.\n11.\tThe SMS Router delivers the delivery report to SMS-GMSC by sending the Nrouter_SMService_MtForwardSm response to the SMS-GMSC.\n12-13.\tThe SMS-GMSC may report the SM-Delivery Status to the UDM by invoking Nudm_ReportSMDeliveryStatus_Request and UDM responses Nudm_ReportSMDeliveryStatus_Request response to SMS-GMSC.\n14.\tThe SMS-GMSC delivers the delivery report to SC as defined in 3GPP TS 23.040 [2].\n15.\tMT SMS over NAS procedure between SMSF, AMF and UE is same as the definition in step 6c to 6d of Figure 4.13.3.6-1 in 3GPP TS 23.502 [4].",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_5.1.7",
+        "figure_5.1.3-1",
+        "figure_15",
+        "ts_23.502_figure_4.13.3.6-1",
+        "ts_23.040",
+        "ts_23.502"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.540_5.1.4",
+      "section_id": "5.1.4",
+      "section_title": "Successful Mobile Terminated short message transfer via IP-SM-GW",
+      "content": "Figure 5.1.4-1: MT SMS over NAS via IP-SM-GW\n1.\tMT SMS interaction between SC and SMS-GMSC follow the current procedure as defined in 3GPP TS 23.040 [2].\n2a.\tSMS-GMSC invokes the Nnrf_NFDiscovery to discover and select the UDM instance(s), supporting SMS SBI interfaces, and managing the user subscriptions of the GPSI. The SMS-GMSC may need to retrieve the PLMN ID of the recipients GPSI before the discovery of the UDM instance based on the GPSI-to-Subscription-Network resolution procedure defined in clause 5.1.7.\n2b.\tIf no UDM supporting SMS SBI could be discovered, the NRF indicates so to SMS-GMSC (by not including any UDM instance in the discovery response), and SMS-GMSC shall quit the SBI-based procedure and fallback to legacy (MAP/Diameter) protocol based procedures, as defined in TS 23.040 [2],\nor if a UDM supporting SMS SBI is discovered and selected, NRF returns the IP addresses or FQDNs of the serving UDM to provide Nudm_UECM_SendRoutingInfoForSM service to SMS-GMSC.\n3.\tThe SMS-GMSC invokes Nudm_UECM_SendRoutingInfoForSM (GPSI) to the UDM to get the serving node information for all access types for the UE.\n4.\tThe UDM shall check the registration/reachability flags to determine the potential target nodes, e.g. SMSF. For MT SM transfer via IP-SM-GW, the UDM shall invoke the Nipsmgw_SMService_RoutingInfo to provide the SMSF Instance Id to the IP-SM-GW. The address of the IP-SM-GW to be contacted by the UDM may be configured locally or may be received from HSS via the Nudm_UECM service for IP-SM-GW registration, containing the registration data provided by the IP-SM-GW.\nNOTE:\tIf the IP-SM-GW is SBI-capable, it is expected to provide its NF Instance ID during registration in HSS, so the UDM can use normal SBI-based service discovery to consume IP-SM-GW services.\n5.\tThe IP-SM-GW shall send Nipsmgw_SMService_RoutingInfo response to the UDM.\n6.\tThe UDM responds to the SMS-GMSC by sending Nudm_UECM_SendRoutingInfoForSM response, including IP-SM-GW address, the indication for SMSF SMS_SBI support and the indication for IP-SM-GW SMS_SBI support.\n7-8.\tThe SMS-GMSC forwards the SMS message to the IP-SM-GW, and then IP-SM-GW performs service authorization and domain selection to determine the domain for delivery of the Short Message as defined in 3GPP TS 23.204 [15]. If the SMSF is selected, the IP-SM-GW forwards the SMS message to the SMSF. If the IP-SM-GW has more than one SMSF address to use for SMS transport towards the UE, then the IP-SM-GW chooses which SMSF address to use first based on operator local policy.\nThe SMS-GMSC selects protocol based on the indication for SMSF SMS_SBI support and IP-SM-GW SBI support:\nIf both SMSF and IP-SM-GW indicate support for SMS_SBI, SMS-GMSC discovers the appropriate service instance(s) of the target IP-SM-GW and forwards the SMS message to the IP-SM-GW by invoking Nipsmgw_SMService_MtForwardSm service operation. And then the IP-SM-GW forwards the SMS message to the SMSF by invoking Nsmsf_SMService_MtForwardSm service operation.\nIf SMSF or IP-SM-GW indicates that it does not support SMS_SBI, SMS-GMSC should forward SMS message to IP-SM-GW by legacy MAP/Diameter protocol. Then IP-SM-GW forwards the SMS message to the SMSF by legacy MAP/Diameter protocol. The following steps follow the procedures for legacy MT SMS message transfer, as illustrated in Figure 15aa of TS23.040 [2].\n9.\tThe MT SMS over NAS procedure between SMSF, AMF and UE is the same as in step 4a to 6b of Figure 4.13.3.6-1 of 3GPP TS 23.502 [4].\n10.\tThe SMSF delivers the delivery report to the IP-SM-GW by sending the Nsmsf_SMService_MtForwardSm response to the IP-SM-GW.\n11.\tThe IP-SM-GW delivers the delivery report to the SMS-GMSC by sending the Nipsmgw_SMService_MtForwardSm response to the SMS-GMSC.\n12.\tThe IP-SM-GW may report the SM-Delivery Status to the UDM by invoking Nudm_ReportSMDeliveryStatus_Request.\n13.\tThe UDM responses with Nudm_ReportSMDeliveryStatus_Request response to the IP-SM-GW.\n14-15.\tThe SMS-GMSC may report the SM-Delivery Status to the UDM by invoking Nudm_ReportSMDeliveryStatus_Request and the UDM shall ignore the information provided in this report.\n16.\tThe SMS-GMSC delivers the delivery report to the SC as defined in 3GPP TS 23.040 [2].\n17.\tThe MT SMS over NAS procedure between SMSF, AMF and UE is the same as in step 6c to 6d of Figure 4.13.3.6-1 of 3GPP TS 23.502 [4].",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_5.1.7",
+        "figure_5.1.4-1",
+        "figure_15",
+        "ts_23.502_figure_4.13.3.6-1",
+        "ts_23.040",
+        "ts_23.204",
+        "ts_23.502"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.540_5.1.5",
+      "section_id": "5.1.5",
+      "section_title": "Unsuccessful Mobile Terminated short message transfer without SMS Router/IP-SM-GW",
+      "content": "Figure 5.1.5-1: Unsuccessful MT SMS over NAS without SMS Router/ IP-SM-GW\n1.\tMT SMS interaction between SC and SMS-GMSC follow the current procedure as defined in 3GPP TS 23.040 [2].\n2a.\tSMS-GMSC invokes the Nnrf_NFDiscovery to discover and select the UDM instance(s), supporting SMS SBI interfaces, and managing the user subscriptions of the GPSI. The SMS-GMSC may need to retrieve the PLMN ID of the recipients GPSI before the discovery of the UDM instance based on the GPSI-to-Subscription-Network resolution procedure defined in clause 5.1.7.\n2b.\tIf no UDM supporting SMS SBI could be discovered, the NRF indicates so to SMS-GMSC (by not including any UDM instance in the discovery response), and SMS-GMSC shall quit the SBI-based procedure and fallback to legacy (MAP/Diameter) protocol based procedures, as defined in TS 23.040 [2],\nor if a UDM supporting SMS SBI is discovered and selected, NRF returns the IP addresses or FQDNs of the serving UDM to provide Nudm_UECM_SendRoutingInfoForSM service to SMS-GMSC.\n3.\tSMS-GMSC invokes Nudm_UECM_SendRoutingInfoForSM (GPSI) to the UDM to get the routing information of the nodes available for MT SMS delivery, in this case the registered serving SMSF instance for all access types for UE.\n4.\tThe UDM shall check the registration/reachability flags to determine the potential target nodes. If the UDM is failed at this step, e.g. user not found in the UDM, the UDM shall respond to the SMS-GMSC by sending Nudm_UECM_SendRoutingInfoForSM response with error cause. If there is no target node address registered in the UDM, a response with error case indicating absent subscriber for SM is sent to the SMS-GMSC and the procedure continues in step 11.\n5.\tIf successful response is returned in step 4, the SMS-GMSC forwards the SMS message to the SMSF by invoking Nsmsf_SMService_MtForwardSm service operation. If the SMS-GMSC has more than one SMSF address to use for SMS transport towards the UE, then the SMS-GMSC chooses which SMSF address to use first based on operator local policy.\n6.\tMT SMS over NAS procedure between SMSF, AMF and UE is same as the definition in step 4a to 6b of Figure 4.13.3.6-1 of 3GPP TS 23.502 [4].\n7.\tIf the AMF informs the SMSF that it cannot deliver the MT-SMS to the UE in step 6, e.g. UE is not reachable, or the SMSF is failed at this step, e.g. memory capacity exceeded, the SMSF shall send the Nsmsf_SMService_MtForwardSm response with error cause to the SMS-GMSC.\nIf the SMS-GMSC has more than one SMSF address to use for SMS transport towards the UE, then upon receiving MT-SMS failure report, the SMS-GMSC, based on operator local policy, may re-attempt the MT-SMS delivery via the other SMSF. If MT-SMS delivery also fails over the other SMSF, then the SMS-GMSC continues with step 8.\n8.\tThe SMS-GMSC may report the SM-Delivery Status (e.g. UE is not reachable or memory capacity exceeded) to UDM by invoking Nudm_ReportSMDeliveryStatus_Request.\n9.\tUDM responses Nudm_ReportSMDeliveryStatus_Request response to SMS-GMSC.\n10.\tThe SMS-GMSC sends the failure report to SC as defined in TS 23.040 [2].\n11.\tThe SMS-GMSC subscribes in UDM to be notified when the UE becomes reachable for SMS (i.e. when the UE gets in radio contact with the AMF while an SMSF is actually registered, or when an SMSF gets registered) by using the Nudm_EventExposure_Subscribe service operation for Reachability for SMS event as defined in 3GPP TS 23.502 [4].\n12.\tIf applicable, the UDM subscribes to UE reachability notification in the AMF(s) using the Namf_EventExposure service and sets the relevant reachability flags. The UDM acknowledges the event subscription created by the SMS-GMSC.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_5.1.7",
+        "figure_5.1.5-1",
+        "ts_23.502_figure_4.13.3.6-1",
+        "ts_23.040",
+        "ts_23.502"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.540_5.1.6",
+      "section_id": "5.1.6",
+      "section_title": "Unsuccessful Mobile Terminated short message transfer via IP-SM-GW",
+      "content": "Figure 5.1.6-1: Unsuccessful MT SMS over NAS via IP-SM-GW\n1.\tMT SMS interaction between SC and SMS-GMSC follow the current procedure as defined in 3GPP TS 23.040 [2].\n2a.\tSMS-GMSC invokes the Nnrf_NFDiscovery to discover and select the UDM instance(s), supporting SMS SBI interfaces, and managing the user subscriptions of the GPSI. The SMS-GMSC may need to retrieve the PLMN ID of the recipients GPSI before the discovery of the UDM instance based on the GPSI-to-Subscription-Network resolution procedure defined in clause 5.1.7.\n2b.\tIf no UDM supporting SMS SBI could be discovered, the NRF indicates so to SMS-GMSC (by not including any UDM instance in the discovery response), and SMS-GMSC shall quit the SBI-based procedure and fallback to legacy (MAP/Diameter) protocol based procedures, as defined in TS 23.040 [2],\nor if a UDM supporting SMS SBI is discovered and selected, NRF returns the IP addresses or FQDNs of the serving UDM to provide Nudm_UECM_SendRoutingInfoForSM service to SMS-GMSC.\n3.\tSMS-GMSC invokes Nudm_UECM_SendRoutingInfoForSM (GPSI) to the UDM to get the serving node information for UE.\n4.\tThe UDM shall check the registration/reachability flags to determine the potential target nodes, e.g. SMSF. For MT SM transfer via IP-SM-GW, the UDM shall invoke the Nipsmgw_SMService_RoutingInfo to provide the SMSF Instance Id to the IP-SM-GW. The address of the IP-SM-GW to be contacted by the UDM may be configured locally.\n5.\tIf any failure at this step, the IP-SM-GW shall send Nipsmgw_SMService_RoutingInfo response with error cause to the UDM.\n6.\tIf the UDM receives error response from IP-SM-GW in step 5 or UDM is failed after step 3, e.g. user not found in the UDM, the UDM shall respond to the SMS-GMSC by sending Nudm_UECM_SendRoutingInfoForSM response with error cause. If there is no target node address registered in the UDM, a response with error case indicating absent subscriber for SM is sent to the SMS-GMSC and the procedure continues in step 14.\n7.\tIf successful response is returned in step 6, the SMS-GMSC forwards the SMS message to the IP-SM-GW by invoking Nipsmgw_SMService_MtForwardSm service operation.\n8.\tThe IP-SM-GW performs service authorization and domain selection to determine the domain for delivery of the Short Message as defined in 3GPP TS 23.204 [15]. If the SMSF is selected, the IP-SM-GW forwards the SMS message to the SMSF by invoking Nsmsf_SMService_MtForwardSm service operation. If the IP-SM-GW has more than one SMSF address to use for SMS transport towards the UE, then the IP-SM-GW chooses which SMSF address to use first based on operator local policy.\n9.\tMT SMS over NAS procedure between SMSF, AMF and UE is same as the definition in step 4a to 6b of Figure 4.13.3.6-1 of 3GPP TS 23.502 [4].\n10.\tIf the AMF informs the SMSF that it cannot deliver the MT-SMS to the UE in step 9, e.g. UE is not reachable, or the SMSF is failed at this step, e.g. memory capacity exceeded, the SMSF shall send the Nsmsf_SMService_MtForwardSm response with error cause to the IP-SM-GW.\n11.\tIf the IP-SM-GW receives error response from SMSF in step 10 and the IP-SM-GW has tried all selectable domains and accesses or the IP-SM-GW is failed after step 7, the IP-SM-GW shall send the Nipsmgw_SMService_MtForwardSm response with error cause to the SMS-GMSC.\n12-13.\tThe IP-SM-GW may report the SM-Delivery Status (e.g. UE is not reachable or memory capacity exceeded) to UDM by invoking Nudm_ReportSMDeliveryStatus_Request.\n14.\tThe IP-SM-GW subscribes in HSS to be notified when the UE becomes reachable again, and subsequently the HSS subscribes in the UDM to UE reachability for SMS over IP event, as defined in clause 5.5.6 of 3GPP TS 23.632 [5]. If applicable, the UDM subscribes to UE reachability notification in the AMF(s) using the Namf_EventExposure service and sets the relevant reachability flags.\n15-16.\tThe SMS-GMSC may report the SM-Delivery Status to UDM by invoking Nudm_ReportSMDeliveryStatus_Request and the UDM shall ignore the information provided in this report.\n17.\tIf the SMS-GMSC receives error response from IP-SM-GW in step 6 or step 11, the SMS-GMSC sends the failure report to SC as defined in TS 23.040 [2].",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_5.1.7",
+        "ts_23.632_clause_5.5.6",
+        "figure_5.1.6-1",
+        "ts_23.502_figure_4.13.3.6-1",
+        "ts_23.040",
+        "ts_23.204",
+        "ts_23.502",
+        "ts_23.632"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.540_5.1.7.1",
+      "section_id": "5.1.7.1",
+      "section_title": "General",
+      "content": "MT SMS delivery procedure requires routing based on the GPSI of the SMS recipient for interactions between the SMS-GMSC and the UDM, e.g., to retrieve the SMS routing information (e.g., the SMSF address) or report delivery status. In case that the SMS recipient belongs to a PLMN different from the PLMN of the SMS sender, the signaling takes place across PLMN borders.\nWhen using service-based interface between the SMS-GMSC and the UDM, if the GPSI is the only known SMS recipient's identifier, the SMS-GMSC needs to determine the target PLMN to be able to interact with the UDM in the home PLMN of the SMS recipient. The SMS-GMSC can determine the target PLMN using one of the following mechanisms:\n-\tGPSI-to-Subscription-Network resolution triggered by the NF consumer, described in clause 5.1.7.2.\n-\tGPSI-to-Subscription-Network resolution using NRF, described in clause 5.1.7.4.\n-\tGPSI-to-Subscription-Network resolution delegated by SCP, described in clause 5.1.7.3\nIt is assumed that the domain part in an External Identifier identifies the home PLMN and hence it is not required to determine the target PLMN when the GPSI is an External Identifier. The procedures described in the present clause 5.1.7 apply only when the GPSI is an MSISDN.\nNOTE:\tWhile these mechanisms are defined to determine the target PLMN for interactions between the SMS entities such as SMS-GMSC and the UDM requiring routing based on the GPSI of the SMS recipient, it can be applicable to any use case and procedure requiring selection of the target PLMN based on GPSI in 5GS.\nWhen the recipient GPSI belongs to the same country as the originating network and MNPF is not implemented in the country, the SMS-GMSC may skip the procedure and may directly discover UDM profile for invoking UDM service operation for routing information retrieval. In this case the SMS-GMSC determines the target PLMN ID from the recipient's GPSI Prefix (e.g. CC+NDC) while sending the discovery request to the NRF.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_5.1.7.2",
+        "clause_5.1.7.4",
+        "clause_5.1.7.3",
+        "clause_5.1.7"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.540_5.1.7.2.1",
+      "section_id": "5.1.7.2.1",
+      "section_title": "General",
+      "content": "Figure 5.1.7.2-1: GPSI-to-Subscription-Network resolution triggered by the SMS-GMSC\n1a-1b.\tThe MNPF registers in the NRF with a new NF Type (e.g. MNPF).\n2.\tMT SMS interaction between SC and SMS-GMSC follow the current procedure as defined in 3GPP TS 23.040 [2].\n3a-3b.\tThe SMS-GMSC should query the NRF to find the MNPF instance that manages the PLMN ID of the recipients GPSI's subscription network. The MNPF may belong to the same PLMN with SMS-GMSC or belong to the number range holder network which is different with the PLMN of SMS-GMSC. In latter case, the local NRF forwards the discovery request to the NRF of the number range holder PLMN.\n4.\tSMS-GMSC invokes Nmnpf_NPStatus_Get (GPSI) to the MNPF to get the target PLMN ID of the GPSI.\n5.\tMNPF checks the portability status of the recipient GPSI and responds back with the target PLMN ID.\nAfter step 5, the Mobile Terminated short message transfer procedures defined in clause 5.1 is performed from step 2a. The SMS-GMSC uses the target PLMN ID to discover the UDM NF profile via NRF for sending the routing information query to the UDM. If the target PLMN ID is not own network, the local NRF forwards the discovery request to the NRF of the target PLMN.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_5.1",
+        "figure_5.1.7.2-1",
+        "ts_23.040"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.540_5.1.7.2.2",
+      "section_id": "5.1.7.2.2",
+      "section_title": "GPSI-to-Subscription-Network resolution triggered by the SMS-GMSC for Direct routing",
+      "content": "When MNP is implemented in a country or number portability domain with direct routing mechanism, the originating network first does the number portability query to identify the recipient GPSI's subscription PLMN before routing any messages based on GPSI.\nFigure 5.1.7.2.2-1 GPSI-to-Subscription-Network resolution triggered by the SMS-GMSC (Direct Routing)\n1.\tIf the MNPF is deployed, the MNPF registers in the NRF with a new NF Type (e.g. MNPF).\n2-3.\tThe SMS-GMSC should query the NRF to find the MNPF instance that manages the PLMN ID of the recipients GPSI's subscription network.\n4.\tSMS-GMSC invokes Nmnpf_NPStatus_Get (GPSI) to the MNPF to get the target PLMN ID of the GPSI.\n5.\tMNPF checks the portability status of the recipient GPSI and responds back with the target PLMN ID.\nNOTE:\tWhen the recipient GPSI belongs to the same country as the originating network and MNPF is not implemented in the country, the steps 1-5 is skipped. In this case the SMS-GMSC determines the target PLMN ID from the recipient's GPSI Prefix (e.g. CC+NDC) based on local configuration.\n6-7.\tSMS-GMSC shall query the NRF to find the UDM instance serving the target PLMN based on target PLMN ID received in step 6. For step 7b-8b, if the target PLMN ID is not the originating network, the local NRF forwards the discovery request to the NRF of the target PLMN.\n8-9.\tSMS-GMSC invokes Nudm_UECM_SendRoutingInfoForSM (GPSI) to the UDM of the target PLMN to get the serving node instance for UE. The UDM shall check the registration/reachability flags to determine the potential target nodes and responds to the SMS-GMSC by sending Nudm_UECM_SendRoutingInfoForSM response, in this procedure the SMSF instance Id is included in the response message.",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_5.1.7.2.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.540_5.1.7.2.3",
+      "section_id": "5.1.7.2.3",
+      "section_title": "GPSI-to-Subscription-Network resolution triggered by the SMS-GMSC for Indirect routing",
+      "content": "When MNP is implemented in a country or number portability domain with indirect routing mechanism, the signalling messages are always routed to the number range holder network, the number range holder then performs a number portability check and forwards the request to the subscription network if the number is ported out. For the case of international SMS termination also indirect routing is applied. In the case of international SMS termination, the originating network is outside the number portability domain and may not have any knowledge of whether number portability is implemented in the country of the recipient GPSI.\nFigure 5.1.7.2.3-1 GPSI-to-Subscription-Network resolution triggered by the SMS-GMSC (Indirect Routing)\n1.\tIf the MNPF is deployed in the Number Range Holder PLMN, the MNPF registers in the NRF of the number range holder PLMN with a new NF Type (e.g. MNPF).\n2-3.\tThe SMS-GMSC should query the local NRF to find the MNPF instance that manages the PLMN ID of the recipients GPSI's subscription network, the local NRF forwards the discovery request to the NRF of the number range holder PLMN.\n4.\tSMS-GMSC invokes Nmnpf_NPStatus_Get (GPSI) to the MNPF to get the target PLMN ID of the GPSI.\n5.\tMNPF checks the portability status of the recipient GPSI and responds back with the target PLMN ID.\nNOTE: When the recipient GPSI belongs to the same country as the number range holder network and MNPF is not implemented in the country, the steps 1-5 is skipped. In this case the SMS-GMSC determines the target PLMN ID from the recipient's GPSI Prefix (e.g. CC+NDC) based on local configuration.\n6-7.\tSMS-GMSC shall query the NRF to find the UDM instance serving the target PLMN based on target PLMN ID received in step 6.\n-\tFor step 7a-8a, if the target PLMN ID belongs to the number range holder PLMN, the local NRF forwards the discovery request to the NRF of the number range holder PLMN.\n-\tFor step 7b-8b, if the target PLMN ID belongs to the Subscription PLMN, the local NRF forwards the discovery request to the NRF of the Subscription PLMN.\n8-9.\tSMS-GMSC invokes Nudm_UECM_SendRoutingInfoForSM (GPSI) to the UDM of the target PLMN to get the serving node instance for UE. The UDM shall check the registration/reachability flags to determine the potential target nodes and responds to the SMS-GMSC by sending Nudm_UECM_SendRoutingInfoForSM response, in this procedure the SMSF instance Id is included in the response message.",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_5.1.7.2.3-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.540_5.1.7.3.1",
+      "section_id": "5.1.7.3.1",
+      "section_title": "General",
+      "content": "This procedure is used to retrieve the PLMN ID of the recipients GPSI for further discovery of UDM NF profiles for invoking UDM service operation for routing information retrieval. In indirect Communication with Delegated Discovery, the SCP is the service consumer of the GPSI-to-Subscription-Network resolution service in MNPF and routes an SBI message based on GPSI when MNPF is implemented. The SCP shall use the discovery factors (see 3GPP TS 29.500 [11], clause 6.10) provided by the SMS-GMSC to determine when to invoke the MNPF resolution, and to obtain the identity (GPSI) of the recipient.\nThe SMS-GMSC sends routing information retrieval request to the SCP and the SCP uses the PLMN ID as the target PLMN ID in the discovery request towards NRF to discover the UDM NF profiles in the subscription network of the SMS recipient.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.500_clause_6.10",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.540_5.1.7.3.2",
+      "section_id": "5.1.7.3.2",
+      "section_title": "SCP supports GPSI-to-Subscription-Network resolution with MNPF",
+      "content": "Figure 5.1.7.3.2-1: SCP supports GPSI-to-Subscription-Network resolution with MNPF\n1a-1b.\tIf the MNPF is deployed, the MNPF registers in the NRF with a new NF Type (e.g. MNPF).\n2.\tMT SMS interaction between SC and SMS-GMSC follow the current procedure as defined in 3GPP TS 23.040 [2].\n3. The SMS-GMSC sends Nudm_UECM_SendRoutingInfoForSM to the SCP to get the serving node instance for UE from the UDM. As specified in the Indirect Communication with Delegated Discovery model, the Nudm_UECM_SendRoutingInfoForSMt shall contain the discovery factors containing the GPSI (pointing to the Number Range Holder Network) and an indicator (i.e. \"target-nw-resolution\") that Subscription Network resolution is delegated to the SCP. The \"target-nw-resolution\" may also be sent by an SCP to the next hop SCP. The SCP receives the \"target-nw-resolution\" shall query the NF service consumer (MNPF) to obtain the PLMN ID of the recipient GPSI's subscription network.\n4a-4b.\tThe SCP shall query the NRF to find the MNPF instance that manages the PLMN ID of the recipients GPSI's subscription network. The MNPF may belong to the same PLMN with SMS-GMSC or belong to the number range holder network which is different with the PLMN of SMS-GMSC. In latter case, the local NRF forwards the discovery request to the NRF of the number range holder PLMN.\n5.\tThe SCP determines the target PLMN of the recipients GPSI's subscription network using the SBI service of the MNPF i.e. the SCP invokes Nmnpf_NPStatus_Get (GPSI) to the MNPF.\n6.\tMNPF checks the portability status of the recipient GPSI and responds back with the target PLMN ID.\nNOTE: If SCP is co-located with MNPF, steps between SCP and NRF to discover the MNPF, and steps between SCP and MNPF can be skipped.\n7a-7b.\tSCP shall query the NRF to find the UDM instance serving the target PLMN based on target PLMN ID received in step 6.\n8.\tSCP invokes Nudm_UECM_SendRoutingInfoForSM (GPSI) to the UDM to get the serving node instance for UE.\n9.\tThe UDM shall check the registration/reachability flags to determine the potential target nodes and responds to the SCP by sending Nudm_UECM_SendRoutingInfoForSM response, in this procedure the SMSF instance Id is included in the response message.\n10. SCP forward the responds to the SMS-GMSC by sending Nudm_UECM_SendRoutingInfoForSM response (SMS Router address).",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_5.1.7.3.2-1",
+        "ts_23.040"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.540_5.1.7.3.3",
+      "section_id": "5.1.7.3.3",
+      "section_title": "SCP supports GPSI-to-Subscription-Network resolution with NRF",
+      "content": "Figure 5.1.7.3.3-1: SCP supports GPSI-to-Subscription-Network resolution with NRF\n1a-1b.\tIf the MNPF is deployed, the MNPF registers in the NRF with a new NF Type (e.g. MNPF).\n2.\tMT SMS interaction between SC and SMS-GMSC follow the current procedure as defined in 3GPP TS 23.040 [2].\n3. The SMS-GMSC sends Nudm_UECM_SendRoutingInfoForSM to the SCP to get the serving node instance for UE from the UDM. The Nudm_UECM_SendRoutingInfoForSM contains the NF service discovery factors with the GPSI (pointing to the Number Range Holder Network) and an indicator (i.e. \"target-nw-resolution\") indicating that Subscription Network resolution is delegated to the SCP. The \"target-nw-resolution\" may also be sent by an SCP to the next hop SCP.\n4.\tThe SCP should query the NRF to find the UDM instance that manages the user subscriptions using the GPSI. The NRF receives the \"target-nw-resolution\" shall query the NF service consumer (MNPF) to obtain the PLMN ID of the recipient GPSI's subscription network.\n5.\tThe NRF determines the target PLMN of the recipients GPSI's subscription network using the SBI service of the MNPF i.e. the NRF invokes Nmnpf_NPStatus_Get (GPSI) to the MNPF. As an implementation choice the NRF may determine the target PLMN by other means, e.g. local configuration of ENUM query.\n6.\tMNPF checks the portability status of the recipient GPSI and responds back with the target PLMN ID.\n7.\tNRF returns the UDM instance related to the GPSI and target PLMN Id to the SCP. For inter-PLMN discovery, the local NRF shall query the NRF in the target PLMN to find the UDM instance. If there are not NF instances available that can serve the request, the local NRF provides the discovery response indicating the consumer NF to use a legacy interface for the next operation request in the procedure.\n8.\tSCP invokes Nudm_UECM_SendRoutingInfoForSM (GPSI) to the UDM to get the serving node instance for UE.\n9.\tThe UDM shall check the registration/reachability flags to determine the potential target nodes and responds to the SCP by sending Nudm_UECM_SendRoutingInfoForSM response, in this procedure the SMSF instance Id is included in the response message.\n10. SCP forward the responds to the SMS-GMSC by sending Nudm_UECM_SendRoutingInfoForSM response (SMS Router address).",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_5.1.7.3.3-1",
+        "ts_23.040"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.540_5.1.7.3.4",
+      "section_id": "5.1.7.3.4",
+      "section_title": "SCP supports GPSI-to-Subscription-Network resolution with MNPF for Direct routing",
+      "content": "Figure 5.1.7.3.4-1 shows the procedure for Direct Communication with Delegated Discovery, the SCP is the service consumer of the GPSI-to-Subscription-Network resolution service in MNPF and routes an SBI message based on GPSI when direct routing of MNPF is implemented.\nFigure 5.1.7.3.4-1 SCP supports the GPSI-to-Subscription-Network resolution with MNPF for Direct Routing\n1.\tIf the MNPF is deployed, the MNPF registers in the NRF with a new NF Type (e.g. MNPF).\n2.\tThe SMS-GMSC sends Nudm_UECM_SendRoutingInfoForSM to the SCP to get the serving node instance for UE from the UDM. As specified in the Indirect Communication with Delegated Discovery model, the Nudm_UECM_SendRoutingInfoForSM shall contain the discovery factors containing the GPSI (pointing to the Number Range Holder Network) and an indicator that Subscription Network resolution is delegated to the SCP.\n3-4.\tThe SCP shall query the NRF to find the MNPF instance that manages the PLMN ID of the recipients GPSI's subscription network.\n5.\tThe SCP determines the target PLMN of the recipients GPSI's subscription network using the SBI service of the MNPF i.e. the SCP invokes Nmnpf_NPStatus_Get (GPSI) to the MNPF.\n6.\tMNPF checks the portability status of the recipient GPSI and responds back with the target PLMN ID.\nNOTE 1: If SCP is co-located with MNPF, steps between SCP and NRF to discover the MNPF, and steps between SCP and MNPF can be skipped.\nNOTE 2: When the recipient GPSI belongs to the same country as the originating network and MNPF is not implemented in the country, steps between SCP and MNPF can be skipped. In this case the SMS-GMSC or SCP determines the target PLMN ID from the recipient's GPSI Prefix (e.g. CC+NDC) based on local configuration.\n7-8.\tSCP shall query the NRF to find the UDM instance serving the target PLMN based on target PLMN ID received in step 6. For step 7b-8b, if the target PLMN ID is not the originating network, the local NRF forwards the discovery request to the NRF of the target PLMN.\n9-10.\tSCP invokes Nudm_UECM_SendRoutingInfoForSM (GPSI) to the UDM of the target PLMN to get the serving node instance for UE. The UDM shall check the registration/reachability flags to determine the potential target nodes and responds to the SCP by sending Nudm_UECM_SendRoutingInfoForSM response, in this procedure the SMSF instance Id is included in the response message.\n11.\tSCP forward the responds to the SMS-GMSC by sending Nudm_UECM_SendRoutingInfoForSM response (SMS Router address).",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_5.1.7.3.4-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.540_5.1.7.3.5",
+      "section_id": "5.1.7.3.5",
+      "section_title": "SCP supports GPSI-to-Subscription-Network resolution with MNPF for Indirect routing",
+      "content": "Figure 5.1.7.3.5-1 shows the procedure for Indirect Communication with Delegated Discovery, the SCP is the service consumer of the GPSI-to-Subscription-Network resolution service in MNPF NF and routes an SBI message based on GPSI when indirect routing of MNPF is implemented.\nFigure 5.1.7.3.5-1 SCP supports GPSI-to-Subscription-Network resolution with MNPF for Indirect routing\n1.\tIf the MNPF is deployed in the Number Range Holder PLMN, the MNPF registers in the NRF of the number range holder PLMN with a new NF Type (e.g. MNPF).\n2.\tThe SMS-GMSC sends Nudm_UECM_SendRoutingInfoForSM to the SCP to get the serving node instance for UE from the UDM. As specified in the Indirect Communication with Delegated Discovery model, the Nudm_UECM_SendRoutingInfoForSM shall contain the discovery factors containing the GPSI (pointing to the Number Range Holder Network) and an indicator that Subscription Network resolution is delegated to the SCP.\n3-4.\tThe SCP shall query the local NRF to find the MNPF instance that manages the PLMN ID of the recipients GPSI's subscription network, the local NRF forwards the discovery request to the NRF of the number range holder PLMN.\n5.\tThe SCP determines the target PLMN of the recipients GPSI's subscription network using the SBI service of the MNPF i.e. the SCP invokes Nmnpf_NPStatus_Get (GPSI) to the MNPF.\n6.\tMNPF checks the portability status of the recipient GPSI and responds back with the target PLMN ID.\nNOTE 1: If SCP is co-located with MNPF, steps between SCP and NRF to discover the MNPF, and steps between SCP and MNPF can be skipped.\nNOTE 2: When the recipient GPSI belongs to the same country as the number range holder network and MNPF is not implemented in the country, the steps between SCP and MNPF can be skipped. In this case the SMS-GMSC or SCP determines the target PLMN ID from the recipient's GPSI Prefix (e.g. CC+NDC) based on local configuration.\n7-8.\tSCP shall query the local NRF to find the UDM instance serving the target PLMN based on target PLMN ID received in step 6.\n-\tFor step 7a-8a, if the target PLMN ID belongs to the number range holder PLMN, the local NRF forwards the discovery request to the NRF of the number range holder PLMN.\n-\tFor step 7b-8b, if the target PLMN ID belongs to the Subscription PLMN, the local NRF forwards the discovery request to the NRF of the Subscription PLMN.\n9-10.\tSCP invokes Nudm_UECM_SendRoutingInfoForSM (GPSI) to the UDM of the target PLMN to get the serving node instance for UE. The UDM shall check the registration/reachability flags to determine the potential target nodes and responds to the SCP by sending Nudm_UECM_SendRoutingInfoForSM response, in this procedure the SMSF instance Id is included in the response message.\n11.\tSCP forwards the responds to the SMS-GMSC by sending Nudm_UECM_SendRoutingInfoForSM response (SMS Router address).",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_5.1.7.3.5-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.540_5.1.7.4",
+      "section_id": "5.1.7.4",
+      "section_title": "GPSI-to-Subscription-Network resolution using NRF",
+      "content": "Figure 5.1.7.4-1 shows the procedure to determine the target PLMN based on the GPSI using the discovery and selection framework via the NRF as defined in 3GPP TS 23.501 [3] and 3GPP TS 23.502 [4].\nFigure 5.1.7.4-1: Determination of target PLMN based on GPSI using NRF\n1.\tThe SMS-GMSC located in the PLMN of the SMS sender contacts the NRF in the originating PLMN to perform NF/NF service discovery of the UDM instance(s). The discovery request is based on the GPSI of the SMS recipient and includes an indication for the NRF to determine the target PLMN and interface to be used (SBI or legacy interface).\n2.\tBased on the indication to determine the target PLMN and interface to be used included in the discovery request, if direct routing mechanism is used the NRF in the originating PLMN retrieves the target PLMN ID from the MNPF in the originating PLMN by consuming the SBI services of the MNPF described in clause 6.7. The NRF performs an NP query to the MNPF using SBI for the GPSI of the SMS recipient.\nIf indirect routing mechanism is used, steps 2-3 are skipped and the procedure continues in step 4a.\n3.\tThe MNPF provides in the response the target PLMN information corresponding to the GPSI of the SMS recipient and the procedure continues in step 4.\n2a-3a.\tThe NRF may, as an alternative implementation option to steps 2-3, obtain the target PLMN information by other means, e.g., using DNS/ENUM resolution, local configuration in the NRF or direct access to Number Portability (NP) databases via non-SBI, if applicable.\nNOTE 1:\tNP applies to GPSIs representing E.164 addresses (i.e., MSISDN). NP is subject to regional and regulatory requirements and is accomplished through the retrieval of ported data from NP databases. Support of ENUM or direct access to NP via non-SBI interfaces and the exact means to make the number portability data available to the NRF is subject to and configured per operator policy.\nThe NRF may use the DNS/ENUM translation mechanism to resolve the GPSI of the SMS recipient in E.164 format to a URI as specified in IETF RFC 6116 [12]. The NRF performs an ENUM query for the GPSI of the SMS recipient in step 2a. The output of the lookup process in the DNS/ENUM server is a URI that is provided in the ENUM response and points to the originating PLMN or the NRF in the target PLMN with which the originating PLMN has an interconnection agreement using SBI, so that the NRF in the originating PLMN can send an inter-PLMN service discovery request to the NRF in the target PLMN.\nNOTE 2:\tThe DNS/ENUM server searches for an ENUM record matching the GPSI of the SMS recipient. An ENUM record for the individual GPSI or number series provisioned in the DNS/ENUM server can be used to indicate whether the user belongs to the same PLMN or another PLMN in the same or different country. A URI as a result of the lookup process in the DNS/ENUM server can be provided by provisioning an ENUM service using the http or https scheme URI as defined in IETF RFC 4002 [13] and IETF RFC 6118 [14].\n4.\tBased on the response from the MNPF, the NRF in the originating PLMN determines the target PLMN where to search for UDM instances.\nIf the NRF has obtained the target PLMN information by other means in steps 2a-3a, the NRF determines the target PLMN based on the information from ENUM response, NP databases via non-SBI and/or local configuration.\nIf the GPSI belongs to the originating PLMN (i.e. originating network is the same as subscription network), the NRF searches for UDM instances matching the discovery criteria that can serve the request in the originating PLMN using SBI services and provides the discovery response in step 7.\nIf the GPSI belongs to a different PLMN, the NRF checks whether the originating PLMN has an interconnection agreement using SBI with the subscription PLMN and, in that case, sends an inter-PLMN discovery request including the GPSI to the NRF in the subscription PLMN to retrieve the UDM instances that can serve the SMS recipient, as defined in clause 4.17.5 of 3GPP TS 23.502 [4] and 3GPP TS 29.510 [10], and the procedure continues in step 6.\n4a.\tIf indirect routing mechanism is used (i.e., no interaction as in steps 2-3 between NRF and MNPF in the originating PLMN), the NRF in the originating PLMN determines the PLMN ID of the number range holder network (e.g. from the recipient's GPSI prefix (CC+NDC) based on local configuration) and sends an inter-PLMN discovery request of UDM instances to the NRF in the number range holder network. In this case, the discovery request across PLMNs shall include the GPSI of the SMS recipient and the indication to determine the target PLMN and interface to be used.\n5.\tBased on the indication to determine the target PLMN and interface to be used included in the discovery request from the NRF in the originating PLMN, the NRF in the number range holder PLMN applies the behaviour described for the NRF in steps 2-3 (or alternatively, steps 2a-3a) and step 4.\nThe NRF in the number range holder network may perform a query to the MNPF using SBI if NP is required and NP information has not been retrieved previously (e.g., if originating and number range holder PLMNs belong to different countries or portability domains and NP is required in the country of the recipient GPSI). The NRF in the number range holder network obtains the PLMN ID of the subscription network in the response from the MNPF (or alternatively by other means such as ENUM/NP) and, if applicable, sends an inter-PLMN discovery request of UDM instances including the GPSI to the NRF in the subscription network.\n6.\tThe NRF in the subscription network provides the inter-PLMN discovery response including UDM instance(s) matching the discovery criteria or no UDM instance(s) found in the target PLMN, implying that SBI interactions should not be used.\nWhen using indirect routing, the NRF in the number range holder network forwards the discovery response from the NRF in the subscription network to the NRF in the originating network.\n7.\tIf the NRF in the originating network finds UDM instances matching the filter criteria in the originating PLMN or receives UDM instances in the response to a discovery request across PLMNs in step 6, the NRF provides the UDM instances in the discovery response to the SMS-GMSC.\nIf no UDM instances can serve the request using SBI, the NRF provides the discovery response indicating the SMS-GMSC to use a non-SBI interface for the next operation request in the procedure.\n8a.\tIf the discovery response includes UDM instances that can serve the SMS recipient, the SMS-GMSC sends the operation request using SBI to e.g., retrieve the SMS routing information from the UDM, and the SBI-based MT SMS procedure can be executed as described in clause 5.1.\n8b.\tIf no UDM instances are provided in the discovery response, the SMS-GMSC sends the operation request via legacy interface using MAP/Diameter to e.g., retrieve the SMS routing information from the HLR/HSS/UDM.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_6.7",
+        "ts_23.502_clause_4.17.5",
+        "clause_5.1",
+        "figure_5.1.7.4-1",
+        "ts_23.501_figure_5.1.7.4-1",
+        "ts_23.501",
+        "ts_23.502",
+        "ts_29.510"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.540_5.1.8",
+      "section_id": "5.1.8",
+      "section_title": "Alert",
+      "content": "Figure 5.1.8-1 depicts procedure for alert.\nFigure 5.1.8-1: Procedure for alert\n1\tUnsuccessful Mobile Terminated short message transfer (without IP-SM-GW/SMS Router) procedure, as defined in steps 1-10 in Figure 5.1.5-1.\n2\tUDM receives Namf_EventExposure_Notify or Nudm_UECM_Registration operation from AMF or SMSF indicating that the UE is reachable for SMS delivery; or UDM receives Nudm_UECM_Update operation from SMSF indicating that the UE has memory capacity available.\n3-4\tThe UDM notifies the \"UE_MEMORY_AVAILABLE_FOR_SMS\" or \"UE_REACHABILITY_FOR_SMS\" event to the SMS-GMSC/IWMSC accordingly. The UDM updates the corresponding reachability flags and deletes the subscription to UE reachability for SMS event created by the SMS-GMSC.\n5\tServiceCentrealert as defined in Operation 13 of Figure 20 in TS 23.040 [2].",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_5.1.8-1",
+        "figure_5.1.5-1",
+        "ts_23.040_figure_20",
+        "ts_23.040"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.540_5.1.9",
+      "section_id": "5.1.9",
+      "section_title": "Unsuccessful Mobile Terminated short message transfer via SMS Router",
+      "content": "Figure 5.1.9-1: Unsuccessful MT SMS over NAS via SMS Router\n1.\tMT SMS interaction between SC and SMS-GMSC follow the current procedure as defined in 3GPP TS 23.040 [2].\n2a.\tSMS-GMSC invokes the Nnrf_NFDiscovery to discover and select the UDM instance(s), supporting SMS SBI interfaces, and managing the user subscriptions of the GPSI. The SMS-GMSC may need to retrieve the PLMN ID of the recipients GPSI before the discovery of the UDM instance based on the GPSI-to-Subscription-Network resolution procedure defined in clause 5.1.7.\n2b.\tIf no UDM supporting SMS SBI could be discovered, the NRF indicates so to SMS-GMSC (by not including any UDM instance in the discovery response), and SMS-GMSC shall quit the SBI-based procedure and fallback to legacy (MAP/Diameter) protocol based procedures, as defined in TS 23.040 [2],\nor if a UDM supporting SMS SBI is discovered and selected, NRF returns the IP addresses or FQDNs of the serving UDM to provide Nudm_UECM_SendRoutingInfoForSM service to SMS-GMSC.\n3.\tSMS-GMSC invokes Nudm_UECM_SendRoutingInfoForSM (GPSI) to the UDM to get the serving node information for all access types for the UE.\n4.\tThe UDM shall check the registration/reachability flags to determine the potential target nodes, e.g. SMSF. For MT SM transfer via SMS Router, the UDM shall invoke the Nrouter_SMService_RoutingInfo to provide the SMSF Instance Id to the SMS Router. The address of the SMS Router to be contacted by the UDM may be configured locally.\n5.\tIf any failure at this step, the SMS Router shall send Nrouter_SMService_RoutingInfo response with error cause to the UDM.\n6.\tIf the UDM receives error response from SMS Router in step 5 or UDM is failed after step 3, e.g. user not found in the UDM, the UDM shall respond to the SMS-GMSC by sending Nudm_UECM_SendRoutingInfoForSM response with error cause. If there is no target node address registered in the UDM, a response with error case indicating absent subscriber for SM is sent to the SMS-GMSC and the procedure continues in step 15.\n7.\tIf successful response is returned in step 6, the SMS-GMSC forwards the SMS message to the SMS Router by invoking Nrouter_SMService_MtForwardSm service operation.\n8.\tThe SMS Router forwards the SMS message to the SMSF by invoking Nsmsf_SMService_MtForwardSm service operation.\n9.\tMT SMS over NAS procedure between SMSF, AMF and UE is same as the definition in step 4a to 6b of Figure 4.13.3.6-1 of 3GPP TS 23.502 [4].\n10.\tIf the AMF informs the SMSF that it cannot deliver the MT-SMS to the UE in step 9, e.g. UE is not reachable, or the SMSF is failed at this step, e.g. memory capacity exceeded, the SMSF shall send the Nsmsf_SMService_MtForwardSm response with error cause to the SMS Router.\n11.\tIf the SMS Router receives error response from SMSF in step 10 or the SMS Router is failed after step 7, the SMS Router shall send the Nrouter_SMService_MtForwardSm response with error cause to the SMS-GMSC.\n12-13.\tThe SMS-GMSC may report the SM-Delivery Status (e.g. UE is not reachable or memory capacity exceeded) to UDM by invoking Nudm_ReportSMDeliveryStatus_Request.\n14.\tIf the SMS-GMSC receives error response from SMS Router in step 6 or step 11, the SMS-GMSC sends the failure report to SC as defined in TS 23.040 [2].\n15.\tThe SMS-GMSC subscribes in UDM to be notified when the UE becomes reachable for SMS (i.e. when the UE gets in radio contact with the AMF while an SMSF is actually registered, or when an SMSF gets registered) by using the Nudm_EventExposure_Subscribe service operation for Reachability for SMS event as defined in 3GPP TS 23.502 [4].\n16.\tIf applicable, the UDM subscribes to UE reachability notification in the AMF(s) using the Namf_EventExposure service and sets the relevant reachability flags. The UDM acknowledges the event subscription created by the SMS-GMSC.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_5.1.7",
+        "figure_5.1.9-1",
+        "ts_23.502_figure_4.13.3.6-1",
+        "ts_23.040",
+        "ts_23.502"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.540_5.2.1",
+      "section_id": "5.2.1",
+      "section_title": "General",
+      "content": "The procedure for SBI-based MO SMS is showed in Figure 5.2.2-1, which is based on MO SMS procedures in 3GPP TS 23.040 [2] clause 10.2. Compared to procedures in 3GPP TS 23.040 [2], new services are introduced in, including:\n-\tNiwmsc_SMService service provided by SMS-IWMSC.\nThis new service is registered in NRF, and can be invoked by service consumers.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_23.040_clause_10.2",
+        "figure_5.2.2-1",
+        "ts_23.040"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.540_5.2.2",
+      "section_id": "5.2.2",
+      "section_title": "Procedure for Successful Mobile Originated short message transfer",
+      "content": "Figure 5.2.2-1: Procedures for successful SBI-based SM MO message transfer\n0\tSMS-IWMSC registers Niwmsc_SMService service in the NRF, during the NF registration procedure.\n1\tMO SM message transfer from UE to SMSF through AMF follows the current procedure as defined in 3GPP TS 23.040 [2]\n2a\tIf SMSF knows from local configuration that the target SMS-IWMSC does not support SBI, it shall quit the SBI-based procedure and fallback to legacy (MAP/Diameter) protocol based procedures, as defined in TS 23.040 [2],\nor SMSF invokes the Nnrf_NFDiscovery to discover and select serving SMS-IWMSC with the parameters of SUPI and/or GPSI and/or location (e.g. TAIs, CGIs, etc.) and/or E.164 address of the SC.\n2b\tIf no SMS-IWMSC could be discovered, the NRF indicates so to SMSF (by not including any SMS-IWMSC instance in the discovery response), and SMSF shall quit the SBI-based procedure and fallback to legacy (MAP/Diameter) protocol based procedures, as defined in TS 23.040 [2].\nIf a SMS-IWMSC is discovered and selected, NRF returns the IP addresses or FQDNs of the serving SMS-IWMSC to provide Niwmsc_SMService service to SMSF.\n3\tSMSF sends a Niwmsc_SMService_MoForwardSm service request to the URI of serving SMS-IWMSC, which is obtained in step 2b. The payload body of the request shall contain the SM record to be sent, the Service Centre address, the callbackURI for MO SMS Delivery Report, the timer for waiting the MO SMS Delivery Report, and optionally contains the Access Type.\n4\tMO SMS delivery procedure between SMS-IWMSC and SC is the same as the definition in step 4 of Figure 4.13.3.3-1 of 3GPP TS 23.502 [4].\n5\tSMS-IWMSC sends Niwmsc_SMService_MoForwardSm response to deliver the MO SMS delivery report to the URI of serving SMSF, which is obtained in step 3\n6\tMO SMS delivery report procedure between SMSF, AMF and UE is the same as the 3GPP TS 23.502 [4].\nWhen no more SMS is to be sent, the procedure for CP-ack and SMS ack is the same as the 3GPP TS 23.502 [4].\nThese procedures are defined in step 6a to 6d of Figure 4.13.3.3-1 of 3GPP TS 23.502 [4].",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_5.2.2-1",
+        "ts_23.502_figure_4.13.3.3-1",
+        "ts_23.040",
+        "ts_23.502"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.540_5.2.3",
+      "section_id": "5.2.3",
+      "section_title": "Unsuccessful Mobile Originated short message transfer",
+      "content": "Figure 5.2.3-1 depicts procedure for unsuccessful SBI-based SM MO message transfer\nFigure 5.2.3-1: Procedures for unsuccessful SBI-based SM MO message transfer\n0-3\tThe same as the procedures in step 0-3 of Figure 5.2.2-1 in clause 5.2.2\n4\tSMS-IWMSC sends Niwmsc_SMService_MoForwardSm response with HTTP status code for application errors as defined in Table 5.3.2-1.\n5\tFailure report from SMSF to UE, with the error cause code as defined in Table 5.3.2-2.\nSMS-IWMSC indicates the different errors for MO SM transfer in MoForwardSm response according to the different failure scenarios which happened during MO SM transfer. The Application Errors used in Niwmsc_SMService_MoForwardSm response are defined in Table 5.3.2-1 below\nTable 5.3.2-1: Application errors\nApplication Error\nHTTP status code\nDescription\nSMS_PAYLOAD_MISSING\n400 Bad Request\nThe expected SMS payload content is missing\nSMS_PAYLOAD_ERROR\n400 Bad Request\nError exists in the SMS payload content\nUNKNOWN_SERVICE_CENTRE_ADDRESS\n403 Forbidden\nThe delivery of the MO short message failed because SMS-SC was unknown.\nSERVICE_CENTRE_CONGESTION\n403 Forbidden\nThe delivery of the MO short message failed because SMS-SC was in congestion.\nUSER_NOT_SERVICE_CENTER\n403 Forbidden\nThe delivery of the short message failed because the user didn't belongs to the SMS-SC.\nFACILITY_NOT_SUPPORTED\n403 Forbidden\nThe delivery of the MO short message failed because of facility not supported.\nINVALID_SME_ADDRESS\n403 Forbidden\nThe delivery of the MO short message failed because the SME address is invalid.\nUNREACHABLE_SMS_SC\n504 Gateway Timeout\nThe delivery of the MO short message failed because the response is timeout.\nIf errors are indicated by the SMS-IWMSC, the SMSF shall send a failure report (i.e. a RP-ERROR message) to the UE, with the error cause coded as following mapping between errors indicated by SMS-IWMSC and error cause code in RP-ERROR message:\nTable 5.3.2-2: Mapping between Application errors and Cause value\nReturn error from SMS-IWMSC\nCause value in the RP‑ERROR message\nThe Response from SMS-IWMSC is timeout\nUnspecified 4xx/5xx error code\n38 Network out of order\n400 Bad Request with SMS_PAYLOAD_MISSING or SMS_PAYLOAD_ERROR\n99 Information element non‑existent or not implemented\n403 Forbidden with FACILITY_NOT_SUPPORTED\n69 Requested facility not implemented\n403 Forbidden with UNKNOWN_SERVICE_CENTRE_ADDRESS\n1 Unassigned number\n403 Forbidden with SERVICE_CENTRE_CONGESTION\n42 Congestion\n403 Forbidden with USER_NOT_SERVICE_CENTER\n28 Unidentified subscriber\n403 Forbidden with INVALID_SME_ADDRESS\n21 Short message transfer rejected\nNOTE:\tThe coding and the use of the RP‑ERROR message is specified in 3GPP TS 24.011 [8].",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_5.2.2",
+        "table_5.3.2-1",
+        "table_5.3.2-2",
+        "figure_5.2.3-1",
+        "figure_5.2.2-1",
+        "ts_24.011"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.540_5.2.4",
+      "section_id": "5.2.4",
+      "section_title": "MSISDN-less MO SMS message transfer",
+      "content": "The procedure for SBI-based MSISDN-less MO SMS message transfer is depicted in Figure 5.2.4-1,\nFigure 5.2.4-1: Procedures for MSISDN-less MO SMS message transfer\n0\tNEF registers Nnef_SMService_MoForwardSm service and supporting long/short code ranges in NRF, during the NF registration procedure.\n1\tMO SMS transmit from UE to SMS-SC, as already defined in clause 5.2.2.\n2a-2b\tSMS-SC provides destination SME address (long/short code of the AF) to NRF for NEF selection, and chooses Nnef_SMService_MoForwardSm service for MSISDN-less MO SMS submit.\n3\tSMS-SC forwards MO SM to NEF, by invoking Nnef_SMService_MoForwardSm service.\n4-5\tNudm_SDM_Get and response between NEF and UDM, which refers to Step 3-Step 4 of Figure 4.13.7.2-1 in TS 23.502 [4].\n6\tThe NEF provides a Nnef_MSISDN-less_MO_SMS Notify, which refers to Step 5 of Figure 4.13.7.2-1 in TS 23.502 [4].\n7\tNEF sends Nnef_SMService_MoForwardSm response to SMS-SC, carrying a success or failure delivery indication to SMS-SC.\n8\tSMS-SC indicates success/failure back to UE using existing SBI-based SMS delivery report defined in clause 6.2.2.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_5.2.2",
+        "clause_6.2.2",
+        "figure_5.2.4-1",
+        "ts_23.502_figure_4.13.7.2-1",
+        "ts_23.502"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.540_6.1",
+      "section_id": "6.1",
+      "section_title": "General",
+      "content": "This clause introduces the services for SBI-based SMS.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.540_6.2.1",
+      "section_id": "6.2.1",
+      "section_title": "General",
+      "content": "The following table illustrates the UDM services for SBI-based SMS.\nTable 6.2.1-1: UDM Services for SBI-based SMS\nService Name\nService Operations\nOperation\nSemantics\nService Provider(s)\nService Consumer(s)\nUE Context Management (UECM)\nSendRoutingInfoForSM\nrequest / response\nUDM\nSMS-GMSC\nReportSMDeliveryStatus\nRequest\nrequest / response\nUDM\nSMS-GMSC, IP-SM-GW,\nEventExposure\nSubscribe\nsubscribe / notify\nUDM\nSMS-GMSC",
+      "chunk_type": "definition",
+      "cross_references": [
+        "table_6.2.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.540_6.2.2.1",
+      "section_id": "6.2.2.1",
+      "section_title": "General",
+      "content": "For the Nudm_ReportSMDeliveryStatus service the following service operations are defined:\n-\tRequest",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.540_6.2.2.2",
+      "section_id": "6.2.2.2",
+      "section_title": "Nudm_ReportSMDeliveryStatus_Request service operation",
+      "content": "Service operation name: Nudm_ReportSMDeliveryStatus_Request\nDescription: reports the SM-Delivery Status to UDM.\nInputs, Required: GPSI, SM-Delivery status\nInputs, Optional: None.\nOutputs, Required: report SM-Delivery status result.\nOutputs, Optional: None.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.540_6.2.3",
+      "section_id": "6.2.3",
+      "section_title": "Nudm_EventExposure service",
+      "content": "Service Description: This service is defined in clause 5.2.3.5 of 3GPP TS 23.502 [4], in addition, this clause defines the enhancement of Nudm_EventExposure for alert sc.\nExcept the existing events that are exposed by UDM, events \"UE_MEMORY_AVAILABLE_FOR_SMS\" and \"UE_REACHABILITY_FOR_SMS\" should be supported.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.502_clause_5.2.3.5",
+        "ts_23.502"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.540_6.2.4",
+      "section_id": "6.2.4",
+      "section_title": "Nudm_UECM service",
+      "content": "Service Description: This service is defined in clause 5.2.3.2 of 3GPP TS 23.502 [4], in addition, this clause defines the enhancement of Nudm_UECM service.\nThe new service operation SendRoutingInfoForSM shall be supported to get the target valid node(s) serving the UE from the UDM, which will be used by the SMS-GMSC to deliver the MT SMS.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.502_clause_5.2.3.2",
+        "ts_23.502"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.540_6.3.1",
+      "section_id": "6.3.1",
+      "section_title": "General",
+      "content": "The following table illustrates the SMS-IWMSC services for SBI-based SMS.\nTable 6.3.1-1: SMS-IWMSC Services for SBI-based SMS\nService Name\nService Operations\nOperation\nSemantics\nService Provider(s)\nService Consumer(s)\nSMService\nMoForwardSm\nrequest / response\nSMS-IWMSC\nSMSF, IP-SM-GW",
+      "chunk_type": "definition",
+      "cross_references": [
+        "table_6.3.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.540_6.3.2.1",
+      "section_id": "6.3.2.1",
+      "section_title": "General",
+      "content": "Service Description: This service can be used for SBI-based MO SM transfer and Delivery Report through SMS-IWMSC.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.540_6.3.2.2",
+      "section_id": "6.3.2.2",
+      "section_title": "Niwmsc_SMService_MoForwardSm service operation",
+      "content": "Service operation name: Niwmsc_SMService_MoForwardSm.\nDescription: Service request from consumer to SMS-IWMSC for MO SM transmit.\nInputs, Required: the SM record to be sent, the Service Centre address, the callbackURI for MO SMS Delivery Report, the timer for waiting MO SMS Delivery Report.\nInputs, Optional: Access Type.\nOutputs, Required: On success, Delivery Report should be returned.\nOn failure or redirection, the appropriate HTTP status code (e.g. \"403 Forbidden\", \"504 Gateway Timeout\") indicating the error shall be returned.\nOutputs, Optional: None.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.540_6.4.1",
+      "section_id": "6.4.1",
+      "section_title": "General",
+      "content": "The following table illustrates the SMSF services for SBI-based SMS.\nTable 6.4.1-1: SMSF Services for SBI-based SMS\nService Name\nService Operations\nOperation\nSemantics\nService Provider(s)\nService Consumer(s)\nSMService\nMtForwardSm\nrequest / response\nSMSF\nSMS-GMSC, IP-SM-GW, SMS Router",
+      "chunk_type": "definition",
+      "cross_references": [
+        "table_6.4.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.540_6.4.2.1",
+      "section_id": "6.4.2.1",
+      "section_title": "General",
+      "content": "Service Description: This service can be used for SBI-based MT SM transfer through SMSF.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.540_6.4.2.2",
+      "section_id": "6.4.2.2",
+      "section_title": "Nsmsf_SMService_MtForwardSm service operation",
+      "content": "Service operation name: Nsmsf_SMService_MtForwardSm\nDescription: transfer downlink SMS message from consumer NF to SMSF.\nInputs, Required: GPSI, SMS payload\nInputs, Optional: None.\nOutputs, Required: SMS message transmission result.\nOutputs, Optional: None.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.540_6.5.1",
+      "section_id": "6.5.1",
+      "section_title": "General",
+      "content": "The following table illustrates the IP-SM-GW services for SBI-based SMS.\nTable 6.5.1-1: IP-SM-GW Services for SBI-based SMS\nService Name\nService Operations\nOperation\nSemantics\nService Provider(s)\nService Consumer(s)\nSMService\nRoutingInfo\nrequest / response\nIP-SM-GW\nUDM\nMtForwardSm\nrequest / response\nIP-SM-GW\nSMS-GMSC",
+      "chunk_type": "definition",
+      "cross_references": [
+        "table_6.5.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.540_6.5.2.1",
+      "section_id": "6.5.2.1",
+      "section_title": "General",
+      "content": "Service Description: This service can be used for SBI-based MT SM transfer through IP-SM-GW.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.540_6.5.2.2",
+      "section_id": "6.5.2.2",
+      "section_title": "Nipsmgw_SMService_RoutingInfo service operation",
+      "content": "Service operation name: Nipsmgw_SMService_RoutingInfo\nDescription: provides the SMSF Instance Id to the IP-SM-GW.\nInputs, Required: GPSI, SMSF Instance Id.\nInputs, Optional: None.\nOutputs, Required: Result.\nOutputs, Optional: None.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.540_6.5.2.3",
+      "section_id": "6.5.2.3",
+      "section_title": "Nipsmgw_SMService_MtForwardSm service operation",
+      "content": "Service operation name: Nipsmgw_SMService_MtForwardSm\nDescription: transfer downlink SMS message from consumer NF to IP-SM-GW and return the MT SMS Delivery Report to the consumer NF.\nInputs, Required: GPSI, SMS payload\nInputs, Optional: None.\nOutputs, Required: MT SMS Delivery Report.\nOutputs, Optional: None.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.540_6.6.1",
+      "section_id": "6.6.1",
+      "section_title": "General",
+      "content": "The following table illustrates the SMS Router services for SBI-based SMS.\nTable 6.6.1-1: SMS Router Services for SBI-based SMS\nService Name\nService Operations\nOperation\nSemantics\nService Provider(s)\nService Consumer(s)\nSMService\nRoutingInfo\nrequest / response\nSMS Router\nUDM\nMtForwardSm\nrequest / response\nSMS Router\nSMS-GMSC",
+      "chunk_type": "definition",
+      "cross_references": [
+        "table_6.6.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.540_6.6.2.1",
+      "section_id": "6.6.2.1",
+      "section_title": "General",
+      "content": "Service Description: This service can be used for SBI-based MT SM transfer through SMS Router.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.540_6.6.2.2",
+      "section_id": "6.6.2.2",
+      "section_title": "Nrouter_SMService_RoutingInfo service operation",
+      "content": "Service operation name: Nrouter_SMService_RoutingInfo\nDescription: provides the SMSF Instance Id to the SMS Router.\nInputs, Required: GPSI, SMSF Instance Id.\nInputs, Optional: None.\nOutputs, Required: Result.\nOutputs, Optional: None.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.540_6.6.2.3",
+      "section_id": "6.6.2.3",
+      "section_title": "Nrouter_SMService_MtForwardSm service operation",
+      "content": "Service operation name: Nrouter_SMService_MtForwardSm\nDescription: transfer downlink SMS message from consumer NF to SMS Router and return the MT SMS Delivery Report to the consumer NF.\nInputs, Required: GPSI, SMS payload\nInputs, Optional: None.\nOutputs, Required: MT SMS Delivery Report.\nOutputs, Optional: None.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.540_6.7.1",
+      "section_id": "6.7.1",
+      "section_title": "General",
+      "content": "The following table illustrates the MNPF services for SBI-based SMS.\nTable 6.7.1-1: MNPF Services for SBI-based SMS\nService Name\nService Operations\nOperation\nSemantics\nService Provider(s)\nService Consumer(s)\nNPStatus\nGet\nrequest / response\nMNPF\nSMS-GMSC, SCP",
+      "chunk_type": "definition",
+      "cross_references": [
+        "table_6.7.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.540_6.7.2.1",
+      "section_id": "6.7.2.1",
+      "section_title": "General",
+      "content": "Service Description: This service can be used to retrieve the PLMN ID of the Subscription Network of a GPSI.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.540_6.7.2.2",
+      "section_id": "6.7.2.2",
+      "section_title": "Nmnpf_NPStatus_Get service operation",
+      "content": "Service operation name: Nmnpf_NPStatus_Get\nDescription: retrieve the PLMN ID of the Subscription Network of a GPSI.\nInputs, Required: GPSI.\nInputs, Optional: None.\nOutputs, Required: PLMN Id.\nOutputs, Optional: None.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.540_6.8.1",
+      "section_id": "6.8.1",
+      "section_title": "General",
+      "content": "The following table illustrates the NEF services for SBI-based SMS.\nTable 6.8.1-1: NEF Services for SBI-based SMS\nService Name\nService Operations\nOperation\nSemantics\nService Provider(s)\nService Consumer(s)\nSMService\nMoForwardSm\nrequest / response\nNEF\nSMS-SC",
+      "chunk_type": "definition",
+      "cross_references": [
+        "table_6.8.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.540_6.8.2.1",
+      "section_id": "6.8.2.1",
+      "section_title": "General",
+      "content": "This service can be used for SBI-based MO SM transfer through NEF for MSISDN-less MO SMS.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.540_6.8.2.2",
+      "section_id": "6.8.2.2",
+      "section_title": "Nnef_SMService_MoForwardSm service operation",
+      "content": "Service operation name: Nnef_SMService_MoForwardSm\nDescription: transmit MO SMS message from consumer NF to NEF.\nInputs, Required: SMS payload, Application port ID, SUPI, destination SME address (long/short code of the AF).\nInputs, Optional: None.\nOutputs, Required: SMS message transmission result.\nOutputs, Optional: None.\nAnnex A (informative):Change history\nChange history\nDate\nMeeting\nTDoc\nCR\nRev\nCat\nSubject/Comment\nNew version\n2021-10\nCT4#106e\nC4-215046\nC4-215046 as basis\n0.1.0\n2021-10\nCT4#106e\nC4-215513\nImplementation of C4-215417, C4-215418, C4-215453 and C4-215454 in CT4#106e\n0.2.0\n2021-12\nCT4#107e\nC4-216466\nImplementation of C4-216442, C4-216443, C4-216444 and C4-216546 in CT4#107e\n0.3.0\n2022-01\nCT4#107bis-e\nC4-220540\nImplementation of C4-220029, C4-220341, C4-220374, C4-220408 and C4-220409 in CT4#107bis-e\n0.4.0\n2022-02\nCT4#108e\nC4-221588\nImplementation of C4-221438, C4-221573, C4-221595 and C4-221692 in CT4#108e\n0.5.0\n2022-04\nCT4#109e\nC4-222340\nImplementation of C4-222229, C4-222271, C4-222301, C4-222329, C4-222330, C4-222394, C4-222395, C4-222396, C4-222397 and C4-222418 in CT4#109e\n0.6.0\n2022-05\nCT4#110e\nC4-223449\nImplementation of C4-223277, C4-223342 and C4-223358 in CT4#110e\n0.7.0\n2022-06\nCT#96\nCP-221077\nTS for information and approval\n1.0.0\n2022-06\nCT#96\nCP-221077\nTS approved in CT#96\n17.0.0\n2022-09\nCT#97e\nCP-222027\n0001\n-\nB\nTS 23.540 Alignment of MNPF\n17.1.0\n2022-09\nCT#97e\nCP-222027\n0002\n-\nB\nAdd NEF and MNPF in SBI-based SMS system architecture\n17.1.0\n2022-09\nCT#97e\nCP-222027\n0003\n-\nF\nDescription of the Alert procedure\n17.1.0\n2022-09\nCT#97e\nCP-222027\n0004\n-\nF\nCorrection on Operation Semantic of UDM service\n17.1.0\n2023-06\nCT#100\nCP-221072\n0010\n-\nF\nIndication of Memory Available from SMSF as trigger for the Alert procedure\n17.2.0\n2023-06\nCT#100\nCP-221039\n0008\n1\nD\nEditorial correction in TS 23.540\n18.0.0\n2023-06\nCT#100\nCP-221039\n0009\n1\nB\nMO SM delivery application error codes alignment\n18.0.0\n2023-09\nCT#101\nCP-232039\n0013\n1\nB\nCompatibility of UDM not supporting SMS SBI\n18.1.0\n2023-09\nCT#101\nCP-232066\n0012\n1\nA\nAlignment of MNPF in Rel-18 TS 23.540\n18.1.0\n2023-09\nCT#101\nCP-232066\n0015\n-\nA\nGPSI to subscription network resolution procedure using NRF\n18.1.0\n2023-12\nCT#102\nCP-233034\n0016\n-\nF\nModify of the description of MO SMS fallback to legacy way\n18.2.0\n2024-03\nCT#103\nCP-240058\n0018\n-\nA\nSBI-based discovery of SMS-related entities\n18.3.0\n2024-06\nCT#104\nCP-241034\n0019\n-\nF\nIP-SM-GW Reference Points for MO-SMS\n18.4.0",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.540"
+      ]
+    }
+  ]
+}

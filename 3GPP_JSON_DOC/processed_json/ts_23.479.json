@@ -1,0 +1,564 @@
+{
+  "metadata": {
+    "specification_id": "ts_23.479",
+    "version": "18.0.0",
+    "title": "3GPP TS 23.479",
+    "file_path": "/content/drive/MyDrive/RAG_thesis/data/23_series/23479-i00/23479-i00.docx"
+  },
+  "export_info": {
+    "export_date": "2025-07-26T09:25:30.279552",
+    "total_chunks": 56
+  },
+  "chunks": [
+    {
+      "chunk_id": "ts_23.479_1",
+      "section_id": "1",
+      "section_title": "Scope",
+      "content": "The present document defines the application programming interface on the UE for mission critical applications to access mission critical services over MBMS.\nThis document identifies system architecture and functional model for the definition of the MBMS API for mission critical services.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.479_2",
+      "section_id": "2",
+      "section_title": "References",
+      "content": "The following documents contain provisions which, through reference in this text, constitute provisions of the present document.\n-\tReferences are either specific (identified by date of publication, edition number, version number, etc.) or non‑specific.\n-\tFor a specific reference, subsequent revisions do not apply.\n-\tFor a non-specific reference, the latest version applies. In the case of a reference to a 3GPP document (including a GSM document), a non-specific reference implicitly refers to the latest version of that document in the same Release as the present document.\n[1]\t3GPP TR 21.905: \"Vocabulary for 3GPP Specifications\".\n[2]\t3GPP TS 23.468: \"Group Communication System Enablers for LTE (GCSE_LTE); Stage 2\".\n[3]\t3GPP TS 23.280: \"Common functional architecture to support mission critical services; Stage 2\".\n[4]\t3GPP TS 23.379: \"Functional architecture and information flows to support Mission Critical Push To Talk (MCPTT); Stage 2\".\n[5]\t3GPP TS 23.281: \"Functional architecture and information flows to support Mission Critical Video (MCVideo); Stage 2\".\n[6]\t3GPP TS 23.282: \"Functional architecture and information flows to support Mission Critical Data (MCData); Stage 2\".\n[7]\t3GPP TR 23.792: \"Study on MBMS APIs for Mission Critical Services\".",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905",
+        "ts_23.468",
+        "ts_23.280",
+        "ts_23.379",
+        "ts_23.281",
+        "ts_23.282",
+        "ts_23.792"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.479_3.1",
+      "section_id": "3.1",
+      "section_title": "Definitions",
+      "content": "For the purposes of the present document, the terms and definitions given in 3GPP TR 21.905 [1] and the following apply. A term defined in the present document takes precedence over the definition of the same term, if any, in 3GPP TR 21.905 [1].\nMC MBMS API: An application programming interface on the UE to enable the use of MBMS bearer service for mission critical applications.\nMBMS bearer availability: Presence of the TMGI identifying an MBMS bearer within the radio control channels.\nMBMS bearer quality monitoring: Continuous evaluation of the reception quality of an MBMS bearer, with or without data being received on the MBMS bearer.\nMBMS subchannel: A logical channel which uses resources of an activated and announced MBMS bearer identified by the TMGI of the MBMS bearer and additional parameters, e.g. UDP port.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_21.905"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.479_3.2",
+      "section_id": "3.2",
+      "section_title": "Abbreviations",
+      "content": "For the purposes of the present document, the abbreviations given in 3GPP TR 21.905 [1] and the following apply. An abbreviation defined in the present document takes precedence over the definition of the same abbreviation, if any, in 3GPP TR 21.905 [1].\nAPI\tApplication Programming Interface\nBM-SC\tBroadcast Multicast Service Centre\nECGI\tE-UTRAN Cell Global Identifier\nE-UTRAN\tEvolved Universal Terrestrial Radio Access Network\nFEC\tForward Error Correction\nMBMS\tMultimedia Broadcast and Multicast Service\nMCA\tMC Application\nMC-MUA\tMC MBMS user agent\nMCCH\tMulticast Control Channel\nMCData\tMission Critical Data\nMCPTT\tMission Critical Push To Talk\nMCVideo\tMission Critical Video\nROHC\tRobust Header Compression\nSAI\tService Area Identity\nSDP\tSession Description Protocol\nTMGI\tTemporary Mobile Group Identity",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.479_4.1",
+      "section_id": "4.1",
+      "section_title": "General",
+      "content": "This clause specifies the functional model of the MC MBMS API within the MC service UE (as described in clause 4.3), and the system architecture (as described in clause 4.2).",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_4.3",
+        "clause_4.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.479_4.2",
+      "section_id": "4.2",
+      "section_title": "System architecture",
+      "content": "This clause demonstrates the end-to-end MC service architecture with the use of MC MBMS API for MC multicast operations.\nFigure 4.2-1 shows the system architecture for mission critical communications. In the system architecture GCSE communications as defined in 3GPP TS 23.468 [2] is supported. When representing the MC service client, the MC application accesses the MBMS resource on MC MBMS user agent through the MC MBMS API, based on information in application signalling over MCPTT-1, MCVideo-1 or relevant interfaces of MCData service. Some multicast related information acquired through the MC MBMS API are used by the MC application to report to the MC service server over application signalling.\nFigure 4.2-1: System architecture for MC MBMS API",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_4.2-1",
+        "ts_23.468"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.479_4.3.1",
+      "section_id": "4.3.1",
+      "section_title": "Functional model of MC MBMS API",
+      "content": "Figure 4.3.1-1 shows the functional model of the MC MBMS API which resides between the MC application and MC MBMS user agent on the MC service UE.\nFigure 4.3.1-1: MC MBMS API functional model\nIn the functional model the MC application can represent an MC service client.\nThe MC MBMS user agent supports the MC service client functions in receiving the MBMS bearer data for the use of MBMS transmission defined in 3GPP TS 23.280 [3], 3GPP TS 23.379 [4], 3GPP TS 23.281 [5] and 3GPP TS 23.282 [6].",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_4.3.1-1",
+        "ts_23.280",
+        "ts_23.379",
+        "ts_23.281",
+        "ts_23.282"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.479_4.3.2",
+      "section_id": "4.3.2",
+      "section_title": "MC application",
+      "content": "The MC application invokes the MC MBMS API to access and manage the MBMS bearers to support MC services.\nThe MC application supports the following functions:\n-\tRegistration and deregistration to the MC MBMS user agent;\n-\tReception of application level control signalling messages;\n-\tActivation and termination of MBMS bearer quality monitoring;\n-\tObtaining MBMS bearer availability through the MC MBMS API;\n-\tObtaining MBMS bearer suspension and resumption status through the MC MBMS API;\n-\tReception of media with or without FEC encoding and media with or without ROHC compression from the MC MBMS user agent;\n-\tObtaining location information for MBMS usage through the MC MBMS API;\n-\tConfiguration of the MC MBMS user agent; and\n-\tRetrieve capabilities of MC MBMS user agent.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.479_4.3.3",
+      "section_id": "4.3.3",
+      "section_title": "MC MBMS user agent",
+      "content": "The MC MBMS user agent may provide MBMS media with FEC and ROHC to the MC application.\nOne or more MC application(s) use the MC MBMS API provided by the MC MBMS user agent.\nThe MC MBMS user agent supports the following functions:\n-\tDetection of location information for MBMS usage;\n-\tDetection of MBMS bearer availability;\n-\tReport of MBMS bearer quality to the MC application;\n-\tReception of MBMS data from a lower layer of the UE;\n-\tDetection of suspension of MBMS bearer; and\n-\tDelivery of media with or without FEC encoding and media with or without ROHC compression to the MC application.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.479_5.1",
+      "section_id": "5.1",
+      "section_title": "General",
+      "content": "This clause defines the MC MBMS API that enables the MC applications to get access to MBMS capabilities exposed by MC MBMS user agent, corresponding to the function models defined in clause 4. The MC MBMS API supports the use of MBMS transmission for mission critical services as defined in 3GPP TS 23.280 [3], 3GPP TS 23.379 [4], 3GPP TS 23.281 [5] and 3GPP TS 23.282 [6]; and these API functions comply with multicast group communications enabled by GCSE as defined in 3GPP TS 23.468 [2].",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_4",
+        "ts_23.280",
+        "ts_23.379",
+        "ts_23.281",
+        "ts_23.282",
+        "ts_23.468"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.479_5.2.1",
+      "section_id": "5.2.1",
+      "section_title": "General",
+      "content": "This subclause defines API functions of get MBMS SAI request and get MBMS SAI response.\nThe get MBMS SAI request is asynchronous API function call and the get MBMS SAI response providing the result is sent via callback mechanism.\nThe MC application uses this API function call to obtain the MBMS SAI(s) of which the UE is currently located.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.479_5.2.2",
+      "section_id": "5.2.2",
+      "section_title": "Procedures",
+      "content": "Figure 5.2.2-1 illustrates the procedure of get MBMS SAI by which the MC application queries the current MBMS SAI(s) that the MC service UE is located.\nPre-conditions:\n-\tThe MC application has registered towards the MC MBMS user agent.\nFigure 5.2.2-1: Get MBMS SAI procedure\n1.\tThe MC application queries the MBMS SAI information from the MC MBMS user agent.\n2.\tThe MC MBMS user agent responds with the SAI(s) of which the UE is currently located.\nPost-conditions:\n-\tThe MC application is able to report the MBMS SAI information.",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_5.2.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.479_5.2.3.1",
+      "section_id": "5.2.3.1",
+      "section_title": "Get MBMS SAI request",
+      "content": "The get MBMS SAI request does not have input parameters.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.479_5.2.3.2",
+      "section_id": "5.2.3.2",
+      "section_title": "Get MBMS SAI response",
+      "content": "Table 5.2.3.2-1 describes the information flow for the get MBMS SAI response.\nTable 5.2.3.2-1: Get MBMS SAI response\nInformation element\nStatus\nDescription\nMBMS SAIs\nM\nA list of MBMS SAIs that are available where the MC service UE is currently located\nResult\nM\nResult of the API call (success or failure)\nReason code\nO\nThe code for failure",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.2.3.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.479_5.3.1",
+      "section_id": "5.3.1",
+      "section_title": "General",
+      "content": "This subclause defines API function of MBMS SAI update notification.\nThe SAI update notification is a callback function that notifies about the updated MBMS SAI(s) detected by MC MBMS user agent.\nThe MC application receives the notification when the MBMS SAI(s) of the UE changed.\nThe subscription for the notification is performed with the registration of the MC application.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.479_5.3.2",
+      "section_id": "5.3.2",
+      "section_title": "Procedures",
+      "content": "Figure 5.3.2-1 illustrates the procedure of MBMS SAI update notification by which the MC application is notified about the updated MBMS SAIs upon the occurrence of the MBMS SAI change.\nPre-conditions:\n-\tThe MC application has registered towards the MC MBMS user agent.\n-\tThe MBMS SAI(s) where the MC service UE is located has changed.\nFigure 5.3.2-1: MBMS SAI update notification procedure\n1.\tThe MC MBMS user agent detects the MBMS SAI(s) of which the MC service UE resides on has changed.\n2.\tThe MC MBMS user agent notifies the MC application about the updated SAI information.\nPost-conditions:\n-\tThe MC application is able to report the MBMS SAI information.",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_5.3.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.479_5.3.3.1",
+      "section_id": "5.3.3.1",
+      "section_title": "MBMS SAI update notification",
+      "content": "Table 5.3.3.1-1 describes the information flow for the MBMS SAI update notification.\nTable 5.3.3.1-1: MBMS SAI update notification\nInformation element\nStatus\nDescription\nMBMS SAIs\nM\nA list of MBMS SAIs that are available where the MC service UE is currently located",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.3.3.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.479_5.4.1",
+      "section_id": "5.4.1",
+      "section_title": "General",
+      "content": "This subclause defines API functions of get cell info request and get cell info response.\nThe get cell info request is an asynchronous API function call and the get cell info response providing the result is sent via callback mechanism.\nThe MC application uses this API function call to obtain the information of the cell where the UE is currently located.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.479_5.4.2",
+      "section_id": "5.4.2",
+      "section_title": "Procedures",
+      "content": "Figure 5.4.2-1 illustrates the procedure of get cell info by which the MC application queries the current cell information of the MC service UE.\nPre-conditions:\n-\tThe MC application has registered towards the MC MBMS user agent.\nFigure 5.4.2-1: Get cell info procedure\n1.\tThe MC application queries the cell information from the MC MBMS user agent.\n2.\tThe MC MBMS user agent responds with the cell information of which the UE is currently located.\nPost-conditions:\n-\tThe MC application is able to report the cell location information.",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_5.4.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.479_5.4.3.1",
+      "section_id": "5.4.3.1",
+      "section_title": "Get cell info request",
+      "content": "The get cell info request does not have input parameters.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.479_5.4.3.2",
+      "section_id": "5.4.3.2",
+      "section_title": "Get cell info response",
+      "content": "Table 5.4.3.2-1 describes the information flow for the get cell info response.\nTable 5.4.3.2-1: Get cell info response\nInformation element\nStatus\nDescription\nCell Info\nM\nECGI of the cell where the MC service UE is currently located\nResult\nM\nResult of the API call (success or failure)\nReason code\nO\nThe code for failure",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.4.3.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.479_5.5.1",
+      "section_id": "5.5.1",
+      "section_title": "General",
+      "content": "This subclause defines API function of cell update notification.\nThe cell update notification is a callback function that notifies about the updated cell location detected by MC MBMS user agent.\nThe MC application receives the notification when the cell location of the UE changed.\nThe subscription for the notification is performed with the registration of the MC application.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.479_5.5.2",
+      "section_id": "5.5.2",
+      "section_title": "Procedures",
+      "content": "Figure 5.5.2-1 illustrates the procedure of cell update notification by which the MC application is notified about the updated cell information upon the occurrence of cell change.\nPre-conditions:\n-\tThe MC application has registered towards the MC MBMS user agent.\n-\tThe cell of the MC service UE has changed.\nFigure 5.5.2-1: Cell update notification procedure\n1.\tThe MC MBMS user agent detects the cell change on the MC service UE.\n2.\tThe MC MBMS user agent notifies the MC application about the updated cell information.\nPost-conditions:\n-\tThe MC application is able to report the cell information update.",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_5.5.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.479_5.5.3.1",
+      "section_id": "5.5.3.1",
+      "section_title": "Cell update notification",
+      "content": "Table 5.5.3.1-1 describes the information flow for the cell update notification.\nTable 5.5.3.1-1: Cell update notification\nInformation element\nStatus\nDescription\nCell Info\nM\nECGI of the cell where the MC service UE is currently located",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.5.3.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.479_5.6.1",
+      "section_id": "5.6.1",
+      "section_title": "General",
+      "content": "Registration is required to perform initialization operations for using the MC MBMS API. The purpose of application registration is to allow access of MBMS service on the UE for MC applications. This registration also uniquely identifies each MC application that can access MBMS service on the UE and provides the MC MBMS user agent the call back listeners to receive asynchronous notifications on relevant events.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.479_5.6.2",
+      "section_id": "5.6.2",
+      "section_title": "Procedures",
+      "content": "Figure 5.6.2-1 illustrates the procedure for application registration. This procedure allows the MC application to register with the MC MBMS user agent to consume MC services delivered over MBMS. It has two purposes:\na)\tIt identifies the MC application registering with the MC MBMS user agent;\nb)\tIt allows the MC application to identify its callback listeners for the MC MBMS user agent to provide asynchronous notifications on relevant events.\nNOTE:\tSince some application development frameworks do not support callback functions, an MC application for these frameworks will not provide callback listeners in this procedure. Instead, the MC application will implement the necessary approach available on these frameworks to receive event notifications from the MC MBMS user agent in place of callback functions. The notifications implemented on these frameworks will include the same information content.\nPre-conditions:\n-\tThe MC application has discovered the availability of the MC MBMS API.\nFigure 5.6.2-1: Application registration procedure\n1.\tMC application registers to the MC MBMS user agent with the application registration request.\n2.\tMC MBMS user agent registers the application\n3.\tRegistration result is notified to the MC application.\nPost-conditions:\n-\tIf registration is successful, the MC application can proceed with other MC MBMS API interactions with the MC MBMS user agent.",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_5.6.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.479_5.6.3.1",
+      "section_id": "5.6.3.1",
+      "section_title": "Application registration request",
+      "content": "Table 5.6.3.1-1 describes the information flow for the application registration request.\nTable 5.6.3.1-1: Application registration request\nInformation element\nStatus\nDescription\nApplication ID\nM\nProvides a unique ID for the application registering with the MC MBMS user agent.\nGroup communication callback\nO\n(see NOTE)\nProvides the call back listener.\nApplication specific context\nO\nEnables the MC MBMS user agent to distinguish different applications.\nNOTE:\tThe callback element is optional and only included when the application development framework supports programmatic callback interfaces. If callbacks are not supported on a given application development framework, the same information content as defined on the callback structures is to be provided to the application via the notification callback available with that development framework when the respective condition is met.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.6.3.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.479_5.6.3.2",
+      "section_id": "5.6.3.2",
+      "section_title": "Application registration response",
+      "content": "Table 5.6.3.2-1 describes the information flow for the application registration response.\nTable 5.6.3.2-1: Application registration response\nInformation element\nStatus\nDescription\nResponse code\nM\nProvides the result of the registration request: success, failure or missing parameters.\nMessage\nO\nProvides an associated text description of the error message, if registration failed",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.6.3.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.479_5.7.1",
+      "section_id": "5.7.1",
+      "section_title": "General",
+      "content": "The application deregistration allows the MCA to deregister from the MC-MUA.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.479_5.7.2",
+      "section_id": "5.7.2",
+      "section_title": "Procedures",
+      "content": "Figure 5.7.2-1 illustrates the procedure for application deregistration.\nPre-conditions:\n-\tThe MC application is registered towards the MC MBMS user agent.\nFigure 5.7.2-1: Application deregistration procedure\n1.\tThe MC application deregisters. No additional notification from the MC MBMS user agent is expected by the MC application.\n2.\tThe MC MBMS user agent interrupts all operations previously requested by the MC application and deletes any parameters and/or internal state associated to this application.\nPost-conditions:\n-\tThe MC application can no more proceed any API interactions with the MC MBMS user agent till a new execution of the application registration procedure.",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_5.7.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.479_5.7.3.1",
+      "section_id": "5.7.3.1",
+      "section_title": "Application deregistration request",
+      "content": "There are no information elements within the application deregistration request.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.479_5.8.1",
+      "section_id": "5.8.1",
+      "section_title": "General",
+      "content": "The MBMS bearer registration is used by the MC application to exchange information about an announced MBMS bearer with the MC MBMS client. The MC MBMS user agent checks the availability of this MBMS bearer and, if required, monitors its quality.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.479_5.8.2",
+      "section_id": "5.8.2",
+      "section_title": "Procedures",
+      "content": "Figure 5.8.2-1 illustrates the procedure for MC MBMS bearer registration. This procedure allows the MC application to inform the MC MBMS user agent about an MBMS bearer announced to the MC application.\nPre-conditions:\n-\tThe MC application is registered towards the MC MBMS user agent.\n-\tAn MC MBMS bearer has been announced to the MC application by the MC service server.\nFigure 5.8.2-1: MC MBMS bearer registration procedure\n1.\tThe MC application registers a newly announced MBMS bearer to the MC MBMS user agent. The MC application informs the MC MBMS user agent if reception quality evaluation is expected from the MC MBMS user agent.\n2.\tThe MC MBMS user agent registers the new MBMS bearer.\nNOTE:\tIf the MBMS bearer is announced with a list of alternative TMGIs, the MC application can register the MBMS bearer several times, for each distinct TMGI.\n3.\tThe MC MBMS user agent notifies the MC application about the registration result.\nPost-conditions:\n-\tIf registration is successful, the MC MBMS user agent checks the MBMS bearer presence and executes MC MBMS bearer availability procedure.",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_5.8.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.479_5.8.3.1",
+      "section_id": "5.8.3.1",
+      "section_title": "MC MBMS bearer registration request",
+      "content": "Table 5.8.3.1-1 describes the information flow for the MC MBMS bearer registration request.\nTable 5.8.3.1-1: MC MBMS bearer registration request\nInformation element\nStatus\nDescription\nTMGI\nM\nTMGI information\nList of service area identifier\nM\nA list of service area identifier for the applicable MBMS broadcast area\nFrequency\nO\nIdentification of frequency if multi carrier support is provided\nMonitoring reception quality\nO\nThis boolean is used to control if the MC MBMS user agent is actively monitoring the MBMS bearer quality or not",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.8.3.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.479_5.8.3.2",
+      "section_id": "5.8.3.2",
+      "section_title": "MC MBMS bearer registration response",
+      "content": "Table 5.8.3.2-1 describes the information flow for the MC MBMS bearer registration response.\nTable 5.8.3.2-1: MC MBMS bearer registration response\nInformation element\nStatus\nDescription\nTMGI\nM\nTMGI information\nResponse code\nM\nProvides the result of the registration request: success, failure or missing parameters\nMessage\nO\nAdditional details",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.8.3.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.479_5.9.1",
+      "section_id": "5.9.1",
+      "section_title": "General",
+      "content": "The MBMS bearer deregistration allows the MC application to deregister an MBMS bearer with the MC MBMS user agent.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.479_5.9.2",
+      "section_id": "5.9.2",
+      "section_title": "Procedures",
+      "content": "Figure 5.9.2-1 illustrates the procedure for MC MBMS bearer deregistration. The MC application can execute this procedure when this MBMS bearer has been de-announced.\nPre-conditions:\n-\tThe MC application is registered towards the MC MBMS user agent.\n-\tAn MBMS bearer has been announced to the MC application and registered within the MC MBMS user agent.\n-\tThe MBMS bearer is de-announced by the MC service server towards the MC application.\nFigure 5.9.2-1: MC MBMS deregistration procedure\n1.\tThe MC application deregisters the MBMS bearer with the MC MBMS user agent. No additional notification from the MC MBMS user agent is expected by the MC application related to this MBMS bearer.\n2.\tThe MC MBMS user agent interrupts all operations previously requested by the MC application for this MBMS bearer and deletes any parameters and/or internal state associated to this MBMS bearer.\n3.\tThe MC MBMS user agent notifies the MC application about the deregistration result.\nPost-conditions:\n-\tThe MC application can no more proceed any API interactions with the MC MBMS user agent related to this MBMS bearer, e.g. API interactions for media consumption.",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_5.9.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.479_5.9.3.1",
+      "section_id": "5.9.3.1",
+      "section_title": "MC MBMS bearer deregistration request",
+      "content": "Table 5.9.3.1-1 describes the information flow for the MC MBMS bearer deregistration request.\nTable 5.9.3.1-1: MC MBMS bearer deregistration request\nInformation element\nStatus\nDescription\nTMGI\nM\nTMGI information",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.9.3.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.479_5.9.3.2",
+      "section_id": "5.9.3.2",
+      "section_title": "MC MBMS bearer deregistration response",
+      "content": "Table 5.9.3.2-1 describes the information flow for the MC MBMS bearer deregistration response.\nTable 5.9.3.2-1: MC MBMS bearer deregistration response\nInformation element\nStatus\nDescription\nResponse code\nM\nProvides the result of the deregistration request: success, failure or missing parameters\nMessage\nO\nAdditional details",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.9.3.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.479_5.10.1",
+      "section_id": "5.10.1",
+      "section_title": "General",
+      "content": "The MBMS bearer notification is used by the MC MBMS user agent to notify the MC application about events related to the MBMS bearer availability and quality.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.479_5.10.2.1",
+      "section_id": "5.10.2.1",
+      "section_title": "MC MBMS bearer availability",
+      "content": "Figure 5.10.2.1-1 illustrates the procedure for MC MBMS bearer availability. This procedure allows the MC MBMS user agent to notify the MBMS application that a registered MBMS bearer is available within the UE location.\nPre-conditions:\n-\tThe MC application is registered towards the MC MBMS user agent.\n-\tAn MBMS bearer has been announced to the MC application.\n-\tThe MC application has registered this MBMS bearer within the MC MBMS user agent\n-\tNo MBMS bearer availability notification has been sent since the MBMS bearer registration, or the MBMS bearer availability status has changed.\nNOTE:\tThe MC MBMS user agent may additionnally repeat the MBMS bearer availability notification even if the bearer availability status is unchanged. Such behavior is left to implementation.\nFigure 5.10.2.1-1: MC MBMS bearer availability procedure\n1.\tThe MC MBMS user agent continuously checks if the MBMS bearer is available at the UE location.\n2.\tIf the MBMS bearer availability status has changed, the MC MBMS user agent sends a MC MBMS bearer availability notification. If the MBMS bearer is resumed, the MC MBMS bearer availability notification contains the status of MBMS resumption. If the MBMS bearer is suspended, the MC MBMS bearer availability notification contains the status of MBMS suspension.\nPost-conditions:\n-\tIf the MBMS bearer became available and if MBMS bearer quality evaluation is required by the MC application, as asked during the MBMS registration procedure, the MC MBMS user agent executes the MC MBMS bearer quality evaluation procedure.\n-\tIf the MBMS bearer became unavailable, the MBMS bearer quality evaluation procedure, if in execution, is interrupted.\n-\tIf the MBMS bearer is resumed, the MC application may send the MBMS suspension report to the MC service server indicating the MBMS resumption.\n-\tIf the MBMS bearer is suspended, the MC application may send the MBMS suspension report to the MC service server indicating the MBMS suspension.",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_5.10.2.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.479_5.10.2.2",
+      "section_id": "5.10.2.2",
+      "section_title": "MC MBMS bearer quality evaluation",
+      "content": "Figure 5.10.2.2-1 illustrates the procedure for MC MBMS bearer quality evaluation. This procedure allows the MC MBMS user agent to notify the MBMS application about the evaluated quality of the MBMS bearer.\nPre-conditions:\n-\tThe MC application is registered towards the MC MBMS user agent.\n-\tAn MBMS bearer has been announced to the MC application by the MC service server.\n-\tThe MC application has registered this MBMS bearer within the MC MBMS user agent and required quality evaluation.\n-\tThe MBMS bearer is available at the UE location.\nFigure 5.10.2.2-1: MC MBMS bearer quality evaluation procedure\n1.\tThe MC MBMS user agent continuously evaluates reception for the MBMS bearer.\n2.\tWhen reception quality evaluation is done and\n-\tNo notification for the reception quality evaluation has been done since the last MC MBMS bearer availability notification for this given MBMS bearer; or\n-\tThe reception quality evaluation or reception quality level is different to the last reception quality notification.\nThen, the MC MBMS user agent notifies the MC application  about the reception quality.\nNote:\tThe need for a hysteresis within the MC MBMS user agent, to avoid sending too frequent reception quality evaluation notifications is left to implementation.\nPost-conditions:\n-\tThe MC MBMS user agent keeps executing the MC MBMS bearer quality evaluation procedure.",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_5.10.2.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.479_5.10.3.1",
+      "section_id": "5.10.3.1",
+      "section_title": "MC MBMS bearer availability",
+      "content": "Table 5.10.3.1-1 describes the information flow for the MC MBMS bearer availability notification. This information flow is used for notification about MBMS bearer availability and unavailability.\nTable 5.10.3.1-1: MC MBMS bearer event notification\nInformation element\nStatus\nDescription\nTMGI\nM\nTMGI information\nEvent code\nM\nCode providing the nature of the event\nMessage\nO\nAdditional details\nTable 5.10.3.1-2 provides the list of events identified by the event code IE, sent by MC MBMS bearer availability notifications.\nTable 5.10.3.1-2: Event list\nEvent\nDescription\nAvailable\nThe MBMS bearer is available\nResumed\nThe MBMS bearer is resumed after suspension.\nUnavailable\nThe MBMS bearer is unavailable\nSuspended\nThe MBMS bearer is suspended",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.10.3.1-1",
+        "table_5.10.3.1-2"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.479_5.10.3.2",
+      "section_id": "5.10.3.2",
+      "section_title": "MC MBMS bearer quality evaluation",
+      "content": "Table 5.10.3.2-1 describes the information flow for the MC MBMS bearer quality evaluation. This information flow is used for notification about MBMS bearer reception quality.\nTable 5.10.3.2-1: MC MBMS bearer quality evaluation\nInformation element\nStatus\nDescription\nTMGI\nM\nTMGI information\nReception quality evaluation\nM\nIndicates if the reception quality for the MBMS bearer is evaluated good or bad (binary evaluation).\nReception quality level\nO\nLevel of reception quality (see NOTE)\nMessage\nO\nAdditional details\nNOTE:\tThe set of discrete quality levels helps enable the make-before-break procedure (subclause 5.3.3.2 of 23.468 [2]) by the application. How these levels are derived is implementation specific.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_5.3.3.2",
+        "table_5.10.3.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.479_5.11.1",
+      "section_id": "5.11.1",
+      "section_title": "General",
+      "content": "This subclause specifies the open media to start the reception of a given media delivered over an MBMS subchannel.\nWith this API function, header decompression and FEC decoding can be performed by the MC MBMS user agent or by the MC application.\nThis API function allows two methods to return the media from the MC MBMS user agent to the MC application: by providing them on a local network interface or by returning them with a callback mechanism.\nNOTE:\tThis specification does not specify wether the local network interface for returning the media is managed by the MC MBMS user agent or by the lower layer of the UE (modem).",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.479_5.11.2",
+      "section_id": "5.11.2",
+      "section_title": "Procedures",
+      "content": "The procedure specified in figure 5.11.2-1 allows the consumption of a media delivered over MBMS.\nPre-conditions:\n-\tThe MC application is registered towards the MC MBMS user agent\n-\tA MBMS bearer has been announced to the MC application through the MBMS procedures specified in 3GPP TS 23.280 [3] and registered toward the MC MBMS user agent.\n-\tThis MBMS bearer is available within the UE location.\n-\tThe MC application has received a MapGroupToBearer message (see 3GPP TS 23.379 [4], table 10.10.1.1-1 for MCPTT and 3GPP TS 23.281 [5], table 7.10.1.2-1 for MCVideo).\nFigure 5.11.2-1: Open media procedure\n1.\tThe MC application asks to access to the communication with the open media request, by indicating the TMGI of the MBMS bearer and a list of media description information. If the MC application requests FEC decoding and/or header decompression, relevant FEC and ROHC information are included within the open media request; if the MC application wants the media packets to be returned by callback, the MC application provides a callback listener.\n2.\tThe MC MBMS user agent checks if the MBMS bearer of the media is available and starts its reception.\nNOTE:\tThe MBMS bearer may transport several media, e.g. application control signalling, media. The MBMS bearer reception may already be started if another media transported by this MBMS bearer has been opened.\n3.\tWhen the media is available, the MC MBMS user agent sends an open media response to the MC application, including a description of the required media (which can be with or without FEC decoding). If packets are returned to the MC application through a local network interface, this network interface name is included in the response.\n4.\tThe MC MBMS user agent makes the media streams available to the MC application according to the configured method for returning media with a help of a local network interface, or by returning the media packets to the callback listener provided in step 1.\nPost-conditions:\n-\tThe MC application can consume the required media, until interruption if the MBMS bearer becomes unavailable, or until it closes the media with the close media procedure.",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "ts_23.379_table_10.10.1.1-1",
+        "ts_23.281_table_7.10.1.2-1",
+        "figure_5.11.2-1",
+        "ts_23.280",
+        "ts_23.379",
+        "ts_23.281"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.479_5.11.3.1",
+      "section_id": "5.11.3.1",
+      "section_title": "Open media request",
+      "content": "Table 5.11.3.1-1 describes the information flow for the open media request.\nTable 5.11.3.1-1: Open media request\nInformation element\nStatus\nDescription\nTMGI\nM\nTMGI information of the announced MBMS bearer\nMedia description\nO\nDescribes the multicast IP adresses and ports of the requested media. (e.g. the MBMS subchannel).\nFEC information\nO\nFEC information if the MC application requests the MC MBMS user agent to perform the FEC decoding.\nROHC information\nO\nROHC information for the requested media. Indicates if header decompression by the MC MBMS user agent is requested.\nCallback\nO\nDedicated callback listener where to return the received media packets. If this IE is not present, the media packets are returned over a local network interface.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.11.3.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.479_5.11.3.2",
+      "section_id": "5.11.3.2",
+      "section_title": "Open media response",
+      "content": "Table 5.11.3.2-1 describes the information flow for the open media response.\nTable 5.11.3.2-1: Open media response\nInformation element\nStatus\nDescription\nMedia identifier\nM\nIdentifier from the open media request\nResponse code\nM\nIndicates if the open media request was successful, otherwise an error code\nMessage\nO\nAdditional details\nMedia description\nO\nDescription of opened media, including the multicast IP address and port of the media, after FEC decoding\nNetwork interface\nO\nThe local network interface, identified by the name of a network interface card, where the given media can be consumed by the MC application, if packet are forwarded to the MC application over a local network interface according the configured method for media reception",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.11.3.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.479_5.12.1",
+      "section_id": "5.12.1",
+      "section_title": "General",
+      "content": "This subclause specifies the close media invoked by the MC application to stop the reception of a given media.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.479_5.12.2",
+      "section_id": "5.12.2",
+      "section_title": "Procedures",
+      "content": "Figure 5.12.2-1 illustrates the procedure for close media.\nPre-conditions:\n-\tThe MC application is consuming a media, after having called the open media procedure.\n-\tThe MC application has received a UnMapGroupToBearer message (see 3GPP TS 23.379 [6], table 10.10.1.2 -1 for MCPTT and 3GPP TS 23.281 [4], table 7.10.1.3-1 for MCVideo).\nFigure 5.12.2-1: Close media procedure\n1.\tThe MC application asks the MC MBMS user agent to stop the reception of media streams with the close media request.\n2.\tThe MC MBMS user agent stops the possible header decompression and FEC decoding.\n3.\tThe MC MBMS user agent notifies the MC application that the media has been closed.\nPost-conditions:\n-\tThe closed media streams are no more available to the MC application.\n-\tIf no other media from this MBMS bearer are opened, the MC MBMS user agent can end the reception of this MBMS bearer.",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "ts_23.379_table_10.10.1.2",
+        "ts_23.281_table_7.10.1.3-1",
+        "figure_5.12.2-1",
+        "ts_23.379",
+        "ts_23.281"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.479_5.12.3.1",
+      "section_id": "5.12.3.1",
+      "section_title": "Close media request",
+      "content": "Table 5.12.3.1-1 describes the information flow for the close media request.\nTable 5.12.3.1-1: Close media request\nInformation element\nStatus\nDescription\nMedia identifier\nM\nIdentifier from the open media request",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.12.3.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.479_5.12.3.2",
+      "section_id": "5.12.3.2",
+      "section_title": "Close media response",
+      "content": "Table 5.12.3.2-1 describes the information flow for the close media response.\nTable 5.12.3.2-1: Close media response\nInformation element\nStatus\nDescription\nMedia identifier\nM\nIdentifier from the open media request\nResponse code\nM\nIndicates if the close media request was successful, otherwise an error code\nMessage\nO\nAdditional details.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.12.3.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.479_5.13.1",
+      "section_id": "5.13.1",
+      "section_title": "General",
+      "content": "This subclause defines API function of retrieve capability.\nThe retrieve capability request is an API function call and retrieve capability response is returned with a list of capabilities.\nThe MC application uses this API function call to query what capabilities (e.g. FEC and ROHC) are supported by the MC MBMS user agent.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.479_5.13.2",
+      "section_id": "5.13.2",
+      "section_title": "Procedures",
+      "content": "Figure 5.13.2-1 illustrates the procedure of retrieve capability.\nPre-conditions:\n-\tThe MC application has registered towards the MC MBMS user agent.\nFigure 5.13.2-1: Retrieve capability procedure\n1.\tThe MC application sends a request to query the capabilities of the MC MBMS user agent.\n2.\tA retrieve capability response is returned with a list of available capabilities.\nPost-conditions:\n-\tThe MC application can further decide whether or not to use these capabilities of the MC MBMS user agent for subsequent communication.",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_5.13.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.479_5.13.3.1",
+      "section_id": "5.13.3.1",
+      "section_title": "Retrieve capability request",
+      "content": "The retrieve capability request does not have input parameters.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.479_5.13.3.2",
+      "section_id": "5.13.3.2",
+      "section_title": "Retrieve capability response",
+      "content": "Table 5.13.3.2-1 describes the information flow for the retrieve capability response.\nTable 5.13.3.2-1: Retrieve capability response\nInformation element\nStatus\nDescription\nFEC\nM\nFEC capability of the MC MBMS user agent\nROHC\nM\nROHC capability of the MC MBMS user agent\nAnnex A (informative):Change history\nChange history\nDate\nMeeting\nTDoc\nCR\nRev\nCat\nSubject/Comment\nNew version\n2018-07\n-\n-\n-\n-\n-\nInitial version\n0.0.0\n2018-07\nSA6#25\nImplementation of the following p-CRs approved by SA6:\nS6-181118, S6-181149, S6-181150, S6-181283, S6-181284\n0.1.0\n2018-10\nSA6#26\nImplementation of the following p-CRs approved by SA6:\nS6-181366, S6-181456, S6-181537, S6-181539, S6-181540,\nS6-181561, S6-181572\n0.2.0\n2018-12\nSA6#27\nImplementation of the following p-CR approved by SA6:\nS6-181750\n0.3.0\n2018-12\nSA#82\nSP-181144\nPresentation for information at SA#82\n1.0.0\n2019-01\nSA6#28\nImplementation of the following p-CRs approved by SA6:\nS6-190088, S6-190179, S6-190180, S6-190226, S6-190278\n1.1.0\n2019-03\nSA#83\nSP-190060\nPresentation for approval at SA#83\n2.0.0\n2019-03\nSA#83\nSP-190060\nMCC Editorial update for publication after TSG SA approval (SA#83)\n16.0.0\n2022-03\nPromotion of spec to Rel-17\n17.0.0\n2024-05\nUpdate to Rel-18 version (MCC)\n18.0.0",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.13.3.2-1"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1287 @@
+{
+  "metadata": {
+    "specification_id": "ts_29.120",
+    "version": "18.0.0",
+    "title": "3GPP TS 29.120",
+    "file_path": "/content/drive/MyDrive/RAG_thesis/data/29_series/29120-i00/29120-i00.docx"
+  },
+  "export_info": {
+    "export_date": "2025-07-26T09:07:41.504787",
+    "total_chunks": 129
+  },
+  "chunks": [
+    {
+      "chunk_id": "ts_29.120_1",
+      "section_id": "1",
+      "section_title": "Scope",
+      "content": "The present document describes the signalling requirements and procedures used at network elements related to the GLR for MAP within the 3GPP system at the application level.\nThe present document gives the description of the systems needed only in the network utilising GLR as the delta document against 3GPP TS 29.002.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.002"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.120_2",
+      "section_id": "2",
+      "section_title": "References",
+      "content": "The following documents contain provisions which, through reference in this text, constitute provisions of the present document.\n-\tReferences are either specific (identified by date of publication, edition number, version number, etc.) or non‑specific.\n-\tFor a specific reference, subsequent revisions do not apply.\n-\tFor a non-specific reference, the latest version applies.\n[1]\t3GPP TS 23.003: \"Numbering, addressing and identification\".\n[2]\t3GPP TS 23.007: \"Restoration procedures\".\n[3]\t3GPP TS 23.012: \"Location registration procedures\".\n[4]\t3GPP TS 23.040: \"Technical realization of the Short Message Service (SMS) Point to Point (PP)\".\n[5]\t3GPP TS 29.002: \"Mobile Application Part (MAP) specification\".\n[6]\t3GPP TS 23.119: \"Gateway Location Register (GLR) - stage2\".",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.003",
+        "ts_23.007",
+        "ts_23.012",
+        "ts_23.040",
+        "ts_29.002",
+        "ts_23.119"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.120_3",
+      "section_id": "3",
+      "section_title": "Abbreviations",
+      "content": "For the purposes of the present document, the following abbreviations apply:\nCCBS\t\t\tCompletion of Call to Busy SubscriberGLR\t\t\tGateway Location RegisterGPRS\t\t\tGeneral Packet Radio ServiceIM_GSN\t\tIntermediate GSNIM_MSC\t\tIntermediate MSCSGSN\t\t\tServing GPRS support nodeGGSN\t\t\tGateway GPRS support node",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.120_4.1",
+      "section_id": "4.1",
+      "section_title": "The entities of the mobile system",
+      "content": "The functional entities related to the GLR are described below. The description of each entity is detailed in 3GPP TS 23.119 (GLR stage2 specification). The other functional entities described in the present document (e.g. MSC, VLR, and HLR) are specified in 3GPP TS 29.002.\n-\tThe Gateway location Register (GLR).\n-\tThe Intermediate MSC (IM-MSC).\n-\tThe Intermediate GSN (IM-GSN).",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.119",
+        "ts_29.002"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.120_4.2",
+      "section_id": "4.2",
+      "section_title": "The Interfaces within the mobile services",
+      "content": "The Interfaces related to the GLR are described below. The description of each interface is detailed in 3GPP TS 23.119 (GLR stage2 specification).\n-\tInterface between the HLR and the GLR.\n-\tInterface between the VLR and the GLR.\n-\tInterface between the MSC and the IM_MSC.\n-\tInterface between the SGSN and the GLR.\n-\tInterface between the MSC and the GLR.\n-\tInterface between the GLR and the IM_GSN.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.119"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.120_5.1",
+      "section_id": "5.1",
+      "section_title": "Overload control for MAP entities",
+      "content": "The VLR and SGSN see the GLR as an HLR, and the HLR sees the GLR as a VLR or a SGSN. Therefore the GLR shall behave like mobile entity as which the GLR is regarded. If overload of the GLR is detected, the responder may ignore requests for certain MAP operations (see tables 5.1/1, 5.1/2 and 5.1/3 in 3GPP TS 29.002). The decision as to which MAP Operations may be ignored is made by the MAP service provider and is based upon the priority of the application context.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.002"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.120_5.2",
+      "section_id": "5.2",
+      "section_title": "Compatibility",
+      "content": "A version negotiation mechanism based on the use of an application-context-name is used to negotiate the protocol version used between two entities for supporting a MAP-user signalling procedure. The description of the version negotiation mechanism is detailed in 3GPP TS 29.002.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.002"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.120_6.1",
+      "section_id": "6.1",
+      "section_title": "Use of SCCP",
+      "content": "The Mobile Application Part makes use of the services offered by the Signalling Connection Control Part of signalling System No. 7. CCITT Blue Book or ITU‑T (03/93) Recommendations Q.711 to Q.716 should be consulted for the full specification of SCCP. In North America (World Zone 1) the national version of SCCP is used as specified in ANSI T1.112.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.120_6.1.1",
+      "section_id": "6.1.1",
+      "section_title": "SCCP Class",
+      "content": "MAP will only make use of the connectionless classes (0 or 1) of the SCCP.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.120_6.1.2",
+      "section_id": "6.1.2",
+      "section_title": "Sub-System Number (SSN)",
+      "content": "The Application Entities (AEs) defined for MAP consist of several Application Service Elements (ASEs) and are addressed by sub-system numbers (SSNs). The SSN for MAP are specified in 3GPP TS 23.003 [1]. The specific SSN is not needed for the GLR, IM_MSC, and IM_GSN.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.003"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.120_6.1.3.1",
+      "section_id": "6.1.3.1",
+      "section_title": "Introduction",
+      "content": "The format and coding of address parameters carried by SCCP are detailed in 3GPP TS 29.002.\nThe following subclauses describe the method of SCCP addressing appropriate for each entity both for the simple intra-PLMN case and where an inter-PLMN communication is required. The following entities are considered for the GLR additionally:\n-\tthe Gateway location Register (GLR);\n-\tthe Intermediate Mobile-services Switching Centre (IM_MSC);\n-\tthe Intermediate GPRS Support Node (IM_GSN).",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.002"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.120_6.1.3.2.1",
+      "section_id": "6.1.3.2.1",
+      "section_title": "Addressed by the VLR",
+      "content": "In the network utilising the GLR, when an MS that belongs to other PLMN registers in a VLR/SGSN, the VLR/SGSN sees the GLR as the MS's HLR. When initiating the update location dialogues, the VLR is able to address the GLR based on the SPC of the GLR because of intra-PLMN signalling. And the VLR can address the GLR based on an E.214 Mobile Global Title originally derived by the VLR from the IMSI (when CCITT or ITU-T SCCP is used), or an E.212 number originally derived from IMSI (when ANSI SCCP is used, an IMSI). When answering with Global Title to the VLR, the GLR shall insert its E.164 address in the Calling Party Address of the SCCP message containing the first responding CONTINUE message. After that, the VLR can address the GLR based on an E.164 GLR address.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.120_6.1.3.2.2",
+      "section_id": "6.1.3.2.2",
+      "section_title": "Addressed by the HLR",
+      "content": "When a location updating dialogue initiated by a GLR has been successfully completed, the HLR sees the GLR as the VLR.  When initiating dialogues towards the VLR, the routeing information used by the HLR is derived from the E.164 VLR number received as a parameter of the MAP message initiating the update location dialogue, but in reality the HLR addresses the GLR using the VLR number.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.120_6.1.3.2.3",
+      "section_id": "6.1.3.2.3",
+      "section_title": "Addressed by the GMSC",
+      "content": "In the case that the MS is served by the SGSN in the network utilising the GLR, the GMSC sees the GLR as the SGSN. When the GMSC initiates dialogues towards the SGSN the SGSN (MAP) SSN (See 3GPP TS 23.003) shall be included in the called party address. The routeing information used by the GMSC is derived from the E.164 SGSN number received as a parameter of the MAP message initiating the forward short message procedure. But in reality the GMSC addresses the GLR using the SGSN number.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.003"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.120_6.1.3.2.4",
+      "section_id": "6.1.3.2.4",
+      "section_title": "Addressed by the IM-GSN",
+      "content": "In the network utilising the GLR, the IM-GSN initiates the GPRS location information retrieval to the GLR. The IM-GSN must have the value of the GLR address beforehand.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.120_6.1.3.3.1",
+      "section_id": "6.1.3.3.1",
+      "section_title": "Addressed by the GMSC",
+      "content": "When a short message for CS has to be routed to an MS, the GMSC addresses the MSC by an MSC identity received from the HLR that complies with E.164 rules. But in reality the GMSC addresses the IM-MSC in the network utilising the GLR.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.120_6.1.3.3.2",
+      "section_id": "6.1.3.3.2",
+      "section_title": "Addressed by the GMLC",
+      "content": "When a location request for a particular MS needs to be sent to the MS's VMSC, the GMLC addresses the MSC using an E.164 address received from the MS's HLR. But in reality the GMLC addresses the IM-MSC in the network utilising the GLR.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.120_6.1.3.4",
+      "section_id": "6.1.3.4",
+      "section_title": "The Intermediate GSN (IM_GSN)",
+      "content": "The IM-GSN provides routing of the Network-Requested PDP Context activation. If a Network-Requested PDP Context activation fails, the GLR will alert the IM-GSN when the subscriber becomes reachable.  The GLR will use the E.164 IM-GSN number received as parameter of the MAP message reporting the failure.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.120_6.1.3.5",
+      "section_id": "6.1.3.5",
+      "section_title": "Summary table",
+      "content": "The following table summarises the SCCP address used for invoke operations. As a principle, within a PLMN either an SPC or a GT may be used (network operation option), whereas when addressing an entity outside the PLMN the GT must be used. The address type mentioned in the table (e.g. MSISDN) is used as GT or to derive the SPC.\nFor a response, the originating address passed in the invoke message is used as SCCP Called Party Address. For extra‑PLMN addressing the own E.164 entity address is used as SCCP Calling Party Address; for intra-PLMN addressing an SPC derived from the entity number may be used instead. When using an SPC, the SPC may be taken directly from MTP.\nTable 6.1.3/1\nto\nfrom\nfixed net work\nHLR\nVLR\nMSC\nSGSN\nGGSN\nGLR\nIM-MSC\nIM-GSN\nfixed network\nhome location register\nI:SPC/GT\nE:GT\nT:VLR NUMBER\nvisitor location register\nI:SPC/GT\nE:GT\nT:MGT\n(outside World Zone 1)/MSISDN\n(World Zone 1/)HLR NUMBER\n(note)\nmobile-services switching centre\nE:GT\nT:SGSN NUMBER\nI:SPC/GT\nE:GT\nT:MSC NUMBER\nServing\nGPRS\nSupport\nNode\nI:SPC/GT\nT:MGT/MSISDN/HLR NUMBER\nGateway\nGPRS\nSupport\nNode\nNote1\nGateway\nLocation\nregister\n---\nE:GT\nT:MGT\n(outside\nWorld Zone1)/MSISDN(World Zone1/)\nHLR NUMBER\n(note)\nI:SPC/GT\nT:VLR\nNUMBER\n---\nI:SPC/GT\nT:SGSN\nNUMBER\nIntermediate-\nMSC\n---\nI:SPC/GT\nT:MSC NUMBER\nIntermediate-\nGSN\n---\nI:SPC/GT\nT:HLR\nNUMBER\nI: Intra-PLMN\t\tE: Extra (Inter)-PLMN\t\t\t\t\tT: Address TypeGT: Global Title\t\tMGT: E.214 Mobile Global Title\t\tSPC: Signalling Point Code\nNOTE 0:\tFor initiating the location updating procedure and an authentication information retrieval from the HLR preceding it, the VLR has to derive the HLR address from the IMSI of the MS. The result can be an SPC or an E.214 Mobile Global Title if CCITT or ITU-T SCCP is used, or IMSI itself if ANSI SCCP is used (ANSI SCCP is used in World Zone 1). When continuing the established update location dialogue (as with any other dialogue) the VLR must derive the routeing information towards the HLR from the Calling Party Address received with the first responding CONTINUE message until the dialogue terminating message is received.\nFor transactions invoked by the VLR after update location completion, the VLR may derive the information for addressing the HLR from addresses received in the course of the update location procedure (MSISDN or HLR number) or from the IMSI.\nWhen invoking the Restore Data procedure and an authentication information retrieval from the HLR preceding it, the VLR must derive the information for addressing the HLR from the address information received in association with the roaming number request. This may be either the IMSI received as a parameter of the MAP message requesting the Roaming Number or the Calling Party Address associated with the MAP message requesting the Roaming Number.\nFrom VLR in, GLR as for T (address type) only HLR Number is used. VLR and HLR are because only the thing that is belonging to same PLMN is thought.\nNOTE1:\tThe hatching part is the same part of 3GPP TS29.002.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.1.3"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.120_6.2",
+      "section_id": "6.2",
+      "section_title": "Use of TC",
+      "content": "Refer to the corresponding section in 3GPP TS 29.002.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.002"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.120_7",
+      "section_id": "7",
+      "section_title": "General on MAP services",
+      "content": "Refer to the corresponding section in 3GPP TS 29.002 with the exceptions described below.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.002"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.120_7.1",
+      "section_id": "7.1",
+      "section_title": "Common MAP services",
+      "content": "The following common services are used:\n-\tMAP-OPEN service;\n-\tMAP-CLOSE service;\n-\tMAP-DELIMITER service;\n-\tMAP-U-ABORT service;\n-\tMAP-P-ABORT service;\n-\tMAP-NOTICE service;\n-\tMAP-SECURE-TRANSPORT-CLASS-1 service;\n-\tMAP-SECURE-TRANSPORT-CLASS-2 service;\n-\tMAP-SECURE-TRANSPORT-CLASS-3 service;\n-\tMAP-SECURE-TRANSPORT-CLASS-4 service.\nReplace the MAP-U-ABORT service as follows.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.120_7.1.1",
+      "section_id": "7.1.1",
+      "section_title": "MAP-U-ABORT service",
+      "content": "This service enables the service-user to request the MAP dialogue to be aborted. The service is an unconfirmed service with service-primitives as shown in table 7.1/1. MAP service-user in the GLR may set \"application context not supported\" as user reason.\nTable 7.1/1: Service-primitives for the MAP-U-ABORT service\nParameters\nRequest\nIndication\nUser reason\nM\nM(=)\nDiagnostic information\nU\nC(=)\nSpecific information\nU\nC(=)\nUser reason:\nThis parameter can take the following values:\n-\tresource limitation (congestion);\nthe requested user resource is unavailable due to congestion;\n-\tresource unavailable;\nthe requested user resource is unavailable for reasons other than congestion;\n-\tapplication procedure cancellation;\nthe procedure is cancelled for reason detailed in the diagnostic information parameter;\n-\tapplication context not supported;\nthe requested application context is not supported;\n-\tprocedure error;\nprocessing of the procedure is terminated for procedural reasons.\nDiagnostic information:\nThis parameter may be used to give additional information for some of the values of the user-reason parameter:\nTable 7.1/2: User reason and diagnostic information\nUser reason\nDiagnostic information\nResource limitation (congestion)\n-\nResource unavailable\nShort term/long term problem\nApplication procedure cancellation\nHandover cancellation/Radio Channel release/Network path release/Call release/Associated procedure failure/Tandem dialogue released/Remote operations failure\nApplication context not supported\n-\nProcedure error\n-\nSpecific information:\nThis parameter may be used for passing any user specific information. Establishment and processing of the Specific information is not specified by GSM and shall be performed according to operator specific requirements.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_7.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.120_8.1",
+      "section_id": "8.1",
+      "section_title": "General",
+      "content": "Regarding definition of each service, only the interval for adoption shall be considered for the GLR introduction. The interval for adoption for the GLR specification is described below. Service primitives and parameter definitions are as in 3GPP TS 29.002.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.002"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.120_8.2",
+      "section_id": "8.2",
+      "section_title": "Location Management services",
+      "content": "Services\nInterval for adoption\nMAP_UPDATE_LOCATION\nVLR – GLR\nGLR – HLR\nMAP_CANCEL _LOCATION\nHLR – GLR\nGLR – VLR\nGLR – SGSN\nMAP_PURGE_MS\nVLR – GLR\nSGSN – GLR\nGLR – HLR\nMAP_UPDATE_GPRS_LOCATION\nSGSN – GLR\nGLR  –  HLR\nFigure 8.2 /1",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_8.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.120_8.3",
+      "section_id": "8.3",
+      "section_title": "Authentication Management services",
+      "content": "Services\nInterval for adoption\nMAP_SEND_AUTHENTICATION_INFO\nVLR – GLR\nSGSN – GLR\nGLR – HLR\nMAP_AUTHENTICATION_FAILURE_REPORT\nVLR – GLR\nSGSN – GLR\nGLR – HLR\nFigure 8.3/1",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_8.3"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.120_8.4",
+      "section_id": "8.4",
+      "section_title": "Subscriber management services",
+      "content": "Services\nInterval for adoption\nMAP_ INSERT-SUBSCRIBER-DATA\nHLR – GLR\nGLR – VLR\nGLR –  SGSN\nMAP-DELETE-SUBSCRIBER-DATA\nHLR – GLR\nGLR – VLR\nGLR – SGSN\nFigure 8.4/1",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_8.4"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.120_8.5",
+      "section_id": "8.5",
+      "section_title": "Fault recovery services",
+      "content": "Services\nInterval for adoption\nMAP_RESET\nHLR – GLR\nGLR – VLR\nGLR – SGSN\nMAP_FORWARD_CHECK_SS_INDICATION\nHLR – GLR\nGLR – VLR\nMAP_RESTORE_DATA\nVLR – GLR\nFigure 8.5/1",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_8.5"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.120_8.6",
+      "section_id": "8.6",
+      "section_title": "Subscriber Information services",
+      "content": "Services\nInterval for adoption\nMAP-PROVIDE-SUBSCRIBER-Info\nVLR – GLR\nGLR – HLR\nFigure 8.6/1",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_8.6"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.120_9.1",
+      "section_id": "9.1",
+      "section_title": "General",
+      "content": "Regarding definition of each service, only the interval for adoption shall be considered for the GLR introduction. The intervals for adoption for the GLR specification are described below. Service primitives and parameter definitions are as in 3GPP TS 29.002.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.002"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.120_9.2",
+      "section_id": "9.2",
+      "section_title": "MAP_SEND_IMSI service",
+      "content": "Services\nInterval for adoption\nMAP_ SEND_IMSI\nHLR – GLR\nGLR – VLR\nFigure 9.2/1",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_9.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.120_10.1",
+      "section_id": "10.1",
+      "section_title": "General",
+      "content": "Regarding definition of each service, only the interval for adoption shall be considered for the GLR introduction. The intervals for adoption for the GLR specification are described below. Service primitives and parameter definitions are as in 3GPP TS 29.002.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.002"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.120_10.2",
+      "section_id": "10.2",
+      "section_title": "MAP_PROVIDE_ROAMING_NUMBER service",
+      "content": "Services\nInterval for adoption\nMAP_ PROVIDE_ROAMING_NUMBER\nHLR – GLR\nGLR – VLR\nFigure 10.2/1",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_10.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.120_10.3",
+      "section_id": "10.3",
+      "section_title": "MAP_SET_REPORTING_STATE service",
+      "content": "Services\nInterval for adoption\nMAP_ SET_REPORTING_STATE\nHLR – GLR\nGLR – VLR\nFigure 10.3/1",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_10.3"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.120_10.4",
+      "section_id": "10.4",
+      "section_title": "MAP_STATUS_REPORT service",
+      "content": "Services\nInterval for adoption\nMAP_ STATUS_REPORT\nVLR – GLR\nGLR – HLR\nFigure 10.4/1",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_10.4"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.120_10.5",
+      "section_id": "10.5",
+      "section_title": "MAP_REMOTE_USER_FREE service",
+      "content": "Services\nInterval for adoption\nMAP_REMOTE_USER_FREE\nVLR – GLR\nGLR – HLR\nFigure 10.5/1",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_10.5"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.120_11.1",
+      "section_id": "11.1",
+      "section_title": "General",
+      "content": "Regarding definition of each service, only the interval for adoption shall be considered for the GLR introduction. The intervals for adoption for the GLR specification are described below. Service primitives and parameter definitions are as in 3GPP TS 29.002.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.002"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.120_11.2",
+      "section_id": "11.2",
+      "section_title": "MAP_REGISTER_SS service",
+      "content": "Services\nInterval for adoption\nMAP_ REGISTER_SS\nVLR – GLR\nGLR – HLR\nFigure 11.2/1",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_11.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.120_11.3",
+      "section_id": "11.3",
+      "section_title": "MAP_ERASE_SS service",
+      "content": "Services\nInterval for adoption\nMAP_ ERASE_SS\nVLR – GLR\nGLR – HLR\nFigure 11.3/1",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_11.3"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.120_11.4",
+      "section_id": "11.4",
+      "section_title": "MAP_ACTIVATE_SS service",
+      "content": "Services\ninterval for adoption\nMAP_ ACTIVATE_SS\nVLR – GLR\nGLR – HLR\nFigure 11.4/1",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_11.4"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.120_11.5",
+      "section_id": "11.5",
+      "section_title": "MAP_DEACTIVATE_SS service",
+      "content": "Services\nInterval for adoption\nMAP_ DEACTIVATE_SS\nVLR – GLR\nGLR – HLR\nFigure 11.5/1",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_11.5"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.120_11.6",
+      "section_id": "11.6",
+      "section_title": "MAP_ INTERROGATE _SS service",
+      "content": "Services\nInterval for adoption\nMAP_ INTERROGATE_SS\nVLR – GLR\nGLR – HLR\nFigure 11.6/1",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_11.6"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.120_11.7",
+      "section_id": "11.7",
+      "section_title": "MAP_ REGISTER_PASSWORD service",
+      "content": "Services\nInterval for adoption\nMAP_ REGISTER_PASSWORD\nVLR – GLR\nGLR – HLR\nFigure 11.7/1",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_11.7"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.120_11.8",
+      "section_id": "11.8",
+      "section_title": "MAP_ GET_PASSWORD service",
+      "content": "Services\nInterval for adoption\nMAP_ GET_PASSWORD\nHLR – GLR\nGLR – VLR\nFigure 11.8/1",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_11.8"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.120_11.9",
+      "section_id": "11.9",
+      "section_title": "MAP_ PROCESS_UNSTRUCTURED_SS_REQUEST service",
+      "content": "Services\nInterval for adoption\nMAP_ PROCESS_UNSTRUCTURED_SS_REQUEST\nVLR – GLR\nGLR – HLR\nFigure 11.9/1",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_11.9"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.120_11.10",
+      "section_id": "11.10",
+      "section_title": "MAP_ UNSTRUCTURED_SS_REQUEST service",
+      "content": "Services\nInterval for adoption\nMAP_ UNSTRUCTURED_SS_REQUEST\nHLR – GLR\nGLR – VLR\nFigure 11.10/1",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_11.10"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.120_11.11",
+      "section_id": "11.11",
+      "section_title": "MAP_UNSTRUCTURED_SS_NOTIFY service",
+      "content": "Services\nInterval for adoption\nMAP_ UNSTRUCTURED_SS_NOTIFY\nHLR – GLR\nGLR – VLR\nFigure 11.11/1",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_11.11"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.120_11.12",
+      "section_id": "11.12",
+      "section_title": "MAP_REGISTER_CC_ENTRY service",
+      "content": "Services\nInterval for adoption\nMAP_ UNSTRUCTURED_SS_NOTIFY\nVLR – GLR\nGLR – HLR\nFigure 11.12/1",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_11.12"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.120_11.13",
+      "section_id": "11.13",
+      "section_title": "MAP_ERASE_CC_ENTRY service",
+      "content": "Services\nInterval for adoption\nMAP_ ERASE_CC_NOTIFY\nVLR – GLR\nGLR – HLR\nFigure 11.13/1",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_11.13"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.120_12.1",
+      "section_id": "12.1",
+      "section_title": "General",
+      "content": "Regarding definition of each service, only the interval for adoption shall be considered for the GLR introduction. The intervals for adoption for the GLR specification are described below. Service primitives and parameter definitions are as in 3GPP TS 29.002.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.002"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.120_12.2",
+      "section_id": "12.2",
+      "section_title": "MAP-READY-FOR-SM  service",
+      "content": "Services\ninterval for adoption\nMAP-READY-FOR-SM\nVLR – GLR\nSGSN – GLR\nGLR – HLR\nFigure 12.2/1",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_12.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.120_12.3",
+      "section_id": "12.3",
+      "section_title": "MAP-MT-FORWARD-SHORT-MESSAGE service",
+      "content": "Services\ninterval for adoption\nMAP_MT_FORWARD_SHORT_MESSAGE\nSMS-GMSC – IM-MSC\nIM-MSC – MSC\nSMS-GMSC – GLR\nGLR – SGSN\nFigure 12.3/1",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_12.3"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.120_13.1",
+      "section_id": "13.1",
+      "section_title": "General",
+      "content": "Regarding definition of each service, only the interval for adopttion shall be considered for the GLR introduction. The intervals for adoption for the GLR specification are described below. Service primitives and parameter definitions are as in 3GPP TS 29.002.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.002"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.120_13.2",
+      "section_id": "13.2",
+      "section_title": "MAP_SEND_ROUTING_INFO_FOR_GPRS service",
+      "content": "Services\nInterval for adoption\nMAP_SEND_ROUTING_INFO_FOR_GPRS\nIM-GSN – GLR\nFigure 13.2/1",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_13.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.120_13.3",
+      "section_id": "13.3",
+      "section_title": "MAP_FAILURE_REPORT service",
+      "content": "Services\nInterval for adoption\nMAP_ FAILURE_REPORT\nIM-GSN – GLR\nFigure 13.3/1",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_13.3"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.120_15",
+      "section_id": "15",
+      "section_title": "Element of procedure",
+      "content": "The elements of procedures for the MAP protocol are referred to the corresponding section in 3GPP TS 29.002002 with the exceptions described below.",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "ts_29.002002"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.120_15.1",
+      "section_id": "15.1",
+      "section_title": "SDL descriptions",
+      "content": "Replace the corresponding part of Process Secure_MAP_DSM as figure 15.1/1.\nFigure 15.1/1: Process Secure_MAP_DSM_GLR",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_15.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.120_16",
+      "section_id": "16",
+      "section_title": "Mapping onto TC services",
+      "content": "Dialogue control, Service specific procedures and SDL descriptions are referred to the corresponding section in 3GPP TS 29.002.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.002"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.120_17.1",
+      "section_id": "17.1",
+      "section_title": "General",
+      "content": "Refer to the corresponding section in 3GPP TS 29.002 except Packages specifications and Application contexts.\nRegarding the operations which are initiated by the VLR or SGSN toward HLR via GLR, the timer value used in the operations should be configured enough long to guarantee the GLR specific fallback mechanism.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.002"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.120_17.2",
+      "section_id": "17.2",
+      "section_title": "Packages specifications",
+      "content": "Regarding Packages specifications, only the supplier and consumer definition shall be considered for the GLR introduction. The supplier and consumer definition for the GLR specification are derived Table 17.2/1. For the other definitions of the package specifications are as in 3GPP TS 29.002.\nTable 17.2/1: supplier and consumer definition\nOperation Package\nsupplier\nconsumer\nLocationUpdatingPackage-v3\nHLR\nGLR\nGLR\nVLR\nLocationCancellationPackage-v3\nVLR or SGSN\nGLR\nGLR\nHLR\nRoamingNumberEnquiryPackage-v3\nVLR\nGLR\nGLR\nHLR\nInfoRetrievalPackage-v2\nHLR\nGLR\nGLR\nVLR\nGLR\nSGSN\nInfoRetrievalPackage-v1\nHLR\nGLR\nGLR\nVLR\nGLR\nSGSN\nIMSIRetrievalPackage-v2\nHLR\nGLR\nGLR\nVLR\nSubscriberDataMngtStandAlonePackage-v3\nVLR or SGSN\nGLR\nGLR\nHLR\nSubscriberDataMngtPackage-v3\nVLR or SGSN\nGLR\nGLR\nHLR\nResetPackage-v2\nVLR or SGSN\nGLR\nGLR\nHLR\nFunctionalSsPackage-v2\nHLR\nGLR\nGLR\nHLR\nBindingPackage-v1\nHLR\nGLR\nGLR\nVLR\nUnstructuredSsPackage-v2\nHLR\nGLR\nGLR\nVLR\nUnstructuredSsPackage-v1\nHLR\nGLR\nGLR\nVLR\nMTShortMsgRelayPackage-v3\nIM-MSC or GLR\nGMSC\nMSC\nIM-MSC\nSGSN\nGLR\nMwdMngtPackage-v3\nHLR\nGLR\nGLR\nSGSN\nGLR\nVLR\nMwdMngtPackage-v1\nHLR\nGLR\nGLR\nVLR\nDataRestorationPackage-v3\nGLR\nVLR\nPurgingPackage-v3\nHLR\nGLR\nGLR\nVLR\nGLR\nSGSN\nSubscriberInformationEnquiryPackage-v3\nVLR\nGLR\nGLR\nHLR\nGprsLocationUpdatingPackage-v3\nHLR\nGLR\nGLR\nSGSN\nFailureReportingPackage-v3\nGLR\nIM-GSN\nSetReportingStatePackage-v3\nVLR\nGLR\nGLR\nHLR\nStatusReportPackage-v3\nHLR\nGLR\nGLR\nVLR\nRemoteUserFreePackage-v3\nVLR\nGLR\nGLR\nHLR\nCallCompletionPackage-v3\nHLR\nGLR\nGLR\nVLR\nAuthenticationFailureReportPackage-v3\nHLR\nGLR\nGLR\nVLR\nGLR\nSGSN\nSecureTransportHandlingPackage-v3\nThis operation package includes the operations required for the secure transport of MAP messages between any MAP entities.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_17.2",
+        "ts_29.002_table_17.2",
+        "ts_29.002"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.120_17.3",
+      "section_id": "17.3",
+      "section_title": "Application contexts",
+      "content": "Regarding Application contexts specifications, only the responder and initiator definition shall be considered for the GLR introduction. The responder and initiator definition for the GLR specification are derived Table 17.3/1. For the other definitions of the package specifications are as in 3GPP TS 29.002.\nTable 17.3/1: supplier and consumer definition\nApplication Context\nVersion\nInitiator\nResponder\nlocationCancellationContext\nv3\nHLR\nGLR\nGLR\nVLR or SGSN\nimsiRetrievalContext\nv2\nVLR\nGLR\nGLR\nHLR\ninfoRetrievalContext\nv2\nVLR or SGSN\nGLR\nGLR\nHLR\nmwdMngtContext\nv3\nVLR or SGSN\nGLR\nGLR\nHLR\nmsPurgingContext\nv3\nVLR or SGSN\nGLR\nGLR\nHLR\nresetContext\nv2\nHLR\nGLR\nGLR\nVLR or SGSN\nnetworkUnstructuredSsContext\nv2\nVLR\nGLR\nGLR\nHLR\nHLR\nGLR\nGLR\nVLR\nnetworkFunctionalSsContext\nv2\nVLR\nGLR\nGLR\nHLR\nshortMsgMT-RelayContext\nv3\nMSC\nIM-MSC or GLR\nIM-MSC\nMSC\nGLR\nSGSN\nnetworkLocUpContext\nv3\nVLR\nGLR\nGLR\nHLR\ngprsLocationUpdateContext\nv3\nSGSN\nGLR\nGLR\nHLR\nsubscriberDataMngtContext\nv3\nHLR\nGLR\nGLR\nVLR or SGSN\nroamingNumberEnquiryContext\nv3\nHLR\nGLR\nGLR\nVLR\ngprsLocationInfoRetrievalContext\nv3\nIM-GSN\nGLR\nfailureReportContext\nv3\nIM-GSN\nGLR\nsubscriberInfoEnquiryContext\nv3\nHLR\nGLR\nGLR\nVLR\nreportingContext\nv3\nVLR\nGLR\nGLR\nHLR\nHLR\nGLR\nGLR\nVLR\ncallCompletionContext\nv3\nVLR\nGLR\nGLR\nHLR\nauthenticationFailureReportContext\nv3\nVLR or SGSN\nGLR\nGLR\nHLR\nSecureTransportHandlingContext\nv3\nThis application context is used for the secure transport of MAP messages between any MAP entities.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_17.3",
+        "ts_29.002_table_17.3",
+        "ts_29.002"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.120_18",
+      "section_id": "18",
+      "section_title": "General on MAP user procedure",
+      "content": "Refer to 3GPP TS 29.002 for general matters for procedure description such as notation convention, version handling at dialogue establishment and interaction between MAP provider and MAP users.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.002"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.120_19.1",
+      "section_id": "19.1",
+      "section_title": "Location management Procedures",
+      "content": "For non-GPRS subscribers, this subclause comprises a number of processes to handle the mobile nature of the subscriber. The processes will be addressed by SCCP SSN (VLR or HLR) and the Application Context. The processes in the GLR interact with the processes in the VLR or HLR defined in 29.002. The followings show the relations between the protocol processes in the GLR and the processes in the other node.\nProcess Update Location (VLR-GLR):\n-\tInitiator: Update_Location_Area_VLR or Update_Location_HLR;\n-\tResponder: Update_Location_GLR.\nProcess Update Location (GLR-HLR):\n-\tInitiator: GLR_Update_Location_HLR;\n-\tResponder: Update_Location_HLR.\nProcess Cancel Location (VLR-GLR):\n-\tInitiator: GLR_Cancel_Location_VLR;\n-\tResponder: Cancel_Location_VLR.\nProcess Cancel Location (GLR-HLR):\n-\tInitiator: Cancel_Location_HLR;\n-\tResponder: Cancel_Location_GLR.\nProcess Purge MS (VLR-GLR):\n-\tInitiator: Purge_MS_VLR;\n-\tResponder: Purge_MS_GLR.\nProcess Purge MS (GLR-HLR):\n-\tInitiator: GLR_Purge_MS_HLR;\n-\tResponder: Purge_MS_HLR.\nA Location Management Co-ordinator in the GLR co-ordinates the two protocol processes \"Update_Location_GLR\" (subclause 19.1.2) and \"RESTORE_DATA_GLR\" (subclause 19.2) that are addressed by the same application context.\nOn receipt of a dialogue request for the Location Management Application Context, the location Management_Coordinator_GLR will:\n-\tTerminate the process in case of parameter problems; or\n-\tRevert to MAP version Vr protocol if the VLR requests version Vr protocol; or\n-\tContinue as described in the following, if the dialogue is accepted.\nThe protocol process is created depending on the first primitive received from the MAP service provider within this dialogue:\n-\tUpdate_Location_GLR if the primitive is a MAP_UPDATE_LOCATION indication.\n-\tRESTORE_DATA_GLR if the primitive is a MAP_RESTORE_DATA indication.\nIf a MAP_NOTICE indication is received instead, the dialogue towards the VLR is terminated and the process returns to idle state.\nAfter creation of the protocol process the service primitive received from the MAP service-provider is passed to the protocol process. Henceforth, the co-ordinator will relay all service primitives from MAP service-provider to the MAP service-user and vice versa, until a request or indication for dialogue termination is received. This last primitive will be relayed, too, before the Co-ordinator process returns to idle state.\nFigure 19.1.1/1: Process Location_Management_Coordinator_GLR\nFor GPRS subscribers, this subclause comprises a number of other processes to handle the mobile nature of the subscriber. The processes will be addressed by SCCP Sub-System Number (SGSN or HLR) and the Application Context. The processes in the GLR interact with the processes in the VLR, SGSN or HLR defined in 29.002. The followings show the relations between the processes in the GLR and the processes in the other node:\nProcess GPRS Update Location (VLR or SGSN-GLR):\nInitiator:\tGPRS_Update_Location_Area_VLR, or SGSN_Update_HLR.\nResponder:\tUpdate_GPRS_Location_GLR.\nProcess GPRS Update Location (GLR-HLR):\nInitiator:\tGLR_Update_GPRS_Location_HLR.\nResponder:\tUpdate_GPRS_Location_HLR.\nProcess Cancel Location (SGSN-GLR):\nInitiator:\tGLR_Cancel_Location_SGSN.\nResponder:\tCancel_Location_SGSN.\nProcess Cancel Location (GLR-HLR):\nInitiator:\tCancel_GPRS_Location_HLR.\nResponder:\tCancel_GPRS_Location_GLR.\nProcess Purge MS (SGSN-GLR):\nInitiator:\tPurge_MS_SGSN.\nResponder:\tPurge_MS_GLR_for_GPRS.\nProcess Purge MS (GLR-HLR):\nInitiator: GLR_Purge_MS_HLR_for_GPRS.\nResponder: Purge_MS_HLR.",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "clause_19.1.2",
+        "clause_19.2",
+        "figure_19.1.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.120_19.1.1.1",
+      "section_id": "19.1.1.1",
+      "section_title": "General",
+      "content": "This location updating procedure is used to update the location information held in the network.\nIf the GLR is located between the VLR and the HLR, the MAP_UPDATE_LOCATION service is invoked towards the GLR whose identity is contained in the VLR table. When the GLR receives a MAP_UPDATE_LOCATION indication, it determines whether it invokes the MAP_UPDATE_LOCATION service towards the HLR, and invokes it if necessary.\nIf the GLR is located between the SGSN and the HLR, the MAP_UPDATE_GPRS_LOCATION service is invoked towards the GLR whose identity is contained in the SGSN table. When the GLR receives a MAP_UPDATE_GPRS_LOCATION indication, it determines whether it invokes the MAP_UPDATE_GPRS_LOCATION service towards the HLR, and invokes it if necessary.\n+----+                +----+                 +----+                 +-----+│VLR/│                |    |                 │    │                 │PGLR/│\n│SGSN+-----+----------│GLR │-------+---------│HLR +-------+---------│PVLR/││    │                |    |                 │    │                 │PSGSN│\n+----+                +----+                 +----+                 +-----+  │                     │                      │                       │    │ MAP UPDATE_LOCATION │                      │                       │    │-------------------->│                      │                       │    │ or MAP UPDATE GPRS  │  MAP UPDATE_LOCATION │     MAP_CANCEL_       │    │  LOCATION           │ -------------------->│ --------------------->│    │                     │or MAP UPDATE GPRS    │    LOCATION           │    │                     │    LOCATION          │                       │    │                     │                      │                       │    │                     │                      │  MAP_CANCEL_LOCATION  │    │                     │                      │<--------------------- │    │                     │                      │          ack          │    │MAP INSERT SUBSCRIBER│MAP INSERT SUBSCRIBER │                       │    │      DATA           │        DATA          │                       │    │<--------------------│<---------------------│                       │    │                     │                      │                       │    │                     │                      │                       │    │MAP INSERT SUBSCRIBER│MAP INSERT SUBSCRIBER │                       │    │       DATA          │         DATA         │                       │    │-------------------->│--------------------> │                       │    │       ack           │         ack          │                       │    │                     │                      │                       │    │                     │                      │                       │    │MAP CHECK SS         │MAP CHECK SS          │                       │    │       INDICATION    │        INDICATION    │                       │    │<--------------------│<---------------------│                       │    │                     │                      │                       │    │                     │                      │                       │    │MAP UPDATE_LOCATION  │MAP UPDATE_LOCATION   │                       │    │or MAP UPDATE_GPRS   │or MAP UPDATE_GPRS    │                       │    │     LOCATION        │      LOCATION        │                       │    │<--------------------│<-------------------- │                       │    │       ack           │         ack          │                       │                          │                      │                       │\nFigure 19.1.2/1: Interface and services for Location updating",
+      "chunk_type": "definition",
+      "cross_references": [
+        "figure_19.1.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.120_19.1.1.2",
+      "section_id": "19.1.1.2",
+      "section_title": "Detailed procedure in the GLR",
+      "content": "Figure 19.1.2/2 shows the Process Update_Location_GLR. This process is a GLR MAP prorocol machine handling location updating and is a responder to the VLR.\nFigure 19.1.2/2 (sheet 1 of 3): Process Update_Location_GLR\nFigure 19.1.2/2 (sheet 2 of 3): Process Update_Location_GLR\nFigure 19.1.2/2 (sheet 3 of 3): Process Update_Location_GLR\nFigure 19.1.2/3 shows the Process GLR_Update_Location_HLR. This process is a GLR MAP protocol machine handling location updating and is an initiator to the HLR.\nSheet 1: If the Macro Open_Receive_Cnf results Vr, the process requests to perform MAP Vr. It causes a request for sending an abort message to Process Update_Location_GLR.\nFigure 19.1.2/3 (Sheet 1 of 3): Process GLR_Update_Location_HLR\nFigure 19.1.2/3 (Sheet 2 of 3): Process GLR_Update_Location_HLR\nFigure 19.1.2/3 (Sheet 3 of 3): Process GLR_Update_Location_HLR\nFigure 19.1.2/4 shows the Process Update_GPRS_Location_GLR. This process is a GLR MAP protocol machine handling location updating and is a responder to the SGSN.\nFigure 19.1.2/4 (sheet 1 of 3): Process Update_GPRS_Location_GLR\nFigure 19.1.2/4 (sheet 2 of 3): Process Update_GPRS_Location_GLR\nFigure 19.1.2/4 (sheet 3 of 3): Process Update_GPRS_Location_GLR\nFigure 19.1.2/5 shows the Process GLR_Update_GPRS_Location_HLR. This process is a GLR MAP protocol machine handling location updating and is an initiator to the HLR.\nSheet 1: If the Macro Open_Receive_Cnf results Vr, the process requests to perform MAP Vr. It causes a request for sending an abort message to Process Update_GPRS_Location_GLR.\nFigure 19.1.2/5 (Sheet 1 of 3): Process GLR_Update_GPRS_Location_HLR\nFigure 19.1.2/5 (Sheet 2 of 3): Process GLR_Update_GPRS_Location_HLR\nFigure 19.1.2/5 (Sheet 3 of 3): Process GLR_Update_GPRS_Location_HLR",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_19.1.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.120_19.1.2.1",
+      "section_id": "19.1.2.1",
+      "section_title": "General",
+      "content": "The purpose of this process is to delete a subscriber's record from a previous GLR/VLR/SGSN after she has registered with a new GLR/VLR/SGSN. The procedure may also be used if the subscriber's record is to be deleted for other operator determined purposes. Location cancellation can be used to enforce location updating including updating of subscriber data in the VLR or in the SGSN at the next subscriber access.\nIn all cases, the process is performed independently of the invoking process (e.g. Location Updating).\nIf GLR is located between the VLR or the SGSN and the HLR, the MAP_CANCEL_LOCATION service is invoked towards the GLR whose identity is contained in the HLR table.\n+----+                +----+                 +----+                 +----+│VLR/│     D          |    |       D         │    │       D         │    │\n│GLR +-----+----------│HLR │-------+---------│PGLR+-------+---------│PVLR│+----+                +----+                 +----+                 +----+  │                     │                      │                       │    │ MAP UPDATE_LOCATION │                      │                       │    │-------------------->│                      │                       │    │                     │    MAP_CANCEL_       │     MAP_CANCEL_       │    │                     │ -------------------->│ --------------------->│    │                     │   LOCATION           │    LOCATION           │    │                     │                      │                       │    │                     │                      │                       │    │                     │ MAP_CANCEL_LOCATION  │  MAP_CANCEL_LOCATION  │    │                     │<-------------------- │<--------------------- │    │                     │         ack          │          ack          │                          │                      │                       │\nNOTE:\tThe service shown in dotted lines indicates the trigger provided by other MAP signalling.\nFigure 19.1.3/1: Interface and services for Location Cancellation\n+-----+              +----+                 +----+                 +-----+│SGSN/│       D      |    |       D         │    │       D         │     │\n│GLR  +------+-------│HLR │-------+---------│PGLR+-------+---------│PSGSN│+-----+              +----+                 +----+                 +-----+  │                        │                      │                       │    │MAP_UPDATE_GPRS_LOCATION│                      │                       │    │----------------------->│                      │                       │    │                        │    MAP_CANCEL_       │     MAP_CANCEL_       │    │                        │ -------------------->│ --------------------->│    │                        │   LOCATION           │    LOCATION           │    │                        │                      │                       │    │                        │                      │                       │    │                        │ MAP_CANCEL_LOCATION  │  MAP_CANCEL_LOCATION  │    │                        │<-------------------- │<--------------------- │    │                        │         ack          │          ack          │    │                        │                      │                       │\nNOTE:\tThe service shown in dotted lines indicates the trigger provided by other MAP signalling.\nFigure 19.1.3/2: Interface and services for Location Cancellation in GPRS\nAdditionally, The MAP_CANCEL_LOCATION service is invoked when the GLR that stores the subscriber's record receives a MAP_UPDATE_LOCATION indication from a VLR other than that stored in its table for this subscriber. Also the MAP_CANCEL_LOCATION service is invoked when the GLR that stores the subscriber's record a MAP_UPDATE_GPRS_LOCATION indication from a SGSN other than stored in its table for this subscriber. The MAP_CANCEL_LOCATION service is in any case invoked towards the VLR or the SGSN whose identity is contained in the HLR table.\n+----+           D            +----+       D        +-----+│VLR/+-----------+------------+GLR +-------+--------+PVLR/││SGSN|                        │    │                │PSGSN│+----+                        +----+                +-----+  │   MAP_UPDATE_LOCATION or    │                       │    │   MAP_UPDATE_GPRS_LOCATION  │                       │    │---------------------------->│                       │    │                             │     MAP_CANCEL_       │    │                             │ --------------------->│    │                             │    LOCATION           │    │                             │                       │    │                             │                       │    │                             │  MAP_CANCEL_LOCATION  │    │                             │<--------------------- │    │                             │          ack          │    │                             │                       │\nFigure 19.1.3/4: Interface and services for Location Cancellation in case that the GLR stores the subscriber's record",
+      "chunk_type": "definition",
+      "cross_references": [
+        "figure_19.1.3"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.120_19.1.2.2",
+      "section_id": "19.1.2.2",
+      "section_title": "Detailed procedure in the GLR",
+      "content": "Figure 19.1.3/5 shows the Process Cancel_Location_GLR. This process is a GLR MAP protocol machine handling location cancellation and is a responder to the HLR.\nFigure 19.1.3/5: Process Cancel_Location_GLR\nFigure 19.1.3/6 shows the Process GLR_Cancel_Location_VLR. This process is a GLR MAP protocol machine handling location cancellation and is an initiator to the VLR.\nSheet 1: If the Macro Open_Receive_Cnf results Vr, the process requests to perform MAP Vr. It causes a request for sending an abort message to Process Cancel_Location_GLR.\nFigure 19.1.3/6: Process GLR_Cancel_Location_VLR\nFigure 19.1.3/7 shows the Process Cancel_GPRS_Location_GLR. This process is a GLR MAP protocol machine handling location cancellation and is a responder to the HLR.\nFigure 19.1.3/7: Process Cancel_GPRS_Location_GLR\nFigure 19.1.3/8 shows the Process GLR_Cancel_Location_SGSN. This process is a GLR MAP protocol machine handling location cancellation and is an initiator to the SGSN.\nSheet 1: If the Macro Open_Receive_Cnf results Vr, the process requests to perform MAP Vr. It causes a request for sending an abort message to Process Cancel_GPRS_Location_GLR.\nFigure 19.1.3/8: Process GLR_Cancel_Location_SGSN",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_19.1.3"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.120_19.1.3.1",
+      "section_id": "19.1.3.1",
+      "section_title": "General",
+      "content": "This Purge MS procedure is used to treat any request for routing information for a mobile terminated call or a mobile terminated short message as if the MS is not reachable.\nIf GLR is located between the VLR or the SGSN and the HLR, the MAP_PURGE_MS service is invoked towards the GLR whose identity is contained in the VLR table or the SGSN table.\nWhen the GLR receives a MAP_PURGE_MS indication, the GLR determines whether it invokes the MAP_PURGE_MS service towards the HLR.\n+----+                +----+                 +----+│VLR/│                |    |                 │    ││SGSN+-----+----------+GLR +--------+--------│ HLR│+----+                +----+                 +----+  │                     │                      │      │ MAP PURGE_MS        │                      │  │-------------------->│                      │  │                     │  MAP PURGE_MS        │  │                     │ -------------------->│  │                     │                      │      │                     │                      │   │                     │                      │   │                     │   MAP PURGE_MS ack   │   │  MAP_PURGE_MS ack   │<---------------------│   │<--------------------│                      │  │                     │                      │\nFigure 19.1.4/1: Interface and services for Purge MS",
+      "chunk_type": "definition",
+      "cross_references": [
+        "figure_19.1.4"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.120_19.1.3.2",
+      "section_id": "19.1.3.2",
+      "section_title": "Detailed procedure in GLR",
+      "content": "Figure 19.1.4/2 shows the Process Purge_MS_GLR. This process is a GLR MAP protocol machine handling purge MS and is a responder to the VLR.\nFigure 19.1.4/2: Process Purge_MS_GLR\nFigure 19.1.4/3 shows the Process GLR_Purege_MS_HLR. This process is a GLR MAP protocol machine handling purge MS and is an initiator to the HLR.\nFigure 19.1.4/3: Process GLR_PURGE_MS_HLR\nFigure 19.1.4/4 shows the Process Purge_MS_GLR_for_GPRS. This process is a GLR MAP protocol machine handling purge MS and is a responder to the SGSN.\nSheet 1: If the Macro Open_Receive_Cnf results Vr, the process requests to perform MAP Vr. It causes a request for sending an abort message to Process PURGE_MS_GLR.\nFigure 19.1.4/4: Process Purge_MS_GLR_for_GPRS\nFigure 19.1.4/5 shows the Process GLR_Purge_MS_HLR_for_GPRS. This process is a GLR MAP protocol machine handling purge MS and is an initiator to the HLR.\nSheet 1: If the Macro Open_Receive_Cnf results Vr, the process requests to perform MAP Vr. It causes a request for sending an abort message to Process PURGE_MS_GLR_for_GPRS.\nFigure 19.1.4/5: Process GLR_Purge_MS_HLR_for_GPRS",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_19.1.4"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.120_19.2.1",
+      "section_id": "19.2.1",
+      "section_title": "RESET procedure",
+      "content": "This procedure is used to notify VLR, SGSN and GLR of the failure of the node for restoration of the subscriber data.",
+      "chunk_type": "procedure",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.120_19.2.1.1",
+      "section_id": "19.2.1.1",
+      "section_title": "HLR failure case",
+      "content": "In the case of HLR failure, the HLR invokes MAP_RESET service towards the affected GLR, if GLR is located between the VLR and the HLR or between the SGSN and the HLR. When a GLR receives MAP_RESET indication, it sends a MAP_RESET message to the affected VLR and/or SGSN.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.120_19.2.1.2",
+      "section_id": "19.2.1.2",
+      "section_title": "GLR failure case",
+      "content": "In the case of GLR failure, the GLR invokes MAP_RESET service towards the affected VLR and/or SGSN.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.120_19.2.1.3",
+      "section_id": "19.2.1.3",
+      "section_title": "Detailed procedure in GLR",
+      "content": "Figure 19.2.1/1 shows the Process RECEIVE_RESET_IN_GLR. This process is a GLR MAP protocol machine handling reset message from HLR.\nFigure 19.2.1/1: Process RECEIVE_RESET_IN_GLR\nFigure 19.2.1/2 shows the Process SEND_RESET_TO_VLR. This process is a GLR MAP protocol machine handling reset message to VLR.\nFigure 19.2.1/2: Process SEND_RESET_TO_VLR\nFigure 19.2.1/3 shows the Process SEND_RESET_TO_SGSN. This process is a GLR MAP protocol machine handling reset message to SGSN.\nFigure 19.2.1/3: Process SEND_RESET_TO_SGSN",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_19.2.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.120_19.2.2.1",
+      "section_id": "19.2.2.1",
+      "section_title": "General",
+      "content": "This procedure is used to restore the subscriber data for an unidentified MS (i.e. IMSI unknown in VLR), or for a known MS whose IMSI record is marked as \"Not Confirmed\" by the indicator \"Confirmed by HLR\" in VLR.\nIf GLR is located between the VLR and the HLR, the MAP_RESTORE_DATA service is invoked towards the GLR whose identity is contained in the VLR table. When the GLR receives a MAP_RESTORE_DATA indication, it determines whether it invokes the MAP_RESTORE_DATA service towards the HLR, and invokes it if necessary.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.120_19.2.2.2",
+      "section_id": "19.2.2.2",
+      "section_title": "Detailed procedure in GLR",
+      "content": "Figure 19.2.2/1 shows the Process RESTORE_DATA_GLR. This process is a GLR MAP protocol machine handling VLR restoration and is a responder to the VLR.\nFigure 19.2.2/1 (Sheet 1 of 3): Process RESTORE_DATA_GLR\nFigure 19.2.2/1 (Sheet 2 of 3): Process RESTORE_DATA_GLR\nFigure 19.2.2/1 (Sheet 3 of 3): Process RESTORE_DATA_GLR\nFigure 19.2.2/2 shows the Process GLR_RESTORE_DATA_HLR. This process is a GLR MAP protocol machine handling VLR restoration and is an initiator to the HLR.\nSheet 1: If the Macro Open_Receive_Cnf results Vr, the process requests to perform MAP Vr. It causes a request for sending an abort message to Process RESTORE_DATA_GLR.\nFigure 19.2.2/2 (Sheet 1 of 3): Process GLR_RESTORE_DATA_HLR\nFigure 19.2.2/2 (Sheet 2 of 3): Process GLR_RESTORE_DATA_HLR\nFigure 19.2.2/2 (Sheet 3 of 3): Process GLR_RESTORE_DATA_HLR",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_19.2.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.120_20.1",
+      "section_id": "20.1",
+      "section_title": "General",
+      "content": "The Operations and Maintenance procedures are needed for operating and maintaining the UMTS PLMN network.\nThe following procedures exist for operation and maintenance purposes:\ni)\tTracing procedures;\nii)\tSubscriber Data Management procedures;\niii)\tSubscriber Identity procedures.\nThe following application contexts refer to complex MAP Users consisting of several processes:\n-\tsubscriberDataManagementContext;\n-\ttracingContext.\nThese two application contexts need a co-ordinating process in the VLR or in the SGSN. Refer to the 3GPP TS 29.002 for detail procedures.\nThe Subscriber Data Management procedures are only procedures that impact to the GLR. The following subclause describes the Subscriber Identity procedures in the GLR.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.002"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.120_20.2.1",
+      "section_id": "20.2.1",
+      "section_title": "General",
+      "content": "Two types of subscriber data management procedures exist in the Mobile Application Part\ni)\tSubscriber Deletion;\nii)\tSubscriber Data Modification.\nNo requirements have been identified for the Subscriber creation and subscriber data interrogation procedures.\nThe subscriber deletion and subscriber data modification procedures are initiated by the OMC (see figures 20.2.1/1, 20.2.1/2, 20.2.1/3 and 20.2.1/4).\n+-----+          +-----+         +------+         +-------+     │ VLR │          │ GLR │         │ HLR  │         │  OMC  │     +-----+          +-----+         +------+         +-------+        │                │                │1.              │           │                │2.              +< - - - - - - - │           │2.              +<---------------│                │           +<---------------│                │                │           │              3.│                │                │           +--------------->│              3.│                │           │                +--------------->│              4.│           │                │                + - - - - - - - >│           │                │                │                │\n1)\tDelete Subscriber.\n2)\tMAP_CANCEL_LOCATION.\n3)\tMAP_CANCEL_LOCATION_ACK.\n4)\tSubscriber Deleted.\nFigure 20.2.1/1: Subscriber deletion procedure\nIn the subscriber deletion procedure the subscriber data should be removed from the VLR and from the HLR. The HLR uses the MAP_CANCEL_LOCATION service.\n+-----+          +-----+         +------+         +-------+     │SGSN │          │ GLR │         │ HLR  │         │  OMC  │     +-----+          +-----+         +------+         +-------+        │                │                │1.              │           │                │2.              +< - - - - - - - │           │2.              +<---------------│                │           +<---------------│                │                │           │              3.│                │                │           +--------------->│              3.│                │           │                +--------------->│              4.│           │                │                + - - - - - - - >│           │                │                │                │\n1)\tDelete GPRS Subscriber.\n2)\tMAP_CANCEL_LOCATION.\n3)\tMAP_CANCEL_LOCATION_ACK.\n4)\tGPRS Subscriber Deleted.\nFigure 20.2.1/2: Subscriber deletion procedure for GPRS\nIn the subscriber deletion procedure the subscriber data should be removed from the SGSN and from the HLR. The HLR uses the MAP_CANCEL_LOCATION service.\n+-----+          +-----+         +------+         +-------+     │ VLR │          │ GLR │         │ HLR  │         │  OMC  │     +-----+          +-----+         +------+         +-------+        │                │                │1.              │           │                │2.              +< - - - - - - - │           │2.              +<---------------│                │           +<---------------│                │                │           │              3.│                │                │           +--------------->│              3.│                │           │                +--------------->│              4.│           │                │                + - - - - - - - >│           │                │                │                │\n1)\tModify Subscriber Data.\n2)\tMAP_CANCEL_LOCATION, MAP_INSERT_SUBSCRIBER_DATA or\tMAP_DELETE_SUBSCRIBER_DATA.\n3)\tMAP_CANCEL_LOCATION_ACK, MAP_INSERT_SUBSCRIBER_DATA_ACK or\tMAP_DELETE_SUBSCRIBER_DATA_ACK.\n4)\tSubscriber Data Modified.\nFigure 20.2.1/3: Subscriber data modification procedure\n+-----+          +-----+         +------+         +-------+     │SGSN │          │ GLR │         │ HLR  │         │  OMC  │     +-----+          +-----+         +------+         +-------+        │                │                │1.              │           │                │2.              +< - - - - - - - │           │2.              +<---------------│                │           +<---------------│                │                │           │              3.│                │                │           +--------------->│              3.│                │           │                +--------------->│              4.│           │                │                + - - - - - - - >│           │                │                │                │\n1)\tModify Subscriber Data.\n2)\tMAP_CANCEL_LOCATION, MAP_INSERT_SUBSCRIBER_DATA or\tMAP_DELETE_SUBSCRIBER_DATA.\n3)\tMAP_CANCEL_LOCATION_ACK, MAP_INSERT_SUBSCRIBER_DATA_ACK or\tMAP_DELETE_SUBSCRIBER_DATA_ACK.\n4)\tSubscriber Data Modified.\nFigure 20.2.1/4: Subscriber data modification procedure for GPRS\nIn the subscriber data modification procedure the subscriber data is modified in the HLR and when necessary also in the VLR or in the SGSN. The HLR initiates either the MAP_INSERT_SUBSCRIBER_DATA, MAP_DELETE_SUBSCRIBER_DATA or MAP_CANCEL_LOCATION service depending on the modified data.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "figure_20.2.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.120_20.2.2.1",
+      "section_id": "20.2.2.1",
+      "section_title": "Subscriber deletion procedure",
+      "content": "The subscriber deletion procedure in the GLR is described in the subclause 19.",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "clause_19"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.120_20.2.2.2",
+      "section_id": "20.2.2.2",
+      "section_title": "Subscriber data modification procedure",
+      "content": "When receiving either the MAP_INSERT_SUBSCRIBER_DATA indication or the MAP_DELETE_SUBSCRIBER_DATA indication, the GLR checks the parameters and data in the primitive. Data errors are reported as an unexpected data value error or a data missing error depending on the nature of the error.\nAfter receiving the first MAP_INSERT_SUBSCRIBER_DATA indication, the GLR will check the IMSI that is included in the primitive. If the IMSI is unknown, the error \"Unidentified subscriber\" is returned.\nIf the GLR does not support received basic or supplementary services or the network feature Operator Determined Barring, or there is a problem with Regional Subscription Data then this is reported to the HLR.\nIf the entire MSC area that covered the VLR wherein the subscriber is registered is restricted due to regional subscription, this is reported to the HLR.\nIf the updating of the subscriber data is not possible, the GLR will initiate the MAP_U_ABORT request primitive.\nIf the updating is successful in the GLR, the GLR will initiate the MAP_INSERT_SUBSCRIBER_DATA request or the MAP_DELETE_SUBSCRIBER_DATA request to the VLR or to the SGSN wherein the subscriber is registered.\nThe subscriber data modification procedure in the GLR is shown in the figures 20.2.2.2/1, 20.2.2.2/2, 20.2.2.2/3, 20.2.2.2/4, 20.2.2.2/5 and 20.2.2.2/6.\nFigure 20.2.2.2/1 (Sheet 1 of 3): Process INS_SUBS_DATA_GLR\nFigure 20.2.2.2/1 (Sheet 2 of 3): Process INS_SUBS_DATA_GLR\nFigure 20.2.2.2/1 (Sheet 3 of 3): Process INS_SUBS_DATA_GLR\nFigure 20.2.2.2/2 (Sheet 1 of 3): Process INS_GPRS_SUBS_DATA_GLR\nFigure 20.2.2.2/2 (Sheet 2 of 3): Process INS_GPRS_SUBS_DATA_GLR\nFigure 20.2.2.2/2 (Sheet 3 of 3): Process INS_GPRS_SUBS_DATA_GLR\nFigure 20.2.2.2/3: Process Delete_Subscriber_Data_GLR\nFigure 20.2.2.2/4: Process Delete_GPRS_Subscriber_Data_GLR\nFigure 20.2.2.2/5: Macro Delete_Subs_Data_GLR\nFigure 20.2.2.2/6: Macro Delete_GPRS_Subs_Data_GLR",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_20.2.2.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.120_20.3",
+      "section_id": "20.3",
+      "section_title": "Subscriber Identity procedure",
+      "content": "In the subscriber identity procedure the IMSI of the subscriber is retrieved from the HLR. The procedure is shown in figure 20.3/1.\n+-----+   +------+       +------+      +------+           ¦ OMC ¦   ¦ VLR  ¦       ¦ GLR  ¦      ¦ HLR  ¦           ¦     ¦   ¦      ¦       ¦      ¦      ¦      ¦           +-----+   +------+       +------+      +------+              ¦        1.¦              ¦             ¦                 + - - - - >¦            2.¦           2.¦                 ¦          +------------->¦------------>¦                 ¦          ¦ 3.           ¦ 3.          ¦                 ¦ 4.       +<-------------+<------------¦                 +< - - - - ¦              ¦             ¦                 ¦          ¦              ¦             ¦\n1)\tIdentity request.\n2)\tMAP_SEND_IMSI.\n3)\tMAP_SEND_IMSI_ACK.\n4)\tIdentity confirm.\nFigure 20.3/1: The subscriber identity procedure",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_20.3"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.120_20.3.1",
+      "section_id": "20.3.1",
+      "section_title": "Subscriber identity procedure in the GLR",
+      "content": "The subscriber identity procedure in the GLR is shown in figure 20.3/2.\nFigure 20.3/2 (Sheet 1 of 2): Process Send_IMSI_GLR\nFigure 20.3/2 (Sheet 2 of 2): Process Send_IMSI_GLR",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_20.3"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.120_21.1",
+      "section_id": "21.1",
+      "section_title": "General",
+      "content": "The MAP call handling procedures are used:\n1.\tto retrieve routeing information to handle a mobile terminating call;\n2.\tto transfer control of a call back to the GMSC if the call is to be forwarded;\n3.\tto retrieve and transfer information between anchor MSC and relay MSC for inter MSC group calls / broadcast calls;\n4.\tto allocate resources in an SIWFS;\n5.\tto handle the reporting of MS status for call completion services;\n6.\tto handle the notification of remote user free for CCBS.\nItems 1, 5 and 6 are only procedures that have impact to the GLR. The following subclause describes the function of the GLR related to these procedures.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.120_21.2.1",
+      "section_id": "21.2.1",
+      "section_title": "General",
+      "content": "The message flows for successful retrieval of routeing information for a mobile terminating call are shown in figure 21.2.1/1 (mobile terminating call which has not been optimally routed) and 21.2.1/2 (mobile-to-mobile call which has been optimally routed).\nNotes:\nxxx = Optional Procedure\nNOTE 1:\tThis service may also be used by an ISDN exchange for obtaining routing information from the HLR.\nNOTE 2:\tTUP or ISUP may be used in signalling between MSCs, depending on the network type between the MSCs. For further details on the TUP and ISUP procedures refer to the following ITU-T Recommendations and ETSI specification:\nQ.721‑725 ‑ Telephone User Part (TUP);\nETS 300 356-1 ‑ Integrated Services Digital Network (ISDN); Signalling System No.7; ISDN User Part (ISUP) version 2 for the international interface; Part 1: Basic services.\nNOTE 3:\tAs a network operator option, the HLR sends\t MAP_PROVIDE_SUBSCRIBER_INFORMATION to the VLR. For further details on the CAMEL procedures refer to GSM 3GPP TS 03.78.\nFigure 21.2.1/1: Message flow for retrieval of routeing information (non-optimally routed call)\nFigure 21.2.1/2: Message flow for retrieval of routeing information (optimally routed call)\nNotes:\nxxx = Optional Procedure.\nFor Optimal Routeing phase 1, only one of the information flows for Provide Subscriber Info and Provide Roaming Number is used. For later phases of Optimal Routeing, the HLR may return a MAP_SEND_ROUTEING_INFORMATION ack after the Provide Subscriber Info information flow, and the GMSC may send a second MAP_SEND_ ROUTEING_INFORMATION, which will trigger the Provide Roaming Number information flow.\nTUP or ISUP may be used in signalling between MSCs, depending on the network type between the MSCs. For further details on the TUP and ISUP procedures refer to the following CCITT. Recommendations & ETSI specification:\nQ.721‑725 ‑ Telephone User Part (TUP);\nETS 300 356-1 ‑ Integrated Services Digital Network (ISDN); Signalling System No.7; ISDN User Part (ISUP) version 2 for the international interface; Part 1: Basic services.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "figure_21.2.1",
+        "ts_03.78_figure_21.2.1",
+        "ts_03.78"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.120_21.2.2",
+      "section_id": "21.2.2",
+      "section_title": "Process in the GLR to provide a roaming number",
+      "content": "The MAP process in the GLR to provide a roaming number for a mobile terminating call is shown in figure 21.2.2/1 (Process PRN_Receive_GLR) and figure 21.2.2/2 (Process PRN_Send_GLR). The MAP process invokes a macro not defined in this subclause; the definition of this macro can be found as follows:\n-\tReceive_Open_Ind\t\t\tsee subclause 25.1.\n-\tReceive_Open_Cnf\t\t\tsee subclause 25.1.\n-\tCheck_Confirmation\t\t\tsee subclause 25.2.\nFigure 21.2.2/1: Process PRN_Receive_GLR\nFigure 21.2.2/2: Process PRN_Send_GLR",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "clause_25.1",
+        "clause_25.2",
+        "figure_21.2.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.120_21.2.3",
+      "section_id": "21.2.3",
+      "section_title": "Process in the GLR to provide subscriber information",
+      "content": "The MAP process in the GLR to provide subscriber information for a mobile terminating call is shown in figure 21.2.3/1 (Process PSI Receive_GLR) and figure 21.2.3/2 (Process PSI Send_GLR). The MAP process invokes a macro not defined in this subclause; the definition of this macro can be found as follows:\nReceive_Open_Ind\t\t\tsee subclause 25.1.\nReceive_Open_Cnf\t\t\tsee subclause 25.1.\nCheck_Confirmation\t\t\tsee subclause 25.2.\nFigure 21.2.3/1 : Process PSI_Receive GLR\nFigure 21.2.3/2 : Process PSI_Send_GLR",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "clause_25.1",
+        "clause_25.2",
+        "figure_21.2.3"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.120_21.3.1",
+      "section_id": "21.3.1",
+      "section_title": "General",
+      "content": "In case the HLR received the CCBS request message from the other HLR for CCSB monitoring, the message flow for setting the reporting state is shown in figure 21.3.1/1. The message flow shown in figure 21.3.1/1 shall also be applied in case for stop monitoring. The stage2 specification for the interaction with CCBS in a GLR is in 3GPP TS 23.119.\nVLR\nGLR\nHLR\nMAP_SET_REPORTING_STATE\nMAP_SET_REPORTING_STATE\n<-------------------------------------------------\n<------------------------------------------------\nMAP_SET_REPORTING_STATE ack\nMAP_SET_REPORTING_STATE ack\n------------------------------------------------>\n------------------------------------------------>\nFigure 21.3.1/1: Message Flow for Setting the Reporting State",
+      "chunk_type": "definition",
+      "cross_references": [
+        "figure_21.3.1",
+        "ts_23.119"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.120_21.3.2",
+      "section_id": "21.3.2",
+      "section_title": "Process in the GLR to set the reporting state",
+      "content": "The MAP process in the GLR to set the reporting state is shown in figures 21.3.2/1 and 21.3.2/2. The MAP process invokes a macro not define in this subclause; the definition of this macro can be found as follows:\nReceive_Open_Ind\t\t\tsee subclause 25.1.\nReceive_Open_Cnf\t\t\tsee subclause 25.1.\nCheck_Confirmation\t\t\tsee subclause 25.2.\nSet the reporting state\nWhen receiving the MAP_SET_REPORTING_STATE indication, the MAP user in the GLR transfers the information to the VLR in the MAP_ SET_REPORTING_STATE request.\nThe GLR then awaits the receipt of the MAP_ SET_REPORTING_STATE confirm from the VLR. The MAP user in the GLR shall transfer the information contained in this primitive to the HLR in the MAP_ SET_REPORTING_STATE response without checking its contents.\nFigure 21.3.2/1: Process Reporting_State_Receive_GLR\nFigure 21.3.2/2: Process Reporting_State_Send_GLR",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "clause_25.1",
+        "clause_25.2",
+        "figure_21.3.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.120_21.4.1",
+      "section_id": "21.4.1",
+      "section_title": "General",
+      "content": "In case that the monitored subscriber becomes to the idle state, the message flow for reporting subscriber's state to the HLR is shown in figure 21.4.1/1. The stage2 specification for the interaction with CCBS in a GLR is in 3GPP TS 23.119.\nVLR\nGLR\nHLR\nMAP_STATUS_REPORT\nMAP_ STATUS_REPORT\n-------------------------------------------------->\n-------------------------------------------------->\nMAP_STATUS_REPORT ack\nMAP_ STATUS_REPORT ack\n<--------------------------------------------------\n<--------------------------------------------------\nFigure 21.4.1/1: Message Flow for Status Reporting",
+      "chunk_type": "definition",
+      "cross_references": [
+        "figure_21.4.1",
+        "ts_23.119"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.120_21.4.2",
+      "section_id": "21.4.2",
+      "section_title": "Process in the GLR for Status Reporting",
+      "content": "The MAP process in the GLR to send the status report to the HLR is shown in figures 21.4.1/1 and 21.4.2/2.\nSend Status report\nWhen receiving the MAP_STATUS_REPORT indication, the MAP user in the GLR transfers the information to the HLR in the MAP_ STATUS_REPORT request.\nThe GLR then awaits the receipt of the MAP_ STATUS_REPORT confirm from the HLR. The MAP user in the GLR shall transfer the information contained in this primitive to the VLR in the MAP_ STATUS_REPORT response without checking its contents.\nFigure 21.4.2/1: Process Status_Report_Receive_GLR\nFigure 21.4.2/2: Process Status_Report_Send_GLR",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_21.4.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.120_21.5.1",
+      "section_id": "21.5.1",
+      "section_title": "General",
+      "content": "The message flow for handling remote user free is shown in figure 21.5.1/1.\nVLR\nGLR\nHLR\nMAP_REMOTE_USER_FREE\nMAP_ REMOTE_USER_FREE\n<-------------------------------------------------\n<--------------------------------------------------\nMAP_ REMOTE_USER_FREE ack\nMAP_ REMOTE_USER_FREE ack\n------------------------------------------------>\n-------------------------------------------------->\nFigure 21.5.1/1: Message Flow for Remote User Free",
+      "chunk_type": "definition",
+      "cross_references": [
+        "figure_21.5.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.120_21.5.2",
+      "section_id": "21.5.2",
+      "section_title": "Process in the GLR for Remote User Free",
+      "content": "The MAP process in the GLR to handling Remote User Free is shown in figures 21.5.2/1 and 21.5.2/2.\nRemote User Free\nWhen receiving the MAP_REMOTE_USER_FREE indication, the MAP user in the GLR transfers the information to the VLR in the MAP_ REMOTE_USER_FREE request.\nThe GLR then awaits the receipt of the MAP_REMOTE_USER_FREE confirm from the VLR. The MAP user in the GLR shall transfer the information contained in this primitive to the HLR in the MAP_REMOTE_USER_FREE response without checking its contents.\nFigure 21.5.2/1: Process Remote_User_Free_Receive_GLR\nFigure 21.5.2/2: Process Remote_User_Free_Send_GLR",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_21.5.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.120_22.1.1",
+      "section_id": "22.1.1",
+      "section_title": "Functional supplementary service process co-ordinator for GLR",
+      "content": "Any functional SS process in the GLR starts by the GLR receiving a MAP-OPEN service indication. If that service is successful, the GLR can handle supplementary service indications from the VLR. Table 21.1/1 shows the co-ordinating process' reaction on receipt of specific SS service indications from the VLR. After the relevant process is invoked, the received service indication is sent to that process, and the co-ordinating process terminates.\nTable 21.1/1: Relationship between received service indication and invoked process in the GLR\nService indication received\nProcess invoked\nMAP_REGISTER_SS_ind\nREGISTER_SS_GLR\nMAP_ERASE_SS_ind\nERASE_SS_GLR\nMAP_ACTIVATE_SS_ind\nACTIVATE_SS_GLR\nMAP_DEACTIVATE_SS_ind\nDEACTIVATE_SS_GLR\nMAP_INTERROGATE_SS_ind\nINTERROGATE_SS_GLR\nMAP_REGISTER_PASSWORD\nREGISTER_PASSWORD_GLR\nFigure 22.1/1 shows the co-ordinating process in the GLR.\nFigure 22.1/1 (sheet 1 of 2): Process SS_Coordinator_GLR\nFigure 22.1/1 (sheet 2 of 2): Process SS_Coordinator_GLR",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "table_21.1",
+        "figure_22.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.120_22.1.2",
+      "section_id": "22.1.2",
+      "section_title": "Call completion supplementary service process co-ordinator for GLR",
+      "content": "The MAP co-ordinating process in the GLR to handle a dialogue opened with the call Completion application context is shown in figure 22.1/2. The MAP process invokes a macro not defined in this subclause; the definition of this macro can be found as follows:\nReceive_Open_Ind\t\t\tsee subclause 25.1.\nAny call completion SS process in the GLR starts by the GLR receiving a MAP-OPEN service indication. If that service is successful, the GLR can handle call completion supplementary service indications from the VLR. Table 22.1/2 shows the co-ordinating process' reaction on receipt of specific call completion SS service indications from the VLR. After the relevant process is invoked, the received service indication is sent to that process.\nTable 22.1/2: Relationship between received service indication and invoked process in the GLR\nService indication received\nProcess invoked\nMAP_REGISTER_CC_ENTRY_ind\nREGISTER_CC_ENTRY_GLR\nMAP_ERASE_CC_ENTRY_ind\nERASE_CC_ENTRY_GLR\nAfter creation of the user process the Co-ordinator relays the messages between the MAP_PM and the invoked process until a request or an indication for dialogue termination is received.\nThe Call_Completion Co-ordinator is shown in figure 22.1/2.\nFigure 22.1/2: Process_CC_Coord_GLR",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "clause_25.1",
+        "table_22.1",
+        "figure_22.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.120_22.2.1",
+      "section_id": "22.2.1",
+      "section_title": "General",
+      "content": "The registration procedure is used to register data related to a supplementary service in the HLR. The registration procedure is a fully transparent communication between the MS and the HLR.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.120_22.2.2",
+      "section_id": "22.2.2",
+      "section_title": "Procedures in the GLR",
+      "content": "Supplementary service registration\nWhen receiving the MAP_REGISTER_SS indication from VLR, the MAP user in the GLR transfers the information to the HLR in the MAP_REGISTER_SS request without checking the contents of the service indication.\nThe GLR then awaits the receipt of the MAP_REGISTER_SS confirm from the HLR. The MAP user in the GLR shall transfer the information contained in this primitive to the VLR in the MAP_REGISTER_SS response without checking its contents.\nError handling\nIf at any time during this procedure a MAP_P_ABORT, MAP_U_ABORT, MAP_NOTICE or unexpected MAP_CLOSE indication is received from the VLR concerning the process, a MAP_U_ABORT request indicating application procedure cancellation is sent to the HLR (if a connection exists). If a MAP_NOTICE indication was received from the VLR, that dialogue must be closed by sending a MAP_CLOSE request towards the VLR. The process is terminated.\nIf a MAP_P_ABORT, MAP_U_ABORT or MAP_CLOSE indication is received from the HLR, a MAP_U_ABORT request shall be sent to the VLR terminating the process. If a MAP_NOTICE indication was received from the HLR, that dialogue must be closed by sending a MAP_CLOSE request towards the HLR. The process terminates.\nThe registration procedure in the GLR is shown in figure 22.2/1.\nFigure 22.2/1 (sheet 1 of 2): Procedure SS_Register_GLR\nFigure 22.2/1 (sheet 2 of 2): Procedure SS_Register_GLR",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_22.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.120_22.3.1",
+      "section_id": "22.3.1",
+      "section_title": "General",
+      "content": "The erasure procedure is used to erase data related to a supplementary service in the HLR. The erasure procedure is a fully transparent communication between the MS and the HLR.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.120_22.3.2",
+      "section_id": "22.3.2",
+      "section_title": "Procedures in the GLR",
+      "content": "The GLR procedures for erasure are identical to those specified for registration in subclause 22.2. The text and diagrams in subclause 22.2 apply with all references to registration changed to erasure.",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "clause_22.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.120_22.4.1",
+      "section_id": "22.4.1",
+      "section_title": "General",
+      "content": "The activation procedure is used to activate a supplementary service in the HLR. The activation procedure is a fully transparent communication between the MS and the HLR.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.120_22.4.2",
+      "section_id": "22.4.2",
+      "section_title": "Procedures in the GLR",
+      "content": "Supplementary service activation\nWhen receiving the MAP_ACTIVATE_SS indication, the MAP user in the GLR transfers the information to the HLR in the MAP_ACTIVATE_SS request without checking the contents of the service indication.\nThe GLR may then receive the MAP_GET_PASSWORD indication. This information is transferred to the VLR in the MAP_GET_PASSWORD request. If a MAP_GET_PASSWORD confirm primitive is received from the VLR, the VLR initiates the MAP_GET_PASSWORD response towards the HLR.\nThe GLR will receive the MAP_ACTIVATE_SS confirm from the HLR. The MAP user in the GLR shall transfer the information contained in this primitive to the VLR in the MAP_ACTIVATE_SS response without checking its contents.\nError handling\nThe handling of MAP_P_ABORT, MAP_U_ABORT, MAP_NOTICE and unexpected MAP_CLOSE in this procedure is identical to the handling in the Registration procedure in the GLR, see subclause 22.2 of the present document.\nThe activation procedure in the GLR is shown in figure 22.4/1.\nFigure 22.4/1 (sheet 1 of 2): Procedure Activate_SS_GLR\nFigure 22.4/1 (sheet 2 of 2): Procedure SS_Activate_GLR",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "clause_22.2",
+        "figure_22.4"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.120_22.5.1",
+      "section_id": "22.5.1",
+      "section_title": "General",
+      "content": "The deactivation procedure is used to deactivate a supplementary service in the HLR. The deactivation procedure is a fully transparent communication between the MS and the HLR.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.120_22.5.2",
+      "section_id": "22.5.2",
+      "section_title": "Procedures in the GLR",
+      "content": "The GLR procedures for deactivation are identical to those specified for activation in subclause 22.4. The text and diagrams in subclause 22.4 apply with all references to activation changed to deactivation.",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "clause_22.4"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.120_22.6.1",
+      "section_id": "22.6.1",
+      "section_title": "General",
+      "content": "The interrogation procedure is used to retrieve information related to a supplementary service from the VLR or the HLR. The interrogation procedure in the GLR is a fully transparent communication between the VLR and the HLR.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.120_22.6.2",
+      "section_id": "22.6.2",
+      "section_title": "Procedures in the GLR",
+      "content": "The GLR procedures for interrogation are identical to those specified for registration in subclause 22.2. The text and diagrams in subclause 22.2 apply with all references to registration changed to interrogation.",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "clause_22.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.120_22.7.1",
+      "section_id": "22.7.1",
+      "section_title": "General",
+      "content": "The password registration procedure is used to register a password in the HLR. The password registration procedure is a fully transparent communication between the MS and the HLR.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.120_22.7.2",
+      "section_id": "22.7.2",
+      "section_title": "Procedures in the GLR",
+      "content": "The password registration procedure in the GLR is identical to that for activation specified in subclause 22.4. All the text and diagrams in subclause 22.4 apply with all references to activation changed to password registration.",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "clause_22.4"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.120_22.8.1",
+      "section_id": "22.8.1",
+      "section_title": "Procedures in the GLR",
+      "content": "The initiation of the process is shown in subclause 22.1.\nIn the case that a GLR is located between the VLR and the HLR, the Mobile Initiated USSD procedure in the GLR is a fully transparent communication between the VLR and the HLR.\nWhen receiving the MAP_PROCESS_UNSTRUCTURED_SS_REQUEST indication from VLR, the MAP user in the GLR transfers the information to the HLR in the MAP_PROCESS_UNSTRUCTURED_SS_REQUEST request without checking the contents of the service indication.\nThe GLR may subsequently receive one or more MAP_UNSTRUCTURED_SS_REQUEST or MAP_UNSTRUCTURED_SS_NOTIFY indications from the HLR. These shall be sent transparently to the VLR. When a confirmation is received from the VLR this shall be returned to the HLR.\nWhen the GLR receives a MAP_PROCESS_UNSTRUCTURED_SS_REQUEST confirmation from the HLR then it shall pass this to the VLR and closes the MAP provider service.\nError Handling\nBoth the VLR and the HLR may initiate release of the MAP service at any time. This is handled as shown in the diagrams.\nThe procedure in the HLR is shown in figure 22.8/1.\nFigure 22.8/1 (sheet 1 of 2): Procedure MI_USSD_GLR\nFigure 22.8/1 (sheet 2 of 2): Procedure MI_USSD_GLR\nFigure 22.8/2: Macro MS_Receive_ERROR_at_GLR",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "clause_22.1",
+        "figure_22.8"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.120_22.9.1",
+      "section_id": "22.9.1",
+      "section_title": "Procedure in the GLR",
+      "content": "In the case that a GLR is located between the VLR and the HLR, the Network initiated USSD procedure in the GLR is a fully transparent communication between the VLR and the HLR.\nThe procedure may be invoked by the HLR. It may start by using either the MAP_UNSTRUCTURED_SS_REQUEST or MAP_UNSTRUCTURED_SS_NOTIFY service.\nThe GLR may subsequently receive one or more MAP_UNSTRUCTURED_SS_REQUEST_ind or MAP_UNSTRUCTURED_SS_NOTIFY_ind indications from the VLR. These shall be sent transparently to the HLR. When a confirmation is received from the HLR this shall be returned to the VLR.\nWhen the GLR receives a MAP_CLOSE_ind from the HLR then it shall pass this to the VLR and close the MAP dialogue.\nError Handling\nBoth the VLR and the HLR may initiate release of the MAP service at any time. This is handled as shown in the diagrams.\nThe Network initiated USSD procedure in the GLR is shown in figure 22.9/1.\nFigure 22.9/1 (sheet 1 of 2): Procedure NI_USSD_GLR\nFigure 22.9/1 (sheet 2 of 2): Procedure NI_USSD_GLR\nFigure 22.9/2: Marco NW_Receive_Rrror_at_GLR",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_22.9"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.120_22.10.1",
+      "section_id": "22.10.1",
+      "section_title": "SS Password handling macros",
+      "content": "Macro Get_Password_GLR\nThis macro is used by the GLR to relay a request for password from the HLR to the VLR, and to relay a response from the VLR back to the HLR. The macro is described in figure 22.10/1.\nFigure 22.10/1: Macro Get_PW_GLR",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_22.10"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.120_22.11.1",
+      "section_id": "22.11.1",
+      "section_title": "General",
+      "content": "The Activation of a CCBS request procedure in the GLR is a fully transparent communication between the VLR and the HLR.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.120_22.11.2",
+      "section_id": "22.11.2",
+      "section_title": "Procedure in the GLR",
+      "content": "When receiving the MAP_REGISTER_CC_ENTRY indication from VLR, the MAP user in the GLR transfers the information to the HLR in the MAP_REGISTER_CC_ENTRY request without checking the contents of the service indication.\nWhen the GLR receives a MAP_REGISTER_CC_ENTRY confirmation from the HLR then it shall pass this to the VLR and closes the MAP provider service.\nThe activation of a CCBS request procedure in the GLR is shown in figure 22.11/1.\nFigure 22.11/1 (sheet 1 of 2): Process Register_CC_Entry_GLR\nFigure 22.11/1 (sheet 2 of 2): Process Register_CC_Entry_GLR",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_22.11"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.120_22.12.1",
+      "section_id": "22.12.1",
+      "section_title": "General",
+      "content": "The Deactivation of a CCBS request procedure in the GLR is a fully transparent communication between the VLR and the HLR.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.120_22.12.2",
+      "section_id": "22.12.2",
+      "section_title": "Procedure in the GLR",
+      "content": "When receiving the MAP_ ERASE _CC_ENTRY indication from VLR, the MAP user in the GLR transfers the information to the HLR in the MAP_ ERASE _CC_ENTRY request without checking the contents of the service indication.\nWhen the GLR receives a MAP_ ERASE _CC_ENTRY confirmation from the HLR then it shall pass this to the VLR and closes the MAP provider service.\nThe deactivation of a CCBS request procedure in the GLR is shown in figure 22.12/1.\nFigure 22.12/1 (sheet 1 of 2): Process Erase_CC_Entry_GLR\nFigure 22.12/1 (sheet 2 of 2): Process Erase_CC_Entry_GLR",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_22.12"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.120_23.1",
+      "section_id": "23.1",
+      "section_title": "General",
+      "content": "The short message service procedures are used to control both mobile originated and mobile terminated short message transfer.\nFour procedures exist for short message services (see 29.002) but only the following two procedures are involved in the GLR and the IM-MSC:\n-\tmobile terminated short message service transfer;\n-\tshort message alert procedure.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.120_23.2",
+      "section_id": "23.2",
+      "section_title": "The mobile terminated short message transfer procedure",
+      "content": "The mobile terminated short message transfer procedure is used for forwarding a short message or several short messages from a Service Centre to a mobile subscriber. This subclause includes the description of the procedures in the IM-MSC and the GLR. The procedures in the other existing entities are entirely the same as in the network without the GLR and are described in 29.002.",
+      "chunk_type": "procedure",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.120_23.2.1",
+      "section_id": "23.2.1",
+      "section_title": "Procedure in the Intermediate MSC",
+      "content": "When initiating the dialogue with the IM-MSC, the SMS Gateway MSC must provide the IMSI of the subscriber to whom the short message is directed.\nThe IMSI can be included either in the Destination Reference of the MAP_OPEN indication received from the SMS Gateway MSC or in the sm-RP-DA information field of the MAP_MT_FORWARD_SHORT_MESSAGE indication.\nWhen receiving a MAP_OPEN indication primitive that is not associated with any MAP service indication primitive and if the dialogue is accepted, the MAP service-user in the IM-MSC issues a MAP_DELIMITER request primitive in order to trigger the local MAP service-provider to confirm the dialogue.\nWhen receiving the first MAP_MT_FORWARD_SHORT_MESSAGE indication from the gateway MSC, the IM- MSC retrieves the E.164 Number of the servicing MSC from the GLR if the MAP service primitive is accepted.\nThe MAP_MT_FORWARD_SHORT_MESSAGE indication primitive is checked by the macro \"Check_Indication\". If the received MAP service primitive contains errors, the service is aborted and an unexpected data value error or data missing error is returned to the GMSC.\nThe subscriber identity information that may be included in the MAP_OPEN indication primitive and in the MAP service indication primitive is checked by the macro \"Check_Subscr_Identity_For_MT_SMS\" as follows.\nIf a Destination Reference has been received in the MAP_OPEN indication, an LMSI must be present in the sm-RP-DA information field of the MAP_MT_FORWARD_SHORT_MESSAGE indication. The LMSI shall be key information for retrieving the MSC Number in the GLR.\nOtherwise, if the IMSI is included in the sm-RP-DA information field of the MAP_MT_FORWARD_SHORT_MESSAGE indication, it is used to retrieve the MSC Number in the GLR.\nIf:\na Destination Reference has been received in the IM-MSC and the sm-RP-DA information field of the MAP_MT_FORWARD_SHORT_MESSAGE indication does not include an LMSI, or\nno Destination Reference has been received and the sm-RP-DA information field does not cover an IMSI;\nthe service is aborted in the IM-MSC and the error \"Unexpected Data Value\" is returned to the SMS GMSC.\nThe interaction between the IM-MSC and the GLR for the MSC Number retrieval is described in 3GPP TS 23.119 GLR‑stage2.\nIf the IM-MSC is successfully retrieves the MSC Number it initiates the forward short message procedure to the servicing MSC. The presence of the Destination Reference in the MAP_OPEN request and the LMSI or IMSI in the first MAP_MT_FORWARD_SHORT_MESSAGE request follows the message received from the GMSC. The More Messages To Send flag is set to TRUE or FALSE depending on the information received from the GMSC.\nIf the grouping of MAP_OPEN request and MAP_MT_FORWARD_SHORT_MESSAGE request together would need segmenting, these primitives must not be grouped together. The MAP_OPEN request primitive is sent first without any associated MAP service request primitive and the dialogue confirmation must be received before the MAP_MT_FORWARD_SHORT_MESSAGE request is sent.\nAs a response to the procedure, the IM-MSC will receive the MAP_MT_FORWARD_SHORT_MESSAGE confirmation indicating:\n-\ta successful forwarding of the short message. This indication is passed to the GMSC;\n-\tunsuccessful forwarding of the short message. This indication is passed to the GMSC.\nThe IM-MSC informs the delivery failure to the GLR, if an absent subscriber_SM, an unidentified subscriber or SM delivery failure with error cause MS memory capacity exceeded indication is received from the servicing MSC. That enables the GLR set the MNRF. The interaction between the IM-MSC and the GLR regarding the procedure is described in 3GPP TS 23.119 GLR-stage2.\nUnexpected data value, system failure errors and other errors are simply passed to the GMSC.\nIf the More Messages To Send flag was TRUE in the MAP_MT_FORWARD_SHORT_MESSAGE request and the previous short message transfer succeeded, then the IM-MSC awaits the next short message.\nWhen receiving the next short message from the GMSC, the IM-MSC sets the More Messages To Send flag according to the information received and starts the service MAP_MT_FORWARD_SHORT_MESSAGE again.\nIf the More Messages To Send flag was FALSE or the service MAP_MT_FORWARD_SHORT_MESSAGE ends unsuccessfully, the transaction to the gateway MSC is terminated.\nThe mobile terminated short message transfer procedure in the IM-MSC is shown in figure 23.2/1 and 23.2/2.\nFigure 23.2/1 (sheet1 of 3): Procedure_MT_SM_Transfer_IM-MSC\nFigure 23.2/1 (sheet 2 of 3): Procedure MT_SM_Transfer_IM-MSC\nFigure 23.2/1 (sheet 3 of 3): Procedure MT_SM_Transfer_IM-MSC\nFigure 23.2/2 (sheet1 of 2): Macro MT_SM_IM-MSC\nFigure 23.2/2 (sheet2 of 2): Macro MT_SM_IM-MSC",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_23.2",
+        "ts_23.119"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.120_23.2.2",
+      "section_id": "23.2.2",
+      "section_title": "Procedure in the GLR",
+      "content": "When initiating the dialogue with the GLR, the SMS Gateway MSC must provide the IMSI of the subscriber to whom the short message is directed.\nThe IMSI is included in the sm-RP-DA information field of the MAP_MT_FORWARD_SHORT_MESSAGE indication.\nWhen receiving a MAP_OPEN indication primitive that is not associated with any MAP service indication primitive and if the dialogue is accepted, the MAP service-user in the GLR issues a MAP_DELIMITER request primitive in order to trigger the local MAP service-provider to confirm the dialogue.\nWhen receiving the first MAP_MT_FORWARD_SHORT_MESSAGE indication from the gateway MSC, the GLR performs some subscriber data checks, if the MAP service primitive is accepted.\nThe MAP_MT_FORWARD_SHORT_MESSAGE indication primitive is checked by the macro \"Check_Indication\". If the received MAP service primitive contains errors, the service is aborted and an unexpected data value error or data missing error is returned to the GMSC.\nThe subscriber identity information that is included in the MAP service indication primitive is checked by the macro \"Check_Subscr_Identity_For_MT_SMS\" as follows:\nIf the IMSI is included in the sm-RP-DA information field of the MAP_MT_FORWARD_SHORT_MESSAGE indication, the MAP_OPEN indication received from the gateway MSC shall not include a Destination Reference.\nIf no Destination Reference has been received and the sm-RP-DA information field does not cover an IMSI the service is aborted in the GLR and the error \"Unexpected Data Value\" is returned to the GMSC.\nThe following outcomes from the subscriber data checks can occur in GLR:\n-\tif the mobile subscriber is unknown, the unidentified subscriber error is forwarded to the GMSC;\n-\tif the \"Confirmed by HLR\" indicator is set to \"Not Confirmed\", the unidentified subscriber error is forwarded to the GMSC.\nIf the mobile subscriber is known and \"Confirmed by HLR\" indicator is set to \"Confirmed\", the GLR shall successfully retrieves the SGSN Number.\nIf the GLR is successfully retrieves the SGSN Number it initiates the forward short message procedure to the SGSN. The IMSI is included in the sm-RP-DA information field of the MAP_MT_FORWARD_SHORT_MESSAGE request. More Messages To Send flag is set to TRUE or FALSE depending on the information received from the GMSC.\nIf the grouping of MAP_OPEN request and MAP_MT_FORWARD_SHORT_MESSAGE request together would need segmenting, these primitives must not be grouped together. The MAP_OPEN request primitive is sent first without any associated MAP service request primitive and the dialogue confirmation must be received before the MAP_MT_FORWARD_SHORT_MESSAGE request is sent.\nAs a response to the procedure, the GLR will receive the MAP_MT_FORWARD_SHORT_MESSAGE confirmation indicating:\n-\ta successful forwarding of the short message. This indication is passed to the GMSC;\n-\tunsuccessful forwarding of the short message. This indication is passed to the GMSC.\nThe GLR sets MNRG, if an absent subscriber_SM (except for the case that absent subscriber reason is PurgedMS), an unidentified subscriber or SM delivery failure with error cause MS memory capacity exceeded indication is received from the SGSN.\nIf the GLR receives an absent subscriber_SM and absent subscriber reason is PurgedMS, the GLR deletes the subscriber data for the user.\nUnexpected data value, system failure errors and other errors are simply passed to the GMSC.\nIf the More Messages To Send flag was TRUE in the MAP_MT_FORWARD_SHORT_MESSAGE request and the previous short message transfer succeeded, then the GLR awaits the next short message.\nWhen receiving the next short message from the GMSC, the GLR sets the More Messages To Send flag according to the information received and starts the service MAP_MT_FORWARD_SHORT_MESSAGE again.\nIf the More Messages To Send flag was FALSE or the service MAP_MT_FORWARD_SHORT_MESSAGE ends unsuccessfully, the transaction to the gateway MSC is terminated.\nThe mobile terminated short message transfer procedure in the GLR is shown in figure 23.2/3 and 23.2/4.\nFigure 23.2/3 (sheet 1 of 3): Procedure MT_SM_Transfer_GLR\nFigure 23.2/3 (sheet 2 of 3): Procedure MT_SM_Transfer_GLR\nFigure 23.2/3 (sheet 3 of 3): Procedure MT_SM_Transfer_GLR\nFigure 23.2/4 (sheet1 of 2): Macro MT_SM_GLR\nFigure 23.2/4 (sheet2 of 2): Macro MT_SM_GLR",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_23.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.120_23.3",
+      "section_id": "23.3",
+      "section_title": "The Short Message Alert procedure",
+      "content": "The Short Message Alert procedure is used for alerting the Service Centre when the mobile subscriber is active after a short message transfer has failed because the mobile subscriber is not reachable or when the MS has indicated that it has memory capacity to accept a short message.",
+      "chunk_type": "procedure",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.120_23.3.1",
+      "section_id": "23.3.1",
+      "section_title": "Procedures in the GLR",
+      "content": "When the GLR receives MAP_READY_FOR_SM indication from the VLR or the SGSN and it has MNRF or MNRG, it sends MAP_READY_FOR_SM request to the HLR.\nIf the outcome is successful, the MNRF or MNRG is cleared.\nThe short message alert procedure in the GLR is shown in figure 23.3/1.\nFigure 23.3/1 (sheet 1 of 2): Process SM_Alert_GLR\nFigure 23.3/1 (sheet 2 of 2): Process SM_Alert_GLR",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_23.3"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.120_24.1",
+      "section_id": "24.1",
+      "section_title": "General",
+      "content": "The MAP GPRS procedures are used for the Network Requested PDP-Context Activation procedures.\nThe stage 2 specification for Packet Switched Service involving GLR is in 3GPP TS 23.119.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_23.119"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.120_24.2.1",
+      "section_id": "24.2.1",
+      "section_title": "Process in the GLR for Send Routing Information for GPRS",
+      "content": "The MAP process in the GLR to provide routing information for a network-requested PDP context activation is shown in figure 24.2/1. The MAP process invokes a macro not defined in this subclause; the definition of this macro can be found as follows:\n-\tReceive_Open_Ind\t\t\tsee subclause 25.1;\n-\tCheck_Indication\t\t\tsee subclause 25.2.\nSuccessful outcome\nWhen the MAP process receives a MAP_OPEN indication with the application context gprsLocationInfoRetrieval, it checks it by invoking the macro Receive_Open_Ind.\nIf the macro takes the OK exit, the MAP process waits for a service indication.\nIf a MAP_SEND_ROUTING_INFO_FOR_GPRS service indication is received, the GLR sends a Send Routing Info For Gprs request to the GPRS application process in the GLR, and wait for a response. The Send Routing Info For Gprs request contains the parameter received in the MAP_SEND_ROUTING_INFO_FOR_GPRS service indication.\nIf the GPRS application process in the GLR returns a positive response containing the routing information, the MAP process constructs a MAP_SEND_ROUTING_INFO_FOR_GPRS service response containing the routing info, constructs a MAP_CLOSE service request, sends them to the IM-GSN and returns to the idle state.\nNegative response from GLR GPRS application process\nIf the GPRS application process in the GLR returns a negative response, the MAP process constructs a MAP_SEND_ROUTING_INFO_FOR_GPRS service response containing the appropriate error, constructs a MAP_CLOSE service request, sends them to the IM-GSN and returns to the idle state.\nFailure of dialogue opening with the IM-GSN\nIf the macro Receive_Open_Ind takes the Vr exit or the Error exit, the MAP process returns to the idle state.\nIf the MAP provider sends a MAP_P_ABORT while the MAP process is waiting for a service indication, the MAP process returns to the idle state.\nIf the MAP provider sends a MAP_NOTICE while the MAP process is waiting for a service indication, the MAP process sends a MAP_CLOSE request to terminate the dialogue and returns to the idle state.\nFigure 24.2/1: Process Send Routing Info For Gprs_GLR",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "clause_25.1",
+        "clause_25.2",
+        "figure_24.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.120_24.2.2",
+      "section_id": "24.2.2",
+      "section_title": "Process in the IM-GSN for Send Routing Information for GPRS",
+      "content": "Successful Outcome\nWhen the MAP process receives a Send Routing Info For Gprs request from the GPRS application process in the IM-GSN, it:\n-\trequests a dialogue with the GLR whose identity is contained in the Send Routing Info For Gprs request by sending a MAP_OPEN service request;\n-\trequests routeing information using a MAP_SEND_ROUTING_INFO_FOR_GPRS service request, and\n-\tinvokes the macro Receive_Open_Cnf to wait for the response to the dialogue opening request.\nIf the dialogue opening is successful, the MAP process waits for a response from the GLR.\nIf the MAP process receives a MAP_SEND_ROUTING_INFO_FOR_GPRS service confirm from the GLR, the MAP process invokes the macro Check_Confirmation to check the content of the confirmation.\nIf the macro Check_Confirmation takes the OK exit, the MAP process sends a Send Routing Info For Gprs ack containing the routing information received from the GLR to the GPRS application process in the IM-GSN and returns to the idle state.\nFailure of dialogue opening with the GLR\nIf the macro Receive_Open_Cnf takes the Vr exit or the Error exit, the MAP process sends a negative response to the GPRS application process in the IM-GSN and returns to the idle state.\nError in MAP_SEND_ROUTING_INFO_FOR_GPRS confirm\nIf the MAP_SEND_ROUTING_INFO_FOR_GPRS service confirm contains a user error or a provider error, or the macro Check_Confirmation indicates that there is a data error, the MAP process sends a Send Routing Info For Gprs negative response to the GPRS application process in the IM-GSN and returns to the idle state.\nAbort of GLRdialogue\nAfter the dialogue with the GLR has been established, the MAP service provider may abort the dialogue by issuing a MAP_P_ABORT or a MAP_U_ABORT indication. In this case, the MAP process sends a Send Routing Info For Gprs negative response to the GPRS application process in the IM-GSN and returns to the idle state.\nIf the MAP provider indicates a protocol problem by sending a MAP_NOTICE indication, the MAP process closes the dialogue with the GLR, sends a Send Routing Info For Gprs negative response indicating system failure to the GPRS application process in the IM-GSN and returns to the idle state.\nFigure 24.2/2: Process Send_Routing_Info_For_Gprs_IM-GSN",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_24.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.120_24.3.1",
+      "section_id": "24.3.1",
+      "section_title": "Process in the GLR for Failure Report",
+      "content": "The MAP process in the GLR to set the MNRG (Mobile station Not Reachable for GPRS) flag for the subscriber is shown in figure 24.3/1. The MAP process invokes a macro not defined in this subclause; the definition of this macro can be found as follows:\n-\tReceive_Open_Ind\t\t\tsee subclause 25.1;\n-\tCheck Indication\t\t\t\tsee subclause 25.2.\nSuccessful outcome\nWhen the MAP process receives a MAP_OPEN indication with the application context failureReport, it checks it by invoking the macro Receive_Open_Ind.\nIf the macro takes the OK exit, the MAP process waits for a service indication.\nIf a MAP_FAILURE_REPORT service indication is received, the GLR sends a Failure Report request to the GPRS application process in the GLR, and wait for a response. The Failure Report request contains the parameter received in the MAP_FAILURE_REPORT service indication.\nIf a positive response is received, the MAP process constructs a MAP_FAILURE_REPORT service response, constructs a MAP_CLOSE service request, sends them to the IM-GSN and returns to the idle state.\nNegative response from GLR GPRS application process\nIf the GPRS application process in the GLR returns a negative response, the MAP process constructs a MAP_FAILURE_REPORT service response containing the appropriate error, constructs a MAP_CLOSE service request, sends them to the IM-GSN and returns to the idle state.\nFailure of dialogue opening with the IM-GSN\nIf the macro Receive_Open_Ind takes the Vr exit or the Error exit, the MAP process returns to the idle state.\nIf the MAP provider sends a MAP_P_ABORT while the MAP process is waiting for a service indication, the MAP process returns to the idle state.\nIf the MAP provider sends a MAP_NOTICE while the MAP process is waiting for a service indication, the MAP process sends a MAP_CLOSE request to terminate the dialogue and returns to the idle state.\nFigure 24.3/1: Process Failure_Report_GLR",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "clause_25.1",
+        "clause_25.2",
+        "figure_24.3"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.120_24.3.2",
+      "section_id": "24.3.2",
+      "section_title": "Process in the IM-GSN for Failure Report",
+      "content": "Successful Outcome\nWhen the MAP process receives a Failure Report request from the GPRS application process in the IM-GSN, it requests a dialogue with the GLR whose identity is contained in the Failure Report request by sending a MAP_OPEN service request, sending failure information using a MAP_FAILURE_REPORT service request and invokes the macro Receive_Open_Cnf to wait for the response to the dialogue opening request. If the dialogue opening is successful, the MAP process waits for a response from the GLR.\nIf the MAP process receives a MAP_FAILURE_REPORT service confirm from the GLR, the MAP process invokes the macro Check_Confirmation to check the content of the confirmation.\nIf the macro Check_Confirmation takes the OK exit, the MAP process sends a Failure Report ack containing the information received from the GLR to the GPRS application process in the IM-GSN and returns to the idle state.\nFailure of dialogue opening with the GLR\nIf the macro Receive_Open_Cnf takes the Vr exit or the Error exit, the MAP process sends a negative response to the GPRS application process in the IM-GSN and returns to the idle state.\nError in MAP_FAILURE_REPORT confirm\nIf the MAP_FAILURE_REPORT service confirm contains a user error or a provider error, or the macro Check_Confirmation indicates that there is a data error, the MAP process sends a Failure Report negative response to the GPRS application process in the IM-GSN and returns to the idle state.\nAbort of GLR dialogue\nAfter the dialogue with the GLR has been established, the MAP service provider may abort the dialogue by issuing a MAP_P_ABORT or a MAP_U_ABORT indication. In this case, the MAP process sends a Failure Report negative response to the GPRS application process in the IM-GSN and returns to the idle state.\nIf the MAP provider indicates a protocol problem by sending a MAP_NOTICE indication, the MAP process closes the dialogue with the GLR, sends a Failure Report negative response indicating system failure to the GPRS application process in the IM-GSN and returns to the idle state.\nFigure 24.3/2: Process Failure_Report_IM-GSN",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_24.3"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.120_25.1",
+      "section_id": "25.1",
+      "section_title": "MAP open macros",
+      "content": "This subclause refers 3GPP TS 29.002.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.002"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.120_25.2",
+      "section_id": "25.2",
+      "section_title": "Macros to check the content of indication and confirmation primitives",
+      "content": "This subclause refers 3GPP TS 29.002.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.002"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.120_25.3.1",
+      "section_id": "25.3.1",
+      "section_title": "Process Obtain_Authentication_Sets_GLR",
+      "content": "This process is initiated by the GLR to fetch authentication vectors from a subscriber's HLR to the VLR. The process is described in figure 25.3/1.\nFigure 25.3.1/1 (sheet 1 of 2): Process Obtain_Authentication_Sets_GLR\nFigure 25.3.1/2 (sheet 2 of 2): Process Obtain_Authentication_Sets_GLR",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_25.3",
+        "figure_25.3.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.120_25.3.2",
+      "section_id": "25.3.2",
+      "section_title": "Process Authentication_Failure_Report_GLR",
+      "content": "This process is initiated by the GLR to notify a subscriber's HLR about the occurrence of an authentication failure in the VLR or SGSN. The process is described in figure 25.3/2.\nFigure 25.3.2/1 (sheet 1 of 2): Process Authentication_Failure_Report_GLR\nFigure 25.3.2/2 (sheet 2 of 2): Process Authentication_ Failure_Report _GLR",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_25.3",
+        "figure_25.3.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.120_25.4.1",
+      "section_id": "25.4.1",
+      "section_title": "Subscriber_Present_GLR_AS_VLR process",
+      "content": "The Subscriber_Present_GLR_AS_VLR process is invoked by the GLR, when GLR receives Update Location from VLR and the MNRF flag is set. The general description of the short message alert procedures is in the subclause 23.3.\nThe GLR sends the MAP_READY_FOR_SM request to the HLR and waits for the HLR to answer. When receiving the answer, the GLR will act as follows:\n-\tthe MNRF flag is cleared if the procedure is successful;\n-\tthe MNRF flag is not cleared if the procedure is not successful.\nThe Subscriber_Present_GLR_AS_VLR process is shown in the figure 25.4/1.\nFigure 25.4/1: Process Subscriber_Present_GLR_AS_VLR",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "clause_23.3",
+        "figure_25.4"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.120_25.4.2",
+      "section_id": "25.4.2",
+      "section_title": "The Mobile Subscriber is present",
+      "content": "When GLR receives Update GPRS Location from SGSN, while the MS not reachable for GPRS (MNRG) flag is set, the GLR will send the MAP_READY_FOR_SM request towards the HLR. The Alert Reason is set to indicate that the mobile subscriber is present for GPRS.\nWhen receiving the answer, the GLR will act as follows:\n-\tMNRG is cleared if the procedure is successful.\n-\tMNRG is not cleared if the procedure is not successful.\nThe Subscriber_Present_GLR_AS_SGSN process is shown in the figure 25.4/2.\nFigure 25.4/2: Process Subscriber_Present_GLR_AS_SGSN\nAnnex A (informative):Change history\nChange history\nDate\nMeeting\nTDoc\nCR\nRev\nCat\nSubject/Comment\nNew version\nCN#07\nApproved at TSGN#07\n3.0.0\nCN#09\n001\n1\nChanges to support Authentication Failure Report for GLR\n3.1.0\nCN#09\n002\nChanges to support secure transport MAP for GLR\n4.0.0\nCN#16\nRel-5 created after CN#16\n5.0.0\nCN#26\nRel-6 created after CN#26\n6.0.0\nCT#36\nUpgraded unchanged from Rel-6\n7.0.0\nCT#42\nUpgraded unchanged from Rel-7\n8.0.0\n2009-12\nUpdate to Rel-9 version (MCC)\n9.0.0\n2011-03\nUpdate to Rel-10 version (MCC)\n10.0.0\n2012-09\nUpdate to Rel-11 version (MCC)\n11.0.0\n2014-09\nUpdate to Rel-12 version (MCC)\n12.0.0\n2015-12\nUpdate to Rel-13 version (MCC)\n13.0.0\n2017-03\nUpdate to Rel-14 version (MCC)\n14.0.0\n2018-06\nUpdate to Rel-15 version (MCC)\n15.0.0\n2020-07\nUpdate to Rel-16 version (MCC)\n16.0.0\n2022-03\nSA#95e\n-\n-\n-\n-\nUpdate to Rel-17 version (MCC)\n17.0.0\n2024-03\n-\n-\n-\n-\n-\nUpdate to Rel-18 version (MCC)\n18.0.0",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_25.4"
+      ]
+    }
+  ]
+}
