@@ -1,0 +1,877 @@
+{
+  "metadata": {
+    "specification_id": "ts_23.093",
+    "version": "18.0.0",
+    "title": "3GPP TS 23.093",
+    "file_path": "/content/drive/MyDrive/RAG_thesis/data/23_series/23093-i00/23093-i00.docx"
+  },
+  "export_info": {
+    "export_date": "2025-07-26T09:36:13.420766",
+    "total_chunks": 85
+  },
+  "chunks": [
+    {
+      "chunk_id": "ts_23.093_1",
+      "section_id": "1",
+      "section_title": "Scope",
+      "content": "This Technical Specification gives the stage 2 description of the Completion of Calls to Busy Subscriber (CCBS) supplementary service.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.093_2",
+      "section_id": "2",
+      "section_title": "Normative references",
+      "content": "The following documents contain provisions which, through reference in this text, constitute provisions of the present document.\n-\tReferences are either specific (identified by date of publication, edition number, version number, etc.) or non‑specific.\n-\tFor a specific reference, subsequent revisions do not apply.\n-\tFor a non-specific reference, the latest version applies.  In the case of a reference to a 3GPP document (including a GSM document), a non-specific reference implicitly refers to the latest version of that document in the same Release as the present document.\n[1]\t3GPP TR 21.905: \"3G Vocabulary\".\n[2]\t3GPP TS 22.030: \"Man Machine Interface (MMI) of the Mobile Station (MS)\".\n[3]\t3GPP TS 22.093: \"Completion of calls to busy subscriber (CCBS) supplementary services - Stage 1\".\n[4]\t3GPP TS 23.011: \"Technical realization of supplementary services - General Aspects\".\n[5]\t3GPP TS 23.018: \"Basic Call Handling - Technical Realization\".\n[6]\t3GPP TS 23.078: \"Customised Applications for Mobile network Enhanced Logic (CAMEL) - Stage 2\".\n[7]\t3GPP TS 23.079: \"Support for Optimal Routeing (SOR) - Technical Realization\".\n[8]\t3GPP TS 24.008: \"Mobile radio interface layer 3 specification; Core Network Protocols Stage3\".\n[9]\t3GPP TS 29.002: \"Mobile Application Part (MAP) specification\".\n[10]\tETSI ETS 300 358: \"ISDN Completion of Calls to Busy Subscriber (CCBS) supplementary service; Functional capabilities and information flows\".",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905",
+        "ts_22.030",
+        "ts_22.093",
+        "ts_23.011",
+        "ts_23.018",
+        "ts_23.078",
+        "ts_23.079",
+        "ts_24.008",
+        "ts_29.002"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.093_3.1",
+      "section_id": "3.1",
+      "section_title": "Definitions",
+      "content": "Destination B: The entity addressed in the original call set up, which is busy when first called by subscriber A. Similarly, MSC B, VLR B and HLR B are the network elements pertaining to Destination B when Destination B is a GSM mobile.\nOriginating queue: The queue that manages CCBS requests for a subscriber, when that subscriber is the originator of those CCBS Requests.\nSSAP: Supplementary Service Application Part. SSAP is the protocol used for CCBS procedures on the interface between the originating and destination network. Communication across this interface is performed using SCCP Connectionless Signalling (Refer to ETS 300 358).\nSubscriber A: The user of MS A, requesting CCBS. Similarly, MSC A, VLR A and HLR A are the network elements pertaining to Subscriber A.\nSubscriber B: The user of destination B, who may not necessarily subscribe to CCBS.\nSubscriber C: The user of MS C, who is the forwarded-to-party when call forwarding applies. Similarly, MSC C, VLR C and HLR C are the network elements pertaining to Subscriber C.\nTarget queue: The queue that manages CCBS requests for a subscriber, when that subscriber is the target of CCBS Requests.\nTimers: For each of the service timers, the location, start and stop conditions and action on expiry are given - Refer to clause 5.1.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_5.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.093_3.2",
+      "section_id": "3.2",
+      "section_title": "Abbreviations",
+      "content": "Abbreviations used in this specification are listed in 3GPP TR 21.905.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.093_4.1",
+      "section_id": "4.1",
+      "section_title": "Overview",
+      "content": "The CCBS service allows a calling subscriber A, encountering a NDUB destination B, to be notified when destination B becomes idle and to have the network automatically generate a CCBS call to destination B, if subscriber A desires. Subscriber A may make distinct CCBS requests for calls to the same destination B for different basic services.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.093_4.2",
+      "section_id": "4.2",
+      "section_title": "Architecture",
+      "content": "Figure 4.2.1 is an architectural overview of the CCBS service when interworking between the originating and the destination networks involved. The originating network may be a mobile network or a fixed network and the destination network may also be a mobile network or a fixed network.\nThe call related signalling for CCBS is performed on ISUP links on the following interfaces:\nVMSC A - GMSC B;\nVMSC A - DLE;\nOLE - GMSC B;\nwhereas the specific CCBS procedures are performed via the SSAP protocol, which is signalled on the following interfaces:\nHLR A - HLR B;\nHLR A - DLE;\nOLE - HLR B.\nFigure 4.2.1: Architectural overview showing common point of interworking",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_4.2.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.093_4.2.1",
+      "section_id": "4.2.1",
+      "section_title": "Architectural overview during roaming",
+      "content": "Either the originating subscriber A or the destination subscriber B or both may be located outside of their HPLMNs during the CCBS service. When all the involved networks support CCBS service the normal handling described in this specification applies. When some network entities do not support CCBS service refer to clause 10 where the exceptions are described in more detail.\nThe signalling between different networks described in the clause 4.2 applies also during roaming. HLR A and HLR B belongs always to the HPLMN of the subscriber whereas VLR A and MSC A and GMSC, VLR B and MSC B respectively may belong to a HPLMN or VPLMN. Refer to TS 23.018 where call handling in the mobile network is described in more detail.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_10",
+        "clause_4.2",
+        "ts_23.018"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.093_5",
+      "section_id": "5",
+      "section_title": "Handling of completion of calls to busy subscriber",
+      "content": "Registration and erasure of CCBS are not applicable. Activation and Invocation of CCBS are intrinsic parts of the operation of the service, and are described in this section.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.093_5.1",
+      "section_id": "5.1",
+      "section_title": "CCBS Timers",
+      "content": "The timers used to control the operation of CCBS can be considered to consist of two groups i.e. the timers which operate on a per subscriber basis (see table 1) and the service duration timers (T3 and T7) which operate on a per CCBS Request basis (see table 2).\nTable 1: CCBS Service Timers\nTimer\nName\nValue\nRun At\nStarted\nStopped\nExpiry\nT1\nRetention\n>15s\nMSC A\nBusy (CCBS Possible) sent to MS A\nCCBS Request received from MS A\nDiscard retained information\nT4\nRecall\n20-30s\nMSC A\nCCBS Recall sent to MS A and MS A is idle\nSubscriber A initiates CCBS setup or rejects CCBS Recall\nCancel request\nT8\nDestination idle guard\n0-15s\nHLR B\nEvent Report received from VLR B indicating destination B is idle\nEvent Report received from VLR B indicating destination B is no longer idle\nInform originating network that Destination B is free\nT9\nRecall B\n40-55s\nHLR B\nRemote User Free sent to the A-side\nRequest cancelled, completed or suspended\nCancel request\nT10\nCCBS notification\n20-30s\nMSC A\nCCBS Recall sent to MS A and MS A is not idle\nSubscriber A initiates CCBS setup, rejects CCBS Recall or requests suspension\nSuspend request\nT11\nCCBS resume\n20-25s\nHLR A\nHLR A receives a resume request and there are more than one suspended request in subscriber A's queue\nRemote User Free received from destination network\nResume next suspended request in queue\nT12\nCCBS Call Guard\n20-30s\nHLRA\nHLRA receives a CCBS RUF Ack and starts to wait CCBS Call Report\nCCBS Call Report received\nCancel request\nTable 2: Service Duration Timers\nTimer\nName\nValue\nRun At\nStarted\nStopped\nExpiry\nT3\nOriginating service duration\n15-45m\nHLR A\nAcknowledgement to CCBS Request received from destination network\nRequest cancelled or completed\nCancel request\nT7\nTerminating service duration\n>45m\nHLR B\nHLR B acknowledges successful activation of a CCBS Request\nRequest cancelled or completed\nCancel request",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_1",
+        "table_2"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.093_5.2",
+      "section_id": "5.2",
+      "section_title": "Information flows",
+      "content": "Figures 5.2.1 and 5.2.2 show the flow of information between network elements for a mobile to mobile call for the following:\nFigure 5.2.1: Successful CCBS request, destination B busy when request made, subscriber A free when destination B becomes free.\nFigure 5.2.2: Subscriber A is not idle when destination B becomes free.\nFigures 5.2.3 and 5.2.4 show the flow of information between network elements for a mobile to fixed call for the same situations described in figures 5.2.1 and 5.2.2 respectively.\nEach information flow diagram has been divided where appropriate into four distinct phases of operation. These are as follows:\n(1)\tPre-conditions (Initial Call encountering NDUB and CCBS possible in the destination network). The detailed description of the basic call handling can be found in TS 23.018;\n(2)\tActivation;\n(3)\tInvocation;\n(4)\tOperation (CCBS Call Set-up).\nFigure 5.2.1: Successful CCBS request. Destination B busy when request activated, subscriber A free when destination B becomes free (mobile-to-mobile)\nFigure 5.2.2: Subscriber A not idle when destination B becomes free (mobile-to-mobile);Processing of a single request\nFigure 5.2.3: Successful CCBS request. Destination B busy when request activated, subscriber A free when destination B becomes free (mobile-to-fixed)\nFigure 5.2.4: Subscriber A not idle when destination B becomes free (mobile-to-fixed)",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_5.2.1",
+        "figure_5.2.2",
+        "figure_5.2.3",
+        "figure_5.2.4",
+        "ts_23.018"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.093_5.3",
+      "section_id": "5.3",
+      "section_title": "Activation",
+      "content": "Activation of a CCBS Request is carried out by subscriber A. VLR A is considered to be transparent during the activation operation.\nThe information flows shown in figures 5.2.1 to 5.2.4 inclusive show the information flow for the activation process.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.093_5.4",
+      "section_id": "5.4",
+      "section_title": "Deactivation",
+      "content": "Subscriber A may deactivate CCBS in any of the following ways:\n-\tDeactivate all outstanding CCBS requests; or\n-\tDeactivate a specific CCBS Request.\nThe different deactivation operations are identified by different MMI commands as specified in TS 22.030.\nDeactivation of CCBS requests by subscriber A shall be performed at HLR A.\nTo deactivate all outstanding CCBS requests, the Deactivate CCBS operation request shall contain the SS-Code only.\nTo deactivate a specific CCBS request, the Deactivate CCBS operation request shall contain the following parameters:\n-\tSS-Code;\n-\tCCBS Index.\nOn receipt of the deactivation request, HLR A shall cancel the CCBS request, i.e. remove all record of a CCBS request from the subscriber A's originating CCBS queue and instruct the destination B network to cancel the corresponding CCBS request in the destination CCBS queue of subscriber B. HLR A shall return a result indicating whether the deactivation attempt was successful or not.\nMS A\nMSC A\nVLR A\nHLR A\nDestination B Network\nDeactivate CCBS\n------------------->\nDeactivate CCBS\n--------------------->\nDeactivate CCBS\n------------------->\nCCBS Cancel\n------------------->\n(note)\nAcknowledge\n<-------------------\nAcknowledge\n<--------------------\nAcknowledge\n<---------------------\nFigure 5.4.1: Successful deactivation of all CCBS Requests/a specific CCBS request\nNOTE:\tCCBS Cancel shall be sent for each CCBS Request that is cancelled in HLR A.\nNOTE:\tIn the case where a subscriber attempts to perform a deactivation operation but the subscriber is not provisioned with the CCBS service then, the subscriber shall receive an indication that the CCBS service is not provisioned for him.",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_5.4.1",
+        "ts_22.030"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.093_5.5",
+      "section_id": "5.5",
+      "section_title": "Interrogation",
+      "content": "Interrogation of CCBS shall be carried by request to HLR A. HLR A then returns the required information or error to MS A, see figure 5.5.1. MSC A and VLR A are considered to be transparent during the interrogation operation.\nMS A\nMSC A\nVLR A\nHLR A\nInterrogate CCBS\n------------------------------>\nInterrogate CCBS\n----------------------------->\nInterrogate CCBS\n------------------------------->\nAcknowledge\n<-------------------------------\nAcknowledge\n<-----------------------------\nAcknowledge\n<--------------------------------\nFigure 5.5.1: General interrogation of completion of calls to busy subscriber\nThe Interrogate CCBS operation request shall contain the SS-Code only.\nIn response to a general interrogation, MS A shall be given the AddressOfB, BasicServiceCode and CCBS index for each CCBS Request in the queue. The entries shall be ordered in the chronological order, the oldest entry shall be presented first.\nIf there are no CCBS Requests in the queue, MS A shall be given an indication that no entries exist in the queue.\nNOTE:\tIn the case where a subscriber attempts to perform an interrogation operation but the subscriber is not provisioned with the CCBS service then, the subscriber shall receive an indication that the CCBS service is not provisioned for him.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "figure_5.5.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.093_5.6",
+      "section_id": "5.6",
+      "section_title": "Messages and their contents",
+      "content": "This clause contains the detailed description of the information flows used by CCBS.\nEach Information Element, IE is marked as (M) Mandatory, (C) Conditional or (O) Optional. A mandatory information element shall always be present. A conditional information shall be present if certain conditions are fulfilled; if those conditions are not fulfilled it shall be absent. An optional information element may be present or absent, at the discretion of the application at the sending entity. This categorisation is a functional classification, i.e., stage 2 information and not a stage 3 classifications to be used for the protocol.\nThe stage 2 and stage 3 message and information element names are not necessarily identical.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.093_5.6.1",
+      "section_id": "5.6.1",
+      "section_title": "Information elements used in the messages",
+      "content": "In this clause constructed information elements are described.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.093_5.6.1.1",
+      "section_id": "5.6.1.1",
+      "section_title": "Call Information information element",
+      "content": "Call Information information element is formed in the MSC A during the CCBS activation. This information element contains unmodified copy of the SETUP message received from the MS A. If CCBS Request is activated, the Call Information is stored in the HLR A. During CCBS Recall Call Information is relayed back to the MS. Refer to SETUP Container information element defined in TS 24.008.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_24.008"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.093_5.6.1.2",
+      "section_id": "5.6.1.2",
+      "section_title": "AddressOfB information element",
+      "content": "AddressOfB information element is formed in the MSC A during the CCBS activation. It contains the number of the destination B dialled by the A-user.\nTable 5.6.1.2: Structure of AddressOfB information element\nParent Information Element\nChild Information element name\nInformation element Required\nInformation element description\nAddressOfB\nB subscriber number,\nB subscriber subaddress\nM\nC\nThe number of the destination B dialled by the A-user;\nShall be present if it was dialled by the A-user;\notherwise shall be absent",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.6.1.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.093_5.6.1.3",
+      "section_id": "5.6.1.3",
+      "section_title": "CCBS Description information element",
+      "content": "CCBS Description information element is formed in the HLR A during the CCBS activation.\nTable 5.6.1.3: Structure of CCBS Description information element\nParent Information Element\nChild Information element name\nInformation element Required\nInformation element description\nCCBS Description\nCCBS Index,\nAddressOfB,\nBasicServiceGroup\nM\nM\nM\nCCBS Index (range 1 - 5) identifies the request in the network.\nThe structure of the AddressOfB is defined in table 5.6.1.2;\nBasicServiceGroup related to the original call.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.6.1.3",
+        "table_5.6.1.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.093_5.6.2",
+      "section_id": "5.6.2",
+      "section_title": "Messages between MS and MSC",
+      "content": "These messages are used in the originating network.\nTable 5.6.2: Messages between MS and MSC\nMessage\nMessage sender\nInformation element name\nInformation element Required\nInformation element description\nCCBS POSSIBLE\nMSC\n-\n-\nThis message contains no information elements.\nCCBS REQUEST\nMS\n-\n-\nThis message contains no information elements.\nCCBS REQUEST ACK\nMSC\nCCBS Index,\nAddressOfB,\nBasicServiceGroup\nM\nO\nO\nCCBS Index (range 1 - 5) identifies the request in the network.\nThe structure of the AddressOfB is defined in table 5.6.1.2\nBasicServiceGroup related to the original call.\nCCBS REQUEST ERROR\nMSC\nError\nM\nThe information element can take the following values:\n- Short term denial\n- Long term denial\nDEACTIVATE CCBS\nMS\nCCBS Index\nC\nIf CCBS Index is present the corresponding request shall be deleted, otherwise all requests shall be deleted.\nDEACTIVATE CCBS ACK\nMSC\nDeactivateResult\nM\nThe information element can take the following values:\n- Success\n- Not Provisioned\nINTERROGATE CCBS\nMS\n-\n-\nThis message contains no information elements.\nINTERROGATE CCBS ACK\nMSC\nList(1-5) of CCBS Description;No Entries;\nNot Provisioned\nC\nC\nC\nThe list shall contain one entry for each CCBS Request for which the HLR stores data or;\nthe queue is empty or;\nCCBS is not provisioned for the subscriber\nExactly one of these information elements shall be present. The structure of the CCBS Description is defined in table 5.6.1.3.\nCCBS CALL INFO\nMSC\nCall Information\nM\nThe content of the Call Information is defined in the clause 5.6.1.1.\nCCBS CALL INFO ACK\nMS\nGSM BC\nM\nGSM BC indicates the BC the MS prefers to use. The network may allocate a traffic channel accordingly.\nCCBS CALL INFO ERROR\nMS\nError\nM\nThe information element can take the following values:\n- Incompatible Terminal\nCCBS RECALL\nMSC\nCCBS Description,\nAlerting Pattern\nM,\nC\nThe structure of the CCBS Description is defined in table 5.6.1.3.\nAlerting Pattern shall be present if it was received in the CCBS RUF message\nCCBS SETUP\nMS\n-\n-\nThe content of the message is the same as the MO Set-up message has. Refer to TS 24.008.\nCCBS RECALL REJECT\nMS\nCause\nM\nThe MS shall indicate the reason of CCBS Recall rejection.\nThe information element can take the following values:\n- Recall Rejected by the user\n- UDUB\n- ACMmax exceeded",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_5.6.1.1",
+        "table_5.6.2",
+        "table_5.6.1.2",
+        "table_5.6.1.3",
+        "ts_24.008"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.093_5.6.3.1",
+      "section_id": "5.6.3.1",
+      "section_title": "Messages between MSC and VLR in the originating network",
+      "content": "These messages are used in the originating network. Some messages are used also in the terminating network. They are marked accordingly.\nTable 5.6.3.1: Messages between MSC and VLR in the originating network\nMessage\nMessage sender\nInformation element name\nInformation element Required\nInformation element description\nCALL END\nMSC\n-\n-\nThis message contains no information elements.\nThe message is used also in the terminating network.\nCCBS CALL DELIVERY\nMSC\nOutcome\nM\nThe information element indicates whether CCBS Call was successful or failure. It can take the following values:\n- Success;\n- Failure;\n- NDUB;\n- Busy;\n- Absent Subscriber..\nThe message is used also in the terminating network.\nCCBS REQUEST\nMSC\n-\n-\nThis message contains no information elements\nCCBS REQUEST ACK\nVLR\nCCBS Index,\nAddressOfB,\nBasicServiceGroup\nM\nO\nO\nCCBS Index (range 1 - 5) identifies the request in the network.\nThe structure of the AddressOfB is defined in table 5.6.1.2\nBasicServiceGroup related to the original call.\nCCBS REQUEST ERROR\nVLR\nError\nM\nThe information element can take the following values:\n- Short term denial;\n- Long term denial.\nCOMPLETE RECALL\nVLR\nCall Information\nM\nThe content of the Call Information is defined in the clause 5.6.1.1.\nCOMPLETE RECALL ACK\nMSC\n-\n-\nThis message contains no information elements\nCOMPLETE RECALL NEGATIVE RESPONSE\nMSC\nNegative Response\nM\nThe negative information element can take the following values:\n- Absent Subscriber;\n- Incompatible Terminal;\n- Radio Congestion.\nDEACTIVATE CCBS\nMSC\nCCBS Index\nC\nIf CCBS Index is present the corresponding request shall be deleted, otherwise all requests shall be deleted.\nDEACTIVATE CCBS ACK\nVLR\nDeactivateResult\nM\nThe information element can take the following values:\n- Success;\n- Not Provisioned.\nINTERROGATE CCBS\nMSC\n-\n-\nThis message contains no information elements\nTable 5.6.3.1: Messages between MSC and VLR in the originating network, cont.\nMessage\nMessage sender\nInformation element name\nInformation element Required\nInformation element description\nINTERROGATE CCBS ACK\nVLR\nList(1-5) of CCBS Description;No Entries;\nNot Provisioned\nC\nC\nC\nThe list shall contain one entry for each CCBS Request for which the HLR stores data; or\nthe queue is empty; or\nCCBS is not provisioned for the subscriber.\nExactly one of these information elements shall be present. The structure of the CCBS Description is defined in table 5.6.1.3.\nNOT IDLE\nMSC\n-\n-\nThis message contains no information elements. The message is used also in the terminating network.\nPAGE MS FOR RECALL\nVLR\nLocation area ID,\nTMSI\nM\nO\nLocation area in which the MS is to be paged\nTMSI to be broadcast to identify the MS\nPAGE MS FOR RECALL NEGATIVE RESPONSE\nMSC\nNegative Response\nM\nThe negative information element can take the following values:\n- Unknown LAI;\n- Absent Subscriber;\n- Busy Subscriber.\nPROCESS ACCESS REQUEST\nMSC\n-\n-\nRefer to TS 23.018\nRADIO FAILURE\nMSC\n-\n-\nThis message contains no information elements.\nThe message is used also in the terminating network.\nRECALL\nVLR\nCCBS Description\nAlerting Pattern\nM\nC\nThe structure of the CCBS Description is defined in table 5.6.1.3.\nAlerting Pattern shall be present if it was received in the CCBS RUF message\nRECALL ACK\nMSC\nCause\nM\nThe information element can take the following values:\n- Accept;\n- Rejected;\n- T4 Expiry;\n- T10 Expiry;\n- Radio Failure;\n- UDUB, busy;\n- UDUB, idle;\n- Incompatible terminal.\nSEARCH FOR MS MSC FOR RECALL\nVLR\n-\n-\nThis message contains no information elements\nSEARCH FOR MS MSC FOR RECALL ACK\nMSC\n-\n-\nThis message contains no information elements\nSEARCH FOR MS MSC FOR RECALL NEGATIVE RESPONSE\nMSC\nNegative Response\nM\nThe negative information element can take the following values:\n- Absent Subscriber;\n- Busy Subscriber;\nSEND INFO FOR OUTGOING CALL\nMSC\n-\n-\nRefer to TS 23.018\nSTART STATUS ENQUIRY\nVLR\n-\n-\nThis message contains no information elements.\nThe message is used also in the terminating network.\nSTATUS ENQUIRY RESULT\nMSC\nStatus\nM\nThe information element can take the following vales:\n- CCBS Idle;\n- CCBS Not Idle.\nThe message is used also in the terminating network.\nSTOP STATUS ENQUIRY\nVLR\n-\n-\nThis message contains no information elements.\nThe message is used also in the terminating network.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_5.6.1.1",
+        "table_5.6.3.1",
+        "table_5.6.1.2",
+        "table_5.6.1.3",
+        "ts_23.018"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.093_5.6.3.2",
+      "section_id": "5.6.3.2",
+      "section_title": "Messages between MSC and VLR in the destination network",
+      "content": "These messages are used in the destination network. Some messages are used also in the originating network. They are marked accordingly.\nTable 5.6.3.2: Messages between MSC and VLR in the destination network\nMessage\nMessage sender\nInformation element name\nInformation element Required\nInformation element description\nCALL END\nMSC\n-\n-\nRefer to table 5.6.3.1\nCCBS CALL DELIVERY\nMSC\n-\n-\nRefer to table 5.6.3.1\nSTART STATUS ENQUIRY\nVLR\n-\n-\nRefer to table 5.6.3.1\nSTATUS ENQUIRY RESULT\nMSC\n-\n-\nRefer to table 5.6.3.1\nSTOP STATUS ENQUIRY\nVLR\n-\n-\nRefer to table 5.6.3.1\nRADIO FAILURE\nMSC\n-\n-\nRefer to table 5.6.3.1\nNOT IDLE\nMSC\n-\n-\nRefer to table 5.6.3.1\nCOMPLETE CALL\nVLR\n-\nIndicator\n-\nC\nRefer to TS 23.018\nIn addition:\nThe information element shall be present if the call is CCBS Call; otherwise it shall be absent.\nPROCESS CALL WAITING\nVLR\n-\nIndicator\n-\nC\nRefer to TS 23.018\nIn addition:\nThe information element shall be present if the call is CCBS Call; otherwise it shall be absent.\nSEND INFO FOR\nINCOMING CALL ACK\nVLR\n-\nCCBS Target\n-\nC\nRefer to TS 23.018\nIn addition:\nThe information element shall be present if the B subscriber can be target of CCBS request; otherwise it shall be absent.\nSEND INFO FOR\nINCOMING CALL NEGATIVE RESPONSE\nVLR\n-\nCCBS Target\n-\nC\nRefer to TS 23.018\nIn addition:\nThe information element shall be present if the B subscriber can be target of CCBS request; otherwise it shall be absent.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.6.3.2",
+        "table_5.6.3.1",
+        "ts_23.018"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.093_5.6.4.1",
+      "section_id": "5.6.4.1",
+      "section_title": "Messages between VLR and HLR in the originating network",
+      "content": "These messages are used between VLR - HLR in the originating network. Some messages are used also in the destination network. They are marked accordingly.\nTable 5.6.4.1: Messages between VLR and HLR in the originating network\nMessage\nMessage sender\nInformation element name\nInformation element Required\nInformation element description\nCCBS REQUEST\nVLR\nCall Information\nISDN BC\nISDN HLC\nISDN LLC\nPresentation Indicator\nTranslated B No\nCAMEL Invoked\nBasic Service Group\nAddressOfB\nM\nM\nC\nC\nC\nM\nC\nM\nM\nThe content of the Call Information is defined in the clause 5.6.1.1.\nISDN BC derived for the initial call.\nShall be present if ISDN HLC was present in the initial call; otherwise shall be absent.\nShall be present if ISDN LLC was present in the initial call; otherwise shall be absent.\nShall be present if CLIR was invoked for the initial call;\notherwise shall be absent.\nThe number used for routing purposes stored in international E.164 format.\nShall be present if MO CAMEL was invoked in the initial call; otherwise shall be absent.\nGSM Elementary Basic Service Group which corresponds to the basic service used for initial call set-up\nThe structure of the AddressOfB is defined in table 5.6.1.2\nCCBS REQUEST ACK\nHLR\nCCBS Index\nAddressOfB\nBasic Service Group\nM\nO\nO\nCCBS Index (range 1 - 5) identifies the request in the network.\nThe structure of the AddressOfB is defined in table 5.6.1.2\nBasicServiceGroup related to the original call.\nCCBS REQUEST ERROR\nHLR\nError\nM\nThe information element can take the following values:\n- Short term denial;\n- Long term denial;\nCCBS RUF\nHLR\nCall Information\nCCBS Description\nTranslated B No\nReplace B No\nAlerting Pattern\nM\nM\nM\nC\nC\nThe content of the Call Information is defined in the clause 5.6.1.1.\nThe content of the CCBS Description is defined in table 5.6.1.3.\nThe number used for routing purposes in international E.164 format.\nThe information element shall be present if the HLR instructs the MSC to replace the destination B number with the translated B number; otherwise it shall be absent.\nAlerting Pattern shall be present if the HLR has determined an alerting category or an alerting level for the CCBS recall\nCCBS RUF ACK\nVLR\nResult\nM\nThe information element indicates whether CCBS Recall was accepted. It can take the following values:\n- RUF Accepted;\n- RUF Rejected;\n- T4 Expiry;\n- T10 Expiry;\n- UDUB, idle;\n- UDUB, busy.\nCCBS RUF ERROR\nVLR\nError\nM\nThe information element indicates the reason why CCBS Recall could not be successfully delivered. It can take the following values:\n- IMSI Detached;\n- Restricted Area;\n- No Page Response;\n- Incompatible Terminal;\n- Absent Subscriber;\n- Radio Failure;\n- Ccomp Busy;\n- System Failure.\nTable 5.6.4.1: Messages between VLR and HLR in the originating network, cont.\nMessage\nMessage sender\nInformation element name\nInformation element Required\nInformation element description\nEVENT REPORT\nVLR\nStatus\nM\nThe information element contains subscriber status. It can take the following values:\n- CCBS Idle;\n- CCBS Not Idle;\n- CCBS Not Reachable.\nThe message is used also in the terminating network.\nEVENT REPORT ACK\nHLR\n-\n-\nThis message contains no information elements\nThe message is used also in the terminating network.\nEVENT_REPORT_\nERROR\nHLR\nError\nM\nThe information element contains no application specific error values.\nThe message is used also in the terminating network.\nSTART REPORTING\nHLR\n-\n-\nThis message contains no information elements.\nThe message is used also in the terminating network.\nSTART REPORTING ACK\nVLR\nStatus\nM\nThe information element contains subscriber status. It can take the following values:\n- CCBS Idle;\n- CCBS Not Idle;\n- CCBS Not Reachable.\nThe message is used also in the terminating network.\nSTART REPORTING ERROR\nVLR\nError\nM\nThe information element contains no application specific error values.\nThe message is used also in the terminating network.\nCONTINUE MONITORING\nHLR\n-\n-\nThis message contains no information elements.\nThe message is used also in the terminating network.\nSTOP REPORTING\nHLR\n-\n-\nThis message contains no information elements.\nThe message is used also in the terminating network.\nCCBS CALL REPORT\nVLR\nMode\nOutcome\nStatus\nM\nM\nC\nThe information element indicates the reporting mode. It can take the following values :\n- A;\n- B.\nThe information element indicates the outcome of the CCBS Call. It can take the following values:\n- Success;\n- Busy (only for mode A);\n- NDUB (only for mode B)\n- Failure.\nThe information element contains subscriber status. It is set only for mode B. It can take the following values:\n- CCBS Idle;\n- CCBS Not Idle;\n- CCBS Not Reachable.\nThe message is used also in the terminating network.\nCCBS CALL REPORT ACK\nHLR\n-\n-\nThis message contains no information elements.\nThe message is used also in the terminating network.\nCCBS CALL REPORT ERROR\nHLR\nError\nM\nThe information element contains no application specific error values.\nThe message is used also in the terminating network.\nDEACTIVATE CCBS\nVLR\nCCBS Index\nC\nIf CCBS Index is present the corresponding request shall be deleted, otherwise all requests shall be deleted.\nDEACTIVATE CCBS ACK\nHLR\nDeactivateResult\nM\nThe information element can take the following values:\n- Success;\n- Not Provisioned.\nDEACTIVATE CCBS ERROR\nHLR\nError\nM\nThe information element contains no application specific error values.\nTable 5.6.4.1: Messages between VLR and HLR in the originating network, cont.\nMessage\nMessage sender\nInformation element name\nInformation element Required\nInformation element description\nINTERROGATE CCBS\nVLR\n-\n-\nThis message contains no information elements.\nINTERROGATE CCBS ACK\nHLR\nList(1-5) of CCBS Description;\nNo Entries;\nNot Provisioned\nC\nC\nC\nThe list shall contain one entry for each CCBS Request for which the HLR stores data or;\nthe queue is empty or;\nCCBS is not provisioned for the subscriber.\nExactly one of these information elements shall be present. The structure of the CCBS Description is defined in table 5.6.1.3.\nINTERROGATE CCBS ERROR\nHLR\nError\nM\nThe information element contains no application specific error values.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_5.6.1.1",
+        "table_5.6.4.1",
+        "table_5.6.1.2",
+        "table_5.6.1.3"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.093_5.6.4.2",
+      "section_id": "5.6.4.2",
+      "section_title": "Messages between VLR and HLR in the destination network",
+      "content": "These messages are used between VLR - HLR in the destination network. Some messages are used also in the originating network. They are marked accordingly.\nTable 5.6.4.2: Messages between VLR and HLR in the destination network\nMessage\nMessage sender\nInformation element name\nInformation element Required\nInformation element description\nEVENT REPORT\nVLR\n-\n-\nRefer to table 5.6.4.1\nEVENT REPORT ACK\nHLR\n-\n-\nRefer to table 5.6.4.1\nEVENT REPORT ERROR\nHLR\n-\n-\nRefer to table 5.6.4.1\nSTART REPORTING\nHLR\n-\n-\nRefer to table 5.6.4.1\nSTART REPORTING ACK\nVLR\n-\n-\nRefer to table 5.6.4.1\nSTART REPORTING ERROR\nVLR\n-\n-\nRefer to table 5.6.4.1\nCONTINUE MONITORING\nHLR\n-\n-\nRefer to table 5.6.4.1\nSTOP REPORTING\nHLR\n-\n-\nRefer to table 5.6.4.1\nCCBS CALL REPORT\nVLR\n-\n-\nRefer to table 5.6.4.1\nCCBS CALL REPORT ACK\nHLR\n-\n-\nRefer to table 5.6.4.1\nCCBS CALL REPORT ERROR\nHLR\n-\n-\nRefer to table 5.6.4.1\nPROVIDE ROAMING NUMBER\nHLR\n-\nCCBS Call Reporting Request\n-\nC\nRefer to TS 23.018\nIn addition:\nThe information element shall be present for CCBS Call roaming number enquiry; otherwise it shall be absent.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.6.4.2",
+        "table_5.6.4.1",
+        "ts_23.018"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.093_5.6.5",
+      "section_id": "5.6.5",
+      "section_title": "Messages between MSC and HLR (C-interface)",
+      "content": "Table 5.6.5: Messages between MSC and HLR\nMessage\nMessage sender\nInformation element name\nInformation element Required\nInformation element description\nSEND ROUTING INFO\nMSC\n-\nCCBS Supported\nCCBS Call Indicator\n-\nC\nC\nRefer to TS 23.018\nIn addition:\nThe information element shall be present if GMSC supports CCBS; otherwise it shall be absent.\nThe information element shall be present, if SRI is for CCBS Call; otherwise it shall be absent.\nSEND ROUTING INFO_ACK\nHLR\n-\nCCBS Target\nKeep CCBS Call Indicator\nForwarding Reason\n-\nC\nC\nC\nRefer to TS 23.018\nIn addition:\nThe information element shall be present if the call is forwarded on busy and the subscriber B can be target of CCBS requests; otherwise it shall be absent.\nThe information element shall be present if the VMSC supports CCBS and SRI enquiry was for CCBS Call; otherwise it shall be absent.\nThe reason CFBusy shall be present if the HLR has determined that the call is to be forwarded for that CCBS case.\nSEND ROUTING INFO NEGATIVE RESPONSE\nHLR\n-\nNegative Response\n-\n-\nRefer to TS 23.018\nNew value(s) for existing parameter(s):\n- Busy_CCBS_Possible;\n- Busy_CCBS_Not_Possible.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.6.5",
+        "ts_23.018"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.093_5.6.6",
+      "section_id": "5.6.6",
+      "section_title": "Messages between MSC - MSC (E-interface)",
+      "content": "Table 5.6.6: Messages between MSC and MSC\nMessage\nMessage sender\nInformation element name\nInformation element Required\nInformation element description\nRESUME CALL HANDLING\nMSC\n-\nCCBS Target\n-\nC\nRefer to TS 23.079\nIn addition:\nThe information element shall be present if the call is forwarded on busy and the subscriber B can be target of CCBS requests; otherwise it shall be absent.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.6.6",
+        "ts_23.079"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.093_5.6.7",
+      "section_id": "5.6.7",
+      "section_title": "Existing parameters containing CCBS specific information",
+      "content": "Mobile Station Classmark 2 (refer to TS 24.008 contains information whether \"Network initiated MO CM connection request\" is supported or not. This information is vital for the recall mechanism.\nCC capabilities (refer to TS 24.008) contains information whether \"Prolonged Clearing Procedures\" are supported or not. This information is vital for the activation mechanism.\nSS-Code and SS-Status (refer to TS 29.002) contains information whether CCBS service is provisioned to the subscriber. Both originating and destination CCBS service have their own SS-Code.",
+      "chunk_type": "parameter",
+      "cross_references": [
+        "ts_24.008",
+        "ts_29.002"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.093_6.1.1",
+      "section_id": "6.1.1",
+      "section_title": "Overview",
+      "content": "Monitoring is the process where the subscriber state is observed and reported. When monitoring is started, the current subscriber state is reported and any subsequent changes of subscriber state are reported until monitoring is stopped.\nMonitoring subscriber state information will be necessary against MS B and may also be necessary against MS A.\nFor both these cases the monitoring functionality is located in the appropriate serving VMSC/VLR and is controlled from the appropriate HLR. The actions on the A-side and B-side for monitoring are completely independent and the following description is generic to cover either case. The HLR sends an explicit Start Reporting signal to the VLR to initiate monitoring. The VLR acknowledges the request confirming that monitoring has started and indicates the current status of the subscriber state in the VMSC/VLR. The VLR will continue to send an Event Report to the HLR whenever the appropriate subscriber state transition event occurs. The HLR sends an explicit Stop Reporting signal to the VLR when reporting on the subscriber state transitions is no longer required.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.093_6.1.2",
+      "section_id": "6.1.2",
+      "section_title": "Monitoring Subscriber B-state information",
+      "content": "The CCBS service requires monitoring of the subscriber state at the called destination network (B-side). This monitoring enables the HLR B to be aware of any transition of subscriber state in VMSC/VLR B while there is an active CCBS Request in the HLR B queue. The basic service operation is that, when the destination B subscriber state becomes Idle, the HLR B is informed and a Remote User Free indication is sent towards the originating A network at the appropriate time. If subsequently to that event the destination B subscriber state becomes not Idle or not reachable, then the HLR B is informed by the VMSC/VLR B in order that it can take an appropriate action towards HLR A, e.g. defer sending of the Remote User Free indication.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.093_6.1.3",
+      "section_id": "6.1.3",
+      "section_title": "Monitoring Subscriber A state information:",
+      "content": "Monitoring Subscriber A state information will be necessary if the Remote User Free indication from Destination B network cannot be acted upon because e.g. MS A is not idle or not reachable and leads to the CCBS request being suspended. The service action in this event is that, when the subscriber state subsequently becomes Idle, the HLR A is informed and a Resume indication is sent towards the destination B network at the appropriate time.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.093_6.2",
+      "section_id": "6.2",
+      "section_title": "MSC/VLR Monitoring Model",
+      "content": "The Monitoring model represents the information related to the status of the subscriber connection in the MSC/VLR. A generic monitoring model is used in the MSC/VLR covering the needs of both subscriber A and subscriber B state information for CCBS. The MSC/VLR monitoring model for CCBS is shown in figure 6.2.1. Note that state transitions reported to the HLR are shown as solid lines.\nFigure 6.2.1: MSC/VLR Monitoring Model",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_6.2.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.093_6.2.1",
+      "section_id": "6.2.1",
+      "section_title": "Subscriber status",
+      "content": "The monitoring model in the MSC/VLR makes use of the three subscriber states described in table 6.2.1.\nNOTE:\tRefer to TS 23.078 for equivalent subscriber state description.\nTable 6.2.1: Subscriber States\nSubscriber states\nDescription (for monitoring purposes)\nNotes\nIDLE\nThe state of the MS is neither \"NOT IDLE\" nor \"NOT REACHABLE\"\n\"Assumed Idle\"\nNOT IDLE\nThe MS is engaged on a transaction for a MO or MT circuit switched call\n\"CAMEL busy\"\nNOT REACHABLE\nThe MSC/VLR can determine from its internal data that the MS is not reachable e.g. IMSI detached, Restricted Area, No Page Response.\n\"Network Determined Not Reachable\"\nFor each subscriber state a description can be found on the entry events, functions and exit events.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.078_table_6.2.1",
+        "table_6.2.1",
+        "ts_23.078"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.093_6.2.1.1",
+      "section_id": "6.2.1.1",
+      "section_title": "Idle",
+      "content": "Entry events:\n-\tIndication of last call released (Mobile Originated or Mobile Terminated);\n-\tIndication of radio link failure;\n-\tIndication of MS activity related to e.g. MO-SMS, MT-SMS and CISS;\n-\tIMSI Attached;\n-\tLocation Update.\nFunctions:\n-\tEvents leading to a transition to the Not Idle or Not Reachable subscriber state are awaited.\nExit events:\n-\tA Mobile Originated Set-up message is received from the MS for first (and only) call;\n-\tA Mobile Terminated Set-up message is sent to the MS for first (and only) call.\n-\tIMSI Detached;\n-\tRoaming in LA not allowed;\n-\tNo Page Response;\n-\tAn exception condition is encountered e.g. Cancel Location indication received.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.093_6.2.1.2",
+      "section_id": "6.2.1.2",
+      "section_title": "Not Idle",
+      "content": "Entry events:\n-\tA Mobile Originated Set-up message is received from the MS for first (and only) call;\n-\tA Mobile Terminated Set-up message is sent to the MS for first (and only) call.\nFunctions:\n-\tEvents leading to a transition to the Idle or Not Reachable subscriber state are awaited.\nExit events:\n-\tIndication of last call released (Mobile Originated or Mobile Terminated);\n-\tIndication of radio link failure;\n-\tAn exception condition is encountered e.g. Cancel Location indication received.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.093_6.2.1.3",
+      "section_id": "6.2.1.3",
+      "section_title": "Not Reachable",
+      "content": "Entry events:\n-\tIMSI Detached;\n-\tRoaming in LA not allowed;\n-\tNo Page Response.\nFunctions:\n-\tEvents leading to a transition to the Idle or Not Idle subscriber state are awaited.\nExit events:\n-\tIndication of MS activity related to e.g. MO-SMS, MT-SMS and CISS;\n-\tIMSI Attached;\n-\tLocation Update;\n-\tA Mobile Originated Set-up message is received from the MS for first (and only) call;\n-\tA Mobile Terminated Set-up message is sent to the MS for first (and only) call;\n-\tAn exception condition is encountered e.g. Cancel Location indication received.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.093_6.2.2",
+      "section_id": "6.2.2",
+      "section_title": "Reporting of subscriber state transitions",
+      "content": "Transitions between subscriber states are reported from the MSC/VLR, while monitoring in the MSC/VLR is on going. The table 6.2.2 indicates which transitions are monitored in the MSC/VLR and whether these are reported to the HLR for the CCBS service. An appropriate Event Report signal is sent from the VLR to the HLR when a relevant state transition occurs. The Event Report signal includes a status parameter which reflects the subscriber state information.\nTable 6.2.2: Reporting of Subscriber States Transitions\nSubscriber state transition event\nEvent reportingHLR informed\nEvent report Subscriber status\nIDLE to NOT IDLE\nYes\nCCBS Not Idle\nIDLE to NOT REACHABLE\nYes\nCCBS Not Reachable\nNOT IDLE to IDLE\nYes\nCCBS Idle\nNOT IDLE to NOT REACHABLE\nNo\n-\nNOT REACHABLE to IDLE\nYes\nCCBS Idle\nNOT REACHABLE to NOT IDLE\nNo\n-",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.2.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.093_6.2.2.1",
+      "section_id": "6.2.2.1",
+      "section_title": "Start Reporting of Monitoring Events",
+      "content": "When a Start Reporting signal is received from the HLR, the VLR shall acknowledge the request confirming that monitoring has started and indicate the current status of the subscriber state in the MSC/VLR. The VLR shall subsequently continue to send the Event Reports indicated in table 6.2.2 whenever the appropriate subscriber state transition event occurs.\nNote where a single user has a CCBS request activated against him and has an outstanding CCBS request suspended against someone else, (i.e. is effectively both destination B and CCBS subscriber A) reporting on both A-side and B-side is required. In this case, the VLR shall only send a single Event Report as indicated in table 6.2.2 whenever the appropriate subscriber state transition event occurs. The HLR shall not send another Start Reporting signal to the VLR if monitoring is already ongoing in the MSC/VLR for either A-side or the B-side.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.2.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.093_6.2.2.2",
+      "section_id": "6.2.2.2",
+      "section_title": "Stop Reporting of Monitoring Events",
+      "content": "When a Stop Reporting signal is received from the HLR, the VLR shall stop sending the Event Reports.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.093_6.3.1",
+      "section_id": "6.3.1",
+      "section_title": "Overview",
+      "content": "As well as monitoring of the subscriber state, it is also necessary to report the result of the CCBS Call. The basic reporting requirements are as follows from both the A-side and the B-side.\nCCBS Call Reporting - A-side:\nThe CCBS service logic in the originating network HLR A requires a report on the outcome of the CCBS Call resulting from the acceptance of the CCBS Recall by Subscriber A. The VLR A sends a CCBS Call Report to the HLR A indicating the outcome of the CCBS call processing in MSC/VLR A when e.g. an address complete message (ACM) is received from the destination B network. CCBS Call Reporting on the A-side is completely independent of any monitoring of subscriber state information. The sending of CCBS Call Report is required even when there is no monitoring ongoing in the MSC/VLR.\nCCBS Call Reporting- B-side:\nThe CCBS service logic in the destination network HLR B requires a report on the outcome of CCBS Call processing in the MSC/VLR B. The HLR B initiates the CCBS call outcome reporting in the VLR when the VLR is normally queried to provide routing information for mobile terminated calls (by including an CCBS indicator in the PRN message). The VLR B sends a CCBS Call Report to the HLR B indicating the outcome of the CCBS call processing and the new status of the subscriber state in the MSC/VLR B when e.g. MS B is alerted to the CCBS Call.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.093_6.3.2",
+      "section_id": "6.3.2",
+      "section_title": "Originating Network (A-side)",
+      "content": "When a CCBS RUF signal is received by the VLR, CCBS processing in the MSC/VLR leads to a CCBS Recall signal being sent to the MS. When the response to the CCBS Recall is received, the VLR shall subsequently send a CCBS Call Report when the relevant processing for the outgoing CCBS call to the destination network is completed as shown in the SDLs for MSC/VLR A.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.093_6.3.3",
+      "section_id": "6.3.3",
+      "section_title": "Destination Network (B-side)",
+      "content": "When an initiate CCBS Call Reporting Request signal (B-side) is received by the VLR in the Provide Roaming Number message, the VLR shall subsequently send a CCBS Call Report when the relevant processing of the incoming CCBS call is completed as shown in the SDLs for MSC/VLR B.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.093_6.3.3.1",
+      "section_id": "6.3.3.1",
+      "section_title": "Interaction of Event Reporting and CCBS Call Report",
+      "content": "Reporting on subscriber state transitions will be ongoing in the MSC/VLR B when a report on the CCBS call outcome is required.\nWhen a subscriber state transition from IDLE to NOT IDLE occurs due to an incoming CCBS call, an Event Report shall not be sent. Instead, a CCBS Call Report (containing CCBS call outcome information and the status) shall be sent to the HLR B. After the CCBS Call Report has been sent, normal Event Reporting will continue i.e. the VLR shall subsequently send only the Event Reports indicated in table 6.2.2 when the next appropriate subscriber state transition event occurs.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.2.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.093_6.4",
+      "section_id": "6.4",
+      "section_title": "Location Update",
+      "content": "The MS may roam to a new MSC/VLR area while monitoring is ongoing in the previous MSC/VLR. When the VLR receives a Cancel Location signal from the HLR due to normal mobility management procedures, any ongoing CCBS related activities associated with the subscriber shall cease.\nIf the A-side monitoring is ongoing when the HLR receives a Location Update request from the VLR, the Location Update signal is considered to indicate that the subscriber state is idle and the appropriate CCBS process in the HLR is informed. The normal mobility management procedures will lead to a Cancel Location signal being sent to the old VLR causing the Event Reporting to stop.\nIf the B-side monitoring is ongoing when the HLR receives a Location Update request from the VLR, the normal mobility management procedures are followed. On successful completion of Location Update procedure, the HLR shall send a Start Reporting signal to the new VLR. If during the handling of the normal Location Updating procedure, it is detected that the new MSC/VLR does not support CCBS, the HLR shall not send a Start Reporting signal to the new VLR.\nNOTE:\tThere is no impact to the MS due to CCBS monitoring, i.e. normal Location Update procedures apply.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.093_7",
+      "section_id": "7",
+      "section_title": "Mobility",
+      "content": "The handling for CCBS specific mobility is described below.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.093_7.1",
+      "section_id": "7.1",
+      "section_title": "Mobility during Activation",
+      "content": "In order to allow the activation of CCBS when the call is released, the CC connection towards the MS shall be kept, to avoid any problems of mobility with the MS A.\nTherefore the MSC shall maintain the CC connection with the MS A while T1 is running and until either T1 expires or the MSC sends a CCBS REQUEST ACK or CCBS REQUEST ERROR to the MS. After MSC has sent CCBS REQUEST ACK or CCBS REQUEST ERROR, the MSC A shall release the CC connection with MS.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.093_7.2",
+      "section_id": "7.2",
+      "section_title": "Number used within CCBS Call",
+      "content": "The activating MSC A shall store the originally dialled number in the Call Information container. The TranslatedBNo parameter shall contain destination B address stored in international E.164 format.\nIf the MS A is registered outside of the HPLMN during the initial call or when Remote_User_Free is received from the destination B network the HLR A may request the recall MSC A to change the number used for CCBS Call to the TranslatedBNo instead. Refer to the SDLs for originating MSC/VLR.\nIf CAMEL service was activated in the original call the HLR A shall not request to change the number used for the CCBS Call.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.093_7.3",
+      "section_id": "7.3",
+      "section_title": "MS does Location Update",
+      "content": "CCBS does place extra requirements for the Location Update procedure in the HLR when MS is monitored. Refer to clause 6.4.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_6.4"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.093_7.4",
+      "section_id": "7.4",
+      "section_title": "Mobility during CCBS Call in the destination network",
+      "content": "If MS registers to non-supporting network special handling has to be applied. Refer to clause 10.1.3.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_10.1.3"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.093_8",
+      "section_id": "8",
+      "section_title": "Interaction with other supplementary services",
+      "content": "TS 22.093 specifies a number of interactions between CCBS and other supplementary services. Additional details of how these interactions apply are as follows.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_22.093"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.093_8.1",
+      "section_id": "8.1",
+      "section_title": "Call forwarding unconditional (CFU)",
+      "content": "If a call to destination B is forwarded to subscriber C by CFU and MS C is NDUB, the GMSC shall inform MSC A that CCBS is not possible when it releases the call. Refer to Process MT_GMSC (see TS 23.018) for further details.\nIf destination B activates CFU after subscriber A has activated a CCBS Request against destination B, HLR B shall not process CCBS Requests in the queue which are related to the relevant Basic Service Group, except that T7 shall continue for each CCBS Request in the destination B queue. If T7 expires for a particular request, HLR B shall cancel the request, as described in the SDLs shown in figure 11.2.2.1.\nIf MSC B is monitoring MS B when CFU is activated by destination B and all the CCBS Requests in the destination B queue subsequently become \"Active and Quiescent\", then HLR B shall send \"Stop Reporting\" to MSC B. If destination B deactivates CFU resulting in one or more requests becoming \"Active and Operative\" in the destination B queue then, HLR B shall send \"Start Reporting\" to MSC B if monitoring is not already ongoing.\nA CCBS Call shall be forwarded without the CCBS call Indicator.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "figure_11.2.2.1",
+        "ts_23.018"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.093_8.2",
+      "section_id": "8.2",
+      "section_title": "Call forward on busy (CFB)",
+      "content": "If a call to destination B is forwarded to subscriber C by CFB and MS C is NDUB, the forwarding switch (GMSC or VMSC) shall inform MSC A that CCBS is possible when it releases the call. Refer to Process MT_GMSC or Process ICH_MSC (see TS 23.018) for further details.\nIf destination B activates CFB after subscriber A has activated a CCBS Request against destination B, HLR B shall continue to process CCBS Requests in the queue. If a CCBS Call subsequently arrives at MSC B and MS B is NDUB, a network provider option exists as to whether:\n-\tthe CCBS call shall be treated as when MS B is busy for the CCBS call, without CFB active; or\n-\tthe CCBS call shall be forwarded without the CCBS call Indicator.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_23.018"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.093_8.3",
+      "section_id": "8.3",
+      "section_title": "Call forwarding on no reply (CFNRy)",
+      "content": "If a call to destination B is forwarded to subscriber C by CFNRy and MS C is NDUB, the forwarding switch (VMSC) shall inform MSC A that CCBS is not possible when it releases the call. Refer to Process MT_GMSC or Process ICH_MSC (see TS 23.018) for further details\nIf destination B activates CFNRy after subscriber A has activated a CCBS Request against destination B, HLR B shall continue to process CCBS Requests in the queue.\nA CCBS call shall be forwarded without the CCBS call Indicator.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_23.018"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.093_8.4",
+      "section_id": "8.4",
+      "section_title": "Call forwarding on MS not reachable (CFNRc)",
+      "content": "If a call to destination B is forwarded to subscriber C by CFNRc and MS C is NDUB, the forwarding switch (GMSC or VMSC) shall inform MSC A that CCBS is not possible when it releases the call. Refer to Process MT_GMSC or Process_ICH_MSC (see TS 23.018) for further details.\nIf destination B activates CFNRc after subscriber A has activated a CCBS Request against destination B, HLR B shall continue to process CCBS Requests in the queue.\nThe CCBS call shall be forwarded without the CCBS call Indicator.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_23.018"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.093_8.5",
+      "section_id": "8.5",
+      "section_title": "Call Waiting (CW)",
+      "content": "No impact.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.093_8.6",
+      "section_id": "8.6",
+      "section_title": "Multiparty service (MPTY)",
+      "content": "No impact.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.093_8.7",
+      "section_id": "8.7",
+      "section_title": "Closed user group (CUG)",
+      "content": "No impact.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.093_8.8",
+      "section_id": "8.8",
+      "section_title": "Advice Of Charge (AoC)",
+      "content": "If subscriber A accepts a \"CCBS Recall\" indication but ACMmax exceeds, then MSC A shall cancel the associated request and shall not establish the CCBS Call.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.093_8.9",
+      "section_id": "8.9",
+      "section_title": "Barring of all outgoing calls (BAOC)",
+      "content": "If subscriber A accepts a \"CCBS Recall\" indication but MSC A detects that BAOC is active and operative, then MSC A shall cancel the associated request and shall not establish the CCBS Call.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.093_8.10",
+      "section_id": "8.10",
+      "section_title": "Barring of outgoing international calls (BOIC)",
+      "content": "If subscriber A accepts a \"CCBS Recall\" indication but the CCBS Call would be an international call and MSC A detects that BOIC is active and operative, then MSC A shall cancel the associated request and shall not establish the CCBS Call.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.093_8.11",
+      "section_id": "8.11",
+      "section_title": "Barring of outgoing international calls except those directed to the home PLMN country (BOIC-exHC)",
+      "content": "If subscriber A accepts a \"CCBS Recall\" indication but the CCBS Call would be an international call except to the home PLMN country and MSC A detects that BOIC-exHC is active and operative, then MSC A shall cancel the associated request and shall not establish the CCBS Call.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.093_8.12",
+      "section_id": "8.12",
+      "section_title": "Barring of all incoming calls (BAIC)",
+      "content": "If a CCBS Request arrives at HLR B and HLR B detects that BAIC is active and operative for the relevant Basic Service Group, then HLR B shall not accept the activation attempt and shall indicate short term denial in the response.\nIf MSC B is monitoring MS B when BAIC is activated by destination B then all the CCBS Requests in the destination B queue subsequently become \"Active and Quiescent\" and HLR B shall send \"Stop Reporting\" to MSC B. If destination B deactivates BAIC resulting in one or more requests becoming \"Active and Operative\" in the destination B queue then, HLR B shall send \"Start Reporting\" to MSC B if monitoring is not already ongoing.\nIf barring of all incoming calls becomes active and operative for a particular Basic Service Group for destination B, such that a CCBS call from subscriber A is not permitted, HLR B shall cancel the associated request related to the Basic Service Group and select the next non-suspended request in the queue for processing for other Basic Service Groups.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.093_8.13",
+      "section_id": "8.13",
+      "section_title": "Barring of incoming calls when roaming outside the home PLMN country (BIC-Roam)",
+      "content": "If a CCBS Request arrives at HLR B and HLR B detects that BIC-Roam is active and operative for the relevant Basic Service Group, then HLR B shall not accept the activation attempt and shall indicate short term denial in the response.\nIf MSC B is monitoring MS B when BIC-Roam is activated by destination B then all the CCBS Requests in the destination B queue subsequently become \"Active and Quiescent\" and HLR B shall send \"Stop Reporting\" to MSC B. If destination B deactivates BIC-Roam resulting in one or more requests becoming \"Active and Operative\" in the destination B queue then, HLR B shall send \"Start Reporting\" to MSC B if monitoring is not already ongoing.\nIf barring of incoming calls when roaming outside the home PLMN country becomes active and operative for a particular Basic Service Group for destination B, such that a CCBS call from subscriber A is not permitted, HLR B shall cancel the associated request related to the Basic Service Group and select the next non-suspended request in the queue for processing for other Basic Service Groups.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.093_8.14",
+      "section_id": "8.14",
+      "section_title": "Completion of calls to busy subscriber (CCBS)",
+      "content": "Subscriber A may have successfully activated one or more CCBS requests against different destinations B, and also have one or more CCBS requests successfully activated against him by different subscribers. In this case, HLR A shall co-ordinate the different requests.\nChecking for an identical CCBS request already existing shall include checks in both directions, i.e. if subscriber A activates a CCBS Request against destination B, HLR A shall check subscriber A's originating queue for any previous requests activated by subscriber A against destination B for the same basic service group. HLR A shall also check subscriber A's target queue for any requests activated by destination B against subscriber A for the same basic service group.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.093_9",
+      "section_id": "9",
+      "section_title": "Interaction with other network features",
+      "content": "TS 22.093 specifies a number of interactions between CCBS and other network features.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_22.093"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.093_9.1",
+      "section_id": "9.1",
+      "section_title": "Customised Applications for Mobile network Enhanced Logic (CAMEL)",
+      "content": "For a terminating CAMEL based service which changes the destination B address for the original call which subsequently encounters NDUB, the GMSC shall inform originating network that CCBS is not possible when it releases the call.\nIf an originating CAMEL based service determines for a CCBS Call a different destination B Address than for the original call, the CCBS Call shall be released and the associated CCBS Request shall be cancelled.\nIf the CAMEL based service requests a call set-up to an alternative destination after the original call has met Busy, CCBS Possible condition, the CCBS activation shall be allowed if the alternative call set-up also encounters Busy condition.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.093_9.2",
+      "section_id": "9.2",
+      "section_title": "Support of Optimal Routeing (SOR)",
+      "content": "The CCBS supporting GMSC shall include CCBS Supported indicator to the SRI message.\nIf HLR B receives a request for routeing information when destination B is blocked (i.e. the HLR B is waiting for an SRI for a CCBS call set-up) and the SRI does not include a CCBS call indicator nor CCBS supported in the GMSC indicator and the request is from a GMSC not in the same PLMN as HLR B, then HLR B shall return an SRI negative response indicating OR not allowed. This will force the GMSC to route the call to a GMSC in the same PLMN as HLR B (see TS 23.079).\nThe GMSC in HPLMN B should be able to include the CCBS Call indicator in the non-OR SRI, and the CCBS call set-up will proceed, although it won't be optimally routed.\nIf the HLR receives an SRI indicating a CCBS-capable GMSC but not a CCBS call while awaiting SRI for a CCBS call, it can treat the request as if the B-subscriber were busy, regardless of where the GMSC is.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_23.079"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.093_10",
+      "section_id": "10",
+      "section_title": "Interworking with other networks",
+      "content": "The point of interworking shall be the interface between HLR A and HLR B. The flow of information across this interface shall be identical to that between exchanges for the ISDN version of CCBS.\nInterworking with ISDNs which support the ISDN version of CCBS is therefore available without further modification.\nInterworking with networks other than ISDNs, e.g. private networks, is not specified here, but is not precluded.\nCCBS shall be able to interwork through networks which do not support CCBS. In this situation, the CCBS service may fail.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.093_10.1",
+      "section_id": "10.1",
+      "section_title": "Interworking with network entities not supporting CCBS",
+      "content": "CCBS requires support of the service by the following entities for it to operate as specified above:\n-\tMS A;\n-\tMSC A;\n-\tVLR A;\n-\tHLR A;\n-\tGMSC;\n-\tHLR B;\n-\tMSC B;\n-\tVLR B.\nThe following shows the actions required to cover the situations where these entities do not support CCBS. Note that the situation is further complicated by mobility. For example, MSC A may support CCBS when the initial request is made, but if subscriber A has changed location, the new MSC A may not support CCBS.\nIt is assumed that the entities support the service at the points in the call where actions are initiated by them, and that an entity which receives an indication for the CCBS service but does not support it can indicate its lack of support to the sending entity.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.093_10.1.1",
+      "section_id": "10.1.1",
+      "section_title": "CCBS not supported by MSC A",
+      "content": "HLR A knows whether the MSC A supports CCBS or not through the transfer of subscriber data.\nMS B becomes idle\nWhen HLR A receives the \"Remote User Free\" indication for a particular CCBS Request and detects that the MSC A where MS A is currently registered does not support CCBS, then HLR A shall suspend the corresponding CCBS Request and shall send \"CCBS Suspend\" to HLR B. When MS A registers in a different MSC which supports CCBS, HLR A shall resume the corresponding CCBS Request and shall send \"CCBS Resume\" to HLR B, continuing as if MS A had become free.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.093_10.1.2",
+      "section_id": "10.1.2",
+      "section_title": "CCBS not supported by HLR B",
+      "content": "Initial call encounters busy\nIf an MSC B that supports CCBS recognises that HLR B does not support CCBS then \"CCBS Not Possible\" will be generated in the CCBS diagnostic.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.093_10.1.3",
+      "section_id": "10.1.3",
+      "section_title": "CCBS not supported by MSC B",
+      "content": "HLR B knows whether the MSC B supports CCBS or not through the transfer of subscriber data.\nCCBS Request\nIf MSC B does not support CCBS, HLR B acknowledge the request and start T7. No processing of the destination B queue and subsequently no monitoring of destination B will be possible until destination B registers in a supporting MSC.\nCCBS Call set-up\nIf HLR B knows that MSC B does not support CCBS the HLR B shall delete the corresponding CCBS Request and shall request a Roaming No without including the CCBS Call indicator in the request. Within Send Routeing Info Ack the HLR shall inform the GMSC to remove CCBS Call Indicator from the IAM message.\nAfter a \"Remote User Free\" has been sent from MSC B but before the CCBS call set-up is completed, destination B may register in an MSC which does not support the service. MSC B shall accept the CCBS call, but MSC B will not be able to inform HLR B of the successful completion of the CCBS call, so the request will remain active in HLR B until the recall B timer (T9) expires and the request is cancelled.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.093_11",
+      "section_id": "11",
+      "section_title": "Network entity functions",
+      "content": "The following SDL diagrams describe the various processes and procedures within individual network entities for handling CCBS. The SDL diagrams are as follows:",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.093_11.1.1",
+      "section_id": "11.1.1",
+      "section_title": "Processes and procedures in MSC/VLR",
+      "content": "Figure 11.1.1.1: Process MSC_CCBS_Recall_Manager\nThis process controls the CCBS Recall handling in the MSC and controls timers T4 and T10\nFigure 11.1.1.2: Process VLR_CCBS_Recall_Manager\nThis process controls the CCBS Recall handling in the VLR and reports the result of the Recall directly to the HLR.\nFigure 11.1.1.3: Process OCH_CCBS_VLR\nThis process controls the CCBS Call Setup in the VLR\nFigure 11.1.1.4: Procedure CCBS_Check_OG_Call\nThis procedure checks whether the outgoing call meets various conditions set by the CCBS supplementary service. If CCBS is not implemented Pass exit shall be taken.\nFigure 11.1.1.5: Procedure CCBS_Check_If_CCBS_Possible\nThis procedure is called when Release message is received from the destination network. It checks whether CCBS activation is possible.\nFigure 11.1.1.6: Procedure CCBS_Activation_MSC\nIf CCBS activation is possible this procedure is called. It handles the dialogue between MS and MSC and MSC and HLR respectively.\nFigure 11.1.1.7: Procedure Page_MS_MSC_For_Recall\nDuring CCBS recall this procedure handles paging of the MS if the location area id is known.\nFigure 11.1.1.8: Procedure Search_For_MS_MSC_For_Recall\nDuring CCBS recall this procedure handles paging of the MS on MSC side if the location area id is not known.\nFigure 11.1.1.9: Procedure Search_For_MS_VLR_Recall\nDuring CCBS recall this procedure handles paging of the MS on VLR side if the location area id is not known.\nFigure 11.1.1.10: Procedure Complete_Recall_MSC\nDuring CCBS recall this procedure handles early channel allocation and establish CC connection with the MS.\nFigure 11.1.1.11: Procedure CCBS_OCH_Report_Success\nThis procedure is called when CCBS call is successfully delivered to the destination network. The procedure informs HLR of successful call delivery.\nFigure 11.1.1.12: Procedure CCBS_OCH_Report_Failure\nThis procedure is called when CCBS call delivery failed to the destination network. The procedure informs HLR of call delivery failure.\nFigure 11.1.1.1: Process MSC_CCBS_Recall_Manager (sheet 1 of 4)\nFigure 11.1.1.1: Process MSC_CCBS_Recall_Manager (sheet 2 of 4)\nFigure 11.1.1.1: Process MSC_CCBS_Recall_Manager (sheet 3 of 4)\nFigure 11.1.1.1: Process MSC_CCBS_Recall_Manager (sheet 4 of 4)\nFigure 11.1.1.2: Process VLR_CCBS_Recall_Manager (sheet 1 of 4)\nFigure 11.1.1.2: Process VLR_CCBS_Recall_Manager (sheet 2 of 4)\nFigure 11.1.1.2: Process VLR_CCBS_Recall_Manager (sheet 3 of 4)\nFigure 11.1.1.2: Process VLR_CCBS_Recall_Manager (sheet 4 of 4)\nFigure 11.1.1.3: Process OCH_CCBS_VLR\nFigure 11.1.1.4: Procedure CCBS_Check_OG_Call\nFigure 11.1.1.5: Procedure CCBS_Check_If_CCBS_Possible\nFigure 11.1.1.6: Procedure CCBS_Activation_MSC (sheet 1 of 2)\nFigure 11.1.1.6: Procedure CCBS_Activation_MSC (sheet 2 of 2)\nFigure 11.1.1.7: Procedure Page_MS_MSC_For_Recall (sheet 1 of 2)\nFigure 11.1.1.7: Procedure Page_MS_MSC_For_Recall (sheet 2 of 2)\nFigure 11.1.1.8: Procedure Search_For_MS_MSC_For_Recall\nFigure 11.1.1.9: Procedure Search_For_MS_VLR_Recall\nFigure 11.1.1.10: Procedure Complete_Recall_MSC (sheet 1 of 2)\nFigure 11.1.1.10: Procedure Complete_Recall_MSC (sheet 2 of 2)\nFigure 11.1.1.11: Procedure CCBS_OCH_Report_Success\nFigure 11.1.1.12: Procedure CCBS_OCH_Report_Failure",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_11.1.1.1",
+        "figure_11.1.1.2",
+        "figure_11.1.1.3",
+        "figure_11.1.1.4",
+        "figure_11.1.1.5",
+        "figure_11.1.1.6",
+        "figure_11.1.1.7",
+        "figure_11.1.1.8",
+        "figure_11.1.1.9",
+        "figure_11.1.1.10",
+        "figure_11.1.1.11",
+        "figure_11.1.1.12"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.093_11.1.2",
+      "section_id": "11.1.2",
+      "section_title": "Processes and procedures in HLR",
+      "content": "Figure 11.1.2.1: Block diagram of HLRA processes\nFigure 11.1.2.2: Process HLRA_Request_Manager\nThis process is in charge of the user interface procedures and queue handling, i.e. whether the request to processed is present in the queue or not.\nThe process has three states, \"Idle\", \"Operative\" and \"Operative Resuming\". In the \"Idle\" state the queue is empty and the only actions to queue are creation of new request and interrogation of the queue. In other states activation, interrogation and deactivation procedures similarly, that is why they are grouped under \"*\" state.\nWhenever the first request is created the process changes it's state to \"Operative\", in this state there are request(s) in the queue and none of them are suspended.\nWhen HLRA_Request reports of suspension the process changes it's state to \"Operative Resuming\" and the HLRA_Resume is started with correct trigger signal i.e. idle indication from MSC or recall end is waited.\nOnly NET suspended request can be selected and resumed, USER type suspended requests remain as suspended until them are marked as NET suspended. This happens when idle indication is received from the MSC.\nThe resuming process is paused if there is new suspended request with cause code Not reach i.e. The resuming starts again when idle condition is met again or there is a new recall with successful outcome i.e. the recall ends without Not Reach indication.\nThe resuming process will be stopped, if there are no suspended requests in the queue any more. The process changes it's state to normal \"Operative\" or \"Idle\" state.\nFigure 11.1.2.3: Process HLRA_Request\nThis process is created during the activation of service and contains all related data. The process has five different states, \"Wait_For_Answer\", \"Active\", \"Recall\", \"Suspended\" and \"Frozen\". During its creation the process sends CCBS_Request via SSAP interface to destination network B containing all call related data as well originating networks retention capabilities.\nIn the \"Wait_For_Answer\" state process receives response from destination network which is further relayed to the HLRA_Request_Manager. In case of positive acknowledgement destination network returns info whether the retention is supported in both networks.\nIn \"Active\" state process waits recall from destination network, however process can vanish if operation timer T3 expires or explicit deletion is received from the user or destination network. In case of deletion the process informs the queue. When the recall arrives the process transits to the \"Recall\" state.\nIn the \"Recall\" state process waits the recall outcome, either positive or negative. Depending of the recall outcome the request can be deleted, retained or suspended. If the request is to be retained the process transits back to the \"Active\" state. If the request is suspended due to the T10 expiry, CCBS_Busy condition or the MS is not reachable the process transits to the suspended state.\nIf the request is deleted during \"Recall\" due SSAP_Cancel, T3 expiry or explicit deletion the queue is updated immediately and the request changes it's state to \"Recall Deleted\" where it waits the recall to end.\nIn the \"Suspended\" state actions the request can be resumed if the MS is known to be CCBS_Idle or the request can be deleted due to the explicit deletion or timer T3 expiry.\nThe request is placed in \"Frozen\" state whenever it receives Remote User Free indication from the destination network and the request can't be fulfilled due service interaction or lack of support in MSCVLR. The request shall indicate suspended back to the destination network and stay in the queue. If the service becomes later possible, the request will revert back \"Active\" state and indicate resumed to the destination network.\nWhenever the state of the process is changed, the new state is stored and the procedure CCBS_Notify_SS_Invocation is called.\nFigure 11.1.2.4: Process HLRA_Recall_Manager\nThis process has two different states, \"Idle\" and \"CCBS_Busy\".\nThe process let's only one individual process to be in recall state in a time and have a dialogue open to the MSC and it changes it's state to \"CCBS_Busy\". In this state other requests are suspended immediately and marked as NET suspended with cause code = Busy.\nIn \"CCBS_Busy\" state the process waits recall reporting from the MSC. Possible inputs from the MSC are CCBS_RUF_Ack, CCBS_RUF_Error and CCBS_Call_Report. CCBS_Call_Report can be received if the subscriber has accepted the recall, otherwise the process changes it's state back to \"Idle\". If the process receives Query_State request from the HLRA_Resume during the recall the process informs the resume process whether a recall is being processed.\nFigure 11.1.2.5: Process HLRA_Resume\nThe process has four different states, \"Idle\", \"Resume pending\", \"Wait For Selection\" and \"Resuming\". The process is started when a request is suspended. For the first suspended request it is also set the trigger point i.e. when it is correct to send out selection request for resuming. Two triggers are provided, A_Idle from the monitoring process and Recall_End from the recall handling. If the trigger is set to A_Idle the monitoring process is also started.\nWhen the process is started and correct trigger is set the process waits in the \"Resume pending\" state to receive a permission to start resuming. When the permission is received the process asks for the first NET request to resumed. If A_Idle signal is received from the monitoring process the resuming process asks the queue manager to set all suspended requests as NET type in order to allow the selection.\nWhen there are no active suspended request in the queue any more the resuming process is stopped i.e. when the \"Deleted\" signal in the HLRA_Request_Manager is handled.\nFigure 11.1.2.6: Process HLRA_Monitoring\nMonitoring process has two different states, \"Idle\" and \"Monitoring\". Receival of \"A_Query\" signal transits the process to \"Monitoring\" state. In this state the process reports \"Idle\" condition to the resuming process and starts the monitoring again in the MSC if location update or restore data happens.\nFigure 11.1.2.7: Procedure HLRA_CCBS_Check_Interactions\nThis procedure checks whether the Remote User Free indication can be delivered to the MSCVLR or not.\nFigure 11.1.2.8: Procedure CCBS_Notify_SS_Invocation\nThis procedure is called by the process HLRA_Request whenever there is a change of state. The procedure informs the gsmSCF of the state change if the SS-CSI applicable to CCBS is stored in the HLR.\nFigure 11.1.2.1: HLRA Processes\nNOTE:\tFigure 11.1.2.1 is one possible method of implementing queue processing in HLR A. Manufacturers are not constrained to follow the implementation given in figure 11.1.2.1. However, the external behaviour of HLR A shall appear to be the same.\nDescription of above signals:\nRelation HLRA_Request_Manager and HLRA_Request\nCCBS_Request_Ack signal is acknowledgement of a successful activation from the individual request to the queue manager.\nCCBS_Request_Error signal is sent if the destination networks queue is full or the destination networks queue size is set to zero. The individual request is deleted from the originating side.\nSuspend is used within HLRA_Request and HLRA_Request_Manager. The queue shall update it's internal information.\nDelete is used within HLRA_Request_Manager and HLRA_Request. The queue manager instructs the individual request the request to die.\nDeleted is used within HLRA_Request_Manager and HLRA_Request. The individual request informs the queue of its expiry.\nResume is used within HLRA_Request_Manager and HLRA_Request. The individual request is resumed and it shall inform the destination network of the resumption.\nRelation HLRA_Request_Manager and HLRA_Resume\nSet_Trigger_Recall_End is used within the HLRA_Request_Manager and HLRA_Resume. If resuming is not ongoing this signal set the resuming process to the \"ResumePending\" state and query is sent to the recall process.\nSet_Trigger_A_Idle is used within the HLRA_request_manager and HLRA_resume. If resuming is not ongoing this signal set the resuming process to the \"ResumePending\" state. In all cases this causes \"A_Query\" signal to be sent.\nReset_Trigger_A_Idle is used within the HLRA_request_manager and HLRA_resume. This signal sets the resuming process to the \"ResumePending\" state and causes \"A_Query\" signal to be sent.\nSelect_Resp is used within the HLRA_request_manager and HLRA_resume. This signal informs the resuming process to start T11.\nNot_Selected is used within the HLRA_request_manager and HLRA_resume. This signal informs the resuming process that the selection was not done and the process will transit to \"ResumePending\" state.\nStop_Resume is used within the HLRA_request_manager and HLRA_resume. This signal informs the resuming process to stop it's actions and stop the monitoring also.\nSet_All_Active is used within the HLRA_Resume and HLRA_request_manager. This signal informs the queue to set all suspended requests as NET suspended and later on they can be resumed.\nSelect_Active_Req is used within the HLRA_Resume and HLRA_request_manager. This signal informs the queue to select first NET suspended request to be resumed. If successful the request process will return \"Select_Resp\", otherwise \"Not_Selected\".\nSelect_First_Req is used within the HLRA_Resume and HLRA_request_manager. This signal informs the queue to select first suspended request to be resumed. If successful the request process will return \"Select_Resp\", otherwise \"Not_Selected\".\nRelation HLRA_Recall_Manager and HLRA_Request\nRecall is used within HLRA_Request and HLRA_Recall_Manager. It contains all call related data in order to form the CCBS_Call.\nCompleted is used within the HLRA_Recall_Manager and HLRA_Request. It informs the request of successful CCBS_Call and causes the request to vanish.\nFailure is used within the HLRA_Recall_Manager and HLRA_Request. It informs the request of unsuccessful CCBS_Call and causes the request to vanish.\nBusy is used within the HLRA_Recall_Manager and HLRA_Request. It informs the request of unsuccessful CCBS_Call and causes the request to vanish if retention is not supported.\nSuspend is used within HLRA_ Recall_Manager and HLRA_ Request. The request shall change it's state and report the suspension to the queue manager.\nRelation HLRA_Monitoring and HLRA_Resume\nA_Query is used within HLRA_Resume and HLRA_Monitoring. It instruct the HLRA_Monitoring to start it's actions and return the idle condition when possible.\nA_Idle is used within HLRA_Monitoring and HLRA_Resume. It informs the resuming process that the subscriber is now CCBS_Idle and not CCBS_Busy.\nStop_Monitoring is used with HLRA_Resume and HLRA_Monitoring. It instructs the monitoring process to stop it's actions and stop the monitoring from VLR also.\nLocation_Update/Restore_Data events are tracked and external reporting is started again.\nFigure 11.1.2.2: Process HLRA_Request_Manager (sheet 1 of 10)\nFigure 11.1.2.2: Process HLRA_Request_Manager (sheet 2 of 10)\nFigure 11.1.2.2: Process HLRA_Request_Manager (sheet 3 of 10)\nFigure 11.1.2.2: Process HLRA_Request_Manager (sheet 4 of 10)\nFigure 11.1.2.2: Process HLRA_Request_Manager (sheet 5 of 10)\nFigure 11.1.2.2: Process HLRA_Request_Manager (sheet 6 of 10)\nFigure 11.1.2.2: Process HLRA_Request_Manager (sheet 7 of 10)\nFigure 11.1.2.2: Process HLRA_Request_Manager (sheet 8 of 10)\nFigure 11.1.2.2: Process HLRA_Request_Manager (sheet 9 of 10)\nFigure 11.1.2.2: Process HLRA_Request_Manager (sheet 10 of 10)\nFigure 11.1.2.3: Process HLRA_Request (sheet 1 of 5)\nFigure 11.1.2.3: Process HLRA_Request (sheet 2 of 5)\nFigure 11.1.2.3: Process HLRA_Request (sheet 3 of 5)\nFigure 11.1.2.3: Process HLRA_Request (sheet 4 of 5)\nFigure 11.1.2.3: Process HLRA_Request (sheet 5 of 5)\nFigure 11.1.2.4: Process HLRA_Recall_Manager (sheet 1 of 4)\nFigure 11.1.2.4: Process HLRA_Recall_Manager (sheet 2 of 4)\nFigure 11.1.2.4: Process HLRA_Recall_Manager (sheet 3 of 4)\nFigure 11.1.2.4: Process HLRA_Recall_Manager (sheet 4 of 4)\nFigure 11.1.2.5: Process HLRA_Resume (sheet 1 of 3)\nFigure 11.1.2.5: Process HLRA_Resume (sheet 2 of 3)\nFigure 11.1.2.5: Process HLRA_Resume (sheet 3 of 3)\nFigure 11.1.2.6: Process HLRA_Monitoring (sheet 1 of 2)\nFigure 11.1.2.6: Process HLRA_Monitoring (sheet 2 of 2)\nFigure 11.1.2.7: Procedure HLRA_CCBS_Check_Interactions\nFigure 11.1.2.8: Procedure CCBS_Notify_SS_Invocation",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_11.1.2.1",
+        "figure_11.1.2.2",
+        "figure_11.1.2.3",
+        "figure_11.1.2.4",
+        "figure_11.1.2.5",
+        "figure_11.1.2.6",
+        "figure_11.1.2.7",
+        "figure_11.1.2.8"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.093_11.2.1",
+      "section_id": "11.2.1",
+      "section_title": "Procedures in GMSC",
+      "content": "Figure 11.2.1.1: Procedure CCBS_MT_GMSC_Check_CCBS_Call\nThis procedure checks from the IAM message whether the call is CCBS call. If that is the case the CCBS Call parameter is set to the Send Routeing Info message. This functionality shall be applied only to the initial call leg. The procedure initialises also the CCBS Possible variable as True, the variable is accessible to all CCBS specific procedures in the GMSC.\nFigure 11.2.1.2: Procedure CCBS_MT_GMSC_Check_CCBS_Indicators\nThis procedure sets the CCBS_Call indicator to the outgoing IAM message when needed. This functionality shall be applied only to the initial call leg.\nFigure 11.2.1.3: Procedure CCBS_MT_GMSC_Remove_Indicators_Store_FWT\nThis procedure removes CCBS_Call indicator from the forwarded IAM message and also stores the forwarding type. It also checks whether subscriber B can be target of CCBS Requests and stores that information for later use.\nFigure 11.2.1.4: Procedure CCBS_MT_GMSC_Remove_Indicators\nThis procedure removes CCBS_Call indicator from the outgoing IAM message. CCBS activation is not possible for this call because T-CSI modified destination address.\nFigure 11.2.1.5: Procedure CCBS_MT_GMSC_Check_CCBS_Possible\nThis procedure contains the core logic to handle various interactions with CAMEL, OR and received Release message content. The procedure alters CCBS specific global variable CCBS Target which controls setting of the diagnostic field in the Release message towards the originating network.\nGlobal variables Reconnect and Resume Call are specific to CAMEL and OR interaction respectively. They are initialised and updated in the process MT_GMSC or MT_CF_MSC, refer to TS 23.018.\nFigure 11.2.1.1: Procedure CCBS_MT_GMSC_Check_CCBS_Call\nFigure 11.2.1.2: Procedure CCBS_MT_GMSC_Check_CCBS_Indicators\nFigure 11.2.1.3: Procedure CCBS_MT_GMSC_Remove_Indicators_Store_FWT\nFigure 11.2.1.4: Procedure CCBS_MT_GMSC_Remove_Indicators\nFigure 11.2.1.5: Procedure CCBS_MT_GMSC_Check_CCBS_Possible",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_11.2.1.1",
+        "figure_11.2.1.2",
+        "figure_11.2.1.3",
+        "figure_11.2.1.4",
+        "figure_11.2.1.5",
+        "ts_23.018_figure_11.2.1.1",
+        "ts_23.018"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.093_11.2.2",
+      "section_id": "11.2.2",
+      "section_title": "Processes and procedures in HLR",
+      "content": "Figure 11.2.2.1: Block diagram of HLRB_processes\nFigure 11.2.2.2: Process HLRB_Request_Manager\nThis process has the task of controlling the queue and determining whether requests to be processed are present in the queue or not.\nThe process has two states \"idle\" and \"active\". In the \"idle\" state there are no \"operative\" requests in the queue i.e. there are only suspended requests or no requests at all. In the \"active\" state there is at least one \"operative\" request in the queue which needs processing. A transition from \"idle\" to \"active\" will trigger this process to start the process \"HLRB_Recall_Manager\". Only a transition from \"active\" to \"idle\" will result in this process stopping the process \"HLRB_Recall_Manager\".\nFigure 11.2.2.3: Process HLRB_Request\nThis process represents an individual CCBS request on the destination side. Reception of signals on the external interface (SSAP signalling) are handled by this process.\nRetention is handled by this process. The individual request is informed by the Recall manager process about the outcome of the CCBS Call. The individual request is in charge to decide on whether it will stay in the destination queue (retention) or not according to its data stored.\nT7 expiry is controlled by the individual request in that way, that it remembers T7 expiry when it is the selected request (i.e. a CCBS Recall has been initiated for this request). The event is detected after the CCBS Recall when retention has kept the request in the queue.\nFigure 11.2.2.4: Process HLRB_Recall Manager\nThis process is in charge of the recall handling. It is started and stopped by the process \"HLRB_Request_Manager\" depending on whether there are operative requests in the terminating queue or not.\nAs soon as this process is started, it will start the process \"HLRB_Monitoring\" and wait for a response from this process. The response indicates that user B is idle guarded i.e. a CCBS Recall can be initiated. Hence, the process asks the request manager for selection of an individual request from the terminating queue.\nWhen an individual process is selected, the process initiates a CCBS Recall via the individual request (since the external interface is tied to the individual request), starts T9 and takes over control of the blocking function while waiting for the CCBS Call. Control of blocking is done by sending the signal \"Recall_Block\" to process \"HLRB_Blocking\".\nWhile waiting for the outcome of the CCBS Call, the process will be informed either by the selected individual request in the case of negative outcome (suspension or cancellation, both hidden to the process), or by process \"HLRB_Monitoring\" in the case the CCBS Call has reached the terminating PLMN.\nFigure 11.2.2.5: Process HLRB_Monitoring\nThis process takes care of monitoring events received from MSC/VLR and detects potential conditions for initiating a CCBS Recall.\nThe process is controlled by the \"HLRB_Recall_Manager\" process which was formerly in charge of detecting the recall condition.\nWhen the process is started, it invokes the monitoring function in the MSC/VLR and awaits the first event report. The process keeps track of the subscriber state changes by running a state machine which reflects the subscriber states. When there is a transition from subscriber state \"not idle\" to \"idle\", then T8 is started. As soon as T8 expires, the process changes state again in order to remember that the subscriber is now idle guarded and a recall could be initiated\nWhether a CCBS Recall is initiated or not depends on whether the process \"HLRB_Recall_Manager\" has asked for this information by sending a \"B_Query\" signal to the monitoring process. The process \"HLRB_Monitoring\" gives this information only if the \"B_Query\" signal has been received. This is done by sending the signal \"B_Guarded\" to the Recall Manager and it is only done once per request. The monitoring process keeps track on whether a query was received or not by appropriate state changes.\nAs the monitoring process is in charge for the idle guard function, it also controls the blocking of incoming calls during the idle guard time (T8). Hence, when the recall manager process has sent a \"B_Query\" (i.e. a CCBS request needs to be processed) then the monitoring process starts the corresponding blocking along with T8. The blocking is only stopped if T8 does not expire. If T8 expires, then blocking is still needed for the following CCBS Recall. The responsibility for controlling the blocking (i.e. switching it off) is given to the recall manager process.\nFigure 11.2.2.6: Process HLRB_Blocking\nThis process controls the CCBS Call delivery reporting when the processes are in the proper state. This means that the reporting functionality of the outcome of the CCBS Call is not blindly triggered whenever there is a terminating CCBS Call.\nThe process has three different states: \"idle\", \"Blocking\" and \"Recall Blocking\". The \"Idle\" state reflects the case when blocking is disabled. In the \"Blocking\" state all incoming calls are blocked (e.g. while T8 is running). The \"Recall Blocking\" state allows one CCBS Call to pass, which will trigger the CCBS Call delivery reporting in the MSC/VLR via the TS 23.018 process \"SRI_HLR\". When this happens, the process will automatically change back to state \"Blocking\" as no other CCBS Call is expected for now.\nWhen the process has detected that destination B is idle, it will start the blocking. Hence, the blocking process will change state to \"Blocking\". As soon as the process \"HLRB_Recall_Manager\" has initiated a CCBS Recall, it will cause a state change in the blocking process to state \"Recall Blocking\". When the CCBS Call is received, \"result = OK\" indication in signal \"SRI_Received_Ack\" will trigger the reporting mechanism for CCBS Call delivery via a PRN request in the TS 23.018 process \"SRI_HLR\".\nFor Figure 11.2.2.6, sheet 2: The procedure Handle_CFB is specified in TS 23.018, clause 7.3.2.6.\nFigure 11.2.2.7: Procedure HLRB_CCBS_Check_Interactions\nThis procedure checks whether the request is frozen due to the supplementary service interactions.\nFigure 11.2.2.8: Procedure CCBS_Handling_HLR\nThis procedure is called during Send Routeing Info message handling in the HLR. If blocking is active only CCBS Calls can proceed, others will fail with busy or forward indication. For CCBS Call CCBS Call Indicator is set to the Provide Roaming Number message.\nFigure 11.2.2.9: Procedure CCBS_Report_PRN_Failure\nThis procedure is called if Provide Roaming Number returns an error. For CCBS call is then generated an internal call report.\nThe handling of multiple requests in HLR B can be further clarified by the diagram shown in figure 11.2.2.1.\nFigure 11.2.2.1: HLRB_Processes\nDescription of above signals\nRelation Originating Network and HLRB_Request_Manager\nCCBS_Request: When the originating network attempts to activate CCBS, it sends a CCBS_Request message to HLRB Request Manager.\nCCBS_Request_Ack: When the HLRB_Request_Manager acknowledges the activation, it sends CCBS_Request Ack to originating network.\nCCBS_Reject: If the HLRB_Request_Manager does not accept the activation attempt, it sends CCBS_Reject to the originating network indicating long term or short term denial.\nRelation Originating Network and HLRB_Request\nCCBS_Suspend: If the originating network suspends a CCBS Request, it sends CCBS_Suspend to HLRB Request.\nCCBS_Resume: When a request that was suspended is now resumed, the originating network sends a CCBS_Resume message to HLRB Request.\nCCBS Cancel: When a request is cancelled in the originating network, it sends a CCBS Cancel message to HLRB Request.\nRemote_User_Free: HLRB_Request sends Remote_User_Free to the originating network to inform the originating network that destination B is now idle.\nCCBS_Cancel: If a CCBS Request is cancelled in the destination network, HLRB_Request sends CCBS_Cancel to the originating network.\nTC_END: If a CCBS Call is successfully delivered to destination B, then HLRB_Request ends the dialogue with the originating network by sending a TC_END message.\nRelation HLRB_Request_Manager and HLRB_Request\nSelection_Request: Once destination B is idle guarded, then the HLRB_Request_Manager will select the first non-suspended request in the queue for processing by sending \"Select_Request\" to HLRB_Request.\nInactive: When a CCBS Request is either suspended or unselectable due to the supplementary service interaction, HLRB_Request informs HLRB_Request_Manager so that the queue status can be updated.\nRe-Activated: When either a suspended CCBS Request is resumed or the supplementary service interaction with the request ends, then HLRB_Request informs HLRB_Request_Manager so that the queue status can be updated.\nDeleted: When a CCBS Request is cancelled, then HLRB_Request informs HLRB_Request_Manager so that the queue status can be updated.\nRelation HLRB_Recall_Manager and HLRB_Blocking\nStop_Blocking: When the Recall manager process is stopped by the Request Manager process or the Recall manager receives and 'End' signal from the Request manager, the Recall manager sends \"Stop_Blocking\" to HLRB_Blocking.\nRecall_Block: When a \"Send RUF\" signal is sent to HLRB_Request, the HLRB_Recall_Manager also sends \"Recall Block\" to HLRB_Blocking so that one CCBS Call can be delivered to destination B, but other normal incoming calls are blocked.\nRelation HLRB Recall_Manager and HLRB_Request_Manager\nSelect_Request: On reception of a \"B_Guarded\" signal, the Recall manager sends \"Select_Request\" to the Request manager. The Request manager then selects the first non-suspended request in the queue for processing.\nStart_Recall_Manager: When a CCBS Request is successfully activated, the Request manager sends \"Start_Recall_Manager\" to HLRB_Recall_Manager which subsequently causes the recall manager process to start the monitoring process.\nStop_Recall_Manager: The Request manager can stop the Recall manager process by sending a \"Stop_Recall_Manager\" signal\nSelect_Request_Response: When the Request manager has selected a request for processing it sends a response to the recall manager causing the recall manager to initiate a CCBS Recall.\nRelation HLRB_Recall_Manager and HLRB_Request\nSend_RUF: The Recall manager requests the individual process to send a Remote User Free indication to the originating network by sending a \"Send_RUF\" signal to the individual process.\nRecall_Report: The Recall manager informs the individual process of the result of processing a CCBS Recall by sending a \"Recall Report\" signal.\nEND: When a CCBS Request is suspended or cancelled the HLRB_Request process sends an \"End\" signal to the Recall Manager process.\nRelation HLRB_Recall_Manager and HLRB_Monitoring\nStart_Monitoring: When the Recall manager process is started by the Request manager process, the Recall manager sends \"Start_Monitoring\" to the HLRB_Monitoring process to request the status of destination B\nStop_Monitoring: When the Recall manager process is stopped by the Request manager process, the Recall manager sends \"Stop_Monitoring\" to the HLRB_Monitoring process.\nB_Query: HLRB_Recall_Manager requests the HLRB_monitoring process to get informed when destination B has become idle guarded.\nRelation HLRB_Monitoring and HLRB_Recall_Manager\nB_Guarded: HLRB_Monitoring informs the HLRB_Recall_Manager that destination B has become idle guarded.\nCall_Delivery: HLRB_Monitoring informs the HLRB_Recall_Manager about the delivery of the CCBS call.\nFigure 11.2.2.2: Process HLRB_REQUEST_MANAGER (sheet 1 of 3)\nFigure 11.2.2.2: Process HLRB_REQUEST_MANAGER (sheet 2 of 3)\nFigure 11.2.2.2: Process HLRB_REQUEST_MANAGER (sheet 3 of 3)\nFigure 11.2.2.3: Process HLRB_REQUEST (sheet 1 of 6)\nFigure 11.2.2.3: Process HLRB_REQUEST (sheet 2 of 6)\nFigure 11.2.2.3: Process HLRB_REQUEST (sheet 3 of 6)\nFigure 11.2.2.3: Process HLRB_REQUEST (sheet 4 of 6)\nFigure 11.2.2.3: Process HLRB_REQUEST (sheet 5 of 6)\nFigure 11.2.2.3: Process HLRB_REQUEST (sheet 6 of 6)\nFigure 11.2.2.4: Process HLRB_RECALL_MANAGER (sheet 1 of 3)\nFigure 11.2.2.4: Process HLRB_RECALL_MANAGER (sheet 2 of 3)\nFigure 11.2.2.4: Process HLRB_RECALL_MANAGER (sheet 3 of 3)\nFigure 11.2.2.5: Process HLRB_MONITORING (sheet 1 of 7)\nFigure 11.2.2.5: Process HLRB_MONITORING (sheet 2 of 7)\nFigure 11.2.2.5: Process HLRB_MONITORING (sheet 3 of 7)\nFigure 11.2.2.5: Process HLRB_MONITORING (sheet 4 of 7)\nFigure 11.2.2.5: Process HLRB_MONITORING (sheet 5 of 7)\nFigure 11.2.2.5: Process HLRB_MONITORING (sheet 6 of 7)\nFigure 11.2.2.5: Process HLRB_MONITORING (sheet 7 of 7)\nFigure 11.2.2.6: Process HLRB_BLOCKING (sheet 1 of 3)\nFigure 11.2.2.6: Process HLRB_BLOCKING (sheet 2 of 3)\nFigure 11.2.2.6: Process HLRB_BLOCKING (sheet 3 of 3)\nFigure 11.2.2.7: Procedure HLRB_Check_Interactions\nFigure 11.2.2.8: Procedure CCBS_Handling_HLR\nFigure 11.2.2.9: Procedure CCBS_Report_PRN_Failure",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "ts_23.018_clause_7.3.2.6",
+        "figure_11.2.2.1",
+        "figure_11.2.2.2",
+        "figure_11.2.2.3",
+        "figure_11.2.2.4",
+        "figure_11.2.2.5",
+        "figure_11.2.2.6",
+        "ts_23.018_figure_11.2.2.7",
+        "figure_11.2.2.8",
+        "figure_11.2.2.9",
+        "figure_11.2.2.7",
+        "ts_23.018",
+        "ts_23.01"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.093_11.2.3",
+      "section_id": "11.2.3",
+      "section_title": "Procedures in MSC/VLR",
+      "content": "Figure 11.2.3.1: Procedure CCBS_MT_MSC_Check_Forwarding\nThis procedure is called to set the CCBS Target variable. That variable is used in later phase to set the correct diagnostic value to the Release message.\nFigure 11.2.3.2: Procedure CCBS_Handle_PRN\nThis procedure is called to store CCBS call indicator when roaming number is reserved in the VLR.\nFigure 11.2.3.3: Procedure CCBS_ICH_Set_CCBS_Call_Indicator\nThis procedure is called when VLR receives Send Info For Incoming Call message. If MSRN is related to the CCBS call, CCBS call indicator is set for call handling.\nFigure 11.2.3.4: Procedure CCBS_ICH_MSC_Report_Failure\nThis procedure is called when CCBS call fails in the destination MSC and the reason is detected in the MSC side.\nFigure 11.2.3.5: Procedure CCBS_ICH_VLR_Report_Failure\nThis procedure is called when CCBS call fails in the destination MSC and the reason is detected in the VLR side.\nFigure 11.2.3.6: Procedure CCBS_ICH_Report_Not_Reachable\nThis procedure is called when call fails in the destination MSC with special cause of Not_Reachable. On normal call Not_Reachable message is sent to the monitoring process, on CCBS call subscriber is reported being absent.\nFigure 11.2.3.7: Procedure CCBS_ICH_Handle_NDUB\nThis procedure is called when call encounters NDUB condition in the destination MSC. It is a network option to forward the call or release the call.\nFigure 11.2.3.8: Procedure CCBS_ICH_Handle_UDUB\nThis procedure is called when call encounters UDUB condition in the destination MSC.\nFigure 11.2.3.9: Procedure CCBS_ICH_MSC_Report_Success\nThis procedure is called when CCBS call is successfully delivered in the destination MSC and the event is detected in the MSC side.\nFigure 11.2.3.10: Procedure CCBS_ICH_VLR_Report_Success\nThis procedure is called when CCBS call is successfully delivered in the destination MSC and the event is detected in the VLR side.\nFigure 11.2.3.11: Procedure CCBS_ICH_Set_CCBS_Target\nThis procedure is called if when a call encounters busy condition in the destination MSC. If busy cause is NDUB and the user has elected to be target of CCBS requests, CCBS Target is set to True.\nFigure 11.2.3.1: Procedure CCBS_MT_MSC_Check_Forwarding\nFigure 11.2.3.2: Procedure CCBS_Handle_PRN\nFigure 11.2.3.3: Procedure CCBS_ICH_Set_CCBS_Call_Indicator\nFigure 11.2.3.4: Procedure CCBS_ICH_MSC_Report_Failure\nFigure 11.2.3.5: Procedure CCBS_ICH_VLR_Report_Failure\nFigure 11.2.3.6: Procedure CCBS_ICH_Report_Not_Reachable\nFigure 11.2.3.7: Procedure CCBS_ICH_Handle_NDUB\nFigure 11.2.3.8: Procedure CCBS_ICH_Handle_UDUB\nFigure 11.2.3.9: Procedure CCBS_ICH_MSC_Report_Success\nFigure 11.2.3.10: Procedure CCBS_ICH_VLR_Report_Success\nFigure 11.2.3.11: Procedure CCBS_ICH_Set_CCBS_Target",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_11.2.3.1",
+        "figure_11.2.3.2",
+        "figure_11.2.3.3",
+        "figure_11.2.3.4",
+        "figure_11.2.3.5",
+        "figure_11.2.3.6",
+        "figure_11.2.3.7",
+        "figure_11.2.3.8",
+        "figure_11.2.3.9",
+        "figure_11.2.3.10",
+        "figure_11.2.3.11"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.093_11.3",
+      "section_id": "11.3",
+      "section_title": "Processes and procedures common in originating and destination network entities",
+      "content": "Figure 11.3.1: Process CCBS_Monitoring_VLR\nThis process is responsible for monitoring the subscriber in VLR and also controls the MSC monitoring process.\nFigure 11.3.2: Process CCBS_Monitoring_MSC\nThis process is responsible for monitoring subscriber in MSC.\nFigure 11.3.3: Process CCBS_Coordinator_HLR\nThis process co-ordinates HLRA and HLRB monitoring interaction. Start and Stop Reporting messages are sent only once towards MSC, CCBS_Call_Report messages are directed to correct queue and Status information is distributed to both queues when needed.\nFigure 11.3.4: Procedure CCBS_Set_Diagnostic_For_Release\nThis procedure is called to set the diagnostic field to the Release message. The diagnostic is set according to the internal CCBS Target variable.\nFigure 11.3.5: Procedure CCBS_Report_Not_Idle\nThis procedure is called when either MO or MT setup is received or sent to the MS. It informs the VLR monitoring process that the MS is engaged with a call.\nFigure 11.3.6: Procedure CCBS_Report_MS_Activity\nThis procedure is called when Process_Access_Request is successfully performed. It informs the VLR monitoring process and may cause transition to the Idle state.\nFigure 11.3.7: Procedure CCBS_Check_Last_Call\nThis procedure is called when a call is ending. If the call is the last CC connection to the MS, that is reported to the VLR monitoring process.\nFigure 11.3.1: Process CCBS_Monitoring_VLR (sheet 1 of 4)\nFigure 11.3.1: Process CCBS_Monitoring_VLR (sheet 2 of 4)\nFigure 11.3.1: Process CCBS_Monitoring_VLR (sheet 3 of 4)\nFigure 11.3.1: Process CCBS_Monitoring_VLR (sheet 4 of 4)\nFigure 11.3.2: Process CCBS_Monitoring_MSC\nFigure 11.3.3: Process CCBS_Coordinator_HLR (sheet 1 of 6)\nFigure 11.3.3: Process CCBS_Coordinator_HLR (sheet 2 of 6)\nFigure 11.3.3: Process CCBS_Coordinator_HLR (sheet 3 of 6)\nFigure 11.3.3: Process CCBS_Coordinator_HLR (sheet 4 of 6)\nFigure 11.3.3: Process CCBS_Coordinator_HLR (sheet 5 of 6)\nFigure 11.3.3: Process CCBS_Coordinator_HLR (sheet 6 of 6)\nFigure 11.3.4: Procedure CCBS_Set_Diagnostic_For_Release\nFigure 11.3.5: Procedure CCBS_Report_Not_Idle\nFigure 11.3.6: Procedure CCBS_Report_MS_Activity\nFigure 11.3.7: Procedure CCBS_Check_Last_Call",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_11.3.1",
+        "figure_11.3.2",
+        "figure_11.3.3",
+        "figure_11.3.4",
+        "figure_11.3.5",
+        "figure_11.3.6",
+        "figure_11.3.7"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.093_12",
+      "section_id": "12",
+      "section_title": "Information stored in the HLRs",
+      "content": "Note that a given subscriber may be both the originator and the target of CCBS requests; a given HLR may therefore be required to store both the data for HLR A and the data for HLR B against a given subscriber.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.093_12.1",
+      "section_id": "12.1",
+      "section_title": "Originating Network Data",
+      "content": "The following logical states are applicable for the CCBS service in the originating network (refer to TS 23.011 for an explanation of the notation):\nProvisioning State\tRegistration State\tActivation State\tHLR Induction State\n(Not Provisioned,\tNot Applicable,\tNot Active,\tNot Induced)\n(Provisioned,\tNot Applicable,\tActive and Operative\tNot Induced)\nThe logical state shall be on a per subscriber basis and hence the same for all basic service groups.\nThe HLR shall store the logical state of the CCBS service (which shall be one of the valid states listed above) on a per subscriber basis. The HLR shall store the following information for each CCBS Request that is successfully activated by subscriber A:\n-\tAddressOfB;\n-\tBasic Service Group;\n-\tCCBS Call Information;\n-\tTranslated Number;\n-\tRetention supported by destination network (if HLR A supports retention);\n-\tCCBS Index;\n-\tCAMEL Invoked.\nThe HLR shall store for the served subscriber as the originator of CCBS requests:\n-\tThe parameter \"Max Queue Size\",\n-\tThis parameter takes a value in the range 1 to 5.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.011"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.093_12.2",
+      "section_id": "12.2",
+      "section_title": "Destination Network Data",
+      "content": "The following logical states are applicable for the CCBS service in the destination network (refer to TS 23.011 for an explanation of the notation):\nProvisioning State\tRegistration State\tActivation State\tHLR Induction State\n(Not Provisioned,\tNot Applicable,\tNot Active,\tNot Induced)\n(Provisioned,\tNot Applicable,\tActive and Operative,\tNot Induced)\nThe logical state shall be on a per subscriber basis and hence the same for all basic service groups.\nThe HLR shall store the logical state of the CCBS service (which shall be one of the valid states listed above) on a per subscriber basis.\nThe HLR shall store the following information for each CCBS Request that is successfully activated against User B :\n-\tBasic Service Group;\n-\tRetention supported by originating network (if HLR B supports retention).\nThe HLR shall store on a per subscriber basis:\nThe parameter \"Number of terminating CCBS Requests\"\nThis parameter takes a value in the range 1 to 5.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.011"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.093_12.3",
+      "section_id": "12.3",
+      "section_title": "Transfer of information from HLR to VLR",
+      "content": "If the provisioning state for CCBS supplementary service is \"Provisioned\" then, when the subscriber registers on a VLR, the HLR shall send that VLR information about the logical state of CCBS supplementary service.\nIf the logical state of CCBS supplementary service is changed while a subscriber is registered on a VLR, then the HLR shall inform the VLR of the new logical state of CCBS supplementary service.\nBoth originating and destination network CCBS supplementary service logical states are updated independently of each other to the VLR.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.093_13.1",
+      "section_id": "13.1",
+      "section_title": "State transition model for the CCBS service in the originating network",
+      "content": "Figure 13.1.1 shows the successful cases of transition between the applicable logical states of the CCBS service in the originating network. The state changes may be caused by actions of the service provider or the network.\nFigure 13.1.1: State Transition Model for CCBS Service in the originating network",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_13.1.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.093_13.2",
+      "section_id": "13.2",
+      "section_title": "State transition model for the CCBS service in the destination network",
+      "content": "Figure 13.2.1 shows the successful cases of transition between the applicable logical states of the CCBS service in the destination network. The state changes may be caused by actions of the service provider or the network.\nFigure 13.2.1: State Transition Model for CCBS Service in the destination network",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_13.2.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.093_13.3",
+      "section_id": "13.3",
+      "section_title": "State transition model for a CCBS Request",
+      "content": "Figure 13.3.1 shows the successful cases of transition between the applicable logical states of a CCBS Request. The state changes may be caused by actions of the served subscriber or the network.\nEach subscriber can be considered to have a set of n requests, where n is the maximum number of CCBS requests allowed for a subscriber as an originator.\nFigure 13.3.1: State Transition Model for a CCBS Request in Originating Network\nOn provision of the CCBS service, all requests transit to the \"Start\" state\nFigure 13.3.2: State Transition Model for a CCBS Request in Destination Network",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_13.3.1",
+        "figure_13.3.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.093_13.4",
+      "section_id": "13.4",
+      "section_title": "Information stored in the VLRs",
+      "content": "Originating Network Data\nFor the CCBS service in the originating network the VLR shall store the service state information received from HLR.\nDestination Network Data\nFor the CCBS service in the destination network the VLR shall store the service state information received from HLR.\nAnnex A (informative):Message flow diagrams showing a successful CCBS request\nThe following message flow diagrams show a successful CCBS request. Destination B busy when request activated, subscriber A free when destination B becomes free (mobile-to-mobile).\nAnnex B (informative):Change history\nChange history\nDate\nMeeting\nTDoc\nCR\nRev\nCat\nSubject/Comment\nNew version\nApr 1999\nTransferred to 3GPP CN1\nCN#03\nApproved at CN#03\n3.0.0\nCN#06\n0001\n3\nApproved at CN#06\n3.1.0\nCN#06\n0002\n3\nApproved at CN#06\n3.1.0\nCN#09\n0003\n1\nHandling of the Call Completion Treatment Indicator\n3.2.0\nCN#09\n0004\nHandling of the Call Diversion Treatment Indicator\n3.2.0\nCN#11\nRelease 4 after CN#11\n4.0.0\nCN#16\nRelease 5 after CN#16\n5.0.0\nCN#26\nRelease 6 after CN#26\n6.0.0\nCT#36\nUpgraded unchanged from Rel-6\n7.0.0\nCT#37\n0005\nHLR procedure on Location Update from the current VLR\n7.1.0\nCT#37\n0006\nIncompatible terminal handling in VLR\n7.1.0\nCT#38\n0007\nCall forwarding on busy handling in HLR\n7.2.0\nCT#40\n0008\n1\nMissing signal in process VLR_CCBS_Recall_Manager\n7.3.0\nCT#42\nUpgraded unchanged from Rel-7\n8.0.0\nCT#46\n-\nUpdate to Rel-9 version (MCC)\n9.0.0\n2011-03\n-\nUpdate to Rel-10 version (MCC)\n10.0.0\n2011-11\nEditorial correction to previous line in history table\n10.0.1\n2012-09\n-\nUpdate to Rel-11 version (MCC)\n11.0.0\n2014-09\n-\nUpdate to Rel-12 version (MCC)\n12.0.0\n2015-12\n-\nUpdate to Rel-13 version (MCC)\n13.0.0\n2017-03\n-\nUpdate to Rel-14 version (MCC)\n14.0.0\n2018-06\n-\nUpdate to Rel-15 version (MCC)\n15.0.0\n2020-07\n-\nUpdate to Rel-16 version (MCC)\n16.0.0\n2022-03\n-\n-\n-\n-\n-\nUpdate to Rel-17 version (MCC)\n17.0.0\n2024-03\n-\n-\n-\n-\n-\nUpdate to Rel-18 version (MCC)\n18.0.0",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_10.0.1"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,487 @@
+{
+  "metadata": {
+    "specification_id": "ts_23.141",
+    "version": "18.0.0",
+    "title": "3GPP TS 23.141",
+    "file_path": "/content/drive/MyDrive/RAG_thesis/data/23_series/23141-i00/23141-i00.docx"
+  },
+  "export_info": {
+    "export_date": "2025-07-26T09:39:30.272358",
+    "total_chunks": 48
+  },
+  "chunks": [
+    {
+      "chunk_id": "ts_23.141_1",
+      "section_id": "1",
+      "section_title": "Scope",
+      "content": "The present document describes the stage 2 description (architectural solution and functionalities) for the Presence Service, which includes the elements necessary to realise the stage 1 requirements in TS 22.141 [2].\nThe present document includes information applicable to network operators, service providers and manufacturers.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_22.141"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.141_2",
+      "section_id": "2",
+      "section_title": "References",
+      "content": "The following documents contain provisions which, through reference in this text, constitute provisions of the present document.\n-\tReferences are either specific (identified by date of publication, edition number, version number, etc.) or non‑specific.\n-\tFor a specific reference, subsequent revisions do not apply.\n-\tFor a non-specific reference, the latest version applies. In the case of a reference to a 3GPP document (including a GSM document), a non-specific reference implicitly refers to the latest version of that document in the same Release as the present document.\n[1]\t3GPP TR 21.905: \"Vocabulary for 3GPP Specifications\".\n[2]\t3GPP TS 22.141: \"Presence service; Stage 1\".\n[3]\tIETF RFC 3863: \"Presence Information Data Format\", August 2004.\n[4]\tIETF RFC 3856: \"A Presence Event Package for the Session Initiation Protocol (SIP)\", August 2004.\n[5]\t3GPP TS 33.203: \"3G security; Access security for IP-based services\".\n[6]\t3GPP TS 32.240: \"Telecommunication management; Charging management; Charging architecture and principles\".\n[7]\t3GPP TS 32.260: \"Telecommunication management; Charging management; IP Multimedia Subsystem (IMS) charging\".\n[8]\t3GPP TS 33.210: \"3G security; Network Domain Security (NDS); IP network layer security\".\n[9]\t3GPP TS 23.228: \"IP Multimedia Subsystem (IMS); Stage 2\".\n[10]\t3GPP TS 23.218: \"IP Multimedia (IM) session handling; IM call model; Stage 2\".\n[11]\tVoid.\n[12]\tVoid.\n[13]\t3GPP TS 29.061: \"Interworking between the Public Land Mobile Network (PLMN) supporting Packet Based services and Packet Data Networks (PDN)\".\n[14]\t3GPP TS 23.271: \"Location Services (LCS); Functional description; Stage 2\".\n[15]\t3GPP TS 23.198: \"Open Service Access (OSA); Stage 2\".\n[16]\tIETF RFC 2778: \"A Model for Presence and Instant Messaging\".\n[17]\tIETF RFC 2779: \"Instant Messaging / Presence Protocol Requirements\".\n[18]\t3GPP TS 23.002: \"Network architecture\".\n[19]\tVoid.\n[20]\tLIF TS 101: \"Mobile Location Protocol Specification\"(Location Interoperability Forum 2001) [Available at http://www.openmobilealliance.org].\n[21]\t3GPP TR 23.981: \"Interworking aspects and migration scenarios for IPv4 based IMS implementations\".\n[22]\t3GPP2 X.S0027-004: \"Network Presence\".\n[23]\t3GPP2 X.S0004: \"Introduction to MAP\".",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905",
+        "ts_22.141",
+        "ts_33.203",
+        "ts_32.240",
+        "ts_32.260",
+        "ts_33.210",
+        "ts_23.228",
+        "ts_23.218",
+        "ts_29.061",
+        "ts_23.271",
+        "ts_23.198",
+        "ts_23.002",
+        "ts_23.981"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.141_3.1",
+      "section_id": "3.1",
+      "section_title": "Definitions",
+      "content": "For the purposes of the present document, the terms and definitions defined in TR 21.905 [1] and TS 22.141 [2] and the following apply:\nPresence List Server: functional entity that stores grouped lists of watched presentities and enables a Watcher Application to subscribe to the presence of multiple presentities using a single transaction.\nPresence Network Agent: network located element that collects and sends network related presence information on behalf of the presentity to a presence server.\nPresentity Presence Proxy: functional entity that provides presentity related functionality such as determining the presence server associated with a presentity.\nPresence Server: network entity responsible for managing presence information on behalf of a presence entity.\nPresence User Agent: a terminal or network located element that collects and sends user related presence information to a presence server on behalf of a Principal.\nWatcher Presence Proxy: a functional entity that provides watcher related function such as authentication of watchers.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_21.905",
+        "ts_22.141"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.141_3.2",
+      "section_id": "3.2",
+      "section_title": "Abbreviations",
+      "content": "For the purposes of the present document, the abbreviations in TR 21.905 [1] and TS 22.141 [2] and the following apply:\nAAA\tAuthentication, Authorisation and Accounting\nCAMEL\tCustomised Applications for Mobile network Enhanced Logic\nCAP\tCAMEL Application Part\nCGI\tCell Global Identity\nCS\tCircuit Switched\nCSCF\tCall Session Control Function\nGGSN\tGateway GPRS Support Node\nGMLC\tGateway Mobile Location Centre\nGPRS\tGeneral Packet Radio Service\nHLR\tHome Location Register\nHSS\tHome Subscriber Server\nHTTP\tHyper Text Transport Protocol\nI-CSCF\tInterrogating CSCF\nIETF\tInternet Engineering Task Force\nIMS\tIP Multimedia Subsystem\nISDN\tIntegrated Service Digital Network\nLIF\tLocation Interoperability Forum\nMAP\tMobile Application Part\nMSC\tMobile Switching Centre\nMSISDN\tMobile Subscriber ISDN Number\nP-CSCF\tProxy CSCF\nPDG\tPacket Data Gateway\nPLMN\tPublic Land Mobile Network\nPS\tPacket Switched\nPUA\tPresence User Agent\nRFC\tRequest For Comments\nSAI\tService Area Identity\nS-CSCF\tServing CSCF\nSGSN\tServing GPRS Support Node\nSIP\tSession Initiation Protocol\nSMS\tShort Message Service\nUE\tUser Equipment\nURL\tUniform Resource Locator\nWAP\tWireless Access Protocol\nWLAN\tWireless Local Area Network\nWML\tWireless Markup Language\nWV\tWireless Village",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905",
+        "ts_22.141"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.141_4.1",
+      "section_id": "4.1",
+      "section_title": "Overview",
+      "content": "The Presence Service provides the ability for the home network to manage presence information of a user's device, service or service media even whilst roaming. A user's presence information may be obtained through input from the user, information supplied by network entities or information supplied by elements external to the home network. Consumers of presence information, watchers, may be internal or external to the home network.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.141_4.2",
+      "section_id": "4.2",
+      "section_title": "Reference Architecture Model",
+      "content": "The generic reference architectural model for providing presence service is depicted in Figure 4.2-1 below. The details of the elements in the figure (e.g. agents, proxies) are provided in clause 5.\nThe mapping of the Presence Service functional elements and reference points to the functional elements and reference points in the 3GPP Network Architecture TS 23.002 [18] (and additionally IMS) is defined in clauses 4.3 and clause 5.\nFigure 4.2-1: Reference architecture to support a presence service",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_5",
+        "figure_4.2-1",
+        "ts_23.002"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.141_4.3.1",
+      "section_id": "4.3.1",
+      "section_title": "Reference point Presence User Agent - Presence Server (Peu)",
+      "content": "This reference point shall allow the Presence User Agent to manage subscription authorization policies.\nIPv6 shall be supported for all functionalities required from a Presence User Agent that supports the Peu reference point. An IPv6 capable 3GPP UE shall use IPv6 when accessing Peu. However, early IMS implementations and deployments may use IPv4;if IPv4 is used, the guidelines and recommendations in TR 23.981 [21] should be followed.\nThis reference point uses capabilities defined for the Ut reference point as defined in TS 23.002 [18].",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_23.981",
+        "ts_23.002"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.141_4.3.2",
+      "section_id": "4.3.2",
+      "section_title": "Reference point Presence Network Agent - Presence Server (Pen)",
+      "content": "This reference point shall allow a presentity's presence information to be supplied to the Presence Server. The transport on this reference point shall not impose any limitations to the size of the presence information.\nPen shall provide mechanisms for the Network Agent to manage subscription authorisation policies.\nPen shall provide mechanisms for the Network Agent to supply or update only a certain subset of the presentity's presence information to the Presence Server.\nPen shall provide mechanisms for activating or deactivating the reporting of Presence Information for a given presentity from the network entities within the PLMN.\nThe Pen interface is an intra-operator interface. In order to provide the all the functionalities required on this reference point, a combination of multiple protocols may be used. In general the protocols used at the Pen reference point are not standardised. However, for 3GPP2 systems this reference point is defined in X.S0027-004 [x]. At least, this interface shall support the transport of presence information under the PIDF format as specified in IETF RFC 3863 [3].",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.141_4.3.3",
+      "section_id": "4.3.3",
+      "section_title": "Reference point Presence External Agent - Presence Server (Pex)",
+      "content": "This reference point shall allow a presentity's presence information to be supplied to the Presence Server. The transport on this reference point shall not impose any limitations on the size of the presence information.\nPex shall provide mechanisms for the Presence External Agent to supply or update only a certain subset of the presentity's presence information to the Presence Server.\nIn order to provide all the functionalities required on this reference point, a combination of multiple protocols may be used. Presence information obtained from an external network by the Presence External Agent is transferred across the Pex reference point to the Presence Server. This interface shall support the transport of presence information under the PIDF format as specified in IETF RFC 3863 [3].",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.141_4.3.4",
+      "section_id": "4.3.4",
+      "section_title": "Reference point Watcher applications - Presentity Presence Proxy (Pw)",
+      "content": "This reference point shall allow a Watcher application to request and obtain presence information. This interface shall support the transport of presence information under the PIDF format as specified in IETF RFC 3863 [3].\nThe transport shall not impose any limitations to the size of the presence information.\nIn order to provide all the functionalities required on this interface, a combination of multiple protocols may be used.\nThis reference point shall support both presence monitoring and fetching modes. In the fetching mode, it shall be possible for the watcher to once request all or only a subset of a presentity's presence information (e.g. one or more tuples). The subset of the presence information is defined by the filter that is carried in the presence information subscription.\nIn the monitoring mode, it shall be possible for the watcher to request monitoring of all or a subset of a presentity's presence information (i.e. one or more tuples) . Watcher shall be able to explicitly indicate the capability to process partial updates. The subset of the presence information is defined by the filter that is carried in the presence information subscription. It shall be possible for the watcher to request the presence server to filter out information when the watcher is equal to the publishing Presence User Agent.\nIt shall be possible for the notifications containing the presentity's presence information to contain only information as defined by filters. It shall be possible for the notifications containing the presentity's presence information to contain only the modified tuples, i.e. only those tuples which have changed since the last notification.\nThis reference point may allow a Watcher application to use presence lists in presence information subscriptions, and the Watcher Presence Proxy to interface to a server that provides the functionality of Presence List Server.\nIPv6 shall be supported for all functionalities required from a Watcher application that supports the Pw reference point. An IPv6 capable 3GPP UE shall use IPv6 when accessing Pw. However, early IMS implementations and deployments may use IPv4; if IPv4 is used, the guidelines and recommendations in TR 23.981 [21] should be followed.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_23.981"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.141_4.3.5",
+      "section_id": "4.3.5",
+      "section_title": "Reference point HSS/HLR - Presence Network Agent (Ph)",
+      "content": "This reference point shall allow the Presence Network Agent to query HSS/HLR about the state and status of a subscriber (associated with a presentity) from the serving network (for 3GPP this is the CS domain or GPRS) and IMS perspective.\nThis reference point permits the Presence Network Agent to activate and deactivate the reporting of mobility management events from the serving network (for 3GPP this is the CS domain or GPRS) and/or the IMS-specific reports from the S-CSCF.\nThis reference point uses capabilities defined for the Sh reference point as defined in TS 23.002 [18] as well as the MAP interface.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_23.002"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.141_4.3.6",
+      "section_id": "4.3.6",
+      "section_title": "Reference point S-CSCF - Presence Network Agent (Pi)",
+      "content": "The S-CSCF may provide IMS-specific presence information (e.g. about IMS registration state). This reference point shall use mechanisms defined for the ISC reference point as defined in TS 23.002 [18].",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_23.002"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.141_4.3.7",
+      "section_id": "4.3.7",
+      "section_title": "Reference point Presentity Presence Proxy - HSS (Px)",
+      "content": "The Px interface is an intra-operator interface. This interface shall assist locating the Presence Server of the presentity. This interface is implemented using the mechanisms defined for the Cx and Dx reference points as defined in TS 23.002 [18].",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_23.002"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.141_4.3.8",
+      "section_id": "4.3.8",
+      "section_title": "Reference point Presence Network Agent - GMLC (Pl)",
+      "content": "This reference point shall be used by the Presence Network Agent to retrieve location information related to a subscriber (associated with the presentity). This reference point is the interface to GMLC and it is an instance of the Le reference point (defined in TS 23.271 [14] and TS 23.002 [18]). In the case of Presence the LCS client (defined in TS 23.271 [14]) is the Presence Network Agent and so the protocol implementing Pl needs to be defined. Though normally a stage 3 responsibility in this case the protocol to be used is defined here since it is a reference to an existing protocol. Thus, Pl shall conform to OMA's LIF-MLP specification [20].\nFor 3GPP2 systems, the interface for this reference point is to the 3GPP2 Position Server and is not supported in the current release of the specification.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_23.271",
+        "ts_23.002"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.141_4.3.9",
+      "section_id": "4.3.9",
+      "section_title": "Reference point Presence Network Agent - SGSN (Pg)",
+      "content": "This reference point shall allow the SGSN to report mobility management related events (such as attach/not reachable for paging/detach/routing area update) to the Presence Network Agent.\nThis reference point may allow the SGSN to report Mobility States (such as Detached, Idle and Connected) and Session States (such as PDP context active and inactive).\nThis reference point is implemented using the existing mechanisms of CAMEL phase 4, 3GPP Release 5.\nFor 3GPP2 systems, this reference point is not supported.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.141_4.3.10",
+      "section_id": "4.3.10",
+      "section_title": "Reference point Presence Network Agent -MSC Server/VLR (Pc)",
+      "content": "This reference point shall allow the MSC Server/VLR to report the mobility management related events to the Network Agent (such as attach/detach/location area update) and may allow the MSC Server/VLR to report call related events (such as call setup with the bearer information and call release).\nThis reference point may allow the MSC Server/ VLR to report Mobility States (such as Detached, Idle and Connected) and Call States (such as Busy with Bearer information and Idle).\nThis reference point is implemented using the existing mechanisms of CAMEL phase 4, 3GPP Release 5.\nFor 3GPP2 systems, the interface to this reference point is defined in 3GPP2 X.S0004 [23].",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.141_4.3.11",
+      "section_id": "4.3.11",
+      "section_title": "Reference point Presence Network Agent - GGSN (Pk)",
+      "content": "This reference point shall allow the GGSN to report presence relevant events to the Presence Network Agent (such as PDP context activation/de-activation). This reference point is implemented using the mechanisms of the RADIUS interface for reporting of access requests on Gi reference point as defined in TS 29.061 [13].\nFor 3GPP2 systems, this reference point is not supported.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.061"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.141_4.3.12",
+      "section_id": "4.3.12",
+      "section_title": "Reference point Presence Network Agent - 3GPP AAA Server (Pr)",
+      "content": "This reference point shall allow the 3GPP AAA Server to report IP-connectivity related events to the Presence Network Agent (such as WLAN UE attaching/detaching and tunnel establishment/removal). The Pr reference point shall be as much as possible based on mechanisms of existing interfaces.\nFor 3GPP2 systems, the interface for this reference point is to the AAA server and is defined in X.S0027-004 [22].",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.141_4.3.13",
+      "section_id": "4.3.13",
+      "section_title": "Reference point Presence Network Agent - PDG (Pp)",
+      "content": "This reference point shall allow the PDG to report presence relevant events to the Presence Network Agent (such as tunnel establishment/removal, allocation of the remote IP address for the WLAN UE). This reference point is based on reusing of the Wi reference point.\nFor 3GPP2 systems, this reference point is not supported.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.141_4.3.14",
+      "section_id": "4.3.14",
+      "section_title": "Reference point Presence User Agent - Presentity Presence Proxy (Pep)",
+      "content": "This reference point shall allow a presentity's presence information to be supplied to the Presence Server. The transport on this reference point shall not impose any limitations on the size of the presence information. This interface shall support the transport of presence information under the PIDF format as specified in IETF RFC 3863 [3].\nPep shall provide mechanisms for the Presence User Agent to obtain information on watcher subscriptions to the presentity's presence information.\nPep shall provide mechanisms for the Presence User Agent to supply or update only a certain subset of the presentity's presence information to the Presence Server. It shall also be possible for the Presence User Agent to supply the complete presence document over Pep.\nPep shall support SIP-based communications for publishing presence information.\nIPv6 shall be supported for all functionalities required from a Presence User Agent that supports the Pep reference point. An IPv6 capable 3GPP UE shall use IPv6 when accessing Pep. However, early IMS implementations and deployments may use IPv4; if IPv4 is used, the guidelines and recommendations in TR 23.981 [21] should be followed.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_23.981"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.141_4.3.15",
+      "section_id": "4.3.15",
+      "section_title": "Reference point Presentity Presence Proxy - Presence Server (Pwp)",
+      "content": "The Pwp interface is an intra-operator interface. This reference point shall allow all the functionalities provided by the Pw and Pep reference points.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.141_4.3.16",
+      "section_id": "4.3.16",
+      "section_title": "Reference point Watcher Applications - Presence List Server (Pet)",
+      "content": "This reference point shall allow a Watcher application to manage presence list information in the Presence List Server.\nThis reference point uses capabilities defined for the Ut reference point as defined in TS 23.228 [9].",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_23.228"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.141_4.4",
+      "section_id": "4.4",
+      "section_title": "Support of OSA Presence Service Capability Server in the Presence Architecture",
+      "content": "An OSA API may be provided to allow external application to access presence service features, details of which are found in TS 23.198 [15].\nThe OSA Presence SCS may act like a presentity or a watcher. The application may then register as a presentity and/or watcher, to supply presence information, to request presence information, to be notified of subsequent changes, to request watcher information, and to manage subscription authorisation policies.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.198"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.141_5.1",
+      "section_id": "5.1",
+      "section_title": "Presence Server",
+      "content": "The Presence Server shall reside in the presentity's home network.\nThe Presence Server shall be able to receive and manage presence information that is published by the Presence User/Network/External agents, and shall be responsible for composing the presence-related information for a certain presentity from the information it receives from multiple sources into a single presence document. The composing process to create the single presence document may involve complex transformations of presence information such as modifying the presence information from one presence source based on information from another presence source. In particular, the Presence server shall be able to receive and manage presence information that is published from multiple Presence User agents of the same presentity. The Presence Server shall be able to process partial publications of information from Presence User Agents. These partial publications contain the presence information of the presentity that has been modified since the latest publication sent to the Presence Server about this presentity.\nThese Presence User agents may be updating the same parts of the presence information.\nThe mechanisms for combining the presence related information shall be defined based on presence attributes, and according to certain policy defined in the Presence Server. The Presence Server shall be capable of receiving and composing the Presence information received in the standardized formats from authorized sources regardless of the source of the information or the ability to interpret the information contained in the presence tuples. The information that the Presence Server is not able to interpret shall be handled in a transparent manner.\nThe Presence Server shall also allow watchers to request and subscribe to either the full set of presence information of a presentity, or only certain information within. Watcher defines the subset of the presence information, that he is interested in, by the filter that is carried in presence information subscription. The Presence Server shall be able to generate partial notifications to a watcher, which has indicated the capability to process them. These partial notifications contain the presence information of the presentity that has been modified since the latest notification sent to the watcher about this presentity, and required additional information to be able to link the partial notification to the information watcher has received earlier. In case the watcher does not indicate the capability to process partial notifications the presence server shall send only full updates.\nBefore the subscription to presence information is accepted, the Presence Server should attempt to verify the identity of the watcher that subscribes to Presentity's Presence information, except if the watcher has indicated his desire to remain anonymous. The action taken by the Presence Server if the verification fails may include notifying the Presentity.\nThe Presence Server shall support SIP-based communications for publishing presence information.\nThe Presence Server shall support SIP-based communications with the Presentity Presence Proxy. The Presence Server is a SIP Application Server as defined by TS 23.228 [9], and is located using SIP URLs, standard SIP and existing IMS mechanisms (SIP routing, HSS query, ISC filtering, etc…).\nThe Presence Server shall provide Subscription Authorization Policy. The Subscription Authorization Policy determines which Watchers are allowed to subscribe to a Presentity's Presence information.\nThe Subscription Authorization Policy also determines which tuples of the Presentity's Presence information the watcher has access. It shall be possible for the Presentity's Presence User Agent to provide the Subscription Authorization Policy or it may be configured by the operator as part of the service provisioning.\nThe Presence Server may provide a watcher configurable filtering function that is used to limit the information that is delivered to a watcher. After subscription the authorized watchers get notified of the actual Presence Information based on the Subscription Authorization Policy and the filters set by the watcher in the subscription. If the Presence Server does not support the filters as requested by the watcher, this is indicated to the watcher. In this case the notification shall contain the actual Presence information based on the Subscription Authorization Policy and local policy in the Presence Server. The Presence Server may support one or more of the following types of filters: Filters, which allow watchers to define:\n-\tthe tuples that the watcher is interested in;Watcher can define a criteria which allows the complete tuple and all the information within the tuple to be transmitted. E.g. watcher can define the filter to permit notifying all the tuples (and all the information within those tuples) which has \"tel:+16305551212\" as the contact address or \"Instant Messaging\" as a communication means.\n-\tthe attributes that the watcher is interested in; andWatcher can define a criteria which result notifies to contain values only for defined attributes (attributes are defined by the filter and values for other attributes are not available in the notifications)\n-\tthe triggers when a notification should be sent.Watcher can define a criteria which specifies when to send a notification. E.g. every time the communication means status attribute changes its value, a notification is sent to the watcher. Another example: filter out and do not send the notifications resulting from the publication of the Presence User agent that is equal to the watcher.\nThe Presence Server shall collect watcher information to enable presentity to obtain information of the watchers that are or have been requesting, fetching or subscribing presentity's presence information. Service provider shall be able to define the maximum time period over which information is collected and stored. The watcher information list shall include:\n-\tidentity of the watcher (unless anonymity was requested);In case of anonymous watcher, the identity of the watcher shall not be provided to the presentity. The presentity shall be able to determine that an anonymous watcher has requested, fetched or subscribed presence information of the presentity including related information as specified in this list without revealing the watchers identity.\n-\ttime of the request, fetch or subscription;\n-\tlength of the subscription; and\n-\tstate of the request or subscription.\nThe Presence Server shall be able to support the presentity obtaining the above watcher information. The Presence Server shall be able to receive watcher information fetches and subscriptions from the presentity. These watcher information fetch and subscribe requests shall be able to contain filters which define:\n-\twhat watchers the presentity is interested in;\nPossible categories are:-\tall watchers;-\tdefined watchers;-\tnew, unauthorised watchers; and-\tdefined and new, unauthorised watchers.\n-\twhat information the presentity is interested in; and\tThe information is all or part of the watcher information list as defined above.\n-\tthe length of the watcher information history collection period that the presentity is interested in.\nIn response to watcher information fetches, the presence server shall be able to provide requested watcher information to the presentity. In response to watcher information subscriptions, the presence server shall provide notification to the presentity of the current state of the subscribed watcher information. When there are subsequent changes in the subscribed watcher information, notifications of the changes in watcher information are sent to the presentity.\nThe Presence Server may support rate-limiting or filtering of the presence notifications based on local policy in order to minimize network load.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_23.228"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.141_5.2",
+      "section_id": "5.2",
+      "section_title": "Presence Agent Elements",
+      "content": "The Agent elements in the Presence Architecture are functionally distinct from the Presence Server functional element. The generic function of the Agent elements is to make presence information available to the Presence Server element in standardized formats across standardized interfaces.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.141_5.2.1",
+      "section_id": "5.2.1",
+      "section_title": "Presence User Agent",
+      "content": "The Presence User Agent element shall provide the following functionality:\n-\tThe Presence User Agent shall collect Presence information associated with a Presentity representing a Principal.\n-\tThe Presence User Agent shall assemble the Presence information in the format defined for the Peu and Pep reference points.\n-\tThe Presence User Agent shall send the Presence information to the Presence Server element either via the Presentity Presence Proxy over the Pep reference point or over the Peu reference point.-\tThe Presence User Agent shall be capable of managing the subscription authorisation policies.\n-\tThe Presence User Agent shall handle any necessary interworking required to support terminals that do not support the Peu and Pep reference points.\n-\tPresence User Agent shall uniquely identify itself (among the Presence User Agents of the presentity) when publishing presence information.\nFrom a conceptual view, the Presence User Agent (PUA) element resides between the presence server and the user's equipment as illustrated in the reference architecture in figure 4.2-1. In reality, a Presence User Agent may be located in the user's terminal or within a network entity.\nWhere the PUA is located in UE, the UE shall support Pep and the Peu reference point to the Presence Server as illustrated in Figure 5.2.1-1 below.\nFigure 5.2.1-1: UE based Presence User Agent\nThe Network based Presence User Agent shall reside in the presentity's home network.\nWhere the PUA is located within the network, the particular network entity shall support the Pep and Peu reference point to the presence server as illustrated in Figure 5.2.1-2.. In this case, additional functionality may be required to provide routeing between UE and the Presence User Agent, and, for the Presence User Agent to \"register\" the user within the \"Presence network\".\nIn this case, the interface between the terminal and the Presence User agent is outside of the scope of the present document.\nFigure 5.2.1-2: Network based Presence User Agent",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "figure_4.2-1",
+        "figure_5.2.1-1",
+        "figure_5.2.1-2"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.141_5.2.1.1",
+      "section_id": "5.2.1.1",
+      "section_title": "Relationship of Presence User Agent with IMS entities",
+      "content": "When the Presence User Agent is located in an IMS UE the Pep reference point is implemented using the Gm, Mw and ISC reference points as defined in TS 23.002 [18].\n-\tThe Gm, Mw, and ISC reference points allow a presentity's presence information to be supplied to the Presence Server. These reference points also allow for the Presence User Agent to obtain information on watcher subscriptions to the Presentities Presence Information.\n-\tThe Peu reference point is implemented using the Ut reference point as defined in TS 23.002 [18]. The Ut reference point provides mechanisms for the Presence User Agent to manage subscription authorisation policies.\nFigure 5.2.1-3: Presence User Agent in IMS architecture",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_5.2.1-3",
+        "ts_23.002"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.141_5.2.2.0",
+      "section_id": "5.2.2.0",
+      "section_title": "General",
+      "content": "The Presence Network Agent shall reside in the presentity's home network.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.141_5.2.2.1",
+      "section_id": "5.2.2.1",
+      "section_title": "Functions of the Presence Network Agent",
+      "content": "The Presence Network Agent element shall provide the following functionality:\n-\tThe Presence Network Agent shall receive Presence information from network elements within the HPLMN and VPLMN.\n-\tThe Presence Network Agent shall be able to send requests to the HSS/HLR to cause other network elements to send (or stop sending) Presence Information to the Presence Network Agent. Note that this only applies where the other network element has Presence Information subscriptions managed via the HSS/HLR.\n-\tThe Presence Network Agent shall associate Presence information with the appropriate Subscriber/Presentity combination.\n-\tThe Presence Network Agent shall convert the Presence information into the format standardized for the Pen interface.\n-\tThe Presence Network Agent shall publish the Presence information to the Presence Server across the Pen reference point.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.141_5.2.2.2",
+      "section_id": "5.2.2.2",
+      "section_title": "Suppliers of Presence Information",
+      "content": "The Presence Network Agent may receive Presence information from one or more of the following 2G/3G network elements over the specified reference point:\nNetwork Element supplying Presence Information\nReference Point\nHSS/HLR\nPh\nS-CSCF\nPi\nMSC Server/VLR\nPc\nSGSN\nPg\nGGSN\nPk\nGMLC\nPl\n3GPP AAA Server\nPr\nPDG\nPp\nIt is a matter of implementation and operator choice which reference points the Presence Network Agent supports towards suppliers of Presence information. Where other reference points support such a capability, a Presence Network Agent can use the Ph reference point to activate and deactivate publishing of Presence information via those reference points.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.141_5.2.2.3",
+      "section_id": "5.2.2.3",
+      "section_title": "Relationship of Presence Network Agent with IMS entities",
+      "content": "Figure 5.2.2.3-1 below presents the architecture for the S-CSCF and the HSS to provide presence related information to the Presence Server.\nNOTE:\tThe architecture on Figure 5.2.2.3-1 is an IMS-specific simplification of some of the interfaces of the generic Presence reference architecture presented in clause 4.\nFigure 5.2.2.3-1: IMS network elements supplying presence information\nThe ISC interface is used to convey presence information from the S-CSCF to the Presence Network Agent. More specifically, the functions of the Pi interface are taken care of by the ISC interface. As an example, the S-CSCF can convey a user's IMS-registration status by generating and sending a 3rd party REGISTER request to the Presence server.\nThe Sh interface is used to convey information from the HSS to the Presence Network Agent. More specifically, the functions of the Ph interface are taken care of by the Sh interface.\nSince the Network Agent is introduced as a functional entity, which models the abstraction from the different presence sources, the network agent and the presence server may be collocated. In case of an IMS-only network environment the Pen reference point is assumed to be realized by an internal interface.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_4",
+        "figure_5.2.2.3-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.141_5.2.3",
+      "section_id": "5.2.3",
+      "section_title": "Presence External Agent",
+      "content": "The Presence External Agent element shall provides the following functionality:\n-\tThe Presence External Agent shall supply Presence information from external networks;\n-\tThe Presence External Agent shall send the Presence information across the Pex reference point according to the format standardized for the Pex reference point;\n-\tThe Presence External Agent shall handle the interworking and security issues involved in interfacing to external networks;\n-\tThe Presence External Agent shall have functionality to resolve the location of the Presence Server associated with the Presentity.\nExamples of Presence Information that the Presence External Agent may supply, include:\n-\tThird party services (e.g. calendar applications, corporate systems);\n-\tInternet Presence Services;\n-\tOther Presence Services.\nEditor's Note: The mapping of Pex to IMS reference points is FFS.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.141_5.3.1",
+      "section_id": "5.3.1",
+      "section_title": "Presence Proxies introduction",
+      "content": "In order to support a presence service, in particular across PLMN borders, generic network functions are needed, e.g. routing and security. The presence proxies provide these functions. Presence proxies constitute the entry and exit point for presence requests between PLMNs.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.141_5.3.2",
+      "section_id": "5.3.2",
+      "section_title": "Watcher Presence Proxy",
+      "content": "When a Watcher application intends to access some presence information of a presentity, it first needs to contact its Watcher Presence Proxy which will contact the Presentity Presence Proxy to find the Presence Server containing this information.\nThe Watcher Presence Proxy shall provide the following functionality:\n-\tAddress resolution and identification of target networks associated with a presentity;\n-\tAuthentication of watchers;\n-\tInterworking between presence protocols for watcher requests;\n-\tGeneration of accounting information for watcher requests.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.141_5.3.3",
+      "section_id": "5.3.3",
+      "section_title": "Presentity Presence Proxy",
+      "content": "The Presentity Presence Proxy shall provide the following functionality:\n-\tDetermination of the identity of the presence server associated with a particular presentity;\n-\tAuthentication of Watcher Presence Proxy;\n-\tAuthentication of the Presence user Agent;\n-\tGeneration of accounting information for updates to presence information.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.141_5.3.4",
+      "section_id": "5.3.4",
+      "section_title": "Relationship of Presence Proxies with IMS entities",
+      "content": "The functionalities of the Watcher Presence Proxy are then taken care of by the P-CSCF and the S-CSCF:\n-\tThe S-CSCF is responsible for authentication according to procedures described in TS 33.203 [5].\n-\tThe charging and accounting procedures are conducted as per procedures defined by TS 32.240 [6], TS 32.260 [7].\n-\tThe security mechanisms between the Watcher and the Presentity Presence proxy are defined by TS 33.210 [8].\nThe functionality of the Presentity Presence Proxy is taken care of by the P-CSCF, I-CSCF and the S-CSCF as defined in TS 23.228 [9].\nThe procedures for locating, routing to and accessing the Presence Server of the presentity are defined in TS 23.228 [9] and TS 23.218 [10]. These procedures also take care of routing and accessing the Presence Server of a presentity that is associated with an unregistered UE.\nThe functionality of the Watcher Presence Proxy and the Presentity Presence Proxy are allocated to the functional element CSCF as defined in TS 23.002 [18].\nFigure 5.3.4-1 below presents the mapping of the Watcher and Presentity Presence Proxy functionalities to IMS network elements when located within the IMS along with the Watcher application. This mapping is based on and restricted to reusing the existing IMS architecture mechanisms and can be clearly seen in the detailed information flows show in annex A.\nFigure 5.3.4-1: Both the Watcher application and the Presence Server located within IMS\nNOTE:\tThe standard IMS (SIP) routing mechanisms define whether a certain CSCF is indeed included in the path of a SUBSCRIBE or NOTIFY transaction.\nAs described in IETF RFC 3856 [4], the Watcher Application sends a SIP SUBSCRIBE to Event: presence addressed to the presentity's SIP URL to subscribe or fetch presentity's presence information. This SUBSCRIBE transaction will be routed and handled by the IMS infrastructure according to standard IMS routing and ISC procedures defined in TS 23.228 [9] and TS 23.218 [10].\nThe Presentity's S-CSCF is not mandated to insert itself into the Record-Route header of the initial SUBSCRIBE request, in case the S-CSCF does not execute any functions for the subsequent requests and responses of the dialog.\nThe presence document will be provided from the Presence Server to the Watcher Application using SIP NOTIFY along the dialogue setup by SUBSCRIBE either within the NOTIFY payload, or via a URL provided in the NOTIFY. The means to fetch the content can be seen as part of the Pw interface.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.002_figure_5.3.4-1",
+        "figure_5.3.4-1",
+        "ts_33.203",
+        "ts_32.240",
+        "ts_32.260",
+        "ts_33.210",
+        "ts_23.228",
+        "ts_23.218",
+        "ts_23.002"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.141_5.4.1",
+      "section_id": "5.4.1",
+      "section_title": "Communication between Watcher and Presentity Proxy",
+      "content": "Communications between the Presentity Presence Proxy and the Watcher Presence Proxy shall be based on SIP as shown in figure 5.4.1-1 below. Other IP-based mechanisms may also be needed to support the delivery of large amount of presence information. Support for non-SIP based Watchers may be provided by the use of an interworking functions co-located with the Watcher Presence Proxy. In this case the Watcher Presence Proxy interworking function needs to be able to support routing to the non-SIP based watcher.\nFigure 5.4.1-1: Communications between the Presentity Presence Proxy and the Watcher Presence Proxy for Watchers",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "figure_5.4.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.141_5.4.2",
+      "section_id": "5.4.2",
+      "section_title": "Watcher application in an IMS UE",
+      "content": "The Watcher application can be located within a UE registered in the IMS network, it is registered to a S-CSCF via a P-CSCF according to standard IMS procedures as specified in TS 23.228 [9].\nWatcher application shall be able to handle full and partial notifications. The capability to process partial notifications shall be indicated to the presence server when making a presence subscription.\nThe Pet reference point is implemented using the Ut reference point.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.228"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.141_5.4.3",
+      "section_id": "5.4.3",
+      "section_title": "Network based Watcher Application Server",
+      "content": "The Watcher application can be located within an Application Server behind the ISC reference point. This entity is the Network Based Watcher Application Server.\nWatcher application shall be able to handle full and partial notifications. The capability to process partial notifications shall be indicated to the presence server when making a presence subscription.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.141_5.4.4",
+      "section_id": "5.4.4",
+      "section_title": "Watcher application located in the external Internet",
+      "content": "If a Watcher application is located in the external Internet, then the Watcher Presence Proxy shall reside in a network capable of executing security functionalities as per procedures defined in TS 33.210 [8].\nThe interworking with Watcher Applications located in the external Internet not supporting the standard Pw reference point is out of the scope of the present document.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_33.210"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.141_5.4.5",
+      "section_id": "5.4.5",
+      "section_title": "Presence Server located in the external Internet, Watcher application located in the IMS",
+      "content": "If a Watcher Application is located in the IMS, the functionalities of the Watcher Presence Proxy shall be as described in clause 5.3.2. Depending on the mechanisms and protocols supported by the external Presence Server, the Watcher Presence Proxy may implement additional functionalities, e.g. protocol mapping.\nThe interworking with Presence Servers located in the external Internet not supporting the standard Pw reference point is out of the scope of the present document.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_5.3.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.141_5.5",
+      "section_id": "5.5",
+      "section_title": "Presence List Server",
+      "content": "The Presence List Server stores grouped lists of watched presentities and enables a Watcher Application to subscribe to the presence of multiple presentities using a single SUBSCRIBE transaction. Presence List Server also stores and enables the management of filters associated to presentities in the presence list. Presence list server shall attach associated filter to each individual SUBSCRIBE transaction. The Presence List Server is implemented as a SIP Application Server function as defined in TS 23.228 [9]. For the case where the Watcher Application resides in an IMS UE, the Presence List Server may support the Ut reference point to allow the user to manage his presence lists.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.228"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.141_6.1",
+      "section_id": "6.1",
+      "section_title": "Presence Attributes",
+      "content": "Presence attributes describe the presentity. As the type of the presentity can vary significantly the definition of generic attributes is practically impossible. Attributes can be defined by the service providers and manufacturers as part of the other presence markup as specified in IETF (e.g. RFC 2778 [16], RFC 2779 [17]). The values (and process of generating them) and value ranges for all attributes shall be kept relatively simple. It is necessary for the 3GPP subscriber to understand how the values are set/modified as it may have direct impact to whom the access to presence data is given (as defined by the subscription authorisation policies).",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.141_6.1.1",
+      "section_id": "6.1.1",
+      "section_title": "Subscriber Presence Attributes and Values",
+      "content": "A subscriber is described by attributes: subscriber's status, communication means status, one or more communication address(es) (containing communication means and contact address), location (subscriber provided location and/or network provided location), priority, text. The attributes can be categorised as communication means and contact address specific information or generic information. Generic information attributes shall be: subscriber's status, location and text. Communication means and contact address specific information attributes shall be: communication means status, communication means, contact address, priority and text.\n-\tGeneric information attributes, if these attributes are used as part of any tuple they shall use following values (values in parenthesis) to enable interoperability:\n-\tSubscriber's status (willing, willing with limitations, not willing, not disclosed),\nNOTE 1:\tAttribute name subscriber's status has been defined in stage 1 and it does not imply any mapping to the IETF defined presence model e.g. IETF RFC 2778 [16], IETF RFC 2779 [17].\nThe subscriber's status attribute is not intended to be used when interworking with IM clients. Subscribers are able to provide more detailed willingness information as well as other information through the generic Text attribute, and the communication means and contact address specific Text attribute.\n-\tLocation (e.g. Last known CGI/SAI and/or geographic co-ordinates and/or free format text and timestamp),\n-\tText (free format text).\n-\tCommunication means and contact address specific information attributes, if these attributes are used as part of any tuple they shall use following values (values in parenthesis) to enable interoperability:\n-\tcommunication means status (online, offline),\n-\tcommunication means (Service type (e.g. telephony, SMS, email, multimedia messaging service, instant messaging service)),\n-\tcontact address (E.164 (e.g. MSISDN), SIP URL, Email, Instant message address e.g. IM:name@domain name),\n-\tPriority (Priority order for each of the defined communication means and contact address),\n-\tText (free format text).\nNOTE 2:\tThe mapping of these attributes and values to the IETF defined presence model IETF RFC 2778 [16], IETF RFC 2779 [17] may result one or several of the following:\n-\tusing existing IETF defined attributes and values (or subset of them)\n-\tusing existing IETF defined attributes but extending the value set\n-\tCreating new attributes to the tuples.\nThe mapping of these values for tuples and different fields of the tuple is defined in stage 3. Furthermore, mechanisms to allow extensibility of the presence information in order to ensure interoperability are defined in stage 3.\nAll these attributes shall be able to contain value NULL to enable polite blocking.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.141_6.1.2",
+      "section_id": "6.1.2",
+      "section_title": "Presence Structure to Support Multiple Values for Attributes",
+      "content": "Attributes shall be mapped to separate tuples which have unique identifiers. If the presentity wants to show different presence information concerning one attribute to different watchers the presentity shall create more than one tuple that contain the same attribute with different value. The association of tuples to different watchers and watcher groups shall be based on the subscription authorisation policies. The presentity controls the value of the attribute by modifying the corresponding tuple. Figure 6.1.2-1 illustrates how different values for different watchers are provided utilising subscription authorisation policies.\nNOTE:\tThe figure 6.1.2-1 is illustrative only and it shall not mandate or limit the server implementation options.\nFigure 6.1.2-1: Illustration how subscription authorisation lists are utilised to present different values of the same attribute to different watchers",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "figure_6.1.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.141_6.2",
+      "section_id": "6.2",
+      "section_title": "Presence Information Model",
+      "content": "Presence information related to a particular communications means and contact address shall be carried in a presence tuple dedicated to that particular communications means and contact address.\nGeneric presence information that is not directly applicable to a particular communications means and contact address shall be conveyed in a way that conforms to the IETF presence model e.g. IETF RFC 2778 [16], IETF RFC 2779 [17] (to ensure interoperability) and preferably does not require multiple instances of this information to be sent.\nGeneric information may be mapped to the tuples specific to each communication means and contact address. In that case the information shall be equal in each tuple. The stage 3 description should use a mechanism which conforms to the IETF presence model.\nApplication identifiers may be allocated to applications, which are using presence capabilities. The conventions and the allocation mechanism for application identifiers are subject to stage 3 specification. Application identifier(s) are carried as part of the presence information. Application identifier(s) may be added to published presence information on the presentity side. In this case, the presence server shall include this application identifier to the relevant tuple(s) in the presence document together with the published information. On the watcher side the received application identifier may be used e.g. for determining which application should receive and process the related presence information. Details of processing the application identifier(s) on the Presence User Agent and watcher side are out of scope of this specification.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.141_7",
+      "section_id": "7",
+      "section_title": "Subscription authorisation policies",
+      "content": "Subscription authorisation policies shall define the watchers who can access the presence information of the presentity. In addition to the watcher identities, the subscription authorisation policies shall contain the presence information or reference to the presence information that is allowed to be accessed by the listed watchers. The subscription authorisation lists can be logically arranged to be part of the presence server or a separate entity in the network.\nIn case of presence information fetch or subscription from a watcher that has not been authorised by the subscription authorisation policies, the presence server shall put the fetch or subscription on hold until the watcher has been authorised, added to the subscription authorisation lists or until a preconfigured timer has expired.\nSubscription authorisation lists can be divided into three different categories: personal subscription authorisation lists, public subscription authorisation lists and blocking subscription authorisation lists.\nPersonal and general subscription authorisation lists shall define which watchers can access which information. Personal subscription authorisation lists shall explicitly identify watchers, while general subscription authorisation lists relate to groups of watchers whose exact identities are not necessarily known by the presentity e.g. \"all watchers\".\nBlocking subscription authorisation lists shall define watchers that are not allowed to access any presence information related to the presentity.\nA presentity shall be able to manage several personal and general subscription authorisation lists as well as blocking subscription authorisation lists.\nThe three subscription authorisation list categories shall be evaluated in the following order: blocking subscription authorisation lists, personal subscription authorisation lists and general subscription authorisation lists.\nThe following shows an example where the presentity has defined a single subscription authorisation list for each category.\nIn this particular example, once the hit is found the evaluation is halted and presence information according to access is delivered.\n1.\tIs the watcher on the blocking subscription authorisation list?\n2.\tIs the watcher on the personal subscription authorisation list?\n3.\tIs the watcher on the general subscription authorisation list (created e.g. by service provider containing all watchers)?\n4.\tSend a notification to the presentity of pending subscription authorisation request.\nFigure 7-1: Example of subscription authorisation list evaluation order for presence service",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "figure_7-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.141_8",
+      "section_id": "8",
+      "section_title": "Charging requirement",
+      "content": "The following charging requirement for presence service is identified. The requirements shall be realized by enhancements of the IMS charging mechanism as specified in TS 32.240 [6] and TS 32.260 [7].\n1)\tWatcher Presence Proxy shall be able to provide the charging information for watcher requests per watcher for presence enquiry or subscription and subsequent notifications.\n2)\tPresentity Proxy shall be able to provide the charging information for updates to presence information per watcher.\n3)\tThe Presence Server shall be able to provide the charging information for notifying the watcher of updates to presence information. Presence Server shall be able to provide the charging information for subscription to Watcher Lists and receiving notification of Watcher Information. Presence Server shall be able to provide the charging information for collecting the record of watcher list information per presentity. The Presence Server shall be able to provide the charging information for publishing presence information per presentity.\n4)\tPresence List Server shall be able to provide the charging information for Watcher subscription to Presence Lists and receiving notification of Presence Information.\n5)\tIt shall be possible to apply specific tariffs (e.g. zero rating) to the bearer and/or signalling traffic associated with the above presence service \"events\". Differentiating in the IP Connectivity access network between the signalling traffic related to presence events and signalling traffic related to other IMS SIP communications is not a requirement.\nAnnex A (informative):Information flows\nA.1\tGeneral information flow\nFigure A.1-1 illustrates the message flow for user A requesting presence information for user B in a different network.\nFigure A.1-1: Presence enquiry message flow\n1.\tThe A party sends a presence enquiry to Watcher Application A (WA-A). The A party identifies B by B's address (e.g. MSISDN or URI). The enquiry can be of various types, e.g.:\na)\t\"tell me the current state of B\"\nb)\t\"tell me all state changes of user B for the next x hours\"\nc)\t\"tell me when B next changes state\"\nd)\t\"stop telling me about B\"\n2.\tWatcher Application A 'authenticates' A and checks their credit status (details of authentication and credit status are outside scope of this message flow)\n3.\tWatcher Application A sends a \"Presence enquiry for B\" message to Watcher Presence Proxy.\n4.\tThe Watcher Presence Proxy derives B's network name from B's address (details of how this is derived is outside the scope of this message flow).\n5.\tThe Watcher Presence Proxy sends a \"Presence enquiry for B\" message to B's network's Presentity Presence Proxy.\nNOTE:\tAuthentication may be necessary between A and B party networks in line with techniques used in other instances of inter operator message flow; precise details are outside the scope of this message flow.\n6.\tThe Presentity Presence Proxy derives the address of B's Presence Server\n7.\tB's network Presentity Presence Proxy sends \"Presence enquiry for B\" message to B's Presence Server.\n8.\tB's Presence Server processes the presence enquiry request (e.g. check A is one of B's buddy's and B still wants A to watch him/her).\n9.\tB's Presence Server raises charge record for A against A's network (precise details are for further study)\n10.\tB's Presence Server sends B's status back to Watcher Application A in Originating PLMN (may be returned via Presentity Presence Proxy and Watcher Presence Proxy).\n11.\tWatcher application returns B's presence to use A.\nNOTE 1:\tSteps 10 and 11 are repeated as necessary if B party has been requested to provide regular presence updates.\nNOTE 2:\tIn the event that the presence enquiry message is \"stop telling me about B\" steps 8-11 are just an acknowledgement for watcher application A.\nA.2\tDetailed information flows\nA.2.1\tOverview of flows used\nThe messages used in this clause are representative and are not meant to indicate any particular protocol as this is outside the scope of this document. In this clause the following messages have been used:\nSubscribePres:\tThis is a request by a watcher to obtain presence information about a presentity. The message may be used to either request the current presence information or to subscribe to updates of presence information for a particular time period. This flow may also be used to un-subscribe to periodic updates. The request needs to convey the presence related events that that the watcher is be interested in. A presence server may accept or deny such a request.\nMsgAck:\tThis is a generic message acknowledgement for the message flows. It may be used to indicate a positive or negative acknowledgement. In the latter case, the message may convey an indication for the rejection.\nQuery:\tThis message is used by a Presentity presence proxy to request the HSS/HLR to provide the necessary information to locate a presence server that is associated with a presentity.\nResp:\tThis message is the reply by the HSS/HLR to provide the required information to the Query message above.\nNotifyPresUp:\tThis message is used to notify a watcher of updates to a presentitiy's presence information. The watcher would have either requested the current presence information or had previously subscribed to periodic updates. The message may contain the presence information or a pointer to the information.\nPresUpdateMsg:\tThis message is used by a Presence user agent, the Network agent, and the External agent to provide the presentity's presence information to the Presence Server. This message shall be capable of conveying the complete set of presence information associated with a presentity. This message shall also be capable of conveying a subset of the presence information associated with the presentity. to provide updates of a presentity's presence information to a presence server. This message needs to be able to convey the presence information associated with a presentity. The message may contain the presence information or a pointer to the information. (Note: there are similarities with the NotifyPreseUp message listed above since they both convey presence information. However for simplicity, different message names are used).\nA.2.2\tFlows demonstrating how watchers subscribe to presence event notification\nThe clause covers the flows that show how watchers can request presence information about a presentity.\nA.2.2.1\tIMS Watcher and IMS Presentity in the same or different IM-CN\nFigure A.2.2.1-1: IMS Watcher registering for event notification\nFigure A.2.2.1-1 shows an IMS watcher subscribing to presence event notification about an IMS based presentity. The presentity may either be in the same IM-CN subsystem as the watcher or may be in a different IM-CN subsystem. The flows for both these cases are the same.\nNote-i:\tThe path of the SUBSCRIBE dialog may optionally include additional I-CSCF(THIGs) in networks where network topology hiding is applied.\nNote-ii:\tThe flow shows the case that the S-CSCF of the Presentity does not remain in the path of the dialog.\nThe details of the flows as follows:\n1.\tA watcher agent in a UE wishes to watch a presentity's presence information, or certain parts of the presentity's presence information (defined by the filters included in SubscribePres). To initiate a subscription, the UE sends a SubscribePres message request containing the presence related events that it wishes to be notified of, together with an indication of the length of time this periodic subscription should last. The UE sends the SubscribePres information flow to the proxy (subscriber identity, home networks domain name). The SubscribePres may also include an indication of the watcher's capability to handle partial notifications.\n2.\tThe P-CSCF remembers (from the registration process) the next hop CSCF for this UE. In this case the SubscribePres is forwarded to the S-CSCF in the home network. In this case, the P-CSCF and the S-CSCF act as a Watcher Presence Proxy.\n3.\tThe S-CSCF is unable to resolve the presence server address of the presentity that the UE is requesting to watch, and as a result forwards the SubscribePres message to the an I-CSCF offering part of the Presentity Presence Proxy functionality. The S-CSCF shall examine the home domain of the presentity associated with the request and if the request is for a presentity outside the operator's domain, it determines the external I-CSCF. If the request is for a presentity in the same domain, the S-CSCF forwards the request to the local I-CSCF.\n4.\tThe I-CSCF examines the presentity identity and the home domain identity and employs the services of a name-address resolution mechanism to determine the HSS address to contact. The I-CSCF shall query the HSS to obtain the address of the S-CSCF associated with the Presentity. It shall query the HSS via a Query message.\n5.\tThe Query Resp message from the HSS provides the name of the S-CSCF associated with the presentity.\n6.\tThe I-CSCF, using name of the Presence Server shall determine the address of the S-CSCF through a name-address resolution mechanism. The SubscribePres message is forwarded to the S-CSCF.\n7.\tThe S-CSCF using any necessary filtering criteria forwards the SubscribePres message to the appropriate Presence Server.\n8.\tAt this stage the presence server performs the necessary authorisation checks on the originator to ensure it is allowed to watch the presentity. Once all privacy conditions are met, the presence server issues a MsgAck to the S-CSCF. (In the case where the privacy/authorisation checks fail, then a negative acknowledgement is sent to the watcher).\n9.\tThe S-CSCF forwards the to the I-CSCF.\n10.\tThe I-CSCF forwards the MsgAck to the originating S-CSCF.\n11.\tThe S-CSCF forwards the MsgAck message to the P-CSCF.\n12.\tThe P-CSCF forwards the MsgAck to the watcher agent in the UE.\n13.\tAs soon as the Presence Server sends a MsgAck to accept the subscription, it sends a NotifyPresUp message with the current full state of the presentity's tuples that the watcher has subscribed and been authorised to. The NotifyPresUp is sent along the path of the SUBSCRIBE dialog to the S-CSCF allocated to the Watcher. Further notifications sent by the Presence server may either contain the complete set of presence information, or only those tuples that have changed since the last notification if the watcher has indicated the capability to process partial notifications.\nNOTE:\tIf charging for updates to presence information per watcher is enabled, then the presentity presence proxy will remain in the SUBSCRIBE dialogue path and the NotifyPresUp is routed through the presentity presence proxy. The presentity presence proxy (S-CSCF) will provide the charging update.\n14.\tThe S-CSCF forwards the NotifyPresUp to the P-CSCF.\n15.\tThe P-CSCF forwards the NotifyPresUp to the watcher application in the UE.\n16.\tThe UE acknowledges the receipt of the NotifyPresUp message with a MsgAck sending this to the P-CSCF.\n17.\tThe P-CSCF forwards the MsgAck message to the S-CSCF.\n18.\tThe S-CSCF allocated to the presentity forwards the MsgAck to the Presence Server.\nA.2.3\tFlows demonstrating how presentities update Presence Information\nA.2.3.1\tUpdating presence information by terminals without support of the Pep reference point\nFor the case of terminals that do not support the Pep reference point presence information can be provided alternative mechanisms such as SMS, WAP etc. The Presence User Agent provides the necessary interworking with the presence server. As previously indicated, the PUA may be located with network entities such as a WAP WML/HTTP server or SMS-C, however this is an implementation issue and outside of the scope of technical report. This particular example is illustrative and shows the case where a user updates presence information through a WAP browser, where the Presence User Agent is located inside the WAP WML/HTTP server and is illustrated in figure A.2.3.1-1 below. It is acknowledged that other possibilities exist.\nFigure A.2.3.1-1: Updating presence information via WAP WML/HTTP server\n1.\tThe user opens a WAP session by requesting a WAP URL that is dedicated to updates of presence information.\n2.\tUsing a WAP browser, the user modifies aspects of 'user presence information.\n3.\tThe WML/HTML server, which in this example hosts the Presence User Agent (although the PUA may be a separate entity, in which case the interface to the PUA will be proprietary), sends a PresUpdateMsg to the Presence Server. Additional functionality may be required to locate the presence server associated by the presentity. In this particular example, it is assumed that the PUA is configured with the appropriate address of the presence server.\n4.\tThe Presence Server acknowledges the PresUpdateMag with a MsgAck to the WAP WML/HTTP server.\nA.2.3.2\tIMS Registration Notification process to the Presence Server within IMS\nThe following flow describes how the presence server is notified of an IMS registration event by the network elements.\nFigure A.2.3.2-1: IMS Registration Notification procedure for the Presence Server\n1.\tUE registration takes place with the S-CSCF as detailed in TS 23.228 [9]. As part of this process, the filtering criteria are downloaded to the S-CSCF from the HSS. The filter criteria contains instructions that the registration be sent to the presence network agent (e.g. registration, de-registration).\n2.\tThe S-CSCF sends the registration to the Presence Network Agent via the ISC interface.\n3.\tWhen the Presence Network Agent receives the notification of the IMS registration event from the S-CSCF, it determines that this registration is an event that the Presence Server is interested in and informs the Presence Sever.\nA.2.3.3\tCS/PS Notification process of the Presence Server\nThe following flow describes how the presence server is notified of an event by the network elements for a CS/PS subscriber.\nFigure A.2.3.3-1: CS/PS Notification procedure for the Presence Server\n1.\tFor network event to be reported on behalf of a CS/PS subscriber, the necessary triggers are armed in the MSC/SGSN. This takes place off-line and is outside the scope of this TS as to how it is achieved.\n2.\tAt the occurrence of an event between the HLR and the MSC/SGSN, (e.g. UE detach) a notification message is generated.\n3.\tA MAP notification message (NOTE_MM_EVENT) is sent to the Network Agent via Pc/Pg interface on the occurrence of an event, details of this are outside the scope of this flow. There may be some address resolution needed by the network agent to locate the presence server but details of this is also outside the scope of this flow.\n4.\tThe Network Agent informs the Presence Server. The Presence Server notifies all authorised watchers and sends an acknowledgement to the Network Agent.\n5.\tNetwork Agent sends an MM_Event_Ack to the MSC/SGSN.\nA.2.3.4\tUpdating presence information by terminals with Pep interface support\nFigure A.2.3.4-1: Updating presence information via the Pep interface\n1.\tThe PUA residing in the UE generates a PressUpdateMsg message which contains the new presence information. The means for the PUA to compose this presence information is outside the scope of this specification.\n2.\tP-CSCF forwards the message to the user's S-CSCF.\n3.\tS-CSCF forwards message to the correct Presence Server based on ISC filtering rules.\n4.\tPresence Server authorizes the presence update, and checks what information the message contains. The Presence Server then processes the updated presence information according to the client's request. The Presence Server sends a MsgAck response back to UE.\n5.\tS-CSCF forwards the response back to the P-CSCF\n6.\tP-CSCF forwards the response back to the UE.\nA.2.4\tPresence Server notifying watcher of updates to presence information\nA.2.4.1\tIMS based Watcher and presentity in the same or different IM-CN subsystem\nFigure A.2.4.1-1: Presence Server updating IMS watcher\nFigure A.2.4.1-1 shows how an IMS based watcher is notified of updates to a presentity's presence information. The flows are applicable to the case where the Watcher and Presentity are in the same or in different IM-CN subsystems.\nNote-i:\tThe path of the SUBSCRIBE dialog (i.e. also the NOTIFY transaction) may optionally include additional I-CSCF(THIGs) in networks where network topology hiding is applied.\nNote-ii:\tThe flow shows the case that the S-CSCF of the Presentity does not remain in the path of the dialog.\nDetails of the flows are as follows:\n1.\tThe Presence Server determines which authorised watchers are entitled to receive the updates of the presence information for this presentity. For each appropriate watcher, the presence server sends a NotifyPresUp message that contains the full or partial updates to the presence information. This NotifyPresUp is sent along the path of the SUBSCRIBE dialog to the S-CSCF of the Watcher.\n2.\tThe S-CSCF forwards the NotifyPresUp message to the P-CSCF of the watcher.\n3.\tThe P-CSCF forwards the NotifyPresUp message to the UE.\n4.\tThe UE acknowledges the NotifyPresUp message with a MsgAck to the P-CSCF.\n5.\tThe P-CSCF forwards the MsgAck message to the S-CSCF.\n6.\tThe S-CSCF of the Watcher forwards the MsgAck to the Presence Server.\nA.2.5\tPresence User Agent subscribing to watcher list and receiving notification of a new watcher subscription\nFigure A.2.5-1: Presence User Agent subscribing to watcher list and receiving notification of a new watcher subscription\nFigure A.2.5-1 shows a Presence User Agent subscribing to watcher list and receiving notification of a new watcher subscription that is not contained in the current subscription authorisation policies. The details of the flows are as follows:\n1)\tThe Presence User Agent initiates a subscription to the Presence Server requesting notification of any new watcher subscriptions.\n2)\tThe presence server issues a MsgAck to the Presence User Agent.\n3)\tA watcher wishes to watch the Presentity. To initiate a subscription, the watcher sends a SubscribePres message request containing the presence related events that it wishes to be notified of, together with an indication of the length of time this periodic subscription should last to the Watcher Presence Proxy. The Watcher Presence Proxy sends the SubscribePres information flow to the Presentity Presence Proxy.\n4)\tThe SubscribePres is forwarded by the Presentity Presence Proxy to the Presence Server.\n5)\tThe Presence Server checks the subscription authorisation policies and determines that this is a new watcher subscription not contained in the current subscription authorisation policies and so sends a notification to inform the Presence User Agent of the request from the new watcher.\n6)\tThe presence server issues a MsgAck to inform the watcher that the Presence Server has received the watcher's request for Presence information. The MsgAck is sent to the Presentity Presence Proxy.\n7)\tThe MsgAck is forwarded by the Presentity Presence Proxy to the watcher via the Watcher Presence Proxy.\nSteps 8 - 10 depend on the actions of the Principal. The Principal can ignore the notification sent in step 5 or can respond with an Update of the subscription authorisation policies to Accept, Accept with conditions or Deny the request.\n8)\tThe Presence User Agent sends an UpdateSubscriptionAuthorisationPolicies to the Presence Server. (If the Presence User Agent decides to accept, block or accept with conditions the Presence Information requested by the watcher an appropriate SubscriptionAccepted, SubscriptionBlocked or SubscriptionAcceptedWithConditions is sent within the UpdateSubscriptionAuthorisationPolicies to the Presence Server).\n9)\tIf the UpdateSubscriptionAuthorisationPolicies accepts the subscription then the Presence Server sends a NotifyPresUp message with the current state of the Presence User Agent to the Presentity Presence Proxy. If the UpdateSubscriptionAuthorisationPolicies indicates that the subscription is blocked then steps 9 and 10 are not performed.\n10)\tThe Presentity Presence Proxy forwards the NotifyPresUp message to the watcher via the Watcher Presence Proxy.\nAnnex B (Informative):Void\nAnnex C (informative):Change history\nChange history\nDate\nMeeting\nTDoc\nCR\nRev\nCat\nSubject/Comment\nNew version\n2005-12\nSA#30\nSP-050665\n0080\n1\nA\nCorrection of some references to release 6 replacements\n7.1.0\n2006-09\nSA#33\nSP-060582\n0081\n1\nF\nMiscellaneous Corrections to Presence Specification\n7.2.0\n2007-09\nSA#37\nSP-070532\n0083\n-\nA\nRemoval of obsolete reference and editor's note\n7.3.0\n2008-03\nSA#39\nSP-080104\n0773\n2\nB\nUpdate to the Presence Spec in support of the Common IMS\n8.0.0\n2008-06\nSA#40\nSP-080363\n0084\n1\nF\nCorrection to Presence (Stage 2) for Common IMS\n8.1.0\n2009-12\nSA#46\n-\n-\n-\n-\nUpgrade to Rel-9 version (MCC)\n9.0.0\n2011-03\nSA#51\n-\n-\n-\n-\nUpdate to Rel-10 version (MCC)\n10.0.0\n2012-09\n-\n-\n-\n-\n-\nUpdate to Rel-11 version (MCC)\n11.0.0\n2014-09\nSA#65\n-\n-\n-\n-\nUpdate to Rel-12 version (MCC)\n12.0.0\n2015-12\n-\n-\n-\n-\n-\nUpdate to Rel-13 version (MCC)\n13.0.0\n2017-03\n-\n-\n-\n-\n-\nUpdate to Rel-14 version (MCC)\n14.0.0\n2017-06\nSA#76\nSP-170360\n0776\n-\nA\nIETF ref clean-up\n14.1.0\n2018-06\nSP-80\n-\n-\n-\n-\nUpdate to Rel-15 version (MCC)\n15.0.0\n2020-07\nSP-88\n-\n-\n-\n-\nUpdate to Rel-16 version (MCC)\n16.0.0\n2022-03\nSP-95E\n-\n-\n-\n-\nUpdate to Rel-17 version (MCC)\n17.0.0\n2024-03\n-\n-\n-\n-\n-\nUpdate to Rel-18 version (MCC)\n18.0.0",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_32.240",
+        "ts_32.260",
+        "ts_23.228",
+        "ts_7.1"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "metadata": {
+    "specification_id": "ts_29.282",
+    "version": "18.0.0",
+    "title": "3GPP TS 29.282",
+    "file_path": "/content/drive/MyDrive/RAG_thesis/data/29_series/29282-i00/29282-i00.docx"
+  },
+  "export_info": {
+    "export_date": "2025-07-26T08:51:28.693303",
+    "total_chunks": 6
+  },
+  "chunks": [
+    {
+      "chunk_id": "ts_29.282_1",
+      "section_id": "1",
+      "section_title": "Scope",
+      "content": "The present document specifies the format and usage of the Mobile IPv6 Vendor Specific Option [2] within the Third Generation Partnership Project.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.282_2",
+      "section_id": "2",
+      "section_title": "References",
+      "content": "The following documents contain provisions which, through reference in this text, constitute provisions of the present document.\n-\tReferences are either specific (identified by date of publication, edition number, version number, etc.) or non‑specific.\n-\tFor a specific reference, subsequent revisions do not apply.\n-\tFor a non-specific reference, the latest version applies. In the case of a reference to a 3GPP document (including a GSM document), a non-specific reference implicitly refers to the latest version of that document in the same Release as the present document.\n[1]\t3GPP TR 21.905: \"Vocabulary for 3GPP Specifications\".\n[2]\tIETF RFC 5094: \"Mobile IPv6 Vendor Specific Option\".\n[3]\tIANA Private Enterprise Numbers Registry, <http://www.iana.org/assignments/enterprise-numbers>.\n[4]\tIETF RFC 6275: \"Mobility Support in IPv6\".\n[5]\tIETF RFC 5555: \"Mobile IPv6 support for dual stack Hosts and Routers (DSMIPv6)\".\n[6]\tIETF RFC 5213: \"Proxy Mobile IPv6\".\n[7]\t3GPP TS 29.275: \"Proxy Mobile IPv6 (PMIPv6) based Mobility and Tunnelling protocols; Stage 3\".\n[8]\t3GPP TS 24.327: \"Mobility between 3GPP Wireless Local Area Network (WLAN) interworking (I-WLAN) and 3GPP systems; General Packet Radio System (GPRS) and 3GPP I-WLAN aspects; Stage 3\".",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905",
+        "ts_29.275",
+        "ts_24.327"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.282_3.1",
+      "section_id": "3.1",
+      "section_title": "Definitions",
+      "content": "For the purposes of the present document, the terms and definitions given in 3GPP TR 21.905 [1] and the following apply. A term defined in the present document takes precedence over the definition of the same term, if any, in 3GPP TR 21.905 [1].",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_21.905"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.282_3.2",
+      "section_id": "3.2",
+      "section_title": "Abbreviations",
+      "content": "For the purposes of the present document, the abbreviations given in 3GPP TR 21.905 [1] and the following apply. An abbreviation defined in the present document takes precedence over the definition of the same abbreviation, if any, in 3GPP TR 21.905 [1].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.282_4.1",
+      "section_id": "4.1",
+      "section_title": "General",
+      "content": "The 3GPP Mobile IPv6 Option is a Mobile IPv6 Vendor-Specific Option as defined by IETF RFC 5094 [2] using the Vendor-Id assigned to 3GPP. The 3GPP Mobile IPv6 Option is used to encode 3GPP Specific Information Elements within the protocols based on Mobile IPv6 (MIPv6) as defined by IETF RFC 6275 [4], such as the Dual Stack Mobile IPv6 (DSMIPv6) and Proxy Mobile IPv6 (PMIPv6) protocols respectively defined by IETF RFC 5555 [5] and IETF RFC 5213 [6].",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.282_4.2",
+      "section_id": "4.2",
+      "section_title": "Format",
+      "content": "The format of the 3GPP Mobile IPv6 Option is shown in table 4.2-1. The defined 3GPP Specific Information Elements are listed in table 4.2-2. The data format of a given 3GPP Specific Information Element (IE) is defined in the specification defining its usage, as indicated in table 4.2-2.\nBits\nOctets\n8\n7\n6\n5\n4\n3\n2\n1\n1\nType\n2\nLength\n3\nVendor Id (1st Octet)\n4\nVendor Id (2nd Octet)\n5\nVendor Id (3rd Octet)\n6\nVendor Id (4th Octet)\n7\nSub-Type\n8\nReserved\nM\n9-n\n3GPP Specific IE Data Fragment\nFigure 4.2-1: 3GPP Mobile IPv6 Option\nTable 4.2-1: Fields in a 3GPP Mobile IPv6 Option\nField\nContent\nReference\nType\nValue is decimal 19 the assigned value for the Vendor-Specific mobility option\nRFC 5094 [2]\nLength\nAn 8-bit field indicating the length of the option in octets excluding the Type and the Length fields. All other fields are included.\nRFC 5094 [2]\nVendor ID\nA 32-bit field. Value is set to the SMI Network Management Private Enterprise Number for 3GPP, which is decimal \"10415\".\nIANA [3]\nSub-Type\nIndicate the type of the 3GPP Specific Information Element encoded by the 3GPP Mobile IPv6 Option.\nRFC 5094 [2]\nReserved\nValue set to zero by sender and ignored by receiver.\nDefined here\nMore 3GPP Specific IE Data Fragment (M) Flag\nValue set to \"1\" if this instance of the 3GPP Mobile IPv6 Option is followed by another 3GPP Mobile IPv6 Option encoding the follow up 3GPP Specific IE data fragment that does not fit in this instance of the 3GPP Mobile IPv6 Option. Set to zero otherwise.\nDefined here\n3GPP Specific IE Data Fragment\nThe 3GPP Specific IE might be split over multiple 3GPP Mobile IPv6 Options in case the total length of the 3GPP Specific Information Element exceeds 248 bytes. This is the data fragment of the 3GPP Specific IE contained in this instance of the 3GPP Mobile IPv6 Option. The data fragment has a maximum length of 248 bytes.\nDefined here\nThe syntax of the 3GPP specific information element allows appending extra octets. The receiver that does not support such appended octets shall ignore the appended octets in order to ensure backwards compatibility.\nTable 4.2-2: Subtypes for 3GPP specific Information Elements\n3GPP-specific IE Subtype\n3GPP-specific Information Element\nReference\n1\nProtocol Configuration Options.\n3GPP TS 29.275 [7]\n2\n3GPP Specific PMIPv6 Error Code.\n3GPP TS 29.275 [7]\n3\nPMIPv6 PDN GW IP Address.\n3GPP TS 29.275 [7]\n4\nPMIPv6 DHCPv4 Address Allocation Procedure Indication.\n3GPP TS 29.275 [7]\n5\nPMIPv6 Fully Qualified PDN Connection Set Identifier\n3GPP TS 29.275 [7]\n6\nPMIPv6 PDN type indication.\n3GPP TS 29.275 [7]\n7\nCharging ID\n3GPP TS 29.275 [7]\n8\nSelection Mode\n3GPP TS 29.275 [7]\n9\nI-WLAN Mobility Access Point Name (APN).\n3GPP TS 24.327 [8]\n10\nCharging Characteristics\n3GPP TS 29.275 [7]\n11\nMobile Equipment Identity (MEI)\n3GPP TS 29.275 [7]\n12\nMSISDN\n3GPP TS 29.275 [7]\n13\nServing Network\n3GPP TS 29.275 [7]\n14\nAPN Restriction\n3GPP TS 29.275 [7]\n15\nMaximum APN Restriction\n3GPP TS 29.275 [7]\n16\nUnauthenticated IMSI\n3GPP TS 29.275 [7]\n17\nPDN Connection ID\n3GPP TS 29.275 [7]\n18\nPGW Back-Off Time\n3GPP TS 29.275 [7]\n19\nSignalling Priority Indication\n3GPP TS 29.275 [7]\n20\nAdditional Protocol Configuration Options\n3GPP TS 29.275 [7]\n21\nStatic IP Address Allocation Indication\n3GPP TS 29.275 [7]\n22\nMME/SGSN Identifier\n3GPP TS 29.275 [7]\n23\nEnd Marker Notification\n3GPP TS 29.275 [7]\n24\nTrusted WLAN Mode Indication\n3GPP TS 29.275 [7]\n25\nUE Time Zone\n3GPP TS 29.275 [7]\n26\nAccess Network Identifier Timestamp\n3GPP TS 29.275 [7]\n27\nLogical Access ID\n3GPP TS 29.275 [7]\n28\nOrigination Time Stamp\n3GPP TS 29.275 [7]\n29\nMaximum Wait Time\n3GPP TS 29.275 [7]\n30\nTWAN Capabilities\n3GPP TS 29.275 [7]\nAnnex A (informative): Change History\nChange history\nDate\nMeeting\nTDoc\nCR\nRev\nCat\nSubject/Comment\nNew version\n03/2009\nCT#43\nCP-090057\nV1.0.0 Approved in CT#43\n8.0.0\n06/2009\nCT#44\nCP-090290\n0001\nPMIP VSO Charging Characteristics\n8.1.0\nCP-090290\n0002\n-\nRegistration of new 3GPP specific PMIPv6 IEs\nCP-090290\n0003\n2\nFQ-CSID\n09/2009\nCT#45\nCP-090538\n0004\n1\nAPN Restriction for PMIPv6\n8.2.0\nCP-090538\n0005\n1\nHandling future extensions of 3GPP Mobile IPv6 Options\n12/2009\nCT#46\nCP-090801\n0007\n-\nUnauthenticated IMSI\n9.0.0\n0008\n1\nMultiple PDN to the Same APN for PMIP-based Interfaces\n2011-03\n-\n-\n-\n-\nUpdate to Rel-10 version (MCC)\n10.0.0\n2011-06\nCT#52\nCP-110369\n0011\n2\nAPN based congestion control\n10.1.0\n0012\n2\nLow access priority indicator\n2011-12\nCT#54\nCP-110792\n0015\n3\nAdding Additional Authentication Options IE\n10.2.0\n2012-09\nCT#57\nCP-120442\n0019\n2\nCorrection to IETF Draft for TS 29.282\n10.3.0\n2012-09\nCT#57\nCP-120460\n0022\n-\nCorrection to RFC Update for TS 29.282\n11.0.0\n2012-12\nCT#58\nCP-120729\n0026\n-\nStatic IP Address Allocation Indication\n11.1.0\n0023\n1\nMME/SGSN Id\n2013-09\nCT#61\nCP-130464\n0027\n-\nAddition of End Marker Notification information element\n12.0.0\n2014-03\nCT#63\nCP-140416\n0028\n1\nAdd Trusted WLAN Mode Indication IE\n12.1.0\n2014-06\nCT#64\nCP-140252\n0029\n1\nUE Time Zone for PMIP\n12.2.0\nCP-140252\n0030\n1\nTWAN Identifier Timestamp for PMIP\nCP-140252\n0032\n1\nAdd a 3GPP specific option for PMIP for new Line Identifier\n2015-09\nCT#69\nCP-150442\n0033\n-\nOrigination Time Stamp and Maximum Wait Time for PMIP\n13.0.0\n2015-12\nCT#70\nCP-150780\n0034\n-\nExtensions for P-CSCF restoration for trusted and untrusted WLAN access\n13.1.0\n2017-03\nCT#75\n-\n-\n-\nUpdate to Rel-14 version (MCC)\n14.0.0\n2018-06\nCT#80\n-\n-\n-\nUpdate to Rel-15 version (MCC)\n15.0.0\n2020-07\nCT#88e\n-\n-\n-\nUpdate to Rel-16 version (MCC)\n16.0.0\n2022-04\n-\n-\n-\n-\n-\nUpdate to Rel-17 version (MCC)\n17.0.0\n2024-03\n-\n-\n-\n-\n-\nUpdate to Rel-18 version (MCC)\n18.0.0",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_4.2-1",
+        "table_4.2-2",
+        "figure_4.2-1",
+        "ts_29.275",
+        "ts_24.327",
+        "ts_29.282"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+================================================================================
+EXTRACTED 1 CYPHER QUERIES
+================================================================================
+
+Query #1: Content Search
+--------------------------------------------------------------------------------
+
+// Original Query (with parameters):
+
+                MATCH (c:Chunk)
+                WHERE toLower(c.content) CONTAINS toLower($search_term)
+                RETURN c.chunk_id, c.spec_id, c.section_id, c.section_title,
+                       c.content, c.chunk_type, c.complexity_score, c.key_terms
+                ORDER BY c.complexity_score DESC
+                LIMIT 5
+                
+
+// Ready for Neo4j Browser (parameters substituted):
+
+                MATCH (c:Chunk)
+                WHERE toLower(c.content) CONTAINS toLower($search_term)
+                RETURN c.chunk_id, c.spec_id, c.section_id, c.section_title,
+                       c.content, c.chunk_type, c.complexity_score, c.key_terms
+                ORDER BY c.complexity_score DESC
+                LIMIT 5
+                
+
+================================================================================

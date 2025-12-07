@@ -1,0 +1,1597 @@
+{
+  "metadata": {
+    "specification_id": "ts_23.278",
+    "version": "18.0.0",
+    "title": "3GPP TS 23.278",
+    "file_path": "/content/drive/MyDrive/RAG_thesis/data/23_series/23278-i00/23278-i00.docx"
+  },
+  "export_info": {
+    "export_date": "2025-07-26T09:26:35.650457",
+    "total_chunks": 169
+  },
+  "chunks": [
+    {
+      "chunk_id": "ts_23.278_1",
+      "section_id": "1",
+      "section_title": "Scope",
+      "content": "The present document specifies the stage 2 description for the Customized Applications for Mobile network Enhanced Logic (CAMEL) feature which provides the mechanisms to support services for the IP Multimedia Core Network (IM CN) Subsystem.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_2",
+      "section_id": "2",
+      "section_title": "References",
+      "content": "The following documents contain provisions, which, through reference in this text, constitute provisions of the present document.\n-\tReferences are either specific (identified by date of publication, edition number, version number, etc.) or non‑specific.\n-\tFor a specific reference, subsequent revisions do not apply.\n-\tFor a non-specific reference, the latest version applies. In the case of a reference to a 3GPP document (including a GSM document), a non-specific reference implicitly refers to the latest version of that document in the same Release as the present document.\n[1]\t3GPP TR 21.905: \"3rd Generation Partnership Project; Technical Specification Group Services and System Aspects; Vocabulary for 3GPP Specifications\".\n[2]\t3GPP TS 22.078: \"3rd Generation Partnership Project; Technical Specification Group Services and System Aspects; Customised Applications for Mobile network Enhanced Logic (CAMEL); Service description, Stage 1\".\n[3]\t3GPP TS 22.228: \"3rd Generation Partnership Project; Technical Specification Group Systems Aspects; IP Multimedia (IM) Subsystem –Stage 1\".\n[4]\t3GPP TS 23.078: \"3rd Generation Partnership Project; Technical Specification Group Core Networks; Customised Applications for Mobile network Enhanced Logic (CAMEL) Phase 3 Stage 2 specification (Release 99)\".\n[5]\t3GPP TS 23.218: \"3rd Generation Partnership Project; Technical Specification Group Core Networks; IP Multimedia (IM) Session Handling; IP Multimedia Call Model.\n[6]\t3GPP TS 23.228: \"3rd Generation Partnership Project; Technical Specification Group Services and System Aspects; IP Multimedia Subsystem (IMS) Stage 2\".\n[7]\tVoid\n[8]\t3GPP TS 24.229: \"3rd Generation Partnership Project; Technical Specification Group Core Networks; IP Multimedia Call Control Protocol based o SIP and SDP; Stage 3\".\n[9]\t3GPP TS 29.002: \"3rd Generation Partnership Project; Technical Specification Group Core Network; Mobile Application Part (MAP) specification\".\n[10]\t3GPP TS 29.229: \"3rd Generation Partnership Project; Technical Specification Group Core Networks; Cx and Dx Interfaces Based on the Diameter Protocol; Protocol details\".\n[11]\t3GPP TS 29.278: \"3rd Generation Partnership Project; Technical Specification Group Core Network; Customised Applications for Mobile network Enhanced Logic (CAMEL) Phase 4 CAMEL Application Part (CAP) specification for IP Multimedia Subsystems (IMS)\".",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905",
+        "ts_22.078",
+        "ts_22.228",
+        "ts_23.078",
+        "ts_23.218",
+        "ts_23.228",
+        "ts_24.229",
+        "ts_29.002",
+        "ts_29.229",
+        "ts_29.278"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.278_3.1",
+      "section_id": "3.1",
+      "section_title": "Definitions",
+      "content": "Home Subscriber Server (HSS):  Functional entity containing the subscription related information to support the network entities actually handling calls/sessions. For subscribers requiring CAMEL support, the HSS includes some functionality that was present in the HLR in previous 3GPP releases for storing the information relevant to the current subscription regarding CAMEL Subscription Information for IMS. The HSS sends IM CAMEL Subscription Information data to the IM‑SSF and CSE using a MAP interface.\nIP Multimedia Service Switching Function (IM‑SSF): CAMEL functional entity that provides the interworking between SIP session control and the CAMEL state models. The IM‑SSF also provides the CAMEL interface to HSS for downloading the subscriber's CAMEL Subscription Information data for IMS.\nIP Multimedia Basic Call State Model (IM‑BCSM): IM‑BCSM provides a high-level model of CSCF activities required to establish and maintain communication paths for users. As such, it identifies a set of basic call activities in a CSCF and shows how these activities are joined together to process a basic call.\nIP Multimedia CAMEL Subscription Information (IM‑CSI): IM‑CSI identifies the subscriber as having IP Multimedia CAMEL services.\nIP Multimedia session: IP Multimedia session and IP Multimedia call are treated as equivalent in this specification.\nOriginating IP Multimedia Basic Call State Model (O‑IM‑BCSM): originating half of the IM‑BCSM. The O‑IM‑BCSM corresponds to that portion of the IM‑BCSM associated with the originating party.\nOriginating IP Multimedia CAMEL Subscription Information (O‑IM‑CSI): O‑IM‑CSI identifies the subscriber as having originating IP Multimedia CAMEL services.\nTerminating IP Multimedia Basic Call State Model (T‑IM‑BCSM): terminating half of the IM‑BCSM. The T‑IM‑BCSM corresponds to that portion of the IM‑BCSM associated with the terminating party.\nTerminating IP Multimedia CAMEL Subscription Information (T‑IM‑CSI): T‑IM‑CSI identifies the subscriber as having terminating IP Multimedia CAMEL services.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_3.2",
+      "section_id": "3.2",
+      "section_title": "Abbreviations",
+      "content": "Abbreviations used in the present document are listed in 3GPP TR 21.905 [1].\nFor the purposes of the present document, the following abbreviations apply:\nBCSM\tBasic Call State Model\nCAMEL\tCustomized Applications for Mobile network Enhanced Logic\nCAP\tCAMEL Application Part\nCSCF\tCall State Control Function\nDP\tDetection Point\nD‑IM‑CSI\tDialled Service IP Multimedia CAMEL Subscription Information\nEDP\tEvent Detection Point\nFTN\tForwarded To Number\nGPRS\tGeneral Packet Radio Service\ngsmSCF\tGSM Service Control Function\ngsmSRF\tGSM Specialised Resource Function\ngsmSSF\tGSM Service Switching Function\nHPLMN\tHome PLMN\nHSS\tHome Subscriber Server\nIE\tInformation Element\nIF\tInformation Flow\nIP\tInternet Protocol\nISC\tIM‑CN Service Control\nI‑CSCF\tInterrogating CSCF\nIM\tIP Multimedia\nIM‑BCSM\tIP Multimedia Basic Call State Model\nIMCN\tIP Multimedia Core Network\nimcnSSF\tIM CN Service Switching Function\nIM‑CSI\tIP Multimedia CAMEL Subscription Information\nIM‑SSF\tIP Multimedia Service Switching Function\nIPLMN\tInterrogating PLMN\nMGCF\tMedia Gateway Control Function\nMO\tMobile Originating\nMT\tMobile Terminating\nNNI\tNetwork Node Interface\nO‑IM‑BCSM\tOriginating IP Multimedia Basic Call State Model\nO‑IM‑CSI\tOriginating IP Multimedia CAMEL Subscription Information\nPIC\tPoint In Call\nPLMN\tPublic Land Mobile Network\nP‑CSCF\tProxy CSCF\nSIP\tSession Initiation Protocol\nS‑CSCF\tServing CSCF\nSSME\tService Switching Function Management Entity\nT‑IM‑BCSM\tTerminating IP Multimedia Basic Call State Model\nVT‑IM‑CSI\tTerminating IP Multimedia CAMEL Subscription Information\nTDP\tTrigger Detection Point\nUNI\tUser Network Interface\nVPLMN\tVisited PLMN",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.278_4.1",
+      "section_id": "4.1",
+      "section_title": "Architecture",
+      "content": "This clause describes the functional architecture needed to support CAMEL interactions with the S‑CSCF in the IP Multimedia Subsystem. The IM‑SSF is a SIP Application Server that interfaces SIP to CAP. The generic SIP Application Server behaviour of the IM‑SSF is specified in 3GPP TS 23.218 [5].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.218"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.278_4.1.1",
+      "section_id": "4.1.1",
+      "section_title": "Functional Entities used for CAMEL at IP Multimedia Registration",
+      "content": "Figure 4.1 shows the functional entities involved when an MS registers for IP Multimedia session requiring CAMEL support. General registration procedure is detailed in 3GPP TS 23.228 [6]. Upon notification of a UE's registration, the IM‑SSF requests O‑IM‑CSI, D‑IM‑CSI, VT‑IM‑CSI data from the HSS over the Si interface.\nFigure 4.1: Functional architecture for support of CAMEL when mobile registers for IP Multimedia session",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_4.1",
+        "ts_23.228"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.278_4.1.2",
+      "section_id": "4.1.2",
+      "section_title": "Functional Entities used for CAMEL for MO and MT IP Multimedia session",
+      "content": "Figure 4.2 shows the functional entities involved in a Mobile Originated IP Multimedia session requiring CAMEL support. The same functional architecture applies in a Mobile Terminated IP Multimedia session for CAMEL.\nFigure 4.2: Functional architecture for support of CAMEL control of a MO IP Multimedia session",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_4.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.278_4.2.1",
+      "section_id": "4.2.1",
+      "section_title": "CSCF – IM‑SSF interface",
+      "content": "This interface is the IP Multimedia Service Control interface (ISC). This interface shall be based on SIP as detailed in 3GPP TS 24.229 [8].",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_24.229"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.278_4.2.2",
+      "section_id": "4.2.2",
+      "section_title": "IM‑SSF - gsmSCF interface",
+      "content": "This interface is used by the gsmSCF to control an IP Multimedia  session in a certain IM‑SSF. Relationships between the IM‑SSF and the gsmSCF on this interface are opened as a result of the IM‑SSF sending a request for instructions to the gsmSCF.  This interface shall be based on 3GPP TS 29.278 [11].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.278"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.278_4.2.3",
+      "section_id": "4.2.3",
+      "section_title": "HSS – IM-SSF interface",
+      "content": "This interface is the Si interface and is used to send CAMEL related subscriber data to the IM-SSF, e.g. IM-CSI.  This interface shall be a MAP interface as described in 3GPP TS 29.002 [9].",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.002"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.278_4.3",
+      "section_id": "4.3",
+      "section_title": "Detection Points (DPs)",
+      "content": "Certain basic call events may be visible to the GSM Service Control Function (gsmSCF). The DPs are the points in call at which these events are detected.\nA DP can be armed in order to notify the gsmSCF that the DP was encountered, and potentially to allow the gsmSCF to influence subsequent handling of the call. If the DP is not armed, the processing entity continues the processing without gsmSCF involvement.\nThree different types of DPs are identified:\n-\tTrigger Detection Point - Request (TDP‑R).\nThis detection point is statically armed and initiates a CAMEL control relationship when encountered and there is no existing relationship due to the same CSI. Processing is suspended when the DP is encountered.\n-\tEvent Detection Point - Request (EDP‑R).\nThis detection point is dynamically armed within the context of a CAMEL control relationship. Processing is suspended when encountering the DP and the IM‑SSF waits for instructions from the gsmSCF.\n-\tEvent Detection Point - Notification (EDP‑N).\nThis detection point is dynamically armed within the context of a CAMEL control relationship. Processing is not suspended when encountering the DP.\nThe DPs are characterized in the following clauses.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.3.1",
+      "section_id": "4.3.1",
+      "section_title": "Arming/Disarming mechanism",
+      "content": "A DP may be statically armed or dynamically armed.\nThe following arming rules apply:\n-\tDP for a mobile originating call handling is statically armed in the IM‑SSF as a result of O‑IM‑CSI and D‑IM‑CSI data delivery from the HSS. Likewise, DP for mobile terminating call handling is statically armed in the IM‑SSF as a result of VT‑IM‑CSI data delivery from the HSS. Static arming of DPs in the IM‑SSF occurs during the UE's registration in the IMS CN. Basically, when the IM‑SSF is notified of the UE's initial registration, the IM‑SSF queries the HSS for the subscriber's CAMEL Subscription Information via the Si interface.\n-\tA DP is dynamically armed by the gsmSCF within the context of a CAMEL control relationship as a result of IM‑SSF receiving the RequestReportBCSMEvent operation.\n-\tA Request Report BCSM Event information flow for a detection point for a leg overwrites any previous Request Report BCSM Event information flow for that detection point for that leg.\nThe following disarming rules apply:\n-\tA statically armed DP is disarmed when the IP Multimedia CSI data is withdrawn in the HSS. Only TDP‑Rs can be disarmed using this mechanism.\n-\tIf an armed EDP is met, then it is disarmed.\n-\tIf an EDP is met that causes the release of the related leg, then all EDPs related to that leg are disarmed.\n-\tIf a call session is released, then all EDPs related to that call session are disarmed.\n-\tIf an EDP is met, then other EDPS are disarmed, in accordance with the implicit disarming rule table specified in TS 23.078 Rel‑99 4 (refer to the clause for \"Rules for Implicit Disarming of Event Detection Points').\nIf an EDP is armed, it can be explicitly disarmed by the gsmSCF by means of the RequestReportBCSMEvent information flow.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.078"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.278_4.3.2",
+      "section_id": "4.3.2",
+      "section_title": "Criteria",
+      "content": "Criteria are the conditions that must be met in order for the IM‑SSF to request instructions from the gsmSCF.\nDP criteria are checked in the IM‑SSF. Criteria for originating DPs (i.e. Collected_Info, Analysed_Information, and Route_Select_Failure TDPs ) are checked in the IM‑SSF associated with the originating UE's S‑CSCF.  Criteria for terminating DPs (i.e. T_Busy and T_No_Answer) are checked in the IM‑SSF associated with the terminating UE's S‑CSCF.\nBased on the Initial Filter Criteria information, the S‑CSCF forwards the SIP message to the IM‑SSF.  The DP encountered is identified based on the SIP message received from the S‑CSCF. Refer to table 4.2 and table 4.4 for mapping of SIP messages to CAMEL IM‑BCSM Detection Points.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_4.2",
+        "table_4.4"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.278_4.3.2.1",
+      "section_id": "4.3.2.1",
+      "section_title": "Criteria at Collected_Info",
+      "content": "The following criteria are applicable for DP Collected_Info:\n-\tDestination number triggering criterion: The HSS may store a list of up to 10 destination numbers and/or up to 3 number lengths. There is no restriction on the nature of address. There is no restriction on the numbering plan indicator. This criterion may be defined to be either \"enabling\" or \"inhibiting\". This criterion does not match when the destination number received from the S-CSCF is not an ISDN number. In this case, a dialogue with the gsmSCF may or may not be established depending on whether the criterion is inhibiting or enabling respectively.\nTriggering at DP Collected_Info shall be strictly based on the destination number received from the S‑CSCF.\nThe destination number received from the S‑CSCF shall not be modified before conditional triggering check takes place.\nIf the destination number triggering criterion is enabling, then the IM‑SSF may establish a dialogue with the gsmSCF if:\n-\tthe destination number matches one of the destination number strings defined in the list; or\n-\tthe length of the destination number matches one of the destination number lengths defined in the list.\nIn this test the destination number matches one of the destination number strings in the list if:\n-\tthe nature of address of destination number is the same as the nature of address of the destination number string;\n-\tthe destination number is at least as long as the destination number string in the list; and\n-\tall the digits in the destination number string in the list match the leading digits of the destination number.\nIf the destination number triggering criterion is inhibiting, then the IM‑SSF may establish a dialogue with the gsmSCF if:\n-\tthe destination number does not match any of the destination number strings defined in the list; and\n-\tthe length of the destination number does not match any of the destination number lengths defined in the list.\nIn this test the destination number matches one of the destination number strings in the list if:\n-\tthe nature of address of destination number is the same as the nature of address of the destination number string;\n-\tthe destination number is at least as long as the destination number string in the list; and\n-\tall the digits in the destination number string in the list match the leading digits of the destination number.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.3.2.2.1",
+      "section_id": "4.3.2.2.1",
+      "section_title": "General",
+      "content": "The following criteria are applicable for DP Analysed_Information:\n-\tDestination number triggering criterion: The HSS may store a list of up to 10 destination numbers. There is no restriction on the nature of address. There is no restriction on the numbering plan indicator. This criterion does not match when the destination number received from the S-CSCF or the gsmSCF is not an ISDN number.\nNOTE:\tThe order in which the destination number criteria are checked in the IM‑SSF is not determined. Hence, overlapping destination number criteria (e.g. use of \"0800\" and \"0800123\" for two different services) should be avoided, because they lead to unpredictable behaviour (i.e. either service might be triggered).\nTriggering at DP Analysed_Info shall be based on the destination number received in the Connect operation from the gsmSCF during a Mobile Originating CAMEL Service.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.3.2.2.2",
+      "section_id": "4.3.2.2.2",
+      "section_title": "Number comparison",
+      "content": "The following procedure shall be performed for the comparison of the destination number triggering criterion and the address information in the given order.\n1.\tThe numbering plan indicators of both numbers are ignored.\n2.\tThe type of number/nature of address indicators of both numbers are compared. If there is a match of the type of number indicator, then the check shall be performed by comparing the digits as defined in step 6. If there is no match of the type of number the comparison procedure shall continue as follows.\n3.\tIf either or both of the address information and destination number triggering criterion includes a type of number/nature of address indicator other than \"unknown\", \"national (significant) number\" or \"international number\" then the destination number does not match the destination number triggering criterion. Otherwise the comparison procedure shall continue as follows.\n4.\tIf there is a number (address information or destination number triggering criterion) with type of number/nature of address \"unknown\" this number shall be translated based on the numbering plan of the serving entity in either of the following ways:\n-\tif the leading digits refer to an international prefix, those digits shall be removed and the type of number/nature of address shall be set to \"international number\".\n-\tif the leading digits refer to a national (trunk) prefix, those digits shall be removed and the type of number/nature of address shall be set to \"national (significant) number\".\nIf the leading digits refer neither to an international prefix nor to a national (trunk) prefix, then the destination number does not match the destination number triggering criterion.\nIf there is a match of the type of number/nature of address indicator after this number modification, then the check shall be performed by comparing the digits as defined in step 6, otherwise the comparison procedure shall continue as follows.\n5.\tIf the type of number/nature of address of the address information or of the destination number triggering criterion is \"national (significant) number\" this number shall be translated based on the numbering plan of the serving entity to international format by adding the country code of the serving entity to the number string. After this modification both numbers shall be in international format and shall be checked by comparing the digits as defined in step 6.\n6\tIf the number digits of the address information are compared with the number digits of the destination number triggering criterion, then there is a match if:\n-\tthe destination number is at least as long as the destination number string of the destination number triggering criterion; and\n-\tall the digits in the destination number string of the destination number triggering criterion match the leading digits of the destination number.\nThe check described in this clause shall be repeated for every number contained in the destination number triggering criterion of the D‑IM‑CSI until a match is recognised and DP Analysed_Info is triggered, or until all the destination numbers have been checked without a match being recognised. In the latter case DP Analysed_Info is not triggered.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.3.2.3",
+      "section_id": "4.3.2.3",
+      "section_title": "Criteria at DP Route_Select_Failure",
+      "content": "The HSS may store a list of up to 5 cause values.\nThe following criteria are applicable for DP Route_Select_Failure:\n-\tRelease cause code.\nThe trigger criteria is met if the cause code received from the terminating party's network (could be a PSTN or an IMS network) is equal to at least one of the cause codes in the trigger criteria list.\nIf a O‑IM‑BCSM was already invoked and there is a relationship with the gsmSCF at that moment, then no additional relationship shall be initiated.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.3.2.4",
+      "section_id": "4.3.2.4",
+      "section_title": "Criteria at DP T_Busy and T_No_Answer",
+      "content": "The HSS may store a list of up to 5 cause values.\nThe triggering is based on the release cause code received from terminating UE's P‑CSCF.\nThe following criteria are applicable for DP T_Busy and T_No_Answer:\n-\tRelease cause code.\nThe trigger criteria are met if the cause code received from the terminating UE's P‑CSCF is equal to at least one of the cause codes in the trigger criteria list.\nIf trigger criteria are satisfied, then the corresponding Service Logic shall be invoked.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.4.1",
+      "section_id": "4.4.1",
+      "section_title": "IP Multimedia CAMEL Subscription Information (IM‑CSI)",
+      "content": "This clause defines the contents of the IP Multimedia CAMEL Subscription Information.  IM‑CSI data are provisioned in the HSS for subscribers having originating and/or terminating IP Multimedia CAMEL services. This information shall be sent by the HSS to the IM‑SSF via the Si Interface. The IM‑CSI data contains the O‑IM‑CSI, D‑IM‑CSI, and VT‑IM‑CSI.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.4.1.1.1",
+      "section_id": "4.4.1.1.1",
+      "section_title": "gsmSCF Address",
+      "content": "Address to be used to access the gsmSCF for a particular subscriber. The address shall be an E.164 number to be used for routeing.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.4.1.1.2",
+      "section_id": "4.4.1.1.2",
+      "section_title": "Service Key",
+      "content": "The Service Key identifies to the gsmSCF the service logic that shall apply.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.4.1.1.3",
+      "section_id": "4.4.1.1.3",
+      "section_title": "Default Call Handling",
+      "content": "The Default Call Handling indicates whether the IP Multimedia session shall be released or continued as requested in case of error in the IM‑SSF to gsmSCF dialogue.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.4.1.1.4",
+      "section_id": "4.4.1.1.4",
+      "section_title": "TDP List",
+      "content": "The TDP List indicates on which detection point triggering shall take place. The following trigger detection points are possible: DP Collected_Info and DP Route_Select_Failure.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.4.1.1.5",
+      "section_id": "4.4.1.1.5",
+      "section_title": "CAMEL Capability Handling",
+      "content": "CAMEL Capability Handling indicates the phase of CAMEL which is asked by the gsmSCF for the service.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.4.1.1.6",
+      "section_id": "4.4.1.1.6",
+      "section_title": "CSI Status",
+      "content": "The CSI state indicates whether the O‑IM‑CSI is active or not.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.4.1.1.7",
+      "section_id": "4.4.1.1.7",
+      "section_title": "Notification Flag",
+      "content": "The notification flag indicates whether changes of the O‑IM‑CSI shall trigger the Notification on Change of Subscriber Data. In order to update the IM‑SSF of IM CSI changes, this flag shall be set to yes.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.4.1.1.8",
+      "section_id": "4.4.1.1.8",
+      "section_title": "DP Criteria",
+      "content": "The DP criteria indicate whether the IM‑SSF shall request the gsmSCF for instructions.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.4.1.2.1",
+      "section_id": "4.4.1.2.1",
+      "section_title": "gsmSCF Address",
+      "content": "Address to be used to access the gsmSCF for a particular subscriber. The address shall be an E.164 number to be used for routeing.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.4.1.2.2",
+      "section_id": "4.4.1.2.2",
+      "section_title": "Service Key",
+      "content": "The Service Key identifies to the gsmSCF the service logic that shall apply.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.4.1.2.3",
+      "section_id": "4.4.1.2.3",
+      "section_title": "Default Call Handling",
+      "content": "The Default Call Handling indicates whether the IP Multimedia session shall be released or continued as requested in case of error in the IM‑SSF to gsmSCF dialogue.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.4.1.2.4",
+      "section_id": "4.4.1.2.4",
+      "section_title": "CAMEL Capability Handling",
+      "content": "CAMEL Capability Handling indicates the phase of CAMEL which is asked by the gsmSCF for the service.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.4.1.2.5",
+      "section_id": "4.4.1.2.5",
+      "section_title": "CSI Status",
+      "content": "The CSI state indicates whether the D‑IM‑CSI is active or not.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.4.1.2.6",
+      "section_id": "4.4.1.2.6",
+      "section_title": "Notification Flag",
+      "content": "The notification flag indicates whether changes of the D‑IM‑CSI shall trigger the Notification on Change of Subscriber Data. In order to update the IM‑SSF of IM CSI changes, this flag shall be set to yes.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.4.1.2.7",
+      "section_id": "4.4.1.2.7",
+      "section_title": "DP Criteria",
+      "content": "The DP criteria indicate whether the IM‑SSF shall request the gsmSCF for instructions.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.4.1.3.1",
+      "section_id": "4.4.1.3.1",
+      "section_title": "gsmSCF Address",
+      "content": "Address to be used to access the gsmSCF for a particular subscriber. The address shall be an E.164 number to be used for routeing.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.4.1.3.2",
+      "section_id": "4.4.1.3.2",
+      "section_title": "Service Key",
+      "content": "The Service Key identifies to the gsmSCF the service logic that shall apply.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.4.1.3.3",
+      "section_id": "4.4.1.3.3",
+      "section_title": "Default Call Handling",
+      "content": "The Default Call Handling indicates whether the IP Multimedia session shall be released or continued as requested in case of error in the IM‑SSF to gsmSCF dialogue.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.4.1.3.4",
+      "section_id": "4.4.1.3.4",
+      "section_title": "TDP List",
+      "content": "The TDP List indicates on which detection point triggering shall take place. The following trigger detection points are allowed: DP Terminating_Attempt_Authorised, DP T_Busy, and DP T_No_Answer.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.4.1.3.5",
+      "section_id": "4.4.1.3.5",
+      "section_title": "CAMEL Capability Handling",
+      "content": "CAMEL Capability Handling indicates the phase of CAMEL which is asked by the gsmSCF for the service.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.4.1.3.6",
+      "section_id": "4.4.1.3.6",
+      "section_title": "CSI Status",
+      "content": "The CSI state indicates whether the VT‑IM‑CSI is active or not.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.4.1.3.7",
+      "section_id": "4.4.1.3.7",
+      "section_title": "Notification Flag",
+      "content": "The notification flag indicates whether changes of the VT‑IM‑CSI shall trigger the Notification on Change of Subscriber Data. In order to update the IM‑SSF of IM CSI changes, this flag shall be set to yes.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.4.1.3.8",
+      "section_id": "4.4.1.3.8",
+      "section_title": "DP Criteria",
+      "content": "The DP criteria indicate whether the IM‑SSF shall request the gsmSCF for instructions.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.4.1.4.1",
+      "section_id": "4.4.1.4.1",
+      "section_title": "gsmSCF address list for CSI",
+      "content": "The gsmSCF address list for CSI indicates a list of gsmSCF addresses to which Notification on Change of Subscriber Data is to be sent.  In order to provide Notification on Change of Subscriber Data to the IM‑SSF, the IM‑SSF address shall be included in the gsmSCF address list.\nThe IM‑SSF address is added to the address list for notification in the HSS as described in clause 4.6.1.2.\nThe IM‑SSF shall handle the receipt of the Notification on Change of Subscriber Data using the same procedure as that of a gsmSCF.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_4.6.1.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.278_4.5",
+      "section_id": "4.5",
+      "section_title": "Description of CAMEL State Models",
+      "content": "In the IM Subsystem, calls are controlled by the Serving CSCF (S‑CSCF) where a subscriber is registered. A state model describes the call control behaviour of an IM‑SSF.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.5.1",
+      "section_id": "4.5.1",
+      "section_title": "General Handling",
+      "content": "The Basic Call State Model (BCSM) is used to describe the handling of originating and terminating calls. It identifies the points in a call where gsmSCF based service applications is permitted to interact with the call control capabilities of an IM‑SSF. Figure 4.3 illustrates how transitions between states, Detection Points and Points In Call components are shown in the BCSM diagrams.\nFigure 4.3: BCSM Components",
+      "chunk_type": "definition",
+      "cross_references": [
+        "figure_4.3"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.278_4.5.2.1",
+      "section_id": "4.5.2.1",
+      "section_title": "Description of the O‑IM‑BCSM",
+      "content": "The O‑IM‑BCSM is used to model the behaviour of an IM‑SSF for an originating call. When an armed DP is encountered, O‑IM‑BCSM processing is suspended at the DP and the IM‑SSF indicates this to the gsmSCF if appropriate.\nFigure 4.4: Originating CAMEL Basic Call State Model (O‑IM‑BCSM)\nThe following table 4.1defines the DPs that apply to originating calls.\nTable 4.1: Description of the O‑IM‑BCSM DPs in an IM‑SSF\nCAMEL Detection Point:\nDP Type\nDescription:\nDP Collected_Info\nTDP‑R\nIndication that the O‑IM‑CSI is analysed\nDP Analysed_Information\nTDP‑R\nAvailability of routeing address and nature of address.\nDP Route_Select_Failure\nTDP‑R, EDP‑N, EDP‑R\nIndication that the session establishment failed.\nDP O_Busy\nEDP‑N, EDP‑R\nIndication that:\n-\ta busy indication is received from the terminating party,\n- a not reachable event is determined upon a SIP error response.\nDP O_No_Answer\nEDP‑N, EDP‑R\nIndication that:\n-\tan application timer associated with the O_No_Answer DP expires,\n-\ta no answer event is determined upon SIP a error response\nDP O_Answer\nEDP‑N, EDP‑R\nIndication that the session is accepted and answered by the terminating party.\nDP O_Disconnect\nEDP‑N, EDP‑R\nA disconnect indication is received from the originating party or from the terminating party.\nDP O_Abandon\nEDP‑N, EDP‑R\nIndication that a disconnect indication is received from the originating party during the session establishment procedure.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_4.1",
+        "figure_4.4"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.278_4.5.2.2",
+      "section_id": "4.5.2.2",
+      "section_title": "Description of Points In Call",
+      "content": "This clause describes the Points In Call for originating calls. The entry events, actions and exit events are described for each Point in Call.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.5.2.2.1",
+      "section_id": "4.5.2.2.1",
+      "section_title": "O_Null & Authorise_Origination_Attempt_Collect_Info",
+      "content": "Entry events:\n-\tDisconnection and clearing of a previous call (DP O_Disconnect) or default handling of exceptions by IM‑SSF completed.\n-\tAbandon event is reported from Analyse_Information or Routing and Alerting PIC.\n-\tException event is reported.\nActions:\n-\tInterface is idled.\n-\tOriginating call: SIP INVITE request message containing the dialled number is received from MS.\n-\tInformation being analysed e.g., O‑IM‑CSI is analysed.\nExit events:\n-\tOriginating CSI is analysed.\n-\tAn exception condition is encountered. For this PIC, if the call encounters one of these exceptions during the PIC processing, the exception event is not visible because there is no corresponding DP. Example exception condition: Calling party abandons call.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.5.2.2.2",
+      "section_id": "4.5.2.2.2",
+      "section_title": "Analyse_Information",
+      "content": "Entry events:\n-\tOriginating CSI is analysed. (DP Collected Info).\n-\tNew routeing information is received when Busy event (DP O_Busy), Route Select Failure event (DP Route_Select_Failure), Not Reachable event (DP O_Busy) or No Answer event (DP O_No_Answer) is reported from Routing and Alerting PIC.\n-\tNew routeing information is received when Disconnect event is reported from O_Active PIC.\nActions:\n-\tCompare the called party number with the dialled services information.\nExit events:\n-\tAvailability of routeing address and nature of address. (DP Analysed_Information).\n-\tAn exception condition is encountered (e.g. wrong number)- this leads to the O_Exception PIC.\n-\tCalling party abandons the call- this leads to the O_Abandon DP.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.5.2.2.3",
+      "section_id": "4.5.2.2.3",
+      "section_title": "Routing and Alerting",
+      "content": "Entry events:\n-\tAvailability of routeing address and nature of address. (DP Analysed_Information).\nActions:\n-\tInformation is being analysed and/or translated according to dialling plan to determine routeing address.\n-\tRouteing address being interpreted.\n-\tCall is being processed by the terminating half BCSM. Continued processing of SIP call session setup (e.g., ringing) is taking place. Waiting for indication from terminating half BCSM that the call has been answered by terminating party.\nExit events:\n-\tIndication from the terminating half BCSM that the call is accepted and answered by terminating party (DP O_Answer).\n-\tAn exception condition is encountered - this leads to the O_Exception PIC.\n-\tCalling party abandons the call- this leads to the O_Abandon DP.\n-\tA busy indication is received from the terminating party - this leads to the O_Busy DP.\n-\tA not reachable indication is received from the terminating party - this leads to the O_Busy DP.\n-\tAttempt to select the route for the call fails - this leads to the Route_Select_Failure DP.\nIf the no reply timer expires and DP O_No_Answer is armed - this leads to the O_No_Answer DP.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.5.2.2.4",
+      "section_id": "4.5.2.2.4",
+      "section_title": "O_Active",
+      "content": "Entry events:\n-\tIndication from the terminating half BCSM that the call is accepted and answered by the terminating party (DP O_Answer).\nActions:\n-\tSIP session established between originating party and terminating party. -\tCall release is awaited.\nExit events:\n-\tA disconnection indication is received from the originating party, or received from the terminating party via the terminating half BCSM. (DP - O_Disconnect).\n-\tAn exception condition is encountered.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.5.2.2.5",
+      "section_id": "4.5.2.2.5",
+      "section_title": "O_Exception",
+      "content": "Entry events:\n-\tAn exception condition is encountered. In addition to specific examples listed above, exception events include any type of failure, which means that the normal exit events for a PIC can not be met.\nActions:\n-\tDefault handling of the exception condition is being provided. This includes general actions necessary to ensure that no resources remain inappropriately allocated such as:\n-\tIf any relationship exists between the IM‑SSF and the gsmSCF, the IM‑SSF shall send an error information flow closing the relationships and indicating that any outstanding call handling instructions will not run to completion.\n-\tResources made available for setting up the SIP call session are released.\nExit events:\n-\tDefault handling of the exception condition by IM‑SSF completed.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.5.3",
+      "section_id": "4.5.3",
+      "section_title": "Mapping of SIP Method/Response to O‑IM-BCSM Detection Points",
+      "content": "This clause describes mapping of SIP methods and responses to CAMEL Detection Points.\nTable 4.2: Mapping of SIP Method/Response to CAMEL O‑IM-BCSM DPs\nCAMEL O‑IM‑BCSM DP:\nSIP Method/Response\nDP Collected_Info\nINVITE\nDP Analysed_Information\nN/A\nDP Route_Select_Failure\n4XX (except 401, 407, 408, 480, 486),\n5xx, and 6xx (except 600, 603)\nDP O_Busy\n486 Busy Here\n600 Busy Everywhere\nDP O_No_Answer\n603 Decline\n408 Request Timeout\n480 Temp Unavailable\nDP O_Answer\n200 OK\nDP O_Disconnect\nBYE\nDP O_Abandon\nCANCEL",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_4.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.278_4.5.4.1",
+      "section_id": "4.5.4.1",
+      "section_title": "Description of the T‑IM‑BCSM",
+      "content": "The T‑IM-BCSM is used to model the behaviour of an IM‑SSF for a terminating call. When a DP is encountered, T‑IM-BCSM processing is suspended at the DP and IM‑SSF indicates this to the gsmSCF if appropriate.\nFigure 4.5: Terminating CAMEL Basic Call State Model (T‑IM‑BCSM)\nThe following table 4.3defines the DPs that apply to terminating calls.\nTable 4.3: Description of T‑IM‑BCSM DPs in the S‑CSCF\nCAMEL DP:\nDP Type\nDescription:\nDP Terminating_Attempt_\n_Authorised\nTDP‑R\nIndication that the VT‑IM‑CSI is analysed.\nDP T_Busy\nTDP‑R, EDP‑N, EDP‑R\nIndication that:\n-\ta busy indication is received from the terminating party,\n- a not reachable event is determined (e.g. terminating party is not currently registered).\nDP T_No_Answer\nTDP‑R, EDP‑N, EDP‑R\nIndication that an application timer associated with the T_No_Answer DP expires.\nDP T_Answer\nEDP‑N, EDP‑R\nSession is accepted and answered by terminating party.\nDP T_Disconnect\nEDP‑N, EDP‑R\nA disconnect indication is received from the terminating party or from the originating party.\nDP T_Abandon\nEDP‑N, EDP‑R\nA disconnect indication is received from the originating party during the session establishment procedure.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_4.3",
+        "figure_4.5"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.278_4.5.4.2",
+      "section_id": "4.5.4.2",
+      "section_title": "Description of Points In Call",
+      "content": "This clause describes the Points In Call for terminating calls. The entry events, actions and exit events are described for each Point in Call.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.5.4.2.1",
+      "section_id": "4.5.4.2.1",
+      "section_title": "T_Null",
+      "content": "Entry events:\n-\tDisconnection and clearing of a previous call (DP T_Disconnect) or default handling of exceptions by IM-SSF completed.\n-\tAbandon event is reported from Terminating Call Handling PIC.\n-\tException event is reported.\nActions:\n-\tInterface is idled.\n-\tSIP INVITE message for terminating call request is received, the appropriate information is analysed.\n-\tVT‑IM‑CSI is analysed.\nExit events:\n-\tTerminating CSI is  analysed.\n-\tAn exception condition is encountered. For this PIC, if the call encounters one of these exceptions during the PIC processing, the exception event is not visible because there is no corresponding DP.\nExample exception condition is:\n-\tCalling party abandons call.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.5.4.2.2",
+      "section_id": "4.5.4.2.2",
+      "section_title": "Terminating Call Handling",
+      "content": "Entry events:\n-\tTerminating CSI (if available) is analysed. (DP Terminating_Attempt_Authorised).\n-\tNew routeing information is received when Busy event (DP T_Busy) or No Answer event (DP T_No_Answer) is reported from Terminating Call Handling PIC.\n-\tNew routeing information is received when Disconnect event is reported from T_Active PIC.\n-\tNew routeing information is received when the terminating party not reachable is reported from Terminating Call Handling PIC.\nActions:\n-\tRouteing address and call type being interpreted. The next route or terminating access is being selected.\n-\tThe terminating party is being alerted. Waiting for the call to be answered by terminating party.\nExit events:\n-\tCall is accepted and answered by terminating party.\n-\tAn exception condition is encountered - this leads to the T_Exception PIC. Example exception conditions: the SIP call session request  was not successful.\n-\tCalling party abandons the call - this leads to the T_Abandon DP.\n-\tA busy indication is received from the terminating party's P‑CSCF - this leads to the T_Busy DP.\n-\tNot reachable event detected from the terminating party's P‑CSCF - this leads to the T_Busy DP.\n-\tIf no reply timer expires and DP T_No_Answer is armed - this leads to the T_No_Answer DP.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.5.4.2.3",
+      "section_id": "4.5.4.2.3",
+      "section_title": "T_Active",
+      "content": "Entry events:\n-\tIndication that the call is accepted and answered by the terminating party. (DP T_Answer).\nActions:\n-\tSIP session established between originating party and terminating party.\n-\tCall release is awaited.\nExit events:\n-\tA disconnection indication is received from the terminating party, or received from the originating party via the originating half BCSM. (DP T_Disconnect).\n-\tAn exception condition is encountered. In addition to specific examples listed above, exception events include any type of failure that means that the normal exit events for a PIC can not be met.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.5.4.2.4",
+      "section_id": "4.5.4.2.4",
+      "section_title": "T_Exception",
+      "content": "Entry events:\n-\tAn exception condition is encountered. In addition to specific examples listed above, exception events include any type of failure, which means that the normal exit events for PIC cannot be met.\nActions:\n-\tDefault handling of the exception condition is being provided. This includes general actions necessary to ensure that no resources remain inappropriately allocated such as:\n-\tIf any relationship exists between the IM‑SSF and the gsmSCF, the IM‑SSF shall send an error information flow closing the relationships and indicating that any outstanding call handling instructions will not run to completion.\n-\tResources made available for setting up the SIP call session are released.\nExit events:\n-\tDefault handling of the exception condition by IM‑SSF completed.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.5.5",
+      "section_id": "4.5.5",
+      "section_title": "Mapping of SIP Method/Response to T‑IM‑BCSM Detection Points",
+      "content": "This clause describes mapping of SIP methods and responses to CAMEL Detection Points.\nTable 4.4: Mapping of SIP Method/Response to CAMEL T‑IM‑BCSM DPs\nCAMEL T‑IM‑BCSM DP:\nSIP Method/Response\nDP Terminating_Attempt_\n_Authorised\nINVITE\nDP T_Busy\n4XX (except 401, 407, 408, 480),\n5xx, and 6xx (except 603)\nDP T_No_Answer\n603 Decline\n408 Request Timeout\n480 Temp Unavailable\nDP T_Answer\n200 OK\nDP T_Disconnect\nBYE\nDP T_Abandon\nCANCEL",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_4.4"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.278_4.6",
+      "section_id": "4.6",
+      "section_title": "Procedures for IM‑SSF Application Server",
+      "content": "The SDLs in this specification illustrate how CAMEL modifies the normal multimedia call. They do not attempt to show all the details of multimedia handling in all the modes that support CAMEL.\nThe text in this clause is a supplement to the definition in the SDL diagrams; it does not duplicate the information in the SDL diagrams.",
+      "chunk_type": "procedure",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.6.1",
+      "section_id": "4.6.1",
+      "section_title": "Overall SDL Architecture",
+      "content": "Figure 4.6: SIP Registration into IM‑SSF\nFigure 4.7: Originating Case\nFigure 4.8: Terminating Case",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_4.6",
+        "figure_4.7",
+        "figure_4.8"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.278_4.6.1.1",
+      "section_id": "4.6.1.1",
+      "section_title": "Handling of Registration and De-registration in the IM‑SSF",
+      "content": "During the UE registration, the HSS shall send the filter criteria for the IM‑SSF to the S‑CSCF if the subscriber is provisioned with IP Multimedia CAMEL Subscription Information data at the HSS.\n-\tThe HSS shall include the IMSI data for the subscriber within the Service Information element of the filter criteria for IM‑SSF. The IMSI shall be used for querying the HSS for CAMEL Subscription Information data via a MAP interface.\nThe CAMEL service provider determines the actual format of the data sent within the Service Information element of the filter criteria (e.g. IMSI). The actual format is transparent to the S‑CSCF i.e. CAMEL service information is not processed, analysed, or evaluated by the S‑CSCF. It is, however, known to the IM‑SSF, gsmSCF, and the HSS (for provisioning of the service information data).\nIf a registration/de-registration request matches the filter criteria of the IM‑SSF, the S‑CSCF informs the IM‑SSF of the request by performing a third party registration/de-registration i.e. a SIP REGISTER message is sent from the S‑CSCF to the IM‑SSF.\nGeneral handling of IP Multimedia registration, re-registration, de-registration and receipt of initial filter criteria at the S‑CSCF is specified in 3GPP TS 23.228 [6] and 23.218 [5].\nThe process and the procedures specific to CAMEL are specified in this clause:\n-\tProcess Register_IM_SSF;\n-\tProcedure CAMEL_IMCN_Register;\n-\tProcedure CAMEL_IMCN_DeRegister.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_23.228"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.278_4.6.1.1.1",
+      "section_id": "4.6.1.1.1",
+      "section_title": "Procedure CAMEL_IMCN_Register",
+      "content": "When querying the HSS for the subscriber's IM CSI data, the IM‑SSF does not have to wait for the HSS's response on the first query before the subsequent queries are done. i.e Sending of multiple Any Time Interrogation operations can be done in parallel. However, the IM‑SSF shall wait for all the responses from the HSS before it shall send a SIP response message to the S‑CSCF.\nFigure 4.9: Process Register_IM_SSF (sheet 1)\nFigure 4.10: Procedure CAMEL_IMCN_Register (sheet 1)\nFigure 4.11: Procedure CAMEL_IMCN_DeRegister (sheet 1)",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_4.9",
+        "figure_4.10",
+        "figure_4.11"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.278_4.6.1.2",
+      "section_id": "4.6.1.2",
+      "section_title": "Handling of Notify Subscriber Data Change",
+      "content": "When the HSS updates the CSI for a subscriber in the IP Multimedia CN subsystem, the HSS shall send a Notify Subscriber Data Change to the IM‑SSF if all of the following conditions are true:\n-\tThe IM CSI data is marked with the Notification Flag\n-\tThe IM‑SSF address is included in the gsmSCF address list\nThe IM‑SSF address shall be added in the gsmSCF address list at the HSS for notification of IM‑CSI updates if one of the following conditions occurs:\na.\tThe HSS is notified of the subscriber's registration at the S‑CSCF (via Cx interface), and the subscriber is provisioned with IM CSI data.\nb.\tOperator provisions HSS subscriber data with IMS CAMEL service while the subscriber is currently registered in the IMS network i.e. one or more IM CSI data is added to the subscriber's profile in the HSS.\nc.\tThe HSS is notified of mobile termination for an unregistered subscriber (via Cx interface), and the subscriber is provisioned with IM CSI data\nThe IM‑SSF address shall be deleted from the gsmSCF address list when the HSS initiates, or is notified of, the UE's deregistration.\nThe IM‑SSF address in the gsmSCF address list may be changed when the HSS receives a notification of a registration for a UE with a S‑CSCF name different from the previously assigned S‑CSCF name (i.e. re-registration from HSS point of  view). The HSS shall overwrite the existing IM‑SSF address with the IM‑SSF address associated with the new S‑CSCF name.\nThe HSS procedure for sending the Notify Subscriber Data Change to the IM‑SSF is the same procedure used for notifying the gsmSCFs in the Circuit Switched CN. This procedure is described in Procedure CAMEL_NSDC_HLR specified in 3GPP TS 23.078 Rel‑99[4].\nThe process specific to IM‑SSF's handling of the Notify Subscriber Data Change is specified in this clause:\n-\tProcess Update_CSI\nFigure 4.12: Process Update_CSI (sheet 1)",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "figure_4.12",
+        "ts_23.078"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.278_4.6.1.3",
+      "section_id": "4.6.1.3",
+      "section_title": "Handling of Mobile Originated Calls in the IM‑SSF",
+      "content": "The functional behaviour of the S‑CSCF is specified in 3GPP TS 23.218 [5]. The process and the procedures specific to CAMEL are specified in this clause:\n-\tProcess MO_IM_SSF;\n-\tProcedure CAMEL_IMCN_MO_O_IM_CSI_INIT;\n-\tProcedure CAMEL_IMCN_MO_D_IM_CSI_INIT;\n-\tProcedure CAMEL_IMCN_MO_CANCEL;\n-\tProcedure CAMEL_IMCN_MO_ANSWER;\n-\tProcedure CAMEL_IMCN_MO_UNSUCCESSFUL;\n-\tProcedure CAMEL_IMCN_MO_DISC1;\n-\tProcedure CAMEL_IMCN_MO_DISC2;\n-\tProcedure CAMEL_OCH_CTR.\nInternal interface indicated with the \"Int_SRF_\" prefix within this clause indicates internal interface with the MRFC.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.218"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.278_4.6.1.3.1",
+      "section_id": "4.6.1.3.1",
+      "section_title": "Actions of the IM‑SSF on receipt of Int_Error",
+      "content": "The IM‑SSF checks the default Call Handling parameter in the relevant CSI.\nIf the default call handling is release, a BYE indication is sent to the MS. The IM‑SSF then releases all resources and the invoked CAMEL procedure ends.\nIf the call handling is continue, the IM‑SSF continues processing without CAMEL support.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.6.1.3.2",
+      "section_id": "4.6.1.3.2",
+      "section_title": "Actions of the IM‑SSF on receipt of Int_Continue",
+      "content": "The IM‑SSF continues processing without any modification of call parameters.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.6.1.3.3",
+      "section_id": "4.6.1.3.3",
+      "section_title": "Actions of the IM‑SSF on receipt of Int_Continue_With_Argument",
+      "content": "The IM‑SSF continues processing with modified call parameters. The IM‑SSF shall modify the call parameters by the information received in the Int_Continue_With_Argument message. Call parameters that are not included in the Int_Continue_With_Argument_Message are unchanged.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.6.1.3.4",
+      "section_id": "4.6.1.3.4",
+      "section_title": "Actions of the IM‑SSF on receipt of Int_Connect",
+      "content": "The IM-SSF continues processing with modified call parameters. The IM‑SSF shall transparently modify the call parameters with the received information. Call parameters, which are not included in the Int_Connect message, are unchanged.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.6.1.3.5",
+      "section_id": "4.6.1.3.5",
+      "section_title": "Actions of the IM‑SSF on receipt of Int_Release_Call",
+      "content": "A BYE is sent to the MS, and a BYE is sent to the destination CSCF. The release cause received in the Int_Release_Call is used. The IM‑SSF then releases all call resources and all CAMEL processing ends.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.6.1.3.6",
+      "section_id": "4.6.1.3.6",
+      "section_title": "Handling of procedure CAMEL_OCH_CTR, sheet 1",
+      "content": "The IM‑SSF behaves as a B2BUA (Back‑2‑Back User Agent) when a SIP INVITE is received for an outgoing call and SIP INVITE is sent to the MRFC (via S‑CSCF) as a result of a CAP ConnectToResource request received from the SCF.\nA SIP response 100 Trying is sent after each INVITE but is not shown in the SDLs.\nThe IM‑SSF shall handle the 200 OK response from the MRFC as specified in 3GPP TS 23.218 [5].",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "ts_23.218"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.278_4.6.1.3.7",
+      "section_id": "4.6.1.3.7",
+      "section_title": "Handling of procedure CAMEL_OCH_CTR, sheet 5",
+      "content": "The specifics on transporting information between the MRFC and the Application Server such as the IM-SSF, has not been standardised in 3GPP Rel‑5 specifications for IMS. i.e. the SIP method to return the Prompt_and_Collect result from the MRFC to the IM‑SSF, the SIP method for sending notification of play announcement completion to the IM‑SSF when a request for a Specialised Resource Report was received, the SIP method  to request the MRFC to play announcement and the SIP method to request the MRFC to prompt and collect user information, are not standardised.",
+      "chunk_type": "procedure",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.6.1.3.8",
+      "section_id": "4.6.1.3.8",
+      "section_title": "Receipt of 100 Trying Provisional Response (Process MO_IM_SSF)",
+      "content": "The IM-SSF (acting as B2BUA) uses the S-CSCF as the next-hop server when sending the SIP INVITE to the destination S-CSCF.  The 100 Trying provisional response received in the IM-SSF is actually generated and sent from the S-CSCF to indicate that the INVITE request has been received by the next-hop server (i.e. the S-CSCF) and is currently being processed.",
+      "chunk_type": "procedure",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.6.1.3.9",
+      "section_id": "4.6.1.3.9",
+      "section_title": "Handling of internal timers in Process MO_IM_SSF",
+      "content": "The SIP B timer defined in 3GPP TS 24.229 [8] is used for IM-SSF handling of no response condition for an INVITE request, similar to the Circuit Switched handling of TNRy Timer for No Reply. The use of B timer in the IM-SSF is indicated in the SDL Process MO_IM_SSF. There are other SIP timers defined in 3GPP TS 24.229 [8] that are not specified in the SDLs for IM-SSF processing. The usage of these timers is based on the network's implementation of the IM-SSF (e.g. choice of UDP or TCP for transport of SIP, and how IM-SSF operates as both a UAS and a UAC - i.e. back-to-back UA).\nThe following clauses provide additional information on Process MO_IM_SSF's handling of the internal timers:\nSheets 1-2: The inclusion of Expires header field in the INVITE method is optional and is used to indicate the duration of the invitation in seconds. When the timer fires before a final response is generated by the IM-SSF, the INVITE message is considered to be \"expired\". The IM-SSF shall report a call abandon event to the gsmSCF if requested and return a 487 Request Terminated to the originating S-CSCF.\nWhen the IM-SSF (taking the role of a UAC) sends out the INVITE request, the B timer (i.e. Tb timer) shall be used for the INVITE transaction timeout timer. Refer to 3GPP TS 24.229 [8] for the recommended B timer value.\nSheet 3:  When the IM-SSF (taking the role of a UAS) sends the 200 OK final response to the S-CSCF that sent the INVITE request, the IM-SSF shall start the Tack timer to monitor the receipt of the ACK request. Refer to 3GPP TS 24.229 [8] for the recommended ACK timer value.\nSheet 4: The expiration of Tb timer shall be reported as a no answer event to the gsmSCF if requested.  If the Tinvite timer expires, the IM-SSF shall report a call abandon event to the gsmSCF if requested.\nSheet 5: The expiration of the Tack shall be reported to the gsmSCF as a call disconnect from the originating party if requested.\nFigure 4.13-1: Process MO_IM_SSF (sheet 1)\nFigure 4.13-2: Process MO_IM_SSF (sheet 2)\nFigure 4.13-3: Process MO_IM_SSF (sheet 3)\nFigure 4.13-4: Process MO_IM_SSF (sheet 4)\nFigure 4.13-5: Process MO_IM_SSF (sheet 5)\nFigure 4.13-6: Process MO_IM_SSF (sheet 6)\nFigure 4.14-1: Procedure CAMEL_IMCN_MO_ O_IM_CSI_INIT (sheet 1)\nFigure 4.14-2: Procedure CAMEL_IMCN_MO_O_IM_CSI_INIT (sheet 2)\nFigure 4.14-3: Procedure CAMEL_IMCN_MO_O_IM_CSI_INIT (sheet 3)\nFigure 4.15-1: Procedure CAMEL_IMCN_MO_D_IM_CSI_INIT (sheet 1)\nFigure 4.15-2: Procedure CAMEL_IMCN_MO_D_IM_CSI_INIT (sheet 2)\nFigure 4.15-3: Procedure CAMEL_IMCN_MO_D_IM_CSI_INIT (sheet 3)\nFigure 4.16: Procedure CAMEL_IMCN_MO_CANCEL (sheet 1)\nFigure 4.17‑1: Procedure CAMEL_IMCN_MO_ANSWER (sheet 1)\nFigure 4.17‑2: Procedure CAMEL_IMCN_MO_ANSWER (sheet 2)\nFigure 4.18‑1: Procedure CAMEL_IMCN_MO_UNSUCCESSFUL (sheet 1)\nFigure 4.18‑2: Procedure CAMEL_IMCN_MO_UNSUCCESSFUL (sheet 2)\nFigure 4.18‑3: Procedure CAMEL_IMCN_MO_UNSUCCESSFUL (sheet 3)\nFigure 4.18‑4: Procedure CAMEL_IMCN_MO_UNSUCCESSFUL (sheet 4)\nFigure 4.18‑5: Procedure CAMEL_IMCN_MO_UNSUCCESSFUL (sheet 5)\nFigure 4.18‑6: Procedure CAMEL_IMCN_MO_UNSUCCESSFUL (sheet 6)\nFigure 4.19: Procedure CAMEL_IMCN_MO_DISC1 (sheet 1)\nFigure 4.20‑1: Procedure CAMEL_IMCN_MO_DISC2 (sheet 1)\nFigure 4.20‑2: Procedure CAMEL_IMCN_MO_DISC2 (sheet 2)\nFigure 4.21-1: Procedure CAMEL_OCH_CTR (sheet 1)\nFigure 4.21-2: Procedure CAMEL_OCH_CTR (sheet 2)\nFigure 4.21-3: Procedure CAMEL_OCH_CTR (sheet 3)\nFigure 4.21-4: Procedure CAMEL_OCH_CTR (sheet 4)\nFigure 4.21-5: Procedure CAMEL_OCH_CTR (sheet 5)",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_4.13-1",
+        "figure_4.13-2",
+        "figure_4.13-3",
+        "figure_4.13-4",
+        "figure_4.13-5",
+        "figure_4.13-6",
+        "figure_4.14-1",
+        "figure_4.14-2",
+        "figure_4.14-3",
+        "figure_4.15-1",
+        "figure_4.15-2",
+        "figure_4.15-3",
+        "figure_4.16",
+        "figure_4.17",
+        "figure_4.18",
+        "figure_4.19",
+        "figure_4.20",
+        "figure_4.21-1",
+        "figure_4.21-2",
+        "figure_4.21-3",
+        "figure_4.21-4",
+        "figure_4.21-5",
+        "ts_24.229"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.278_4.6.1.4",
+      "section_id": "4.6.1.4",
+      "section_title": "Handling of Mobile Terminated IP Multimedia sessions in the IM‑SSF",
+      "content": "The functional behaviour of the S‑CSCF for handling terminating calls is specified in 3GPP TS 23.218[5].The process and the procedures specific to CAMEL are specified in this clause:\n-\tProcess MT_IM_SSF;\n-\tProcedure Check_Registration;\n-\tProcedure CAMEL_IMCN_MT_VT_IM_CSI_INIT;\n-\tProcedure CAMEL_IMCN_MT_RECONNECT;\n-\tProcedure CAMEL_IMCN_MT_CANCEL;\n-\tProcedure CAMEL_IMCN_MT_ANSWER;\n-\tProcedure CAMEL_IMCN_MT_UNSUCCESSFUL;\n-\tProcedure CAMEL_IMCN_MT_DISC1;\n-\tProcedure CAMEL_IMCN_MT_DISC2;\n-\tProcedure CAMEL_CAMEL_MT_CTR.\nInternal interface indicated with the \"Int_SRF_\" prefix within this clause indicates internal interface with the MRFC.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.218"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.278_4.6.1.4.1",
+      "section_id": "4.6.1.4.1",
+      "section_title": "Actions of the IM‑SSF on receipt of Int_Error",
+      "content": "The IM‑SSF checks the default Call Handling parameter in the relevant CSI.\nIf the default call handling is release, a BYE indication is sent to the originating CSCF. The IM‑SSF then releases all resources and the invoked CAMEL procedure ends.\nIf the call handling is continue, the IM‑SSF continues processing without CAMEL support.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.6.1.4.2",
+      "section_id": "4.6.1.4.2",
+      "section_title": "Actions of the IM‑SSF on receipt of Int_Release_Call",
+      "content": "The IM‑SSF BYE message is sent to the originating CSCF and resources are released.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.6.1.4.3",
+      "section_id": "4.6.1.4.3",
+      "section_title": "Actions of the IM‑SSF on receipt of Int_Continue_With_Argument",
+      "content": "The IM‑SSF shall replace the call parameters by the information received in the Int_Continue_With_Argument message. Call parameters that are not included in the Int_Continue_With_Argument_Message are unchanged.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.6.1.4.4",
+      "section_id": "4.6.1.4.4",
+      "section_title": "Actions of IM‑SSF in procedure CAMEL_IMCN_MT_INVITE for Unregistered Subscriber",
+      "content": "When querying the HSS for the subscriber's IM CSI data, the IM‑SSF does not have to wait for the HSS's response on the first query before the subsequent queries are done. i.e. Sending of multiple Any Time Interrogation operations can be done in parallel. However, the IM‑SSF shall wait for all the responses from the HSS before it shall continue with the handling of the terminating IP multimedia session.",
+      "chunk_type": "procedure",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.6.1.4.5",
+      "section_id": "4.6.1.4.5",
+      "section_title": "Handling of procedure CAMEL_MT_CTR, sheet 1",
+      "content": "The IM‑SSF behaves as a B2BUA (Back‑2‑Back User Agent) when a SIP INVITE is received for an terminating call and SIP INVITE is sent to the MRFC (via S‑CSCF)  as a result of a CAP ConnectToResource request received from the SCF.\nA SIP response 100 Trying is sent after each INVITE but is not shown in the SDLs.\nThe IM‑SSF shall handle the 200 OK response from the MRFC as specified in 3GPP TS 23.218 [5].",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "ts_23.218"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.278_4.6.1.4.6",
+      "section_id": "4.6.1.4.6",
+      "section_title": "Handling of procedure CAMEL_MT_CTR, sheet 5",
+      "content": "The specifics on transporting information between the MRFC and the Application Server such as the IM‑SSF, has not been standardised in 3GPP Rel‑5 specifications for IMS. i.e. the SIP method to return Prompt_And_Collect result from the MRFC to the IM‑SSF, the SIP method for sending notification of play announcement completion to the IM‑SSF when a request for a Specialised Resource Report was received, the SIP method  to request the MRFC to play announcement and the SIP method to request the MRFC to prompt and collect user information, are not standardised.",
+      "chunk_type": "procedure",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.6.1.4.7",
+      "section_id": "4.6.1.4.7",
+      "section_title": "Receipt of 100 Trying Provisional Response (Process MT_IM_SSF)",
+      "content": "The IM-SSF (acting as a B2BUA) uses the S-CSCF as a next-hop server when sending the SIP INVITE to the terminating subscriber.  The 100 Trying provisional response received in the IM-SSF is actually generated and sent from the S-CSCF to indicate that the INVITE request has been received by the next-hop server (i.e. the S-CSCF) and is currently being processed.",
+      "chunk_type": "procedure",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.6.1.4.8",
+      "section_id": "4.6.1.4.8",
+      "section_title": "Handling of internal timers in Process MT_IM_SSF",
+      "content": "For additional description on usage of internal timers in Process MT_IM_SSF, please refer to the description in clause 4.6.1.3.9.\nFigure 4.22-1: Process MT_IM_SSF (sheet 1)\nFigure 4.22-2: Process MT_IM_SSF (sheet 2)\nFigure 4.22-3: Process MT_IM_SSF (sheet 3)\nFigure 4.22-4: Process MT_IM_SSF (sheet 4)\nFigure 4.22-5: Process MT_IM_SSF (sheet 5)\nFigure 4.22-6: Process MT_IM_SSF (sheet 6)\nFigure 4.23: Procedure Check_Registration (sheet 1)\nFigure 4.24-1: Procedure CAMEL_IMCN_MT_VT_IM_CSI_INIT (sheet 1)\nFigure 4.24-2: Procedure CAMEL_IMCN_MT_VT_IM_CSI_INIT (sheet 2)\nFigure 4.24-3: Procedure CAMEL_IMCN_MT_VT_IM_CSI_INIT (sheet 3)\nFigure 4.25: Procedure CAMEL_IMCN_MT_RECONNECT (sheet 1)\nFigure 4.26: Procedure CAMEL_IMCN_MT_CANCEL (sheet 1)\nFigure 4.27-1: Procedure CAMEL_IMCN_MT_ANSWER (sheet 1)\nFigure 4.27-2: Procedure CAMEL_IMCN_MT_ANSWER (sheet 2)\nFigure 4.28-1: Procedure CAMEL_IMCN_MT_UNSUCCESSFUL (sheet 1)\nFigure 4.28-2: Procedure CAMEL_IMCN_MT_UNSUCCESSFUL (sheet 2)\nFigure 4.28-3: Procedure CAMEL_IMCN_MT_UNSUCCESSFUL (sheet 3)\nFigure 4.28-4: Procedure CAMEL_IMCN_MT_UNSUCCESSFUL (sheet 4)\nFigure 4.28-5: Procedure CAMEL_IMCN_MT_UNSUCCESSFUL (sheet 5)\nFigure 4.29: Procedure CAMEL_IMCN_MT_DISC1 (sheet 1)\nFigure 4.30-1: Procedure CAMEL_IMCN_MT_DISC2 (sheet 1)\nFigure 4.30-2: Procedure CAMEL_IMCN_MT_DISC2 (sheet 2)\nFigure 4.31: Procedure CAMEL_Start_TNRy (sheet 1)\nFigure 4.32: Procedure CAMEL_Stop_TNRy (sheet 1)\nFigure 4.33-1: Procedure CAMEL_MT_CTR (sheet 1)\nFigure 4.33-2: Procedure CAMEL_MT_CTR (sheet 2)\nFigure 4.33-3: Procedure CAMEL_MT_CTR (sheet 3)\nFigure 4.33-4: Procedure CAMEL_MT_CTR (sheet 4)\nFigure 4.33-5: Procedure CAMEL_MT_CTR (sheet 5)",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "clause_4.6.1.3.9",
+        "figure_4.22-1",
+        "figure_4.22-2",
+        "figure_4.22-3",
+        "figure_4.22-4",
+        "figure_4.22-5",
+        "figure_4.22-6",
+        "figure_4.23",
+        "figure_4.24-1",
+        "figure_4.24-2",
+        "figure_4.24-3",
+        "figure_4.25",
+        "figure_4.26",
+        "figure_4.27-1",
+        "figure_4.27-2",
+        "figure_4.28-1",
+        "figure_4.28-2",
+        "figure_4.28-3",
+        "figure_4.28-4",
+        "figure_4.28-5",
+        "figure_4.29",
+        "figure_4.30-1",
+        "figure_4.30-2",
+        "figure_4.31",
+        "figure_4.32",
+        "figure_4.33-1",
+        "figure_4.33-2",
+        "figure_4.33-3",
+        "figure_4.33-4",
+        "figure_4.33-5"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.278_4.6.1.5",
+      "section_id": "4.6.1.5",
+      "section_title": "Handling of call in the imcnSSF",
+      "content": "Handling of mobile calls in the imcnSSF may involve the following process and procedures:\n-\tProcess imcnSSF;\nNote that the following procedures are specified in 3GPP TS 23.078 Rel-99 [4]. For these procedures, the imcnSSF shall take the role of the gsmSSF.\n-\tProcedure Check_Criteria_Collected_Info;\n-\tProcedure Check_Criteria_Analysed_Info;\n-\tProcedure Check_Criteria_Unsuccessful;\n-\tProcedure Connect_To_Resource;\n-\tProcedure Handle_AC;\n-\tProcedure Handle_ACR;\n-\tProcedure Handle_CIR;\n-\tProcedure Handle_CIR_leg;\n-\tProcedure Complete_FCI_record;\n-\tProcedure Complete_all_FCI_records;\n-\tProcedure Handle_O_Answer;\n-\tProcedure Handle_T_Answer.\nThe detailed error handling for the process imcnSSF and the associated procedures is specified in 3GPP TS 29.278 [11].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.078",
+        "ts_29.278"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.278_4.6.1.5.1",
+      "section_id": "4.6.1.5.1",
+      "section_title": "Process imcnSSF",
+      "content": "Figure 4.34-1: Process imcnSSF (sheet 1)\nFigure 4.34-2: Process imcnSSF (sheet 2)\nFigure 4.34-3: Process imcnSSF (sheet 3)\nFigure 4.34-4: Process imcnSSF (sheet 4)\nFigure 4.34-5: Process imcnSSF (sheet 5)\nFigure 4.34-6: Process imcnSSF (sheet 6)\nFigure 4.34-7: Process imcnSSF (sheet 7)\nFigure 4.34-8: Process imcnSSF (sheet 8)\nFigure 4.34-9: Process imcnSSF (sheet 9)\nFigure 4.34-10: Process imcnSSF (sheet 10)\nFigure 4.34-11: Process imcnSSF (sheet 11)\nFigure 4.34-12: Process imcnSSF (sheet 12)\nFigure 4.34-13: Process imcnSSF (sheet 13)\nFigure 4.34-14: Process imcnSSF (sheet 14)\nFigure 4.34-15: Process imcnSSF (sheet 15)\nFigure 4.34-16: Process imcnSSF (sheet 16)\nFigure 4.34-17: Process imcnSSF (sheet 17)\nFigure 4.34-18: Process imcnSSF (sheet 18)\nFigure 4.34-19: Process imcnSSF (sheet 19)\nFigure 4.34-20: Process imcnSSF (sheet 20)\nFigure 4.34-21: Process imcnSSF (sheet 21)\nFigure 4.34-22: Process imcnSSF (sheet 22)\nFigure 4.34-23: Process imcnSSF (sheet 23)\nFigure 4.34-24: Process imcnSSF (sheet 24)\nFigure 4.34-25: Process imcnSSF (sheet 25)\nFigure 4.34-26: Process imcnSSF (sheet 26)\nFigure 4.34-27: Process imcnSSF (sheet 27)\nFigure 4.34-28: Process imcnSSF (sheet 28)\nFigure 4.34-29: Process imcnSSF (sheet 29)\nFigure 4.34-30: Process imcnSSF (sheet 30)",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_4.34-1",
+        "figure_4.34-2",
+        "figure_4.34-3",
+        "figure_4.34-4",
+        "figure_4.34-5",
+        "figure_4.34-6",
+        "figure_4.34-7",
+        "figure_4.34-8",
+        "figure_4.34-9",
+        "figure_4.34-10",
+        "figure_4.34-11",
+        "figure_4.34-12",
+        "figure_4.34-13",
+        "figure_4.34-14",
+        "figure_4.34-15",
+        "figure_4.34-16",
+        "figure_4.34-17",
+        "figure_4.34-18",
+        "figure_4.34-19",
+        "figure_4.34-20",
+        "figure_4.34-21",
+        "figure_4.34-22",
+        "figure_4.34-23",
+        "figure_4.34-24",
+        "figure_4.34-25",
+        "figure_4.34-26",
+        "figure_4.34-27",
+        "figure_4.34-28",
+        "figure_4.34-29",
+        "figure_4.34-30"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.278_4.6.1.6",
+      "section_id": "4.6.1.6",
+      "section_title": "Process imcn_SSME_SSF and procedures",
+      "content": "One process is instantiated at the IM-SSF for each Call Gap message received from a gsmSCF.\nThis clause contains the SDL process for IM‑SSF handling of the CallGap operation received from a gsmSCF.\nThe following Call Gap procedures specified in 3GPP TS 23.078 Rel‑99 [4] shall also be applicable for IM‑SSF. The IM‑SSF shall take the role of the gsmSSF in the following:\n-\tProcedure Store_Call_Gap_Criteria;\n-\tProcedure Check_Gap_Criteria.\nFigure 4.35-1: Process imcn_SSME_SSF (sheet 1)\nFigure 4.35-2: Process imcn_SSME_SSF (sheet 2)",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_4.35-1",
+        "figure_4.35-2",
+        "ts_23.078"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.278_4.7",
+      "section_id": "4.7",
+      "section_title": "Descriptions of information Flows",
+      "content": "This clause contains the detailed description of the information flows used by CAMEL for IP Multimedia Subsystems call control.\nEach Information Element (IE) is marked as Mandatory (M), Conditional (C), Specific conditions (S), mutually Exclusive (E), Optional (O) or not applicable (-) for each different traffic case: IP Multimedia Origination (IM_Orig), IP Multimedia Termination (IM_Term). The distinction between IM_Orig and IM_Term calls is not applicable to all Information Flows.\nAn 'M' IE shall always be included for the corresponding traffic case. A 'C' IE shall be included if the sending entity has the necessary information to populate the IE. The conditions for the inclusion of an  'S' IE are shown in the 'Description' column of the definition table. When a set of  'E' IEs is shown in the definition of an Information Flow or compound IE, only one of those IEs may be included. An 'O' IE may be included or omitted as required by the service logic. A '‑' IE shall always be omitted for the corresponding traffic case. This categorization is a functional classification, i.e. it defines the requirements for the stage 2 information. It is not a stage 3 classification to be used for the ASN.1 syntax of the protocol.\nDetails of errors and exceptions to these rules are specified in 3GPP TS 29.278 [11].",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "ts_29.278"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.278_4.7.1.1.1",
+      "section_id": "4.7.1.1.1",
+      "section_title": "Description",
+      "content": "This IF is the response to the Activity Test.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.7.1.1.2",
+      "section_id": "4.7.1.1.2",
+      "section_title": "Information Elements",
+      "content": "This IF contains no information elements.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.7.1.2.1",
+      "section_id": "4.7.1.2.1",
+      "section_title": "Description",
+      "content": "This IF is used by the IM‑SSF to report to the gsmSCF the information requested in the Apply Charging IF.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.7.1.2.2",
+      "section_id": "4.7.1.2.2",
+      "section_title": "Information Elements",
+      "content": "Information element name\nStatus\nDescription\nCall Result\nM\nThis IE contains the charging information to be provided by the IM‑SSF.\nCall Result contains the following information:\nInformation element name\nStatus\nDescription\nTime Duration Charging Result\nM\nThis IE is a list defined in the next table.\nTime Duration Charging Result contains the following information:\nInformation element name\nStatus\nDescription\nTime Information\nM\nThis IE is a choice between Time if No Tariff Switch and Time if Tariff Switch. This IE is described in the next table.\nParty To Charge\nM\nThis IE is received in the related ApplyCharging operation to correlate the result to the request. This IE shall be a copy of the corresponding IE received in the Apply Charging operation.\nCall Active\nM\nThis IE indicates whether the call is active or not.\nCall Released at Tcp Expiry\nC\nThis element is an indication that the IM‑SSF has released the call and terminated the dialogue, due to Tcp expiry.It shall be present when ACR is sent due to Tcp expiry and the IM‑SSF has released the call (because \"ReleaseIfExceeded\" was present in ACH operation).In all other circumstances, this element shall be absent.\nTime Information contains one of the following information:\nInformation element name\nStatus\nDescription\nTime If No Tariff Switch\nC\nThis IE will be present if no tariff switch has occurred since the reception of the first Apply Charging IF for the connection to the Called Party or the MRFC connection, otherwise it will be absent.\nIf Answer was detected for the connection to the Called Party or the MRFC connection, then the elapsed time since detection of Answer shall be reported.\nIf answer was not detected, it shall be set to \"0\".\nTime If Tariff Switch\nC\nThis IE will be present if a tariff switch has occurred since the reception of the first Apply Charging IF for the connection to the Called Party or the MRFC connection, otherwise it will be absent.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.7.1.3.1",
+      "section_id": "4.7.1.3.1",
+      "section_title": "Description",
+      "content": "This IF is used to activate/modify/remove a call gap mechanism in the IM‑SSF. The call gap mechanism is used to reduce the rate at which specific service requests are sent to a gsmSCF.\nA Call Gap operation can only be sent on an opened dialogue between a gsmSCF and the IM‑SSF.\nIt is possible to have several call gapping conditions applicable to the same IM‑SSF (i.e. each conditions were activated for a defined Service (identified by the serviceKey) by a defined gsmSCF (identified by the gsmSCFAddress).",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.7.1.3.2",
+      "section_id": "4.7.1.3.2",
+      "section_title": "Information Elements",
+      "content": "Information element name\nStatus\nDescription\nGap Criteria\nM\nThis IE specifies the criteria for a call to be subject to call gapping.\nGap Indicators\nM\nThis parameter indicates the gapping characteristics.\nControl Type\nO\nThis parameter indicates the reason for activating call gapping.\nThe value \"sCPOverloaded\" indicates that an automatic congestion detection and control mechanism in the SCP has detected a congestion situation.\nThe value \"manuallyInitiated\" indicates that the service and or network/service management centre has detected a congestion situation, or any other situation that requires manually initiated controls.\nThe controlType \"manuallyInitiated\" will have priority over \"sCPOverloaded\" call gap.\nGap Treatment\nO\nThis parameter indicates how calls that were rejected due to the call gapping condition and for which the Default Call Handling was set to \"Release Call\" shall be treated.\nM\tMandatory (The IE shall always be sent).\nO\tOptional (Service logic dependent).\nGap Criteria contains one of the following (Choice):\nInformation element name\nStatus\nDescription\nBasic Gap Criteria\nO\nThis IE is a choice of various basic criteria.\nCompound Gap Criteria\nO\nThis IE is a choice of various criteria including an ScfID.\nO\tOptional (Service logic dependent).\nCompound Gap Criteria contains the following Information:\nInformation element name\nStatus\nDescription\nBasic Gap Criteria\nM\nThis IE is a choice of various criteria.\nScfID\nO\nThis IE contains the address of the gsmSCF which initiated the CallGapping.\nM\tMandatory (The IE shall always be sent).\nO\tOptional (Service logic dependent).\nBasic Gap Criteria contains one of the following (Choice):\nInformation element name\nStatus\nDescription\nCalled Address\nO\nThis parameter contains a string of digits. At each call attempt, when the leading digits of the dialled number match this specific value, the call gapping treatment shall be applied to this call.\nService\nO\nThis parameter contains a service key value. At each call attempt, when the service key matches this specific value, the call gapping treatment shall be applied to this call.\nCalled Address and Service\nO\nThis parameter contains a specific string of digits and a service key value. At each call attempt, when the leading digits of the dialled number and the service key of a call match these specific values, the call gapping treatment shall be applied to this call.\nCalling Address and Service\nO\nThis parameter contains a specific string of digits and a service key value. At each call attempt, when the leading digits of the calling party number and the service key match these specific values, the call gapping treatment shall be applied to this call.\nO\tOptional (Service logic dependent).\nGap Indicators contains the following information:\nInformation element name\nStatus\nDescription\nDuration\nM\nDuration specifies the total time interval during which call gapping for the specified gap criteria will be active.\nA duration of 0 indicates that gapping is to be removed.\nA duration of -2 indicates a network specific duration.\nOther values indicate duration in seconds.\nInterval\nM\nThis parameter specifies the minimum time between calls being allowed through.\nAn interval of 0 indicates that calls meeting the gap criteria are not to be rejected.\nAn interval of -1 indicates that all calls meeting the gap criteria are to be rejected.\nOther values indicate interval in milliseconds.\nM\tMandatory (The IE shall always be sent).\nGap Treatment contains one of the following (choice):\nInformation element name\nStatus\nDescription\nInformation To Send\nO\nThis parameter indicates an announcement or a tone to be sent to the calling party. At the end of information sending, the call shall be released.\nRelease Cause\nO\nIf the call is to be released, this IE indicates a specific cause value to be sent in the release message. See ETSI EN 300 356-1 [20] for the coding.\nO\tOptional (Service logic dependent).\nInformation To Send contains one of the following (choice):\nInformation element name\nStatus\nDescription\nIn-band Info\nO\nThis parameter specifies the in-band information to be sent.\nTone\nO\nThis parameter specifies a tone to be sent to the end‑user.\nO\tOptional (Service logic dependent).\nIn-band Info contains the following information:\nInformation element name\nStatus\nDescription\nMessage Id\nM\nThis parameter indicates the message(s) to be sent, it can be one of the following.\nMessage Duration\nO\nThis parameter indicates the maximum time duration in seconds that the message shall be played/repeated. ZERO indicates endless repetition.\nM\tMandatory (The IE shall always be sent).\nO\tOptional (Service logic dependent).\nMessage Id contains one of the following (choice):\nInformation element name\nStatus\nDescription\nElementary Message Id\nO\nThis parameter indicates a single announcement.\nO\tOptional (Service logic dependent).",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.7.1.4.1",
+      "section_id": "4.7.1.4.1",
+      "section_title": "Description",
+      "content": "This IF is used to send specific call information for a single call to the gsmSCF as requested from the gsmSCF in a previous Call Information Request.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.7.1.4.2",
+      "section_id": "4.7.1.4.2",
+      "section_title": "Information Elements",
+      "content": "Information element name\nStatus\nDescription\nRequested Information List\nM\nThis IE specifies a list of Requested information Values which are requested.\nLeg ID\nM\nThis IE indicates the party in the call for which information shall be collected.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.71.5.1",
+      "section_id": "4.71.5.1",
+      "section_title": "Description",
+      "content": "This IF is used to notify the gsmSCF of a call-related event (i.e. BCSM events as answer and disconnect) previously requested by the gsmSCF in a Request Report BCSM Event IF.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.7.1.5.2",
+      "section_id": "4.7.1.5.2",
+      "section_title": "Information Elements",
+      "content": "Information element name\nStatus\nDescription\nEvent type BCSM\nM\nThis IE specifies the type of event that is reported.\nEvent Specific Information BCSM\nC\nThis IE indicates the call related information specific to the event.\nLeg ID\nM\nThis IE indicates the party in the call for which the event is reported.\nMisc Call Info\nM\nThis IE indicates the DP type.\nIf the Event Type BCSM IE contains either O_Answer or T_Answer, then the Event Specific Information BCSM IE contains the following information elements:\nInformation element name\nStatus\nDescription\nDestination address\nM\nThis IE specifies the destination address for the call leg.\nThe NatureOfAddress indicator may contain a national-specific value. For some national-specific NatureOfAddress indicator values the length of the digit part of destination address may be zero.\nIf the Event Type BCSM IE contains one of Route_Select_Failure, O_Called_Party_Busy, O_Disconnect, T_Busy, or T_Disconnect, then the Event Specific Information BCSM IE contains the following information element:\nInformation element name\nStatus\nDescription\nCause\nC\nThis IE indicates the cause.\nIf the Event Type BCSM IE contains O_No_Answer then the Event Specific Information BCSM IE is not included.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.7.1.6.1",
+      "section_id": "4.7.1.6.1",
+      "section_title": "Description",
+      "content": "This IF is generated by the IM‑SSF when a trigger is detected at a DP in the BCSM, to request instructions from the gsmSCF.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.7.1.6.2",
+      "section_id": "4.7.1.6.2",
+      "section_title": "Information Elements",
+      "content": "Information element name\nIM_Orig\nIM_Term\nDescription\nMedia Type Info List\nM\nM\nThis IE indicates the media types associated with the SIP call session. This IE shall contain the media description(s) received from the S‑CSCF.\nCalled Party Number\nC\nC\nThis IE contains the ISDN number used to identify the called party in the forward direction.\nThe ISDN called party number is received from the gsmSCF due to the previous CAMEL processing or is derived from the SIP URL received from the S‑CSCF for the destination address.\nFor all IM terminating call scenarios, at least one of the following IEs shall be present:\n-\tCalledPartyNumber\n-\tCalledPartyURL\nCalled Party URL\nC\nC\nThis IE contains the SIP URL used to identify the called party in the forward direction.\nFor all IM terminating call scenarios, at least one of the following IEs shall be present:\n-\tCalledPartyNumber\n-\tCalledPartyURL\nCalling Party Number\nC\nC\nThis IE carries the ISDN calling party number to identify the calling party or the origin of the call.\nFor all IM originating call scenarios, at least one of the following IEs shall be present:\n-\tCallingPartyNumber\n-\tCallingPartyURL\nCalling Party URL\nC\nC\nThis IE contains the SIP URL used to identify the calling party or the origin of the call.\nFor all IM originating call scenarios, at least one of the following IEs shall be present:\n-\tCallingPartyNumber\n-\tCallingPartyURL\nCalling Party Category\nC\nC\nIndicates the type of calling party (e.g., operator, pay phone, ordinary subscriber).\nCallGap Encountered\nC\nC\nThis parameter indicates the type of gapping the related call has been subjected to.\nThis parameter shall be present only if a call gapping context is applicable to the initialDP operation.\nSIP Call ID\nM\nM\nThis IE represents a globally unique identifier for the SIP call. This IE may be used by the gsmSCF for inclusion in a network optional gsmSCF call record.\nThis IE is received from the SIP request message from S‑CSCF.\nCause\nC\nC\nThis IE indicates the cause specific to the armed BCSM DP event. This IE is applicable to DP Route_Select_Failure and DP T_Busy. The cause may be used by the SCF to decide about the further handling of the call.\nFor IM Termination for an unregistered subscriber, the Cause IE shall be set to indicate Subscriber Absent.\nEvent Type BCSM\nM\nM\nThis IE indicates the armed BCSM DP event, resulting in the Initial DP IF.\nThis IE shall be set to indicate DP T_Busy if a not reachable event is detected (e.g. IM termination to a subscriber not currently registered).\nIMSI\nM\nM\nThis IE identifies the mobile subscriber.\nThis IE shall contain the IMSI value received from the S‑CSCF during notification of a SIP registration.\nIP SSP Capabilities\nC\nC\nThis IE indicates which MRFC resources are supported within the IM‑SSF and are available. If this IE is absent, this indicates that no MRFC is attached and available.\nIM‑SSF Address\nM\nM\nThis IE represents the E.164 address of the IM‑SSF from which the InitialDP operation is sent from.\nOriginal Called Party ID\nC\nC\nThis contains the ISDN number used to identify the original destination number if the call has been forwarded on route to the IM‑SSF or is forwarded by the gsmSCF due to the previous CAMEL processing.\nOriginal Called Party URL\nC\nC\nThis IE contains the SIP URL identifying the original destination number if the call has been forwarded on route to the IM—SSF or is forwarded by the gsmSCF due to the previous CAMEL processing.\nRedirecting Party ID\nC\nC\nThis IE indicates the ISDN number identifying the directory number the call was redirected from. This IE shall also be sent if it was received from the gsmSCF due to the previous CAMEL processing.\nRedirecting Party URL\nC\nC\nThis IE indicates the SIP URL identifying the directory number the call was redirected from. This IE shall also be sent if it was received from the gsmSCF due to the previous CAMEL processing.\nRedirection Information\nC\nC\nThis IE contains forwarding related information, such as redirection reason. This IE shall also be sent if it was received from the gsmSCF due to the previous CAMEL processing.\nService Key\nM\nM\nThis IE indicates to the gsmSCF the requested CAMEL Service. It is used to address the required application/SLP within the gsmSCF.\nSubscriber State\n-\nC\nThis IE indicates the status of the IMS Subscriber. The states are:\n-\tCAMELBusy: The IMS subscriber is engaged on a transaction for an originating or terminating IM call session.\n-\tNetworkDeterminedNotReachable: The network can determine from its internal data that the IMS subscriber is not reachable.\n-\tAssumedIdle: The state of the IMS subscriber is neither \"CAMELBusy\" nor \"NetworkDeterminedNotReachable\".\nTime And Timezone\nM\nM\nThis IE contains the time that the IM‑SSF was triggered, and the time zone the IM‑SSF resides in.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.7.1.7.1",
+      "section_id": "4.7.1.7.1",
+      "section_title": "Description",
+      "content": "This IF is used to response to a PlayAnnouncement IF when the announcement complete indication is set.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.7.1.7.2",
+      "section_id": "4.7.1.7.2",
+      "section_title": "Information Elements",
+      "content": "This IF contains no information elements.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.7.2.1.1",
+      "section_id": "4.7.2.1.1",
+      "section_title": "Description",
+      "content": "This IF is used to check for the continued existence of a relationship between the gsmSCF and IM‑SSF. If the relationship is still in existence, then the IM‑SSF will respond. If no reply is received, then the gsmSCF will assume that the IM‑SSF has failed in some way and will take the appropriate action.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.7.2.1.2",
+      "section_id": "4.7.2.1.2",
+      "section_title": "Information Elements",
+      "content": "This IF contains no information elements.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.7.2.2.1",
+      "section_id": "4.7.2.2.1",
+      "section_title": "Description",
+      "content": "This IF is used for interacting from the gsmSCF with the IM‑SSF charging mechanisms to control the call duration.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.7.2.2.2",
+      "section_id": "4.7.2.2.2",
+      "section_title": "Information Elements",
+      "content": "Information element name\nStatus\nDescription\nACh Billing Charging Characteristics\nM\nThis IE specifies the charging related information to be provided by the IM‑SSF and the conditions on which this information has to be provided back to the gsmSCF.\nParty To Charge\nM\nThis IE shall be reflected in the corresponding IE of the Apply Charging Report operation. This IE has no effect on the charging procedures in the MSC.\nACh Billing Charging Characteristics contains the following information:\nInformation element name\nStatus\nDescription\nTime Duration Charging\nM\nThis IE is described in the next table.\nTime Duration Charging contains the following information:\nInformation element name\nStatus\nDescription\nMax Call Period Duration\nM\nThis IE indicates the maximum call period duration timer.\nTariff Switch Interval\nO\nThis IE indicates the tariff switch time until the next tariff switch applies.\nRelease If Duration Exceeded\nO\nThis IE indicates that the call shall be released when the Max call Period Duration expires, with a warning tone if the Play Tone IE is present. The cause used in the release message shall be \"normal unspecified\".\nDefault is to continue the call.\nPlay Tone\nO\nThis IE is set if a tone has to be played to the party for whom the BCSM is operating. If present, this IE indicates that 30 seconds before the Max Call Period Duration timer expires,\na triple tone of 900 Hz (200 milliseconds tone, 200 milliseconds pause) shall be played.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.7.2.3.1",
+      "section_id": "4.7.2.3.1",
+      "section_title": "Description",
+      "content": "This IF is used to request the IM‑SSF to record specific information about a single call and report it to the gsmSCF (with a CallInformationReport).",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.7.2.3.2",
+      "section_id": "4.7.2.3.2",
+      "section_title": "Information Elements",
+      "content": "Information element name\nStatus\nDescription\nRequested Information Type List\nM\nThis IE specifies a list of specific items of information which are requested.\nLeg ID\nM\nThis IE indicates the party in the call for which information shall be collected.\nRequested Information Type List contains the following information:\nInformation element name\nStatus\nDescription\nCall Attempt Elapsed Time\nO\nThis IE indicates that the Call Attempt Elapsed Time is requested in the Call Information Report.Call Attempt Elapsed Time is the duration between the end of the CAMEL processing initiating call setup (Connect, Continue or Continue With Argument IF) and the received answer indication from the called party side.For the Calling Party, the value of Call Attempt Elapsed Time in the Call Information Report shall be set to 0.\nCall Stop Time\nO\nThis IE indicates that the Call Stop Time is requested in the Call Information Report.Call Stop Time is the time stamp when the connection is released.\nCall Connected Elapsed Time\nO\nThis IE indicates that the Call Connected Elapsed Time is requested in the Call Information Report.Call Connected Elapsed Time is the duration between the received answer indication from the called party side and the release of the connection.For a Calling Party, it indicates the duration between the sending of IDP and the release of that party\nRelease Cause\nO\nThis IE indicates that the Release Cause is requested in the Call Information Report.Release Cause is the release cause for the call.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.7.2.4.1",
+      "section_id": "4.7.2.4.1",
+      "section_title": "Description",
+      "content": "This IF is used by the gsmSCF to request the IM‑SSF to cancel all EDPs and reports.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.7.2.4.2",
+      "section_id": "4.7.2.4.2",
+      "section_title": "Information Elements",
+      "content": "Information element name\nStatus\nDescription\nAll Requests\nM\nThis IE indicates that all active requests for EventReportBCSM, ApplyChargingReport and CallInformationReport shall be cancelled.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.7.2.5.1",
+      "section_id": "4.7.2.5.1",
+      "section_title": "Description",
+      "content": "This IF is used to request the IM‑SSF to perform the call processing actions to route a call to a specific destination. To do so, the IM‑SSF may use destination information from the calling party and existing call set-up information depending on the information provided by the gsmSCF.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.7.2.5.2",
+      "section_id": "4.7.2.5.2",
+      "section_title": "Information Elements",
+      "content": "Information element name\nStatus\nDescription\nCalling Party Category\nO\nThis IE indicates the type of calling party (e.g., operator, pay phone, ordinary subscriber).\nDestination Routing Address\nE1\nThis IE contains the called party number towards which the call is to be routed using an ISDN value.\nDestination Routing Address URL\nE1\nThis IE contains the called party number towards which the call is to be routed using a SIP URL.\nOriginal Called Party ID\nO,E2\nThis contains the original destination number if the call has been forwarded on route to the IM‑SSF or is forwarded by the gsmSCF.\nThis IE shall use an ISDN value to identify the original destination number.\nOriginal Called Party URL\nO,E2\nThis contains the original destination number if the call has been forwarded on route to the IM‑SSF or is forwarded by the gsmSCF.\nThis IE shall use a SIP URL to identify the original destination number.\nRedirecting Party ID\nO,E3\nThis IE indicates the directory number the call was redirected from. This IE shall use an ISDN value to identify the redirecting party.\nRedirecting Party URL\nO,E3\nThis IE indicates the directory number the call was redirected from. This IE shall use a SIP URL to identify the redirecting party.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.7.2.6.1",
+      "section_id": "4.7.2.6.1",
+      "section_title": "Description",
+      "content": "This IF is used to connect a call from the IM‑SSF to MRFC via S‑CSCF.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.7.2.6.2",
+      "section_id": "4.7.2.6.2",
+      "section_title": "Information Elements",
+      "content": "This IF requires no information elements for IMS.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.7.2.7.1",
+      "section_id": "4.7.2.7.1",
+      "section_title": "Description",
+      "content": "This IF requests the IM‑SSF to proceed with call processing at the DP at which it previously suspended call processing to await gsmSCF instructions. The IM‑SSF completes DP processing, and continues basic call processing (i.e. proceeds to the next point in call in the BCSM) without substituting new data from the gsmSCF.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.7.2.7.2",
+      "section_id": "4.7.2.7.2",
+      "section_title": "Information Elements",
+      "content": "This IF contains no information elements.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.7.2.8.1",
+      "section_id": "4.7.2.8.1",
+      "section_title": "Description",
+      "content": "This information flow requests the IM‑SSF to proceed the call processing with modified information at the DP at which it previously suspended call processing to await gsmSCF instructions. The IM‑SSF completes DP processing, and continues basic call processing (i.e. proceeds to the next point in call in the BCSM) with the modified call setup information as received from the gsmSCF.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.7.2.8.2",
+      "section_id": "4.7.2.8.2",
+      "section_title": "Information Elements",
+      "content": "Information element name\nStatus\nDescription\nCalling Party Category\nO\nThis IE indicates the type of calling party (e.g., operator, pay phone, ordinary subscriber).",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.7.2.9.1",
+      "section_id": "4.7.2.9.1",
+      "section_title": "Description",
+      "content": "This IF is used to disconnect a connection with a MRFC previously established with a Connect To Resource IF.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.7.2.9.2",
+      "section_id": "4.7.2.9.2",
+      "section_title": "Information Elements",
+      "content": "This IF contains no information elements.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.7.2.10.1",
+      "section_id": "4.7.2.10.1",
+      "section_title": "Description",
+      "content": "This IF is used to request the IM‑SSF to include call related information in the CAMEL specific logical call record. The logical call record is created when FCI is received and a logical call record for that leg does not exist. For modelling purposes the logical call record is buffered in the IM‑SSF. The IM‑SSF completes logical call records as defined in the SDLs. Once the logical call record is completed, then its free format data is moved to the corresponding CDR and the logical call record is deleted.\nThe CSE can send multiple concatenated FCIs per leg for completion. The total maximum of free format data is 160 octets per leg. The 160 octets may be sent in one or more FCI operations. If there is non-completed free format data and new FCI operation(s) is/are received to overwrite the non-completed data, then the non-completed data is discarded and the gsmSCF can send another 160 octets per leg. The SDLs of 3GPP TS 23.078 Rel‑99 [4] define when Logical CDRs are completed. After the completion the gsmSCF can send another 160 octets of free format data in one or more FCI operations for the called leg.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.078"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.278_4.7.2.10.2",
+      "section_id": "4.7.2.10.2",
+      "section_title": "Information Elements",
+      "content": "Information element name\nStatus\nDescription\nFCI Billing Charging Characteristics\nM\nThis IE is described in the next table.\nFCI Billing Charging Characteristics contains the following information:\nInformation element name\nStatus\nDescription\nFCIBCCCAMEL Sequence 1\nM\nThis IE is described in the next table.\nFCIBCCCAMEL Sequence 1 contains the following information:\nInformation element name\nStatus\nDescription\nFree Format Data\nM\nThis IE is a free format data to be inserted in the CAMEL logical call record.\nParty To Charge\nM\nThis IE indicates the party for whom a CAMEL logical call record will be created.\nAppend Free Format Data\nO\nThis IE indicates that the IM‑SSF shall append the free format data to the Logical call record.\n-\tIf this IE is present and indicates \"Append\", the IM‑SSF shall append the free format data received in this IF to the free format data already present in the Logical call record for that leg of the call.\n-\tIf this IE is absent or in value \"Overwrite\", then the IM‑SSF shall overwrite all free format data already present in the Logical call record for that leg of the call, by the free format data received in this IF.\nIf no Logical call record exists yet for that leg of the call, then the IM‑SSF shall ignore this IE.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.7.2.11.1",
+      "section_id": "4.7.2.11.1",
+      "section_title": "Description",
+      "content": "This IF is used to tear down by the gsmSCF an existing call at any phase of the call for all parties involved in the call.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.7.2.11.2",
+      "section_id": "4.7.2.11.2",
+      "section_title": "Information Elements",
+      "content": "The following information elements are required:\nInformation element name\nStatus\nDescription\nRelease Cause\nM\nA number giving an indication to the IM‑SSF about the reason of releasing this specific call. This may be used by MSC/GMSC for generating specific tones to the different parties in the call or to fill in the \"cause\" in the release message.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.7.2.12.1",
+      "section_id": "4.7.2.12.1",
+      "section_title": "Description",
+      "content": "This IF is used to request the IM‑SSF to monitor for a call-related event, then send a notification back to the gsmSCF when the event is detected (see Event Report BCSM).",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.7.2.12.2",
+      "section_id": "4.7.2.12.2",
+      "section_title": "Information Elements",
+      "content": "Information element name\nStatus\nDescription\nBCSM Event\nM\nThis IE specifies the event or events of which a report is requested.\nBCSM Event contains the following information:\nInformation element name\nStatus\nDescription\nEvent type\nM\nThis IE specifies the type of event of which a report is requested.\nLeg ID\nC\nThis IE indicates the party in the call for which the event shall be reported.\nMonitor Mode\nM\nWhen this IE is \"interrupted\", the event shall be reported as a request, if it is \"notifyAndContinue\", the event shall be reported as a notification, if the IE is \"transparent\", the event shall not be reported.\nDP Specific Criteria\nO\nThis IE is described in the next table.\nDP Specific Criteria is defined as:\nInformation element name\nStatus\nDescription\nApplication Timer\nO\nThis IE carries additional timer duration information (timer values for No Answer event) required for arming No_Answer EDPs in the IM‑SSF. The TNRy timer (value defined between 10 s and 40 s) shall be shorter than the network no answer timer.\nNOTE\tIf a Request Report BCSM Event information flow overwrites previous Request Report BCSM Event information flow which contained Application Timer IE for No_Answer DP, the behaviour of the IM‑SSF is unpredictable.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.7.2.13.1",
+      "section_id": "4.7.2.13.1",
+      "section_title": "Description",
+      "content": "This IF is used to refresh a timer.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.7.2.13.2",
+      "section_id": "4.7.2.13.2",
+      "section_title": "Information Elements",
+      "content": "Information element name\nStatus\nDescription\nTimer Value\nM\nThis IE specifies the value to which the indicated timer shall be set.\nTimer ID\nO\nThis IE indicates which timer shall be reset. It shall be set to \"Tssf\".",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.7.3",
+      "section_id": "4.7.3",
+      "section_title": "gsmSCF – IM‑SSF information flows for MRFC related operations",
+      "content": "In an IMS Core Network, the Multimedia Resource Function Controller (MRFC) is used for providing specialised resource functions like playing announcements and tones. Requests from the gsmSCF that requires a specialised resource function are sent to the MRFC via the IM‑SSF and S‑CSCF using SIP signalling as specified in the functional requirements of the MRFC found in 3GPP TS 23.218 [5].\nThis clause contains the information flows descriptions between the gsmSCF and the IM‑SSF for MRFC-related operations.",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "ts_23.218"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.278_4.7.3.1.1",
+      "section_id": "4.7.3.1.1",
+      "section_title": "Description",
+      "content": "This IF is used by the gsmSCF to request the IM‑SSF to cancel a correlated previous operation in the MRFC.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.7.3.1.2",
+      "section_id": "4.7.3.1.2",
+      "section_title": "Information Elements",
+      "content": "The following information elements are used:\nInformation element name\nStatus\nDescription\nInvoke ID\nM\nThis IE specifies the operation to be cancelled.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.7.3.2.1",
+      "section_id": "4.7.3.2.1",
+      "section_title": "Description",
+      "content": "This IF is sent from the gsmSCF to the IM‑SSF and is used to specify information for playing announcements or tones in the MRFC.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.7.3.2.2",
+      "section_id": "4.7.3.2.2",
+      "section_title": "Information Elements",
+      "content": "The following information elements are required:\nInformation element name\nStatus\nDescription\nInformation To Send\nM\nThis IE indicates an announcement or a tone to be sent to the end user by the MRFC.\nDisconnect From IP Forbidden\nM\nThis IE indicates whether or not the MRFC may be disconnected from the user when all information has been sent.\nRequest Announcement Complete\nM\nThis IE indicates whether or not a SpecializedResourceReport shall be sent to the gsmSCF when all information has been sent.\nInformation To Send contains the following information:\nInformation element name\nStatus\nDescription\nInband Info\nC\nThis IE indicates the inband information to be sent.\nTone\nC\nThis IE indicates the tone to be sent. The mapping from the code points of this IE to tones is a matter for agreement between the gsmSCF operator and the MRFC operator.\nInband Info contains the following information:\nInformation element name\nStatus\nDescription\nMessage ID\nM\nThis IE is described in the next table.\nNumber Of Repetitions\nM\nThis IE indicates the maximum number of times the message shall be sent to the end-user.\nDuration\nO\nThis IE indicates the maximum duration time in seconds that the message shall be played/repeated. Zero indicates endless repetition.\nInterval\nO\nThis IE indicates the time interval in seconds between two repetitions.\nMessage ID contains the following information:\nInformation element name\nStatus\nDescription\nElementary Message ID\nC\nThis IE indicates a single announcement\nText\nC\nThis IE indicates a text to be sent. The text shall be transformed to inband information (speech) by the MRFC.\nElementary Message IDs\nC\nThis IE indicates a sequence of announcements\nVariable Message\nC\nThis IE indicates an announcement with one or more variable parts.\nTone contains the following information:\nInformation element name\nStatus\nDescription\nTone ID\nM\nThis IE indicates the tone to be sent.\nDuration\nO\nThis IE indicates the maximum duration time in seconds that the message shall be played/repeated. Zero indicates endless repetition.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.7.3.3.1",
+      "section_id": "4.7.3.3.1",
+      "section_title": "Description",
+      "content": "This IF is sent from the gsmSCF to the IM‑SSF and is used to interact with a call party in order to collect information.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.7.3.3.2",
+      "section_id": "4.7.3.3.2",
+      "section_title": "Information Elements",
+      "content": "The following information elements are required:\nInformation element name\nStatus\nDescription\nCollected Info\nM\nThis IE is described in the next table.\nInformation To Send\nO\nThis IE indicates an announcement or a tone to be sent to the end user by the MRFC.\nDisconnect From IP Forbidden\nM\nThis IE indicates whether the MRFC may be disconnected from the user when all information has been sent.\nCollected Info contains the following information:\nInformation element name\nStatus\nDescription\nCollected Digits\nM\nThis IE is described in the next table.\nCollected Digits contains the following information:\nInformation element name\nStatus\nDescription\nMinimum Number Of Digits\nM\nThis IE indicates the minimum number of valid digits to be collected.\nMaximum Number Of Digits\nM\nThis IE specifies the maximum number of valid digits to be collected\nEnd Of Reply Digit\nO\nThis IE indicates the digit(s) used to signal the end of input.\nCancel Digit\nO\nIf this IE is present, the cancel digit can be entered by the user to request a possible retry\nStart Digit\nO\nIf this IE is present, the start digit(s) indicates the start of the valid digits to be collected.\nFirst Digit Time Out\nO\nIf this IE is present, the first digit shall be received before the expiration of the first digit timer expiration\nInter Digit Time Out\nO\nIf this IE is present, any subsequent valid or invalid digit shall be received by the MRFC before the inter digit timer expires.\nError Treatment\nO\nThis IE indicates what specific action shall be taken by the MRFC in the event of error conditions occurring.\nInterruptable Ann Ind\nO\nIf this IE is set to TRUE (default value) the announcement is interrupted after the first valid or invalid digit received by the MRFC. If this IE is present and explicitly set to FALSE, the announcement will not be interrupted after the first digit is received by the MRFC\nVoice Information\nO\nThis IE is optional, where the default value is specified being FALSE. If the VoiceInformation IE is set to FALSE, all valid or invalid digits are entered by DTMF If this IE is present and explicitly set to TRUE, calling user is required to provide all valid or invalid information by speech\nVoice Back\nO\nThis IE is optional, where the default value is specified being FALSE. If the VoiceBack IE is set to FALSE, no voice back information is given by the MRFC If this IE is present and explicitly set to TRUE, the valid input digits received by the MRFC will be announced back to the calling user immediately after the end of input is received\nInformationToSend is defined in clause 4.7.3.2.2.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_4.7.3.2.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.278_4.7.3.4.1",
+      "section_id": "4.7.3.4.1",
+      "section_title": "Description",
+      "content": "This IF is used by the IM‑SSF to indicate the result a Prompt And Collect User Information IF to the gsmSCF.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.7.3.4.2",
+      "section_id": "4.7.3.4.2",
+      "section_title": "Information Elements",
+      "content": "The following information elements are required:\nInformation element name\nStatus\nDescription\nDigits Response\nC\nThis IE indicates the digit sequence received from the end user",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.7.3.5.1",
+      "section_id": "4.7.3.5.1",
+      "section_title": "Description",
+      "content": "This IF is used by the IM‑SSF to response to a PlayAnnouncement IF when the announcement complete indication is set.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.7.3.5.2",
+      "section_id": "4.7.3.5.2",
+      "section_title": "Information Elements",
+      "content": "This IF contains no information elements.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.7.4.1.1",
+      "section_id": "4.7.4.1.1",
+      "section_title": "Description",
+      "content": "This IF is used by the IM‑SSF to request subscription information from the HSS. For example, the IM‑SSF shall send this as a result of receiving a third party SIP registration from the S‑CSCF (over the ISC interface). The IM‑SSF shall also send the MAP ATSI request when a SIP INVITE message on a MT session for an unregistered subscriber is received.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.7.4.1.2",
+      "section_id": "4.7.4.1.2",
+      "section_title": "Information Elements",
+      "content": "Information element name\nStatus\nDescription\ngsmSCF Address\nM\nThis IE shall indicate the address of the interrogating IM‑SSF. The address shall be in international E.164 format.\nRequested Info\nM\nThis IE indicates the type of subscriber information being requested. This shall consist of the CAMEL Subscription Information; the CAMEL Subscription Information is described in a table below.\nSubscriber Identity\nM\nThis IE identifies the subscriber for which the information is requested. The identity shall be an IMSI.\nCAMEL subscription information contains the following information elements:\nInformation element name\nStatus\nDescription\nAdditional Requested CAMEL Subscription Info\nM\nThis IE shall contain one of the following: O‑IM‑CSI/VT‑IM‑CSI/D‑IM‑CSI",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.7.4.2.1",
+      "section_id": "4.7.4.2.1",
+      "section_title": "Description",
+      "content": "This IF is used to respond to the HSS's notification of the change of subscriber data.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.7.4.2.2",
+      "section_id": "4.7.4.2.2",
+      "section_title": "Information Elements",
+      "content": "This IF contains no information elements.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.7.5.1.1",
+      "section_id": "4.7.5.1.1",
+      "section_title": "Description",
+      "content": "This IF is used by the HSS to provide the requested subscriber's IM‑CSI data to the IM‑SSF.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.7.5.1.2",
+      "section_id": "4.7.5.1.2",
+      "section_title": "Information Elements",
+      "content": "Information element name\nStatus\nDescription\nCAMEL Subscription Information\nC\nThis IE shall be present if the subscriber is provisioned with a CAMEL Subscription Information for IM CN. This IE is described in a table below.\nCAMEL Subscription Information contains the following information elements:\nInformation element name\nStatus\nDescription\nO‑IM‑CSI\nC\nSee clause 4.4.1.1\nD‑IM‑CSI\nC\nSee clause 4.4.1.2\nVT‑IM‑CSI\nC\nSee clause 4.4.1.3",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_4.4.1.1",
+        "clause_4.4.1.2",
+        "clause_4.4.1.3"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.278_4.7.5.2.1",
+      "section_id": "4.7.5.2.1",
+      "section_title": "Description",
+      "content": "This IF is used by the HSS to notify to the IM‑SSF of the change of subscriber IM CSI data. This IF is sent at each time subscriber IM CSI data is changed.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_4.7.5.2.2",
+      "section_id": "4.7.5.2.2",
+      "section_title": "Information Elements",
+      "content": "Information element name\nStatus\nDescription\nIMSI\nM\nThe IMSI is used to identify the subscriber.\nMSISDN\nC\nThis shall consist of the subscriber's MSISDN if available.  If no MSISDN is available, the parameter shall be set with a dummy MSISDN value.\nCAMEL Subscription Information\nM\nThe CAMEL Subscription Information IE is used to indicate the modified or deleted CAMEL Subscription Information data. This IE is described in a table below.\nCAMEL Subscription Information Modified contains the following information elements:\nInformation element name\nStatus\nDescription\nO‑IM‑CSI\nS\nSee clause 4.4.1.1. It shall be present if it was modified.\nD‑IM‑CSI\nS\nSee clause 4.4.1.2. It shall be present if it was modified.\nVT‑IM‑CSI\nS\nSee clause 4.4.1.3. It shall be present if it was modified.\nSpecific CSI Deleted List\nS\nThis IE indicates that one or more specific elements of IMS CAMEL Subscription Information have been deleted from the HSS. It shall indicate any of the following;\n-\tO‑IM‑CSI (with TDP criteria for O‑IM‑CSI);\n-\tD‑IM‑CSI;\n-\tVT‑IM‑CSI with TDP criteria for VT‑IM‑CSI;\nThis IE shall be present if IM CSI is/are deleted.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_4.4.1.1",
+        "clause_4.4.1.2",
+        "clause_4.4.1.3"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.278_5",
+      "section_id": "5",
+      "section_title": "Control and interrogation of subscription data",
+      "content": "Support of the procedures described in this clause in CAMEL Phase 4 is a network operator option.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_5.1",
+      "section_id": "5.1",
+      "section_title": "Architecture",
+      "content": "The architecture for the control and the interrogation of subscription data described in the clause 10 in 3GPP TS 23.078 Rel‑99 [4] for the HLR and the gsmSCF also applies for the HSS and the gsmSCF.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.078_clause_10",
+        "ts_23.078"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.278_5.2.1",
+      "section_id": "5.2.1",
+      "section_title": "Any Time Subscription Interrogation",
+      "content": "The following process in the HLR described in 3GPP TS 23.078 Rel‑99 [4] applies for the handling of Any Time Interrogation for Subscription Information Retrieval in the HSS:\n-\tCAMEL_ATSI_HLR.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.078"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.278_5.2.2",
+      "section_id": "5.2.2",
+      "section_title": "Any Time Modification",
+      "content": "The following process in the HLR described in 3GPP TS 23.078 Rel‑99 [4] applies for the handling of Any Time Modification in the HSS:\n-\tCAMEL_ATM_HLR.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.078"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.278_5.2.3",
+      "section_id": "5.2.3",
+      "section_title": "Notify Subscriber Data Change",
+      "content": "The description of the procedure in 3GPP TS 23.078 Rel‑99 [4] applies for the handling of Notify Subscriber Data Change in the HSS.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.078"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.278_5.3",
+      "section_id": "5.3",
+      "section_title": "Description of information flows",
+      "content": "This clause contains the detailed description of the information flows used by CAMEL for control and interrogation of subscription data.\nEach Information Element (IE) is marked as Mandatory (M), Conditional (C), Specific conditions (S), mutually Exclusive (E) or Optional (O).\nAn 'M' IE shall always be included. A 'C' IE shall be included if the sending entity has the necessary information to populate the IE. The conditions for the inclusion of an 'S' IE are shown in the 'Description' column of the definition table. An 'O' IE may be included or omitted as required by the service logic. This categorization is a functional classification, i.e. it defines the requirements for the stage 2 information. It is not a stage 3 classification to be used for the ASN.1 syntax of the protocol.\nThe following principles apply for the handling of the IEs by the receiving entity:\n-\tThe gsmSCF may silently discard any IE which it does not functionally support.\n-\tThe HSS shall return an error if it does not functionally support an IE which it receives.\nDetails of errors and exceptions to these rules are specified in 3GPP TS 29.002 [9].",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "ts_29.002"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.278_5.3.1.1.1",
+      "section_id": "5.3.1.1.1",
+      "section_title": "Description",
+      "content": "This IF is used to modify information in the HSS at any time. The IF from the gsmSCF to the HLR is specified in 3GPP TS 23.078 Rel‑99 [4]. The IF is also applied to the interface between the gsmSCF to the HSS.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.078"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.278_5.3.1.2.1",
+      "section_id": "5.3.1.2.1",
+      "section_title": "Description",
+      "content": "This IF is used to request subscription information from the HSS at any time. The IF from the gsmSCF to the HLR is specified in 3GPP TS 23.078 Rel‑99 [4]. The IF is also applied to the interface between the gsmSCF to the HSS.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.078"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.278_5.3.1.2.2",
+      "section_id": "5.3.1.2.2",
+      "section_title": "Information Elements",
+      "content": "Any Time Subscription Interrogation Request is specified in 3GPP TS 23.078 Rel‑99 [4]. Additionally the following IMS specific information elements are required:\nInformation element name\nStatus\nDescription\nRequested Info\nM\nThis IE may indicate supported CAMEL phases in HSS.\nAdditional CAMEL Subscription Info\nS,E\nThis IE may be one of the following elements:\nO‑IM‑CSI / VT‑IM‑CSI / D‑IM‑CSI.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.078"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.278_5.3.1.3.1",
+      "section_id": "5.3.1.3.1",
+      "section_title": "Description",
+      "content": "This IF is used by the gsmSCF to respond to the HSS of the change of subscriber data notify. The IF from the gsmSCF to the HLR is specified in 3GPP TS 23.078 Rel‑99 [4]. The IF is also applied to the interface between the gsmSCF to the HSS.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.078"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.278_5.3.2.1.1",
+      "section_id": "5.3.2.1.1",
+      "section_title": "Description",
+      "content": "This IF is used by the HSS to provide the modified information to the gsmSCF. The IF from the HLR to the gsmSCF is specified in 3GPP TS 23.078 Rel‑99 [4]. The IF is also applied to the interface between the gsmSCF to the HSS.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.078"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.278_5.3.2.1.2",
+      "section_id": "5.3.2.1.2",
+      "section_title": "Information Elements",
+      "content": "Any Time Modification ack is specified in 3GPP TS 23.078 Rel‑99 [4]. Additionally the following IMS specific information elements are required:\nInformation element name\nStatus\nDescription\nO‑IM‑CSI\nS\nSee clause 4.4.1.1. It shall be present if it was modified.\nVT‑IM‑CSI\nS\nSee clause 4.4.1.3. It shall be present if it was modified.\nD‑IM‑CSI\nS\nSee clause 4.4.1.2. It shall be present if it was modified.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_4.4.1.1",
+        "clause_4.4.1.3",
+        "clause_4.4.1.2",
+        "ts_23.078"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.278_5.3.2.2.1",
+      "section_id": "5.3.2.2.1",
+      "section_title": "Description",
+      "content": "This IF is used by the HSS to provide the requested subscription information to the gsmSCF. The IF from the HLR to the gsmSCF is specified in 3GPP TS 23.078 Rel‑99 [4]. The IF is also applied to the interface between the gsmSCF to the HSS.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.078"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.278_5.3.2.2.2",
+      "section_id": "5.3.2.2.2",
+      "section_title": "Information Elements",
+      "content": "Any Time Subscription Interrogation ack is specified in 3GPP TS 23.078 Rel‑99 [4]. Additionally the following IMS specific information elements are required:\nInformation element name\nStatus\nDescription\nSupported CAMEL Phases In HSS\nC\nThis IE indicates the CAMEL phase supported in the HSS.\nO‑IM‑CSI\nC\nSee clause 4.4.1.1.\nVT‑IM‑CSI\nC\nSee clause 4.4.1.3.\nD‑IM‑CSI\nC\nSee clause 4.4.1.2.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_4.4.1.1",
+        "clause_4.4.1.3",
+        "clause_4.4.1.2",
+        "ts_23.078"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.278_5.3.2.3.1",
+      "section_id": "5.3.2.3.1",
+      "section_title": "Description",
+      "content": "This IF is used by the HSS to notify to the gsmSCF of the change of subscriber data. This IF is sent at each time subscriber data is changed. The IF from the HLR to the gsmSCF is specified in 3GPP TS 23.078 Rel‑99 [4]. The IF is also applied to the interface between the gsmSCF to the HSS.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.078"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.278_5.3.2.3.2",
+      "section_id": "5.3.2.3.2",
+      "section_title": "Information Elements",
+      "content": "Notify Subscriber Data Change is specified in 3GPP TS 23.078 Rel‑99 [4]. Additionally the following IMS specific information elements are required:\nInformation element name\nStatus\nDescription\nSpecific CSI Deleted List\nS\nThis IE shall indicate any of the following;\n-\tO‑IM‑CSI (with TDP criteria for O‑IM‑CSI);\t‑\n-\tD‑IM‑CSI (with TDP criteria for D‑IM‑CSI);\n-\tVT‑IM‑CSI with TDP criteria for VT‑IM‑CSI;",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.078"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.278_6",
+      "section_id": "6",
+      "section_title": "Subscriber Location and State retrieval",
+      "content": "Support of the procedures described in this clause in CAMEL Phase 4 is a network operator option.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.278_6.1",
+      "section_id": "6.1",
+      "section_title": "Architecture",
+      "content": "The architecture for the subscriber location and state retrieval described in the clause 11 in 3GPP TS 23.078 Rel‑99 [4] for the HLR and the gsmSCF applies for the HSS and the gsmSCF.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.078_clause_11",
+        "ts_23.078"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.278_6.2.1",
+      "section_id": "6.2.1",
+      "section_title": "Any Time Interrogation",
+      "content": "The description of the procedure in 3GPP TS 23.078 Rel‑99 [4] applies for the Any Time Interrogation in the HSS.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.078"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.278_6.3",
+      "section_id": "6.3",
+      "section_title": "Description of information flows",
+      "content": "This clause contains the detailed description of the information flows used by CAMEL for the retrieval of information about the location and state of a subscriber.\nEach Information Element (IE) is marked as Mandatory (M), Conditional (C), Specific conditions (S), mutually Exclusive (E) or not applicable (-).\nAn 'M' IE shall always be included. A 'C' IE shall be included if the sending entity has the necessary information to populate the IE. The conditions for the inclusion of an 'S' IE are shown in the 'Description' column of the definition table. When a set of 'E' IEs is shown in the definition of an Information Flow or compound IE, only one of those IEs may be included. A '‑' IE shall always be omitted. This categorization is a functional classification, i.e. it defines the requirements for the stage 2 information. It is not a stage 3 classification to be used for the ASN.1 syntax of the protocol.\nThe following principles apply for the handling of the IEs by the receiving entity:\n-\tThe gsmSCF may silently discard any IE which it does not functionally support.\n-\tThe GMLC shall return an error if it does not functionally support an IE which it receives.\nDetails of errors and exceptions to these rules are specified in 3GPP TS 29.002 [9].",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "ts_29.002"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.278_6.3.1.1.1",
+      "section_id": "6.3.1.1.1",
+      "section_title": "Description",
+      "content": "This IF is used to request information (any one or more of subscriber state, subscriber location, IMEI & software version, MS classmark information for the CS domain and GPRS MS classmark information) from the HSS at any time. The IF from the gsmSCF to the HLR is specified in 3GPP TS 23.078 Rel‑99 [4]. The IF is also applied to the interface between the gsmSCF to the HSS.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.078"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.278_6.3.2.1.1",
+      "section_id": "6.3.2.1.1",
+      "section_title": "Description",
+      "content": "This IF is used by the HSS to provide the requested subscriber location and/or subscriber state information to the gsmSCF. The IF from the HLR to the gsmSCF is specified in 3GPP TS 23.078 Rel‑99 [4]. The IF is also applied to the interface between the gsmSCF to the HSS.\nAnnex A (informative):Change history\nChange history\nDate\nMeeting\nTDoc\nCR\nRev\nCat\nSubject/Comment\nNew version\n09/2002\nCN#17\nNP-020348\nCreation of version 5.0.0\n5.0.0\n12/2002\nCN#18\nNP-020530\n001\n2\nCorrection and improvement in the overall SDL structure\n5.1.0\n12/2002\nCN#18\nNP-020530\n002\nCorrection and improvement in the registration procedures\n5.1.0\n12/2002\nCN#18\nNP-020532\n003\n2\nCorrection and improvement in MO procedures\n5.10\n12/2002\nCN#18\nNP-020532\n004\n3\nCorrection and improvement in MT procedures\n5.10\n12/2002\nCN#18\nNP-020530\n005\nCorrection and improvement in CSI update\n5.1.0\n12/2002\nCN#18\nNP-020530\n006\nClarification in the case multiple RRBs are sent for a DP\n5.1.0\n12/2002\nCN#18\nNP-020530\n007\n1\nInconsistent description on ACR: time information\n5.1.0\n12/2002\nCN#18\nNP-020530\n008\nRemove support of SCI operation from imcnSSF SDL process\n5.1.0\n12/2002\nCN#18\nNP-020530\n009\nRemoval of ETC processing from IM-SSF SDL Procedures\n5.1.0\n12/2002\nCN#18\nNP-020530\n010\n1\nCorrection of InitialDP MediaType parameter\n5.1.0\n12/2002\nCN#18\nNP-020532\n012\n1\nIF Description for gsmSRF-related operations for IMS\n5.10\n12/2002\nCN#18\nNP-020529\n014\nFigure and table numbers editorial changes\n5.10\n12/2002\nCN#18\nNP-020531\n015\nFor better document structure - editorial\n5.1.0\n12/2002\nCN#18\nNP-020531\n016\nEditorial improvement - clause 2\n5.1.0\n12/2002\nCN#18\nNP-020531\n017\nEditorial improvement - clause 3\n5.1.0\n12/2002\nCN#18\nNP-020531\n018\nEditorial improvement - clause 4\n5.1.0\n12/2002\nCN#18\nNP-020531\n019\nEditorial improvement - clause 5\n5.1.0\n12/2002\nCN#18\nNP-020531\n020\nEditorial improvement - clause 6\n5.10\n12/2002\nCN#18\nNP-020531\n021\nEditorial improvement - clause 7\n5.10\n12/2002\nCN#18\nNP-020532\n022\nSDL Procedure for Connect To Resource\n5.10\n12/2002\nCN#18\nNP-020532\n023\n1\nStage 2 specifications for Call Gap for IMS\n5.10\n12/2002\nCN#18\nNP-020532\n024\n2\nClarification of DP destination number trigger criteria for IMS\n5.10\n12/2002\nCN#18\nNP-020532\n025\nNumber comparison  for D-CSI\n5.10\n12/2002\nCN#18\nNP-020532\n026\nCorrection to Dialled Services criteria\n5.10\n03/2003\nCN#19\nNP-030090\n027\n1\nImplementing of Connect to Resource handling in CAMEL for IMS\n5.2.0\n03/2003\nCN#19\nNP-030090\n028\n1\nIntroduction of ResetTimer input in state WFI-DS (IMS)\n5.2.0\n03/2003\nCN#19\nNP-030090\n029\nCorrection of imcnSSF procedure names\n5.2.0\n03/2003\nCN#19\nNP-030090\n030\nIncorrect procedure names used for CAMEL_MT_CTR and CAMEL_MO_CTR\n5.2.0\n03/2003\nCN#19\nNP-030090\n031\nIncorrect procedures called in CAMEL_IMCN_MT_ANSWER\n5.2.0\n03/2003\nCN#19\nNP-030091\n032\nSending of provisional response for the INVITE\n5.2.0\n03/2003\nCN#19\nNP-030091\n033\nIncorrect SIP response when no CAMEL is invoked\n5.2.0\n03/2003\nCN#19\nNP-030091\n035\n1\nCorrections in CAMEL_IMCN_MO_ANSWER\n5.2.0\n03/2003\nCN#19\nNP-030091\n036\nCorrections in the procedures for handling failure SIP response\n5.2.0\n03/2003\nCN#19\nNP-030091\n039\nInconsistency in Call Information Report in Re-Connect Case\n5.2.0\n06/2003\nCN#20\nNP-030191\n040\n1\nIncorrect list of TDPs listed for O-IM-CSI\n5.3.0\n06/2003\nCN#20\nNP-030191\n041\nCorrections to process IM-SSF\n5.3.0\n06/2003\nCN#20\nNP-030191\n042\nRedundant check for Final_Response_Received in Disconnect procedures\n5.3.0\n09/2003\nCN#21\nNP-030374\n043\n2\nIncorrect handling of failure SIP response for MT\n5.4.0\n09/2003\nCN#21\nNP-030374\n044\n2\nSetting of Timers not specified for IM-SSF process\n5.4.0\n09/2003\nCN#21\nNP-030374\n045\n1\nIncorrect handling of failure SIP response for MO\n5.4.0\n12/2003\nCN#22\nNP-030525\n046\n1\nCorrection to the definition of interfaces for the IM-SSF\n5.5.0\n09/2004\nCN#25\nNP-040397\n047\nCorrection of Check_Criteria Procedure names referenced in Process imcnSSF\n5.6.0\n12/2004\nCN#26\nRel-6 created after CN#26\n6.0.0\n06/2005\nCT#28\nCP-050097\n0048\nRemoval of references to HLR for CAMEL control of IMS\n6.1.0\n12/2005\nCT#30\nCP-050665\n0049\nIncorrect References\n6.2.0\n12/2005\nCT#30\nRel-7 version was created because of ETSI TISPAN references.\n7.0.0\n03/2006\nCT#31\nCP-060082\n0050\nSpecification of gsmSCF Address format in AnyTime request messages\n7.1.0\n12/2008\nCT#42\nUpgraded unchanged from Rel-7\n8.0.0\n2009-12\n-\n-\n-\n-\nUpdate to Rel-9 version (MCC)\n9.0.0\n2011-03\n-\n-\n-\n-\nUpdate to Rel-10 version (MCC)\n10.0.0\n2012-09\nCT#57\nCP-120467\n0052\n1\nMapping of SIP Responses code and Camel  Detection Points\n11.0.0\n2012-10\nMissing SDLs related to CR 0052 added.\n11.0.1\n2014-09\n-\n-\n-\n-\nUpdate to Rel-12 version (MCC)\n12.0.0\n2015-12\nCT#70\n-\n-\n-\nUpdate to Rel-13 version (MCC)\n13.0.0\n2017-03\nCT#75\n-\n-\n-\nUpdate to Rel-14 version (MCC)\n14.0.0\n2018-06\nCT#80\n-\n-\n-\nUpdate to Rel-15 version (MCC)\n15.0.0\n2020-07\nCT#88e\n-\n-\n-\nUpdate to Rel-16 version (MCC)\n16.0.0\n2022-03\nCT#95e-\n-\n-\n-\n-\nUpdate to Rel-17 version (MCC)\n17.0.0\n2024-03\n-\n-\n-\n-\n-\nUpdate to Rel-18 version (MCC)\n18.0.0",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_2",
+        "clause_3",
+        "clause_4",
+        "clause_5",
+        "clause_6",
+        "clause_7",
+        "ts_23.078",
+        "ts_5.2",
+        "ts_11.0"
+      ]
+    }
+  ]
+}

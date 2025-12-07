@@ -1,0 +1,394 @@
+{
+  "metadata": {
+    "specification_id": "ts_29.544",
+    "version": "18.2.0",
+    "title": "3GPP TS 29.544",
+    "file_path": "/content/drive/MyDrive/RAG_thesis/data/29_series/29544-i20/29544-i20.docx"
+  },
+  "export_info": {
+    "export_date": "2025-07-26T09:06:27.594691",
+    "total_chunks": 34
+  },
+  "chunks": [
+    {
+      "chunk_id": "ts_29.544_1",
+      "section_id": "1",
+      "section_title": "Scope",
+      "content": "The present document specifies the stage 3 protocol and data model for the Nspaf Service Based Interface. It provides stage 3 protocol definitions and message flows, and specifies the API for each service offered by the SP-AF.\nThe 5G System stage 2 architecture and procedures are specified in 3GPP TS 23.501 [2] and 3GPP TS 23.502 [3].\nThe Technical Realization of the Service Based Architecture and the Principles and Guidelines for Services Definition are specified in 3GPP TS 29.500 [4] and 3GPP TS 29.501 [5].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.501",
+        "ts_23.502",
+        "ts_29.500",
+        "ts_29.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.544_2",
+      "section_id": "2",
+      "section_title": "References",
+      "content": "The following documents contain provisions which, through reference in this text, constitute provisions of the present document.\n-\tReferences are either specific (identified by date of publication, edition number, version number, etc.) or non‑specific.\n-\tFor a specific reference, subsequent revisions do not apply.\n-\tFor a non-specific reference, the latest version applies. In the case of a reference to a 3GPP document (including a GSM document), a non-specific reference implicitly refers to the latest version of that document in the same Release as the present document.\n[1]\t3GPP TR 21.905: \"Vocabulary for 3GPP Specifications\".\n[2]\t3GPP TS 23.501: \"System Architecture for the 5G System; Stage 2\".\n[3]\t3GPP TS 23.502: \"Procedures for the 5G System; Stage 2\".\n[4]\t3GPP TS 29.500: \"5G System; Technical Realization of Service Based Architecture; Stage 3\".\n[5]\t3GPP TS 29.501: \"5G System; Principles and Guidelines for Services Definition; Stage 3\".\n[6]\tOpenAPI: \"OpenAPI Specification Version 3.0.0\", https://spec.openapis.org/oas/v3.0.0..\n[7]\t3GPP TR 21.900: \"Technical Specification Group working methods\".\n[8]\t3GPP TS 33.501: \"Security architecture and procedures for 5G system\".\n[9]\tIETF RFC 6749: \"The OAuth 2.0 Authorization Framework\".\n[10]\t3GPP TS 29.510: \"5G System; Network Function Repository Services; Stage 3\".\n[11]\tIETF RFC 9113: \"HTTP/2\".\n[12]\tIETF RFC 8259: \"The JavaScript Object Notation (JSON) Data Interchange Format\".\n[13]\tIETF RFC 9457: \"Problem Details for HTTP APIs\".\n[14]\t3GPP TS 29.503: \"Unified Data Management Services\"; Stage 3.\n[15]\t3GPP TS 29.571: \"5G System; Common Data Types for Service Based Interfaces Stage 3\".\n[16]\t3GPP TS 31.115: \"Secured packet structure for (Universal) Subscriber Identity Module (U)SIM Toolkit applications\".\n[17]\t3GPP TS 29.509: \"Authentication Server Services; Stage 3\".\n[18]\t3GPP TS 23.040: \"Technical realization of the Short Message Service (SMS)\"\n[19]\t3GPP TS 24.501: \"Non-Access-Stratum (NAS) protocol for 5G System (5GS); Stage 3\".",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905",
+        "ts_23.501",
+        "ts_23.502",
+        "ts_29.500",
+        "ts_29.501",
+        "ts_21.900",
+        "ts_33.501",
+        "ts_29.510",
+        "ts_29.503",
+        "ts_29.571",
+        "ts_31.115",
+        "ts_29.509",
+        "ts_23.040",
+        "ts_24.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.544_3.1",
+      "section_id": "3.1",
+      "section_title": "Terms",
+      "content": "Void.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.544_3.2",
+      "section_id": "3.2",
+      "section_title": "Symbols",
+      "content": "Void.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.544_3.3",
+      "section_id": "3.3",
+      "section_title": "Abbreviations",
+      "content": "For the purposes of the present document, the abbreviations given in 3GPP TR 21.905 [1] and the following apply. An abbreviation defined in the present document takes precedence over the definition of the same abbreviation, if any, in 3GPP TR 21.905 [1].\nOTA\tOver The Air\nSOR-AF\tSteering Of Roaming Application Function\nSP-AF\tSecured Packet Application Function\nUDM\tUnified Data Management",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.544_4.1",
+      "section_id": "4.1",
+      "section_title": "Introduction",
+      "content": "Within the 5GC, the SP-AF offers services to the UDM and to the SOR-AF via the Nspaf service based interface.\nThe UDM or SOR-AF shall make use of the SP-AF services when it needs to protect UE parameters for which the final consumer is the USIM (see 3GPP TS 33.501 [8] clause 6.15.2.1).\nFigure 4.1-1 provides the reference model with focus on the SP-AF.\nNOTE:\tThe generation of the secured packet and the definition of the storage and handling of OTA keys or other sensitive data are out of scope of this document. For more details, refer to 3GPP TS 23.040 [18] and 3GPP TS 31.115 [16].\nFigure 4.1-1: Reference model – SP-AF",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_33.501_clause_6.15.2.1",
+        "figure_4.1-1",
+        "ts_23.040_figure_4.1-1",
+        "ts_33.501",
+        "ts_23.040",
+        "ts_31.115"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.544_5.1",
+      "section_id": "5.1",
+      "section_title": "Introduction",
+      "content": "The SP-AF offers the following services via the Nspaf interface:\n-\tNspaf_SecuredPacket Service\nTable 5.1-1 summarizes the corresponding APIs defined for this specification.\nTable 5.1-1: API Descriptions\nService Name\nClause\nDescription\nOpenAPI Specification File\napiName\nAnnex\nNspaf_SecuredPacket\n6.1\nNspaf Secured Packet Service\nTS29544_Nspaf_SecuredPacket.yaml\nnspaf-secured-packet\nA.2",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.544_5.2.1",
+      "section_id": "5.2.1",
+      "section_title": "Service Description",
+      "content": "The Nspaf_SecuredPacket Service may be consumed by the NF consumer (e.g. UDM or SOR-AF) when it has detected that a UICC configuration parameter (e.g. Routing ID data or Steering of Roaming information) needs to be updated, and the new value is not available in secured packet format.\nFor the list of service operations see clause 5.2.2.1",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_5.2.2.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.544_5.2.2.1",
+      "section_id": "5.2.2.1",
+      "section_title": "Introduction",
+      "content": "For the Nspaf_SecuredPacket service the following service operations are defined:\n-\tProvide\nThe Nspaf_SecuredPacket Service is used by Consumer NFs (e.g. UDM or SOR-AF) to request the SP-AF to provide a secured packet that contains an UICC configuration parameter as sent in the request by means of the Provide service operation",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.544_5.2.2.2.1",
+      "section_id": "5.2.2.2.1",
+      "section_title": "General",
+      "content": "This service operation is used by the NF Service Consumer (e.g. UDM or SOR-AF) to request construction of a secured packet that contains the provided UICC configuration information (e.g. Routing Indicator or Steering of Roaming information).\nThe following procedures using the Provide service operation are supported:\n-\tSecured Packet Retrieval",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.544_5.2.2.2.2",
+      "section_id": "5.2.2.2.2",
+      "section_title": "Secured Packet Retrieval",
+      "content": "Figure 5.2.2.2.2-1 shows a scenario where the NF consumer (e.g. UDM or SOR-AF) sends a request to the SP-AF to provide a secured packet.\nThe request contains the UE's identity (/{supi}) and the UICC configuration parameter.\nFigure 5.2.2.2.2-1: NF consumer requests the SP-AF to provide a secured packet\n1.\tThe NF consumer sends a POST request (custom method: provide-secured-packet) to the resource representing the SUPI.\n2a.\tOn success, the SP-AF responds with \"200 OK\", containing the requested SecuredPacket.\n2b.\tIf the resource does not exist (the supi is unknown in the SP-AF), the SP-AF returns the HTTP status code \"404 Not Found\", and additional error information should be included in the response body (in \"ProblemDetails\" element).\nOn failure, the appropriate HTTP status code indicating the error shall be returned and appropriate additional error information should be returned in the POST response body.",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_5.2.2.2.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.544_6.1.1",
+      "section_id": "6.1.1",
+      "section_title": "Introduction",
+      "content": "The Nspaf_SecuredPacket service shall use the Nspaf_SecuredPacket API.\nThe request URI used in HTTP request from the NF service consumer towards the NF service producer shall have the structure defined in clause 4.4.1 of 3GPP TS 29.501 [5], i.e.:\n{apiRoot}/<apiName>/<apiVersion>/<apiSpecificResourceUriPart>\nwith the following components:\n-\tThe {apiRoot} shall be set as described in 3GPP TS 29.501 [5].\n-\tThe <apiName> shall be \"nspaf-secured-packet\".\n-\tThe <apiVersion> shall be \"v1\".\n-\tThe <apiSpecificResourceUriPart> shall be set as described in clause 6.1.3.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.501_clause_4.4.1",
+        "clause_6.1.3",
+        "ts_29.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.544_6.1.2.1",
+      "section_id": "6.1.2.1",
+      "section_title": "General",
+      "content": "HTTP/2, IETF RFC 9113 [11], shall be used as specified in clause 5 of 3GPP TS 29.500 [4].\nHTTP/2 shall be transported as specified in clause 5.3 of 3GPP TS 29.500 [4].\nThe OpenAPI [6] specification of HTTP messages and content bodies for the Nspaf_SecuredPacket API is contained in Annex A.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.500_clause_5",
+        "ts_29.500_clause_5.3",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.544_6.1.2.2.1",
+      "section_id": "6.1.2.2.1",
+      "section_title": "General",
+      "content": "See clause 5.2.2 of 3GPP TS 29.500 [4] for the usage of HTTP standard headers.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.500_clause_5.2.2",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.544_6.1.2.2.2",
+      "section_id": "6.1.2.2.2",
+      "section_title": "Content type",
+      "content": "JSON, IETF RFC 8259 [12], shall be used as content type of the HTTP bodies specified in the present specification as specified in clause 5.4 of 3GPP TS 29.500 [4]. The use of the JSON format shall be signalled by the content type \"application/json\".\n\"Problem Details\" JSON object shall be used to indicate additional details of the error in a HTTP response body and shall be signalled by the content type \"application/problem+json\", as defined in IETF RFC 9457 [13].",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_5.4",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.544_6.1.2.3",
+      "section_id": "6.1.2.3",
+      "section_title": "HTTP custom headers",
+      "content": "The mandatory HTTP custom header fields specified in clause 5.2.3.2 of 3GPP TS 29.500 [4] shall be applicable.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_5.2.3.2",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.544_6.1.3.1",
+      "section_id": "6.1.3.1",
+      "section_title": "Overview",
+      "content": "Figure 6.1.3.1-1: Resource URI structure of the nspaf-secured-packet API\nTable 6.1.3.1-1 provides an overview of the resources and applicable HTTP methods.\nTable 6.1.3.1-1: Resources and methods overview\nResource name\nResource URI\nHTTP method or custom operation\nDescription\nSecuredPacket (Custom operation)\n/{supi}/provide-secured-packet\nProvide-secured-packet (POST)\nThe SP-AF generates a secured packet containing the presented UICC configuration parameter",
+      "chunk_type": "definition",
+      "cross_references": [
+        "table_6.1.3.1-1",
+        "figure_6.1.3.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.544_6.1.3.2.1",
+      "section_id": "6.1.3.2.1",
+      "section_title": "Description",
+      "content": "This resource represents the information that is needed to construct secured packets for the SUPI.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.544_6.1.3.2.2",
+      "section_id": "6.1.3.2.2",
+      "section_title": "Resource Definition",
+      "content": "Resource URI: {apiRoot}/nspaf-secured-packet/v1/{supi}/provide-secured-packet\nThis resource shall support the resource URI variables defined in table 6.1.3.2.2-1.\nTable 6.1.3.2.2-1: Resource URI variables for this resource\nName\nDefinition\napiRoot\nSee clause 6.1.1\nsupi\nRepresents the Subscription Permanent Identifier (see 3GPP TS 23.501 [2] clause 5.9.2)\tpattern: \"^(imsi-[0-9]{5,15}|nai-.+|.+)$\"",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_6.1.1",
+        "ts_23.501_clause_5.9.2",
+        "table_6.1.3.2.2-1",
+        "ts_23.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.544_6.1.3.2.3",
+      "section_id": "6.1.3.2.3",
+      "section_title": "Resource Standard Methods",
+      "content": "No Standard Methods are supported for this resource.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.544_6.1.3.2.4",
+      "section_id": "6.1.3.2.4",
+      "section_title": "Resource Custom Operations",
+      "content": "6.1.3.2.4.1\tOverview\nTable 6.1.3.2.4.1-1: Custom operations\nCustom operaration URI\nMapped HTTP method\nDescription\n/provide-secured-packet\nPOST\nThe SP-AF generates a secured packet for the SUPI that contains the presented UICC configuration parameter.\n6.1.3.2.4.2\tOperation: provide-secured-packet\n6.1.3.2.4.2.1\tDescription\nThis custom operation is used by the NF service consumer (e.g. UDM) to request a secured packet for the SUPI containing the presented UICC configuration parameter. The returned secured packet shall be constructed as an SMS-Deliver as specified in 3GPP TS 23.040 [18] and protected as specified in 3GPP TS 31.115 [16].\n6.1.3.2.4.2.2\tOperation Definition\nThis operation shall support the request data structures specified in table 6.1.3.2.4.2.2-1 and the response data structure and response codes specified in table 6.1.3.2.4.2.2-2.\nTable 6.1.3.2.4.2.2-1: Data structures supported by the POST Request Body on this resource\nData type\nP\nCardinality\nDescription\nUiccConfigurationParameter\nM\n1\nContains the parameter that is to be updated in the UICC\nTable 6.1.3.2.4.2.2-2: Data structures supported by the POST Response Body on this resource\nData type\nP\nCardinality\nResponse\ncodes\nDescription\nSecuredPacket\nM\n1\n200 OK\nUpon success, a response body containing the generated secured packet shall be returned.\nProblemDetails\nO\n0..1\n404 Not Found\nThe \"cause\" attribute may be used to convey the following application error:\n- USER_NOT_FOUND\nNOTE:\tThe manadatory HTTP error status code for the POST method listed in Table 5.2.7.1-1 of 3GPP TS 29.500 [4] also apply.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.1.3.2.4.1-1",
+        "table_6.1.3.2.4.2.2-1",
+        "table_6.1.3.2.4.2.2-2",
+        "ts_29.500_table_5.2.7.1-1",
+        "ts_23.040",
+        "ts_31.115",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.544_6.1.4",
+      "section_id": "6.1.4",
+      "section_title": "Custom Operations without associated resources",
+      "content": "In this release of this specification, no custom operations without associated resources are defined for the Nspaf_SecuredPacket Service.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.544_6.1.5",
+      "section_id": "6.1.5",
+      "section_title": "Notifications",
+      "content": "In this release of this specification, no notifications are defined for the Nspaf_SecuredPacket Service.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.544_6.1.6.1",
+      "section_id": "6.1.6.1",
+      "section_title": "General",
+      "content": "This clause specifies the application data model supported by the API.\nTable 6.1.6.1-1 specifies the data types defined for the Nspaf service based interface protocol.\nTable 6.1.6.1-1: Nspaf specific Data Types\nData type\nClause defined\nDescription\nApplicability\nUiccConfigurationParameter\n6.1.6.2.2\nUICC Configuration Parameters\nRoutingId\n6.1.6.3.2\nRouting ID\nExtendedSteeringContainer\n6.1.6.2.3\nExtended Steering Container (including the contents of Steering Container and SOR-CMCI)\nTable 6.1.6.1-2 specifies data types re-used by the Nspaf service based interface protocol from other specifications, including a reference to their respective specifications and when needed, a short description of their use within the Nspaf service based interface.\nTable 6.1.6.1-2: Nspaf re-used Data Types\nData type\nReference\nComments\nApplicability\nSecuredPacket\n3GPP TS 29.503 [14]\nSecured Packet\nProblemDetails\n3GPP TS 29.571 [15]\nSteeringInfo\n3GPP TS 29.509 [17]\nSteering Information\nSorCmci\n3GPP TS 29.503 [14]\nContains SOR-CMCI as defined in 3GPP TS 24.501 [19]",
+      "chunk_type": "definition",
+      "cross_references": [
+        "table_6.1.6.1-1",
+        "table_6.1.6.1-2",
+        "ts_29.503",
+        "ts_29.571",
+        "ts_29.509",
+        "ts_24.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.544_6.1.6.2.1",
+      "section_id": "6.1.6.2.1",
+      "section_title": "Introduction",
+      "content": "This clause defines the structures to be used in resource representations.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.544_6.1.6.2.2",
+      "section_id": "6.1.6.2.2",
+      "section_title": "Type: UiccConfigurationParameter",
+      "content": "Table 6.1.6.2.2-1: Definition of type UiccConfigurationParameter\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\nroutingId\nRoutingId\nC\n0..1\nThe Routing Id that needs to be updated in the USIM.\nsteeringContainer\narray(SteeringInfo)\nC\n1..N\nList of PLMN/AccessTechnologies combinations that need to be updated in the USIM.\nextendedSteeringContainer\nExtendedSteeringContainer\nC\n0..1\nExtended Steering Container that includes list of PLMN/AccessTechnologies combinations with the SOR-CMCI that need to be updated in the USIM\nNote:\tExactly one attribute shall be present",
+      "chunk_type": "parameter",
+      "cross_references": [
+        "table_6.1.6.2.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.544_6.1.6.2.3",
+      "section_id": "6.1.6.2.3",
+      "section_title": "Type: ExtendedSteeringContainer",
+      "content": "Table 6.1.6.2.3-1: Definition of type ExtendedSteeringContainer\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\nsteeringContainer\narray(SteeringInfo)\nC\n1..N\nList of PLMN/AccessTechnologies combinations that need to be updated in the USIM.\nsorCmci\nSorCmci\nC\n0..1\nWhen present, provides the SOR-CMCI values as defined in 3GPP TS 24.501 [19]\nstoreSorCmciInMe\nboolean\nC\n0..1\nWhen present, indicates \"Store the SOR-CMCI in the ME\", i.e. whether to instruct UE to store SOR-CMCI in the ME as defined in 3GPP TS 23.122 [14] and 3GPP TS 24.501 [27].\n-\tTrue: Indicates to store the SOR-CMCI in the ME\n-\tFalse or absent: Indicates storing the SOR-CMCI in the ME is not required\nNOTE:\tAt least one attribute shall be present. If no additional attributes than steeringContainer is included, then use of steeringContainer can be considered instead of using ExtendedSteeringContainer.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.1.6.2.3-1",
+        "ts_24.501",
+        "ts_23.122"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.544_6.1.6.3.1",
+      "section_id": "6.1.6.3.1",
+      "section_title": "Introduction",
+      "content": "This clause defines simple data types and enumerations that can be referenced from data structures defined in the previous clauses.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.544_6.1.6.3.2",
+      "section_id": "6.1.6.3.2",
+      "section_title": "Simple data types",
+      "content": "The simple data types defined in table 6.1.6.3.2-1 shall be supported.\nTable 6.1.6.3.2-1: Simple data types\nType Name\nType Definition\nDescription\nApplicability\nRoutingId\nstring\nPattern: \"^[0-9]{1,4}$\"",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.1.6.3.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.544_6.1.7.1",
+      "section_id": "6.1.7.1",
+      "section_title": "General",
+      "content": "For the Nspaf_SecuredPacket API, HTTP error responses shall be supported as specified in clause 4.8 of 3GPP TS 29.501 [5]. Protocol errors and application errors specified in table 5.2.7.2-1 of 3GPP TS 29.500 [4] shall be supported for an HTTP method if the corresponding HTTP status codes are specified as mandatory for that HTTP method in table 5.2.7.1-1 of 3GPP TS 29.500 [4].\nIn addition, the requirements in the following clauses are applicable for the Nspaf_SecuredPacket API.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.501_clause_4.8",
+        "ts_29.500_table_5.2.7.2-1",
+        "ts_29.500_table_5.2.7.1-1",
+        "ts_29.501",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.544_6.1.7.2",
+      "section_id": "6.1.7.2",
+      "section_title": "Protocol Errors",
+      "content": "No specific procedures for the Nspaf_SecuredPacket service are specified.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.544_6.1.7.3",
+      "section_id": "6.1.7.3",
+      "section_title": "Application Errors",
+      "content": "The application errors defined for the Nspaf_SecuredPacket service are listed in Table 6.1.7.3-1.\nTable 6.1.7.3-1: Application errors\nApplication Error\nHTTP status code\nDescription\nUSER_NOT_FOUND\n404 Not Found\nThe user does not exist",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.1.7.3-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.544_6.1.8",
+      "section_id": "6.1.8",
+      "section_title": "Feature negotiation",
+      "content": "The optional features in table 6.1.8-1 are defined for the Nspaf_SecuredPacket API. They shall be negotiated using the extensibility mechanism defined in clause 6.6 of 3GPP TS 29.500 [4].\nTable 6.1.8-1: Supported Features\nFeature number\nFeature Name\nDescription",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_6.6",
+        "table_6.1.8-1",
+        "ts_29.500_table_6.1.8-1",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.544_6.1.9",
+      "section_id": "6.1.9",
+      "section_title": "Security",
+      "content": "As indicated in 3GPP TS 33.501 [8] and 3GPP TS 29.500 [4], the access to the Nspaf_SecuredPacket API may be authorized by means of the OAuth2 protocol (see IETF RFC 6749 [9]), based on local configuration, using the \"Client Credentials\" authorization grant, where the NRF (see 3GPP TS 29.510 [10]) plays the role of the authorization server.\nIf OAuth2 is used, an NF Service Consumer, prior to consuming services offered by the Nspaf_SecuredPacket API, shall obtain a \"token\" from the authorization server, by invoking the Access Token Request service, as described in 3GPP TS 29.510 [10], clause 5.4.2.2.\nNOTE:\tWhen multiple NRFs are deployed in a network, the NRF used as authorization server is the same NRF that the NF Service Consumer used for discovering the Nspaf_SecuredPacket service.\nThe Nspaf_SecuredPacket API defines a single scope \"nspaf-secured-packet\" for the entire service, and it does not define any additional scopes at resource or operation level.\nAnnex A (normative):OpenAPI specification\nA.1\tGeneral\nThis Annex specifies the formal definition of the API(s) defined in the present specification. It consists of OpenAPI 3.0.0 specifications in YAML format.\nThis Annex takes precedence when being discrepant to other parts of the specification with respect to the encoding of information elements and methods within the API(s).\nNOTE:\tThe semantics and procedures, as well as conditions, e.g. for the applicability and allowed combinations of attributes or values, not expressed in the OpenAPI definitions but defined in other parts of the specification also apply.\nInformative copies of the OpenAPI specification files contained in this 3GPP Technical Specification are available on a Git-based repository, that uses the GitLab software version control system (see 3GPP TS 29.501 [5] clause 5.3.1 and 3GPP TR 21.900 [7] clause 5B).\nA.2\tNspaf_SecuredPacket API\nopenapi: 3.0.0\ninfo:\ntitle: 'Nspaf_SecuredPacket'\nversion: '1.2.0'\ndescription: |\nNspaf Secured Packet Service.\n© 2024, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).\nAll rights reserved.\nexternalDocs:\ndescription: 3GPP TS 29.544, SP-AF Services, version V18.2.0\nurl: https://www.3gpp.org/ftp/Specs/archive/29_series/29.544/\nservers:\n- url: '{apiRoot}/nspaf-secured-packet/v1'\nvariables:\napiRoot:\ndefault: https://example.com\ndescription: apiRoot as defined in clause 4.4 of 3GPP TS 29.501\nsecurity:\n- {}\n- oAuth2ClientCredentials:\n- nspaf-secured-packet\npaths:\n/{supi}/provide-secured-packet:\npost:\nsummary: request generation of a secured packet\noperationId: ProvideSecuredPacket\ntags:\n- SecuredPacket Generation (Custom Operation)\nparameters:\n- name: supi\nin: path\ndescription: SUPI of the user\nrequired: true\nschema:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Supi'\nrequestBody:\nrequired: true\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/UiccConfigurationParameter'\nresponses:\n'200':\ndescription: Success\ncontent:\napplication/json:\nschema:\n$ref: 'TS29503_Nudm_SDM.yaml#/components/schemas/SecuredPacket'\n'400':\n$ref: 'TS29571_CommonData.yaml#/components/responses/400'\n'401':\n$ref: 'TS29571_CommonData.yaml#/components/responses/401'\n'403':\n$ref: 'TS29571_CommonData.yaml#/components/responses/403'\n'404':\n$ref: 'TS29571_CommonData.yaml#/components/responses/404'\n'411':\n$ref: 'TS29571_CommonData.yaml#/components/responses/411'\n'413':\n$ref: 'TS29571_CommonData.yaml#/components/responses/413'\n'415':\n$ref: 'TS29571_CommonData.yaml#/components/responses/415'\n'429':\n$ref: 'TS29571_CommonData.yaml#/components/responses/429'\n'500':\n$ref: 'TS29571_CommonData.yaml#/components/responses/500'\n'502':\n$ref: 'TS29571_CommonData.yaml#/components/responses/502'\n'503':\n$ref: 'TS29571_CommonData.yaml#/components/responses/503'\ndefault:\n$ref: 'TS29571_CommonData.yaml#/components/responses/default'\ncomponents:\nsecuritySchemes:\noAuth2ClientCredentials:\ntype: oauth2\nflows:\nclientCredentials:\ntokenUrl: '{nrfApiRoot}/oauth2/token'\nscopes:\nnspaf-secured-packet: Access to the nspaf-secured-packet API\nschemas:\n# COMPLEX TYPES:\nUiccConfigurationParameter:\ndescription: Represents UICC Configuration Parameters.\ntype: object\noneOf:\n- required: [routingId ]\n- required: [steeringContainer ]\n- required: [extendedSteeringContainer ]\nproperties:\nroutingId:\n$ref: '#/components/schemas/RoutingId'\nsteeringContainer:\ntype: array\nitems:\n$ref: 'TS29509_Nausf_SoRProtection.yaml#/components/schemas/SteeringInfo'\nminItems: 1\nextendedSteeringContainer:\n$ref: '#/components/schemas/ExtendedSteeringContainer'\nExtendedSteeringContainer:\ndescription: Represents Extended Steering Containers.\ntype: object\nproperties:\nsteeringContainer:\ntype: array\nitems:\n$ref: 'TS29509_Nausf_SoRProtection.yaml#/components/schemas/SteeringInfo'\nminItems: 1\nsorCmci:\n$ref: 'TS29503_Nudm_SDM.yaml#/components/schemas/SorCmci'\nstoreSorCmciInMe:\ntype: boolean\n# SIMPLE TYPES:\nRoutingId:\ndescription: Represents a routing indicator.\ntype: string\npattern: '^[0-9]{1,4}$'\n# ENUMS:\nAnnex B (informative):Change history\nChange history\nDate\nMeeting\nTDoc\nCR\nRev\nCat\nSubject/Comment\nNew version\n2019-10\nCT4#94\nC4-194013\nInitial Draft.\n0.1.0\n2019-10\nCT4#94\nC4-194367\nNotaf Overview\n0.2.0\n2019-10\nCT4#94\nC4-194488\nNotaf_SecuredPacket-Provide service operation\n0.2.0\n2019-10\nCT4#94\nC4-194492\nResources\n0.2.0\n2019-10\nCT4#94\nC4-194516\nData Model\n0.2.0\n2019-10\nCT4#94\nC4-194490\nOpenAPI Specification\n0.2.0\n2019-11\nCT4#95\nC4-195481\nClean Up\n0.3.0\n2019-12\nCT#86\nCP-193071\nTS presented for information\n1.0.0\n2019-12\nCT#86\nCP-193285\nA title updated\n1.0.1\n2020-03\nCT4#96e\nC4-201119\nPseudo-CR on SOR\n1.1.0\n2020-03\nCT4#96e\nC4-201123\nPseudo-CR on Clean Up\n1.1.0\n2020-03\nCT4#96e\nC4-201217\nPseudo-CR on the necessary modifications to change OTAF NF name to SP-AF\n1.1.0\n2020-03\nCT4#96e\nC4-201314\nPseudo-CR on API descriptions table in clause 5.1\n1.1.0\n2020-03\nCT#87e\nCP-200062\nTS presented for approval\n2.0.0\n2020-03\nCT#87e\nApproved at CT#87e\n16.0.0\n2020-07\nCT#88e\nCP-201040\n0001\n1\nC\nClarification on Secured Packet format provided by SP-AF\n16.1.0\n2020-07\nCT#88e\nCP-201040\n0002\nF\nStorage of YAML files in ETSI Forge\n16.1.0\n2020-07\nCT#88e\nCP-201040\n0003\n1\nF\nMiscellaneous Corrections\n16.1.0\n2020-07\nCT#88e\nCP-201073\n0005\nF\n3GPP TS 29.544 API Version and External doc Update\n16.1.0\n2020-09\nCT#89e\nCP-202110\n0006\n1\nF\nMiscelaneous corrections\n16.2.0\n2020-09\nCT#89e\nCP-202096\n0007\nF\nAPI version and External doc update\n16.2.0\n2020-12\nCT#90e\nCP-203048\n0008\nF\nStorage of yaml files\n16.3.0\n2021-06\nCT#92e\nCP-211051\n0011\nF\nOpenAPI Reference\n17.0.0\n2021-06\nCT#92e\nCP-211028\n0012\n1\nF\nAdding some missing description fields to data type definitions in OpenAPI specification files of the Nspaf_SecuredPacket API\n17.0.0\n2021-06\nCT#92e\nCP-211050\n0013\nF\n29.544 Rel-17 API version and External doc update\n17.0.0\n2021-12\nCT#94e\nCP-213197\n0014\n2\nB\nSOR-CMCI support\n17.1.0\n2021-12\nCT#94e\nCP-213121\n0015\nF\n29.544 Rel-17 API version and External doc update\n17.1.0\n2022-03\nCT#95e\nCP-220041\n0016\nB\nAddition of SOR-CMCI related attribute as input to SP-AF\n17.2.0\n2022-03\nCT#95e\nCP-220066\n0017\nF\nAPI version and External doc update\n17.2.0\n2022-06\nCT#96\nCP-221300\n0018\n1\nF\nAPI version and External doc update\n17.3.0\n2022-12\nCT#98e\nCP-223027\n0020\n1\nF\nMissing Mandatory Status Codes in OpenAPI\n18.0.0\n2022-12\nCT#98e\nCP-223033\n0021\nF\n29.544 Rel-18 API version and External doc update\n18.0.0\n2023-12\nCT#102\nCP-233028\n0022\n1\nF\nHTTP RFCs obsoleted by IETF RFC 9110, 9111 and 9113\n18.1.0\n2023-12\nCT#102\nCP-233029\n0023\nF\nProblemDetails RFC 7807 obsoleted by 9457\n18.1.0\n2024-06\nCT#104\nCP-2410xx\n0024\nF\n29.544 Rel-18 API version and External doc update\n18.2.0",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.510_clause_5.4.2.2",
+        "ts_29.501_clause_5.3.1",
+        "ts_29.501_clause_5",
+        "ts_29.501_clause_4.4",
+        "clause_5.1",
+        "ts_33.501",
+        "ts_29.500",
+        "ts_29.510",
+        "ts_29.501",
+        "ts_21.900",
+        "ts_29.544"
+      ]
+    }
+  ]
+}

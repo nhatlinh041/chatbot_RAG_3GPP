@@ -1,0 +1,683 @@
+{
+  "metadata": {
+    "specification_id": "ts_23.079",
+    "version": "18.0.0",
+    "title": "3GPP TS 23.079",
+    "file_path": "/content/drive/MyDrive/RAG_thesis/data/23_series/23079-i00/23079-i00.docx"
+  },
+  "export_info": {
+    "export_date": "2025-07-26T09:41:20.412102",
+    "total_chunks": 65
+  },
+  "chunks": [
+    {
+      "chunk_id": "ts_23.079_1",
+      "section_id": "1",
+      "section_title": "Scope",
+      "content": "The present document specifies the technical realisation of the first phase of the network feature Support of Optimal Routeing (SOR). The first phase of SOR provides:\n-\tas a network operator option, a method to route a call from one mobile subscriber directly to another mobile subscriber who is in the same country as the calling mobile subscriber or in the called mobile subscriber's home country, without needing to connect the call via the HPLMN of the called subscriber, even though the called mobile subscriber has roamed outside his HPLMN;\n-\ta method to forward calls when a called mobile subscriber who has roamed outside his home country is busy, or is not reachable, or does not reply, to a forwarded-to destination in the HPLMN country of the called subscriber or the VPLMN country of the called subscriber, without needing to connect the forwarded call via the VPLMN of the called subscriber;\n-\ta method to combine the optimal routeing described in the first bullet point above with the optimal routeing described in the second bullet point above.\nOR of a call is permitted only if all entities involved in handling the call support OR.\nOther cases of optimal routeing (e.g. calls where the calling and called subscribers are in different countries, forwarding to a mobile subscriber or multiple forwarding) will be considered for inclusion in later phases.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.079_2",
+      "section_id": "2",
+      "section_title": "References",
+      "content": "The following documents contain provisions which, through reference in this text, constitute provisions of the present document.\n-\tReferences are either specific (identified by date of publication, edition number, version number, etc.) or non‑specific.\n-\tFor a specific reference, subsequent revisions do not apply.\n-\tFor a non-specific reference, the latest version applies.  In the case of a reference to a 3GPP document (including a GSM document), a non-specific reference implicitly refers to the latest version of that document in the same Release as the present document.\n[1]\tGSM 03.04: \"Digital cellular telecommunications system (Phase 2+); Signalling requirements relating to routeing of calls to mobile subscribers\".\n[2]\t3GPP TR 21.905: \"Vocabulary for 3GPP Specifications\".\n[3]\t3GPP TS 22.079: \"Support of Optimal Routeing (SOR); Service definition - Stage 1\".\n[4]\t3GPP TS 22.082: \"Call Forwarding (CF) supplementary services - Stage 1\".\n[5]\t3GPP TS 23.003: \"Numbering, addressing & identification\".\n[6]\t3GPP TS 23.018: \"Basic call handling; Technical realization\".\n[7]\t3GPP TS 23.078: \"Customized Applications for Mobile network Enhanced Logic (CAMEL) - Phase 3; Stage 2\".\n[8]\t3GPP TS 23.085: \"Closed User Group (CUG) Supplementary Service - Stage 2\".\n[9]\t3GPP TS 23.087: \"User –to-User Signalling (UUS) - Stage 2\".\n[10]\t3GPP TS 23.172: \"Technical realization of Circuit Switched (CS) multimedia service; UDI/RDI fallback and service modification\"",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905",
+        "ts_22.079",
+        "ts_22.082",
+        "ts_23.003",
+        "ts_23.018",
+        "ts_23.078",
+        "ts_23.085",
+        "ts_23.087",
+        "ts_23.172"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.079_3.1",
+      "section_id": "3.1",
+      "section_title": "Definitions",
+      "content": "For the purposes of the present document, the following terms and definitions apply.\nA subscriber: calling subscriber, who may be fixed or mobile\nB subscriber: mobile subscriber originally called by the A subscriber\nC subscriber: subscriber to whom the B subscriber has requested that calls be forwarded. The C subscriber may be fixed or mobile\nDirect route: call takes the direct route if the route from the serving PLMN of the A subscriber to the serving PLMN of the B subscriber is defined by the MSRN of the B subscriber rather than by the MSISDN of the B subscriber\nEarly call forwarding: call forwarding from the IPLMN before the call has been extended to the VPLMN of the forwarding subscriber\nHPLMN leg: portion of the HPLMN route from the serving MSC of the A subscriber to an MSC in the HPLMN of the B subscriber\nHPLMN route: call takes the HPLMN route if the route from the serving MSC of the A subscriber to the serving MSC of the B subscriber is defined by the MSISDN of the called subscriber. This forces the call to be routed via the HPLMN of the B subscriber\nInterrogating PLMN (IPLMN): PLMN which interrogates the HPLMN of the B subscriber to obtain information to route the call to that subscriber or to the forwarded-to destination defined by the called mobile subscriber. The IPLMN is also the VPLMN of the A subscriber\nLate call forwarding: call forwarding after the call has been extended to the VPLMN of the forwarding subscriber. Late call forwarding may be invoked in the IPLMN or the VPLMN of the forwarding subscriber\nReference address: address which defines the maximum charge which the A party is prepared to pay for the call leg which he originates\nRouteing address: address which the GMSC uses to route a call towards the B subscriber or the C subscriber",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.079_3.2",
+      "section_id": "3.2",
+      "section_title": "Abbreviations",
+      "content": "Abbreviations used in the present document are listed in TS 21.905 [2].\nFor the purposes of the present document, the following abbreviations apply:\nBOIZC\tBarring of Outgoing InterZonal Calls\nBOIZC-exHC\tBarring of Outgoing InterZonal Calls except those directed to the HPLMN Country\nCMN\tCAMEL Modified Number\nFTN\tForwarded-To Number\nFTNW\tForwarded-To NetWork\nGMSCA\tThe GMSC in the IPLMN, which may also be VMSCA\nGMSCB\tThe GMSC in HPLMNB\nGMSCC\tThe GMSC in HPLMNC\nHLRB\tThe HLR of the B subscriber\nHLRC\tThe HLR of the C subscriber\nHPLMNB\tThe HPLMN of the B subscriber\nHPLMNC\tThe HPLMN of the C subscriber\nIAM\tInitial Address Message\nIPLMN\tInterrogating PLMN\nORLCF\tOptimal Routeing for Late Call Forwarding\nPRN\tProvide Roaming Number\nPSI\tProvide Subscriber Information\nRCH\tResume Call Handling\nSIFIC\tSend Information For Incoming Call\nSIFOC\tSend Information For Outgoing Call\nSRI(B)\tSend Routeing Information (Basic call)\nSRI(F)\tSend Routeing Information (Forwarding information)\nVLRA\tThe VLR of the A subscriber\nVLRB\tThe VLR of the B subscriber\nVMSCA\tThe VMSC of the A subscriber\nVMSCB\tThe VMSC of the B subscriber",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.079_4.1",
+      "section_id": "4.1",
+      "section_title": "Optimal routeing for basic mobile-to-mobile calls",
+      "content": "It is a network operator option whether to implement optimal routeing for basic mobile-to-mobile calls.\nThe existing UMTS and GSM architectures support the primary technical requirement of optimal routeing for mobile-to-mobile calls (basic OR): that a GMSC can interrogate an HLR in a different PLMN to obtain routeing information for a mobile terminated call (see GSM 03.04 [1]). Three logically distinct PLMNs are involved in the handling of an optimally routed mobile-to-mobile call:\n-\tthe IPLMN, which is also the VPLMN of the calling mobile subscriber;\n-\tthe HPLMN of the called mobile subscriber (HPLMNB);\n-\tthe VPLMN of the called mobile subscriber (VPLMNB).\nAny two or all three of these PLMNs may be identical; in figure 1 they are shown as distinct.\nFigure 1 shows the communication between the IPLMN, HPLMNB and VPLMNB for an optimally routed mobile‑to‑mobile call.\nFigure 1: Architecture for optimal routeing of basic mobile-to-mobile call\nIn figure 1 and throughout the present document, the term ISUP is used to denote the telephony signalling system used between exchanges. In this architecture the VMSC of the calling mobile subscriber (VMSCA) is integrated with the GMSC; communication between them is over an internal interface. A gsmSSF may also be associated with VMSCA, to support CAMEL functionality. This is one way to support optimal routeing of mobile-to-mobile calls. Another way is to set up routeing tables in GMSCA appropriately.\nIf the originating subscriber has a CAMEL subscription, then when VMSCA receives the setup message it sends an Initial DP message, containing the address digits received in the setup message, via the gsmSSF to the gsmSCF. If the gsmSCF determines that the destination defined by the address digits belongs to a GSM or UMTS PLMN, it responds to the Initial DP with a Connect or Continue With Argument message to VMSCA containing an indication that the call is eligible for optimal routeing. This causes VMSCA to route the call to the associated GMSC (GMSCA).\nIf the GMSC is in the VPLMN of the calling mobile subscriber, is in a different PLMN from HLRB, it requests routeing information from HLRB using the MAP protocol. If HLRB determines that the call can be routed directly from the GMSC to VMSCB without contravening the charging requirements for optimal routeing given in clause 9.1, it requests a roaming number from VLRB using the MAP protocol, and VLRB returns a roaming number in the Provide Roaming Number ack. HLRB returns the roaming number to the GMSC in the Send Routeing Info ack. The GMSC uses the roaming number to construct an ISUP IAM, which it sends to VMSCB. The call is then handled according to the procedures defined in 3GPP TS 23.018 [6], except that if the call is answered GMSCA relays the answer event to VMSCA and includesthe destination address which it used to route the call, to allow VMSCA to generate the correct charging record.\nNOTE:\tIf the GMSC relays an answer event to VMSCA before it has received an Answer message from the final destination (e.g. because of an interaction with a Specialised Resource Function) an incorrect destination address (or no destination address) can be sent to VMSCA, even though the call is eventually optimally routed.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_9.1",
+        "figure_1",
+        "ts_23.018"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.079_4.2",
+      "section_id": "4.2",
+      "section_title": "Optimal routeing for conditional call forwarding",
+      "content": "Some cases of call forwarding on mobile subscriber not reachable (CFNRc) are handled in the IPLMN, without the call being extended to the VPLMN of the forwarding subscriber. For these cases, referred to in the present document as early call forwarding, the forwarding is already optimally routed.\nWhen a call has been extended from the GMSC to VMSCB, the procedures defined in 3GPP TS 23.018 [6] lead to any conditional call forwarding being routed from VMSCB to the forwarded-to destination; this is referred to in this specification as late call forwarding. Optimal routeing for late call forwarding (ORLCF) allows VMSCB to return control of the call to the GMSC, which can then route the call to the forwarded-to destination.\nFigure 2 shows the architecture for ORLCF. Phase 1 of SOR does not include optimal routeing of forwarding to a mobile subscriber, so optimal routeing of the forwarding leg is not considered.\nFigure 2: Architecture for optimal routeing of late call forwarding\nAfter the call has been extended from the GMSC to VMSCB, if the VMSC/VLR determines that the call should be forwarded it requests the GMSC to resume call handling. The GMSC uses the forwarding information received in the request to resume call handling, or interrogates HLRB for forwarding information, depending on the indication received from the HLR with the roaming number. If the GMSC determines that the call can be routed directly to the forwarded-to destination without contravening the charging requirements for optimal routeing given in clause 9.1 it acknowledges the request, clears the traffic connection to VMSCB and sends an ISUP IAM to the forwarded-to local exchange.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_9.1",
+        "figure_2",
+        "ts_23.018"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.079_5",
+      "section_id": "5",
+      "section_title": "Optimal routeing for basic mobile-to-mobile calls: message flows",
+      "content": "It is a network operator option whether to implement optimal routeing for basic mobile-to-mobile calls.\nThis clause does not consider the handling of calls to a fixed network B subscriber.\nThe description in this clause of the handling of optimal routeing for basic mobile-to-mobile calls is informative, not normative. Further, the description does not consider the effects of other services or features, except where these are specifically mentioned.\nThe message flow for an optimally routed call from one mobile subscriber to another mobile subscriber is shown in figure 3. For simplicity of description, it is assumed that forwarding of calls from the B subscriber is not required. Solid lines indicate circuit-associated signalling; dashed lines indicate connectionless signalling.\nFigure 3: Message flow for optimal routeing of basic mobile-to-mobile call",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_3"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.079_5.1",
+      "section_id": "5.1",
+      "section_title": "Successful outcome",
+      "content": "When VMSCA receives a Setup message from the MS, it sends a request for information to handle the outgoing call to VLRA, according to the procedures described in 3GPP TS 23.018 [6]. If VLRA determines that the MS is allowed service, it returns a positive acknowledgement, including an indication that the subscriber has a CAMEL subscription, so that VMSCA will request instructions via the gsmSSF (not shown in this diagram) from the gsmSCF.\nIf the gsmSCF recognises the B subscriber address as belonging to a UMTS or GSM PLMN (decision OR1:Y), it sends a Connect message or a Continue With Argument message, containing an indication that the call is eligible for optimal routeing, to VMSCA. This causes VMSCA to route the call to the associated GMSC function (GMSCA). GMSCA checks the identity of HPLMNB. If GMSCA is in a different PLMN from HLRB, it then sends a request for routeing information (SRI(B)) to HLRB; this request contains an indication that it is an optimal routeing enquiry for information to route a basic call. If HLRB is prepared to accept an optimal routeing enquiry from GMSCA (decision OR2:Y), it checks whether at least one of the three conditions:\n-\tthe GMSC is in the same country as VMSCB;\n-\tthe HLR is in the same country as VMSCB;\n-\tthe GMSC is in the same PLMN as the HLR;\nis met. If it is (decision OR3:Y), HLRB sends a request for a roaming number (PRN) to VLRB; the request contains an indication that it is for an optimally routed call. If VLRB supports optimal routeing (decision OR4:Y), it returns the roaming number in the PRN ack, and HLRB relays the roaming number in the SRI ack to GMSCA. GMSCA constructs an ISUP IAM using the roaming number, and sends it to VMSCB, which processes the incoming IAM according to the procedures described in 3GPP TS 23.018 [6].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.018"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.079_5.2",
+      "section_id": "5.2",
+      "section_title": "Unsuccessful outcome",
+      "content": "Error situations which lead to failure of the call, rather than non-optimal routeing, are not described in this clause.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.079_5.2.1",
+      "section_id": "5.2.1",
+      "section_title": "B subscriber address not recognised as belonging to a UMTS or GSM PLMN",
+      "content": "If the gsmSCF does not recognise the B subscriber address as belonging to a UMTS or GSM PLMN (decision OR1:N), it sends a Connect or Continue With Argument message, omitting the indication that the call is eligible for optimal routeing. VMSCA constructs an IAM using the B subscriber address and sends it to GMSCB in HPLMNB. GMSCB analyses the address received in the IAM, and sends a request for routeing information (SRI(B)) to HLRB; this request contains an indication that it is not an optimal routeing enquiry. Because GMSCB is in the same PLMN as HLRB, it will always be able to derive an HLR address. HLRB sends a request for a roaming number (PRN) to VLRB. VLRB returns the roaming number in the PRN ack, and HLRB relays the roaming number in the SRI ack to GMSCB. GMSCB constructs an ISUP IAM using the roaming number, and sends it to VMSCB, which processes the incoming IAM according to the procedures described in 3GPP TS 23.018 [6].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.018"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.079_5.2.2",
+      "section_id": "5.2.2",
+      "section_title": "HLRB or VLRB does not support optimal routeing",
+      "content": "If HLRB is not prepared to accept an optimal routeing enquiry from GMSCA , because:\n-\tit does not support optimal routeing for basic mobile-to-mobile calls, or\n-\tbecause there is no agreement for optimal routeing for basic mobile-to-mobile calls between the operators of GMSCA and HLRB, or\n-\tbecause optimal routeing of basic mobile-to-mobile calls to the specific B subscriber is not allowed,\n(decision OR2:N), it returns an SRI negative response (shown in figure 3 as 'SRI error'). This causes GMSCA to construct an IAM using the B subscriber address and send it to GMSCB, as described in clause 5.2.1.\nIf VLRB does not support optimal routeing (decision OR4:N), it returns a PRN negative response (shown in figure 3 as 'PRN error'). This causes HLRB to return an SRI negative response (shown in figure 3 as 'SRI error'), which in turn causes GMSCA to construct an IAM using the B subscriber address and send it to GMSCB, as described in clause 5.2.1.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_5.2.1",
+        "figure_3"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.079_5.2.3",
+      "section_id": "5.2.3",
+      "section_title": "OR charging requirements contravened",
+      "content": "If HLRB determines that the call cannot be routed directly from GMSCA to VMSCB without contravening the charging requirements for optimal routeing given in clause 9.1 (decision OR3:N) it sends a request for subscriber information (PSI) to VLRB. VLRB sends a response indicating whether the B subscriber is detached or in some other state. If the B subscriber is not detached, HLRB sends an SRI negative response (shown in figure 3 as 'SRI error') to GMSCA, which constructs an IAM using the B subscriber address and sends it to GMSCB, as described in clause 5.2.1.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_9.1",
+        "clause_5.2.1",
+        "figure_3"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.079_6",
+      "section_id": "6",
+      "section_title": "Optimal routeing for conditional call forwarding: message flows",
+      "content": "The description in this clause of the handling of optimal routeing for conditional call forwarding is informative, not normative. Further, the description does not consider the effects of other services or features, except where these are specifically mentioned.\nTwo cases of conditional call forwarding are described in this clause:\n-\tearly call forwarding to a fixed destination;\n-\tlate call forwarding to a fixed destination.\nFor phase 1 of SOR, no attempt is made to route a call directly from the GMSC to a forwarded-to mobile subscriber; if the forwarded-to subscriber is mobile, the call is routed from the GMSC to a GMSC in the HPLMN of the forwarded-to subscriber.",
+      "chunk_type": "procedure",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.079_6.1",
+      "section_id": "6.1",
+      "section_title": "Early call forwarding",
+      "content": "Early call forwarding is defined as call forwarding from the IPLMN before the call has been extended to the VPLMN of the forwarding subscriber. CFU and CFNRc when the forwarding mobile subscriber is IMSI detached are examples of early call forwarding. Early call forwarding is effectively optimally routed, because the call takes the most direct route possible from the IPLMN to the forwarded-to destination.\nThe message flows for early call forwarding to a fixed destination are shown in figure 4a (forwarding without VLR interrogation) and figure 4b (forwarding after VLR interrogation). The IPLMN is shown as distinct from HPLMNB, on the assumption that the original call towards the B subscriber was optimally routed; however if optimal routeing of basic mobile-to-mobile calls is not implemented, the IPLMN will be the same as HPLMNB. Solid lines indicate circuit-associated signalling; dashed lines indicate connectionless signalling.",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_4"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.079_6.1.1.1",
+      "section_id": "6.1.1.1",
+      "section_title": "Successful outcome",
+      "content": "GMSCA sends a request for routeing information (SRI(B)) to HLRB. If HLRB determines that the call is to be forwarded without needing to signal to VLRB then HLRB returns the forwarded-to number (FTN) in the SRI ack.\nIf GMSCA determines that the call can be forwarded to LEC without contravening the charging requirements for Support of Optimal Routeing given in clause 9.1 (decision OR:Y) it constructs an ISUP IAM using the FTN and sends it to LEC.\nFigure 4a: Message flow for early call forwarding to a fixed destination - forwarding without interrogation of VLRB",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_9.1",
+        "figure_4"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.079_6.1.1.2",
+      "section_id": "6.1.1.2",
+      "section_title": "Unsuccessful outcome",
+      "content": "Error situations which lead to failure of the call, rather than non-optimal routeing, are not described in this clause.\nIf GMSCA determines that the call cannot be forwarded to LEC without contravening the charging requirements for Support of Optimal Routeing given in clause 9.1 (decision OR:N) it constructs an IAM using the B subscriber address and sends it to GMSCB.\nGMSCB sends a request for routeing information (SRI(B)) to HLRB. If HLRB determines that the call is to be forwarded, as described in clause 6.1.1.1, it returns the FTN in the SRI ack.\nGMSCB constructs an IAM using the FTN and sends it to LEC.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_9.1",
+        "clause_6.1.1.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.079_6.1.2.1",
+      "section_id": "6.1.2.1",
+      "section_title": "Successful outcome",
+      "content": "GMSCA sends a request for routeing information (SRI(B)) to HLRB. HLRB sends a request for the subscriber status (PSI) to VLRB. If the record in VLRB for the B subscriber shows that the B subscriber is IMSI detached, VLRB indicates this in the PSI ack. Alternatively, if HLRB determines that at least one of the three conditions:\n-\tthe GMSC is in the same country as VMSCB;\n-\tthe HLR is in the same country as VMSCB;\n-\tthe GMSC is in the same PLMN as the HL;\nis met, it sends a request for a roaming number (PRN) to VLRB. If the record in VLRB for the B subscriber shows that the B subscriber is IMSI detached, VLRB indicates this in a PRN negative response. If HLRB determines that CFNRc should be invoked, it returns the forwarded-to number (FTN) in the SRI ack.\nIf GMSCA determines that the call can be forwarded to LEC without contravening the charging requirements for Support of Optimal Routeing given in clause 9.1 (decision OR:Y) it constructs an ISUP IAM using the FTN and sends it to LEC.\nNOTE:\tHLRB may send a PRN to VLRB, and receive a PRN negative response indicating absent subscriber, to determine that CFNRc should be invoked.\nFigure 4b: Message flow for early call forwarding to a fixed destination - forwarding after interrogation of VLRB",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_9.1",
+        "figure_4"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.079_6.1.2.2",
+      "section_id": "6.1.2.2",
+      "section_title": "Unsuccessful outcome",
+      "content": "Error situations which lead to failure of the call, rather than non-optimal routeing, are not described in this clause.\nIf GMSCA determines that the call cannot be forwarded to LEC without contravening the charging requirements for Support of Optimal Routeing given in clause 9.1 (decision OR:N), it constructs an ISUP IAM using the B subscriber address and sends it to GMSCB.\nGMSCB sends a request for routeing information (SRI(B)) to HLRB. HLRB sends a request for a roaming number (PRN) to VLRB. If the record in VLRB for the B subscriber shows that the B subscriber is IMSI detached, VLRB indicates this in the PRN ack. If HLRB determines that CFNRc should be invoked, it returns the forwarded-to number (FTN) in the SRI ack.\nGMSCB constructs an IAM using the FTN and sends it to LEC.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_9.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.079_6.2",
+      "section_id": "6.2",
+      "section_title": "Late call forwarding",
+      "content": "Late call forwarding is defined as call forwarding after the call has been extended to the VPLMN of the forwarding subscriber. CFB, CFNRc on no response to paging and CFNRy are examples of late call forwarding. In the absence of OR, late call forwarding occurs in the VPLMN of the forwarding party; if OR applies, late call forwarding occurs in the IPLMN.\nThe message flow for optimal routeing of late call forwarding to a fixed destination is shown in figure 5. The IPLMN may be distinct from HPLMNB or the same as HPLMNB, depending on whether or not the original call to VPLMNB was optimally routed, but this description assumes that the original call to VPLMNB was optimally routed. For simplicity of description, the separation of VMSCA and GMSCA (described in clause 5 & clause 6.1) is omitted. Solid lines indicate circuit-associated signalling; dashed lines indicate connectionless signalling.\nFigure 5: Message flow for optimal routeing of late call forwarding to a fixed destination",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_5",
+        "clause_6.1",
+        "figure_5"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.079_6.2.1",
+      "section_id": "6.2.1",
+      "section_title": "Successful outcome",
+      "content": "The GMSC obtains a roaming number from HLRB to route the call to VMSCB, as described in clause 5.1. The SRI ack also includes an indication of whether the GMSC should interrogate the HLR for routeing information for late call forwarding. The GMSC constructs an IAM using the roaming number, and sends it to VMSCB. When VMSCB receives the IAM, it requests subscriber information for the incoming call (SIFIC) from VLRB. If VLRB determines that the call should be forwarded, because the called mobile subscriber is busy, or is not reachable, or has not replied to the call before the no-reply call timer has expired, it returns a SIFIC ack containing the forwarded-to number, the forwarding reason, the GMSC address and the call reference number to VMSCB. VMSCB sends a request to resume call handling (RCH) to the GMSC; the RCH includes the forwarded-to number, the forwarding reason and the basic service information received in the SIFIC ack.\nIf the HLR indicated in the SRI ack which contained the MSRN that the GMSC should interrogate the HLR for forwarding information (FIR:Y), the GMSC then sends a request for forwarding information (SRI(F)), containing the forwarding reason and the basic service group which applies for this call, to HLRB. HLRB responds with the appropriate forwarded-to number.\nIf the HLR indicated in the SRI ack which contained the MSRN that the GMSC should not interrogate the HLR for forwarding information (FIR:N), the GMSC checks the forwarded-to number received in the RCH.\nIf the GMSC determines that the call can be forwarded to the forwarded-to destination without contravening the charging requirements for Support of Optimal Routeing given in clause 9.1 (decision OR:Y) it:\n-\tsends an RCH ack to VMSCB to indicate that control of the call has been accepted;\n-\tsends an ISUP Release message indicating normal clearing to VMSCB to release the traffic circuit;\n-\tconstructs an IAM using the forwarded-to number, and sends it to LEC.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_5.1",
+        "clause_9.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.079_6.2.2",
+      "section_id": "6.2.2",
+      "section_title": "Unsuccessful outcome",
+      "content": "Error situations which lead to failure of the call, rather than non-optimal routeing, are not described in this clause.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.079_6.2.2.1",
+      "section_id": "6.2.2.1",
+      "section_title": "GMSC does not support OR",
+      "content": "If the GMSC does not support OR, it omits the 'or-capability' information element from the SRI(B) request. The HLR then sends the 'OR not supported in GMSC' indicator in the PRN to VLRB. VMSCB will not send the RCH to the GMSC if the 'OR not supported in GMSC' indicator was received in the PRN. Instead, the call will be forwarded at VMSCB.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.079_6.2.2.2",
+      "section_id": "6.2.2.2",
+      "section_title": "HLRB does not support OR",
+      "content": "If HLRB does not support OR, it does not relay the GMSC address and the call reference number which it received in the SRI(B), so VMSCB cannot send the RCH to the GMSC. Instead, the call will be forwarded at VMSCB.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.079_6.2.2.3",
+      "section_id": "6.2.2.3",
+      "section_title": "VMSCB/VLRB does not support OR",
+      "content": "If VMSCB/VLRB does not support OR, VMSCB cannot send the RCH to the GMSC. Instead, the call will be forwarded at VMSCB.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.079_6.2.2.4",
+      "section_id": "6.2.2.4",
+      "section_title": "OR charging requirements contravened",
+      "content": "If the original call to VMSCB was optimally routed, the GMSC can route the call to the forwarded-to destination only if the charge to do so is no more than the charge to route the call to HPLMNB. If this requirement, determined as described in clause 9.1, is not met (decision OR:N) the GMSC returns an RCH negative response (shown in figure 5 as 'RCH error') to VMSCB, which then forwards the call.\nIf the original call to VMSCB was not optimally routed, the GMSC can route the call directly to the forwarded-to destination only if the charge to do so is no more than the charge for the routeing to VMSCB. If this requirement, determined as described in clause 9.1, is not met (decision OR:N) the GMSC returns an RCH negative response (shown in figure 5 as 'RCH error') to VMSCB, which then forwards the call.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_9.1",
+        "figure_5"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.079_7.1",
+      "section_id": "7.1",
+      "section_title": "Call forwarding",
+      "content": "If an optimally routed call encounters early call forwarding, GMSCA attempts to route the call to the forwarded-to destination. The forwarded-to destination is the C subscriber if the C subscriber is not a mobile subscriber, or the HPLMN of the C subscriber if the C subscriber is a mobile subscriber. If GMSCA cannot route the call to the forwarded-to destination without contravening the charging requirements for Support of Optimal Routeing given in clause 9.1, the call is routed to a GMSC in the HPLMN of the B subscriber.\nIf an optimally routed call encounters late call forwarding, GMSCA attempts to route the call to the forwarded-to destination. The forwarded-to destination is the C subscriber if the C subscriber is not a mobile subscriber, or the HPLMN of the C subscriber if the C subscriber is a mobile subscriber. If GMSCA cannot route the call to the forwarded-to destination without contravening the charging requirements for Support of Optimal Routeing given in clause 9.1, the call is routed from VMSCB to the forwarded-to destination.\nThe handling of call forwarding at HLRB for optimally routed calls is encapsulated in the procedures First_Forwarding_HLR, PRN_Error_HLR, Handle_CFB, Handle_CFNRc and Handle_CFNRY, which are specified in 3GPP TS 23.018 [6].",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_9.1",
+        "ts_23.018"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.079_7.2",
+      "section_id": "7.2",
+      "section_title": "Closed User Group (CUG)",
+      "content": "The handling of CUG checking for outgoing calls at VLRA is encapsulated in the process OCH_VLR, which is specified in 3GPP TS 23.018 [6].\nThe handling of CUG checking at HLRB is encapsulated in the procedures Subscription_Check_HLR and Forward_CUG_Check, which are specified in 3GPP TS 23.018 [6].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.018"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.079_7.3",
+      "section_id": "7.3",
+      "section_title": "Advice of Charge",
+      "content": "Advice of Charge (Information) and Advice of Charge (Charging) do not take account of whether a call has been optimally routed.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.079_7.4",
+      "section_id": "7.4",
+      "section_title": "Call barring",
+      "content": "It has been accepted in principle that all supplementary service call barring programmes except for BAIC are applied for cost control reasons, and that therefore barring should be applied on the basis of the cost of the actual route taken by the call. For phase 1 of Support of Optimal Routeing, this principle does not apply. Barring of outgoing calls is applied on the basis of the B subscriber number. Barring of all incoming calls will prevent a call to the served mobile subscriber, whether or not the call is optimally routed. If Barring of Incoming Calls when roaming outside the home PLMN country is active and operative it will prevent a call to the B subscriber even if the A subscriber pays to route the call to the VMSC of the B subscriber.\nThe handling of barring of outgoing calls at VLRA is encapsulated in the process OCH_VLR, which is specified in 3GPP TS 23.018 [6].\nThe handling of barring of incoming calls at HLRB is encapsulated in the procedure Subscription_Check_HLR, which is specified in 3GPP TS 23.018 [6].\nThe interactions between barring of outgoing calls and call forwarding for phase 1 of Support of Optimal Routeing are defined in 3GPP TS 22.082 [4].\nThe interactions between BIC-Roam and call forwarding for phase 1 of Support of Optimal Routeing are defined in 3GPP TS 22.082 [4].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.018",
+        "ts_22.082"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.079_7.5",
+      "section_id": "7.5",
+      "section_title": "Other supplementary services",
+      "content": "The effects of the following supplementary services on optimally routed calls are identical to their effects on non-optimally routed calls, so they are omitted from the present document:\n-\tCLIP, CLIR, COLP, COLR (3GPP TS 23.081);\n-\tCW, HOLD (3GPP TS 23.083);\n-\tMPTY (3GPP TS 23.084);\n-\tECT (3GPP TS 23.091).",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.081",
+        "ts_23.083",
+        "ts_23.084",
+        "ts_23.091"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.079_8.1",
+      "section_id": "8.1",
+      "section_title": "Operator determined barring",
+      "content": "The principles for the interactions between operator determined barring and optimal routeing are the same as those for interactions between supplementary service barring and optimal routeing.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.079_8.2",
+      "section_id": "8.2",
+      "section_title": "CAMEL",
+      "content": "The principles for interactions between CAMEL services and optimal routeing are specified in this clause. The interworking between CAMEL processing and optimal routeing in the GMSC and the terminating VMSC is specified in clause 9.4 and 3GPP TS 23.018 [6].\nIf a mobile-originating CAMEL service modifies the number entered by the A subscriber, VMSCA treats the number returned by the gsmSCF in the same way as a number received in the SETUP message, i.e.:\n:\n-\tIf the gsmSCF indicated that the call is eligible for optimal routeing, VMSCA sends a signal containing the modified number to the associated GMSC, which sends a request for routeing information to the appropriate HLR;\n-\tIf the gsmSCF did not indicate that the call is eligible for optimal routeing, VMSCA sends an IAM containing the modified number to a GMSC in HPLMNB, which sends a request for routeing information to the appropriate HLR.\nIf a mobile-terminating CAMEL service modifies the number received by the GMSC, the GMSC treats the number returned by the CAMEL server in the same way as a forwarded-to number, i.e. it checks it against the optimal routeing criteria in clause 9.1 but does not analyse it to find if it can derive an HLR address. If the number returned by the CAMEL server does not satisfy the optimal routeing criteria in clause 9.1 and the GMSC is not in the same PLMN as HLRB, the GMSC will route the call to a GMSC in the same PLMN as HLRB. This will lead to a repetition of the mobile terminating CAMEL interaction.\nIf the call is to be forwarded early at the GMSC (whether by a UMTS-standardised call forwarding service or by a CAMEL-based call forwarding service) and a mobile originating CAMEL service applies to the forwarding subscriber, the GMSC checks the number which results from the CAMEL service against the optimal routeing criteria in clause 9.1. If the number returned by the CAMEL server does not satisfy the optimal routeing criteria in clause 9.1, the GMSC will not route the call to the forwarded-to destination. The GMSC will route the call to a GMSC in the same PLMN as HLRB. This will lead to a repetition of the mobile originating CAMEL interaction.\nIf the call is optimally routed back to the GMSC (optimal routeing of late call forwarding) and a mobile originating CAMEL service applies to the forwarding subscriber, then the GMSC does not check the number which results from the CAMEL service against the optimal routeing criteria in clause 9.1.\nNOTE:\tService Logic designers should be aware that Optimal Routeing of Late Call Forwarding (ORLCF) may be combined with Optimal Routeing of basic mobile to mobile calls (Basic Optimal Routeing - BOR) in a single call. The ORLCF handling in the GMSC may be subject to Mobile Terminating (MT) CAMEL handling and Mobile Forwarding (MF) CAMEL handling, as depicted in Procedure OR_Handle_RCH. Both the MT CAMEL Service and the MF CAMEL Service may provide a new destination for the forwarded leg.\nWhen BOR and ORLCF are combined within one call, and the MT CAMEL Service or the MF CAMEL Service provides a new destination for the forwarded leg, then these CAMEL Services should take particular care, if they need to ascertain whether this new destination complies with the optimal routeing criteria as specified in clause 9.1.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.018_clause_9.4",
+        "clause_9.1",
+        "ts_23.018"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.079_9.1",
+      "section_id": "9.1",
+      "section_title": "Charging requirements for optimal routeing",
+      "content": "MoU have imposed two constraints for the charging of optimally routed calls:\n-\tNo subscriber shall pay more for a call which has been optimally routed than he would do under the present routeing scheme described in GSM 03.04 [1] in the clauses describing the call cases where the GMSC is in the same PLMN as the HLR.\n-\tAt least for the first phase of Support of Optimal Routeing, the charge for one leg of a call shall be paid for entirely by one subscriber.\nThese constraints mean that the direct route for a call cannot always be used. For example, if the calling mobile subscriber (the A subscriber) is in Germany, and the B subscriber's HPLMN is in Switzerland but he has roamed to Finland, the charge payable by the A subscriber to route the call by the direct route to Finland would be greater than the charge payable to route the call to HPLMNB, so the HPLMN route must be used.\nIn the first phase of Support of Optimal Routeing, it cannot be assumed that a GMSC is able to calculate the charge payable for the direct route and the charge payable for the HPLMN leg. The MoU requirements can be met by applying more stringent (but simpler) criteria for deciding whether the direct route may be used:\n-\tIf the country code of the destination exchange and the country code of the GMSC are the same, then the direct route may be used.\n-\tOtherwise, for a call leg which is chargeable to the A subscriber, if the country code of the destination exchange and the country code of HPLMNB are the same, then the direct route may be used.\n-\tOtherwise, the HPLMN route shall be used.\nIn certain cases, the second criterion above (equality of country codes for the HPLMN and the destination exchange) may not be enough to determine equality of the charges payable for the direct route and the HPLMN route. In these cases, analysis of the national destination code as well as the country code is required; however the principle is still that if the two numbers are the same to the depth of analysis required then the direct route may be used.\nFor optimal routeing of late call forwarding, the constraints are satisfied if the following criteria are applied:\n-\tif the country code of the forwarded-to exchange and the country code of the GMSC are the same, then the forwarded call may be routed directly from the GMSC to the forwarded-to exchange;\n-\totherwise, if the country code of the forwarded-to exchange and the country code of HPLMNB are the same, then the forwarded call may be routed directly from the GMSC to the forwarded-to exchange;\n-\totherwise, if the country code of the forwarded-to exchange and the country code of VPLMNB are the same, then the forwarded call may be routed directly from the GMSC to the forwarded-to exchange;\n-\totherwise the forwarded call shall be routed through VPLMNB.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.079_9.2",
+      "section_id": "9.2",
+      "section_title": "Functional behaviour of VMSCA",
+      "content": "The functional behaviour of VMSCA is specified in 3GPP TS 23.018 [6]. The only functions specific to optimal routeing are:\n-\tRouteing the call to the associated GMSC function if the gsmSCF indicates that the call is eligible for optimal routeing;\n-\tThe transfer of the destination address, if it is received in the indication of the answer event, to the call data record, to allow the correct charge for the call to be made. This function is required only if VMSCA supports optimal routeing of mobile-to-mobile calls.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.018"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.079_9.3",
+      "section_id": "9.3",
+      "section_title": "Functional behaviour of VLRA",
+      "content": "The functional behaviour of VLRA is specified in 3GPP TS 23.018 [6].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.018"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.079_9.4",
+      "section_id": "9.4",
+      "section_title": "Functional behaviour of GMSC",
+      "content": "When a call is being forwarded the forwarding leg is controlled by a process MT_CF_MSC which runs in the forwarding MSC (VMSC or GMSC). If CAMEL processing of the forwarding leg indicates that Basic Optimal Routeing of the forwarding leg should be attempted, the forwarding MSC may use the services of an associated GMSC for the forwarding leg, i.e. the associated GMSC requests routeing information from HLRC. In this case, the forwarding leg is processed in the same way as a mobile-originated call from mobile subscriber B.\nThe functional behaviour of a GMSC is specified in 3GPP TS 23.018 [6]. The procedures specific to Support of Optimal Routeing are specified in this clause.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.018"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.079_9.4.2",
+      "section_id": "9.4.2",
+      "section_title": "Procedure OR_Handle_RCH",
+      "content": "Sheet 1: if the GMSC receives O-CSI or D-CSI in Resume Call Handling, then the GMSC shall verify whether it supports the CAMEL Phases indicated in O-CSI and D-CSI. If either or both of O-CSI and D-CSI indicates CAMEL Phase 4, then the GMSC shall also verify whether the Offered CAMEL4 CSIs of the GMSC includes support for O-CSI and D-CSI. If the required CAMEL Phases or the required CAMEL4 CSIs are not supported in the GMSC, then the GMSC disallows the Optimal Routeing request. Refer to 3GPP TS 23.078 [7] for a description of the Offered CAMEL4 CSIs.\nSheet 1: if the GMSC interrogates the HLR for a Forwarded-to number, the Routeing address is the Forwarded-to number received in the Send Routeing Info ack; otherwise the Routeing address is the Forwarded-to number received in the Resume Call Handling.\nSheet 1: the task \"Destination address := FTN\" is executed only if the GMSC supports optimal routeing of basic mobile-to-mobile calls.\nSheet 1: the procedure Route_permitted is called to verify the number received in Resume Call Handling or the number received from HLR. If the result is \"False\", then the GMSC disallows the Optimal Routeing. The call forwarding will now be done by the VMSC.\nNote\tWhen the procedure Route_permitted returns result \"False\", then the gsmSCF is not informed about the forwarding and can therefore not provide an alternative destination address. Reason is that once the gsmSCF is informed about forwarding, the call forwarding can not be returned to the VMSC.\nSheet 2: the procedure CAMEL_MT_GMSC_Notify_CF is specific to CAMEL phase 2 or higher; it is specified in 3GPP TS 23.078 [7]. If the GMSC does not support CAMEL phase 2 or higher, processing continues from the \"Continue\" exit of the test \"Result\".\nIf the result of the procedure CAMEL_MT_GMSC_Notify_CF is \"Fail\" or \"Release\", then the call will be released.\nIf the result of the procedure CAMEL_MT_GMSC_Notify_CF is \"Reconnect\", then the GMSC allows the Optimal Routeing. The GMSC will then start a call forwarding process.\nSheet 2: when the procedure Route_permitted on sheet 1 returns result \"False\", then the GMSC returns \"OR not allowed\" to the VMSC. The call forwarding will now be done by the VMSC.\nSheet 3: the procedure Activate_CF_Process is specified in 3GPP TS 23.018 [6]. When procedure Activate_CF_Process returns result \"Release\" or \"Fail\", the call is released.\nIf the result is \"Pass\", then the GMSC allows the Optimal Routeing.\nSheet 3: the procedure UUS_GMSC_Check_Forwarding is specific to UUS; it is specified in 3GPP TS 23.087 [9].\nSheet 3: the procedure CAMEL_Store_Destination_Address is specific to CAMEL phase 3 or higher; it is specified in 3GPP TS 23.078 [7].\nSheet 3: the called party address sent in the IAM to the process MT_CF_MSC is the Forwarded-to number received in the Perform Call Forwarding ack.\nSheet 3: the process MT_CF_MSC is specified in 3GPP TS 23.018 [6].",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "ts_23.078",
+        "ts_23.018",
+        "ts_23.087"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.079_9.4.4",
+      "section_id": "9.4.4",
+      "section_title": "Procedure OR_Handle_SRI_Negative_Response",
+      "content": "'Non-fatal' error situations, which cause the call to be routed through a GMSC in the same PLMN as the HLR, are:\n-\tSend Routeing Info request rejected because the HLR does not support OR.\n-\tProtocol error.\n-\tSystem failure.\n-\tUnexpected data value.\n-\tData missing.\n-\tOR not allowed.\n'Fatal' negative responses, which cause the GMSC to return a 'fail' result, are:\n-\tUnknown subscriber.\n-\tNumber changed.\n-\tBearer service not provisioned.\n-\tTeleservice not provisioned.\n-\tCall barred.\n-\tCUG reject.\n-\tForwarding violation.\n-\tFacility not supported.\n-\tAbsent subscriber.\nFigure 6: Procedure OR_Set_ORA_Parameters\nFigure 7a: Procedure OR_Handle_RCH (sheet 1)\nFigure 7b: Procedure OR_Handle_RCH (sheet 2)\nFigure 7c: Procedure OR_Handle_RCH (sheet 3)\nFigure 8: Procedure Route_Permitted\nFigure 9: Procedure OR_Handle_SRI_Negative_Response",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_6",
+        "figure_7",
+        "figure_8",
+        "figure_9"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.079_9.5",
+      "section_id": "9.5",
+      "section_title": "Functional behaviour of HLR",
+      "content": "The functional behaviour of an HLR is specified in 3GPP TS 23.018 [6]. The procedures specific to Support of Optimal Routeing are specified in this clause.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.018"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.079_9.5.1",
+      "section_id": "9.5.1",
+      "section_title": "Procedure OR_HLR_CF",
+      "content": "Sheet 1: if the HLR does not support optimal routeing of basic mobile-to-mobile calls, the test \"Optimal routeing allowed\" takes the \"No\" exit.\nSheet 2: the procedures Handle_CFB, Handle_CFNRc and Handle_CFNRy are specified in 3GPP TS 23.018 [6].",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "ts_23.018"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.079_9.5.2",
+      "section_id": "9.5.2",
+      "section_title": "Procedure OR_HLR_Interrogate_VLR",
+      "content": "If the HLR does not support optimal routeing of basic mobile-to-mobile calls, this procedure will be executed only if the Send Routeing Info was from a GMSC in the same PLMN as the HLR, i.e. this was not an Optimal Routeing enquiry.\nThe procedure Handle_CFNRc is specified in 3GPP TS 23.018 [6].\nFigure 10a: Procedure OR_HLR_CF (sheet 1)\nFigure 10b: Procedure OR_HLR_CF (sheet 2)\nFigure 11: Procedure OR_HLR_Interrogate_VLR",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "ts_23.018_figure_10",
+        "figure_10",
+        "figure_11",
+        "ts_23.018"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.079_9.6.1",
+      "section_id": "9.6.1",
+      "section_title": "Functional behaviour of VLRB for provision of subscriber information",
+      "content": "The functional behaviour of VLRB for provision of subscriber information is specified in 3GPP TS 23.018 [6].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.018"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.079_9.6.2",
+      "section_id": "9.6.2",
+      "section_title": "Functional behaviour of VLRB for roaming number allocation",
+      "content": "The functional behaviour of VLRB for roaming number allocation is specified in 3GPP TS 23.018 [6]. The only function specific to Support of Optimal Routeing is the storage of the OR indicator, the 'OR not supported in GMSC' indicator, the GMSC address and the call reference number if VLRB receives them in the Provide Roaming Number request.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.018"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.079_9.6.3",
+      "section_id": "9.6.3",
+      "section_title": "Functional behaviour of VLRB when handling an incoming call",
+      "content": "The functional behaviour of VLRB when handling a request for information to handle an incoming call is specified in 3GPP TS 23.018 [6]. The only functions specific to Support of Optimal Routeing are:\n-\tthe inclusion in the Complete Call or Process Call Waiting, if the call is to be offered to the B subscriber, of the OR indicator and the GMSC address if VLRB received them in the Provide Roaming Number request;\n-\tthe inclusion in the Send Info For Incoming Call response, if the call is to be forwarded, of:\n-\tthe OR indicator, the 'OR not supported in GMSC' indicator, the GMSC address and the call reference number if VLRB received them in the Provide Roaming Number request;\n-\tthe basic service which applies for this call.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.018"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.079_9.7",
+      "section_id": "9.7",
+      "section_title": "Functional behaviour of VMSCB",
+      "content": "The functional behaviour of VMSCB when it handles an incoming call is described in 3GPP TS 23.018 [6]. The procedure specific to Support of Optimal Routeing is specified in this clause.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.018"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.079_9.7.1",
+      "section_id": "9.7.1",
+      "section_title": "Procedure Handle_ORLCF_VMSC",
+      "content": "The procedure UUS_ICH_Handle_LCF is specific to UUS; it is specified in 3GPP TS 23.087 [9].\nFigure 12: Procedure Handle_ORLCF_VMSC",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "ts_23.087_figure_12",
+        "ts_23.087"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.079_10",
+      "section_id": "10",
+      "section_title": "Contents of messages",
+      "content": "This clause specifies the changes to the content of each message shown in clauses 5, 6 and 9, including those messages which are already specified for UMTS but which require changes for Optimal Routeing. It should be read as a 'delta' on the corresponding clause of 3GPP TS 23.018 [6]; those information elements which are the same for SOR as for the basic call without OR are not specified in this clause.\nIn the tables which follow, information elements are shown as mandatory (M) or conditional (C). A mandatory information element shall always be present. A conditional information element shall be present if certain conditions are fulfilled; if those conditions are not fulfilled it shall be absent.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.018"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.079_10.1.1",
+      "section_id": "10.1.1",
+      "section_title": "Send Info For Outgoing Call",
+      "content": "This message is specified in 3GPP TS 23.018 [6].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.018"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.079_10.1.2",
+      "section_id": "10.1.2",
+      "section_title": "Send Info For Outgoing Call negative response",
+      "content": "This message is specified in 3GPP TS 23.018 [6].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.018"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.079_10.1.3",
+      "section_id": "10.1.3",
+      "section_title": "Send Info For Incoming Call",
+      "content": "This message is specified in 3GPP TS 23.018 [6].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.018"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.079_10.1.4",
+      "section_id": "10.1.4",
+      "section_title": "Send Info For Incoming Call ack",
+      "content": "This message is specified in 3GPP TS 23.018 [6]. The following additional information elements are required:\nInformation element name\nRequired\nDescription\nOR indicator\nC\nIndicates whether the call has been routed directly from a GMSC not in the same PLMN as the HLR. Shall be present if it was received in the Provide Roaming Number, otherwise shall be absent.\nGMSC address\nC\nE.164 address of the GMSC. Shall be present if it was received in the Provide Roaming Number, otherwise shall be absent.\nCall reference number\nC\nCall reference number used by the GMSC for this call. Shall be present if it was received in the Provide Roaming Number, otherwise shall be absent.\nOR not supported in GMSC\nC\nIndicates that the GMSC does not support Optimal Routeing. Shall be present if it was received in the Provide Roaming Number, otherwise shall be absent.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.018"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.079_10.1.5",
+      "section_id": "10.1.5",
+      "section_title": "Send Info For Incoming Call negative response",
+      "content": "This message is specified in 3GPP TS 23.018 [6].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.018"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.079_10.1.6",
+      "section_id": "10.1.6",
+      "section_title": "Complete Call",
+      "content": "This message is specified in 3GPP TS 23.018 [6]. The following additional information elements are required:\nInformation element name\nRequired\nDescription\nOR indicator\nC\nIndicates whether the call has been routed directly from a GMSC not in the same PLMN as the HLR. Shall be present if it was received in the Provide Roaming Number, otherwise shall be absent.\nGMSC address\nC\nE.164 address of the GMSC. Shall be present if it was received in the Provide Roaming Number, otherwise shall be absent.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.018"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.079_10.1.7",
+      "section_id": "10.1.7",
+      "section_title": "Process Call Waiting",
+      "content": "This message is specified in 3GPP TS 23.018 [6]. The following additional information elements are required:\nInformation element name\nRequired\nDescription\nOR indicator\nC\nIndicates whether the call has been routed directly from a GMSC not in the same PLMN as the HLR. Shall be present if it was received in the Provide Roaming Number, otherwise shall be absent.\nGMSC address\nC\nE.164 address of the GMSC. Shall be present if it was received in the Provide Roaming Number, otherwise shall be absent.",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "ts_23.018"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.079_10.2.1",
+      "section_id": "10.2.1",
+      "section_title": "Send Routeing Info",
+      "content": "This message is specified in 3GPP TS 23.018 [6]. The following additional information elements are required:\nInformation element name\nRequired\nDescription\nInterrogation type\nM\nIndicates the type of interrogation: basic(for routeing information for an MT call) or forwarding (when the GMSC has been asked to resume call handling for OR of late call forwarding).\nOR interrogation indicator\nC\nIndicates that the interrogation is from a GMSC not in the same PLMN as the HLR. Shall be present if the interrogation is from a GMSC not in the same PLMN as the HLR, otherwise shall be absent.\nOR capability\nC\nIndicates the phase of OR which the GMSC supports. Shall be present if the GMSC supports OR, otherwise shall be absent.\nGMSC or gsmSCF address\nM\nE.164 address of the GMSC.\nCall reference number\nC\nCall reference number used by the GMSC for this call. Shall be present if the interrogation type=basic call, otherwise shall be absent.\nForwarding reason\nC\nIndicates the reason for forwarding (on busy, on no subscriber reply, or on mobile subscriber not reachable). Shall be present if the Interrogation type=forwarding, otherwise shall be absent.\nBasic service group\nC\nBasic service group which applies for this call. Shall be present if the Interrogation type=forwarding, otherwise shall be absent.\nBasic service group 2\nC\nBasic service group which applies for this call. Shall be present if the Interrogation type=forwarding and if the VMSC has determined that the forwarded call is to be treated as a SCUDIF call in accordance with the rules in 3GPP TS 23.172[10], otherwise shall be absent.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.018",
+        "ts_23.172"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.079_10.2.2",
+      "section_id": "10.2.2",
+      "section_title": "Send Routeing Info ack",
+      "content": "This message is specified in 3GPP TS 23.018 [6]. Two new information elements are required, and the condition for the presence of one existing information element is changed, as shown in the following table.\nInformation element name\nRequired\nDescription\nForwarding interrogation required\nC\nIndicates that the GMSC shall interrogate the HLR for routeing information for late call forwarding. Shall be present if the SRI ack contains an MSRN and GMSC has to interrogate the HLR for routeing information for late call forwarding, otherwise shall be absent.\nVMSC address\nC\nE.164 address of the VMSC in whose area the B subscriber is currently registered. Shall be present in the Send Routeing Info ack if the OR interrogation indicator in the Send Routeing Info was present and the HLR supports optimal routeing of basic mobile-to-mobile calls and the HLR has not determined that the call is to be forwarded, otherwise shall be absent.\nRoaming number\nC\nE.164 address required to route the call to the VMSC of the B party. Shall be present in the Send Routeing Info ack which is sent in response to a Send Routeing Info with Interrogation type=basic if the HLR has determined that the charging requirements for optimal routeing are not contravened and that the call is not to be forwarded, otherwise shall be absent.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.018"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.079_10.2.3",
+      "section_id": "10.2.3",
+      "section_title": "Send Routeing Info negative response",
+      "content": "This message is specified in 3GPP TS 23.018 [6]. The negative response information element can take the following values in addition to those specified in 3GPP TS 23.018 [6]:\n-\tOR not allowed.\n-\tBusy subscriber.\n-\tNo subscriber reply.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.018"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.079_10.3.1",
+      "section_id": "10.3.1",
+      "section_title": "Provide Roaming Number",
+      "content": "This message is specified in 3GPP TS 23.018 [6]. The following additional information elements are required:\nInformation element name\nRequired\nDescription\nGMSC address\nC\nE.164 address of the GMSC. Shall be present if it was received by the HLR in the Send Routeing Info, otherwise shall be absent.\nCall reference number\nC\nCall reference number used by the GMSC for this call. Shall be present if it was received by the HLR in the Send Routeing Info, otherwise shall be absent.\nOR interrogation indicator\nC\nIndicates that the HLR received the corresponding Send Routeing Info from a GMSC not in the same PLMN as the HLR. Shall be present if the HLR received the Send Routeing Info from a GMSC not in the same PLMN as the HLR, otherwise shall be absent.\nOR not supported in GMSC\nC\nIndicates that the GMSC does not support OR, and that RCH shall not be sent for optimal routing. Shall be present if the HLR received the Send Routeing Info from the GMSC without the OR-capability information Element, otherwise it shall be absent.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.018"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.079_10.3.2",
+      "section_id": "10.3.2",
+      "section_title": "Provide Roaming Number ack",
+      "content": "This message is specified in 3GPP TS 23.018 [6].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.018"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.079_10.3.3",
+      "section_id": "10.3.3",
+      "section_title": "Provide Roaming Number negative response",
+      "content": "This message is specified in 3GPP TS 23.018 [6].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.018"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.079_10.3.4",
+      "section_id": "10.3.4",
+      "section_title": "Provide Subscriber Information",
+      "content": "This message is specified in 3GPP TS 23.018 [6].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.018"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.079_10.3.5",
+      "section_id": "10.3.5",
+      "section_title": "Provide Subscriber Information ack",
+      "content": "This message is specified in 3GPP TS 23.018 [6].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.018"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.079_10.4.1",
+      "section_id": "10.4.1",
+      "section_title": "Resume Call Handling",
+      "content": "The following information elements are required:\nInformation element name\nRequired\nDescription\nCall reference number\nM\nCall reference number used by the GMSC for this call.\nForwarding reason\nC\nIndicates the reason for forwarding (on call deflection, on busy, on no subscriber reply, or on mobile subscriber not reachable). Shall be present if the call is forwarded other than for the MT roaming retry reason.\nBasic service group\nM\nBasic service group which applies for this call. For SCUDIF calls, see 3GPP TS 23.172 [10] for the use of this information element.\nIMSI\nM\nIMSI of the B subscriber.\nForwarded-to number\nC\nE.164 number of the C subscriber. Shall be present if the call is forwarded other than for the MT roaming retry reason.\nNotification to calling party\nC\nIndication of whether the calling party is to be notified that the call has been forwarded. Shall be present if the call is forwarded other than for MT roaming retry reason.\nForwarded-to subaddress\nC\nSubaddress of the C subscriber (see 3GPP TS 23.003 [5]). Shall be present if a forwarded-to subaddress is stored in the VLR in association with the forwarded-to number; otherwise shall be absent.\nRedirecting presentation\nC\nIndication of whether the MSISDN of the B subscriber shall be presented to the C subscriber. Shall be present if VMSCB supports the handling of the redirecting number, otherwise shall be absent.\nMSISDN\nC\nE.164 number which identifies the B subscriber. It will be used to create the redirecting number presented to the C subscriber. Shall be present if VMSCB supports the handling of the redirecting number, otherwise shall be absent.\nCUG interlock\nC\nFor the definition of this IE, see 3GPP TS 23.085 [8]. Shall be present if the VLR has determined that the forwarded call is to be treated as a CUG call in accordance with the rules in 3GPP TS 23.085 [8], otherwise shall be absent.\nCUG outgoing access\nC\nFor the definition of this IE, see 3GPP TS 23.085 [8]. Shall be present if the VLR has determined that the forwarded call is to be treated as a CUG call with outgoing access in accordance with the rules in 3GPP TS 23.085 [8], otherwise shall be absent.\nBasic service group 2\nC\nFor the definition of this IE, see 3GPP TS 23.172 [10]. Shall be present if the VMSC has determined that the forwarded call is to be treated as a SCUDIF call in accordance with the rules in 3GPP TS 23.172[10], otherwise shall be absent.\nMT Roaming Retry\nC\nIndication that the call is forwarded for MT roaming retry. All other forwarding parameters are not relevant if this IE is present.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.172",
+        "ts_23.003",
+        "ts_23.085"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.079_10.4.2",
+      "section_id": "10.4.2",
+      "section_title": "Resume Call Handling ack",
+      "content": "This message contains no information elements.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.079_10.4.3",
+      "section_id": "10.4.3",
+      "section_title": "Resume Call Handling negative response",
+      "content": "The negative response information element can take the following values:\n-\tOR not allowed.\n-\tForwarding failed.\nAnnex A (informative):Handling of an IAM at an MSC\nAn MSC which receives an IAM from an originating exchange may react in three different ways:\n-\tIt acts as a transit exchange, i.e. it relays the IAM to a destination exchange determined by analysis of the called party address, and thereafter relays other ISUP signalling between the originating and destination exchange until the connection is released. This behaviour is not specific to UMTS or GSM.\n-\tIt acts as a terminating exchange, i.e. it attempts to connect the call to an MS currently registered in the service area of the MSC.\n-\tIt acts as a GMSC, i.e. it interrogates an HLR for information to route the call. If the HLR returns routeing information, the MSC uses the routeing information from the HLR to construct an IAM, which it sends to a destination exchange determined by analysis of the routeing information from the HLR.\nThe method which the MSC uses to determine how to handle the IAM is described in 3GPP TS 23.018 [6]. However, the number analysis required to derive the address of an HLR in a different PLMN from the MSC is much more extensive than that required to derive the address of an HLR in the same PLMN as the MSC - the MSC needs to be able to recognise the combination of country code and national destination code for every subscriber of every PLMN to which calls are to be optimally routed. In order to avoid the need to maintain the tables required to support this extensive number analysis, and the run-time processing load of performing the number analysis, optimal routeing of mobile-to-mobile calls is handled as a mobile originating CAMEL service; the gsmSCF analyses the destination address (after possible modification of the number by other MO CAMEL services) to determine whether the call is eligible for optimal routeing. If the call is eligible for optimal routeing, the gsmSCF indicates this to VMSCA, which routes the call to an associated GMSC function, which in turn sends a request for routeing information to the appropriate HLR.\nWhen a GMSC has interrogated an HLR and received an MSRN, the GMSC may need to route the call to the HPLMN of the called subscriber. If the call is routed through an MSC which has the capability to analyse an address to derive an HLR address, a method must be provided to prevent the transit MSC from performing a further interrogation of the HLR, using the MSRN as an MSISDN. The method used to prevent this further interrogation is a matter for the PLMN operator.\nAnnex B (informative):Change history\nChange history\nDate\nMeeting\nTDoc\nCR\nRev\nCat\nSubject/Comment\nNew version\nApr 1999\nTransferred to 3GPP CN1\nCN#03\nApproved at CN#03\n3.0.0\nCN#04\nNotification of Call Forwarding to the gsmSCF\n3.1.0\nCN#05\n001\nOR capability IE in PRN\n3.2.0\n003\nRemoval of TDP Criteria from Resume Call Handling\n3.2.0\n005r1\nSeparation of success & failure cases for OR of late call forwarding\n3.2.0\n006\nNotification of Call Forwarding to the gsmSCF before activating call forwarding process\n3.2.0\n007\nHandling of Release during forwarding interrogation\n3.2.0\nCN#06\n008\nIntroduction of CAMEL Phase 3\n3.3.0\nCN#07\n009\nCorrection of CF Notification\n3.4.0\n010r1\nReplacement of references to GSM with references to UMTS\n3.4.0\n011\nIndication of OR capability of the GMSC to the destination MSC/VLR\n3.4.0\nCN#08\n014\nIndication in PRN of support of Long FTNs\n3.5.0\nCN#09\n015\nSheet 1 of Procedure OR_HLR_CF\n3.6.0\nCN#11\nRelease 4 after CN#11\n4.0.0\nCN#15\n016\nIntroduction of CAMEL Phase 4\n5.0.0\nCN#16\n019\nRemoval of unnecessary references to O-CSI\n5.1.0\nCN#18\n020r1\nOptimal routeing and CAMEL discrepancy\n5.2.0\nCN#18\n024\nCorrection to figure 7a (handling of RCH in GMSC)\n5.2.0\nCN#21\n025r4\nCorrection to interaction between ORLCF and forwarding notification\n5.3.0\nCN#21\n026r1\nNotification of the 2nd BSG in case of Late CF with OR\n5.3.0\nCN#22\n027\nCorrection to MAP RCH – GMSC shall check Offered CAMEL4 CSIs\n5.4.0\nCN#24\n080\nEnhancement to Route_Permitted procedure to handle Short/ Long FTNs\n5.5.0\nCN#26\nRelease 6 after CN#26\n6.0.0\nCT#30\n0083r2\nCorrection to relationship between the OR implemention and CAMEL\n6.1.0\nCT#36\n0085\nMobile Termination whilst the MS is moving to another MSC\n7.0.0\nCT#42\nUpgraded unchanged from Rel-7\n8.0.0\nCT#46\n-\nUpdate to Rel-9 version (MCC)\n9.0.0\n2011-03\n-\nUpdate to Rel-10 version (MCC)\n10.0.0\n2012-09\n-\nUpdate to Rel-11 version (MCC)\n11.0.0\n2014-09\n-\nUpdate to Rel-12 version (MCC)\n12.0.0\n2015-12\n-\nUpdate to Rel-13 version (MCC)\n13.0.0\n2017-03\n-\nUpdate to Rel-14 version (MCC)\n14.0.0\n2018-06\n-\nUpdate to Rel-15 version (MCC)\n15.0.0\n2020-07\n-\nUpdate to Rel-16 version (MCC)\n16.0.0\n2022-03\n-\n-\n-\n-\n-\nUpdate to Rel-17 version (MCC)\n17.0.0\n2024-03\n-\n-\n-\n-\n-\nUpdate to Rel-18 version (MCC)\n18.0.0",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_7",
+        "ts_23.018",
+        "ts_3.4"
+      ]
+    }
+  ]
+}

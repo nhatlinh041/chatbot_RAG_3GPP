@@ -1,0 +1,523 @@
+{
+  "metadata": {
+    "specification_id": "ts_29.309",
+    "version": "18.2.0",
+    "title": "3GPP TS 29.309",
+    "file_path": "/content/drive/MyDrive/RAG_thesis/data/29_series/29309-i20/29309-i20.docx"
+  },
+  "export_info": {
+    "export_date": "2025-07-26T09:01:57.242003",
+    "total_chunks": 46
+  },
+  "chunks": [
+    {
+      "chunk_id": "ts_29.309_1",
+      "section_id": "1",
+      "section_title": "Scope",
+      "content": "The present document specifies the stage 3 protocol and data model for the Nbsp Service Based Interface. It provides stage 3 protocol definitions and message flows, and specifies the API for each service offered by the GBA BSF.\nThe 5G System stage 2 architecture and procedures are specified in 3GPP TS 23.501 [2] and 3GPP TS 23.502 [3].\nThe stage 2 architecture and procedures of SBA-enabled GBA is specified in 3GPP TS 33.220 [14] and 3GPP TS 33.223 [15].\nThe Technical Realization of the Service Based Architecture and the Principles and Guidelines for Services Definition are specified in 3GPP TS 29.500 [4] and 3GPP TS 29.501 [5].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.501",
+        "ts_23.502",
+        "ts_33.220",
+        "ts_33.223",
+        "ts_29.500",
+        "ts_29.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.309_2",
+      "section_id": "2",
+      "section_title": "References",
+      "content": "The following documents contain provisions which, through reference in this text, constitute provisions of the present document.\n-\tReferences are either specific (identified by date of publication, edition number, version number, etc.) or non‑specific.\n-\tFor a specific reference, subsequent revisions do not apply.\n-\tFor a non-specific reference, the latest version applies. In the case of a reference to a 3GPP document (including a GSM document), a non-specific reference implicitly refers to the latest version of that document in the same Release as the present document.\n[1]\t3GPP TR 21.905: \"Vocabulary for 3GPP Specifications\".\n[2]\t3GPP TS 23.501: \"System Architecture for the 5G System; Stage 2\".\n[3]\t3GPP TS 23.502: \"Procedures for the 5G System; Stage 2\".\n[4]\t3GPP TS 29.500: \"5G System; Technical Realization of Service Based Architecture; Stage 3\".\n[5]\t3GPP TS 29.501: \"5G System; Principles and Guidelines for Services Definition; Stage 3\".\n[6]\tOpenAPI: \"OpenAPI Specification Version 3.0.0\", https://spec.openapis.org/oas/v3.0.0.\n[7]\t3GPP TR 21.900: \"Technical Specification Group working methods\".\n[8]\t3GPP TS 33.501: \"Security architecture and procedures for 5G system\".\n[9]\tIETF RFC 6749: \"The OAuth 2.0 Authorization Framework\".\n[10]\t3GPP TS 29.510: \"5G System; Network Function Repository Services; Stage 3\".\n[11]\tIETF RFC 9113: \"HTTP/2\".\n[12]\tIETF RFC 8259: \"The JavaScript Object Notation (JSON) Data Interchange Format\".\n[13]\tIETF RFC 9457: \"Problem Details for HTTP APIs\".\n[14]\t3GPP TS 33.220: \"Generic Authentication Architecture (GAA); Generic Bootstrapping Architecture (GBA)\".\n[15]\t3GPP TS 33.223: \"Generic Authentication Architecture (GAA); Generic Bootstrapping Architecture (GBA) Push function\".\n[16]\t3GPP TS 33.224: \"Generic Authentication Architecture (GAA); Generic Bootstrapping Architecture (GBA) Push Layer\".\n[17]\t3GPP TS 29.109: \"Generic Authentication Architecture (GAA); Zh and Zn Interfaces based on the Diameter protocol; Stage 3\".\n[18]\t3GPP TS 29.571: \"5G System; Common Data Types for Service Based Interfaces; Stage 3\".",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905",
+        "ts_23.501",
+        "ts_23.502",
+        "ts_29.500",
+        "ts_29.501",
+        "ts_21.900",
+        "ts_33.501",
+        "ts_29.510",
+        "ts_33.220",
+        "ts_33.223",
+        "ts_33.224",
+        "ts_29.109",
+        "ts_29.571"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.309_3.1",
+      "section_id": "3.1",
+      "section_title": "Definitions",
+      "content": "For the purposes of the present document, the terms and definitions given in 3GPP TR 21.905 [1] and the following apply. A term defined in the present document takes precedence over the definition of the same term, if any, in 3GPP TR 21.905 [1].\nBootstrapping Server Function: BSF is hosted in a network element under the control of an MNO. BSF, HSS, and UEs participate in GBA in which a shared secret is established between the network and a UE by running the bootstrapping procedure. The shared secret can be used between NAFs and UEs, for example, for authentication purposes. In the context of the present specification, the BSF is an SBA-capable BSF.\nGBA Function: A function on the ME executing the bootstrapping procedure with BSF (i.e. supporting the Ub reference point) and providing Ua applications with security association to run bootstrapping usage procedure. GBA function is called by a Ua application when a Ua application wants to use bootstrapped security association.\nNetwork Application Function: NAF is hosted in a network element. GBA may be used between NAFs and UEs for authentication purposes, and for securing the communication path between the UE and the NAF. In the context of the present specification, the NAF is an SBA-capable NAF.\nGBA User Security Settings: GUSS contains the BSF specific information element and the set of all application-specific USSs.\nUa Application: An application on the ME intended to run bootstrapping usage procedure with a NAF.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_21.905"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.309_3.2",
+      "section_id": "3.2",
+      "section_title": "Abbreviations",
+      "content": "For the purposes of the present document, the abbreviations given in 3GPP TR 21.905 [1] and the following apply. An abbreviation defined in the present document takes precedence over the definition of the same abbreviation, if any, in 3GPP TR 21.905 [1].\nBSF\tBootstrapping Server Function\nGBA\tGeneric Bootstrapping Architecture\nGUSS\tGBA User Security Settings\nHSS\tHome Subscriber System\nNAF\tNetwork Application Function\nSBA\tService-Based Architecture\nUSS\tUser Security Setting",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.309_4",
+      "section_id": "4",
+      "section_title": "Overview",
+      "content": "Nbsp is a Service-based interface exhibited by GBA BSF (Generic Bootstrapping Architecture; Bootstrapping Server Function) which is a Network Function that supports the following functionality:\n-\tAllows the NAF and the Push-NAF to fetch the key material agreed during a previous protocol run between the UE and the GBA BSF. It is also used to fetch application-specific user security settings from the GBA BSF, if requested by the NAF.\nThe reference points N66 and N67 (see Fig 4-1 below) show the interaction between the GBA BSF and the NAF and Push-NAF Network Functions.\nFigure 4-1: Reference Model – Nbsp\nIn the context of the present specification, the GBA BSF is an SBA-capable BSF, and the NAF and Push-NAF are also SBA-capable Network Functions (see 3GPP TS 33.220 [14] and 3GPP TS 33.223 [15]).",
+      "chunk_type": "definition",
+      "cross_references": [
+        "figure_4-1",
+        "ts_33.220",
+        "ts_33.223"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.309_5.1",
+      "section_id": "5.1",
+      "section_title": "Introduction",
+      "content": "The GBA BSF offers the following services via the Nbsp interface:\n-\tNbsp_GBA Service\nTable 5.1-1 summarizes the corresponding APIs defined for this specification.\nTable 5.1-1: API Descriptions\nService Name\nClause\nDescription\nOpenAPI Specification File\napiName\nAnnex\nNbsp_GBA\n5.2\nNbsp GBA Service\nTS29309_Nbsp_GBA.yaml\nnbsp-gba\nA.2",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.309_5.2.1",
+      "section_id": "5.2.1",
+      "section_title": "Service Description",
+      "content": "This service is exposed by the GBA BSF for the purpose of providing GBA bootstrap information to an SBI-capable NAF, and GBA push information (GPI) to an SBI-capable Push-NAF, for the derivation of the application key material (e.g. Ks_(ext/int)_NAF). It also supports to fetch application-specific user security settings (USS) from the GBA BSF.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.309_5.2.2.1",
+      "section_id": "5.2.2.1",
+      "section_title": "Introduction",
+      "content": "For the Nbsp_GBA service the following service operations are defined:\n-\tBootstrapInfo\n-\tPushInfo",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.309_5.2.2.2.1",
+      "section_id": "5.2.2.2.1",
+      "section_title": "General",
+      "content": "This service operation is used between the SBI-capable NAF and the GBA BSF to request the key material agreed during bootstrapping from the UE to the GBA BSF. It is also used to fetch application-specific user security settings from the BSF, if requested by the NAF.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.309_5.2.2.2.2",
+      "section_id": "5.2.2.2.2",
+      "section_title": "Boostrapping Info Retrieval",
+      "content": "Figure 5.2.2.2.2-1 shows a scenario where the NF Service Consumer (e.g. the SBI-capable NAF) sends a request to the GBA BSF to receive the bootstrapping info and optionally the user security settings.\nFigure 5.2.2.2.2-1: Requesting Bootstrapping Info\n1.\tThe NF Service Consumer sends a POST request (custom method \"bootstrapping-info-retrieval\") to the GBA BSF. The request includes the B-TID, the NAF-Id and optionally a flag to indicate that the NAF is GBA_U aware, and a list of GAA Service Identifiers (GSID).\n2a.\tOn success the GBA BSF responds with \"200 OK\" and including in the message body the key material (Ks_NAF in case of GBA_ME and Ks_ext_NAF in case of GBA_U), the key material lifetime and the bootstrapping creation time. Optionally, it may include additional key material (i.e. Ks_int_NAF), application-specific user security settings and the UE private identity.\nOn failure, the appropriate HTTP status code indicating the error shall be returned and appropriate additional error information should be returned in the POST response body.\nIn the case of redirection, the GBA BSF shall return 3xx status code, which shall contain a Location header with an URI pointing to the endpoint of another GBA BSF (service) instance.",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_5.2.2.2.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.309_5.2.2.3.1",
+      "section_id": "5.2.2.3.1",
+      "section_title": "General",
+      "content": "This service operation is used between the SBI-capable Push-NAF and the GBA BSF to request the GBA Push Information (GPI) in order to bootstrap the UE with GBA key material. It is also used to fetch application-specific user security settings from the BSF, if requested by the Push-NAF.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.309_5.2.2.3.2",
+      "section_id": "5.2.2.3.2",
+      "section_title": "Push Info Retrieval",
+      "content": "Figure 5.2.2.3.2-1 shows a scenario where the NF Service Consumer (e.g. the SBI-capable Push-NAF) sends a request to the GBA BSF to receive the bootstrapping info and optionally the user security settings.\nFigure 5.2.2.3.2-1: Requesting Push Info\n1.\tThe NF Service Consumer sends a POST request (custom method \"push-info-retrieval\") to the GBA BSF. The request includes the User Identity (Private or Public Identity), User Identity type, UICC application identifier, Push-NAF-Id, Push-NAF SA identifier, Indicator for use of GBA_ME or GBA_U, Requested Push-NAF key lifetime, Private User Identity indicator, list of GAA Service Identifiers (GSID), AUTS and RAND.\n2a.\tOn success the GBA BSF responds with \"200 OK\" and including in the message body the GPI data, key material (Ks_NAF in case of GBA_ME and Ks_ext_NAF in case of GBA_U), key material lifetime, application-specific user security settings. Optionally, it may include additional key material (i.e. Ks_int_NAF), application-specific user security settings and the UE private identity.\nOn failure, the appropriate HTTP status code indicating the error shall be returned and appropriate additional error information should be returned in the POST response body.\nIn the case of redirection, the GBA BSF shall return 3xx status code, which shall contain a Location header with an URI pointing to the endpoint of another GBA BSF (service) instance.",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_5.2.2.3.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.309_6.1.1",
+      "section_id": "6.1.1",
+      "section_title": "Introduction",
+      "content": "The Nbsp_GBA service shall use the Nbsp_GBA API.\nThe API URI of the Nbsp_GBA API shall be:\n{apiRoot}/<apiName>/<apiVersion>\nThe request URIs used in HTTP requests from the NF service consumer towards the NF service producer shall have the Resource URI structure defined in clause 4.4.1 of 3GPP TS 29.501 [5], i.e.:\n{apiRoot}/<apiName>/<apiVersion>/<apiSpecificResourceUriPart>\nwith the following components:\n-\tThe {apiRoot} shall be set as described in 3GPP TS 29.501 [5].\n-\tThe <apiName> shall be \"nbsp-gba\".\n-\tThe <apiVersion> shall be \"v1\".\n-\tThe <apiSpecificResourceUriPart> shall be set as described in clause 6.1.3.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.501_clause_4.4.1",
+        "clause_6.1.3",
+        "ts_29.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.309_6.1.2.1",
+      "section_id": "6.1.2.1",
+      "section_title": "General",
+      "content": "HTTP/2, IETF RFC 9113 [11], shall be used as specified in clause 5 of 3GPP TS 29.500 [4].\nHTTP/2 shall be transported as specified in clause 5.3 of 3GPP TS 29.500 [4].\nThe OpenAPI [6] specification of HTTP messages and content bodies for the Nbsp_GBA API is contained in Annex A.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.500_clause_5",
+        "ts_29.500_clause_5.3",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.309_6.1.2.2.1",
+      "section_id": "6.1.2.2.1",
+      "section_title": "General",
+      "content": "See clause 5.2.2 of 3GPP TS 29.500 [4] for the usage of HTTP standard headers.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.500_clause_5.2.2",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.309_6.1.2.2.2",
+      "section_id": "6.1.2.2.2",
+      "section_title": "Content type",
+      "content": "JSON, IETF RFC 8259 [12], shall be used as content type of the HTTP bodies specified in the present specification as specified in clause 5.4 of 3GPP TS 29.500 [4]. The use of the JSON format shall be signalled by the content type \"application/json\".\n\"Problem Details\" JSON object shall be used to indicate additional details of the error in a HTTP response body and shall be signalled by the content type \"application/problem+json\", as defined in IETF RFC 9457 [13].",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_5.4",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.309_6.1.2.3",
+      "section_id": "6.1.2.3",
+      "section_title": "HTTP custom headers",
+      "content": "The mandatory HTTP custom header fields specified in clause 5.2.3.2 of 3GPP TS 29.500 [4] shall be supported, and the optional HTTP custom header fields specified in clause 5.2.3.3 of 3GPP TS 29.500 [4] may be supported.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_5.2.3.2",
+        "ts_29.500_clause_5.2.3.3",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.309_6.1.3",
+      "section_id": "6.1.3",
+      "section_title": "Resources",
+      "content": "In this release of this specification, no resources are defined for the Nbsp_GBA service.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.309_6.1.3.1",
+      "section_id": "6.1.3.1",
+      "section_title": "Overview",
+      "content": "The structure of the Resource URIs of the Nbsp_GBA service is shown in figure 6.1.3.1-1.\nFigure 6.1.3.1-1: Resource URI structure of the Nbsp_GBA API",
+      "chunk_type": "definition",
+      "cross_references": [
+        "figure_6.1.3.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.309_6.1.4.1",
+      "section_id": "6.1.4.1",
+      "section_title": "Overview",
+      "content": "Table 6.1.4.1-1: Custom operations without associated resources\nOperation Name\nCustom operation URI\nMapped HTTP method\nDescription\nBootstrapping Info Retrieval\n/bootstrapping-info-retrieval\nPOST\nPush Info Retrieval\n/push-info-retrieval\nPOST",
+      "chunk_type": "definition",
+      "cross_references": [
+        "table_6.1.4.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.309_6.1.4.2.2",
+      "section_id": "6.1.4.2.2",
+      "section_title": "Operation Definition",
+      "content": "This operation shall support the response data structures and response codes specified in tables 6.1.4.2.2-1 and 6.1.4.2.2-2.\nTable 6.1.4.2.2-1: Data structures supported by the POST Request Body\nData type\nP\nCardinality\nDescription\nBootstrappingInfoRequest\nM\n1\nRequest body of the Bootstrapping Info Request\nTable 6.1.4.2.2-2: Data structures supported by the POST Response Body\nData type\nP\nCardinality\nResponse\ncodes\nDescription\nBootstrappingInfoResponse\nM\n1\n200 OK\nA response body containing the BootstrappingInfoResponse shall be returned.\nRedirectResponse\nO\n0..1\n307 Temporary Redirect\nTemporary redirection.\n(NOTE 2)\nRedirectResponse\nO\n0..1\n308 Permanent Redirect\nPermanent redirection.\n(NOTE 2)\nProblemDetails\nO\n0..1\n403 Forbidden\nThe NAF is not authorized to request Bootstrapping Information from the GBA BSF.\nNOTE 1:\tThe mandatory HTTP error status code for the POST method listed in Table 5.2.7.1-1 of 3GPP TS 29.500 [4] also apply.\nNOTE 2:\tRedirectResponse may be inserted by an SCP, see clause 6.10.9.1 of 3GPP TS 29.500 [4].\nTable 6.1.4.2.2-3: Headers supported by the 307 Response Code\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located on an alternative service instance within the same GBA BSF (service) set. For the case when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target NF (service) instance ID towards which the request is redirected.\nTable 6.1.4.2.2-4: Headers supported by the 308 Response Code\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located on an alternative service instance within the same GBA BSF (service) set. For the case when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target NF (service) instance ID towards which the request is redirected.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.500_clause_6.10.9.1",
+        "table_6.1.4.2.2-1",
+        "table_6.1.4.2.2-2",
+        "ts_29.500_table_5.2.7.1-1",
+        "ts_29.500_table_6.1.4.2.2-3",
+        "table_6.1.4.2.2-4",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.309_6.1.4.3.2",
+      "section_id": "6.1.4.3.2",
+      "section_title": "Operation Definition",
+      "content": "This operation shall support the response data structures and response codes specified in tables 6.1.4.3.2-1 and 6.1.4.3.2-2.\nTable 6.1.4.3.2-1: Data structures supported by the POST Request Body\nData type\nP\nCardinality\nDescription\nPushInfoRequest\nM\n1\nRequest body of the Push Info Request\nTable 6.1.4.3.2-2: Data structures supported by the POST Response Body\nData type\nP\nCardinality\nResponse\ncodes\nDescription\nPushInfoResponse\nM\n1\n200 OK\nA response body containing the PushInfoResponse shall be returned.\nRedirectResponse\nO\n0..1\n307 Temporary Redirect\nTemporary redirection.\n(NOTE 2)\nRedirectResponse\nO\n0..1\n308 Permanent Redirect\nPermanent redirection.\n(NOTE 2)\nProblemDetails\nO\n0..1\n403 Forbidden\nThe Push-NAF is not authorized to request GBA Push Information (GPI) from the GBA BSF.\nNOTE 1:\tThe mandatory HTTP error status code for the POST method listed in Table 5.2.7.1-1 of 3GPP TS 29.500 [4] also apply.\nNOTE 2:\tRedirectResponse may be inserted by an SCP, see clause 6.10.9.1 of 3GPP TS 29.500 [4].\nTable 6.1.4.3.2-3: Headers supported by the 307 Response Code\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located on an alternative service instance within the same GBA BSF (service) set. For the case when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target NF (service) instance ID towards which the request is redirected.\nTable 6.1.4.3.2-4: Headers supported by the 308 Response Code\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located on an alternative service instance within the same GBA BSF (service) set. For the case when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target NF (service) instance ID towards which the request is redirected.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.500_clause_6.10.9.1",
+        "table_6.1.4.3.2-1",
+        "table_6.1.4.3.2-2",
+        "ts_29.500_table_5.2.7.1-1",
+        "ts_29.500_table_6.1.4.3.2-3",
+        "table_6.1.4.3.2-4",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.309_6.1.5",
+      "section_id": "6.1.5",
+      "section_title": "Notifications",
+      "content": "In this release of this specification, no notifications are defined for the Nbsp_GBA service.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.309_6.1.6.1",
+      "section_id": "6.1.6.1",
+      "section_title": "General",
+      "content": "This clause specifies the application data model supported by the API.\nTable 6.1.6.1-1 specifies the data types defined for the Nbsp_GBA service-based interface protocol.\nTable 6.1.6.1-1: Nbsp_GBA specific Data Types\nData type\nClause defined\nDescription\nBootstrappingInfoRequest\n6.1.6.2.2\nRequest body of the HTTP POST operation for resource \"/bootstrapping-info-request\".\nBootstrappingInfoResponse\n6.1.6.2.3\nResponse body of the HTTP POST operation for resource \"/bootstrapping-info-request\".\nPushInfoRequest\n6.1.6.2.4\nRequest body of the HTTP POST operation for resource \"/push-info-request\".\nPushInfoResponse\n6.1.6.2.5\nResponse body of the HTTP POST operation for resource \"/push-info-request\".\nNafId\n6.1.6.2.6\nNAF ID, containing the NAF FQDN and the Ua Security Protocol Identifier.\nUssListItem\n6.1.6.2.7\nData item in a User Security Settings array list.\nUss\n6.1.6.2.8\nUser Security Settings for a given GAA Service.\nUeIdsItem\n6.1.6.2.9\nData item in a UE ID array list.\nFlagsItem\n6.1.6.2.10\nData item in a Flags array list.\nGsId\n6.1.6.3.2\nGAA Service Identifier.\nGsType\n6.1.6.3.2\nGAA Service Type.\nBtId\n6.1.6.3.2\nBootstrapping Transaction Identifier.\nMeKeyMaterial\n6.1.6.3.2\nME Key Material (hex-encoded string).\nUiccKeyMaterial\n6.1.6.3.2\nUICC key material (hex-encoded string).\nUeId\n6.1.6.3.2\nPublic Identity of the UE.\nImpi\n6.1.6.3.2\nIMS Private Identity of the UE\nFlag\n6.1.6.3.2\nGAA authorization flags, as defined in 3GPP TS 29.109 [17], Annex C.\nGbaPushInfo\n6.1.6.3.2\nGBA Push Info (hex-encoded string).\nNafGroup\n6.1.6.3.2\nNAF Group (string).\nPtId\n6.1.6.3.2\nP-TID.\nUiccAppLabel\n6.1.6.3.2\nUICC Application Label (string).\nAuts\n6.1.6.3.2\nAUTS in UMTS AKA.\nRand\n6.1.6.3.2\nRAND in UMTS AKA.\nKeyChoice\n6.1.6.3.3\nType of key (ME-based or UICC-based) that the NAF shall use.\nUiccOrMe\n6.1.6.3.4\nIndicates whether GBA_ME or GBA_U is to be used for GBA push.\nSecFeature\n6.1.6.3.5\nSecurity features supported by the BSF or the NAF.\nGbaType\n6.1.6.3.6\nAuthentication type used by the UE for GBA.\nUeIdType\n6.1.6.3.7\nType of UE Identity (public or private).\nTable 6.1.6.1-2 specifies data types re-used by the Nbsp_GBA service-based interface protocol from other specifications, including a reference to their respective specifications and when needed, a short description of their use within the Nbsp_GBA service-based interface.\nTable 6.1.6.1-2: Nbsp_GBA re-used Data Types\nData type\nReference\nComments\nUint32\n3GPP TS 29.571 [18]\nUnsigned 32-bit integer.\nDateTime\n3GPP TS 29.571 [18]\nString with a \"date-time\" format, as defined by OpenAPI [6].\nProblemDetails\n3GPP TS 29.571 [18]\nResponse body of error response messages.\nRedirectResponse\n3GPP TS 29.571 [18]\nResponse body of a redirect response message.\nFqdn\n3GPP TS 29.571 [18]\nFully Qualified Domain Name",
+      "chunk_type": "definition",
+      "cross_references": [
+        "table_6.1.6.1-1",
+        "table_6.1.6.1-2",
+        "ts_29.109",
+        "ts_6.1",
+        "ts_29.571"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.309_6.1.6.2.1",
+      "section_id": "6.1.6.2.1",
+      "section_title": "Introduction",
+      "content": "This clause defines the structures to be used in resource representations.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.309_6.1.6.2.2",
+      "section_id": "6.1.6.2.2",
+      "section_title": "Type: BootstrappingInfoRequest",
+      "content": "Table 6.1.6.2.2-1: Definition of type BootstrappingInfoRequest\nAttribute name\nData type\nP\nCardinality\nDescription\nbtId\nBtId\nM\n1\nBootstrapping Transaction Identifier\nnafId\nNafId\nM\n1\nNAF Identifier\ngbaUAware\nboolean\nO\n0..1\nGBA-U Awareness Indicator.\ntrue: The sending node is GBA_U aware\nfalse (default) or absent: The sending node is not GBA_U aware.\ngsIds\narray(GsId)\nO\n1..N\nGBA Service Identifiers",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.1.6.2.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.309_6.1.6.2.3",
+      "section_id": "6.1.6.2.3",
+      "section_title": "Type: BootstrappingInfoResponse",
+      "content": "Table 6.1.6.2.3-1: Definition of type BootstrappingInfoResponse\nAttribute name\nData type\nP\nCardinality\nDescription\nmeKeyMaterial\nMeKeyMaterial\nM\n1\nME key material (Ks_NAF or Ks_Ext_NAF)\nuiccKeyMaterial\nUiccKeyMaterial\nO\n0..1\nUICC key material (Ks_Int_NAF)\nkeyExpiryTime\nDateTime\nO\n0..1\nKey expiry time\nbootstrappingInfoCreationTime\nDateTime\nO\n0..1\nBootstrapping Info Creation Time\nussList\narray(UssListItem)\nO\n1..N\nGBA User Security Settings per GBA Service Identifier\ngbaType\nGbaType\nO\n0..1\nAuthentication type that was used by the UE during the bootstrapping procedure.\nimpi\nImpi\nO\n0..1\nUE Private Identity",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.1.6.2.3-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.309_6.1.6.2.4",
+      "section_id": "6.1.6.2.4",
+      "section_title": "Type: PushInfoRequest",
+      "content": "Table 6.1.6.2.4-1: Definition of type PushInfoRequest\nAttribute name\nData type\nP\nCardinality\nDescription\nueId\nUeId\nM\n1\nUser Identity.\nueIdType\nUeIdType\nM\n1\nType of UE identity (public or private).\nuiccAppLabel\nUiccAppLabel\nM\n1\nUICC Application Label.\nnafId\nNafId\nM\n1\nNAF Identifier.\nptId\nPtId\nM\n1\nP-TID (NAF SA Identifier).\nuiccOrMe\nUiccOrMe\nM\n1\nIndicates whether GBA_ME or GBA_U is to be used for GBA push.\nrequestedLifeTime\nDateTime\nM\n1\nRequested key lifetime for the NAF keys.\nprivateIdRequest\nboolean\nO\n0..1\nIndicates to the BSF whether the UE private identity shall be returned to the NAF in the response message.\ntrue: the private identity is requested by the NAF, and it shall be returned by the BSF.\nfalse (default) or absent: the private identity is not requested by the NAF.\ngbaUAware\nboolean\nO\n0..1\nGBA-U Awareness Indicator.\ntrue: The sending node is GBA_U aware\nfalse (default) or absent: The sending node is not GBA_U aware.\ngsIds\narray(GsId)\nO\n1..N\nGBA Service Identifiers.\nauts\nAuts\nO\n0..1\nAUTS in UMTS AKA.\nrand\nRand\nO\n0..1\nRAND in UMTS AKA.\nsecurityFeaturesRequest\narray(SecFeature)\nO\n1..N\nSecurity Features supported by the NAF.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.1.6.2.4-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.309_6.1.6.2.5",
+      "section_id": "6.1.6.2.5",
+      "section_title": "Type: PushInfoResponse",
+      "content": "Table 6.1.6.2.5-1: Definition of type PushInfoResponse\nAttribute name\nData type\nP\nCardinality\nDescription\nmeKeyMaterial\nMeKeyMaterial\nM\n1\nME key material (Ks_NAF or Ks_Ext_NAF).\ngbaPushInfo\nGbaPushInfo\nM\n1\nGBA Push Info\nuiccKeyMaterial\nUiccKeyMaterial\nO\n0..1\nUICC key material (Ks_Int_NAF).\nkeyExpiryTime\nDateTime\nO\n0..1\nKey expiry time.\nbootstrappingInfoCreationTime\nDateTime\nO\n0..1\nBootstrapping Info Creation Time.\nussList\narray(UssListItem)\nO\n1..N\nGBA User Security Settings per GBA Service Identifier\ngbaType\nGbaType\nO\n0..1\nGBA Type.\nimpi\nImpi\nO\n0..1\nUE Private Identity.\nsecurityFeaturesResponse\narray(SecFeature)\nO\n0..N\nIf the BSF does not support the usage of securityFeatures or the NAF did not include any securityFeaturesRequest attribute in the PushInfoRequest message, this IE shall be absent.\nIf securityFeatures element is not defined in the GUSS of the UE, or there is no common securityFeature between NAF and BSF, the BSF shall include an empty array in the securityFeaturesResponse attribute.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.1.6.2.5-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.309_6.1.6.2.6",
+      "section_id": "6.1.6.2.6",
+      "section_title": "Type: NafId",
+      "content": "Table 6.1.6.2.6-1: Definition of type NafId\nAttribute name\nData type\nP\nCardinality\nDescription\nnafFqdn\nFqdn\nM\n1\nFQDN of the NAF.\nuaSecProtId\nstring\nM\n1\nUa Security Protocol Identifier.\nIt shall contain 5 octets, as described in 3GPP TS 33.220 [14], encoded as a sequence of 10 hexadecimal characters.\npattern: \"^[A-Fa-f0-9]{10}$\"",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.1.6.2.6-1",
+        "ts_33.220"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.309_6.1.6.2.7",
+      "section_id": "6.1.6.2.7",
+      "section_title": "Type: UssListItem",
+      "content": "Table 6.1.6.2.7-1: Definition of type UssListItem\nAttribute name\nData type\nP\nCardinality\nDescription\nuss\nUss\nM\n1\nUser Security Settings.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.1.6.2.7-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.309_6.1.6.2.8",
+      "section_id": "6.1.6.2.8",
+      "section_title": "Type: Uss",
+      "content": "Table 6.1.6.2.8-1: Definition of type Uss\nAttribute name\nData type\nP\nCardinality\nDescription\ngsId\nGsId\nM\n1\nGAA Service ID.\ngsType\nGsType\nM\n1\nGAA Service Type.\nueIds\narray(UeIdsItem)\nM\n1..N\nList of UE Identities\nnafGroup\nNafGroup\nO\n0..1\nNAF Group.\nflags\narray(FlagsItem)\nO\n1..N\nList of security flags supported for the current GAA service.\nkeyChoice\nKeyChoice\nO\n0..1\nType of key that the NAF shall use.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.1.6.2.8-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.309_6.1.6.2.9",
+      "section_id": "6.1.6.2.9",
+      "section_title": "Type: UeIdsItem",
+      "content": "Table 6.1.6.2.9-1: Definition of type UeIdsItem\nAttribute name\nData type\nP\nCardinality\nDescription\nueId\nUeId\nM\n1\nIdentity of the UE",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.1.6.2.9-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.309_6.1.6.2.10",
+      "section_id": "6.1.6.2.10",
+      "section_title": "Type: FlagsItem",
+      "content": "Table 6.1.6.2.10-1: Definition of type FlagsItem\nAttribute name\nData type\nP\nCardinality\nDescription\nflag\nFlag\nM\n1\nSecurity flag supported for the corresponding GAA Service.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.1.6.2.10-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.309_6.1.6.3.1",
+      "section_id": "6.1.6.3.1",
+      "section_title": "Introduction",
+      "content": "This clause defines simple data types and enumerations that can be referenced from data structures defined in the previous clauses.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.309_6.1.6.3.2",
+      "section_id": "6.1.6.3.2",
+      "section_title": "Simple data types",
+      "content": "The simple data types defined in table 6.1.6.3.2-1 shall be supported.\nTable 6.1.6.3.2-1: Simple data types\nType Name\nType Definition\nDescription\nGsId\nUint32\nGAA Service Identifier.\nFor 3GPP standardized values, see 3GPP TS 29.109 [17], Annex B.\nGsType\nUint32\nGAA Service Type.\nFor 3GPP standardized values, see 3GPP TS 29.109 [17], Annex B.\nBtId\nstring\nBootstrapping Transaction Identifier. It shall take the form of a NAI, where the realm part identifies the FQDN of the BSF. See 3GPP TS 33.220 [14].\nMeKeyMaterial\nstring\nME key material, containing a 256-bit key, encoded as a sequence of 64 hexadecimal characters.\npattern: \"^[A-Fa-f0-9]{64}$\"\nUiccKeyMaterial\nstring\nUICC key material, containing a 256-bit key, encoded as a sequence of 64 hexadecimal characters.\npattern: \"^[A-Fa-f0-9]{64}$\"\nUeId\nstring\nIdentity of the UE.\nImpi\nstring\nIMS Private Identity of the UE.\nFlag\nUint32\nGAA authorization flags, associated to the specific GAA Service Type, as defined in 3GPP TS 29.109 [17], Annex C.\nGbaPushInfo\nstring\nGBA Push Info binary data, as defined in 3GPP TS 33.223 [15], clause 5.3.5, encoded as a sequence of hexadecimal characters.\npattern: \"^([A-Fa-f0-9]{2})+$\"\nNafGroup\nstring\nNAF Group.\nPtId\nstring\nP-TID.\nUiccAppLabel\nstring\nUICC Application Label.\nAuts\nstring\nAUTS in UMTS AKA, containing a 112-bit value, encoded as a sequence of 28 hexadecimal characters.\npattern: \"^[A-Fa-f0-9]{28}$\"\nRand\nstring\nRAND in UMTS AKA, containing a 128-bit value, encoded as a sequence of 32 hexadecimal characters.\npattern: \"^[A-Fa-f0-9]{32}$\"",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_33.223_clause_5.3.5",
+        "table_6.1.6.3.2-1",
+        "ts_29.109",
+        "ts_33.220",
+        "ts_33.223"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.309_6.1.6.3.3",
+      "section_id": "6.1.6.3.3",
+      "section_title": "Enumeration: KeyChoice",
+      "content": "The enumeration KeyChoice represents the type of key that the NAF shall use. It shall comply with the provisions defined in table 6.1.6.3.3-1.\nTable 6.1.6.3.3-1: Enumeration KeyChoice\nEnumeration value\nDescription\n\"ME_BASED_KEY\"\nKs_ NAF or Ks_ext_NAF shall be used by the NAF.\n\"UICC_BASED_KEY\"\nKs_int_NAF shall be used by the NAF.\n\"ME_UICC_BASED_KEYS\"\nKs_ext_NAF or Ks_int_NAF can be used by the NAF.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.1.6.3.3-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.309_6.1.6.3.4",
+      "section_id": "6.1.6.3.4",
+      "section_title": "Enumeration: UiccOrMe",
+      "content": "The enumeration UiccOrMe represents whether GBA_ME or GBA_U is to be used for GBA push. It shall comply with the provisions defined in table 6.1.6.3.4-1.\nTable 6.1.6.3.4-1: Enumeration UiccOrMe\nEnumeration value\nDescription\n\"GBA_ME\"\nGBA_ME shall be used.\n\"GBA_U\"\nGBA_U shall be used.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.1.6.3.4-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.309_6.1.6.3.5",
+      "section_id": "6.1.6.3.5",
+      "section_title": "Enumeration: SecFeature",
+      "content": "The enumeration SecFeature represents security features supported by the BSF or the NAF. It shall comply with the provisions defined in table 6.1.6.3.5-1.\nTable 6.1.6.3.5-1: Enumeration SecFeature\nEnumeration value\nDescription\n\"GPL_U\"\nThe UICC supports Generic Push Layer, as specified in 3GPP TS 33.224 [16].",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.1.6.3.5-1",
+        "ts_33.224"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.309_6.1.6.3.6",
+      "section_id": "6.1.6.3.6",
+      "section_title": "Enumeration: GbaType",
+      "content": "The enumeration GbaType represents the authentication type that was used during bootstrapping procedure. It shall comply with the provisions defined in table 6.1.6.3.6-1.\nTable 6.1.6.3.6-1: Enumeration GbaType\nEnumeration value\nDescription\n\"3G_GBA\"\nThe 3G GBA has been performed as defined in 3GPP TS 33.220 [14].\n\"2G_GBA\"\nThe 2G GBA has been performed as defined in 3GPP TS 33.220 [14], Annex I.\n\"GBA_DIGEST\"\nThe GBA Digest has been performed as defined in 3GPP TS 33.220 [14], Annex M.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.1.6.3.6-1",
+        "ts_33.220"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.309_6.1.6.3.7",
+      "section_id": "6.1.6.3.7",
+      "section_title": "Enumeration: UeIdType",
+      "content": "The enumeration UeIdType represents the type of the identity of the user. It shall comply with the provisions defined in table 6.1.6.3.7-1.\nTable 6.1.6.3.7-1: Enumeration UeIdType\nEnumeration value\nDescription\n\"PUBLIC\"\nPublic user identity.\n\"PRIVATE\"\nPrivate user identity.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.1.6.3.7-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.309_6.1.7.1",
+      "section_id": "6.1.7.1",
+      "section_title": "General",
+      "content": "For the Nbsp_GBA API, HTTP error responses shall be supported as specified in clause 4.8 of 3GPP TS 29.501 [5]. Protocol errors and application errors specified in table 5.2.7.2-1 of 3GPP TS 29.500 [4] shall be supported for an HTTP method if the corresponding HTTP status codes are specified as mandatory for that HTTP method in table 5.2.7.1-1 of 3GPP TS 29.500 [4].\nIn addition, the requirements in the following clauses are applicable for the Nbsp_GBA API.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.501_clause_4.8",
+        "ts_29.500_table_5.2.7.2-1",
+        "ts_29.500_table_5.2.7.1-1",
+        "ts_29.501",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.309_6.1.7.2",
+      "section_id": "6.1.7.2",
+      "section_title": "Protocol Errors",
+      "content": "No specific procedures for the Nbsp_GBA service are specified.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.309_6.1.7.3",
+      "section_id": "6.1.7.3",
+      "section_title": "Application Errors",
+      "content": "The application errors defined for the Nbsp_GBA service are listed in Table 6.1.7.3-1.\nTable 6.1.7.3-1: Application errors\nApplication Error\nHTTP status code\nDescription",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.1.7.3-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.309_6.1.8",
+      "section_id": "6.1.8",
+      "section_title": "Feature negotiation",
+      "content": "The optional features in table 6.1.8-1 are defined for the Nbsp_GBA API. They shall be negotiated using the extensibility mechanism defined in clause 6.6 of 3GPP TS 29.500 [4].\nTable 6.1.8-1: Supported Features\nFeature number\nFeature Name\nDescription",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_6.6",
+        "table_6.1.8-1",
+        "ts_29.500_table_6.1.8-1",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.309_6.1.9",
+      "section_id": "6.1.9",
+      "section_title": "Security",
+      "content": "As indicated in 3GPP TS 33.501 [8] and 3GPP TS 29.500 [4], the access to the Nbsp_GBA API may be authorized by means of the OAuth2 protocol (see IETF RFC 6749 [9]), based on local configuration, using the \"Client Credentials\" authorization grant, where the NRF (see 3GPP TS 29.510 [10]) plays the role of the authorization server.\nIf OAuth2 is used, an NF Service Consumer, prior to consuming services offered by the Nbsp_GBA API, shall obtain a \"token\" from the authorization server, by invoking the Access Token Request service, as described in 3GPP TS 29.510 [10], clause 5.4.2.2.\nNOTE:\tWhen multiple NRFs are deployed in a network, the NRF used as authorization server is the same NRF that the NF Service Consumer used for discovering the Nbsp_GBA service.\nThe Nbsp_GBA API defines the following scopes for OAuth2 authorization:\nTable 6.1.9-1: Oauth2 scopes defined in Nbsp_GBA API\nScope\nDescription\n\"nbsp-gba\"\nAccess to the Nbsp_GBA API\n\"nbsp-gba:bootstrapping-info-retrieval:invoke\"\nAccess to invoke the Bootstrapping Info Retrieval custom operation\n\"nbsp-gba:push-info-retrieval:invoke\"\nAccess to invoke the Push Info Retrieval custom operation\nAnnex A (normative):OpenAPI specification\nA.1\tGeneral\nThis Annex specifies the formal definition of the API(s) defined in the present specification. It consists of OpenAPI 3.0.0 specifications in YAML format.\nThis Annex takes precedence when being discrepant to other parts of the specification with respect to the encoding of information elements and methods within the API(s).\nNOTE 1:\tThe semantics and procedures, as well as conditions, e.g. for the applicability and allowed combinations of attributes or values, not expressed in the OpenAPI definitions but defined in other parts of the specification also apply.\nInformative copies of the OpenAPI specification files contained in this 3GPP Technical Specification are available on a Git-based repository that uses the GitLab software version control system (see 3GPP TS 29.501 [5] clause 5.3.1 and 3GPP TR 21.900 [7] clause 5B).\nA.2\tNbsp_GBA API\nopenapi: 3.0.0\ninfo:\nversion: '1.1.0'\ntitle: 'GBA BSF Nbsp_GBA Service'\ndescription: |\nGBA BSF Nbsp_GBA Service.\n© 2024, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).\nAll rights reserved.\nexternalDocs:\ndescription: >\n3GPP TS 29.309 V18.2.0; 5G System; Bootstrapping Server Function (GBA BSF) Services; Stage 3\nurl: 'https://www.3gpp.org/ftp/Specs/archive/29_series/29.309/'\nservers:\n- url: '{apiRoot}/nbsp-gba/v1'\nvariables:\napiRoot:\ndefault: https://example.com\ndescription: apiRoot as defined in clause 4.4 of 3GPP TS 29.501\nsecurity:\n- {}\n- oAuth2ClientCredentials:\n- nbsp-gba\npaths:\n/bootstrapping-info-retrieval:\npost:\nsummary: Retrieve Bootstrapping Info from GBA BSF from NAF\noperationId: BootstrappingInfoRetrieval\ntags:\n- Bootstrapping Info Retrieval (Custom Operation)\nsecurity:\n- {}\n- oAuth2ClientCredentials:\n- nbsp-gba\n- oAuth2ClientCredentials:\n- nbsp-gba\n- nbsp-gba:bootstrapping-info-retrieval:invoke\nrequestBody:\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/BootstrappingInfoRequest'\nrequired: true\nresponses:\n'200':\ndescription: Expected response to a valid request\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/BootstrappingInfoResponse'\n'307':\n$ref: 'TS29571_CommonData.yaml#/components/responses/307'\n'308':\n$ref: 'TS29571_CommonData.yaml#/components/responses/308'\n'400':\n$ref: 'TS29571_CommonData.yaml#/components/responses/400'\n'401':\n$ref: 'TS29571_CommonData.yaml#/components/responses/401'\n'403':\n$ref: 'TS29571_CommonData.yaml#/components/responses/403'\n'404':\n$ref: 'TS29571_CommonData.yaml#/components/responses/404'\n'411':\n$ref: 'TS29571_CommonData.yaml#/components/responses/411'\n'413':\n$ref: 'TS29571_CommonData.yaml#/components/responses/413'\n'415':\n$ref: 'TS29571_CommonData.yaml#/components/responses/415'\n'429':\n$ref: 'TS29571_CommonData.yaml#/components/responses/429'\n'500':\n$ref: 'TS29571_CommonData.yaml#/components/responses/500'\n'501':\n$ref: 'TS29571_CommonData.yaml#/components/responses/501'\n'503':\n$ref: 'TS29571_CommonData.yaml#/components/responses/503'\ndefault:\n$ref: 'TS29571_CommonData.yaml#/components/responses/default'\n/push-info-retrieval:\npost:\nsummary: Retrieve Push Info from GBA BSF from Push-NAF\noperationId: PushInfoRetrieval\ntags:\n- Push Info Retrieval (Custom Operation)\nsecurity:\n- {}\n- oAuth2ClientCredentials:\n- nbsp-gba\n- oAuth2ClientCredentials:\n- nbsp-gba\n- nbsp-gba:push-info-retrieval:invoke\nrequestBody:\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/PushInfoRequest'\nrequired: true\nresponses:\n'200':\ndescription: Expected response to a valid request\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/PushInfoResponse'\n'307':\n$ref: 'TS29571_CommonData.yaml#/components/responses/307'\n'308':\n$ref: 'TS29571_CommonData.yaml#/components/responses/308'\n'400':\n$ref: 'TS29571_CommonData.yaml#/components/responses/400'\n'401':\n$ref: 'TS29571_CommonData.yaml#/components/responses/401'\n'403':\n$ref: 'TS29571_CommonData.yaml#/components/responses/403'\n'404':\n$ref: 'TS29571_CommonData.yaml#/components/responses/404'\n'411':\n$ref: 'TS29571_CommonData.yaml#/components/responses/411'\n'413':\n$ref: 'TS29571_CommonData.yaml#/components/responses/413'\n'415':\n$ref: 'TS29571_CommonData.yaml#/components/responses/415'\n'429':\n$ref: 'TS29571_CommonData.yaml#/components/responses/429'\n'500':\n$ref: 'TS29571_CommonData.yaml#/components/responses/500'\n'501':\n$ref: 'TS29571_CommonData.yaml#/components/responses/501'\n'503':\n$ref: 'TS29571_CommonData.yaml#/components/responses/503'\ndefault:\n$ref: 'TS29571_CommonData.yaml#/components/responses/default'\ncomponents:\nsecuritySchemes:\noAuth2ClientCredentials:\ntype: oauth2\nflows:\nclientCredentials:\ntokenUrl: '{nrfApiRoot}/oauth2/token'\nscopes:\nnbsp-gba: Access to the Nbsp_GBA API\nnbsp-gba:bootstrapping-info-retrieval:invoke: >-\nAccess to invoke the Bootstrapping Info Retrieval custom operation\nnbsp-gba:push-info-retrieval:invoke: >-\nAccess to invoke the Push Info Retrieval custom operation\nschemas:\n#\n# STRUCTURED TYPES\n#\nBootstrappingInfoRequest:\ndescription: >\nRequest body of the HTTP POST operation for resource /bootstrapping-info-request\ntype: object\nrequired:\n- btId\n- nafId\nproperties:\nbtId:\n$ref: '#/components/schemas/BtId'\nnafId:\n$ref: '#/components/schemas/NafId'\ngbaUAware:\ntype: boolean\ndefault: false\ngsIds:\ntype: array\nitems:\n$ref: '#/components/schemas/GsId'\nminItems: 1\nBootstrappingInfoResponse:\ndescription: >\nResponse body of the HTTP POST operation for resource /bootstrapping-info-request\ntype: object\nrequired:\n- meKeyMaterial\nproperties:\nmeKeyMaterial:\n$ref: '#/components/schemas/MeKeyMaterial'\nuiccKeyMaterial:\n$ref: '#/components/schemas/UiccKeyMaterial'\nkeyExpiryTime:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/DateTime'\nbootstrappingInfoCreationTime:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/DateTime'\nussList:\ntype: array\nitems:\n$ref: '#/components/schemas/UssListItem'\nminItems: 1\ngbaType:\n$ref: '#/components/schemas/GbaType'\nimpi:\n$ref: '#/components/schemas/Impi'\nPushInfoRequest:\ndescription: Request body of the HTTP POST operation for resource /push-info-request\ntype: object\nrequired:\n- ueId\n- ueIdType\n- uiccAppLabel\n- nafId\n- ptId\n- uiccOrMe\n- requestedLifeTime\nproperties:\nueId:\n$ref: '#/components/schemas/UeId'\nueIdType:\n$ref: '#/components/schemas/UeIdType'\nuiccAppLabel:\n$ref: '#/components/schemas/UiccAppLabel'\nnafId:\n$ref: '#/components/schemas/NafId'\nptId:\n$ref: '#/components/schemas/PtId'\nuiccOrMe:\n$ref: '#/components/schemas/UiccOrMe'\nrequestedLifeTime:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/DateTime'\nprivateIdRequest:\ntype: boolean\ndefault: false\ngbaUAware:\ntype: boolean\ndefault: false\ngsIds:\ntype: array\nitems:\n$ref: '#/components/schemas/GsId'\nminItems: 1\nauts:\n$ref: '#/components/schemas/Auts'\nrand:\n$ref: '#/components/schemas/Rand'\nsecurityFeaturesRequest:\ntype: array\nitems:\n$ref: '#/components/schemas/SecFeature'\nminItems: 1\nPushInfoResponse:\ndescription: Response body of the HTTP POST operation for resource /push-info-request\ntype: object\nrequired:\n- meKeyMaterial\n- gbaPushInfo\nproperties:\nmeKeyMaterial:\n$ref: '#/components/schemas/MeKeyMaterial'\ngbaPushInfo:\n$ref: '#/components/schemas/GbaPushInfo'\nuiccKeyMaterial:\n$ref: '#/components/schemas/UiccKeyMaterial'\nkeyExpiryTime:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/DateTime'\nbootstrappingInfoCreationTime:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/DateTime'\nussList:\ntype: array\nitems:\n$ref: '#/components/schemas/UssListItem'\nminItems: 1\ngbaType:\n$ref: '#/components/schemas/GbaType'\nimpi:\n$ref: '#/components/schemas/Impi'\nsecurityFeaturesResponse:\ntype: array\nitems:\n$ref: '#/components/schemas/SecFeature'\nNafId:\ndescription: NAF ID, containing the NAF FQDN and the Ua Security Protocol Identifier\ntype: object\nrequired:\n- nafFqdn\n- uaSecProtId\nproperties:\nnafFqdn:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Fqdn'\nuaSecProtId:\ntype: string\npattern: '^[A-Fa-f0-9]{10}$'\nUssListItem:\ndescription: Data item in a User Security Settings array list\ntype: object\nrequired:\n- uss\nproperties:\nuss:\n$ref: '#/components/schemas/Uss'\nUss:\ndescription: User Security Settings for a given GAA Service\ntype: object\nrequired:\n- gsId\n- gsType\n- ueIds\nproperties:\ngsId:\n$ref: '#/components/schemas/GsId'\ngsType:\n$ref: '#/components/schemas/GsType'\nueIds:\ntype: array\nitems:\n$ref: '#/components/schemas/UeIdsItem'\nminItems: 1\nnafGroup:\n$ref: '#/components/schemas/NafGroup'\nflags:\ntype: array\nitems:\n$ref: '#/components/schemas/FlagsItem'\nminItems: 1\nkeyChoice:\n$ref: '#/components/schemas/KeyChoice'\nUeIdsItem:\ndescription: Data item in a UE ID array list\ntype: object\nrequired:\n- ueId\nproperties:\nueId:\n$ref: '#/components/schemas/UeId'\nFlagsItem:\ndescription: Data item in a Flags array list\ntype: object\nrequired:\n- flag\nproperties:\nflag:\n$ref: '#/components/schemas/Flag'\n#\n# SIMPLE TYPES\n#\nGsId:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Uint32'\nGsType:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Uint32'\nBtId:\ndescription: Bootstrapping Transaction Identifier\ntype: string\nMeKeyMaterial:\ndescription: ME Key Material (hex-encoded string)\ntype: string\npattern: '^[A-Fa-f0-9]{64}$'\nUiccKeyMaterial:\ndescription: UICC key material (hex-encoded string)\ntype: string\npattern: '^[A-Fa-f0-9]{64}$'\nUeId:\ndescription: Public Identity of the UE\ntype: string\nImpi:\ndescription: IMS Private Identity of the UE\ntype: string\nFlag:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Uint32'\nGbaPushInfo:\ndescription: GBA Push Info (hex-encoded string)\ntype: string\npattern: '^([A-Fa-f0-9]{2})+$'\nNafGroup:\ndescription: Character string representing a NAF Group\ntype: string\nPtId:\ndescription: Character string representing a P-TID\ntype: string\nUiccAppLabel:\ndescription: Character string representing an UICC Application Label\ntype: string\nAuts:\ndescription: AUTS value in UMTS AKA\ntype: string\npattern: '^[A-Fa-f0-9]{28}$'\nRand:\ndescription: RAND in UMTS AKA\ntype: string\npattern: '^[A-Fa-f0-9]{32}$'\n#\n# ENUMS\n#\nKeyChoice:\ndescription: Type of key (ME-based or UICC-based) that the NAF shall use\nanyOf:\n- type: string\nenum:\n- ME_BASED_KEY\n- UICC_BASED_KEY\n- ME_UICC_BASED_KEYS\n- type: string\nUiccOrMe:\ndescription: Indicates whether GBA_ME or GBA_U is to be used for GBA push\nanyOf:\n- type: string\nenum:\n- GBA_ME\n- GBA_U\n- type: string\nSecFeature:\ndescription: Security features supported by the BSF or the NAF\nanyOf:\n- type: string\nenum:\n- GPL_U\n- type: string\nGbaType:\ndescription: Authentication type used by the UE for GBA\nanyOf:\n- type: string\nenum:\n- 3G_GBA\n- 2G_GBA\n- GBA_DIGEST\n- type: string\nUeIdType:\ndescription: Type of UE Identity (public or private)\nanyOf:\n- type: string\nenum:\n- PUBLIC\n- PRIVATE\n- type: string\nAnnex B (informative):Change history\nChange history\nDate\nMeeting\nTDoc\nCR\nRev\nCat\nSubject/Comment\nNew version\n2021-02\nCT4#102\nC4-211396\nTS template agreed\n0.0.0\n2021-04\nCT4#103\nC4-212594\nIncorporation of agreed pCRs from CT4#103: C4-212527, C4-212528, C4-212529\n0.1.0\n2021-05\nCT4#104\nC4-213524\nIncorporation of agreed pCRs from CT4#104: C4-213293, C4-213316\n0.2.0\n2021-09\nCT4#105\nC4-214751\nIncorporation of agreed pCRs from CT4#105: C4-214340, C4-214341\n0.3.0\n2021-10\nCT4#106\nC4-215515\nIncorporation of agreed pCRs from CT4#106: C4-215330\n0.4.0\n2021-12\nCT#94\nCP-213154\nV1.0.0. presented for information\n1.0.0\n2022-03\nCT4#108\nC4-221637\nIncorporation of agreed pCRs from CT4#108: C4-221174, C4-221355\n1.1.0\n2022-03\nCT#95\nCP-220101\nTS presented for information\n2.0.0\n2022-03\nCT#95\nTS approved\n17.0.0\n2022-06\nCT#96\nCP-221032\n0001\n-\nF\nFqdn Data Type Definition\n17.1.0\n2022-06\nCT#96\nCP-221051\n0002\n-\nF\n29.309 Rel-17 API version and External doc update\n17.1.0\n2023-09\nCT#101\nCP-232033\n0005\n-\nB\nOAuth2 scopes in the Nbsp_GBA API\n18.0.0\n2023-09\nCT#101\nCP-232060\n0006\n-\nF\n29.309 Rel-18 API version and External doc update\n18.0.0\n2023-12\nCT#102\nCP-233028\n0007\n1\nF\nDefault values of privateIdRequest and gbaUAware\n18.1.0\n2023-12\nCT#102\nCP-233027\n0008\n-\nF\nLocation header description\n18.1.0\n2023-12\nCT#102\nCP-233028\n0009\n1\nB\nHTTP RFCs obsoleted by IETF RFC 9110, 9111 and 9113\n18.1.0\n2023-12\nCT#102\nCP-233029\n0010\n2\nF\nProblemDetails RFC 7807 obsoleted by 9457\n18.1.0\n2023-12\nCT#102\nCP-233030\n0011\n-\nF\nEditorial and Style Corrections\n18.1.0\n2023-12\nCT#102\nCP-233060\n0012\n-\nF\n29.309 Rel-18 API version and External doc update\n18.1.0\n2024-06\nCT#104\nCP-241052\n0013\n-\nF\n29.309 Rel18 API version and External doc update\n18.2.0",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.510_clause_5.4.2.2",
+        "ts_29.501_clause_5.3.1",
+        "ts_29.501_clause_5",
+        "ts_29.501_clause_4.4",
+        "table_6.1.9-1",
+        "ts_33.501",
+        "ts_29.500",
+        "ts_29.510",
+        "ts_29.501",
+        "ts_21.900",
+        "ts_29.309"
+      ]
+    }
+  ]
+}

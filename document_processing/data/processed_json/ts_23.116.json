@@ -1,0 +1,394 @@
+{
+  "metadata": {
+    "specification_id": "ts_23.116",
+    "version": "18.0.0",
+    "title": "3GPP TS 23.116",
+    "file_path": "/content/drive/MyDrive/RAG_thesis/data/23_series/23116-i00/23116-i00.docx"
+  },
+  "export_info": {
+    "export_date": "2025-07-26T09:38:50.193710",
+    "total_chunks": 37
+  },
+  "chunks": [
+    {
+      "chunk_id": "ts_23.116_1",
+      "section_id": "1",
+      "section_title": "Scope",
+      "content": "The present document specifies the stage 2 description of the Super-Charger that provides a mechanism to reduce the signalling traffic associated with mobility.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.116_2",
+      "section_id": "2",
+      "section_title": "References",
+      "content": "The following documents contain provisions which, through reference in this text, constitute provisions of the present document.\n-\tReferences are either specific (identified by date of publication, edition number, version number, etc.) or non‑specific.\n-\tFor a specific reference, subsequent revisions do not apply.\n-\tFor a non-specific reference, the latest version applies.  In the case of a reference to a 3GPP document (including a GSM document), a non-specific reference implicitly refers to the latest version of that document in the same Release as the present document.\n[1]\t3GPP TS 21.905: \"3G Vocabulary\".\n[2]\t3GPP TR 23.912: \"Technical Report on Super-Charger\".\n[3]\t3GPP TS 23.007: \"Restoration Procedures\".\n[4]\t3GPP TS 23.008: \"Organisation of Subscriber Data\".\n[5]\t3GPP TS 23.012: \"Location Management Procedures\".\n[6]\t3GPP TS 23.016: \"Subscriber Data Management: Stage 2\".\n[7]\t3GPP TS 23.040: \"Technical Realisation of the Short Message Service (SMS); Point-To-Point (PP)\".\n[8]\t3GPP TS 23.060: \"General Packet Radio Service; Stage 2\".\n[9]\t3GPP TS 29.002: \"Mobile Application Part (MAP)\".\n[10]\t3GPP TS 23.018: \"Basic call handling; Technical realization\".",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905",
+        "ts_23.912",
+        "ts_23.007",
+        "ts_23.008",
+        "ts_23.012",
+        "ts_23.016",
+        "ts_23.040",
+        "ts_23.060",
+        "ts_29.002",
+        "ts_23.018"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.116_3.1",
+      "section_id": "3.1",
+      "section_title": "Definitions",
+      "content": "For the purposes of the present document the following terms and definitions apply.\nProcedure Calls to stage 2.\nSuper-Charged Network:\tUMTS network in which the Super-Charger mechanism is being used to optimise mobility management signalling\nNetwork Entity:\teither an MSC/VLR, SGSN or UMSC\nServing Network Entity:\tnetwork entity to which the mobile station is attached\nPrevious Network Entity:\tnetwork entity to which the mobile station was attached prior to the serving network entity",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.116_3.2",
+      "section_id": "3.2",
+      "section_title": "Abbreviations",
+      "content": "Abbreviations used in the present document are listed in GSM 01.04.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.116_4",
+      "section_id": "4",
+      "section_title": "Information flows",
+      "content": "In a Super-Charged network subscription data is retained by the previous network entity when the subscriber roams to a new network entity.\nWhen a subscriber performs location updating in a Super-Charged network the HLR shall only cancel the subscription information at the previous network entity if it does not support the Super-Charger functionality except in the conditions described in clause 5.2.3.0. If the network entity to which the subscriber has roamed has retained subscription data from a previous visit then the HLR shall only send subscription data to the network entity if the retained subscription data is not consistent with the data stored by the HLR. If the HLR does not send subscription data to the serving network entity it shall treat the retained subscription data as valid.",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "clause_5.2.3.0"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.116_4.1.1",
+      "section_id": "4.1.1",
+      "section_title": "CS-domain Location Updating in a serving network entity that does not have subscription data",
+      "content": "When a Super-Charged network entity receives a request to perform a location update for a subscriber for whom there is no record, the network entity shall initiate the location updating procedures as described in 3GPP TS 23.012.\nThe Super-Charged HLR shall determine whether the previous network entity supports the Super-Charger functionality:\n-\tif the previous network entity does not support the Super-Charger functionality then the HLR shall respond to the location updating request as described in 3GPP TS 23.012;\n-\tif the previous network entity supports the Super-Charger functionality then the HLR shall respond to the location updating request as described in 3GPP TS 23.012 but shall not cancel the location information at the previous network entity except in the conditions described in clause 5.2.3.0.\nFigure 1: Information flow for an inter-node location update in a Super-Charged network for the case when the serving network entity does not have subscription data for the requesting mobile station\nNote 1:\tIf the previous network entity supports the Super-Charger features the HLR shall not cancel the location information at the previous network entity unless the Inform Previous Network Entity is included in the Update Location message, except in the conditions described in clause 5.2.3.0.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_5.2.3.0",
+        "figure_1",
+        "ts_23.012"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.116_4.1.2",
+      "section_id": "4.1.2",
+      "section_title": "CS-domain Location Updating in a network entity that has retained subscription data",
+      "content": "When a Super-Charged network entity receives a request to perform a location update for a subscriber for whom subscription data has been retained, the network entity shall initiate the location updating procedures as described in 3GPP TS 23.012.\nThe Super-Charged HLR shall determine whether the previous network entity supports the Super-Charger functionality:\n-\tif the previous network entity does not support the Super-Charger functionality then the HLR shall cancel the location information at the previous network entity as described in 3GPP TS 23.012.\n-\tif the previous network entity supports the Super-Charger functionality then the HLR shall not cancel the location information at the previous network entity except in the conditions described in clause 5.2.3.0.\nThe Super-Charged HLR shall determine whether the subscription data retained by the serving network entity is consistent with the subscription data stored in the HLR:\n-\tif the subscription data is consistent then the HLR shall not send subscription data to the serving network entity as part of the location updating;\n-\tif the subscription data is not consistent then the HLR shall respond to the location updating request as described in 3GPP TS 23.012.\nFigure 2: Information flow for an inter-node location update in a Super-Charged network for the case when the serving network entity has retained subscription data for the requesting mobile station\nNote 1:\tIf the previous network entity supports the Super-Charger features the HLR shall not cancel the location information at the previous network entity unless the Inform Previous Network Entity is included in the Update Location message, except in the conditions described in clause 5.2.3.0.\nNote 2:\tIf the subscription data retained by serving network entity is consistent with the subscription data stored by the HLR, the HLR shall not send subscription data.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_5.2.3.0",
+        "ts_23.012_figure_2",
+        "ts_23.012"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.116_4.1.3",
+      "section_id": "4.1.3",
+      "section_title": "PS-domain Location Updating in a network entity that does not have subscription data",
+      "content": "When a Super-Charged network entity receives a request to perform a routeing area update or attach for a subscriber for whom there is no record, the network entity shall initiate the location updating procedures as described in 3GPP TS 23.012.\nThe Super-Charged HLR shall determine whether the previous network entity supports the Super-Charger functionality:\n-\tif the previous network entity does not support the Super-Charger functionality then the HLR shall respond to the location updating request as described in 3GPP TS 23.012;\n-\tif the previous network entity supports the Super-Charger functionality then the HLR shall respond to the location updating request as described in 3GPP TS 23.012 but shall not cancel the location information at the previous network entity.\nFigure 3: Information flow for an inter-node routeing area update or attach in a Super-Charged network for the case when the serving network entity does not have subscription data for the requesting mobile station\nNote 1: This procedure is optionally performed as part of the Attach procedures, see 3GPP TS 23.060.\nNote 2: This procedure is used to update PDP contexts during a routeing area update when there is a one or more PDP Contexts established, see 3GPP TS 23.060.\nNote 3: If the previous network entity supports the Super-Charger features the HLR shall not cancel the location information at the previous network entity unless the Inform Previous Network Entity is included in the Update Location message.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "figure_3",
+        "ts_23.012",
+        "ts_23.060"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.116_4.1.4",
+      "section_id": "4.1.4",
+      "section_title": "PS-domain Location Updating in a network entity that has retained subscription data",
+      "content": "When a Super-Charged network entity receives a request to perform a routeing area update or attach for a subscriber for whom subscription data has been retained, the network entity shall initiate the location updating procedures as described in 3GPP TS 23.012.\nThe Super-Charged HLR shall determine whether the previous network entity supports the Super-Charger functionality:\n-\tif the previous network entity does not support the Super-Charger functionality then the HLR shall cancel the location information as described in 3GPP TS 23.012;\n-\tif the previous network entity supports the Super-Charger functionality then the HLR shall not cancel the location information.\nThe Super-Charged HLR shall determine whether the subscription data retained by the serving network entity is consistent with the subscription data stored in the HLR:\n-\tif the subscription data is consistent then the HLR shall not send subscription data to the serving network entity as part of the location updating procedures;\n-\tif the subscription data is not consistent then the HLR shall respond to the location updating request as described in 3GPP TS 23.012.\nFigure 4: Information flow for an inter-node routeing area update or attach in a Super-Charged network for the case when the serving network entity has retained subscription data for the requesting mobile station\nNote 1: This procedure is optionally performed as part of the Attach procedures, see 3GPP TS 23.060.\nNote 2: This procedure is used to update PDP contexts during a routeing area update when there is a one or more PDP Contexts established, see 3GPP TS 23.060.\nNote 3: If the previous network entity supports the Super-Charger features the HLR shall not cancel the location information at the previous network entity unless the Inform Previous Network Entity is included in the Update Location message.\nNote 4: If the subscription data retained by serving network entity is consistent with the subscription data stored by the HLR, the HLR shall not send subscription data.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_23.012_figure_4",
+        "ts_23.012",
+        "ts_23.060"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.116_5",
+      "section_id": "5",
+      "section_title": "Functional behaviour",
+      "content": "This clause describes the implementation of Super-Charger feature. This mechanism can reduce the signalling traffic associated with mobility, provided the HLR and serving network entity (i.e. MSC/VLR, SGSN, and UMSC) support the Super-Charger functionality.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.116_5.1",
+      "section_id": "5.1",
+      "section_title": "Subscriber Settings",
+      "content": "The Super-Charger feature requires a mechanism using which the HLR can determine whether the subscription data retained by the serving network entity is valid.  In this specification this parameter shall be referred to as the age indicator.  The format of the age indicator is implementation specific since it shall be defined and used by the HPLMN. The HLR shall store the age indicator and an indication as to whether the previous network entity supported the Super-Charger functionality on a per subscriber basis.\nThe serving network entity shall store the age indicator provided by the HLR and an indication as to whether the HLR supports the Super-Charger functionality on a per subscriber basis.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.116_5.2",
+      "section_id": "5.2",
+      "section_title": "Data Consistency",
+      "content": "In a Super-Charged Network, subscription data may be retained by a number of network entities. Each Super-Charged network entity provided with subscription data will retain this information when the subscriber roams to a different network entity.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.116_5.2.1",
+      "section_id": "5.2.1",
+      "section_title": "Modification of subscription data",
+      "content": "If the subscription data is changed in the HLR the copy of the data in each of the network entities will become outdated. To ensure data consistency:\n-\tthe HLR shall update the age indicator to reflect the change in the subscription data;\n-\tthe subscription data in the serving network entity shall be updated as described in 3GPP TS 23.012. The subscription data provided to the serving network entity shall include the new age indicator.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_23.012"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.116_5.2.2",
+      "section_id": "5.2.2",
+      "section_title": "Location Updating",
+      "content": "The location updating procedures shall be initiated according to 3GPP TS 23.012.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_23.012"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.116_5.2.2.1",
+      "section_id": "5.2.2.1",
+      "section_title": "Detailed Procedure in the serving network entity",
+      "content": "If the serving network entity has retained subscription data, it shall provide the age indicator as part of the location updating procedure.\nIf the serving entity has retained subscription data and does not receive subscription data as part of a successful location updating procedure, the serving entity shall treat the retained subscription data as valid and indicate successful completion of the location updating procedure towards the mobile station.\nIf the serving entity has retained subscription data then subscription data received as part of a successful location updating procedure shall be treated as described in 3GPP TS 23.012.\nThe procedure Check_User_Error_In_Serving_Network_Entity is defined for the case when the serving entity has retained subscription data but receives a negative response to the location update procedure. In this case, the serving entity shall not treat the retained subscription data as valid. If the negative response indicates \"Unknown Subscriber\" or \"Roaming Not Allowed\" the serving network entity shall delete the retained subscription data.\nFigure 5: Procedure Check_User_Error_In_Serving_Network_Entity",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_5",
+        "ts_23.012"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.116_5.2.2.2",
+      "section_id": "5.2.2.2",
+      "section_title": "Detailed Procedure in the HLR",
+      "content": "The procedure Super_Charged_Location_Updating_HLR determines when a Super-Charged HLR shall send subscription data to the requesting network entity.\nIf the serving network entity indicates support for Super-Charger and includes the age indicator, the HLR shall use the age indicator to determine whether the subscription data retained by the serving network entity is valid i.e. the same as the subscription data stored in the HLR:\n-\tIf the subscription data retained by serving network entity is invalid, then the HLR shall send subscriber data to the requesting entity including an indication of support for the Super-Charger functionality and the age indicator.\n-\tIf the subscription data retained by the serving network entity is valid, then the HLR shall not send subscription data to the requesting entity.\nIf the serving network entity indicates support for Super-Charger but includes a request for subscription data, the HLR shall send subscriber data to the requesting entity including an indication of support for the Super-Charger functionality and the age indicator.\nIf the serving network entity does not indicate support for Super-Charger the HLR shall send subscriber data to the requesting entity.\nFigure 6: Procedure Super_Charger_Location_Updating_HLR",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_6"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.116_5.2.3.0",
+      "section_id": "5.2.3.0",
+      "section_title": "General",
+      "content": "The cancel location procedures are normally not used within and between Super-Charged networks as part of the location update procedure, as described 3GPP TS 23.012. However, Super-Charged networks shall support the cancel location procedure to provide interworking for location update procedures with GSM & UMTS networks that do not support the Super-Charger functionality. The cancel location procedure shall also be used within a Super-Charged network as a notification when there is a need to inform the previous network entity that the connections for the subscriber can be released, due to the fact that the MS has moved to another network entity. Subscription data should still be kept in the previous network entities that support Super-Charger.\nThe mechanisms used to determine which network entities the cancel location message shall be sent to are outside the scope of this specification. However, it is recommended that the HLR store an indication if the serving network entity supports the Super-Charger functionality. It is also recommended that an HLR supporting the Super-Charger functionality have mechanisms to decide when a notification as described above needs to be sent against previous network entity or not. Without such mechanisms, Cancel Location shall always be sent. The mechanisms are triggered by the indication received from serving network entity during location update procedure saying that previous network entity must be notified. These mechanisms are triggered when there is a risk data inconsistency between nodes in the network, and are detailed in 3GPP TS 23.912.\nAn HLR supporting the mobile terminating roaming forwarding feature (see 3GPP TS 23.018 [10]) shall always send a MAP Cancel Location message to the old VLR upon receipt of the MAP Update Location from the new VLR. This shall also apply if the HLR and the old VLR support Super-Charger, regardless of whether the new VLR indicates or not during the location update procedure that the previous network entity must be notified.\nAn HLR supporting the mobile terminating roaming retry feature (see 3GPP TS 23.018 [10]) shall always send a MAP Cancel Location message to the old VLR upon receipt of the MAP Update Location from the new VLR. This shall also apply if the HLR and the old VLR support Super-Charger, regardless of whether the new VLR indicates or not during the location update procedure that the previous network entity must be notified.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_23.012",
+        "ts_23.912",
+        "ts_23.018"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.116_5.2.3.1",
+      "section_id": "5.2.3.1",
+      "section_title": "Detailed procedures in the serving network entity",
+      "content": "A Super-Charged serving network entity shall be capable of receiving a cancel location message as described in 3GPP TS 23.012.",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "ts_23.012"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.116_5.2.3.2",
+      "section_id": "5.2.3.2",
+      "section_title": "Detailed procedures in the HLR",
+      "content": "The procedure Super_Charged_Cancel_Location_HLR determines to whether a Super-Charged HLR shall send the cancel location message to the previous network entity during location updating as described in 3GPP TS 23.012.\nIf the previous network entity does support the Super-Charger functionality, the HLR shall not send the cancel location message during location updating except in the conditions described in clause 5.2.3.0. This is indicated by the \"Result:= Pass\" exit in Figure 7.\nFigure 7: Procedure Super_Charged_Cancel_Location_HLR",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "clause_5.2.3.0",
+        "figure_7",
+        "ts_23.012"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.116_5.2.4",
+      "section_id": "5.2.4",
+      "section_title": "Purge MS",
+      "content": "In a Super-Charged network, the subscriber record for an MS may be deleted by database management procedure to free up capacity in the network entity to accept new subscribers as described in clause 5.5.\nThe procedure Purge_MS_in_Serving_Network_Entity determines whether a Super-Charged Serving Network Entity shall send the purge MS message to the HLR when deleting inactive subscription data.\nIf the HLR does not support the Super-Charger functionality, the deletion of inactive subscription data shall initiate the purge MS procedure as described in 3GPP TS 23.012. This is indicated by the \"Result:= Fail\" exit in Figure 8.\nFor the CS-domain, the restoration procedures for Super-Charged network entities shall be modified to minimize the number of unnecessary mobile terminated call and short message attempts.\nFor the PS-domain, any attempt to establish a network-requested PDP context to a network entity that has no record for the subscriber shall proceed as described in 3GPP TS 23.060.\nIn addition, the Mobile Terminating Short Message Service is modified to minimize the number of unnecessary mobile terminated calls and short message attempts.\nFigure 8: Procedure Purge_MS_In_Serving_Network_Entity",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_5.5",
+        "figure_8",
+        "ts_23.012",
+        "ts_23.060"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.116_5.2.4.1",
+      "section_id": "5.2.4.1",
+      "section_title": "CS-domain restoration procedures",
+      "content": "Upon receipt of a request for a roaming number, if there is no subscriber data record in the recipient network entity the network entity shall distinguish two cases:\n-\tthe subscriber data record was lost due to network entity restart;\n-\tthe subscriber data record was removed by the Super-Charger database management function described in clause 5.5.\nIf the subscriber data record was lost due to a network entity restart the restoration procedure as described in 3GPP TS 29.002 shall be initiated.\nThe procedure Check_Reason_In_Serving_Network_Entity determines whether the subscriber data was removed by the Super-Charger database management function and whether the network entity shall return the Purged MS diagnostic information to the HLR.\nThe procedure Super_Charged_SRI_Error_HLR determines whether the HLR shall mark its data for the MS as purged and maps the Purged_MS diagnostic information to indicate that the IMSI is detached, in the send routeing information response. Consequently any request for routeing information for a mobile terminated call or a mobile terminated short message shall be treated as if the MS is not reachable.\nThe means by which the network entity distinguishes the two cases is implementation dependent and therefore outside the scope of this specification.\nFigure 9: Procedure Check_Reason_In_Serving_Network_Entity\nFigure 10: Procedure Super_Charged_SRI_Error_HLR",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "clause_5.5",
+        "figure_9",
+        "figure_10",
+        "ts_29.002"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.116_5.2.4.2",
+      "section_id": "5.2.4.2",
+      "section_title": "Mobile Terminating Short Message Service",
+      "content": "The procedure Check_Absent_SubscriberSM_In_HLR determines whether the HLR shall mark its data for the MS as purged based on the content of the absent subscriber SM diagnostic information (See 3GPP TS 23.040), if received from the SMS-GMSC, following a Mobile Terminating Short Message delivery attempt.\nFigure 11: Procedure Check_Absent_SubscriberSM_In_HLR",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "figure_11",
+        "ts_23.040"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.116_5.3",
+      "section_id": "5.3",
+      "section_title": "Subscriber Deactivation",
+      "content": "When a subscriber is deactivated, the cancel location message is sent to the serving network entity and the subscription data shall be deleted in the HLR.\nSubsequently, when the subscriber attempts to register in a network entity that has data for the subscriber, the HLR will return an error of 'Unknown Subscriber' and the subscription data in the network entity shall be deleted as described in clause 5.2.2.1.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_5.2.2.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.116_5.4",
+      "section_id": "5.4",
+      "section_title": "TMSI Management",
+      "content": "In a Super-Charged network, if the cancel location or purge MS procedures are not performed the TMSI and P-TMSI values shall be de-allocated by another mechanism to avoid double allocation of temporary identifiers.\nIf the send identification procedure as described in 3GPP TS 29.002 is used, the previous network entity may use this to explicitly de-allocate the temporary identifier assigned to that subscriber.\nIn the event that the send identification procedure is not perform or not used as an explicit de-allocation trigger, it is recommended that an alternative mechanism is available to de-allocate temporary identifiers. The chosen mechanism is an implementation detail. De-allocation of TMSI and P-TMSI values may be achieved by a system of supervision timers or as part of the database management function, see clause 5.5. However, other mechanisms may be used to avoid double allocation.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_5.5",
+        "ts_29.002"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.116_5.5",
+      "section_id": "5.5",
+      "section_title": "Database Management",
+      "content": "In a Super-Charged network subscription data shall not be deleted in the previous network entity. The subscription data shall be retained using spare capacity available in the network entity. This results in a continuous growth of the database size. If not managed properly, the network entity will eventually become full and unable to handle newly arrived MSs. A strategy to manage the capacity of Super-Charged network entities is required.\nThe database management scheme shall be an implementation option and so outside the scope of this specification. Example mechanisms are:\n-\tUtilisation of a larger database.\n-\tPeriodic audit scheme.\n-\tImplementation of a strategy to make room for new users by removing old subscriber information from the associated database.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.116_5.5.1",
+      "section_id": "5.5.1",
+      "section_title": "Utilisation of a larger database",
+      "content": "The implementation of larger databases may be used to limit the need for other mechanisms to ensure that sufficient database capacity is available to service new subscribers. However, the need for an alternative mechanism such as Periodic Audits and Dynamic Subscription Data Deletion is not removed.\nImplementing larger databases such that subscription data is retained for an increased number of subscribers can increase the benefit from a Super-Charged network. However, the optimal database capacity will be network specific.\nThe implementation of a larger database is not a requirement for this feature.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.116_5.5.2",
+      "section_id": "5.5.2",
+      "section_title": "Periodic Audit",
+      "content": "This scheme periodical removes inactive subscription data from the VLR and SGSN databases. The volume of subscription data deleted should be based on an estimation of the growth of the database size during the audit cycle.\nThe criterion for removal of the subscriber is outside the scope of this specification. Circuit Switched and Packet Service activity of the subscriber should be checked before any deletion.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.116_5.5.3",
+      "section_id": "5.5.3",
+      "section_title": "Dynamic Subscription Data Deletion",
+      "content": "This scheme allows the run-time removal of subscription if the associated database is full. In this case, the oldest subscription data is deleted to make room for the newly arrived subscriber. This mechanism may be used in conjunction with the other scheme detailed above or as the only method by which to create available capacity within a database.\nThe criterion for removal of the subscriber is outside the scope of this specification. Circuit Switched and Packet Service activity of the subscriber should be checked before any deletion.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.116_5.6",
+      "section_id": "5.6",
+      "section_title": "Enhanced User Identity Confidentiality",
+      "content": "If an MS configured to support Enhanced User Identity Confidentiality updates location at a serving network entity which has retained subscriber data from a previous visit, the normal procedure of Enhanced User Identity Confidentiality as defined in 3GPP TS 23.018 shall apply.\nThe serving network entity shall replace the TEMSI stored in the subscriber data by the TEMSI received from the UIDN as a result of the Send IMSI operation.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.018"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.116_5.7",
+      "section_id": "5.7",
+      "section_title": "Exception procedure",
+      "content": "A Super-Charged network entity shall inform the HLR about the support of the Super-Charger functionality whenever a subscriber roams on to that network entity. This information shall be included in the update location message sent to the HLR. The HLR shall use this information to determine the most appropriate action.\nIf the HLR does not support the Super-Charger functionality the HLR shall ignore this information and proceed according to 3GPP TS 29.002.\nIf the serving network entity does not support the Super-Charger functionality the serving network entity shall ignore information relating to the Super-Charger feature and proceed according to 3GPP TS 29.002.",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "ts_29.002"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.116_6",
+      "section_id": "6",
+      "section_title": "Contents of the messages",
+      "content": "This clause contains detailed description of the messages shown in clause 5 of the specification.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_5"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.116_6.1",
+      "section_id": "6.1",
+      "section_title": "Update Location",
+      "content": "The contents of this message are specified in 3GPP TS 29.002. In the case when the originating entity supports the Super-Charger functionality, the following Super-Charger specific information is defined:\nInformation element name\nRequired\nDescription\nSuper-Charger Supported In Serving Network Entity\nC\nWhen included, this parameter indicates that the originating entity supports the Super-Charger functionality. In addition, this parameter shall indicate either that subscription data is required or the date and time of the last known subscriber data modification.\nInform Previous Network Entity\nC\nWhen included, this parameter indicates that the previous network entity needs to be informed about the update location.The parameter shall be included if:\n-\tSend Identification has not been sent to the previous network entity or\n-\tthe MTRF Supported flag is included in the Update Location message.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.002"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.116_6.2",
+      "section_id": "6.2",
+      "section_title": "Update Location ack",
+      "content": "The contents of this message are specified in 3GPP TS 29.002.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.002"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.116_6.3",
+      "section_id": "6.3",
+      "section_title": "Update GPRS Location",
+      "content": "The contents of this message are specified in 3GPP TS 29.002. In the case when the originating entity supports the Super-Charger functionality, the following Super-Charger specific information is defined:\nInformation element name\nRequired\nDescription\nSuper-Charger Supported In Serving Network Entity\nC\nWhen included, this parameter indicates that the originating entity supports the Super-Charger functionality. In addition, this parameter shall indicate either that subscription data is required or the date and time of the last known subscriber data modification.\nInform Previous Network Entity\nC\nWhen included, this parameter indicates that the previous network entity needs to be informed about the update location.The parameter shall be included only if SGSN Context Request has not been sent to the previous network entity.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.002"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.116_6.4",
+      "section_id": "6.4",
+      "section_title": "Update GPRS Location ack",
+      "content": "The contents of this message are specified in 3GPP TS 29.002.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.002"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.116_6.5",
+      "section_id": "6.5",
+      "section_title": "Insert Subscriber Data",
+      "content": "The contents of this message are specified in 3GPP TS 29.002. In the case when the originating entity supports the Super-Charger functionality, the following Super-Charger specific information is defined:\nInformation element name\nRequired\nDescription\nSuper-Charger Supported In HLR\nC\nWhen included, this parameter indicates that the originating entity supports the Super-Charger functionality. In addition, this parameter is used by the HLR to indicate the age of the subscription data stored in the HLR.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.002"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.116_6.6",
+      "section_id": "6.6",
+      "section_title": "Insert Subscriber Data ack",
+      "content": "The contents of this message are specified in 3GPP TS 29.002.\nAnnex A (informative):Change History\nDate\nTSG #\nTSG Doc.\nCR\nRev\nSubject/Comment\nNew\nMar 2000\nCN#07\nApproved by TSG CN#07\n3.0.0\nMar 2001\nCN#11\nRelease 4 after CN#11\n4.0.0\nJun 2001\nCN#12\nNP-010299\n002\n3\nEssential drawbacks on services due to introduction of Super-Charger function\n4.1.0\nDec. 2001\nCN#14\nNP-010617\n004\n1\nClarification of methodology for maintaining data consistency in Supercharger\n4.2.0\nJun 2002\nCN#16\nRelease 5 after CN#16\n5.0.0\nDec 2004\nCN#26\nRelease 6 after CN#26\n6.0.0\nJun 2006\nCT#32\nCP-060312\n0014\n1\nCorrection for Usage of Cancel Location for Supercharger\n7.0.0\nDec 2008\nCT#42\nUpgraded unchanged from Rel-7\n8.0.0\n2009-12\n-\n-\n-\n-\nUpdate to Rel-9 version (MCC)\n9.0.0\n2011-03\nCT#51\nCP-110068\n0015\n1\nMT Roaming Retry and Super Charger\n10.0.0\n2011-03\nCT#51\nCP-110068\n0016\n1\nMobile Terminating Roaming Forwarding\n10.0.0\n2011-09\nCT#53\nCP-110575\n0017\n2\nMTRF and Super Charger interactions\n10.1.0\n2012-09\nCT#57\nUpdate to Rel-11 version (MCC)\n11.0.0\n2014-09\n-\n-\n-\n-\nUpdate to Rel-12 version (MCC)\n12.0.0\n2015-12\nCT#70\nUpdate to Rel-13 version (MCC)\n13.0.0\n2017-03\nCT#75\n-\n-\n-\nUpdate to Rel-14 version (MCC)\n14.0.0\n2018-06\nCT#80\n-\n-\n-\nUpdate to Rel-15 version (MCC)\n15.0.0\n2020-07\nCT#88e\n-\n-\n-\nUpdate to Rel-16 version (MCC)\n16.0.0\n2022-03\nCT#95\n-\n-\n-\nUpdate to Rel-17 version (MCC)\n17.0.0\n2024-03\n-\n-\n-\n-\nUpdate to Rel-18 version (MCC)\n18.0.0",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.002"
+      ]
+    }
+  ]
+}

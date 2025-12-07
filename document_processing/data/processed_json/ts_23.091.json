@@ -1,0 +1,258 @@
+{
+  "metadata": {
+    "specification_id": "ts_23.091",
+    "version": "18.0.0",
+    "title": "3GPP TS 23.091",
+    "file_path": "/content/drive/MyDrive/RAG_thesis/data/23_series/23091-i00/23091-i00.docx"
+  },
+  "export_info": {
+    "export_date": "2025-07-26T09:35:59.069083",
+    "total_chunks": 26
+  },
+  "chunks": [
+    {
+      "chunk_id": "ts_23.091_1",
+      "section_id": "1",
+      "section_title": "Scope",
+      "content": "The present document gives the stage 2 description of the call transfer supplementary services.\nOnly one call transfer supplementary service has been defined, this is the Explicit Call Transfer (ECT) supplementary service, and is described in the present document.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.091_2",
+      "section_id": "2",
+      "section_title": "References",
+      "content": "The following documents contain provisions which, through reference in this text, constitute provisions of the present document.\n-\tReferences are either specific (identified by date of publication, edition number, version number, etc.) or non‑specific.\n-\tFor a specific reference, subsequent revisions do not apply.\n-\tFor a non-specific reference, the latest version applies.  In the case of a reference to a 3GPP document (including a GSM document), a non-specific reference implicitly refers to the latest version of that document in the same Release as the present document.\n[1]\t3GPP TR 21.905: \"3G Vocabulary\".\n[2]\t3GPP TS 23.083: \"Call Waiting (CW) and Call Hold (HOLD) supplementary services - Stage 2\".\n[3]\t3GPP TS 24.008: \"Mobile Radio Interface Layer 3 specification; Core Network Protocols - Stage 3\".\n[4]\tEN 300 368: \"Integrated Services Digital network (ISDN); Explicit Call Transfer (ECT) supplementary service; Functional capabilities and information flows\".\n[5]\tEN 300 356-14: \"Integrated Services Digital network (ISDN); Signalling System No. 7;  ISDN User Part (ISUP) version 3 for the international interface; Part 14: Explicit Call Transfer (ECT) supplementary service \".\n[6]\t3GPP TS 23.011: \"Technical realization of Supplementary Services\".\n[7]\t3GPP TS 23.018: \"Basic Call Handling\".",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905",
+        "ts_23.083",
+        "ts_24.008",
+        "ts_23.011",
+        "ts_23.018"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.091_3.1",
+      "section_id": "3.1",
+      "section_title": "Definitions",
+      "content": "First call: One of the subscriber A calls (answered).\nNotification Indicator (NI): Indicates to each remote party in which state of the other remote party ECT was performed (active, alerting).\nRedirection Number (Rdn): Includes the presentation indicator and the directory number of the other remote party.\nSecond call: The other subscriber A call (answered or alerting).\nSubscriber A (PARTY A): The served mobile subscriber - the one who has subscribed to, and invokes the ECT Supplementary Service.\nSubscriber B (PARTY B): The other party in the subscriber A first call.\nSubscriber C (PARTY C): The other party in the subscriber A second call.\nSubscriber D (PARTY D): The forwarded-to party when the call is forwarded by the subscriber C.\nTransferred call: The resulting call after successful explicit call transfer between B and C.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.091_3.2",
+      "section_id": "3.2",
+      "section_title": "Abbreviations",
+      "content": "In addition to those below, abbreviations used in the present document are listed in 3GPP TR 21.905 [1].\nECT:\tExplicit Call Transfer supplementary service\nLI:\tLine Identity\nNI:\tNotification Indicator\nRdn:\tRedirection number\nRdnB:\tRedirection number of party B\nRdnD:\tRedirection number of party D",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.091_4.1",
+      "section_id": "4.1",
+      "section_title": "Functions",
+      "content": "The following function has been identified for the explicit call transfer service:\nMAF027\nExplicit Call Transfer related authorizations examination\nThe ability of a PLMN component to determine the authorizations relating to explicit call transfer. See figure 1.\nLocation: VLR\nFigure 1: Explicit Call Transfer related authorizations examination (VLR)",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.091_4.2.1",
+      "section_id": "4.2.1",
+      "section_title": "General description",
+      "content": "The  procedures Handle_ECT_Active and Handle_ECT_Alerting show the behaviour of the service as perceived by the served mobile subscriber and by any of the other parties involved in the transfer. These procedures and the macro Check_ECT show the actions to be taken by the network and the information provided by the network to the users.\nThe following states for the invocation of the ECT supplementary service are defined:\na)\tFirst Call (Active, Held), Second Call (Active, Idle);\nb)\tFirst Call (Active, Held), Second Call (Call Delivered, Idle).\nNOTE:\tThe call state \"call delivered\" means that an ALERTING message has been sent to the MS, but no ANSWER Message (ANM) has been received.\nIn the information flows it is assumed that the served subscriber is a mobile subscriber and that the other parties are mobile or fixed subscribers.\nParty A is the subscriber controlling the Explicit Call Transfer Call (served mobile subscriber). Party B is the first remote party called. Party C is the second remote party called.\nThe served party is disconnected by the generic disconnect/release procedure after a successful transfer request. The connection of the remote parties in a new call (transferred call) is located in the served subscriber's MSC.\nThe information flows in figures 4 and 7 show the unsuccessful case (i.e. the check in the VLR or in the MSC fails).\nThe information flows in figures 5 and 8 show the successful case.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.091_4.2.2",
+      "section_id": "4.2.2",
+      "section_title": "ECT (both calls answered)",
+      "content": "The SDL for the procedure Handle_ECT_Active (Explicit Call Transfer - both calls have been answered) is shown in figure 2.\nThe checks of whether Explicit Call Transfer is barred or not are shown in figure 3.\nThe corresponding information flows are given in figure 4 and figure 5.\nFigure 2: Procedure Handle_ECT_Active\nFigure 3: Macro Check_ECT\nMSa                 MSCa            VLRa          MSCb                MSb            LEc               TEcá\n┌──┐                ┌──┐            ┌──┐          ┌──┐                ┌──┐          ┌──┐               ┌──┐\n│  A-B (active, held) / A-C (active, idle)        │  │                │  │          │  │               │  │\n│ ─────────────────────────────────────────       │  │                │  │          │  │               │  │\n│  │                │  │            │  │          │  │                │  │          │  │               │  │\n│  │   ECT request  │  │            │  │          │  │                │  │          │  │               │  │\n│  │ ─────────────> │  │info request│  │          │  │                │  │          │  │               │  │\n│  │                │  │ ─────────> │  │          │  │                │  │          │  │               │  │\n│  │                │  │            │MAF027       │  │                │  │          │  │               │  │\n│  │                │  │  info ack  │  │          │  │                │  │          │  │               │  │\n│  │                │  │ <───────── │  │          │  │                │  │          │  │               │  │\n│  │                │OR1:N          │  │          │  │                │  │          │  │               │  │\n│  │    ECT rej     │  │            │  │          │  │                │  │          │  │               │  │\n│  │ <───────────── │  │            │  │          │  │                │  │          │  │               │  │\n│  │                │  │            │  │          │  │                │  │          │  │               │  │\n│  A-B (active, held) / A-C (active, idle)        │  │                │  │          │  │               │  │\n│ ─────────────────────────────────────────       │  │                │  │          │  │               │  │\n│  │                │  │            │  │          │  │                │  │          │  │               │  │\nNOTE:\tOR1: Checks in VLR and MSC ok? (Y: yes  N: no).\nFigure 4: Information flow for failed explicit call transfer request (both calls answered)\nMSa                 MSCa            VLRa          MSCb                 MSb            LEc               TEc\n┌──┐                ┌──┐            ┌──┐          ┌──┐                ┌──┐          ┌──┐               ┌──┐\n│  A-B (active, held) / A-C (active, idle)        │  │                │  │          │  │               │  │\n│ ─────────────────────────────────────────       │  │                │  │          │  │               │  │\n│  │                │  │            │  │          │  │                │  │          │  │               │  │\n│  │   ECT request  │  │            │  │          │  │                │  │          │  │               │  │\n│  │ ─────────────> │  │info request│  │          │  │                │  │          │  │               │  │\n│  │                │  │ ─────────> │  │          │  │                │  │          │  │               │  │\n│  │                │  │            │MAF027       │  │                │  │          │  │               │  │\n│  │                │  │  info ack  │  │          │  │                │  │          │  │               │  │\n│  │                │  │ <───────── │  │          │  │                │  │          │  │               │  │\n│  │                │OR1:Y          │  │          │  │                │  │          │  │               │  │\n│  │                │  │            │  │          │  │                │  │          │  │               │  │\n│  │            connect calls       │  │          │  │                │  │          │  │               │  │\n│  │                │  │            │  │          │  │                │  │          │  │               │  │\n│  │                │  │  notification (retrieve) │  │                │  │          │  │               │  │\n│  │                │  │ ───────────────────────> │  │notification (retr)│          │  │               │  │\n│  │                │  │            │  │          │  │ ─────────────> │  │          │  │               │  │\n│  │                │  │   notification (ECT)     │  │                │  │          │  │               │  │\n│  │                │  │ ───────────────────────> │  │notification (ECT) │          │  │               │  │\n│  │                │  │      (active, Rdn)       │  │ ─────────────> │  │          │  │               │  │\n│  │                │  │            │  │          │  │ (active, Rdn)  │  │          │  │               │  │\n│  │                │  │            │  │          │  │                │  │          │  │               │  │\n│  │                │  │   notification (ECT)     │  │                │  │          │  │               │  │\n│  │                │  │ ─────────────────────────────────────────────────────────> │  │ notification(ECT)│\n│  │                │  │      (active, Rdn)       │  │                │  │          │  │ ────────────> │  │\n│  │                │  │            │  │          │  │                │  │          │  │ (active, Rdn) │  │\n│  │     ECT ack    │  │            │  │          │  │                │  │          │  │               │  │\n│  │ <───────────── │  │            │  │          │  │                │  │          │  │               │  │\n│  │  disc req A-B  │  │            │  │          │  │                │  │          │  │               │  │\n│  │ <───────────── │  │            │  │          │  │                │  │          │  │               │  │\n│  │   NORMAL DISCONNECTION A-B     │  │          │  │                │  │          │  │               │  │\n│  │                │  │            │  │          │  │                │  │          │  │               │  │\n│  │  disc req A-C  │  │            │  │          │  │                │  │          │  │               │  │\n│  │ <───────────── │  │            │  │          │  │                │  │          │  │               │  │\n│  │  NORMAL DISCONNECTION A-C      │  │          │  │                │  │          │  │               │  │\n│  │                │  │            │  │          │  │                │  │          │  │               │  │\n│  B-C (active, idle)  │            │  │          │  │                │  │          │  │               │  │\n│ ──────────────────── │            │  │          │  │                │  │          │  │               │  │\n│  │                │  │            │  │          │  │                │  │          │  │               │  │\nNOTE:\tOR1: Checks in VLR and MSC ok? (Y: yes  N: no).\nFigure 5: Information flow for successful explicit call transfer (both calls answered)",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_2",
+        "figure_3",
+        "figure_4",
+        "figure_5"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.091_4.2.3",
+      "section_id": "4.2.3",
+      "section_title": "ECT (one call answered, the other alerting)",
+      "content": "The SDL for the procedure Handle_ECT_Alerting (Explicit Call Transfer - one call answered, the other alerting) is shown in figure 6.\nThe checks of whether Explicit Call Transfer is barred or not are shown in figure 3.\nThe corresponding information flows are given in figure 7 and figure 8.\nFigure 6: Procedure Handle_ECT_Alerting\nMSa                 MSCa            VLRa          MSCb                 MSb            LEc               TEc\n┌──┐                ┌──┐            ┌──┐          ┌──┐                ┌──┐          ┌──┐               ┌──┐\n│  A-B (active, held) / A-C (call delivered, idle)│  │                │  │          │  │               │  │\n│ ─────────────────────────────────────────────────  │                │  │          │  │               │  │\n│  │                │  │            │  │          │  │                │  │          │  │               │  │\n│  │   ECT request  │  │            │  │          │  │                │  │          │  │               │  │\n│  │ ─────────────> │  │info request│  │          │  │                │  │          │  │               │  │\n│  │                │  │ ─────────> │  │          │  │                │  │          │  │               │  │\n│  │                │  │            │MAF027       │  │                │  │          │  │               │  │\n│  │                │  │  info ack  │  │          │  │                │  │          │  │               │  │\n│  │                │  │ <───────── │  │          │  │                │  │          │  │               │  │\n│  │                │OR1:N          │  │          │  │                │  │          │  │               │  │\n│  │    ECT rej     │  │            │  │          │  │                │  │          │  │               │  │\n│  │ <───────────── │  │            │  │          │  │                │  │          │  │               │  │\n│  │                │  │            │  │          │  │                │  │          │  │               │  │\n│  A-B (active, held) / A-C (call delivered, idle)│  │                │  │          │  │               │  │\n│ ─────────────────────────────────────────────── │  │                │  │          │  │               │  │\n│  │                │  │            │  │          │  │                │  │          │  │               │  │\nNOTE:\tOR1: Checks in VLR and MSC ok? (Y: yes  N: no).\nFigure 7: Information flow for failed explicit call transfer request (one call answered, the other alerting)\nMSa                 MSCa            VLRa          MSCb                 MSb            LEc               TEc\n┌──┐                ┌──┐            ┌──┐          ┌──┐                ┌──┐          ┌──┐               ┌──┐\n│  A-B (active, held) / A-C (call delivered, idle)│  │                │  │          │  │               │  │\n│ ────────────────────────────────────────────────── │                │  │          │  │               │  │\n│  │                │  │            │  │          │  │                │  │          │  │               │  │\n│  │   ECT request  │  │            │  │          │  │                │  │          │  │               │  │\n│  │ ─────────────> │  │info request│  │          │  │                │  │          │  │               │  │\n│  │                │  │ ─────────> │  │          │  │                │  │          │  │               │  │\n│  │                │  │            │MAF027       │  │                │  │          │  │               │  │\n│  │                │  │  info ack  │  │          │  │                │  │          │  │               │  │\n│  │                │  │ <───────── │  │          │  │                │  │          │  │               │  │\n│  │                │OR1:Y          │  │          │  │                │  │          │  │               │  │\n│  │                │  │            │  │          │  │                │  │          │  │               │  │\n│  │              connect calls     │  │          │  │                │  │          │  │               │  │\n│  │                │  │            │  │          │  │                │  │          │  │               │  │\n│  │                │  │ notification (retrieve)  │  │                │  │          │  │               │  │\n│  │                │  │ ───────────────────────> │  │notification (retr)│          │  │               │  │\n│  │                │  │            │  │          │  │ ─────────────> │  │          │  │               │  │\n│  │                │  │    notification (ECT)    │  │                │  │          │  │               │  │\n│  │                │  │ ───────────────────────> │  │notification (ECT) │          │  │               │  │\n│  │                │  │         (alerting)       │  │ ─────────────> │  │          │  │               │  │\n│  │                │  │            │  │          │  │   (alerting)   │  │          │  │               │  │\n│  │                │  │     notification (ECT)   │  │                │  │          │  │               │  │\n│  │                │  │ ─────────────────────────────────────────────────────────> │  │ notification(ECT)│\n│  │    ECT ack     │  │      (active, Rdn)       │  │                │  │          │  │ ────────────> │  │\n│  │ <───────────── │  │            │  │          │  │                │  │          │  │ (active, Rdn) │  │\n│  │   disc req A-B │  │            │  │          │  │                │  │          │  │               │  │\n│  │ <───────────── │  │            │  │          │  │                │  │          │  │               │  │\n│  │   disc req A-C │  │            │  │          │  │                │  │          │  │               │  │\n│  │ <───────────── │  │            │  │          │  │                │  │          │  │               │  │\n│  │                │  │            │  │          │  │                │  │          │  │               │  │\n│  A idle, B hears C ringing        │  │          │  │                │  │          │  │               │  │\n│ ───────────────────────────       │  │          │  │                │  │          │  │               │  │\n│  │                │  │            │  │          │  │                │  │          │  │   CONNECT     │  │\n│  │                │  │   ANSWER   │  │          │  │                │  │          │  │ <──────────   │  │\n│  │                │  │ <───────────────────────────────────────────────────────── │  │               │  │\n│  │                │  │            │  │          │  │                │  │          │  │   CONNECT ACK │  │\n│  │                │  │            │  │          │  │                │  │          │  │ ───────────>  │  │\n│  │                │  │   notification (ECT)     │  │                │  │          │  │               │  │\n│  │                │  │ ───────────────────────> │  │notification (ECT) │          │  │               │  │\n│  │                │  │      (active, Rdn)       │  │ ─────────────> │  │          │  │               │  │\n│  │                │  │            │  │          │  │ (active, Rdn)  │  │          │  │               │  │\n│  │                │  │            │  │          │  │                │  │          │  │               │  │\n│   B-C active, idle   │            │  │          │  │                │  │          │  │               │  │\n│ ───────────────────  │            │  │          │  │                │  │          │  │               │  │\n│  │                │  │            │  │          │  │                │  │          │  │               │  │\nNOTE:\tOR1: Checks in VLR and MSC ok? (Y: yes  N: no).\nFigure 8: Information flow for successful explicit call transfer (one call answered, the other alerting)",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_6",
+        "figure_3",
+        "figure_7",
+        "figure_8"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.091_4.3.1",
+      "section_id": "4.3.1",
+      "section_title": "Line Identification services",
+      "content": "Tables 1 to 4 indicate the information to be provided in the Notification Indicator (NI) and the Redirection Number (Rdn) when the subscribers B and C are notified. Call states refer to the situation before ECT invocation. At that time one of the calls is on hold.\nIf user B was the called subscriber in the call A-B, table 1 applies to the information supplied to subscriber C. If user B was the calling subscriber in the call A-B, table 2 applies to the information supplied to subscriber C.\nMobile subscriber A has an active call to subscriber B and:\n-\tputs the active call on hold and calls subscriber C, table 3 applies to the information supplied to subscriber B;\n-\treceives and accepts a call from subscriber C (by putting B on Hold), table 4 applies to the information supplied to subscriber B.\nTable 1: Mobile subscriber A was calling subscriber B, puts B on hold and calls subscriber C\nCall states\nCOLR indication received from\nInformation provided to C\nsubscribers B's network\nA-B Active\nIndicated \"allowed\"\nAt time of transfer:\nA-C Active / Alerting\nNI: \"call transferred, active\"\nRdn: PI = allowed, LI of B\nA-B Active\nIndicated \"restricted\"\nAt time of transfer:\nA-C Active / Alerting\nNI: \"call transferred, active\"\nRdn: PI = restricted (note 1)\nA-B Active\nNo indication received\nAt time of transfer:\nA-C Active / Alerting\n(e.g. interworking)\nNI: \"call transferred, active\"\nRdn: PI = not available\nTable 2: Mobile subscriber A was called by subscriber B, puts B on hold and calls subscriber C\nCall states\nCLIR indication received from\nInformation provided to C\nsubscribers B's network\nA-B Active\nIndicated \"allowed\"\nAt time of transfer:\nA-C Active / Alerting\nNI: \"call transferred, active\"\nRdn: PI = allowed, LI of B\nA-B Active\nIndicated \"restricted\"\nAt time of transfer:\nA-C Active / Alerting\nNI: \"call transferred, active\"\nRdn: PI = restricted (note 1)\nA-B Active\nNo indication received\nAt time of transfer:\nA-C Active / Alerting\n(e.g. interworking)\nNI: \"call transferred, active\"\nRdn: PI = not available\nNOTE 1:\tIf the subscriber C has CLIP Override Category then the following information is carried in the Redirection number: PI = restricted, LI of B.\nTable 3: Mobile subscriber A puts the call to B on hold and calls subscriber C\nCall states\nCOLR indication received from\nInformation provided to B\nsubscribers C's network\nA-B Active\nIndicated \"allowed\"\nAt time of transfer:\nA-C Active\nNI: \"call transferred, active\"\nRdn: PI = allowed, LI of C\nA-B Active\nIndicated \"restricted\"\nAt time of transfer:\nA-C Active'\nNI: \"call transferred, active\"\nRdn: PI = restricted (note 2)\nA-B Active\nNo indication received\nAt time of transfer:\nA-C Active\n(e.g. interworking)\nNI: \"call transferred, active\"\nRdn: PI = not available\nA-B Active\nIndicated \"allowed\" at receipt of\nAt time of transfer:\nA-C Alerting\nCONNECT by subscriber C\nNI: \"call transferred, alerting\"\nAt subscribers C CONNECT:\nNI: \"call transferred, active\"\nRdn: PI = allowed, LI of C\nA-B Active\nIndicated \"restricted\" at receipt of\nAt time of transfer:\nA-C Alerting\nCONNECT by subscriber C\nNI: \"call transferred, alerting\"\nAt subscribers C CONNECT:\nNI: \"call transferred, active\"\nRdn: PI = restricted (note 2)\nA-B Active\nNo indication received at receipt of\nAt time of transfer:\nA-C Alerting\nCONNECT by subscriber C\nNI: \"call transferred, alerting\"\n(e.g. interworking)\nAt subscribers C CONNECT:\nNI: \"call transferred, active\"\nRdn: PI = not available\nTable 4: Mobile subscriber A was called by subscriber C and accepts the call by putting subscriber B on hold\nCall states\nCLIR indication received from\nInformation provided to B\nsubscriber C's network\nA-B Active\nIndicated \"allowed\"\nAt time of transfer:\nA-C Active\nNI: \"call transferred, active\"\nRdn: PI = allowed, LI of C\nA-B Active\nIndicated \"restricted\"\nAt time of transfer:\nA-C Active\nNI: \"call transferred, active\"\nRdn: PI = restricted (note 2)\nA-B Active\nNo indication received\nAt time of transfer:\nA-C Active\n(e.g. interworking)\nNI: \"call transferred, active\"\nRdn: PI = not available\nNOTE 2:\tIf the subscriber B was called by subscriber A and has CLIP Override Category, or if subscriber B called subscriber A and has COLP Override Category then the following information is carried in the Redirection number: PI = restricted, LI of C",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_1",
+        "table_2",
+        "table_3",
+        "table_4"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.091_4.3.2",
+      "section_id": "4.3.2",
+      "section_title": "Call Forwarding Unconditional (CFU)",
+      "content": "No impact.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.091_4.3.3.1",
+      "section_id": "4.3.3.1",
+      "section_title": "Call Forwarding on mobile subscriber Busy due to Network Determined User Busy (NDUB)",
+      "content": "No impact.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.091_4.3.3.2",
+      "section_id": "4.3.3.2",
+      "section_title": "Call Forwarding on mobile subscriber Busy due to User Determined User Busy (UDUB)",
+      "content": "When subscriber A transfers the forwarded call there is no impact.\nWhen subscriber C forwards the transferred call to the forwarded-to subscriber D due to UDUB the line identity information of the subscriber B that was received by the subscriber C in the ECT invocation notification shall be sent as calling line identity to the forwarded-to subscriber D instead of the line identity of the subscriber A. The corresponding information flow is given in figure 9. For the line identity information sent to the subscriber B after the call is answered by the forwarded-to subscriber D the table 5 applies.\nMSa                 MSCa            VLRa        MSCb              MSb    MSCc             MSc    MSCd   MSd\n┌──┐                ┌──┐            ┌──┐        ┌──┐              ┌──┐   ┌──┐             ┌──┐   ┌──┐   ┌──┐\n│  A-B (active, held) / A-C (call delivered, idle) │              │  │   │  │             │  │   │  │   │  │\n│ ──────────────────────────────────────────────── │              │  │   │  │             │  │   │  │   │  │\n│  │                │  │            │  │        │  │              │  │   │  │             │  │   │  │   │  │\n│  │   ECT request  │  │            │  │        │  │              │  │   │  │             │  │   │  │   │  │\n│  │ ─────────────> │  │info request│  │        │  │              │  │   │  │             │  │   │  │   │  │\n│  │                │  │ ─────────> │  │        │  │              │  │   │  │             │  │   │  │   │  │\n│  │                │  │            │MAF027     │  │              │  │   │  │             │  │   │  │   │  │\n│  │                │  │  info ack  │  │        │  │              │  │   │  │             │  │   │  │   │  │\n│  │                │  │ <───────── │  │        │  │              │  │   │  │             │  │   │  │   │  │\n│  │                │OR1:Y          │  │        │  │              │  │   │  │             │  │   │  │   │  │\n│  │                │  │            │  │        │  │              │  │   │  │             │  │   │  │   │  │\n│  │              connect calls     │  │        │  │              │  │   │  │             │  │   │  │   │  │\n│  │                │  │            │  │        │  │              │  │   │  │             │  │   │  │   │  │\n│  │                │  │ notification (retrieve)│  │              │  │   │  │             │  │   │  │   │  │\n│  │                │  │ ─────────────────────> │  │ notification │  │   │  │             │  │   │  │   │  │\n│  │                │  │            │  │        │  │ ───────────> │  │   │  │             │  │   │  │   │  │\n│  │                │  │                        │  │  (retrieve)  │  │   │  │             │  │   │  │   │  │\n│  │                │  │   notification (ECT)   │  │              │  │   │  │             │  │   │  │   │  │\n│  │                │  │ ─────────────────────> │  notification (ECT)│   │  │             │  │   │  │   │  │\n│  │                │  │        (alerting)      │  │ ───────────> │  │   │  │             │  │   │  │   │  │\n│  │                │  │            │  │        │  │  (alerting)  │  │   │  │             │  │   │  │   │  │\n│  │                │  │    notification (ECT)  │  │              │  │   │  │             │  │   │  │   │  │\n│  │                │  │ ──────────────────────────────────────────────> │ notification (ECT)│   │  │   │  │\n│  │    ECT ack     │  │     (active, RdnB)     │  │              │  │   │  │ ──────────> │  │   │  │   │  │\n│  │ <───────────── │  │            │  │        │  │              │  │   │  │(active,RdnB)│  │   │  │   │  │\n│  │   disc req A-B │  │            │  │        │  │              │  │   │  │             │  │   │  │   │  │\n│  │ <───────────── │  │            │  │        │  │              │  │   │  │reject (UDUB)│  │   │  │   │  │\n│  │   disc req A-C │  │            │  │        │  │              │  │   │  │<────────────│  │   │  │   │  │\n│  │ <───────────── │  │            │  │        │  │              │  │   │  │             │  │   │  │   │  │\n│  │                │  │            │  │        │  │              │  │   │  │  set up (LI=RdnB)  │  │   │  │\n│  │                │  │            │  │        │  │              │  │   │  │ ─────────────────> │  setup  │\n│  │                │  │            │  │        │  │              │  │   │  │             │  │   │  │──>│  │\n│  │                │  │            │  │        │  │              │  │   │  │             │  │   │  │   │  │\n│  │                │  │            │  │        │  │              │  │   │  │             │  │   │ connect │\n│  │                │  │            │  │        │  │ ANSWER(LI=D) │  │   │  │             │  │   │  │<──│  │\n│  │                │  │ <────────────────────────────────────────────────────────────────────── │  │   │  │\n│  │                │  │            │  │        │  │              │  │   │  │             │  │   │ con ack │\n│  │                │  │  notification (ECT)    │  │              │  │   │  │             │  │   │  │──>│  │\n│  │                │  │ ─────────────────────> │ notification (ECT) │   │  │             │  │   │  │   │  │\n│  │                │  │     (active, RdnD)     │  │ ───────────> │  │   │  │             │  │   │  │   │  │\n│  │                │  │            │  │        │  │(active, RdnD)│  │   │  │             │  │   │  │   │  │\n│  │                │  │            │  │        │  │              │  │   │  │             │  │   │  │   │  │\nNOTE:\tOR1: Checks in VLR and MSC ok? (Y: yes  N: no)\nFigure 9: Information flow for interaction of explicit call transfer (one call answered, the other alerting) with call forwarding\nTable 5: Subscriber C forwards the transferred call to the subscriber D\nCall states\nCOLR indication received from\nInformation provided to B\nsubscribers D's network\nA-B Active\nIndicated \"allowed\" at receipt of\nAt time of transfer:\nA-C Alerting,\nCONNECT by subscriber D\nNI: \"call transferred, alerting\"\nforwarded to D\nAt subscribers D CONNECT:\nNI: \"call transferred, active\"\nRdn: PI = allowed, LI of D\nA-B Active\nIndicated \"restricted\" at receipt of\nAt time of transfer:\nA-C Alerting,\nCONNECT by subscriber D\nNI: \"call transferred, alerting\"\nforwarded to D\nAt subscribers D CONNECT:\nNI: \"call transferred, active\"\nRdn: PI = restricted (note 1)\nA-B Active\nNo indication received at receipt of\nAt time of transfer:\nA-C Alerting,\nCONNECT by subscriber D\nNI: \"call transferred, alerting\"\nforwarded to D\n(e.g. interworking)\nAt subscribers D CONNECT:\nNI: \"call transferred, active\"\nRdn: PI = not available\nNOTE 1:\tIf the subscriber B was called by subscriber A and has CLIP Override Category, or if subscriber B called subscriber A and has COLP Override Category then the following information is carried in the Redirection number: PI = restricted, LI of D.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5",
+        "figure_9"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.091_4.3.4",
+      "section_id": "4.3.4",
+      "section_title": "Call Forwarding on No Reply (CFNRy)",
+      "content": "Same as the interaction between call forwarding on mobile subscriber busy due to UDUB and explicit call transfer as described in clause 4.3.3.2.\nFigure 9 applies except that call forwarding is invoked by the CFNRy timer expiry instead of reception of reject (UDUB) message.\nFor the line identity information sent to the subscriber B after the call is answered by the forwarded-to subscriber D the table 5 applies.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_4.3.3.2",
+        "table_5",
+        "figure_9"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.091_4.3.5",
+      "section_id": "4.3.5",
+      "section_title": "Call Forwarding on mobile subscriber Not Reachable (CFNRc)",
+      "content": "No impact.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.091_4.3.6",
+      "section_id": "4.3.6",
+      "section_title": "Call Waiting (CW)",
+      "content": "No impact.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.091_4.3.7",
+      "section_id": "4.3.7",
+      "section_title": "Call Hold (HOLD)",
+      "content": "No impact.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.091_4.3.8",
+      "section_id": "4.3.8",
+      "section_title": "Multi Party (MPTY)",
+      "content": "The MSC/VLR shall reject any ECT request from the served subscriber of a MPTY call.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.091_4.3.9",
+      "section_id": "4.3.9",
+      "section_title": "Closed User Group (CUG)",
+      "content": "Closed user group restrictions shall be met between users when the first call is set up.\nSimilarly, closed user group restrictions shall also be met between users when setting up the second call.\nFinally, for successful explicit call transfer the served mobile subscriber must use the same CUG-Interlock code for both calls. The same rule shall applied regardless of being two MO calls, two MT calls or one MO and one MT call.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.091_4.3.10",
+      "section_id": "4.3.10",
+      "section_title": "Advice of Charge (AoC) services",
+      "content": "No impact.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.091_4.3.11",
+      "section_id": "4.3.11",
+      "section_title": "Call Barring services",
+      "content": "No impact",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.091_4.3.12",
+      "section_id": "4.3.12",
+      "section_title": "Explicit Call Transfer (ECT)",
+      "content": "It is required as a network option that the establishment of endless loops between subscriber A and subscriber B, both of them transferring the call to the other one, is prevented. The same loop prevention mechanism as in ISDN shall be used.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.091_4.4",
+      "section_id": "4.4",
+      "section_title": "Information stored in the HLR",
+      "content": "The following logical states are applicable for the Explicit Call Transfer service (refer to 3GPP TS 23.011 [6]  for an explanation of the notation):\nProvisioning State\tRegistration State\tActivation State\tHLR Induction State\n(Not Provisioned,\tNot Applicable,\tNot Active,\tNot Induced)\n(Provisioned,\tNot Applicable,\tActive and Operative,\tNot Induced)\nThe HLR shall store the logical state of the Explicit Call Transfer service (which shall be one of the valid states listed above) on a per subscriber basis.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.011"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.091_4.5",
+      "section_id": "4.5",
+      "section_title": "State transition model",
+      "content": "Figure 10 shows the successful cases of transition between the applicable logical states of the Explicit Call Transfer service. The state changes are caused by actions of the service provider.\nNote that error cases are not shown in the diagram as they normally do not cause a state change. Additionally, some successful requests may not cause a state change and are therefore not shown in the diagram.\nFigure 10: State transition model",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_10"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.091_4.6",
+      "section_id": "4.6",
+      "section_title": "Transfer of information from the HLR to the VLR",
+      "content": "If the provisioning state for the Explicit Call Transfer service is \"Provisioned\" then when the subscriber registers on a VLR the HLR shall send that VLR information about the logical state of the Explicit Call Transfer service.\nIf the logical state of the Explicit Call Transfer service is changed while a subscriber is registered on a VLR then the HLR shall inform the VLR of the new logical state of the Explicit Call Transfer service.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.091_4.7",
+      "section_id": "4.7",
+      "section_title": "Information stored in the VLR",
+      "content": "For the supplementary service Explicit Call Transfer the VLR shall store the service state information received from the HLR.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.091_4.8",
+      "section_id": "4.8",
+      "section_title": "Handover",
+      "content": "Handover will have no impact on the control procedures and the operation of the service.\nAnnex A:Change history\nChange history\nDate\nMeeting\nTDoc\nCR\nRev\nCat\nSubject/Comment\nNew version\nApr 1999\nTransferred to 3GPP CN1\nCN#03\nApproved at CN#03\n3.0.0\nCN#06\n001\nApproved at CN#06\n3.1.0\nCN#09\n002\n1\nSDL refresh\n3.2.0\nCN#11\nVersion increased from R99 to Rel-4 after CN#11\n4.0.0\nCN#11\n003\n1\nEnhancement of ECT SDLs and CAMEL functionality\n4.0.0\nCN#16\nVersion increased from Rel-4 to Rel-5 after CN#16\n5.0.0\nCN#17\n005\nCorrection to check of ECT treatment indicator in SII2 parameter\n5.1.0\nCN#26\nVersion increased from Rel-5 to Rel-6 after CN#26\n6.0.0\nCT#36\nUpgraded unchanged from Rel-6\n7.0.0\nCT#42\nUpgraded unchanged from Rel-7\n8.0.0\nCT#46\n-\n-\nUpdate to Rel-9 version (MCC)\n9.0.0\n2011-03\n-\n-\nUpdate to Rel-10 version (MCC)\n10.0.0\n2012-09\n-\n-\nUpdate to Rel-11 version (MCC)\n11.0.0\n2014-09\n-\n-\nUpdate to Rel-12 version (MCC)\n12.0.0\n2015-12\n-\n-\nUpdate to Rel-13 version (MCC)\n13.0.0\n2017-03\n-\n-\nUpdate to Rel-14 version (MCC)\n14.0.0\n2018-06\n-\n-\nUpdate to Rel-15 version (MCC)\n15.0.0\n2020-07\n-\n-\nUpdate to Rel-16 version (MCC)\n16.0.0\n2022-03\n-\n-\n-\n-\n-\nUpdate to Rel-17 version (MCC)\n17.0.0\n2024-03\n-\n-\n-\n-\n-\nUpdate to Rel-18 version (MCC)\n18.0.0",
+      "chunk_type": "general",
+      "cross_references": []
+    }
+  ]
+}

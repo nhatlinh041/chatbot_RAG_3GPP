@@ -1,0 +1,857 @@
+{
+  "metadata": {
+    "specification_id": "ts_29.586",
+    "version": "18.1.0",
+    "title": "3GPP TS 29.586",
+    "file_path": "/content/drive/MyDrive/RAG_thesis/data/29_series/29586-i10/29586-i10.docx"
+  },
+  "export_info": {
+    "export_date": "2025-07-26T08:50:59.781078",
+    "total_chunks": 75
+  },
+  "chunks": [
+    {
+      "chunk_id": "ts_29.586_1",
+      "section_id": "1",
+      "section_title": "Scope",
+      "content": "The present document specifies the stage 3 protocol and data model for the Nslpkmf Service Based Interface to support ranging based service and sidelink positioning in 5G system. It provides stage 3 protocol definitions and message flows, and specifies the API for each service offered by the SLPKMF as specified in 3GPP TS 33.533 [2].\nThe 5G System stage 2 architecture and procedures for ranging based service and sidelink positioning are specified in 3GPP TS 23.586 [3].\nThe Technical Realization of the Service Based Architecture and the Principles and Guidelines for Services Definition are specified in 3GPP TS 29.500 [4] and 3GPP TS 29.501 [6].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_33.533",
+        "ts_23.586",
+        "ts_29.500",
+        "ts_29.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.586_2",
+      "section_id": "2",
+      "section_title": "References",
+      "content": "The following documents contain provisions which, through reference in this text, constitute provisions of the present document.\n-\tReferences are either specific (identified by date of publication, edition number, version number, etc.) or non‑specific.\n-\tFor a specific reference, subsequent revisions do not apply.\n-\tFor a non-specific reference, the latest version applies. In the case of a reference to a 3GPP document (including a GSM document), a non-specific reference implicitly refers to the latest version of that document in the same Release as the present document.\n[1]\t3GPP TR 21.905: \"Vocabulary for 3GPP Specifications\".\n[2]\t3GPP TR 33.533: \"Security aspects of ranging based services and sidelink positioning\".\n[3]\t3GPP TR 23.586: \" Ranging based services and Sidelink Positioning \".\n[4]\t3GPP TS 29.500: \"5G System; Technical Realization of Service Based Architecture; Stage 3\".\n[5]\tVoid\n[6]\t3GPP TS 29.501: \"5G System; Principles and Guidelines for Services Definition; Stage 3\".\n[7]\tOpenAPI : \"OpenAPI Specification Version 3.0.0\", https://spec.openapis.org/oas/v3.0.0.\n[8]\tIETF RFC 9113: \"Hypertext Transfer Protocol Version 2 (HTTP/2)\".\n[9]\tIETF RFC 8259: \"The JavaScript Object Notation (JSON) Data Interchange Format\".\n[10]\tIETF RFC 9457: \"Problem Details for HTTP APIs\".\n[11]\t3GPP TS 33.501: \"Security architecture and procedures for 5G system\".\n[12]\tIETF RFC 6749: \"The OAuth 2.0 Authorization Framework\".\n[13]\t3GPP TS 29.510: \"Network Function Repository Services; Stage 3\".\n[14]\t3GPP TR 21.900: \"Technical Specification Group working methods\".\n[15]\t3GPP TS 29.571: \"5G System; Common Data Types for Service Based Interfaces; Stage 3\".\n[16]\t3GPP TS 24.554: \"Proximity-services (ProSe) in 5G System (5GS) protocol aspects; Stage 3\".\n[17]\t3GPP TS 24.514: \"Ranging based services and sidelink positioning in 5G system(5GS); Stage 3\".",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905",
+        "ts_33.533",
+        "ts_23.586",
+        "ts_29.500",
+        "ts_29.501",
+        "ts_33.501",
+        "ts_29.510",
+        "ts_21.900",
+        "ts_29.571",
+        "ts_24.554",
+        "ts_24.514"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.586_3.1",
+      "section_id": "3.1",
+      "section_title": "Definitions",
+      "content": "For the purposes of the present document, the terms and definitions given in 3GPP TR 21.905 [1] and the following apply. A term defined in the present document takes precedence over the definition of the same term, if any, in 3GPP TR 21.905 [1].\nexample: text used to clarify abstract rules by applying them literally.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_21.905"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.586_3.3",
+      "section_id": "3.3",
+      "section_title": "Abbreviations",
+      "content": "For the purposes of the present document, the abbreviations given in 3GPP TR 21.905 [1] and the following apply. An abbreviation defined in the present document takes precedence over the definition of the same abbreviation, if any, in 3GPP TR 21.905 [1].\nSLPKMF\tSideLink Positioning Key Management Function\nSLPP\tSidelink positioning protocol",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.586_4",
+      "section_id": "4",
+      "section_title": "Overview",
+      "content": "The SideLink Positioning Key Management Function (SLPKMF) is the logical function handling network related operations required for generation and provisioning of security materials used for ranging and sidelink positioning services, including:\n-\tthe key management and the security material for the UE discovery for ranging and sidelink positioning.\n-\tthe key management for secure unicast direct link establishment between the UEs for ranging and sidelink positioning services provided by network.\n-\tthe key management for protection of SLPP signalling broadcast/groupcast.\nFigure 4-1 provides the reference model (in service based interface representation and in reference point representation), with focus on the SLPKMF:\nFigure 4-1: Reference model – SLPKMF\nThe functionalities supported by the SLPKMF are listed in clause 4.2 of 3GPP TS 33.533 [2].",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_33.533_clause_4.2",
+        "figure_4-1",
+        "ts_33.533"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.586_5.1",
+      "section_id": "5.1",
+      "section_title": "Introduction",
+      "content": "The Table 5.3-1 shows the SLPKMF Services and SLPKMF Service Operations:\nTable 5.1-1: List of SLPKMF Services\nService\nService Operations\nOperation Semantics\nExample Consumer(s)\nNslpkmf_Discovery\nAnnouncementAuthorization\nRequest/Response\nSLPKMF\nMonitorAuthorization\nRequest/Response\nSLPKMF\nDiscoveryAuthorization\nRequest/Response\nSLPKMF\nNslpkmf_SLPKMFKeyRequest\nUnicastKey\nRequest/Response\nSLPKMF\nTable 5.1-2 summarizes the corresponding APIs defined for this specification.\nTable 5.1-2: API Descriptions\nService Name\nClause\nDescription\nOpenAPI Specification File\napiName\nAnnex\nNslpkmf_Discovery\n6.1\nPKMF Discovery Service\nTS29586_Nslpkmf_Discovery.yaml\nNslpkmf-disc\nA.2\nNslpkmf_SLPKMFKeyRequest\n6.2\nSLPKMF Key Request Service\nTS29586_Nslpkmf_SLPKMFKeyRequest.yaml\nnslpkmf-keyrequest\nA.3",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.3-1",
+        "table_5.1-1",
+        "table_5.1-2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.586_5.2.1",
+      "section_id": "5.2.1",
+      "section_title": "Service Description",
+      "content": "This service enables an NF (i.e. another SLPKMF in another PLMN) to request authorization information. The following are the key functionalities of this NF service.\n-\tProvide the authorization from the SLPKMF for announcing in the PLMN\n-\tProvide the discovery key from the SLPKMF for monitoring in the PLMN\n-\tProvide the discovery key from the SLPKMF for a discoverer UE in the PLMN to operate Model B restricted discovery",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.586_5.2.2.1",
+      "section_id": "5.2.2.1",
+      "section_title": "Introduction",
+      "content": "The Nslpkmf_Discovery service supports following service operations:\n-\tAnnouncementAuthorization\n-\tMonitorAuthorization\n-\tDiscoveryAuthorization",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.586_5.2.2.2.1",
+      "section_id": "5.2.2.2.1",
+      "section_title": "General",
+      "content": "The AnnouncementAuthorizationservice operation is invoked by a NF Service Consumer, i.e. another SLPKMF in another PLMN, towards the SLPKMF to retrieve the authorization from the SLPKMF for announcing in the PLMN.\nThe NF Service Consumer (e.g., SLPKMF) shall request the SLPKMF to get authorization as shown in Figure 5.2.2.2.1-1\nFigure 5.2.2.2.1-1: Announcement Authorization\n1.\tThe NF service consumer (e.g., SLPKMF) sends a HTTP PUT request to the resource representing the announcement-authorization. The request body shall contain the ranging and sidelink positioning application identifier and UE role.\n2a.\tIf the context indicated by the userInfoId doesn't exist, the SLPKMF shall create the new resource, and upon success of creation of the resource, \"201 created\" shall be returned.\n2b.\tIf the context indicated by the userInfoId already exists, the SLPKMF shall replace the stored data using the received data, and upon success of the update of the resource, \"204 No Content\" shall be returned.\n2c.\tOn failure or redirection, one of the HTTP status code listed in Table 6.1.3.2.3.1-3 may be returned. For a 4xx/5xx response, the message body may contain a ProblemDetails structure with the \"cause\" attribute set to one of the application error listed in Table 6.1.3.2.3.1-3.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "table_6.1.3.2.3.1-3",
+        "figure_5.2.2.2.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.586_5.2.2.3.1",
+      "section_id": "5.2.2.3.1",
+      "section_title": "General",
+      "content": "The MonitorAuthorization service operation is invoked by a NF Service Consumer, i.e. another SLPKMF in another PLMN, towards the SLPKMF to retrieve the discovery key from the SLPKMF for monitoring in the PLMN.\nThe NF Service Consumer (e.g., SLPKMF) shall request the SLPKMF to get authorization as shown in Figure 5.2.2.3.1-1\nFigure 5.2.2.3.2-1: Monitor Authorization\n1.\tThe NF Service Consumer (e.g., SLPKMF) shall send an HTTP PUT request to the resource representing the monitor-authorization. The request body shall contain the ranging and sidelink positioning application identifier, UE role and PC5 UE security capability.\n2a.\tIf the context indicated by the userInfoId doesn't exist, the SLPKMF shall create the new resource, and upon success of creation of the resource, \"201 created\" shall be returned.\n2b.\tIf the context indicated by the userInfoId already exists, the SLPKMF shall replace the stored data using the received data, and upon success of the update of the resource, \"204 No Content\" shall be returned.\n2c.\tOn failure or redirection, one of the HTTP status code listed in Table 6.1.3.3.3.1-3 may be returned. For a 4xx/5xx response, the message body may contain a ProblemDetails structure with the \"cause\" attribute set to one of the application error listed in Table 6.1.3.3.3.1-3.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "table_6.1.3.3.3.1-3",
+        "figure_5.2.2.3.1-1",
+        "figure_5.2.2.3.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.586_5.2.2.4.1",
+      "section_id": "5.2.2.4.1",
+      "section_title": "General",
+      "content": "The DiscoveryAuthorization service operation is invoked by a NF Service Consumer, i.e. another SLPKMF in another PLMN, towards the SLPKMF to retrieve the discovery key from the SLPKMF for a discoverer UE in the PLMN to operate Model B restricted discovery.\nThe NF Service Consumer (e.g., SLPKMF) shall request the SLPKMF to get authorization as shown in Figure 5.2.2.4.1-1\nFigure 5.2.2.4.1-1: Discover Authorization\n1.\tThe NF Service Consumer (e.g., SLPKMF) shall send an HTTP PUT request to the resource representing the discovery-authorization. The request body shall contain the ranging and sidelink positioning application identifier, UE role and PC5 UE security capability.\n2a.\tIf the context indicated by the userInfoId doesn't exist, the SLPKMF shall create the new resource, and upon success of creation of the resource, \"201 created\" shall be returned.\n2b.\tIf the context indicated by the userInfoId already exists, the SLPKMF shall replace the stored data using the received data, and upon success of the update of the resource, \"204 No Content\" shall be returned.\n2c.\tOn failure or redirection, one of the HTTP status code listed in Table 6.1.3.3.3.1-3 may be returned. For a 4xx/5xx response, the message body may contain a ProblemDetails structure with the \"cause\" attribute set to one of the application error listed in Table 6.1.3.3.3.1-3.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "table_6.1.3.3.3.1-3",
+        "figure_5.2.2.4.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.586_5.3.1",
+      "section_id": "5.3.1",
+      "section_title": "Service Description",
+      "content": "This service enables an NF (i.e. another SLPKMF in another PLMN) to request ranging related keying material. The following are the key functionalities of this NF service.\n-\tProvide ranging related keying material for unicast communication",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.586_5.3.2.2.1",
+      "section_id": "5.3.2.2.1",
+      "section_title": "General",
+      "content": "The UnicastKey service operation is invoked by a NF Service Consumer, i.e. another SLPKMF in another PLMN, towards the SLPKMF to retrieve the keying material related to ranging.\nThe UnicastKey service operation is used during the following procedure:\n-\tUnicast direct communication for ranging and sidelink positioning services provided by network (see 3GPP TS 33.533 [4], clause 6.4.3.3)\nThe NF Service Consumer (i.e. another SLPKMF in another PLMN) shall retrieve the ranging related keying material by invoking the \"request \" custom method on the resource URI of \"Ranging Keys Collection\" resource, see clause 6.2.3.2.4. See also Figure 5.3.2.2.1-1.\nFigure 5.3.2.2.1-1 UnicastKey service operation\n1.\tThe NF Service Consumer shall send a HTTP POST request to invoke \"request\" custom method. The payload of the request shall be an object of \"UnicastKeyReqData\" data type. The payload shall include the ranging and sidelink positioning application identifier, the KSLP freshness parameter 1, and the SLPK ID.\n2a.\tOn success, the SLPKMF shall respond with the status code \"200 OK\". The payload of the response shall be an object of \"UnicastKeyRspData\" data type. They payload shall include the KSLP and the KSLP freshness parameter 2.\n2b.\tOn failure or redirection, one of the HTTP status codes listed in Table 6.2.3.2.4.2.2-2 shall be returned. For a 4xx/5xx response, the message body shall contain a ProblemDetails structure with the \"cause\" attribute set to one of the application errors listed in Table 6.2.3.2.4.2.2-2.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_33.533_clause_6.4.3.3",
+        "clause_6.2.3.2.4",
+        "table_6.2.3.2.4.2.2-2",
+        "figure_5.3.2.2.1-1",
+        "ts_33.533"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.586_6.1.1",
+      "section_id": "6.1.1",
+      "section_title": "Introduction",
+      "content": "The Nslpkmf_Discovery shall use the Nslpkmf_Discovery API.\nThe API URI of the Nslpkmf_Discovery API shall be:\n{apiRoot}/<apiName>/<apiVersion>\nThe request URIs used in HTTP requests from the NF service consumer towards the NF service producer shall have the Resource URI structure defined in clause 4.4.1 of 3GPP TS 29.501 [6], i.e.:\n{apiRoot}/<apiName>/<apiVersion>/<apiSpecificResourceUriPart>\nwith the following components:\n-\tThe {apiRoot} shall be set as described in 3GPP TS 29.501 [6].\n-\tThe <apiName> shall be \"Nslpkmf-discovery\".\n-\tThe <apiVersion> shall be \"v1\".\n-\tThe <apiSpecificResourceUriPart> shall be set as described in clause 6.1.3.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.501_clause_4.4.1",
+        "clause_6.1.3",
+        "ts_29.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.586_6.1.2.1",
+      "section_id": "6.1.2.1",
+      "section_title": "General",
+      "content": "HTTP/2, IETF RFC 9113 [8], shall be used as specified in clause 5 of 3GPP TS 29.500 [4].\nHTTP/2 shall be transported as specified in clause 5.3 of 3GPP TS 29.500 [4].\nThe OpenAPI [7] specification of HTTP messages and content bodies for the Nslpkmf_Discovery API is contained in Annex A.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.500_clause_5",
+        "ts_29.500_clause_5.3",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.586_6.1.2.2.1",
+      "section_id": "6.1.2.2.1",
+      "section_title": "General",
+      "content": "See clause 5.2.2 of 3GPP TS 29.500 [4] for the usage of HTTP standard headers.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.500_clause_5.2.2",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.586_6.1.2.2.2",
+      "section_id": "6.1.2.2.2",
+      "section_title": "Content type",
+      "content": "JSON, IETF RFC 8259 [9], shall be used as content type of the HTTP bodies specified in the present specification as specified in clause 5.4 of 3GPP TS 29.500 [4]. The use of the JSON format shall be signalled by the content type \"application/json\".\n\"Problem Details\" JSON object shall be used to indicate additional details of the error in a HTTP response body and shall be signalled by the content type \"application/problem+json\", as defined in IETF RFC 9457 [10].",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_5.4",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.586_6.1.2.3",
+      "section_id": "6.1.2.3",
+      "section_title": "HTTP custom headers",
+      "content": "The mandatory HTTP custom header fields specified in clause 5.2.3.2 of 3GPP TS 29.500 [4] shall be applicable, and the optional HTTP custom header fields specified in clause 5.2.3.3 of 3GPP TS 29.500 [4] may be supported.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_5.2.3.2",
+        "ts_29.500_clause_5.2.3.3",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.586_6.1.3.1",
+      "section_id": "6.1.3.1",
+      "section_title": "Overview",
+      "content": "This clause describes the structure for the Resource URIs and the resources and methods used for the service.\nFigure 6.1.3.1-1 describes the resource URI structure of the Nslpkmf_Discovery API.\nFigure 6.1.3.1-1: Resource URI structure of the Nslpkmf_Discovery API\nTable 6.1.3.1-1 provides an overview of the resources and applicable HTTP methods.\nTable 6.1.3.1-1: Resources and methods overview\nResource name\nResource URI\nHTTP method or custom operation\nDescription\nAnnouncementAuthorization\n/{ueId}/announcement-authorization/{userInfoId}\nPUT\nObtain the authorization from the SLPKMF for announcing in the PLMN\nMonitorAuthorization\n/{ueId}/monitor-authorization/{userInfoId}\nPUT\nObtain the discovery key from the SLPKMF for monitoring in the PLMN\nDiscoveryAuthorization\n/{ueId}/discovery-authorization/{userInfoId}\nPUT\nObtain the discovery key from the SLPKMF for a discoverer UE in the PLMN to operate Model B restricted discovery",
+      "chunk_type": "definition",
+      "cross_references": [
+        "table_6.1.3.1-1",
+        "figure_6.1.3.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.586_6.1.3.2.2",
+      "section_id": "6.1.3.2.2",
+      "section_title": "Resource Definition",
+      "content": "Resource URI: {apiRoot}/Nslpkmf-disc/<apiVersion>/{ueId}/announcement-authorization/{userInfoId}\nThis resource shall support the resource URI variables defined in Table 6.1.3.2.2-1.\nTable 6.1.3.2.2-1: Resource URI variables for this resource\nName\nData type\nDefinition\napiRoot\nstring\nSee clause 6.1.1\nueId\nVarUeId\nRepresents the Subscription Identifier SUPI or GPSI (see 3GPP TS 23.501 [2] clause 5.9.2)\tpattern: See pattern of type VarUeId in 3GPP TS 29.571 [15]\nuserInfoId\nUserInfoId\nRepresents User Info Id.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_6.1.1",
+        "ts_23.501_clause_5.9.2",
+        "table_6.1.3.2.2-1",
+        "ts_23.501",
+        "ts_29.571"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.586_6.1.3.2.3",
+      "section_id": "6.1.3.2.3",
+      "section_title": "Resource Standard Methods",
+      "content": "6.1.3.2.3.1\tPUT\nThis method shall support the URI query parameters specified in Table 6.1.3.2.3.1-1.\nTable 6.1.3.2.3.1-1: URI query parameters supported by the PUT method on this resource\nName\nData type\nP\nCardinality\nDescription\nApplicability\nn/a\nThis method shall support the request data structures specified in Table 6.1.3.2.3.1-2 and the response data structures and response codes specified in Table 6.1.3.2.3.1-3.\nTable 6.1.3.2.3.1-2: Data structures supported by the PUT Request Body on this resource\nData type\nP\nCardinality\nDescription\nAnnounceAuthData\nM\n1\nContains the Announce Authorization Data for the indicated UE and indicated user info id.\nTable 6.1.3.2.3.1-3: Data structures supported by the PUT Response Body on this resource\nData type\nP\nCardinality\nResponse\ncodes\nDescription\nAnnounceAuthData\nM\n1\n201 Created\nUpon success of creation of the resource, a response body shall be returned.\nThe HTTP response shall include a \"Location\" HTTP header that contains the resource URI of the created resource.\nn/a\n204 No Content\nUpon success of the update of the resource, an empty response body shall be returned.\nRedirectResponse\nO\n0..1\n307 Temporary Redirect\nTemporary redirection.\n(NOTE 1)\nRedirectResponse\nO\n0..1\n308 Permanent Redirect\nPermanent redirection.\n(NOTE 2)\nProblemDetails\nO\n0..1\n403 Forbidden\nThe \"cause\" attribute may be used to indicate one of the following application errors:\n- RANGINGSL_SERVICE_UNAUTHORIZED\nSee Table 6.1.7.3-1 for the description of these errors.\nNOTE 1:\tThe manadatory HTTP error status code for the PUT method listed in Table 5.2.7.1-1 of 3GPP TS 29.500 [4] also apply.\nNOTE 2:\tRedirectResponse may be inserted by an SCP, see clause 6.10.9.1 of 3GPP TS 29.500 [4].\nTable 6.1.3.2.3.1-4: Headers supported by the 201 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nContains the URI of the newly created resource, according to the structure: {apiRoot}/Nslpkmf-disc/<apiVersion>/{ueId}/announcement-authorization/{userInfoId}\nTable 6.1.3.2.3.1-5: Headers supported by the 307 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located on an alternative service instance within the same SLPKMF or SLPKMF (service) set.\nFor the case, when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target SLPKMF (service) instance ID towards which the request is redirected\nTable 6.1.3.2.3.1-6: Headers supported by the 308 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located on an alternative service instance within the same SLPKMF or SLPKMF (service) set.\nFor the case, when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target SLPKMF (service) instance ID towards which the request is redirected",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_6.10.9.1",
+        "table_6.1.3.2.3.1-1",
+        "table_6.1.3.2.3.1-2",
+        "table_6.1.3.2.3.1-3",
+        "table_6.1.7.3-1",
+        "ts_29.500_table_5.2.7.1-1",
+        "ts_29.500_table_6.1.3.2.3.1-4",
+        "table_6.1.3.2.3.1-5",
+        "table_6.1.3.2.3.1-6",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.586_6.1.3.3.1",
+      "section_id": "6.1.3.3.1",
+      "section_title": "Description",
+      "content": "This resource represents the Monitor Authorization.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.586_6.1.3.3.2",
+      "section_id": "6.1.3.3.2",
+      "section_title": "Resource Definition",
+      "content": "Resource URI: {apiRoot}/Nslpkmf-disc/<apiVersion>/{ueId}/monitor-authorization/{userInfoId}\nThis resource shall support the resource URI variables defined in Table 6.1.3.3.2-1.\nTable 6.1.3.3.2-1: Resource URI variables for this resource\nName\nData type\nDefinition\napiRoot\nstring\nSee clause 6.1.1\nueId\nVarUeId\nRepresents the Subscription Identifier SUPI or GPSI (see 3GPP TS 23.501 [2] clause 5.9.2)\tpattern: See pattern of type VarUeId in 3GPP TS 29.571 [15]\nuserInfoId\nUserInfoId\nRepresents User Info Id.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_6.1.1",
+        "ts_23.501_clause_5.9.2",
+        "table_6.1.3.3.2-1",
+        "ts_23.501",
+        "ts_29.571"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.586_6.1.3.3.3",
+      "section_id": "6.1.3.3.3",
+      "section_title": "Resource Standard Methods",
+      "content": "6.1.3.3.3.1\tPUT\nThis method shall support the URI query parameters specified in Table 6.1.3.3.3.1-1.\nTable 6.1.3.3.3.1-1: URI query parameters supported by the PUT method on this resource\nName\nData type\nP\nCardinality\nDescription\nApplicability\nn/a\nThis method shall support the request data structures specified in Table 6.1.3.3.3.1-2 and the response data structures and response codes specified in Table 6.1.3.3.3.1-3.\nTable 6.1.3.3.3.1-2: Data structures supported by the PUT Request Body on this resource\nData type\nP\nCardinality\nDescription\nMonitorAuthReqData\nM\n1\nContains the Monitor Key Data for the indicated UE and indicated user info id.\nTable 6.1.3.3.3.1-3: Data structures supported by the PUT Response Body on this resource\nData type\nP\nCardinality\nResponse\ncodes\nDescription\nMonitorAuthRespData\nM\n1\n201 Created\nUpon success of creation of the resource, a response body containing a representation of the discovery key data to monitor for the UE shall be returned.\nThe HTTP response shall include a \"Location\" HTTP header that contains the resource URI of the created resource.\nn/a\n204 No Content\nUpon success of the update of the resource, an empty response body shall be returned.\nRedirectResponse\nO\n0..1\n307 Temporary Redirect\nTemporary redirection.\n(NOTE 1)\nRedirectResponse\nO\n0..1\n308 Permanent Redirect\nPermanent redirection.\n(NOTE 2)\nProblemDetails\nO\n0..1\n403 Forbidden\nThe \"cause\" attribute may be used to indicate one of the following application errors:\n- RANGINGSL_SERVICE_UNAUTHORIZED\nSee Ttable 6.1.7.3-1 for the description of these errors.\nProblemDetails\nO\n0..1\n404 Not Found\nThe \"cause\" attribute may be used to indicate one of the following application errors:\n-\tAPPLICATION_NOT_FOUND\nSee Table 6.1.7.3-1 for the description of these errors.\nNOTE 1:\tThe manadatory HTTP error status code for the PUT method listed in Table 5.2.7.1-1 of 3GPP TS 29.500 [4] also apply.\nNOTE 2:\tRedirectResponse may be inserted by an SCP, see clause 6.10.9.1 of 3GPP TS 29.500 [4].\nTable 6.1.3.3.3.1-4: Headers supported by the 201 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nContains the URI of the newly created resource, according to the structure: {apiRoot}/Nslpkmf-disc/<apiVersion>/{ueId}/monitor-authorization/{userInfoId}\nTable 6.1.3.3.3.1-5: Headers supported by the 307 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located on an alternative service instance within the same SLPKMF or SLPKMF (service) set.\nFor the case, when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target SLPKMF (service) instance ID towards which the request is redirected\nTable 6.1.3.3.3.1-6: Headers supported by the 308 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located on an alternative service instance within the same SLPKMF or SLPKMF (service) set.\nFor the case, when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target SLPKMF (service) instance ID towards which the request is redirected",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_6.10.9.1",
+        "table_6.1.3.3.3.1-1",
+        "table_6.1.3.3.3.1-2",
+        "table_6.1.3.3.3.1-3",
+        "table_6.1.7.3-1",
+        "ts_29.500_table_5.2.7.1-1",
+        "ts_29.500_table_6.1.3.3.3.1-4",
+        "table_6.1.3.3.3.1-5",
+        "table_6.1.3.3.3.1-6",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.586_6.1.3.4.1",
+      "section_id": "6.1.3.4.1",
+      "section_title": "Description",
+      "content": "This resource represents the Discovery Authorization.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.586_6.1.3.4.2",
+      "section_id": "6.1.3.4.2",
+      "section_title": "Resource Definition",
+      "content": "Resource URI: {apiRoot}/Nslpkmf-disc/<apiVersion>/{ueId}/discovery-authorization/{userInfoId}\nThis resource shall support the resource URI variables defined in Table 6.1.3.4.2-1.\nTable 6.1.3.4.2-1: Resource URI variables for this resource\nName\nData type\nDefinition\napiRoot\nstring\nSee clause 6.1.1\nueId\nVarUeId\nRepresents the Subscription Identifier SUPI or GPSI (see 3GPP TS 23.501 [2] clause 5.9.2)\tpattern: See pattern of type VarUeId in 3GPP TS 29.571 [15]\nuserInfoId\nUserInfoId\nRepresents User Info Id.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_6.1.1",
+        "ts_23.501_clause_5.9.2",
+        "table_6.1.3.4.2-1",
+        "ts_23.501",
+        "ts_29.571"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.586_6.1.3.4.3",
+      "section_id": "6.1.3.4.3",
+      "section_title": "Resource Standard Methods",
+      "content": "6.1.3.4.3.1\tPUT\nThis method shall support the URI query parameters specified in Table 6.1.3.4.3.1-1.\nTable 6.1.3.4.3.1-1: URI query parameters supported by the PUT method on this resource\nName\nData type\nP\nCardinality\nDescription\nApplicability\nn/a\nThis method shall support the request data structures specified in Table 6.1.3.4.3.1-2 and the response data structures and response codes specified in Table 6.1.3.4.3.1-3.\nTable 6.1.3.4.3.1-2: Data structures supported by the PUT Request Body on this resource\nData type\nP\nCardinality\nDescription\nDiscoveryAuthReqData\nM\n1\nContains the Discovery Key Data for the indicated UE and indicated user info id.\nTable 6.1.3.4.3.1-3: Data structures supported by the PUT Response Body on this resource\nData type\nP\nCardinality\nResponse\ncodes\nDescription\nDiscoveryAuthRespData\nM\n1\n201 Created\nUpon success of creation of the resource, a response body containing a representation of the discovery key data for the discoverer UE in the PLMN to operate Model B restricted discovery shall be returned.\nThe HTTP response shall include a \"Location\" HTTP header that contains the resource URI of the created resource.\nn/a\n204 No Content\nUpon success of the update of the resource, an empty response body shall be returned.\nRedirectResponse\nO\n0..1\n307 Temporary Redirect\nTemporary redirection.\n(NOTE 2)\nRedirectResponse\nO\n0..1\n308 Permanent Redirect\nPermanent redirection.\n(NOTE 2)\nProblemDetails\nO\n0..1\n403 Forbidden\nThe \"cause\" attribute may be used to indicate one of the following application errors:\n- RANGINGSL_SERVICE_UNAUTHORIZED\nSee Table 6.1.7.3-1 for the description of these errors.\nProblemDetails\nO\n0..1\n404 Not Found\nThe \"cause\" attribute may be used to indicate one of the following application errors:\n-\tAPPLICATION_NOT_FOUND\nSee Table 6.1.7.3-1 for the description of these errors.\nNOTE 1:\tThe manadatory HTTP error status code for the PUT method listed in Table 5.2.7.1-1 of 3GPP TS 29.500 [4] also apply.\nNOTE 2:\tRedirectResponse may be inserted by an SCP, see clause 6.10.9.1 of 3GPP TS 29.500 [4].\nTable 6.1.3.4.3.1-4: Headers supported by the 201 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nContains the URI of the newly created resource, according to the structure: {apiRoot}/Nslpkmf-disc/<apiVersion>/{ueId}/discovery-authorization/{userInfoId}\nTable 6.1.3.4.3.1-5: Headers supported by the 307 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located on an alternative service instance within the same SLPKMF or SLPKMF (service) set.\nFor the case, when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target SLPKMF (service) instance ID towards which the request is redirected\nTable 6.1.3.4.3.1-6: Headers supported by the 308 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located on an alternative service instance within the same SLPKMF or SLPKMF (service) set.\nFor the case, when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target SLPKMF (service) instance ID towards which the request is redirected",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_6.10.9.1",
+        "table_6.1.3.4.3.1-1",
+        "table_6.1.3.4.3.1-2",
+        "table_6.1.3.4.3.1-3",
+        "table_6.1.7.3-1",
+        "ts_29.500_table_5.2.7.1-1",
+        "ts_29.500_table_6.1.3.4.3.1-4",
+        "table_6.1.3.4.3.1-5",
+        "table_6.1.3.4.3.1-6",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.586_6.1.4",
+      "section_id": "6.1.4",
+      "section_title": "Custom Operations without associated resources",
+      "content": "There is no custom operation without associated resources supported in Nslpkmf_Discovery Service.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.586_6.1.5",
+      "section_id": "6.1.5",
+      "section_title": "Notifications",
+      "content": "There is no notification defined for Nslpkmf_Discovery service.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.586_6.1.6.1",
+      "section_id": "6.1.6.1",
+      "section_title": "General",
+      "content": "This clause specifies the application data model supported by the API.\nTable 6.1.6.1-1 specifies the data types defined for the Nslpkmf_Discovery service based interface protocol.\nTable 6.1.6.1-1: Nslpkmf_Discovery specific Data Types\nData type\nClause defined\nDescription\nApplicability\nAnnounceAuthData\n6.1.6.2.2\nRepresents Data used to request the authorization to announce for a UE\nMonitorAuthReqData\n6.1.6.2.3\nRepresents Data used to request the discovery key data to monitor for a UE\nMonitorAuthRespData\n6.1.6.2.4\nRepresents the obtained Monitor discovery key data for a UE\nDiscoveryAuthReqData\n6.1.6.2.5\nRepresents Data used to request the discovery key data for a discoverer UE\nDiscoveryAuthRespData\n6.1.6.2.6\nRepresents the obtained the discovery key data for a discoverer UE.\nDiscSecMaterials\n6.1.6.2.7\nRepresents the discovery security materials\nUeSecurityCapability\n6.1.6.3\nRanging and sidelink positioning UE security capability\nChosenPc5CipheringAlgorithm\n6.1.6.3\nThe chosen PC5 ciphering algorithm\nUeRole\n6.1.6.3\nRepresents ranging and sidelink positioning UE role\nTable 6.1.6.1-2 specifies data types re-used by the Nslpkmf_Discovery service based interface protocol from other specifications, including a reference to their respective specifications and when needed, a short description of their use within the Nslpkmf_Discovery service based interface.\nTable 6.1.6.1-2: Nslpkmf_Discovery re-used Data Types\nData type\nReference\nComments\nApplicability\nVarUeId\n3GPP TS 29.571 [15]\nString represents the SUPI or GPSI.\nApplicationId\n3GPP TS 29.571 [15]\nRepresents the identifier of an application.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "table_6.1.6.1-1",
+        "table_6.1.6.1-2",
+        "ts_29.571"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.586_6.1.6.2.1",
+      "section_id": "6.1.6.2.1",
+      "section_title": "Introduction",
+      "content": "This clause defines the structures to be used in resource representations.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.586_6.1.6.2.2",
+      "section_id": "6.1.6.2.2",
+      "section_title": "Type: AnnounceAuthData",
+      "content": "Table 6.1.6.2.2-1: Definition of type AnnounceAuthData\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\nrangingSlAppId\nApplicationId\nM\n1\nThis IE shall indicate the application identifier for ranging and sidelink positioning service.\nueRole\nUeRole\nM\n1\nThis IE shall indicate the role of the UE for ranging and sidelink positioning service.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.1.6.2.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.586_6.1.6.2.3",
+      "section_id": "6.1.6.2.3",
+      "section_title": "Type: MonitorAuthReqData",
+      "content": "Table 6.1.6.2.3-1: Definition of type MonitorAuthReqData\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\nrangingSlAppId\nApplicationId\nM\n1\nThis IE shall indicate the application identifier for ranging and sidelink positioning service.\nueRole\nUeRole\nM\n1\nThis IE shall indicate the role of the UE for ranging and sidelink positioning service.\nueSecurityCapability\nUeSecurityCapability\nM\n1\nThis IE shall indicate the PC5 UE security capability for ranging and sidelink positioning sevice.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.1.6.2.3-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.586_6.1.6.2.4",
+      "section_id": "6.1.6.2.4",
+      "section_title": "Type: MonitorAuthRespData",
+      "content": "Table 6.1.6.2.4-1: Definition of type MonitorAuthRespData\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\nchosenPc5CipheringAlgorithm\nChosenPc5CipheringAlgorithm\nM\n1\nThis IE shall indicate the chosen PC5 ciphering algorithm for ranging and sidelink positioning sevice\ndiscSecMaterials\nDiscSecMaterials\nM\n1\nThis IE shall indicate the discovery security materials",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.1.6.2.4-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.586_6.1.6.2.5",
+      "section_id": "6.1.6.2.5",
+      "section_title": "Type: DiscoveryAuthReqData",
+      "content": "Table 6.1.6.2.5-1: Definition of type DiscoveryAuthReqData\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\nrangingSlAppId\nApplicationId\nM\n1\nThis IE shall indicate the application identifier for ranging and sidelink positioning service.\nueRole\nUeRole\nM\n1\nThis IE shall indicate the role of the UE for ranging and sidelink positioning service.\nueSecurityCapability\nUeSecurityCapability\nM\n1\nThis IE shall indicate the PC5 UE security capability for ranging and sidelink positioning sevice.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.1.6.2.5-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.586_6.1.6.2.6",
+      "section_id": "6.1.6.2.6",
+      "section_title": "Type: DiscoveryAuthRespData",
+      "content": "Table 6.1.6.2.6-1: Definition of type DiscoveryAuthRespData\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\nchosenPc5CipheringAlgorithm\nChosenPc5CipheringAlgorithm\nM\n1\nThis IE shall indicate the chosen PC5 ciphering algorithm for ranging and sidelink positioning service.\ndiscSecMaterials\nDiscSecMaterials\nM\n1\nThis IE shall indicate the discovery security materials for ranging and sidelink positioning service.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.1.6.2.6-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.586_6.1.6.2.7",
+      "section_id": "6.1.6.2.7",
+      "section_title": "Type: DiscSecMaterials",
+      "content": "Table 6.1.6.2.7-1: Definition of type DiscSecMaterials\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\nduik\nDuik\nO\n0..1\nDiscovery User Integrity Key\nduck\nDuck\nO\n0..1\nDiscovery User Confidentility Key\ndusk\nDusk\nO\n0..1\nDiscovery User Scrambling Key",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.1.6.2.7-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.586_6.1.6.3.1",
+      "section_id": "6.1.6.3.1",
+      "section_title": "Introduction",
+      "content": "This clause defines simple data types and enumerations that can be referenced from data structures defined in the previous clauses.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.586_6.1.6.3.2",
+      "section_id": "6.1.6.3.2",
+      "section_title": "Simple data types",
+      "content": "The simple data types defined in Table 6.1.6.3.2-1 shall be supported.\nTable 6.1.6.3.2-1: Simple data types\nType Name\nType Definition\nDescription\nApplicability\nUserInfoId\nstring\nString identifying an User Info ID as Application layer ID as specified in 3GPP TS 24.514 [17].\nUeSecurityCapability\nBytes\nString with format \"byte\" as defined in OpenAPI Specification [7], i.e. base64-encoded characters, encoding the \"UE security capability\" IE as specified in 3GPP TS 24.514 [17] (starting from octet 1).\nChosenPc5CipheringAlgorithm\ninteger\nThis IE shall indicate the chosen PC5 ciphering algorithm as specified in 3GPP TS 24.514 [17]\nDuik\nBytes\nString with format \"byte\" as defined in OpenAPI Specification [7], i.e. base64-encoded characters, encoding the \"DUIK\" IE as specified in 3GPP TS 24.514 [17]\nDuck\nBytes\nString with format \"byte\" as defined in OpenAPI Specification [7], i.e. base64-encoded characters, encoding the \"DUCK\" IE as specified in 3GPP TS 24.514 [17]\nDusk\nBytes\nString with format \"byte\" as defined in OpenAPI Specification [7], i.e. base64-encoded characters, encoding the \"DUSK\" IE as specified in 3GPP TS 24.514 [17]",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.1.6.3.2-1",
+        "ts_24.514"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.586_6.1.6.3.3",
+      "section_id": "6.1.6.3.3",
+      "section_title": "Enumeration: UeRole",
+      "content": "The enumeration UeRole represents the different roles of UE for ranging and sidelink positioning service.\nTable 6.1.6.3.28-1: Enumeration UeRole\nEnumeration value\nDescription\n\"TARGET_UE\"\nUE as target UE for the ranging and sidelink positioning service\n\"REFERENCE_UE\"\nUE as sidelink reference UE for the ranging and sidelink positioning service\n\"LOCATED_UE\"\nUE as located UE for the ranging and sidelink positioning service\n\"CLIENT_UE\"\nUE as sidelink positioning client UE for the ranging and sidelink positioning service\n\"SERVER_UE\"\nUE as sidelink positioning server UE for the ranging and sidelink positioning service",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.1.6.3.28-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.586_6.1.6.4",
+      "section_id": "6.1.6.4",
+      "section_title": "Data types describing alternative data types or combinations of data types",
+      "content": "There is no data type describing alternative data types or combinations of data types in Nslpkmf_Discovery Service.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.586_6.1.6.5",
+      "section_id": "6.1.6.5",
+      "section_title": "Binary data",
+      "content": "There is no binary data type in Nslpkmf_Discovery Service.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.586_6.1.7.1",
+      "section_id": "6.1.7.1",
+      "section_title": "General",
+      "content": "For the Nslpkmf_Discovery API, HTTP error responses shall be supported as specified in clause 4.8 of 3GPP TS 29.501 [6]. Protocol errors and application errors specified in Table 5.2.7.2-1 of 3GPP TS 29.500 [4] shall be supported for an HTTP method if the corresponding HTTP status codes are specified as mandatory for that HTTP method in Table 5.2.7.1-1 of 3GPP TS 29.500 [4].\nIn addition, the requirements in the following clauses are applicable for the Nslpkmf_Discovery API.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.501_clause_4.8",
+        "ts_29.500_table_5.2.7.2-1",
+        "ts_29.500_table_5.2.7.1-1",
+        "ts_29.501",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.586_6.1.7.2",
+      "section_id": "6.1.7.2",
+      "section_title": "Protocol Errors",
+      "content": "Protocol errors handling shall be supported as specified in clause 5.2.7 of 3GPP TS 29.500 [4].",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_5.2.7",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.586_6.1.7.3",
+      "section_id": "6.1.7.3",
+      "section_title": "Application Errors",
+      "content": "The application errors defined for the Nslpkmf_Discovery service are listed in Table 6.1.7.3-1.\nTable 6.1.7.3-1: Application errors\nApplication Error\nHTTP status code\nDescription\nRANGINGSL_SERVICE_UNAUTHORIZED\n403 Forbidden\nIt is used when the requested ProSe service, which is a ranging and sidelink positioning service, is not authorized for this UE Identity.\nAPPLICATION_NOT_FOUND\n404 Not Found\nIt is used when the requested application doesn't exist",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.1.7.3-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.586_6.1.8",
+      "section_id": "6.1.8",
+      "section_title": "Feature negotiation",
+      "content": "The optional features in Table 6.1.8-1 are defined for the Nslpkmf_Discovery API. They shall be negotiated using the extensibility mechanism defined in clause 6.6 of 3GPP TS 29.500 [4].\nTable 6.1.8-1: Supported Features\nFeature number\nFeature Name\nDescription\nN/A",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_6.6",
+        "table_6.1.8-1",
+        "ts_29.500_table_6.1.8-1",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.586_6.1.9",
+      "section_id": "6.1.9",
+      "section_title": "Security",
+      "content": "As indicated in 3GPP TS 33.501 [11] and 3GPP TS 29.500 [4], the access to the Nslpkmf_Discovery API may be authorized by means of the OAuth2 protocol (see IETF RFC 6749 [12]), based on local configuration, using the \"Client Credentials\" authorization grant, where the NRF (see 3GPP TS 29.510 [13]) plays the role of the authorization server.\nIf OAuth2 is used, an NF Service Consumer, prior to consuming services offered by the Nslpkmf_Discovery API, shall obtain a \"token\" from the authorization server, by invoking the Access Token Request service, as described in 3GPP TS 29.510 [13], clause 5.4.2.2.\nNOTE:\tWhen multiple NRFs are deployed in a network, the NRF used as authorization server is the same NRF that the NF Service Consumer used for discovering the Nslpkmf_Discovery service.\nThe Nslpkmf_Discovery API defines the following OAuth2 authorization as specified in 3GPP TS 33.501 [11]:\nTable 6.1.9-1: OAuth2 scopes defined in Nslpkmf_Discovery API\nScope\nDescription\n\"Nslpkmf-disc\"\nAccess to the Nslpkmf_Discovery API\n\"Nslpkmf-disc: announcement-authorization:modify\"\nAccess to modify the authorization to announce for a UE in the PLMN\n\"Nslpkmf-disc:monitor-authorization:modify\"\nAccess to modify the authorization for monitoring for a UE in the PLMN\n\"Nslpkmf-disc:discovery-authorization:modify\"\nAccess to modify the authorization from the SLPKMF for a discoverer UE in the PLMN to operate Model B restricted discovery",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.510_clause_5.4.2.2",
+        "ts_33.501_table_6.1.9-1",
+        "ts_33.501",
+        "ts_29.500",
+        "ts_29.510"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.586_6.1.10",
+      "section_id": "6.1.10",
+      "section_title": "HTTP redirection",
+      "content": "An HTTP request may be redirected to a different SLPKMF service instance, within the same SLPKMF or a different SLPKMF of an SLPKMF set, e.g. when an SLPKMF service instance is part of an SLPKMF (service) set or when using indirect communications (see 3GPP TS 29.500 [4]).\nAn SCP that reselects a different SLPKMF producer instance will return the NF Instance ID of the new SLPKMF producer instance in the 3gpp-Sbi-Producer-Id header, as specified in clause 6.10.3.4 of 3GPP TS 29.500 [4].\nIf an SLPKMF within an SLPKMF set redirects a service request to a different SLPKMF of the set using an 307 Temporary Redirect or 308 Permanent Redirect status code, the identity of the new SLPKMF towards which the service request is redirected shall be indicated in the 3gpp-Sbi-Target-Nf-Id header of the 307 Temporary Redirect or 308 Permanent Redirect response as specified in clause 6.10.9.1 of 3GPP TS 29.500 [4].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.500_clause_6.10.3.4",
+        "ts_29.500_clause_6.10.9.1",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.586_6.2.1",
+      "section_id": "6.2.1",
+      "section_title": "Introduction",
+      "content": "The Nslpkmf_SLPKMFKeyRequest shall use the Nslpkmf_SLPKMFKeyRequest API.\nThe API URI of the Nslpkmf_SLPKMFKeyRequest API shall be:\n{apiRoot}/<apiName>/<apiVersion>\nThe request URIs used in HTTP requests from the NF service consumer towards the NF service producer shall have the Resource URI structure defined in clause 4.4.1 of 3GPP TS 29.501 [6], i.e.:\n{apiRoot}/<apiName>/<apiVersion>/<apiSpecificResourceUriPart>\nwith the following components:\n-\tThe {apiRoot} shall be set as described in 3GPP TS 29.501 [6].\n-\tThe <apiName> shall be \"nslpkmf-keyrequest \".\n-\tThe <apiVersion> shall be \"v1\".\n-\tThe <apiSpecificResourceUriPart> shall be set as described in clause 6.2.3.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.501_clause_4.4.1",
+        "clause_6.2.3",
+        "ts_29.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.586_6.2.2.1",
+      "section_id": "6.2.2.1",
+      "section_title": "General",
+      "content": "HTTP/2, IETF RFC 9113 [8], shall be used as specified in clause 5 of 3GPP TS 29.500 [4].\nHTTP/2 shall be transported as specified in clause 5.3 of 3GPP TS 29.500 [4].\nThe OpenAPI [7] specification of HTTP messages and content bodies for the Nslpkmf_SLPKMFKeyRequest API is contained in Annex A.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.500_clause_5",
+        "ts_29.500_clause_5.3",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.586_6.2.2.2.1",
+      "section_id": "6.2.2.2.1",
+      "section_title": "General",
+      "content": "See clause 5.3.2 of 3GPP TS 29.500 [4] for the usage of HTTP standard headers.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.500_clause_5.3.2",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.586_6.2.2.2.2",
+      "section_id": "6.2.2.2.2",
+      "section_title": "Content type",
+      "content": "JSON, IETF RFC 8259 [9], shall be used as content type of the HTTP bodies specified in the present specification as specified in clause 5.4 of 3GPP TS 29.500 [4]. The use of the JSON format shall be signalled by the content type \"application/json\".\n\"Problem Details\" JSON object shall be used to indicate additional details of the error in a HTTP response body and shall be signalled by the content type \"application/problem+json\", as defined in IETF RFC 9457 [10].",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_5.4",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.586_6.2.2.3",
+      "section_id": "6.2.2.3",
+      "section_title": "HTTP custom headers",
+      "content": "The mandatory HTTP custom header fields specified in clause 5.3.3.2 of 3GPP TS 29.500 [4] shall be applicable, and the optional HTTP custom header fields specified in clause 5.3.3.3 of 3GPP TS 29.500 [4] may be supported.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_5.3.3.2",
+        "ts_29.500_clause_5.3.3.3",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.586_6.2.3.1",
+      "section_id": "6.2.3.1",
+      "section_title": "Overview",
+      "content": "This clause describes the structure for the Resource URIs and the resources and methods used for the service.\nFigure 6.2.3.1-1 describes the resource URI structure of the Nslpkmf_SLPKMFKeyRequest API.\nFigure 6.2.3.1-1: Resource URI structure of the Nslpkmf_SLPKMFKeyRequest API\nTable 6.2.3.1-1 provides an overview of the resources and applicable HTTP methods.\nTable 6.2.3.1-1: Resources and methods overview\nResource name\nResource URI\nHTTP method or custom operation\nDescription\nRanging Keys Collection\n/ranging-keys\nrequest\n(POST)\nUnicastKey service operation",
+      "chunk_type": "definition",
+      "cross_references": [
+        "table_6.2.3.1-1",
+        "figure_6.2.3.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.586_6.2.3.2.1",
+      "section_id": "6.2.3.2.1",
+      "section_title": "Description",
+      "content": "This resource represents the collection of the ranging keys managed by the SLPKMF.\nThis resource is modelled with the Collection resource archetype (see clause C.2 of 3GPP TS 29.501 [6]).",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.586_6.2.3.2.2",
+      "section_id": "6.2.3.2.2",
+      "section_title": "Resource Definition",
+      "content": "Resource URI: {apiRoot}/<apiName>/<apiVersion>/ranging-keys\nThis resource shall support the resource URI variables defined in Table 6.2.3.2.2-1.\nTable 6.2.3.2.2-1: Resource URI variables for this resource\nName\nData type\nDefinition\napiRoot\nstring\nSee clause 6.2.1",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_6.2.1",
+        "table_6.2.3.2.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.586_6.2.3.2.3",
+      "section_id": "6.2.3.2.3",
+      "section_title": "Resource Standard Methods",
+      "content": "There is no standard method supported by the resource.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.586_6.2.3.2.4.1",
+      "section_id": "6.2.3.2.4.1",
+      "section_title": "Overview",
+      "content": "Table 6.2.3.2.4.1-1: Custom operations\nOperation name\nCustom operaration URI\nMapped HTTP method\nDescription\nrequest\n{resourceUri}/request\nPOST\nUnicastKey service operation",
+      "chunk_type": "definition",
+      "cross_references": [
+        "table_6.2.3.2.4.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.586_6.2.3.2.4.2",
+      "section_id": "6.2.3.2.4.2",
+      "section_title": "Operation: request",
+      "content": "6.2.3.2.4.2.1\tDescription\nThis custom operation requests the keying material related to ranging in the SLPKMF.\n6.2.3.2.4.2.2\tOperation Definition\nThis operation shall support the request data structures specified in Table 6.2.3.2.4.2.2-1 and the response data structure and response codes specified in Table 6.2.3.2.4.2.2-2.\nTable 6.2.3.2.4.2.2-1: Data structures supported by the POST Request Body on this resource\nData type\nP\nCardinality\nDescription\nUnicastKeyReqData\nM\n1\nRepresentation of the input to request the keying material.\nTable 6.2.3.2.4.2.2-2: Data structures supported by the POST Response Body on this resource\nData type\nP\nCardinality\nResponse\ncodes\nDescription\nUnicastKeyRspData\nM\n1\n200 OK\nRepresentation of the successfully requested keying material.\nRedirectResponse\nO\n0..1\n307 Temporary Redirect\nTemporary redirection.\n(NOTE 1)\nRedirectResponse\nO\n0..1\n308 Permanent Redirect\nPermanent redirection.\n(NOTE 2)\nProblemDetails\nO\n0..1\n403 Forbidden\nThe \"cause\" attribute shall be set to one of the following application error:\n- UE_NOT_AUTHORIZED\nSee Table 6.2.7.3-1 for the description of these errors.\nProblemDetails\nO\n0..1\n404 Not Found\nThe \"cause\" attribute shall be set to one of the following application error:\n- UE_NOT_FOUND\nSee Table 6.2.7.3-1 for the description of these errors.\nNOTE 1:\tThe manadatory HTTP error status code for the POST method listed in Table 5.2.7.1-1 of 3GPP TS 29.500 [4] also apply.\nNOTE 2:\tRedirectResponse may be inserted by an SCP, see clause 6.10.9.1 of 3GPP TS 29.500 [4].\nTable 6.2.3.2.4.2.2-3: Headers supported by the 307 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located on an alternative service instance within the same SLPKMF or SLPKMF (service) set.\nFor the case, when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target SLPKMF (service) instance ID towards which the request is redirected\nTable 6.2.3.2.4.2.2-4: Headers supported by the 308 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located on an alternative service instance within the same SLPKMF or SLPKMF (service) set.\nFor the case, when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target SLPKMF (service) instance ID towards which the request is redirected",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_6.10.9.1",
+        "table_6.2.3.2.4.2.2-1",
+        "table_6.2.3.2.4.2.2-2",
+        "table_6.2.7.3-1",
+        "ts_29.500_table_5.2.7.1-1",
+        "ts_29.500_table_6.2.3.2.4.2.2-3",
+        "table_6.2.3.2.4.2.2-4",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.586_6.2.4",
+      "section_id": "6.2.4",
+      "section_title": "Custom Operations without associated resources",
+      "content": "There is no custom operation without associated resources supported in Nslpkmf_SLPKMFKeyRequest Service.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.586_6.2.5",
+      "section_id": "6.2.5",
+      "section_title": "Notifications",
+      "content": "There is no notification defined for Nslpkmf_SLPKMFKeyRequest service.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.586_6.2.6.1",
+      "section_id": "6.2.6.1",
+      "section_title": "General",
+      "content": "This clause specifies the application data model supported by the API.\nTable 6.2.6.1-1 specifies the data types defined for the Nslpkmf_SLPKMFKeyRequest service based interface protocol.\nTable 6.2.6.1-1: Nslpkmf_SLPKMFKeyRequest specific Data Types\nData type\nClause defined\nDescription\nApplicability\nUnicastKeyReqData\n6.2.6.2.2\nRepresentation of the input to request the keying material.\nUnicastKeyRspData\n6.2.6.2.3\nRepresentation of the successfully requested keying material.\nSlpkId\n6.2.6.3\nSidelink positioning Key ID for user\nKslp\n6.2.6.3\nKey for Sidelink positioning\nKslpFreshnessParameter1\n6.2.6.3\nKSLP Freshness Parameter 1\nKslpFreshnessParameter2\n6.2.6.3\nKSLP Freshness Parameter 2\nTable 6.2.6.1-2 specifies data types re-used by the Nslpkmf_SLPKMFKeyRequest service based interface protocol from other specifications, including a reference to their respective specifications and when needed, a short description of their use within the Nslpkmf_SLPKMFKeyRequest service based interface.\nTable 6.2.6.1-2: Nslpkmf_SLPKMFKeyRequest re-used Data Types\nData type\nReference\nComments\nApplicability\nApplicationId\n3GPP TS 29.571 [15]\nRepresents the identifier of an application.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "table_6.2.6.1-1",
+        "table_6.2.6.1-2",
+        "ts_29.571"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.586_6.2.6.2.1",
+      "section_id": "6.2.6.2.1",
+      "section_title": "Introduction",
+      "content": "This clause defines the structures to be used in resource representations.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.586_6.2.6.2.2",
+      "section_id": "6.2.6.2.2",
+      "section_title": "Type: UnicastKeyReqData",
+      "content": "Table 6.2.6.2.2-1: Definition of type UnicastKeyReqData\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\nrangingSlAppId\nApplicationId\nM\n1\nThis IE shall indicate the application identifier for ranging and sidelink positioning service.\nkslpFreshness1\nKslpFreshnessParameter1\nM\n1\nThis IE shall carry the KSLP Freshness Parameter 1 in the ranging UE.\nslpkId\nSlpkId\nM\n1\nThis IE shall indicate the SLPK ID from the ranging UE.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.2.6.2.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.586_6.2.6.2.3",
+      "section_id": "6.2.6.2.3",
+      "section_title": "Type: UnicastKeyRspData",
+      "content": "Table 6.2.6.2.3-1: Definition of type UnicastKeyRspData\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\nkslp\nKslp\nM\n1\nThis IE shall carry the KSLP derived by the SLPKMF.\nkslpFreshness2\nKslpFreshnessParameter2\nM\n1\nThis IE shall carry the KSLP Freshness Parameter 2 generated by the SLPKMF.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.2.6.2.3-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.586_6.2.6.3.1",
+      "section_id": "6.2.6.3.1",
+      "section_title": "Introduction",
+      "content": "This clause defines simple data types and enumerations that can be referenced from data structures defined in the previous clauses.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.586_6.2.6.3.2",
+      "section_id": "6.2.6.3.2",
+      "section_title": "Simple data types",
+      "content": "The simple data types defined in Table 6.2.6.3.2-1 shall be supported.\nTable 6.2.6.3.2-1: Simple data types\nType Name\nType Definition\nDescription\nApplicability\nSlpkId\nstring\nRanging User Key ID\nString type as defined in OpenAPI Specification [7], carrying the value of the \"SLPK ID\" parameter via PC8* (with \"xs:string\" type in XML schema) as specified in 3GPP TS 24.554 [16].\nKslp\nstring\nKey for RANGING AND SIDELINK POSITIONING\nString type as defined in OpenAPI Specification [7], carrying the value of the \"KSLP\" parameter via PC8* (with \"xs:hexBinary\" type in XML schema) as specified in 3GPP TS 24.554 [16].\nKslpFreshnessParameter1\nstring\nKSLP Freshness Parameter 1\nString type as defined in OpenAPI Specification [7], carrying the value of the \"KSLP freshness parameter 1\" parameter via PC8 (with \"xs:hexBinary\" type in XML schema) as specified in 3GPP TS 24.554 [16].\nKslpFreshnessParameter2\nstring\nKSLP Freshness Parameter 2\nString type as defined in OpenAPI Specification [7], carrying the value of the \"KSLP freshness parameter 2\" parameter via PC8 (with \"xs:hexBinary\" type in XML schema) as specified in 3GPP TS 24.554 [16].",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.2.6.3.2-1",
+        "ts_24.554"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.586_6.2.6.4",
+      "section_id": "6.2.6.4",
+      "section_title": "Data types describing alternative data types or combinations of data types",
+      "content": "There is no data type describing alternative data types or combinations of data types in Nslpkmf_SLPKMFKeyRequest Service.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.586_6.2.6.5",
+      "section_id": "6.2.6.5",
+      "section_title": "Binary data",
+      "content": "There is no binary data type in Nslpkmf_SLPKMFKeyRequest Service.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.586_6.2.7.1",
+      "section_id": "6.2.7.1",
+      "section_title": "General",
+      "content": "For the Nslpkmf_SLPKMFKeyRequest API, HTTP error responses shall be supported as specified in clause 4.8 of 3GPP TS 29.501 [6]. Protocol errors and application errors specified in Table 5.3.7.2-1 of 3GPP TS 29.500 [4] shall be supported for an HTTP method if the corresponding HTTP status codes are specified as mandatory for that HTTP method in Table 5.3.7.1-1 of 3GPP TS 29.500 [4].\nIn addition, the requirements in the following clauses are applicable for the Nslpkmf_SLPKMFKeyRequest API.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.501_clause_4.8",
+        "ts_29.500_table_5.3.7.2-1",
+        "ts_29.500_table_5.3.7.1-1",
+        "ts_29.501",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.586_6.2.7.2",
+      "section_id": "6.2.7.2",
+      "section_title": "Protocol Errors",
+      "content": "Protocol errors handling shall be supported as specified in clause 5.3.7 of 3GPP TS 29.500 [4].",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_5.3.7",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.586_6.2.7.3",
+      "section_id": "6.2.7.3",
+      "section_title": "Application Errors",
+      "content": "The application errors defined for the Nslpkmf_SLPKMFKeyRequest service are listed in Table 6.2.7.3-1.\nTable 6.2.7.3-1: Application errors\nApplication Error\nHTTP status code\nDescription\nUE_NOT_AUTHORIZED\n403 Forbidden\nThe UE is not authorized for the requested service.\nUE_NOT_FOUND\n404 Not Found\nThe UE related to the SLPK ID is not found in the SLPKMF.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.2.7.3-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.586_6.2.8",
+      "section_id": "6.2.8",
+      "section_title": "Feature negotiation",
+      "content": "The optional features in Table 6.2.8-1 are defined for the Nslpkmf_SLPKMFKeyRequest API. They shall be negotiated using the extensibility mechanism defined in clause 6.6 of 3GPP TS 29.500 [4].\nTable 6.2.8-1: Supported Features\nFeature number\nFeature Name\nDescription\nN/A",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_6.6",
+        "table_6.2.8-1",
+        "ts_29.500_table_6.2.8-1",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.586_6.2.9",
+      "section_id": "6.2.9",
+      "section_title": "Security",
+      "content": "As indicated in 3GPP TS 33.501 [11] and 3GPP TS 29.500 [4], the access to the Nslpkmf_SLPKMFKeyRequest API may be authorized by means of the OAuth2 protocol (see IETF RFC 6749 [12]), based on local configuration, using the \"Client Credentials\" authorization grant, where the NRF (see 3GPP TS 29.510 [13]) plays the role of the authorization server.\nIf OAuth2 is used, an NF Service Consumer, prior to consuming services offered by the Nslpkmf_SLPKMFKeyRequest API, shall obtain a \"token\" from the authorization server, by invoking the Access Token Request service, as described in 3GPP TS 29.510 [13], clause 5.4.2.2.\nNOTE:\tWhen multiple NRFs are deployed in a network, the NRF used as authorization server is the same NRF that the NF Service Consumer used for discovering the Nslpkmf_SLPKMFKeyRequest service.\nThe Nslpkmf_SLPKMFKeyRequest API defines a single scope \"nslpkmf-keyrequest\" for OAuth2 authorization (as specified in 3GPP TS 33.501 [11]) for the entire service, and it does not define any additional scopes at resource or operation level.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.510_clause_5.4.2.2",
+        "ts_33.501",
+        "ts_29.500",
+        "ts_29.510"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.586_6.2.10",
+      "section_id": "6.2.10",
+      "section_title": "HTTP redirection",
+      "content": "An HTTP request may be redirected to a different SLPKMF service instance, within the same SLPKMF or a different SLPKMF of an SLPKMF set, e.g. when an SLPKMF service instance is part of an SLPKMF (service) set or when using indirect communications (see 3GPP TS 29.500 [4]).\nAn SCP that reselects a different SLPKMF producer instance will return the NF Instance ID of the new SLPKMF producer instance in the 3gpp-Sbi-Producer-Id header, as specified in clause 6.10.3.4 of 3GPP TS 29.500 [4].\nIf an SLPKMF within an SLPKMF set redirects a service request to a different SLPKMF of the set using an 307 Temporary Redirect or 308 Permanent Redirect status code, the identity of the new SLPKMF towards which the service request is redirected shall be indicated in the 3gpp-Sbi-Target-Nf-Id header of the 307 Temporary Redirect or 308 Permanent Redirect response as specified in clause 6.10.9.1 of 3GPP TS 29.500 [4].\nAnnex A (normative):OpenAPI specification\nA.1\tGeneral\nThis Annex specifies the formal definition of the API(s) defined in the present specification. It consists of OpenAPI 3.0.0 specifications in YAML format.\nThis Annex takes precedence when being discrepant to other parts of the specification with respect to the encoding of information elements and methods within the API(s).\nNOTE 1:\tThe semantics and procedures, as well as conditions, e.g. for the applicability and allowed combinations of attributes or values, not expressed in the OpenAPI definitions but defined in other parts of the specification also apply.\nInformative copies of the OpenAPI specification files contained in this 3GPP Technical Specification are available on a Git-based repository that uses the GitLab software version control system (see clause 5.3.1 of 3GPP TS 29.501 [6] and clause 5B 3GPP TR 21.900 [14]).\nA.2\tNslpkmf_Discovery API\nopenapi: 3.0.0\ninfo:\ntitle: Nslpkmf_Discovery API\nversion: '1.0.0'\ndescription: |\nNslpkmf_Discovery Service.\n© 2024, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).\nAll rights reserved.\nexternalDocs:\ndescription: >\n3GPP TS 29.586 V18.1.0; 5G System; SideLink Positioning Key Management Services; Stage 3.\nurl: https://www.3gpp.org/ftp/Specs/archive/29_series/29.586/\nservers:\n- url: '{apiRoot}/Nslpkmf-discovery/v1'\nvariables:\napiRoot:\ndefault: https://example.com\ndescription: apiRoot as defined in clause 4.4 of 3GPP TS 29.501\nsecurity:\n- {}\n- oAuth2ClientCredentials:\n- Nslpkmf-discovery\npaths:\n/{ueId}/announcement-authorization/{userInfoId}:\nput:\nsummary: Obtain the authorization from the SLPKMF for announcing in the PLMN\noperationId: ObtainAnnounceAuth\ntags:\n- Obtain the authorization from the SLPKMF for announcing in the PLMN\nsecurity:\n- {}\n- oAuth2ClientCredentials:\n- Nslpkmf-disc\n- oAuth2ClientCredentials:\n- Nslpkmf-disc\n- Nslpkmf-disc:announcement-authorization:modify\nparameters:\n- name: ueId\nin: path\ndescription: Identifier of the UE\nrequired: true\nschema:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/VarUeId'\n- name: userInfoId\nin: path\ndescription: User Info Id\nrequired: true\nschema:\n$ref: '#/components/schemas/UserInfoId'\nrequestBody:\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/AnnounceAuthData'\nrequired: true\nresponses:\n'201':\ndescription: Successful creation of the resource\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/AnnounceAuthData'\nheaders:\nLocation:\ndescription: >\nContains the URI of the newly created resource, according to the structure:\n{apiRoot}/Nslpkmf-disc>/<apiVersion>/{ueId}/announcement-authorization/{userInfoId}\nrequired: true\nschema:\ntype: string\n'204':\ndescription: Successful update of the resource.\n'307':\n$ref: 'TS29571_CommonData.yaml#/components/responses/307'\n'308':\n$ref: 'TS29571_CommonData.yaml#/components/responses/308'\n'400':\n$ref: 'TS29571_CommonData.yaml#/components/responses/400'\n'401':\n$ref: 'TS29571_CommonData.yaml#/components/responses/401'\n'403':\n$ref: 'TS29571_CommonData.yaml#/components/responses/403'\n'404':\n$ref: 'TS29571_CommonData.yaml#/components/responses/404'\n'411':\n$ref: 'TS29571_CommonData.yaml#/components/responses/411'\n'413':\n$ref: 'TS29571_CommonData.yaml#/components/responses/413'\n'415':\n$ref: 'TS29571_CommonData.yaml#/components/responses/415'\n'429':\n$ref: 'TS29571_CommonData.yaml#/components/responses/429'\n'500':\n$ref: 'TS29571_CommonData.yaml#/components/responses/500'\n'502':\n$ref: 'TS29571_CommonData.yaml#/components/responses/502'\n'503':\n$ref: 'TS29571_CommonData.yaml#/components/responses/503'\ndefault:\ndescription: Unexpected error\n/{ueId}/monitor-authorization/{userInfoId}:\nput:\nsummary: Obtain the discovery key from the SLPKMF for monitoring in the PLMN\noperationId: ObtainMonitorAuthorize\ntags:\n- Obtain the discovery key from the SLPKMF for monitoring in the PLMN\nsecurity:\n- {}\n- oAuth2ClientCredentials:\n- Nslpkmf-disc\n- oAuth2ClientCredentials:\n- Nslpkmf-disc\n- Nslpkmf-disc:monitor-authorization:modify\nparameters:\n- name: ueId\nin: path\ndescription: Identifier of the UE\nrequired: true\nschema:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/VarUeId'\n- name: userInfoId\nin: path\ndescription: User Info Id\nrequired: true\nschema:\n$ref: '#/components/schemas/UserInfoId'\nrequestBody:\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/MonitorAuthReqData'\nrequired: true\nresponses:\n'201':\ndescription: Created\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/MonitorAuthRespData'\nheaders:\nLocation:\ndescription: >\nContains the URI of the newly created resource, according to the structure:\n{apiRoot}/Nslpkmf-disc>/<apiVersion>/{ueId}/monitor-authorization/{userInfoId}\nrequired: true\nschema:\ntype: string\n'204':\ndescription: Successful update of the resource.\n'307':\n$ref: 'TS29571_CommonData.yaml#/components/responses/307'\n'308':\n$ref: 'TS29571_CommonData.yaml#/components/responses/308'\n'400':\n$ref: 'TS29571_CommonData.yaml#/components/responses/400'\n'401':\n$ref: 'TS29571_CommonData.yaml#/components/responses/401'\n'403':\n$ref: 'TS29571_CommonData.yaml#/components/responses/403'\n'404':\n$ref: 'TS29571_CommonData.yaml#/components/responses/404'\n'411':\n$ref: 'TS29571_CommonData.yaml#/components/responses/411'\n'413':\n$ref: 'TS29571_CommonData.yaml#/components/responses/413'\n'415':\n$ref: 'TS29571_CommonData.yaml#/components/responses/415'\n'429':\n$ref: 'TS29571_CommonData.yaml#/components/responses/429'\n'500':\n$ref: 'TS29571_CommonData.yaml#/components/responses/500'\n'502':\n$ref: 'TS29571_CommonData.yaml#/components/responses/502'\n'503':\n$ref: 'TS29571_CommonData.yaml#/components/responses/503'\ndefault:\ndescription: Unexpected error\n/{ueId}/discovery-authorization/{userInfoId}:\nput:\nsummary: Obtain the discovery key from the SLPKMF for a discoverer UE\noperationId: ObtainDiscAuth\ntags:\n- Obtain the discovery key for a discoverer UE\nsecurity:\n- {}\n- oAuth2ClientCredentials:\n- Nslpkmf-disc\n- oAuth2ClientCredentials:\n- Nslpkmf-disc\n- Nslpkmf-disc:discovery-authorization:modify\nparameters:\n- name: ueId\nin: path\ndescription: Identifier of the UE\nrequired: true\nschema:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/VarUeId'\n- name: userInfoId\nin: path\ndescription: User Info Id\nrequired: true\nschema:\n$ref: '#/components/schemas/UserInfoId'\nrequestBody:\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/DiscoveryAuthReqData'\nrequired: true\nresponses:\n'201':\ndescription: Created\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/DiscoveryAuthRespData'\nheaders:\nLocation:\ndescription: >\nContains the URI of the newly created resource, according to the structure:\n{apiRoot}/Nslpkmf-disc>/<apiVersion>/{ueId}/discovery-authorization/{userInfoId}\nrequired: true\nschema:\ntype: string\n'204':\ndescription: Successful update of the resource.\n'307':\n$ref: 'TS29571_CommonData.yaml#/components/responses/307'\n'308':\n$ref: 'TS29571_CommonData.yaml#/components/responses/308'\n'400':\n$ref: 'TS29571_CommonData.yaml#/components/responses/400'\n'401':\n$ref: 'TS29571_CommonData.yaml#/components/responses/401'\n'403':\n$ref: 'TS29571_CommonData.yaml#/components/responses/403'\n'404':\n$ref: 'TS29571_CommonData.yaml#/components/responses/404'\n'411':\n$ref: 'TS29571_CommonData.yaml#/components/responses/411'\n'413':\n$ref: 'TS29571_CommonData.yaml#/components/responses/413'\n'415':\n$ref: 'TS29571_CommonData.yaml#/components/responses/415'\n'429':\n$ref: 'TS29571_CommonData.yaml#/components/responses/429'\n'500':\n$ref: 'TS29571_CommonData.yaml#/components/responses/500'\n'502':\n$ref: 'TS29571_CommonData.yaml#/components/responses/502'\n'503':\n$ref: 'TS29571_CommonData.yaml#/components/responses/503'\ndefault:\ndescription: Unexpected error\ncomponents:\nsecuritySchemes:\noAuth2ClientCredentials:\ntype: oauth2\nflows:\nclientCredentials:\ntokenUrl: '{nrfApiRoot}/oauth2/token'\nscopes:\nNslpkmf-disc: Access to the Nslpkmf_Discovery API\nNslpkmf-disc:announcement-authorization:modify: >\nAccess to modify the authorization to announce for a UE in the PLMN\nNslpkmf-disc:monitor-authorization:modify: >\nAccess to modify the authorization for monitoring for an UE in the PLMN\nNslpkmf-disc:discovery-authorization:modify: >\nAccess to modify the authorization from the SLPKMF for a discoverer UE\nin the PLMN to operate Model B restricted discovery\nschemas:\n# COMPLEX TYPES:\nAnnounceAuthData:\ntype: object\ndescription: Represents Data used to request the authorization to announce for a UE\nrequired:\n- rangingSlAppId\n- ueRole\nproperties:\nrangingSlAppId:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/ApplicationId'\nueRole:\n$ref: '#/components/schemas/UeRole'\nMonitorAuthReqData:\ntype: object\ndescription: Data used to request the discovery key to monitor for a UE\nrequired:\n- rangingSlAppId\n- ueRole\n- ueSecurityCapability\nproperties:\nrangingSlAppId:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/ApplicationId'\nueRole:\n$ref: '#/components/schemas/UeRole'\nueSecurityCapability:\n$ref: '#/components/schemas/UeSecurityCapability'\nMonitorAuthRespData:\ntype: object\ndescription: Represents the obtained Monitor Discovery Key Data for a UE\nrequired:\n- chosenPc5CipheringAlgorithm\n- discSecMaterials\nproperties:\nchosenPc5CipheringAlgorithm:\n$ref: '#/components/schemas/ChosenPc5CipheringAlgorithm'\ndiscSecMaterials:\n$ref: '#/components/schemas/DiscSecMaterials'\nDiscoveryAuthReqData:\ntype: object\ndescription: Data used to request the discovery key to monitor for a discoverer UE\nrequired:\n- rangingSlAppId\n- ueRole\n- ueSecurityCapability\nproperties:\nrangingSlAppId:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/ApplicationId'\nueRole:\n$ref: '#/components/schemas/UeRole'\nueSecurityCapability:\n$ref: '#/components/schemas/UeSecurityCapability'\nDiscoveryAuthRespData:\ntype: object\ndescription: Represents the obtained Monitor Discovery Key Data for a discoverer UE\nrequired:\n- chosenPc5CipheringAlgorithm\n- discSecMaterials\nproperties:\nchosenPc5CipheringAlgorithm:\n$ref: '#/components/schemas/ChosenPc5CipheringAlgorithm'\ndiscSecMaterials:\n$ref: '#/components/schemas/DiscSecMaterials'\nDiscSecMaterials:\ntype: object\ndescription: Represents the discovery security materials\nproperties:\nduik:\n$ref: '#/components/schemas/Duik'\ndusk:\n$ref: '#/components/schemas/Dusk'\nduck:\n$ref: '#/components/schemas/Duck'\n# SIMPLE TYPES:\nUserInfoId:\ntype: string\nUeSecurityCapability:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Bytes'\nChosenPc5CipheringAlgorithm:\ndescription: Contains the chosen PC5 ciphering algorithm.\ntype: integer\nDuik:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Bytes'\nDuck:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Bytes'\nDusk:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Bytes'\nUeRole:\ndescription: Specifies the different roles of UE for ranging and sidelink positioning service.\nanyOf:\n- type: string\nenum:\n- TARGET_UE\n- REFERENCE_UE\n- LOCATED_UE\n- CLIENT_UE\n- SERVER_UE\n- type: string\n# ENUMS:\nA.3\tNslpkmf_SLPKMFKeyRequest API\nopenapi: 3.0.0\ninfo:\ntitle: Nslpkmf_SLPKMFKeyRequest\nversion: '1.0.0'\ndescription: |\nSLPKMF KeyRequest Service.\n© 2024, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).\nAll rights reserved.\nexternalDocs:\ndescription: >\n3GPP TS 29.586 V18.1.0; 5G System; SideLink Positioning Key Management Services; Stage 3.\nurl: https://www.3gpp.org/ftp/Specs/archive/29_series/29.586/\nservers:\n- url: '{apiRoot}/nslpkmf-keyrequest/v1'\nvariables:\napiRoot:\ndefault: https://example.com\ndescription: apiRoot as defined in clause 4.4 of 3GPP TS 29.501\nsecurity:\n- {}\n- oAuth2ClientCredentials:\n- nslpkmf-keyrequest\npaths:\n/ranging-keys/request:\npost:\nsummary: Request Keying Materials for ranging\noperationId: UnicastKey\ntags:\n- Ranging Keys Collection (Collection)\nrequestBody:\nrequired: true\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/UnicastKeyReqData'\nresponses:\n'200':\ndescription: Success\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/UnicastKeyRspData'\n'307':\n$ref: 'TS29571_CommonData.yaml#/components/responses/307'\n'308':\n$ref: 'TS29571_CommonData.yaml#/components/responses/308'\n'400':\n$ref: 'TS29571_CommonData.yaml#/components/responses/400'\n'401':\n$ref: 'TS29571_CommonData.yaml#/components/responses/401'\n'403':\n$ref: 'TS29571_CommonData.yaml#/components/responses/403'\n'404':\n$ref: 'TS29571_CommonData.yaml#/components/responses/404'\n'411':\n$ref: 'TS29571_CommonData.yaml#/components/responses/411'\n'413':\n$ref: 'TS29571_CommonData.yaml#/components/responses/413'\n'415':\n$ref: 'TS29571_CommonData.yaml#/components/responses/415'\n'429':\n$ref: 'TS29571_CommonData.yaml#/components/responses/429'\n'500':\n$ref: 'TS29571_CommonData.yaml#/components/responses/500'\n'502':\n$ref: 'TS29571_CommonData.yaml#/components/responses/502'\n'503':\n$ref: 'TS29571_CommonData.yaml#/components/responses/503'\ndefault:\n$ref: 'TS29571_CommonData.yaml#/components/responses/default'\ncomponents:\nsecuritySchemes:\noAuth2ClientCredentials:\ntype: oauth2\nflows:\nclientCredentials:\ntokenUrl: '{nrfApiRoot}/oauth2/token'\nscopes:\nnslpkmf-keyrequest: Access to the Nslpkmf_SLPKMFKeyRequest API\nschemas:\n#\n#  Structured Data Types\n#\nUnicastKeyReqData:\ndescription: Representation of the input to request the keying material.\ntype: object\nproperties:\nrangingSlAppId:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/ApplicationId'\nkslpFreshness1:\n$ref: '#/components/schemas/KslpFreshnessParameter1'\nslpkId:\n$ref: '#/components/schemas/SlpkId'\nrequired:\n- rangingSlAppId\n- kslpFreshness1\n- slpkId\nUnicastKeyRspData:\ndescription: Representation of the successfully requested keying material.\ntype: object\nproperties:\nkslp:\n$ref: '#/components/schemas/Kslp'\nkslpFreshness2:\n$ref: '#/components/schemas/KslpFreshnessParameter2'\nrequired:\n- kslp\n- kslpFreshness2\n#\n#  Simple Data Types\n#\nSlpkId:\ndescription: Ranging User Key ID\ntype: string\nKslp:\ndescription: Key for RANGING AND SIDELINK POSITIONING\ntype: string\nKslpFreshnessParameter1:\ndescription: KSLP Freshness Parameter 1\ntype: string\nKslpFreshnessParameter2:\ndescription: KSLP Freshness Parameter 2\ntype: string\n#\n#  Enumeration Data Types\n#\nAnnex B (informative):Change history\nChange history\nDate\nMeeting\nTDoc\nCR\nRev\nCat\nSubject/Comment\nNew version\n2023-11\nCT4#119\nC4-235487\nC4-235690\nC4-235691\nImplementing the following p-CR agreed by CT4:C4-235487, C4-235690, and C4-235691; and Editorial change from the rapporteur.\n0.1.0\n2023-12\nCT#102\nCP-233170\nTS presented for information\n1.0.0\n2024-03\nCT4#121\nC4-240751\nImplementing the following p-CR agreed by CT4:C4-240751; and Editorial change from the rapporteur.\n1.1.0\n2024-03\nCT#103\nCP-240027\nTS Presented for approval\n2.0.0\n2024-03\nCT#103\nTS approved in CT#103\n18.0.0\n2024-06\nCT#104\nCP-241045\n0001\n1\nF\nUpdate the incorrect description\n18.1.0\n2024-06\nCT#104\nCP-241045\n0002\nF\nUpdate the references\n18.1.0\n2024-06\nCT#104\nCP-241045\n0003\n1\nF\nUpdates on announce-authorize URI\n18.1.0\n2024-06\nCT#104\nCP-241045\n0004\n1\nF\nUpdates on discovery-authorize URI\n18.1.0\n2024-06\nCT#104\nCP-241045\n0005\n1\nF\nUpdates on monitor-authorize URI\n18.1.0\n2024-06\nCT#104\nCP-241045\n0006\n1\nF\nUpdates on the API Description\n18.1.0\n2024-06\nCT#104\nCP-241045\n0007\n1\nF\nGeneral update for the specification for SLPKMF services\n18.1.0\n2024-06\nCT#104\nCP-241045\n0009\n1\nF\nRemove unused data type\n18.1.0\n2024-06\nCT#104\nCP-241045\n0010\n1\nF\nUpdate on UserInfoId\n18.1.0\n2024-06\nCT#104\nCP-241045\n0011\nF\n29.586 Rel-18 API version and External doc update\n18.1.0",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.500_clause_6.10.3.4",
+        "ts_29.500_clause_6.10.9.1",
+        "ts_29.501_clause_5.3.1",
+        "ts_29.501_clause_5",
+        "ts_29.501_clause_4.4",
+        "ts_29.500",
+        "ts_29.501",
+        "ts_21.900",
+        "ts_29.586"
+      ]
+    }
+  ]
+}

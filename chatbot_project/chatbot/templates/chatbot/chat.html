@@ -3,7 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Django Chatbot</title>
+    <title>3GPP Knowledge Assistant</title>
+    <!-- Marked.js for Markdown rendering -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <!-- Highlight.js for code syntax highlighting -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github.min.css">
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+    <!-- Mermaid.js for diagram rendering -->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -24,6 +31,16 @@
             color: white;
             padding: 20px;
             text-align: center;
+        }
+        .model-selector {
+            margin: 10px 0;
+        }
+        .model-selector select {
+            background: white;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 5px 10px;
+            color: #333;
         }
         .chat-messages {
             height: 400px;
@@ -79,6 +96,93 @@
             color: #666;
             font-style: italic;
         }
+        /* Markdown content styles */
+        .bot-message h1, .bot-message h2, .bot-message h3 {
+            margin-top: 0.5em;
+            margin-bottom: 0.3em;
+            color: #2c3e50;
+        }
+        .bot-message h1 { font-size: 1.4em; }
+        .bot-message h2 { font-size: 1.2em; }
+        .bot-message h3 { font-size: 1.1em; }
+        .bot-message p {
+            margin: 0.5em 0;
+            line-height: 1.6;
+        }
+        .bot-message ul, .bot-message ol {
+            margin: 0.5em 0;
+            padding-left: 1.5em;
+        }
+        .bot-message li {
+            margin: 0.3em 0;
+        }
+        .bot-message code {
+            background: #e9ecef;
+            padding: 0.2em 0.4em;
+            border-radius: 3px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.9em;
+        }
+        .bot-message pre {
+            background: #f4f4f4;
+            padding: 1em;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 0.5em 0;
+        }
+        .bot-message pre code {
+            background: none;
+            padding: 0;
+        }
+        .bot-message table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 0.5em 0;
+        }
+        .bot-message th, .bot-message td {
+            border: 1px solid #dee2e6;
+            padding: 0.5em;
+            text-align: left;
+        }
+        .bot-message th {
+            background: #f8f9fa;
+        }
+        .bot-message blockquote {
+            border-left: 4px solid #007bff;
+            margin: 0.5em 0;
+            padding-left: 1em;
+            color: #666;
+        }
+        .bot-message strong {
+            color: #2c3e50;
+        }
+        .bot-message a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        .bot-message a:hover {
+            text-decoration: underline;
+        }
+        /* Source references styling */
+        .sources-section {
+            margin-top: 1em;
+            padding-top: 0.5em;
+            border-top: 1px dashed #ccc;
+            font-size: 0.9em;
+            color: #666;
+        }
+        /* Mermaid diagram styling */
+        .mermaid {
+            background: #fff;
+            padding: 1em;
+            border-radius: 5px;
+            margin: 0.5em 0;
+            text-align: center;
+        }
+        .mermaid svg {
+            max-width: 100%;
+            height: auto;
+        }
     </style>
 </head>
 <body>
@@ -86,6 +190,17 @@
         <div class="chat-header">
             <h1>3GPP Knowledge Assistant</h1>
             <p>Ask me about 5G architecture, network functions, procedures, and technical specifications!</p>
+            <div class="model-selector">
+                <label for="modelSelect">Choose AI Model: </label>
+                <select id="modelSelect">
+                    <option value="deepseek-r1:14b" selected>DeepSeek R1:14B</option>
+                    <option value="deepseek-r1:7b">DeepSeek R1:7B</option>
+                    <option value="claude">Claude (Anthropic)</option>
+                    <option value="gemma3:12b">Gemma 3:12B</option>
+                    <option value="mistral:7b">Mistral:7B</option>
+                    <option value="llama3.1:8b">Llama 3.1:8B</option>
+                </select>
+            </div>
         </div>
         
         <div class="chat-messages" id="chatMessages">
@@ -93,7 +208,7 @@
         </div>
         
         <div class="chat-input">
-            <input type="text" id="messageInput" placeholder="Type your message here..." maxlength="500">
+            <input type="text" id="messageInput" placeholder="Type your message here..." maxlength="2000">
             <button id="sendButton">Send</button>
         </div>
     </div>
@@ -103,23 +218,117 @@
         const sendButton = document.getElementById('sendButton');
         const chatMessages = document.getElementById('chatMessages');
 
+        // Initialize Mermaid
+        mermaid.initialize({
+            startOnLoad: false,
+            theme: 'default',
+            securityLevel: 'loose',
+            flowchart: { useMaxWidth: true }
+        });
+
+        // Custom renderer for Mermaid code blocks using marked extension
+        const mermaidExtension = {
+            name: 'mermaid',
+            level: 'block',
+            start(src) {
+                return src.match(/```mermaid/)?.index;
+            },
+            tokenizer(src) {
+                const match = src.match(/^```mermaid\n([\s\S]*?)```/);
+                if (match) {
+                    return {
+                        type: 'mermaid',
+                        raw: match[0],
+                        text: match[1].trim()
+                    };
+                }
+            },
+            renderer(token) {
+                const id = 'mermaid-' + Math.random().toString(36).substr(2, 9);
+                return `<div class="mermaid" id="${id}">${token.text}</div>`;
+            }
+        };
+
+        // Use marked extension API
+        marked.use({ extensions: [mermaidExtension] });
+
+        // Configure marked.js for Markdown rendering with highlight.js
+        marked.setOptions({
+            breaks: true,  // Enable line breaks
+            gfm: true,     // GitHub Flavored Markdown
+            highlight: function(code, lang) {
+                // Skip mermaid - it's handled by the extension
+                if (lang === 'mermaid') {
+                    return code;
+                }
+                if (lang && hljs.getLanguage(lang)) {
+                    return hljs.highlight(code, { language: lang }).value;
+                }
+                // Only auto-detect for known code-like content
+                try {
+                    return hljs.highlightAuto(code).value;
+                } catch (e) {
+                    return code;
+                }
+            }
+        });
+
         function scrollToBottom() {
             chatMessages.scrollTop = chatMessages.scrollHeight;
         }
 
-        function addMessage(message, isUser = false) {
+        async function renderMermaidDiagrams(container) {
+            // Find all mermaid divs and render them
+            const mermaidDivs = container.querySelectorAll('.mermaid');
+            for (const div of mermaidDivs) {
+                try {
+                    const id = div.id;
+                    const code = div.textContent;
+                    const { svg } = await mermaid.render(id + '-svg', code);
+                    div.innerHTML = svg;
+                } catch (error) {
+                    console.error('Mermaid rendering error:', error);
+                    div.innerHTML = `<pre style="color: red;">Diagram Error: ${error.message}</pre>`;
+                }
+            }
+        }
+
+        async function addMessage(message, isUser = false) {
             const messageDiv = document.createElement('div');
             messageDiv.className = `message ${isUser ? 'user-message' : 'bot-message'}`;
-            messageDiv.textContent = message;
+
+            if (isUser) {
+                // User messages: plain text
+                messageDiv.textContent = message;
+            } else {
+                // Bot messages: render as Markdown
+                messageDiv.innerHTML = marked.parse(message);
+
+                // Apply syntax highlighting to code blocks (except mermaid)
+                messageDiv.querySelectorAll('pre code').forEach((block) => {
+                    if (!block.closest('.mermaid')) {
+                        hljs.highlightElement(block);
+                    }
+                });
+            }
+
             chatMessages.appendChild(messageDiv);
+
+            // Render Mermaid diagrams after adding to DOM
+            if (!isUser) {
+                await renderMermaidDiagrams(messageDiv);
+            }
+
             scrollToBottom();
         }
 
-        function sendMessage() {
+        async function sendMessage() {
             const message = messageInput.value.trim();
             if (!message) return;
 
-            addMessage(message, true);
+            const selectedModel = document.getElementById('modelSelect').value;
+
+            await addMessage(message, true);
             messageInput.value = '';
             sendButton.disabled = true;
             sendButton.textContent = 'Sending...';
@@ -130,32 +339,35 @@
             chatMessages.appendChild(loadingDiv);
             scrollToBottom();
 
-            fetch('/chatbot/api/', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ message: message })
-            })
-            .then(response => response.json())
-            .then(data => {
+            try {
+                const response = await fetch('/chatbot/api/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        message: message,
+                        model: selectedModel
+                    })
+                });
+
+                const data = await response.json();
                 chatMessages.removeChild(loadingDiv);
+
                 if (data.error) {
-                    addMessage('Sorry, there was an error: ' + data.error);
+                    await addMessage('Sorry, there was an error: ' + data.error);
                 } else {
-                    addMessage(data.bot_response);
+                    await addMessage(data.bot_response);
                 }
-            })
-            .catch(error => {
+            } catch (error) {
                 chatMessages.removeChild(loadingDiv);
-                addMessage('Sorry, there was an error connecting to the server.');
+                await addMessage('Sorry, there was an error connecting to the server.');
                 console.error('Error:', error);
-            })
-            .finally(() => {
+            } finally {
                 sendButton.disabled = false;
                 sendButton.textContent = 'Send';
                 messageInput.focus();
-            });
+            }
         }
 
         sendButton.addEventListener('click', sendMessage);

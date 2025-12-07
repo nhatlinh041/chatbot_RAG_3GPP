@@ -1,0 +1,264 @@
+{
+  "metadata": {
+    "specification_id": "ts_23.085",
+    "version": "18.0.0",
+    "title": "3GPP TS 23.085",
+    "file_path": "/content/drive/MyDrive/RAG_thesis/data/23_series/23085-i00/23085-i00.docx"
+  },
+  "export_info": {
+    "export_date": "2025-07-26T09:37:54.221281",
+    "total_chunks": 27
+  },
+  "chunks": [
+    {
+      "chunk_id": "ts_23.085_0",
+      "section_id": "0",
+      "section_title": "Scope",
+      "content": "The present document gives the stage 2 description of the closed user group supplementary service.\nThe community of interest supplementary service defined is:\n-\tclosed user group\t(CUG)\t(see clause 1).",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.085_0.1",
+      "section_id": "0.1",
+      "section_title": "References",
+      "content": "The following documents contain provisions which, through reference in this text, constitute provisions of the present document.\n-\tReferences are either specific (identified by date of publication, edition number, version number, etc.) or non‑specific.\n-\tFor a specific reference, subsequent revisions do not apply.\n-\tFor a non-specific reference, the latest version applies.  In the case of a reference to a 3GPP document (including a GSM document), a non-specific reference implicitly refers to the latest version of that document in the same Release as the present document.\n[1]\t3GPP TR 21.905: \" Vocabulary for 3GPP Specifications \".\n[2]\t3GPP TS 22.085: \"Closed User Group (CUG) Supplementary Services; Stage 1\".\n[3]\t3GPP TS 23.088: \"Call Barring (CB) Supplementary Service; Stage 2\".",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905",
+        "ts_22.085",
+        "ts_23.088"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.085_0.2",
+      "section_id": "0.2",
+      "section_title": "Definitions",
+      "content": "CUG terminology defined in 3GPP TS 22. 085 [2] is applicable to the present document. In addition, the following definitions apply.\nCUG Authorisation Functions: Checks performed by the network to ensure that the integrity of a CUG related call is guarantied. CUG calls are rejected if they do not meet the criteria of these checks.\nCUG call: CUG call, in signalling terms, is a call where CUG information is passed from the originating switching entity to the destination entity.\nCUG Index: Code used to select a CUG for an outgoing call, or to indicate an incoming CUG call. Indices are passed between the user and the network and have significance only within the context of a users subscription.\nCUG Interlock Code: Code which uniquely identifies a CUG within a network. The Interlock code is passed from the point of origin to the destination in a CUG call to identify the CUG which has been invoked.\nCUG Related Call Barring: CUG related call barring is call barring applied to a CUG subscriber by the home network when roaming in a non-CUG network. The user is unable to remove CUG related call barring.\nExplicit CUG Invocation: Explicit CUG invocation is where a calling user attempts to invoke a CUG by passing CUG information to the network in a call request.\nImplicit CUG Invocation: Implicit CUG invocation is where the user invokes some default characteristic of a CUG without providing any CUG information in the call request.\nNormal Call: Normal call in the context of this CUG TS is a call established from a CUG subscriber where no CUG information is passed from the originating switching entity to the destination entity.\nOutgoing Access Indicator: Indication passed from the point of origin to the destination in a CUG call to indicate that the calling user has subscribed to the Outgoing Access inter-CUG accessibility subscription option.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.085_0.3",
+      "section_id": "0.3",
+      "section_title": "Abbreviations",
+      "content": "In addition to those listed below abbreviations used in the present document are listed in 3GPP TR 21.905 [1].\nFor the purposes of the present document, the following abbreviations apply:\nBS\tBasic Service\nCI\tCUG Index\nCUG\tClosed User Group\nIA\tIncoming Access\nIC\tInterlock Code\nIC(pref)\tInterlock code of the preferential CUG\nIC+OA\tInterlock Code and Outgoing Access indicator.\nICB\tIncoming Calls Barred within the CUG\nOA\tOutgoing Access\nOCB\tOutgoing Calls Barred within the CUG\nPref CUG\tPreferential CUG\nSOA\tSuppress OA\nSPC\tSuppress Preferential CUG",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.085_1",
+      "section_id": "1",
+      "section_title": "Closed user group (CUG)",
+      "content": "The responsibilities of GSM network nodes with respect to CUG are described in the CUG handling clause. The Functions clause 1.2.1 describes the CUG service logic and how CUG information is used. The flow of CUG information in various call cases is shown in the Information Flows clause 1.2.2.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_1.2.1",
+        "clause_1.2.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.085_1.1",
+      "section_id": "1.1",
+      "section_title": "Handling of Closed User Group",
+      "content": "A GSM PLMN supporting the CUG supplementary service must guarantee the integrity of any CUG which it handles. It is not however mandatory for a PLMN to support the CUG supplementary service.\nA CUG is uniquely identified within a network by a CUG Interlock Code. The Interlock Code is transferred between terrestrial network entities to indicate a CUG call.\nA user identifies a CUG by a CUG Index. A CUG Index is used to select or indicate the use of a specific CUG in relation to a call. The index is locally transferred between the mobile station and serving VLR and only has significance within the context of an individual subscription.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.085_1.1.1",
+      "section_id": "1.1.1",
+      "section_title": "Mobile Originated (MO) CUG call handling",
+      "content": "A CUG subscriber may invoke a CUG by providing the network with a CUG Index at call establishment. This is termed Explicit CUG invocation. Alternatively, if the subscription allows, some default characteristic of a CUG may be invoked automatically if no CUG information is provided. This is termed Implicit CUG invocation. The network may optionally indicate the use of an implicitly invoked CUG to the calling user.\nA CUG subscriber may suppress certain CUG attributes by providing suppression indicators during call set-up. The provision of such suppression indicators results in explicit CUG invocation.\nAny non-CUG related Call Barring supplementary service requirements shall be discharged before CUG authorisation occurs.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.085_1.1.1.1",
+      "section_id": "1.1.1.1",
+      "section_title": "MO CUG call handling at the MSC",
+      "content": "The MSC shall pass any user provided CUG information to the VLR at call establishment.\nIf an Interlock Code, or Interlock code with Outgoing Access indicator, is received from the VLR the MSC shall establish a CUG call with the destination network using this information. If a CUG Index is received from the VLR the MSC shall pass this to the calling MS.\nIf the CUG call authorisation is unsuccessful the MSC shall pass an indication to the mobile station.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.085_1.1.1.2",
+      "section_id": "1.1.1.2",
+      "section_title": "MO CUG call handling at the VLR",
+      "content": "Authorisation of a MO CUG call is performed by the serving VLR. Authorisation is determined by the information provided by the user, the subscription information stored in the VLR and the MO CUG call authorisation function, see Functions clause.\nSuccessful authorisation may result in a normal MO call (call without CUG information transferred to the called party) or a MO CUG call (call with CUG information transferred to the called party).\nWhen a CUG call is to be made the VLR passes CUG information to the MSC to be used in the call establishment. Note, the VLR may optionally pass a CUG Index to the MSC (to be passed to the calling user) to indicate that a CUG has been implicitly invoked. This parameter is not passed to the call destination.\nIn the case of a normal call, no CUG information is passed to the MSC and the call is established normally.\nOn authorisation failure the VLR shall reject the call providing a suitable indication to the serving MSC which is passed to the calling party.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.085_1.1.2",
+      "section_id": "1.1.2",
+      "section_title": "Mobile Terminated (MT) CUG call handling",
+      "content": "The terminating network is responsible for enforcing the integrity of a CUG related call. The terminating network must therefore ensure that the calling party attributes and the called party subscription meet CUG restrictions. The terminating network provides the called user with an indication of an incoming CUG call.\nNon-CUG related Call Barring supplementary service requirements are discharged before CUG authorisations. Call forwarding requirements are discharged after CUG authorisations.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.085_1.1.2.1",
+      "section_id": "1.1.2.1",
+      "section_title": "MT CUG handling at the GMSC",
+      "content": "The GMSC shall pass any CUG information contained in an incoming call establishment message to the HLR in the routing enquiry.\nThe GMSC shall continue the call establishment using the CUG information received from the HLR rather than that which was initially received. Note, in rare circumstances the HLR may discard CUG parameters, see the Call Forwarding interaction.\nIf a CUG call fails the GMSC shall return an indication to the originating network.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.085_1.1.2.2",
+      "section_id": "1.1.2.2",
+      "section_title": "MT CUG handling functions at the HLR",
+      "content": "Authorisation of a MT CUG call is performed at the called parties HLR. Authorisation is determined by the information received in the call establishment signalling, the called party subscription information stored in the HLR, and the MT CUG call authorisation function, see Functions clause.\nOn successful authorisation, the HLR supplies the GMSC with CUG information for the continuation of the call establishment. On unsuccessful authorisations the HLR rejects the call supplying an indication of the reason for failure.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.085_1.1.2.3",
+      "section_id": "1.1.2.3",
+      "section_title": "MT CUG handling functions at the MSC",
+      "content": "The MSC shall pass any CUG related information received in incoming call establishment signalling to the VLR.\nIf the VLR returns CUG information to the serving MSC in response, the MSC shall pass the information to the called party in the call set-up signalling.\nIf the CUG call is rejected by the VLR (due to the call forwarding interaction) the MSC shall return an indication to the originating network.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.085_1.1.2.4",
+      "section_id": "1.1.2.4",
+      "section_title": "MT CUG handling functions at the VLR",
+      "content": "When the VLR receives an incoming call enquiry for a CUG subscriber, it shall attempt to provide a CUG call indication to the called party. The indication is sent depending on the attributes of the incoming call and the called parties subscription, as shown in table 1.1. The indication is achieved by sending the CUG Index, associated with the Interlock Code of the invoked CUG, to the called user.\nTable 1.1: CUG Index provision at terminating VLR\n┌──────────┬─────────╥───────────────────────────────────────┐│          │         ║        Called party subscription      ││  Calling │         ╟────────────────────────────┬──────────┤│   Party  │Interlock║       CUG subscriber       │          ││   CUG    │  check  ╟────────────┬───────────────┤  Normal  ││  Infor-  │         ║   No IA    │      IA       │subscriber││  mation  │         ╟──────┬─────┼──────┬────────┤          ││          │         ║No ICB│ ICB │No ICB│  ICB   │          │╞══════════╪═════════╬══════╪═════╪══════╪════════╪══════════╡│          │  Match  ║Index │  -  │Index │   -    │          ││Interlock ├─────────╫──────┴─────┼──────┴────────┤    -     ││          │ No Match║      -     │      -        │          │├──────────┼─────────╫──────┬─────┼──────┬────────┼──────────┤│Interlock │  Match  ║Index │  -  │Index │No Index│          ││+ Outgoing├─────────╫──────┴─────┼──────┴────────┤ No Index ││  Access  │ No Match║      -     │   No Index    │          │├──────────┼─────────╫────────────┼───────────────┼──────────┤│  No CUG  │    -    ║      -     │   No Index    │ No Index ││   Info.  │         ║            │               │          │└──────────┴─────────╨────────────┴───────────────┴──────────┘\nNOTE:\t\"-\" = Not Applicable, this check is not performed since such calls are rejected by the called parties HLR.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_1.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.085_1.1.3",
+      "section_id": "1.1.3",
+      "section_title": "CUG subscriber roaming requirements",
+      "content": "Normal CUG restrictions apply to CUG subscribers when roaming in CUG supporting GSM PLMNs. Extra restrictions (specified in GSM 02.85) are applied to CUG subscribers roaming in non-CUG GSM VPLMNs to preserve the integrity of CUG.\nThese restrictions are applied by the application of call barring programmes which are not under user control. Such restrictions only apply to a subscribers ability to make outgoing calls using CUG related basic services. Extra restrictions are not applicable in the MT call case since the requirements are met by the HLR MT CUG authorisation function and by CUG interworking restrictions.\nWhen a CUG subscriber first roams into a network not supporting CUG, the HLR will pass to the VLR subscription data indicating that normal Outgoing Call Barring is active for each basic service which is affected by CUG and for which the user has no CUG Outgoing Access.\nThe HLR shall store the status of the CUG related barring separately from the previous user controlled status and CUG related barring shall take precedence over the user controlled status.\nThe user may still perform SS operations on the user controlled Outgoing Call Barring services. The status of the barring service as a result of these operations will be stored in the HLR in the normal way, however the HLR will ensure that the VLR in the non-CUG network continues to have the CUG related call barring programs active as described above.\nWhen entering a CUG supporting network the CUG related barring activations shall be removed and the user controlled barring status restored.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.085_1.1.4.1",
+      "section_id": "1.1.4.1",
+      "section_title": "Non-CUG GSM PLMNs",
+      "content": "If a GSM switching entity receives a CUG Interlock code in a call establishment message but does not support the CUG service, it shall abort the call, reason for rejection: Incompatible Destination. However if an Interlock and Outgoing Access indicator are received the call shall continue to be established as a normal call with no CUG information.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.085_1.1.4.2",
+      "section_id": "1.1.4.2",
+      "section_title": "Interworking to Non-CUG networks",
+      "content": "If a GSM switching entity is unable to interwork with a destination switching entity for a CUG call , it shall abort the call, reason for rejection: Incompatible Destination. However if the call was a CUG call indicating outgoing access the GSM switching entity shall attempt to establish the call as a normal call (no CUG information).",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.085_1.1.5.1",
+      "section_id": "1.1.5.1",
+      "section_title": "Interaction with Call Forwarding",
+      "content": "The interaction between CUG and Call Forwarding services is specified in GSM 02.85. The interaction is applied after the calling and called party CUG call has been successfully authorised, and Call Forwarding has been invoked. The interaction is the same for all types of call forwarding.\nIn the case of Call Forward Unconditional and Call Forwarding on Mobile Subscriber Not Reachable (invoked at HLR), the interaction is applied at the forwarding parties HLR.\nIn the case of CFB, CFNRy, CFNRc (invoked at the serving VLR) the interaction is applied at the forwarding parties serving VLR.\nTable 1.2 indicates the requirements on the forwarding node when CUG and call forwarding interact. In each case the resultant information sent to the relevant MSC (either gateway or serving MSC) is given. This information should be used by the MSC for the forwarding or rejection. Note that the CUG information for the forwarding part of the call may be different from that initially used. The interlock code used for forwarding is always that of the calling party.\nTable 1.2: CUG-Call Forwarding interaction\n┌─────────┬─────────╥─────────────────────────────────────────┐│         │         ║  Forwarding party subscription for BS   ││Forwarded│         ╟──────────────────────────────┬──────────┤│  Party  │Interlock║       CUG subscriber         │          ││   CUG   │  check  ╟──────────────┬───────────────┤ Normal   ││ Infor-  │         ║    No OA     │      OA       │subscriber││ mation  │         ╟───────┬──────┼───────┬───────┤          ││         │         ║No OCB │ OCB  │No OCB │  OCB  │          │╞═════════╪═════════╬═══════╪══════╪═══════╪═══════╪══════════╡│Interlock│  Match  ║  IC   │Reject│  IC   │Reject │     -    │├─────────┼─────────╫───────┼──────┼───────┼───────┼──────────┤│Interlock│  Match  ║  IC   │Reject│ IC+OA │ Normal│Interlock ││+Outgoing├─────────╫───────┴──────┼───────┴───────┤+ Outgoing││ Access  │No Match ║    Reject    │ Interlock+OA  │  Access  │├─────────┼─────────╫──────────────┼───────────────┼──────────┤│ No CUG  │    -    ║    Reject    │     Normal    │  Normal  ││  Info.  │         ║              │      call     │   call   │└─────────┴─────────╨──────────────┴───────────────┴──────────┘\nNOTE:\t\"-\" = Not applicable.\tReason for rejection in all cases:\tCalled party supplementary service interaction violation.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_1.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.085_1.1.5.2",
+      "section_id": "1.1.5.2",
+      "section_title": "Interaction with call waiting",
+      "content": "There is no interaction with call waiting, however a CUG call indication shall be provided with the call waiting indication if the criteria for indicating a CUG call are met.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.085_1.1.5.3",
+      "section_id": "1.1.5.3",
+      "section_title": "Interaction with Anonymous Call Rejection",
+      "content": "If a CUG call is offered to a called user belonging to the same closed user group then there is no interaction with the Anonymous Call Rejection supplementary service; even if the calling number is withheld and the called user has the Anonymous Call Rejection supplementary service the CUG call shall still be permitted.\nIf the called user also has the incoming access capability within the closed user group supplementary service, and if the offered call to the called user is also a non-closed user group call or a closed user group call to which the called party does not belong, if the calling party number is withheld and the called user has the Anonymous Call Rejection supplementary service the call shall be denied as specified in 3GPP TS 23.088 [3] clause 8.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.088_clause_8",
+        "ts_23.088"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.085_1.2.1",
+      "section_id": "1.2.1",
+      "section_title": "Functions",
+      "content": "The following Mobile Additional Functions (MAF) have been identified for the CUG supplementary service:\nMAF14\nMobile Originated CUG call authorisation.\nThe ability of a PLMN to determine whether a subscriber is authorised to attempt the establishment of a call request related to CUG. See figure 1.1.\nLocation: VLR.\nThe purpose of this function is to check the provisioning of CUG against the requested Basic Service, perform an Index to Interlock conversion where an Index is provided, check whether O/G calls are barred within the CUG, deal with preferential CUGs, OA and any CUG related suppression indicators.\nThe call request may contain either no CUG information or combinations of the following CUG parameters: CUG Index, Suppress Outgoing Access indicator, Suppress Preferential CUG indicator.\nOn successful authorisation the call is established with one of the following: no CUG information, CUG Interlock Code, CUG Interlock Code and Outgoing Access indicator. If a CUG is implicitly invoked the VLR may optionally provide the related CUG Index as an indication to the calling user.\nOn unsuccessful authorisation the call is rejected and a rejection reason given.\nTable 1.3 specifies the VLRs response to CUG related call establishment requests.\nTable 1.3: MO CUG Call Authorisation Function (VLR)\n┌───────────╥──────────────────────────────────────────────────┐│  Calling  ║    Information provided by calling user          ││   user    ╟────────┬──────────┬─────────┬─────────┬──────────┤│ subscrip. ║ No CUG │CUG Index │Suppress │Suppress │ CI+SOA   ││ for Basic ║  Info. │  (CI)    │   OA    │Pref CUG │  or CI+  ││  Service  ║        │or CI+SPC │  (SOA)  │  (SPC)  │ SOA+SPC  │╞═══════════╬════════╪══════════╪═════════╪═════════╪══════════╡│CUG without║ Reject │Interlock │ Reject  │ Reject  │Interlock ││ Pref CUG. ║        │          │         │         │          ││   No OA   ║ note 1 │note 2,3,4│ note 1  │ note 1  │note 2,3,4│├───────────╫────────┼──────────┼─────────┼─────────┼──────────┤│ CUG with  ║        │Interlock │         │ Reject  │Interlock ││ Pref CUG. ║IC(pref)│          │IC(pref) │         │          ││   No OA   ║        │note 2,3,4│         │ note 1  │note 2,3,4│├───────────╫────────┼──────────┼─────────┼─────────┼──────────┤│CUG with OA║ Normal │  IC+OA   │ Reject  │ Normal  │Interlock ││and without║  call  │          │         │  call   │          ││ Pref CUG  ║        │note 3,4,5│ note 1  │         │note 2,3,4│├───────────╫────────┼──────────┼─────────┼─────────┼──────────┤│ CUG with  ║IC(pref)│  IC+OA   │         │ Normal  │Interlock ││ Pref CUG  ║  +OA   │          │IC(pref) │  call   │          ││and with OA║        │note 3,4,5│         │         │note 2,3,4│├───────────╫────────┼──────────┼─────────┼─────────┼──────────┤│  Normal   ║ Normal │ Normal   │ Normal  │ Normal  │ Normal   ││subscriber ║  call  │  call    │  call   │  call   │  call    │└───────────╨────────┴──────────┴─────────┴─────────┴──────────┘\nNOTE 1:\t\"Inconsistent access information - no CUG selected\".\nNOTE 2:\tIf the intra-CUG restriction option \"Outgoing calls barred within the CUG\" is applicable for the requested CUG, the call shall be rejected, reason for rejection \"Outgoing calls barred within the CUG\".\nNOTE 3:\tIf an index is provided which is not recognised by the network the call is rejected, reason for rejection \"Unknown CUG Index\".\nNOTE 4:\tIf an index is provided which does not match with the interlock(s) of the requested basic service the call is rejected, reason for rejection \"Inconsistent access information - Index incompatible with requested basic service\".\nNOTE 5:\tIf a CUG is selected using a CUG Index but the intra-CUG restriction option \"Outgoing calls barred within the CUG\" is applicable, and the calling user subscription includes OA for the requested Basic Service the call shall be attempted as a normal call with no CUG information included in the call establishment signalling.\nAn SDL indicating when the authorisation function is invoked in the VLR is shown in figure 1.1. Inputs and outputs to the SDL apply to the serving MSC.\nMAF15\nMobile Terminated CUG call authorisation.\nThe ability of a PLMN to compare received calling party information against a called party subscription for CUG integrity. See figure 1.2.\nLocation: HLR.\nThe purpose of this function is to identify a match between calling and called party CUG attributes for a given basic service, whilst enforcing intra-CUG communication restrictions. If no match is obtained the call is rejected.\nThe calling party CUG attributes may be either a CUG Interlock Code or a CUG Interlock Code and Outgoing Access indicator.\nTable 1.4 indicates the HLRs response to incoming CUG calls, or incoming calls to CUG subscribers.\nOn successful authorisation the call establishment is continued using one of the following: no CUG information, CUG Interlock Code, Interlock Code and Outgoing Access indicator.\nOn unsuccessful authorisation the call is rejected and a rejection reason given.\nTable 1.4: MT CUG Call Authorisation Function (HLR)\n┌─────────┬─────╥────────────────────────────────────────────┐│         │     ║ Called party subscription for Basic Service││ Calling │     ╟─────────────────────────────────────┬──────┤│  Party  │Inter║            CUG subscriber           │      ││   CUG   │-lock╟──────────────────┬──────────────────┤Normal││ Infor-  │check║       No IA      │        IA        │ subs.││ mation  │     ╟─────────┬────────┼─────────┬────────┤      ││         │     ║ No ICB  │  ICB   │ No ICB  │  ICB   │      │╞═════════╪═════╬═════════╪════════╪═════════╪════════╪══════╡│         │Match║Interlock│ Reject │Interlock│ Reject │      ││Interlock│     ║  Code   │ note 1 │  Code   │ note 1 │Reject││  Code   ├─────╫─────────┴────────┼─────────┴────────┤      ││  (IC)   │ No  ║      Reject      │      Reject      │note 2││         │Match║      note 2      │      note 2      │      │├─────────┼─────╫─────────┬────────┼─────────┬────────┼──────┤│Interlock│Match║  IC+OA  │ Reject │  IC+OA  │ IC+OA  │      ││+Outgoing│     ║         │ note 1 │         │        │      ││ Access  ├─────╫─────────┴────────┼─────────┴────────┤ IC+OA││ (IC+OA) │ No  ║      Reject      │       IC+OA      │      ││         │Match║      note 2      │                  │      │├─────────┼─────╫──────────────────┼──────────────────┼──────┤│ No CUG  │  -  ║      Reject      │   Normal call    │Normal││  Info.  │     ║  note 3 and 4    │                  │ call │└─────────┴─────╨──────────────────┴──────────────────┴──────┘\nNotes on reasons for rejections:\nNOTE 1:\t\"Incoming calls barred within the CUG\".\nNOTE 2:\t\"Interlock mismatch\".\nNOTE 3:\t\"Requested basic service violates CUG constraints\" A non-CUG call has invoked (via a particular basic service) a CUG which does not have an Incoming Access capability.\nNOTE 4:\tSee clause 1.6.\nAn SDL indicating when the function is invoked in the HLR is shown in figure 1.2. Inputs and outputs to the SDL apply to the GMSC.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_1.6",
+        "table_1.3",
+        "table_1.4",
+        "figure_1.1",
+        "figure_1.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.085_1.2.2",
+      "section_id": "1.2.2",
+      "section_title": "Information flows",
+      "content": "The information flows for the CUG supplementary service are shown in figures 1.3 to 1.7.\nList of figures:\n-\tfigure 1.3\tMobile Originated CUG calls;\n-\tfigure 1.4\tMobile Terminated CUG calls;\n-\tfigure 1.5\tMT CUG call handling at the called party MSC/VLR;\n-\tfigure 1.6\tInterworking with Non-ISDN/Non-GSM networks;\n-\tfigure 1.7\tCUG interworking with Non-CUG GSM PLMN.\nNOTE to figures 1.3 to 1.7:\t\"Conditional CUG Info\" means that CUG information may or may not be present in the signalling message depending on the call case. These figures are intended to cover all call cases described in the CUG authorisation functions.\nFigure 1.1: MAF014 Mobile Originated CUG call authorisation (VLR)\nFigure 1.2: MAF015 Mobile Terminated CUG call authorisation (HLR)\nMS\tMSC\tVLR\t  NWb-GMSC\nMO CUG call request\nSet-up\n----------->\n(Conditional User CUG Info)\nSend info O/G call\n--------------->\n(Conditional User CUG Info)\nMO CUG call authorisation unsuccessful\nMAF14: Fail\nReject\n<---------------\n(Cause)\nDisconnect\n<-----------\n(Cause)\nSuccessfully authorised MO CUG call, destination network does not support CUG\nMAF14: Pass\nComplete\n<---------------\n(Conditional CUG Info)\nSet-up\nIndication*\t---------------------------->\n<-----------\t(Conditional CUG Info)\n(Index)\nDisconnect\n<----------------------------\nDisconnect\t   (Cause)\n<-----------\n(Cause)\nDestination network supports CUG, MT CUG Authorisation unsuccessful\nSet-up\n---------------------------->\nIndication*\t(Conditional CUG Info)\n<-----------\t\tMAF15:Fail\n(Index)\t   Disconnect\n<----------------------------\n(Cause)\nDisconnect\n<-----------\n(Cause)\nDestination network supports CUG, MT CUG Authorisation successful\nMAF15:Pass\nAnswer\n<----------------------------\nNOTE:\tMAF14:\tMO CUG call Authorisation\tMAF15:\tMT CUG call Authorisation\t *:\tOptional message\nFigure 1.3: Mobile Originated CUG calls\nNWa\tGMSCb\tHLRb\tMSCb\nIncoming CUG call\nSet-up\n----------->\n(Conditional CUG Info)\nRouting Request\n--------------->\n(Conditional CUG Info)\nUnsuccessful MT CUG call authorisation\nMAF15: Fail\nReject\n<---------------\n(Cause)\nDisconnect\n<-----------\n(Cause)\nSuccessful MT CUG call\nMAF15: Pass\nRouting info.\n<---------------\n(Conditional CUG Info)\nSet-up\n-------------------------------->\n(Conditional CUG Info)\nNOTE:\tMAF15:\tMT CUG call authorisation.\nFigure 1.4: Mobile Terminated CUG calls\nGMSCb\tVLRb\tMSCb\tMSb\nSuccessful incoming CUG call at B party MSC/VLR\nSet-up\n-------------------------------->\n(Conditional CUG Info)\nI/C Call\n<---------------\n(Conditional CUG Info)\nComplete\n--------------->\n(Conditional Index)\nSet-up\n------------>\n(Conditional Index)\nFigure 1.5: MT CUG call handling at called party MSC/VLR\nMSC\tVLR\tIWMSC\tLE\nSuccessfully authorised MO CUG call, via interworking exchange\nMAF14:Pass\nComplete\n<-----------\n(CUG Info)\nSet-up\n-------------------------------->\n(CUG Info)\nOR1: No\nRelease\n<--------------------------------\n(Cause)\nOR1: Yes\nSet-up\n----------->\nNo CUG Info\nNOTE:\tMAF14:\tMO CUG call Authorisation\tOR1:\tCUG Info = IC+OA\nFigure 1.6: Interworking with Non-ISDN/Non-GSM networks\nMS\tGMSCa\tGMSCb\tHLRb\nSuccessfully authorised MO CUG call to non-CUG GSM network\nSet-up\n--------------->\n(CUG Info)\nOR1:No\nRelease\n<---------------\n(Cause)\nDisconnect\n<-----------\n(Cause)\nOR1:Yes\nSet-up\n----------->\nNo CUG Info\nNOTE:\tOR1:\tCUG Info = IC+OA\nFigure 1.7: CUG Interworking with Non-CUG GSM PLMN",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_1.3",
+        "figure_1.4",
+        "figure_1.5",
+        "figure_1.6",
+        "figure_1.7",
+        "figure_1.1",
+        "figure_1.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.085_1.3",
+      "section_id": "1.3",
+      "section_title": "Information stored in the HLR",
+      "content": "For the supplementary service Closed User Group the HLR shall store:\n-\tper subscription (IMSI) a list of CUG Interlock codes up to a maximum specified in GSM 02.85.\nAgainst each Interlock code the following parameters shall be stored:\n-\tCUG Index;\n-\tIntra-CUG restrictions;\nwhich may take one of the following values:\n-\tNone;\n-\tIncoming calls barred within the CUG;\n-\tOutgoing calls barred within the CUG.\n-\tApplication to basic services;\nwhich may take one of the following types of value:\n-\tList of Basic Services Groups for which the CUG applies;\n-\tAll basic services.\nAgainst each Basic Service Group which is subject to CUG, the following shall be stored:\n-\tInter-CUG accessibility;\nwhich may take one of the following values:\n-\tNone designated;\n-\tOutgoing Access;\n-\tIncoming Access;\n-\tOutgoing and Incoming Access.\n-\tPreferential CUG;\nwhich may take one of the following types of value:\n-\tCUG Index;\n-\tNone designated.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.085_1.4",
+      "section_id": "1.4",
+      "section_title": "Information stored in the VLR",
+      "content": "For the supplementary service Closed User Group the VLR shall store:\n-\tper subscription (IMSI) a list of CUG Interlock codes up to a maximum specified in GSM 02.85.\nAgainst each Interlock code the following parameters shall be stored:\n-\tCUG Index;\n-\tIntra-CUG restrictions;\nwhich may take one of the following values:\n-\tNone;\n-\tIncoming calls barred within the CUG;\n-\tOutgoing calls barred within the CUG.\n-\tApplication to basic services;\nwhich may take one of the following types of value:\n-\tList of Basic Services Groups for which the CUG applies;\n-\tAll basic services.\nAgainst each Basic Service Group which is subject to CUG, the following shall be stored:\n-\tInter-CUG accessibility;\nwhich may take one of the following values:\n-\tNone designated;\n-\tOutgoing Access;\n-\tIncoming Access;\n-\tOutgoing and Incoming Access.\n-\tPreferential CUG;\nwhich may take one of the following types of value:\n-\tCUG Index;\n-\tNone designated.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.085_1.5",
+      "section_id": "1.5",
+      "section_title": "Handover",
+      "content": "Handover will have no impact on the control procedures and operation of the service.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.085_1.6.1",
+      "section_id": "1.6.1",
+      "section_title": "MSC, VLR only support phase 1",
+      "content": "See clause 1.1.3 \"CUG subscriber roaming requirements\".",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_1.1.3"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.085_1.6.2",
+      "section_id": "1.6.2",
+      "section_title": "GMSC only supports phase 1",
+      "content": "When a routing request according to MAP phase 1 from GMSC (no CUG info) is received in the HLR and the called party does not have Incoming Access capability the HLR shall reject the routing request with the error \"Call barred\" instead the error \"CUG-Reject\".\nNOTE:\tThe error \"CUG-Reject\" is not available in the MAP phase 1 protocol.\nAnnex A (informative):Change history\nChange history\nDate\nMeeting\nTDoc\nCR\nRev\nCat\nSubject/Comment\nNew version\nApr 1999\nTransferred to 3GPP CN1\nCN#03\nApproved at CN#03\n3.0.0\nReferences updated from 2G to 3G\n3.0.1\nCN#09\n001\n1\nSDL refresh\n3.1.0\nCN#11\nRelease 4 after CN#11\n4.0.0\nCN#16\nRelease 5 after CN#16\n5.0.0\nCN#26\nRelease 6 after CN#26\n6.0.0\nCT#30\n002\nIncorrect References\n6.1.0\nCT#36\nUpgraded unchanged from Rel-6\n7.0.0\nCT#42\nUpgraded unchanged from Rel-7\n8.0.0\nCT#46\n-\n-\nUpdate to Rel-9 version (MCC)\n9.0.0\n2011-03\n-\n-\nUpdate to Rel-10 version (MCC)\n10.0.0\n2011-09\n0003\nAddition of Anonymous Call Rejection in the CS domain\n11.0.0\n2014-09\n-\n-\nUpdate to Rel-12 version (MCC)\n12.0.0\n2015-12\n-\n-\nUpdate to Rel-13 version (MCC)\n13.0.0\n2017-03\n-\n-\nUpdate to Rel-14 version (MCC)\n14.0.0\n2018-06\n-\n-\nUpdate to Rel-15 version (MCC)\n15.0.0\n2020-07\n-\n-\nUpdate to Rel-16 version (MCC)\n16.0.0\n2022-03\n-\n-\n-\n-\n-\nUpdate to Rel-17 version (MCC)\n17.0.0\n2024-03\n-\n-\n-\n-\n-\nUpdate to Rel-18 version (MCC)\n18.0.0",
+      "chunk_type": "requirement",
+      "cross_references": []
+    }
+  ]
+}

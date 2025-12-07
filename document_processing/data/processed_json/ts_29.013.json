@@ -1,0 +1,337 @@
+{
+  "metadata": {
+    "specification_id": "ts_29.013",
+    "version": "18.0.0",
+    "title": "3GPP TS 29.013",
+    "file_path": "/content/drive/MyDrive/RAG_thesis/data/29_series/29013-i00/29013-i00.docx"
+  },
+  "export_info": {
+    "export_date": "2025-07-26T09:11:06.114457",
+    "total_chunks": 33
+  },
+  "chunks": [
+    {
+      "chunk_id": "ts_29.013_1",
+      "section_id": "1",
+      "section_title": "Scope",
+      "content": "The scope of the present document is to provide a specification for interworking between the ISDN Application Service Element (ASE) protocol for supplementary services and the Mobile Application Part (MAP) protocol on MAP D-interface protocol for handling of supplementary services within the digital cellular telecommunications system (Phase 2+). This version of the specification includes the interworking for the Call Completion to Busy Subscriber (CCBS) service between the ISDN CCBS-ASE and MAP.\nThe MAP protocol for CCBS service is specified in GSM 09.02. The ISDN CCBS-ASE protocol is specified in ETS 300 356‑18. The ISDN CCBS-ASE protocol is also commonly referred to as the SSAP protocol in GSM 03.93. This specification clarifies the interworking within the HLR between these protocols for the Call Completion to Busy Subscriber (CCBS) service.\nClause 4 describes the mapping between MAP application layer messages and SSAP application layer messages.\nClause 5 describes the mapping between MAP message parameters and SSAP message parameters.\nClause 6 describes the dialogue handling on the SSAP interface.\nClause 7 describes the SCCP layer addressing for messages on the SSAP interface.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_4",
+        "clause_5",
+        "clause_6",
+        "clause_7"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.013_2",
+      "section_id": "2",
+      "section_title": "References",
+      "content": "The following documents contain provisions which, through reference in this text, constitute provisions of the present document.\n-\tReferences are either specific (identified by date of publication, edition number, version number, etc.) or non‑specific.\n-\tFor a specific reference, subsequent revisions do not apply.\n-\tFor a non-specific reference, the latest version applies.\n[1]\tGSM 01.04: \"Digital cellular telecommunications system (Phase 2+); Abbreviations and acronyms\".\n[2]\tGSM 02.93: \"Digital cellular telecommunications system (Phase 2+); Completion of calls to busy subscriber (CCBS) supplementary services - Stage 1\".\n[3]\tGSM 03.93: \"Digital cellular telecommunications system (Phase 2+); Technical Realisation of Completion of Calls to Busy Subscriber (CCBS); Stage 2\".\n[4]\tGSM 04.80: \"Digital cellular telecommunications system (Phase 2+); Mobile radio interface layer 3 supplementary services specification Formats and coding\".\n[5]\tGSM 04.93: \"Digital cellular telecommunications system (Phase 2+); Technical Realisation of Completion of Calls to Busy Subscriber (CCBS); Stage 3\".\n[6]\tGSM 09.02 \"Digital cellular telecommunications system (Phase 2+); Mobile Application Part (MAP) specification\".\n[7]\tGSM 09.07 : \"Digital cellular telecommunications system (Phase 2+); General requirements on interworking between the Public Land Mobile Network (PLMN) and the Integrated Services Digital Network (ISDN) or Public Switched Telephone Network (PSTN)\".\n[8]\tETS 300 102-1 (1990): \"Integrated Services Digital Network (ISDN); User-network interface layer 3 specifications for basic call control\".\n[9]\tETS 300 356-18: \"ISDN User Part (ISUP) version 2 for the international interface: Part 18: Completion of Calls to Busy Subscriber (CCBS) supplementary service\".\n[10]\tETS 300 358: \"Integrated Services Digital Network (ISDN); Completion of Calls to Busy Subscriber (CCBS) supplementary service; Functional capabilities and information flows\".",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.013_3.1",
+      "section_id": "3.1",
+      "section_title": "Definitions",
+      "content": "For the purposes of this specification, the following definitions apply:\nSSAP: Supplementary Service Application Part. SSAP is the protocol used for CCBS procedures on the interface between the originating and destination network. Communication across this interface is performed using SCCP Connectionless Signalling (Refer to ETS 300 358). The terms CCBS-ASE defined in ETS 300 356-18 for the ISDN CCBS service and SSAP defined in GSM 03.93 are the same and are used interchangeably in this specification. The SSAP interface is between the originating network entities (HLR A, OLE) and the destination network entities (HLR B, DLE).",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.013_3.2",
+      "section_id": "3.2",
+      "section_title": "Abbreviations",
+      "content": "Abbreviations used in this specification are listed in GSM 01.04.\nFor the purposes of this specification, the following abbreviations apply:\nASE\tApplication Service Element\nCCBS\tCall Completion to Busy Subscriber\nDLE\tDestination Local Exchange\nISDN\tIntegrated Services Digital Network\nMAP\tMobile Application Part\nOLE\tOriginating Local Exchange\nSCCP\tSignalling Connection Control Part\nSSAP\tSupplementary Service Application Part\nTC\tTransaction Capabilities",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.013_4.1",
+      "section_id": "4.1",
+      "section_title": "GSM CCBS Architecture Overview",
+      "content": "The stage 1 of the CCBS service is defined in GSM 02.93.\nThe network architecture to support the CCBS service in GSM networks is defined in GSM 03.93. For convenience, the architecture is shown again in this specification. Figure 4.1.1 is an architectural overview of the CCBS service when interworking between the originating and the destination networks involved. The originating network may be a mobile network or a fixed network and the destination network may also be a mobile network or a fixed network.\nThe call related signalling (see ETS 300 356-18) for CCBS is performed on ISUP links on the following interfaces:\nVMSC A - GMSC B;\nVMSC A - DLE;\nOLE - GMSC B;\nwhereas the specific CCBS procedures (see ETS 300 356-18) are performed via the SSAP protocol, which is signalled on the following interfaces:\nHLR A - HLR B;\nHLR A - DLE;\nOLE - HLR B.\nThis specification only describes the MAP - SSAP protocol interworking.\nFigure 4.1: Architectural overview showing common point of interworking",
+      "chunk_type": "definition",
+      "cross_references": [
+        "figure_4.1.1",
+        "figure_4.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.013_4.2",
+      "section_id": "4.2",
+      "section_title": "GSM CCBS - ISDN CCBS ASE Interworking Overview",
+      "content": "The non-call related signalling procedures for CCBS between the originating network and the destination network are defined in ETS 300 356-18 as the ISDN CCBS-ASE. The GSM network also uses these signalling procedures for CCBS without any changes. The ISDN CCBS ASE protocol is supported in GSM networks in the HLR A (originating network) and HLR B (destination network). Therefore no protocol interworking for ISDN CCBS-ASE is needed for the CCBS service between GSM networks and ISDN networks.\nIn GSM networks, the CCBS functionality is distributed across several network entities (see GSM 03.93) including the HLR, VLR, MSC and the MS. The HLR shall provide any necessary signalling interworking between the MAP protocol for call completion services on the MAP D-interface (between the VLR and the HLR) and ISDN CCBS-ASE protocol between the originating and destination networks.\nThe MAP protocol for CCBS service is specified in GSM 09.02. The ISDN CCBS-ASE protocol is specified in ETS 300 356‑18. This specification clarifies the interworking within the HLR between these protocols.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.013_4.3",
+      "section_id": "4.3",
+      "section_title": "Overview on the use of CCBS procedures and parameters values",
+      "content": "A GSM subscriber can roam while there is an active CCBS request. The called party address (MSISDN) information is used to initiate a dialogue with the destination network on the SSAP interface. The dialogue on the SSAP interface is opened and maintained while there is an active CCBS request (see ETS 300 356-18). However, the dialogues on the MAP D interface can be closed and reopened as necessary (see GSM 09.02 and GSM 03.93) and use the IMSI information for addressing.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.013_4.4",
+      "section_id": "4.4",
+      "section_title": "Mapping between MAP and SSAP application layer messages",
+      "content": "The mapping of MAP messages on the D interface and SSAP messages between the originating and destination networks is described. The precise coding of these messages is given in GSM 09.02 and ETS 300 356-18.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.013_4.4.1",
+      "section_id": "4.4.1",
+      "section_title": "MAP D-interface to SSAP interface mapping in HLR A",
+      "content": "Table 4.1: Mapping of GSM 09.02 (MAP) operations to ETS 300 356-18 (SSAP) operations\nMAP OPERATIONS\nSSAP OPERATIONS\nRegisterCCEntry\nCcbsRequest\nEraseCCEntry/ A GSM 03.93 Event (note 1)\nCcbsCancel\nRemoteUserFree Result/\nCcbsSuspend\nRemoteUserFree Error/\nA GSM 03.93 Event (note 2)\nStatusReport/\nCcbsResume\nA GSM 03.93 Event (note 3)\nNOTE 1\tThis event may be local to HLR A. See GSM 03.93 for a dynamic description of possible events in HLR A leading to a CCBS request being cancelled. The SSAP CcbsCancel operation can include a cause code parameter; this shall be set to the appropriate value corresponding to the actual dynamic event by HLR A (e.g. cCBS-T3-Timeout, cCBS-T4-Timeout).\nNOTE 2\tThis event may be local to HLR A. See GSM 03.93 for a dynamic description of possible events in HLR A leading to a CCBS request being suspended.\nNOTE 3\tThis event may be local to HLR A. See GSM 03.93 for a dynamic description of possible events in HLR A leading to a CCBS request being resumed.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_4.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.013_4.4.2",
+      "section_id": "4.4.2",
+      "section_title": "SSAP interface to MAP D-interface interface mapping in HLR A",
+      "content": "SSAP OPERATIONS\nMAP OPERATIONS\nCcbsRequest Result\nRegisterCCEntry Result\nCcbsRequest Error\nRegisterCCEntry Error\nRemoteUserFree\nRemoteUserFree\nCcbsCancel\nSetReportingState/A GSM 03.93 Event (note 1)\nNOTE 1\tThis event may be local to HLR A. See GSM 03.93 for a dynamic description of possible events in HLR A resulting from a CCBS request being cancelled. The SSAP CcbsCancel operation can include a cause code parameter(e.g. cCBS-T7-Timeout, cCBS-T9-Timeout).",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.013_5",
+      "section_id": "5",
+      "section_title": "Mapping between MAP message parameters and SSAP message parameters",
+      "content": "The mapping between MAP message parameters and SSAP message parameters is described. The precise coding of these messages is given in GSM 09.02 and ETS 300 356-18.\nThe following messages on the SSAP interface do not contain any parameters:\n-\tRemoteUserFree;\n-\tSuspend;\n-\tResume.",
+      "chunk_type": "parameter",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.013_5.1",
+      "section_id": "5.1",
+      "section_title": "CCBS Request Invocation",
+      "content": "VLRA                          HLRA                 DESTINATION                                                    NETWORK B+-+                          +-+                        +-+| |                          | |                        | || |                          | |                        | || |   RegisterCCEntry        | |                        | || |------------------------->| |                        | || |   TC-BEGIN               | |                        | || |                          | |                        | || |                          | |  CcbsRequest           | || |                          | |----------------------->| || |                          | |  TC-BEGIN              | || |                          | |                        | || |                          | |                        | |\nFigure 5.1: Signalling flow for CCBS Request Invocation\nTable 5.1: Mapping of CCBS Request Invocation parameters\nRegisterCCEntry PARAMETERS\nCcbsRequest PARAMETERS\nss-Code\nnot present\nccbs-Feature\n- b-subscriberSubaddress\t\t(note 1)\naccessTransportParameter\t(note 2)\ntranslatedB-Number\ncalledPartynumber\t\t(note 3)\nserviceIndicator\nnot present\ncallInfo\nnot present\nnetworkSignalInfo\n- ISDN BC Tag, Length, Content\t(note 4)\nuserServiceInf\nnetworkSignalInfo\n- HLC Tag, Length, Content\t(note 5)\naccessTransportParameter\t(note 2)\nnetworkSignalInfo\n- LLC Tag, Length, Content\t(note 6)\naccessTransportParameter\t(note 2)\nnot present\nretainSupported\t\t(note 7)\nnot present\ncallingPartyNumber\t\t(note 8)\nnot present\nuserServiceInfPrime\t\t(note 9)\nNOTE 1\tCCBS-Feature contains the b-subscriberSubaddress parameter which is the called party subaddress. The GSM HLR A shall map the called party subaddress into the accessTransportParameter if received from the VLR. The entire called party subaddress information (i.e. called party subaddress IEI, LENGTH and CONTENT ) is mapped into the accessTransportParameter. See subclause 5.1.1. for details of the required encoding.\nNOTE 2\tThe CcbsRequest contains only one accessTransportParameter. This parameter contains information on the ISDN HLC, LLC and Subaddress.\nNOTE 3\tThe calledParty Number shall be in the international E.164 format.\nNOTE 4\tThe networkSignalInfo contains three information elements ISDN BC, HLC, LLC. The structure of this is defined in GSM 09.02 and the content in GSM 09.07. The ISDN BC information element CONTENT (i.e. without ISDN BC TAG, LENGTH ) is mapped into the userServiceInf parameter.\nNOTE 5\tThe networkSignalInfo contains three information elements ISDN BC, HLC, LLC. The structure of this is defined in GSM 09.02 and the content in GSM 09.07. The entire ISDN HLC information element (i.e. ISDN HLC TAG, LENGTH and CONTENT ) is mapped into the accessTransportParameter.\nNOTE 6\tThe networkSignalInfo contains three information elements ISDN BC, HLC, LLC. The structure of this is defined in GSM 09.02 and the content in GSM 09.07. The entire ISDN LLC information element (i.e. ISDN LLC TAG, LENGTH and CONTENT ) is mapped into the accessTransportParameter.\nNOTE 7 This information is local to the HLR A. This information element shall be coded by HLR A to reflect whether it supports CCBS Retention capability.\nNOTE 8\tThis information is local to HLR A. The HLR A provides callingPartyNumber if CLIR was not invoked (See the serviceIndicator parameter in GSM 09.02 and GSM 03.93). If sent, the A subscriber's identity shall be the Basic MSISDN (i.e. the main MSISDN) and shall be in the international E.164 format.\nNOTE 9\tThe GSM HLR A shall not send the userServiceInfPrime",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_5.1.1",
+        "table_5.1",
+        "figure_5.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.013_5.1.1",
+      "section_id": "5.1.1",
+      "section_title": "Encoding of called party subaddress information",
+      "content": "The CCBS-Feature parameter is received from the VLR and it may include the b-subscriberSubaddress parameter as defined in GSM 09.02. The Called Party Subaddress information requires additional processing in HLR to ensure correct encoding of this information on the SSAP interface. The HLR shall add two octets to the ISDN-SubaddressString received from the VLR as indicated in figure 5.2.\nNOTE 1\tCalled Party Subaddress Information Element Identifier (IEI) is defined by ETS 300 102-1. Its value is \"01110001\". This information is not sent from the VLR and has to be derived locally in the HLR for interworking purposes.\nNOTE 2\tThis information has to be derived locally in the HLR for interworking purposes.\nNOTE 3\tThis information is sent by the VLR. The ISDN-SubaddressString contents is defined in GSM 09.02.\nFigure 5.2: Encoding of Called Party Subaddress information",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_5.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.013_5.2",
+      "section_id": "5.2",
+      "section_title": "CCBS Request Result",
+      "content": "VLRA                          HLRA                 DESTINATION                                                    NETWORK B+-+                          +-+                        +-+| |                          | |                        | || |                          | |                        | || |                          | |                        | || |                          | |  CcbsRequest-Result    | || |                          | |<-----------------------| || |                          | |  TC-CONTINUE           | || |                          | |                        | || |  RegisterCCEntry-Result  | |                        | || |<-------------------------| |                        | || |  TC-END                  | |                        | || |                          | |                        | || |                          | |                        | |\nFigure 5.3: Signalling flow for CCBS Request Result\nTable 5.2: Mapping of CCBS Request Result parameters\nCcbsRequest_Result PARAMETERS\nRegisterCCEntry_Result PARAMETERS\nretainSupported\t(note 1)\nnot present\nnot present\nccbs-Feature\t(note 2)\nNOTE 1\tThis information is associated with each CCBS Request and indicates whether CCBS Retention is supported by the destination B network (see GSM 03.93).\nNOTE 2\tThis information is local to the HLR A. Some of information contained in ccbs-Feature (e.g. ccbs-index) is allocated by the HLR A. The ccbs-Feature information is sent to the MS (see GSM 03.93, GSM 04.93).",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.2",
+        "figure_5.3"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.013_5.3",
+      "section_id": "5.3",
+      "section_title": "CCBS Request Error",
+      "content": "VLRA                          HLRA                 DESTINATION                                                    NETWORK B+-+                          +-+                        +-+| |                          | |                        | || |                          | |                        | || |                          | |                        | || |                          | |  CcbsRequest-Error     | || |                          | |<-----------------------| || |                          | |  TC-END                | || |                          | |                        | || |  RegisterCCEntry-Error   | |                        | || |<-------------------------| |                        | || |  TC-END                  | |                        | || |                          | |                        | || |                          | |                        | || |                          | |                        | |\nFigure 5.4: Signalling flow for CCBS Request Error\nTable 5.3: Mapping of CCBS Request Error parameters\nCcbsRequest_Error PARAMETERS\nRegisterCCEntry_Error PARAMETERS\nshortTermDenial/ longTermDenial (note 1)\nshortTermDenial/ longTermDenial (note 2)\nNOTE 1\tFor coding of these User Errors see ETS 300 356-18.\nNOTE 2\tFor coding of these User Errors see GSM 09.02. This information is sent to the MS (see GSM 04.93, GSM 04.80).",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.3",
+        "figure_5.4"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.013_6",
+      "section_id": "6",
+      "section_title": "Dialogue handling on the SSAP interface",
+      "content": "The dialogue handling on the SSAP interface and the mapping between the corresponding TC transaction sublayer messages on the MAP D and SSAP interfaces is described. The diagrams show the general principle of dialogue handling. Specific message flows depend on the dynamics of the application in the network elements, see GSM 03.93 and GSM 09.02.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.013_6.1.1",
+      "section_id": "6.1.1",
+      "section_title": "CCBS Request Invocation",
+      "content": "VLRA                          HLRA                 DESTINATION                                                    NETWORK B+-+                          +-+                        +-+| |                          | |                        | || |                          | |                        | || |   RegisterCCEntry        | |                        | || |------------------------->| |                        | || |   TC-BEGIN               | |                        | || |                          | |                        | || |                          | |  CcbsRequest           | || |                          | |----------------------->| || |                          | |  TC-BEGIN              | || |                          | |  SCCP                  | || |                          | |                        | || |                          | |                        | || |                          | |                        | |\nFigure 6.1: Signalling flow for CCBS REQUEST INVOCATION\nThe CCBS Request invocation is carried by TC-BEGIN. The SCCP addressing parameters on the SSAP interface shall be as shown in table 7.1.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_7.1",
+        "figure_6.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.013_6.2.1",
+      "section_id": "6.2.1",
+      "section_title": "CCBS Request Result",
+      "content": "VLRA                          HLRA                 DESTINATION                                                    NETWORK B+-+                          +-+                        +-+| |                          | |                        | || |                          | |                        | || |                          | |                        | || |                          | |  CcbsRequest-Result    | || |                          | |<-----------------------| || |                          | |  TC-CONTINUE           | || |                          | |  SCCP                  | || |                          | |                        | || |                          | |                        | || |  RegisterCCEntry-Result  | |                        | || |<-------------------------| |                        | || |  TC-END                  | |                        | || |                          | |                        | || |                          | |                        | || |                          | |                        | |\nFigure 6.2: Signalling flow for CCBS Request Result\nThe CCBS Request Result is carried by TC-CONTINUE. The SCCP addressing parameters on the SSAP interface shall be as shown in table 7.3.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_7.3",
+        "figure_6.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.013_6.2.2",
+      "section_id": "6.2.2",
+      "section_title": "CCBS Remote User Free Invocation",
+      "content": "VLRA                          HLRA                 DESTINATION                                                    NETWORK B+-+                          +-+                        +-+| |                          | |                        | || |                          | |                        | || |                          | |                        | || |                          | |  RemoteUserFree        | || |                          | |<--------------------_--| || |                          | |  TC-CONTINUE           | || |                          | |  SCCP                  | || |                          | |                        | || |                          | |                        | || |  RemoteUserFree          | |                        | || |<-------------------------| |                        | || |  TC-BEGIN                | |                        | || |                          | |                        | || |                          | |                        | || |                          | |                        | |\nFigure 6.3: Signalling flow for Remote User Free Invocation\nThe CCBS Remote User Free Invocation is carried by TC-CONTINUE. The SCCP addressing parameters on the SSAP interface shall be as shown in table 7.3.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_7.3",
+        "figure_6.3"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.013_6.2.3",
+      "section_id": "6.2.3",
+      "section_title": "CCBS Suspend Invocation",
+      "content": "VLRA                          HLRA                 DESTINATION                                                    NETWORK B+-+                          +-+                        +-+| |                          | |                        | || |  RemoteUserFree-Result   | |                        | || |------------------------->| |                        | || |  TC-END                  | |                        | || |                          | |                        | || |                          | |                        | || |                          | |  CcbsSuspend (note 1)  | || |                          | |----------------------->| || |                          | |  TC-CONTINUE           | || |                          | |  SCCP                  | || |                          | |                        | || |                          | |                        | || |                          | |                        | |\nNOTE 1\tFor conditions leading to a request being suspended, see GSM 03.93\nFigure 6.4: Signalling flow for CCBS Suspend Invocation (RemoteUserFree_Result)\nVLRA                          HLRA                 DESTINATION                                                    NETWORK B+-+                          +-+                        +-+| |                          | |                        | || |  RemoteUserFree-Error    | |                        | || |------------------------->| |                        | || |  TC-END                  | |                        | || |                          | |                        | || |                          | |                        | || |                          | |  CcbsSuspend (note 1)  | || |                          | |----------------------->| || |                          | |  TC-CONTINUE           | || |                          | |  SCCP                  | || |                          | |                        | || |                          | |                        | || |                          | |                        | |\nNOTE 1\tFor conditions leading to a request being suspended, see GSM 03.93\nFigure 6.5: Signalling flow for CCBS Suspend Invocation (RemoteUserFree_Error)\nThe CCBS Suspend Invocation is carried by TC-CONTINUE. The SCCP addressing parameters on the SSAP interface shall be as shown in table 7.2",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_7.2",
+        "figure_6.4",
+        "figure_6.5"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.013_6.2.4",
+      "section_id": "6.2.4",
+      "section_title": "CCBS Resume Invocation",
+      "content": "VLRA                          HLRA                 DESTINATION                                                    NETWORK B+-+                          +-+                        +-+| |                          | |                        | || |  StatusReport            | |                        | || |------------------------->| |                        | || |  TC-BEGIN                | |                        | || |                          | |                        | || |                          | |                        | || |                          | |  CcbsResume  (note 1)  | || |                          | |----------------------->| || |                          | |  TC-CONTINUE           | || |                          | |  SCCP                  | || |                          | |                        | || |                          | |                        | || |                          | |                        | |\nNOTE 1\tFor conditions leading to a request being resumed, see GSM 03.93\nFigure 6.6: Signalling flow for CCBS Resume Invocation\nThe CCBS Resume Invocation is carried by TC-CONTINUE. The SCCP addressing parameters on the SSAP interface shall be as shown in table 7.2.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_7.2",
+        "figure_6.6"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.013_6.3.1",
+      "section_id": "6.3.1",
+      "section_title": "Normal dialogue end",
+      "content": "VLRA                          HLRA                 DESTINATION                                                    NETWORK B+-+                          +-+                        +-+| |                          | |                        | || |                          | |                        | || |                          | |                        | || |                          | | No component primitive | || |                          | |<-----------------------| || |                          | |  TC-END                | || |                          | |  SCCP                  | || |                          | |                        | || |                          | |                        | || |SetReportingState (note 1)| |                        | || |<-------------------------| |                        | || |  TC-BEGIN                | |                        | || |                          | |                        | || |                          | |                        | || |                          | |                        | |\nNOTE 1\tIf the monitoring function is active in VLR A and all outstanding CCBS Requests have been deactivated, the HLR A sends SetReportingState to deactivate the monitoring function (see GSM 03.93).\nFigure 6.7: Signalling flow for normal dialogue end\nThe normal ending of CCBS dialogue from the B-side is carried by TC-END. The SCCP addressing parameters on the SSAP interface shall be as shown in table 7.3.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_7.3",
+        "figure_6.7"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.013_6.3.2",
+      "section_id": "6.3.2",
+      "section_title": "CCBS Cancel Invocation (from A-side)",
+      "content": "VLRA                          HLRA                 DESTINATION                                                    NETWORK B+-+                          +-+                        +-+| |                          | |                        | || |                          | |                        | || |   EraseCCEntry (note 1)  | |                        | || |------------------------->| |                        | || |   TC-BEGIN               | |                        | || |                          | |                        | || |                          | |  CcbsCancel            | || |                          | |----------------------->| || |                          | |  TC-END   (note 1)     | || |                          | |  SCCP                  | || |                          | |                        | || |                          | |                        | || |                          | |                        | |\nNOTE 1\tWhere all outstanding CCBS Requests have been deactivated, CCBS Cancel is sent to each corresponding Destination Network B with the appropriate Destination Network B E.164 Called Party Address (see GSM 03.93, GSM 04.93).\nFigure 6.8: Signalling flow for CCBS Cancel Invocation (from A-side)\nThe CCBS Cancel Invocation from the A-side is carried by TC-END. The SCCP addressing parameters on the SSAP interface shall be as shown in table 7.2.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_7.2",
+        "figure_6.8"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.013_6.3.3",
+      "section_id": "6.3.3",
+      "section_title": "CCBS Cancel Invocation (from B-side)",
+      "content": "VLRA                          HLRA                 DESTINATION                                                    NETWORK B+-+                          +-+                        +-+| |                          | |                        | || |                          | |                        | || |                          | |                        | || |                          | |  CcbsCancel            | || |                          | |<-----------------------| || |                          | |  TC-END                | || |                          | |  SCCP                  | || |                          | |                        | || |                          | |                        | || |SetReportingState (note 1)| |                        | || |<-------------------------| |                        | || |  TC-BEGIN                | |                        | || |                          | |                        | || |                          | |                        | || |                          | |                        | |\nNOTE 1:\tIf the monitoring function is active in VLR A and all outstanding CCBS Requests have been deactivated, the HLR A sends SetReportingState to deactivate the monitoring function (see GSM 03.93).\nFigure 6.9: Signalling flow for CCBS Cancel Invocation (from B-side)\nThe CCBS Cancel Invocation from the B-side is carried by TC-END. The SCCP addressing parameters on the SSAP interface shall be as shown in table 7.3.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_7.3",
+        "figure_6.9"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.013_6.3.4",
+      "section_id": "6.3.4",
+      "section_title": "CCBS Request Error",
+      "content": "VLRA                          HLRA                 DESTINATION                                                    NETWORK B+-+                          +-+                        +-+| |                          | |                        | || |                          | |                        | || |                          | |                        | || |                          | |  CcbsRequest-Error     | || |                          | |<-----------------------| || |                          | |  TC-END                | || |                          | |  SCCP                  | || |                          | |                        | || |                          | |                        | || |  RegisterCCEntry-Error   | |                        | || |<-------------------------| |                        | || |  TC-END                  | |                        | || |                          | |                        | || |                          | |                        | || |                          | |                        | |\nFigure 6.10: Signalling flow for CCBS Request Error\nThe CCBS Request Error is carried by TC-END. The SCCP addressing parameters on the SSAP interface shall be as shown in table 7.3.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_7.3",
+        "figure_6.10"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.013_7",
+      "section_id": "7",
+      "section_title": "Addressing of SCCP layer messages on the SSAP interface",
+      "content": "The SCCP layer addressing for messages on the SSAP interface is described.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.013_7.1",
+      "section_id": "7.1",
+      "section_title": "Use of SCCP",
+      "content": "Clarifications and restrictions on the use and coding of the main SCCP parameters impacted by CCBS on the SSAP interface are indicated. See ETS 300 356-18 and the associated references for the full specification on the use of SCCP on the SSAP interface. The SCCP routeing on the SSAP interface shall be based on the Global Title (GT) translation mechanism as for routeing on the international interface. GT addressing shall be used for inter and intra PLMN signalling. This allows any impact of other network features e.g. Mobile Number Portability to be minimised.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.013_7.2.1",
+      "section_id": "7.2.1",
+      "section_title": "TC-BEGIN message from the originating network HLR",
+      "content": "The relevant SCCP parameters in the first message from the HLR A transporting TC-BEGIN are shown in table 7.1. All other SCCP parameters shall be as indicated in ETS 300 356-18.\nTable 7.1: SCCP parameters used by HLR A for TC-BEGIN\nSCCP PARAMETERS for the messagetransporting TC-BEGIN\nPARAMETER VALUE\nCdPA-Called Party Address\nE.164 number of the Called Party. This may be in either international or national E.164 format, see subclause 7.4.1. It is derived from the translatedB-Number parameter which is available from the CCBS application in HLRA, see RegisterCCEntry in GSM 09.02.\nCgPA-Calling Party Address\nE.164 number of HLR A. This may be in either international or national E.164 format, see subclause 7.4.1.\nSSN- Subsystem Number\n0000 1011(See ETS 300 356-18)\nTT- Translation Type\n0001 0001(See ETS 300 356-18)\nOther SCCP Parameters\nSee ETS 300 356-18",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_7.4.1",
+        "table_7.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.013_7.2.2",
+      "section_id": "7.2.2",
+      "section_title": "TC-CONTINUE, TC-END messages from the originating network HLR",
+      "content": "The relevant SCCP parameters in the subsequent messages from the HLR A transporting TC-CONTINUE and TC-END are shown in table 7.2. All other SCCP parameters shall be as indicated in ETS 300 356-18.\nTable 7.2: SCCP parameters used by HLR A for TC-CONTINUE, TC-END\nSCCP PARAMETERS for the messagetransporting TC-CONTINUE, TC-END\nPARAMETER VALUE\nCdPA-Called Party Address\nThe Called Party Address is the E.164 address of the calling entity in the destination network that was received in the first response message from the destination network (note 1).\nCgPA-Calling Party Address\nE.164 number of HLR A. This may be in either international or national E.164 format as used in the message transporting TC-BEGIN, see subclause 7.4.1.\nSSN- Subsystem Number\n0000 1011(See ETS 300 356-18)\nTT- Translation Type\n0001 0001 (See ETS 300 356-18)\nOther SCCP Parameters\nSee ETS 300 356-18\nNOTE 1 If the destination network is a GSM PLMN, this is E.164 number of HLR B.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_7.4.1",
+        "table_7.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.013_7.3.1",
+      "section_id": "7.3.1",
+      "section_title": "TC-CONTINUE, TC-END messages from the destination network HLR",
+      "content": "The relevant SCCP parameters in the first and subsequent messages from the HLR B transporting TC-CONTINUE and TC-END are shown in table 7.3. All other SCCP parameters shall be as indicated in ETS 300 356-18.\nTable 7.3: SCCP parameters for TC-CONTINUE, TC-END used by HLR B\nSCCP PARAMETERS for the messagetransporting TC-CONTINUE, TC-END\nPARAMETER VALUE\nCdPA-Called Party Address\nThe Called Party Address is the E.164 address of the calling entity in the originating network that was received in the first message transporting TC-BEGIN from the originating network (note 1).\nCgPA-Calling Party Address\nE.164 number of HLR B. This may be in either international or national E.164 format, see subclause 7.4.2 (note 2)\nSSN- Subsystem Number\n0000 1011(See ETS 300 356-18)\nTT- Translation Type\n0001 0001 (See ETS 300 356-18)\nOther SCCP Parameters\nSee ETS 300 356-18\nNOTE 1\tIf the originating network is a GSM PLMN, this is E.164 number of HLR A.\nNOTE 2\tThe E.164 number of HLRB is used as this allows any impact of other network features to be minimised.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_7.4.2",
+        "table_7.3"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.013_7.4",
+      "section_id": "7.4",
+      "section_title": "Number formats of the SCCP address parameters",
+      "content": "The Called and Calling Party Address information in SCCP should be in international E.164 format. Optionally national format E.164 addresses may be used in SCCP for routeing of national traffic. For this, the HLR has to modify the addresses which are in international E.164 format to a national E.164 format. If a national format E.164 option is used, all involved network nodes in a given country (i.e. the originating network, any transit networks and the destination network) need support that option. As negotiation is not possible, the option selected by the originating network shall determine the addressing used for all messages which are a part of a single dialogue.",
+      "chunk_type": "parameter",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.013_7.4.1",
+      "section_id": "7.4.1",
+      "section_title": "Originating PLMN",
+      "content": "The Called and Calling Party Address information in SCCP should be in international E.164 format.\nThe originating network HLR A may use the SCCP Called Party Address in national E.164 format if the called destination (as indicated by the translatedB-number) is in the same country as HLR A.\nThe originating network HLR A may use the SCCP Calling Party Address in national E.164 format if the called destination (as indicated by the translatedB-number) is in the same country as HLR A.\nThe originating network HLR A shall ensure that the SCCP Called and Calling Party Addresses are either both in international format or national format.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.013_7.4.2",
+      "section_id": "7.4.2",
+      "section_title": "Destination PLMN",
+      "content": "The Called and Calling Party Address information in SCCP should be in international E.164 format.\nThe destination network HLR B may use the SCCP Called Party Address in national E.164 format if the originating network is in the same country as HLR B.\nThe destination network HLR B may use the SCCP Calling Party Address in national E.164 format if the originating network is in the same country as HLR B.\nThe destination network HLR B shall ensure that the SCCP Called and Calling Party Addresses are either both in international format or national format.\nAnnex A (informative):Change history\nChange history\nDate\nMeeting\nTDoc\nCR\nRev\nCat\nSubject/Comment\nNew version\nCN#04\nApproved at CN#04\n3.0.0\nCN#11\nApproved at CN#11\n4.0.0\nCN#16\nReferences updated\n4.0.1\nCN#16\nRel-5 created after CN#16\n5.0.0\nCN#26\nRel-6 created after CN#26\n6.0.0\nCT#36\nUpgraded unchanged from Rel-6\n7.0.0\nCT#42\nUpgraded unchanged from Rel-7\n8.0.0\nCT#46\nISDN BC mapping\n8.1.0\nCT#46\n0006\nUpgraded unchanged from Rel-8\n9.0.0\n2011-03\nUpdate to Rel-10 version (MCC)\n10.0.0\n2012-09\nUpdate to Rel-11 version (MCC)\n11.0.0\n2014-09\nUpdate to Rel-12 version (MCC)\n12.0.0\n2015-12\nUpdate to Rel-13 version (MCC)\n13.0.0\n2017-03\nUpdate to Rel-14 version (MCC)\n14.0.0\n2018-06\nUpdate to Rel-15 version (MCC)\n15.0.0\n2020-07\nUpdate to Rel-16 version (MCC)\n16.0.0\n2022-03\nCT#95\n-\n-\n-\n-\nUpdate to Rel-17 version (MCC)\n17.0.0\n2024-03\nCT#103\n-\n-\n-\n-\nUpdate to Rel-18 version (MCC)\n18.0.0",
+      "chunk_type": "general",
+      "cross_references": []
+    }
+  ]
+}

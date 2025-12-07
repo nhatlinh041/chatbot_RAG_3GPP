@@ -1,0 +1,537 @@
+{
+  "metadata": {
+    "specification_id": "ts_29.330",
+    "version": "18.1.0",
+    "title": "3GPP TS 29.330",
+    "file_path": "/content/drive/MyDrive/RAG_thesis/data/29_series/29330-i10/29330-i10.docx"
+  },
+  "export_info": {
+    "export_date": "2025-07-26T08:51:22.983498",
+    "total_chunks": 51
+  },
+  "chunks": [
+    {
+      "chunk_id": "ts_29.330_1",
+      "section_id": "1",
+      "section_title": "Scope",
+      "content": "The present document describes the diameter-based Sc interface between Data Channel Signalling Function (DCSF) and Home Subscriber Server (HSS) and specifies:\n1.\tThe interactions between the Data Channel Signalling Function (DCSF) and Home Subscriber Server (HSS) at the Sc reference point, including the procedures and signalling flows.\n2.\tThe protocol specifications and implementations, including the diameter application, commands and message contents at the Sc reference point.\nThe IP Multimedia Subsystem (IMS) supporting DC architecture and procedures are specified in 3GPP TS 23.228 [2].\nWhenever it is possible this document specifies the requirements for this protocol by reference to specifications produced by the IETF within the scope of Diameter base protocol as specified in IETF RFC 6733 [3]. Where this is not possible, extensions to the Diameter base protocol as specified in IETF RFC 6733 [3] are defined within this document.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.228"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.330_2",
+      "section_id": "2",
+      "section_title": "References",
+      "content": "The following documents contain provisions which, through reference in this text, constitute provisions of the present document.\n-\tReferences are either specific (identified by date of publication, edition number, version number, etc.) or non‑specific.\n-\tFor a specific reference, subsequent revisions do not apply.\n-\tFor a non-specific reference, the latest version applies. In the case of a reference to a 3GPP document (including a GSM document), a non-specific reference implicitly refers to the latest version of that document in the same Release as the present document.\n[1]\t3GPP TR 21.905: \"Vocabulary for 3GPP Specifications\".\n[2]\t3GPP TS 23.228: \"IP Multimedia (IM) Subsystem – Stage 2\".\n[3]\tIETF RFC 6733: \"Diameter Base Protocol\".\n[4]\t3GPP TS 29.328: \"IP Multimedia (IM) Subsystem Sh interface; signalling flows and message contents\".\n[5]\tIETF RFC 4960: \"Stream Control Transmission Protocol\".\n[6]\t3GPP TS 29.229: \"Cx and Dx Interfaces based on the Diameter protocol; protocol details\".\n[7]\t3GPP TS 29.336: \"Home Subscriber Server (HSS) diameter interfaces for interworking with packet data networks and applications\".\n[8]\tIETF RFC 7683: \"Diameter Overload Indication Conveyance\".\n[9]\tIETF RFC 7944: \"Diameter Routing Message Priority\".\n[10]\t3GPP TS 22.153: \"Multimedia Priority Service\".\n[11]\t3GPP TS 24.229: \"IP Multimedia Call Control Protocol based on SIP and SDP\" – stage 3.\n[12]\t3GPP TS 29.329: \"Sh Interface based on the Diameter protocol; Protocol details\".\n[13]\t3GPP TS 29.228: \"IP Multimedia (IM) Subsystem Cx and Dx interfaces; Signalling flows and message contents\".\n[14]\tIETF RFC 8583: \"Diameter Load Information Conveyance\".\n[15]\t3GPP TS 29.364: \"IMS Application Server Service Data Descriptions for AS interoperability\".\n[16]\tIETF RFC 3261: \"SIP: Session Initiation Protocol\".\n[17]\tIETF RFC 3966: \"The tel URI for Telephone Numbers\".",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905",
+        "ts_23.228",
+        "ts_29.328",
+        "ts_29.229",
+        "ts_29.336",
+        "ts_22.153",
+        "ts_24.229",
+        "ts_29.329",
+        "ts_29.228",
+        "ts_29.364"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.330_3.1",
+      "section_id": "3.1",
+      "section_title": "Definitions",
+      "content": "For the purposes of the present document, the terms and definitions given in TR 21.905 [1] and the following apply. A term defined in the present document takes precedence over the definition of the same term, if any, in TR 21.905 [1].\nDefinition format (Normal)\n<defined term>: <definition>.\nexample: text used to clarify abstract rules by applying them literally.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_21.905"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.330_3.2",
+      "section_id": "3.2",
+      "section_title": "Symbols",
+      "content": "For the purposes of the present document, the following symbols given in 3GPP TS 23.228 [2] apply:\nSc\tReference Point between an DCSF and an HSS.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.228"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.330_3.3",
+      "section_id": "3.3",
+      "section_title": "Abbreviations",
+      "content": "For the purposes of the present document, the abbreviations given in TR 21.905 [1] and the following apply. An abbreviation defined in the present document takes precedence over the definition of the same abbreviation, if any, in TR 21.905 [1].\nDC\tData Channel\nDCSF\tData Channel Signalling Function\nIMS\tIP Multimedia Core Network Subsystem",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.330_4",
+      "section_id": "4",
+      "section_title": "General Description",
+      "content": "This document describes the Sc interface related procedures, message parameters and protocol specifications.\nThe procedures, message parameters and protocol are identical as for the Sc. See clause 5 for details.\nIn the tables that describe the Information Elements transported by each Diameter command, each Information Element is marked as (M) Mandatory, (C) Conditional or (O) Optional in the \"Cat.\" column. For the correct handling of the Information Element according to the category type, see the description detailed in clause 6 of the 3GPP TS 29.328 [4].",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_5",
+        "ts_29.328_clause_6",
+        "ts_29.328"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.330_5.1",
+      "section_id": "5.1",
+      "section_title": "Introduction",
+      "content": "The Sc interface shall enable the Data Read and Data Update procedure between the DCSF and the HSS as described in the 3GPP TS 23.228 [2].",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_23.228"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.330_5.2.1.1",
+      "section_id": "5.2.1.1",
+      "section_title": "General",
+      "content": "The Data Read Procedure shall be used between the DCSF and the HSS to read repository data for a specified user from the HSS. The procedure shall be invoked by the DCSF and is used:\n-\tto read the transparent data for a specified user from the HSS, and the data is store by DCSF in the HSS to support its service logic.\nThis procedure is mapped to the commands User-Data-Request/Answer (UDR/UDA) in the Diameter application specified in clause 6.2.3 and clause 6.2.4.\nTable 5.2.1-1 specifies the involved information elements for the request.\nTable 5.2.1-2 specifies the involved information elements for the answer.\nTable 5.2.1-1: Sc-Pull\nInformation element name\nMapping to Diameter AVP\nCat.\nDescription\nUser Identity\n(See 3GPP TS 29.328 [4])\nUser-Identity\nM\nIt shall contain the IMS Public User Identity (in the Public-Identity AVP) of the user for whom the data is required.\nRequested data\n(See 3GPP TS 29.328 [4])\nData-Reference\nM\nThis information element indicates the reference to the requested information.\nService Indication\n(See 3GPP TS 29.328 [4])\nService-Indication\nM\nIE that identifies, together with the Public User Identity included in the Public-Identity AVP and Data-Reference, the set of service related transparent data that is being requested.\nTable 5.2.1-2: Sc-Pull Resp\nInformation element name\nMapping to Diameter AVP\nCat.\nDescription\nResult\nResult-Code / Experimental_Result\nM\nResult of the request.\nResult-Code AVP shall be used for errors defined in the Diameter base protocol (see IETF RFC 6733 [3]).\nExperimental-Result AVP shall be used for Sc errors. This is a grouped AVP which contains the 3GPP Vendor ID in the Vendor-Id AVP, and the error code in the Experimental-Result-Code AVP.\nData\nUser-Data\nC\nRequested data. This information element shall be present if the requested data exists in the HSS and the DCSF has permissions to read it.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_6.2.3",
+        "clause_6.2.4",
+        "table_5.2.1-1",
+        "table_5.2.1-2",
+        "ts_29.328"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.330_5.2.1.2",
+      "section_id": "5.2.1.2",
+      "section_title": "Detailed behaviour",
+      "content": "The DCSF shall invoke the data read procedure by sending the Sc-Pull request to HSS to read repository data for a specified user from the HSS. If repository data is requested, Service-Indication shall be present in the request.\nUpon reception of the Sc-Pull request, the HSS shall, in the following order:\n1.\tIn the DCSF permission list as specified in clause 6.1.7 check that the requested user data is allowed to be read (Sc-Pull) by this DCSF by checking the combination of the identity of the DCSF sending the request (identified by the Origin-Host AVP) and the supplied Data-Reference.\n-\tIf one or more Data References in the request are not allowed to be read, Experimental-Result shall be set to DIAMETER_ERROR_USER_DATA_CANNOT_BE_READ in the Sc-Pull Response.\n2.\tCheck that the User Identity for whom data is asked exists in HSS. If not, Experimental-Result shall be set to DIAMETER_ERROR_USER_UNKNOWN in the Sc-Pull Response.\n3.\tIf the type of the User Identity (IMS Public User Identity) does not apply according to Table 6.3.4 as access key for the Data-Reference indicated in the request, Experimental-Result shall be set to DIAMETER_ERROR_OPERATION_NOT_ALLOWED in the Sc-Pull Response.\n4.\tCheck whether or not the data that is requested to be downloaded by the DCSF is currently being updated by another entity. If there is an update of the data in progress, the HSS may delay the Sc-Pull-Resp message until the update has been completed. The HSS shall ensure that the data returned is not corrupted by this conflict. If HSS is not able to delay the Sc-Pull-Resp message e.g. due to timeout the Experimental-Result-Code shall be set to DIAMETER_USER_DATA_NOT_AVAILABLE.\n5.\tThe HSS shall include the data pertinent to the requested Data Reference in the User-Data AVP. The HSS shall set the Result-Code to DIAMETER_SUCCESS. This includes cases where the data is not available to the HSS. The pertinent data included shall refer to the received IMS Public User Identity.\nIf there is an error in any of the above steps, then the HSS shall stop processing and shall return the error code specified in the respective step (see 3GPP TS 29.329 [12] and 3GPP TS 29.229 [6] for an explanation of the error codes).\nIf the HSS cannot fulfil the received request for reasons not stated in the above steps, e.g. due to a database error or empty mandatory data elements, it shall stop processing the request and set Result-Code to DIAMETER_UNABLE_TO_COMPLY.\nOtherwise, the requested operation shall take place and the HSS shall return the Result-Code AVP set to DIAMETER_SUCCESS. Result-Code DIAMETER_SUCCESS is used also if the requested data does not exist in the HSS i.e. when the HSS is indicating valid empty data elements.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_6.1.7",
+        "table_6.3.4",
+        "ts_29.329",
+        "ts_29.229"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.330_5.2.2.1",
+      "section_id": "5.2.2.1",
+      "section_title": "General",
+      "content": "This procedure is used between the DCSF and the HSS. The procedure is invoked by the DCSF and is used:\n-\tTo allow the DCSF to update the transparent (repository) data stored at the HSS for each IMS Public User Identity.\nThis procedure is mapped to the commands Profile-Update-Request/Answer in the Diameter application specified in clause 6.2.3 and clause 6.2.4. Tables 5.2.1-1 and 5.2.1-2 detail the involved information elements.\nTable 5.2.2-1: Sc-Update Request\nInformation element name\nMapping to Diameter AVP\nCat.\nDescription\nUser Identity\n(See 3GPP TS 29.328 [4])\nUser-Identity\nM\nIt shall contain the IMS Public User Identity (in the Public-Identity AVP) for which data is updated.\nRequested data\n(See 3GPP TS 29.328 [4])\nData-Reference\nM\nThis information element includes the reference to the data on which updates are required.\nData\n(See 3GPP TS 29.328 [4])\nUser-Data\nM\nUpdated data.\nTable 5.2.2-2: Sc-Update Response\nInformation element name\nMapping to Diameter AVP\nCat.\nDescription\nResult\n(See 3GPP TS 29.328 [4])\nResult-Code / Experimental-Result\nM\nResult of the update of data in the HSS.\nResult-Code AVP shall be used for errors defined in the Diameter base protocol (see IETF RFC 6733 [44]).\nExperimental-Result AVP shall be used for Sc errors. This is a grouped AVP which contains the 3GPP Vendor ID in the Vendor-Id AVP, and the error code in the Experimental-Result-Code AVP.\nRepository Data ID (See 3GPP TS 29.328 [4])\nRepository-Data-ID\nO\nIf a Sc-Update Request with multiple repository data fails, this information element shall include the service indication and the sequence number of the repository data instance that has generated the error.\nRequested data\n(See 3GPP TS 29.328 [4])\nData-Reference\nO\nIf Sc-Update Request with multiple data references fails, this information element shall include the Data reference for the data instance that has generated the error.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_6.2.3",
+        "clause_6.2.4",
+        "table_5.2.2-1",
+        "table_5.2.2-2",
+        "ts_29.328"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.330_5.2.2.2",
+      "section_id": "5.2.2.2",
+      "section_title": "Detailed behaviour",
+      "content": "As specified in 3GPP TS 23.228 [2], the DCSF can only update the repository data in HSS. When data in repository is dated is updated (i.e. added, modified or removed), the Service-Indication and Sequence-Number are also sent as part of the information element Data.\nNewly added transparent data shall be associated with a Sequence Number of 0 in the Sc-Update Request. Sequence Number value 0 is reserved exclusively for indication of newly added transparent data.Modified and removed transparent data shall be associated within the Sc-Update Request with a Sequence Number of n+1 where n is the original Sequence Number associated with the transparent data before modification or removal. If n equals 65535, then the next modification or deletion of that transparent data shall be associated with a Sequence Number of 1.\nUpon reception of the Sc-Update request, the HSS shall, in the following order:\n1.\tIn the DCSF permission list check that the data that is requested to be updated (Sc-Update) by this DCSF, is allowed to be updated by checking the combination of the identity of the DCSF sending the request (identified by the Origin-Host AVP) and the supplied Data-Reference.\n-\tIf the data is not allowed to be updated, Experimental-Result shall be set to DIAMETER_ERROR_USER_DATA_CANNOT_BE_MODIFIED in the Sc-Update Response.\n2.\tCheck that the User Identity in the request exists in the HSS. If not, Experimental-Result shall be set to DIAMETER_ERROR_USER_UNKNOWN in the Sc-Update Response.\n3.\tIf the type of the User Identity does not use IMS Public User Identity as access key for the Data-Reference or the Data-Reference is not Repository Data (0) in the request, Experimental-Result shall be set to DIAMETER_ERROR_OPERATION_NOT_ALLOWED in the Sc-Update Response.\n4.\tIf the Data-Reference indicates that repository data is present, and if the HSS and the DCSF supports the Update-Eff feature, check whether there are multiple repository data instances. If so, then repeat the steps 5 and 6 below for each instance of repository data ensuring that no repository data is changed until the checks done in the steps 5 and 6 have been successful for all the repository data instances.\n5.\tCheck whether or not the data that is requested to be updated by the DCSF, as identified by the Service-Indication, is currently being updated by another entity. If there is an update of the data in progress, Experimental-Result shall be set to DIAMETER_PRIOR_UPDATE_IN_PROGRESS in the Sc-Update Response.\n6.\tCheck whether or not there is any repository data stored at the HSS already for the specified Service-Indication and the associated IMS Public User Identity (or group if the IMS Public User Identity is alias).\n-\tIf repository data identified by the Service-Indication is stored at the HSS for the specified IMS Public User Identity or IMS Public User Identity group, check the following premises:\n1.\tSequence_Number_in_Sc_Update is not equal to 0\n2.\t(Sequence_Number_in_Sc_Update - 1) is equal to (Sequence_Number_In_HSS modulo 65535)\n-\tIf either of the above premises is false then Experimental-Result shall be set to DIAMETER_ERROR_TRANSPARENT_DATA_OUT_OF_SYNC in the Sc-Update Response.\n-\tIf both of the above premises are true, then check whether or not Service Data is received within the Sc-Update Req.\n-\tIf Service Data element is present in the Sc-Update Req, check whether or not the size of the data is greater than that which the HSS is prepared to accept.\n-\tIf there is more data than the HSS is prepared to accept then Experimental-Result shall be set to DIAMETER_ERROR_TOO_MUCH_DATA and the new data shall be discarded.\n-\tIf the HSS is prepared to accept the data, then the repository data stored at the HSS shall be updated with the repository data sent in the Sc-Update Req and the Sequence Number associated with that repository data shall be updated with that sent in the Sc-Update Req.\n-\tIf Service Data element is not present in the Sc-Update Req, the data stored in the repository at the HSS shall be removed, and as a consequence the Service Indication and the Sequence Number associated with the removed data shall also be removed.\n-\tIf repository data identified by the Service-Indication is not stored for the IMS Public User Identity, i.e. the Sc-Update Req intends to create a new repository data, check whether or not the Sequence Number in the Sc-Update Req is 0.\n-\tIf the sequence number is not set to 0, Experimental-Result shall be set to DIAMETER_ERROR_TRANSPARENT_DATA_OUT_OF_SYNC\n-\tIf the sequence number is set to 0 check whether Service Data is included within the Sc-Update Req.\n-\tIf Service Data is not present in the Sc-Update Req, then Experimental-Result shall be set to DIAMETER_ERROR_OPERATION_NOT_ALLOWED and the operation shall be ignored by the HSS.\n-\tIf Service Data element is present in the Sc-Update Req, check whether or not the size of the data is greater than that which the HSS is prepared to accept.\n-\tIf there is more data than the HSS is prepared to accept then Experimental‑Result shall be set to DIAMETER_ERROR_TOO_MUCH_DATA and the new data shall be discarded.\n-\tIf the HSS is prepared to accept the data included in the Sc-Update Req, then the data shall be stored in the data repository in the HSS.\nIf there is an error in any of the above steps then the HSS shall stop processing and shall return the error code specified in the respective step (see clause 6.4 for an explanation of the error codes).\nIf the HSS cannot fulfil the received request for reasons not stated in the above steps, e.g. due to database error, it shall stop processing the request and set Result-Code to DIAMETER_UNABLE_TO_COMPLY.\nIf the HSS and the DCSF support the Update-Eff feature, the Sc Update is successful only if it is successful for the update of all the repository data instances in the request. Otherwise the HSS shall keep or restore all the stored repository data as they were before receiving the Sc Update request. If the error occurs during the steps 5 or 6 and if there were several repository data instances in the request, the Sc Update response shall contain a Repository Data ID indicating the service indication and the sequence number of (one of) the repository data instance(s) for which an error occurred.\nIf the HSS and the DCSF support the Update-Eff-Enhance feature, the Sc Update is successful only if it is successful for the update of all the data instances in the request. Otherwise the HSS shall keep or restore all the stored data as they were before receiving the Sc Update request. If an error occurs during the steps 5 or 6 with any of the data instance in the request, the Sc Update response shall contain the corresponding Data Reference indicating the first data instance for which an error occurred. If there were several repository data instances in the request, the HSS shall behave the same as specified for Update-Eff feature.\nOtherwise, the requested operation shall take place and the HSS shall return the Result-Code AVP set to DIAMETER_SUCCESS.\nNOTE:\tWhen an DCSF receives DIAMETER_ERROR_TRANSPARENT_DATA_OUT_OF_SYNC the DCSF may attempt to resolve the inconsistency between the version of the repository data that it holds and that stored at the HSS. It may execute a Sc-Pull to retrieve the current version of the data from the HSS.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_6.4",
+        "ts_23.228"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.330_6.1.1",
+      "section_id": "6.1.1",
+      "section_title": "Use of Diameter base protocol",
+      "content": "The Diameter base protocol as specified in IETF RFC 6733 [3] shall apply except as modified by the defined support of the methods and the defined support of the commands and AVPs, result and error codes as specified in this specification. Unless otherwise specified, the procedures (including error handling and unrecognised information handling) shall be used unmodified.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.330_6.1.2",
+      "section_id": "6.1.2",
+      "section_title": "Accounting functionality",
+      "content": "Accounting functionality (Accounting Session State Machine, related command codes and AVPs) shall not be used on the Sc interfaces.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.330_6.1.3",
+      "section_id": "6.1.3",
+      "section_title": "Use of sessions",
+      "content": "Between the DCSF and HSS, Diameter sessions shall be implicitly terminated. An implicitly terminated session is one for which the server does not maintain state information. The client shall not send any re-authorization or session termination requests to the server.\nThe Diameter base protocol specified in IETF RFC 6733 [3] includes the Auth-Session-State AVP as the mechanism for the implementation of implicitly terminated sessions.\nThe client (server) shall include in its requests (responses) the Auth-Session-State AVP set to the value NO_STATE_MAINTAINED (1), as described in IETF RFC 6733 [3]. As a consequence, the server shall not maintain any state information about this session and the client shall not send any session termination request. Neither the Authorization-Lifetime AVP nor the Session-Timeout AVP shall be present in requests or responses.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.330_6.1.4",
+      "section_id": "6.1.4",
+      "section_title": "Transport protocol",
+      "content": "Diameter messages over the Sc interfaces shall make use of SCTP IETF RFC 4960 [5].",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.330_6.1.5",
+      "section_id": "6.1.5",
+      "section_title": "Routing consideration",
+      "content": "The User identity to HSS resolution mechanism enables the DCSF to find the identity of the HSS that holds the subscriber data for a given IMS Public User Identity when multiple and separately addressable HSSs have been deployed by the network operator. The resolution mechanism is not required in networks that utilise a single HSS or when a DCSF is configured to use pre-defined HSS.\nThe resolution mechanism described in 3GPP TS 23.228 [2] shall use a Diameter Proxy Agent.\nThe Diameter Proxy Agent shall be to determine the HSS identity.\nTo get the HSS identity the DCSF shall send the Sc request normally destined to the HSS to a pre-configured Diameter address/name.\n-\tIf this Sc Request is received by the Diameter Proxy Agent, the Diameter Proxy Agent shall determine the HSS identity based on the provided user identity and - if the Diameter load control mechanism is supported (see IETF RFC 8583 [14]) - optionally also based on previously received load values from Load AVPs of type HOST. The Diameter Proxy Agent shall then forward the Sc request directly to the determined HSS. The DCSF shall determine the HSS identity from the response to the Sc request received from the HSS.\nThe DCSF should store the HSS identity/name/Realm and shall use it in further Sc requests associated to the same IMS Public Identity.\nIn networks where the use of the user identity to HSS resolution mechanism is required and the DCSF is not configured to use a predefined HSS, each DCSF shall be configured with the pre-configured address/name of the Diameter Proxy Agent to enable use of these resolution mechanisms.\nIf a DCSF knows the address/name of the HSS for a certain user, and the associated home network domain name, both the Destination-Realm and Destination-Host AVPs shall be present in the request. Otherwise, only the Destination-Realm AVP shall be present and the command shall be routed to the next Diameter node, e.g. the Diameter Proxy Agent (see 3GPP TS 29.228 [13]), based on the Diameter routing table in the client.\nIf the next Diameter node is a Diameter Proxy Agent, the Diameter Proxy Agent shall determine the destination HSS. The Diameter Proxy Agent, based on the result of this determination of the destination HSS, shall modify the Destination-Realm AVP and Destination-Host AVP of the request appropriately. The Diameter Proxy Agent shall then append a Route-Record AVP to the request and shall send the request to the destination HSS. Consequently, the Destination-Host AVP is declared as optional in the ABNF for all requests initiated by an DCSF.\nIf the response is routed back to a Diameter Proxy Agent, the Diameter Proxy Agent shall send the response back to the DCSF without modifying the Origin-Realm AVP and Origin-Host AVP. The response shall contain the Origin-Realm AVP set to the realm of the HSS together with the Origin-Host AVP set to the HSS that sent the response. The DCSF shall store the HSS realm and HSS address for each Public Identity, after the first request sent to the User Identity to HSS resolution function.\nThe Destination-Realm AVP is declared as mandatory in the ABNF for all requests.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.228",
+        "ts_29.228"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.330_6.1.6",
+      "section_id": "6.1.6",
+      "section_title": "Diameter Application Identifier",
+      "content": "The Sc interface protocol shall be defined as an IETF vendor specific Diameter application, where the vendor is 3GPP. The vendor identifier assigned by IANA to 3GPP (http://www.iana.org/assignments/enterprise-numbers) is 10415.\nThe Diameter application identifier assigned to the Sc interface application is 16777363 (allocated by IANA).",
+      "chunk_type": "parameter",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.330_6.1.7",
+      "section_id": "6.1.7",
+      "section_title": "DCSF permissions list",
+      "content": "The contents of the Data-AVP are described in table 6.3.4-1. Some of the individual elements carried within Data-AVP may be requested by the DCSF from the HSS using the Sc-Pull command (see clause 6.2.3) or may be updated at the HSS by the DCSF using the Sc-Update command (see clause 6.2.5). The HSS will only allow these operations to take place if the element of the Data-AVP is permitted to be included in the specific command requested by the DCSF, as indicated in table 6.3.4-1.\nTo manage whether an DCSF may request each element of Data-AVP with a specific command, the HSS shall maintain a list of DCSF permissions (the 'DCSF Permissions List'). DCSF permissions are identified by DCSF identity and Data Reference with the possible permissions associated with each Data Reference being Sc-Pull, Sc-Update. The permissions apply to all users served by the HSS, they are not user specific. When an DCSF requests Sc-Pull, Sc-Update the HSS shall check permissions and return an error result if the DCSF does not have the required permission.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_6.2.3",
+        "clause_6.2.5",
+        "table_6.3.4-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.330_6.2.1",
+      "section_id": "6.2.1",
+      "section_title": "Introduction",
+      "content": "This clause defines the command code values and related ABNF for each command described in this specification.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.330_6.2.2",
+      "section_id": "6.2.2",
+      "section_title": "Command-code values",
+      "content": "The messages in Sc interface use the same Command-Code value 306 as User-Data-Request/ User-Data-Answer and 307 as Profile-Update-Request/Profile-Update-Answer defined in 3GPP TS 29.328 [4].\nThe Vendor-Specific-Application-Id AVP shall not be listed in this specification since it has been deprecated in the new specification of the Diameter base protocol (IETF RFC 6733 [3]) even it is still listed as a required AVP (an AVP indicated as {AVP}) in the command code format specifications defined in 3GPP TS 29.328 [4].\nThe following Command Codes defined in 3GPP TS 29.328 [4] are reused in this specification:\nTable 6.2.2: Command-Code values\nCommand-Name\nAbbreviation\nCode\nClause\nUser-Data-Request\nUDR\n306\n6.2.3\nUser-Data-Answer\nUDA\n306\n6.2.4\nProfile-Update-Request\nPUR\n307\n6.2.5\nProfile-Update-Answer\nPUA\n307\n6.2.6",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.2.2",
+        "ts_29.328"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.330_6.2.3",
+      "section_id": "6.2.3",
+      "section_title": "User-Data-Request (UDR) Command",
+      "content": "The User-Data-Request (UDR) command, indicated by the Command-Code field set to 306 and the 'R' bit set in the Command Flags field, is sent by a Diameter client to a Diameter server in order to request repository data for a specified user.\nMessage Format\n< User-Data -Request> ::=\t< Diameter Header: 306, REQ, PXY, 16777363 >\n< Session-Id >\n[ DRMP ]\n{ Auth-Session-State }\n{ Origin-Host }\n{ Origin-Realm }\n[ Destination-Host ]\n{ Destination-Realm }\n{ User-Identity }\n*[ Service-Indication ]\n*{ Data-Reference }\n*[ AVP ]\n*[ Proxy-Info ]\n*[ Route-Record ]",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.330_6.2.4",
+      "section_id": "6.2.4",
+      "section_title": "User-Data-Answer (UDA) Command",
+      "content": "The User-Data-Answer (UDA) command, indicated by the Command-Code field set to 306 and the 'R' bit cleared in the Command Flags field, is sent by a server in response to the User-Data-Request command. The Experimental-Result AVP may contain one of the values defined in clause 6.2 or in 3GPP TS 29.229 [6].\nMessage Format\n< User-Data-Answer > ::=\t< Diameter Header: 306, PXY, 16777363 >\n< Session-Id >\n[ DRMP ]\n[ Result-Code ]\n[ Experimental-Result ]\n{ Auth-Session-State }\n{ Origin-Host }\n{ Origin-Realm }\n[ User-Data ]\n*[ AVP ]\n[ Failed-AVP ]\n*[ Proxy-Info ]\n*[ Route-Record ]",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.229_clause_6.2",
+        "ts_29.229"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.330_6.2.5",
+      "section_id": "6.2.5",
+      "section_title": "Profile-Update-Request (PUR) Command",
+      "content": "The Profile-Update-Request (PUR) command, indicated by the Command-Code field set to 307 and the 'R' bit set in the Command Flags field, is sent by a Diameter client to a Diameter server in order to update user data in the server.\nMessage Format\n< Profile-Update-Request > ::=\t< Diameter Header: 307, REQ, PXY, 16777363 >\n< Session-Id >\n[ DRMP ]\n{ Vendor-Specific-Application-Id }\n{ Auth-Session-State }\n{ Origin-Host }\n{ Origin-Realm }\n[ Destination-Host ]\n{ Destination-Realm }\n{ User-Identity }\n*{ Data-Reference }\n{ User-Data }\n*[ AVP ]\n*[ Proxy-Info ]\n*[ Route-Record ]",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.330_6.2.6",
+      "section_id": "6.2.6",
+      "section_title": "Profile-Update-Answer (PUA) Command",
+      "content": "The Profile-Update-Answer (PUA) command, indicated by the Command-Code field set to 307 and the 'R' bit cleared in the Command Flags field, is sent by a server in response to the Profile-Update-Request command.\nMessage Format\n< Profile-Update-Answer > ::=< Diameter Header: 307, PXY, 16777363 >\n< Session-Id >\n[ DRMP ]\n{ Vendor-Specific-Application-Id }\n[ Result-Code ]\n[ Experimental-Result ]\n{ Auth-Session-State }\n{ Origin-Host }\n{ Origin-Realm }\n[ Repository-Data-ID ]\n*[ AVP ]\n[ Failed-AVP ]\n*[ Proxy-Info ]\n*[ Route-Record ]",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.330_6.3.1",
+      "section_id": "6.3.1",
+      "section_title": "General",
+      "content": "This clause defines the command code values and related ABNF for each command described in this specification.\nThe following table specifies the Diameter AVPs defined for the Sc interface protocol, their AVP Code values, types, possible flag values and whether the AVP may be encrypted or not. The Vendor-ID header of all AVPs defined in this specification shall be set to 3GPP (10415).\nTable 6.3.1-1: Sc specific DiameterAVPs\nAVP Flag rules\nAttribute Name\nAVP Code\nClause defined\nValue Type\nMust\nMay\nShould not\nMust not\nMay Encr.\nThe following table specifies the Diameter AVPs re-used by the Sc interface protocol from existing Diameter Applications, including a reference to their respective specifications and when needed, a short description of their use within Sc.\nAny other AVPs from existing Diameter Applications, except for the AVPs from Diameter base protocol specified in IETF RFC 6733 [3], do not need to be supported. The AVPs from the Diameter base protocol specified in IETF RFC 6733 [3] are not included in table 6.3.1-2, but they may be re-used for the Sc protocol.\nTable 6.3.1-2: Sc re-used Diameter AVPs\nAttribute Name\nReference\nComments\nM-bit\nUser-Identity\n3GPP TS 29.329 [12]\nMust set\nData-Reference\n3GPP TS 29.329 [12]\nMust set\nUser-Data\n3GPP TS 29.329 [12]\nMust set\nRepository-Data-ID\n3GPP TS 29.329 [12]\nPublic-Identity\n3GPP TS 29.229 [6]\nMust set\nService-Indication\n3GPP TS 29.329 [12]\nMust set\nSequence-Number\n3GPP TS 29.329 [12]\nMSISDN\n3GPP TS 29.329 [12]\nExternal-Identifier\n3GPP TS 29.336 [7]\nOC-Supported-Features\n3GPP TS 29.229 [6]\nOC-OLR\n3GPP TS 29.229 [6]\nLoad\n3GPP TS 29.229 [6]\nDRMP\n3GPP TS 29.229 [6]\nNOTE 1:\tThe M-bit settings for re-used AVPs override those of the defining specifications that are referenced. Values include: \"Must set\", \"Must not set\". If the M-bit setting is blank, then the defining specification applies.\nNOTE 2:\tIf the M-bit is set for an AVP and the receiver does not understand the AVP, it shall return a rejection. If the M-bit is not set for an AVP, the receiver shall not return a rejection, whether or not it understands the AVP. If the receiver understands the AVP but the M-bit value does not match with the definition in this table, the receiver shall ignore the M-bit.\nNOTE 3:\tThe value of these attributes is defined in IETF RFC 7683 [8].\nNOTE 4:\tThe value of this attribute is defined in IEFT RFC 8583 [14].\nNOTE 5:\tThe value of this attribute is defined in IETF RFC 7944 [9].",
+      "chunk_type": "definition",
+      "cross_references": [
+        "table_6.3.1-1",
+        "table_6.3.1-2",
+        "ts_29.329",
+        "ts_29.229",
+        "ts_29.336"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.330_6.3.2",
+      "section_id": "6.3.2",
+      "section_title": "User-Identity AVP",
+      "content": "The User-Identity AVP is of type Grouped. See 3GPP TS 29.329 [6] clause 6.3.1 for the definition of this AVP.\nNOTE:\tOnly the Public Identity applies to the Sc interface in this AVP in this release.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.329_clause_6.3.1",
+        "ts_29.329"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.330_6.3.3",
+      "section_id": "6.3.3",
+      "section_title": "Data-Reference AVP",
+      "content": "The Data-Reference AVP is of type Enumerated, and indicates the type of the requested user data in the operation UDR and PUR. See 3GPP TS 29.329 [6] clause 6.3.4.\nThe value of this AVP can only be set to 0 since DCSF can only get and update repository data.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.329_clause_6.3.4",
+        "ts_29.329"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.330_6.3.4",
+      "section_id": "6.3.4",
+      "section_title": "User-Data AVP",
+      "content": "This information element contains an XML document conformant to the XML schema defined in Annex C.\nAnnex D specifies the UML logical model of the data downloaded via the Sc interface.\nTable 6.3.4 defines the data reference values and tags, access key and recommended DCSF permissions for the operation(s) on data accessible via the Sc interface, i.e. the listed operation(s) in the Operations column are the only ones allowed to be used with this Data Ref value.\nTable 6.3.4-1: Data accessible via Sc interface\nData Ref.\nXML tag\nDefined in\nAccess key\nOperations\n0\nRepositoryData\n6.3.5\nData Reference\n+ ( IMS Public User Identity)\n+ Service Indication\nSc-Pull\nSc-Update\nThe User-Data AVP is of type OctetString. This AVP contains the user data requested in the UDR/UDA operations and the data to be modified in the PUR/PUA operation. The exact content and format of this AVP is described in Annex C as Sc-Data.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.3.4",
+        "table_6.3.4-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.330_6.3.5",
+      "section_id": "6.3.5",
+      "section_title": "Repository-Data-ID AVP",
+      "content": "The Repository-Data-ID AVP is of type Grouped. This AVP shall contain a Service-Indication AVP and a Sequence-Number AVP. See 3GPP TS 29.329 [6] clause 6.3.24.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.329_clause_6.3.24",
+        "ts_29.329"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.330_6.3.6",
+      "section_id": "6.3.6",
+      "section_title": "Public-Identity AVP",
+      "content": "The Public-Identity AVP contains a Public User Identity. See 3GPP TS 29.229 [6] for the definition of this AVP.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.229"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.330_6.3.7",
+      "section_id": "6.3.7",
+      "section_title": "Service-Indication AVP",
+      "content": "The Service-Indication AVP is of type OctetString. This AVP contains the Service Indication that identifies the related repository data in the HSS. Standardized values of Service-Indication identifying standardized format of the related repository data are defined in 3GPP TS 29.364 [15].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.364"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.330_6.3.8",
+      "section_id": "6.3.8",
+      "section_title": "Sequence-Number AVP",
+      "content": "The Sequence-Number AVP is of type Unsigned32. This AVP contains a number associated to a repository data.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.330_6.3.9",
+      "section_id": "6.3.9",
+      "section_title": "MSISDN AVP",
+      "content": "The MSISDN AVP is of type OctetString. See 3GPP TS  29.329 [12] for the definition of this AVP.\nNOTE:\tThis MSISDN AVP does not apply to the Sc interface in this release.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.329"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.330_6.3.10",
+      "section_id": "6.3.10",
+      "section_title": "External-Identifier AVP",
+      "content": "See 3GPP TS 29.336 [7] for the definition of this AVP.\nNOTE:\tThis External-Identifier AVP does not apply to the Sc interface in this release.",
+      "chunk_type": "parameter",
+      "cross_references": [
+        "ts_29.336"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.330_6.3.11",
+      "section_id": "6.3.11",
+      "section_title": "OC-Supported-Features AVP",
+      "content": "The OC-Supported-Features AVP is of type Grouped and it is defined in IETF RFC 7683 [8]. This AVP is used to support Diameter overload control mechanism.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.330_6.3.12",
+      "section_id": "6.3.12",
+      "section_title": "OC-OLR AVP",
+      "content": "The OC-OLR AVP is of type Grouped and it is defined in IETF RFC 7683 [8]. This AVP is used to support Diameter overload control mechanism.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.330_6.3.13",
+      "section_id": "6.3.13",
+      "section_title": "Load AVP",
+      "content": "The Load AVP is of type Grouped and it is defined in IETF RFC 8583[14]. This AVP is used to support the Diameter load control mechanism.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.330_6.3.14",
+      "section_id": "6.3.14",
+      "section_title": "DRMP AVP",
+      "content": "The DRMP AVP is of type Enumerated and it is defined in IETF RFC 7944 [26]. This AVP allows the HSS/SLF and the DCSF to indicate the relative priority of Diameter messages. The DRMP AVP may be used to set the DSCP marking for transport of the associated Diameter message.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.330_6.4.1",
+      "section_id": "6.4.1",
+      "section_title": "General",
+      "content": "This clause defines new result code values that must be supported by all Diameter implementations that conform to this specification. The result codes defined in 3GPP TS 29.329 [4] are also applicable. When one of the result codes defined here is included in a response, it shall be inside an Experimental-Result AVP and Result-Code AVP shall be absent.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.329"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.330_6.4.2",
+      "section_id": "6.4.2",
+      "section_title": "Success",
+      "content": "Result codes that fall within the Success category are used to inform a peer that a request has been successfully completed.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.330_6.4.3",
+      "section_id": "6.4.3",
+      "section_title": "Permanent Failures",
+      "content": "Errors that fall within the Permanent Failures category are used to inform the peer that the request failed, and should not be attempted again.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.330_6.4.3.1",
+      "section_id": "6.4.3.1",
+      "section_title": "DIAMETER_ERROR_USER_UNKNOWN (5001)",
+      "content": "A message was received for a user identity that is unknown. This error code is defined in 3GPP TS 29.229 [6] clause 6.2.2.1.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.229_clause_6.2.2.1",
+        "ts_29.229"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.330_6.4.3.2",
+      "section_id": "6.4.3.2",
+      "section_title": "DIAMETER_ERROR_OPERATION_NOT_ALLOWED (5101)",
+      "content": "The requested operation is not allowed for the user. This error code is defined in 3GPP TS 29.329 [12] clause 6.2.2.2.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.329_clause_6.2.2.2",
+        "ts_29.329"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.330_6.4.3.3",
+      "section_id": "6.4.3.3",
+      "section_title": "DIAMETER_ERROR_USER_DATA_CANNOT_BE_READ (5102)",
+      "content": "The requested user data is not allowed to be read. This error code is defined in 3GPP TS 29.329 [12] clause 6.2.2.3.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.329_clause_6.2.2.3",
+        "ts_29.329"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.330_6.4.3.4",
+      "section_id": "6.4.3.4",
+      "section_title": "DIAMETER_ERROR_USER_DATA_CANNOT_BE_MODIFIED (5103)",
+      "content": "The requested user data is not allowed to be modified. This error code is defined in 3GPP TS 29.329 [12] clause 6.2.2.4.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.329_clause_6.2.2.4",
+        "ts_29.329"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.330_6.4.3.5",
+      "section_id": "6.4.3.5",
+      "section_title": "DIAMETER_ERROR_TOO_MUCH_DATA (5008)",
+      "content": "The size of the data pushed to the receiving entity exceeds its capacity. This error code is defined in 3GPP TS 29.229 [6] clause 6.2.2.8.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.229_clause_6.2.2.8",
+        "ts_29.229"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.330_6.4.3.6",
+      "section_id": "6.4.3.6",
+      "section_title": "DIAMETER_ERROR_TRANSPARENT_DATA OUT_OF_SYNC (5105)",
+      "content": "The request to update the repository data at the HSS could not be completed because the requested update is based on an out-of-date version of the repository data. That is, the sequence number in the Sc-Update Request message, does not match with the immediate successor of the associated sequence number stored for that repository data at the HSS.  It is also used where an DCSF tries to create a new set of repository data when the identified repository data already exists in the HSS. This error code is defined in 3GPP TS 29.329 [12] clause 6.2.2.7.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.329_clause_6.2.2.7",
+        "ts_29.329"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.330_6.4.3.7",
+      "section_id": "6.4.3.7",
+      "section_title": "DIAMETER_ERROR_FEATURE_UNSUPPORTED (5011)",
+      "content": "A request application message was received indicating that the origin host requests that the command pair would be handled using a feature which is not supported by the destination host. The error code is defined in 3GPP TS 29.229 [6] clause 6.2.2.11.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.229_clause_6.2.2.11",
+        "ts_29.229"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.330_6.4.4",
+      "section_id": "6.4.4",
+      "section_title": "Transient Failures",
+      "content": "Errors that fall within the transient failures category are those used to inform a peer that the request could not be satisfied at the time that it was received. The request may be able to be satisfied in the future.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.330_6.4.4.1",
+      "section_id": "6.4.4.1",
+      "section_title": "DIAMETER_USER_DATA_NOT_AVAILABLE (4100)",
+      "content": "The requested user data is not available at this time to satisfy the requested operation. This error code is defined in 3GPP TS 29.329 [12] clause 6.2.3.1.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.329_clause_6.2.3.1",
+        "ts_29.329"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.330_6.4.4.2",
+      "section_id": "6.4.4.2",
+      "section_title": "DIAMETER_PRIOR_UPDATE_IN_PROGRESS (4101)",
+      "content": "The request on the updated or read repository data is currently being updated by another entity. This error code is defined in 3GPP TS 29.329 [12] clause 6.2.3.2.\nAnnex A (normative):Diameter overload control mechanism\nA.1\tGeneral\nDiameter overload control mechanism is an optional feature.\nIETF RFC 7683 [8] specifies a Diameter overload control mechanism which includes the definition and the transfer of related AVPs between Diameter nodes.\nIt is recommended to make use of IETF RFC 7683 [8] on the Sc interface where, when applied, the DCSF shall behave as a reacting node and the HSS as a reporting node.\nDepending on regional/national requirements and network operator policy, priority traffic (e.g. MPS as described in 3GPP TS 22.153 [10]) shall be exempted from throttling due to Diameter overload control up to the point where requested traffic reduction cannot be achieved without throttling the priority traffic.\nA.2\tHSS behaviour\nThe HSS requests traffic reduction from the DCSF when the HSS is in an overload situation, including OC-OLR AVP in answer commands as described in IETF RFC 7683 [8].\nThe HSS identifies that it is in an overload situation by implementation specific means. For example, the HSS may take into account the traffic over the Sc interfaces or other interfaces, the level of usage of internal resources (CPU, memory), the access to external resources, etc.\nThe HSS determines the specific contents of OC-OLR AVP in overload reports and the HSS decides when to send OC-OLR AVPs by implementation specific means.\nA.3\tDCSF behaviour\nThe DCSF applies required traffic reduction received in answer commands to subsequent applicable requests, as per IETF RFC 7683 [8].\nThe DCSF achieves requested traffic reduction by implementation specific means. For example, the DCSF may implement message throttling with prioritization or a message retaining mechanism for operations that can be postponed.\nDiameter requests related to priority traffic (e.g. MPS) and emergency, detected via the presence of priority information (e.g., Resource-Priority header field for MPS) in SIP messages as described in 3GPP TS 24.229 [11], have the highest priority. Depending on regional/national regulatory and operator policies, these Diameter requests shall be the last to be throttled, when the DCSF has to apply traffic reduction. Relative priority amongst various priority traffic (e.g. MPS) and emergency traffic is subject to regional/national regulatory and operator policies.\nAnnex B (normative):Diameter message priority mechanism\nB.1\tGeneral\nIETF RFC 7944 [9] specifies a Diameter message priority mechanism that allows Diameter nodes to indicate the relative priority of Diameter messages. With this information, other Diameter nodes may leverage the relative priority of Diameter messages into routing, resource allocation, set the DSCP marking for transport of the associated Diameter message, and also abatement decisions when overload control is applied.\nB.2\tSc interface\nB.2.1\tGeneral\nThe Diameter message priority mechanism is an optional feature.\nIt is recommended to make use of IETF RFC 7944 [9] over the Sc interface of an operator network when the overload control defined in Annex A is applied on this Sc interface.\nB.2.2\tDCSF behaviour\nWhen the DCSF supports the Diameter message priority mechanism, the DCSF shall comply with IETF RFC 7944 [9].\nThe DCSF sending a request shall determine the required priority according to its policies. When priority is required, the DCSF shall include the DRMP AVP indicating the required priority level in the request it sends, and shall prioritise the request according to priority level received.\nWhen the DCSF receives the corresponding response, it shall prioritise the received response according to the priority level received within the DRMP AVP if present in the response, otherwise according to the priority level of the corresponding request.\nIf:\n-\tthe DCSF supports using the Diameter message priority mechanism for DSCP marking purposes,\n-\tthe transport network utilizes DSCP marking, and\n-\tmessage-dependant DSCP marking is possible for the protocol stack transporting Diameter,\nthen the DCSF shall set the DSCP marking for transport of the request or response according to the required priority level.\nDiameter requests related to priority traffic (e.g. MPS as identified by the AS through SIP procedures, emergency) shall contain a DRMP AVP with a high priority of which the level value is operator dependent.\nWhen not-explicitly requested, the inclusion and priority value of the DRMP AVP in Diameter messages are implementation specific.\nB.2.3\tHSS behaviour\nWhen the HSS supports the Diameter message priority mechanism, the HSS shall comply with IETF RFC 7944 [9].\nThe HSS sending a request shall determine the required priority according to its policies. When priority is required, the HSS shall include the DRMP AVP indicating the required priority level in the request it sends, and shall prioritise the request according to the required priority level.\nWhen the HSS receives the corresponding response, it shall prioritise the received response according to the priority level received within the DRMP AVP if present in the response, otherwise according to the priority level of the corresponding request.\nWhen the HSS receives a request, it shall handle the request according to the received DRMP AVP priority level. For the response, it may modify the priority level received in the DRMP AVP according to its policies and shall handle the response according to the required priority level. If the required priority level is different from the priority level received in the request, it shall include the DRMP AVP in the response.\nIf:\n-\tthe HSS supports using the Diameter message priority mechanism for DSCP marking purposes,\n-\tthe transport network utilizes DSCP marking, and\n-\tmessage-dependant DSCP marking is possible for the protocol stack transporting Diameter,\nthen the HSS shall set the DSCP marking for transport of the request or response according to the required priority level.\nWhen not-explicitly requested, the inclusion and priority value of the DRMP AVP in Diameter messages are implementation specific.\nAnnex C (normative):XML schema for the Sc interface user profile\nThe file ScDataType_Rel18.xsd, attached to this specification, contains the XML schema for the user profile that is sent over the Sc interface. The user profile XML schema defines the data types that are used in the user profile XML.The data that is allowed to be sent in the user profile may vary depending on the features supported by the Diameter end points. The user profile XML schema file is intended to be used by an XML parser.The version of the Sc application sending the user profile XML shall be the same as the version of the sent user profile XML and thus it implies the version of the user profile XML schema to be used to validate it.\nTables C.1 and C.2 describe the data types and the dependencies among them that configure the user profile XML schema.\nTable C.1: XML schema for the Sc user profile interface: simple data types\nData type\nTag\nBase type\nComments\ntSIP_URL\nIMSPublicIdentity\nanyURI\nSyntax described in IETF RFC 3261 [16].\ntTEL_URL\nIMSPublicIdentity\nanyURI\nSyntax described in IETF RFC 3966 [17].\ntIMSPublicIdentity\nIMSPublicIdentity\n(union)\nUnion of tSIP_URL and tTEL_URL\ntSequenceNumber\nSequenceNumber\ninteger\n>=0, <=65535\nTable C.2: XML schema for the Sc user profile interface: complex data types\nData type\nTag\nCompound of\nTag\nType\nCardinality\ntSc-Data\nSc-Data\nPublicIdentifiers\ntPublicIdentity\n0 to 1\nRepositoryData\ntTransparentData\n0 to n\ntTransparentData\nRepositoryData\nServiceIndication\nstring\n1\nSequenceNumber\ntSequenceNumber\n1\nServiceData\ntServiceData\n0 to 1\ntServiceData\nany\nany\nany\n1\ntPublicIdentity\nPublicIdentifiers\nIMSPublicIdentity\ntIMSPublicIdentity\n0 to n\nNOTE 1:\t\"n\" shall be interpreted as non-bounded.\nNOTE 2:\tempty cells shall be interpreted as complex XML elements without defined content.\nAnnex D (informative):UML model of the data downloaded over Sc interface\nThe purpose of this UML model is to define in an abstract level the structure of the data downloaded over the Sc interface and describe the purpose of the different information classes included in it.\nThe following picture gives an outline of the UML model of the user profile, which is exchanged between the HSS and an DCSF:\nFigure D.1: Sc-Data\nEach instance of the class Sc-Data contains an optional instance of the class PublicIdentifiers, zero or more instances of the class RepositoryData.\nClass RepositoryData contains repository data (transparent data) for a given service that are associated to a Public user Identity or a group of alias Public User Identities. It has attributes ServiceIndication, SequenceNumber and ServiceData.\nClass PublicIdentifiers contains zero or more instances of IMSPublicIdentity attribute. Each instance is a Public User Identity.\nAnnex E (informative):Change history\nChange history\nDate\nMeeting\nTDoc\nCR\nRev\nCat\nSubject/Comment\nNew version\n2023-10\nCT4#118\nC4-234651\nTS skeleton\n0.1.0\n2023-11\nCT4#119\nC4-235662\nIncorporated pCRs agreed from CT4#119 meeting, including: C4-235204, C4-235205, C4-235207, C4-235209, C4-235224, C4-235474, C4-235679, C4-235680\n0.2.0\n2024-03\nCT4#121\nC4-240853\nIncorporated pCRs agreed from CT4#121 meeting, including: C4-240411, C4-240413, C4-240416, C4-240418, C4-240444, C4-240706, C4-240707, C4-240713, C4-240714, C4-240784, C4-240786, C4-240787\n0.3.0\n2024-03\nCT#103\nApplication ID for Sc added by MCC\n1.0.0\n2024-03\nCT#103\nCP-240287\nTS send for information and approval\n1.0.0\n2024-03\nCT#103\nTS approved\n18.0.0\n2024-06\nCT#104\nCP-241044\n0001\n-\nF\nUpdate Experimental-Result-Code for Sc-pull procedure\n18.1.0\n2024-06\nCT#104\nCP-241044\n0002\n-\nF\nCorrection on the XML Schema\n18.1.0\n2024-06\nCT#104\nCP-241044\n0003\n-\nD\nEditorial correction to Sc-pull procedure\n18.1.0",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.329_clause_6.2.3.2",
+        "ts_29.329",
+        "ts_22.153",
+        "ts_24.229"
+      ]
+    }
+  ]
+}

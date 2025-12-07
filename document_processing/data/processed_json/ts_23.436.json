@@ -1,0 +1,1576 @@
+{
+  "metadata": {
+    "specification_id": "ts_23.436",
+    "version": "18.6.0",
+    "title": "3GPP TS 23.436",
+    "file_path": "/content/drive/MyDrive/RAG_thesis/data/23_series/23436-i60/23436-i60.docx"
+  },
+  "export_info": {
+    "export_date": "2025-07-26T09:26:50.220721",
+    "total_chunks": 157
+  },
+  "chunks": [
+    {
+      "chunk_id": "ts_23.436_1",
+      "section_id": "1",
+      "section_title": "Scope",
+      "content": "The present document specifies the procedures, information flows and APIs necessary for Application Data Analytics Enablement SEAL Service.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.436_2",
+      "section_id": "2",
+      "section_title": "References",
+      "content": "The following documents contain provisions which, through reference in this text, constitute provisions of the present document.\n-\tReferences are either specific (identified by date of publication, edition number, version number, etc.) or non‑specific.\n-\tFor a specific reference, subsequent revisions do not apply.\n-\tFor a non-specific reference, the latest version applies. In the case of a reference to a 3GPP document (including a GSM document), a non-specific reference implicitly refers to the latest version of that document in the same Release as the present document.\n[1]\t3GPP TR 21.905: \"Vocabulary for 3GPP Specifications\".\n[2]\t3GPP TS 23.434: \"Service Enabler Architecture Layer for Verticals (SEAL); Functional architecture and information flows\".\n[3]\t3GPP TS 26.531: \"Data Collection and Reporting; General Description and Architecture\"\n[4]\t3GPP TS 23.288: \"Architecture enhancements for 5G System (5GS) to support network data analytics services\".\n[5]\t3GPP TS 28.104: \"Management and orchestration; Management Data Analytics\".\n[6]\t3GPP TS 23.435: \"Procedures for Network Slice Capability Exposure for Application Layer Enablement Service\".\n[7]\t3GPP TS 28.552: \"Management and orchestration; 5G performance measurements\".\n[8]\t3GPP TS 23.222: \"Common API Framework for 3GPP Northbound APIs\".\n[9]\t3GPP TS 23.501: “System architecture for the 5G System”.\n[10]\tGSMA NG.116 - Generic Network Slice Template.\n[11]\t3GPP TS 22.261: “Service requirements for the 5G system”.\n[12]\t3GPP TS 28.545: \"Management and orchestration; Fault Supervision (FS)\".\n[13]\t3GPP TS 23.433: \"Service Enabler Architecture Layer for Verticals (SEAL); Data Delivery enabler for vertical applications\".\n[14]\t3GPP TS 23.401: \"General Packet Radio Service (GPRS) enhancements for Evolved Universal Terrestrial Radio Access Network (E-UTRAN) access\".\n[15]\t3GPP TS 23.303: \"Proximity-based services (ProSe); Stage 2\".",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905",
+        "ts_23.434",
+        "ts_26.531",
+        "ts_23.288",
+        "ts_28.104",
+        "ts_23.435",
+        "ts_28.552",
+        "ts_23.222",
+        "ts_23.501",
+        "ts_22.261",
+        "ts_28.545",
+        "ts_23.433",
+        "ts_23.401",
+        "ts_23.303"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.436_3.1",
+      "section_id": "3.1",
+      "section_title": "Terms",
+      "content": "For the purposes of the present document, the terms given in 3GPP TR 21.905 [1] and the following apply. A term defined in the present document takes precedence over the definition of the same term, if any, in 3GPP TR 21.905 [1].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.436_3.2",
+      "section_id": "3.2",
+      "section_title": "Abbreviations",
+      "content": "For the purposes of the present document, the abbreviations given in 3GPP TR 21.905 [1] and the following apply. An abbreviation defined in the present document takes precedence over the definition of the same abbreviation, if any, in 3GPP TR 21.905 [1].\nADAES\tApplication Data Analytics Enabler Server\nADAEC\tApplication Data Analytics Enabler Client\nA-ADRF\tApplication layer - Analytical Data Repository Function\nA-DCCF\tApplication layer - Data Collection and Coordination Function\nASP\tApplication Service Provider\nDNAI\tData Network Access Identifier\nEAS\t\tEdge Application Server\nEEL\t\tEdge Enabler Layer\nEES\t\tEdge Enabler Server\nFLS\tFused Location Server\nLMS\tLocation Management Server\nMDAS\t\tManagement Domain Analytics Service\nNSCE\tNetwork Slice Capability Enablement\nNWDAF\tNetwork Data Analytics Function\nOAM\tOperation, Administration and Maintenance\nRNIS\tRadio Network Information Service\nRTT\t\t\t\tRound-Trip Time\nVAL\tVertical Application Layer",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.436_4.1",
+      "section_id": "4.1",
+      "section_title": "General Description",
+      "content": "The following clauses specify the requirements for application data analytics enablement service.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.436_4.2",
+      "section_id": "4.2",
+      "section_title": "General Requirements",
+      "content": "[AR-4.2-a] \tThe ADAE client and the ADAE server shall support one or more VAL applications.\n[AR-4.2-b] \tSupported ADAE capabilities shall be offered as APIs to the VAL applications.\n[AR-4.2-c]\tThe ADAE shall support interaction with 3GPP network system to consume network and management data analytics services.\n[AR-4.2-d] \tThe ADAE client shall be capable to communicate with one or more ADAE servers of the same ADAE service provider.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.436_4.3",
+      "section_id": "4.3",
+      "section_title": "ADAE internal architecture requirements",
+      "content": "[AR-4.3-a] The ADAE layer shall be able to provide a data collection coordination functionality to enable the collection from diverse data sources (OAM, 5GC, UE) per application data analytics event type.\n[AR-4.3-b] The ADAE layer shall include a data analytics repository function to store application data analytics.\n[AR-4.3-c] The data collection coordination and repository capabilities may be offered as APIs to ADAE server.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.436_4.4",
+      "section_id": "4.4",
+      "section_title": "ADAE capability related requirements",
+      "content": "[AR-4.4-a] The ADAE server shall be capable of providing data analytics for the VAL server performance.\n[AR-4.4-b] The ADAE server shall be capable of providing data analytics for the VAL application sessions (for both Uu-based and PC5-based sessions).\n[AR-4.4-c] The ADAE server shall be able to collect application performance measurements and analytics from one or more ADAE clients.\n[AR-4.4-d] The ADAE server shall be capable of collecting edge data from one or more edge platforms\n[AR-4.4-e] The ADAE server shall enable the exposure of edge data analytics to the VAL applications\n[AR-4.4-f] The ADAE server shall be capable of providing data analytics for the VAL server or VAL session performance for a requested slice or slice instance.\n[AR-4.4-g] The ADAE server shall be capable of providing data analytics for the location accuracy of one or more VAL UEs.\n[AR-4.4-h] The ADAE server shall be capable of providing data analytics related to the availability and status of one or more service APIs.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.436_5.1",
+      "section_id": "5.1",
+      "section_title": "General",
+      "content": "This clause provides the functional architecture for ADAE. This includes the on-network and off-network functional models which are provided in detail in clause 5.2.\nIn addition, the ADAE internal architecture is described in 5.3, which aligns with the 3GPP data analytics framework (specified in TS 23.288 [4]) and introduces new logical entities within ADAE framework, such as the A-DCCF and A-ADRF.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_5.2",
+        "ts_23.288"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.436_5.2.1",
+      "section_id": "5.2.1",
+      "section_title": "General",
+      "content": "The functional architecture for the application data analytics enablement is based on the generic functional model specified in clause 6.2 of 3GPP TS 23.434 [2]. It is organized into functional entities to describe a functional architecture which addresses the support for application data analytics enablement aspects for vertical applications.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_23.434_clause_6.2",
+        "ts_23.434"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.436_5.2.2",
+      "section_id": "5.2.2",
+      "section_title": "On-network Functional Architecture",
+      "content": "For the on-network functional architecture, both service-based representation and reference point representation are provided.\nFigure 5.2.2-1 depicts the application data analytics enablement architecture in the non-roaming case, using the reference point representation showing how various entities interact with each other.\nFigure 5.2.2-1: Architecture for application data analytics enablement – reference points representation\nThe application data analytics enablement client communicates with the application data analytics enablement server over the ADAE-UU reference point. The application data analytics enablement client provides the support for application data analytics enablement functions to the VAL client(s) over ADAE‑C reference point. The VAL server(s) communicates with the application data analytics enablement server over the ADAE-S reference point. The application data analytics enablement server, acting as AF, may communicate with the 5G Core Network functions (over N33 reference point to NEF and N6 reference point to UPF) and OAM (over ADAE-OAM interface).\nFigure 5.2.2-2 exhibits the service-based interfaces for providing and consuming application data analytics enablement services. The application data analytics enablement server could provide service to VAL server and ADAE client through interface SAdae.\nFigure 5.2.2-2: Architecture for application data analytics enablement – Service based representation\nFigure 5.2.2-3 illustrates the service-based representation for utilization of the 5GS network services based on the 5GS SBA specified in 3GPP TS 23.501 [9].\nFigure 5.2.2-3: Architecture for application data analytics enablement utilizing the 5GS network services based on the 5GS SBA – Service based representation\nFigure 5.2.2-4 illustrates the architecture for inter-service communication between ADAES server and other SEAL server.\nFigure 5.2.2-4: Inter-service communication between ADAES server and other SEAL server\nThe ADAE server interacts with another SEAL server for inter-service communication over SEAL-X reference point.",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_5.2.2-1",
+        "figure_5.2.2-2",
+        "figure_5.2.2-3",
+        "ts_23.501_figure_5.2.2-3",
+        "figure_5.2.2-4",
+        "ts_23.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.436_5.2.3",
+      "section_id": "5.2.3",
+      "section_title": "Off-network Functional Architecture",
+      "content": "Figure 5.2.3-1 illustrates the generic off-network functional model for ADAE.\nFigure 5.2.3-1: Generic off-network functional model\nIn the vertical application layer, the VAL client of UE1 communicates with VAL client of UE2 over VAL-PC5 reference point. An application data analytics enablement client of UE1 interacts with the corresponding application data analytics enablement client of UE2 over ADAE-PC5 reference points. The UE1, if connected to the network via Uu reference point, can also act as a UE-to-network relay, to enable UE2 to access the VAL server(s) over the VAL-UU reference point.\nThe service-based interface representation is specified in clause 15 of 3GPP TS 23.434 [2].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.434_clause_15",
+        "figure_5.2.3-1",
+        "ts_23.434"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.436_5.3",
+      "section_id": "5.3",
+      "section_title": "ADAE internal architecture",
+      "content": "In ADAE framework, A-DCCF and A-ADRF can be defined as functionalities within the internal ADAE architecture and can offer the following functionalities:\n-\tApplication layer - Data Collection and Coordination Function (A-DCCF) coordinates the collection and distribution of data requested by the consumer (ADAE server). Data Collection Coordination is supported by a A-DCCF. ADAE server can send requests for data to the A-DCCF rather than directly to the Data Sources. A-DCCF may also perform data processing/abstraction and data preparation based on the VAL server requirements.\n-\tApplication layer – Analytics and Data Repository Function (A-ADRF) stores historical data and/or analytics, i.e., data and/or analytics related to past time period that has been obtained by the consumer (e.g. ADAE server). After the consumer obtains data and/or analytics, consumer may store historical data and/or analytics in an A-ADRF. Whether the consumer directly contacts the A-ADRF or goes via the A-DCCF is based on configuration.\nFigure 5.3-1 illustrates the generic functional model for ADAE when re-using the 3GPP network data analytics model.\nFigure 5.3-1: ADAE internal functional architecture\nIn this model, an A-DCCF is used to fetch data or put data into an application-level entity (e.g. A-ADRF, Data Source). Such A-DCCF coordinates the collection and distribution of data requested by ADAE server (over ADCCF-1, ADAE-X). ADAE server can also directly interact with the Data Sources via ADAE-Y.\nAlso, Application layer – Analytics and Data Repository Function (A-ADRF) can be used to store historical data and/or analytics, i.e., data and/or analytics related to past time period that has been obtained by the ADAE server (via AADRF-1) or other NFs/NWDAF. ADAE server can also fetch historical data from A-ADRF. Whether the ADAE server directly contacts the A-ADRF or goes via the A-DCCF is based on configuration.\nData Sources can be 5GS data sources (5GC, OAM) or enablement layer data sources (SEAL, EEL) or external data sources at the DN side (VAL server/ EAS) and VAL UEs.  A-DCCF and A-ADRF can be used only for interacting with certain data sources (e.g., 5GC, OAM) based on configuration, and can be hidden from the VAL layer.\nNOTE:\tIf the Data Source is the VAL UE, then the data collection mechanism shall reuse the SA4 mechanism based on EVEX study (TS 26.531 [3]).",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_5.3-1",
+        "ts_26.531"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.436_5.4.1",
+      "section_id": "5.4.1",
+      "section_title": "General",
+      "content": "The functional entities for ADAE service are described in the following subclauses.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.436_5.4.2",
+      "section_id": "5.4.2",
+      "section_title": "Application Data Analytics Enablement client",
+      "content": "The application data analytics enablement and provides client side functionalities for the functionalties provided by the application data analytics enablement server. The application data analytics enablement client interacts with the application data analytics enablement server.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.436_5.4.3",
+      "section_id": "5.4.3",
+      "section_title": "Application Data Analytics Enablement server",
+      "content": "The application data analytics enablement server functional entity provides application layer analytics to support the VAL applications. The application data analytics enablement server acts as CAPIF's API exposing function as specified in 3GPP TS 23.222 [8]. The application data analytics enablement server also supports interactions with the corresponding application data analytics enablement server in distributed SEAL deployments. The ADAE server also interacts with 3GPP core nework over N33 or N6 interface to subscribe to changes in configuration or other application server specific events. The ADAE server also acts as a co-ordinating entity to collect data from different sources and perform necessary actions to provide required analytics.\nThe ADAE server provides following server side functionalities:\n-\tmonitoring performance of an application (VAL server or EAS, application session) and providing support for application performance analytics;\n-\tmonitoring performance of a given network slice (from a list of subscribed slices for the VAL customer) and also usage pattern, and providing support for slice-specific application performance analytics and slice usage pattern analytics;\n-\tmonitoring performance of an application session among two or more VAL UEs within a service or group, and providing support for UE-to-UE application performance analytics;\n-\tmonitoring accuracy of a location and providing support for location accuracy analytics;\n-\tmonitoring availability and service level for service APIs and providing support for service API analytics;\n-\tmonitoring edge load parameters and providing support for edge load analytics;",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.222"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.436_5.5.1",
+      "section_id": "5.5.1",
+      "section_title": "General",
+      "content": "The reference points for the functional model for application data analytics enablement are described in the following subclauses.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.436_5.5.2",
+      "section_id": "5.5.2",
+      "section_title": "ADAE-UU",
+      "content": "The interactions related to application data analytics enablement functions between the application data analytics enablement client and the application data analytics enablement server are supported by ADAE-UU reference point. This reference point utilizes Uu reference point as described in 3GPP TS 23.401 [14] and 3GPP TS 23.501 [9].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.401",
+        "ts_23.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.436_5.5.3",
+      "section_id": "5.5.3",
+      "section_title": "ADAE-PC5",
+      "content": "The interactions related to application data analytics enablement functions between the application data analytics enablement clients located in different VAL UEs are supported by the ADAE-PC5 reference point. This reference point utilizes PC5 reference point as described in 3GPP TS 23.303 [15].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.303"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.436_5.5.4",
+      "section_id": "5.5.4",
+      "section_title": "ADAE-C",
+      "content": "The interactions related to application data analytics enablement functions between the VAL client(s) and the application data analytics enablement client within a VAL UE are supported by the ADAE-C reference point.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.436_5.5.5",
+      "section_id": "5.5.5",
+      "section_title": "ADAE-S",
+      "content": "The interactions related to application data analytics enablement functions between the VAL server(s) and the application data analytics enablement server are supported by the ADAE-S reference point. This reference point is an instance of CAPIF-2 reference point as specified in 3GPP TS 23.222 [8].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.222"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.436_5.5.4",
+      "section_id": "5.5.4",
+      "section_title": "ADAE-X",
+      "content": "The interactions related to application data analytics enablement functions between the application data analytics enablement server and the Application-layer DCCF (A-DCCF) for data coordination aspects are supported by the ADAE-X reference point.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.436_5.5.5",
+      "section_id": "5.5.5",
+      "section_title": "ADAE-Y",
+      "content": "The interactions related to application data analytics enablement functions between the application data analytics enablement server and the data producers (or data sources) for collecting data to be used for the ADAE analytics services (if A-DCCF is not used) are supported by the ADAE-Y reference point.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.436_5.5.6",
+      "section_id": "5.5.6",
+      "section_title": "ADCCF-1",
+      "content": "The interactions related to application data analytics enablement functions between the application layer data collection and coordination entity and the data sources for data coordination aspects are supported by the ADCCF-1 reference point.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.436_5.5.7",
+      "section_id": "5.5.7",
+      "section_title": "AADRF-1",
+      "content": "The interactions related to application data analytics enablement functions between the application data analytics enablement server (or the A-DCCF) and the application layer - analytics and data repository function (A-ADRF) for storing data and analytics related to the ADAE analytics services (if A-DCCF is not used) are supported by the AADRF-1 reference point.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.436_5.5.8",
+      "section_id": "5.5.8",
+      "section_title": "SEAL-X",
+      "content": "The interactions between the NSCE servers and other SEAL servers are generically referred to as SEAL‑X reference point. The specific SEAL server interactions corresponding to SEAL-X are described in 3GPP TS 23.434 [2].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.434"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.436_6.1",
+      "section_id": "6.1",
+      "section_title": "Support for application performance analytics",
+      "content": "This feature supports the derivation and exposure of application layer analytics to provide insight on the operation and performance of an application (VAL server or EAS, application session), and in particular statistics or prediction on parameters related to e.g. VAL server number of connections for a given time and area, VAL server rate of connection requests, connection probability failure rates, RTT and deviations for a VAL server or VAL UE session, packet loss rates etc. This feature also supports the collection of service experience information from the ADAE clients (as described in clause 8.9) to support application performance analytics.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_8.9"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.436_6.2",
+      "section_id": "6.2",
+      "section_title": "Support for slice-specific application performance analytics",
+      "content": "This feature introduces application layer analytics to provide insight on the performance of the VAL applications when using a given network slice (from a list of subscribed slices for the VAL customer). Such capability provides an analytics service to a consumer who can be either the VAL server (for helping to identify what slice it will use for its applications) or for other consumers such as SEAL NSCE to support on providing analytics (since NSCE doesn't contain an analytics engine for providing analytics on top of NWDAF [4] /MDAS [5]).",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.436_6.3",
+      "section_id": "6.3",
+      "section_title": "Support for UE-to-UE application performance analytics",
+      "content": "This feature supports the derivation and exposure of application layer analytics to predict the performance of an application session among two or more VAL UEs within a service or group. Such prediction relates to application QoS attributes prediction for a given time horizon and area. This can be requested by the VAL server during the session, or the VAL server can subscribe to receive predicted application QoS downgrade indication for an ongoing session. Such analytics will help improving the application service experience and allow the VAL layer to pro-actively adapt to predicted application QoS changes.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.436_6.4",
+      "section_id": "6.4",
+      "section_title": "Support for location accuracy analytics",
+      "content": "This feature supports application layer analytics enablement to allow a VAL server to be notified based on analytics whether the accuracy of a location can be met for a given application and optionally for a given UE/group route. For example, a VAL server may request the ADAE server to provide analytics whether the accuracy of a location for the UEs within a VAL application is predicted to be sustainable or is expected to downgrade in a specific area or for an expected route from location A to location B.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.436_6.5",
+      "section_id": "6.5",
+      "section_title": "Support for service API analytics",
+      "content": "This feature introduces service API analytics to allow a VAL server or any other consumer (e.g. API provider) to be notified on the predicted /statistic availability and service level for the requested service API analytics. Such analytics may be utilized by the API provider to perform actions to avoid service API invocation failures or other actions like throttling/rate limitations. Also, such analytics will support the VAL server to identify if/when to perform an API invocation request based on the API expected status at the given area and time horizon.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.436_6.6",
+      "section_id": "6.6",
+      "section_title": "Slice usage pattern analytics",
+      "content": "Slice usage pattern analytics provides network slice usage pattern analytics based on collected network slice performance and analytics, historical network slice status, and network performance to help the analytics consumer manage the network slice.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.436_6.7",
+      "section_id": "6.7",
+      "section_title": "Support for edge load analytics",
+      "content": "Edge load analytics provide insight on the operation and performance of an EDN and in particular statistics or prediction on parameters related to:\n-\tthe EAS / EES load for one or more EAS/EES\n-\tedge platform load parameters, which include the aggregated load per EDN or per DNAI due to the edge support services and e.g., load level of edge computational resources.\nSuch analytics can improve edge support services by allowing the pro-active edge service operation changes to deal with possible edge overload scenarios. For example, this can trigger EAS migration to a different EDN / central DN, or pro-active EAS reselection for a target UE or group of UEs.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.436_7.1",
+      "section_id": "7.1",
+      "section_title": "General",
+      "content": "The common identities for SEAL refer to TS 23.434[2]. The following clauses list the additional identities and commonly used values for Application Data Analytics Enablement Service.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_23.434"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.436_7.2",
+      "section_id": "7.2",
+      "section_title": "ADAE Server ID",
+      "content": "The ADAE server ID uniquely identifies the application data analytics enablement server, and each ADAE server ID is unique within PLMN domain.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.436_7.3",
+      "section_id": "7.3",
+      "section_title": "ADAE client ID",
+      "content": "The ADAE client ID uniquely identifies the application data analytics enablement client.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.436_7.4",
+      "section_id": "7.4",
+      "section_title": "A-ADRF ID",
+      "content": "The A-ADRF ID uniquely identifies the application data analytics repository function.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.436_7.5",
+      "section_id": "7.5",
+      "section_title": "A-DCCF ID",
+      "content": "The A-DCCF ID uniquely identifies the application data collection and coordination function.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.436_7.6",
+      "section_id": "7.6",
+      "section_title": "Data Producer ID",
+      "content": "The Data Producer ID uniquely identifies the data producer / source which is used as input for application data analytics enablement services. Data Producer based on the analytics event, can be either a network function or a management domain function/service or an application server or client or an edge / cloud service.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.436_7.7",
+      "section_id": "7.7",
+      "section_title": "ADAE service area",
+      "content": "The ADAE service area is the area where the Application Data Analytics Enablement server owner provides its analytics services. It is equal to the coverage area for which analytics apply.\nThe ADAE service area can be expressed as a Topological Service Area (e.g. a list of TA), a Geographical Service Area (e.g. geographical coordinates) or both.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.436_7.8",
+      "section_id": "7.8",
+      "section_title": "Analytics ID",
+      "content": "The analytics ID (or analytics event ID) identifies the application layer analytics event which corresponds to the specified ADAE analytics services.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.436_8.1",
+      "section_id": "8.1",
+      "section_title": "General",
+      "content": "This clause describes the procedures and the information flows related to the ADAE capabilities, as introduced in clause 6.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_6"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.436_8.2.1",
+      "section_id": "8.2.1",
+      "section_title": "General",
+      "content": "In this functionality, two procedures are described in more detail in clause 8.2.2 and 8.2.3 accordingly:\n-\tone procedure for VAL server related analytics where an example in provided for VAL server performance,\n-\tone procedure for VAL session/UE related analytics.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_8.2.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.436_8.2.2",
+      "section_id": "8.2.2",
+      "section_title": "Procedure on VAL server performance analytics",
+      "content": "Figure 8.2.2-1 illustrates the procedure where the VAL server performance analytics are performed based on data collected from the ongoing VAL sessions as well as data from the DN (VAL server, DN database or networking stack at the DN).\nPre-conditions:\n1.\tADAE Client (ADAEC) is connected to ADAES.\n2.\tData producers (e.g. A-ADRF, VAL Client) may be pre-configured with data producer profiles for the data they can provide. ADAES and ADAEC have discovered available data producers and their data producer profiles.\nFigure 8.2.2-1: ADAES support for VAL server performance analytics\n1.\tThe consumer of the ADAES analytics service sends a VAL performance analytics subscription request to ADAES.\n2.\tThe ADAES sends a subscription response as a positive or negative acknowledgement to the consumer of the analytics service.\n3.\tThe ADAES maps the analytics event ID to a list of data collection event identifiers, and a list of data producer IDs. Such mapping may be preconfigured by OAM or may be determined by ADAES based on the analytics event type / vertical type and/or data producer profile.\n4.\tThe ADAES sends a data collection subscription request to the Data Producers (at the DN side or UE side) with the respective Data Collection Event ID and the requirement for data collection. Such data producers include the A-ADRF, the A-DCCF, the VAL server, SEALDD server, or the VAL UEs.\n5.\tThe Data Producer(s) sends a subscription response as a positive or negative acknowledgement to the ADAES.\nNOTE:\tThe ADAES acting as AF may also subscribe to NEF/SMF/PCF/NWDAF to monitor network/UE situation or network data analytics required for the application data analytics event.\n6.\tThe ADAES based on subscription, may receive offline stats/data from A-ADRF on the VAL server performance based on the analytics/data collection event ID. Such offline data can be average/peak throughput, average/maximum e2e delay, jitter, average application layer PER, availability, VAL server load, number of failed transactions, and can be for a given area and time of the day (based on the time/area of the request).\nA session starts between the VAL server #1 and a UE (this could happen for more than one UEs)\n7.\tThe Data Producer at DN side, starts collecting data from the data generating entities, e.g. real-time networking or application data (from networking start at DN or VAL server itself), such as RTT, application layer PER, throughput.\n8a.\tThe Data Producer sends the real-time data to the ADAES, where the data correspond to the data collection ID or the analytics event ID for which the ADAES subscribed.\n8b.\tThe ADAES may receive also data (periodically or if a threshold is reached based on configuration) from the application of the UE within the ongoing session (via ADAEC). Such data can be about the RTT, average/peak throughput, jitter, QoE measurements (MOS, stalling events, stalling ratios, etc), QoS profile load, VAL server load, etc.\n9.\tWhen the VAL UE session with VAL server finishes, the ADAEC notifies the ADAES of the completion of the reporting.\n10.\tThe ADAES abstracts or correlates the data based on the analytics event and the data collection configuration. Such correlation can be filtering of data for the same metrics but with different granularities or be combining/aggregating the data of segments of the end-to-end path (end to end is between VAL client and server). The outcome is an abstracted/correlated/filtered set of data.\n11.\tThe ADAES derives application layer analytics on VAL server #1 performance, based on the analytics ID and type of request. Such analytics can be stats or prediction for a given area/time and based on the event type for a given network configuration.\n12.\tThe ADAES sends the analytics to the consumer, where these analytics include the VAL server #1 predicted or statistic performance for a given area and time horizon, including also the confidence level, whether offline/online analytics were used.\nNOTE:\tIf the Data Producer in steps 4-5 and 8a is SEALDD server, procedure in clause 9.7.2.1 of 3GPP TS 23.433 [13]) is used for the collection of the E2E transmission quality measurement results to ADAES.",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "ts_23.433_clause_9.7.2.1",
+        "figure_8.2.2-1",
+        "ts_23.433"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.436_8.2.3",
+      "section_id": "8.2.3",
+      "section_title": "Procedure on VAL session performance analytics",
+      "content": "Figure 8.2.3-1 illustrates the procedure where the VAL session performance analytics are performed based on data collected from the ongoing VAL sessions.\nPre-conditions:\n1.\tADAEC is connected to ADAES.\n2.\tData producers (e.g. A-ADRF, VAL Client) may be pre-configured with data producer profiles for the data they can provide. ADAES and ADAEC have discovered available data producers and their data producer profiles.\nFigure 8.2.3-1: ADAES support for VAL session performance analytics\n1.\tThe consumer of the ADAES analytics service sends a VAL performance analytics subscription request to ADAES and provides the analytics event ID e.g. \"VAL UE perf prediction\", the target VAL UE ID, VAL server ID/VAL application ID, the time validity and area of the request, the required confidence level, exposure level for providing UE analytics. If the consumer is the VAL server, the VAL server can provide to ADAEC application data related to the UE expected route/trajectory and VAL application traffic schedule / expected session time.\n2.\tThe ADAES sends a subscription response as an ACK to the consumer.\n3.\tThe ADAES selects the corresponding ADAEC of the VAL UE for which the local analytics need to be performed.\n4a.\tThe ADAES sends a subscription request to the ADAEC with the analytics event ID and the configuration of the reporting required (e.g., periodic, based on threshold or event).\n4b.\tThe ADAEC sends a subscription response to ADAES.\n5.\tThe ADAEC maps the analytics event ID to a list of data collection event identifiers or data collected IDs at the VAL UE or other UEs within the service and in proximity (in group-based communications). The ADAEC also determines the data producers using the analytics event ID, target data producer profile and optional preconfigured policies.\n6.\tThe ADAEC subscribes to the VAL clients and/or requests UE local data based on the respective Data Collection Event ID (or the analytics event ID if they already know the mapping). This data may come from the PDU layer of the UE (via listening the traffic), or via VAL client of one or more UEs (if an application consists of a group of UEs).\nA session starts between the VAL UE #1 and a VAL server.\n7.\tThe ADAEC (after being aware from the VAL client that the session started) sends a notification to ADAES that a session started, and it could be possible to provide real-time data analytics for VAL UE performance in the target area.\n8.\tThe ADAEC starts collecting data from the corresponding data producers based on subscription. Such data can be about the RTT, throughput, jitter, QoE measurements, QoS profile load, etc.  It can be also possible that VAL client provides to ADAEC application data related to the UE expected route/trajectory and VAL application traffic schedule / expected session time.\n9.\tThe ADAEC filters or correlates the data based on the analytics event and the data collection configuration.\n10.\tWhen the VAL UE session finishes, the ADAEC (optionally) derives VAL session analytics to ADAES on VAL UE #1 performance, based on the analytics ID and type of request. Such analytics (if performed at the ADAEC can be stats or predictions on the RTT or RTT deviation, average/peak throughput, jitter, QoE measurements (MOS, stalling events, buffer related events), QoS profile load, VAL application traffic load etc. In case of prediction, a confidence level shall be also present and a time horizon for the predicted parameters.\n11.\tThe ADAEC sends the data of step 9 or the analytics of step 10 (if ADAEC performs analytics) to the ADAES.\n12.\tThe ADAES derives application layer analytics on VAL session performance (based on the data or analytics received by the ADAEC), based on the analytics ID and type of request. Such analytics can be stats or prediction for a given area/time and based on the event type for a given network configuration. Such analytics (if no analytics is performed at ADAEC) at ADAES can be stats or predictions on the RTT or RTT deviation, average/peak throughput, jitter, QoE measurements, QoS profile load, VAL application traffic load etc. In case of prediction, a confidence level shall be also present and a time horizon for the predicted parameters.\n13.\tThe ADAES sends the analytics to the consumer, where these analytics include the VAL UE #1 session predicted performance for a given area and time horizon, including also the confidence level, whether offline/online analytics were used.",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_8.2.3-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.436_8.2.4.1",
+      "section_id": "8.2.4.1",
+      "section_title": "General",
+      "content": "The following information flows are specified for VAL performance analytics based on 8.2.2 and 8.2.3.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.436_8.2.4.2",
+      "section_id": "8.2.4.2",
+      "section_title": "VAL performance analytics subscription request",
+      "content": "Table 8.2.4.2-1 describes information elements for the VAL performance analytics subscription request from the VAL server / Consumer to the ADAE server or from ADAE server to ADAE client.\nTable 8.2.4.2-1: VAL performance analytics subscription request\nInformation element\nStatus\nDescription\nConsumer ID\nM\nThe identifier of the analytics consumer\nAnalytics ID\nM\nThe identifier of the analytics event. This ID can be for example “VAL server performance analytics” for procedure in 8.2.2, or “VAL session performance analytics” for procedure in 8.2.3.\nAnalytics type\nM\nThe type of analytics for the event, e.g. statistics or predictions.\nVAL service ID\nM\nThe identifier of the VAL service for which analytics subscription apply.\nTarget VAL UE ID(s)\nO\nThe VAL UE(s) for which the analytics subscription applies.\nTarget VAL server ID\nO\nIf consumer is different from the VAL server, this identifier shows the target VAL server for which the analytics subscription applies (for procedure in 8.2.2).\nTarget data producer profile criteria\nO\nCharacteristics of the data producers to be used.\nPreferred confidence level\nO\nThe level of accuracy for the analytics service (in case of prediction.\nArea of Interest\nO\nThe geographical or service area for which the subscription request applies.\nTime validity\nO\nThe time validity of the subscription request\nReporting requirements\nO\nIt describes the requirements for analytics reporting. This requirement may include e.g. the type and frequency of reporting (periodic or event triggered), the reporting periodicity in case of periodic, and reporting thresholds.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_8.2.4.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.436_8.2.4.3",
+      "section_id": "8.2.4.3",
+      "section_title": "VAL performance analytics subscription response",
+      "content": "Table 8.2.4.3-1 describes information elements for the VAL performance analytics subscription response from the ADAE server to the consumer/VAL server or from ADAE client to ADAE server.\nTable 8.2.4.3-1: VAL performance analytics subscription response\nInformation element\nStatus\nDescription\nResult\nM\nThe result of the analytics subscription request (positive or negative acknowledgement).",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_8.2.4.3-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.436_8.2.4.4",
+      "section_id": "8.2.4.4",
+      "section_title": "Data collection subscription request",
+      "content": "Table 8.2.4.4-1 describes information elements for the Data collection subscription request from the ADAE server to the Data Producer (e.g., A-DCCF).\nTable 8.2.4.4-1: Data collection subscription request\nInformation element\nStatus\nDescription\nADAE server ID\nM\nThe identifier of the ADAE server\nData Collection Event ID\nM\nThe identifier of the data collection event\nData Collection requirements\nM\nThe requirements for data collection, including the format of data, frequency of reporting, level of abstraction of data, level of accuracy of data.\nAnalytics ID\nO\nThe identifier of the analytics event, for which the data collection is needed.\nList of Data Producer IDs\nO\nIn case when this request is performed via A-DCCF, then the list of Data Producer IDs is needed\nTarget VAL UE ID(s) and address\nO\nThe VAL UE(s) identifiers and IP address(es) for which the data collection subscription apply\nTarget VAL server ID\nO\nThis identifier shows the target VAL server for which the data collection subscription applies (for procedure in 8.2.2)\nTarget data producer profile criteria\nO\nCharacteristics of the data producers to be used.\nArea of Interest\nO\nThe geographical or service area for which the requirement request applies\nTime validity\nO\nThe time validity of the request",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_8.2.4.4-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.436_8.2.4.5",
+      "section_id": "8.2.4.5",
+      "section_title": "Data collection subscription response",
+      "content": "Table 8.2.4.5-1 describes information elements for the Data collection subscription response from the Data Producer (e.g., A-DCCF) to the ADAE server.\nTable 8.2.4.5-1: Data collection subscription response\nInformation element\nStatus\nDescription\nResult\nM\nThe result of the data collection subscription request (positive or negative acknowledgement)",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_8.2.4.5-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.436_8.2.4.6",
+      "section_id": "8.2.4.6",
+      "section_title": "Data Notification",
+      "content": "Table 8.2.4.6-1 describes information elements for the Data Notification from the Data Producer to the ADAE server.\nTable 8.2.4.6-1: Data notification\nInformation element\nStatus\nDescription\nData Collection Event ID\nM\nThe identifier of the data collection event.\nTarget VAL UE ID and address\nM (NOTE)\nThe VAL UE(s) identifiers and IP address(es) for which the data apply\nTarget VAL server ID\nM (NOTE)\nThis identifier of the target VAL server for which the data applies (for procedure in 8.2.2)\nAnalytics ID\nO\nThe identifier of the analytics event. This ID can be for example “VAL server performance analytics” for procedure in 8.2.2, or “VAL session performance analytics” for procedure in 8.2.3.\nData Type\nO\nThe type of reported data samples which can be UE data, network data, application data, edge data, or different granularities / abstraction of data (e.g. real time, non real time).\nData Output\nM\nThe reported data, which can be inform of measurements or offline/historical data on the requested parameter (e.g. RTT deviation) based on subscription\nNOTE: One of these shall be present based on the data collection event",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_8.2.4.6-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.436_8.2.4.7",
+      "section_id": "8.2.4.7",
+      "section_title": "Analytics Notification",
+      "content": "Table 8.2.4.7-1 describes information elements for the Analytics Notification from the ADAE server to the VAL server / Consumer.\nTable 8.2.4.7-1: Analytics notification\nInformation element\nStatus\nDescription\nAnalytics ID\nM\nThe identifier of the analytics event. This ID can be for example “VAL server performance analytics” for procedure in 8.2.2, or “VAL session performance analytics” for procedure in 8.2.3.\nAnalytics Output\nM\nThe predictive or statistical parameter, which can be:\n-\tA VAL server predicted or expected performance change or sustainability\n-\tA VAL session predicted or expected performance change of sustainability\nConfidence level\nO\n(see NOTE)\nThe achieved confidence level.\nTime horizon\nO\n(see NOTE)\nThe time horizon for predictive analytics.\n> Start time\nO\nThe start time point of predictive validity. If omitted, the default value is the current time.\n> End time\nM\nThe end time point of predictive validity.\nNOTE:\tThese information elements shall be provided for the predictive analytics.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_8.2.4.7-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.436_8.2.4.8",
+      "section_id": "8.2.4.8",
+      "section_title": "Data producer profile",
+      "content": "The data producer profile IE includes information about the data generation/production capability of the data producer to support data collection for data analytics service and the availability/accessibility of the generated/produced data, as defined in Table 8.2.4.8-1.\nTable 8.2.4.8-1: Data producer profile\nInformation element\nStatus\nDescription\nData Producer ID\nM\nID of the data producer.\nData producer type (NOTE)\nM\nSpecifies the type of the data producer, e.g., ADAEC, A-DCCF, A-ADRF, VAL server, SEAL server, SEAL client, EES, EAS.\nData type (NOTE)\nM\nType of information that can be provided by the data producer, e.g., performance indicators, reproducer usage data, server load data, application performance, edge load.\nData producer role (NOTE)\nO\nRole of the data producer, e.g., generating entity, original producer, repository.\nOriginal producer ID (NOTE)\nO\nIf the data producer role is not “original producer” or “generating entity”, specifies the Producer ID of the original data producer for the data provided by this data producer.\nIf the data producer type is A-DCCF, this is a list of Data Producer IDs.\nData freshness (NOTE)\nO\nIf the data producer role is not “original producer” or “generating entity”, length of time elapsed after the data is generated until is available at the data producer. Alternatively, the data collection rate supported by the producer is provided.\nData producer capability (NOTE)\nO\nIndicates data producer capabilities for this data type, e.g. how long the data can be stored, support for anonymization, data generation rate and schedule.\nNOTE:\tWhen the Data producer profile IE is used for Target data producer profile criteria (e.g. Table 8.2.4.4-1), this IE may be a list of values.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_8.2.4.8-1",
+        "table_8.2.4.4-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.436_8.3.1",
+      "section_id": "8.3.1",
+      "section_title": "General",
+      "content": "This clause describes the procedure for supporting slice-specific application performance analytics. The ADAES service consumer can subscribe and receive notifications about slice specific application performance analytics events. In case that the ADAES consumer needs information about historical data, the procedure in 8.7.3 can be used for retrieving of slice-specific application performance metrics data about a specific area and time window in the past.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.436_8.3.2",
+      "section_id": "8.3.2",
+      "section_title": "Procedure",
+      "content": "Figure 8.3.2-1 illustrates the procedure where the VAL server performance analytics are performed based on data collected from the ongoing VAL sessions as well as data from the DN (VAL server, DN database or networking stack at DN) for a specific slice.\nPre-conditions:\n1.\tADAEC is connected to ADAES.\nFigure 8.3.2-1: ADAES support for slice-related performance analytics\n1.\tThe consumer of the ADAES analytics service sends a subscription request to ADAES and provides the analytics event ID e.g. \"slice perf prediction\", the target S-NSSAI, DNN, NSI ID, the time validity of the request, the required confidence level, whether offline and/or online analytics are needed, area and time horizon, etc.\n2.\tThe ADAES sends a subscription response as an ACK to the consumer.\n3.\tThe ADAES subscribes to the Data Sources with the respective Data Collection Event ID and the requirement for data collection related to the request slice(s). Such requests may be towards:\n-\tOAM for providing PM data related to the requested slice / NSI. Alternatively, if the interaction to OAM happens via NSCE layer (see TS 23.435 [6]), such subscription can be performed to NSCE (where ADAES is acting as VAL server).\n-\tNWDAF for providing slice related analytics for the given area and time horizon (indicated in step 1). Such analytics can be the slice load level related network data analytics, or the service experience related network data analytics for a given slice\n4.\tThe ADAES based on subscription, receives PM data notification from OAM or from NSCE server (via OAM APIs or NSCE-S APIs)\n5.\tThe ADAES based on subscription, receives the requested NWDAF analytics outputs. Such analytics can be:\n-\tnetwork slice or NSI statistics or predictions (clause 6.3.3A of TS 23.288 [4])\n-\tper slice instance service experience stats or predictions (clause 6.4.3 of TS 23.288 [4])\n6.\tThe ADAES can also provide analytics on the VAL session performance (based on the procedure of clause 8.2.2 step 11 or clause 8.2.3 step 12) and filters the analytics only for the sessions which are connected to that requested slice for the area of interest.\n7.\tThe ADAES abstracts or correlates the data/analytics from steps 4-6 and provides analytics on the slice or NSI performance for the target VAL application/server. For example, such analytics can be about the min/average/max predicted RTT / end to end latency for the VAL application/server if this server uses a given slice/NSI (or for a list of given slices) within an area of interest.\n8.\tThe ADAES sends the analytics to the consumer, as a slice-specific performance analytics notification message.",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "ts_23.288_clause_6.3.3",
+        "ts_23.288_clause_6.4.3",
+        "clause_8.2.2",
+        "clause_8.2.3",
+        "figure_8.3.2-1",
+        "ts_23.435",
+        "ts_23.288"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.436_8.3.3.1",
+      "section_id": "8.3.3.1",
+      "section_title": "General",
+      "content": "The following information flows are specified for slice-specific application performance analytics based on 8.3.2.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.436_8.3.3.2",
+      "section_id": "8.3.3.2",
+      "section_title": "Slice-specific performance analytics subscription request",
+      "content": "Table 8.3.3.2-1 describes information elements for the slice-specific performance analytics subscription request from the consumer (VAL server / NSCE server) to the ADAE server.\nTable 8.3.3.2-1: Slice-specific performance analytics subscription request\nInformation element\nStatus\nDescription\nConsumer ID\nM\nThe identifier of the analytics consumer.\nAnalytics ID\nO\nThe identifier of the analytics event. This ID can be for example “slice-specific application performance analytics”.\nAnalytics type\nM\nThe type of analytics for the event, e.g. statistics or predictions.\nSlice identifier\nM\nThe identifier of the target slice or slice instance, i.e. S-NSSAI, NSI ID or ENSI.\nDNN\nO\nThe target DNN for which the request applies.\nTarget VAL UE ID(s)\nO\nThe VAL UE(s) for which the analytics subscription applies.\nTarget VAL server ID\nO\nIf consumer is different from the VAL server, this identifier shows the target VAL server for which the analytics subscription applies (for procedure in 8.2.2).\nPreferred confidence level\nO\nThe level of accuracy for the analytics service (in case of prediction.\nArea of Interest\nO\nThe geographical or service area for which the subscription request applies.\nTime validity\nO\nThe time validity of the subscription request.\nTime horizon\nO\nThe time horizon for predictive analytics.\n> Start time\nO\nThe start time point of predictive validity. If omitted, the default value is the current time.\n> End time\nM\nThe end time point of predictive validity.\nReporting requirements\nO\nIt describes the requirements for analytics reporting. This requirement may include e.g. the type and frequency of reporting (periodic or event triggered), the reporting periodicity in case of periodic, and reporting thresholds.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_8.3.3.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.436_8.3.3.3",
+      "section_id": "8.3.3.3",
+      "section_title": "Slice-specific performance analytics subscription response",
+      "content": "Table 8.3.3.3-1 describes information elements for the slice-specific performance analytics subscription response from the ADAE server to the consumer (VAL/NSCE server).\nTable 8.3.3.3-1: Slice-specific performance analytics subscription response\nInformation element\nStatus\nDescription\nResult\nM\nThe result of the analytics subscription request (positive or negative acknowledgement)",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_8.3.3.3-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.436_8.3.3.4",
+      "section_id": "8.3.3.4",
+      "section_title": "Slice-specific performance analytics notification",
+      "content": "Table 8.3.3.4-1 describes information elements for the slice-specific performance analytics notification from the ADAE server to the Consumer.\nTable 8.3.3.4-1: Slice-specific performance analytics notification\nInformation element\nStatus\nDescription\nAnalytics ID\nO\nThe identifier of the analytics event. This ID can be for example “slice-specific application performance analytics”.\nAnalytics Output\nM\nThe predictive or statistical parameter, which can be for a target slice or slice instance the:\n-\tA VAL server predicted or expected performance change or sustainability\n-\tA VAL session predicted or expected performance change of sustainability\nConfidence level\nO\n(NOTE)\nFor predictive analytics, the achieved confidence level.\nTime horizon\nO\n(NOTE)\nThe time horizon for predictive analytics.\n> Start time\nO\nThe start time point of predictive validity. If omitted, the default value is the current time.\n> End time\nM\nThe end time point of predictive validity.\nNOTE:\tThese information elements shall be provided for the predictive analytics.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_8.3.3.4-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.436_8.4.1",
+      "section_id": "8.4.1",
+      "section_title": "General",
+      "content": "This clause describes the procedure for supporting UE-to-UE application performance analytics.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.436_8.4.2",
+      "section_id": "8.4.2",
+      "section_title": "Procedure",
+      "content": "Figure 8.4.2-1 illustrates the procedure where the VAL session performance analytics are performed based on data collected from the ongoing VAL UE-to-UE sessions.\nPre-conditions:\n1.\tADAECs are connected to ADAES.\nFigure 8.4.2-1: ADAES support for UE-to-UE application performance analytics\n1. The consumer of the ADAES analytics service sends a subscription request to ADAES and provides the analytics event ID e.g. \"VAL UE to UE session prediction\", the target VAL UE ID or group of UE IDs, the VAL session / service ID, the time validity and area of the request, the required confidence level, exposure level for providing UE to UE analytics. Such request can also include whether the analytics notification shall be periodic or based on an expected application QoS change (in that case also the thresholds can be provided at the request)\n2.\tThe ADAES sends a subscription response as an ACK to the consumer.\n3.\tThe ADAES selects the corresponding ADAEC #1 of the VAL UE 1 where the session performance analytics need to be performed. Such UE can be for example a capable and authorized UE from the involved VAL UEs within the service or group, e.g. a group lead.\n4.\tThe ADAES sends a UE to UE analytics request to the ADAEC #1 with the analytics event ID and the configuration of the reporting required (e.g., periodic, based on threshold(s) or event). Such request also includes the application QoS attributes to be analyzed (latency, bitrate, jitter, application layer PER)A session starts between the VAL UE #1 and a VAL UE #2 (or more VAL UEs).\n5.\tThe ADAEC #1 starts collecting data from the corresponding VAL UE(s) based on the request. Such data can be about the latency, throughput, jitter, QoE measurements, PQI load, etc.  The data can be collected by ADAEC #1 from other ADAECs via ADAE-C interface, or from the VAL clients (VAL client to VAL client interaction is out of scope).\n6.\tThe ADAEC either detects or predicts an application QoS change (depending on the authorization of ADAEC to perform analytics). Such change can be for example an application QoS downgrade related to the UE-to-UE session latency, or the application layer PER/channel losses higher than a predefined threshold, for a given time horizon with a certain confidence level.\n7.\tThe ADAEC sends the analytics to the ADAES in a UE-to-UE analytics response message.\n8.\tThe ADAES based on the received response, confirms/verifies the analytics received or provides analytics (in case that data were reported) for the UE-to-UE session. Such analytics can be about predicting the application QoS change for the UE-to-UE session.\n9.\tThe ADAES sends the derived analytics notification to the consumer.\nNOTE:\tThe mechanism for analytics collection from the UE side (steps 4, 7) shall align with the SA4 mechanism for generic data collection from the UE (TS 26.531 [3]).",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_8.4.2-1",
+        "ts_26.531"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.436_8.4.3.1",
+      "section_id": "8.4.3.1",
+      "section_title": "General",
+      "content": "The following information flows are specified for UE-to-UE session performance analytics based on 8.4.2",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.436_8.4.3.2",
+      "section_id": "8.4.3.2",
+      "section_title": "UE-to-UE session performance analytics subscription request",
+      "content": "Table 8.4.3.2-1 describes information elements for the UE-to-UE session performance analytics subscription request from the consumer (VAL server) to the ADAE server.\nTable 8.4.3.2-1: UE-to-UE session performance analytics subscription request\nInformation element\nStatus\nDescription\nVAL server ID\nM\nThe identifier of the analytics consumer (VAL server).\nAnalytics ID\nO\nThe identifier of the analytics event. This ID can be equivalent to “UE-to-UE session performance analytics”.\nAnalytics type\nM\nThe type of analytics for the event, e.g. statistics or predictions.\nList of VAL UE IDs and addresses\nM\nThe VAL UEs for which the analytics subscription applies.\nVAL service ID\nO\nThe VAL service for which the subscription applies.\nPreferred confidence level\nO\nThe level of accuracy for the analytics service (in case of prediction.\nArea of Interest\nO\nThe geographical or service area for which the subscription request applies.\nTime validity\nO\nThe time validity of the subscription request.\nExposure level requirement\nO\nThe level of exposure requirement (e.g. condition on providing the analytics like threshold is reached) for the analytics to be exposed.\nReporting requirements\nO\nIt describes the requirements for analytics reporting. This requirement may include e.g. the type and frequency of reporting (periodic or event triggered), the reporting periodicity in case of periodic, and reporting thresholds.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_8.4.3.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.436_8.4.3.3",
+      "section_id": "8.4.3.3",
+      "section_title": "UE-to-UE session performance analytics subscription response",
+      "content": "Table 8.4.3.3-1 describes information elements for the UE-to-UE session performance analytics subscription response from the ADAE server to the VAL server.\nTable 8.4.3.3-1: UE-to-UE session performance analytics subscription response\nInformation element\nStatus\nDescription\nResult\nM\nThe result of the analytics subscription request (positive or negative acknowledgement)",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_8.4.3.3-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.436_8.4.3.4",
+      "section_id": "8.4.3.4",
+      "section_title": "UE-to-UE analytics request",
+      "content": "Table 8.4.3.4-1 describes information elements for the UE-to-UE Analytics request from the ADAE server to the ADAE client.\nTable 8.4.3.4-1: UE-to-UE analytics request\nInformation element\nStatus\nDescription\nADAE server ID\nM\nThe identifier of the ADAE server.\nAnalytics ID\nO\nThe identifier of the analytics event (Analytics ID=’UE to UE session analytics’).\nList of VAL UE IDs and addresses\nM\nThe VAL UE(s) identifiers and IP address(es) for which the data/analytics apply.\nApplication QoS attributes\nM\nThe QoS attributes (latency, bitrate, jitter, application layer PER) to be analyzed at the ADAE client.\nReporting configuration\nO\nThe configuration for analytics reporting. This requirement may include e.g. the frequency of reporting (periodic), the reporting periodicity in case of periodic, and reporting thresholds, whether data abstraction is needed or not.\nData collection requirements\nO\nThe requirements for data collection, including the format of data, frequency of reporting, level of abstraction of data, level of accuracy of data.\nArea of Interest\nO\nThe geographical or service area for which the subscription request applies.\nTime validity\nO\nThe time validity of the subscription request.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_8.4.3.4-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.436_8.4.3.5",
+      "section_id": "8.4.3.5",
+      "section_title": "UE-to-UE analytics response",
+      "content": "Table 8.4.3.5-1 describes information elements for the UE-to-UE analytics response from the ADAE client to the ADAE server.\nTable 8.4.3.5-1: UE-to-UE analytics response\nInformation element\nStatus\nDescription\nAnalytics ID\nM\nThe identifier of the analytics event.\nList of VAL UE IDs and addresses\nM\nThe VAL UE(s) identifiers and IP address(es) for which the analytics apply\nAnalytics Output\nM\nThe reported analytics for the UE to UE sessions, which can be in form of offline stats/historical data or predictions on the requested QoS parameter based on the analytics event.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_8.4.3.5-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.436_8.4.3.6",
+      "section_id": "8.4.3.6",
+      "section_title": "ADAE Analytics Notification",
+      "content": "Table 8.4.3.6-1 describes information elements for the ADAE Analytics Notification from the ADAE server to the consumer (VAL server).\nTable 8.4.3.6-1: ADAE Analytics notification\nInformation element\nStatus\nDescription\nAnalytics ID\nO\nThe identifier of the analytics event. This ID can be “UE to UE session performance analytics”.\nAnalytics Output\nM\nThe predictive or statistical parameter, which can be:\n-\tA VAL UE to UE session predicted or expected performance change\n-\tA VAL UE to UE session performance sustainability over a given time horizon/area\nConfidence level\nO\nFor predictive analytics, the achieved confidence level can be provided.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_8.4.3.6-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.436_8.5.1",
+      "section_id": "8.5.1",
+      "section_title": "General",
+      "content": "This clause describes the procedure for supporting location accuracy analytics.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.436_8.5.2",
+      "section_id": "8.5.2",
+      "section_title": "Procedure",
+      "content": "Figure 8.5.2-1 illustrates the procedure for location accuracy analytics enablement solution.\nPre-conditions:\n1.\tADAES is connected to A-ADRF.\n2.\tADAES has discovered SEAL LMS or FLS.\nFigure 8.5.2-1: Location accuracy analytics procedure\n1.\tThe VAL server makes a subscription request to ADAE server for location accuracy prediction/stats, including an analytics event ID (e.g. \"location accuracy prediction\" or \"location accuracy sustainability\"), an analytics request type (if not identified specifically at the event ID) which can be the location accuracy prediction for a given location X and/or for a given UE/app. The request may include also the target area, a target VAL service, or a VAL UE, or group of UEs of the VAL service, time validity, accuracy threshold and requirements. If the VAL UEs are provided by the VAL server, this request may also include the expected route or a set of waypoints for the UEs of the VAL application.\n2.\tThe ADAE server sends a location accuracy analytics subscription response as an ACK to the VAL server.\n3.\tThe ADAE server discovers and maps the Data Sources with the respective analytics event ID for collecting location data for the corresponding VAL UEs or VAL service area.\n4.\tThe ADAE server subscribes for NWDAF UE mobility analytics per VAL UE (for all the VAL UEs) and gets notification on the per UE location/mobility analytics based on TS 23.288 clause 6.7.2. Such analytics may be requested for a list of waypoints per UE route (if indicated at step 1). The ADAE server subscribes also for SEAL LMS location reports for the respective VAL UEs or location reports from all VAL UEs within the requested area.\n5.\tThe ADAE server optionally requests location accuracy historical analytics /data from A-ADRF for the corresponding VAL UEs or VAL service area.\n6.\tBased on the request, the ADAE server receives location accuracy historical analytics /data from A-ADRF for the corresponding VAL UEs or VAL service area.\n7.\tThe ADAE server abstracts or correlates the data/analytics from steps 4-6 and provides analytics on the location accuracy for the target VAL application. Depending on the event ID in step 1, the ADAE server can indicate whether the location accuracy is sustainable or is predicted to be downgraded or can be upgraded and become more granular (e.g. from meter to decimetre).\n8.\tThe ADAE server sends the location accuracy analytics notification to the consumer.",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "ts_23.288_clause_6.7.2",
+        "figure_8.5.2-1",
+        "ts_23.28"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.436_8.5.3.1",
+      "section_id": "8.5.3.1",
+      "section_title": "General",
+      "content": "The following information flows are specified for location accuracy analytics based on 8.5.2",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.436_8.5.3.2",
+      "section_id": "8.5.3.2",
+      "section_title": "Location accuracy analytics subscription request",
+      "content": "Table 8.5.3.2-1 describes information elements for the location accuracy analytics subscription request from the VAL server to the ADAE server.\nTable 8.5.3.2-1: Location accuracy analytics subscription request\nInformation element\nStatus\nDescription\nVAL server ID\nM\nThe identifier of the VAL server.\nAnalytics ID\nM\nThe identifier of the location accuracy analytics event. This ID can be for example \"location accuracy prediction\" or \"location accuracy sustainability\" depending on the expected outcome.\nAnalytics type\nM\nThe type of analytics for the event, e.g. statistics or predictions.\nVAL UE ID(s) or Group ID\nM\nThe identity of the VAL UE(s) or group of UEs for which the analytics subscription applies\nVAL service ID\nO\nThe identifier of the VAL service for which location accuracy analytics is requested.\nLocation accuracy requirements\nM\nThe accuracy threshold and VAL requirements.\nPreferred confidence level\nO\nThe level of accuracy for the analytics service (in case of prediction).\nArea of Interest\nO\nThe geographical or service area for which the subscription request applies.\nTime validity\nO\nThe time validity of the subscription request.\nUE mobility / route information\nO\nInformation on the target UE or group UE mobility including the expected route/set of waypoints.\nReporting requirements\nO\nIt describes the requirements for analytics reporting. This requirement may include e.g. the type and frequency of reporting (periodic or event triggered), the reporting periodicity in case of periodic, and reporting thresholds.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_8.5.3.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.436_8.5.3.3",
+      "section_id": "8.5.3.3",
+      "section_title": "Location accuracy analytics subscription response",
+      "content": "Table 8.5.3.3-1 describes information elements for the location accuracy analytics subscription response from the ADAE server to the VAL server.\nTable 8.5.3.3-1: Location accuracy analytics subscription response\nInformation element\nStatus\nDescription\nResult\nM\nThe result of the analytics subscription request (positive or negative acknowledgement)",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_8.5.3.3-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.436_8.5.3.4",
+      "section_id": "8.5.3.4",
+      "section_title": "Location accuracy data request",
+      "content": "Table 8.5.3.4-1 describes information elements for the location accuracy data request from the ADAE server to the A-ADRF.\nTable 8.5.3.4-1: Location accuracy data request\nInformation element\nStatus\nDescription\nADAE server ID\nM\nThe identifier of the ADAE server\nAnalytics ID\nM\nThe identifier of the analytics event\nList of VAL UE IDs and addresses\nM\nThe VAL UE(s) identifiers and IP address(es) for which the data/analytics apply\nVAL service ID\nO\nThe service ID, in case of requesting historical data for a particular VAL service.\nReporting configuration\nO\nThe configuration for data reporting. This requirement may include e.g. the frequency of reporting (periodic), the reporting periodicity in case of periodic, and reporting thresholds, whether data abstraction is needed or not.\nData collection requirements\nO\nThe requirements for data collection, including the format of data, frequency of reporting, level of abstraction of data, level of accuracy of data.\nArea of Interest\nO\nThe geographical or service area for which the subscription request applies\nTime validity\nO\nThe time validity of the request",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_8.5.3.4-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.436_8.5.3.5",
+      "section_id": "8.5.3.5",
+      "section_title": "Location accuracy data response",
+      "content": "Table 8.5.3.5-1 describes information elements for the location accuracy data response from the A-ADRF to the ADAE server.\nTable 8.5.3.5-1: Location accuracy data response\nInformation element\nStatus\nDescription\nAnalytics ID\nM\nThe identifier of the analytics event.\nList of VAL UE IDs and addresses\nM\nThe VAL UE(s) identifiers and IP address(es) for which the analytics apply\nVAL service ID\nO\nThe service ID, in case of requesting historical data for a particular VAL service.\nAnalytics Output\nM\nThe reported analytics for the location accuracy, which can be in form of offline stats/historical data for a specific VAL service or for particular UE(s) or group of UEs",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_8.5.3.5-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.436_8.5.3.6",
+      "section_id": "8.5.3.6",
+      "section_title": "Location accuracy analytics notification",
+      "content": "Table 8.5.3.6-1 describes information elements for the location accuracy analytics notification from the ADAE server to the VAL server.\nTable 8.5.3.6-1: Location accuracy analytics notification\nInformation element\nStatus\nDescription\nAnalytics ID\nM\nThe identifier of the analytics event.\nAnalytics Output\nM\nThe predictive or statistical parameter, which can be:\n-\tA predicted or expected location accuracy change (downgrade or upgrade) for a particular VAL service or UEs\n-\tthe location accuracy sustainability for a VAL service or UE/group of UEs over a given time horizon/area\nConfidence level\nO\nFor predictive analytics, the achieved confidence level can be provided.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_8.5.3.6-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.436_8.6.1",
+      "section_id": "8.6.1",
+      "section_title": "General",
+      "content": "This clause describes the procedure for supporting service API analytics. Such analytics can be for one or more service APIs for a service produced by one or more service producers within the 5GS or enablement layer or the DN side (e.g., application server).",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.436_8.6.2",
+      "section_id": "8.6.2",
+      "section_title": "Procedure",
+      "content": "Figure 8.6.2-1 illustrates the procedure for service API analytics enablement solution.\nPre-conditions:\n1.\tADAES acts as API management function in CAPIF\nFigure 8.6.2 -1: Service API analytics procedure\n1.\tThe VAL server sends a service API event subscription request to the ADAE server to receive analytics for one or more service APIs.\n2. Upon receiving the event subscription request from the subscribing entity, the ADAE server checks for the relevant authorization for the event subscription. If the authorization is successful, the ADAE server stores the subscription information.\n3.\tThe ADAE server sends a service API event subscription response indicating successful subscription\n4.\tUpon sending the subscription response, the ADAE server requests to collect API logs to be used to derive analytics and triggers API invocation log pull request towards the CAPIF core function. The API invocation log fetch request indicates the API (or list of APIs) for which logs are required. Based on the ADAE server deployment, this can be a Query service API log request which is performed via CAPIF_Auditing API as specified in 3GPP TS 23.222 [8].\n5.\tThe CCF authorizes the request and fetches the API logs from the storage unit. CCF then sends the requested information to the ADAE server via a query service API log response.\n6.\tThe ADAES may also request service API historical analytics /data from A-ADRF for the corresponding service APIs.\n7.\tBased on the request, the ADAES receives historical analytics/data for the service APIs from the A-ADRF.\n8.\tThe ADAE server authorizes and anonymizes the API logs (if not performed by CCF) and abstracts based on exposure level. The exposure level can be known based on pre-configuration by the OAM or based on the subscription and type of invoker. The ADAE server then derives analytics on the target service API(s) based on the logs received from the CCF. Such analytics are predictions/stats for the API status based on the analytics event.\n9.\tThe ADAE server sends the analytics as event notifications to all the subscribing entities that have subscribed for the event matching the criteria. If a notification reception information is available as part of the subscribing entity event subscription, then the notification reception information is used by the ADAE server to send event notifications to the subscribing entity.",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_8.6.2-1",
+        "figure_8.6.2",
+        "ts_23.222"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.436_8.6.3.1",
+      "section_id": "8.6.3.1",
+      "section_title": "General",
+      "content": "The following information flows are specified for service API analytics based on 8.6.2.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.436_8.6.3.2",
+      "section_id": "8.6.3.2",
+      "section_title": "Service API event subscription request",
+      "content": "Table 8.6.3.2-1 describes information elements for the service API event subscription request from the consumer (VAL server, API provider) to the ADAE server.\nTable 8.6.3.2-1: Service API event subscription request\nInformation element\nStatus\nDescription\nConsumer ID\nM\nThe information to determine the identity of the subscribing entity (consumer).\nService API information\nM\nThe service API name or type.\nAnalytics ID\nO\nThe identifier of the analytics event. This ID can be for example “service API analytics”.\nAnalytics type\nM\nThe type of analytics for the event, e.g. statistics or predictions.\nCriteria\nM\nThe event criteria include event type information relevant to the prediction or stats on the number of failure API invocations, API availability, frequency and occurrence of API version changes, API location changes for the target API, etc.\nTime Validity and horizon\nO\nTime validity of the subscription request and time horizon for the predictions.\nArea of interest\nO\nGeographical or topological area for which the subscription applies.\nNotification reception information\nO\nThe information of the subscribing entity for receiving the notifications for the event.\nReporting requirements\nO\nIt describes the requirements for analytics reporting. This requirement may include e.g. the type and frequency of reporting (periodic or event triggered), the reporting periodicity in case of periodic, and reporting thresholds.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_8.6.3.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.436_8.6.3.3",
+      "section_id": "8.6.3.3",
+      "section_title": "Service API event subscription response",
+      "content": "Table 8.6.3.3-1 describes information elements for the service API event subscription response to the consumer (VAL server, API provider) from the ADAE server.\nTable 8.6.3.3-1: Service API event subscription response\nInformation element\nStatus\nDescription\nResult\nM\nThe result of the analytics subscription request (positive or negative acknowledgement)",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_8.6.3.3-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.436_8.6.3.4",
+      "section_id": "8.6.3.4",
+      "section_title": "Historical service API logs request",
+      "content": "Table 8.6.3.4-1 describes information elements for the historical service API logs request from the ADAE server to the A-ADRF.\nTable 8.6.3.4-1: Historical service API logs request\nInformation element\nStatus\nDescription\nService API log requestor information\nM\nIdentity information of the originated application querying service API log request.\nADAES ID\nM\nIdentity information of the ADAES.\nService ID or UE ID\nM\nIdentity of the application service or UE for which the historical API invocations apply.\nTarget API(s) information\nM\nInformation on target API or list of target APIs (name or type).\n>Query information\nO\nList of query filters such as invoker's ID and IP address, service API name and version, input parameters, and invocation result.\n> API aggregation abstraction flag\nO\nWhat type of aggregation or abstraction/filtering needs to be applied.\nReporting configuration\nO\nThe configuration for the logs reporting. This requirement may include e.g. the frequency of reporting (periodic), the reporting periodicity in case of periodic, and reporting thresholds, whether data abstraction is needed or not..\nArea of validity\nO\nThe geographical area for which the request applies.\nTime validity\nO\nThe time validity for the request.\nExposure level requirement\nO\nThe level of exposure requirement (e.g. permissions on the logs like read/write/delete) for the logs to be exposed.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_8.6.3.4-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.436_8.6.3.5",
+      "section_id": "8.6.3.5",
+      "section_title": "Historical service API logs response",
+      "content": "Table 8.6.3.5-1 describes information elements for the historical service API logs response to the ADAE server from the A-ADRF.\nTable 8.6.3.5-1: Historical service API logs response\nInformation element\nStatus\nDescription\nResult\nM\nIdentity information of the originated application querying service API log request\nService ID or UE ID\nM\nIdentity of the application service or UE for which the API invocations apply\nTarget API (s) information\nM\nThe target service API name or type\n>Target API(s) logs\nM\nThe API logs based on the subscription event. This may include the number of failure API invocations, API availability, frequency and occurrence of API version changes, API location changes for the target API, API throttling events, number of API invocations for a given area and time etc\n>Reporting info\nO\nThe time and area for which the reporting applies",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_8.6.3.5-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.436_8.6.3.6",
+      "section_id": "8.6.3.6",
+      "section_title": "Service API analytics notification",
+      "content": "Table 8.6.3.5-1 describes information elements for the service API analytics notification to the subscriber/consumer from the ADAE server.\nTable 8.6.3.6-1: Service API analytics notification\nInformation element\nStatus\nDescription\nConsumer ID\nM\nThe information to determine the identity of the subscribing entity (consumer)\nService API information\nM\nThe service API name or type for which analytics apply\nAnalytics ID\nO\nThe identifier of the analytics event. This ID can be for example “service API analytics”.\nAnalytics Output\nM\nStats or predictions based on abstracted or anonymized API logs (for example number of failure API invocations, API availability, frequency and occurrence of API version changes, API location changes for the target API, API throttling events, number of API invocations for a given area and time, API load statistics for a given edge network, etc)\nConfidence level\nO\nFor predictive analytics, the achieved confidence level can be provided.\nArea of validity\nO\nGeographical or topological area for which the analytics apply.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_8.6.3.5-1",
+        "table_8.6.3.6-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.436_8.7.1",
+      "section_id": "8.7.1",
+      "section_title": "General",
+      "content": "This clause provides a procedure for network slice usage pattern analytics based on collected network slice performance and analytics, historical network slice status, and network performance. The analytics consumer can be either the VAL server or other analytics consumers such as SEAL NSCE server.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.436_8.7.2",
+      "section_id": "8.7.2",
+      "section_title": "Procedure on slice usage pattern analytics",
+      "content": "Figure 8.7.2-1 illustrates the procedure for network slice usage pattern analytics.\nPre-conditions:\n1.\tThe ADAES is registered and capable of interacting with 5GS to collected network slice data.\nFigure 8.7.2-1: Procedure for network slice usage pattern analytics\n1.\tThe analytics consumer of the ADAES sends a subscription request to ADAES and provides the target S-NSSAI, DNN, area of the interest, interest time period of the historical data (e.g., last year), the required confidence level, whether offline and/or online analytic are needed etc. Optionally, the slice requirement could also be provided.\n2.\tThe ADAES sends a subscription response to the analytics consumer.\n3.\tThe ADAES subscribes to the Data Sources with the respective Data Collection Event ID and the requirement for data collection related to the request slice(s). Such requests can be sent to OAM, NWDAF or the combination of them.\n4.\tBased on subscription, the ADAES may receive Network slice related Observed Service experience statistics, Load level information of a Network Slice from NWDAF (or via NEF) as defined in TS 23.288 [4].\n5.\tBased on subscription, the ADAES may receive Network slice / NSI related performance data from OAM as defined in TS 28.552 [7] and the alarms of network slice instances from OAM system via the procedures defined in clause 6.1, TS 28.545[12].\n6.\tIf the data is collected from multiple sources, the ADAES combines or correlates the data/analytics from steps 3-5 and stores the data into A-ADRF if needed.\n7.\tThe ADAES server sends the network slice data retrieval request to collect the historical data from A-ADRF.\n8.\tThe A-ADRF provides network slice historical data to the ADAES.\n9.\tThe ADAES analyzes the network slice usage pattern based on the network slice historical data and collected slice performance. When the stored historical data does not cover the required interest time period of the historical data, ADAES analyzes the slice usage pattern based on the existing stored historical data.\n10.\tThe ADAES sends the network slice usage pattern analytics notification to the analytics consumer.",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "ts_28.545_clause_6.1",
+        "figure_8.7.2-1",
+        "ts_23.288",
+        "ts_28.552",
+        "ts_28.545"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.436_8.7.3",
+      "section_id": "8.7.3",
+      "section_title": "Procedure on retrieving slice usage statistics data",
+      "content": "In the procedure shown in Figure 8.7.3-1, a mechanism is provided to allow for vertical/ASP using VAL server, NSCE server to initiate request for retrieving of statistics data and receive all the historical data for a specific time window.\nPre-conditions:\n1.\tEnterprise hosting the VAL server or NSCE server has SLA for analytics services with ADAES service provider.\n2. The VAL server or NSCE server has subscribed to slice usage patterns analytics from ADAES, and statistics are available.\n3.\tThe VAL server or NSCE server has identified there is specific statistics data needed in a specific time window.\nFigure 8.7.3-1: Retrieving of slice usage statistics data procedure\n1.\tThe VAL server/NSCE server sends to ADAES server a slice usage statistics data request containing information about specific time and needed statistics parameters.\n2.\tADAES server, based on the input in step 1, determines the needed analytics ID and data producer IDs, slice metrics for a specific slice area and specific period of time and uses the network slice data retrieval request to request the needed data from the A-ADRF.\n3.\tA-ADRF sends back the network slice data retrieval response with the required information from its database.\n4. The ADAES sends slice usage statistics data reply to VAL server/NSCE server.",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_8.7.3-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.436_8.7.4.1",
+      "section_id": "8.7.4.1",
+      "section_title": "General",
+      "content": "The following information flows are specified for network slice usage pattern analytics based on 8.7.2.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.436_8.7.4.2",
+      "section_id": "8.7.4.2",
+      "section_title": "Network slice usage pattern analytics subscription request",
+      "content": "Table 8.7.4.2-1 describes information elements for the network slice usage pattern analytics subscription request from the analytics consumer (VAL server / NSCE server) to the ADAE server.\nTable 8.7.4.2-1: Network slice usage pattern analytics subscription request\nInformation element\nStatus\nDescription\nConsumer ID\nM\nThe identifier of the analytics consumer\nAnalytics ID\nO\nThe identifier of the analytics event. This ID can be for example “Network slice usage pattern analytics”\nAnalytics type\nM\nThe type of analytics for the event, e.g. statistics or predictions.\nAnalytics filter information\nM\nFilter information for the analytics event\n>Slice identifier\nM\nThe identifier of the target slice or slice instance, i.e. S-NSSAI.\n>Slice requirement\nO\nThe requirement of network requirements or updated requirements when the network slice was created. The GST defined by GSMA (see clause 2.2 in [10]) and the performance requirements defined in clause 7 TS 22.261 [11] are all considered as input for the network slice related requirements.\n>DNN\nO\nThe target DNN for which the request applies\n>Target VAL UE ID(s)\nO\nThe VAL UE(s) for which the analytics subscription applies\n>Target VAL server ID\nO\nIf consumer is different from the VAL server, this identifier shows the target VAL server for which the analytics subscription applies (for procedure in 8.2.2)\n>Area of Interest\nO\nThe geographical or service area for which the subscription request applies\nPreferred confidence level\nO\nThe level of accuracy for the analytics service (in case of prediction.\nTime validity\nO\nThe time validity of the request\nInterest time period of the historical data\nO\nInterest time period of the historical data (e.g. last year),\nReporting requirements\nO\nIt describes the requirements for analytics reporting. This requirement may include e.g. the type and frequency of reporting (periodic or event triggered), the reporting periodicity in case of periodic, and reporting thresholds.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_2.2",
+        "ts_22.261_clause_7",
+        "table_8.7.4.2-1",
+        "ts_22.261"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.436_8.7.4.3",
+      "section_id": "8.7.4.3",
+      "section_title": "Network slice usage pattern analytics subscription response",
+      "content": "Table 8.7.4.3-1 describes information elements for the Network slice usage pattern analytics subscription response from the ADAE server to the analytics consumer (VAL/NSCE server).\nTable 8.7.4.3-1: Network slice usage pattern analytics subscription response\nInformation element\nStatus\nDescription\nSuccessful response (NOTE)\nO\nIndicates that the request was successful.\n>Analytics ID\nM\nThe identifier of the analytics event\nFailure response (NOTE)\nO\nIndicates that the request failed.\n> Cause\nO\nIndicates the cause of request failure\nNOTE:\tOne of these IEs shall be present in the message.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_8.7.4.3-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.436_8.7.4.4",
+      "section_id": "8.7.4.4",
+      "section_title": "Network slice usage pattern analytics notification",
+      "content": "Table 8.7.4.4-1 describes information elements for the network slice usage pattern analytics notification from the ADAE server to the analytics Consumer.\nTable 8.7.4.4-1: Network slice usage pattern analytics notification\nInformation element\nStatus\nDescription\nAnalytics ID\nM\nThe identifier of the analytics event.\n> Slice usage pattern analytics\nM\nAnalytics of network slice usage pattern (e.g., periodicity of slice usage peak).",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_8.7.4.4-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.436_8.7.4.5",
+      "section_id": "8.7.4.5",
+      "section_title": "Network slice data retrieval request",
+      "content": "Table 8.7.4.5-1 describes information elements for the Network slice data retrieval request from the ADAE server to the A-ADRF.\nTable 8.7.4.5-1: Network slice data retrieval request\nInformation element\nStatus\nDescription\nADAE server ID\nM\nThe identifier of the ADAE server\nData Collection Event ID\nM\nThe identifier of the data collection event\nNetwork slice identifier\nM\nThe identifier of the interested network slice\nVAL service ID\nO\nThe identifier of the VAL service which is associated with network slice\nData Collection requirements\nM\nThe requirements for data collection, including the format of data, frequency of reporting, level of abstraction of data, level of accuracy of data.\nAnalytics ID\nO\nThe identifier of the analytics event, for which the data collection is needed.\nList of Data Producer IDs\nO\nIn case when this request is performed via A-DCCF, then the list of Data Producer IDs is needed\nTarget VAL UE ID(s) and address\nO\nThe VAL UE(s) identifiers and IP address(es) for which the data collection subscription apply\nTarget VAL server ID\nO\nThis identifier shows the target VAL server for which the data collection subscription applies\nArea of Interest\nO\nThe geographical or service area for which the requirement request applies\nTime validity\nO\nThe time validity of the request",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_8.7.4.5-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.436_8.7.4.6",
+      "section_id": "8.7.4.6",
+      "section_title": "Network slice data retrieval response",
+      "content": "Table 8.7.4.6-1 describes information elements for the Network slice data retrieval response from the A-ADRF to the ADAE server.\nTable 8.7.4.6-1: Network slice data retrieval response\nInformation element\nStatus\nDescription\nData Collection Event ID\nM\nThe result of the data collection subscription request (positive or negative acknowledgement)\nNetwork slice identifier\nM\nThe identifier of the interested network slice\nTarget VAL UE ID and address\nO (NOTE)\nThe VAL UE(s) identifiers and IP address(es) for which the data apply\nTarget VAL server ID\nO (NOTE)\nThis identifier of the target VAL server for which the data applies\nAnalytics ID\nO\nThe identifier of the analytics event.\nData Type\nO\nThe type of reported data samples which can be UE data, network data, application data, edge data, or different granularities / abstraction of data (e.g. real time, non real time).\nData Output\nM\nThe reported data, which can be inform of measurements or offline/historical data on the requested parameter (e.g. RTT deviation) based on subscription\nNOTE:\tOne of these shall be present based on the data collection event",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_8.7.4.6-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.436_8.7.4.7",
+      "section_id": "8.7.4.7",
+      "section_title": "Slice usage statistics data request",
+      "content": "Table 8.7.4.7-1 describe information elements for the slice usage statistics data request between the VAL server, NSCE server and the ADAES server.\nTable 8.7.4.7-1: Slice usage statistics data request\nInformation element\nStatus\nDescription\nConsumer ID\nM\nThe identifier of the statistics consumer.\nSlice usage statistics data ID\nM\nIdentifier of the slice usage data statistics, for which the data collection is needed.\n> VAL service ID\nM\nIdentifier of the VAL service for which the request applies.\n> Network slice Identifier(s)\nM\nIdentifier(s) of the network slice for which the request applies.\n> Network slice related parameters\nO\nSlice parameters statistics needed.\n>DNN\nO\nThe target DNN for which the request applies.\n> UE(s) related Identifier(s)\nO\nIdentifier(s) of the related UE(s).\nArea of Interest\nO\nThe geographical or service area for which the request applies.\nStartTime\nM\nThe start time point of the requested statistics data.\nEndTime\nM\nThe end time point of the requested statistics data.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_8.7.4.7-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.436_8.7.4.8",
+      "section_id": "8.7.4.8",
+      "section_title": "Slice usage statistics data response",
+      "content": "Table 8.7.4.8-1- describe information elements for the slice usage statistics data response between the VAL server, NSCE server and the ADAES server.\nTable 8.7.4.8-1: Slice usage statistics data response\nInformation element\nStatus\nDescription\nResult\nM\nIndicates the success or failure of slice usage pattern statistics data request.\nSlice usage statistics data ID\nM\nIdentifier of the slice usage data statistics, for which the data collection is needed.\nNetwork slice identifier\nM\nThe identifier of the interested network slice.\n>Data output\nO\n(NOTE 1)\nThe reported data related to the network slice usage pattern statistics data request.\n>Cause\nO\n(NOTE 2)\nIndicates the cause of the slice usage pattern statistics data request failure.\nNOTE 1:\tShall be present if the result is success.\nNOTE 2:\tShall be present if the result is failure.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_8.7.4.8-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.436_8.8.1",
+      "section_id": "8.8.1",
+      "section_title": "General",
+      "content": "This clause describes two procedures (covering both subscribe-notify and request-response models in 8.8.2.1 and 8.8.2.2 respectively) for supporting edge load analytics, where the edge analytics are performed based on data collected from the EDN (EAS and/or EES) and A-ADRF.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.436_8.8.2.1",
+      "section_id": "8.8.2.1",
+      "section_title": "Subscribe-notify model",
+      "content": "Figure 8.8.2.1-1 illustrates the procedure for edge load analytics enablement solution.\nPre-conditions:\n1.\tADAES has discovered the APIs to access the edge services at EDN.\n2.\tADAES has subscribed to OAM and NWDAF for receiving management and DN performance analytics respectively.\n3.\tData producers (e.g. A-ADRF, EAS, EES) may be pre-configured with data producer profiles (as in Table 8.2.4.8-1) for the data they can provide. ADAES and ADAEC have discovered available data producers and their data producer profiles.\nFigure 8.8.2.1-1: ADAES support for edge analytics\n1.\tThe consumer of the ADAES analytics service sends an edge analytics subscription request to ADAES.\n2.\tThe ADAES sends an edge analytics subscription response as an ACK to the analytics consumer.\n3.\tThe ADAES maps the analytics event ID to a list of data collection event identifiers, and a list of data producer IDs. Such mapping may be preconfigured by OAM or may be determined by ADAES based on the analytics event ID and/or data producer profile (Table 8.2.4.8-1). Such Data Producers can be EASs onboarded to EDN, EESs, A-ADRF, as well as MEC Platform services.\n4.\tThe ADAES sends a subscription request to the Data Producers (EASs onboarded to EDN, EESs, A-ADRF, ADAEC) or the A-DCCF with the respective Data Collection Event ID and the requirement for data collection.\n5.\tThe Data Producers (e.g., EASs onboarded to EDN, EESs, A-ADRF, ADAEC) or the A-DCCF send a subscription response as a positive or negative acknowledgement to the ADAES.\n6.\tThe ADAES based on subscription receive offline stats/data on the edge DN load based on the analytics/data collection event ID from A-ADRF. Such stats can be about the load in terms of number of EAS or EES connections for a given area or time window, or the average edge computational resource usage or usage ratio based on the EDN total resource availability, EDN overload/high load indication events, probability of EAS/EES unavailability due to high load, etc.\n7.\tThe Data Producers at the edge start collecting data from the data generating entities. Such data can be measurements or analytics based on the data source/producer, as follows:\n-\tfrom OAM or EAS/ASP (for EAS load info): Per EAS/EES computational resource load, number of connections per EES/EAS\n-\tfrom N6 endpoint: N6 load\n-\tfrom 5GC / NWDAF: DN performance analytics\n-\tfrom OAM / MDAS: UPF load analytics (per DNAI)\n-\tfrom MEC platform services (e.g., RNIS): per cell radio conditions / load for all cells within EDN coverage\nNOTE 1: How the ADAES obtains the EAS load information from EAS/ASP is up to implementation.\nNOTE 2: Steps 6 and 7 are not necessarily sequential and can be performed in parallel or in different order.\n8.\tIf in step 4 ADAES sent a subscription request to ADAEC as Data Producer, data collection is initiated by ADAEC from UE data generating entities.\nNOTE 3:\tData collection at the UE reuses the SA4 mechanism based on EVEX study (TS 26.531 [3]).\n9.\tThe edge Data Producers (targets of the subscription requests in step 4) send the data to the ADAES (based on step 7 measurements or analytics) as a data notification message. Such data can be about the load in terms of number of EAS or EES connections for a given area or time window, or the average edge computational resource usage or usage ratio based on the EDN total resource availability, EDN overload/high load indication events, probability of EAS/EES unavailability due to high load, etc.\n10.\t ADAEC sends data (periodically or if a threshold is reached based on configuration) about the edge load as collected at the UE, e.g. in terms of number of AC or EEC connections for a given UE in a given time window, number of edge service sessions, etc.\n11.\tThe ADAES derives edge analytics on EDN / DNAI load or per EES/EAS load, based on the analytics ID and type of request. The analytics are derived based on the performance analytics received per DN or load analytics per DNAI/UPF; as well as considering measurements on the computational or RAN resource load or number of connections for the EES/EASs which are active at the EDN.\n12.\tThe ADAES sends the edge analytics to the consumer, based on the request and the derived analytics in step 9. Such analytics indicate a prediction of the EDN load considering inputs from both 5GS as well as from edge platform services. Such prediction can also be in form of a recommendation for triggering an EAS relocation to a different platform.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_8.2.4.8-1",
+        "figure_8.8.2.1-1",
+        "ts_26.531"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.436_8.8.2.2",
+      "section_id": "8.8.2.2",
+      "section_title": "Request-response model",
+      "content": "Figure 8.8.2.2-1 illustrates the procedure for the analytics consumer to request analytics data of the application server(s) from the ADAE server.\nFigure 8.8.2.2-1: ADAES support for edge analytics\n1.\tThe analytics consumer sends a request message to the ADAE server to receive analytics data for one or more application servers. The request message includes the identity of the analytics consumer, security credential(s) for authorization and verification, identity of all the application server for which analytics data is requested, type of analytics data, time duration since when analytics data is required.\n2.\tUpon receiving the request, the ADAE server authenticates and authorizes the analytics consumer. If the analytics consumer is authorized, the ADAE server may get the analytics by performing step 3 to 11 of clause 8.8.2.1. The ADAE server sends a response message including the statistical and predictive analytics of the edge performance/load for the edge platform or EES/EAS for the requested duration period (if the time duration is available).",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_8.8.2.1",
+        "figure_8.8.2.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.436_8.8.3.1",
+      "section_id": "8.8.3.1",
+      "section_title": "General",
+      "content": "The following information flows are specified for edge load analytics based on 8.8.2.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.436_8.8.3.2",
+      "section_id": "8.8.3.2",
+      "section_title": "Edge analytics subscription request",
+      "content": "Table 8.8.3.2-1 describes information elements for the edge analytics subscription request from the VAL server / Consumer to the ADAE server.\nTable 8.8.3.2-1: Edge analytics subscription request\nInformation element\nStatus\nDescription\nAnalytics Consumer ID\nM\nThe identifier of the analytics consumer (VAL server, EAS).\nAnalytics ID\nM\nThe identifier of the analytics event. This ID can be for example “edge performance analytics”.\nAnalytics type\nM\nThe type of analytics for the event, e.g. statistics or predictions.\nDestination EAS information\nO (NOTE)\nThis identifier shows the destination EAS information including destination EAS ID and destination EAS endpoint for which the analytics subscription applies.\nDestination EES information\nO (NOTE)\nThis identifier shows the destination EES information including destination EES ID and destination EES endpoint for which the analytics subscription applies.\nDNN/DNAI\nO (NOTE)\nDNN or DNAIs information for which the subscription applies.\nTarget data producer profile criteria\nO\nCharacteristics of the data producers to be used.\nPreferred confidence level\nO\nThe level of accuracy for the analytics service (in case of prediction).\nArea of Interest\nO\nThe geographical or service area for which the subscription request applies.\nTime validity\nO\nThe time validity of the subscription request.\nReporting requirements\nO\nIt describes the requirements for analytics reporting. This requirement may include e.g. the type and frequency of reporting (periodic or event triggered), the reporting periodicity in case of periodic, and reporting thresholds.\nNOTE:\tAt least one of these shall be present.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_8.8.3.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.436_8.8.3.3",
+      "section_id": "8.8.3.3",
+      "section_title": "Edge analytics subscription response",
+      "content": "Table 8.8.3.3-1 describes information elements for the edge analytics subscription response from the ADAE server to the consumer.\nTable 8.8.3.3-1: Edge analytics subscription response\nInformation element\nStatus\nDescription\nResult\nM\nThe result of the analytics subscription request (positive or negative acknowledgement).",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_8.8.3.3-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.436_8.8.3.4",
+      "section_id": "8.8.3.4",
+      "section_title": "Edge data collection subscription request",
+      "content": "Table 8.8.3.4-1 describes information elements for the edge data collection subscription request from the ADAE server to the Data Producer at the EDN or the A-DCCF, or from ADAE server to ADAE client.\nTable 8.8.3.4-1: Data collection subscription request\nInformation element\nStatus\nDescription\nADAE server ID\nM\nThe identifier of the ADAE server\nData Collection Event ID\nM\nThe identifier of the data collection event\nData Collection requirements\nM\nThe requirements for data collection, including the format of data, frequency of reporting, level of abstraction of data, level of accuracy of data.\nAnalytics ID\nO\nThe identifier of the analytics event, for which the data collection is needed.\nList of Data Producer IDs\nO\nIn case when this request is performed via A-DCCF, then the list of Data Producer IDs is needed.\nDestination EAS information\nO (NOTE)\nThis identifier shows the destination EAS information including destination EAS ID and destination EAS endpoint for which the analytics subscription applies.\nDestination EES information\nO (NOTE)\nThis identifier shows the destination EES information including destination EES ID and destination EES endpoint for which the analytics subscription applies.\nDNN/DNAI\nO (NOTE)\nDNN or DNAIs information for which the subscription applies.\nTarget data producer profile criteria\nO\nCharacteristics of the data producers to be used.\nArea of Interest\nO\nThe geographical or service area for which the requirement request applies.\nTime validity\nO\nThe time validity of the request.\nNOTE:\tAt least one of these shall be present.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_8.8.3.4-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.436_8.8.3.5",
+      "section_id": "8.8.3.5",
+      "section_title": "Edge data collection subscription response",
+      "content": "Table 8.8.3.5-1 describes information elements for the Data collection subscription response from the edge Data Producer at the EDN or the A-DCCF to the ADAE server, or from ADAE client to ADAE server.\nTable 8.8.3.5-1: Data collection subscription response\nInformation element\nStatus\nDescription\nResult\nM\nThe result of the edge data collection subscription request (positive or negative acknowledgement).",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_8.8.3.5-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.436_8.8.3.6",
+      "section_id": "8.8.3.6",
+      "section_title": "Data Notification",
+      "content": "Table 8.8.3.6-1 describes information elements for the Data Notification from the Data Producer to the ADAE server.\nTable 8.8.3.6-1: Data notification\nInformation element\nStatus\nDescription\nData Collection Event ID\nM\nThe identifier of the data collection event.\nData Producer ID\nM\nThe identity of Data Producer.\nDestination EAS information\nO (NOTE)\nThis identifier shows the destination EAS information including destination EAS ID and destination EAS endpoint for which the analytics subscription applies.\nDestination EES information\nO (NOTE)\nThis identifier shows the destination EES information including destination EES ID and destination EES endpoint for which the analytics subscription applies.\nDNN/DNAI\nO (NOTE)\nDNN or DNAIs information for which the subscription applies.\nAnalytics ID\nO\nThe identifier of the analytics event.\nData Type\nM\nThe type of reported data samples which can be network data, application data, edge data, or different granularities / abstraction of data (e.g. real time, non-real time). This also indicates whether data are offline (from A-ADRF or not).\nData Output\nM\nThe reported data, which can be inform of measurements or offline/historical data on the requested parameter based on subscription. Such data can be per EDN or per DNAI or per EAS/EES load statistics and edge computational resource utilization stats for a given time and area of interest.\nNOTE:\tAt least one of these shall be present based on the data collection event.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_8.8.3.6-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.436_8.8.3.7",
+      "section_id": "8.8.3.7",
+      "section_title": "Edge analytics Notification",
+      "content": "Table 8.8.3.7-1 describes information elements for the Edge analytics Notification from the ADAE server to the VAL server / Consumer.\nTable 8.8.3.7-1: Edge analytics notification\nInformation element\nStatus\nDescription\nAnalytics ID\nM\nThe identifier of the analytics event.\nAnalytics Output\nM\nThe predictive or statistical parameter, which can be stats or prediction related to the edge performance/load for the edge platform or EES/EAS for a given area/time and based on the event type.\nConfidence level\nO\nFor predictive analytics, the achieved confidence level can be provided.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_8.8.3.7-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.436_8.8.3.8",
+      "section_id": "8.8.3.8",
+      "section_title": "Get analytics data request",
+      "content": "Table 8.8.3.8-1 describes information elements for the Get analytics data request from the analytics consumer to the ADAE server.\nTable 8.8.3.8-1: Get analytics data request\nInformation element\nStatus\nDescription\nAnalytics Consumer ID\nM\nThe identifier of the analytics consumer (VAL server, EAS, EES).\nAnalytics ID\nM\nThe identifier of the analytics event. This ID can be for example “edge performance analytics”.\nAnalytics type\nM\nThe type of analytics, e.g. statistics or predictions.\nDestination EASs information\nO (NOTE)\nThis identifier provides the list of destination EASs information including destination EAS ID and destination EAS endpoint for which the analytics request applies.\nDestination EESs information\nO (NOTE)\nThis identifier provides the list of destination EESs information including destination EES ID and destination EES endpoint for which the analytics request applies.\nPreferred confidence level\nO\nThe level of accuracy for the analytics service (in case of prediction).\nTime duration\nO\nTime duration since when analytics data is required.\nNOTE:\tAt least one of these shall be present",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_8.8.3.8-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.436_8.8.3.9",
+      "section_id": "8.8.3.9",
+      "section_title": "Get analytics data response",
+      "content": "Table 8.8.3.9-1 describes information elements for the edge analytics subscription response from the ADAE server to the consumer.\nTable 8.8.3.9-1: Edge analytics subscription response\nInformation element\nStatus\nDescription\nResult\nM\nThe result of the analytics data request (positive or negative acknowledgement).\nAnalytics ID\nO\nThe identifier of the analytics event.\nAnalytics Output\nO\nThe predictive or statistical parameter, which can be stats or prediction related to the edge performance/load for the edge platform or EES/EAS for a given area/time and based on the event type.\nConfidence level\nO\nFor predictive analytics, the achieved confidence level can be provided.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_8.8.3.9-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.436_8.9.1",
+      "section_id": "8.9.1",
+      "section_title": "General",
+      "content": "When Application server (like VAL server) is not available to provide analytics data due to overload or any other reasons or the application server is not providing the required quality of service experience at the UE side, the ADAE server may need to rely on alternate information sources like the application clients (like VAL clients) that provide the visibility on application service status. ADAE server can use this information from the clients alone, for the predictions and share with the consumer of the analytics. This clause provides a mechanism for the ADAE client to send service experience report to the ADAE server. ADAE server upon receiving the service experience information from the UE side entities can use it for predictions of application performance analytics.\nNOTE:\tIn this solution, if DDCC client is available in the UE, ADAE server uses data collection and reporting mechanisms as defined in 3GPP TS 26.531 [3], where the ADAE client acts as a UE application and ADAE server acts as an AF from Application service provider. The indirect reporting procedure (between ADAE client and ADAE server over ADAE-UU interface) may be used when a Direct Data Collection Client is not available in the UE. In this release, such indirect reporting procedure is implementation specific.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_26.531"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.436_8.9.2.1",
+      "section_id": "8.9.2.1",
+      "section_title": "Push service experience information",
+      "content": "The ADAE client determines the service experience information based on information received from the VAL client. The service experience information includes application specific performance measurements like end-to-end response time, connection bandwidth, request rate, server availability time, etc. On request VAL client or any other trigger conditions, the ADAE client sends the service experience report about a VAL server to the ADAE server using the mechanism defined in 3GPP TS 26.531 [3]. The information elements as defined in clause 8.9.3.1 are used by ADAE client to send the request and clause 8.9.3.2 are used by ADAE server to send the response.\nFor direct reporting, if data reporting session is not available, the ADAE client creates data reporting session as specified in clause 5.4 of 3GPP TS 26.531 [3]. Once data reporting session is available, the ADAE client (acting as a UE client) sends reports to ADAE server using direct reporting method as specified in clause 5.5 of 3GPP TS 26.531 [3].\nThe ADAE server may take further actions based on the analysis of the report as shared by the ADAE client. A service experience information from certain UEs, can trigger the ADAE server to fetch further service experience information other UEs. Use the service experience information report from other UEs, to determine/predict analytics.\n-\tIf most of the UE side entities report a similar service experience, then it could be the application server problem across globally.\n-\tIf only some UEs report a bad service experience, the problem could be localized among a group of UEs.\n-\tIf the bad service experience from only a UE, the problem is localized to the UE.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_8.9.3.1",
+        "clause_8.9.3.2",
+        "ts_26.531_clause_5.4",
+        "ts_26.531_clause_5.5",
+        "ts_26.531"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.436_8.9.2.2",
+      "section_id": "8.9.2.2",
+      "section_title": "Pull service experience information",
+      "content": "The procedure can be initiated by the ADAE server upon receiving a service experience from an ADAE client, to fetch service experience information other ADAE clients or upon receiving VAL server performance analytics request from application service provider (application server) or any other event that requires the ADAE server to determine the service experience data.\nFigure 8.9.2.2-1: Pull service experience information from UE\n1.\tThe ADAE server sends Pull service experience request to the ADAE client. The request contains identity of the specific VAL server and VAL service ID, for which the service experience report is required, as mentioned in Table 8.9.3.3-1.\n2.\tUpon receiving the Pull service experience request from the ADAE server, the ADAE client may take user consent to send the report if the user consent is not available already.\n3.\tThe ADAE client sends the Pull service experience response to the ADAE server. The ADAE client instructs the Direct Data Collection Client to prioritise immediate delivery of a UE data report to the Data Collection AF as specified in clause 5.5 of 3GPP TS 26.531 [3]. The service experience contains parameters as specified in Table 8.9.3.4-1.\n4.\tThe ADAE server uses the service experience report for derivation of VAL server performance analytics.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_26.531_clause_5.5",
+        "table_8.9.3.3-1",
+        "table_8.9.3.4-1",
+        "figure_8.9.2.2-1",
+        "ts_26.531"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.436_8.9.2.3",
+      "section_id": "8.9.2.3",
+      "section_title": "Service experience information based on triggers",
+      "content": "The ADAE server configures triggers to the ADAE client to send the service experience report using the mechanism defined in clause 5.4 of 3GPP TS 26.531 [3].\nThe procedure can be initiated by the ADAE server upon receiving VAL server performance analytics request from application service provider (application server). The information elements as defined in clause 8.9.3.5 are used by ADAE server to send the request and clause 8.9.3.6 are used by ADAE client to send the response.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_26.531_clause_5.4",
+        "clause_8.9.3.5",
+        "clause_8.9.3.6",
+        "ts_26.531"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.436_8.9.3.1",
+      "section_id": "8.9.3.1",
+      "section_title": "Push service experience information request",
+      "content": "Table 8.9.3.1-1 describes information elements for the Push service experience information request from the ADAE client to the ADAE server.\nTable 8.9.3.1-1: Push service experience information request\nInformation element\nStatus\nDescription\nVAL UE ID\nM\nIdentity of the VAL UE.\nVAL service ID\nO\nIdentity of the VAL service.\nVAL Server Id\nM\nIdentify the VAL server for which the service experience report is sent.\nTimestamp\nO\nTime stamp of the collected report.\nVAL service experience report\nO\nInformation related to VAL service experience. It may include end-to-end response time, connection bandwidth, request rate, VAL server availability, etc.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_8.9.3.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.436_8.9.3.2",
+      "section_id": "8.9.3.2",
+      "section_title": "Push service experience information response",
+      "content": "Table 8.9.3.2-1 describes information elements for the Push service experience information response from the ADAE server to the ADAE client.\nTable 8.9.3.2-1: Push service experience information response\nInformation element\nStatus\nDescription\nResult\nM\nIndicates success or failure of the request.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_8.9.3.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.436_8.9.3.3",
+      "section_id": "8.9.3.3",
+      "section_title": "Pull service experience information request",
+      "content": "Table 8.9.3.3-1 describes information elements for the Pull service experience information request from the ADAE server to the ADAE client.\nTable 8.9.3.3-1: Pull service experience information request\nInformation element\nStatus\nDescription\nVAL server Identity\nM\nIdentity of the VAL server for which the service experience information is requested.\nVAL service ID\nO\nIdentity of the VAL service.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_8.9.3.3-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.436_8.9.3.4",
+      "section_id": "8.9.3.4",
+      "section_title": "Pull service experience information response",
+      "content": "Table 8.9.3.4-1 describes information elements for the Pull service experience information response from the ADAE client to the ADAE server.\nTable 8.9.3.4-1: Pull service experience information request response\nInformation element\nStatus\nDescription\nResult\nM\nIndicates whether the report is available or not\nVAL UE ID\nM\nIdentity of the VAL UE.\nVAL service ID (NOTE)\nO\nIdentity of the VAL service.\nVAL Server Id\nM\nIdentify the VAL server for which the service experience report is sent.\nTimestamp (NOTE)\nO\nTime stamp of the collected report.\nVAL service experience report (NOTE)\nO\nInformation related to VAL service experience. It may include end-to-end response time, connection bandwidth, request rate, VAL server availability, etc.\nNOTE:\tThese IEs are included only if the result is success.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_8.9.3.4-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.436_8.9.3.5",
+      "section_id": "8.9.3.5",
+      "section_title": "Configure service experience report trigger request",
+      "content": "Table 8.9.3.5-1 describes information elements for the Configure service experience report trigger request from the ADAE server to the ADAE client.\nTable 8.9.3.5-1: Configure service experience report trigger request\nInformation element\nStatus\nDescription\nVAL Server specific criteria\nM\nIdentify the list of VAL servers for which the service experience report is requested\nList of VAL server specific criteria.\n> VAL Server Id\nM\nIdentity of the VAL server\n> Triggering Criteria\nM\nInformation about the triggers on which the service experience is to be reported for the VAL server\nCommon Triggering criteria\nO\nInformation about the triggers (applicable to all VAL servers) on which the service experience is fetched.\nService experience measurement to monitor\nO\nInformation about the service experience measurements which needs to be fetched and included in the report. If not present, by default end-to-end response time is measured.\nNotification Target Address\nO\nThe Notification target address (e.g. URL) where the notifications destined for the ASM Server should be sent to.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_8.9.3.5-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.436_8.9.3.6",
+      "section_id": "8.9.3.6",
+      "section_title": "Configure service experience report trigger response",
+      "content": "Table 8.9.3.6-1 describes information elements for the Configure service experience report trigger response from the ADAE server to the ADAE client.\nTable 8.9.3.6-1: Configure service experience report trigger response\nInformation element\nStatus\nDescription\nResult\nM\nIndicates success or failure of the request.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_8.9.3.6-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.436_9.1",
+      "section_id": "9.1",
+      "section_title": "General",
+      "content": "The following ADAE capabilities are offered as APIs:\n-\tADAE server APIs;\n-\tA-ADRF APIs;\nThe following SEAL service APIs are specified in 3GPP TS 23.434 [2] (and TS 23.435 [6] for NSCE):\n-\tGroup management server APIs;\n-\tLocation management server APIs;\n-\tConfiguration management server APIs;\n-\tIdentity management server APIs;\n-\tKey management server APIs; and\n- \tNetwork slice capability enablement APIs.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_23.434",
+        "ts_23.435"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.436_9.2.1",
+      "section_id": "9.2.1",
+      "section_title": "General",
+      "content": "This clause provides the APIs provided by ADAES.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.436_9.2.2",
+      "section_id": "9.2.2",
+      "section_title": "ADAE server APIs",
+      "content": "Table 9.2.2-1 illustrates the ADAE server APIs.\nTable 9.2.2-1: List of ADAE server APIs\nAPI Name\nAPI Operations\nKnown Consumer(s)\nCommunication Type\nSS_ADAE_VAL_performance_analytics\nSubscribe\nVAL server\nSubscribe/Notify\nNotify\nSS_ADAE_slice_performance_analytics\nSubscribe\nVAL server\nSubscribe/Notify\nNotify\nSS_ADAE_UE-to-UE_performance_analytics\nSubscribe\nVAL server\nSubscribe/Notify\nNotify\nSS_ADAE_location_accuracy_analytics\nSubscribe\nVAL server\nSubscribe/Notify\nNotify\nSS_ADAE_service_API_analytics\nSubscribe\nVAL server / Subscriber/ API invoker\nSubscribe/Notify\nNotify\nSS_ADAE_slice_usage_pattern_analytics\nSubscribe\nVAL server / SEAL server\nSubscribe/Notify\nNotify\nSS_ADAE_edge_analytics\nSubscribe\nVAL server / EAS / EES\nSubscribe/Notify\nNotify\nGet\nVAL server / EAS / EES\nRequest / Response\nSS_ADAES_slice_usage_stats\nGet\nVAL server\nRequest / Response",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_9.2.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.436_9.2.3.1",
+      "section_id": "9.2.3.1",
+      "section_title": "General",
+      "content": "API description: This API enables the VAL server to communicate with the ADAE server for subscribing for VAL performance analytics and for getting notified on the result.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.436_9.2.3.2",
+      "section_id": "9.2.3.2",
+      "section_title": "Subscribe",
+      "content": "API operation name: VAL_performance_analytics_subscribe\nDescription: The consumer subscribes for VAL performance analytics.\nInputs: See clause 8.2.4.2.\nOutputs: See clause 8.2.4.3.\nSee clause 8.2.2 and 8.2.3 for details of usage of this operation.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_8.2.4.2",
+        "clause_8.2.4.3",
+        "clause_8.2.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.436_9.2.3.3",
+      "section_id": "9.2.3.3",
+      "section_title": "Notify",
+      "content": "API operation name: VAL_performance_analytics_notify\nDescription: The consumer is notified by ADAES on the VAL performance analytics.\nInputs: -\nOutputs: See clause 8.2.4.7.\nSee clause 8.2.2 and 8.2.3 for details of usage of this operation.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_8.2.4.7",
+        "clause_8.2.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.436_9.2.4.1",
+      "section_id": "9.2.4.1",
+      "section_title": "General",
+      "content": "API description: This API enables the VAL server to communicate with the ADAE server for subscribing for slice specific application performance analytics and for getting notified when analytics are derived.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.436_9.2.4.2",
+      "section_id": "9.2.4.2",
+      "section_title": "Subscribe",
+      "content": "API operation name: slice_performance_analytics_subscribe\nDescription: The consumer subscribes for slice specific performance analytics.\nInputs: See clause 8.3.3.2.\nOutputs: See clause 8.3.3.3.\nSee clause 8.3.2 for details of usage of this operation.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_8.3.3.2",
+        "clause_8.3.3.3",
+        "clause_8.3.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.436_9.2.4.3",
+      "section_id": "9.2.4.3",
+      "section_title": "Notify",
+      "content": "API operation name: slice_performance_analytics_notify\nDescription: The consumer is notified by ADAES on the slice specific performance analytics.\nInputs: -\nOutputs: See clause 8.3.3.4.\nSee clause 8.3.2 for details of usage of this operation.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_8.3.3.4",
+        "clause_8.3.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.436_9.2.5.1",
+      "section_id": "9.2.5.1",
+      "section_title": "General",
+      "content": "API description: This API enables the VAL server to communicate with the ADAE server for subscribing for UE-to-UE session performance analytics and for getting notified when analytics are derived.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.436_9.2.5.2",
+      "section_id": "9.2.5.2",
+      "section_title": "Subscribe",
+      "content": "API operation name: UE-to-UE performance_analytics_subscribe\nDescription: The consumer subscribes for UE-to-UE performance analytics.\nInputs: See clause 8.4.3.2.\nOutputs: See clause 8.4.3.3.\nSee clause 8.4.2 for details of usage of this operation.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_8.4.3.2",
+        "clause_8.4.3.3",
+        "clause_8.4.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.436_9.2.5.3",
+      "section_id": "9.2.5.3",
+      "section_title": "Notify",
+      "content": "API operation name: UE-to-UE performance_analytics_notify\nDescription: The consumer is notified by ADAES on the slice specific performance analytics.\nInputs: -\nOutputs: See clause 8.4.3.6.\nSee clause 8.4.2 for details of usage of this operation.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_8.4.3.6",
+        "clause_8.4.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.436_9.2.6.1",
+      "section_id": "9.2.6.1",
+      "section_title": "General",
+      "content": "API description: This API enables the VAL server to communicate with the ADAE server for subscribing for location accuracy analytics and for getting notified when analytics are derived.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.436_9.2.6.2",
+      "section_id": "9.2.6.2",
+      "section_title": "Subscribe",
+      "content": "API operation name: Location_accuracy_analytics_subscribe\nDescription: The consumer subscribes for location accuracy analytics.\nInputs: See clause 8.5.3.2.\nOutputs: See clause 8.5.3.3.\nSee clause 8.5.2 for details of usage of this operation.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_8.5.3.2",
+        "clause_8.5.3.3",
+        "clause_8.5.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.436_9.2.6.3",
+      "section_id": "9.2.6.3",
+      "section_title": "Notify",
+      "content": "API operation name: Location_accuracy_analytics_notify\nDescription: The consumer is notified by ADAES on the location accuracy analytics.\nInputs: -\nOutputs: See clause 8.5.3.6.\nSee clause 8.5.2 for details of usage of this operation.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_8.5.3.6",
+        "clause_8.5.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.436_9.2.7.1",
+      "section_id": "9.2.7.1",
+      "section_title": "General",
+      "content": "API description: This API enables the VAL server to communicate with the ADAE server for subscribing for service API analytics and for getting notified when analytics are derived.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.436_9.2.7.2",
+      "section_id": "9.2.7.2",
+      "section_title": "Subscribe",
+      "content": "API operation name: Service_API_analytics_subscribe\nDescription: The consumer subscribes for service API analytics.\nInputs: See clause 8.6.3.2.\nOutputs: See clause 8.6.3.3.\nSee clause 8.6.2 for details of usage of this operation.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_8.6.3.2",
+        "clause_8.6.3.3",
+        "clause_8.6.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.436_9.2.6.3",
+      "section_id": "9.2.6.3",
+      "section_title": "Notify",
+      "content": "API operation name: Service_API_analytics_notify\nDescription: The consumer is notified by ADAES on the location accuracy analytics.\nInputs: -\nOutputs: See clause 8.6.3.6.\nSee clause 8.6.2 for details of usage of this operation.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_8.6.3.6",
+        "clause_8.6.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.436_9.2.8.1",
+      "section_id": "9.2.8.1",
+      "section_title": "General",
+      "content": "API description: This API enables the VAL server to communicate with the ADAE server for subscribing for slice usage pattern analytics and for getting notified when analytics are derived.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.436_9.2.8.2",
+      "section_id": "9.2.8.2",
+      "section_title": "Subscribe",
+      "content": "API operation name: slice_usage_pattern_analytics_subscribe\nDescription: The consumer subscribes for slice usage pattern analytics.\nInputs: See clause 8.7.3.2.\nOutputs: See clause 8.7.3.3.\nSee clause 8.7.2 for details of usage of this operation.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_8.7.3.2",
+        "clause_8.7.3.3",
+        "clause_8.7.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.436_9.2.8.3",
+      "section_id": "9.2.8.3",
+      "section_title": "Notify",
+      "content": "API operation name: slice_usage_pattern_analytics_notify\nDescription: The consumer is notified by ADAES on the slice usage pattern analytics.\nInputs: -\nOutputs: See clause 8.7.3.4.\nSee clause 8.7.2 for details of usage of this operation.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_8.7.3.4",
+        "clause_8.7.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.436_9.2.9.1",
+      "section_id": "9.2.9.1",
+      "section_title": "General",
+      "content": "API description: This API enables the VAL server to communicate with the ADAE server for subscribing for edge load analytics and for getting notified when analytics are derived.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.436_9.2.9.2",
+      "section_id": "9.2.9.2",
+      "section_title": "Subscribe",
+      "content": "API operation name: edge_analytics_subscribe\nDescription: The consumer subscribes for edge load analytics.\nInputs: See clause 8.8.3.2.\nOutputs: See clause 8.8.3.3.\nSee clause 8.8.2 for details of usage of this operation.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_8.8.3.2",
+        "clause_8.8.3.3",
+        "clause_8.8.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.436_9.2.9.3",
+      "section_id": "9.2.9.3",
+      "section_title": "Notify",
+      "content": "API operation name: edge_analytics_notify\nDescription: The consumer is notified by ADAES on the edge load analytics.\nInputs: -\nOutputs: See clause 8.8.3.7.\nSee clause 8.8.2.1 for details of usage of this operation.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_8.8.3.7",
+        "clause_8.8.2.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.436_9.2.9.4",
+      "section_id": "9.2.9.4",
+      "section_title": "Get",
+      "content": "API operation name: edge_analytics_get\nDescription: The consumer requests edge analytics data.\nInputs: See clause 8.8.3.8.\nOutputs: See clause 8.8.3.9.\nSee clause 8.8.2.2 for details of usage of this operation.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_8.8.3.8",
+        "clause_8.8.3.9",
+        "clause_8.8.2.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.436_9.2.10.1",
+      "section_id": "9.2.10.1",
+      "section_title": "General",
+      "content": "API description: This API enables the Consumer to communicate with the ADAE server for requesting and receiving slice usage statistical data.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.436_9.2.10.2",
+      "section_id": "9.2.10.2",
+      "section_title": "Get",
+      "content": "API operation name: slice_usage_stats_get\nDescription: The consumer requests and receives slice usage statistics from ADAE server.\nInputs: See clause 8.7.4.7.\nOutputs: See clause 8.7.4.8.\nSee clause 8.7.3 for details of usage of this operation.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_8.7.4.7",
+        "clause_8.7.4.8",
+        "clause_8.7.3"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.436_9.3.1",
+      "section_id": "9.3.1",
+      "section_title": "General",
+      "content": "This clause provides the APIs provided by A-ADRF.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.436_9.3.2",
+      "section_id": "9.3.2",
+      "section_title": "A-ADRF APIs",
+      "content": "Table 9.3.2-1 illustrates the A-ADRF APIs.\nTable 9.3.2-1: List of A-ADRF APIs\nAPI Name\nAPI Operations\nKnown Consumer(s)\nCommunication Type\nSS_AADRF_Data_Collection\nSubscribe\nADAES\nSubscribe / Notify\nNotify\nSS_ AADRF_Historical_ServiceAPI_Logs\nGet\nADAES\nRequest / Response\nSS_AADRF_NetworkSlice_Data\nGet\nADAES\nRequest / Response\nSS_AADRF_Location_Accuracy_Data\nGet\nADAES\nRequest / Response\nSS_AADRF_EdgeData_Collection\nSubscribe\nADAES\nSubscribe / Notify\nNotify\nADAES",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_9.3.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.436_9.3.3.1",
+      "section_id": "9.3.3.1",
+      "section_title": "General",
+      "content": "API description: This API enables the ADAE server to communicate with the A-ADRF for subscribing for offline data collection and for getting notified about the offline data/statistics.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.436_9.3.3.2",
+      "section_id": "9.3.3.2",
+      "section_title": "Subscribe",
+      "content": "API operation name: Data_Collection_Subscribe\nDescription: The consumer subscribes for offline data from A-ADRF.\nInputs: See clause 8.2.4.4.\nOutputs: See clause 8.2.4.5.\nSee clause 8.2.2 for details of usage of this operation.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_8.2.4.4",
+        "clause_8.2.4.5",
+        "clause_8.2.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.436_9.3.3.3",
+      "section_id": "9.3.3.3",
+      "section_title": "Notify",
+      "content": "API operation name: Data_Collection_Notify\nDescription: The consumer is receiving the offline data from A-ADRF as notification, based on subscription.\nInputs: -\nOutputs: See clause 8.2.4.6.\nSee clause 8.2.2 for details of usage of this operation.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_8.2.4.6",
+        "clause_8.2.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.436_9.3.4.1",
+      "section_id": "9.3.4.1",
+      "section_title": "General",
+      "content": "API description: This API enables the ADAE server to communicate with the A-ADRF for requesting service API logs and receiving the offline data/statistics on API logs.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.436_9.3.4.2",
+      "section_id": "9.3.4.2",
+      "section_title": "Get",
+      "content": "API operation name: Historical_ServiceAPI_Logs_Get\nDescription: The consumer requests API logs from A-ADRF.\nInputs: See clause 8.6.3.4.\nOutputs: See clause 8.6.3.5.\nSee clause 8.6.2 for details of usage of this operation.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_8.6.3.4",
+        "clause_8.6.3.5",
+        "clause_8.6.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.436_9.3.5.1",
+      "section_id": "9.3.5.1",
+      "section_title": "General",
+      "content": "API description: This API enables the ADAE server to communicate with the A-ADRF for requesting and receiving network slice data.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.436_9.3.5.2",
+      "section_id": "9.3.5.2",
+      "section_title": "Get",
+      "content": "API operation name: NetworkSlice_Data_Get\nDescription: The consumer requests network slice data from A-ADRF.\nInputs: See clause 8.7.3.5.\nOutputs: See clause 8.7.3.6.\nSee clause 8.7.2 for details of usage of this operation.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_8.7.3.5",
+        "clause_8.7.3.6",
+        "clause_8.7.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.436_9.3.6.1",
+      "section_id": "9.3.6.1",
+      "section_title": "General",
+      "content": "API description: This API enables the ADAE server to communicate with the A-ADRF for subscribing for edge data collection and for getting notified about the offline data/statistics for the EDN and/or EAS/EES.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.436_9.3.6.2",
+      "section_id": "9.3.6.2",
+      "section_title": "Subscribe",
+      "content": "API operation name: EdgeData_Collection_Subscribe\nDescription: The consumer subscribes for offline edge data from A-ADRF.\nInputs: See clause 8.8.3.4.\nOutputs: See clause 8.8.3.5.\nSee clause 8.8.2 for details of usage of this operation.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_8.8.3.4",
+        "clause_8.8.3.5",
+        "clause_8.8.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.436_9.3.6.3",
+      "section_id": "9.3.6.3",
+      "section_title": "Notify",
+      "content": "API operation name: EdgeData_Collection_Notify\nDescription: The consumer is receiving the offline edge data from A-ADRF as notification, based on subscription.\nInputs: -\nOutputs: See clause 8.8.3.6.\nSee clause 8.8.2 for details of usage of this operation.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_8.8.3.6",
+        "clause_8.8.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.436_9.3.7.1",
+      "section_id": "9.3.7.1",
+      "section_title": "General",
+      "content": "API description: This API enables the ADAE server to communicate with the A-ADRF to request location analytics/data for VAL UEs or VAL service area.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.436_9.3.7.2",
+      "section_id": "9.3.7.2",
+      "section_title": "Get",
+      "content": "API operation name: Location_Accuracy_Data_Get\nDescription: The consumer is receiving offline location analytics/data from A-ADRF.\nInputs: See clause 8.5.3.4.\nOutputs: See clause 8.5.3.5.\nSee clause 8.5.2 for details of usage of this operation.\nAnnex A (informative):Deployment scenarios\nA.1\tGeneral\nThis clause provides the different deployment models for ADAE services. There could be three deployment options:\n-\tADAES can be deployed at a centralized cloud platform, and collects data from multiple EDNs\n-\tADAES can be deployed at the edge platform\n-\tCoordinated ADAES deployment, where multiple ADAE services are deployed in edge or central clouds. Such deployment allows for local-global analytics for system wide optimization\nA.2\tDeployment model #1: Cloud-deployed ADAES\nIn this deployment, as shown in Figure A.2-1, the ADAES is centrally located and can provide analytics services to different consumers including, edge servers, VAL servers, as well as to other SEAL servers (e.g. NSCE).\nThe statistics/predictions that the ADAES provides are applicable to the ADAES service area, which can be provided for the entire PLMN.\nFigure A.2-1: Cloud deployed ADAES\nA.3\tDeployment model #2 Edge-deployed ADAES\nIn this deployment, as shown in Figure A.3-1, the ADAES is located at the EDN and provides analytics services to the EAS and EES at the edge platform. ADAES can be deployed by the ECSP or the MNO to provide analytics for the application or edge parameters.\nThe statistics/predictions that the edge deployed ADAES are applicable to the ADAES service areas (as shown in the example in Fig A.2-2), which are equivalent to the EES/EAS service areas. Such analytics can be about the edge load or the EAS performance and can be provided to consumers within EDN.\nIn this deployment the interaction between edge deployed ADAES is possible for exchanging edge/application analytics for application mobility scenarios or for cases when ADAES #1 and #2 service areas have overlapping coverage.\nFigure A.3-1: Edge deployed ADAES\nA.4\tDeployment model #3: Coordinated ADAES deployment\nIn this deployment, multiple ADAESs can be located at different EDNs/DNs and can be deployed by the same ADAE provider.  Such coordinated deployments allow the local – global analytics derivation (which may be needed for improving the analytics confidence level). The centrally deployed ADAES can also act as ADAE analytics aggregator entity and configures the edge deployed ADAES to derive analytics on different sub-areas.\nOne example is the use of analytics for the EDN#1 or EDN#2 load which will help predicting the VAL server performance at a centrally located ADAES. Such deployment is also applicable for ML-based analytics methods, like supervised learning, where the centrally located ADAES acts as ML model training entity, and the edge located ADAESs can act as ML model inference entities (using edge data to improve the prediction accuracy).\nThe statistics/predictions that the edge deployed ADAES correspond to the ADAES service areas (as shown in the example in Fig A.4-1), which is equivalent to the EES/EAS service areas. The central ADAE server covers all PLMN area and is used to coordinate or jointly perform analytics with the distributed ADAES. Such analytics services can be provided to consumers at the central DN, like the VAL servers or SEAL services or even at the PLMN side (e.g. NWDAF consuming service experience analytics).\nFigure A.4-1: Coordinated deployment of ADAES\nAnnex B (informative):Change history\nChange history\nDate\nMeeting\nTDoc\nCR\nRev\nCat\nSubject/Comment\nNew version\n2022-10\nSA6#51-e\nTS skeleton\n0.0.0\n2022-10\nSA6#51-e\nImplementation of the following pCRs approved by SA6:\nS6-222940, S6-222941, S6-222942, S6-222943\n0.1.0\n2022-11\nSA6#52\nImplementation of the following pCRs approved by SA6: S6-223235, S6-223237, S6-223455, S6-223456, S6-223494\n0.2.0\n2023-01\nSA6#52-bis-e\nImplementation of the following pCRs approved by SA6: S6-230262, S6-230363, S6-230247\n0.3.0\n2023-03\nSA6#53\nImplementation of the following pCRs approved by SA6:\nS6-230939, S6-230847, S6-230848, S6-230849, S6-230850\n0.4.0\n2023-03\nSA#99\nSP-230273\nPresentation for information at SA#99\n1.0.0\n2023-04\nSA6#54-e\nImplementation of the following pCRs approved by SA6:\nS6-231484, S6-231543, S6-231502, S6-231435, S6-231641, S6-231257, S6-231261, S6-231270.\n1.1.0\n2023-05\nSA6#55\nImplementation of the following pCRs approved by SA6:\nS6-231690, S6-232085, S6-232091.\n1.2.0\n2023-06\nSA#100\nSP-230687\nPresentation for approval at SA#100\n2.0.0\n2023-06\nSA#100\nSP-230687\nMCC Editorial update for publication after TSG SA approval (SA#100)\n18.0.0\n2023-09\nSA#101\nSP-230996\n0001\n3\nF\nUpdates to Procedure on Service experience\n18.1.0\n2023-09\nSA#101\nSP-230996\n0002\nF\nAdding missing A-ADRF API\n18.1.0\n2023-12\nSA#102\nSP-231544\n0004\n4\nF\nExtend the edge performance analytics to support transmission quality analytics\n18.2.0\n2023-12\nSA#102\nSP-231544\n0005\n1\nF\nUpdates to Procedure on support for application performance analytics\n18.2.0\n2023-12\nSA#102\nSP-231544\n0006\nF\nUpdates to Procedure on support for slice-specific application performance analytics\n18.2.0\n2023-12\nSA#102\nSP-231544\n0007\n2\nF\nUpdates to Procedure on support for UE-to-UE application performance analytics\n18.2.0\n2023-12\nSA#102\nSP-231544\n0008\nF\nUpdates to Procedure on support for location accuracy analytics\n18.2.0\n2023-12\nSA#102\nSP-231544\n0009\nF\nUpdates to Procedure for supporting service API analytics\n18.2.0\n2023-12\nSA#102\nSP-231544\n0010\nF\nUpdates to Slice usage pattern analytics\n18.2.0\n2023-12\nSA#102\nSP-231544\n0011\nF\nUpdates to Procedure for supporting edge load analytics\n18.2.0\n2023-12\nSA#102\nSP-231544\n0012\n3\nF\nClarification on parameter of the analytics request\n18.2.0\n2023-12\nSA#102\nSP-231544\n0014\n1\nF\nClarification and correction for edge load analytics\n18.2.0\n2024-03\nSA#103\nSP-240300\n0015\nF\nCorrect edge load analytics\n18.3.0\n2024-03\nSA#103\nSP-240300\n0016\nF\nCorrect registration\n18.3.0\n2024-03\nSA#103\nSP-240300\n0020\n1\nF\nUpdates to Application Performance Analytics and API\n18.3.0\n2024-03\nSA#103\nSP-240300\n0021\n2\nF\nUpdates to Slice-specific Application Performance Analytics and API\n18.3.0\n2024-03\nSA#103\nSP-240300\n0022\n2\nF\nUpdates to UE-to-UE Application Performance Analytics and API\n18.3.0\n2024-03\nSA#103\nSP-240300\n0023\n1\nF\nUpdates to Location Accuracy Analytics and API\n18.3.0\n2024-03\nSA#103\nSP-240300\n0024\n2\nF\nUpdates to Service API Analytics and API\n18.3.0\n2024-03\nSA#103\nSP-240300\n0025\n2\nF\nUpdates to Slice Usage Pattern Analytics and API\n18.3.0\n2024-03\nSA#103\nSP-240300\n0026\n1\nF\nUpdates to Edge Load Analytics and API\n18.3.0\n2024-06\nSA#104\nSP-240300\n0029\n2\nF\nAddition of functional entities and reference points\n18.4.0\n2024-09\nSA#105\nSP-241211\n0035\n1\nF\nAlignment with SA4 and CT1\n18.5.0\n2024-12\nSA#106\nSP-241705\n0041\nF\nEN resolution in clause 8.9.1\n18.6.0",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_8.5.3.4",
+        "clause_8.5.3.5",
+        "clause_8.5.2",
+        "clause_8.9.1",
+        "ts_18.4"
+      ]
+    }
+  ]
+}

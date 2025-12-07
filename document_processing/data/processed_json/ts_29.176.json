@@ -1,0 +1,570 @@
+{
+  "metadata": {
+    "specification_id": "ts_29.176",
+    "version": "18.4.0",
+    "title": "3GPP TS 29.176",
+    "file_path": "/content/drive/MyDrive/RAG_thesis/data/29_series/29176-i40/29176-i40.docx"
+  },
+  "export_info": {
+    "export_date": "2025-07-26T09:07:07.370260",
+    "total_chunks": 50
+  },
+  "chunks": [
+    {
+      "chunk_id": "ts_29.176_1",
+      "section_id": "1",
+      "section_title": "Scope",
+      "content": "The present document specifies the stage 3 protocol and data model for the Nmf Service Based Interface. It provides stage 3 protocol definitions and message flows, and specifies the API for each service offered by the Media Function (MF).\nThe 5G System stage 2 architecture and procedures are specified in 3GPP TS 23.501 [2] and 3GPP TS 23.502 [3].\nThe IP Multimedia Subsystem (IMS) Data Channel (DC) architecture and procedures are specified in annex AC of 3GPP TS 23.228 [14].\nThe Technical Realization of the Service Based Architecture and the Principles and Guidelines for Services Definition are specified in 3GPP TS 29.500 [4] and 3GPP TS 29.501 [5].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.501",
+        "ts_23.502",
+        "ts_23.228",
+        "ts_29.500",
+        "ts_29.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.176_2",
+      "section_id": "2",
+      "section_title": "References",
+      "content": "The following documents contain provisions which, through reference in this text, constitute provisions of the present document.\n-\tReferences are either specific (identified by date of publication, edition number, version number, etc.) or non‑specific.\n-\tFor a specific reference, subsequent revisions do not apply.\n-\tFor a non-specific reference, the latest version applies. In the case of a reference to a 3GPP document (including a GSM document), a non-specific reference implicitly refers to the latest version of that document in the same Release as the present document.\n[1]\t3GPP TR 21.905: \"Vocabulary for 3GPP Specifications\".\n[2]\t3GPP TS 23.501: \"System Architecture for the 5G System; Stage 2\".\n[3]\t3GPP TS 23.502: \"Procedures for the 5G System; Stage 2\".\n[4]\t3GPP TS 29.500: \"5G System; Technical Realization of Service Based Architecture; Stage 3\".\n[5]\t3GPP TS 29.501: \"5G System; Principles and Guidelines for Services Definition; Stage 3\".\n[6]\tOpenAPI: \"OpenAPI Specification Version 3.0.0\", https://spec.openapis.org/oas/v3.0.0.\n[7]\t3GPP TR 21.900: \"Technical Specification Group working methods\".\n[8]\t3GPP TS 33.501: \"Security architecture and procedures for 5G system\".\n[9]\tIETF RFC 6749: \"The OAuth 2.0 Authorization Framework\".\n[10]\t3GPP TS 29.510: \"5G System; Network Function Repository Services; Stage 3\".\n[11]\tIETF RFC 7540: \"Hypertext Transfer Protocol Version 2 (HTTP/2)\".\n[12]\tIETF RFC 8259: \"The JavaScript Object Notation (JSON) Data Interchange Format\".\n[13]\tIETF RFC 7807: \"Problem Details for HTTP APIs\".\n[14]\t3GPP TS 23.228: \"IP Multimedia Subsystem (IMS); Stage 2\".\n[15]\tIETF RFC 6902: \" JavaScript Object Notation (JSON) Patch\".\n[16]\t3GPP TS 29.571: \"5G System; Common Data Types for Service Based Interfaces Stage 3\".",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905",
+        "ts_23.501",
+        "ts_23.502",
+        "ts_29.500",
+        "ts_29.501",
+        "ts_21.900",
+        "ts_33.501",
+        "ts_29.510",
+        "ts_23.228",
+        "ts_29.571"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.176_3.1",
+      "section_id": "3.1",
+      "section_title": "Definitions",
+      "content": "For the purposes of the present document, the terms and definitions given in 3GPP TR 21.905 [1], 3GPP TS 23.228 [14] and the following apply. A term defined in the present document or in 3GPP TS 23.228 [14] takes precedence over the definition of the same term, if any, in 3GPP TR 21.905 [1].",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_21.905",
+        "ts_23.228"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.176_3.2",
+      "section_id": "3.2",
+      "section_title": "Symbols",
+      "content": "For the purposes of the present document, the following symbols given in 3GPP TS 23.228 [14] apply:\nDC2\t Reference point between MF and IMS AS\nMDC1\tReference point between MF and DCSF\nMDC2\tReference point either MF and DC Application Server or AR Application Server",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.228"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.176_3.3",
+      "section_id": "3.3",
+      "section_title": "Abbreviations",
+      "content": "For the purposes of the present document, the abbreviations given in 3GPP TR 21.905 [1], 3GPP TS 23.228 [14] and the following apply. An abbreviation defined in the present document or 3GPP TS 23.228 [14] takes precedence over the definition of the same abbreviation, if any, in 3GPP TR 21.905 [1].\nAR\tAugmented Reality\nDTLS\tDatagram Transport Layer Security\nMF\tMedia Function\nIMS AS\tIP Multimedia Subsystem Application Server",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905",
+        "ts_23.228"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.176_4",
+      "section_id": "4",
+      "section_title": "Overview",
+      "content": "Within the IMS DC architecture, the MF offers services to the IMS AS via the Nmf service based interface (see 3GPP TS 23.228 [14]).\nFigure 4.1-1 provides the reference model (in service-based interface representation and in reference point representation), with focus on the MF services.\nFigure 4.1-1: Reference model – MF\nDC2 is the reference point between MF and IMS AS.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_23.228_figure_4.1-1",
+        "figure_4.1-1",
+        "ts_23.228"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.176_5.1",
+      "section_id": "5.1",
+      "section_title": "Introduction",
+      "content": "The MF offers the following services via the Nmf interface:\n-\tNmf_MediaResourceManagement (MRM) Service\nTable 5.1-1 summarizes the corresponding APIs defined for this specification.\nTable 5.1-1: API Descriptions\nService Name\nClause\nDescription\nOpenAPI Specification File\napiName\nAnnex\nNmf_MRM\n6.1\nNmf Media Resource Management Service\nTS29176_Nmf_MRM.yaml\nnmf-mrm\nA.2",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.176_5.2.1",
+      "section_id": "5.2.1",
+      "section_title": "Service Description",
+      "content": "The Nmf_MRM service as defined in 3GPP TS 23.228 [14] is provided by the Media Function (MF). This service enables the consumer to create, update and delete media resources. Data Channel (DC) and Augmented Reality (AR) are two capabilities supported by MF.\nThe media resource represents a media context including one or multiple media terminations. A media termination includes media resources for one or multiple medias on the Mb interface. When a media pass through the MF, there is one termination for the input stream and one termination for the output stream.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.228"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.176_5.2.2.1",
+      "section_id": "5.2.2.1",
+      "section_title": "Introduction",
+      "content": "The Nmf_MRM service supports the following service operation.\nTable 5.2.2.1-1: Service operations supported by the Nmf_MRM service\nService Operations\nDescription\nOperation\nSemantics\nExample Consumer(s)\nCreate\nCreate a new media context including one or multiple media terminations.\nRequest/Response\nIMS AS\nUpdate\nUpdate the one or multiple existing media resources within a specific media context.\nRequest/Response\nIMS AS\nDelete\nDelete a specific media context including all the existing terminations and medias.\nRequest/Response\nIMS AS",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.2.2.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.176_5.2.2.2.1",
+      "section_id": "5.2.2.2.1",
+      "section_title": "General",
+      "content": "The Nmf_MRM_Create service operation is used by an NF service consumer to create a media context including one or multiple terminations and reserve media resources for anchoring one or multiple medias of Mb interface in each termination on MF. The consumer NF may also include application function (e.g. DCSF, DC AS) specification information requested by the application layer to be applied on the media by the MF.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.176_5.2.2.2.2",
+      "section_id": "5.2.2.2.2",
+      "section_title": "Creation of a new media context",
+      "content": "The NF service consumer shall request a new context by using HTTP method POST with \"{apiRoot}/nmf/<apiVersion>/contexts\" as resource URI representing the \"Contexts Collection\", see clause 6.1.3.2.\nFigure 5.2.2.2.2-1 Creation of a media context\n1.\tThe NF Service Consumer shall send a POST request to create an \"Individual Context\" resource in the MF. The payload body of the POST request shall contain a representation of the individual context resource to be created.\nThe NF service consumer shall include in the HTTP message body within the MediaContext data type list of termination descriptors in the attribute \"terminations\". Each termination descriptor shall include list of media stream descriptors in the attribute \"medias\". Each media stream descriptor shall include:\n-\tmedia ID in the attribute \"mediaId\", i.e. a unique identity of the media stream within the media context instance, which is generated by the NF service consumer (e.g. IMS AS) based on implementation;\n-\tremote Mb specifications in the attribute \"remoteMbEndpoint\", i.e. the media stream IP address and port allocated at the remote endpoint, i.e. remote UE, remote network; and\n-\tmedia resource description, which includes:\n1)\tmedia resource type, e.g. DC, AR;\n2)\tif media resource type is set to \"DC\", the DC media specification in the attribute \"dcMedia\" within the data type MediaInfo shall be included. The DC media specification shall include:\na)\tmedia proxy configuration applicable to the media flow in the attribute \"mediaProxyConfig\";\nb)\tdata channel mapping and configuration information in the attribute \"streams\" when originating or terminating data channel media flows on the Mb interface which shall include the SCTP stream Id for the DC, and may include subprotocol, order, maxRetry, maxTime and priority; and\nc)\tthe remote SCTP endpoint and DTLS endpoint information in the attribute \"remoteDcEndpoint\" which includes the  SCTP port for the Data Channel, the security setup of the DTLS connection, the security certificate fingerprint and the transport layer identity;\nand may include:\na)\tmaximum message size in the attribute \" maxMessageSize\", which represents the maximum size to be expected;\nfor establishing bootstrap data channel, the DC media specification shall include the remote MDC1 media specification information in the attribute \"remoteMdc1Endpoint\" within the data type \"Mdc1Info\" to be applied on the media by the MF and also the replacement HTTP URL for each streamId allocated by the application layer representing the application list (e.g. graphical user interface) offered to the IMS subscriber via the MDC1 interface;\nfor establishing P2A/A2P application data channel, the DC media specification shall include the remote MDC2 media specification information in the attribute\"remoteMdc2Endpoint\" within the data type \"Mdc2Info\" to be applied on the media by the MF;\n3)\tif media resource type is set to \"AR\", the AR media resource description in the attribute \"ArMedia\" within the data type MediaInfo shall be included; and\n4)\tif media resource type is set to \"VIDEO\" or \"AUDIO\", the video or audio media resource description in the attribute \"remoteNonDcMedia\" within the data type MediaInfo shall be included.\n2a.\tUpon the reception of the HTTP POST request, if the request is accepted and no error occur, the MF shall:\n-\tcreate a new media context;\n-\tassign a media contextId;\n-\tassign a terminationId for each termination descriptor; and\n-\treserve media resources for each mediaId.\nThe MF shall include a HTTP Location header to provide the location of a newly created resource (MediaContext) together with the status code 201 indicating the requested resource is created in the response message.\n2b.\tOn failure, one of the HTTP status code listed in Table 6.1.3.2.3.1-3 shall be returned. For a 4xx/5xx response, the message body shall contain a ProblemDetails structure with the \"cause\" attribute set to one of the application errors listed in Table 6.1.3.2.3.1-3.\nOn redirection, the MF shall include 3xx status code, which shall contain a Location header with an URI pointing to the endpoint to another MF (service) instance.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_6.1.3.2",
+        "table_6.1.3.2.3.1-3",
+        "figure_5.2.2.2.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.176_5.2.2.3.1",
+      "section_id": "5.2.2.3.1",
+      "section_title": "General",
+      "content": "The Nmf_MRM_Update service operation is used by an NF service consumer to update one or multiple existing media resources within a specific media context on MF. Terminations and/or Medias can be added, modified, or deleted within an Update request.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.176_5.2.2.3.2",
+      "section_id": "5.2.2.3.2",
+      "section_title": "Updating an existing media context",
+      "content": "The NF Service Consumer shall modify the context by using HTTP method PATCH with the URI \"{apiRoot}/nmf/<apiVersion>/contexts/{contextId}\" as resource URI representing the \"Individual Context \", see clause 6.1.3.3.\nFigure 5.2.2.3.2-1 Update a media context\n1.\tThe NF Service Consumer shall send a PATCH request to modify a context resource in the MF. The modification may be for adding, updating or deleting terminations of the existing media context.\nFor adding, removing or updating a termination in an existing MediaContext, the payload body of the PATCH request shall contain an \"add\", \"remove\" or \"replace\" PATCH operation respectively, with one item of the attribute \"terminations\" of the MediaContext. The MF shall use the mediaId to check if the operated media exists in the MF.\n2a.\tOn success, if the change is to delete the existing termination and MF accepts the request change, the MF shall return the status code 204 No Content.\n2b. On success, if the change is to add a new termination or to update the existing termination and MF accepts the request change, the MF shall return the status code 200 OK. The response shall contain the new resource representation of the resource Individual Context, which includes the added and modified resource or its sub-resource.\n2c\tOn failure, one of the HTTP status code listed in Table 6.1.3.3.3.1-3 indicating the error shall be returned. For a 4xx/5xx response, the message body shall contain a ProblemDetails structure with the \"cause\" attribute set to one of the application errors listed in Table 6.1.3.3.3.1-3.\nOn redirection, the MF shall return 3xx status code, which shall contain a Location header with an URI pointing to the endpoint to another MF (service) instance.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_6.1.3.3",
+        "table_6.1.3.3.3.1-3",
+        "figure_5.2.2.3.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.176_5.2.2.4.1",
+      "section_id": "5.2.2.4.1",
+      "section_title": "General",
+      "content": "The Nmf_MRM_Delete service operation is used by an NF service consumer to delete an existing media context including all existing terminations and medias on MF previously created by itself.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.176_5.2.2.4.2",
+      "section_id": "5.2.2.4.2",
+      "section_title": "Deleting an existing media context",
+      "content": "The NF Service Consumer shall delete an existing context by using HTTP method DELETE with the URI \"{apiRoot}/nmf/<apiVersion>/contexts/{contextId}\" as resource URI representing the \"Individual Context \", see clause 6.1.3.3.\nFigure 5.2.2.4.2-1 Delete a media context\n1.\tThe NF Service Consumer shall send a DELETE request to delete an existing context resource in the MF.\n2a.\tOn success, the request is accepted, the MF shall reply with the status code 204 No Content indicating the resource identified by context ID is successfully deleted in the response message.\n2b.\tOn failure, one of the HTTP status code listed in Table 6.1.3.3.3.2-3 indicating the error shall be returned. For a 4xx/5xx response, the message body shall contain a ProblemDetails structure with the \"cause\" attribute set to one of the application errors listed in Table 6.1.3.3.3.2-3.\nOn redirection, the MF shall return 3xx status code, which shall contain a Location header with an URI pointing to the endpoint to another MF (service) instance.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_6.1.3.3",
+        "table_6.1.3.3.3.2-3",
+        "figure_5.2.2.4.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.176_6.1.1",
+      "section_id": "6.1.1",
+      "section_title": "Introduction",
+      "content": "The Nmf_MRM service shall use the Ndcmf_MRM API.\nThe API URI of the Nmf_MRM API shall be:\n{apiRoot}/<apiName>/<apiVersion>\nThe request URIs used in HTTP requests from the NF service consumer towards the NF service producer shall have the Resource URI structure defined in clause 4.4.1 of 3GPP TS 29.501 [5], i.e.:\n{apiRoot}/<apiName>/<apiVersion>/<apiSpecificResourceUriPart>\nwith the following components:\n-\tThe {apiRoot} shall be set as described in 3GPP TS 29.501 [5].\n-\tThe <apiName> shall be \" nmf_mrm\".\n-\tThe <apiVersion> shall be \"v1\".\n-\tThe <apiSpecificResourceUriPart> shall be set as described in clause 6.1.3.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.501_clause_4.4.1",
+        "clause_6.1.3",
+        "ts_29.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.176_6.1.2.1",
+      "section_id": "6.1.2.1",
+      "section_title": "General",
+      "content": "HTTP/2, IETF RFC 7540 [11], shall be used as specified in clause 5 of 3GPP TS 29.500 [4].\nHTTP/2 shall be transported as specified in clause 5.3 of 3GPP TS 29.500 [4].\nThe OpenAPI [6] specification of HTTP messages and content bodies for the Nmf_MRM API is contained in Annex A.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.500_clause_5",
+        "ts_29.500_clause_5.3",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.176_6.1.2.2.1",
+      "section_id": "6.1.2.2.1",
+      "section_title": "General",
+      "content": "See clause 5.2.2 of 3GPP TS 29.500 [4] for the usage of HTTP standard headers.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.500_clause_5.2.2",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.176_6.1.2.2.2",
+      "section_id": "6.1.2.2.2",
+      "section_title": "Content type",
+      "content": "JSON, IETF RFC 8259 [12], shall be used as content type of the HTTP bodies specified in the present specification as specified in clause 5.4 of 3GPP TS 29.500 [4]. The use of the JSON format shall be signalled by the content type \"application/json\".\n\"Problem Details\" JSON object shall be used to indicate additional details of the error in a HTTP response body and shall be signalled by the content type \"application/problem+json\", as defined in IETF RFC 7807 [13].\nThe use of JSON Patch (IETF RFC 6902 [15]) format in a HTTP request body shall be signaled by the content type \"application/json-patch+json\".",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_5.4",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.176_6.1.2.3",
+      "section_id": "6.1.2.3",
+      "section_title": "HTTP custom headers",
+      "content": "The mandatory HTTP custom header fields specified in clause 5.2.3.2 of 3GPP TS 29.500 [4] shall be supported, and the optional HTTP custom header fields specified in clause 5.2.3.3 of 3GPP TS 29.500 [4] may be supported.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_5.2.3.2",
+        "ts_29.500_clause_5.2.3.3",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.176_6.1.3.1",
+      "section_id": "6.1.3.1",
+      "section_title": "Overview",
+      "content": "This clause describes the structure for the Resource URIs and the resources and methods used for the service.\nFigure 6.1.3.1-1 depicts the resource URIs structure for the Nmf_MRM API.\nFigure 6.1.3.1-1: Resource URI structure of the Nmf_MRM API\nTable 6.1.3.1-1 provides an overview of the resources and applicable HTTP methods.\nTable 6.1.3.1-1: Resources and methods overview\nResource purpose/name\nResource URI (relative path after API URI)\nHTTP method or custom operation\nDescription (service operation)\nContexts Collection\n/contexts\nPOST\nCreates a new Individual Context resource.\nIndividual Context\n/contexts/{contextId}\nPATCH\nUpdates an existing Individual Context resource identified by {contextId}\nDELETE\nDeletes an existing Individual Context resource identified by {contextId}.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "table_6.1.3.1-1",
+        "figure_6.1.3.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.176_6.1.3.2.1",
+      "section_id": "6.1.3.2.1",
+      "section_title": "Description",
+      "content": "The Contexts Collection resource represents a collection of contexts created by NF service consumers of Nmf_MRM service at a given MF. The resource is modelled as Collection resource archetype (see clause C.2 of 3GPP TS 29.501 [2]).",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.176_6.1.3.2.2",
+      "section_id": "6.1.3.2.2",
+      "section_title": "Resource Definition",
+      "content": "Resource URI: {apiRoot}/ nmf_mrm/<apiVersion>/contexts\nThis resource shall support the resource URI variables defined in table 6.1.3.2.2-1.\nTable 6.1.3.2.2-1: Resource URI variables for this resource\nName\nData type\nDefinition\napiRoot\nstring\nSee clause 6.1.1",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_6.1.1",
+        "table_6.1.3.2.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.176_6.1.3.2.3",
+      "section_id": "6.1.3.2.3",
+      "section_title": "Resource Standard Methods",
+      "content": "6.1.3.2.3.1\tPOST\nThis method shall support the URI query parameters specified in table 6.1.3.2.3.1-1.\nTable 6.1.3.2.3.1-1: URI query parameters supported by the POST method on this resource\nName\nData type\nP\nCardinality\nDescription\nApplicability\nn/a\nThis method shall support the request data structures specified in table 6.1.3.2.3.1-2 and the response data structures and response codes specified in table 6.1.3.2.3.1-3.\nTable 6.1.3.2.3.1-2: Data structures supported by the POST Request Body on this resource\nData type\nP\nCardinality\nDescription\nMediaContext\nM\n1\nCreates a new Individual Context resource\nTable 6.1.3.2.3.1-3: Data structures supported by the POST Response Body on this resource\nData type\nP\nCardinality\nResponse\ncodes\nDescription\nMediaContext\nM\n1\n201 Created\nThe creation of an Individual Media Context resource is confirmed and a representation of that resource is returned.\nRedirectResponse\nO\n0..1\n307 Temporary Redirect\nTemporary redirection. (NOTE 2)\nRedirectResponse\nO\n0..1\n308 Permanent Redirect\nPermanent redirection. (NOTE 2)\nProblemDetails\nO\n0..1\n403 Forbidden\nIndicates the creation of media context has failed due to application error.\nThe \"cause\" attribute may be used to indicate one of the following application errors:\n-\tMEDIA_ID_CONFLICT, if the media to be created has the identical mediaId with one already created media.\nProblemDetails\nO\n0..1\n500 Server Internal Error\nIndicates the creation of media context has failed due to application error.\nThe \"cause\" attribute may be used to indicate one of the following application errors:\n-\tINSUFFICIENT_RESOURCES\nNOTE 1:\tThe manadatory HTTP error status code for the POST method listed in Table 5.2.7.1-1 of 3GPP TS 29.500 [4] also apply.\nNOTE 2:\tRedirectResponse may be inserted by an SCP, see clause 6.10.9.1 of 3GPP TS 29.500 [4].\nTable 6.1.3.2.3.1-4: Headers supported by the 201 response code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nContains the URI of the newly created resource, according to the structure: {apiRoot}/nmf-mrm/<apiVersion>/contexts/{contextId}.\nTable 6.1.3.2.3.1-5: Headers supported by the 307 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located on an alternative MF (service) instance.\nOr the same URI, if a request is redirected to the same target resource via a different SCP.\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target MF instance ID towards which the request is redirected.\nTable 6.1.3.2.3.1-6: Headers supported by the 308 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located on an alternative MF (service) instance.\nOr the same URI, if a request is redirected to the same target resource via a different SCP.\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target MF instance ID towards which the request is redirected.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_6.10.9.1",
+        "table_6.1.3.2.3.1-1",
+        "table_6.1.3.2.3.1-2",
+        "table_6.1.3.2.3.1-3",
+        "ts_29.500_table_5.2.7.1-1",
+        "ts_29.500_table_6.1.3.2.3.1-4",
+        "table_6.1.3.2.3.1-5",
+        "table_6.1.3.2.3.1-6",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.176_6.1.3.2.4",
+      "section_id": "6.1.3.2.4",
+      "section_title": "Resource Custom Operations",
+      "content": "None in the release of this specification.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.176_6.1.3.3.1",
+      "section_id": "6.1.3.3.1",
+      "section_title": "Description",
+      "content": "The Individual Context resource represents an individual context created by the NF service consumers of Nmf_MRM service at a given MF. This resource is modelled as the Document resource archetype (see clause C.1 of 3GPP TS 29.501 [2]).",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.176_6.1.3.3.2",
+      "section_id": "6.1.3.3.2",
+      "section_title": "Resource Definition",
+      "content": "Resource URI: {apiRoot}/nmf_mrm/<apiVersion>/contexts/{contextId}\nThe <apiVersion> shall be set as described in clause 6.1.1.\nThis resource shall support the resource URI variables defined in table 6.1.3.3.2-1.\nTable 6.1.3.3.2-1: Resource URI variables for this resource\nName\nData type\nDefinition\napiRoot\nstring\nSee clause 6.1.1\ncontextId\nstring\nIdentifies an individual context to the Nmf_MRM service.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_6.1.1",
+        "table_6.1.3.3.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.176_6.1.3.3.3",
+      "section_id": "6.1.3.3.3",
+      "section_title": "Resource Standard Methods",
+      "content": "6.1.3.3.3.1\tPATCH\nThis method shall support the URI query parameters specified in table 6.1.3.3.3.1-1.\nTable 6.1.3.3.3.1-1: URI query parameters supported by the PATCH method on this resource\nName\nData type\nP\nCardinality\nDescription\nApplicability\nn/a\nThis method shall support the request data structures specified in table 6.1.3.3.3.1-2 and the response data structures and response codes specified in table 6.1.3.3.3.1-3.\nTable 6.1.3.3.3.1-2: Data structures supported by the PATCH Request Body on this resource\nData type\nP\nCardinality\nDescription\narray(PatchItem)\nM\n1..N\nDocument describes the modification(s) to an Individual Context resource.\nTable 6.1.3.3.3.1-3: Data structures supported by the PATCH Response Body on this resource\nData type\nP\nCardinality\nResponse\ncodes\nDescription\nMediaContext\nM\n1..N\n200 OK\nRepresents a successful update on the media context.\nn/a\n204 No Content\nRedirectResponse\nO\n0..1\n307 Temporary Redirect\nTemporary redirection. (NOTE 2)\nRedirectResponse\nO\n0..1\n308 Permanent Redirect\nPermanent redirection. (NOTE 2)\nProblemDetails\nO\n0..1\n403 Forbidden\nIndicates the modification of media context has failed due to application error.\nThe \"cause\" attribute may be used to indicate one of the following application errors:\n-\tMEDIA_ID_CONFLICT, if a new media to be newly created has the identical mediaId already assigned to one created media.\n-\tMEDIA_CONNECTION_CHANGED\nProblemDetails\nO\n0..1\n404 Not Found\nIndicates the modification of media context has failed due to application error.\nThe \"cause\" attribute may be used to indicate one of the following application errors:\n-\tCONTEXT_NOT_FOUND\nProblem Details\nO\n0..1\n500 Server Internal Error\nIndicates the modification of media context has failed due to application error.\nThe \"cause\" attribute may be used to indicate one of the following application errors:\n-\tINSUFFICIENT_RESOURCES\nNOTE 1:\tThe manadatory HTTP error status code for the PATCH method listed in Table 5.2.7.1-1 of 3GPP TS 29.500 [4] also apply.\nNOTE 2:\tRedirectResponse may be inserted by an SCP, see clause 6.10.9.1 of 3GPP TS 29.500 [4].\nTable 6.1.3.3.3.1-4: Headers supported by the 307 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located on an alternative MF (service) instance.\nOr the same URI, if a request is redirected to the same target resource via a different SCP.\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target MF instance ID towards which the request is redirected.\nTable 6.1.3.3.3.1-5: Headers supported by the 308 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located on an alternative MF (service) instance.\nOr the same URI, if a request is redirected to the same target resource via a different SCP.\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target MF instance ID towards which the request is redirected.\n6.1.3.3.3.2\tDELETE\nThis method shall support the URI query parameters specified in table 6.1.3.3.3.2-1.\nTable 6.1.3.3.3.2-1: URI query parameters supported by the DELETE method on this resource\nName\nData type\nP\nCardinality\nDescription\nApplicability\nn/a\nThis method shall support the request data structures specified in table 6.1.3.3.3.2-2 and the response data structures and response codes specified in table 6.1.3.3.3.2-3.\nTable 6.1.3.3.3.2-2: Data structures supported by the DELETE Request Body on this resource\nData type\nP\nCardinality\nDescription\nn/a\nTable 6.1.3.3.3.2-3: Data structures supported by the DELETE Response Body on this resource\nData type\nP\nCardinality\nResponse\ncodes\nDescription\nn/a\n204 No content\nRedirectResponse\nO\n0..1\n307 Temporary Redirect\nTemporary redirection. (NOTE 2)\nRedirectResponse\nO\n0..1\n308 Permanent Redirect\nPermanent redirection. (NOTE 2)\nProblem Details\nO\n0..1\n404 Not Found\nIndicates the deletion of the context has failed due to application error.\nThe \"cause\" attribute may be used to indicate one of the following application errors:\n-\tCONTEXT_NOT_FOUND\nNOTE 1:\tThe manadatory HTTP error status code for the DELETE method listed in Table 5.2.7.1-1 of 3GPP TS 29.500 [4] also apply.\nNOTE 2:\tRedirectResponse may be inserted by an SCP, see clause 6.10.9.1 of 3GPP TS 29.500 [4].\nTable 6.1.3.3.3.2-4: Headers supported by the 307 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located on an alternative MF (service) instance.\nOr the same URI, if a request is redirected to the same target resource via a different SCP.\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target MF instance ID towards which the request is redirected.\nTable 6.1.3.3.3.2-5: Headers supported by the 308 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located on an alternative MF (service) instance.\nOr the same URI, if a request is redirected to the same target resource via a different SCP.\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target MF instance ID towards which the request is redirected.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_6.10.9.1",
+        "table_6.1.3.3.3.1-1",
+        "table_6.1.3.3.3.1-2",
+        "table_6.1.3.3.3.1-3",
+        "ts_29.500_table_5.2.7.1-1",
+        "ts_29.500_table_6.1.3.3.3.1-4",
+        "table_6.1.3.3.3.1-5",
+        "table_6.1.3.3.3.2-1",
+        "table_6.1.3.3.3.2-2",
+        "table_6.1.3.3.3.2-3",
+        "ts_29.500_table_6.1.3.3.3.2-4",
+        "table_6.1.3.3.3.2-5",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.176_6.1.3.3.4",
+      "section_id": "6.1.3.3.4",
+      "section_title": "Resource Custom Operations",
+      "content": "None in the release of specification.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.176_6.1.4",
+      "section_id": "6.1.4",
+      "section_title": "Custom Operations without associated resources",
+      "content": "None in this release of specification.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.176_6.1.5",
+      "section_id": "6.1.5",
+      "section_title": "Notifications",
+      "content": "None in this release of specification.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.176_6.1.6.1",
+      "section_id": "6.1.6.1",
+      "section_title": "General",
+      "content": "This clause specifies the application data model supported by the API.\nTable 6.1.6.1-1 specifies the data types defined for the Nmf_MRM service based interface protocol.\nTable 6.1.6.1-1: Nmf_MRM specific Data Types\nData type\nClause defined\nDescription\nApplicability\nMediaContext\n6.1.6.2.2\nRepresents an individual context resource on MF.\nTerminationInfo\n6.1.6.2.3\nRepresents the termination information.\nMediaInfo\n6.1.6.2.4\nRepresents the media Information.\nDcMedia\n6.1.6.2.5\nRepresents the DC media descriptor.\nArMedia\n6.1.6.2.6\nRepresents the AR media descriptor.\nMdc1Info\n6.1.6.2.7\nRepresents the MDC1 interface information.\nMdc2Info\n6.1.6.2.8\nRepresents the MDC2 interface information\nNonDcMedia\n6.1.6.2.9\nRepresents the audio and video media.\nSdpString\n6.1.6.3.2\nRepresents the m=line and a=lines in the SDP media description.\nMdc2Protocol\n6.1.6.3.3\nRepresents the type of the transport layer protocols for MDC2 interface.\nTable 6.1.6.1-2 specifies data types re-used by the Nmf_MRM service based interface protocol from other specifications, including a reference to their respective specifications and when needed, a short description of their use within the Nmf_MRM service based interface.\nTable 6.1.6.1-2: Nmf_MRM re-used Data Types\nData type\nReference\nComments\nApplicability\nProblemDetails\n3GPP TS 29.571 [16]\nProblem Details\nMediaId\n3GPP TS 29.571 [16]\nUniquely identifies one media flow within an IMS session.\nMaxMessageSize\n3GPP TS 29.571 [16]\nMax SCTP user message size.\nMediaResourceType\n3GPP TS 29.571 [16]\nMedia resource types.\nMediaProxy\n3GPP TS 29.571 [16]\nMedia proxy configuration applicable to the media flow\nDcEndpoint\n3GPP TS 29.571 [16]\nDC endpoint\nDcStream\n3GPP TS 29.571 [16]\nData channel stream information.\nReplaceHttpUrl\n3GPP TS 29.571 [16]\nReplacement HTTP URL allocated by the application layer.\nUri\n3GPP TS 29.571 [16]\nUri\nEndpoint\n3GPP TS 29.571 [16]\nRepresents the IP endpoint.\nMdcEndpoint\n3GPP TS 29.571 [16]\nRepresents the MDC1 and MDC2 endpoint information.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "table_6.1.6.1-1",
+        "table_6.1.6.1-2",
+        "ts_29.571"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.176_6.1.6.2.1",
+      "section_id": "6.1.6.2.1",
+      "section_title": "Introduction",
+      "content": "This clause defines the structures to be used in resource representations.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.176_6.1.6.2.2",
+      "section_id": "6.1.6.2.2",
+      "section_title": "Type: MediaContext",
+      "content": "Table 6.1.6.2.2-1: Definition of type MediaContext\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\ncontextId\nstring\nC\n0..1\nIdentifies a specific context. It is assigned by the MF when creating a new context, i.e. Nmf_MRM_Create operation.\nIt shall be contained except in the request of creating a new media context.\nterminations\narray(TerminationInfo)\nM\n1..N\nRepresents the media terminations",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.1.6.2.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.176_6.1.6.2.3",
+      "section_id": "6.1.6.2.3",
+      "section_title": "Type: TerminationInfo",
+      "content": "Table 6.1.6.2.3-1: Definition of type TerminationInfo\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\nterminationId\nstring\nM\n1\nIdentifies a specific media termination.\nIt shall be set to empty string (i.e., \"\") when service consumer requests the MF to add a new media termination in the Nmf_MRM_Create or Nmf_MRM_Update service operation.\nOtherwise, it shall contain the termination Id allocated by the MF.\nmedias\narray(MediaInfo)\nM\n1..N\nRepresent the list of media resources for one or multiple medias on the Mb interface.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.1.6.2.3-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.176_6.1.6.2.4",
+      "section_id": "6.1.6.2.4",
+      "section_title": "Type: MediaInfo",
+      "content": "Table 6.1.6.2.4-1: Definition of type MediaInfo\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\nmediaId\nstring\nM\n1\nIdentifies a media stream, e.g. data channel.\nmediaResourceType\nMediaResourceType\nM\n1\nRepresents the media resource type, e.g. DC, AR.\nlocalMbEndpoint\nEndpoint\nC\n0..1\nRepresents the local IP address and port number of the local endpoint of MF on the Mb interface.\nIt will be allocated by MF.\nIt shall be contained in the response when creating a new media stream, i.e. Nmf_MRM_Create operation or Nmf_MRM_Update operation with adding a new termination or adding a media in an existing termination.\n(NOTE 1, NOTE 2)\nremoteMbEndpoint\nEndpoint\nC\n0..1\nRepresents the IP address and port number of the remote endpoint on the Mb interface, e.g. remote UE.\nIt shall be contained in the request of creating a new media stream, i.e. Nmf_MRM_Create operation or Nmf_MRM_Update operation with adding a new termination or adding a media in an existing termination. It can be Null when originating a new media.\n(NOTE 2)\ndcMedia\nDcMedia\nC\n0..1\nRepresents the data channel media descriptors. It shall be contained if the mediaResourceType is set to \"DC\".\narMedia\nArMedia\nC\n0..1\nRepresents the AR media descriptors. It shall be contained if the mediaResourceType is set to \"AR\".\nremoteNonDcMedia\nNonDcMedia\nC\n0..1\nRepresents the audio or video media. It shall be contained in the request of creating a new media if the mediaResourceType is set to \"AUDIO\" or \"VIDEO\".\nIt can be \"Null\" when originating a new media.\nlocalNonDcMedia\nNonDcMedia\nC\n0..1\nRepresents the audio or video media. It shall be contained in the response of creating a new media if the mediaResourceType is set to \"AUDIO\" or \"VIDEO\".\nmediaProcessingURL\nUri\nC\n0..1\nThe mediaProcessingURL indicates the address where MF receive service-related media instructions.\nIt shall be contained in the response when creating a new media stream, i.e. Nmf_MRM_Create operation or Nmf_MRM_Update operation with adding a new termination or adding a media in an existing termination.\n(NOTE 1)\nNOTE 1:\tThe IE cannot be changed once the media has been established.\nNOTE 2: \tThe attribute \"transport\" inside Endpoint data type shall be set to value only \"UDP\".",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.1.6.2.4-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.176_6.1.6.2.5",
+      "section_id": "6.1.6.2.5",
+      "section_title": "Type: DcMedia",
+      "content": "Table 6.1.6.2.5-1: Definition of type DcMedia\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\nmediaProxyConfig\nMediaProxy\nM\n1\nRepresents the media proxy configuration on the MF.\nThe value shall be set to \"HTTP_PROXY\" if the mediaId represents the bootstrap data channel.\nreplaceHttpUrl\nmap(ReplaceHttpUrl)\nC\n0..1\nA map (list of key-value pairs where streamId is used as key of the map) of ReplacementHttpUrl.\nRepresents URL for the specific IMS subscriber when requesting the application list (e.g. graphical user interface) via the MDC1 interface.\nIt shall be included if the mediaId represents bootstrap data channel and streamId is 0 and 100.\nmdc1Info\nMdc1Info\nC\n0..1\nRepresents the information of MDC1 interface.\nIt shall be contained when the mediaId represents a bootstrap data channel.\nmdc2Into\nMdc2Info\nC\n0..1\nRepresents the information of MDC2 interface.\nIt shall be contained when the mediaId represents a P2A/A2P application data channel.\nstreams\nmap(DcStream)\nM\n1..N\nA map (list of key-value pairs where streamId is used as key of the map) of DcStream.\nRepresents the data channel mapping and configuration information when originating/terminating data channel media flows on the Mb interface.\nmaxMessageSize\nMaxMessageSize\nO\n0..1\nRepresents the maximum size of to be expected.\nlocalDcEndpoint\nDcEndpoint\nC\n0..1\nRepresents the DC endpoint for the Data Channel.\nIt will be allocated by MF.\nIt shall be contained in the response when creating a new media stream, i.e. Nmf_MRM_Create operation or Nmf_MRM_Update operation with adding a new termination or adding a media in an existing termination.\n(NOTE)\nremoteDcEndpoint\nDcEndpoint\nC\n0..1\nRepresents the DC Endpoint for the Data Channel on the Mb interface.\nIt shall be contained in the request of creating a new media stream, i.e. Nmf_MRM_Create operation or Nmf_MRM_Update operation with adding a new termination or adding a media in an existing termination.\nIt can be NULL when originating a data channel media.\n(NOTE)\nNOTE:\tThe IE cannot be changed once the media has been established.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.1.6.2.5-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.176_6.1.6.2.6",
+      "section_id": "6.1.6.2.6",
+      "section_title": "Type: ArMedia",
+      "content": "Table 6.1.6.2.6-1: Definition of type ArMedia\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\nmediaProcessingSpec\nstring\nM\n1\nIt specifies how the AR media stream should be processed. It indicates how the MF assists in the AR media rendering function.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.1.6.2.6-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.176_6.1.6.2.7",
+      "section_id": "6.1.6.2.7",
+      "section_title": "Type: Mdc1Info",
+      "content": "Table 6.1.6.2.7-1: Definition of type Mdc1Info\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\nremoteMdc1Endpoint\nMdcEndpoint\nC\n0..1\nRepresents the remote MDC1 media endpoint information of DCSF. It shall be contained in the request when creating a new media.\nlocalMdc1Endpoint\nMdcEndpoint\nC\n0..1\nRepresents the local MF MDC1 media endpoint information. It will be allocated by MF and contained in the response when creating a new media.\nNOTE:\tThe MDC1 interface shall use \"TCP/TLS\" transport layer protocol and the attributes \"tlsId\", \"fingerprint\" within the data type MdcEndpoint shall be included.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.1.6.2.7-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.176_6.1.6.2.8",
+      "section_id": "6.1.6.2.8",
+      "section_title": "Type: Mdc2Info",
+      "content": "Table 6.1.6.2.8-1: Definition of type Mdc2Info\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\nmdc2Protocol\nMdc2Protocol\nC\n0..1\nRepresents the transport layer protocol or protocol stack for MDC2 interface. It shall be included when the mediaProxyConfig is set to \"HTTP\".\nremoteMdc2Endpoint\nMdcEndpoint\nC\n0..1\nRepresents the remote MDC2 media endpoint information on DC AS.\nIt shall be included in the request for creating a new media.\n(NOTE 1) (NOTE 2)\nlocalMdc2Endpoint\nMdcEndpoint\nC\n0..1\nRepresents the local MDC2 media endpoint information on MF. It will be allocated by MF and contained in the response when creating a new media. (NOTE 1) (NOTE 2)\nNOTE 1:\tWhen the mdc2Protocol is set to \"UDP/DTLS/SCTP\", \"TCP/TLS\" or \"SCTP/DTLS\", the attributes \"tlsId\" and \"fingerprint\" within the data type MdcEndpoint shall be included, and the \"securitySetup\" may be included. When the mdc2Protocol is set to \"UDP/DTLS/SCTP\", the attributes \"sctpPort\" within the data type MdcEndpoint shall be included.\nNOTE 2:\tWhen the the mediaProxyConfig is set to \"UDP_PROXY\", only UDP/IP connections should be estabilished between the MF and the DC AS, the attributes \"tlsId\", \"sctpPort\" and \"fingerprint\" within the MdcEndpoint shall not present.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.1.6.2.8-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.176_6.1.6.2.9",
+      "section_id": "6.1.6.2.9",
+      "section_title": "Type: NonDcMedia",
+      "content": "Table 6.1.6.2.9-1: Definition of type NonDcMedia\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\nsdpmLine\nSdpString\nM\n1\nRepresents the m=line in the SDP media description.\nsdpaLines\narray(SdpString)\nM\n0..N\nRepresents the a=lines in the SDP media description.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.1.6.2.9-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.176_6.1.6.3.1",
+      "section_id": "6.1.6.3.1",
+      "section_title": "Introduction",
+      "content": "This clause defines simple data types and enumerations that can be referenced from data structures defined in the previous clauses.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.176_6.1.6.3.2",
+      "section_id": "6.1.6.3.2",
+      "section_title": "Simple data types",
+      "content": "The simple data types defined in table 6.1.6.3.2-1 shall be supported.\nTable 6.1.6.3.2-1: Simple data types\nType Name\nType Definition\nDescription\nApplicability\nSdpString\nstring\nRepresents the content after \"m=\" of the \"m=\" line and the content after \"a=\" of the asocciated \"a=\" lines.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.1.6.3.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.176_6.1.6.3.3",
+      "section_id": "6.1.6.3.3",
+      "section_title": "Enumeration: Mdc2Protocol",
+      "content": "The enumeration Mdc2Protocol represents the type of the transport layer protocols for MDC2 interface. It shall comply with the provisions defined in table 6.1.6.3.3-1.\nTable 6.1.6.3.3-1: Mdc2Protocol\nEnumeration value\nDescription\n\"UDP/DTLS/SCTP\"\nUDP/DTLS/SCTP for MDC2 interface.\n\"TCP\"\nTCP for MDC2 interface.\n\"UDP\"\nUDP for MDC2 interface.\n\"SCTP\"\nSCTP for MDC2 interface.\n\"TCP/TLS\"\nTCP/TLS for MDC2 interface.\n\"SCTP/DTLS\"\nSCTP/DTLS for MDC2 interface.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.1.6.3.3-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.176_6.1.7.1",
+      "section_id": "6.1.7.1",
+      "section_title": "General",
+      "content": "For the Nmf_MRM API, HTTP error responses shall be supported as specified in clause 4.8 of 3GPP TS 29.501 [5]. Protocol errors and application errors specified in table 5.2.7.2-1 of 3GPP TS 29.500 [4] shall be supported for an HTTP method if the corresponding HTTP status codes are specified as mandatory for that HTTP method in table 5.2.7.1-1 of 3GPP TS 29.500 [4].\nIn addition, the requirements in the following clauses are applicable for the Nmf_MRM API.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.501_clause_4.8",
+        "ts_29.500_table_5.2.7.2-1",
+        "ts_29.500_table_5.2.7.1-1",
+        "ts_29.501",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.176_6.1.7.2",
+      "section_id": "6.1.7.2",
+      "section_title": "Protocol Errors",
+      "content": "No specific procedures for the Nmf_MRM service are specified.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.176_6.1.7.3",
+      "section_id": "6.1.7.3",
+      "section_title": "Application Errors",
+      "content": "The application errors defined for the Nmf_MRM service are listed in Table 6.1.7.3-1.\nTable 6.1.7.3-1: Application errors\nApplication Error\nHTTP status code\nDescription\nCONTEXT_NOT_FOUND\n404 Not Found\nIndicates that the requested context is not found in the MF.\nMEDIA_ID_CONFLICT\n403 Forbidden\nIndicates that a new media to be created has the identical mediaId already assigned to one created media.\nMEDIA_CONNECTION_CHANGED\n403 Forbidden\nIndicates that the connection information which has been marked that cannot be changed once the media has established is changed in the request. including the remoteMbEndpoint, localMbEndpoint etc.\nINSUFFICIENT_RESOURCES\n500 Server Internal Error\nIndicates that the modification of media context has failed due to insufficient resources.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.1.7.3-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.176_6.1.8",
+      "section_id": "6.1.8",
+      "section_title": "Feature negotiation",
+      "content": "The optional features in table 6.1.8-1 are defined for the Nmf_MRM API. They shall be negotiated using the extensibility mechanism defined in clause 6.6 of 3GPP TS 29.500 [4].\nTable 6.1.8-1: Supported Features\nFeature number\nFeature Name\nDescription",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_6.6",
+        "table_6.1.8-1",
+        "ts_29.500_table_6.1.8-1",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.176_6.1.9",
+      "section_id": "6.1.9",
+      "section_title": "Security",
+      "content": "As indicated in 3GPP TS 33.501 [8] and 3GPP TS 29.500 [4], the access to the Nmf_MRM API may be authorized by means of the OAuth2 protocol (see IETF RFC 6749 [9]), based on local configuration, using the \"Client Credentials\" authorization grant, where the NRF (see 3GPP TS 29.510 [10]) plays the role of the authorization server.\nIf OAuth2 is used, an NF Service Consumer, prior to consuming services offered by the Nmf_MRM API, shall obtain a \"token\" from the authorization server, by invoking the Access Token Request service, as described in 3GPP TS 29.510 [10], clause 5.4.2.2.\nNOTE:\tWhen multiple NRFs are deployed in a network, the NRF used as authorization server is the same NRF that the NF Service Consumer used for discovering the Nmf_MRM service.\nThe Nmf_MRM API defines a single scope \" nmf-mrm\" for the entire service, and it does not define any additional scopes at resource or operation level.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.510_clause_5.4.2.2",
+        "ts_33.501",
+        "ts_29.500",
+        "ts_29.510"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.176_6.1.10",
+      "section_id": "6.1.10",
+      "section_title": "HTTP redirection",
+      "content": "An HTTP request may be redirected to a different MF service instance when using direct or indirect communications (see 3GPP TS 29.500 [4]).\nAn SCP that reselects a different MF producer instance will return the NF Instance ID of the new MF producer instance in the 3gpp-Sbi-Producer-Id header, as specified in clause 6.10.3.4 of 3GPP TS 29.500 [4].\nIf an MF redirects a service request to a different MF using an 307 Temporary Redirect or 308 Permanent Redirect status code, the identity of the new MF towards which the service request is redirected shall be indicated in the 3gpp-Sbi-Target-Nf-Id header of the 307 Temporary Redirect or 308 Permanent Redirect response as specified in clause 6.10.9.1 of 3GPP TS 29.500 [4].\nAnnex A (normative):OpenAPI specification\nA.1\tGeneral\nThis Annex specifies the formal definition of the API(s) defined in the present specification. It consists of OpenAPI specifications in YAML format.\nThis Annex takes precedence when being discrepant to other parts of the specification with respect to the encoding of information elements and methods within the API(s).\nNOTE 1:\tThe semantics and procedures, as well as conditions, e.g. for the applicability and allowed combinations of attributes or values, not expressed in the OpenAPI definitions but defined in other parts of the specification also apply.\nInformative copies of the OpenAPI specification files contained in this 3GPP Technical Specification are available on a Git-based repository that uses the GitLab software version control system (see clause 5.3.1 of 3GPP TS 29.501 [5] and clause 5B of 3GPP TR 21.900 [7]).\nA.2\tNmf_MRM API\nopenapi: 3.0.0\ninfo:\ntitle: 'MF Media Resource Management (MRM) Service'\nversion: 1.0.2\ndescription: |\nMF Media Resource Management (MRM) Service.\n© 2024, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).\nAll rights reserved.\nexternalDocs:\ndescription: >\n3GPP TS 29.176 V18.4.0; IP Multimedia Subsystem (IMS); Media Function (MF) Services; Stage 3.\nurl: https://www.3gpp.org/ftp/Specs/archive/29_series/29.176/\nservers:\n- url: '{apiRoot}/nmf-mrm/v1'\nvariables:\napiRoot:\ndefault: https://example.com\ndescription: apiRoot as defined in clause 4.4 of 3GPP TS 29.501\nsecurity:\n- {}\n- oAuth2ClientCredentials:\n- nmf-mrm\npaths:\n/contexts:\npost:\nsummary: Create a new  media context.\noperationId: CreateMediaContext\ntags:\n- MediaContext(Collection)\nrequestBody:\nrequired: true\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/MediaContext'\nresponses:\n'201':\ndescription: Success\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/MediaContext'\nheaders:\nLocation:\ndescription: >\nContains the URI of the newly created resource, according to the structure:\n{apiRoot}/nmf-mrm/<version>/contexts/{contextId}\nrequired: true\nschema:\ntype: string\n'307':\ndescription: Temporary Redirect\ncontent:\napplication/json:\nschema:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/RedirectResponse'\nheaders:\nLocation:\ndescription: The URI pointing to the resource located on the redirect target MF.\nrequired: true\nschema:\ntype: string\n'308':\ndescription: Permanent Redirect\ncontent:\napplication/json:\nschema:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/RedirectResponse'\nheaders:\nLocation:\ndescription: The URI pointing to the resource located on the redirect target MF.\nrequired: true\nschema:\ntype: string\n'400':\n$ref: 'TS29571_CommonData.yaml#/components/responses/400'\n'401':\n$ref: 'TS29571_CommonData.yaml#/components/responses/401'\n'403':\n$ref: 'TS29571_CommonData.yaml#/components/responses/403'\n'404':\n$ref: 'TS29571_CommonData.yaml#/components/responses/404'\n'411':\n$ref: 'TS29571_CommonData.yaml#/components/responses/411'\n'413':\n$ref: 'TS29571_CommonData.yaml#/components/responses/413'\n'415':\n$ref: 'TS29571_CommonData.yaml#/components/responses/415'\n'429':\n$ref: 'TS29571_CommonData.yaml#/components/responses/429'\n'500':\n$ref: 'TS29571_CommonData.yaml#/components/responses/500'\n'503':\n$ref: 'TS29571_CommonData.yaml#/components/responses/503'\ndefault:\n$ref: 'TS29571_CommonData.yaml#/components/responses/default'\n/contexts/{contextId}:\npatch:\nsummary: Update Media Context\noperationId: UpdateMediaContext\ntags:\n- Media Context ID (Document)\nparameters:\n- name: contextId\nin: path\nrequired: true\ndescription: Unique ID of the Media Context to update.\nschema:\ntype: string\nrequestBody:\ncontent:\napplication/json-patch+json:\nschema:\ntype: array\nitems:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/PatchItem'\nminItems: 1\nrequired: true\nresponses:\n'200':\ndescription: Expected response to a valid request.\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/MediaContext'\n'204':\ndescription: Expected response with empty body\n'307':\ndescription: Temporary Redirect\ncontent:\napplication/json:\nschema:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/RedirectResponse'\nheaders:\nLocation:\ndescription: The URI pointing to the resource located on the redirect target MF.\nrequired: true\nschema:\ntype: string\n'308':\ndescription: Permanent Redirect\ncontent:\napplication/json:\nschema:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/RedirectResponse'\nheaders:\nLocation:\ndescription: The URI pointing to the resource located on the redirect target MF.\nrequired: true\nschema:\ntype: string\n'400':\n$ref: 'TS29571_CommonData.yaml#/components/responses/400'\n'403':\n$ref: 'TS29571_CommonData.yaml#/components/responses/403'\n'404':\n$ref: 'TS29571_CommonData.yaml#/components/responses/404'\n'409':\n$ref: 'TS29571_CommonData.yaml#/components/responses/409'\n'411':\n$ref: 'TS29571_CommonData.yaml#/components/responses/411'\n'412':\n$ref: 'TS29571_CommonData.yaml#/components/responses/412'\n'413':\n$ref: 'TS29571_CommonData.yaml#/components/responses/413'\n'415':\n$ref: 'TS29571_CommonData.yaml#/components/responses/415'\n'429':\n$ref: 'TS29571_CommonData.yaml#/components/responses/429'\n'500':\n$ref: 'TS29571_CommonData.yaml#/components/responses/500'\n'501':\n$ref: 'TS29571_CommonData.yaml#/components/responses/501'\n'503':\n$ref: 'TS29571_CommonData.yaml#/components/responses/503'\ndefault:\n$ref: 'TS29571_CommonData.yaml#/components/responses/default'\ndelete:\nsummary: Deletes a given Media Context\noperationId: DeleteMediaContext\ntags:\n- Media Context ID (Document)\nparameters:\n- name: contextId\nin: path\nrequired: true\ndescription: Unique ID of the Media Context to delete.\nschema:\ntype: string\nresponses:\n'204':\ndescription: Expected response to a successful deletion.\n'307':\ndescription: Temporary Redirect\ncontent:\napplication/json:\nschema:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/RedirectResponse'\nheaders:\nLocation:\ndescription: The URI pointing to the resource located on the redirect target MF.\nrequired: true\nschema:\ntype: string\n'308':\ndescription: Permanent Redirect\ncontent:\napplication/json:\nschema:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/RedirectResponse'\nheaders:\nLocation:\ndescription: The URI pointing to the resource located on the redirect target MF.\nrequired: true\nschema:\ntype: string\n'400':\n$ref: 'TS29571_CommonData.yaml#/components/responses/400'\n'401':\n$ref: 'TS29571_CommonData.yaml#/components/responses/401'\n'403':\n$ref: 'TS29571_CommonData.yaml#/components/responses/403'\n'404':\n$ref: 'TS29571_CommonData.yaml#/components/responses/404'\n'411':\n$ref: 'TS29571_CommonData.yaml#/components/responses/411'\n'429':\n$ref: 'TS29571_CommonData.yaml#/components/responses/429'\n'500':\n$ref: 'TS29571_CommonData.yaml#/components/responses/500'\n'501':\n$ref: 'TS29571_CommonData.yaml#/components/responses/501'\n'503':\n$ref: 'TS29571_CommonData.yaml#/components/responses/503'\ndefault:\n$ref: 'TS29571_CommonData.yaml#/components/responses/default'\ncomponents:\nsecuritySchemes:\noAuth2ClientCredentials:\ntype: oauth2\nflows:\nclientCredentials:\ntokenUrl: '{nrfApiRoot}/oauth2/token'\nscopes:\nnmf-mrm: Access to the Nmf_MRM API.\nschemas:\nMediaContext:\ndescription: Information of a Media Context in a MF.\ntype: object\nrequired:\n- terminations\nproperties:\ncontextId:\ntype: string\nterminations:\ntype: array\nitems:\n$ref: '#/components/schemas/TerminationInfo'\nminItems: 1\nTerminationInfo:\ndescription: Represents the termination information.\ntype: object\nrequired:\n- terminationId\n- medias\nproperties:\nterminationId:\ntype: string\nmedias:\ntype: array\nitems:\n$ref: '#/components/schemas/MediaInfo'\nminItems: 1\nMediaInfo:\ndescription: Represents the media information.\ntype: object\nrequired:\n- mediaId\n- mediaResourceType\nproperties:\nmediaId:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/MediaId'\nmediaResourceType:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/MediaResourceType'\nlocalMbEndpoint:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Endpoint'\nremoteMbEndpoint:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Endpoint'\ndcMedia:\n$ref: '#/components/schemas/DcMedia'\narMedia:\n$ref: '#/components/schemas/ArMedia'\nlocalNonDcMedia:\n$ref: '#components/schemas/NonDcMedia'\nremoteNonDcMedia:\n$ref: '#components/schemas/NonDcMedia'\nmediaProcessingUri:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Uri'\nDcMedia:\ndescription: Represents the DC media descriptor.\ntype: object\nrequired:\n- streams\n- mediaProxyConfig\nproperties:\nmediaProxyConfig:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/MediaProxy'\nreplaceHttpUrl:\ntype: object\ndescription: >\nContains a list of replacement HTTP URLs. The streamId attribute\nwithin the ReplaceHttpUrl data type is the key of the map.\nadditionalProperties:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/ReplaceHttpUrl'\nminProperties: 1\nmdc1Info:\n$ref: '#/components/schemas/Mdc1Info'\nmdc2Info:\n$ref: '#/components/schemas/Mdc2Info'\nstreams:\ntype: object\ndescription: >\nContains a data channel mapping and configuration information. The streamId\nattribute within the DcStream data type is the key of the map.\nadditionalProperties:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/DcStream'\nminProperties: 1\nmaxMessageSize:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/MaxMessageSize'\nlocalDcEndpoint:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/DcEndpoint'\nremoteDcEndpoint:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/DcEndpoint'\nMdc1Info:\ndescription: Represents the information of MDC1 interface.\ntype: object\nproperties:\nremoteMdc1Endpoint:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/MdcEndpoint'\nlocalMdc1Endpoint:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/MdcEndpoint'\nMdc2Info:\ndescription: Represents the information of MDC2 interface.\ntype: object\nproperties:\nremoteMdc2Endpoint:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/MdcEndpoint'\nlocalMdc2Endpoint:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/MdcEndpoint'\nmdc2Protocol:\n$ref: '#/components/schemas/Mdc2Protocol'\nArMedia:\ndescription: Represents the AR media descriptor.\ntype: object\nrequired:\n- mediaProcessingSpec\nproperties:\nmediaProcessingSpec:\ntype: string\nNonDcMedia:\ndescription: Represents the audio and video media\ntype: object\nrequired:\n- sdpmLine\n- sdpaLines\nproperties:\nsdpmLine:\n$ref: '#/components/schemas/SdpString'\nsdpaLines:\ntype: array\nitems:\n$ref: '#/components/schemas/SdpString'\nSdpString:\ndescription: The content after \"m=\" of the \"m=\" line and the content after \"a=\" of the asocciated \"a=\" lines.\ntype: string\nMdc2Protocol:\ndescription: The type of the transport layer protocols for MDC2 interface.\nanyOf:\n- type: string\nenum:\n- UDP/DTLS/SCTP\n- TCP\n- UDP\n- SCTP\n- TCP/TLS\n- SCTP/DTLS\n- type: string\ndescription: >\nThis string provides forward-compatibility with future extensions to the enumeration\nand is not used to encode content defined in the present version of this API.\nAnnex B (informative):Change history\nChange history\nDate\nMeeting\nTdoc\nCR\nRev\nCat\nSubject/Comment\nNew version\n2023-04\nCT4#115e\nC4-231552\nVersion 0.1.0\n0.1.0\n2023-05\nCT4#116\nC4-232178\nClause 4 Overview\n0.2.0\n2023-05\nCT4#116\nC4-232224\nClause 5.1 Introduction of DCMF services\n0.2.0\n2023-05\nCT4#116\nC4-232506\nService description and service operation introduction of MRM service\n0.2.0\n2023-05\nCT4#116\nC4-232607\nMRM API definition\n0.2.0\n2023-05\nCT4#116\nC4-232637\nMRM service operations\n0.2.0\n2023-08\nCT4#117\nC4-233707\nChange DCMF to MF\n0.3.0\n2023-08\nCT4#117\nC4-233307\nUpdate the data channel related data types\n0.3.0\n2023-08\nCT4#117\nC4-233306\nUpdate MF service to support AR\n0.3.0\n2023-10\nCT4#118\nC4-234539\nUpdate the scope\n0.4.0\n2023-10\nCT4#118\nC4-234540\nSupport of Redirection\n0.4.0\n2023-10\nCT4#118\nC4-234575\nClarification on the DC media\n0.4.0\n2023-10\nCT4#118\nC4-234543\nEditorial Corrections\n0.4.0\n2023-10\nCT4#118\nC4-234544\nUpdate the data model for AR remote cooperation\n0.4.0\n2023-10\nCT4#118\nC4-234341\nUsage of the apiVersion placeholder\n0.4.0\n2023-11\nCT4#119\nC4-235576\nMove the Endpoint to Common Data\n0.5.0\n2023-11\nCT4#119\nC4-235473\nOpenAPI of Nmf_MRM Service\n0.5.0\n2023-12\nCT#102\nCP-233022\nPresented for information and approval\n1.0.0\n2023-12\nCT#102\nCP-233022\nApproved in TSC CT#102\n18.0.0\n2024-03\nCT#103\nCP-240043\n0002\nF\nSupport of media renegotiation\n18.1.0\n2024-03\nCT#103\nCP-240043\n0001\n1\nB\nEN resolution on AR media\n18.1.0\n2024-03\nCT#103\nCP-240043\n0004\n1\nF\nChange the map data type and correct the editorial errors\n18.1.0\n2024-03\nCT#103\nCP-240043\n0007\n1\nF\nClarification of definitions, symbols and abbreviations\n18.1.0\n2024-03\nCT#103\nCP-240043\n0008\n1\nF\nCorrection IE of mdc2Protocol\n18.1.0\n2024-03\nCT#103\nCP-240043\n0003\n2\nF\nAdd the error insufficient resource\n18.1.0\n2024-03\nCT#103\nCP-240043\n0006\n1\nF\n18.1.0\n2024-03\nCT#103\nCP-240043\n0005\n3\nF\n18.1.0\n2024-03\nCT#103\nCP-240056\n0009\nF\n29.176 Rel-18 API version and External doc update\n18.1.0\n2024-06\nCT#104\nCP-241044\n0010\nF\nClarification on the Media Context ID and termination ID\n18.2.0\n2024-06\nCT#104\nCP-241044\n0011\n1\nF\nUpdate the MDC1 and MDC2 interface information\n18.2.0\n2024-06\nCT#104\nCP-241305\n0012\n3\nF\nInclusion of the video and audio media\n18.2.0\n2024-06\nCT#104\nCP-241044\n0013\n2\nF\nUpdate the presence condition and cardinality for mediaProxyConfig\n18.2.0\n2024-06\nCT#104\nCP-241052\n0014\nF\n29.176 Rel-18 API version and External doc update\n18.2.0\n2024-09\nCT#105\nCP-242048\n0017\nF\nRemove the redundant securitySetup in DcMedia\n18.3.0\n2024-09\nCT#105\nCP-242048\n0015\n1\nF\nCardinality correction\n18.3.0\n2024-09\nCT#105\nCP-242048\n0018\n1\nF\nUpdate the procedure of creation a new media context\n18.3.0\n2024-09\nCT#105\nCP-242048\n0016\n1\nF\nUpdates to MF Media Resource Management Service Operations\n18.3.0\n2024-09\nCT#105\nCP-242054\n0019\nF\n29.176 Rel-18 API version and External doc update\n18.3.0\n2024-12\nCT#106\nCP-243027\n0020\nF\nCorrection on Nmf_MRM service\n18.4.0\n2024-12\nCT#106\nCP-243068\n0022\nF\n29.176 Rel-18 API version and External doc update\n18.4.0",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.500_clause_6.10.3.4",
+        "ts_29.500_clause_6.10.9.1",
+        "ts_29.501_clause_5.3.1",
+        "ts_29.501_clause_5",
+        "ts_29.501_clause_4.4",
+        "clause_4",
+        "clause_5.1",
+        "ts_29.500",
+        "ts_29.501",
+        "ts_21.900",
+        "ts_29.176"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,545 @@
+{
+  "metadata": {
+    "specification_id": "ts_23.110",
+    "version": "18.0.0",
+    "title": "3GPP TS 23.110",
+    "file_path": "/content/drive/MyDrive/RAG_thesis/data/23_series/23110-i00/23110-i00.docx"
+  },
+  "export_info": {
+    "export_date": "2025-07-26T09:36:07.851834",
+    "total_chunks": 64
+  },
+  "chunks": [
+    {
+      "chunk_id": "ts_23.110_1",
+      "section_id": "1",
+      "section_title": "Scope",
+      "content": "The present document specifies the services provided by the Access Stratum to the rest of the system. The adopted architecture is given by TS 23.101 [2].\nThe present document describes the main functions visible at the boundary between the Access Stratum and the rest of the system, it describes in general terms the information flows, both control and user data, over this boundary and relevant for the Access Stratum.\nThe present document is the basis of the detailed specifications of the protocols which rule the information flows, both control and user data, between the Access Stratum and the parts of UMTS outside the Access Stratum, and of the detailed specifications of the UTRAN. These detailed specifications are to be found in other Technical Specifications.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.101"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.110_2",
+      "section_id": "2",
+      "section_title": "References",
+      "content": "The following documents contain provisions which, through reference in this text, constitute provisions of the present document.\n-\tReferences are either specific (identified by date of publication, edition number, version number, etc.) or non‑specific.\n-\tFor a specific reference, subsequent revisions do not apply.\n-\tFor a non-specific reference, the latest version applies.  In the case of a reference to a 3GPP document (including a GSM document), a non-specific reference implicitly refers to the latest version of that document in the same Release as the present document.\n[1]\t3GPP TS 22.101: \"Universal Mobile Telecommunications System (UMTS): Service aspects; Service principles\".\n[2]\t3GPP TS 23.101: \"Universal Mobile Telecommunications System (UMTS): General UMTS Architecture\".\n[3]\t3GPP TS 23.105: \"Universal Mobile Telecommunications System (UMTS): Network Principles\".\n[4]\tITU-T Recommendation X.210 (November 1993): \"Information Technology - Open Systems Interconnection - Basic Reference Model: Conventions for the Definition of OSI Services\".\n[5]\t3GPP TS 23.107: \"QoS Concept and Architecture\".",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_22.101",
+        "ts_23.101",
+        "ts_23.105",
+        "ts_23.107"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.110_3.1",
+      "section_id": "3.1",
+      "section_title": "Definitions",
+      "content": "For the purposes of the present document, the terms and definitions given in TS 23.101 [2] and the following apply.\nAccess Stratum: defined in TS 23.101 [2].\nAccess Network: defined in TS 23.101 [2].\nEdge-Node: core network node which is connected to the URAN at a particular instance.\nURAN: defined in [TBD].",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_23.101"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.110_3.2",
+      "section_id": "3.2",
+      "section_title": "Abbreviations",
+      "content": "For the purposes of the present document, the following abbreviations apply:\nAN\tAccess Network\nAS\tAccess Stratum\nCC\tCall Control\nDC\tDedicated Control SAP\nCN\tCore Network\nFFS\tFor Further Study\nGC\tGeneral Control (SAP)\nGPRS\tGeneral Packet Radio Service\nGSM\tGlobal System for Mobile communications\nHPLMN\tHome Public Land Mobile Network\nIF\tInfrastructure\nME\tMobile Equipment\nMM\tMobility Management\nMS\tMobile Station\nNAS\tNon Access Stratum\nNt\tNotification (SAP)\nPDN\tPacket Data Network\nPTM\tPoint to Multipoint\nRAN\tRadio Access Network\nSAP\tService Access Point\nSAPI\tService Access Point Identifier [???]\nSIM\tSubscriber Identity Module\nSMS\tShort Message Service\nSS\tSupplementary Services\nTBD\tTo Be Defined\nUE\tUser Equipment\nUMTS\tUniversal Mobile Telecommunications System\nURAN\tUMTS Radio Access Network\nUSIM\tUMTS Subscriber Identity Module\nUSSD\tUnstructured Supplementary Service Data\nUTRA\tUMTS Terrestrial Radio Access\nUTRAN\tUMTS Terrestrial Radio Access Network\nVBS\tVoice Broadcast Service\nVGCS\tVoice Group Call Service\nVPLMN\tVisited Public Land Mobile Network",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.110_4.1",
+      "section_id": "4.1",
+      "section_title": "Boundaries of the Access Stratum",
+      "content": "The Access Stratum (AS) is defined in TS 23.101 [2]. It consists of a functional grouping which includes all the layers embedded in the URAN; and part of the layers in the User Equipment (UE) and the infrastructure (IF); i.e. the edge-node. Its boundary is the frontier between the layers which are independent of the access technique and the ones which are dependent on it. This frontier is located in the UE (mobile boundary) and in an edge-node (fixed boundary). There is a direct or \"transparent\" dialogue (i.e. not interpreted by the AS) between the UE and the edge-node for the Non-Access Stratum layers.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.101"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.110_4.2",
+      "section_id": "4.2",
+      "section_title": "Main design guidelines",
+      "content": "1)\tThe Access Stratum contains all access specific functionality, e.g. all mode specific functionality in case of the UTRAN.\n2)\tReconfiguration of the AN, or changes in the AN domain functionality shall have minimal impact on Core Network functions, and vice-versa.\n3)\tA given Access Network (e.g., the UTRAN) may provide access to different type of Core Networks via the Iu reference point.\n4)\tThe services, access signalling, mobility and subscriber management specific to each Core Network are completely outside the Access Stratum, and are transferred transparently by the Access Stratum.\n5)\tThe Access Stratum provides flexible radio access bearers characterised by parameters describing the type of information and QoS transported over the radio interface (i.e. not the actual radio resources). Some radio access bearers may be asymmetric, i.e., have different parameters on uplink and downlink.\n6)\tThere are radio access bearers for both connection oriented packet-switched services, connectionless (store-and-forward) services, and circuit-switched traffic.\n7)\tParameters for connection-oriented radio access bearers may change during connection (bandwidth on demand, quality management).\n8)\tWhether a terminal can be registered and have connections to several Core Networks simultaneously (i.e., over different instances of Iu) is FFS.\n9)\tThe Access Stratum can provide several parallel and independent radio access bearers to one user equipment each with its own characteristics.\n10)\tMultimedia is handled outside the Access Stratum by multiplexing several streams onto one radio access bearer or by requesting several parallel radio access bearers. In the latter case, the possibly needed synchronisation is handled outside the Access Stratum.\n11)\tConnection of a user equipment to several URAN at a time has to be studied.\n12)\tHandover and if applied macrodiversity within one Access Network is handled within the Access Stratum.\n13)\tHandover between two Access Networks (e.g., two UTRANs, or between UTRAN and GSM BSS) may use support from the Core Network.\n14)\tThe Access Stratum should hide all access -specific parameters, e.g., location data provided to the Core Networks should be independent from the actual configuration of the Access Network.\n15)\tThe user equipment can be connected to different AN/CN points via a single Access Network. The Access Stratum should be able to provide a flexible routing to the appropriate AN/CN point.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.110_5",
+      "section_id": "5",
+      "section_title": "Functions location inside/outside Access Stratum",
+      "content": "Following table shows the functional split between Access Stratum and the rest of the system.\nTable 1: Functions inside/outside the Access Stratum\nLOCATION\n\\\nFUNCTION\nOutside the Access Stratum\nInside the Access Stratum\nCall set up/release\nyes\nno\n(Connection) Bearer Set-Up Release\nCN bearer [tbd]\nRadio Access Bearer [tbd]\nSupplementary Services\nyes\nno\nLocation management\nyes (IWF/CN related)\nyes (Radio related)\nAttach/ Detach\nyes\nFFS, Contr expected\nResource Management\nyes (for NAS resource)\nyes (for AS resource incl. radio)\nHandover\nyes*\nyes\nMacrodiversity [ffs]\nyes*\nyes\nEncryption\nyes\nyes**\nAuthentication\nyes\nno\ncompression (non source dependent)\nyes\nyes\nsource dependent coding\nyes\nno\nradio channel coding (could be many)\nno\nyes (could be many)\nUE location identification\nmay be supported\nyes\nCharging\nyes\nno\nNOTE *:\tOptionally execution. In some CNs, it may not be present but not full service will be supported (e.g. limited to RLL type of service).\nNOTE **:\tContributions expected to clarify the role between encryption and subscriber data.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.110_5.1",
+      "section_id": "5.1",
+      "section_title": "Call Control",
+      "content": "This Functionality is placed in the NAS, since it manipulates the call state machine. An example is termination of Q.931 message and sending of ISUP.\nNot part of AS. NAS specific signalling messages, e.g. Q.931, Q.2931 and ISUP.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.110_5.2",
+      "section_id": "5.2",
+      "section_title": "(Connection) Bearer Control",
+      "content": "It is distinguished between the bearers used in the NAS and the common bearer used in the AS (radio access bearer).\nBasic principles for radio access bearers are:\n1)\tRadio access bearers provide information transport between the non‑access stratum parts of the infrastructure side (i.e. the edge node) and the user equipment side. Radio access bearers shall support real time as well as non real time user traffic.\n2)\tRadio access bearers must be flexible enough to support different traffic types, activity levels, throughput rates, transfer delays and bit error rates. Attributes allowing efficient use of radio resources are crucial.\n3)\tEfficient mapping from the traffic attributes used by non-UMTS applications, given by dominating external network technologies, to the attributes of the radio access bearer layer of the access stratum is essential. Complexity in mapping procedures should be avoided.\n4)\tDefinitions of traffic attributes and traffic management for radio access bearers shall be consistent with the predominant networking technology on the market (e.g. N-ISDN and IP networks for UMTS phase 1). As networking technologies emerge, adapted radio access bearer attributes and types shall gradually be added.\n5)\tRadio access bearer definitions must allow for straightforward and efficient traffic management and resource handling of the radio resources in the access stratum.\nThis procedure is part of the NAS. Example are 13.0 kbit/s (for GSM speech) and 2B+D (for ISDN BRI).\nThe protocols required in AS to provide a radio access bearer should be able to describe both packet switch and circuit switch types of connections.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.110_5.3",
+      "section_id": "5.3",
+      "section_title": "Supplementary Services (CLIP, CF etc.)",
+      "content": "Supplementary services are part of the NAS, since they manipulate the Call state machine.\nSupplementary services are not part of AS since they manipulate the call state machine.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.110_5.4",
+      "section_id": "5.4",
+      "section_title": "Location Management",
+      "content": "\"Location Updating Management\" and \"Paging\" is an existing example of Location Management.\nLocation Management may be supported in the NAS.\nRadio related Location Management may be part of the AS.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.110_5.5",
+      "section_id": "5.5",
+      "section_title": "Attach/ Detach",
+      "content": "If the Attach/ Detach procedures are supported in the NAS they use CN specific identifiers to mark the attached/detached subscriber. As an example in GSM, the attach/detach procedure is performed on the IMSI flag, and therefore it is a NAS functionality.\nAttach/Detach may be performed in the AS using the URAN unique identifiers. This is FFS.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.110_5.6",
+      "section_id": "5.6",
+      "section_title": "Resource management",
+      "content": "This function allocates resources for a given information stream, as to allow to convey it with a given QoS. This information stream may support either signalling data (CC, MM, ...) or user data.\nBoth circuit switched and packet access are supported, offering both connection oriented and connectionless services.\nThe AS resource management is transparent for the NAS and vice versa.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.110_5.7.1",
+      "section_id": "5.7.1",
+      "section_title": "Handover - outside Access Stratum",
+      "content": "Handover may be a NAS functionality, but it can not be expected that all CNs will support handover therefore the IWF may take care of any required handover functionality. The AN may leave certain parameters, e.g. the address to a new IWF/CN‑AN connection point, to which the IWF/CN may switch if it has the capabilities.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.110_5.7.2",
+      "section_id": "5.7.2",
+      "section_title": "Handover - inside Access Stratum",
+      "content": "Handover is performed in the AS, to hide all radio specific details from the NAS.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.110_5.7.3",
+      "section_id": "5.7.3",
+      "section_title": "Handover scenarios supported by the Iu interface",
+      "content": "The following clauses describe which functions will be supported by the Iu interface. Some functions have no impact on the Iu interface and therefore will be supported de-facto, nevertheless they are explicitly mentioned for completeness of the scenarios.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.110_5.7.3.1",
+      "section_id": "5.7.3.1",
+      "section_title": "Classification A",
+      "content": "Classification A describes the way the handover is prepared:\nHO A1:\tthe network has informed the target cell before the MS changes cell;\nHO A2:\tthe network has not informed the target cell before the MS changes cell;\nHO A3:\tthe mobile has informed the target cell before it leaves the source cell.\nHO A1 is typical of the existing handover in GSM.\nHO A2 reflects the call re-establishment in GSM, mobile directed handovers in general, or even GPRS to some extent (although the GPRS vocabulary is different).\nHO A1, HO A2 and HO A3 shall be supported by the service primitives of the Iu interface.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.110_5.7.3.2",
+      "section_id": "5.7.3.2",
+      "section_title": "Classification B",
+      "content": "Classification B describes the way the decision to initiate a handover is taken:\nHO B1:\tdecision is taken by the terminal;\nHO B2:\tdecision is taken by the network.\nWhen the network takes the decision, it can be either in the RAN (HO B2a), or in the CN (probably based on information provided by the RAN and/or the MS) (HO B2b).\nIn order to keep the radio independence from the CN, it would be desirable that the decision be taken only in the RAN. This means that a communication mechanism is needed between URANs, that interface being logically different from the Iu interface.\nHO B1 and HO B2 shall be supported by the service primitives of the Iu interface.\nNOTE 1:\tFFS: For HO B2 cases, handover initiation/decisions shall be taken by the source URAN.\nNOTE 2:\tFFS: There is a URAN to URAN signalling mechanism transparent to the CN. A standardised protocol will be implemented across that interface to allow handover decisions by the URAN in HO B2 cases.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.110_5.7.3.3",
+      "section_id": "5.7.3.3",
+      "section_title": "Classification C",
+      "content": "Classification C concerns the kind of handover performed:\n1)\tintra-cell handover;\n2)\tintra-URAN handover;\n3)\tinter-URAN handover (without change of CN access point);\n4)\tintra-CN handover with same URAN type;\n5)\tintra-CN handover with different URAN type;\n6)\tinter-CN handover with same URAN type and same CN type;\n7)\tinter-CN handover with different URAN type and same CN type;\n8)\tinter-CN handover with same URAN type and different CN type;\n9)\tinter-CN handover with different URAN type and different CN type;\n10)\tinter-CN handover without change of URAN.\nThe type of URAN type should be relatively transparent to the Iu interface.\nRegarding handovers across multiple CN, it is proposed that this is supported (and this is already possible with GSM).\nC1 to C7 scenarios shall be supported by the service primitives of the Iu interface.\nNOTE:\tFFS: scenarios C8 to C10 shall be supported by the service primitives of the Iu interface.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.110_5.7.3.4",
+      "section_id": "5.7.3.4",
+      "section_title": "Classification D",
+      "content": "Regarding how a handover is performed, there is the possibility to either have the notion of anchor point, or not to have it. Example is circuit switched GSM, using anchor points, and GPRS, not using that notion.\nFurthermore, the notion of anchor point may be handled differently for the signalling plane and the transmission plane.\nThe notion of anchor point shall be supported by the service primitives of the Iu interface.\nNOTE 1:\tFFS: the notion of transmission plane anchor point is supported by the service primitives of the Iu interface.\nNOTE 2:\tFFS: the notion of signalling plane anchor point is supported by the service primitives of the Iu interface.\nNOTE 3:\tFFS: the anchor points for the signalling plane and transmission plane need not necessarily be the same or even exist simultaneously. The flexibility should be left in UMTS by the Iu service principles.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.110_5.8",
+      "section_id": "5.8",
+      "section_title": "Macrodiversity",
+      "content": "(if needed, dependent of the choice of multiple access technology)\nNot all IWF/CNs will support macrodiversity.\nMacrodiversity may be supported in the AS, dependent on the choice of multiple access technology.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.110_5.9",
+      "section_id": "5.9",
+      "section_title": "Encryption",
+      "content": "The NAS may support encryption to protect the transmitted data.\nThe AS needs to support encryption to prevent from eavesdropping at the radio interface.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.110_5.10",
+      "section_id": "5.10",
+      "section_title": "Authentication of Subscriber",
+      "content": "Subscriber data is stored in the NAS and therefore authentication should be considered a NAS functionality.\nNAS data is not stored in the URAN, and subscriber authentication can therefore not be a URAN functionality.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.110_5.11",
+      "section_id": "5.11",
+      "section_title": "(Non source dependent coding) Compression",
+      "content": "NAS may support compression.\nThe AS should support compression to optimise usage of radio resources.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.110_5.12",
+      "section_id": "5.12",
+      "section_title": "Source (e.g. voice or video) Coding",
+      "content": "Source coding is different dependent on IWF/CN and is therefore a NAS functionality.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.110_5.13",
+      "section_id": "5.13",
+      "section_title": "Radio Channel Coding",
+      "content": "Radio Channel coding is needed due to the radio interface and could therefore be considered a radio functionality. Radio Channel coding is not a NAS functionality.\nRadio Channel coding is supported by URAN.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.110_5.14",
+      "section_id": "5.14",
+      "section_title": "UE Location Identification",
+      "content": "The UE location identification may be supported by the UE and/or the access network side of the AS; i.e., URAN; e.g., as defined in the GSM LCS (Location Services) specifications or by some other means. The UE location identification is provided to identify the likely location of specific UEs. This is meant to be used for charging, location-based services, lawful interception, emergency calls, etc., as well as the positioning services.\nWhen location identification is supported by URAN, the following apply:\nURAN obtains 'Area ID' and/or geographic co-ordinates with uncertainty parameters for identification of the likely location of UE, to be sent to the NAS entity side of the CN (i.e., edge node) 'Area ID' represents either a radio access cell/sector or a geographic area. 'Area ID' is coded in the same format as Cell Global Identification (CGI), for compatibility to GSM.\nLocation information is categorised to two levels of accuracy. The Basic Level of information is what URAN obtains without extra signalling with the UE. The advanced level is obtained through extra signalling for positioning. Both levels can be used for both, Positioning services and other applications.\nLocation information is always at least obtained from URAN by the appropriate edge node(s) at the activation of a Call/PDP Context. Mechanism to make it possible to obtain the location information at the release of a Call/PDP Context should be specified. Location information sent to the edge node at other occasions is on the basis of asynchronous requests from the edge node to URAN. An edge node can request URAN to send the location information with the two types of requests, Type 1 (Direct request) where URAN sends location information only once at the request and Type 2 (Event request) where URAN sends location information at each specified event (e.g. Cell Update) requested by the edge node.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.110_5.15",
+      "section_id": "5.15",
+      "section_title": "Charging",
+      "content": "The functions related to charging are not part of the AS. These functions are mainly:\n-\tcharging information generation;\n-\tcharging processing.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.110_6",
+      "section_id": "6",
+      "section_title": "Access Stratum services",
+      "content": "The modelling of the services follow the basic principles as set by ITU‑T Recommendation X.210 [4]. In this recommendation the following figure is given as an example for peer‑to‑peer connection‑mode services.\nFigure 1: Example of a peer‑to‑peer connection‑mode service [4]\nFor connectionless‑mode services the basic primitives are \"request\" and \"indication\".",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.110_6.1",
+      "section_id": "6.1",
+      "section_title": "Service Access Points (SAPs)",
+      "content": "The SAPs offered by the Access Stratum (AS) to the rest of the system (Non Access Stratum: NAS) are reflected in the following figure.\nFigure 2: Service Access Points (SAPs) offered by the Access Stratum (AS)\nFor the time being, the SAPs offered be the AS are symmetric, i.e. the same SAPs are offered on the infrastructure side (CN-AS) and on the user equipment side (UE-AS). These SAPs are:\nGC:\tGeneral Control (see 6.1.1 for a general presentation and 6.2.2.1 for a detailed information).\nNt:\tNotification (see 6.1.2 for a general presentation and 6.2.2.2 for a detailed information).\nDC:\tDedicated Control (see 6.1.3 for a general presentation and 6.2.2.3 for a detailed information).\nNOTE:\tBroadcast and Multicast services can not be described using the services and functions defined so far in the present document. The nature of Broadcast and Multicast services, like Cell Broadcast Service (CBS), is very different from other specified services. The following model characteristics are missing to fulfil the CBS requirements, namely:\n1.\tCBS uses two segments with different QoS requirements to deliver CB messages to the UE:\n1a.\tFrom Cell Broadcast Centre (CBC) to RNC, a SAP is required where for instance, 1 second turnaround time, interactive class, with a reliable transport is required.\n1b.\tFrom RNC to UE, a SAP is required where for instance, a maximum delay of 10 seconds and a background class is required.\n2.\tBecause of (item 1), the service primitives used by each of the segments may also be different; i.e., the related SAPs to those primitives may differ in the two segments and a combination of GC, Nt, and DC SAPs requires study.\n3.\tCBS traffic is asymmetric in nature. The communication flow is only in one direction from the CBC to the UE. There is no uplink channel needed and the UE can not initiate a communication or request specific information.\nAt least two changes are envisaged and thus detailed contributions are expected:\ni.\tIntroduce a new SAP type.\nii.\tMapping example between the two communication segments.\nFigure 2 shows also, as an example, some details of the AS architecture. The details are out of the scope of this document and are further specified in the 25-series.\nThis model does not exclude, nor imply, which protocol is specified between the UE-AS entity and the CN-AS entity. These protocols are 'transparent' for the AN, but participate in the service provided by the AS.",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_2"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.110_6.1.1",
+      "section_id": "6.1.1",
+      "section_title": "General Control SAPs",
+      "content": "These SAPs are used to enable the Core Network to provide information and to give commands that do not relate to specific users or specific [sessions] (group calls, conference). There is typically one General Control SAP per AN/CN connection point. On the UE side, a possible model is to consider that there is a single General Control SAP in an MS.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.110_6.1.2",
+      "section_id": "6.1.2",
+      "section_title": "Notification SAPs",
+      "content": "These SAPs are used to broadcast data to identified Users. The typical use is for initiating paging in the AN. There is typically one Notification SAP per AN/CN connection point. On the UE side, a possible model is to consider that there is a single Notification SAP (a Paging SAP) in an MS.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.110_6.1.3",
+      "section_id": "6.1.3",
+      "section_title": "Dedicated Control SAPs",
+      "content": "These SAPs are used to establish, release connections with specific User Equipment, and to exchange information related to these connections. A connection is a relationship between temporary contexts respectively in the AN and in the CN. The context in the AN is initiated at the establishment of the connection, and erased when the connection is released. Several types of connections are identified, such as point connection (single user) and group connections.\nThere are typically a great number of Dedicated Control SAPs per AN/CN connection point. SAPs are identified by a SAPI at the AS boundary. During the lifetime of a connection, the connection can be identified unambiguously by the SAPI of the associated SAP, and the SAPI is used as a reference in the exchanges at the AS boundary on the infrastructure side.\nA SAPI is used as a connection identifier allocated unambiguously to each connection during its lifetime, and used in the exchanges at the AS boundary on the infrastructure side.\nOn the UE side, a possible modelling is to consider that there is a single dedicated control SAP in an MS.\nNOTE 1:\tOn the UE side, an open issue is whether simultaneous services from distinct ANs can be provided to an MS. Settling this issue may lead to a different model, for instance with the possibility to have several Dedicated Control SAPs, one per AN with which an active context exists. Another issue, visible when analysing Point-to-Multipoint services in GSM, is the SAP modelling for those PTM services.\nNOTE 2:\tThe model is limited in this version to the cases where all the activity between a User Equipment and the infrastructure pertains to the same subscriber. Extension to cases with several subscriber sharing a User Equipment requires further study.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.110_6.2.1",
+      "section_id": "6.2.1",
+      "section_title": "General",
+      "content": "The operations are described both for the AS boundary on the Infrastructure side and on the User Equipment side. The description of the operations on the Infrastructure side is given with sufficient details to develop on this basis a concrete control protocol at the AN/CN inter-connection. The description of the operations on the User Equipment side may be used [to be discussed] for developing a concrete API, allowing an open modular design of the User Equipment software.\nThe operations are described in three clauses, one for operations that involve both the IF side and the UE side, one for operations local to the IF and finally one for operations local to the UE side. In each clauses, operations are sorted per SAP category.\nRequest and confirm primitives are always toward the Access Stratum. Indication and response primitives are always from the Access Stratum.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.110_6.2.2.1.1",
+      "section_id": "6.2.2.1.1",
+      "section_title": "Information broadcast",
+      "content": "This operation consists in the broadcast from IF toward User Equipment of some information in some geographical area. This information is to be used by the User Equipment for instance to choose among access points or to be taken into account during initial access. The information can also be destinated to an application.\nNOTE:\tThis concerns only information to be broadcasted on behalf of Non Access Strata. Other information may be broadcasted for the internal use of the Access Stratum.\n6.2.2.1.1.1\tInformation broadcast request, IF side\nThe parameters are:\nCategory\nenumerated (access point selection, initial access, application)\nGeographical area\ngeographical area\nInformation to broadcast\nbit string\nThe size of the information to broadcast is not bound by this description, but may be constrained by the access system.\nThe geographical area is used by the AN to determine which access points are concerned. The rules are not specified in the external specification of the AS, but must exist and must be consistent with other translations between geographical descriptions and access points (e.g., in the connection establishment).\nThe category is used by the AN to determine priority and more generally the parameters governing information repetition over time.\nNOTE:\tThe category field could be enhanced, e.g., to allow a more precise control of priorities and repetitions.\n6.2.2.1.1.2\tInformation Broadcast Indication, UE Side\nThe parameters are:\nAccess point reference\nlocal\nBroadcast information\nbit string\nThe access point reference identifies the point on the access boundary (e.g., the cell) where the information was received.\nNOTE:\tThe access point reference is a local reference, to be used in other primitives at the AS/NAS boundary in the same UE.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.110_6.2.2.2",
+      "section_id": "6.2.2.2",
+      "section_title": "Notification SAPs",
+      "content": "Notification operations consists of sending information to a dedicated user/terminal, or a group of users/terminals over a defined geographic area.\nTypically the request is forwarded to the user/terminal on a broadcast resource. If the AN knows of an existing signalling relation to the user/terminal, the information might be sent through the existing relation, according to Access Stratum specifications.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.110_6.2.2.2.1",
+      "section_id": "6.2.2.2.1",
+      "section_title": "Paging Request, IF side",
+      "content": "The parameters are the following:\nUser/Terminal Identity\npageable identity\nGeographical area where to broadcast\ngeographical area\nPaging resource parameters\npaging resource parameters\nInformation to send\nbit string\nThe user/terminal identity is provided to determine if a signalling relation with the user/terminal exists. The geographical area indicates the area in which the Core Network knows the User/Terminal(s) to be.\nThe size of the information to send is not bound by this description, but may be constrained by the access system.\nThe paging resource parameters are used to determine which paging resource to be used when several are available. The organisation of paging resources is known in advance by the User Equipment, and are used by the User Equipment to choose the paging resources to listen to. The exact use of the paging resource parameters is specified as part of Access Stratum specifications.\nNOTE:\tThis function is typically used for paging, i.e., to trigger an access from the User/Terminal. However, this is not relevant to the Access Stratum, and other uses can be envisaged without impacting the Access Stratum. The action required from the MS, if any, is indicated, implicitly or explicitly, in the information to send, the content of which being part of the Non Access Strata specifications and not of the Access Stratum specifications.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.110_6.2.2.2.2",
+      "section_id": "6.2.2.2.2",
+      "section_title": "Notification Broadcast Request, IF side",
+      "content": "The parameters are the following:\nGeographical area where to broadcast\ngeographical area\nNotification resource parameters\npaging resource parameters\nInformation to broadcast\nbit string\nThe size of the information to broadcast is not bound by this description, but may be constrained by the access system.\nThe paging resource parameters are used to determine which paging resource to be used when several are available. The organisation of paging resources is known in advance by the User Equipment, and are used by the User Equipment to choose the paging resources to listen to. The exact use of the paging resource parameters is specified as part of Access Stratum specifications.\nNOTE:\tThis operation is used typically to inform all MSs of some starting or on-going activities, such as group calls.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.110_6.2.2.2.3",
+      "section_id": "6.2.2.2.3",
+      "section_title": "Notification Indication, UE side",
+      "content": "Parameters\nAccess point reference\nlocal\nBroadcast information\nbit string\nNOTE:\tThis primitive applies both for a paging sent on broadcast resources and for the reception of an information broadcast to many users.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.110_6.2.2.3",
+      "section_id": "6.2.2.3",
+      "section_title": "Dedicated Control SAPs",
+      "content": "Dedicated Control operations are done within the scope of a connection, embodied by corresponding SAPs on the UE and IF sides. This scope is determined by local references (respectively on the UE side and on the IF side). All operations contain such a local reference, and, at a given AN/CN interconnection point, all operations with the same local reference from the establishment event to the release event pertain to the same connection. The correspondence between Dedicated Control SAPs on the UE and IF side is dynamic, and established through the connection establishment operations.\nThe local connection references have only a local scope, and their values do not necessarily have any predictable relationship with the corresponding reference local to the other side, or with a reference used over some interface to multiplex the messages pertaining to the connection with messages pertaining to other connections.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.110_6.2.2.3.1",
+      "section_id": "6.2.2.3.1",
+      "section_title": "UE Side Initiated Connection Establishment",
+      "content": "This operation consists in the establishment of a new connection at the initiative of NAS on the User Equipment side.\n6.2.2.3.1.1\tUE Side Initiated Connection Establishment Request, UE side\nParameters\nLocal connection reference\nlocal\nRouting parameters\nrouting parameters\nInitial message\nbit string\nThe routing parameters are to be used by the AS on the Infrastructure side to choose the AN/CN connection point through which the connection is to be established.\nThe initial message is to be forwarded to the non-access strata. The size of the initial message should not be constrained by the access system.\n6.2.2.3.1.2\tUE Side Initiated Connection Establishment Indication, IF side\nParameters\nLocal connection reference\nlocal\nInitial message\nbit string\nLocalisation data\nlocalisation data\nThe localisation data indicate the knowledge the AN has of the localisation of the initiating User Equipment. It includes typically a geographical area and some accuracy indication.\n6.2.2.3.1.3\tUE Side Initiated Connection Establishment Confirm, IF Side\nParameters\nLocal connection reference\nlocal\nStatus\nenumerated (terminated by NAS, going on)\nInitial answer\nbit string\nThe NAS can choose not to pursue the connection (status = terminated by NAS). Reasons can be that the information provided by the User Equipment did not require more than a single message answer (e.g., store-and-forward service), or some exception conditions prevented the CN to pursue the connection.\nThe initial answer is to be provided to the requesting part in the non-access strata.\n6.2.2.3.1.4\tUE Side Initiated Connection Establishment Response, UE side\nParameters\nLocal connection reference\nlocal\nStatus\nenumerated (terminated by NAS, terminated by AS, going on)\nInitial answer\nbit string\nThe initial answer is not provided in the case the status is 'terminated by AS'. The status 'going on' and 'terminated by NAS' indicates that the initial message was delivered to the NAS; on the other hand, the status 'terminated by AS' can happen whether or not the initial message was delivered to the NAS.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.110_6.2.2.3.2",
+      "section_id": "6.2.2.3.2",
+      "section_title": "Connection Release",
+      "content": "This operation is the termination of a connection, at the request of non-access strata on the Infrastructure side. The use of this operation may lead to the non-completion of other previously started operations in the same connection (e.g., transparent data transfer).\n6.2.2.3.2.1\tIF Initiated Connection Release Request, IF Side\nParameter\nLocal connection reference\nlocal\n6.2.2.3.2.2\tIF Initiated Connection Release Indication UE side\nParameter\nLocal connection reference\nlocal",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.110_6.2.2.3.3",
+      "section_id": "6.2.2.3.3",
+      "section_title": "Information Transfer",
+      "content": "These operations allow the transfer of messages between Non-Access Strata elements on each side of the access interface.\nThe service is essentially that of a transport layer, with multiplexing, and possibly guarantee of order and correct transmission (transmission difficulties lead to connection loss), including the effect of user movements. The operation caters only for transmission from AS boundary to access boundary. Upper layers of protocol are typically added for addressing and routing beyond this boundary.\nSeveral independent streams can exist simultaneously on the same connection, as distinguished by a routing and transaction identifiers. Message order is guaranteed, if applicable, on a stream basis. Routing identifiers are typically used to indicate originator and destination (e.g., USIM to Home, ME to Serving, and also distinctions such as GSM between MM and CC for instance...). Transaction identifiers are used to distinguish streams with the same originator and destination. Messages can be sent within a transaction or not. Transactions are explicitly set up and released, either in-band (i.e., together with information transfer) or out-band. Transaction identifiers have only a local significance.\nNOTE 1:\tThere is a difficulty behind the message order. In some cases it may be important to keep message order in a combination of streams, e.g., within a route, or even involving two routes. The model presented so far is too simple to cope with such cases.\nA quality of service indication is present in sending requests. This covers such aspects as message order, effect on other on-going traffic (e.g., speech pre-emption), delay. A finite number of quality of service classes will be identified, and the one to apply to a message indicated.\nWith each transaction is associated a default quality of service, established at transaction establishment or by a subsequent modification request.\nA transmission mode indication is present in reception indications. This gives information from the Access Stratum on the aspects of the transmission related to service quality of service (e.g., speech has been pre-empted).\nNOTE 2:\tThis covers circuit data transport, including cases where each message is very small (down to 1 bit or other information quantum). Obviously, in such cases these primitives are a model not to be followed in implementations.\n6.2.2.3.3.1\tData Transfer Request, IF Side\nParameters\nLocal connection reference\nlocal\nRoute\nroute\nTransaction identification\nlocal\nTransaction management\nenumerated (single, first, subsequent, last)\nQuality of Service indication\nQoS\nMessage\nbit string\nThe transaction management field indicates if the message is independent from transactions (single), is the first of the transaction and hence initialises the transaction (first), is the last of the transaction and hence releases the transaction (last), or is in the middle of a transaction.\nThe primitive can be used with an empty message for transaction management alone (value 'single' is then meaningless).\n6.2.2.3.3.2\tData Transfer Indication, UE Side\nParameters\nLocal connection reference\nlocal\nRoute\nroute\nTransaction identification\nlocal\nTransaction management\nenumerated (single, first, subsequent, last)\nTransmission mode indication\ntransmission mode\nMessage\nbit string\n6.2.2.3.3.3\tData Transfer Request, UE Side\nParameters\nLocal connection reference\nlocal\nRoute\nroute\nTransaction identification\nlocal\nTransaction management\nenumerated (single, first, subsequent, last)\nQuality of Service indication\nQoS\nMessage\nbit string\n6.2.2.3.3.4\tData Transfer Indication, IF Side\nParameters\nLocal connection reference\nlocal\nRoute\nroute\nTransaction identification\nlocal\nTransaction management\nenumerated (single, first, subsequent, last)\nTransmission mode indication\ntransmission mode\nMessage\nbit string",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.110_6.2.2.3.4",
+      "section_id": "6.2.2.3.4",
+      "section_title": "IF Side Initiated Radio Access Bearer Establishment",
+      "content": "These operations allow the transfer of control messages for radio access bearer establishment between non-access strata elements on each side of the access interface. The operations pertain to the connection identified by the local connection reference parameter. The operations allow the IF side to initialise a radio access bearer. The operation also implies a request to the AS to allocate transmission resources to the radio access bearer.\nA radio access bearer identification uniquely identifies the radio access bearer. It is used in all primitives that pertain to the radio access bearer. It also serves as the binding to a NAS call.\nThe Iu bearer identification identifies the Iu connection.\nA quality of service request specifies the bearer characteristics that apply to the radio access bearer.\n6.2.2.3.4.1\tIF Side Initiated Radio Access Bearer Establishment Request, IF Side\nParameters\nLocal connection reference\nlocal\nRadio access bearer identification\nbit string\nIu bearer identification\nbit string\nQuality of Service request\nQoS\n6.2.2.3.4.2\tIF Side Initiated Radio Access Bearer Establishment Indication, UE Side\nParameters\nLocal connection reference\nlocal\nRadio access bearer identification\nbit string\nIu bearer identification\nbit string\n6.2.2.3.4.3\tIF Side Initiated Radio Access Bearer Establishment Response, UE Side\nParameters\nLocal connection reference\nlocal\nRadio access bearer identification\nbit string\nStatus\nenumerated (terminated by NAS, going on)\n6.2.2.3.4.4\tIF Side Initiated Radio Access Bearer Establishment Confirm, IF Side\nParameters\nLocal connection reference\nlocal\nRadio access bearer identification\nbit string\nStatus\nenumerated (terminated by NAS, terminated by AS, going on)",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.110_6.2.2.3.5",
+      "section_id": "6.2.2.3.5",
+      "section_title": "IF Side Initiated Radio Access Bearer Release",
+      "content": "These operations allow the transfer of radio access bearer release messages between non-access strata elements on each side of the access interface. The operations pertain to the connection identified by the local connection reference parameter. The operations allow IF side to release a radio access bearer.\nNOTE:\tA radio access bearer release procedure is normally initiated by the IF side. Abnormal cases such as termination by the AS are FFS.\n6.2.2.3.5.1\tIF Side Initiated Radio Access Bearer Release Request, IF Side\nParameters\nLocal connection reference\nlocal\nRadio access bearer identification\nbit string\n6.2.2.3.5.2\tIF Side Initiated Radio Access Bearer Release Indication, UE Side\nParameters\nLocal connection reference\nlocal\nRadio access bearer identification\nbit string",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.110_6.2.3.1.1",
+      "section_id": "6.2.3.1.1",
+      "section_title": "Position update indication",
+      "content": "Parameters\nLocal connection reference\nlocal\nPosition\nposition",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.110_6.2.3.1.2",
+      "section_id": "6.2.3.1.2",
+      "section_title": "Connection loss indication",
+      "content": "Parameters\nLocal connection reference\nlocal",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.110_6.2.3.1.3",
+      "section_id": "6.2.3.1.3",
+      "section_title": "Streamlining required indication",
+      "content": "This operation is used by the AS to indicate that the connection runs the risk to be aborted unless a streamlining is done.\nParameters\nLocal connection reference\nlocal\nProposed list of alternative AN/CN points\nAN/CN point list",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.110_6.2.3.1.4",
+      "section_id": "6.2.3.1.4",
+      "section_title": "Branch establishment request",
+      "content": "This operation establishes a new branch supporting dedicated mode transport for a given UE.\nParameters\nLocal connection reference\nlocal\nTransaction list\ntransaction list\nThe transaction list describes the transactions for which the establishment prior the first transmission of data is required.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.110_6.2.3.1.5",
+      "section_id": "6.2.3.1.5",
+      "section_title": "Branch establishment confirm",
+      "content": "This indicates that the branch is successfully established up to the UE and can then be used for transmission. As a result, the NAS may decide to remove the old branch.\nParameters\nLocal connection reference\nlocal",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.110_6.2.3.1.6",
+      "section_id": "6.2.3.1.6",
+      "section_title": "UE location information request",
+      "content": "This operation is sent from the NAS entity inside the CN (i.e. edge node) to the access network side of AS (i.e. URAN) to request the location information of a specific UE.\nParameters:\nLocal connection reference\nlocal\nLevel of accuracy\nbasic level or advanced level\nType of request\ndirect request or event request\nEvent\nconditions to send information\nThe level of accuracy describes the granularity required on the UE location information, either basic or advanced. The type of request describes whether the request is to get the current UE location or to get the location when some conditions specified by event are satisfied.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.110_6.2.3.1.7",
+      "section_id": "6.2.3.1.7",
+      "section_title": "UE location information confirm",
+      "content": "This operation is sent in response to the UE location information request operation.\nParameters:\nLocal connection reference\nlocal\nArea ID\nUE location information in terms of CGI format\nGeographic coordinates\nUE location information in terms of coordinates\nEvent\nconditions met\nThe Area ID is to be formatted in accordance with the CGI (Cell Global Identity). The geographic co-ordinates represents the physical co-ordinates on the earth and uncertainty parameters.\n[To be completed]",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.110_6.2.4.1.1",
+      "section_id": "6.2.4.1.1",
+      "section_title": "Connection loss indication",
+      "content": "Parameters\nLocal connection reference\nlocal\n[To be completed]",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.110_6.3.1",
+      "section_id": "6.3.1",
+      "section_title": "Local",
+      "content": "The structure is not relevant in the scope of this document, and can be decided on an implementation basis.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.110_6.3.2",
+      "section_id": "6.3.2",
+      "section_title": "Bit string",
+      "content": "A finite ordered sequence of bit values.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.110_6.3.3",
+      "section_id": "6.3.3",
+      "section_title": "Enumerated",
+      "content": "The parameter can take one value out of a list explicitly given.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.110_6.3.4",
+      "section_id": "6.3.4",
+      "section_title": "Geographical description",
+      "content": "TBI",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.110_6.3.5",
+      "section_id": "6.3.5",
+      "section_title": "QoS",
+      "content": "This clause describes the radio access bearer (RAB) by referencing a list of attributes related to the QoS. The radio access bearers are divided into two categories:\n-\tRestricted radio access bearers;\n-\tUnrestricted radio access bearers.\nAn unrestricted radio access bearer is meant for data requiring bit sequence integrity (;e.g., N-ISDN data transport), whereas a restricted radio access bearer contains a description of the nature of the information (;e.g., encoded voice). For a restricted radio access bearer, the characteristics are implicitly given.\nThe characterisation of a radio access bearer is made by using a set of attributes. A radio access bearer attribute is a specific characteristic that distinguishes it from other radio access bearer services. Refer to TS 23.107 [5] for a list of these QoS attributes. Particular values are also indicated in that specification for different services.\nIn order to describe the desired radio access bearer service, QoS attributes are defined at the SAP. Note that it is not necessary, nor meaningful to support all possible combinations of parameter settings.\nNOTE:\tIn case of an unrestricted radio access bearer, for every SDU provided at the SAP, bit sequence integrity should be maintained.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.107"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.110_6.3.6",
+      "section_id": "6.3.6",
+      "section_title": "Route",
+      "content": "TBI",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.110_6.3.7",
+      "section_id": "6.3.7",
+      "section_title": "Transaction identifier",
+      "content": "Local.",
+      "chunk_type": "parameter",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.110_6.3.8",
+      "section_id": "6.3.8",
+      "section_title": "Transaction list",
+      "content": "A list of transactions, each described by a transaction identifier (local) and by QoS parameters.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.110_6.3.9",
+      "section_id": "6.3.9",
+      "section_title": "Transmission mode",
+      "content": "TBI",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.110_6.3.10",
+      "section_id": "6.3.10",
+      "section_title": "AN/CN Point List",
+      "content": "TBI",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.110_6.3.11",
+      "section_id": "6.3.11",
+      "section_title": "Localisation",
+      "content": "TBI\nAnnex A (informative):Change history\nChange history\nDate\nTSG #\nTSG Doc.\nCR\nRev\nSubject/Comment\nOld\nNew\n2004-12\nSA#26\nCreated version 6.0.0\n5.0.0\n6.0.0\n2007-06\nSP-36\n-\n-\n-\nUpdated to Rel-7 version (MCC)\n6.0.0\n7.0.0\n2008-12\nSP-42\n-\n-\n-\nUpdated to Rel-8 version (MCC)\n7.0.0\n8.0.0\n2009-12\nSP-46\n-\n-\n-\nUpdated to Rel-9 version (MCC)\n8.0.0\n9.0.0\n2011-03\nSP-51\n-\n-\n-\nUpdate to Rel-10 version (MCC)\n9.0.0\n10.0.0\n2012-09\n-\n-\n-\n-\nUpdate to Rel-11 version (MCC)\n10.0.0\n11.0.0\n2012-09\n-\n-\n-\n-\nUpdate to Rel-11 version (MCC)\n10.0.0\n11.0.0\n2014-09\nSP-65\n-\n-\n-\nUpdate to Rel-12 version (MCC)\n11.0.0\n12.0.0\n2015-12\n-\n-\n-\n-\nUpdate to Rel-13 version (MCC)\n12.0.0\n13.0.0\n2017-03\n-\n-\n-\n-\nUpdate to Rel-14 version (MCC)\n13.0.0\n14.0.0\n2018-06\nSP-80\n-\n-\n-\nUpdate to Rel-15 version (MCC)\n14.0.0\n15.0.0\n2020-07\nSP-88E\n-\n-\n-\nUpdate to Rel-16 version (MCC)\n15.0.0\n16.0.0\n2022-03\nSP-95E\n-\n-\n-\nUpdate to Rel-17 version (MCC)\n16.0.0\n17.0.0\n2024-03\n-\n-\n-\n-\nUpdate to Rel-18 version (MCC)\n17.0.0\n18.0.0",
+      "chunk_type": "general",
+      "cross_references": []
+    }
+  ]
+}

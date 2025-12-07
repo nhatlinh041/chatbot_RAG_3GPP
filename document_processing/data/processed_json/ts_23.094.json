@@ -1,0 +1,215 @@
+{
+  "metadata": {
+    "specification_id": "ts_23.094",
+    "version": "18.0.0",
+    "title": "3GPP TS 23.094",
+    "file_path": "/content/drive/MyDrive/RAG_thesis/data/23_series/23094-i00/23094-i00.docx"
+  },
+  "export_info": {
+    "export_date": "2025-07-26T09:39:27.692110",
+    "total_chunks": 19
+  },
+  "chunks": [
+    {
+      "chunk_id": "ts_23.094_1",
+      "section_id": "1",
+      "section_title": "Scope",
+      "content": "The present document specifies the stage 2 description for the Follow Me feature.\nThe Follow Me feature enables a mobile subscriber A to manipulate the Follow Me data of a remote party B in such a way that subsequent calls directed to remote party B will be forwarded to subscriber A.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.094_2",
+      "section_id": "2",
+      "section_title": "References",
+      "content": "The following documents contain provisions which, through reference in this text, constitute provisions of the present document.\n-\tReferences are either specific (identified by date of publication, edition number, version number, etc.) or non‑specific.\n-\tFor a specific reference, subsequent revisions do not apply.\n-\tFor a non-specific reference, the latest version applies.  In the case of a reference to a 3GPP document (including a GSM document), a non-specific reference implicitly refers to the latest version of that document in the same Release as the present document.\n[1]\t3GPP TR 21.905: \"3G Vocabulary\".\n[2]\t3GPP TS 22.004: \"General on Supplementary Services\".\n[3]\t3GPP TS 22.030: \"Man-Machine Interface (MMI) of the Mobile Station (MS)\".\n[4]\t3GPP TS 22.082: \"Call Forwarding (CF) supplementary services - Stage 1\".\n[5]\t3GPP TS 22.094: \"Follow Me (FM) feature - Stage 1\".\n[6]\t3GPP TS 23.011: \"Technical realisation of Supplementary Services - General Aspects\".\n[7]\t3GPP TS 23.015: \"Technical realisation of Operator Determined Barring (ODB)\".\n[8]\t3GPP TS 23.090: \"Unstructured Supplementary Services Data (USSD)- Stage 2\".\n[9]\t3GPP TS 23.082: \"Call Forwarding (CF) supplementary services - Stage 2\".\n[10]\t3GPP TS 22.090: \"Unstructured Supplementary Services Data (USSD)- Stage 1\".\n[11]\t3GPP TS 24.090: \"Unstructured Supplementary Services Data (USSD)- Stage 3\".\n[12]\t3GPP TS 29.002: \"Mobile Application Part (MAP)\".",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905",
+        "ts_22.004",
+        "ts_22.030",
+        "ts_22.082",
+        "ts_22.094",
+        "ts_23.011",
+        "ts_23.015",
+        "ts_23.090",
+        "ts_23.082",
+        "ts_22.090",
+        "ts_24.090",
+        "ts_29.002"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.094_3.1",
+      "section_id": "3.1",
+      "section_title": "Definitions",
+      "content": "initiating subscriber: mobile subscriber who modifies the Follow Me data of the remote party.\ninitiating number: number (the MSISDN of the initiating subscriber) to which incoming calls, originally destined for the remote party, shall be forwarded. It is subsequently also referred to as MSISDNA.\nremote party: is characterised by the remote number which is defined in the numbering plan of a PLMN operator. The Follow Me feature enables the initiating subscriber to modify the Follow Me data of the remote party. In particular cases the remote party is a GSM subscriber of the PLMN and the remote number denotes her basic MSISDN.\nPreviously registered subscriber: Is the initiating service subscriber who has registered Follow Me with respect to a remote party. Her Registration can be erased by herself or by an FM service supervisor via forced erasure procedure.\nFM service supervisor: is an initiating subscriber who is allowed to modify the Follow Me data of a remote party who has been registered to a previously registered subscriber for the Follow Me application. The FM service supervisor shall be authorised by her network operator.\nremote number: is a number in E.164 format which identifies a remote party. In general this number is not assigned to a subscriber and can be regarded as a \"dummy MSISDN\". In particular cases the remote party is a GSM subscriber of the PLMN and the remote number denotes her basic MSISDN. The remote number is entered by the initiating subscriber for registration, interrogation, forced erasure and erasure of the Follow Me feature with respect to the remote party.\nFollow Me function node: is a network node in the PLMN operator of the remote party. The FM data of the remote party are stored in this node. This node can be implemented in:\n-\tan HLR;\n-\tany other operator specific network node e.g.:\n-\ta gsmSCF;\n-\tan SCP.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.094_3.2",
+      "section_id": "3.2",
+      "section_title": "Abbreviations",
+      "content": "FFN\tFollow Me function node\nFM\tFollow Me\nSCP\tService Control Part\nOther abbreviations used in this ETS are listed in 3GPP TR 21.905.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.094_4.1",
+      "section_id": "4.1",
+      "section_title": "General",
+      "content": "Follow Me enables an initiating mobile subscriber A to have control over the Follow Me data of a remote party B. The remote party B is characterised by the remote number which is defined in the numbering plan of a PLMN operator. Initiating Subscriber A shall be able to manipulate the Follow Me data of remote party B such that subsequent calls destined for remote party B are forwarded to initiating subscriber A. In the case of Forced Erasure by an FM service supervisor, the initiating subscriber is allowed to erase the Follow Me data of a remote party who has been registered to a different initiating subscriber for the Follow Me application.\nFollow Me is a PLMN specific feature and the control operations of FM are based on USSD. All messages between the MS and the mobile network and internal to the mobile network are USSD messages.\nThe present document deals with the control operations of FM in HLRa and FFN. If the FFN is an HLR, the control of the requests for both FM and CFU services is specified (see clause 4.3.2).\nThe functionality of forwarding calls for remote party B to initiating subscriber A (after successful registration of FM) is out of the scope of the present document. This functionality is the same as the functionality of the Call Forwarding Unconditional Supplementary Service applied to all telecommunication services of remote party B for which CFU is applicable.\nNOTE 1:\tthe \"served mobile subscriber\" in 3GPP TS 22.094 [5] corresponds to the \"remote party\" in the present document and the \"forwarded-to subscriber\" in 3GPP TS 22.094 [5] corresponds to the \"initiating subscriber\" in the present document.\nNOTE 2:\tThe forwarding of calls for remote party B to initiating subscriber A can be achieved by invoking the Call Forwarding Unconditional Supplementary Service or by making use of an equivalent operator specific service (e.g. via CAMEL).\nThe functionality of  the control of Follow Me (registration, erasure, forced erasure and interrogation) is split between the HLR of the initiating subscriber A (HLRa) and the FFN of the remote party B (FFNb).",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_4.3.2",
+        "ts_22.094"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.094_4.1.1",
+      "section_id": "4.1.1",
+      "section_title": "Provision",
+      "content": "FM can be registered / erased / interrogated by an initiating subscriber A with respect to a remote party B if both parties are provisioned with FM.\nTo enable forced erasure by an FM service supervisor, the FM service shall be provisioned to the FM service supervisor. Additionally, she needs the subscription entitlement to perform the forced erasure.\nNOTE:\tIn general remote party B does not correspond to a GSM subscriber. In this case provisioning of FM for remote party B is operator specific.\nIf remote party B is a GSM subscriber and if the forwarding of calls for remote party B to initiating subscriber A is achieved by invoking the Call Forwarding Unconditional Supplementary Service, provision of CFU for remote party B is required.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.094_4.1.2",
+      "section_id": "4.1.2",
+      "section_title": "Registration",
+      "content": "The initiating subscriber registers the FM feature with respect to a particular remote party.\nIf an initiating subscriber A successfully registers FM with respect to a remote party B then FM becomes registered, active and operative for remote party B.\nAs a result of the registration subsequent calls directed to remote party B are forwarded to initiating subscriber A.\nNOTE:\tThe remote party cannot register FM with respect to herself.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.094_4.1.3",
+      "section_id": "4.1.3",
+      "section_title": "Erasure",
+      "content": "If an initiating subscriber A or the FM service supervisor successfully erases FM with respect to a remote party B then FM becomes not registered and not active for remote party B.\nFor forced erasure by the FM service supervisor the previously registered subscriber shall be informed of the successful forced erasure via a network initiated USSD Notify message with appropriate contents. This message is sent by the FFN.\nIf remote party B is a GSM subscriber and successfully erases FM then FM becomes not registered and not active for remote party B.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.094_4.1.4",
+      "section_id": "4.1.4",
+      "section_title": "Interrogation",
+      "content": "If an initiating subscriber A or the FM service supervisor successfully interrogates FM with respect to a remote party B then this procedure interrogates the FM data of subscriber B.\nIf remote party B is a GSM subscriber and successfully interrogates FM then this procedure interrogates her own FM data.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.094_4.2.1",
+      "section_id": "4.2.1",
+      "section_title": "Information Flow for the handling of FM by the initiating subscriber",
+      "content": "Figure 4.1 shows the Information Flow for the control of FM (registration, erasure, forced erasure and interrogation) by the initiating subscriber.\nFor any control operation on FM, the initiating subscriber (MSa) enters a Follow Me Request (FM-Request).  This is a USSD string containing the requested FM operation and the remote number. The Follow Me Request is routed via  the MSC/VLR to the HLR of the initiating subscriber (HLRa).\nThe HLRa performs a series of checks as described in the SDLs (clause 4.3). If these checks fail, the MSa receives a response (FM-Response) indicating the error.\nIf the checks pass, the HLRa forwards the operation request (HLR-FM-Request) to the FFN of the remote party (FFNb).\nFFNb carries out the appropriate control operation and checks as described in the SDLs (clause 4.3) for the remote party.\nThe result of this operation (success or error) is reported back in a USSD Response to the initiating subscriber.\nFor successful forced erasure by a service supervisor, the FFN shall send a Network Initiated USSD notify message with the corresponding USSD string to the HLR of the previously registered subscriber who had registered the Follow Me data. The HLR shall forward the USSD notify to VLR which will relay the USSD Notify towards the MS.\nUpon receipt of the USSD Notify, the MS shall respond by sending a FACILITY message with empty return result component.\nAn error response with corresponding reason can be returned from any entity, when error happens at the entity 3GPP TS 23.090 [8].\nFigure 4.1: Information flow for the control of FM by the initiating subscriber or service supervisor\nNOTE 1:\tOR1:N:\tThe case where the checks in the HLR result in a negative outcome, e.g. FM is not provisioned for the initiating subscriber or the initiating subscriber is not allowed to operate FM for the remote party.\nOR1:Y:\tThe case where all the checks in the HLR are successful, e.g. FM is provisioned for the initiating subscriber and the initiating subscriber is allowed to operate FM for the remote party.\nNOTE 2:\t[...]\tOptional parameter.\n(...)]\tConditional parameter.\nOC\tOperation Code (Register, Erase or Interrogate).\nSC\tService Code for FM.\nRN\tRemote Number.\nSI\tSupervisor Indicator. This parameter is conditional and only used for forced erasure by a FM service supervisor.\nPIM\tMSISDN of previously registered subscriber who has registered the FM to remote number. This\tparameter is conditional and only used for forced erasure by a FM service supervisor..\nAI\tSupplementary Information containing additional information.\nMSISDN-A\tinitiating number in international format. It is not a part of the USSD string, but is sent from HLRa to the FFNb together with the HLR-FM-Request within the MAP operation. For forced erasure, the MSISDN-A corresponds to the supervisor's MSISDN and will be part of the USSD-notify.\nMSp\tMS of previously registered service subscriber.\nHLRp\tHLR of the previously registered service subscriber.",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "clause_4.3",
+        "figure_4.1",
+        "ts_23.090_figure_4.1",
+        "ts_23.090"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.094_4.2.2",
+      "section_id": "4.2.2",
+      "section_title": "Information Flow for the handling of FM by the remote party",
+      "content": "Control of FM by the remote party is possible if the remote party is a GSM subscriber.\nThe information flow for control of FM by the remote party (erasure and interrogation of her own FM data) is the same as the information flow for control of FM by the initiating subscriber.\nIf a remote party tries to register FM to herself the registration is rejected and an error is reported.",
+      "chunk_type": "procedure",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.094_4.3",
+      "section_id": "4.3",
+      "section_title": "Handling of FM control in HLRa and FFNb",
+      "content": "HLRa and FFNb can both receive FM control messages, based on USSD. The USSD handler in each entity analyses the Service Code contained in the USSD string and, recognising the Service Code for FM, invokes the FM USSD application.\nThe FM control messages and their contents are given in Annex B (normative).",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.094_4.3.1",
+      "section_id": "4.3.1",
+      "section_title": "Handling of FM control in HLRa",
+      "content": "The FM USSD application in HLRa is the process FM_initiating_subscriber_handling_in_HLR (figure 4.2). It receives the FM-Request from the initiating subscriber. This FM-Request is an USSD-string containing:\n-\tthe operation code (register, erase, interrogate);\n-\tthe remote number;\n-\tan additional operator specific information field.\nThe HLR checks:\n-\tthe provisioning of FM to the initiating subscriber;\n-\twhether the FFN can be deduced from the remote number;\n-\twhether any operator specific restrictions to engage in FM activity with the remote party apply;\n-\tif the initiating subscriber requires forced erasure, the HLR checks Whether the initiating subscriber is entitled to do it, i.e. Whether the initiating subscriber is a FM service supervisor.\nThe basic MSISDN of the initiating subscriber is sent together with the original USSD string to the FFN of the remote party.\nThe HLR forwards the response from the FFN to the initiating subscriber.\nFor successful forced erasure by a service supervisor, the HLR of the previously registered subscriber (HLRp) shall relay the USSD Notify to the VLR when the USSD Notify from the FFN is received. The VLR will then forward the USSD Notify towards the MS of the previously registered service subscriber.\nOn receipt of an USSD response from the MS of the previously registered subscriber, the HLRp shall relay it to the FFN.\nFigure 4.2: Process: FM_Initiating_Subscriber_Handling_in_HLR\nFigure 4.2a: Process Notification_for_previously_registered_subscriber_in_HLRp",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_4.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.094_4.3.2",
+      "section_id": "4.3.2",
+      "section_title": "Handling of FM control in FFNb",
+      "content": "If the FFN is an HLR, the FFN is responsible for handling the interactions between FM and CFU. Two kinds of request may be received in an FFN which deals with forwarding services:\n-\tCFU requests sent by the VLR for CFU operations (only if the FFN is a HLR);\n-\tFM-HLR-Requests which are USSD strings sent by HLRa for FM operations.\nWhen the control process in the FFN receives a CFU request, it shall either pass the CFU operation request directly to a CFU process or reject it depending on the registration and/or activation states of both FM and CFU services (see Table A.1 for permission checks).\nOn receipt of an HLR-FM request, the control process in the FFN performs a series of FM specific checks and checks the states of both FM and CFU. If the checks are successful, a CFU operation request is sent to a CFU process. On receipt of an HLR-FM-Request from HLRa, the FFN performs a series of checks. e.g.:\n-\tif the remote party is a GSM subscriber:\n-\tprovisioning of FM to the remote party;\n-\tprovisioning of CFU to the remote party;\n-\tillegal interaction with CFU registered or active to remote party.\n-\tif the remote number is registered in the FFN;\n-\tif any operator specific restrictions to engage in FM activity with the initiating subscriber apply;\n-\tspecific checks for forced erasure.\nDepending on the requested operation, one of the following procedures is performed:\n-\tregistration with implicit Activation (procedure Handle_Remote_Party_Registration, figure 4.6);\n-\terasure with implicit Deactivation (procedure Handle_Remote_Party_Erasure, figure 4.7);\n-\tinterrogation (procedure Handle_Remote_Party_Interrogation, figure 4.8).\nFor successful forced erasure by a service supervisor, the FFN shall generate an USSD-Notify message and send it to the HLRp, which will relay the USSD Notify towards the MS of the previously registered subscriber (MSp). On receipt of an error response that the USSD Notify message could not be transferred to the MS, the FFN shall check the error code of the response. Depending on the error types and the specific implementation the process shall decide to resend the USSD message after a predefined time.\nFor the resend procedure the process shall start a timer. On timer expiry it shall send the message again. The FFN shall repeat the messages up to 5 times.\nThe length of the timer is defined by operator and has the value in the range of 1 – 10 minutes.\nFigure 4.3 shows the message flow between the process Forwarding_Service_Control and the processes handling CFU operation requests, defined in 3GPP TS 23.082 [9].\nFigure 4.3: FFN_processes\n4.4 Process Forwarding_Service_Control\nFigure 4.5: Procedure: FM_Remote_Party_Handling_in_FFN\nFigure 4.6: Procedure: Handle_Remote_Party_Registration\nFigure 4.6a: Procedure Register_FM_for_Remote_Party\nFigure 4.7: Procedure: Handle_Remote_Party_Erasure\nFigure 4.7a: Procedure Erase_FM_for_Remote_party\nFigure 4.8: Procedure Handle_Remote_Party_Interrogation\nFigure 4.9: Process FFN_Forced_Erasure_Notify",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_4.6",
+        "figure_4.7",
+        "figure_4.8",
+        "figure_4.3",
+        "ts_23.082_figure_4.3",
+        "figure_4.5",
+        "figure_4.9",
+        "ts_23.082"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.094_4.4",
+      "section_id": "4.4",
+      "section_title": "USSD interworking and Cross-phase compatibility",
+      "content": "All the messages between MS and the mobile network and internal to the mobile network, which are used for control of Follow Me, are USSD Phase 2 messages.\nA Cross-phase compatibility mechanism specified in 3GPP TS 23.011 [6] for networks or MS not supporting USSD Phase 2 is not required.\nNetworks subject to the Interoperability Directive have to implement FM using USSD Phase 2.\nNOTE:\tAs an option, these networks may also implement FM using USSD Phase 1.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.011"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.094_5.1",
+      "section_id": "5.1",
+      "section_title": "Information stored in HLRa and FFNb",
+      "content": "The HLRa shall store:\n-\tthe state of FM (which shall be one of the valid states listed below).\nThe FFNb shall store:\n-\tthe state of FM if the remote party is a GSM subscriber;\n-\tthe registration parameter:\n-\tthe initiating number (MSISDNA).\nThe following logical states are applicable for FM (refer to TS 23.011 for an explanation of the notation):\nIn HLRa (for the initiating subscriber)\nProvisioning State\nRegistration State\nActivation State\nHLR Induction State\n(Not Provisioned,\nNot Registered,\nNot Active,\nNot Induced)\n(Provisioned,\nNot Registered,\nNot Active,\nNot Induced)\nThe registration and activation state is the same for each applicable elementary basic service group.\nThe provisioning state shall be per subscriber, and hence the same for all basic service groups.\nIn FFNb (for the remote party).\nProvisioning State\nRegistration State\nActivation State\nHLR Induction State\n(Not Provisioned,\nNot Registered,\nNot Active,\nNot Induced)\n(Provisioned,\nNot Registered,\nNot Active,\nNot Induced)\n(Provisioned,\nRegistered,\nActive and Operative,\nNot Induced)\nThe registration and activation state is the same for each applicable elementary basic service group.\nThe provisioning state shall be per subscriber, and hence the same for all basic service groups.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_23.011"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.094_5.2",
+      "section_id": "5.2",
+      "section_title": "State transition model",
+      "content": "The following figure shows the successful cases of transition between the applicable logical states of FM. The state changes are caused by actions of the service provider, the mobile user or the network.\nNOTE:\tError cases are not shown in the diagram as they do not normally cause a state change. Successful requests that do not cause a state change are not shown in the diagram.\nThe diagram only shows operations on an elementary basic service group.\nFigure 5.1: State transition model for FM",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_5.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.094_5.3",
+      "section_id": "5.3",
+      "section_title": "Information stored in the VLR",
+      "content": "There is no FM information stored in the VLR.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.094_5.4",
+      "section_id": "5.4",
+      "section_title": "Transfer of information from HLR to VLR",
+      "content": "There is no FM information transferred from HLR to VLR.\nAnnex A (informative):Checking matrix for FM-CFU interaction in FFNb\nThe following table is applicable under the assumption that FM and CFU are always provisioned to the remote party.\nIf FM is not provisioned then there is no interaction between FM and CFU.\nIf FM is Registered and Active, CFU must also be Registered and Active.\nInterrogation of both FM and CFU is allowed in any registration state.\nTable A.1: Operation allowance check according registration states of FM and CFU (informative)\nOperation\nRegistration States\nOutcome\nFM\nCFU\nRegistration FM\nNot registered\nNot registered\nFM: Registered and ActiveCFU: Registered and Active\nRegistered, not active\noperation not allowed\nRegistered, active\noperation not allowed\nregistered and active\nRegistered, active\nsee note 1\nErasure FM\nNot registered\nNot registered\noperation not allowed, see note 2\nRegistered, not active\noperation not allowed\nRegistered, active\noperation not allowed\nregistered and active\nRegistered, active\nFM: Not RegisteredCFU: Not Registered\nRegistration CFU\nNot registered\nNot registered\nFM: Not registeredCFU: Registered, activesee note 3\nRegistered, not active\nFM: Not registeredCFU: Registered, activesee note 3\nRegistered, active\nFM: Not registeredCFU: Registered, activesee note 3\nregistered and active\nRegistered, active\noperation not allowed, see note 4\nErasure CFU\nNot registered\nNot registered\noperation not allowed,see note 3\nRegistered, not active\nFM: Not registeredCFU: Not registerednote 3\nRegistered, active\nFM: Not registeredCFU: Not registeredsee note 3\nregistered and active\nRegistered, active\noperation not allowed, see note 4\nActivation CFU\nNot registered\nNot registered\noperation not allowed,see note 3\nRegistered, not active\nFM: Not registeredCFU: Registered, activesee note 3\nRegistered, active\nFM: Not registeredCFU: Registered, activesee note 3\nregistered and active\nRegistered, active\noperation not allowed,see note 4\nDeactivation CFU\nNot registered\nNot registered\noperation not allowed,see note 3\nRegistered, not active\noperation not allowed, see note 3\nRegistered, active\nFM: Not registeredCFU: Registered, not activesee note 3\nregistered and active\nRegistered, active\noperation not allowed,see note 4\nNOTE 1:\tThe operation is only allowed when the registration is made by the same initiating subscriber. The registration states of FM and CFU shall not be changed by the operation.\nNOTE 2:\tThe outcome code should be \"Remote party not registered\".\nNOTE 3:\tRefer to TS 23.082 for CFU handling.\nNOTE 4:\tConflicting situation with other supplementary service (see TS 22.082: Exceptional procedures or unsuccessful outcome).\nAnnex B (normative):FM control Messages and their contents\nB.1\tGeneral principles\nAll messages used for the control of FM are based on mobile initiated USSD. The principles of USSD can be found in 3GPP TS 22.090, 3GPP TS 23.090, 3GPP TS 24.090 and 3GPP TS 29.002.\nThe present document is only concerned with the contents of the USSD strings.\nB.2\tInformation Elements used in the messages\nThe operation code\nThe operation code is defined in 3GPP TS 22.030 for the control of Supplementary Services and consists of the two characters:\n-\t**\tfor Registration;\n-\t##\tfor Erasure;\n-\t*#\tfor Interrogation.\nThe Service Codes\nThe Service Code is service specific for FM.\nThe remote number\nThe remote number is the basic MSISDN of the remote party if the remote party is a GSM subscriber. It is entered by the initiating subscriber as part of the registration request. It is a number in international format.\nAdditional information field\nAn additional information field which does not exceed 30 octets may be optionally included in all FM control messages to convey operator specific information to the FFNb. The content and use of this additional information is operator specific and out of scope of the present document.\nThe initiating number\nThe initiating number is the basic MSISDN of the initiating subscriber. It is derived by HLRa from the IMSI of the initiating subscriber.\nThis parameter is used in international format according to the scheme:\n-\tcountry code, national (significant) number.\nB.3\tMessages Contents of the FM Request\nContents of the USSD string of FM-Request:\n-\tall parameters are entered by the initiating subscriber and transported transparently to HLRa.\nTable B.1: Contents of the USSD string of FM-Request\nParameter number\nValue\nParametermandatory  (M)or optional  (O)\nComment\n1\nOC\nM\nOperation Code:\nOC = ** ... for Registration\nOC = ## ... for Erasure\nOC = *# ... for Interrogation\n2\nSC\nM\nService Code for Follow Me. SMG1  Refer to 22.030 for the Service Code for Follow Me.\n3\n*\nM\nDelimiter\n4\nREMOTE NUMBER\nM\nremote number\n5\n*\nM\nDelimiter.\n6\nSupervisor Indicator\nC\nSupervisor Indicator = 88. Used for Forced Erasure by FM Service Supervisor.\n7\n*\nM\nDelimiter\n8\nMSISDN\nC\nMSISDN of previous initiating subscriber who has registered the FM to remote number. This parameter is conditional, only used for forced erasure.\n9\n*\nM\nDelimiter\n10\nAdditional information field\nO\nFor operator specific use\nlast\n#\nM\nEnd of USSD string\nB.4\tMessages Contents of the HLR-FM-Request\nContents of the USSD string of HLR-FM- Request is the same of FM-Request described in clause B.3. Additionally, the MSISDNa is sent to the FFNb together with the FM-Request within the MAP operation. Contents of the FM-Response Messages.\nThe FM-Response messages which are generated by the HLR, as well as the HLR-FM-Response messages which are received by the HLR from the FFN and are forwarded unchanged as FM-Response messages to the MS, contain the following two parts:\n-\tmandatory part: two digit outcome codes, which are interpreted in the MS according to operator specific requirements;\n-\toptional part: the response texts.\nThe optional part is separated by a space character as separator which occurs together with the optional part.\nThese outcome codes indicating success or error of the requested FM operation are 2 USSD characters according to the following table (table B.2).\nTable B.2 Outcome codes for FM-Response\nScenario\nText examples for MS display\nReg\nEra\nInterro\nOutcome Code\nOutcome codes for successful cases\n00 series\nSuccess registration Case\nFollow Me activated\nX\n01\nSuccess erasure Case\nFollow Me deactivated\nX\n02\nSuccess interrogation Case\nFollow Me active to<MSISDN>\nThe MSISDN digits are sent in the USSD response separated by a blank character from the outcome code.\nX\n03\nOperator Specific outcome codes\n04-06\nReserved for future enhancement\n07-09\nSpare outcome code\n10\nReserved for GSM-Railway\n11-12\nSpare outcome codes\n13-19\nOutcome codes generated at the HLRa in non-successful cases\n20, 30 series\nIncoming barrings\nIllegal interaction with incoming barring\nX\nX\nX\n21\nUnauthorised request\nUnauthorised request\nX\nX\nX\n22\nOperator Specific outcome codes\n23-30\nReserved for future enhancement\n31-39\nOutcome codes generated at both the HLRa and the FM function node in non-successful cases\n40 series\nUnknown remote party\nUnknown remote party\nX\nX\nX\n41\nFM not subscribed\nFM not subscribed\nX\nX\nX\n42\nOperator Specific outcome codes\n43-45\nReserved for future enhancement\n46-49\nSpare unsuccessful outcome codes\n50 series\nOutcome codes generated at the FM function node in non-successful cases\n60, 70 series\nRemote party already registered\nRemote party already registered\nX\n61\nFM not registered to remote party\nFM not registered to remote party\nX\nX\n62\nRemote party not registered to this MSISDN\nRemote party not registered to this MSISDN\nX\n63\nRemote Party Authorisation failed\nUnauthorised changes to remote party\nX\nX\n64\nCall Forwarding active or registered\nIllegal interaction with call forwarding\nX\n65\nIncoming or outgoing barrings\nIllegal interaction with call barrings\nX\nX\n66\nRequest to own MSISDN not possible\nRequest to own MSISDN not possible\nX\n67\nOperator Specific outcome codes\n68-72\nReserved for future enhancement\n73-79\nOutcome codes could be sent back by CFU processes in unsuccessful cases\nforwarded-to number is invalid directory number\nforwarded-to number is invalid directory number\nX\n80\ninsufficient information\ninsufficient information\nX\nX\n81\nforwarded-to number is a special service code\nforwarded-to number is a special service code (e.g. police)\nX\n82\nConflicting situation with other supplementary services\nConflicting situation with other supplementary services (e.g. incoming call barring has been activated)\nX\nX\n83\nInconsistent with registration\nInconsistent with registration\nX\n84\nSpare unsuccessful outcome codes\n85 - 99\nB.5\tContents and Format of the USSD String of the USSD-Notify\nThe Contents and the format of the USSD string of the USSD-Notify are described in the following table.\nTable B.3: Contents of the USSD string of the USSD-Notify for forced de-registration\nParameter number\nValue\nParametermandatory  (M),optional  (O) or conditional (C)\nComment\n1\nOC\nM\nOperation Code:\nOC = ## ... for Erasure\n2\nSC\nM\nService Code for Follow Me. SMG1  Refer to 22.030 for the Service Code for Follow Me.\n3\n*\nM\nDelimiter\n4\nREMOTE NUMBER (forced deregistered number)\nM\nremote number\n5\n*\nM\nDelimiter.\n6\nSupervisor Indicator\nC\nSupervisor Indicator = 88. This parameter is mandatory used for Forced Erasure by FM Service Supervisor (see also parameter number 8).\n7\n*\nM\nDelimiter\n8\nMSISDN\nC\n-\tThis parameter is mandatory as MSISDN of supervisor who initiated the forced deregistration request.\n-\tThis parameter shall not be included if initiated by an administrative terminal connected to the FFN.\n9\n*\nM\nDelimiter\n10\nAdditional information field\nO\nAdditional information field\nlast\n#\nM\nEnd of USSD string\nNote:\tUSSD Notification for Forced deregistration done by administrative terminal in general is optional.\nB.6\tInter-process Message Init-Notify\nThe Init-Notify message is an inter-process message in FFN. It is sent from the process Handle_Remote_Party_Erasure to process FFN_Forced_Erasure_Notify.\nThis message consists of the parameter USSD String. On receipt of the Init-Notify message, the process FFN_Forced_Erasure_Notify will pack the USSD String into the USSD-Notify message and send it to the HLRp. Refer to Table B.3 for the contents and format of the USSD String.\nThis message is only required where the FFN is based on an HLR. If the FFN is based on an IN system it is not required.\nAnnex C (informative):Change history\nChange history\nDate\nMeeting\nTDoc\nCR\nRev\nCat\nSubject/Comment\nNew version\nCN#06\nApproved at TSG CN#06 and placed under Change Control\n3.0.0\nCN#07\n001\nSome corrections and further clear formulations to FM stage 2 specification\n3.1.0\nCN#09\n002\nCorrection of the wrong Service Code\n3.2.0\nCN#11\nRelease 4 after CN#11\n4.0.0\nCN#16\nRelease 5 after CN#16\n5.0.0\nJun 2002\nCorrupted figure 5.1 fixed\n5.0.1\nDec 2003\n003\nNotify of forced erasure to previously regisstered subscriber of his deregistration\n6.0.0\nDec 2006\n004\nReservation of outcome codes for GSM-Railway\n7.0.0\nDec 2008\nUpgraded unchanged from Rel-7\n8.0.0\nDec 2009\n-\nUpdate to Rel-9 version (MCC)\n9.0.0\n2011-03\n-\nUpdate to Rel-10 version (MCC)\n10.0.0\n2012-09\n-\nUpdate to Rel-11 version (MCC)\n11.0.0\n2014-09\n-\nUpdate to Rel-12 version (MCC)\n12.0.0\n2015-12\n-\nUpdate to Rel-13 version (MCC)\n13.0.0\n2017-03\n-\nUpdate to Rel-14 version (MCC)\n14.0.0\n2018-06\nUpdate to Rel-15 version (MCC)\n15.0.0\n2020-07\nUpdate to Rel-16 version (MCC)\n16.0.0\n2022-03\n-\n-\n-\n-\n-\nUpdate to Rel-17 version (MCC)\n17.0.0\n2024-03\n-\n-\n-\n-\n-\nUpdate to Rel-18 version (MCC)\n18.0.0",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_5.1",
+        "ts_23.082",
+        "ts_22.082",
+        "ts_22.090",
+        "ts_23.090",
+        "ts_24.090",
+        "ts_29.002",
+        "ts_22.030"
+      ]
+    }
+  ]
+}

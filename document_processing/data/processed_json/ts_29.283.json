@@ -1,0 +1,859 @@
+{
+  "metadata": {
+    "specification_id": "ts_29.283",
+    "version": "18.0.0",
+    "title": "3GPP TS 29.283",
+    "file_path": "/content/drive/MyDrive/RAG_thesis/data/29_series/29283-i00/29283-i00.docx"
+  },
+  "export_info": {
+    "export_date": "2025-07-26T09:01:53.959071",
+    "total_chunks": 83
+  },
+  "chunks": [
+    {
+      "chunk_id": "ts_29.283_1",
+      "section_id": "1",
+      "section_title": "Scope",
+      "content": "The common functional architecture for support of Mission Critical (MC) services is specified in 3GPP TS 23.280 [21].\nThe functional architecture for support of Mission Critical Push To Talk (MCPTT) services is specified in 3GPP TS 23.379 [18].\nThe functional architecture for support of Mission Critical Video (MCVideo) services is specified in 3GPP TS 23.281 [19].\nThe functional architecture for support of Mission Critical Data (MCData) services is specified in 3GPP TS 23.282 [20].\nThis 3GPP Technical Specification (TS) specifies:\n1.\tThe interactions between the MC Service User Database and the MC Service Server:\n-\tThis interface between the MCPTT User Database and the MCPTT Server is referred to as the MCPTT-2 reference point, as specified in 3GPP TS 23.379 [18].\n-\tThis interface between the MCVideo User Database and the MCVideo Server is referred to as the MCVideo-2 reference point, as specified in 3GPP TS 23.281 [19].\n-\tThis interface between the MCData User Database and the MCData Server is referred to as the MCData-2 reference point, as specified in 3GPP TS 23.282 [20].\n-\tThis interface between the MCData User Database and the MCData Server is referred to as the MCVideo-2 reference point, as specified in 3GPP TS 23.282 [20].\n2.\tThe interactions between the MC Service User Database and the Configuration Management Server. This interface is referred to as the CSC-13 reference point.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.280",
+        "ts_23.379",
+        "ts_23.281",
+        "ts_23.282"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.283_2",
+      "section_id": "2",
+      "section_title": "References",
+      "content": "The following documents contain provisions which, through reference in this text, constitute provisions of the present document.\n-\tReferences are either specific (identified by date of publication, edition number, version number, etc.) or non‑specific.\n-\tFor a specific reference, subsequent revisions do not apply.\n-\tFor a non-specific reference, the latest version applies. In the case of a reference to a 3GPP document (including a GSM document), a non-specific reference implicitly refers to the latest version of that document in the same Release as the present document.\n[1]\t3GPP TR 21.905: \"Vocabulary for 3GPP Specifications\".\n[2]\tVoid.\n[3]\tVoid.\n[4]\t3GPP TS 33.210: \"3G security; Network Domain Security (NDS); IP network layer security\".\n[5]\tIETF RFC 4960: \"Stream Control Transmission Protocol\".\n[6]\t3GPP TS 29.229: \"Cx and Dx interfaces based on the Diameter protocol; Protocol details\".\n[7]\tIETF RFC 5234:\"Augmented BNF for Syntax Specifications: ABNF\".\n[8]\tIETF RFC 7944: \"Diameter Routing Message Priority\".\n[9]\t3GPP TS 29.329: \"Sh interface based on the Diameter protocol; Protocol details\".\n[10]\t3GPP TS 29.336: \"Home Subscriber Server (HSS) diameter interfaces for interworking with packet data networks and applications\".\n[11]\tIETF RFC 7683: \"Diameter Overload Indication Conveyance\".\n[12]\t3GPP TS 23.003: \"Numbering, addressing and identification\".\n[13]\t3GPP TS 24.229: \"IP multimedia call control protocol based on Session Initiation Protocol (SIP) and Session Description Protocol (SDP); Stage 3\".\n[14]\t3GPP TS 29.228: \"IP Multimedia (IM) Subsystem Cx and Dx Interfaces; Signalling flows and message contents\".\n[15]\tIETF RFC 3986:\"Uniform Resource Identifier (URI): Generic Syntax\".\n[16]\tVoid.\n[17]\tIETF RFC 8583: \"Diameter Load Information Conveyance\".\n[18]\t3GPP TS 23.379: \"Functional architecture and information flows to support Mission Critical Push To Talk (MCPTT); Stage 2\".\n[19]\t3GPP TS 23.281: \"Functional architecture and information flows to support Mission Critical Video (MCVideo); Stage 2\".\n[20]\t3GPP TS 23.282: \"Functional architecture and information flows to support Mission Critical Data (MCData); Stage 2\".\n[21]\t3GPP TS 23.280: \"Common functional architecture to support mission critical services; Stage 2\".\n[22]\t3GPP TS 24.484: \"Mission Critical Services (MCS) configuration management; Protocol specification\".\n[23]\tIETF RFC 6733: \"Diameter Base Protocol\".",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905",
+        "ts_33.210",
+        "ts_29.229",
+        "ts_29.329",
+        "ts_29.336",
+        "ts_23.003",
+        "ts_24.229",
+        "ts_29.228",
+        "ts_23.379",
+        "ts_23.281",
+        "ts_23.282",
+        "ts_23.280",
+        "ts_24.484"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.283_3.1",
+      "section_id": "3.1",
+      "section_title": "Definitions",
+      "content": "For the purposes of the present document, the terms and definitions given in 3GPP TR 21.905 [1], in 3GPP TS 23.281 [19], in 3GPP TS 23.282 [20], in 3GPP TS 23.280 [21], in 3GPP TS 23.379 [18] and the following apply, if any.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_21.905",
+        "ts_23.281",
+        "ts_23.282",
+        "ts_23.280",
+        "ts_23.379"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.283_3.2",
+      "section_id": "3.2",
+      "section_title": "Abbreviations",
+      "content": "For the purposes of the present document, the abbreviations given in 3GPP TR 21.905 [1], in 3GPP TS 23.281 [19], in 3GPP TS 23.282 [20], in 3GPP TS 23.280 [21], in 3GPP TS 23.379 [18] and the following apply, if any. An abbreviation defined in the present document takes precedence over the definition of the same abbreviation, if any, in 3GPP TR 21.905 [1].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905",
+        "ts_23.281",
+        "ts_23.282",
+        "ts_23.280",
+        "ts_23.379"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.283_4.1",
+      "section_id": "4.1",
+      "section_title": "Introduction",
+      "content": "The MCPTT-2 reference point (between the MCPTT Server and the MCPTT User Database) is defined in the 3GPP TS 23.379 [18].\nThe MCVideo-2 reference point (between the MCVideo Server and the MCVideo User Database) is defined in the 3GPP TS 23.281 [19].\nThe MCData-2 reference point (between the MCData Server and the MCData User Database) is defined in the 3GPP TS 23.282 [20].\nThe CSC-13 reference point (between the Configuration Management and the MC Service User Database) is defined in the 3GPP TS 23.280 [21].\nThis document describes the Diameter-based related procedures, message parameters and protocol specification for MCPTT-2, MDVideo-2, MCData-2 and CSC-13 reference points.\nThis document specifies the Diameter Management Application used as protocol over the MCPTT-2, MDVideo-2, MCData-2 and CSC-13 reference points.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.379",
+        "ts_23.281",
+        "ts_23.282",
+        "ts_23.280"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.283_5.1",
+      "section_id": "5.1",
+      "section_title": "Introduction",
+      "content": "This clause further specifies the architectural assumptions associated with the MCPTT-2, MDVideo-2, MCData-2 and CSC-13 reference points, building on respectively 3GPP TS 23.379 [18], 3GPP TS 23.281 [19], 3GPP TS 23.282 [20] and 3GPP TS 23.280 [21].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.379",
+        "ts_23.281",
+        "ts_23.282",
+        "ts_23.280"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.283_5.2.1",
+      "section_id": "5.2.1",
+      "section_title": "Functional Requirements of the MC Service Server",
+      "content": "Depending on the MC Service, the MC Server is:\n-\tthe MCPTT Server for MCPTT services, as defined in 3GPP TS 23.379 [18],\n-\tthe MCVideo Server for MCVideo services, as defined in 3GPP TS 23.281 [19],\n-\tand the MCData Server for MCData services, as defined in 3GPP TS 23.282 [20].\nThe MC Service Server may communicate with the MC Service User Database over:\n-\tthe MCPTT-2 interface between the MCPTT Server and the MCPTT User Database;\n-\tthe MCVideo-2 interface between the MCVideo Server and the MCVideo User Database;\n-\tthe MCData-2 interface between the MCData Server and the MCPTT User Database.\nFor more details on the functionality of the MC Service Server, refer to 3GPP TS 23.379 [18], 3GPP TS 23.281 [19] and 3GPP TS 23.282 [20], depending on the MC Service.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.379",
+        "ts_23.281",
+        "ts_23.282"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.283_5.2.2",
+      "section_id": "5.2.2",
+      "section_title": "Functional Requirements of the Configuration Management Server",
+      "content": "The Configuration Management Server may communicate with the MC Service User Database over the CSC-13 interface.\nFor more details on the functionality of the Configuration Management Server, refer to 3GPP TS 23.280 [21].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.280"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.283_5.2.3",
+      "section_id": "5.2.3",
+      "section_title": "Functional requirements of MCPTT User Database",
+      "content": "Depending on the MC Service, the MC Service User Database is:\n-\tthe MCPTT user database for MCPTT services, as defined in 3GPP TS 23.379 [18],\n-\tthe MCVideo user database for MCVideo services, as defined in 3GPP TS 23.281 [19],\n-\tand the MCData user database for MCData services, as defined in 3GPP TS 23.282 [20].\nThese MC service user databases can be co-located.\nThe MCPTT User Database may communicate with the MCPTT Server over the MCPTT-2 interface.\nThe MCVideo User Database may communicate with the MCVideo Server over the MCVideo-2 interface.\nThe MCData User Database may communicate with the MCData Server over the MCData-2 interface.\nAny MC Service User Database may communicate with the Configuration Management Server over the CSC-13 interface.\nFor more details on the functionality of the MC Service User Database, refer to 3GPP TS 23.280 [21], 3GPP TS 23.379 [18], 3GPP TS 23.281 [19] and 3GPP TS 23.282 [20] depending on the MC Service.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.379",
+        "ts_23.281",
+        "ts_23.282",
+        "ts_23.280"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.283_5.3",
+      "section_id": "5.3",
+      "section_title": "Functional classification of MC Service Server to MC Service User Database related interface procedures",
+      "content": "MC Service Server to MC Service User Database interfaces are:\n-\tThe MCPTT-2 interface between the MCPTT User Database and the MCPTT Server;\n-\tThe MCVideo-2 interface between the MCVideo User Database and the MCVideo Server;\n-\tThe MCData-2 interface between the MCData User Database and the MCData Server.\nOperations on the MC Service Server to MC Service User Database interfaces are classified in functional groups:\n1.\tData handling procedures\n-\tThe download of data from the MC Service User Database to an MC Service Server.\n-\tThe subscription to notifications from the MC Service User Database when particular information about a specific MC Service User is updated.\n-\tThe MC Service User Database can notify an MC Service Server of changes in data for which the MC Service Server previously had subscribed.",
+      "chunk_type": "procedure",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.283_5.4",
+      "section_id": "5.4",
+      "section_title": "Functional classification of CSC-13 interface procedures",
+      "content": "Operations on the CSC-13 interface are classified in functional groups:\n1.\tData handling procedures\n-\tThe download of data from the MC Service User Database to a Configuration Management Server.\n-\tThe update of data in the MC Service User Database.\n-\tThe subscription to notifications from the MC Service User Database when particular information about a specific MC Service User is updated.\n-\tThe MC Service User Database can notify a Configuration Management Server of changes in data for which the Configuration Management Server previously had subscribed.",
+      "chunk_type": "procedure",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.283_6.1",
+      "section_id": "6.1",
+      "section_title": "Introduction",
+      "content": "This clause describes the procedures invoked between MC Service Server(s) and the MC Service User Database(s), i.e.:\n-\tbetween the MCPTT Server and the MCPTT User Database over the MCPTT-2 reference point;\n-\tbetween the MCVideo Server and the MCVideo User Database over the MCVideo-2 reference point;\n-\tbetween the MCData Server and the MCData User Database over the MCData-2 reference point.\nThis clause describes the procedures invoked between the Configuration Management Server and the MC Service User Database over the CSC-13 reference point.\nIn the tables that describe the Information Elements transported by each command, each Information Element is marked as (M) Mandatory, (C) Conditional or (O) Optional in the \"Cat.\" column. For the correct handling of the Information Element according to the category type, see the description detailed in clause 6 of the 3GPP TS 29.228 [14].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.228_clause_6",
+        "ts_29.228"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.283_6.2.1.1",
+      "section_id": "6.2.1.1",
+      "section_title": "General",
+      "content": "This procedure is used between the MC Service Server or the Configuration Management Server and the MC Service User Database.\nThe procedure is invoked by the MC Service Server or the Configuration Management Server and is used:\n-\tTo obtain information for a specific MC Service ID from the MC Service User Database;\n-\tTo subscribe to notifications from the MC Service User Database for when particular information associated with a specific MC Service ID is updated.\nThis procedure is mapped to the commands Data-Pull-Request/Answer in the Diameter application specified in clause 7.2.3/7.2.4. The tables 6.2.1-1 and 6.2.1-2 detail the involved information elements.\nTable 6.2.1-1: Data Pull Request\nInformation element name\nMapping to Diameter AVP\nCat.\nDescription\nMC Service ID\nUser-Identifier\n(See 7.3.8)\nM\nThis information element contains the MC Service ID of the MC Service user for whom the data is required. See 3GPP TS 23.280 [21].\nSee clause 7.3.8 for the content of this AVP.\nRequested Data\nData-Identification\n(See 7.3.3)\nM\nThis information element indicates the requested information. The set of valid values are defined in clause 7.3.3.\nDPR Flags\nDPR-Flags\n(See 7.3.13)\nO\nThis information element contains one or several flags that define different command behaviours. The set of valid values are defined in clause 7.3.13.\nUser Data ID\nUser-Data-Id\nO\nThis information element contain the unique identifier of a given MC Service User Profile defined for an MC Service User.\nTable 6.2.1-2: Data Pull Response\nInformation element name\nMapping to Diameter AVP\nCat.\nDescription\nResult\nResult-Code / Experimental_Result\n(See 7.4)\nM\nResult of the request.\nResult-Code AVP shall be used for errors defined in the Diameter base protocol (see IETF RFC 6733 [23]).\nExperimental-Result AVP shall be used for Data Management application errors. This is a grouped AVP which contains the 3GPP Vendor ID in the Vendor-Id AVP, and the error code in the Experimental-Result-Code AVP.\nReturned Data\nData\n(See 7.3.22)\nC\nThis information element shall contain the requested data that is successfully returned.\nThis information element shall be present when all requested data exist in the MC Service User Database, the requesting entity has permissions to read them and they are all successfully read. Otherwise, it shall be absent.\nFailed Requested Data\nData-Identification\n(See 7.3.3)\nC\nThis information element indicates the requested data that cannot be retrieved by the requesting entity, when the corresponding error only applies to some of the requested data. The set of valid values are defined in 7.3.3.\nThis information element shall be present when the Experimental-Result-Code AVP is set to \"DIAMETER_ERROR_USER_DATA_CANNOT_BE_READ\" or \"DIAMETER_ERROR_UNKNOWN_DATA\" and more than one data was requested. Otherwise, it may be absent.\nDPA Flags\nDPA-Flags\n(See 7.3.14)\nO\nThis information element contains one or several flags that define different command behaviours. The set of valid values are defined in clause 7.3.14.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_7.2.3",
+        "ts_23.280_clause_7.3.8",
+        "clause_7.3.3",
+        "clause_7.3.13",
+        "clause_7.3.14",
+        "table_6.2.1-1",
+        "table_6.2.1-2",
+        "ts_23.280"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.283_6.2.1.2",
+      "section_id": "6.2.1.2",
+      "section_title": "Detailed behaviour of the requesting entity",
+      "content": "The MC Service Server or the Configuration Management Server shall make use of this procedure to retrieve from the MC Service User Database the MC Service User Profile associated with an MC Service ID i.e. the user ID of a MC user within a specific MC Service. The request shall include the MC Service ID (e.g. MCPTT ID for MCPTT service) and the requested data. The MC Service Server or the Configuration Management Server may set the \"Subscription to notifications\" flag in the DPR-Flags to subscribe to the service of notifications for any change for the requested data is requested. Otherwise, the \"Subscription to notifications\" flag in the DPR-Flags shall be cleared.\nThe MC Service Server or the Configuration Management Server may make use of this procedure to unsubscribe to the notifications service for a given MC user within a specific MC Service. The request shall include the MC Service ID identifying the MC user within a specific MC Service. The \"Subscription to notifications\" flag shall be cleared in the DPR-Flags to unsubscribe to the service of notifications for any change for the requested data.\nWhen receiving the Data Pull response with the Result Code set to \"DIAMETER_SUCCESS\" with the requested MC Service User data, the MC Service Server or the Configuration Management Server should store the received data if the subscription to the notifications service was requested and the \"Notifications service status\" flag is set by the MC Service User Database in the DPA-Flags AVP.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.283_6.2.1.3",
+      "section_id": "6.2.1.3",
+      "section_title": "Detailed behaviour of the MC Service User Database",
+      "content": "The MC Service User Database may prioritise the received request message according to priority level received within the DRMP AVP.\nUpon reception of the Data Pull Request, the MC Service User Database shall check whether the MC Service ID for whom data is asked exists in the MC Service User Database. If not, Experimental-Result-Code shall be set to \"DIAMETER_ERROR_USER_UNKNOWN\" in the Data Pull Response.\nThe MC Service User Database shall check whether the requested data exist. If one or more requested data are not recognized or supported by the MC Service User Database, the MC Service User Database shall set the Experimental-Result-Code to \"DIAMETER_ERROR_UNKNOWN_DATA\" in the Data Pull Response and the Failed Requested Data information element shall be included, indicating the requested data that are not recognized or supported by the MC Service User Database, if more than one data was requested.\nThe MC Service User Database shall check the Requesting Node permissions list (see clause 6.3) to determine whether the requested data are allowed to be retrieved by the requesting node by checking the combination of the identity of the node sending the request (identified by the Origin-Host AVP included in the request) and the supplied requested data. If one or more requested data are not allowed to be retrieved, Experimental-Result-Code shall be set to \"DIAMETER_ERROR_USER_DATA_CANNOT_BE_READ\" in the Data Pull Response and the Failed Requested Data information element shall be included, indicating the requested data that are not allowed to be read, if more than one data was requested.\nThe MC Service User Database shall check whether the requested data are currently being updated by another entity. If there is an update of the data in progress, the MC Service User Database may delay the Data Pull Response until the update has been completed. The MC Service User Database shall ensure that the data returned is not corrupted due to the race condition. If the MC Service User Database is not able to delay the Data Pull Response (e.g. due to timeout), the Experimental-Result-Code shall be set to \"DIAMETER_USER_DATA_NOT_AVAILABLE\" in the Data Pull Response.\nIf the \"Subscription to notifications\" flag in the DPR-Flags was set in the request to subscribe to the service of notifications for any change in the requested data associated with the MC Service ID, the MC Service User Database shall check the Requesting Node permissions list (see clause 6.3) to determine whether the requested data are allowed to be subscribed to notifications by the requesting node by checking the combination of the identity of the node sending the request (identified by the Origin-Host AVP included in the request) and the supplied requested data. If one or more requested data are not allowed to be subscribed to notifications, the \"Notifications service status\" flag in the DPA-Flags AVP in the Data Pull Response shall be clear. Otherwise, the MC Service User Database shall associate the requesting node identity (identified by the Origin-Host AVP included in the Data Pull Request) with the list of entities that need to be notified when the data requested in the request are modified and the \"Notifications service status\" flag shall be set in the DPA-Flags AVP in the Data Pull Response.\nIf the \"Subscription to notifications\" flag in the DPR-Flags was cleared in the request and a subscription for the data exist in the MCPTT User Database, the MC Service User Database shall remove the requesting node identity (identified by the Origin-Host AVP included in the Data Pull Request) from the list of entities that need to be notified for the requested data indicated in the request and shall clear the \"Notifications service status\" flag in the DPA-Flags AVP in the Data Pull Response.\nIf there is an error in any of the above steps then the MC Service User Database shall stop processing and shall return the error code specified in the respective step. Or if the MC Service User Database cannot fulfil the received request for reasons not stated in the above steps, e.g. due to a database error, it shall stop processing the request and set Result-Code to \"DIAMETER_UNABLE_TO_COMPLY\". Otherwise, the MC Service User Database shall set the Result-Code to \"DIAMETER_SUCCESS\" in the Data Pull Response and shall include the requested data.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_6.3"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.283_6.2.2.1",
+      "section_id": "6.2.2.1",
+      "section_title": "General",
+      "content": "This procedure is used between the Configuration Management Server and the MC Service User Database. The procedure is invoked by the Configuration Management Server and is used:\n-\tTo update information for a specific MC Service ID stored into the MC Service User Database.\nNOTE:\tThis procedure cannot be used to create or delete an MC Service ID contained in the MC Service User Database. An MC Service user shall be created with at least one MC Service User Profile.\nThis procedure is mapped to the commands Data-Update-Request/Answer in the Diameter application specified in the clause 7.2.5 and 7.2.6. The tables 6.2.2-1 and 6.2.2-2 detail the involved information elements.\nTable 6.2.2-1: Data Update Request\nInformation element name\nMapping to Diameter AVP\nCat.\nDescription\nMC Service ID\nUser-Identifier\n(See 7.3.8)\nM\nThis information element contains the MC Service ID of the MC service user for whom the data is required. See 3GPP TS 23.280 [21].\nSee clause 7.3.8 for the content of this AVP.\nData To Update\nData\n(See 7.3.22)\nM\nThis information element shall contain the data to be updated.\nDUR Flags\nDUR-Flags\n(See 7.3.15)\nO\nThis information element contains one or several flags that define different command behaviours. The set of valid values are defined in clause 7.3.15.\nTable 6.2.2-2: Data Update Response\nInformation element name\nMapping to Diameter AVP\nCat.\nDescription\nResult\nResult-Code / Experimental-Result\n(See 7.4)\nM\nResult of the update of data in the MC Service User Database.\nResult-Code AVP shall be used for errors defined in the Diameter base protocol (see IETF RFC 6733 [23]).\nExperimental-Result AVP shall be used for Data Management application errors. This is a grouped AVP which contains the 3GPP Vendor ID in the Vendor-Id AVP, and the error code in the Experimental-Result-Code AVP.\nMC Service User Profile Data\nMC-Service-User-Profile-Data\n(See 7.3.20)\nC\nThis information shall contain the User-Data-Id associated with an MC Service User Profile that has not been successfully updated if more than one MC Service User Profile is associated with the same MC Service User. This information may also include the Sequence number associated with this MC Service User Profile Data.\nThis information element shall be present if data requested to be updated are MC Service User Profile data and the Result-Code AVP is set to \"DIAMETER_LIMITED_SUCCESS\" or the Experimental-Result-Code AVP is set to \"DIAMETER_ERROR_UNKNOWN_DATA\", \"DIAMETER_ERROR_USER_DATA_CANNOT_BE_MODIFIED\" or \"DIAMETER_ERROR_PRIOR_UPDATE_IN_PROGRESS\". Otherwise, it shall be absent.\nFailed Requested Data\nData-Identification\n(See 7.3.3)\nC\nThis information element indicates the data that have not been successfully updated. The set of valid values are defined in 7.3.3.\nThis information element shall be present if the Result-Code AVP is set to \"DIAMETER_LIMITED_SUCCESS\" or the Experimental-Result-Code AVP is set to \"DIAMETER_ERROR_UNKNOWN_DATA\", \"DIAMETER_ERROR_USER_DATA_CANNOT_BE_MODIFIED\" or \"DIAMETER_ERROR_PRIOR_UPDATE_IN_PROGRESS\". Otherwise, it may be absent.\nDUA Flags\nDUA-Flags\n(See 7.3.16)\nO\nThis information element contains one or several flags that define different command behaviours. The set of valid values are defined in clause 7.3.16.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_7.2.5",
+        "ts_23.280_clause_7.3.8",
+        "clause_7.3.15",
+        "clause_7.3.16",
+        "table_6.2.2-1",
+        "table_6.2.2-2",
+        "ts_23.280"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.283_6.2.2.2",
+      "section_id": "6.2.2.2",
+      "section_title": "Detailed behaviour of the Configuration Management Server",
+      "content": "The Configuration Management Server shall make use of this procedure to update data associated to an MC Service ID (i.e. the user ID of a MC user within a specific MC Service) stored into the MC Service User Database. The request shall include the MC Service ID identifying the MC user within a specific MC Service (e.g. MCPTT ID for MCPTT service) and the data requested to be updated.\nWhen data requested to be updated are the MC Service User Profile data, the request shall include the MC Service User Profile data and the Sequence Number associated with the MC Service User Profile. The request may also include the User Data Id if more than one MC Service User Profile is associated with the same MC Service User. Multiple MC Service User Profiles for the same MC Service can be updated and, in this case, each MC Service User Profile data shall contain a Sequence Number and the User Data Id. Each updated MC Service User Profile data shall be associated with a Sequence Number of n+1 where n is the original Sequence Number associated with the MC Service User Profile before modification. If n was equal to 65535, the new associated Sequence Number shall be equal to 1.\nWhen more than one data is requested to be updated, the Configuration Management Server may set the \"Atomicity\" flag in the DUR-Flags to indicate that all the requested data shall be updated by the MC Service User Database or none of them shall be updated if at least one data element cannot be updated.\nWhen receiving \"DIAMETER_LIMITED_SUCCESS\" in the Data Update Response, including the indication of the requested data that have not been successfully updated, the Configuration Management Server may reattempt to update the affected data.\nWhen receiving \"DIAMETER_ERROR_DATA_OUT_OF_SYNC\" in the Data Update Response when attempting to update an MC Service User Profile, the Configuration Management Server may attempt to resolve the inconsistency between the version of the MC Service User Profile that it holds and the version stored at the MC Service User Database. It may execute a Data Pull to retrieve the current version of the data from the MCPTT User Database or it may wait to receive a subsequent Notification request from the MC Service User Database for the affected MC Service User Profile.\nWhen receiving \"DIAMETER_ERROR_PRIOR_UPDATE_IN_PROGRESS\" in the Data Update Response, the configuration Management Server may wait to receive a subsequent Notification request from the MC Service User Database for the affected MC Service User Profile or it may reattempt to update the data.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.283_6.2.2.3",
+      "section_id": "6.2.2.3",
+      "section_title": "Detailed behaviour of the MC Service User Database",
+      "content": "The MC Service User Database may prioritise the received request message according to priority level received within the DRMP AVP.\nUpon reception of the Data Update Request, the MC Service User Database shall check whether the MC Service ID for whom data is asked exists in the MC Service User Database. If not, Experimental-Result-Code shall be set to \"DIAMETER_ERROR_USER_UNKNOWN\" in the Data Update Response.\nThe MC Service User Database shall check whether the requested data exist. If any of the requested data is not available into the MC Service User Database, the MCPTT User Database shall set the Experimental-Result-Code to \"DIAMETER_ERROR_UNKNOWN_DATA\" in the Data Update Response and the Failed Requested Data information element shall be included, indicating the requested data that are unknown to the MC Service User Database, if more than one data was requested.\nThe MC Service User Database shall check the Requesting Node permissions list (see clause 6.3) to determine whether the requested user data is allowed to be updated by this requesting node by checking the combination of the identity of the node sending the request (identified by the Origin-Host AVP included in the request) and the supplied requested data. If any of the requested data is not allowed to be updated, Experimental-Result-Code shall be set to \"DIAMETER_ERROR_USER_DATA_CANNOT_BE_MODIFIED\" in the Data Update Response and the Failed Requested Data information element shall be included, indicating the requested data that are not allowed to be modified, if more than one data was requested.\nThe MC Service User Database shall check whether the data that is requested to be updated by the requesting node is currently being updated by another entity. If there is an update of any requested data in progress, Experimental-Result-Code shall be set to \"DIAMETER_ERROR_PRIOR_UPDATE_IN_PROGRESS\" in the Data Update Response and the Failed Requested Data information element shall be included, indicating the requested data that are being updated by another entity, if more than one data was requested.\nIf the updated data are MC Service User Profile data, the MC Service User Database shall identify the MC Service User Profile to update using the User Data Id (if multiple MC Service User Profiles exist for the same MC Service) and check the Sequence Number contained in the MC Service User Profile data included in the request. If either:\n-\tthe Sequence Number is equal to 0;\n-\tor (Sequence_Number_in_Data_Update - 1) is not equal to (Sequence_Number_In_MC_Service_User_Database modulo 65535);\nthen, the Experimental-Result-Code shall be set to \"DIAMETER_ERROR_DATA_OUT_OF_SYNC\" in the Data Update Response.\nIf there is more data than the MCPTT User Database is prepared to accept then Experimental-Result-Code shall be set to \"DIAMETER_ERROR_TOO_MUCH_DATA\" and the new data shall be discarded.\nIf the data requested to be updated are the MC Service User Profile data and if the MC Service User Profile and/or the Sequence Number and/or the User Data Id (if multiple MC Service User Profiles exist for the same MC Service) is not present in the request, then Experimental-Result-Code shall be set to \"DIAMETER_ERROR_REQUIRED_KEY_NOT_PROVIDED\", the Failed Requested Data information element shall be included indicating the requested data that causes the error (if more than one data was requested) and the operation shall be ignored by the MC Service User Database.\nIf multiple data have to be updated, the steps above shall be repeated for each data element. The MC Service User Database shall check if the \"Atomicity\" flag in set in the DUR-Flags:\n-\tIf set and the MC Service User Database does not support atomic operation, the MC Service User Database shall set the Result-Code to \"DIAMETER_ERROR_ATOMICITY_NOT_SUPPORTED\" in the Data Update Response and no data shall be updated.\n-\tIf set and the MC Service User Database supports atomic update operation, if one of the updates fails, the MC Service User Database shall keep or restore all the stored data as they were before receiving the Data Update request and the MC Service User Database shall send the Data Update Response with the Result-Code or Experimental-Result set to value appropriate to the encountered error case. Otherwise, if all updated are successful, the requested operation shall take place and the MC Service User Database shall return the Result-Code AVP set to \"DIAMETER_SUCCESS\" in the Data Update Response\n-\tIf not set, the Data Update may be partially successful if it is successful for the update of only a part of the data instances in the request. In such a case, the MC Service User Database shall set the Result-Code to \"DIAMETER_LIMITED_SUCCESS\" in the Data Update Response. This Data Update Response indicates the data that have not been successfully updated. If the requested update was for more than one MC Service User Profile, the MC Service User Database shall include in the Data Update Response the User-Data-Id of the MC Service User Profile(s) that has/have not been successfully updated.\nThe successfully updated data stored at the MC Service User Database shall trigger the sending of notifications to any other entities that are subscribed to Notifications for updates to the modified data for that MC Service ID (see 6.2.3).\nIf the updated data are MC Service User Profile, the Sequence Number received in the Data Update request shall be associated with the updated MC Service User Profile data, optionally identified by the User-Data-Id in the request.\nIf there is an error in any of the above steps then the MC Service User Database shall stop processing and shall return the error code specified in the respective step (see clause 7.4 for an explanation of the error codes).\nIf the MC Service User Database cannot fulfil the received request for reasons not stated in the above steps, e.g. due to database error, it shall stop processing the request and set Result-Code to \"DIAMETER_UNABLE_TO_COMPLY\" in the Data Update Response.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_6.3",
+        "clause_7.4"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.283_6.2.3.1",
+      "section_id": "6.2.3.1",
+      "section_title": "General",
+      "content": "This procedure is used between the MC Service User Database and the MC Service Server or the Configuration Management Server. The procedure is invoked by the MC Service User Database and is used:\n-\tTo inform the MC Service Server or the Configuration Management Server of changes in particular information associated with an MC Service ID stored in the MC Service User Database to which the MC Service Server or the Configuration Management Server has previously subscribed to receive Notifications for, using the Data Pull request (see 6.2.1).\nThis procedure is mapped to the commands Notification-Data-Request/Answer in the Diameter application specified in the clause 7.2.7 and 7.2.8. The tables 6.2.3-1 and 6.2.3-2 detail the involved information elements.\nTable 6.2.3-1: Data Notification Request\nInformation element name\nMapping to Diameter AVP\nCat.\nDescription\nMC Service ID\nUser-Identifier\n(See 7.3.8)\nM\nThis information element contains the MC Service ID of the MC Service user for whom the data is required. See 3GPP TS 23.280 [21].\nSee clause 7.3.8 for the content of this AVP.\nReturned Data\nData\n(See 7.3.22)\nM\nThis information element shall contain the data to which the requesting entity is subscribed to notification of change.\nNDR Flags\nNDR-Flags\n(See 7.3.17)\nO\nThis information element contains one or several flags that define different command behaviours. The set of valid values are defined in clause 7.3.13.\nTable 6.2.3-2: Data Notification Response\nInformation element name\nMapping to Diameter AVP\nCat.\nDescription\nResult\nResult-Code / Experimental-Result\n(See 7.4)\nM\nResult of the request.\nResult-Code AVP shall be used for errors defined in the Diameter base protocol (see IETF RFC 6733 [23]).\nExperimental-Result AVP shall be used for Data Management application errors. This is a grouped AVP which contains the 3GPP Vendor ID in the Vendor-Id AVP, and the error code in the Experimental-Result-Code AVP.\nFailed Requested Data\nData-Identification\n(See 7.3.3)\nC\nThis information element indicates the requested information that the receiving entity is not able to process. The set of valid values are defined in 7.3.3.\nThis information element shall be present when the Experimental-Result-Code AVP is set to \"DIAMETER_ERROR_NO_SUBSCRIPTION_TO_DATA\", or \"DIAMETER_ERROR_USER_DATA_NOT_RECOGNIZED\". Otherwise, it may be absent.\nNDA Flags\nNDA-Flags\n(See 7.3.18)\nO\nThis information element contains one or several flags that define different command behaviours. The set of valid values are defined in clause 7.3.18.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_7.2.7",
+        "ts_23.280_clause_7.3.8",
+        "clause_7.3.13",
+        "clause_7.3.18",
+        "table_6.2.3-1",
+        "table_6.2.3-2",
+        "ts_23.280"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.283_6.2.3.2",
+      "section_id": "6.2.3.2",
+      "section_title": "Detailed behaviour of the MCPTT User Database",
+      "content": "The MC Service User Database shall make use of this procedure to update information associated with an MC Service ID for which a MC Service Server or a Configuration Management Server has previously subscribed to receive Notifications for. The request shall include the MC Service ID identifying the MC user within a specific MC Service (e.g. MCPTT ID for MCPTT service) and the modified data.\nIf the notification is sent to modify an MC Service User Profile, the request shall include the MC Service User Profile data, including the Sequence number and the User Data Id (required if more than one MC Service User Profile exists for the same MC Service).\nWhen receiving the Notification response with the Experimental-Result-Code set to \"DIAMETER_ERROR_NO_SUBSCRIPTION_TO_DATA\", \"DIAMETER_ERROR_USER_UNKNOWN\", \"DIAMETER_ERROR_TOO_MUCH_DATA\" or \"DIAMETER_ERROR_USER_DATA_NOT_RECOGNIZED\", the MCPTT User Database shall remove the responding entity from the list of entities that need to be notified of any change in information associated with the MC Service ID included in the request.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.283_6.2.3.3",
+      "section_id": "6.2.3.3",
+      "section_title": "Detailed behaviour of the receiving entity",
+      "content": "The MC Service Server or the Configuration Management Server may prioritise the received request message according to priority level received within the DRMP AVP.\nUpon reception of the Notification Request, the receiving entity shall check whether the MC Service ID for which the Notification Request is received is served by the receiving entity. If not, the Experimental-Result-Code shall be set to \"DIAMETER_ERROR_USER_UNKNOWN\" in the Notification Data Response.\nThe receiving entity shall check whether the modified data are recognized or supported by the receiving entity. If not, the Experimental-Result-Code shall be set to \"DIAMETER_ERROR_USER_DATA_NOT_RECOGNIZED\" in the Notification Response. This Notification Data Response shall indicate the data that are not recognized or supported by the receiving entity, if more than one data was requested.\nThe receiving entity shall check whether it has subscribed to notifications for the modified data that are received. If not, the Experimental-Result-Code shall be set to \"DIAMETER_ERROR_NO_SUBSCRIPTION_TO_DATA\" in the Notification Data Response. This Notification Data Response shall indicate the data for which the notification service has not been subscribed, if more than one data was requested.\nIf there is more data than the receiving entity is prepared to accept then Experimental-Result-Code shall be set to \"DIAMETER_ERROR_TOO_MUCH_DATA\" and the new data shall be discarded. This Notification Data Response may indicate the data that have not been successfully updated\nIf the notification includes multiple data that are modified, the steps above shall be repeated for each data element. If an error occurs, the receiving entity shall stop processing and shall return the Result-Code or Experimental-Result-Code set to value specified in the respective step (see clause 7.4 for an explanation of the error codes). The Notification Data Response may indicate the requested data that have not been successfully processed.\nOtherwise, the requested operation shall take place and the receiving entity shall return the Result-Code AVP set to \"DIAMETER_SUCCESS\" in the Notification Response. If the receiving entity locally stores the data for which it has received the notification, the received data shall be updated. In this case, if the modified data are MC Service User Profile data, each modified MC Service User Profile shall be associated with the corresponding Sequence Number received in the Notification request.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_7.4"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.283_6.3.1",
+      "section_id": "6.3.1",
+      "section_title": "General",
+      "content": "Some of the individual elements identified by the Requested Data information element may be requested by the MC Service Server or the Configuration Management Server from the MC Service User Database using the Data Pull operation (see clause 6.2.1) or may be updated at the MC Service User Database by the Configuration Management Server using the Data Update operation (see clause 6.2.2). The MC Service Server or the Configuration Management Server may also request the MC Service User Database to be notified of changes to specific elements identified by Requested Data information element using the \"Subscription to notifications\" flag in the DPR-Flags of the Data Pull operation (see clause 6.2.1). The MC Service User Database will only allow these operations to take place if the Requested Data information element is permitted to be included in the specific command requested by the MC Service Server or the Configuration Management Server.\nTo manage whether an MC Service Server or a Configuration Management Server may request each requested data element with a specific operation, the MC Service User Database shall maintain a list of Requesting Entity permissions (the \"Requesting Entity Permissions List\"). Requesting entity permissions are identified by the requesting entity identity and the requested data with the possible permissions associated with each requested data for Data Pull and Data Update operations or any combination of these permissions. The permissions shall apply to all MC Service Users served by the MC Service User Database. When an MC Service Server or a Configuration Management Server requests Data Pull or Data Update, the MC Service User Database shall check permissions and return an error result if the MC Service Server or the Configuration Management Server does not have the required permission. If the Requesting Entity permissions change in a later stage, the MC Service User Database shall update the \"Requesting Entity Permission List\" accordingly.\nTable 6.3-1, Table 6.3-2 and Table 6.3-3 define the requested data, access key and requesting entity permissions for the operation(s) on data accessible via the MCPTT-2, MCVideo-2, MCData-2 or CSC-13 interface, i.e. the listed operation(s) in the Operations column are the only ones allowed to be used with this requested data value. It is a matter of operator policy to further restrict the requesting entity permission rights defined in table 6.3-1, table 6.3-2 or table 6.3-3.\nAn access key between square brackets is considered as optional, while when more than one access key is separated by logical OR and included between brackets, it means that one (and only one) of these access keys is mandatory.\nTable 6.3.1-1: Data accessible via MCPTT-2 or CSC-13 interface\nBit.\nData element\nDefined in\nAccess key\nOperations\n0\nMCPTT User Profile\n7.3.3\nRequested Data + MCPTT ID\nData Pull (Read)\nData Pull (Subscription to Notification)\nMCPTT ID\nData Update\n(NOTE 1)\nNOTE 1:\tIn this release, Data update operations are only allowed for Configuration Management Servers\nTable 6.3.1-2: Data accessible via MCVideo-2 or CSC-13 interface\nBit.\nData element\nDefined in\nAccess key\nOperations\n1\nMCVideo User Profile\n7.3.3\nRequested Data + MCVideo ID\nData Pull (Read)\nData Pull (Subscription to Notification)\nMCVideo ID\nData Update\n(NOTE 1)\nNOTE 1:\tIn this release, Data update operations are only allowed for Configuration Management Servers\nTable 6.3.1-3: Data accessible via MCData-2 or CSC-13 interface\nBit.\nData element\nDefined in\nAccess key\nOperations\n2\nMCData User Profile\n7.3.3\nRequested Data + MCData ID\nData Pull (Read)\nData Pull (Subscription to Notification)\nMCData ID\nData Update\n(NOTE 1)\nNOTE 1:\tIn this release, Data update operations are only allowed for Configuration Management Servers",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_6.2.1",
+        "clause_6.2.2",
+        "table_6.3-1",
+        "table_6.3-2",
+        "table_6.3-3",
+        "table_6.3.1-1",
+        "table_6.3.1-2",
+        "table_6.3.1-3"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.283_7.1.1",
+      "section_id": "7.1.1",
+      "section_title": "Use of Diameter base protocol",
+      "content": "The Diameter base protocol as specified in IETF RFC 6733 [23] shall apply except as modified by the defined support of the methods and the defined support of the commands and AVPs, result and error codes as specified in this specification. Unless otherwise specified, the procedures (including error handling and unrecognised information handling) shall be used unmodified.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.283_7.1.2",
+      "section_id": "7.1.2",
+      "section_title": "Securing Diameter Messages",
+      "content": "For secure transport of Diameter messages, see 3GPP TS 33.210 [4].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_33.210"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.283_7.1.3",
+      "section_id": "7.1.3",
+      "section_title": "Accounting functionality",
+      "content": "Accounting functionality (Accounting Session State Machine, related command codes and AVPs) shall not be used on the MCPTT-2, MCVideo-2, MCData-2 and CSC-13 interfaces.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.283_7.1.4",
+      "section_id": "7.1.4",
+      "section_title": "Use of sessions",
+      "content": "Between an MC Service Server and the corresponding MC Service User Database or between the Configuration Management Server and the MC Services User Database(s), Diameter sessions shall be implicitly terminated. An implicitly terminated session is one for which the server does not maintain state information. The client shall not send any re-authorization or session termination requests to the server.\nThe Diameter base protocol as specified in IETF RFC 6733 [23] includes the Auth-Session-State AVP as the mechanism for the implementation of implicitly terminated sessions.\nThe client (server) shall include in its requests (responses) the Auth-Session-State AVP set to the value NO_STATE_MAINTAINED (1), as described in IETF RFC 6733 [23]. As a consequence, the server shall not maintain any state information about this session and the client shall not send any session termination request. Neither the Authorization-Lifetime AVP nor the Session-Timeout AVP shall be present in requests or responses.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.283_7.1.5",
+      "section_id": "7.1.5",
+      "section_title": "Transport protocol",
+      "content": "Diameter messages over the MCPTT-2, MCVideo-2, MCData-2 and CSC-13 interfaces shall make use of SCTP IETF RFC 4960 [5].",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.283_7.1.6",
+      "section_id": "7.1.6",
+      "section_title": "Routing considerations",
+      "content": "This clause specifies the use of the Diameter routing AVPs Destination-Realm and Destination-Host.\nThe Destination-Realm AVP shall contain the network domain name of the MC Service provider's domain. The network domain name is either known by the sending MC Service Server or the Configuration Management Server or is derived from information received at the signalling layer.\nIf an MC Service Server or the Configuration Management Server knows the address/name of the MC Service User Database in charge of a given MC Service User, both the Destination-Realm and Destination-Host AVPs shall be present in the request.\nIf an MC Service Server or the Configuration Management Server knows only the network domain name, the Destination-Realm AVP shall be present and the command shall be routed to the next Diameter node. When multiple and separately addressable MC Service User Databases have been deployed by the MC service provider/network operator, the next Diameter node is either a Diameter Proxy Agent or a Diameter Redirect Agent responsible for the determination of the destination MC Service User Database (as described in clause 7.1.10). When the next Diameter node is a Diameter Agent Proxy, the Diameter Proxy Agent, based on the result of this determination, shall modify the Destination-Realm AVP and Destination-Host AVP of the request appropriately. The Diameter Proxy Agent shall then append a Route-Record AVP to the request and shall send the request to the destination MC Service User Database. Consequently, the Destination-Host AVP is declared as optional in the ABNF for all requests initiated by an MC Service User Database.\nWhen the response is routed back to a Diameter Proxy Agent, the Diameter Proxy Agent shall send the response back to the MC Service Server or the Configuration Management Server without modifying the Origin-Realm AVP and Origin-Host AVP. The response shall contain the Origin-Realm AVP set to the realm and the Origin-Host AVP set to the FQDN of the MC Service User Database that have sent the response. The MC Service Server shall then store the MC Service User Database realm and identity for each MC Service ID for sending further requests for the same MC Service User.\nRequests initiated by the MC Service User Database towards an MC Service Server shall include both Destination-Host and Destination-Realm AVPs. The MC Service User Database obtains the Destination-Host AVP to use in requests towards an MC Service Server or the Configuration Management Server, from the Origin-Host AVP received in previous requests from the MC Service Server or the Configuration Management Server.\nConsequently, the Destination-Realm AVP and Destination-Host AVP are declared as mandatory in the ABNF for all requests initiated by the MC Service User Database.\nConsequently, the Destination-Realm AVP is declared as mandatory and the Destination-Host AVP is declared as optional in the ABNF for all requests initiated by an MC Service Server.\nIf the Vendor-Specific-Application-ID AVP is received in any of the commands defined in this specification, it shall be ignored by the receiving node, and it shall not be used for routing purposes.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_7.1.10"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.283_7.1.7",
+      "section_id": "7.1.7",
+      "section_title": "Advertising Application Support",
+      "content": "The MC Service User Database and the MC Service Server or the Configuration Management Server shall advertise support of the Diameter Data Management Application by including the value of the application identifier in the Auth-Application-Id AVP within the Vendor-Specific-Application-Id grouped AVP of the Capabilities-Exchange-Request and Capabilities-Exchange-Answer commands.\nThe vendor identifier value of 3GPP (10415) shall be included in the Supported-Vendor-Id AVP of the Capabilities-Exchange-Request and Capabilities-Exchange-Answer commands, and in the Vendor-Id AVP within the Vendor-Specific-Application-Id grouped AVP of the Capabilities-Exchange-Request and Capabilities-Exchange-Answer commands.\nThe Vendor-Id AVP included in Capabilities-Exchange-Request and Capabilities-Exchange-Answer commands that is not included in the Vendor-Specific-Application-Id AVPs as described above shall indicate the manufacturer of the Diameter node as per IETF RFC 6733 [23].",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.283_7.1.8",
+      "section_id": "7.1.8",
+      "section_title": "Diameter Application Identifier",
+      "content": "The Diameter Data Management application protocol shall be defined as an IETF vendor specific Diameter application, where the vendor is 3GPP. The vendor identifier assigned by IANA to 3GPP (http://www.iana.org/assignments/enterprise-numbers) is 10415.\nThe Diameter application identifier assigned to the Diameter Data Management application is 16777351 (allocated by IANA).",
+      "chunk_type": "parameter",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.283_7.1.9",
+      "section_id": "7.1.9",
+      "section_title": "Use of the Supported-Features AVP",
+      "content": "When new functionality is introduced on the MCPTT-2, MCVideo-2, MCData-2 or CSC-13 interfaces, it should be defined as optional. If backwards incompatible changes cannot be avoided, the new functionality shall be introduced as a new feature and support advertised with the Supported-Features AVP. The usage of the Supported-Features AVP on the MCPTT-2, MCVideo-2, MCData-2 and CSC-13 interfaces is consistent with the procedures for the dynamic discovery of supported features as defined in clause 7.2 of 3GPP TS 29.229 [6].\nWhen extending the application by adding new AVPs for a feature, the new AVPs shall have the M bit cleared and the AVP shall not be defined mandatory in the command ABNF.\nAs defined in 3GPP TS 29.229 [6], the Supported-Features AVP is of type grouped and contains the Vendor-Id, Feature-List-ID and Feature-List AVPs. On the all reference points as specified in this specification, the Supported-Features AVP is used to identify features that have been defined by 3GPP and hence, for features defined in this document, the Vendor-Id AVP shall contain the vendor ID of 3GPP (10415). If there are multiple feature lists defined for the reference point, the Feature-List-ID AVP shall differentiate those lists from one another.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.229_clause_7.2",
+        "ts_29.229"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.283_7.1.10",
+      "section_id": "7.1.10",
+      "section_title": "MC Service ID to MC Service User Database resolution",
+      "content": "The MC Service ID to MC Service User Database resolution mechanism enables an MC Service Server or the Configuration Management Server to find the identity of the MC Service User Database that holds the MC Service related data for a given MC Service ID when multiple and separately addressable MC Service User Databases have been deployed by the MC service provider/network operator. The resolution mechanism is not required in networks that utilise a single MC Service User Database per MC Service or when an MC Service Server is configured to use pre-defined MC Service User Database.\nThe resolution mechanism shall use a Diameter Proxy Agent or a Diameter Redirect Agent.\nThe Diameter Proxy Agent or Diameter Redirect Agent shall be used to determine the MC Service User Database identity.\nIn networks where the use of the MC Service ID to MCPTT User Database resolution mechanism is required and the MC Server Server is not configured to use a predefined MC Service User Database, each MC Service Server shall be configured with the pre-configured address/name of a Diameter Proxy Agent or Diameter Redirect Agent to enable use of these resolution mechanisms.\nTo get the MC Service User Database identity, the MC Service Server or the Configuration Management Server shall send the Data Management Application request normally destined to the MC Service User Database to the pre-configured Diameter Proxy Agent or Diameter Redirect Agent.\nThe Diameter Proxy Agent shall determine the MC Service User Database identity based on the provided user identity and - if the Diameter load control mechanism is supported (see IETF RFC 8583 [17]) - optionally also based on previously received load values from Load AVPs of type HOST. The Diameter Proxy Agent shall then forward the Data Management Application request directly to the determined MC Service User Database. The MC Service Server shall determine the MC Service User Database identity from the response to the Data Management Application request received from the MC Service User Database. The MC Service Server and the Configuration Management Server should store the MC Service User Database identity/name/Realm and shall use it in further Data Management Application requests associated to the same MC Service ID.\nThe Diameter Redirect Agent shall determine the MC Service User Database address and shall send to the MC Service Server or the Configuration Management Server a notification of redirection towards the MC Service User Database, in response to the request. Multiple MC Service User Database identities may be included in the response, as specified in IETF RFC 6733 [23]. In such a case, the MC Service Server or the Configuration Management Server shall send the Request to the first MC Service User Database identity in the ordered list received in the Response from the Diameter Redirect Agent. If the MC Service Server or the Configuration Management Server does not receive a successful response to the Request, the MC Service Server or the Configuration Management Server shall send a Request to the next MC Service User Database identity in the ordered list. This procedure shall be repeated until a successful response from an MC Service User Database is received.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.283_7.2.1",
+      "section_id": "7.2.1",
+      "section_title": "Introduction",
+      "content": "This clause defines the Command code values and related ABNF for each command described in this specification.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.283_7.2.2",
+      "section_id": "7.2.2",
+      "section_title": "Command-Code values",
+      "content": "This clause defines Command-Code values for the Diameter Data Management application used over the MCPTT-2, MCVideo-2, MCData-2 and CSC-13 interfaces as allocated by IANA.\nEvery command is defined by means of the ABNF syntax IETF RFC 5234 [7], according to the Command Code Format (CCF) specification defined in IETF RFC 6733 [23]. In the case, the definition and use of an AVP is not specified in this document, the guidelines in IETF RFC 6733 [23] shall apply.\nThe Vendor-Specific-Application-Id AVP shall not be included in any command sent by Diameter nodes supporting applications defined in this specification. If the Vendor-Specific-Application-Id AVP is received in any of the commands defined in this specification, it shall be ignored by the receiving node.\nNOTE:\tThe Vendor-Specific-Application-Id is included as an optional AVP in all Command Code Format specifications defined in this specification in order to overcome potential interoperability issues with intermediate Diameter agents non-compliant with IETF RFC 6733 [23].\nThe following Command Codes are defined in this specification:\nTable 7.2.2-1: Command-Code values\nCommand-Name\nAbbreviation\nCode\nClause\nData-Pull-Request\nDPR\n8388728\n7.2.3\nData-Pull-Answer\nDPA\n8388728\n7.2.4\nData-Update-Request\nDUR\n8388729\n7.2.5\nData-Update-Answer\nDUA\n8388729\n7.2.6\nNotification-Data-Request\nNDR\n8388730\n7.2.7\nnotification-Data-Answer\nNDA\n8388730\n7.2.8",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_7.2.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.283_7.2.3",
+      "section_id": "7.2.3",
+      "section_title": "Data-Pull-Request (DPR) Command",
+      "content": "The Data-Pull-Request (DPR) command, indicated by the Command-Code field set to 8388728 and the 'R' bit set in the Command Flags field, is sent by a Diameter client to a Diameter server in order to request user data.\nMessage Format\n< Data-Pull-Request > ::=\t< Diameter Header: 8388728, REQ, PXY, 16777351 >\n< Session-Id >\n[ DRMP ]\n[ Vendor-Specific-Application-Id ]\n{ Auth-Session-State }\n{ Origin-Host }\n{ Origin-Realm }\n[ Destination-Host ]\n{ Destination-Realm }\n*[ Supported-Features ]\n[ User-Identifier ]\n*[ Data-Identification ]\n[ DPR-Flags ]\n[ User-Data-Id ]\n[ OC-Supported-Features ]\n*[ AVP ]\n*[ Proxy-Info ]\n*[ Route-Record ]",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.283_7.2.4",
+      "section_id": "7.2.4",
+      "section_title": "Data-Pull-Answer (DPA) Command",
+      "content": "The Data-Pull-Answer (DPA) command, indicated by the Command-Code field set to 8388728 and the 'R' bit cleared in the Command Flags field, is sent by a server in response to the Data-Pull-Request command. The Experimental-Result AVP may contain one of the values defined in clause 7.4.\nMessage Format\n< Data-Pull-Answer > ::=\t\t< Diameter Header: 8388728, PXY, 16777351 >\n< Session-Id >\nDRMP ]\n[ Vendor-Specific-Application-Id ]\n[ Result-Code ]\n[ Experimental-Result ]\n{ Auth-Session-State }\n{ Origin-Host }\n{ Origin-Realm }\n*[ Supported-Features ]\n*[ Data ]\n*[ Data-Identification ]\n[ DPA-Flags]\n[ OC-Supported-Features ]\n[ OC-OLR ]\n*[ Load ]\n*[ AVP ]\n[ Failed-AVP ]\n*[ Proxy-Info ]\n[ Route-Record ]",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_7.4"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.283_7.2.5",
+      "section_id": "7.2.5",
+      "section_title": "Data-Update-Request (DUR) Command",
+      "content": "The Data-Update-Request (DUR) command, indicated by the Command-Code field set to 8388729 and the 'R' bit set in the Command Flags field, is sent by a Diameter client to a Diameter server in order to update user data in the server.\nMessage Format\n< Data-Update-Request > ::=\t\t< Diameter Header: 8388729, REQ, PXY, 16777351 >\n< Session-Id >\n[ DRMP ]\n[ Vendor-Specific-Application-Id ]\n{ Auth-Session-State }\n{ Origin-Host }\n{ Origin-Realm }\n[ Destination-Host ]\n{ Destination-Realm }\n*[ Supported-Features ]\n[ User-Identifier ]\n[ Data ]\n[ DUR-Flags ]\n[ OC-Supported-Features ]\n*[ AVP ]\n*[ Proxy-Info ]\n*[ Route-Record ]",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.283_7.2.6",
+      "section_id": "7.2.6",
+      "section_title": "Data-Update-Answer (DUA) Command",
+      "content": "The Data-Update-Answer (DUA) command, indicated by the Command-Code field set to 8388729 and the 'R' bit cleared in the Command Flags field, is sent by a server in response to the Data-Update-Request command. The Experimental-Result AVP may contain one of the values defined in clause 7.4.\nMessage Format\n< Data-Update-Answer > ::=< Diameter Header: 8388729, PXY, 16777351 >\n< Session-Id >\n[ DRMP ]\n[ Vendor-Specific-Application-Id ]\n[ Result-Code ]\n[ Experimental-Result ]\n{ Auth-Session-State }\n{ Origin-Host }\n{ Origin-Realm }\n*[ Data-Identification ]\n*[ MC-Service-User-Profile-Data ]\n[ DUA-Flags ]\n*[ Supported-Features ]\n[ OC-Supported-Features ]\n[ OC-OLR ]\n*[ Load ]\n*[ AVP ]\n[ Failed-AVP ]\n*[ Proxy-Info ]\n*[ Route-Record ]",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_7.4"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.283_7.2.7",
+      "section_id": "7.2.7",
+      "section_title": "Notification-Data-Request (PDR) Command",
+      "content": "The Notification-Data-Request (PDR) command, indicated by the Command-Code field set to 8388730 and the 'R' bit set in the Command Flags field, is sent by a Diameter server to a Diameter client in order to notify changes in the user data stored in the server.\nMessage Format\n< Notification-Data-Request > ::=\t\t\t< Diameter Header: 8388730, REQ, PXY, 16777351 >\n< Session-Id >\n[ DRMP ]\n[ Vendor-Specific-Application-Id ]\n{ Auth-Session-State }\n{ Origin-Host }\n{ Origin-Realm }\n{ Destination-Host }\n{ Destination-Realm }\n*[ Supported-Features ]\n[ User-Identifier ]\n[ Data ]\n[ NDR-Flags ]\n*[ AVP ]\n*[ Proxy-Info ]\n*[ Route-Record ]",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.283_7.2.8",
+      "section_id": "7.2.8",
+      "section_title": "Notification-Data-Answer (PDA) Command",
+      "content": "The Notification-Data-Answer (PDA) command, indicated by the Command-Code field set to 8388730 and the 'R' bit cleared in the Command Flags field, is sent by a client in response to the Push-Data-Request command. The Experimental-Result AVP may contain one of the values defined in clause 7.4.\nMessage Format\n< Notification-Data-Answer > ::=< Diameter Header: 8388730, PXY, 16777351 >\n< Session-Id >\n[ DRMP ]\n[ Vendor-Specific-Application-Id ]\n[ Result-Code ]\n[ Experimental-Result ]\n{ Auth-Session-State }\n{ Origin-Host }\n{ Origin-Realm }\n*[ Data-Identification ]\n[ NDA-Flags ]\n*[ Supported-Features ]\n*[ AVP ]\n[ Failed-AVP ]\n*[ Proxy-Info ]\n*[ Route-Record ]",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_7.4"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.283_7.3.1",
+      "section_id": "7.3.1",
+      "section_title": "General",
+      "content": "The following table (table 7.3.1-1) specifies the Diameter AVPs defined for the MCPTT-2, MCVideo-2, MCData-2 and CSC-13 interfaces, their AVP Code values, types, possible flag values and whether or not the AVP may be encrypted. The Vendor-ID header of all AVPs defined in this specification shall be set to 3GPP (10415).\nFor all AVPs which contain bit masks and are of the type Unsigned32 e.g., DPR-Flags, bit 0 shall be the least significant bit. For example, to get the value of bit 0, a bit mask of 0x0001 shall be used.\nTable 7.3.1-1: MCPTT-2, MCVideo-2, MCData-2 and CSC-13 specific Diameter AVPs\nAVP Flag rules\nAttribute Name\nAVP Code\nClause\ndefined\nValue Type\nMust\nMay\nShould not\nMust not\nMay Encr.\nMCPTT-ID\n4500\n7.3.2\nUTF8String\nM, V\nNo\nData-Identification\n4501\n7.3.3\nGrouped\nM, V\nNo\nData-Identification-Prefix\n4502\n7.3.11\nUnsigned32\nM,V\nNo\nData-Identification-Flags\n4503\n7.3.12\nUnsigned64\nM,V\nNo\nDPR-Flags\n4504\n7.3.13\nUnsigned32\nM,V\nNo\nDPA-Flags\n4505\n7.3.14\nUnsigned32\nM,V\nNo\nDUR-Flags\n4506\n7.3.15\nUnsigned32\nM,V\nNo\nDUA-Flags\n4507\n7.3.16\nUnsigned32\nM,V\nNo\nNDR-Flags\n4508\n7.3.17\nUnsigned32\nM,V\nNo\nNDA-Flags\n4509\n7.3.18\nUnsigned32\nM,V\nNo\nUser-Data-Id\n4510\n7.3.19\nUnsigned32\nM,V\nNo\nMC-Service-User-Profile-Data\n4511\n7.3.20\nGrouped\nM,V\nNo\nSequence-Number\n4512\n7.3.21\nUnsigned32\nM,V\nNo\nData\n4513\n7.3.22\nGrouped\nM,V\nNo\nMCVideo-ID\n4514\n7.3.24\nUTF8String\nV\nM\nNo\nMCData-ID\n4515\n7.3.25\nUTF8String\nV\nM\nNo\nNOTE 1:\tThe AVP header bit denoted as \"M\", indicates whether support of the AVP is required. The AVP header bit denoted as \"V\" indicates whether the optional Vendor-ID field is present in the AVP header. For further details, see IETF RFC 6733 [23].\nNOTE 2:\tIf the M-bit is set for an AVP and the receiver does not understand the AVP, it shall return a rejection. If the M-bit is not set for an AVP, the receiver shall not return a rejection, whether or not it understands the AVP. If the receiver understands the AVP but the M-bit value does not match with the definition in this table, the receiver shall ignore the M-bit.\nThe following table (table 7.3.1-2) specifies the Diameter AVPs re-used by the MCPTT-2, MCVideo-2, MCData-2 and CSC-13 interfaces from existing Diameter Applications, including a reference to their respective specifications and when needed, a short description of their use within MCPTT-2, MCVideo-2, MCData-2 and CSC-13 interfaces.\nAny other AVPs from existing Diameter Applications, except for the AVPs from Diameter base protocol defined in IETF RFC 6733 [23], do not need to be supported. The AVPs from Diameter base protocol defined in IETF RFC 6733 [23] are not included in table 7.3.1-2.\nTable 7.3.1-2: MCPTT-2 and CSC-13 re-used Diameter AVPs\nAttribute Name\nReference\nComments\nM-bit\nSupported-Features\n3GPP TS 29.229 [6]\nDRMP\nIETF RFC 7844[8]\nMust set\nFeature-List-ID\n3GPP TS 29.229 [6]\nFeature-List\n3GPP TS 29.229 [6]\nSee clause 7.3.10\nFeature-Id\n3GPP TS 29.229 [6]\nUser-Data\n3GPP TS 29.329 [9]\nUser-Identifier\n3GPP TS 29.336 [10]\nSee clause 7.3.8\nOC-Supported-Features\nIETF RFC 7683 [11]\nSee clause 7.3.6\nMust set\nOC-OLR\nIETF RFC 7683 [11]\nSee clause 7.3.5\nMust set\nLoad\nIETF RFC 8583 [17]\nSee clause 7.3.23\nMust not set\nNOTE 1:\tThe M-bit settings for re-used AVPs override those of the defining specifications that are referenced. Values include: \"Must set\", \"Must not set\". If the M-bit setting is blank, then the defining specification applies.\nNOTE 2:\tIf the M-bit is set for an AVP and the receiver does not understand the AVP, it shall return a rejection. If the M-bit is not set for an AVP, the receiver shall not return a rejection, whether or not it understands the AVP. If the receiver understands the AVP but the M-bit value does not match with the definition in this table, the receiver shall ignore the M-bit.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.229_clause_7.3.10",
+        "ts_29.336_clause_7.3.8",
+        "clause_7.3.6",
+        "clause_7.3.5",
+        "clause_7.3.23",
+        "table_7.3.1-1",
+        "table_7.3.1-2",
+        "ts_29.229",
+        "ts_29.329",
+        "ts_29.336"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.283_7.3.2",
+      "section_id": "7.3.2",
+      "section_title": "MCPTT-ID",
+      "content": "The MCPTT-ID AVP is of type UTF8String, and it shall contain an URI as defined in IETF RFC 3986 [15]. For more information see 3GPP TS 23.379 [18].",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_23.379"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.283_7.3.3",
+      "section_id": "7.3.3",
+      "section_title": "Data-Identification",
+      "content": "The Data-Identification AVP is of type Grouped. It shall contain the Data-Identification-Prefix AVP and the Data-Identification-Flags AVP. AVP format\nData-Identification ::=\t< AVP header: 4501 10415 >\n{ Data-Identification-Prefix}\n{ Data-Identification-Flags }\n*[AVP]",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.283_7.3.4",
+      "section_id": "7.3.4",
+      "section_title": "DRMP",
+      "content": "The DRMP AVP is of type Enumerated and it is defined in IETF RFC 7944 [8]. This AVP allows the MC Service User Database and the MC Service Server to indicate the relative priority of Diameter messages. The DRMP AVP may be used to set the DSCP marking for transport of the associated Diameter message.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.283_7.3.5",
+      "section_id": "7.3.5",
+      "section_title": "OC-OLR",
+      "content": "The OC-OLR AVP is of type Grouped and it is defined in IETF RFC 7683 [11]. This AVP is used to support Diameter overload control mechanism.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.283_7.3.6",
+      "section_id": "7.3.6",
+      "section_title": "OC-Supported-Features",
+      "content": "The OC-Supported-Features AVP is of type Grouped and it is defined in IETF RFC 7683 [11]. This AVP is used to support Diameter overload control mechanism.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.283_7.3.7",
+      "section_id": "7.3.7",
+      "section_title": "User-Data",
+      "content": "The User-Data AVP is of type OctetString and it contains an XML document. This AVP is defined in the 3GPP TS 29.329 [9].\nWhen the requested data managed by the MC Service User Database is an MCPTT User Profile, this AVP contains an XML document conformant to the XML schema defined in clause 8.3 in the 3GPP TS 24.484 [22]. This XML schema describes the MCPTT User Profile data exchanged between the MC Service User Database and the MCPTT Server in the DPR/DPA and NDR/NDA and between the MCPTT User Database and the Configuration Management Server in DPR/DPA, NDR/NDA and DUR/DUA operations.\nWhen the requested data managed by the MC Service User Database is an MCVideo User Profile, this AVP contains an XML document conformant to the XML schema defined in clause 9.3 in the 3GPP TS 24.484 [22]. This XML schema describes the MCVideo User Profile data exchanged between the MCVideo User Database and the MCVideo Server in the DPR/DPA and NDR/NDA and between the MCVideo User Database and the Configuration Management Server in DPR/DPA, NDR/NDA and DUR/DUA operations.\nWhen the requested data managed by the MC Service User Database is an MCData User Profile, this AVP contains an XML document conformant to the XML schema defined in clause 10.3 in the 3GPP TS 24.484 [22]. This XML schema describes the MCData User Profile data exchanged between the MCData User Database and the MCData Server in the DPR/DPA and NDR/NDA and between the MCData User Database and the Configuration Management Server in DPR/DPA, NDR/NDA and DUR/DUA operations.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_24.484_clause_8.3",
+        "ts_24.484_clause_9.3",
+        "ts_24.484_clause_10.3",
+        "ts_29.329",
+        "ts_24.484"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.283_7.3.8",
+      "section_id": "7.3.8",
+      "section_title": "User-Identifier",
+      "content": "The User-Identifier AVP is of type Grouped. It shall contain the identifier used to identify the MC Service User in the MC Service User Database. This AVP is defined in the 3GPP TS 29.336 [10] and is extended to contain either an MCPTT ID, an MCVideo ID or an MCData ID.\nAVP format:\nUser-Identifier ::= <AVP header: 3102 10415>\n[ MCPTT-ID ]\n[ MCVideo-ID ]\n[ MCData-ID ]\n*[AVP]",
+      "chunk_type": "parameter",
+      "cross_references": [
+        "ts_29.336"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.283_7.3.9",
+      "section_id": "7.3.9",
+      "section_title": "Feature-List-ID AVP",
+      "content": "The syntax of this AVP is defined in 3GPP TS 29.229 [10]. For this release, the Feature-List-ID AVP value shall be set to 1.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.229"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.283_7.3.10",
+      "section_id": "7.3.10",
+      "section_title": "Feature-List AVP",
+      "content": "The syntax of this AVP is defined in 3GPP TS 29.229 [6]. A null value indicates that there is no feature used by the application.\nNOTE:\tThere is no feature defined for this release.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.229"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.283_7.3.11",
+      "section_id": "7.3.11",
+      "section_title": "Data-Identification-Prefix",
+      "content": "The Data-Identification-Prefix AVP is of type Unsigned32 and identifies a unique set of data identification flags, in order to ensure further extensibility when all Data-Identification-Flags are assigned.\nEach Data-Identification-Flags defined is assigned a unique Data-Identification-Prefix AVP value.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.283_7.3.12",
+      "section_id": "7.3.12",
+      "section_title": "Data-Identification-Flags",
+      "content": "The Data-Identification-Flags AVP is of type Unsigned64 and it contains a bit mask.\nThe meaning of the bits when the Data-Identification-Prefix value is 1 is defined in table 7.3.12-1:\nTable 7.3.12-1: Data-Identification-Flags\nbit\nname\nDescription\n0\nMCPTT User Profile\nThis bit, when set, indicates that the requested data are MCPTT User Profile data.\n1\nMCVideo User Profile\nThis bit, when set, indicates that the requested data are MCVideo User Profile data.\n2\nMCData User Profile\nThis bit, when set, indicates that the requested data are MCData User Profile data.\nNOTE:\tBits not defined in this table shall be cleared by the sending entity and discarded by the receiving entity.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_7.3.12-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.283_7.3.13",
+      "section_id": "7.3.13",
+      "section_title": "DPR-Flags",
+      "content": "The DPR-Flags AVP is of type Unsigned32 and it shall contain a bit mask. The meaning of the bits shall be as defined in table 7.3.13-1:\nTable 7.3.13-1: DPR-Flags\nBit\nName\nDescription\n0\nSubscription to notifications\nThis bit, when set, indicates that the requesting node subscribes to the notifications service for any change in the requested data.\nNOTE:\tBits not defined in this table shall be cleared by the sending entity and discarded by the receiving entity.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_7.3.13-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.283_7.3.14",
+      "section_id": "7.3.14",
+      "section_title": "DPA-Flags",
+      "content": "The DPA-Flags AVP is of type Unsigned32 and it shall contain a bit mask. The meaning of the bits shall be as defined in table 7.3.14-1:\nTable 7.3.14-1: DPA-Flags\nBit\nName\nDescription\n0\nNotification service status\nThis bit, when set, indicates that the service of notifications is active.\nNOTE:\tBits not defined in this table shall be cleared by the sending entity and discarded by the receiving entity.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_7.3.14-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.283_7.3.15",
+      "section_id": "7.3.15",
+      "section_title": "DUR-Flags",
+      "content": "The DUR-Flags AVP is of type Unsigned32 and it shall contain a bit mask. The meaning of the bits shall be as defined in table 7.3.15-1:\nTable 7.3.15-1: DUR-Flags\nBit\nName\nDescription\n0\nAtomicity\nThis bit, when set, indicates that atomicity is required for operations on multiple data.\nNOTE:\tBits not defined in this table shall be cleared by the sending entity and discarded by the receiving entity.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_7.3.15-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.283_7.3.16",
+      "section_id": "7.3.16",
+      "section_title": "DUA-Flags",
+      "content": "The DUA-Flags AVP is of type Unsigned32 and it shall contain a bit mask. The meaning of the bits shall be as defined in table 7.3.16-1:\nTable 7.3.16-1: DUA-Flags\nBit\nName\nDescription\n0\nNOTE:\tBits not defined in this table shall be cleared by the sending entity and discarded by the receiving entity.\nNOTE:\tThere is no bit defined for this release.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_7.3.16-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.283_7.3.17",
+      "section_id": "7.3.17",
+      "section_title": "NDR-Flags",
+      "content": "The NDR-Flags AVP is of type Unsigned32 and it shall contain a bit mask. The meaning of the bits shall be as defined in table 7.3.17-1:\nTable 7.3.17-1: NDR-Flags\nBit\nName\nDescription\n0\nNOTE:\tBits not defined in this table shall be cleared by the sending entity and discarded by the receiving entity.\nNOTE:\tThere is no bit defined for this release.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_7.3.17-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.283_7.3.18",
+      "section_id": "7.3.18",
+      "section_title": "NDA-Flags",
+      "content": "The NDA-Flags AVP is of type Unsigned32 and it shall contain a bit mask. The meaning of the bits shall be as defined in table 7.3.18-1:\nTable 7.3.18-1: NDA-Flags\nBit\nName\nDescription\n0\nNOTE:\tBits not defined in this table shall be cleared by the sending entity and discarded by the receiving entity.\nNOTE:\tThere is no bit defined for this release.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_7.3.18-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.283_7.3.19",
+      "section_id": "7.3.19",
+      "section_title": "User-Data-Id",
+      "content": "The User-Data-Id AVP is of type Unsigned32 and it shall contain the unique identifier of a given MC Service User Profile defined for an MC Service User.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.283_7.3.20",
+      "section_id": "7.3.20",
+      "section_title": "MC-Service-User-Profile-Data",
+      "content": "The MC-Service-User-Profile-Data AVP is of type Grouped. It may contain an MC Service User Profile data, a Sequence Number and a User Data Id identifying a specific XML document.\nAVP format:\nMC-Service-User-Profile-Data ::= <AVP header: 4511 10415>\n[ User-Data ]\n[ Sequence-Number ]\n[ User-Data-Id ]\n*[AVP]",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.283_7.3.21",
+      "section_id": "7.3.21",
+      "section_title": "Sequence-Number",
+      "content": "The Sequence-Number AVP is of type Unsigned32. This AVP contains a number associated to an MC Service User Profile. This AVP is defined in the 3GPP TS 29.329 [9].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.329"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.283_7.3.22",
+      "section_id": "7.3.22",
+      "section_title": "Data",
+      "content": "The Data AVP is of type Grouped. It contains one or several AVPs containing the data to be returned.\nAVP format:\nData ::= <AVP header: 4513 10415>\n*[ MC-Service-User-Profile-Data ]\n*[ AVP ]",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.283_7.3.23",
+      "section_id": "7.3.23",
+      "section_title": "Load",
+      "content": "The Load AVP is of type Grouped and it is defined in IETF RFC 8583 [17]. This AVP is used to support the Diameter load control mechanism.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.283_7.3.24",
+      "section_id": "7.3.24",
+      "section_title": "MCVideo-ID",
+      "content": "The MCVideo-ID AVP is of type UTF8String, and it shall contain an URI as defined in IETF RFC 3986 [15]. For more information see 3GPP TS 23.281 [19].",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_23.281"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.283_7.3.25",
+      "section_id": "7.3.25",
+      "section_title": "MCData-ID",
+      "content": "The MCData-ID AVP is of type UTF8String, and it shall contain an URI as defined in IETF RFC 3986 [15]. For more information see 3GPP TS 23.282 [20].",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_23.282"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.283_7.4.1",
+      "section_id": "7.4.1",
+      "section_title": "Introduction",
+      "content": "This clause defines Result-Code and Experimental-Result-Code values that shall be supported by all Diameter implementations that conform to this specification.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.283_7.4.2.1",
+      "section_id": "7.4.2.1",
+      "section_title": "General",
+      "content": "Result codes that fall within the Success category shall be used to inform a peer that a request has been successfully completed. The Result-Code AVP values defined in Diameter base protocol IETF RFC 6733 [23] shall be applied.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.283_7.4.3.1",
+      "section_id": "7.4.3.1",
+      "section_title": "General",
+      "content": "Errors that fall within the Permanent Failures category shall be used to inform the peer that the request has failed, and should not be attempted again. The Result-Code AVP values defined in Diameter base protocol IETF RFC 6733 [23] shall be applied. When one of the result codes defined here is included in a response, it shall be inside an Experimental-Result-Code AVP and the Result-Code AVP shall be absent.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.283_7.4.3.2",
+      "section_id": "7.4.3.2",
+      "section_title": "DIAMETER_ERROR_USER_UNKNOWN (5001)",
+      "content": "This result code shall be sent by the MC Service User Database to indicate that the MC Service User identified by the User Identifier received in the request is unknown. This error code is defined in 3GPP TS 29.229 [6].",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.229"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.283_7.4.3.3",
+      "section_id": "7.4.3.3",
+      "section_title": "DIAMETER_ERROR_USER_DATA_NOT_RECOGNIZED (5100)",
+      "content": "The data received by the MC Service Server or the Configuration Management Server is not supported or recognized. This error code is defined in 3GPP TS 29.329 [9].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.329"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.283_7.4.3.4",
+      "section_id": "7.4.3.4",
+      "section_title": "DIAMETER_ERROR_OPERATION_NOT_ALLOWED (5101)",
+      "content": "The requested operation is not allowed for the user. This error code is defined in 3GPP TS 29.329 [9].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.329"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.283_7.4.3.5",
+      "section_id": "7.4.3.5",
+      "section_title": "DIAMETER_ERROR_USER_DATA_CANNOT_BE_READ (5102)",
+      "content": "The requested user data is not allowed to be read. This error code is defined in 3GPP TS 29.329 [9].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.329"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.283_7.4.3.6",
+      "section_id": "7.4.3.6",
+      "section_title": "DIAMETER_ERROR_USER_DATA_CANNOT_BE_MODIFIED (5103)",
+      "content": "The requested user data is not allowed to be modified. This error code is defined in 3GPP TS 29.329 [9].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.329"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.283_7.4.3.7",
+      "section_id": "7.4.3.7",
+      "section_title": "DIAMETER_ERROR_USER_DATA_CANNOT_BE_NOTIFIED (5104)",
+      "content": "The requested user data is not allowed to be notified on changes. This error code is defined in 3GPP TS 29.329 [9].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.329"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.283_7.4.3.8",
+      "section_id": "7.4.3.8",
+      "section_title": "DIAMETER_ERROR_TOO_MUCH_DATA (5008)",
+      "content": "The size of the data pushed to the receiving entity exceeds its capacity. This error code is defined in 3GPP TS 29.229 [6].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.229"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.283_7.4.3.9",
+      "section_id": "7.4.3.9",
+      "section_title": "DIAMETER_ERROR_DATA OUT_OF_SYNC (5105)",
+      "content": "The request to update the user profile at the MC Service User Database could not be completed because the requested update is based on an out-of-date version of the user profile i.e. the Sequence Number in the Data Update Request message does not match with the immediate successor of the associated Sequence Number stored for that user profile at the MC Service User Database. This error code is defined in 3GPP TS 29.329 [9].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.329"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.283_7.4.3.10",
+      "section_id": "7.4.3.10",
+      "section_title": "DIAMETER_ERROR_FEATURE_UNSUPPORTED (5011)",
+      "content": "A request application message was received indicating that the origin host requests that the command pair would be handled using a feature which is not supported by the destination host. This error code is defined in 3GPP TS 29.229 [6].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.229"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.283_7.4.3.11",
+      "section_id": "7.4.3.11",
+      "section_title": "DIAMETER_ERROR_NO_SUBSCRIPTION_TO_DATA (5107)",
+      "content": "The MCPTT Server received a notification of changes of some information to which it is not subscribed. This error code is defined in 3GPP TS 29.329 [9].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.329"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.283_7.4.3.12",
+      "section_id": "7.4.3.12",
+      "section_title": "DIAMETER_ERROR_ UNKNOWN _DATA (5670)",
+      "content": "The requested data received by the MC Service User Database does not exist.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.283_7.4.3.13",
+      "section_id": "7.4.3.13",
+      "section_title": "DIAMETER_ERROR_REQUIRED_KEY_NOT_PROVIDED (5671)",
+      "content": "One or more access keys are missing in the request to be able to update the requested data.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.283_7.4.4.1",
+      "section_id": "7.4.4.1",
+      "section_title": "General",
+      "content": "Errors that fall within the transient failures category are those used to inform a peer that the request could not be satisfied at the time that it was received. The request may be able to be satisfied in the future.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.283_7.4.4.2",
+      "section_id": "7.4.4.2",
+      "section_title": "DIAMETER_USER_DATA_NOT_AVAILABLE (4100)",
+      "content": "The requested user data is not available at this time to satisfy the requested operation. This error code is defined in 3GPP TS 29.329 [9].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.329"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.283_7.4.4.3",
+      "section_id": "7.4.4.3",
+      "section_title": "DIAMETER_PRIOR_UPDATE_IN_PROGRESS (4101)",
+      "content": "The request to update the repository data at the MC Service User Database could not be completed because the related repository data is currently being updated by another entity. This error code is defined in 3GPP TS 29.329 [9].\nAnnex A (normative):Diameter overload control mechanism\nA.1\tGeneral\nDiameter overload control mechanism is an optional feature.\nIETF RFC 7683 [11] specifies a Diameter overload control mechanism which includes the definition and the transfer of related AVPs between Diameter nodes.\nIt is recommended to make use of IETF RFC 7683 [11] on the MCPTT-2, MCVideo-2, MCData-2 and CSC-13 interfaces where, when applied, the MC Service Server and the Configuration Management Server shall behave as a reacting node and the MC Service User Database as a reporting node.\nDepending on regional/national requirements and network operator policy, priority traffic (e.g. MCPTT emergency call) shall be exempted from throttling due to Diameter overload control up to the point where requested traffic reduction cannot be achieved without throttling the priority traffic.\nA.2\tMC Service User Database behaviour\nThe MC Service User Database requests traffic reduction from the MC Service Server when the MC Service User Database is in an overload situation, including OC-OLR AVP in answer commands as described in IETF RFC 7683 [11].\nThe MC Service User Database identifies that it is in an overload situation by implementation specific means. For example, the MC Service User Database may take into account the traffic over the MC Service Server to MC Service User Database interfaces (e.g. MCPTT-2) or other interfaces, the level of usage of internal resources (CPU, memory), the access to external resources, etc.\nThe MC Service User Database determines the specific contents of OC-OLR AVP in overload reports and the MC Service User Database decides when to send OC-OLR AVPs by implementation specific means.\nA.3\tMC Service Server and Configuration Management Server behaviour\nThe MC Service Server and the Configuration Management Server apply required traffic reduction received in answer commands to subsequent applicable requests, as per IETF RFC 7683 [11].\nThe MC Service Server and the Configuration Management Server achieve requested traffic reduction by implementation specific means. For example, the MC Service Server or the Configuration Management Server may implement message throttling with prioritization or a message retaining mechanism for operations that can be postponed.\nDiameter requests related to priority traffic (e.g., MCPTT emergency call), detected via the presence of priority information (e.g., Resource-Priority header field for MPS) in SIP messages as described in 3GPP TS 24.229 [13], have the highest priority. Depending on regional/national requirements and network operator policy, these Diameter requests shall be the last to be throttled, when the MC Service Server has to apply traffic reduction.\nAnnex B (Informative):Diameter overload node behaviour\nB.1\tMessage prioritization\nThis clause describes possible behaviours of the MC Service Server and the Configuration Management Server regarding message prioritization in an informative purpose.\nThe MC Service Server may take the following into account when making throttling decisions:\n-\tIdentification of the procedures that can be deferred, so to avoid to drop non deferrable procedures;\n-\tPrioritization of certain types of request (e.g. between NDR and DPR) according to the context of their use, in particular:\n-\tLower prioritization of commands for MC Service Server that are related to massive subscription data update due to provisioning.\n-\tPriority level of a priority user.\nThe Configuration Management Server may take the following into account when making throttling decisions:\n-\tIdentification of the procedures that can be deferred (e.g. Update of the MCPTT User Profile in the MCPTT database), so to avoid to drop non deferrable procedures;\n-\tPrioritization of certain types of request (e.g. between NDR and DPR) according to the context of their use, in particular:\n-\tLower prioritization of commands for the Configuration Management Server that are related to massive subscription data update due to provisioning.\n-\tPriority level of a priority user.\nAnnex C (normative):Diameter message priority mechanism\nC.1\tGeneral\nIETF RFC 7944 [8] specifies a Diameter message priority mechanism that allows Diameter nodes to indicate the relative priority of Diameter messages. With this information, other Diameter nodes may leverage the relative priority of Diameter messages into routing, resource allocation, set the DSCP marking for transport of the associated Diameter message, and also abatement decisions when overload control is applied.\nC.2\tMCPTT-2, MCVideo-2, MCData-2 and CSC-13 interfaces\nC.2.1\tGeneral\nThe Diameter message priority mechanism is an optional feature.\nIt is recommended to make use of IETF RFC 7944 [8] over the MCPTT-2, MCVideo-2, MCData-2 and CSC-13 interfaces of an operator network when the overload control defined in Annex A is applied on these interfaces.\nC.2.2\tMC Service Server and Configuration Management Server behaviour\nWhen the MCPTT Server or the Configuration Management Server support the Diameter message priority mechanism, the MCPTT Server or the Configuration Management Server shall comply with IETF RFC 7944 [8].\nThe MCPTT Server or the Configuration Management Server sending a request shall determine the required priority according to its policies. When priority is required, the MCPTT Server or the Configuration Management Server shall include the DRMP AVP indicating the required priority level in the request it sends and shall prioritise the request according to the required priority level.\nWhen the MCPTT Server or the Configuration Management Server receives the corresponding response, it shall prioritise the received response according to the priority level received within the DRMP AVP if present, in the response, otherwise according to the priority level of the corresponding request.\nWhen the MCPTT Server or the Configuration Management Server receives a request, it shall handle the request according to the received DRMP AVP priority level. For the response, the MCPTT Server or the Configuration Management Server may modify the priority level received in the DRMP AVP according to its policies and shall handle the response according to the required priority level. If the required priority level is different from the priority level received in the request, the MCPTT Server or the Configuration Management Server shall include the DRMP AVP in the response.\nIf:\n-\tthe MCPTT Server and the Configuration Management Server supports using the Diameter message priority mechanism for DSCP marking purposes,\n-\tthe transport network utilizes DSCP marking, and\n-\tmessage-dependant DSCP marking is possible for the protocol stack transporting Diameter,\nthen the MCPTT Server and the Configuration Management Server shall set the DSCP marking for transport of the request or response according to the required priority level.\nDiameter requests related to priority traffic (e.g. MCPTT emergency call) shall contain a DRMP AVP with a high priority of which the level value is operator dependent.\nWhen not-explicitly requested, the inclusion and priority value of the DRMP AVP in Diameter messages are implementation specific.\nC.2.3\tMC Service User Database behaviour\nWhen the MCPTT User Database supports the Diameter message priority mechanism, the MCPTT User Database shall comply with IETF RFC 7944 [8].\nThe MCPTT User Database sending a request shall determine the required priority according to its policies. When priority is required, the MCPTT User Database shall include the DRMP AVP indicating the required priority level in the request it sends, and shall prioritise the requests according to required priority level.\nWhen the MCPTT User Database receives the corresponding response, it shall prioritise the received response according to the priority level received within the DRMP AVP if present in the response, otherwise according to the priority level of the corresponding request.\nWhen the MCPTT User Database receives a request, it shall handle the request according to the received DRMP AVP priority level. For the response, it may modify the priority level received in the DRMP AVP according to its policies and shall handle the response according to the required priority level. If the required priority level is different from the priority level received in the request, it shall include the DRMP AVP in the response.\nIf:\n-\tthe MCPTT User Database supports using the Diameter message priority mechanism for DSCP marking purposes,\n-\tthe transport network utilizes DSCP marking, and\n-\tmessage-dependant DSCP marking is possible for the protocol stack transporting Diameter,\nthen the MCPTT User Database shall set the DSCP marking for transport of the request or response according to the required priority level.\nWhen not explicitly requested, the inclusion and priority value of the DRMP AVP in Diameter messages are implementation specific.\nAnnex D (normative):Diameter load control mechanism\nD.1\tGeneral\nDiameter load control mechanism is an optional feature.\nIt is recommended to make use of IETF RFC 8583 [17] on the MCPTT-2, MCVideo-2, MCData-2 and CSC-13 interfaces where, when applied, the MC Service Server and the Configuration Management Server shall behave as reacting nodes and the MC Service User Database as a reporting node.\nD.2\tMC Service User Database behaviour\nThe MC Service User Database may report its current load by including a Load AVP of type HOST in answer commands as described in IETF RFC 8583 [17].\nThe MC Service User Database calculates its current load by implementation specific means. For example, the MC Service User Database may take into account the traffic over the MCPTT-2, MCVideo-2, MCData-2 and CSC-13 interfaces or other interfaces, the level of usage of internal resources (e.g. CPU, memory), the access to external resources, etc.\nThe MC Service User Database determines when to send Load AVPs of type HOST by implementation specific means.\nD.3\tMC Service Server and Configuration Management Server behaviour\nWhen performing next hop Diameter Agent selection for requests that are routed based on realm, the MC Service Server/Configuration Management Server may take into account load values from Load AVPs of type PEER received from candidate next hop Diameter nodes, as per IETF RFC 8583 [17].\nAnnex E (informative):Change history\nChange history\nDate\nMeeting\nTDoc\nCR\nRev\nCat\nSubject/Comment\nNew version\nFeb 2016\nCT4#72\nC4-161515\nCreation\n0.1.0\nFeb 2016\nCT4#72\nC4-161516\nVersion after Ct4#72\n0.2.0\nMar 2016\nCT#71\nCP-160120\nPresented for information and approval\n1.0.0\nMar 2016\nCT#71\nCP-160162\nTS number added and Approved\n1.0.1\nMar 2016\nCT#71\nVersion 13.0.0 created after CT plenary\n13.0.0\nJun 2016\nCT#72\nCP-160227\n0001\n2\nEnhancements to MCPTT-2 and CSC-13\n13.1.0\nJun 2016\nCT#72\nCP-160227\n0002\n2\nIANA assigned application Id and command code values\n13.1.0\n2016-12\nCT#74\nCP-160664\n0006\n-\nCorrection to change IETF drmp draft version to official RFC 7944\n13.2.0\n2016-12\nCT#74\nCP-160681\n0005\n1\nLoad Control\n14.0.0\n2017-03\nCT#75\nCP-170045\n0007\n1\nSupport of MCVideo and MCData Services\n14.1.0\n2017-03\nCT#75\nCP-170048\n0010\n1\nUpdate of reference for the Diameter base protocol\n14.1.0\n2017-03\nCT#75\nCP-170048\n0011\n1\nHandling of the Vendor-Specific-Application-Id AVP\n14.1.0\n2017-06\nCT#76\nCP-171022\n0013\n-\nVendor-Specific-Application-Id\n14.2.0\n2017-06\nCT#76\nCP-171018\n0015\n1\nSupport for signaling transport level packet marking\n14.2.0\n2017-09\nCT#77\nCP-172013\n0017\n-\nCorrection of DRMP Procedures\n14.3.0\n2018-06\nCT#80\n-\n-\n-\nUpdate to Rel-15 version (MCC)\n15.0.0\n2019-09\nCT#85\nCP-192094\n0019\n2\ndraft-ietf-dime-load published as RFC 8583\n15.1.0\n2020-07\nCT#88e\n-\n-\n-\nUpdate to Rel-16 version (MCC)\n16.0.0\n2022-04\n-\n-\n-\n-\n-\nUpdate to Rel-17 version (MCC)\n17.0.0\n2022-12\nCT#98e\nCP-223075\n0025\n-\nA\nData Pull improvement\n17.1.0\n2024-03\n-\n-\n-\n-\n-\nUpdate to Rel-18 version (MCC)\n18.0.0",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.329",
+        "ts_24.229"
+      ]
+    }
+  ]
+}

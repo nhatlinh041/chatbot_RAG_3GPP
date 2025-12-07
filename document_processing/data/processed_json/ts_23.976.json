@@ -1,0 +1,425 @@
+{
+  "metadata": {
+    "specification_id": "ts_23.976",
+    "version": "Unknown",
+    "title": "3GPP TS 23.976",
+    "file_path": "/content/drive/MyDrive/RAG_thesis/data/23_series/23976-i00/23976-i00.docx"
+  },
+  "export_info": {
+    "export_date": "2025-07-26T09:20:58.306882",
+    "total_chunks": 41
+  },
+  "chunks": [
+    {
+      "chunk_id": "ts_23.976_1",
+      "section_id": "1",
+      "section_title": "Scope",
+      "content": "The purpose of this technical report is to analyse the service requirements for push services as defined in TS 22.174 \"Push service; Stage 1\". It continues the work of TR 23.875 (3GPP internal report).\nThis technical report describes methods for supporting push services by 3GPP delivery networks. The mechanisms described apply to existing delivery networks for the 3GPP Packet Switched (PS) domain, Circuit Switched (CS) domain, IP Multimedia Core Network Subsystem (IMS), Multimedia Broadcast / Multicast Service (MBMS), and Wireless Local Area Network (WLAN). Any necessary changes identified during this work will be introduced by means of change requests to the appropriate specifications.\nThe definition of Push Functionality that applies to push Application Servers is outside the scope of this work. The definition of Push Functionality that is best implemented in push Application Servers such as a Push Proxy and Push Initiator will be undertaken by other standards bodies and industry forums.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_22.174",
+        "ts_23.875"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.976_2",
+      "section_id": "2",
+      "section_title": "References",
+      "content": "The following documents contain provisions which, through reference in this text, constitute provisions of the present document.\n-\tReferences are either specific (identified by date of publication, edition number, version number, etc.) or non‑specific.\n-\tFor a specific reference, subsequent revisions do not apply.\n-\tFor a non-specific reference, the latest version applies. In the case of a reference to a 3GPP document (including a GSM document), a non-specific reference implicitly refers to the latest version of that document in the same Release as the present document.\n[1]\t3GPP TR 21.905: \" Vocabulary for 3GPP Specifications \".\n[2]\t3GPP TS 22.060: \"General Packet Radio Service (GPRS); Service description; Stage 1\".\n[3]\t3GPP TS 22.174: \"Push service; Stage 1\".\n[4]\t3GPP TR 23.039: \"Interface Protocols for the Connection of Short Message Service Centres (SMSCs) to Short Message Entities (SMEs)\".\n[5]\t3GPP TS 23.040: \" Technical realization of the Short Message Service (SMS)\".\n[6]\t3GPP TS 23.060: \" General Packet Radio Service (GPRS); Service description; Stage 2\".\n[7]\t3GPP TS 23.228: \"IP Multimedia Subsystem (IMS); Stage 2\".\n[8]\t3GPP TS 23.002: \"Network architecture\".\n[9]\t3GPP TS 29.007: \"General requirements on interworking between the Public Land Mobile Network (PLMN) and the Integrated Services Digital Network (ISDN) or Public Switched Telephone Network (PSTN)\".\n[10]\t3GPP TR 23.910: \"Circuit switched data bearer services\".\n[11]\t3GPP TS 29.061: \"Interworking between the Public Land Mobile Network (PLMN) supporting packet based services and Packet Data Networks (PDN)\".\n[12]\t3GPP TS 24.229: \"Internet Protocol (IP) multimedia call control protocol based on Session Initiation Protocol (SIP) and Session Description Protocol (SDP); Stage 3\".\n[13]\tIETF RFC 3428: \"Session Initiation Protocol (SIP) Extension for Instant Messaging\".\n[14]\tIETF RFC 3265: \"Session Initiation Protocol (SIP) - Specific Event Notification\".\n[15]\t3GPP TS 23.207: \"End-to-end Quality of Service (QoS) concept and architecture\".\n[16]\t3GPP TR 23.917: \"Dynamic policy control enhancements for End to end Quality of Service (QoS)\".\n[17]\tIETF RFC 2748: \"Common Open Policy Service protocol (COPS)\".\n[18]\tITU‑T Recommendation E.164: \"The international public telecommunication numbering plan\".\n[19]\tIETF RFC 792: \"Internet Control Message Protocol\".\n[20]\tIETF RFC 1035: \"Domain names – Implementation and specification\".\n[21]\tIETF RFC 2486: \"The Network Access Identifier\".\n[22]\t3GPP TS 29.060: \"General Packet Radio Service (GPRS); GPRS Tunnelling Protocol (GTP) across the Gn and Gp interface\".\n[23]\t3GPP TS 23.141: \"Presence Service; Architecture and functional description\".\n[24]\t3GPP TS 43.010: \"GSM Public Land Mobile Network (PLMN) connection types\".",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905",
+        "ts_22.060",
+        "ts_22.174",
+        "ts_23.039",
+        "ts_23.040",
+        "ts_23.060",
+        "ts_23.228",
+        "ts_23.002",
+        "ts_29.007",
+        "ts_23.910",
+        "ts_29.061",
+        "ts_24.229",
+        "ts_23.207",
+        "ts_23.917",
+        "ts_29.060",
+        "ts_23.141",
+        "ts_43.010"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.976_3.1",
+      "section_id": "3.1",
+      "section_title": "Definitions",
+      "content": "For the purposes of the present document, the terms and definitions given in TS 22.174 [3] and the following apply.\ndelivery network: transfers Push Data from Push Function to UE in a connectionless or connection oriented manner. A delivery network may be a GPRS bearer service.\nApplication Server: a server that provides push services through a delivery network, e.g. via an IP connection\nuser IP address: an IP address provided by the delivery network that can be used by an Application Server to provide push services to a user. The address may be permanently assigned (static) or temporarily assigned (dynamic).\nuser-ID: an identity or name that can be used to deliver push content to a user in a delivery network. The format of user-ID is dependent on the protocol for the push services.\nuser availability: the ability of an delivery network to transfer data to a subscribed user.\nlong-lived PDP Context: a PDP Context that remains active/open for an indefinite period of time. Also referred to as \"always-on PDP context\".\nalways-on PDP Context: this is a PDP Context that remains active/open for an indefinite period of time. Also referred to as \"long-lived PDP context\".\nPDP Context:\nPush Data: data sent by the push initiator to the Push Recipient.\nPush Function: the entity in the PLMN that receives the Push Data from the Push Initiator. The Push Function is responsible for delivering the Push Data to the Push Recipient.\nPush Initiator: the entity that originates Push Data and submits it to the Push Function for delivery to a Push Recipient. A Push Initiator may be e.g. an application providing value added services.\nPush Recipient: the entity that receives the Push Data from the Push Function and processes or uses it. This may include the UE with which the PLMN communicates with, the user agent with the application level address, and the device, machine or person which uses the Push Data.\nPush service: a service capability offered by the PLMN that transfers Push Data (e.g. data, multimedia content) from the Push Initiator to the Push Recipient without a previous user action. The Push service could be used as a basic capability or as component of a value added service.\nPush User agent: any software or device associated with a Push Recipient that interprets Push Data to the user. This may include textual browsers, voice browsers, search engines, machine or device interface software, etc.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_22.174"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.976_3.2",
+      "section_id": "3.2",
+      "section_title": "Abbreviations",
+      "content": "For the purposes of the present document, the following abbreviations apply:\nAPN\tAccess Point Name\nAR\tAddress Resolver\nAS\tApplication Server\nCS\tCircuit Switched\nCSCF\tCall Server Control Function\nCOPS\tCommon Open Policy Service\nDHCP\tDynamic Host Configuration Protocol\nDNS\tDomain Name Service\nDRQ\tDelete Request\nEDGE\tEnhanced Data rates for GSM Evolution\nGERAN\tGSM / EDGE RAN\nGGSN\tGateway GPRS Support Node\nGPRS\tGeneral Packet Radio Service\nGSM\tGlobal System for Mobile communication\nHLR\tHome Location Register\nHPLMN\tHome PLMN\nICMP\tInternet Control Message Protocol\nIMS\tIP Multimedia Subsystem\nIMSI\tInternational Mobile Subscriber Identifier\nIP\tInternet Protocol\nISC\tIMS Service Control\nISDN\tIntegrated Services Digital Network\nIWF\tInterWorking Function\nLAN\tLocal Area Network\nNM\tNotification Message\nMSC\tMobile Switching Centre\nMSISDN\tMobile Station ISDN number\nNRPCA\tNetwork Requested PDP Context Activation\nOMA\tOpen Mobile Alliance\nP-CSCF\tProxy CSCF\nPDF\tPolicy Decision Function\nPDN\tPacket Data Network\nPDP\tPacket Data Protocol\nPDU\tProtocol Data Unit\nPF\tPush Function\nPI\tPush Initiator\nPLMN\tPublic Land Mobile Network\nPS\tPacket Switched\nPS\tPresence Server\nPSTN\tPublic Switched Telephone Network\nRAN\tRadio Access Network\nS-CSCF\tServing CSCF\nSGSN\tServing GPRS Support Node\nSIP\tSession Initiation Protocol\nSMS\tShort Message Service\nSMSC\tShort Message Service Centre\nTBD\tTo Be Decided\nTI\tTransaction Identifier\nUE\tUser Equipment\nURI\tUniform Resource Identifier\nUTRAN\tUniversal Terrestrial RAN\nVPLMN\tVisited PLMN\nWAP\tWireless Access Protocol\nWLAN\tWireless LAN",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.976_4.1",
+      "section_id": "4.1",
+      "section_title": "Delivery network independent support for Push service",
+      "content": "The Push Function shall be able to transmit the Push Data over a delivery network independent of the other delivery networks. Therefore the Push service, as required by a Push Function, and within the capabilities of the delivery network shall be supported over circuit-switched (CS data and SMS) services, PS domain (PDP Context and SMS) services and IMS services, independently of the availability of other delivery network services within an operator network.\nThe above does not exclude the support of Push services by combining the capabilities of two or more delivery network services, but there shall be no direct dependence on the availability of a specific delivery network in order for another delivery network to support the Push service.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.976_4.2",
+      "section_id": "4.2",
+      "section_title": "Selection of delivery network",
+      "content": "Where a network supports Push services the capabilities offered by the delivery network shall be configured in the Push Function to allow the Push Function to select a delivery network. If the network supports Push services and offers more then one delivery network, the network shall allow the Push Function to select the delivery network and, where practical, submit configuration settings to indicate desired services supported within that chosen delivery network. For example, where a 3G network supports multiple push delivery network options supporting different characteristics for delivery of Push Data (priority delivery, acknowledged or unacknowledged delivery, store and forward), the network shall allow the Push Function to select the appropriate delivery network and provide preferences for delivery of the Push Data.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.976_4.3",
+      "section_id": "4.3",
+      "section_title": "Delivery network support of acknowledged and unacknowledged Push Data delivery",
+      "content": "When a delivery network has acknowledgement capability and the user has invoked the acknowledgment mode service, the delivery network shall provide some means to communicate to the Push Function the successful delivery of, or the failure to deliver, a push message.\nIn the case of unacknowledged delivery, where the delivery network has enough information to determine the delivery was unsuccessful, the delivery network may provide some means to communicate to the Push Function a message delivery failure.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.976_5",
+      "section_id": "5",
+      "section_title": "Push architecture overview",
+      "content": "The Push service architecture overview is shown in figure 1. This includes the push Application Servers, Push Function (or Push proxy) and Push Initiator as well as the delivery networks available and the Push Recipient or UE. The definition of functions in the Push Function (Push Proxy) and Push Initiator are outside the scope of this TR. Figure 1 also shows the Push Function performing delivery network selection; the definition of how this is performed and the criteria for delivery network selection are part of the definition of the Push Function and are outside the scope of this TR. Figure 1 depicts the Push Function being located within the PLMN: this is a logical representation of the Push service architecture and does not imply the physical collocation of a Push Function within the PLMN infrastructure.\nThe description of the delivery network used to support push services and how those delivery network services are established, maintained and withdrawn is the main focus of this clause.\nFigure 1: Push service architecture overview.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "figure_1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.976_5.1",
+      "section_id": "5.1",
+      "section_title": "PS domain delivery networks supporting push",
+      "content": "This clause describes the use of various mechanisms in the PS domain to establish and/or maintain a bearer service connection to the UE over which Push services may be delivered.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.976_5.1.1",
+      "section_id": "5.1.1",
+      "section_title": "PS domain network elements and interfaces supporting Push",
+      "content": "The following diagram illustrates the network elements and interfaces that are necessary to support Push over a PS domain PDP Context and/or SMS. The Push Function interfaces to the GGSN via the Gi reference point when using a PDP Context and to the Short Message Service Centre (SMSC) when using the Short Message Service.\nFigure 2:  Network elements and interfaces supporting Push over the PS domain (PDP Context and SMS)\nThe Push Function interfaces to the GGSN using the Gi reference point. This is an Internet Protocol (IP) interface that supports IP formatted packets. IP packets sent to/from the Gi reference point are mapped to/from a PDP Context in the GGSN. Interworking over the Gi reference point is defined in TS 29.061 [11].\nThe GSM/3GPP standards do not fully define the SMSC's interfaces. The interface from the SMSC to the access network is defined within the 3GPP standards (primarily TS 23.040 [5]). The interface to the SMSC from an external Application Server is not standardized by 3GPP (TR 23.039 [4] provides guidance on this interface).\nSMSC implementations today often support an IP network connection for SMS message access from an Application Server. This IP interface can be used to allow a Push Function to push messages or notifications to a mobile user.",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_2",
+        "ts_29.061",
+        "ts_23.040",
+        "ts_23.039"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.976_5.1.2",
+      "section_id": "5.1.2",
+      "section_title": "NRPCA with static IP address assignment",
+      "content": "The nature of Push Data is in many cases non-deterministic in terms of when it will arrive and when the recipient will want the information. Therefore the NRPCA feature is well suited to the needs of a Push service. Provided the UE is attached to the network, the NRPCA feature can initiate a PDP Context to the UE for Push Data.\nThe feature in TS 23.060 [6], clause 9.2.2.2 Network Requested PDP Context Activation can be used to support push services.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.060_clause_9.2.2.2",
+        "ts_23.060"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.976_5.1.3",
+      "section_id": "5.1.3",
+      "section_title": "Push using SMS in the PS domain",
+      "content": "Figure 3 illustrates the basic steps involved in an SMS Push service.\nFigure 3: SMS Push message scenario\nThe SMSC receives the initial push message from the Push Function. The message is delivered to the User/UE through the SMS delivery network using the Gd reference point.",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_3"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.976_5.1.3.1",
+      "section_id": "5.1.3.1",
+      "section_title": "Push notification with user connect scenario",
+      "content": "When the SMS environment is not adequate, the Push Function can push a notification to the user allowing the user to establish a direct connection to the Push Function or Push Initiator. The conditions for Push notification with the user connect scenario are:\n-\tdata to be pushed exceeds SMS message size limits, or\n-\tthe data to be delivered requires a directly addressable IP connection to the user.\nFigure 4: SMS Push notification with user connect scenario\nIn figure 4, the notification pushed to the user must contain the information necessary for the user to initiate a connection (e.g. PDP Context) and retrieve the intended data. The information in the notification, for example, may be directed to an application such as an email agent for automatic retrieval of an email message, or a URL which the user can invoke through a browser. The user may choose to ignore a push notification.",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_4"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.976_5.1.3.2",
+      "section_id": "5.1.3.2",
+      "section_title": "Push broadcast scenario",
+      "content": "The existing standards allow delivery of broadcast messages using SMS formats. This requires support for Cell Broadcast in the Service Centre.\nAddresses supplied in this case would identify a broadcast area instead of a specific user. This delivery method could be used with either a push message or a push notification.\nFigure 5: Push broadcast scenario",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_5"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.976_5.1.3.3",
+      "section_id": "5.1.3.3",
+      "section_title": "Addressing",
+      "content": "The Push Function will use the existing addressing scheme to the SMSC. For an IP network interface, the SMSC will be addressable in a standard network format (e.g. domain name, IP address). The SMS message will be contained in the data portion of the IP packet and will use the SMS addressing mechanism, i.e. MSISDN or E.164.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.976_5.1.3.4",
+      "section_id": "5.1.3.4",
+      "section_title": "Delivery reliability",
+      "content": "SMS is a store-and-forward service and includes message delivery reliability mechanisms. If a user is not accessible or has some condition that prohibits message delivery, the delivery network will provide an alert to the SMSC when the condition has cleared. This allows the SM-SC to attempt delivery again as soon as the user is able to receive the message.\nFigure 6 shows an example sequence with a Push message being delivered while a user's mobile is powered off.\nFigure 6: SMS reliable delivery sequence\nAs shown in figure 6, the SM-SC receives an alert notification when the user becomes accessible. The SM-SC is then able to attempt a second delivery of the message, which now succeeds.\nThe Alert SMSC message is provided by the HLR/HSS per the existing SMS service definition TS 23.040 [5].\nThe reliable delivery feature of SMS would also apply to the \"Push notification with user connect scenario\".\nIt is also possible for the SMSC to relay alert notices to the Push Function. In this case, the Push Function would be responsible for maintaining a copy of the message and re-transmitting when the user becomes available.",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_6",
+        "ts_23.040"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.976_5.1.4",
+      "section_id": "5.1.4",
+      "section_title": "Push using Long-Lived PDP Context",
+      "content": "A long-lived PDP Context is a good mechanism for timely delivery of Push Data, and where the user is receiving data on a frequent basis a long-lived PDP Context is also an efficient use of network resources. The existing definition of a PDP Context in TS 23.060 [6] does not specify a maximum time limit for a PDP Context to be active before it must be deactivated. In theory, all PDP Contexts are long-lived (always-on) where their activation and deactivation are determined by the user and/or application.\nIn practice, networks may temporarily deactivate PDP Contexts for various reasons, such as network maintenance or after long periods where the PDP Context has not carried traffic. When a PDP Context is deactivated by the network, the Push Function needs to know the PDP Context is no longer available so it does not continue to use it for Push Data.\nIn the case where the PDP Context is deactivated by the network, there are different mechanisms that may be deployed to inform the Push Function of the PDP Context deactivation or to avoid the PDP context deactivation.  These mechanisms are listed and discussed in the following clauses.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.060"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.976_5.1.4.1",
+      "section_id": "5.1.4.1",
+      "section_title": "Internet Control Message Protocol",
+      "content": "The Internet Control Message Protocol (ICMP) is defined in RFC 792 [19]. TS 23.060 [6], clause 9.1.1 makes reference to the use of ICMP error notifications sent from the GGSN when a mobile-terminated IP packet is received in the INACTIVE state, indicating the PDP Context is deactivated.\nICMP error notification messages are sent from the GGSN when the GGSN is unable to forward an IP packet to its destination. Therefore the Push Function must generate an IP packet towards the UE before it will receive an ICMP message informing it that the packet is not deliverable. In this scenario the GGSN and Push Function may be unsynchronized for some period when the PDP Context is deactivated at the GGSN, and when the Push Function transmits an IP packet to the deactivated PDP Context and receives back an ICMP message.\nWhen using ICMP as the mechanism to inform the Push Function that a PDP Context has been deactivated, the Push Function may need to send an IP packet to the UE before re-allocation of an IP address to another PDP Context.  This is to guard against a Push Function transmitting an IP packet using an IP address that had been previously used by a PDP Context that has been deactivated and then re-assigned to a new PDP Context before the Push Function learned (via ICMP) of the deactivation of the first PDP Context. Sending Push Data to a wrong UE can only be avoided by sending an IP packet to each UE once in the time period that a GGSN is not using the IP addresses before allocation to another UE.\nIt is for further study whether ICMP support at the GGSN may apply to all APNs serviced by the GGSN, or on a per APN basis.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.060_clause_9.1.1",
+        "ts_23.060"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.976_5.1.4.2",
+      "section_id": "5.1.4.2",
+      "section_title": "PDP Context State Notification message",
+      "content": "The GGSN, upon deactivation of a PDP Context, shall generate a PDP Context State Notification message towards the Push Function using an address configured in the GGSN PDP Context state information.\nThe support of this message by the GGSN shall be configurable on a per APN basis. The format of a PDP Context State Notification message shall include the deactivated PDP Context MSISDN, PDP Address, and APN.\nBy generating a PDP Context State Notification message when the PDP Context is deactivated the GGSN and Push Function are kept synchronized with respect to the state of the PDP Context. Given a Notification message will be generated for each PDP Context associated with a given APN configured to use this feature, this will generate extra traffic over the Gi Reference point. In addition, not all PDP Contexts associated with an APN are used for Push service, yet all PDP Contexts associated with an APN using this feature will have a Notification message generated when they are deactivated.\nThe PDP Context State Notification message is not currently defined in 3G/GSM specifications. Annex A provides an example mechanism for implementing this feature.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.976_5.1.4.3",
+      "section_id": "5.1.4.3",
+      "section_title": "Radius Accounting START/STOP messages",
+      "content": "Although the use of Radius is not mandatory in 3GPP networks it is widely deployed. Radius is an Authorization, Authentication, and Accounting service that may also take on the function of IP address allocation (like DHCP), see TS 29.061 [11]. The Radius Accounting START/STOP messages have a side effect of indicating when a PDP Context is activated and deactivated. A Radius server by using the information collected as a result of Accounting START/STOP messages can inform the Push Function on the state of a PDP Context.\nThe interworking of a Push Function to a Radius server is outside the scope of the present document.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.061"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.976_5.1.4.4",
+      "section_id": "5.1.4.4",
+      "section_title": "COPS DRQ operation",
+      "content": "The COPS protocol operates between the GGSN and the PDF over the Go reference point. TS 23.207 [15], clause 5.3 describes the Go interface and the COPS messages exchanged over it, including the Delete Request State (DRQ) message. TS 23.207 [15], clause 6.3.2 describes how the COPS DRQ message is used to indicate the release of a PDP Context to the PDF. In TR 23.917 [16], clause 8.10 shows when a PDP Context is deactivated at the GGSN a COPS DRQ message is sent to the PDF. The PDF upon receipt of the COPS DRQ message may forward an indication to an application function over the Gq reference point indicating that network resources have been removed. This mechanism could be used to indicate to a Push Function that a PDP Context has been deactivated. Gq is being defined as part of Release 6.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.207_clause_5.3",
+        "ts_23.207_clause_6.3.2",
+        "ts_23.917_clause_8.10",
+        "ts_23.207",
+        "ts_23.917"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.976_5.1.4.5",
+      "section_id": "5.1.4.5",
+      "section_title": "Keep alive messages",
+      "content": "Most networks set a maximum time for a PDP Context to be open and idle, after which the PDP Context is dropped. But upon deactivation no message is sent to the Application Server to inform it that a PDP Context is unavailable. To prevent this from happening an Application Server may simulate network traffic by periodically sending a keep alive message over the PDP Context to ensure the idle timer in the network is reset and the PDP Context remains open.\nThe use of keep alive messages consumes network resources and counters the operators' attempts to properly manage its network resources e.g. the number of available PDP Contexts. This TR explores mechanisms where the network can report the state of a PDP Context to the Application Server, particularly when a PDP Context is deactivated. These mechanisms use substantially less network resources than those required for keep alive messages, and provide the same information to the Push Function.\nThe use of keep alive messages is not encouraged and instead one or more of the methods described in this clause should be used to maintain synchronization of the Push Function with the state of the PDP Context in the network.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.976_5.1.4.6",
+      "section_id": "5.1.4.6",
+      "section_title": "PDP context re-establishment",
+      "content": "When the network deactivates the PDP context the UE re-establishes a PDP context as long as a push user agent is active on the UE. This is performed when the deactivation cause allows it, e.g. if the PDP context is not deactivated because of \"operator determined barring\". It may be useful to introduce a specific release cause that clearly indicates that PDP context re-establishment is allowed, or it may be recommended that networks indicate the exiting release cause \"re-establishment context required\" when PDP contexts are released and re-establishment is allowed.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.976_5.1.4.7",
+      "section_id": "5.1.4.7",
+      "section_title": "Presence information",
+      "content": "The GGSN informs a presence server when PDP contexts are activated or deactivated. The Push Function derives status information from the presence server before data push or the presence server informs the Push Function when status information changes, i.e. when the PDP context is deactivated.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.976_5.1.4.8",
+      "section_id": "5.1.4.8",
+      "section_title": "Comparison",
+      "content": "The mechanisms described above for the long-lived PDP context have different impact on availability of UEs to receive Push Data and require different functionality.\nThe ICMP approach may be used similarly to keep alive messages, enabling the Push Function to discover when the PDP context is no longer allocated. This polling of the UE causes some waste of resources as a packet is sent to the UE if the IP address is allocated to a PDP context. As an alternative to polling ICMP may be used to indicate only that an IP address is no longer allocated to a UE. In this case there the risk that the Push Function sends Push Data to a wrong UE.\nFour different approaches inform the Push Function when a PDP context is deactivated. The Radius, the COPS and the Presence approach are already specified or under specification and all these are for wider use by various applications. The PDP Context State Notification approach identified no commonly used protocol yet. Under the assumption that this is a specific interface and protocol for the Push Function and not an already introduced protocol one of the already specified approaches are preferable.\nFrom a user point of view it may be preferable to maintain the UE's ability to receive Push Data. In this case the re-establishment of a PDP context is the preferred approach to react on network requested PDP context deactivation.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.976_5.1.5",
+      "section_id": "5.1.5",
+      "section_title": "NRPCA with dynamic IP address assignment",
+      "content": "The use of NRPCA with dynamic IP address assignment is currently not defined in 3G specifications. What follows are two possible technical solutions to this issue.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.976_5.1.5.1",
+      "section_id": "5.1.5.1",
+      "section_title": "NRPCA with one GGSN per Push service APN",
+      "content": "This solution assumes the OMA/WAP Push architecture and protocols are in use where the Push client on the UE has previously subscribed to a Push service offered via the Push Function. Therefore the Push Data arriving over the PDP Context (created as a result of the NRPCA) can be directed to the appropriate client application on the UE. It is assumed the UE is willing to accept all incoming Request PDP Context Activations.\nOne of the issues with defining a mechanism to support NRPCA is the complexity required to support the establishment of a PDP Context where the selection of a GGSN results in a different GGSN from that which originated the NRPCA request. The complexity of the NRPCA solution is greatly reduced if the Create PDP Context Request always resolves back to the home (originating) GGSN. The solution proposed in this clause restricts the support of an APN for Push services to being serviced by only one GGSN. This ensures the PDP Context is created at the originating GGSN and thus simplifies the solution for NRPCA. In this solution there is only one GGSN that can serve an APN supporting the Push Function.\nThe Address Resolver (AR) is implemented using DNS and the User-ID is a unique name in the format user@realm and therefore any query to any Address Resolver in the network will always end up at the home AR for the User-ID.\nThis proposal requires one change to the SGSN. In step 4 the PDU Notification Request will contain a null PDP Address. The SGSN must be modified to accept this field as null and forward the Request PDP Context Activation message to the UE with a null PDP Address field. The UE upon receiving a Request PDP Context Activation with a null PDP Address field will use this as an indicator to establish a PDP Context back to the APN contained in the Request PDP Context Activation.\nSince the APN for the Push Function is only served by one GGSN this will remove the ability to share the load (load balancing) of Push traffic across a number of GGSNs using the GGSN selection mechanism defined in 3G specifications. But it should be noted there is no limitation on allowing multiple APNs, each supporting the Push Function, where each APN is served by a different GGSN. Configuring these GGSN/APN pairs would be a way of achieving load balancing by assigning APNs for Push such as Push1.operator.com, Push2.operator.com etc. A Push Function that selects a GGSN for NRPCA would use only the APN supported by that GGSN in its request. If multiple GGSN/APN pairs are available to serve a Push Function, the Push Function would use some algorithm (i.e. round robin) to select a GGSN to initiate a NRPCA. This would allow the load of Push traffic to be shared across multiple GGSNs achieving the effect of load balancing. A mechanism to ensure that multiple PDP Contexts to the same UE are not established is for further study.\nNote1:\tSolid arrow means Message type currently defined in 3G specifications\nNote2:\tSquare arrow means Message type not currently defined in 3G specifications\nNote3:\tLong dash dot arrow means Message type defined in OMA Push specifications Push Access Protocol\nFigure 7: NRPCA using dynamic IP address assignment (one APN per GGSN)\nThe sequence of events is explained for each step shown in the diagram.\n1.\tThe PI sends Push-Message with User-ID to the PF. The Push-Message is defined in the WAP Push Access Protocol specification and is outside the scope of this work.\n2.\tThe PF validates the User-ID and PI relationship and sends a Push Request message to the GGSN. (The Push Request contains the User-ID and PF APN, the Push Request message format is TBD.)\n3.\tThe GGSN queries the AR using the User-ID to lookup the IMSI and IP address. The AR maintains a table of User-ID to IMSIs and IP addresses (depending on the existence of a PDP Context to the UE). If the IP address exists the AR executes step 3a. If no IP address is assigned for the User-ID the AR returns the matching IMSI to the GGSN. The GGSN queries the HLR as described in step 3b.\nNOTE 1:\tThe updating of the AR with the IP address of a PDP Context not specifically opened by the Push Function is for further study. One mechanism may be to use the DNS zone transfer protocols, see RFC 1035 [20].\n3a.\tIf the GGSN is returned an IP address assigned to the User-ID, it responds with a Push Confirm message to the Push Function containing the IP address of the existing PDP Context. (The format of the Push Confirm message is TBD.) The Push Data can then be transmitted using this IP address and the Push Function proceeds to step 13.\nNOTE 2:\tThe presence of an IP address in the AR table does not necessarily imply an existing PDP Context. If the UE uses static IP addressing the AR would have a permanent entry in its table for that UEs User-ID, but the UE may not have an active PDP Context at the time the Push Data is sent to the UE. In this case NRPCA using static IP addressing procedures as defined in TS 23.060 [6] clause 9.2.2.2 would be executed at step 13.\n3b.\tUsing the IMSI matching the User-ID, the GGSN obtains routeing information for the UE by issuing Send Routeing Information request to the HLR. The HLR returns the address of the SGSN to which the UE is currently attached.\n4.\tThe GGSN sends a PDU Notification Request to the SGSN identified in step 3b with a null IP Address. The PDP Notification Request contains the fields; IMSI, Tunnel Endpoint Identifier Control Plane, End User Address, APN, GGSN Address for Control Plane, and Private Extension. An extension to TS 29.060 [22] is required to allow the End User Address (PDP Address) to be null, indicating the UE is to request a dynamically assigned IP address.\nNOTE 3:\tAn alternative to sending the null PDP Address may be to send a PDU Notification Request to the SGSN using a reserved IP address in the PDP Address field  to avoid changes needed at the SGSN to implement the NRPCA feature.\n5.\tThe GGSN receives a successful PDU Notification Response from the SGSN.\n6.\tThe SGSN sends Request PDP Context Activation (TI, PDP Type, PDP Address, APN) to UE, with a null PDP Address.\n7.\tThe UE sends Activate PDP Context Request to the SGSN with the null IP address and APN obtained from the Request PDP Context Activation.\n8.\tThe SGSN sends the GGSN (in the home network) a Create PDP Context Request. Since the APN used for the Push Function is only served by the home GGSN, the SGSN will always select the home GGSN to create the PDP Context. The GGSN obtains a dynamically assigned IP address (e.g. from a DHCP server, Radius server or address pool).\n9.\tThe GGSN sends the SGSN a Create PDP Context Response which may contain the parameters; Cause, Reordering required, Recovery, Tunnel Endpoint Identifier Data I, Tunnel Endpoint Identifier Control Plane, Charging ID, End User Address, Protocol Configuration Options, GGSN Address for Control Plane, GGSN Address for user traffic, Quality of Service Profile, Charging Gateway Address.\n10.\tAfter successful PDP Context creation the SGSN sends Activate PDP Context Accept to the UE with the assigned IP address.\n11.\tAfter the GGSN sends the Create PDP Context Response in step 9 it will update the AR with an Update AR message, updating the entry for the IMSI and User-Id with the IP address for the activated PDP Context.\n12.\tThe GGSN sends a Push Confirm message to the PF with the newly assigned IP Address.\n13.\tThe Push Function sends the Push Data in IP packets using the IP address from the Push Confirm.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.060_clause_9.2.2.2",
+        "figure_7",
+        "ts_23.060",
+        "ts_29.060"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.976_5.1.5.1.1",
+      "section_id": "5.1.5.1.1",
+      "section_title": "Deactivate PDP Context and update Address Resolver",
+      "content": "Upon deactivation of the PDP Context the AR must be updated to remove the IP address associated with the deactivated PDP context. The following flow diagram illustrates when the GGSN sends an Update AR message.\nFigure 8: Deactivate PDP Context and update Address Resolver (at home GGSN)\n1)\tAfter the GGSN issues a Delete PDP Context Response message it will generate an Update AR message towards the AR containing an indication the IP address of the deleted PDP context must be removed from the AR tables.",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_8"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.976_5.1.5.1.2",
+      "section_id": "5.1.5.1.2",
+      "section_title": "Address Resolver and User-ID",
+      "content": "The Address Resolver maintains a table or database of names and corresponding network addresses (IP or IMSI). For the discussions on push, the term User-IDs is used to mean a name. Network addresses may be IMSIs and/or IP addresses. The main purpose of the AR is to resolve a User-ID to a network address. This will allow a Push Function to submit a Push Request to the GGSN using a User-ID name, when the IP address to a UE is not known. The Address Resolver isolates the network addresses from the User-IDs used in public or third party servers to address a user or mobile. If the user changes his/her mobile device the change in IMSI is reflected in the AR tables and does not need to be published outside of the PLMN. For PDP Contexts using dynamically assigned IP addresses the AR maintains the currently assigned IP address for the User-ID. The Address Resolver should be implemented using DNS.\nIt is assumed the AR is pre-configured with the User-ID and corresponding IMSI values, therefore these fields are indicated as mandatory. The IP Address may or may not be present based on the existence of a PDP Context. In the case of a statically assigned IP address the IP Address field would have a permanent value in it corresponding to the static IP address.\nAddress Resolver Table\nUser-ID\nIMSI\nIP Address\nMandatory\nMandatory\nBased on availability\nA User-ID may be any globally unique identifier that can be mapped to a mobile user or device. Typically a User-ID would be a Network Access Identifier as defined in RFC 2486 [21] in the form of user@realm. It may also be an MSISDN / E.164 value. The User-ID may also be a proprietary value managed by the operator or third party Application Server.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.976_5.1.5.2",
+      "section_id": "5.1.5.2",
+      "section_title": "NRPCA using a Presence server",
+      "content": "The Presence server collects status information about subscribers like attach status and activated PDP addresses. The Presence Service (TS 23.141 [23]) describes almost all required functionality to support NRPCA for a Push Function. Application Servers, e.g. a Push Function or a Push Initiator, may obtain this information from the Presence Server. The only component missing in the Presence Server is its ability to initiate the activation of a PDP Context on demand. Such a mechanism is proposed. The Presence Server may request the SGSN to trigger a PDP Context activation by the UE for the purpose of supporting Push services. The request is generated when a Push Function registers as a Watcher on the Presence Server for an attached subscriber that has no IP address, providing operator and user determined subscriber data allow such a registration.\nFigure 9: NRPCA using a Presence Server\n1.\tThe Push Initiator (PI) sends a Push Message indicating the user ID to the Push Function (PF).\n2.\tThe PF subscribes at the presence server (PS) as a watcher to get the IP address of the subscriber.\n3.\tThe presence service has no IP address for the PS attached subscriber. It requests the SGSN to trigger a PDP context activation.\nNOTE:\tthe PS may send a modified PDU Notification Request to the SGSN using a reserved IP address in the PDP Address field to avoid changes needed at the SGSN to implement the NRPCA feature.\n4.\tThe SGSN requests the UE to activate a PDP context.\n5.\tThe UE performs the PDP context activation procedure.\n6.\tThe GGSN informs the presence server about the active IP address and the APN.\n7.\tThe presence server indicates the IP address to the PF.\n8.\tThe PF sends Push Data to the UE.\nThe approach may use a modified GTP PDU Notification Request to initiate an NRPCA with dynamic IP address by the presence server, e.g. with the PDP address set to a reserved value. For this purpose the mechanism of TS 23.141 [23] may need extensions to deliver the SGSN IP address to the presence server. Or the presence server gets the SGSN address via MAP signalling (Send Routing Info) from the HLR. The interface between presence server and Push Function is already defined as between watcher applications and presence server.\nAlternatively a GGSN sends a modified GTP PDU Notification Request to the SGSN, which is initiated by a new request message from the presence server to a GGSN.\nThe Presence Server presented in this proposed solution for NRPCA does not need to implement a full Presence Service or implement all features defined for the Presence Service in 23.141 [23]. Only the components necessary to support the Push Function as described above are required in the Presence Server.",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_9",
+        "ts_23.141"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.976_5.1.5.3",
+      "section_id": "5.1.5.3",
+      "section_title": "Comparison of NRPCA approaches",
+      "content": "Both approaches allow triggering an activation of PDP contexts with dynamic IP addresses.\nApproach 2 allows presence servers in VPLMN and HPLMN to be informed by the SGSN. Therefore it allows for push services from Push Initiators belonging to VPLMN or HPLMN. Approach 1 would need a mechanism to indicate the global user name to the VPLMN to a Push Initiators in the VPLMN to send Push Data that are not requested by the user.\nApproach 2 informs the Push Function when a subscriber may be reached, e.g. when PDP context activation or PS attach are performed. Approach 1 would periodically request the IP address or a PDP establishment when Push Data should be delivered but the UE is not reachable.\nApproach 1 introduces new interfaces and protocols between Push Function and GGSN and between GGSN and Address Resolver. The only new element of approach 2 is a request from the Presence Server to the SGSN to initiate a PDP context activation.\nIn comparison to approach 1 approach 2 can Push Data also via PDP contexts established on GGSNs in visited networks.\nApproach 2 may use service control defined for presence service to allow subscriber controlling which push services may send data or initiate PDP context activation.\nIn comparison to the simplified approach 1 approach 2 is not limited to only one GGSN for one APN. A variant of Approach 1 in Annex B describes an approach 1, which may use multiple GGSNs per APN. This requires additional functionality on SGSN and GGSN.\nEach approach relies on a new network entity. It is an implementation option whether the Address Resolver or the presence server are implemented on the already introduced entities Domain Name Service or Presence Server.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.976_5.2",
+      "section_id": "5.2",
+      "section_title": "CS domain delivery networks supporting Push",
+      "content": "This clause describes the use of various mechanisms in the CS domain to establish and/or maintain a bearer service connection to the UE over which Push services may be delivered.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.976_5.2.1",
+      "section_id": "5.2.1",
+      "section_title": "CS domain network elements and interfaces supporting Push",
+      "content": "Figure 10 illustrates the network elements and interfaces that are necessary to support Push over a CS Domain circuit connection. The Push Function interfaces to the MSC/IWF using the appropriate connection type as defined in TS 43.010 [24] and TS 29.007 [9] or to a Short Message Service Centre (SM-SC) when using the Short Message Service.\nFigure 10: Network elements and interfaces supporting Push over the CS domain (circuit connection and SMS).\nThe Push Function interfaces to the MSC/IWF to transmit and receive circuit-switched data traffic. This interface may operate over a PSTN, ISDN or PDN. The MSC/IWF will perform the appropriate conversion for the connection type operating between the MSC/IWF and the Push Function to support data traffic over a GSM/3G PLMN circuit connection to the UE.\nThe interface between the Push Function and the SMSC is the same as that described in clause 5.1.1 above.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_5.1.1",
+        "figure_10",
+        "ts_43.010",
+        "ts_29.007"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.976_5.2.2",
+      "section_id": "5.2.2",
+      "section_title": "Push using SMS in the CS domain",
+      "content": "Push using SMS in the CS domain operates as described in clause 5.1.3, SMS messages are delivered to the UE using the A or Iu reference point.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_5.1.3"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.976_5.3",
+      "section_id": "5.3",
+      "section_title": "IMS delivery networks supporting Push",
+      "content": "This clause describes methods using the SIP protocol in IMS to carry Push services to a UE.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.976_5.3.1",
+      "section_id": "5.3.1",
+      "section_title": "IMS network elements and interfaces supporting Push",
+      "content": "The IMS architecture is described in TS 23.228 [7]. The multimedia call control protocol in IMS is described in TS 24.229 [12].\nFigure 11 illustrates the network elements and interfaces that are necessary to support Push over IMS.\nFigure 11:\tNetwork Elements and Interfaces supporting Push over IMS.\nPush Function adopts the role of an Application Server (AS). Push Function functioning as an AS is connected via an ISC-interface towards the Serving CSCF (Call Session Control Function). Terminating IMS routeing mechanisms are used for reaching the Push Recipient (the terminating UE).",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_24.229_figure_11",
+        "figure_11",
+        "ts_23.228",
+        "ts_24.229"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.976_5.3.2",
+      "section_id": "5.3.2",
+      "section_title": "Push based on SIP",
+      "content": "The applicability of the SIP protocol extends well beyond simple call control, and several extensions for specific usages have been developed. There are two extensions that potentially provide solutions to enable SIP as a push transport, namely SIP for instant messaging (the MESSAGE method RFC 3428 [13]), and the SIP events framework (the SUBSCRIBE/NOTIFY methods RFC 3265 [14]):\nA\tUsing the MESSAGE mechanism, the Push Function (Application Server) sends a MESSAGE request to the Push Recipient (UE) with an appropriate push message as the payload of the request. The UE replies back with a 200 OK completing the transaction.\nB\tUsing the SIP events framework, the Push Recipient (UE) first subscribes to the particular push event by sending a specific SUBSCRIBE request to the Push Function (Application Server). The Push Function accepts the subscription with a 200 OK response, and sends an initial NOTIFY request, which the Push Recipient acknowledges by replying with a 200 OK. Subsequent push messages would be delivered in the payload of additional NOTIFY requests from the Push Function to the Push Recipient.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.976_5.4",
+      "section_id": "5.4",
+      "section_title": "MBMS delivery networks supporting Push",
+      "content": "There are no stage 1 requirements defined at this time and therefore no stage 2 analysis has been done.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.976_5.5",
+      "section_id": "5.5",
+      "section_title": "WLAN delivery networks supporting Push",
+      "content": "There are no stage 1 requirements defined at this time and therefore no stage 2 analysis has been done.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.976_6.1",
+      "section_id": "6.1",
+      "section_title": "Comparison summary of Push requirements to Push mechanisms",
+      "content": "The table compares different push approaches with the relevant requirements from stage 1. Not relevant for this comparison are requirements on the Push application, which are out of scope of the Push TR.\nGeneral requirements\nAlways on PDP\nStatic address NRPCA\nSMS triggered bearer\nDynamic address NRPCA\nThe push mechanism shall be efficient in the use of network resources and terminal resources.\nMaintains PDP context data at UE, SGSN, GGSN;\nPerforms RA updates\nMay release PDP contexts; re-activated when network or UE send data;\nRe-activation uses HLR, GGSN, SGSN and UE signalling\nPerforms RA updates\nMay release PDP contexts; re-activated when network or UE send data; or may use CS bearer\nRe-activation uses SMSC, GGSN, SGSN and UE signalling\nA CS/PS UE might perform PS detach\nMay release PDP contexts; re-activated when network or UE send data;\nRe-activation uses \"new entity\", GGSN, SGSN and UE signalling\nPerforms RA updates\nResource efficiency in terms of Scalability/redundancy\nMultiple GGSN per APN supported\nOnly one GGSN per APN possible\nMultiple GGSN per APN and multiple dial-in server supported\nOnly one GGSN per APN with DNS; multiple APNs supported with Presence\nResource efficiency in terms of Performance requirements and Impact on System Performance\nApplication behaviour has no influence on service signalling load. Idle PDP Contexts consume resources at the GGSN.\nApplications with sporadic data transfer cause traffic for all PS network entities when the PDP context is released after data transfer (e.g. occasional instant messages)\nApplications with sporadic data transfer cause traffic for all affected network entities when the PDP or context or CS bearer is released after data transfer (e.g. occasional instant messages); SMS may transfer message or mail header and avoid bearer setup; establishment of PDP Context will put load on SM-SC.\nApplications with sporadic data transfer cause traffic for all PS network entities when the PDP context is released after data transfer (e.g. occasional instant messages); establishment of PDP Context will put load on GGSN, and AR.\nResource efficiency dependency on application types\nAny application\nThe application must be aware of a potential start-up delay\nThe application has to be able to send an SMS and is aware of such a  start-up delay\nThe application has to be able to communicate with a push proxy; and there is obviously no direct data transfer between application and UE\nIt shall be possible to support Push service independently over CS (including CS data and SMS), PS domains or IMS.\nNOTE: Operators should be able to choose which of these options they use to deliver Push services, and it should be possible to use these options independently from each other.\nOnly PS (IMS)\nSupported\nOnly PS (IMS)\nSupported\nMay trigger PS or CS bearer\nSupported\nOnly PS (unclear how IMS services would trigger PDP activation)\nSupported\nIt shall be possible to deploy Push services independently of other services defined by 3GPP.\nRequires 3GPP PS bearer service\nRequires network activated 3GPP PS bearer service\nRequires 3GPP PS bearer service or CS bearer and SMS\nRequires modified 3GPP PS bearer service and name resolution or presence service\nThe quality of service delivery shall be able to include time-sensitive as well as reliable delivery choices\nNo interface to request from delivery network\nNo interface to request from delivery network\nNo interface to request from delivery network\nNo interface to request from delivery network\nIt shall be possible to use all available access networks (e.g. GERAN, UTRAN,).\nSupported\nSupported\nSupported\nSupported\nIt shall be possible for the Push Initiator to specify a bearer for the Push service, as a default the push service shall identify the bearer.  The Push Initiator may, however, require certain grade of service for delivery, e.g. speed of delivery or delivery acknowledgement.\nNo interface to request grade of service from delivery network\nNo interface to request grade of service from delivery network\nNo interface to request grade of service from delivery network\nNo interface to request grade of service from delivery network\nProvisioning\nnot scope of stage 2\nSupported by Push Application protocols defined by OMA\nSupported by Push Application protocols defined by OMA\nSupported by Push Application protocols defined by OMA\nSupported by Push Application protocols defined by OMA\nSubscription\nnot scope of stage 2\nSupported by Push Application protocols defined by OMA\nSupported by Push Application protocols defined by OMA\nSupported by Push Application protocols defined by OMA\nSupported by Push Application protocols defined by OMA\nAddressing and Routing\nIt shall be possible to uniquely identify Push Recipients.\nMSISDN (IMSI); dynamic IP address\nMSISDN (IMSI); IP address\nMSISDN (IMSI);\nname@domain\nIt shall be possible for Push Recipients to uniquely identify push initiators.\nBy source IP address or at application level\nBy source IP address or at application level;\nNot at network requested PDP activation\nBy source IP address or at application level or from information in trigger SMS\nBy source IP address or at application level;\nNot at network requested PDP activation\nThe addressing model shall include addresses of the device (e.g. IP address, SIP-URI, MSISDN) and application level addressing (i.e. user agents).\nMSISDN (IMSI)\nSIP-URI from IMS or presence\nMSISDN (IMSI)\nSIP-URI from IMS or presence\nMSISDN (IMSI)\nSIP-URI from IMS or presence\nname@domain\nin addition to IMS\n(in addition to presence)\nIt shall be possible to deliver Push Data to a Push Recipient with a dynamically allocated IP address.\nSupported\nNot Applicable\nSupported\nSupported\nThe Push service shall be able to deliver a Push Data to a Push Recipient that does not have an IP address currently assigned.\nNot Applicable\nNot Applicable\nFor small amount data within SMS\nAddress Resolver allows identity of Push Recipient resulting in establishment of PDP Context.\nBoth telecom and internet numbering and addressing schemes shall be supported.\nHas typically an E.164 address but uses only IP address for data transfer\nHas typically an E.164 address but uses only IP address for data transfer\nUses an E.164 address for trigger SMS (and small volume data transfer) but uses only IP address for data transfer\nAims at prevention of E.164 address but use (probably needed for charging); only IP address for data transfer\nIt shall be possible to address Push Recipients without allocating E.164 numbers.\nSupported\nSupported\nNot Supported\nSupported\nDelivery\nThe PLMN may set restrictions including maximum size of Push Data.\nNot supported\nNot supported\nNot supported (small volume data within SMS)\nNot supported\nThe Push service may offer classes of priority and service delivery. When offered this shall include support for the following …\nSupported by Push Application protocols defined by OMA.\nIt may need support by the delivery network.\nSupported by Push Application protocols defined by OMA.\nIt may need support by the delivery network.\nSupported by Push Application protocols defined by OMA.\nIt may need support by the delivery network.\nSupported by Push Application protocols defined by OMA.\nIt may need support by the delivery network.\nIn case the Push Recipient declines a specific instance of  Push Data , it shall be provided with means to indicate whether the push service is allowed to re-send it or not.\nSupported by Push Application protocols defined by OMA\nSupported by Push Application protocols defined by OMA\nSupported by Push Application protocols defined by OMA\nSupported by Push Application protocols defined by OMA\nIn the case that classes of priority and service delivery are not offered an attempt to deliver Push Data to the Push Recipient shall be made without unnecessary delay.\nSupported\nSupported\nDependant on properly configured SMSC.\nSupported\nService Management (The basic principle of service management is \"the user is in control\")\nSupported by Push Application protocols defined by OMA\nSupported by Push Application protocols defined by OMA\nSupported by Push Application protocols defined by OMA\nSupported by Push Application protocols defined by OMA\nThe user is provisioned with the Push service by a Network Operator. If a user is provisioned with the push service, the provisioning data shall include a push subscription profile for push service settings and push service preferences.\nSupported by Push Application protocols defined by OMA\nSupported by Push Application protocols defined by OMA\nSupported by Push Application protocols defined by OMA\nSupported by Push Application protocols defined by OMA\nSecurity\nIt shall be possible for the Push Recipient to be assured of the identity of the Push Initiator.\nSupported by Push Application protocols defined by OMA\nSupported by Push Application protocols defined by OMA\nSupported by Push Application protocols defined by OMA. The trigger SM may provide identity of the Push Initiator.\nSupported by Push Application protocols defined by OMA\nMechanisms shall be provided to ensure that the Push Data is sent to and accessed only by the intended addressed entity.\nSupported\nSupported\nSupported\nSupported\nIt shall be possible for the Push service or the user to deny unauthorized Push Data.\nSupported by Push Application protocols defined by OMA\nBearer protocols  do not support.\nSupported by Push Application protocols defined by OMA\nBearer protocols allow support for this feature although it is UE implementation dependent\nSupported by Push Application protocols defined by OMA\nBearer protocols allow support for this features although it is UE implementation dependent. The UE may reject the SMS Trigger based on the content of the message.\nSupported by Push Application protocols defined by OMA\nBearer protocols allow support for this feature although it is UE implementation dependent\nIt shall be possible for the user to control acceptance of Push Data sent to the user based on the trust level of the Push Initiator.\nSupported by Push Application protocols defined by OMA\nSupported by Push Application protocols defined by OMA\nSupported by Push Application protocols defined by OMA\nSupported by Push Application protocols defined by OMA\nThe Push service shall provide data integrity and data confidentiality of the Push Data.\nBy the delivery network\nBy the delivery network\nBy the delivery network\nBy the delivery network\nPrivacy\nThe privacy of the user is important and the introduction of the push services should in no way result in unwanted information \"spam\" being sent to mobile users.\nSupported by Push Application protocols defined by OMA\nNetwork and push service configuration\nSupported by Push Application protocols defined by OMA\nNetwork and push service configuration\nSupported by Push Application protocols defined by OMA\nNetwork and push service configuration\nSupported by Push Application protocols defined by OMA\nNetwork and push service configuration\nAccess rules\nNot within the scope of stage 2 TR.\nSupported by Push Application protocols defined by OMA\nSupported by Push Application protocols defined by OMA\nSupported by Push Application protocols defined by OMA\nSupported by Push Application protocols defined by OMA\nCharging\nOutside scope of stage 2 TR.\nUnclear how push charging relates to delivery network charging (e.g. prepay, or how is roaming known ?)\nUnclear how push charging relates to delivery network charging (e.g. prepay, or how is roaming known ?)\nUnclear how push charging relates to delivery network charging (e.g. prepay, or how is roaming known ?)\nUnclear how push charging relates to delivery network charging (e.g. prepay, or how is roaming known ?)\nPush Subscription Profile Information\nNot within the scope of Stage 2 TR.\nSupported by Push Application protocols defined by OMA\nSupported by Push Application protocols defined by OMA\nSupported by Push Application protocols defined by OMA\nSupported by Push Application protocols defined by OMA\nRoaming\nPush services shall be available when roaming.\nRequires VPLMN PS bearer support and PS roaming agreement; may use local and home GGSN PDP\nRequires VPLMN PS bearer support, static NRPCA support by UE and VPLMN and PS roaming agreement; has to use home GGSN\nRequires VPLMN PS bearer support and PS roaming or only CS roaming agreement; SMS is mandatory GSM service ; home or visited GGSN or dial-in\nRequires VPLMN PS bearer support, support of \"new\" NRPCA support by UE and VPLMN and PS roaming agreement; has to use home GGSN\nThe Push Recipients shall be able to select and receive pushed local services, subject to the user profile settings.\nPossible\nPossible\nPossible\nPossible\nBarring of the Push service\nIt shall be possible to provide the Push service to a user regardless of barring status of other services, providing that a bearer to deliver the Push Content is available.\nNot possible if bearer barred\nNot possible if bearer barred\nRequires that PS or CS bearer is not barred\nNot possible if bearer barred\nIt shall be possible for user to bar the Push service regardless of barring status of other services.\nNot possible if bearer barred\nNot possible if bearer barred\nNot possible if bearer barred\nNot possible if bearer barred\nStandardization Effort\nFully specified\nFully specified.\nFully specified\nNew functionality is to be specified.\nComparing NRPCA to long-lived PDP contexts, the resource/performance effort moves from PDP context capacity to higher signalling traffic for PDP contexts establishment and release, i.e. NRPCA allows better usage of the GGSNs PDP Contexts capacity. There is no difference for the user data throughput capacity between approaches. The increase in signalling traffic for NRPCA impacts the performance requirements for the GGSN, SGSN, HLR, and in the case of NRPCA with dynamic IP address assignment the \"new entity\" (Address Resolver or Presence Server).\nFor all approaches, except for SMS over CS, the UE has to be PS attached at the SGSN and this requires continuous mobility management procedures, i.e. routeing area updating.\nCompared with the other mechanisms NRPCA with dynamic IP addressing introduces new PLMN signalling. Large scale usage of that mechanism requires considerable performance upgrades for \"new entity\" i.e. Address Resolver (DNS) or Presence Server and additional HLR, GGSN and SGSN signalling performance. NRPCA with dynamic IP addressing moves resource usage from static PDP context to new static contexts on DNS or Presence Server and increases signalling between a number of network entities. NRPCA partly avoids potential delays compared to SMS when delivering the PDP Context activation request.  The SMS trigger mechanism may, depending on delivery time requirements, require performance upgrades for SMSC, HLR and SGSN when used in large scale. But the performance may be shared with other SMS applications.\nNRPCA with dynamic IP address assignment requires new UE and new network functions. The other approaches, except NRPCA with static IP addressing, are already supported by all or many networks. The NRPCA roaming support depends on new, features supported by the visited network.\nThe long-lived PDP Context does not require any mechanism to trigger PS based applications when the UE behaviour is to initiate PS connectivity, i.e. to activate a PDP Context. These PS based applications with this type of always-on behaviour will retain PS connectivity during the period of time the application wants to be available for Push services. Existing GPRS procedures (from Release 97) provide sufficient support for PS based applications with this always-on behaviour.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.976_6.2",
+      "section_id": "6.2",
+      "section_title": "Conclusion",
+      "content": "This TR has studied the mechanisms available to allow data to be pushed to a mobile device. The architecture used for Push services includes a Push Function and a Push Initiator. The Push Function acts as a gateway to mobile devices for data pushed from Push Initiators. The mobile device user subscribes to a push service via the Push Function and Push Initiator.\nWhen a mobile device has an active connection, either circuit-switched or packet-switched, data may be pushed to the device based on the subscription to push services agreed between the mobile user and the Push Function and Push Initiator.\nIf a mobile device has a statically assigned IP address and is attached to the network, the method described for NRPCA with static IP address assignment may be used by the Push Function to initiate a PDP Context with the mobile. It was concluded that NRPCA with dynamic IP address assignment would not be standardised to support Push Services.\nWhen a mobile device is attached to a network but does not have an active PDP Context, it may be possible to send the Push Data using SMS, or to send a notification of pending Push Data using the SMS. SMS may also be used to send a notification to the UE to activate a PDP Context.\nIt has been determined during this study that at least one of the mechanisms defined in clause 5.1.4 is required to allow the Push Function to learn the status of an active PDP Context, and in particular, when an active PDP Context is deactivated by the network.\nAnnex A:PDP Context State Notification message procedures\nIn order for the GGSN to know where to forward the PDP Context State Notification message (abbreviated to NM) a new field will be defined as part of the APN configuration information in the GGSN. This field will contain a statically configured IP address that will be used by the GGSN to forward the NM. This field will be called the APN Notification Address and will be available for each PDP Context at the GGSN using the associated APN.\nThe PDP Context State Notification Message will contain the following information:\n-\tMessage Type; will be a value identifying the message as a PDP Context State Notification Message.\n-\tState; will be the state of the PDP Context, which will currently only have one value indicating the PDP Context is DEACTIVATED.\n-\tMSISDN; PDP Address will contain the values from the PDP Context being reported.\nWhen a PDP Context is deactivated the GGSN will issue a NM to the receiving entity defined at the APN Notification Address. In the case of SGSN-Initiated PDP Context Deactivation or MS-Initiated deactivation the GGSN will send a PDP Context State Notification message immediately after transmission of the Delete PDP Context Response message sent to the SGSN. In the case of GGSN-Initiated PDP Context Deactivation the GGSN would send a PDP Context State Notification Message immediately after transmission of the Delete PDP Context Request message sent to the SGSN.\nThe GGSN will only send a PDP Context State Notification Message when the last PDP Context to a PDP address has been deactivated.\nThe GGSN forwards the NM to the APN associated with the deactivated PDP Context in an IP packet and uses the APN Notification Address as the destination IP address. This mechanism allows the APN Notification Address to be a single Application Server such as a Push Function, or a generic Notification Server that handles NMs for a number of Application Servers supported at an APN.\nWhen a Notification Server is used the Notification Server may decide, using its own algorithms, how to process the NM from the GGSN. It may broadcast the NM to all its Application Servers, or to a subset of Application Servers. It may maintain a list of PDP Addresses/MSISDNs being serviced by Application Servers and perform a match between those values in the NM and that in its database to determine which Application Server to forward the NM. The definition of how a Notification Server processes NMs is outside the scope of this work. But enough information is provided in the NM for a Notification Server or Application Server to determine which PDP Context has been deactivated and take appropriate action based on that information.\nExample Scenario 1) APN Notification Address is configured to use the IP address of the Push Function\nIn this scenario the IP address of the Push Function is configured as the APN Notification Address, therefore the GGSN will forward the NM directly to the Push Function.\nExample Scenario 2) APN Notification Address is configured to use a Notification Server in the APN\nThe mechanism described in this Annex to notify a Push Function or Application Server regarding the state of a PDP Context is only one of several methods possible.\nAnnex B:NRPCA with no restrictions on APN and GPRS configuration\nThe solution for NRPCA differs from the solution in clause 5.1.5.1 in the following ways:\n-\tThere is no restriction on the number of GGSNs that can serve an APN. Therefore the proposal addresses how a NRPCA can begin at one GGSN and then the PDP Context can be Activated at another GGSN.\n-\tIn step 9 the SGSN must retain a copy of the GGSN Address for Control Plane that is received in step 4 PDU Notification Request (the home GGSN address), as well as the more recent value for the GGSN Address for Control Plane received from the GGSN' (the GGSN selected by the SGSN), unless the GGSN' is the same as the home GGSN.\n-\tIn step 11 the SGSN must use the GGSN Address for Control Plane of the home GGSN to send an Update Address Resolver message to the home GGSN (and subsequently the home AR).\nFigure B1: Architecture for NRPCA with dynamic IP addressing supporting Push\nAssumptions\nThe Address Resolver is implemented using DNS and the User-ID is a unique name in the format user@realm and therefore any query to any Address Resolver in the network will always end up at the home AR for the User-ID.\nNotes/Limitations\nThis proposal requires three changes to the SGSN. In step 4 the PDU Notification Request will contain a null PDP Address. The SGSN must be modified to accept this field as null and forward the Request PDP Context Activation message to the UE with a null PDP Address field. The UE upon receiving a Request PDP Context Activation with a null PDP Address field will use this as an indicator to establish a PDP Context back to the APN contained in the Request PDP Context Activation.\nNote1:\tSolid arrow means Message type currently defined in 3G specifications\nNote2:\tSquare arrow means Message type not currently defined in 3G specifications\nNote3:\tLong dash dot arrow means Message type defined in OMA Push specifications Push Access Protocol\nFigure B2: NRPCA using dynamic IP address assignment\nThe sequence of events is explained for each step shown in the diagram.\n1.\tThe PI sends Push-Message with User-ID to the PF. The Push-Message is defined in the WAP Push Access Protocol specification and is outside the scope of this work.\n2.\tThe PF validates the User-ID and PI relationship and sends a Push Request message to the GGSN. (The Push Request contains the User-ID and PF APN, the Push Request message format is TBD.)\n3.\tThe GGSN queries the AR using the User-ID to lookup the IMSI and IP address. The AR maintains a table of User-ID to IMSIs and IP addresses (depending on the existence of a PDP Context to the UE). If the IP address exists the AR executes step 3a. If no IP address is assigned for the User-ID the AR returns the matching IMSI to the GGSN. The GGSN queries the HLR as described in step 3b.\n3a.\tIf the GGSN is returned an IP address assigned to the User-ID, it responds with a Push Confirm message to the Push Function containing the IP address of the existing PDP Context. (The format of the Push Confirm message is TBD.) The Push Data can then be transmitted using this IP address and the Push Function proceeds to step 14.\nNOTE 1:\tThe presence of an IP address in the AR table does not necessarily imply an existing PDP Context. If the UE uses static IP addressing the AR would have a permanent entry in its table for that UE's User-Id, but the UE may not have an active PDP Context at the time the Push Data is sent to the UE. In this case NRPCA using static IP addressing procedures as defined in TS 23.060 [6], clause 9.2.2.2 would be executed at step 11.\n3b.\tUsing the IMSI matching the User-ID, the GGSN obtains routeing information for the UE by issuing Send Routeing Information request to the HLR. The HLR returns the address of the SGSN to which the UE is currently attached.\n4.\tThe GGSN sends a PDU Notification Request to the SGSN identified in step 3b with a null IP Address. The PDP Notification Request contains the fields; IMSI, Tunnel Endpoint Identifier Control Plane, End User Address, APN, GGSN Address for Control Plane, and Private Extension. An extension to TS 29.060 [22] is required to allow the End User Address (PDP Address) to be null, indicating the UE is to request a dynamically assigned IP address.\n5.\tThe GGSN receives a successful PDU Notification Response from the SGSN.\n6.\tThe SGSN sends Request PDP Context Activation (TI, PDP Type, PDP Address, APN) to UE, with a null PDP Address.\n7.\tThe UE sends Activate PDP Context Request to the SGSN with the null IP address and APN obtained from the Request PDP Context Activation.\n8.\tThe SGSN sends the selected GGSN' a Create PDP Context Request (GGSN selection is determined by rules defined in TS 23.060 [6], Annex A). The GGSN' obtains a dynamically assigned IP address (e.g. from a DHCP server, Radius server or address pool). Note: the selected GGSN' may be the same as the originating GGSN.\n9.\tThe GGSN' sends the SGSN a Create PDP Context Response which may contain the parameters; Cause, Reordering required, Recovery, Tunnel Endpoint Identifier Data I, Tunnel Endpoint Identifier Control Plane, Charging ID, End User Address, Protocol Configuration Options, GGSN Address for Control Plane, GGSN Address for user traffic, Quality of Service Profile, Charging Gateway Address. The SGSN must retain the GGSN Address for Control Plane that it received in step 4 from the originating (home) GGSN as well as the new GGSN Address for Control Plane this is receives from the GGSN'.\n10.\tAfter successful PDP Context creation the SGSN sends Activate PDP Context Accept to the UE with the assigned IP address.\n11.\tThe SGSN upon receiving the Create PDP Context Response, will use the GGSN Address for Control Plane it received in the PDU Notification Request (step 4) from the originating GGSN, to send an Update AR to the originating GGSN with the IP address of the PDP Context and associated IMSI. After sending the Update AR is will overwrite the GGSN Address for Control Plane with the GGSN Address for Control Plane value contained in the PDP Context Response from the GGSN' in step 9.\nNOTE 2:\tThe SGSN may need to retain the original GGSN Address for Control Plane address so it can update the AR in the home network when the PDP Context is deactivated.\n12.\tThe GGSN (originated) upon receiving the Update AR message from the SGSN will forward that message to its local Address Resolver, updating the entry for the IMSI and User-Id with the IP address for the activated PDP Context.\n13.\tThe GGSN sends a Push Confirm message to the PF with the newly assigned IP Address.\n14.\tThe Push Function sends the Push Data in IP packets using the IP address from the Push Confirm.\nDeactivate PDP Context and Update Address Resolver\nFigure B3: Deactivate of PDP Context and update Address Resolver\n(when PDP Context is at the visited GGSN)\n1.\tAfter the SGSN receives the Delete PDP Context Response message from the GGSN' (serving GGSN) it will generate an Update AR message towards the home GGSN using the address of the home GGSN it stored from step 4 of the PDU Notification Request. The Update AR message will contain an indication the IP address of the deleted PDP context must be removed from the AR tables.\n2.\tThe home GGSN upon receiving the Update AR message will forward the update to the AR.\nAnnex C:Change history\nChange history\nDate\nTSG #\nTSG Doc.\nCR\nRev\nSubject/Comment\nOld\nNew\n2004-03\nSP-23\nSP-040046\nRaised to v.6.0.0 after approval at SA#23 (same content as previous version)\n2.0.0\n6.0.0\n2004-04\nMissing / ambiguous abbreviations supplied\n6.0.0\n6.0.1\n2004-06\nSP-24\nSP-040446\n001\n2\nNRPCA with Dynamic IP Address Assignment conclusion\n6.0.1\n6.1.0\n2007-06\n-\n-\n-\n-\nUpdate to Rel-7 version (MCC)\n6.1.0\n7.0.0\n2008-12\nSP-42\n-\n-\n-\nUpdate to Rel-8 version (MCC)\n7.0.0\n8.0.0\n2009-12\nSP-46\n-\n-\n-\nUpdate to Rel-9 version (MCC)\n8.0.0\n9.0.0\n2011-03\nSP-51\n-\n-\n-\nUpdate to Rel-10 version (MCC)\n9.0.0\n10.0.0\n2012-09\n-\n-\n-\n-\nUpdate to Rel-11 version (MCC)\n10.0.0\n11.0.0\n2014-09\nSP-65\n-\n-\n-\nUpdate to Rel-12 version (MCC)\n11.0.0\n12.0.0\n2015-12\n-\n-\n-\n-\nUpdate to Rel-13 version (MCC)\n12.0.0\n13.0.0\n2017-03\n-\n-\n-\n-\nUpdate to Rel-14 version (MCC)\n13.0.0\n14.0.0\n2018-06\nSP-80\n-\n-\n-\nUpdate to Rel-15 version (MCC)\n14.0.0\n15.0.0\n2020-07\nSP-88E\n-\n-\n-\nUpdate to Rel-16 version (MCC)\n15.0.0\n16.0.0\n2022-03\nSP-95E\n-\n-\n-\nUpdate to Rel-17 version (MCC)\n16.0.0\n17.0.0\n2024-03\n-\n-\n-\n-\nUpdate to Rel-18 version (MCC)\n17.0.0\n18.0.0",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_5.1.4",
+        "clause_5.1.5.1",
+        "ts_23.060_clause_9.2.2.2",
+        "ts_23.060",
+        "ts_29.060"
+      ]
+    }
+  ]
+}

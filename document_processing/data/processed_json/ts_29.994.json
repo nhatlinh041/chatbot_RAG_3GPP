@@ -1,0 +1,412 @@
+{
+  "metadata": {
+    "specification_id": "ts_29.994",
+    "version": "Unknown",
+    "title": "3GPP TS 29.994",
+    "file_path": "/content/drive/MyDrive/RAG_thesis/data/29_series/29994-i00/29994-i00.docx"
+  },
+  "export_info": {
+    "export_date": "2025-07-26T08:45:55.759501",
+    "total_chunks": 45
+  },
+  "chunks": [
+    {
+      "chunk_id": "ts_29.994_1",
+      "section_id": "1",
+      "section_title": "Scope",
+      "content": "The present document clarifies recommended measures which may be adopted by 3GPP infrastructure utilising GSM or GERAN as access network to enable inter-working to be obtained between network and various User Equipment (UE) implementations of the 3GPP specification. The objective is to obtain compatibility without changing the consolidated set of specifications. The present document describes the recommended changes to the infrastructure to cater for specific faults within some types of UE.\nThe lifetime of the herein described measures together with their potential impact on optimal network performance is out of the scope of the present document.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.994_2",
+      "section_id": "2",
+      "section_title": "References",
+      "content": "The following documents contain provisions which, through reference in this text, constitute provisions of the present document.\nReferences are either specific (identified by date of publication, edition number, version number, etc.) or non‑specific.\nFor a specific reference, subsequent revisions do not apply.\nFor a non-specific reference, the latest version applies.  In the case of a reference to a 3GPP document (including a GSM document), a non-specific reference implicitly refers to the latest version of that document in the same Release as the present document.\n[1]\t3GPP TR 21.905: \" Vocabulary for 3GPP Specifications\".\n[2]\t3GPP TS 04.08 (Phase 1): \"Mobile radio interface layer 3 specification Part 1: Generic\".\n[3]\t3GPP TS 04.08 (Phase 2): \"Mobile radio interface layer 3 specification\".\n[4]\t3GPP TS 04.08 (Phase 2+): \"Mobile radio interface layer 3 specification\".\n[5]\t3GPP TS 05.05 (Phase 2): \"Radio Performance Aspects.\n[6]\t3GPP TS 05.05 (Phase 2+): \"Radio Performance Aspects.\n[7]\t3GPP TS 24.007: \"Mobile radio interface signalling layer 3 General aspects\".\n[8]\t3GPP TS 24.008: \"Mobile radio interface layer 3 specification Core Network Protocols-Stage 3\".\n[9]\t3GPP TS 23.107: \"Quality of Service, Concept and Architecture\".\n[10]\t3GPP TS 44.018: \"Mobile radio interface layer 3 specification, Radio Resource Control (RRC) protocol\".",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905",
+        "ts_04.08",
+        "ts_05.05",
+        "ts_24.007",
+        "ts_24.008",
+        "ts_23.107",
+        "ts_44.018"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.994_3",
+      "section_id": "3",
+      "section_title": "Abbreviations",
+      "content": "Abbreviations used in the present document are listed in 3GPP TR 21.905 [1].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.994_4",
+      "section_id": "4",
+      "section_title": "General",
+      "content": "In the implementation of the standard it has been found that some aspects of the specifications have been mis-interpreted by some MS manufacturers. These MSs require specific implementations of the Phase 1 standard in the infrastructure, to provide completely compatible interworking.\nIt has been assumed throughout this TR that Phase 2 and later infrastructure will interwork with Phase 1 MSs in the same way as Phase 1 infrastructure.\nThe remainder of this TR describes how to overcome the possible impacts of the above factors. Descriptions given are limited to specific implementations which are permissible for the Phase of the infrastructure.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.994_5",
+      "section_id": "5",
+      "section_title": "Specific implementation on the radio interface",
+      "content": "This clause deals with the choice of specific infrastructure implementation options of the protocols at the radio interface. The protocols concerned are defined in 3GPP TS 04.08 Phase 1 [2], Phase 2 [3] and Phase 2+ [4]. The corresponding protocol definitions for R99 and later releases are in 3GPP TS 24.007 [7] and 3GPP TS 24.008 [8].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_04.08",
+        "ts_24.007",
+        "ts_24.008"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.994_5.1.1",
+      "section_id": "5.1.1",
+      "section_title": "Justification",
+      "content": "In the HANDOVER COMMAND message there is a mandatory part consisting of nine octets followed by several optional information elements. The first optional information element is Synchronisation Indication which is a type 1 Information Element (IE) and as such is coded, with IE Identifier (IEI), on one octet. Other optional IE follow the Synchronisation Indication IE and are used to:\n-\tindicate the frequency hopping sequence to use on the new channel;\n-\tindicate the channel mode for the new channel;\n-\tindicate a start time.\nSome types of MS do not correctly decode these following information elements if the Synchronisation Indication information element is omitted.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.994_5.1.2",
+      "section_id": "5.1.2",
+      "section_title": "Solution",
+      "content": "To ensure correct operation the infrastructure should always send the Synchronisation Indication IE to a Phase 1 MS.\nNOTE:\tIn a few cases this will force an extra layer 2 segment to be sent to the MS.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.994_5.2.1",
+      "section_id": "5.2.1",
+      "section_title": "Justification",
+      "content": "In the HANDOVER COMMAND message there is an optional Channel Mode Information Element. When this information element is included in the handover command the MS should go to the new channel mode when it hands over to the new channel. This information element may be used for \"directed retry\" type handovers where a cell has an MS on a control channel but has no available traffic channel for the MS to use. The network may then choose to handover the MS to a new cell with traffic channel (TCH) capacity and change the channel mode at the same time.\nSome MSs appear to accept the handover command, from Stand-alone Dedicated Control Channel (SDCCH) to TCH with speech mode, and make the required channel and mode change but do not through connect the speech path.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.994_5.2.2",
+      "section_id": "5.2.2",
+      "section_title": "Solution",
+      "content": "To ensure correct operation, of these MSs, the infrastructure should always initiate a channel mode change procedure according to 3GPP TS 04.08 (Phase 1) [2] clause 3.4.6 once the MS has arrived at the new channel following a handover of a Phase 1 MS involving a channel mode change to full rate speech.\nThe additional channel mode change procedure shall only be performed for a directed retry handover to a full rate speech channel, and not for a data channel. First this will save performance in these cases, and secondly some MS’s will release the call with this additional and unnecessary channel mode change procedure in case of fax or data calls.\nFor internal intra-Base Station System (BSS) handovers, this decision to initiate channel mode modify is taken by the BSS concerned. For external intra-BSS and inter-BSS handovers, the new BSS must know that there has been a change of mode from the previous BSS and that therefore a channel mode change procedure must be executed. The communication of this information is achieved by using the \"current channel\" element in the HANDOVER REQUEST and HANDOVER REQUIRED message as described in the Annex A.\nIn the case of external handover, the following will ensure correct operation with mobiles suffering from fault 5.2.1:\ni)\tThe change described in Annex A shall be implemented by the MSC and BSS concerned.\nii)\tThe new BSS, after receiving a HANDOVER REQUEST containing a current channel IE indicating \"signalling only\", and a channel type indicating full rate speech, shall behave as specified in 3GPP TS 08.08 and additionally, upon reception of the HANDOVER COMPLETE message, initiate a channel mode change procedure according to 3GPP TS 04.08 with the new mode indicating speech.\nIf the new BSS receives a HANDOVER REQUEST without the current channel IE but containing a cause value \"directed retry\", and a channel type indicating full rate speech, it shall also behave as ii) above.\nNOTE:\tThe performance of MSs not experiencing this problem has been checked for a sizeable subset of the MSs available in Phase 1, but it has not been possible to check all versions of all MSs.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_04.08_clause_3.4.6",
+        "ts_04.08",
+        "ts_08.08"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.994_5.3.1",
+      "section_id": "5.3.1",
+      "section_title": "Justification",
+      "content": "In the SYSTEM INFORMATION TYPE 4 message there is an optional Information Element \"CBCH Channel Description\" used when a cell broadcast channel is configured in the network.\nSome Types of GSM 900 MSs may not obtain service whilst within reception range of a cell from any network having the CBCH configured with frequency hopping: i.e. the Hopping channel bit set to 1 in the \"CBCH Channel description\" information element.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.994_5.3.2",
+      "section_id": "5.3.2",
+      "section_title": "Solution",
+      "content": "To enable operation from the affected MS, the infrastructure could configure the CBCH on a non hopping channel:\n-\tIn combined type of configuration: the CBCH would be distributed on the SDCCH/4 with BCCH\n-\tIn non-combined type of configuration, two types of solution are considered:\n-\tType 1 CBCH distributed on a non hopping SDCCH broadcasted on TSx of C0 (x=1,2,3)\n-\tType 2 CBCH distributed on a non hopping SDCCH broadcasted on TS0 of Cx (x≠0)",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.994_5.4.1",
+      "section_id": "5.4.1",
+      "section_title": "Justification",
+      "content": "Some types of Phase 1 GSM 900 MSs could fail to offer full services whilst System Information messages other than those specified in GSM 900 Phase 1 are broadcast with a L2-Pseudo Length value greater than 1.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.994_5.4.2",
+      "section_id": "5.4.2",
+      "section_title": "Solution",
+      "content": "In order to provide service to these existing GSM 900 MS and not disturb Phase 2 MS, the following restrictions and changes should be implemented in the P-GSM 900 band of the network.\nFor System Information 2ter, the value 0 of the L2 Pseudo Length shall be used instead of 18.\nThe System Information 2bis shall not be used in the P-GSM 900 band of the network.\nTherefore, the EXT-IND bit in System Information 2 in the P-GSM 900 Band of the network shall not be set to 1.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.994_5.5.1",
+      "section_id": "5.5.1",
+      "section_title": "Justification",
+      "content": "Some types of Phase 1 MSs may experience performance degradation if the network sends System Information Messages other than those specified in Phase 1.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.994_5.5.2",
+      "section_id": "5.5.2",
+      "section_title": "Solution",
+      "content": "In order not to degrade the performance of these Phase 1 mobile stations it is recommended:\nany new messages that are not defined in Phase 1 shall not be sent to a Phase 1 MS, e.g System Information 5bis and 5ter to a Phase 1 P GSM 900 mobile station and System Information 5ter to a Phase 1 DCS 1800 mobile station.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.994_5.6.1",
+      "section_id": "5.6.1",
+      "section_title": "Justification",
+      "content": "Some type of Phase 2 and Phase 2+ MSs may not access the assigned channel correctly if the network sends an assigning message (Immediate Assignment, Assignment Command or Handover Command) that uses the Mobile Allocation IE to specify an RF hopping channel that includes ARFCN=0 in the hopping sequence.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.994_5.6.2",
+      "section_id": "5.6.2",
+      "section_title": "Solution",
+      "content": "To enable operation of all MSs, the infrastructure can avoid using RF hopping channels that include ARFCN=0 in the hopping sequence. When assigning a channel at RR connection establishment (Immediate Assignment), this solution should be used.\nWhen a channel resource is assigned, using either the Assignment Command or the Handover Command message, the infrastructure may use the Frequency List or the Frequency Short List IEs in the assigning message to specify an RF hopping channel that includes ARFCN=0 in the hopping sequence.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.994_5.7.1",
+      "section_id": "5.7.1",
+      "section_title": "Justification",
+      "content": "Some type of Phase 2 and Phase 2+ MSs may not access the assigned channel correctly if the network assigns an RF hopping channel that includes ARFCN=0 in the hopping sequence.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.994_5.7.2",
+      "section_id": "5.7.2",
+      "section_title": "Solution",
+      "content": "To enable operation of all MSs, the infrastructure can avoid using RF hopping channels that include ARFCN=0 in the hopping sequence.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.994_5.8.1",
+      "section_id": "5.8.1",
+      "section_title": "Justification",
+      "content": "Quality of Service was initially defined in R97 specifications as a type 4 TLV coded IE but with fixed length of 5 octets.\nSubsequently the length of the IE was extended to maximum 13 octets in R99 and further on to 14 octets in Rel-5.\nSome types of R97 MS do not accept new length for this IE which used to be fixed in R97 reference version. Such MS will diagnose an erroneous mandatory IE and consequently reject the PDU containing the IE and send back SM status with cause #96.\nThis means that such a R97 MS can not support GPRS procedures for PDP context activation or PDP context modification in R99 network.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.994_5.8.2",
+      "section_id": "5.8.2",
+      "section_title": "Solution",
+      "content": "To enable operation of all MSs, the infrastructure may adapt the length of the QoS IE it sends to MS according to the served MS by sending only the first 5 QoS octets to pre-R99 GSM mobiles. This can be done either based on the MS Classmark revision level or alternatively the infrastructure may check how many octets were received from the MS in the QoS IE.\nNOTE 1:\tThe mapping between the information in the original R97/98 part of QoS and later extension part is defined in 3GPP TS 23.107.\nNOTE 2:\tThis subclause was added to the present document in 3GPP TSGN #16.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.107"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.994_5.9.1",
+      "section_id": "5.9.1",
+      "section_title": "Justification",
+      "content": "The concept of EPLMN was initially defined in the R99 specifications and to provide the EPLMN list to an MS a type 4 TLV coded IE was added to the LOCATION UPDATING ACCEPT, ATTACH ACCEPT and ROUTING AREA UPDATE ACCEPT messages.\nSome types of R97/R98 MS are not able to handle these messages when the EPLMN List IE is included. Such MS ignore the messages and continually repeats the registration procedure. Consequently they never successfully register on the network and as a result fail to provide any service to the subscriber.\nThis means that such a R97/R98 MS can not provide any service in a network applying the EPLMN functionality.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.994_5.9.2",
+      "section_id": "5.9.2",
+      "section_title": "Solution",
+      "content": "To enable operation of the affected MSs, the infrastructure may adapt the contents of the LOCATION UPDATING ACCEPT, ATTACH ACCEPT and ROUTING AREA UPDATE ACCEPT message it sends to an MS by excluding the EPLMN List IE added in the R99 version of the specifications. This can be done based on the MS Revision Level Indicator.\nNOTE 1:\tThis subclause was added to the present document in 3GPP TSGN #25.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.994_5.10.1",
+      "section_id": "5.10.1",
+      "section_title": "Justification",
+      "content": "The concept of truncation of rest octet information elements (see 3GPP TS 44.018 [10]) was introduced in the R99 version of specifications and allows the handling of situations when the number of octets in the rest octets information element is not enough to contain the complete set of components. These components can be truncated by the sender, i.e. the infrastructure, to fit into the rest octets information element. The truncation function was added to the PAGING REQUEST TYPE 1, PAGING REQUEST TYPE 2 messages and the SYSTEM INFORMATION TYPE 4 sent on BCCH. When the truncation function is used with the PAGING REQUEST TYPE 1 or PAGING REQUEST TYPE 2 messages, the receiver, i.e. the MS, assumes bits \"L\" for the missing components (see 3GPP TS 44.018 [10]).\nThe MS that implements release version of specifications prior to R99 is not able to handle correctly the messages in which the truncation function is used. Such MS ignores the received message since the message contains mandatory information element with semantically incorrect contents.\nThe MS that implements the R99 or onwards version of specifications is able to decode and act on a correctly truncated message.\nHowever, paging can be used to address more than one MS by means of using a single paging message as specified by 3GPP TS 44.018 [10]. Additionally, the system information impacts all MSes located in a specific area. The MSes addressed can be of different release version of 3GPP specifications. Therefore, it cannot be guaranteed that a message addressing several MSes of different release versions of the 3GPP specifications is handled correctly by all the addressed mobile stations.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_44.018"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.994_5.10.2",
+      "section_id": "5.10.2",
+      "section_title": "Solution",
+      "content": "To enable operation of the affected MS, it is advised that the infrastructure adapts the contents of any message addressing several MSes by means of excluding the use of the truncation function.\nNOTE:\tThis subclause was added to the present document in 3GPP TSG CT #33.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.994_5.11.1",
+      "section_id": "5.11.1",
+      "section_title": "Justification",
+      "content": "Upon reception of a location updating reject cause #13 (Roaming not allowed in this Location Area) or #15 (no suitable cells in this Location Area), the LAI, TMSI, ciphering key sequence number and RAI, P-TMSI, P-TMSI signature and GPRS ciphering key sequence number are not deleted in the MS, as per CR 24.008-521r4 (R99) and the Rel-4 and Rel-5 mirror CRs.\nDuring an inter-VLR or inter-SGSN location update, the roaming restriction checks that may lead to reject the location updating request with the cause #13 or #15 are normally performed after the HLR update (e.g. ARD and national roaming checks), i.e. the MSC/VLR or SGSN address stored in the HLR is that of the MSC/VLR or SGSN controlling the not allowed location area.\nDuring an intra-VLR or intra-SGSN location update, the VLR or SGSN sets the 'LA not allowed' or 'RA not allowed' flag when rejecting the location updating request.\nThe 3GPP standard was found ambiguous on whether the UE would initiate immediately a new location updating request when it comes back to its previous (allowed) location area, i.e. when it moves to a registration area that has the same identity as the one stored in the MS while being in the ROAMING NOT ALLOWED update state.\nIf it does not, mobile terminated calls or mobile terminated PS activity (e.g. SMS) can no longer be delivered to the MS until the next mobile originated activity or periodic location update is initiated.\nA new security context (CKSN/KSI, Kc/CK-IK) may also have been received by the MS during the authentication procedure with the MSC/VLR or SGSN controlling the not allowed location area. If the MS is roaming to a VLR3/LA3 (allowed) after having roamed from the VLR1/LA1 (allowed) to VLR2/LA2 (not allowed), then the MS initiates a location updating request towards the VLR3:\n- with the old TMSI1/LA1, which refers to a wrong previous VLR and possibly a wrong VLR1 context (VLR1 receives a Cancel Location when the MS tried to register in VLR2/LA2 and TMSI1 may have been re-allocated to another UE), leading to a wrong TMSI1-IMSI mapping.\n- with the KSI/CKSN received from the VLR2 if an authentication was performed by VLR2. If the VLR3 re-uses the current security context (Kc, CKSN)/(KSI, CK, IK) obtained from VLR1, it will not correspond to the security context stored in the UE and ciphering will fail.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.994_5.11.2",
+      "section_id": "5.11.2",
+      "section_title": "Solution",
+      "content": "It was clarified from 3GPP Rel-8 onwards, as per CR 23.122 – 122 (Rel-8), that a MS shall initiate a location updating request if it detects that it has entered a registration area that has the same identity as the one stored in the MS, while being in the ROAMING NOT ALLOWED update state, and the LAI or the PLMN identity is not contained in any of the lists of \"forbidden LAs for roaming\", \"forbidden LAs for regional provision of service\", \"forbidden PLMNs for GPRS service\" or \"forbidden PLMNs\" respectively.\nTo enable normal operation of the affected MSs in the CS domain, the MSC/VLR may allocate a TMSI within the restricted location area before it rejects the location area with the reject cause #13 or #15, as per CR 23.012 – 29 (Rel-8). This forces the mobile station to initiate immediately a new location updating request  when moving back to the location area stored in the MS; this also avoids the risk of wrong TMSI-IMSI mapping and ciphering failure.This solution is not applicable to the PS domain since a  P-TMSI reallocation procedure is not allowed during a Routing Area Update procedure.\nNOTE:\tThis subclause was added to the present document in 3GPP CT#42.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.994_6.1",
+      "section_id": "6.1",
+      "section_title": "Scope",
+      "content": "The chapter six of this Technical Report is to identify limitations in the specification for phase 1 reflected in performance degradation in phase 1 terminal equipment. This report identifies possible ways of improving the service offered to subscribers using phase 1 terminals whilst using the two features - downlink DTX and frequency hopping at the same time.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.994_6.2",
+      "section_id": "6.2",
+      "section_title": "General",
+      "content": "The specification of acoustic performance of the MS when downlink DTX is implemented is in 3GPP TS 05.05 which restricts the MS performance to 1 undetected bad frame in 10s when in the presence of random RF. In reality the MS does not experience random RF exclusively when downlink DTX is implemented.\nThere is a SIlence Descriptor (SID) frame sent on eight bursts every 104 bursts. Due to the interleaving scheme, half of the bits of the frame preceding the SID and half of the bits of the frame following the SID are sent and there is no specific requirement covering what is sent for these bits but in most cases it is every other bit of a correctly coded frame. The MS receives these bits\nIn addition, when the ARFCN used is C0, dummy bursts are sent when there is neither speech nor signalling to be transmitted.\nFinally, when frequency hopping is used as well as downlink DTX, the MS may receive random RF on some TDMA frames and dummy bursts on others (C0).\nIt is possible for the MS to receive combinations of transmitted bits at high confidence and random RF at low confidence. In some cases the MS can then decode the frame as good when in fact it was never intended to have been transmitted and the resultant bad frame can give a very annoying acoustic effect known as banjo noise. The occurance of these noises, even if no more frequent than one in 10s, is worse than one would expect from a high quality cellular system.\nThe three following sections refer to ways of improving the system performance for MS approved according to the existing phase 1 specification. Section 6.3 identifies some \"normal\" operation configurations which would improve undetected bad frame performance for MS’s with the above fault (banjo noise), section 6.4 describes aspects for possible changed network implementation, section 6.5 relates the results of tests performed using combinations of the implementations described in section 6.4 and whether that combination was effective or not.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_6.3",
+        "clause_6.4",
+        "clause_6.5",
+        "ts_05.05"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.994_6.3",
+      "section_id": "6.3",
+      "section_title": "Implementation options to reduce the occurance of undetected bad frames by utilising normal system features",
+      "content": "This section deals with a variety of options to improve the system performance which are implementable by normal system operational choices. These options typically improve matters in specific configurations and are not universal solutions for all configurations. It may be possible that some networks do not permit such configuration.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.994_6.3.1",
+      "section_id": "6.3.1",
+      "section_title": "Number of frequency hopping channels",
+      "content": "The number of undetected bad frames is related to the probability of getting sufficient dummy bursts transmitted to make a false good frame decision. The number of dummy bursts received depends on the number of ARFCN in the hopping list. Hence frequency hopping on 3 ARFCN gives better audio performance than frequency hopping on 2, likewise hopping on 4 ARFCN gives better performance than hopping on 3.\nIn tests of the comparison between hopping on 2 ARFCN and hopping on 3, some MS have been found to improve to approximately one tenth of the occurance of bad frames, while others have improved from a slightly annoying level when hopping on 2 ARFCN, to give no audible disruption when hopping on 3. Not all MS have been tested and it is believed that the improvement for some MS may be less noticeable.\nThis solution is obviously not trivial to implement in a frequency plan, but could also be used to enable frequency hopping on cells which naturally have 3 or more ARFCN operational whilst selecting a solution for other parts of the network and operational scenarios.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.994_6.3.2",
+      "section_id": "6.3.2",
+      "section_title": "Frequency hopping type",
+      "content": "When utilising pseudo-random frequency hopping, it is possible to get more dummy bursts in a speech frame than when utilising cyclic frequency hopping. As an alternative to random frequency hopping, cyclic hopping may be used. It will minimise the banjo noise effect experienced by the faulty mobiles. This will however be done at the expense of a possible degradation of performance during speech activity period for all mobiles due to the absence of interferer diversity.\nIn tests of the comparison between pseudo-random frequency hopping and cyclic frequency hopping, some phones were found to improve with the use of cyclic hopping to approximately one third of the occurance of bad frames when using pseudo-random hopping, while others have improved from a slightly annoying level to give no audible disruption. Not all phones have been tested for this.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.994_6.3.3",
+      "section_id": "6.3.3",
+      "section_title": "Continuous SID frames on C0",
+      "content": "At some times, a network implementing downlink DTX may hold a call on C0. In this case it would be possible for the network to send dummy bursts when it has nothing else to send. This is likely to cause a high level of unwanted noises for some MS. An alternative would be to send continuous SID frames in which case there should be no undesired effects.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.994_6.4",
+      "section_id": "6.4",
+      "section_title": "Implementation options to reduce the occurance of undetected bad frames by changing normal system operation",
+      "content": "This section deals with implementation options  which improve the audio quality of the faulty mobiles, suffering from banjo noise, by making changes to the network equipment.  The solutions give varying performance improvements but not all solutions would be possible on all networks.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.994_6.4.1",
+      "section_id": "6.4.1",
+      "section_title": "Changing the training sequence of the dummy burst to a new (ninth) training sequence",
+      "content": "If a different training sequence code is used for all dummy bursts forming part of the TCH on C0, the MS will have difficulty training to the dummy burst frames and this would cause the bits to be received as low confidence. This would then give a performance rather more like that for random RF input and should then meet the 05.05 requirement.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.994_6.4.2",
+      "section_id": "6.4.2",
+      "section_title": "Using an alternative training sequence out of the eight assigned",
+      "content": "This option is similar in concept and performance to the one described in section 6.4.1. The advantage is that it may be usable in some networks where it is not easily possible to add a ninth training sequence. The following table gives a list of training sequence codes for the TCH and the preferred choice of training sequence code for the dummy burst.\nTraining sequence code for TCH\nTraining sequence code for dummy bursts on C0\n0\n2\n1\n5\n2\n0\n3\n4\n4\n5\n5\n2\n6\n3\n7\n5",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_6.4.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.994_6.4.3",
+      "section_id": "6.4.3",
+      "section_title": "Setting the stealing flag for the bits transmitted which are not intended to be part of the TCH",
+      "content": "When bits are transmitted which are not intended for reception in the TCH path, such as dummy bursts and the half burst before and after a discrete, wanted frame, it would be possible to set the stealing flag for these bits and so bias the decision of the majority vote on stealing flags in favour of routing the frame as control information rather than speech information. The channel protection on the control channel is much greater and the chance of getting an undetected bad control channel frame is very low.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.994_6.4.4",
+      "section_id": "6.4.4",
+      "section_title": "Sending partial SID frames on C0",
+      "content": "It has been observed that improvements in the undetected bad frame rate are seen when the BTS sends partial SID frames on the otherwise unused TCH bursts on C0. This is because the high confidence bits are correctly coded for the relevant speech frame and the normal design of the MS receiver is expected to cope with such errors. This proposal works best for DCS 1800 because very early GSM models are not represented in DCS 1800.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.994_6.5",
+      "section_id": "6.5",
+      "section_title": "Tested Combinations",
+      "content": "This section identifies tests that have been performed and the results that have been obtained. The reporting of result is limited to acceptable or not acceptable and a brief additional comment is sometimes made. If the result is deemed to be acceptable, most products which suffer from the described problem have been improved to a point where extraneous noises are significantly reduced to virtually nothing and no product has got worse. No solution completely corrected all products but significant improvements have been achieved if the result is deemed acceptable.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.994_6.5.1",
+      "section_id": "6.5.1",
+      "section_title": "\"Normal\" system",
+      "content": "Test configuration:\nSent on C0:\tDummy bursts using training sequence from TCH.\nStealing flag on C0:\tSet to 0\nHalf burst filling bits:\tPartial SID information from the SID frame otherwise scheduled for transmission.\nHalf burst stealing flags:\tSet to 0\nResult:\nUnacceptable; Several products exhibit frequent noises from undetected bad frames.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.994_6.5.2",
+      "section_id": "6.5.2",
+      "section_title": "New training sequence",
+      "content": "Test configuration:\nSent on C0:\tDummy bursts using new (ninth) training sequence.\nStealing flag on C0:\tSet to 0\nHalf burst filling bits:\tPartial SID information from the SID frame otherwise scheduled for transmission.\nHalf burst stealing flags:\tSet to 0\nResult:\nAcceptable.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.994_6.5.3",
+      "section_id": "6.5.3",
+      "section_title": "Alternative training sequence from the eight assigned",
+      "content": "Test configuration:\nSent on C0:\tDummy bursts using alternative training sequence according to table in 6.4.2.\nStealing flag on C0:\tSet to 0\nHalf burst filling bits:\tPartial SID information not necessarily related to the SID frame otherwise scheduled for transmission.\nHalf burst stealing flags:\tSet to 0\nResult:\nAcceptable.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.994_6.5.4",
+      "section_id": "6.5.4",
+      "section_title": "Setting stealing flag for unintentionally transmitted bits",
+      "content": "Test configuration:\nSent on C0:\tPartial SID information from the two SID frames otherwise scheduled for transmission.\nStealing flag on C0:\tSet to 1\nHalf burst filling bits:\tPartial SID information from the SID frame otherwise scheduled for transmission.\nHalf burst stealing flags:\tSet to 1\nResult:\nAcceptable.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.994_6.5.5",
+      "section_id": "6.5.5",
+      "section_title": "Setting stealing flag for unintentionally transmitted bits and modifying training sequence for Dummy Bursts",
+      "content": "Test configuration:\nSent on C0:\tDummy bursts using new (ninth) training sequence.\nStealing flag on C0:\tSet to 1\nHalf burst filling bits:\tDummy burst mixed bits\nHalf burst stealing flags:\tSet to 1\nResult:\nAcceptable; This configuration gave marginally the best performance of all tested.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.994_6.5.6",
+      "section_id": "6.5.6",
+      "section_title": "Sending partial SID information on C0",
+      "content": "Test configuration:\nSent on C0:\tPart SID frames\nStealing flag on C0:\tSet to 0\nHalf burst filling bits:\tPartial SID information from the SID frame otherwise scheduled for transmission.\nHalf burst stealing flags:\tSet to 0\nResult:\nAcceptable for DCS 1800.\nAnnex A:Amendment Request 08.08 - 021 R4: Information on channel in use in HO REQUEST\nNOTE:\tThis Annex A reflects the Amendment Request 08.08 - 021 R4 which was approved by SMG#15 and is part of the 3GPP TS 08.08 version 4.9.0.\nA.3.1.5.1.1\tGeneration of the HANDOVER REQUIRED message\nGeneration of the HANDOVER REQUIRED message can be for the following reasons:\n-\tThe BSS has detected that a radio reason exists for a handover to occur.\n-\tThe MSC has initiated a handover candidate enquiry procedure, and this MS is currently a candidate.\n-\tA cell change is required at call setup due to congestion, e.g. directed retry.\nThe HANDOVER REQUIRED message contains the following information elements:\n-\tMessage Type;\n-\tCause;\n-\tCell Identifier List (preferred).\nIt should also contain the \"Current channel\" information element.\nSec. 3.2.1.9. gives coding details of the above message.\nThe \"Cause\" field indicates the reason for the HANDOVER REQUIRED message e.g. \"uplink quality poor\" or \"response to MSC invocation\" in the case of traffic reasons indicated by the MSC.\nIf present the \"Response Request\" Information Element indicates, that the BSS requires an indication if the HANDOVER REQUIRED message does not result in a HANDOVER COMMAND message.\nIf the BSS wants to change the CIC due to a channel change, the BSS sends a HANDOVER REQUIRED message with the cause \"switch circuit pool\" and the \"circuit pool list\" information element. The \"circuit pool list\" information element will allow the BSS to indicate to the MSC from which circuit pool or pools the new CIC should be chosen.\nThe \"Cell Identifier List (preferred)\" shall identify \"n\" preferred cells. The identified cells are given in order of preference. The algorithm by which the BSS produces this list is Operator dependent and is not addressed in this Technical Specification. The \"n\" number of preferred cells is a parameter set by O&M and shall range from 1 to 16. If \"n\" number of cells cannot be identified, then only as many as are available shall be encoded and sent (as specified in section 3.2.2.27).\nIt is mandatory for the BSS to be able to produce this \"Cell Identifier List (preferred)\". The sending of this list is controlled by the O&M parameter \"n\". It is mandatory for the MSC to be able to receive and interpret this Information Element.\nThe HANDOVER REQUIRED message shall be updated and repeated by the BSS with a periodicity of T7 until:\n-\tA HANDOVER COMMAND message is received from the MSC, or;\n-\tA RESET message is received, or;\n-\tThe reason for the original HANDOVER REQUIRED message disappears e.g. the MS transmission improves, or;\n-\tAll communication is lost with the MS as defined in Technical Specification 3GPP TS 04.08, and the transaction is abandoned, or;\n-\tThe transaction ends, e.g., call clearing.\nA.3.1.5.2\tHandover Resource allocation\nThis procedure has been defined to allow the MSC to request resources from a BSS in a manner similar to that used for the assignment case. However it does not result in the transmission of any messages over the radio interface, only in the reservation of the resource identified at the BSS, which awaits access of a MS on the reserved channel. These reserved resources are then indicated back to the MSC.\nIn order to support this procedure the MSC sets up a BSSAP SCCP connection to the BSS. This connection is then used to support all BSSAP messages related to this dedicated resource.\nA.3.1.5.2.1\tOperation of the procedure\nThe correct operation of the handover resource allocation  procedure is as follows:\nThe MSC sends a HANDOVER REQUEST message to the new BSS (note 1) from which it requires radio resources. This message contains details of the resource that is required. If the requested resource is for speech or data it also indicates the terrestrial resource that shall be used between the MSC and the BSS. The type of channel required can be different from the type of channel in use, e.g. in the case of directed retry. The description of the resource can either specify it completely, or give the BSS some freedom in the selection. The message may also specify the channel in use.\nOn receipt of this message the new BSS shall choose a suitable idle radio resource.\nThe management of priority levels - relating to the Information Element \"Priority\" within the HANDOVER REQUEST message - is implementation dependent, under operator control.\nIf queueing is managed, new requests which cannot be served immediately are put in the queueing file according to the indicated priority levels.\n(Refer to section 3.1.17 for Queuing Procedure)\nAs a further operator option, the preemption indicators may (alone or along with the priority levels) be used to manage the preemption process, which may lead to the forced release or forced handover of lower priority connections.\nHowever, the preemption indicators (refer to section 3.2.2.18), if given in the HANDOVER REQUEST, shall be treated on a per connection basis as follows:\n-\tthe last received \"Preemption Vulnerability\" indicator and priority levels shall prevail.\n-\tif the \"Preemption Capability\" bit is set to 1, then this allocation request can trigger the running of the preemption procedure.\n-\tif the \"Preemption Capability\" bit is set to 0, then this allocation request cannot trigger the preemption procedure.\n-\tif the \"Preemption Vulnerability\" bit is set to 1, then this connection is vulnerable and shall be included in the preemption process or procedure and as such may be subject to forced release or forced handover.\n-\tif the \"Preemption Vulnerability\" bit is set to 0, then this connection is not vulnerable to preemption and shall not be included in the preemption process and as such may not be subject to forced release or forced handover.\n-\tif no Priority Information Element has been received, both \"Preemption Capability\" and \"Preemption Vulnerability\" bits shall be regarded as set to 0.\nIf a radio resource is available then this will be reflected back to the MSC in a HANDOVER REQUEST ACKNOWLEDGE message. The HANDOVER REQUEST ACKNOWLEDGE message sent by the new BSS shall contain the radio interface message HANDOVER COMMAND within its \"Layer 3 Information\" Information Element. This \"Layer 3 Information\" (which is in fact the RR-Layer 3 HANDOVER COMMAND) is transferred by the controlling MSC to the old BSS using the BSSMAP message HANDOVER COMMAND also within the Information Element \"Layer 3 Information\" of that BSSMAP message. The old BSS then sends to the MS over the radio interface the RR-Layer 3 HANDOVER COMMAND message. Information about the appropriate new channels and a handover reference number chosen by the new BSS are contained in the HANDOVER COMMAND. Knowledge of the channel in use at the old BSS allows the new BSS to minimize the size of the HANDOVER COMMAND message (i.e. to decide whether the mode of the first channel IE need not be included in the HANDOVER COMMAND).\nNOTE:\tThe new BSS and the old BSS may be the same.\nWhen several circuit pools are present on the BSS MSC interface, the \"circuit pool\" information field shall be included in the HANDOVER REQUEST ACKNOWLEDGE. The \"circuit pool\" field will indicate to the MSC the circuit pool of the CIC given in the HANDOVER REQUEST message.\nThe sending of the HANDOVER REQUEST ACKNOWLEDGE by the new BSS to the MSC ends the Handover Resource Allocation procedure. The Handover Execution procedure can now proceed and this is given in section 3.1.5.3.\nThe new BSS shall then take all necessary action to allow the MS to access the radio resource that the new BSS has chosen, this is detailed in the 3GPP TS 05 series of Technical Specifications. If the radio resource is a traffic channel then the new BSS shall at this point switch it through to the terrestrial resource indicated in the HANDOVER REQUEST message, and the necessary transcoding/rate adaption/encryption equipment enabled as detailed in 3GPP TS 04.08.\nThe optimum procedure for switching through to the target cell at the MSC is not defined in these Technical Specifications.\nA.3.2.1.8\tHANDOVER REQUEST\nThis message is sent from the MSC to the BSS via the relevant SCCP connection to indicate that the MS is to be handed over to that BSS.\nINFORMATION ELEMENT\nREFERENCE\nDIRECTION\nTYPE\nLEN\nMessage type\n3.2.2.1\nMSC-BSS\nM\n1\nChannel type\n3.2.2.11\nMSC-BSS\nM\n5\nEncryption information\n3.2.2.10\nMSC-BSS\nM\n3-n\nClassmark information 1 or\n3.2.2.30\nMSC-BSS\nM#\n2\nClassmark information 2\n3.2.2.19\nMSC-BSS\nM#\n4-5\nCell identifier (serving)\n3.2.2.17\nMSC-BSS\nM\n5-10\nPriority\n3.2.2.18\nMSC-BSS\nO\n3\nCircuit identity code\n3.2.2.2\nMSC-BSS\nO##\n3\nDownlink DTX flag\n3.2.2.26\nMSC-BSS\nO*\n2\nCell identifier (target)\n3.2.2.17\nMSC-BSS\nM\n3-10\nInterference band to be used\n3.2.2.21\nMSC-BSS\nO\n2\nCause\n3.2.2.5\nMSC-BSS\nO\n3-4\nClassmark information 3\n3.2.2.20\nMSC-BSS\nO**\n3-14\nCurrent channel\n3.2.2.49\nMSC-BSS\nO§\n2\n*\tThis element may be included in the case of a speech TCH, and only in this case. If not included, this has no impact on the DTX function in the BSS.\n**\tThis element is included if the MSC has received such information.\n#\tOne of these two elements is sent.\n##\tThis element is included when the channel type Information Element indicates speech or data, and only in those cases.\n§\tThis element is included at least when the message is sent as a reaction to reception of a HANDOVER REQUIRED message containing a \"Current channel\" information element. In this case it shall be equal to the received element.\nTypical Cause values are:\nuplink quality,\t\t\t\tuplink strength,\t\t\t\tdownlink quality,\t\t\t\tdownlink strength\t\t\t\tdistance,\t\t\t\tbetter cell,\t\t\t\tresponse to MSC invocation\t\t\t\tO and M intervention,\t\t\t\tdirected retry,\t\t\t\tswitch circuit pool.\nA.3.2.1.9\tHANDOVER REQUIRED\nThis message is sent from the BSS to the MSC to indicate that for a given MS which already has a dedicated radio resource assigned, a handover is required for the reason given by the cause element.\nThe message is sent via the BSSAP SCCP connection associated with the dedicated resource.\nINFORMATION ELEMENT\nREFERENCE\nDIRECTION\nTYPE\nLEN\nMessage type\n3.2.2.1\nBSS-MSC\nM\n1\nCause\n3.2.2.5\nBSS-MSC\nM\n3-4\nResponse request\n3.2.2.28\nBSS-MSC\nO\n1\nCell identifier list (preferred)\n3.2.2.27\nBSS-MSC\nM\n2n+3to7n+3\nCircuit pool list\n3.2.2.46\nBSS-MSC\nO*\nV\nCurrent channel\n3.2.2.49\nBSS-MSC\nO**\n2\n*\tShall be included when cause \"switch circuit pool\".\n**\tThis information element should always be included.\nTypical Cause values are:\nuplink quality,\t\t\t\tuplink strength,\t\t\t\tdownlink quality,\t\t\t\tdownlink strength,\t\t\t\tdistance,\t\t\t\tbetter cell,\t\t\t\tresponse to MSC invocation,\t\t\t\tO&M intervention,\t\t\t\tdirected retry,\nswitch circuit pool.\nElement Identifier Coding\nElement name\nReference\n0000 0001\nCircuit identity code\n3.2.2.2.\n0000 0010\nReserved\n*\n0000 0011\nResource available\n3.2.2.4.\n0000 0100\nCause\n3.2.2.5.\n0000 0101\nCell identifier\n3.2.2.17.\n0000 0110\nPriority\n3.2.2.18.\n0000 0111\nLayer 3 header information\n3.2.2.9.\n0000 1000\nIMSI\n3.2.2.6.\n0000 1001\nTMSI\n3.2.2.7.\n0000 1010\nEncryption information\n3.2.2.10.\n0000 1011\nChannel type\n3.2.2.11.\n0000 1100\nPeriodicity\n3.2.2.12.\n0000 1101\nExtended resource indicator\n3.2.2.13.\n0000 1110\nNumber of MSs\n3.2.2.8.\n0000 1111\nReserved\n*\n0001 0000\nReserved\n*\n0001 0001\nReserved\n*\n0001 0010\nClassmark information type 2\n3.2.2.19.\n0001 0011\nClassmark information type 3\n3.2.2.20.\n0001 0100\nInterference band to be used\n3.2.2.21.\n0001 0101\nRR Cause\n3.2.2.22.\n0001 0110\nReserved\n*\n0001 0111\nLayer 3 information\n3.2.2.24.\n0001 1000\nDLCI\n3.2.2.25.\n0001 1001\nDownlink DTX flag\n3.2.2.26.\n0001 1010\nCell identifier list\n3.2.2.27.\n0001 1011\nResponse request\n3.2.2.28.\n0001 1100\nResource indication method\n3.2.2.29.\n0001 1101\nClassmark information type 1\n3.2.2.30.\n0001 1110\nCircuit identity code list\n3.2.2.31.\n0001 1111\nDiagnostic\n3.2.2.32.\n0010 0000\nLayer 3 message contents\n3.2.2.35.\n0010 0001\nChosen channel\n3.2.2.33.\n0010 0010\nTotal resource accessible\n3.2.2.14.\n0010 0011\nCipher response mode\n3.2.2.34.\n0010 0100\nChannel needed\n3.2.2.36.\n0010 0101\nTrace type\n3.2.2.37.\n0010 0110\nTriggerId\n3.2.2.38.\n0010 0111\nTrace reference\n3.2.2.39.\n0010 1000\nTransactionId\n3.2.2.40.\n0010 1001\nMobile identity\n3.2.2.41.\n0010 1010\nOMCId\n3.2.2.42.\n0010 1011\nForward indicator\n3.2.2.43.\n0010 1100\nChosen encryption algorithm\n3.2.2.44.\n0010 1101\nCircuit pool\n3.2.2.45.\n0010 1110\nCircuit pool list\n3.2.2.46.\n0010 1111\nTime indication\n3.2.2.47.\n0011 0000\nResource situation\n3.2.2.48.\n0011 0001\nCurrent channel\n3.2.2.49.\n*\tInformation Element codes marked as \"reserved are reserved for use by previous versions of this interface specification.\nA.3.2.2.49\tCURRENT CHANNEL\nThis Information Element contains a description of the channel allocated to the MS.\nIt is coded as follows:\n┌─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬────────────┐│  8     7     6     5     4     3     2     1  │            │├─────┴─────┴─────┴─────┴─────┴─────┴─────┴─────┼────────────┤│               Element identifier              │ octet 1    │├───────────────────────┬───────────────────────┼────────────┤│    Channel mode       │      Channel          │ octet 2    │└───────────────────────┴───────────────────────┴────────────┘\nThe channel mode field is coded as follows:\nBit\t8765\t0000\tsignalling only\t0001\tspeech (full rate or half rate)\t0011\tdata, 12.0 kbit/s radio interface rate\t0100\tdata, 6.0 kbit/s radio interface rate\t0101\tdata, 3.6 kbit/s radio interface rate\nAll other values are reserved.\nThe channel field is coded as follows:\nBit\t4321\t0001\tSDCCH\t1000\tFull rate TCH\t1001\tHalf rate TCH\nAll other values are reserved.\nAnnex B:Change History\nChange history\nDate\nTSG #\nTSG Doc.\nCR\nRev\nSubject/Comment\nOld\nNew\n09.94/29.994\nSMG#15\n001\nDircted retry by external handover\n4.0.0\n4.0.1\n002\nDircted retry handover for fax and data\nSMG#16\n003\nEditorials on chapter 6\n4.1.0\n4.2.0\n004\nEditorials on section 5.2.2\nSMG#19\nA005\n3\nGuidelines for the support of MSs affected by frequency hopping on CBCH\n4.2.0\n4.3.0\nA006\n1\nScope of GSM 09.94\nSMG#20\nupgrade to Ph2+\n4.3.0\n5.0.0\nSMG#27\nupgrade to Ph2+ R97\n5.0.0\n6.0.0\nSMG#30\nwithdrawn\n5.0.0\n-\nSMG#30\nwithdrawn\n6.0.0\n-\nSMG#23\nA007\n1\nHandling of new phase 2 BCCH and SACCH messages by phase 1 MS\n4.3.0\n4.4.0\nSMG#30\nA008\nChange of Title, Scope and References Clauses 1 to 5)\n4.4.0\n4.5.0\nA009\nFrequency Hopping using ARFCN=0\nJun 2002\nCN#16\nconversion to 29.994\n09.94 4.5.0\n29.994 5.0.0\nNP-020222\nA016\n2\nQoS IE length\nNov 2002\nEditorial revision due to changing the title from TS to TR, and to introduce 3GPP were missing in the specification numbers.\n5.0.0\n5.0.1\nSept 2004\nCN#25\nNP-040386\nA018\n2\nIncorrect handling, by MS, of registration acceptance messages that include R99 and later IEs\n5.0.1\n6.0.0\nSept 2006\nCT-33\nCP-060506\nA020\n2\nIncorrect handling, by the MS, of messages in which truncation is used\n6.0.0\n7.0.0\nDec 2008\nCT-42\nCP-080873\n0021\n2\nRoaming restrictions issues with cause #13 or #15\n7.0.0\n8.0.0\nDec 2009\nCT-46\nUpgrade to Rel-9\n8.0.0\n9.0.0\nMar 2011\nCT-51\nUpgrade to Rel-10\n9.0.0\n10.0.0\nSept 2012\nCT-57\nUpgrade to Rel-11\n10.0.0\n11.0.0\nSept 2014\nCT-65\nUpgrade to Rel-12\n11.0.0\n12.0.0\nDec 2015\nCT-70\nUpgrade to Rel-13\n12.0.0\n13.0.0\nChange history\nDate\nMeeting\nTDoc\nCR\nRev\nCat\nSubject/Comment\nNew version\n2017-03\nSA#75\nUpgrade to Rel-14\n14.0.0\n2018-06\nSA#80\nUpgrade to Rel-15\n15.0.0\n2020-06\nSA#88e\nUpgrade to Rel-16\n16.0.0\n2022-04\nSA#95e\n-\n-\n-\n-\nUpdate to Rel-17 version (MCC)\n17.0.0\n2024-04\n-\n-\n-\n-\n-\nUpdate to Rel-18 version (MCC)\n18.0.0",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_3.2.2.27",
+        "clause_3.1.17",
+        "clause_3.2.2.18",
+        "clause_3.1.5.3",
+        "clause_5.2.2",
+        "ts_08.08",
+        "ts_04.08",
+        "ts_3.2"
+      ]
+    }
+  ]
+}

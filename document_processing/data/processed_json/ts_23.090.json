@@ -1,0 +1,285 @@
+{
+  "metadata": {
+    "specification_id": "ts_23.090",
+    "version": "18.0.0",
+    "title": "3GPP TS 23.090",
+    "file_path": "/content/drive/MyDrive/RAG_thesis/data/23_series/23090-i00/23090-i00.docx"
+  },
+  "export_info": {
+    "export_date": "2025-07-26T09:39:53.862218",
+    "total_chunks": 26
+  },
+  "chunks": [
+    {
+      "chunk_id": "ts_23.090_1",
+      "section_id": "1",
+      "section_title": "Scope",
+      "content": "The present document gives the stage 2 description of Unstructured Supplementary Service Data (USSD).\nThe unstructured supplementary service data (USSD) mechanism allows the Mobile Station (MS) user and a PLMN operator defined application to communicate in a way which is transparent to the MS and to intermediate network entities. The mechanism allows development of PLMN specific supplementary services. The following diagram shows how handling of USSD is carried out, independently of the applications.\nFigure 1.1: Handling of USSD\nThe present document defines the requirements for handling USSD at the MS and network entities. It does not include specification of particular applications, nor does it specify how a particular application is selected. Where more than one application exists at a network entity, routing of messages to the correct application is carried out by the USSD handler. The MMI for USSD is specified in TS 22.030 and TS 22.090. The alphabet indicator and the data coding scheme are defined in TS 23.038.\nUSSD may be initiated by the MS user, or by the network in the following ways:\n-\tNetwork initiated USSD\t(clause 1);\n-\tMobile initiated USSD\t(clause 2).",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_1",
+        "clause_2",
+        "figure_1.1",
+        "ts_22.030",
+        "ts_22.090",
+        "ts_23.038"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.090_2",
+      "section_id": "2",
+      "section_title": "References",
+      "content": "The following documents contain provisions which, through reference in this text, constitute provisions of the present document.\n-\tReferences are either specific (identified by date of publication, edition number, version number, etc.) or non‑specific.\n-\tFor a specific reference, subsequent revisions do not apply.\n-\tFor a non-specific reference, the latest version applies.  In the case of a reference to a 3GPP document (including a GSM document), a non-specific reference implicitly refers to the latest version of that document in the same Release as the present document.\n[1]\t3GPP TR 21.905: \"3G Vocabulary\".\n[2]\t3GPP TS 22.030: \"Man-Machine Interface (MMI) of the User Equipment (UE)\".\n[3]\t3GPP TS 22.090: \"Unstructured Supplementary Service Data (USSD) ‑ Stage 1\".\n[4]\t3GPP TS 23.038: \"Alphabets and language‑specific information\".",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905",
+        "ts_22.030",
+        "ts_22.090",
+        "ts_23.038"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.090_3",
+      "section_id": "3",
+      "section_title": "Abbreviations",
+      "content": "In addition to those below, abbreviations used in the present document are listed in TR 21.905 [1].\nAI\tApplication Initiated\nMI\tMobile Initiated\nUSSD\tUnstructured Supplementary Service Data",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.090_4",
+      "section_id": "4",
+      "section_title": "Cross phase compatibility",
+      "content": "The Phase 1 series of GSM specifications defined the signalling protocol which may be used, but they did not specify the operation of USSD as a service.\nThe main body of the present document assumes that the MS and all network entities comply with this phase of USSD. In order to minimize any possible problems between a Phase 1 implementation of USSD and this phase, clauses 5.6 and 6.6 define the additional requirements for when one or more entity complies with the Phase 1 USSD specification for network initiated and mobile initiated USSD respectively.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.090_5.1",
+      "section_id": "5.1",
+      "section_title": "Handling of network initiated USSD",
+      "content": "The network (MSC, VLR or HLR) can at any time send a USSD operation towards an MS. This operation may be either a request (asking the MS to provide information) or a notification (requiring no information in the response from the MS). No prior provision of USSD is required, although provision of services which make use of USSD may be required. All USSD requests, notifications and responses (except responses to notifications) contain the USSD string, an alphabet indicator and language indicator.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.090_5.2",
+      "section_id": "5.2",
+      "section_title": "Functions and information flows",
+      "content": "The following text describes the handling of network initiated USSD. Diagrammatic representations are as follows:\nFigure 5.1\tSDL for USSD invocation (HLR, VLR, MSC);\nFigure 5.2\tSDL for forwarding of USSD operations (VLR, MSC);\nFigure 5.3\tSDL for MS;\nFigure 5.4\tInformation flow for successful single USSD request;\nFigure 5.5\tInformation flow for successful single USSD notification;\nFigure 5.6\tInformation flow for successful multiple USSD requests;\nFigure 5.7\tInformation flow for failed USSD request.",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_5.1",
+        "figure_5.2",
+        "figure_5.3",
+        "figure_5.4",
+        "figure_5.5",
+        "figure_5.6",
+        "figure_5.7"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.090_5.2.1",
+      "section_id": "5.2.1",
+      "section_title": "Invoking unstructured SS operation from the HLR",
+      "content": "When an application in the HLR is to send a USSD request or notification to an MS, it shall set up a transaction to the VLR where the subscriber is currently registered and send the operation to the VLR. It shall then await a response. The HLR is responsible for controlling the transaction, and shall therefore normally release the transaction when it receives a response from the VLR. The HLR may also release the transaction before receiving a response if necessary (e.g. if an application timer expires).\nIf an application in the HLR needs to send further operations to the same MS as part of the same application, it may continue to use the same transaction until all operations are completed (see figure 5.6). If a different transaction is to be used for a subsequent operation, the HLR shall release the first transaction before starting the next.\nIf the VLR releases the transaction at any time (e.g. due to user clearing), the HLR shall inform the application and terminate the USSD operation.\nSee clause 5.2.4 for forwarding of an HLR invoked operation by the VLR and MSC.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_5.2.4",
+        "figure_5.6"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.090_5.2.2",
+      "section_id": "5.2.2",
+      "section_title": "Invoking unstructured SS operation from the VLR",
+      "content": "When an application in the VLR is to send a USSD request or notification to an MS, it shall set up a transaction to the MSC where the subscriber is currently registered and send the operation to the MSC. It shall then await a response. The VLR is responsible for controlling the transaction, and shall therefore normally release the transaction when it receives a response from the MSC. The VLR may also release the transaction before receiving a response if necessary (e.g. if an application timer expires).\nIf an application in the VLR needs to send further operations to the same MS as part of the same application, it may continue to use the same transaction until all operations are completed. If a different transaction is to be used for a subsequent operation, the VLR shall release the first transaction before starting the next.\nSee clause 5.2.4 for forwarding of a VLR invoked operation by the MSC.\nIf the MSC releases the transaction at any time (e.g. due to the user clearing), the VLR shall inform the application and terminate the USSD operation.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_5.2.4"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.090_5.2.3",
+      "section_id": "5.2.3",
+      "section_title": "Invoking unstructured SS operation from the MSC",
+      "content": "When an application in the MSC is to send a USSD request or notification to an MS, it shall set up a transaction to the MS where the subscriber is currently registered and send the operation to the MS. It shall then await a response. The MSC is responsible for controlling the transaction, and shall therefore normally release the transaction when it receives a response from the MS. The MSC may also release the transaction before receiving a response if necessary (e.g. if an application timer expires).\nIf an application in the MSC needs to send further operations to the same MS as part of the same application, it may continue to use the same transaction until all operations are completed. If a different transaction is to be used for a subsequent operation, the VLR shall release the first transaction before starting the next.\nIf the MS releases the transaction at any time (e.g. due to the user clearing), the MSC shall inform the application and terminate the USSD operation.\nNOTE:\tMSC invoked USSD is only likely to be used for call related operations, where the application is controlling a call to or from the MS.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.090_5.2.4",
+      "section_id": "5.2.4",
+      "section_title": "Forwarding USSD operations",
+      "content": "The VLR may any time receive a USSD operation from the HLR. If the subscriber can be contacted, the VLR shall set up a transaction to the MSC and forward the operation unchanged. Any further information exchange between the HLR and MSC shall be transparent to the VLR. When one transaction is released, the VLR shall release the other.\nThe MSC may at any time receive an USSD operation from the VLR. If the subscriber can be contacted, the MSC shall set up a transaction to the MS and forward the operation unchanged. Any further information exchange between the VLR and MS shall be transparent to the MSC. When one transaction is released, the MSC shall release the other.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.090_5.2.5",
+      "section_id": "5.2.5",
+      "section_title": "Handling of unstructured SS operation at the MS",
+      "content": "The MS may at any time receive a USSD operation (request or notification) from the MSC.\nIf the MS receives a USSD transaction while another USSD transaction (network or mobile initiated) or a non-call related supplementary service transaction is in progress, the MS shall reject the new transaction.\nIf the MS receives a USSD operation when it is in a state where the MMI required is not possible (e.g. during dialling) it shall reject the operation.\nIf the MS does not support the alphabet indicated in the USSD operation, it shall inform the network.\nIf the MS is in a state where it can handle the operation, it shall process the operation as follows:\n-\tThe MS shall analyse the data coding scheme and decides whether the USSD operation is MMI mode or application mode. See 3GPP TS  22. 030 [2] for details of codes.\nIf the data coding scheme corresponds to the MMI mode :\n-\tFor a USSD request, the MS shall display the text provided and await user input. If the user enters a response, the MS shall return the response to the MSC, maintaining the transaction. If the user requests release of the transaction, the MS shall release the transaction.\n-\tFor a USSD notification, the MS shall display the text provided and send back a response.\nIf the data coding schemes corresponds to the application mode :\n-\tFor a USSD request, the MS shall pass the message to the application addressed in the ME, SIM or TE, and await application response . If the application responds, the MS shall pass the response to the MSC, maintaining the transaction. If the application releases the transaction, the MS shall release the transaction.\n-\tFor a USSD notification, the MS shall pass the message to the application addressed in the ME, SIM or TE, and send back a response.\nAfter sending the response to a USSD operation, the MS shall wait for the network to release the transaction. If, while awaiting this release, the MS receives any further USSD operations, it shall process them in the normal way.\nFigure 5.1: Network initiated USSD invoked at HLR, VLR or MSC\nFigure 5.2: Network initiated USSD forwarding at VLR or MSC\nFigure 5.3: Network initiated USSD at MS\nMS                  MSC                 VLR                 HLR┌─────┐             ┌─────┐             ┌─────┐             ┌─────┐│     │             │     │             │     │             │     ││HLR initiated      │     │             │     │             │     ││     │             │     │             │     │             │     ││     │             │     │             │     │USSD request │     ││     │             │     │USSD request │     │<────────────┤     ││     │USSD request │     │<────────────┤     │             │     ││     │<────────────┤     │             │     │             │     ││     │             │     │             │     │             │     ││     │USSD response│     │             │     │             │     ││     ├────────────>│     │USSD response│     │             │     ││     │             │     ├────────────>│     │USSD response│     ││     │             │     │             │     ├────────────>│     ││     │             │     │             │     │             │     ││     │             │     │             │     │    Release  │     ││     │             │     │    Release  │     │<────────────┤     ││     │    Release  │     │<────────────┤     │             │     ││     │<────────────┤     │             │     │             │     ││     │             │     │             │     │             │     ││     │             │     │             │     │             │     ││VLR initiated      │     │             │     │             │     ││     │             │     │             │     │             │     ││     │             │     │USSD request │     │             │     ││     │USSD request │     │<────────────┤     │             │     ││     │<────────────┤     │             │     │             │     ││     │             │     │             │     │             │     ││     │USSD response│     │             │     │             │     ││     ├────────────>│     │USSD response│     │             │     ││     │             │     ├────────────>│     │             │     ││     │             │     │             │     │             │     ││     │             │     │    Release  │     │             │     ││     │    Release  │     │<────────────┤     │             │     ││     │<────────────┤     │             │     │             │     ││     │             │     │             │     │             │     ││     │             │     │             │     │             │     ││MSC initiated      │     │             │     │             │     ││     │             │     │             │     │             │     ││     │USSD request │     │             │     │             │     ││     │<────────────┤     │             │     │             │     ││     │             │     │             │     │             │     ││     │USSD response│     │             │     │             │     ││     ├────────────>│     │             │     │             │     ││     │             │     │             │     │             │     ││     │    Release  │     │             │     │             │     ││     │<────────────┤     │             │     │             │     ││     │             │     │             │     │             │     │\nFigure 5.4: Information flow for USSD request (Single Operation)\nMS                  MSC                 VLR                 HLR┌─────┐             ┌─────┐             ┌─────┐             ┌─────┐│     │             │     │             │     │             │     ││HLR initiated      │     │             │     │             │     ││     │             │     │             │     │             │     ││     │             │     │             │     │USSD notify  │     ││     │             │     │USSD notify  │     │<────────────┤     ││     │USSD notify  │     │<────────────┤     │             │     ││     │<────────────┤     │             │     │             │     ││     │             │     │             │     │             │     ││     │USSD response│     │             │     │             │     ││     ├────────────>│     │USSD response│     │             │     ││     │             │     ├────────────>│     │USSD response│     ││     │             │     │             │     ├────────────>│     ││     │             │     │             │     │             │     ││     │             │     │             │     │    Release  │     ││     │             │     │    Release  │     │<────────────┤     ││     │    Release  │     │<────────────┤     │             │     ││     │<────────────┤     │             │     │             │     ││     │             │     │             │     │             │     ││     │             │     │             │     │             │     ││VLR initiated      │     │             │     │             │     ││     │             │     │             │     │             │     ││     │             │     │USSD notify  │     │             │     ││     │USSD notify  │     │<────────────┤     │             │     ││     │<────────────┤     │             │     │             │     ││     │             │     │             │     │             │     ││     │USSD response│     │             │     │             │     ││     ├────────────>│     │USSD response│     │             │     ││     │             │     ├────────────>│     │             │     ││     │             │     │             │     │             │     ││     │             │     │    Release  │     │             │     ││     │    Release  │     │<────────────┤     │             │     ││     │<────────────┤     │             │     │             │     ││     │             │     │             │     │             │     ││     │             │     │             │     │             │     ││MSC initiated      │     │             │     │             │     ││     │             │     │             │     │             │     ││     │USSD notify  │     │             │     │             │     ││     │<────────────┤     │             │     │             │     ││     │             │     │             │     │             │     ││     │USSD response│     │             │     │             │     ││     ├────────────>│     │             │     │             │     ││     │             │     │             │     │             │     ││     │    Release  │     │             │     │             │     ││     │<────────────┤     │             │     │             │     ││     │             │     │             │     │             │     │\nFigure 5.5: Information flow for USSD notification (Single Operation)\nMS                  MSC                 VLR                 HLR┌─────┐             ┌─────┐             ┌─────┐             ┌─────┐│     │             │     │             │     │             │     ││     │             │     │             │     │USSD request │     ││     │             │     │USSD request │     │<────────────┤     ││     │USSD request │     │<────────────┤     │             │     ││     │<────────────┤     │             │     │             │     ││     │             │     │             │     │             │     ││     │USSD response│     │             │     │             │     ││     ├────────────>│     │USSD response│     │             │     ││     │             │     ├────────────>│     │USSD response│     ││     │             │     │             │     ├────────────>│     ││     │             │     │             │     │             │     │:     :             :     :             :     :             :     ::     :             :     :             :     :             :     ::     :             :     :             :     :             :     :│     │             │     │             │     │USSD request │     ││     │             │     │USSD request │     │<────────────┤     ││     │USSD request │     │<────────────┤     │             │     ││     │<────────────┤     │             │     │             │     ││     │             │     │             │     │             │     ││     │USSD response│     │             │     │             │     ││     ├────────────>│     │USSD response│     │             │     ││     │             │     ├────────────>│     │USSD response│     ││     │             │     │             │     ├────────────>│     ││     │             │     │             │     │             │     ││     │             │     │             │     │    Release  │     ││     │             │     │    Release  │     │<────────────┤     ││     │    Release  │     │<────────────┤     │             │     ││     │<────────────┤     │             │     │             │     ││     │             │     │             │     │             │     │\nFigure 5.6: Information flow for HLR initiated USSD request (Multiple Operation On Same Transaction)\nMS                 MSC                 VLR                 HLR┌─────┐             ┌─────┐             ┌─────┐             ┌─────┐│     │             │     │             │     │             │     ││VLR cannot contact subscriber          │     │             │     ││     │             │     │             │     │             │     ││     │             │     │             │     │USSD request │     ││     │             │     │             │     │<────────────┤     ││     │             │     │             │     │             │     ││     │             │     │             │     │  Error      │     ││     │             │     │             │     ├────────────>│     ││     │             │     │             │     │             │     ││     │             │     │             │     │             │     ││MSC cannot contact subscriber          │     │             │     ││     │             │     │             │     │             │     ││     │             │     │             │     │USSD request │     ││     │             │     │USSD request │     │<────────────┤     ││     │             │     │<────────────┤     │             │     ││     │             │     │             │     │             │     ││     │             │     │  Error      │     │             │     ││     │             │     ├────────────>│     │  Error      │     ││     │             │     │             │     ├────────────>│     ││     │             │     │             │     │             │     ││     │             │     │             │     │             │     ││Error detected at MS     │             │     │             │     ││     │             │     │             │     │             │     ││     │             │     │             │     │USSD request │     ││     │             │     │USSD request │     │<────────────┤     ││     │USSD request │     │<────────────┤     │             │     ││     │<────────────┤     │             │     │             │     ││     │             │     │             │     │             │     ││     │  Error      │     │             │     │             │     ││     ├────────────>│     │  Error      │     │             │     ││     │             │     ├────────────>│     │  Error      │     ││     │             │     │             │     ├────────────>│     ││     │             │     │             │     │             │     ││     │             │     │             │     │             │     ││MS clears transaction    │             │     │             │     ││     │             │     │             │     │             │     ││     │             │     │             │     │USSD request │     ││     │             │     │USSD request │     │<────────────┤     ││     │USSD request │     │<────────────┤     │             │     ││     │<────────────┤     │             │     │             │     ││     │             │     │             │     │             │     ││     │  Release    │     │             │     │             │     ││     ├────────────>│     │  Release    │     │             │     ││     │             │     ├────────────>│     │  Release    │     ││     │             │     │             │     ├────────────>│     ││     │             │     │             │     │             │     │\nFigure 5.7: Information flow for failed USSD request",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_5.1",
+        "figure_5.2",
+        "figure_5.3",
+        "figure_5.4",
+        "figure_5.5",
+        "figure_5.6",
+        "figure_5.7"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.090_5.3",
+      "section_id": "5.3",
+      "section_title": "Information stored in the HLR",
+      "content": "The HLR shall not store any information specific to the use of USSD, although information may be stored for services which are offered by USSD applications.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.090_5.4",
+      "section_id": "5.4",
+      "section_title": "Information stored in the VLR",
+      "content": "The VLR shall not store any information specific to the use of USSD, although information may be stored for services which are offered by USSD applications.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.090_5.5",
+      "section_id": "5.5",
+      "section_title": "Handover",
+      "content": "Handover will have no impact on the operation of this service.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.090_5.6",
+      "section_id": "5.6",
+      "section_title": "Cross-phase compatibility",
+      "content": "Network initiated USSD shall not be permitted if the MS or any network entity involved in the operation is of Phase 1. If, when setting up a transaction, a network entity discovers that the other end is of Phase 1, it shall reject the request and release the transaction being set up.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.090_6.1",
+      "section_id": "6.1",
+      "section_title": "Handling of mobile initiated USSD",
+      "content": "A MS can at any time initiate a USSD request to the network. No prior provision of the service is required, although provisioning of services which make use of USSD may be required. All USSD messages (requests and responses), contain the USSD string, an alphabet indicator and language indicator.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.090_6.2",
+      "section_id": "6.2",
+      "section_title": "Functions and information flows",
+      "content": "The following text describes the handling of mobile network initiated USSD. Diagrammatic representations are as follows:\nFigure 6.1\tSDL, request from user at MS;\nFigure 6.2\tSDL, request from MS at MSC;\nFigure 6.3\tSDL, request from application at MSC;\nFigure 6.4\tSDL, request from MSC at VLR;\nFigure 6.5\tSDL, request from application at VLR;\nFigure 6.6\tSDL, request from VLR at HLR;\nFigure 6.7\tInformation flow, no further information required;\nFigure 6.8\tInformation flow, further information required;\nFigure 6.9\tInformation flow for failed USSD request.",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_6.1",
+        "figure_6.2",
+        "figure_6.3",
+        "figure_6.4",
+        "figure_6.5",
+        "figure_6.6",
+        "figure_6.7",
+        "figure_6.8",
+        "figure_6.9"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.090_6.2.1",
+      "section_id": "6.2.1",
+      "section_title": "Handling of USSD request at MS",
+      "content": "When the user or the application in the MS makes a request which the MS determines is to make use of USSD, the MS shall set up a transaction to the network, send the request to the MSC and await a response. When the MS receives the response, it shall display the information contained to the user or relay the message to the application in the MS.\nWhile awaiting the response, the MS may receive a network initiated USSD request or notification on the same transaction. If this occurs, the MS shall process that operation (see clause 1) and continue to await the response to the mobile initiated request.\nIf, when the MS determines that a user request is to make use of USSD, the MS is already involved in a USSD or a non-call related supplementary service transaction, the MS shall reject the request.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.090_6.2.2",
+      "section_id": "6.2.2",
+      "section_title": "Handling of USSD request at MSC",
+      "content": "When an MSC receives a USSD request containing an HPLMN service code, it shall set up a transaction to the VLR and forward the request unchanged. If this forwarding fails, an error shall be returned to the MS. The MSC shall be transparent to any further requests or responses (in either direction) for that transaction, passing them between the MS and VLR without taking any action. When one transaction is released (MS-MSC or MSC-VLR), the MSC shall release the other.\nIf an HPLMN service code is not included, the MSC shall process the request locally (see clause 6.2.5).\nIf the MSC does not support the alphabet used in a USSD request, it shall set up a transaction to the VLR and forward the request unchanged, in the same way as when a HPLMN service code is received.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_6.2.5"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.090_6.2.3",
+      "section_id": "6.2.3",
+      "section_title": "Handling of USSD request at VLR",
+      "content": "When a VLR receives a USSD request containing an HPLMN service code and the user is not in the HPLMN, it shall set up a transaction to the HLR and forward the request unchanged. If this forwarding fails, an error shall be returned to the MS. The VLR shall be transparent to any further requests or responses (in either direction) for that transaction, passing them between the MSC and HLR without taking any action. When one transaction is released (MSC-VLR or VLR-HLR), the VLR shall release the other.\nIf an HPLMN service code is not included, or the user is in the HPLMN, the VLR shall process the request locally (see clause 6.2.5).\nIf the VLR does not support the alphabet used in a USSD request, it shall set up a transaction to the HLR and forward the request unchanged, in the same way as when a HPLMN service code is received and the user is not in the HPLMN.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_6.2.5"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.090_6.2.4",
+      "section_id": "6.2.4",
+      "section_title": "Handling of USSD request at HLR",
+      "content": "An HLR shall always process a USSD request locally (see clause 6.2.5).\nIf the HLR does not support the alphabet used in a USSD request, it shall inform the MS and release the transaction.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_6.2.5"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.090_6.2.5",
+      "section_id": "6.2.5",
+      "section_title": "Processing the USSD request",
+      "content": "When a network entity is to process a USSD request locally, the request shall be handled by an appropriate application. The location, nature and contents of USSD applications is, by definition, service provider and network operator dependent, but may include:\n-\tSetting up or releasing signalling and/or speech channels;\n-\tPassing the request to another network entity (unchanged or changed);\n-\tPassing a different USSD request to another network entity;\nand/or\n-\tRequesting further information from the MS (one or more times).\nUpon completion of handling the request, the network entity shall respond to the request and release the transaction.\nFigure 6.1: Mobile initiated USSD at MS\nFigure 6.2 (sheet 1 of 3): Mobile initiated USSD at MSC\nFigure 6.2 (sheet 2 of 3): Mobile initiated USSD at MSC\nFigure 6.2 (sheet 3 of 3): Mobile initiated USSD at MSC\nFigure 6.3: Application initiated USSD at MSC\nFigure 6.4 (sheet 1 of 3): Mobile initiated USSD at VLR\nFigure 6.4 (sheet 2 of 3): Mobile initiated USSD at VLR\nFigure 6.4 (sheet 3 of 3): Mobile initiated USSD at VLR\nFigure 6.5: Application initiated USSD at VLR\nFigure 6.6: Mobile initiated USSD at HLR\nMS                  MSC                 VLR                 HLR┌─────┐             ┌─────┐             ┌─────┐             ┌─────┐│     │             │     │             │     │             │     ││Request handled by MSC   │             │     │             │     ││     │             │     │             │     │             │     ││     │USSD request │     │             │     │             │     ││     ├────────────>│     │             │     │             │     ││     │             │OR1:N│             │     │             │     ││     │USSD response│     │             │     │             │     ││     │<────────────┤     │             │     │             │     ││     │             │     │             │     │             │     ││     │             │     │             │     │             │     ││Request handled by VLR   │             │     │             │     ││     │             │     │             │     │             │     ││     │USSD request │     │             │     │             │     ││     ├────────────>│OR1:Y│             │     │             │     ││     │             │     │USSD request │     │             │     ││     │             │     ├────────────>│     │             │     ││     │             │     │             │OR2:N│             │     ││     │             │     │USSD response│     │             │     ││     │USSD response│     │<────────────┤     │             │     ││     │<────────────┤     │             │     │             │     ││     │             │     │             │     │             │     ││     │             │     │             │     │             │     ││Request handled by HLR   │             │     │             │     ││     │             │     │             │     │             │     ││     │USSD request │     │             │     │             │     ││     ├────────────>│OR1:Y│             │     │             │     ││     │             │     │USSD request │     │             │     ││     │             │     ├────────────>│OR2:Y│             │     ││     │             │     │             │     │USSD request │     ││     │             │     │             │     ├────────────>│     ││     │             │     │             │     │             │     ││     │             │     │             │     │USSD response│     ││     │             │     │USSD response│     │<────────────┤     ││     │USSD response│     │<────────────┤     │             │     ││     │<────────────┤     │             │     │             │     ││     │             │     │             │     │             │     │\nNOTE:\tOR1:\tHPLMN service code\t\t\tY: Yes\tOR2:\tHPLMN service code and user not in HPLMN\tN: No\tNote that the application at the MSC/VLR may pass the request on to another network entity. This is not shown here.\nFigure 6.7: Information flow for mobile initiated USSD Request (No further information requested)\nMS                  MSC                 VLR                 HLR┌─────┐             ┌─────┐             ┌─────┐             ┌─────┐│     │             │     │             │     │             │     ││     │USSD request │     │             │     │             │     ││     ├────────────>│     │             │     │             │     ││     │             │     │USSD request │     │             │     ││     │             │     ├────────────>│     │             │     ││     │             │     │             │     │USSD request │     ││     │             │     │             │     ├────────────>│     ││     │             │     │             │     │             │     ││     │             │     │             │     │USSD request │     ││     │             │     │USSD request │     │<────────────┤     ││     │USSD request │     │<────────────┤     │             │     ││     │<────────────┤     │             │     │             │     ││     │             │     │             │     │             │     ││     │USSD response│     │             │     │             │     ││     ├────────────>│     │             │     │             │     ││     │             │     │USSD response│     │             │     ││     │             │     ├────────────>│     │             │     ││     │             │     │             │     │USSD response│     ││     │             │     │             │     ├────────────>│     ││     │             │     │             │     │             │     │:     :             :     :             :     :             :     ::     :             :     :             :     :             :     ::     :             :     :             :     :             :     :│     │             │     │             │     │USSD request │     ││     │             │     │USSD request │     │<────────────┤     ││     │USSD request │     │<────────────┤     │             │     ││     │<────────────┤     │             │     │             │     ││     │             │     │             │     │             │     ││     │USSD response│     │             │     │             │     ││     ├────────────>│     │             │     │             │     ││     │             │     │USSD response│     │             │     ││     │             │     ├────────────>│     │             │     ││     │             │     │             │     │USSD response│     ││     │             │     │             │     ├────────────>│     ││     │             │     │             │     │             │     ││     │             │     │             │     │USSD response│     ││     │             │     │USSD response│     │<────────────┤     ││     │USSD response│     │<────────────┤     │             │     ││     │<────────────┤     │             │     │             │     ││     │             │     │             │     │             │     │\nNOTE:\tNote that this call flow only shows one example to illustrate the possible scenarios. See the SDL diagrams for a complete description.\nFigure 6.8: Information flow for mobile initiated USSD Request Handled by HLR, further information requested\nMS                  MSC                 VLR                 HLR┌─────┐             ┌─────┐             ┌─────┐             ┌─────┐│     │             │     │             │     │             │     ││Error detected at MSC    │             │     │             │     ││     │             │     │             │     │             │     ││     │USSD request │     │             │     │             │     ││     ├────────────>│     │             │     │             │     ││     │             │     │             │     │             │     ││     │      Error  │     │             │     │             │     ││     │<────────────┤     │             │     │             │     ││     │             │     │             │     │             │     ││     │             │     │             │     │             │     ││Error detected at VLR    │             │     │             │     ││     │             │     │             │     │             │     ││     │USSD request │     │             │     │             │     ││     ├────────────>│     │             │     │             │     ││     │             │     │USSD request │     │             │     ││     │             │     ├────────────>│     │             │     ││     │             │     │             │     │             │     ││     │             │     │      Error  │     │             │     ││     │      Error  │     │<────────────┤     │             │     ││     │<────────────┤     │             │     │             │     ││     │             │     │             │     │             │     ││     │             │     │             │     │             │     ││Error detected at HLR    │             │     │             │     ││     │             │     │             │     │             │     ││     │USSD request │     │             │     │             │     ││     ├────────────>│     │             │     │             │     ││     │             │     │USSD request │     │             │     ││     │             │     ├────────────>│     │             │     ││     │             │     │             │     │USSD request │     ││     │             │     │             │     ├────────────>│     ││     │             │     │             │     │             │     ││     │             │     │             │     │      Error  │     ││     │             │     │      Error  │     │<────────────┤     ││     │      Error  │     │<────────────┤     │             │     ││     │<────────────┤     │             │     │             │     ││     │             │     │             │     │             │     ││     │             │     │             │     │             │     ││MS clears transaction before response received             │     ││     │             │     │             │     │             │     ││     │USSD request │     │             │     │             │     ││     ├────────────>│     │             │     │             │     ││     │             │     │USSD request │     │             │     ││     │             │     ├────────────>│     │             │     ││     │             │     │             │     │USSD request │     ││     │             │     │             │     ├────────────>│     ││     │  Release    │     │             │     │             │     ││     ├────────────>│     │             │     │             │     ││     │             │     │  Release    │     │             │     ││     │             │     ├────────────>│     │             │     ││     │             │     │             │     │  Release    │     ││     │             │     │             │     ├────────────>│     ││     │             │     │             │     │             │     │\nNOTE:\tThis call flow only shows a limited number of examples to illustrate the possible scenarios. See the SDL diagrams for a complete description.\nFigure 6.9: Information flow for mobile initiated failed USSD Request",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_6.1",
+        "figure_6.2",
+        "figure_6.3",
+        "figure_6.4",
+        "figure_6.5",
+        "figure_6.6",
+        "figure_6.7",
+        "figure_6.8",
+        "figure_6.9"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.090_6.3",
+      "section_id": "6.3",
+      "section_title": "Information stored in the HLR",
+      "content": "The HLR shall not store any information specific to the use of USSD, although information may be stored for services which are offered by USSD applications.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.090_6.4",
+      "section_id": "6.4",
+      "section_title": "Information stored in the VLR",
+      "content": "The VLR shall not store any information specific to the use of USSD, although information may be stored for services which are offered by USSD applications.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.090_6.5",
+      "section_id": "6.5",
+      "section_title": "Handover",
+      "content": "Handover will have no impact on the operation of this service.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.090_6.6",
+      "section_id": "6.6",
+      "section_title": "Cross-phase compatibility",
+      "content": "If, when a Phase 2 MS sends a mobile initiated USSD request, any network entity is of Phase 1, the request will be rejected. If it is possible to encode the content of the USSD request using the Phase 1 protocol, the MS shall repeat the request, using the Phase 1 protocol.\nA Mobile initiated USSD request from a Phase 1 MS uses the Phase 1 protocol. On receipt of such a request, the application shall also use the Phase 1 protocol when sending the response.\nA Phase 2 network shall not send network initiated requests or notifications during a mobile initiated USSD request if the MS or any network entity involved in the operation is of Phase 1.\nAnnex A (informative):Change history\nChange history\nDate\nMeeting\nTDoc\nCR\nRev\nCat\nSubject/Comment\nNew version\nApr 1999\nTransferred to 3GPP CN1\nCN#03\nApproved at CN#03\n3.0.0\nCN#06\n001\n1\nUSSD enhancement\n3.1.0\nCN#09\n002\n1\nSDL refresh\n3.2.0\nCN#11\nRelease 4 after CN#11\n4.0.0\nCN#16\nRelease 5 after CN#16\n5.0.0\nCN#26\nRelease 6 after CN#26\n6.0.0\nCT#30\n0003\n1\nIncorrect References\n6.1.0\nCT#36\nUpgraded unchanged from Rel-6\n7.0.0\nCT#42\nUpgraded unchanged from Rel-7\n8.0.0\nCT#42\n-\n-\nUpdate to Rel-9 version (MCC)\n9.0.0\n2011-03\n-\n-\nUpdate to Rel-10 version (MCC)\n10.0.0\n2012-09\n-\n-\nUpdate to Rel-11 version (MCC)\n11.0.0\n2014-09\n-\n-\nUpdate to Rel-12 version (MCC)\n12.0.0\n2015-12\n-\n-\nUpdate to Rel-13 version (MCC)\n13.0.0\n2017-03\n-\n-\nUpdate to Rel-14 version (MCC)\n14.0.0\n2018-06\n-\n-\nUpdate to Rel-15 version (MCC)\n15.0.0\n2020-07\n-\n-\nUpdate to Rel-16 version (MCC)\n16.0.0\n2022-03\n-\n-\nUpdate to Rel-17 version (MCC)\n17.0.0\n2024-03\n-\n-\n-\n-\n-\nUpdate to Rel-18 version (MCC)\n18.0.0",
+      "chunk_type": "general",
+      "cross_references": []
+    }
+  ]
+}

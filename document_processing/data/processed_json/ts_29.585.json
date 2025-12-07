@@ -1,0 +1,579 @@
+{
+  "metadata": {
+    "specification_id": "ts_29.585",
+    "version": "18.1.0",
+    "title": "3GPP TS 29.585",
+    "file_path": "/content/drive/MyDrive/RAG_thesis/data/29_series/29585-i10/29585-i10.docx"
+  },
+  "export_info": {
+    "export_date": "2025-07-26T08:47:46.404793",
+    "total_chunks": 54
+  },
+  "chunks": [
+    {
+      "chunk_id": "ts_29.585_1",
+      "section_id": "1",
+      "section_title": "Scope",
+      "content": "The present document specifies the protocol of communication in the 5G System between:\n-\tthe SMF/CUC and the (R)AN/AN-TL, and\n-\tthe SMF/CUC and the UPF/CN-TL,\nwhen the (R)AN and the UPF support the Talker and Listener functionality, for the support of Time Sensitive Networking (TSN) enabled Transport Network (TN) as specified in clauses 4.4.8, 5.28a and Annex M of 3GPP TS 23.501 [2] and Annex F of 3GPP TS 23.502 [3].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.501",
+        "ts_23.502"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.585_2",
+      "section_id": "2",
+      "section_title": "References",
+      "content": "The following documents contain provisions which, through reference in this text, constitute provisions of the present document.\n-\tReferences are either specific (identified by date of publication, edition number, version number, etc.) or non‑specific.\n-\tFor a specific reference, subsequent revisions do not apply.\n-\tFor a non-specific reference, the latest version applies. In the case of a reference to a 3GPP document (including a GSM document), a non-specific reference implicitly refers to the latest version of that document in the same Release as the present document.\n[1]\t3GPP TR 21.905: \"Vocabulary for 3GPP Specifications\".\n[2]\t3GPP TS 23.501: \"System Architecture for the 5G System; Stage 2\".\n[3]\t3GPP TS 23.502: \"Procedures for the 5G System; Stage 2\".\n[4]\tIEEE Std 802.1Q-2022: \"IEEE Standard for Local and Metropolitan Area Networks-Bridges and Bridged Networks\".\n[5]\t3GPP TS 38.413: \"NG-RAN; NG Application Protocol (NGAP)\".\n[6]\t3GPP TS 29.244: \"Interface between the Control Plane and the User Plane nodes\".\n[7]\tIEEE Std 802.1CBdb-2021: \"IEEE Standard for Local and metropolitan area networks-Frame Replication and Elimination for Reliability\".\n[8]\tIETF RFC 2474: \"Definition of the Differentiated Services Field (DS Field) in the IPv4 and IPv6 Headers\".\n[9]\tIEEE Std 802.1Qdj-2024: \"IEEE Draft Standard for Local and metropolitan area networks - Bridges and Bridged Networks - Amendment XX: Configuration Enhancements for Time-Sensitive Networking\".",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905",
+        "ts_23.501",
+        "ts_23.502",
+        "ts_38.413",
+        "ts_29.244"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.585_3.1",
+      "section_id": "3.1",
+      "section_title": "Terms",
+      "content": "For the purposes of the present document, the terms given in TR 21.905 [1] and the following apply. A term defined in the present document takes precedence over the definition of the same term, if any, in TR 21.905 [1].\nStream: A unidirectional flow of time-sensitive data from one source to one or more destinations, and at the highest level, one Talker end system to one or more Listener end systems.\nFor the purposes of the present document, the following terms and definitions given in 3GPP TS 23.501 [2] apply:\n5G System",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905",
+        "ts_23.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.585_3.2",
+      "section_id": "3.2",
+      "section_title": "Symbols",
+      "content": "No symbol is defined in this release of the specification.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.585_3.3",
+      "section_id": "3.3",
+      "section_title": "Abbreviations",
+      "content": "For the purposes of the present document, the abbreviations given in TR 21.905 [1] and the following apply. An abbreviation defined in the present document takes precedence over the definition of the same abbreviation, if any, in TR 21.905 [1].\n5GS\t5G System\nAN-TL\tAccess Network Talker Listener function\nCN-TL\tCore Network Talker Listener function\nCNC\tCentralized Network Configuration\nCUC\tCentralized User Configuration\nES\tEnd Station\n(R)AN\t(Radio) Access Network\nSMF\tSession Management Function\nTL\tTalker Listener\nTN\tTransport Network\nTSN\tTime-Sensitive Networking\nUPF\tUser Plane Function",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.585_4.1",
+      "section_id": "4.1",
+      "section_title": "Introduction",
+      "content": "The 5GS supports interworking with IEEE 802.1 TSN deployed in the transport network. The interworking is applicable when the transport network deploys the fully centralized configuration model as defined in IEEE Std 802.1Q [4]. In this scenario, a TSN TN is deployed to realize the N3 interface between the (R)AN and the UPF. From the perspective of the TSN enabled TN, the (R)AN and the UPF act as End Stations (ES) of the TSN TN.\nFigure 4.1-1 depicts the reference model for 5GS interworking with TSN enabled TN, with focus on the interfaces between the SMF/CUC and the (R)AN/AN-TL and between the SMF/CUC and the UPF/CN-TL which are in scope of this specification.\nFigure 4.1-1: Reference Model – 5GS interworking with TSN enabled TN\nIf the (R)AN and the UPF support the TSN Talker and Listener (TL) functionality (i.e. they implement the AN-TL and CN-TL, respectively), the SMF/CUC can communicate with the AN-TL and CN-TL to:\n-\tretrieve the ES capabilities (list of interfaces and interface capabilities) of the AN-TL and CN-TL; and\n-\tconfigure TSN features in the ES (e.g. for stream identification, stream association with TSN resources, stream transformation, hold and buffer functionality, as described in IEEE Std 802.1Q [4]) of the AN-TL and CN-TL.\nThe messages defined in this specification are exchanged between the SMF/CUC and the (R)AN/AN-TL and UPF/CN-TL via TL-Containers sent within NGAP Session Management signaling as specified in 3GPP TS 38.413 [5] and PFCP Session related signaling as specified in 3GPP TS 29.244 [6]. The related stage 2 call flows are specified in 3GPP TS 23.502 [3].",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_4.1-1",
+        "ts_38.413",
+        "ts_29.244",
+        "ts_23.502"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.585_5.2.1.1",
+      "section_id": "5.2.1.1",
+      "section_title": "General",
+      "content": "The SMF/CUC may retrieve the following ES information of the AN-TL and CN-TL (see Table M.2-1 of 3GPP TS 23.501 [2]) during the establishment of a PDU session:\n1)\tES interfaces, consisting of a list of one or more Interface IDs, where each Interface ID identifies a physical interface (distinct point of attachment) in the ES acting as Talker/Listener (see clause 46.2.3.3 of IEEE Std 802.1Q [4]); and/or\n2)\tInterface capabilities, describing the network capabilities of all the ES interfaces. The following capabilities may be signaled in this release of the specification:\n-\tVlan Tag capability, indicating whether the ES interfaces support the ability to tag/untag frames using a Customer VLAN Tag (C-TAG) provided by the network (see clause 46.2.3.7.1 of of IEEE Std 802.1Q [4]);\n-\tBuffering capability, indicating the maximum possible buffer duration for a packet of a stream with the maximum size of an Ethernet packet (1522 Bytes) that is supported by the AN-TL/CN-TL when acting as a Talker (see Table M.2-1 of 3GPP TS 23.501 [2]).\nNOTE:\tInterface Capabilities are identical for all Interfaces/Ports of the ES.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_46.2.3.3",
+        "clause_46.2.3.7.1",
+        "ts_23.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.585_5.2.1.2",
+      "section_id": "5.2.1.2",
+      "section_title": "SMF/CUC-initiated Get procedure initiation",
+      "content": "In order to retrieve the ES parameters of the AN-TL or CN-TL, the SMF/CUC shall:\na)\tencode the information about the requested ES parameters (Interface IDs and/or Interface capabilities) in the Requested ES Parameters IE in a Get Request message;\nb)\tsend the Get Request message to the AN-TL or CN-TL as specified in 3GPP TS 23.502 [3]; and\nc)\tstart the timer Tget.\nFigure 5.2.1.2-1: SMF/CUC-initiated Get procedure",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_5.2.1.2-1",
+        "ts_23.502"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.585_5.2.1.3",
+      "section_id": "5.2.1.3",
+      "section_title": "SMF/CUC-initiated Get procedure completion",
+      "content": "Upon receipt of the Get Request message, the AN-TL/CN-TL shall:\n-\treport the list of its interfaces in Interface ID IE(s) of the Get Response message, if the ITF ID bit was set to 1 in the Requested ES Parameters IE in the Get Request message;\n-\treport the network capabilities of its interfaces in the Interface Capabilities IE, if the ITF CAP bit was set to 1 in the Requested ES Parameters IE in the Get Request message; and\n-\tsend the Get Response message to the SMF/CUC as specified in 3GPP TS 23.502 [3].",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "ts_23.502"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.585_5.2.1.4",
+      "section_id": "5.2.1.4",
+      "section_title": "Abnormal cases in the SMF/CUC",
+      "content": "The following abnormal cases can be identified:\na)\tSMF/CUC receives a PFCP Session Establishment Response or a NGAP PDU Session Resource Setup Response message not including a Get Response.This case may occur e.g. if the SMF/CUC assumes that the NG-RAN or UPF supports the AN/CN-TL functionality when they actually don't, due to some misconfiguration.The SMF/CUC implementation shall abort the procedure, should consider that the NG-RAN/UPF does not support the AN/CN-TL functionality, and should log information about the misconfiguration.\nb)\tSMF/CUC does not receive any PFCP Session Establishment Response or NGAP PDU Session Resource Setup Response message.\nThe Get Request within the PFCP Session Establishment Request or NGAP PDU Session Resource Setup Request message is retransmitted using procedures for reliable delivery of PFCP or NGAP messages towards the UPF/NG-RAN, e.g. retransmitting the requests (or responses) relying on the Reliable Delivery of PFCP messages procedure defined in clause 6.4 of TS 29.244 or relying on TCP (HTTP/HTTPS) or SCTP (NGAP) retransmissions.\nOn the expiry of the Tget timer, the SMF/CUC shall abort the procedure and should log error information.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.244_clause_6.4",
+        "ts_29.244"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.585_5.2.1.5",
+      "section_id": "5.2.1.5",
+      "section_title": "Abnormal cases in the AN-TL/CN-TL",
+      "content": "The following abnormal cases can be identified:\na)\tTransmission failure of the Get Response message indication (e.g. transient communication failure over N4).\nThe AN-TL/CN-TL shall not diagnose an error and consider the SMF/CUC-initiated Get procedure complete.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.585_5.2.2.1",
+      "section_id": "5.2.2.1",
+      "section_title": "General",
+      "content": "The SMF/CUC may initiate the Set procedure towards the AN-TL and CN-TL (at the Talker and Listener), per TN stream of a PDU session, during the PDU session modification procedure to:\n-\tconfigure a new TN stream at the AN-TL/CN-TL. If the SMF/CUC received a TimeAwareOffset from the CNC for the new TN stream, the configuration shall contain additionally the TimeAwareOffset and the other parameters to calculate the gate control information shall be added to the gate control input information of the addressed interface/port of the End Station (ES);\n-\tdelete the configuration of an existing TN stream at the AN-TL/CN-TL (e.g. when a QoS flow is terminated). This may also include to delete the TimeAwareOffset together with the other parameters to calculate the gate control information from the gate control input information of the addressed interface/port of the End Station (ES); and\n-\tmodify an existing TN stream configuration by deleting the existing TN stream configuration and configuring a new TN stream.\nNOTE 1:\tWhen gate control input information at an interface/port changes, the AN-TL and CN-TL recalculates the Gate Control Information with respect to the changed information.\nThe SMF/CUC shall initiate the Set procedure towards the AN-TL and CN-TL, per TN stream of a PDU session, during the PDU session release procedure to:\n-\tdelete the configuration of the existing TN stream of the PDU session at the AN-TL and CN-TL; and\n-\tupdate for the scheduled TN streams the gate control input information to enable the AN-TL and CN-TL to calculate for the addressed interface/port Gate Control Information for the remaining TN streams of the other PDU sessions.\nNOTE 2:\tPDU sessions are established as Always-on PDU sessions for time-sensitive communication, time synchronization and deterministic network, as specified in clause 5.27.0 of 3GPP TS 23.501 [2]. Therefore, the Set procedure is not invoked during a Service Request procedure.\nDuring the above procedures, the SMF/CUC shall configure the following IEEE 802.1 End Station (ES) information at the AN-TL and CN-TL (see Table M.2-1 of 3GPP TS 23.501 [2]):\n1)\twhen configuring a new stream:\na)\tTN streamID uniquely identifying the TN stream configuration at the ES.\nb)\tTN stream identification information, identifying the packets belonging to the new stream being configured. It shall either comprise:\n-\ta mask-and-match information, containing the destination GTP-U F-TEID of the GTP-U tunnel of the PDU session and with the QFI assigned to the TN stream; or\n-\ta Data Frame Specification, with the IPv4-tuple or IPv6-type set with the destination GTP-U IP address of the GTP-U tunnel of the TN stream of the PDU session.\nNOTE 3:\tThe Data Frame Specification can be used to identify the packets of the TN stream if a separate GTP-U tunnel, with a distinct IP address (of the GTP-U F-TEID) is established for the TN stream.\nc)\tInterface ID of the AN-TL and CN-TL for the new TN stream, indicating the ES interface/port which transfers the new TN stream.\nd)\tInterface configuration part, indicating the Source MAC address, Destination MAC address, Priority Code Point and/or VLAN ID (if the ES interface is VLAN capable) to be used for the new TN stream before it is transmitted via the interface/port of the ES, if stream transformation is required to be performed at the AN-TL/CN-TL.\ne)\tInterface configuration part and other parameters to enable the Talker to calculate for the interface/port of the ES Gate Control Information, comprising the Time Aware Offset, Interval, and MaxFrameSize parameters of the TN stream, if the SMF/CUC received a TimeAwareOffset from the CNC for the new TN stream.\n2)\twhen deleting the configuration of an existing stream:\na)\tTN stream ID uniquely identifying the stream's configuration at the ES.\nNOTE 4:\tMultiple SMF/CUCs can operate in parallel in the same configuration domain and serve PDU sessions established at the same AN-TL/CN-TL, i.e. an ES (i.e. AN-TL/CN-TL) need not be dedicated to a single SMF/CUC. See IEEE Std 802.1Qdj-2024 [9].\nNOTE 5:\tThe SMF/CUC can send multiple concurrent Set Requests towards the AN-TL/CN-TL, for the same or different PDU sessions, to establish or terminate TN streams.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_23.501_clause_5.27.0",
+        "ts_23.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.585_5.2.2.2",
+      "section_id": "5.2.2.2",
+      "section_title": "SMF/CUC-initiated Set procedure initiation",
+      "content": "In order to configure the TN stream information in the AN-TL and CN-TL, the SMF/CUC shall:\na)\tencode the information about the requested configuration in a Set Request message with an Add TN Stream Configuration IE or a Delete TN Stream Configuration IE, if it is requested to configure a new stream or delete the configuration of an existing TN stream, respectively, with the information described in clause 5.2.2.1.\nThe Set Request message may contain a Delete TN Stream Configuration IE followed by an Add TN Stream Configuration IE to modify an existing stream configuration by deleting it and configuring the new TN stream.\nb)\tsend the Set Request message to the AN-TL or CN-TL as specified in 3GPP TS 23.502 [3]; and\nc)\tstart the timer Tset.\nFigure 5.2.2.2-1: SMF/CUC-initiated Set procedure",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "clause_5.2.2.1",
+        "figure_5.2.2.2-1",
+        "ts_23.502"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.585_5.2.2.3",
+      "section_id": "5.2.2.3",
+      "section_title": "SMF/CUC-initiated Set procedure completion",
+      "content": "Upon receipt of the Set Request message, the AN-TL/CN-TL shall:\n-\tstore and attempt to apply the new TN stream configuration, for the TN stream configuration requested to be added;\n-\tdelete the TN stream configuration, for the TN stream configuration requested to be deleted;\n-\trecalculate the Gate Control Information for the TN streams associated with the ES interface/port which transfers the new TN stream or which was transferring the deleted TN stream, if gate control input information was provided during the configuration of the new or deleted TN stream; and\n-\tsend the Set Response message to the SMF/CUC as specified in 3GPP TS 23.502 [3].",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "ts_23.502"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.585_5.2.2.4",
+      "section_id": "5.2.2.4",
+      "section_title": "Abnormal cases in the SMF/CUC",
+      "content": "The following abnormal cases can be identified:\na)\tSMF/CUC receives a PFCP Session Modification/Deletion Response or a NGAP PDU Session Resource Modify/Release Response message not including a Set Response.The SMF/CUC implementation shall abort the procedure and should log the error information.\nb)\t SMF/CUC does not receive any PFCP Session Modification/Deletion Response or NGAP PDU Session Resource Modify/Release Response message.\nThe Set Request within the PFCP Session Modification/Deletion Request or NGAP PDU Session Resource Release Command/Modify Request message is retransmitted using procedures for reliable delivery of PFCP or NGAP messages towards the UPF/NG-RAN, e.g. retransmitting the requests (or responses) relying on the Reliable Delivery of PFCP messages procedure defined in clause 6.4 of TS 29.244 or relying on TCP (HTTP/HTTPS) or SCTP (NGAP) retransmissions.\nOn the expiry of the Tset timer, the SMF/CUC shall abort the procedure and should log error information.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.244_clause_6.4",
+        "ts_29.244"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.585_5.2.2.5",
+      "section_id": "5.2.2.5",
+      "section_title": "Abnormal cases in the AN-TL/CN-TL",
+      "content": "The following abnormal cases can be identified:\na)\tTransmission failure of the Set Response message indication (e.g. transient communication failure over N4).\nThe AN-TL/CN-TL shall not diagnose an error and consider the SMF/CUC-initiated Set procedure complete.\nNOTE 1:\tConsidering the SMF/CUC-initiated Set procedure complete as a result of this abnormal case does not cause the AN-TL/CN-TL to revert the execution of the operations included in the SET Request message.\nb)\tMismatch between the Data Frame Specification and the GTP-U information received outside of the TL-Container\nThe (R)AN/AN-TL and UPF/CN-TL shall return a Failure Code if it detects a mismatch between the Data Frame Specification and the GTP-U information received outside of the TL-Container, as specified in NOTE 13 of Table M.2-1 of 3GPP TS 23.501 [2].\nNOTE 2:\tThis assumes that the AN-TL/CN-TL receives the GTP-U information of the PDU session from the (R)AN/UPF, respectively, by implementation specific means.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_23.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.585_6.1",
+      "section_id": "6.1",
+      "section_title": "General",
+      "content": "Clause 6 specifies procedures for the handling of unknown, unforeseen, and erroneous data by the receiving entity. These procedures are called error handling procedures.\nA protocol error is defined as a message or an Information Element received from a peer entity with an unknown type, or if it is unexpected, or if it has an erroneous content.\nThe term silently discarded is used in the following clauses to mean that the receiving entity's implementation shall discard such a message without further processing or that the receiving entity discards such an IE and continues processing the message. The conditions for the receiving entity to silently discard an IE are specified in the subsequent clauses.\nThe handling of unknown, unexpected or erroneous messages and IEs shall provide support for forward compatibility with future extensions of the protocol. Therefore, the sending entity shall be able to safely include in a message a new conditional-optional or an optional IE. Such an IE may also have a new type value. Any legacy receiving entity shall, however, silently discard such an IE and continue processing the message.\nIf a protocol error is detected by the receiving entity, it should log the event including the erroneous message and may include the error in a statistical counter.\nFor Response messages containing a rejection Cause value, see clause 7.1.3.2.\nThe receiving entity shall apply the error handling specified in the subsequent clauses.\nIf the received erroneous message is a reply to an outstanding request, the entity receiving the reply shall stop retransmissions of the related request.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_6",
+        "clause_7.1.3.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.585_6.2",
+      "section_id": "6.2",
+      "section_title": "Message of Invalid Length",
+      "content": "If an entity receives a message that is too short to contain the message header, that message shall be silently discarded.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.585_6.3",
+      "section_id": "6.3",
+      "section_title": "Unknown Message",
+      "content": "If an entity receives a message with an unknown Message Type value, it shall silently discard the message.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.585_6.4",
+      "section_id": "6.4",
+      "section_title": "Unexpected Message",
+      "content": "If an entity receives an unexpected request message, for example a message for which the message is defined, but the direction is incorrect, then the entity shall silently discard the message and shall log an error.\nIf an entity receives an unexpected response message, for example a message for which there is no corresponding outstanding request, it shall discard the message and may log an error.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.585_6.5",
+      "section_id": "6.5",
+      "section_title": "Missing Information Elements",
+      "content": "An entity shall check if all mandatory IEs are present in the received Request message. If one or more mandatory information elements are missing in the received Request message, the entity should log the error and shall send a Response message with the Cause IE value set to \"Mandatory IE missing\" with the type of the missing mandatory IE.\nAn entity shall check if all mandatory IEs are present in the received Response message without a rejection Cause value. If one or more mandatory information elements are missing, the entity shall stop retransmissions of the corresponding request message and should log the error.\nAn entity shall check if conditional information elements are present in the received Request message, if possible (i.e. if the receiving entity has sufficient information available to check if the respective conditions were met). If one or more conditional information elements are missing, an entity should log the error and shall send a Response message with the Cause IE value set to \"Conditional IE missing\" together with the type of the missing conditional IE.\nAn entity shall check if conditional information elements are present in the received Response message without a rejection Cause value, if possible (i.e. if the receiving entity has sufficient information available to check if the respective conditions were met). If one or more conditional information elements are missing, the entity shall stop retransmissions of the corresponding Request message and should log the error.\nThe absence of an optional information element shall not trigger any error handling.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.585_6.6",
+      "section_id": "6.6",
+      "section_title": "Semantically incorrect Information Element",
+      "content": "The receiver of a Request message including a mandatory or a verifiable conditional information element with a semantically invalid value shall discard the request, should log the error, and shall send a response with the Cause IE value set to \"Mandatory IE incorrect\" together with a type and instance of the offending IE.\nThe receiver of a Response message including a mandatory or a verifiable conditional information element with a semantically invalid value shall stop retransmissions of the corresponding request message and should log the error.\nIf an entity receives an information element with a value which is shown as reserved, it shall treat that information element as invalid and should log the error. If the invalid IE is received in a Request, and it is a mandatory IE or a verifiable conditional IE, the entity shall send a response with Cause set to \"Mandatory IE incorrect\" together with a type and instance of the offending IE.\nThe use of reserved values invokes error handling; the use of spare values can be silently discarded and for IEs with spare values used, processing shall be continued ignoring the spare values.\nThe receiver of a signalling message including an optional information element with a value that is not in the range defined for this information element value shall discard this IE, but shall treat the rest of the message as if this IE was absent and continue processing. The receiver shall not check the content of an information element field that is defined as \"spare\".\nAll semantically incorrect optional information elements in a signalling message shall be treated as not present in the message.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.585_6.7",
+      "section_id": "6.7",
+      "section_title": "Unknown or unexpected Information Element",
+      "content": "The receiver of a message including an unexpected information element with a known Type value that is not defined for this message shall discard the IE and log an error. The receiver shall process the message.\nNOTE:\tAn Information Element in an encoded message or grouped IE is identified by the IE Type.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.585_6.8",
+      "section_id": "6.8",
+      "section_title": "Repeated Information Elements",
+      "content": "An Information Element is repeated if there is more than one IE with the same IE Type in the scope of the message (or in the scope of the grouped IE). Such an IE is a member in a list.\nIf an information element is repeated in a signalling message in which repetition of the information element is not specified, only the contents of the information element appearing first shall be handled and all subsequent repetitions of the information element shall be ignored. When the number of repetitions of information elements is specified, only the contents of specified repeated information elements shall be handled and all subsequent repetitions of the information element shall be ignored.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.585_6.9",
+      "section_id": "6.9",
+      "section_title": "Information Element of Invalid Length",
+      "content": "An information element has an invalid length when the actual length of the IE is different from the value of the Length field in the IE header. Here, the actual length of the IE means the length of the content field of the received IE.\nIf a message contains more than one information elements and one or more of them have invalid length, the receiving entity may detect which of the IEs have invalid length only in the following cases:\n-\tIf the Length value in the IE header is greater than the overall length of the message; and\n-\tIf the invalid length IE is the last one in the message.\nIf a receiving entity detects information element with invalid length in a Request message, it shall send an appropriate error response with the Cause IE value set to \"Invalid length\" together with the type of the offending IE.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.585_7.1.1",
+      "section_id": "7.1.1",
+      "section_title": "Transmission Order and Bit Definitions",
+      "content": "Messages shall be transmitted in network octet order starting with octet 1 with the most significant bit sent first.\nThe most significant bit of an octet in a message is bit 8. If a field in a message spans over several octets, the most significant bit is bit 8 of the octet with the lowest number, unless specified otherwise.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.585_7.1.2.1",
+      "section_id": "7.1.2.1",
+      "section_title": "General",
+      "content": "The format of a message is depicted in Figure 7.1.2.1-1.\nBits\nOctets\n8\n7\n6\n5\n4\n3\n2\n1\n1 to m\nMessage header\nm+1 to n\nZero or more Information Element(s)\nFigure 7.1.2.1-1: Message Format\nA message shall contain the message header and may contain subsequent information element(s) dependent on the type of message.\nThe encoding of the Information elements is specified in clause 8.1.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_8.1",
+        "figure_7.1.2.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.585_7.1.2.2",
+      "section_id": "7.1.2.2",
+      "section_title": "Message Header",
+      "content": "Messages use a fixed length header of 4 octets. Figure 7.1.2.2-1 illustrates the format of the Header.\nBits\nOctets\n8\n7\n6\n5\n4\n3\n2\n1\n1\nVersion\nSpare\n2\nMessage Type\n3\nSequence Number (1st Octet)\n4\nSequence Number (2nd Octet)\n5\nSequence Number (3rd Octet)\n6-8\nSpare\nFigure 7.1.2.2-1: Message Header\nThe first octet of the header shall be used as follows:\n-\tBit 1-5 are spare bits. The sending entity shall set it to \"0\" and the receiving entity shall ignore it.\n-\tBits 6 to 8 represent the version of the protocol which shall be set to decimal value 1 (\"001\").\nThe usage of the fields in octets 2 - 4 of the header shall be as specified below.\n-\tOctet 2 represents the Message type field, which shall be set to the unique value for each type of message. Message type values are specified in Table 7.3-1 \"Message types\".\n-\tOctets 3 to 5 represent the Sequence Number field which enables to correlate a response with a request.\n-\tOctets 6 to 8 are spare. The sender shall set these octets to all zeros and the receiver shall ignore them.\nNOTE:\tThe SMF/CUC can send multiple Set Request messages to the AN-TL/CN-TL for the same PDU session or different PDU sessions in parallel. The response message contains the same sequence number as the corresponding request message.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_7.3-1",
+        "figure_7.1.2.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.585_7.1.3.1",
+      "section_id": "7.1.3.1",
+      "section_title": "General",
+      "content": "The format of Information Elements are defined in clauses 8.1 and 8.2.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.585_7.1.3.2",
+      "section_id": "7.1.3.2",
+      "section_title": "Presence Requirements of Information Elements",
+      "content": "IEs within messages shall be specified with one of the following presence requirements:\n-\tMandatory: this means that:\n-\tthe IE shall be included by the sending entity;\n-\tthe receiver diagnoses a \"Mandatory IE missing\" error when detecting that the IE is not present. If a mandatory IE is missing, then the receiver shall abort the procedure. A response including a \"Mandatory IE missing\" cause shall include the type of the missing IE.\n-\tConditional: this means that:\n-\tthe IE shall be included by sending entity if the conditions specified are met;\n-\tthe receiver shall check the conditions as specified in the corresponding message type description, based on the parameter combination in the message and/or on the state of the receiving node, to infer if a conditional IE shall be expected. Only if a receiver has sufficient information, if a conditional IE, which is necessary for the receiving entity to complete the procedure, is missing, then the receiver shall abort the procedure. A response including a \"Conditional IE missing\" cause shall include the type of the missing IE.\n-\tOptional: this means that:\n-\tthe IE shall be included as a service option. Therefore, the IE may be included or not in a message. The handling of an absent optional IE, or an erroneous optional IE is specified in clause 7.4.\nFor conditional IEs, the clause describing the message explicitly defines the conditions under which the inclusion of each IE becomes mandatory or optional for that particular message. These conditions shall be defined so that the presence of a conditional IE only becomes mandatory if it is critical for the receiving entity.\nFor grouped IEs, the presence requirement of the embedded IE shall follow the rules:\n-\tIf the grouped IE is Mandatory within a given message: the presence requirements of individual embedded IEs are as stated within the Mandatory grouped IE for the given message;\n-\tif the grouped IE is Conditional within a given message: if the embedded IE in the grouped IE is Mandatory or Conditional, this embedded IE is viewed as Conditional IE by the receiver. If the embedded IE in the grouped IE is Conditional-Optional, this embedded IE is viewed as Optional IE by the receiver. If the embedded IE in the grouped IE is Optional, this embedded IE is viewed as Optional IE by the receiver;\n-\tif the grouped IE is Conditional-Optional within a given message: if the embedded IE in the grouped IE is Mandatory or Conditional, this embedded IE is viewed as Conditional-Optional IE by the receiver. If the embedded IE in the grouped IE is Conditional-Optional, this embedded IE is viewed as Optional IE by the receiver. If the embedded IE in the grouped IE is Optional, this embedded IE is viewed as Optional IE by the receiver;\n-\tif the grouped IE is Optional within a given message: all embedded IEs in the grouped IE are viewed as Optional IEs by the receiver.\nIn all of the above cases, appropriate error handling as described in clause 7.4 shall be applied for protocol errors of the embedded IEs.\nOnly the Cause IE at message level shall be included in the response if the Cause contains a value that indicates that the request is not accepted, regardless of whether there are other mandatory or conditional IEs defined for a given response message.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_7.4"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.585_7.1.3.3",
+      "section_id": "7.1.3.3",
+      "section_title": "Grouped Information Elements",
+      "content": "A Grouped IE is an IE which may contain other IEs.\nGrouped IEs have a length value in the TLV encoding, which includes the added length of all the embedded IEs. Overall coding of a grouped IE with 4 octets long IE header is defined in clause 8.2. Each IE within a grouped IE also shall also contain 4 octets long IE header.\nGrouped IEs are not marked by any flag or limited to a specific range of IE type values. The clause describing an IE in this specification shall explicitly state if it is a Grouped IE.\nNOTE:\tEach entry into each Grouped IE creates a new scope level. Exit from the grouped IE closes the scope level. The message level is the top most scope.\nIf more than one grouped IEs of the same type, but for a different purpose are sent within the same message level, these IEs shall have different IE types.\nIf more than one grouped IEs of the same type and for the same purpose are sent within the same message level, these IEs shall have exactly the same IE type to represent a list.\nAssigning the same IE type to grouped IEs which don't have the same content is not recommended, even if these grouped IEs are in different message levels.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_8.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.585_7.1.3.4",
+      "section_id": "7.1.3.4",
+      "section_title": "Information Element Type",
+      "content": "An IE in a message or Grouped IE is identified by its IE Type and described by a specific row in the corresponding tables in clause 7.\nIf several IEs with the same Type are included in a message or Grouped IE, they represent a list for the corresponding IE name.\nAn IE Type value uniquely identifies a specific IE.\nOne IE type value is specified for Vendor Specific IEs.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_7"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.585_7.2",
+      "section_id": "7.2",
+      "section_title": "Message Types",
+      "content": "The message types are defined in Table 7.2-1.\nTable 7.2-1: Message Types\nMessage Type value (Decimal)\nMessage\n0\nReserved\n1\nGet Request\n2\nGet Response\n3\nSet Request\n4\nSet Response\n5 to 255\nFor future use",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_7.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.585_7.3.1.1",
+      "section_id": "7.3.1.1",
+      "section_title": "Message definition",
+      "content": "The Get Request message is sent by the SMF/CUC to the AN-TL or CN-TL to retrieve ES parameters of the AN-TL or CN-TL, see Table 7.3.1.1-1.\nMessage type:\tGet Request\nDirection:\tSMF/CUC to AN-TL, SMF/CUC to CN-TL\nTable 7.3.1.1-1: Information Elements in Get Request\nInformation elements\nP\nCondition / Comment\nIE Type\nRequested ES Parameters\nM\nThis IE shall indicate the ES parameters requested to be retrieved from the AN-TL/CN-TL.\nRequested ES Parameters",
+      "chunk_type": "definition",
+      "cross_references": [
+        "table_7.3.1.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.585_7.3.2.1",
+      "section_id": "7.3.2.1",
+      "section_title": "Message definition",
+      "content": "The Get Response message is sent by the AN-TL or CN-TL to the SMF/CUC to report the requested ES parameters of the AN-TL or CN-TL, see Table 7.3.2.1-1.\nMessage type:\tGet Response\nDirection:\tAN-TL to SMF/CUC, CN-TL to SMF/CUC\nTable 7.3.2.1-1: Information Elements in Get Response\nInformation elements\nP\nCondition / Comment\nIE Type\nCause\nM\nIndicates success or failure of the request, and in the latter case, the reason for the failure.\nCause\nInterface ID\nC\nThis IE shall be included if the SMF/CUC has set the ITF ID bit to 1 in the Requested ES Parameters IE in the Get Request message.\nSeveral IEs with the same IE type may be present to report multiple Interface IDs.\nInterface ID\nInterface Capabilities\nC\nThis IE shall be included if the SMF/CUC has set the ITF CAP bit to 1 in the Requested ES Parameters IE in the Get Request message.\nInterface Capabilities",
+      "chunk_type": "definition",
+      "cross_references": [
+        "table_7.3.2.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.585_7.3.3.1",
+      "section_id": "7.3.3.1",
+      "section_title": "Message definition",
+      "content": "The Set Request message is sent by the SMF/CUC to the AN-TL or CN-TL to configure ES parameters of the AN-TL or CN-TL, see Table 7.3.3.1-1.\nMessage type:\tSet Request\nDirection:\tSMF/CUC to AN-TL, SMF/CUC to CN-TL\nTable 7.3.3.1-1: Information Elements in Set Request\nInformation elements\nP\nCondition / Comment\nIE Type\nAdd TN Stream Configuration\nC\nThis IE shall be present if it is requested to configure a new TN stream. See Table 7.3.3.1-2.\nAdd TN Stream Configuration\nDelete TN Stream Configuration\nC\nThis IE shall be present if it is requested to delete the configuration of an existing TN stream. See Table 7.3.3.1-3.\nDelete TN Stream Configuration\nTable 7.3.3.1-2: Add TN Stream Configuration\nOctet 1 and 2\nAdd TN Stream Configuration IE Type = 5 (decimal)\nOctets 3 and 4\nLength = n\nInformation elements\nP\nCondition / Comment\nIE Type\nTN Stream ID\nM\nThis IE shall contain a TN stream ID uniquely identifying the stream's configuration at the ES.\nTN Stream ID\nTN Stream Identification with mask-and-match\nC\nThis IE shall be present if packets belonging to the TN stream are identified using mask-and-match information.\n(NOTE)\nMask-and-match information\nTN Stream Identification with Data Frame Specification\nC\nThis IE shall be present if packets belonging to the TN stream are identified using a Data Frame Specification. See Table 7.3.3.1-4.\n(NOTE)\nData Frame Specification\nInterface ID\nM\nThis IE shall indicate the interface/port of the ES which transfers the new TN stream.\nInterface ID\nInterface configuration\nC\nThis IE shall be present if:\n-\tstream transformation is required to be performed at the AN-TL/CN-TL; and/or\n-\tthe SMF/CUC received a TimeAwareOffset from the CNC for the new TN stream.\nSee Table 7.3.3.1-5.\nInterface configuration\nOther Parameters for Gate Control Information Calculation\nC\nThis IE shall be sent to an AN-TL and CN-TL acting as Talker, if the TimeAwareOffset is received from the CNC. When present, it shall contain other parameters for the new TN stream that enable the AN-TL/CN-TL to calculate gate control information for the Interface/Port of the ES which transfers the TN stream being added.\nOther Parameters for Gate Control Information Calculation\nNOTE:\tEither the TN Stream Identification with mask-and-match IE or the TN Stream Identification with Data Frame Specification shall be present.\nTable 7.3.3.1-3: Delete TN Stream Configuration\nOctet 1 and 2\nDelete TN Stream Configuration IE Type = 7 (decimal)\nOctets 3 and 4\nLength = n\nInformation elements\nP\nCondition / Comment\nIE Type\nTN Stream ID\nM\nThis IE shall contain the TN stream ID of the stream's configuration to be deleted.\nTN Stream ID\nTable 7.3.3.1-4: Data Frame Specification\nOctet 1 and 2\nData Frame Specification IE Type = 8 (decimal)\nOctets 3 and 4\nLength = n\nInformation elements\nP\nCondition / Comment\nIE Type\nDestination MAC Address\nC\nDestination MAC address. If absent, the destination MAC address shall be ignored for the purpose of Stream identification.\nDestination MAC address\nSource MAC Address\nC\nSource MAC address. If absent, the source MAC address shall be ignored for the purpose of Stream identification.\nSource MAC address\nVLAN Tag Info\nC\nPriority Code Point and/or VLAN ID used for stream identification\nVlan Tag Info\nIPv4 tuple\nC\nIPv4 tuple for stream identification.\nIPv4 tuple\nIPv6 tuple\nC\nIPv6 tuple for stream identification.\nIPv6 tuple\nNOTE:\tAt least one IE shall be present.\nTable 7.3.3.1-5: Interface Configuration\nOctet 1 and 2\nInterface Configuration IE Type = 17 (decimal)\nOctets 3 and 4\nLength = n\nInformation elements\nP\nCondition / Comment\nIE Type\nSource MAC Address\nO\nSource MAC address to be used for the stream\nSource MAC Address\nDestination MAC Address\nO\nDestination MAC address used for stream transformation\nDestination MAC Address\nVLAN Tag Info\nO\nPriority Code Point and/or VLAN ID used for stream transformation\nVLAN Tag Info\nIPv4 tuple\nO\nIPv4 tuple used for stream transformation\nIPv4 tuple\nIPv6 tuple\nO\nIPv6 tuple used for stream transformation\nIPv6 tuple\nTime Aware Offset\nC\nThis IE shall be present and contain the Time Aware Offset, if the SMF/CUC received a TimeAwareOffset from the CNC for the new TN stream.\nTime Aware Offset\nNOTE:\tSee Annex M.1 and Table M.2-1 of 3GPP TS 23.501 [2] for the description and use of the parameters of the Interface Configuration.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "table_7.3.3.1-1",
+        "table_7.3.3.1-2",
+        "table_7.3.3.1-3",
+        "table_7.3.3.1-4",
+        "table_7.3.3.1-5",
+        "ts_23.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.585_7.3.4.1",
+      "section_id": "7.3.4.1",
+      "section_title": "Message definition",
+      "content": "The Set Response message is sent by the AN-TL or CN-TL to the SMF/CUC to report the outcomes of the ES parameters configuration request, see Table 7.3.4.1-1.\nMessage type:\tSet Response\nDirection:\tAN-TL to SMF/CUC, CN-TL to SMF/CUC\nTable 7.3.4.1-1: Information Elements in Set Response\nInformation elements\nP\nCondition / Comment\nIE Type\nCause\nM\nThis IE shall indicate success or failure of the request, and in the latter case, the reason for the failure.\nCause",
+      "chunk_type": "definition",
+      "cross_references": [
+        "table_7.3.4.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.585_8.1",
+      "section_id": "8.1",
+      "section_title": "Information Elements Format",
+      "content": "Figure 8.1-1 depicts the format of an Information Element.\nBits\nOctets\n8\n7\n6\n5\n4\n3\n2\n1\n1 to 2\nType = xxx (decimal)\n3 to 4\nLength = n\np to (p+1)\nEnterprise ID\nk to (n+4)\nIE specific data or content of a grouped IE\nFigure 8.1-1: Information Element Format\nNOTE 1:\tIf the Bit 8 of Octet 1 is not set, this indicates that the IE is defined by 3GPP and the Enterprise ID is absent. If Bit 8 of Octet 1 is set, this indicates that the IE is defined by a vendor and the Enterprise ID is present identified by the Enterprise ID.\nAn IE has the following mandatory fields:\n-\tType: this field indicates the type of the Information Element. IE type values within the range of 0 to 32767 are reserved for IE defined by 3GPP and are listed in clause 8.2.1 IE type values within the range of 32768 to 65535 are used for vendor-specific IE and the value allocation is controlled by the vendor.\n-\tLength: this field contains the length of the IE excluding the first four octets, which are common for all IEs (Type and Length) and is denoted \"n\" in Figure 8.1-1 and in Figure 8.1-2. Bit 8 of the lowest numbered octet is the most significant bit and bit 1 of the highest numbered octet is the least significant bit.\nAn IE has the following optional fields:\n-\tEnterprise ID: if the IE type value is within the range of 32768 to 65535, this field shall contain the IANA-assigned \"SMI Network Management Private Enterprise Codes\" value of the vendor defining the IE. The Enterprise ID set to \"10415\" (IANA-assigned \"SMI Network Management Private Enterprise Codes\") shall not be used for the vendor specific IEs.\nFor illustration, Figure 8.1-2 depicts the format of an Information Element (IE) defined by 3GPP and is specified in this specification. For IE's defined by 3GPP, the IE type shall be within the range of 0 to 32767.\nBits\nOctets\n8\n7\n6\n5\n4\n3\n2\n1\n1 to 2\nType = xxx (decimal)\n3 to 4\nLength = n\n5 to (n+4)\nIE specific data or content of a grouped IE\nFigure 8.1-2: 3GPP defined Information Element Format\nNOTE 2:\tBit 8 of Octet 1 is not set. This indicates that the Information Element type value has been allocated by 3GPP.\nFor illustration, Figure 8.1-3 depicts the format of a vendor-specific Information Element, which content is not specified and the IE type value shall be within the range of 32768 to 65535.\nBits\nOctets\n8\n7\n6\n5\n4\n3\n2\n1\n1 to 2\nType = xxx (decimal)\n3 to 4\nLength = n\n5 to 6\nEnterprise ID\n7 to (n+4)\nIE specific data or content of a grouped IE\nFigure 8.1-3: Vendor-Specific Information Element Format\nNOTE 3:\tBit 8 of Octet 1 is set. This indicates that the IE type value has been allocated by the vendor identified by the Enterprise ID. The content of this IE is vendor specific and therefore out of scope of this specification.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_8.2.1",
+        "figure_8.1-1",
+        "figure_8.1-2",
+        "figure_8.1-3"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.585_8.2.1",
+      "section_id": "8.2.1",
+      "section_title": "General",
+      "content": "A message may contain several IEs. In order to have forward compatible type definitions for the Ies, all of them shall be TLV (Type, Length, Value) coded. IE type values are specified in the Table 8.2.1-1.\nThe 3rd column of this table specifies if the IE is either Extendable or has a variable length or a fixed length and a reference to the clause where the IE is specified:\n-\tFixed Length: the IE has a fixed set of fields, and a fixed number of octets;\n-\tVariable Length: the IE has a fixed set of fields, and has a variable number of octets.For example, the last octets may be numbered similar to \"5 to (n+4)\". In this example, if the value of the length field, n, is 0, then the last field is not present;\n-\tExtendable: the IE has a variable number of fields, and has a variable number of octets.The last fields are typically specified with the statement: \"These octet(s) is/are present only if explicitly specified\". The legacy receiving entity shall ignore the unknown octets.\nIn order to improve the efficiency of troubleshooting, it is recommended that the IEs should be arranged in the signalling messages as well as in the grouped IEs, according to the order the IEs are listed in the message definition table or grouped IE definition table in clause 7. However the receiving entity shall be prepared to handle the messages with IEs in any order.\nWithin IEs, certain fields may be described as spare. These bits shall be transmitted with the value set to \"0\". To allow for future features, the receiver shall not evaluate these bits.\nTable 8.2.1-1: Information Element Types\nIE Type value\n(Decimal)\nInformation elements\nComment / Reference\n0\nReserved\n1\nCause\nFixed Length / 8.2.2\n2\nRequested ES Parameters\nExtendable / 8.2.3\n3\nInterface ID\nExtendable / 8.2.4\n4\nInterface Capabilities\nExtendable / 8.2.5\n5\nAdd TN Stream Configuration\nExtendable / Table 7.3.3.1-2\n6\nOther Parameters for Gate Control Information Calculation\nExtendable / 8.2.15\n7\nDelete TN Stream Configuration\nExtendable / Table 7.3.3.1-3\n8\nData Frame Specification\nExtendable / Table 7.3.3.1-4\n9\nTime Aware Offset\nFixed Length / 8.2.13\n10\nTN Stream ID\nFixed Length / 8.2.6\n11\nMask-and-match information\nExtendable / 8.2.7\n12\nDestination MAC address\nFixed Length / 8.2.8\n13\nSource MAC address\nFixed Length / 8.2.9\n14\nVlan Tag Info\nFixed Length / 8.2.10\n15\nIPv4 tuple\nExtendable / 8.2.11\n16\nIPv6 tuple\nExtendable / 8.2.12\n17\nInterface Configuration\nExtendable / Table 7.3.3.1-5\n18\nInterface Name\nVariable length / 8.2.14\n19 to 32767\nSpare. For future use.\n32768 to 65535\nReserved for vendor specific IEs",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_7",
+        "table_8.2.1-1",
+        "table_7.3.3.1-2",
+        "table_7.3.3.1-3",
+        "table_7.3.3.1-4",
+        "table_7.3.3.1-5"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.585_8.2.2",
+      "section_id": "8.2.2",
+      "section_title": "Cause",
+      "content": "Cause IE is coded as depicted in Figure 8.2.2-1.\n.\nBits\nOctets\n8\n7\n6\n5\n4\n3\n2\n1\n1 to 2\nType = 1 (decimal)\n3 to 4\nLength = 1\n5\nCause value\nFigure 8.2.2-1: Cause\nThe Cause value shall be included in a response message. In a response message, the Cause value indicates the acceptance or the rejection of the corresponding request message. The Cause value indicates the explicit reason for the rejection.\nTable 8.2.2-1: Cause values\nMessage Type\nCause value\n(decimal)\nMeaning\nDescription\n0\nReserved.\nShall not be sent and if received the Cause shall be treated as an invalid IE\nAcceptance in a response\n1\nRequest accepted (success)\n\"Request accepted (success)\" is returned when the request was accepted.\n2-63\nSpare\nThis value range shall be used by Cause values in an acceptance response message. See NOTE 1.\nRejection in a response\n64\nRequest rejected (reason not specified)\nThis cause shall be returned to report an unspecified rejection cause\n65\nMandatory IE missing\nThis cause shall be returned when the receiver detects that a mandatory IE is missing in a request message\n66\nConditional IE missing\nThis cause shall be returned when the receiver detects that a Conditional IE is missing in a request message.\n67\nInvalid length\nThis cause shall be returned when the receiver detects that an IE with an invalid length in a request message\n68\nMandatory IE incorrect\nThis cause shall be returned when the receiver detects that a Mandatory IE is incorrect in a request message, e.g. the Mandatory IE is malformed or it carries an invalid or unexpected value.\n69\nNo resources available\nThis cause shall be returned to indicate a temporary unavailability of resources to process the received request. This cause may be used e.g. if the AN-TL/CN-TL is congested.\n70\nInsufficient Resources for scheduled TN streams\nThis cause shall be returned to indicate that a new scheduled TN stream could not be configured, or that an existing scheduled TN stream could not be modified, due to insufficient resources at the AN-TL/CN-TL for scheduled TN streams for the ES interface/port requested to transfer the new or modified TN stream.\n71\nTemporary Rejection due to on-going calculation of gate control information\nThis cause shall be returned to indicate that  a new scheduled TN stream could not be configured, or that an existing scheduled TN stream could not be modified, due to the AN-TL/CN-TL re-calculating gate control information for the ES interface/port requested to transfer the new or modified TN stream, due to previous requests, and the AN-TL/CN-TL being not able to provide a timely response to the new request.\n72\nUnavailable Interface ID\nThis cause shall be used to indicate that an Interface ID received in a Set Request to configure a new TN stream is not available at the AN-TL/CN-TL.\n73 to 255\nSpare for future use in a response message. See NOTE 2.\nThis value range shall be used by Cause values in a rejection response message. See NOTE 2.\nNOTE 1:\tThis value is or may be used in future version of the specification. If the receiver cannot comprehend the value, it shall be interpreted as an unspecified acceptance cause. Unspecified/unrecognized acceptance cause shall be treated in the same ways as the cause value 1 \" Request accepted (success)\".\nNOTE 2:\tThis value is or may be used in a future version of the specification. If the receiver cannot comprehend the value, it shall be interpreted as an unspecified rejection cause. Unspecified/unrecognized rejection cause shall be treated in the same ways as the cause value 64 \"Request rejected (reason not specified)\".",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_8.2.2-1",
+        "figure_8.2.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.585_8.2.3",
+      "section_id": "8.2.3",
+      "section_title": "Requested ES Parameters",
+      "content": "The Requested ES Parameters IE type shall be encoded as shown in Figure 8.2.3-1. It indicates the ES parameters that are requested to be retrieved from the AN-TL or CN-TL.\nBits\nOctets\n8\n7\n6\n5\n4\n3\n2\n1\n1 to 2\nType = 2 (decimal)\n3 to 4\nLength = n\n5\nSpare\nSpare\nSpare\nSpare\nSpare\nSpare\nITF CAP\nITF ID\n6 to (n+4)\nThese octet(s) is/are present only if explicitly specified\nFigure 8.2.3-1: Requested ES Parameters\nOctet 5 shall be encoded as follows:\n-\tBit 1 –ITF ID (Interface ID): when set to \"1\", this indicates a request to retrieve the End Station Interface IDs.\n-\tBit 2 – ITF CAP (Interface capabilities): when set to \"1\", this indicates a a request to retrieve the Interface capabilities.\n-\tBit 3 to 8 Spare, for future use and set to 0.",
+      "chunk_type": "parameter",
+      "cross_references": [
+        "figure_8.2.3-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.585_8.2.4",
+      "section_id": "8.2.4",
+      "section_title": "Interface ID",
+      "content": "The Interface ID IE type shall be encoded as shown in Figure 8.2.4-1. It conveys the description of one Interface ID.\nBits\nOctets\n8\n7\n6\n5\n4\n3\n2\n1\n1 to 2\nType = 3 (decimal)\n3 to 4\nLength = n\n5 to 10\nMAC address value\n11\nLength of Interface Name\nm to o\nInterface Name value\np to (n+4)\nThese octet(s) is/are present only if explicitly specified\nFigure 8.2.4-1: Interface ID\nOctets 5 to 10 shall contain the value of the MAC address of the ES interface as specified in IEEE Std 802.1Q [4] Table 46-3.\nOctet 11 shall contain the length of the Interface Name value field in octets. It shall be set to zero if no Interface Name value field is provided.\nOctets m to o shall contain the value of the Interface Name of the ES interface as specified in IEEE Std 802.1Q [4] Table 46-3.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_46-3",
+        "figure_8.2.4-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.585_8.2.5",
+      "section_id": "8.2.5",
+      "section_title": "Interface Capabilities",
+      "content": "The Interface Capabilities IE type shall be encoded as shown in Figure 8.2.5-1. It indicates the ES interface capabilities of the AN-TL or CN-TL to the SMF/CUC as defined in 3GPP TS 23.501 [2] table M.2-1.\nBits\nOctets\n8\n7\n6\n5\n4\n3\n2\n1\n1 to 2\nType = 4 (decimal)\n3 to 4\nLength = n\n5\nSpare\nSpare\nSpare\nSpare\nSpare\nSpare\nBUF CAP\nVLAN\nTAG\nm to (m+1)\nBuffer Capability value\no to (n+4)\nThese octet(s) is/are present only if explicitly specified\nFigure 8.2.5-1: Interface Capabilities\nOctet 5 shall be encoded as follows:\n-\tBit 1 – VLAN TAG (VLAN Tag Capability): when set to \"1\", this indicates that the interface supports VLAN Tag capability as defined in IEEE Std 802.1Q [4] clause 46.2.3.7.1.\n-\tBit 2 – BUF CAP (Buffer capabilities): when set to \"1\", this indicates that the Buffer Capability value field is provided.\n-\tBit 3 to 8 Spare, for future use and set to 0.\nOctet m to (m+1) shall be present if the BUF CAP flag in octet 5 is set to \"1\". When present, they encode, for a Talker, the maximum possible buffer duration in ms for a packet with the maximum size of an Ethernet packet (1522 Bytes).",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_46.2.3.7.1",
+        "figure_8.2.5-1",
+        "ts_23.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.585_8.2.6",
+      "section_id": "8.2.6",
+      "section_title": "TN Stream ID",
+      "content": "The TN Stream ID IE type shall be encoded as shown in Figure 8.2.6-1.\nBits\nOctets\n8\n7\n6\n5\n4\n3\n2\n1\n1 to 2\nType = 10 (decimal)\n3 to 4\nLength = 8\n5 to 10\nMAC address\n11 to 12\nUnique ID\nFigure 8.2.6-1: TN Stream ID\nThe MAC address shall be encoded as defined in clause 46.2.3.1.1 of IEEE Std 802.1Q [4].\nThe Unique ID shall be encoded as defined in clause 46.2.3.1.2 of IEEE Std 802.1Q [4].",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_46.2.3.1.1",
+        "clause_46.2.3.1.2",
+        "figure_8.2.6-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.585_8.2.7",
+      "section_id": "8.2.7",
+      "section_title": "Mask-and-match information",
+      "content": "The Mask-and-match information IE type shall be encoded as shown in Figure 8.2.7-1.\nBits\nOctets\n8\n7\n6\n5\n4\n3\n2\n1\n1 to 2\nType = 11 (decimal)\n3 to 4\nLength = n\n5 to 6\ntsnCpeMmIdMsduMaskLength\n7 to m\ntsnCpeMmIdMsduMask\n(m+1) to p\ntsnCpeMmIdMsduMatch\np+1 to (n+4)\nThese octet(s) is/are present only if explicitly specified\nFigure 8.2.7-1: Mask-and-match-information\nOctets 5 to 6 shall encode the tsnCpeMmIdMsduMaskLength, i.e. the length, in octets, of tsnCpeMmIdMsduMask and and tsnCpeMmIdMsduMatch,as defined in clause 9.1.6.5 of IEEE Std  802.1CBdb [7].\nOctets 7 to m shall encode the tsnCpeMmIdMsduMask, i.e. a mask of tsnCpeMmIdMsduMaskLength octets, as defined in clause 9.1.6.6 of IEEE Std 802.1CBdb [7].\nOctets (m+1) to p shall encode the tsnCpeMmIdMsduMatch, i.e. the value of the mask to be matched for the stream identification, of tsnCpeMmIdMsduMaskLength octets, as defined in clause 9.1.6.7 of IEEE Std 802.1CBdb [7].",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_9.1.6.5",
+        "clause_9.1.6.6",
+        "clause_9.1.6.7",
+        "figure_8.2.7-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.585_8.2.8",
+      "section_id": "8.2.8",
+      "section_title": "Destination MAC address",
+      "content": "The Destination MAC address IE type shall be encoded as shown in Figure 8.2.8-1.\nBits\nOctets\n8\n7\n6\n5\n4\n3\n2\n1\n1 to 2\nType = 12 (decimal)\n3 to 4\nLength = 6\n5 to 10\nMAC address value\nFigure 8.2.8-1: Destination MAC address",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "figure_8.2.8-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.585_8.2.9",
+      "section_id": "8.2.9",
+      "section_title": "Source MAC address",
+      "content": "The Source MAC address IE type shall be encoded as shown in Figure 8.2.9-1.\nBits\nOctets\n8\n7\n6\n5\n4\n3\n2\n1\n1 to 2\nType = 13 (decimal)\n3 to 4\nLength = 6\n5 to 10\nMAC address value\nFigure 8.2.9-1: Source MAC address",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "figure_8.2.9-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.585_8.2.10",
+      "section_id": "8.2.10",
+      "section_title": "VLAN Tag Info",
+      "content": "The VLAN Tag Info IE type shall be encoded as shown in Figure 8.2.10-1.\nBits\nOctets\n8\n7\n6\n5\n4\n3\n2\n1\n1 to 2\nType = 14 (decimal)\n3 to 4\nLength = 2\n5\nPCP value\nDEI Flag\nVLAN ID value\n6\nVLAN ID value\nFigure 8.2.10-1: VLAN Tag Info\nThe PCP value in octet 5 shall encode the Priority Code Point value (value range is 0 to 7 inclusive) as defined in clause 46.2.3.4.2 of IEEE Std 802.1Q [4].\nThe DEI (Drop Eligible Indicator) flag in octet 5 is not relevant from the perspective of a TSN Talker/Listener. It shall be ignored by the receiver.\nThe VLAN ID value field in octets 5 to 6 shall contain the VlanId value (value range is 0 to 4095 inclusive) as defined in clause 46.2.3.4.2 of IEEE Std 802.1Q [4]. Octet 5 / Bit 4 shall be the most significant bit of the VLAN ID value and Octet 6 / Bit 1 shall be the least significant bit.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_46.2.3.4.2",
+        "figure_8.2.10-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.585_8.2.11",
+      "section_id": "8.2.11",
+      "section_title": "IPv4 tuple",
+      "content": "The IPv4 tuple IE type shall be encoded as shown in Figure 8.2.11-1. It encodes an IPv4 tuple as defined in clause 46.2.3.4.3 of IEEE Std 802.1Q [4].\nBits\nOctets\n8\n7\n6\n5\n4\n3\n2\n1\n1 to 2\nType = 15 (decimal)\n3 to 4\nLength = n\n5\nSpare\nSpare\nDPN\nSPN\nProtoc\nDSCP\nDIPA\nSIPA\nm to (m+3)\nSource IPv4 address\no to (o+3)\nDestination IPv4 address\np\nSpare\nDSCP value\nq to (q+1)\nProtocol value\nr to (r+1)\nSource Port Number\ns to (s+1)\nDestination Port Number\nt to (n+4)\nThese octet(s) is/are present only if explicitly specified\nFigure 8.2.11-1: IPv4 tuple\nOctet 5 shall be encoded as follows:\n-\tBit 1 – SIPA (Source IP Address): when set to \"1\", this indicates that the Source IPv4 address field is present.\n-\tBit 2 – DIPA (Destination IP Address): when set to \"1\", this indicates that the Destination IPv4 address field is present.\n-\tBit 3 – DSCP: when set to \"1\", this indicates that the DSCP value field is present.\n-\tBit 4 – Protoc (Protocol): when set to \"1\", this indicates that the Protocol value field is present.\n-\tBit 5 – SPN (Source Port Number): when set to \"1\", this indicates that the Source Port Number field is present.\n-\tBit 6 – DPN (Destination Port Number): when set to \"1\", this indicates that the Destination Port Number field is present.\n-\tBit 7 to 8 Spare, for future use and set to 0.\nWhen present, source IPv4 address, destination IPv4 address, Protocol, Source Port Number and Destination Port Number shall be encoded as defined in clause 46.2.3.4.3 of IEEE Std 802.1Q [4].\nThe DSCP value shall be encoded as the DSCP in TOS (IPv4) or TC (IPv6) information (see IETF RFC 2474 [8]).",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_46.2.3.4.3",
+        "figure_8.2.11-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.585_8.2.12",
+      "section_id": "8.2.12",
+      "section_title": "IPv6 tuple",
+      "content": "The IPv6 tuple IE type shall be encoded as shown in Figure 8.2.12-1. It encodes an IPv6 tuple as defined in clause 46.2.3.4.4 of IEEE Std 802.1Q [4].\nBits\nOctets\n8\n7\n6\n5\n4\n3\n2\n1\n1 to 2\nType = 16 (decimal)\n3 to 4\nLength = n\n5\nSpare\nSpare\nDPN\nSPN\nProtoc\nDSCP\nDIPA\nSIPA\nm to (m+15)\nSource IPv6 address\no to (o+15)\nDestination IPv6 address\np\nSpare\nDSCP value\nq to (q+1)\nProtocol value\nr to (r+1)\nSource Port Number\ns to (s+1)\nDestination Port Number\nt to (n+4)\nThese octet(s) is/are present only if explicitly specified\nFigure 8.2.12-1: IPv6 tuple\nOctet 5 shall be encoded as follows:\n-\tBit 1 – SIPA (Source IP Address): when set to \"1\", this indicates that the Source IPv6 address field is present.\n-\tBit 2 – DIPA (Destination IP Address): when set to \"1\", this indicates that the Destination IPv6 address field is present.\n-\tBit 3 – DSCP: when set to \"1\", this indicates that the DSCP value field is present.\n-\tBit 4 – Protoc (Protocol): when set to \"1\", this indicates that the Protocol value field is present.\n-\tBit 5 – SPN (Source Port Number): when set to \"1\", this indicates that the Source Port Number field is present.\n-\tBit 6 – DPN (Destination Port Number): when set to \"1\", this indicates that the Destination Port Number field is present.\n-\tBit 7 to 8 Spare, for future use and set to 0.\nWhen present, source IPv6 address, destination IPv6 address, Protocol, Source Port Number and Destination Port Number shall be encoded as defined in clause 46.2.3.4.4 of IEEE Std 802.1Q [4].\nThe DSCP value shall be encoded as the DSCP in TOS (IPv4) or TC (IPv6) information (see IETF RFC 2474 [8]).",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_46.2.3.4.4",
+        "figure_8.2.12-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.585_8.2.13",
+      "section_id": "8.2.13",
+      "section_title": "Time Aware Offset",
+      "content": "The Time Aware Offset IE type shall be encoded as shown in Figure 8.2.13-1.\nBits\nOctets\n8\n7\n6\n5\n4\n3\n2\n1\n1 to 2\nType = 9 (decimal)\n3 to 4\nLength = n\n5 to 8\nTime Aware Offset\n9 to (n+4)\nThese octet(s) is/are present only if explicitly specified\nFigure 8.2.13-1: Time Aware Offset\nThe Time Aware Offset field shall contain the TimeAwareOffset as defined in clause 46.2.5.3.5 of IEEE Std 802.1Q [4].",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_46.2.5.3.5",
+        "figure_8.2.13-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.585_8.2.14",
+      "section_id": "8.2.14",
+      "section_title": "Interface Name",
+      "content": "The Interface Name IE type shall be encoded as shown in Figure 8.2.14-1.\nBits\nOctets\n8\n7\n6\n5\n4\n3\n2\n1\n1 to 2\nType = 18 (decimal)\n3 to 4\nLength = n\n5 to n\nInterface Name value\nFigure 8.2.14-1: Interface Name\nThe Interface Name value shall contain the value of the Interface Name of the ES interface as specified in IEEE Std 802.1Q [4] Table 46-3.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_46-3",
+        "figure_8.2.14-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.585_8.2.15",
+      "section_id": "8.2.15",
+      "section_title": "Other Parameters for Gate Control Information Calculation",
+      "content": "The Other Parameters for Gate Control Information Calculation IE type shall be encoded as shown in Figure 8.2.15-1.\nBits\nOctets\n8\n7\n6\n5\n4\n3\n2\n1\n1 to 2\nType = 6 (decimal)\n3 to 4\nLength = n\n5\nSpare\nMFS\nINT\nm to (m+3)\nInterval numerator\no to (o+3)\nInterval denominator\np to (p+1)\nMax Frame Size\nq to (n+4)\nThese octet(s) is/are present only if explicitly specified\nFigure 8.2.15-1: Other Parameters for Gate Control Information Calculation\nOctet 5 shall be encoded as follows:\n-\tBit 1 – INT (Interval): when set to \"1\", this indicates that the Interval numerator and Interval denominator fields are present.\n-\tBit 2 – MFS (Max Frame Size): when set to \"1\", this indicates that the Max Frame Size field is present.\n-\tBit 3 to 8 Spare, for future use and set to 0.\nWhen present, the Interval numerator and Interval denominator fields shall contain the interval numerator and denominator as defined in Table 46-8 of IEEE Std 802.1Q [4].\nWhen present, the Max Frame Size field shall contain the MaxFrameSize as defined in Table 46-8 of IEEE Std 802.1Q [4].",
+      "chunk_type": "parameter",
+      "cross_references": [
+        "table_46-8",
+        "figure_8.2.15-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.585_9",
+      "section_id": "9",
+      "section_title": "Timers",
+      "content": "Timers supported by the protocol between the SMF/CUC and AN-TL/CN-TL are shown in table 9.1.\nTable 9-1: Timers – SMF/CUC side\nTIMER\nTIMER VALUE\nCAUSE OF START\nNORMAL STOP\nON THEEXPIRY\n(NOTE 2)\nTget\nNOTE 1\nTransmission of Get Request message\nGet Response message received\nAbort the procedure\nTset\nNOTE 1\nTransmission of Set Request message\nSet Response message received\nAbort the procedure\nNOTE 1:\tThe value of this timer is network dependent.\nNOTE 2:\tGet Request and Set Request are retransmitted using procedures for reliable delivery of PFCP or NGAP messages towards the UPF/NG-RAN (see clauses 5.2.1.4 and 5.2.2.4). The procedure is aborted if no response is received.\nAnnex A (informative):Change history\nChange history\nDate\nMeeting\nTDoc\nCR\nRev\nCat\nSubject/Comment\nNew version\n2023-06\nCT4#116\nC4-232444\nInitial draft\n0.1.0\n2023-09\nCT4#117\nC4-233809\nImplementation of agreed pCRs: C4-233162, C4-233163, C4-233164, C4-233165, C4-233166, C4-233167, C4-233168, C4-233169\n0.2.0\n2023-09\nCT#101\nCP-232022\nTS presented for information\n1.0.0\n2023-10\nCT4#118\nC4-234586\nImplementation of agreed pCRs: C4-234111, C4-234112\n1.1.0\n2023-11\nCT4#119\nC4-235659\nImplementation of agreed pCRs: C4-235099, C4-235100, C4-235101, C4-235102, C4-235103, C4-235104, C4-235105, C4-235106, C4-235526\n1.2.0\n2024-03\nCT4#121\nC4-240851\nImplementation of agreed pCRs: C4-240164, C4-240165, C4-240166, C4-240167, C4-240168, C4-240169, C4-240170.\n1.3.0\n2024-03\nCT#103\nCP-240024\nPresented for approval\n2.0.0\n2024-03\nCT#103\nApproved in TSG CT#103\n18.0.0\n2024-09\nCT#105\nCP-242044\n0001\n1\nF\nCorrection to the IEEE 802.1Qdj reference\n18.1.0",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_9.1",
+        "table_9-1"
+      ]
+    }
+  ]
+}
