@@ -1,0 +1,507 @@
+{
+  "metadata": {
+    "specification_id": "ts_29.550",
+    "version": "18.3.0",
+    "title": "3GPP TS 29.550",
+    "file_path": "/content/drive/MyDrive/RAG_thesis/data/29_series/29550-i30/29550-i30.docx"
+  },
+  "export_info": {
+    "export_date": "2025-07-26T08:45:59.192663",
+    "total_chunks": 43
+  },
+  "chunks": [
+    {
+      "chunk_id": "ts_29.550_1",
+      "section_id": "1",
+      "section_title": "Scope",
+      "content": "The present document specifies the stage 3 protocol and data model for the Nsoraf Service Based Interface. It provides stage 3 protocol definitions and message flows, and specifies the API for each service offered by the SOR-AF.\nThe 5G System stage 2 architecture and procedures are specified in 3GPP TS 23.501 [2] and 3GPP TS 23.502 [3]. The stage 2 architecture and procedures for 5G Steering of Roaming are specified in 3GPP TS 23.122 [14].\nThe Technical Realization of the Service Based Architecture and the Principles and Guidelines for Services Definition are specified in 3GPP TS 29.500 [4] and 3GPP TS 29.501 [5].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.501",
+        "ts_23.502",
+        "ts_23.122",
+        "ts_29.500",
+        "ts_29.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.550_2",
+      "section_id": "2",
+      "section_title": "References",
+      "content": "The following documents contain provisions which, through reference in this text, constitute provisions of the present document.\n-\tReferences are either specific (identified by date of publication, edition number, version number, etc.) or non‑specific.\n-\tFor a specific reference, subsequent revisions do not apply.\n-\tFor a non-specific reference, the latest version applies. In the case of a reference to a 3GPP document (including a GSM document), a non-specific reference implicitly refers to the latest version of that document in the same Release as the present document.\n[1]\t3GPP TR 21.905: \"Vocabulary for 3GPP Specifications\".\n[2]\t3GPP TS 23.501: \"System Architecture for the 5G System; Stage 2\".\n[3]\t3GPP TS 23.502: \"Procedures for the 5G System; Stage 2\".\n[4]\t3GPP TS 29.500: \"5G System; Technical Realization of Service Based Architecture; Stage 3\".\n[5]\t3GPP TS 29.501: \"5G System; Principles and Guidelines for Services Definition; Stage 3\".\n[6]\tOpenAPI: \"OpenAPI 3.0.0 Specification\",  https://spec.openapis.org/oas/v3.0.0.\n[7]\t3GPP TR 21.900: \"Technical Specification Group working methods\".\n[8]\t3GPP TS 33.501: \"Security architecture and procedures for 5G system\".\n[9]\tIETF RFC 6749: \"The OAuth 2.0 Authorization Framework\".\n[10]\t3GPP TS 29.510: \"5G System; Network Function Repository Services; Stage 3\".\n[11]\tIETF RFC 9113: HTTP/2.\n[12]\tIETF RFC 8259: \"The JavaScript Object Notation (JSON) Data Interchange Format\".\n[13]\tIETF RFC 9457: \"Problem Details for HTTP APIs\".\n[14]\t3GPP TS 23.122: \"Non-Access-Stratum (NAS) functions related to Mobile Station (MS) in idle mode\".\n[15]\t3GPP TS 29.503: \"5G System; Unified Data Management Services; Stage 3\".\n[16]\t3GPP TS 29.571: \"5G System; Common Data Types for Service Based Interfaces Stage 3\".\n[17]\t3GPP TS 31.115: \"Secured packet structure for (Universal) Subscriber Identity Module (U)SIM Toolkit applications\".\n[18]\t3GPP TS 24.501: \"Non-Access-Stratum (NAS) protocol for 5G System (5GS); Stage 3\".\n[19]\t3GPP TS 29.544: \"5G System; Secured Packet Application Function (SP-AF) services; Stage 3\".\n[20]\t3GPP TS 29.509: \"Authentication Server Services; Stage 3\".",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905",
+        "ts_23.501",
+        "ts_23.502",
+        "ts_29.500",
+        "ts_29.501",
+        "ts_21.900",
+        "ts_33.501",
+        "ts_29.510",
+        "ts_23.122",
+        "ts_29.503",
+        "ts_29.571",
+        "ts_31.115",
+        "ts_24.501",
+        "ts_29.544",
+        "ts_29.509"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.550_3.1",
+      "section_id": "3.1",
+      "section_title": "Terms",
+      "content": "SoR Information: In this specification, this refers to the following HPLMN information:\na)\tan indication of whether the SOR-AF requires the UDM to request an acknowledgement from the UE for successful reception of the Steering of Roaming information; and\nb)\tone of the following:\n-\ta list of preferred PLMN/access technology combinations with an indication that it is included;\n-\ta secured packet with an indication that it is included; or\n-\tthe HPLMN indication that 'no change of the \"Operator Controlled PLMN Selector with Access Technology\" list stored in the UE is needed and thus no list of preferred PLMN/access technology combinations is provided'.\nNOTE:\tThe secured packet contains the list of preferred PLMN/access technology combinations encapsulated with a security mechanism as described in 3GPP TS 31.115 [17].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_31.115"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.550_3.2",
+      "section_id": "3.2",
+      "section_title": "Symbols",
+      "content": "Void.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.550_3.3",
+      "section_id": "3.3",
+      "section_title": "Abbreviations",
+      "content": "For the purposes of the present document, the abbreviations given in 3GPP TR 21.905 [1] and the following apply. An abbreviation defined in the present document takes precedence over the definition of the same abbreviation, if any, in 3GPP TR 21.905 [1].\nJSON\tJavascript Object Notation\nNF\tNetwork Function\nSOR-AF\tSteering Of Roaming Application Function\nSoR\tSteering of Roaming\nSUPI\tSubscription Permanent Identifier\nUDM\tUnified Data Management\nUE\tUser Equipment",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.550_4.1",
+      "section_id": "4.1",
+      "section_title": "Introduction",
+      "content": "Within the 5GC, the Steering Of Roaming Application Function (SOR-AF) provides services (see 3GPP TS 23.122 [14]) to NF service consumers (e.g. UDM) via the Nsoraf service based interface.\nNOTE:\tThe generation and calculation of the SoR information and associated roaming business logic are out of scope of this document.\nFigure°4.1-1 depicts the reference architecture of the SOR-AF.\nFigure 4.1-1: Reference model – SOR-AF",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_4.1-1",
+        "ts_23.122"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.550_5.1",
+      "section_id": "5.1",
+      "section_title": "Introduction",
+      "content": "The SOR-AF offers the following services to NF consumers (e.g. UDM) via the Nsoraf service based interface:\n-\tNsoraf_SteeringOfRoaming\nTable 5.1-1 summarizes the corresponding APIs defined for this specification.\nTable 5.1-1: APIs Description\nService Name\nClause\nDescription\nOpenAPI Specification File\napiName\nAnnex\nNsoraf_SteeringOfRoaming\n6.1\nNsoraf Steering Of Roaming Service\nTS29550_Nsoraf_SOR.yaml\nnsoraf-sor\nA.2",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.550_5.2.1",
+      "section_id": "5.2.1",
+      "section_title": "Service Description",
+      "content": "The Nsoraf_SteeringOfRoaming (Nsoraf_SOR) service provides Steering of Roaming services to NF consumers (e.g. UDM) to enable the retrieval of SoR information (i.e. the list of preferred PLMN/access technology combinations or an indication that no update to the list of preferred PLMN/access technology combinations is needed) to be conveyed to the UE, as specified in Annex C of 3GPP°TS°23.122 [14]. The latter specifies the 5GS control plane mechanism for Steering of Roaming that aims at allowing the HPLMN to update the \"Operator Controlled PLMN Selector with Access Technology\" list in the UE by providing and updating this list of preferred PLMN/access technology combinations.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.550_5.2.2.1",
+      "section_id": "5.2.2.1",
+      "section_title": "Introduction",
+      "content": "For the Nsoraf_SteeringOfRoaming service, the following service operations are defined:\n-\tGet\n-\tInfo",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.550_5.2.2.2.1",
+      "section_id": "5.2.2.2.1",
+      "section_title": "General",
+      "content": "This service operation is used by a NF consumer (e.g. UDM) to retrieve SoR information.\nThe returned information can consist of either:\n-\ta list of preferred PLMN/access technology combinations;-\ta secured packet;\n-\tneither of them.\nNOTE:\tThe secured packet contains the list of preferred PLMN/access technology combinations encapsulated with a security mechanism as described in 3GPP TS 31.115 [17].\nThe following procedures are supported using the \"Get\" service operation:\n-\tSoR Information Retrieval",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_31.115"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.550_5.2.2.2.2",
+      "section_id": "5.2.2.2.2",
+      "section_title": "SoR Information Retrieval",
+      "content": "Figure 5.2.2.2.2-1 depicts a scenario where a NF consumer (e.g. UDM) sends a request to the SOR-AF to retrieve the SoR information for a UE (see also clause C.2 and C.5 in Annex C of 3GPP°TS°23.122°[14]).\nThe request contains the UE's identity (/{supi}) and a set of query parameters (e.g. PLMN ID of the visited PLMN the UE is roaming in, or SNPN ID of the visited SNPN).\nFigure 5.2.2.2.2-1: SoR Information Retrieval Procedure\n1.\tThe NF service consumer (e.g. UDM) sends a GET request to the resource representing the SoR information (sor-information), with query parameters indicating the PLMN ID or SNPN ID and other relevant information (e.g. Access type).\n2a.\tOn success, the SOR-AF responds with the HTTP status code \"200 OK\" with the message body containing the SoR information (i.e. list of preferred PLMN/access technology combinations, the SOR-CMCI, if any, the \"Store the SOR-CMCI in the ME\" indicator, if any, SOR-SNPN-SI, if any and SOR-SNPN-SI-LS, if any, or a secured packet by consuming Nspaf services as specified in 3GPP TS 29.544 [19])  for the concerned UE. The response also contains a Cache-Control HTTP header set to the value \"no-cache\" instructing the NF consumer (e.g. UDM) to not cache the received SoR information.\n2b.\tIf there is no valid SoR information for the UE (e.g. the resource does not exist, the SUPI is unknown to the SOR-AF), the SOR-AF responds with the HTTP status code \"404 Not Found\" including additional error information in the response body (within the \"ProblemDetails\" IE).\nNOTE:\tAn operator configurable timer shall be used by the NF Service Consumer (e.g. UDM) to control the acceptable time during which it shall wait for the GET response from the SOR-AF, as specified in clause C.2 of 3GPP°TS°23.122°[14] (step 3d of the procedure description). The default value and range of this timer is operator specific and shall take into account the importance of the related procedure (e.g. registration procedure).\nOn failure, the appropriate HTTP status code indicating the error shall be returned and appropriate additional error information should be returned in the GET response body.",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_5.2.2.2.2-1",
+        "ts_29.544"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.550_5.2.2.3.1",
+      "section_id": "5.2.2.3.1",
+      "section_title": "General",
+      "content": "This service operation is used by a NF consumer (e.g. UDM) to provide the SOR-AF with the reception status of the acknowledgment on successful reception of SoR information by the UE, in case an acknowledgment was requested to the UE.\nThe following procedures are supported using the \"Info\" service operation:\n-\tSoR Acknowledgment Reception Notification",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.550_5.2.2.3.2",
+      "section_id": "5.2.2.3.2",
+      "section_title": "SoR Acknowledgment Reception Notification",
+      "content": "Figure 5.2.2.3.2-1 depicts a scenario where a NF consumer (e.g. UDM) sends an indication to the SOR-AF on the reception status of SoR information by the UE (see also clauses C.2 C.3, C.5 and C.6 in Annex C of 3GPP°TS°23.122°[14]).\nThe request contains the UE's identity (/{supi}), the type of acknowledgment (/sor-information/sor-ack) and the indication (SorAckInfo).\nFigure 5.2.2.3.2-1: SoR Acknowledgment Reception Notification procedure\n1.\tThe NF service consumer (e.g. UDM) sends a PUT request to the resource representing the SoR information acknowledgment (/{supi}/sor-information/sor-ack) with the SorAckInfo containing an indication on the reception status of SoR information by the UE, and \"ME support of SOR-CMCI\", \"ME support of SOR-SNPN-SI-LS\" and, \"ME support of SOR-SNPN-SI\" if available.\n2a.\tThe SOR-AF responds with the HTTP status code \"204 No Content\".\n2b.\tIf there is an error (e.g. the SUPI is unknown to the SOR-AF), the SOR-AF shall respond with the HTTP status code \"404 Not Found\" including additional error information in the response body (within the \"ProblemDetails\" IE).\nOn failure, the appropriate HTTP status code indicating the error shall be returned and appropriate additional error information should be returned in the PUT response body.",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_5.2.2.3.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.550_6.1.1",
+      "section_id": "6.1.1",
+      "section_title": "Introduction",
+      "content": "The Nsoraf_SOR service shall use the Nsoraf_SOR service API.\nThe API URI of the Nsoraf_SOR API shall be:\n{apiRoot}/<apiName>/<apiVersion>\nThe request URI used in HTTP request from the NF service consumer towards the NF service producer shall have the structure defined in clause 4.4.1 of 3GPP TS 29.501 [5], i.e.:\n{apiRoot}/<apiName>/<apiVersion>/<apiSpecificResourceUriPart>\nwith the following components:\n-\tThe {apiRoot} shall be set as described in 3GPP TS 29.501 [5].\n-\tThe <apiName> shall be \"nsoraf-sor\".\n-\tThe <apiVersion> shall be \"v1\".\n-\tThe <apiSpecificResourceUriPart> shall be set as described in clause 6.1.3.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.501_clause_4.4.1",
+        "clause_6.1.3",
+        "ts_29.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.550_6.1.2.1",
+      "section_id": "6.1.2.1",
+      "section_title": "General",
+      "content": "HTTP/2, IETF RFC 9113 [11], shall be used as specified in clause 5 of 3GPP TS 29.500 [4].\nHTTP/2 shall be transported as specified in clause 5.3 of 3GPP TS 29.500 [4].\nThe OpenAPI [6] specification of HTTP messages and content bodies for the Nsoraf_SOR API is contained in Annex A.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.500_clause_5",
+        "ts_29.500_clause_5.3",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.550_6.1.2.2.1",
+      "section_id": "6.1.2.2.1",
+      "section_title": "General",
+      "content": "See clause 5.2.2 of 3GPP TS 29.500 [4] for the usage of HTTP standard headers.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.500_clause_5.2.2",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.550_6.1.2.2.2",
+      "section_id": "6.1.2.2.2",
+      "section_title": "Content type",
+      "content": "JSON, IETF RFC 8259 [12], shall be used as content type of the HTTP bodies specified in the present specification as specified in clause 5.4 of 3GPP TS 29.500 [4]. The use of the JSON format shall be signalled by the content type \"application/json\".\n\"Problem Details\" JSON object shall be used to indicate additional details of the error in a HTTP response body and shall be signalled by the content type \"application/problem+json\", as defined in IETF RFC 9457 [13].",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_5.4",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.550_6.1.2.2.3",
+      "section_id": "6.1.2.2.3",
+      "section_title": "Cache-Control",
+      "content": "The \"Cache-Control\" header set to the value \"no-cache\" shall be included in HTTP responses for resources that shall not be cached (e.g. SorInformation).",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.550_6.1.2.3",
+      "section_id": "6.1.2.3",
+      "section_title": "HTTP custom headers",
+      "content": "The mandatory HTTP custom header fields specified in clause 5.2.3.2 of 3GPP TS 29.500 [4] shall be applicable.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_5.2.3.2",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.550_6.1.3.1",
+      "section_id": "6.1.3.1",
+      "section_title": "Overview",
+      "content": "The structure of the Resource URIs of the \"Nsoraf_SOR\" service is depicted in Figure 6.1.3.1-1.\nFigure 6.1.3.1-1: Resource URI structure of the Nsoraf_SOR API\nTable 6.1.3.1-1 provides an overview of the resources and applicable HTTP methods.\nTable 6.1.3.1-1: Resources and methods overview\nResource name\nResource URI\nHTTP method or custom operation\nDescription\nsor-information\n(Document)\n/{supi}/sor-information\nGET\nRetrieve the SoR information.\nsor-ack\n(Document)\n/{supi}/sor-information/sor-ack\nPUT\nInform the SOR-AF of the reception status of the Acknowledgment of successful reception of SoR information by the UE.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "table_6.1.3.1-1",
+        "figure_6.1.3.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.550_6.1.3.2.1",
+      "section_id": "6.1.3.2.1",
+      "section_title": "Description",
+      "content": "This resource represents the SoR information for a SUPI. It is used by NF consumers (e.g. UDM) to:\n-\trequest the retrieval of the SoR information during registration in a VPLMN as specified in clause C.2 in Annex C of 3GPP°TS°23.122°[14].",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.550_6.1.3.2.2",
+      "section_id": "6.1.3.2.2",
+      "section_title": "Resource Definition",
+      "content": "Resource URI: {apiRoot}/nsoraf-sor//<apiVersion>/{supi}/sor-information\nThis resource shall support the resource URI variables defined in table 6.1.3.2.2-1.\nTable 6.1.3.2.2-1: Resource URI variables for this resource\nName\nData type\nDefinition\napiRoot\nstring\nSee clause 6.1.1\nsupi\nSupi\nRepresents the Subscription Permanent Identifier (see 3GPP TS 23.501 [2] clause 5.9.2)\tpattern: \"^(imsi-[0-9]{5,15}|nai-.+|.+)$\"",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_6.1.1",
+        "ts_23.501_clause_5.9.2",
+        "table_6.1.3.2.2-1",
+        "ts_23.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.550_6.1.3.2.3.1",
+      "section_id": "6.1.3.2.3.1",
+      "section_title": "GET",
+      "content": "This method shall support the URI query parameters specified in table 6.1.3.2.3.1-1.\nTable 6.1.3.2.3.1-1: URI query parameters supported by the GET method on this resource\nName\nData type\nP\nCardinality\nDescription\nApplicability\nsupported-features\nSupportedFeatures\nO\n0..1\nSee clause 6.1.8, and 3GPP TS 29.500 [4] clause 6.6.\nplmn-id\nPlmnIdNid\nM\n1\nIdentity of the PLMN or SNPN serving the UE.\naccess-type\nAccessType\nO\n0..1\nAccess type used by the UE.\nThis method shall support the request data structures specified in table 6.1.3.2.3.1-2 and the response data structures and response codes specified in table 6.1.3.2.3.1-3.\nTable 6.1.3.2.3.1-2: Data structures supported by the GET Request Body on this resource\nData type\nP\nCardinality\nDescription\nn/a\nTable 6.1.3.2.3.1-3: Data structures supported by the GET Response Body on this resource\nData type\nP\nCardinality\nResponse\ncodes\nDescription\nSorInformation\nM\n1\n200 OK\nUpon success, a response with \"200 OK\" status code and a response body containing the SoR information as requested by the NF consumer (e.g. UDM) shall be returned by the SOR-AF.\nRedirectResponse\nO\n0..1\n307 Temporary Redirect\nTemporary redirection.\n(NOTE 2)\nRedirectResponse\nO\n0..1\n308 Permanent Redirect\nPermanent redirection.\n(NOTE 2)\nProblemDetails\nO\n0..1\n404 Not Found\nThe \"cause\" attribute may be set to one of the following application errors:\n- USER_NOT_FOUND\nNOTE 1:\tThe manadatory HTTP error status code for the GET method listed in Table 5.2.7.1-1 of 3GPP TS 29.500 [4] also apply.\nNOTE 2:\tRedirectResponses may be inserted by an SCP, see clause 6.10.9.1 of 3GPP TS 29.500 [4].\nTable 6.1.3.2.3.1-4: Headers supported by the 200 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nCache-Control\nstring\nM\n1\nThe Cache-Control HTTP header is set to the value \"no-cache\" instructing the NF consumer (e.g. UDM) to not cache the received SoR information.\nTable 6.1.3.2.3.1-5: Headers supported by the 307 Response Code on this endpoint\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nA URI pointing to a resource located on alternative SOR-AF. For the case, when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].\nTable 6.1.3.2.3.1-6: Headers supported by the 308 Response Code on this endpoint\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nA URI pointing to a resource located on alternative SOR-AF. For the case, when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_6.1.8",
+        "ts_29.500_clause_6.6",
+        "ts_29.500_clause_6.10.9.1",
+        "table_6.1.3.2.3.1-1",
+        "table_6.1.3.2.3.1-2",
+        "table_6.1.3.2.3.1-3",
+        "ts_29.500_table_5.2.7.1-1",
+        "ts_29.500_table_6.1.3.2.3.1-4",
+        "table_6.1.3.2.3.1-5",
+        "ts_29.500_table_6.1.3.2.3.1-6",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.550_6.1.3.3.1",
+      "section_id": "6.1.3.3.1",
+      "section_title": "Description",
+      "content": "This resource represents the notification from the NF consumer (e.g. UDM) of the reception status of the acknowledgment of successful reception of SoR information by the UE as specified in in Annex C of 3GPP°TS°23.122 [14].",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.550_6.1.3.3.2",
+      "section_id": "6.1.3.3.2",
+      "section_title": "Resource Definition",
+      "content": "Resource URI: {apiRoot}/nsoraf-sor//<apiVersion>/{supi}/sor-information/sor-ack\nThis resource shall support the resource URI variables defined in table 6.1.3.3.2-1.\nTable 6.1.3.3.2-1: Resource URI variables for this resource\nName\nData type\nDefinition\napiRoot\nstring\nSee clause 6.1.1\nsupi\nSupi\nRepresents the Subscription Permanent Identifier (see 3GPP TS 23.501 [2] clause 5.9.2)\tpattern: \"^(imsi-[0-9]{5,15}|nai-.+|.+)$\"",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_6.1.1",
+        "ts_23.501_clause_5.9.2",
+        "table_6.1.3.3.2-1",
+        "ts_23.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.550_6.1.3.3.3.1",
+      "section_id": "6.1.3.3.3.1",
+      "section_title": "PUT",
+      "content": "This method shall support the URI query parameters specified in table 6.1.3.3.3.1-1.\nTable 6.1.3.3.3.1-1: URI query parameters supported by the PUT method on this resource\nName\nData type\nP\nCardinality\nDescription\nApplicability\nn/a\nThis method shall support the request data structures specified in table 6.1.3.3.3.1-2 and the response data structures and response codes specified in table 6.1.3.3.3.1-3.\nTable 6.1.3.3.3.1-2: Data structures supported by the PUT Request Body on this resource\nData type\nP\nCardinality\nDescription\nSorAckInfo\nM\n1\nContains an indication on the reception status of the acknowledgment of successful reception of SoR information by the UE.\nTable 6.1.3.3.3.1-3: Data structures supported by the PUT Response Body on this resource\nData type\nP\nCardinality\nResponse\ncodes\nDescription\nn/a\n204 No Content\nUpon success, a response with \"204 No Content\" status code shall be returned.\nRedirectResponse\nO\n0..1\n307 Temporary Redirect\nTemporary redirection.\n(NOTE 2)\nRedirectResponse\nO\n0..1\n308 Permanent Redirect\nPermanent redirection.\n(NOTE 2)\nProblemDetails\nO\n0..1\n404 Not Found\nThe \"cause\" attribute may be set to the following application error:\n- USER_NOT_FOUND\nNOTE 1:\tThe manadatory HTTP error status code for the PUT method listed in Table 5.2.7.1-1 of 3GPP TS 29.500 [4] also apply.\nNOTE 2:\tRedirectResponses may be inserted by an SCP, see clause 6.10.9.1 of 3GPP TS 29.500 [4].\nTable 6.1.3.3.3.1-4: Headers supported by the 307 Response Code on this endpoint\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nA URI pointing to a resource located on alternative SOR-AF. For the case, when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].\nTable 6.1.3.3.3.1-5: Headers supported by the 308 Response Code on this endpoint\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nA URI pointing to a resource located on alternative SOR-AF. For the case, when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_6.10.9.1",
+        "table_6.1.3.3.3.1-1",
+        "table_6.1.3.3.3.1-2",
+        "table_6.1.3.3.3.1-3",
+        "ts_29.500_table_5.2.7.1-1",
+        "ts_29.500_table_6.1.3.3.3.1-4",
+        "ts_29.500_table_6.1.3.3.3.1-5",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.550_6.1.4",
+      "section_id": "6.1.4",
+      "section_title": "Custom Operations without associated resources",
+      "content": "No custom operations without associated resources are defined for the Nsoraf_SOR Service.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.550_6.1.5.1",
+      "section_id": "6.1.5.1",
+      "section_title": "General",
+      "content": "In this release of this specification, no notifications are defined for the Nsoraf_SOR Service.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.550_6.1.6.1",
+      "section_id": "6.1.6.1",
+      "section_title": "General",
+      "content": "This clause specifies the application data model supported by the API.\nTable 6.1.6.1-1 specifies the data types defined for the Nsoraf_SOR service based interface protocol.\nTable 6.1.6.1-1: Nsoraf specific Data Types\nData type\nClause defined\nDescription\nApplicability\nSorInformation\n6.1.6.2.2\nContains the SoR information to be conveyed to the UE.\nSorAckInfo\n6.1.6.2.3\nContains an indication to the SOR-AF on the reception status of the acknowledgment of successful reception of SoR Information by the UE.\nSteeringContainer\n6.1.6.2.x\nIt consists of either a list (array) of SteeringInfo objects, or a Secured Packet.\nSteeringInfo\n6.1.6.2.x\nContains a PLMN-ID, or SNPN-ID or a GIN, and, for the case of PLMNs, the preferred access technologies.\nSorAckStatus\n6.1.6.3.3\nContains the reception status of the acknowledgment of successful reception of SoR Information by the UE.\nTable 6.1.6.1-2 specifies data types re-used by the Nsoraf_SOR service based interface protocol from other specifications, including a reference to their respective specifications and when needed, a short description of their use within the Nsoraf service based interface.\nTable 6.1.6.1-2: Nsoraf re-used Data Types\nData type\nReference\nComments\nApplicability\nPlmnId\n3GPP TS 29.571 [16]\nPLMN Identity\nPlmnIdNid\n3GPP TS 29.571 [16]\nSNPN Identity or GIN\nProblemDetails\n3GPP TS 29.571 [16]\nCommon data type used in response bodies\nRedirectResponse\n3GPP TS 29.571 [10]\nRedirect Response\nSupportedFeatures\n3GPP TS 29.571 [16]\nsee 3GPP TS 29.500 [4] clause 6.6\nSupi\n3GPP TS 29.571 [16]\nContains the SUPI information.\nDateTime\n3GPP TS 29.571 [16]\nDate Time\nAccessType\n3GPP TS 29.571 [16]\nAccess type (e.g. 3GPP)\nSorCmci\n3GPP TS 29.503 [15]\nContains SOR-CMCI as defined in 3GPP TS 24.501 [18]\nAccessTech\n3GPP TS 29.509 [20]\nList of access technologies\nSecuredPacket\n3GPP TS 29.509 [20]\nSecured Packet",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.571_clause_6.6",
+        "table_6.1.6.1-1",
+        "table_6.1.6.1-2",
+        "ts_29.571",
+        "ts_29.500",
+        "ts_29.503",
+        "ts_24.501",
+        "ts_29.509"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.550_6.1.6.2.1",
+      "section_id": "6.1.6.2.1",
+      "section_title": "Introduction",
+      "content": "This clause defines the structures to be used in resource representations.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.550_6.1.6.2.2",
+      "section_id": "6.1.6.2.2",
+      "section_title": "Type: SorInformation",
+      "content": "Table 6.1.6.2.2-1: Definition of type SorInformation\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\nsupportedFeatures\nSupportedFeatures\nO\n0..1\nFeatures supported by the SOR-AF (see clause 6.1.8).\nsteeringContainer\nSteeringContainer\nC\n0..1\nWhen present, this attribute contains the information needed to update the \"Operator Controlled PLMN Selector with Access Technology\" list stored in the UE, either as an array of preferred PLMN/Access Technologies combinations in priority order (with the first entry in the array indicating the highest priority and the last entry indicating the lowest) or a secured packet.\nIf no change of the \"Operator Controlled PLMN Selector with Access Technology\" list stored in the UE is needed, then this attribute shall be absent.\nWhen the eNPN feature is supported, this IE may contain SOR information for SNPNs or GINs.\nsorAckIndication\nboolean\nM\n1\nThis attribute indicates to the NF consumer (e.g. UDM) whether an Acknowledgment of successful reception of SoR information shall be requested to the UE (when set to \"True\") or not (when set to \"False\").\nsorCmci\nSorCmci\nO\n0..1\nWhen present, provides the SOR-CMCI values as defined in 3GPP TS 24.501 [18]\nIf \"ME Support of SOR-CMCI\" as provided in meSupportOfSorCmci from UE to SOR-AF via AMF and UDM is not stored as \"supported\", then this attribute shall be absent.\nShall be absent if steeringContainer is provided with contents in secured packet.\nstoreSorCmciInMe\nboolean\nO\n0..1\nWhen present, indicates \"Store the SOR-CMCI in the ME\" as supported as defined in 3GPP TS 23.122 [14] and 3GPP TS 24.501 [18].\nIf sorCmci is absent, then this attribute shall also be absent.\n-\tTrue: Indicates to store the SOR-CMCI in the ME\n-\tFalse or absent: Indicates storing the SOR-CMCI in the ME is not required\nShall be absent if steeringContainer is provided with contents in secured packet.\nsorSendingTime\nDateTime\nM\n1\nContains the date and time at which SOR-AF returns SorInformation.\nIt is used to correlate the SoR acknowledgement with the associated SoR information.\nsorSnpnSi\nBytes\nO\n0..1\nWhen present, provides the SOR-SNPN-SI values as defined in 3GPP TS 24.501 [18].\nIf \"ME Support of SOR-SNPN-SI-LS\" as provided in meSupportOfSorSnpnSi from UE to SOR-AF via AMF and UDM is not stored as \"supported\", then this attribute shall be absent.\nsorSnpnSiLs\nBytes\nO\n0..1\nWhen present, provides the SOR-SNPN-SI-LS values as defined in 3GPP TS 24.501 [18]\nIf \"ME Support of SOR-SNPN-SI-LS\" as provided in meSupportOfSorSnpnSiLs from UE to SOR-AF via AMF and UDM is not stored as \"supported\", then this attribute shall be absent.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_6.1.8",
+        "table_6.1.6.2.2-1",
+        "ts_24.501",
+        "ts_23.122"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.550_6.1.6.2.3",
+      "section_id": "6.1.6.2.3",
+      "section_title": "Type: SorAckInfo",
+      "content": "Table 6.1.6.2.3-1: Definition of type SorAckInfo\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\nsorAckStatus\nSorAckStatus\nM\n1\nContains the reception status of the acknowledgment of successful reception of SoR Information by the UE.\nsorSendingTime\nDateTime\nM\n1\nContains the date and time at which SOR-AF sent the SorInformation to which the acknowledgment status relates.\nmeSupportOfSorCmci\nboolean\nO\n0..1\nWhen present, indicates \"ME support of SOR-CMCI\" sent from UE to SOR-AF via AMF and UDM as defined in 3GPP TS 23.122 [14] and 3GPP TS 24.501 [18].\n-\tTrue: ME supports SOR-CMCI\n-\tFalse or absent: ME does not support SOR-CMCI\nmeSupportOfSorSnpnSi\nboolean\nO\n0..1\nWhen present, it indicates the “ME support for SOR-SNPN-SI” sent from UE to SOR-AF of SNPN vas described in\n3GPP TS 23.122 [14].\n-\tTrue: ME supports SOR-SNPN-SI\n-\tFalse or absent: ME does not support SOR-SNPN-SI\nmeSupportOfSorSnpnSiLs\nboolean\nO\n0..1\nWhen present, it indicates the “ME support for SOR-SNPN-SI-LS” sent from UE to SOR-AF of SNPN vas described in\n3GPP TS 23.122 [14].\n-\tTrue: ME supports SOR-SNPN-SI-LS\n-\tFalse or absent: ME does not support SOR-SNPN-SI_LS.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.1.6.2.3-1",
+        "ts_23.122",
+        "ts_24.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.550_6.1.6.2.4",
+      "section_id": "6.1.6.2.4",
+      "section_title": "Type: SteeringContainer",
+      "content": "Table 6.1.6.2.4.-1: Definition of type SteeringContainer as a list of mutually exclusive alternatives\nData type\nCardinality\nDescription\narray(SteeringInfo)\n1..N\nList of PLMN/AccessTechnologies combinations.\nSecuredPacket\n1\nA secured packet containing one or more APDUs commands dedicated to Remote File Management.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.1.6.2.4"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.550_6.1.6.2.5",
+      "section_id": "6.1.6.2.5",
+      "section_title": "Type: SteeringInfo",
+      "content": "Table 6.1.6.2.5-1: Definition of type SteeringInfo\nAttribute name\nData type\nP\nCardinality\nDescription\nplmnId\nPlmnId\nC\n0..1\nContains a preferred PLMN identity.\n(NOTE)\nsnpnId\nPlmnIdNid\nC\n0..1\nContains a preferred SNPN identity.\n(NOTE)\ngin\nPlmnIdNid\nC\n0..1\nContains a preferred Group ID for Network Selection.\n(NOTE)\naccessTechList\narray(AccessTech)\nO\n1..N\nThis IE is only applicable when plmnId is present, and it shall be absent when snpnId or gin are present.\nIt contains the preferred access technologies for such PLMN, as listed in clause 6.2.6.3.3 of 3GPP TS 29.509 [20]. If absent it means that all access technologies are equivalently preferred in such PLMN.\nNOTE:\tExactly one of plmnId, snpnId or gin shall be present.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.509_clause_6.2.6.3.3",
+        "table_6.1.6.2.5-1",
+        "ts_29.509"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.550_6.1.6.3.1",
+      "section_id": "6.1.6.3.1",
+      "section_title": "Introduction",
+      "content": "This clause defines simple data types and enumerations that can be referenced from data structures defined in the previous clauses.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.550_6.1.6.3.2",
+      "section_id": "6.1.6.3.2",
+      "section_title": "Simple data types",
+      "content": "The simple data types defined in table 6.1.6.3.2-1 shall be supported.\nTable 6.1.6.3.2-1: Simple data types\nType Name\nType Definition\nDescription\nApplicability\nn/a",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.1.6.3.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.550_6.1.6.3.3",
+      "section_id": "6.1.6.3.3",
+      "section_title": "Enumeration: SorAckStatus",
+      "content": "The enumeration SorAckStatus represents an indication to the SOR-AF on whether the acknowledgment of successful reception of SoR information was received from the UE. It shall comply with the provisions defined in table 6.1.6.3.3-1.\nTable 6.1.6.3.3-1: Enumeration SorAckStatus\nEnumeration value\nDescription\nApplicability\n\"ACK_SUCCESSFUL\"\nIndicates to the SOR-AF that the acknowledgment of successful reception of SoR information was received from the UE and the integrity check was successful.\n\"ACK_NOT_RECEIVED\"\nIndicates to the SOR-AF that the acknowledgment of successful reception of SoR information was NOT received from the UE.\n\"ACK_NOT_SUCCESSFUL\"\nIndicates to the SOR-AF that the acknowledgment of successful reception of SoR information was received from the UE and the integrity check was NOT successful.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.1.6.3.3-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.550_6.1.7.1",
+      "section_id": "6.1.7.1",
+      "section_title": "General",
+      "content": "For the Nsoraf_SOR API, HTTP error responses shall be supported as specified in clause 4.8 of 3GPP TS 29.501 [5]. Protocol errors and application errors specified in table 5.2.7.2-1 of 3GPP TS 29.500 [4] shall be supported for an HTTP method if the corresponding HTTP status codes are specified as mandatory for that HTTP method in table 5.2.7.1-1 of 3GPP TS 29.500 [4].\nIn addition, the requirements in the following clauses are applicable for the Nsoraf_SOR API.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.501_clause_4.8",
+        "ts_29.500_table_5.2.7.2-1",
+        "ts_29.500_table_5.2.7.1-1",
+        "ts_29.501",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.550_6.1.7.2",
+      "section_id": "6.1.7.2",
+      "section_title": "Protocol Errors",
+      "content": "No specific procedures for the Nsoraf_SOR service are specified.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.550_6.1.7.3",
+      "section_id": "6.1.7.3",
+      "section_title": "Application Errors",
+      "content": "The application errors defined for the Nsoraf_SOR service are listed in Table 6.1.7.3-1.\nTable 6.1.7.3-1: Application errors\nApplication Error\nHTTP status code\nDescription\nUSER_NOT_FOUND\n404 Not Found\nThe user does not exist\nThis error is applicable to all Nsoraf_SOR operations.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.1.7.3-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.550_6.1.8",
+      "section_id": "6.1.8",
+      "section_title": "Feature negotiation",
+      "content": "The optional features in table 6.1.8-1 are defined for the Nsoraf_SOR API. They shall be negotiated using the extensibility mechanism defined in clause 6.6 of 3GPP TS 29.500 [4].\nTable 6.1.8-1: Supported Features\nFeature number\nFeature Name\nDescription\n1\neNPN\nIf this feature is supported, the query parameter \"plmn-id\" (see Table 6.1.3.2.3.1-1) is recognized by the SOR-AF as a PLMN-ID or an SNPN-ID, and the steeringContainer attribute (see clause 6.1.6.2.2) returned by the SOR-AF may include SOR information for SNPNs.\nIf this feature is not supported, such query parameter is recognized by the SOR-AF as a PLMN-ID, and the steeringContainer attribute contains only SOR information for PLMNs.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_6.6",
+        "clause_6.1.6.2.2",
+        "table_6.1.8-1",
+        "ts_29.500_table_6.1.8-1",
+        "table_6.1.3.2.3.1-1",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.550_6.1.9",
+      "section_id": "6.1.9",
+      "section_title": "Security",
+      "content": "As indicated in 3GPP TS 33.501 [8] and 3GPP TS 29.500 [4], the access to the Nsoraf_SOR API may be authorized by means of the OAuth2 protocol (see IETF RFC 6749 [9]), based on local configuration, using the \"Client Credentials\" authorization grant, where the NRF (see 3GPP TS 29.510 [10]) plays the role of the authorization server.\nIf OAuth2 is used, an NF Service Consumer, prior to consuming services offered by the Nsoraf_SOR API, shall obtain a \"token\" from the authorization server, by invoking the Access Token Request service, as described in 3GPP TS 29.510 [10], clause 5.4.2.2.\nNOTE:\tWhen multiple NRFs are deployed in a network, the NRF used as authorization server is the same NRF that the NF Service Consumer used for discovering the Nsoraf_SOR service.\nThe Nsoraf_SOR API defines a single scope \"nsoraf-sor\" for the entire service, and it does not define any additional scopes at resource or operation level.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.510_clause_5.4.2.2",
+        "ts_33.501",
+        "ts_29.500",
+        "ts_29.510"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.550_6.1.10",
+      "section_id": "6.1.10",
+      "section_title": "HTTP redirection",
+      "content": "An HTTP request may be redirected to a different SOR-AF service instance when using direct or indirect communications (see 3GPP TS 29.500 [4]).\nAn SCP that reselects a different SOR-AF producer instance will return the NF Instance ID of the new SOR-AF producer instance in the 3gpp-Sbi-Producer-Id header, as specified in clause 6.10.3.4 of 3GPP TS 29.500 [4].\nIf an SOR-AF redirects a service request to a different SOR-AF using an 307 Temporary Redirect or 308 Permanent Redirect status code, the identity of the new SOR-AF towards which the service request is redirected shall be indicated in the 3gpp-Sbi-Target-Nf-Id header of the 307 Temporary Redirect or 308 Permanent Redirect response as specified in clause 6.10.9.1 of 3GPP TS 29.500 [4].\nAnnex A (normative):OpenAPI specification\nA.1\tGeneral\nThis Annex specifies the formal definition of the API(s) defined in the present specification. It consists of OpenAPI 3.0.0 specifications in YAML format.\nThis Annex takes precedence when being discrepant to other parts of the specification with respect to the encoding of information elements and methods within the API(s).\nNOTE:\tThe semantics and procedures, as well as conditions, e.g. for the applicability and allowed combinations of attributes or values, not expressed in the OpenAPI definitions but defined in other parts of the specification also apply.\nInformative copies of the OpenAPI specification files contained in this 3GPP Technical Specification are available on a Git-based , that uses the GitLab software version control system (see 3GPP TS 29.501 [5] clause 5.3.1 and 3GPP TR 21.900 [7] clause 5B).\nA.2\tNsoraf_SOR API\nopenapi: 3.0.0\ninfo:\ntitle: 'Nsoraf_SOR'\nversion: 1.2.0\ndescription: |\nNsoraf Steering Of Roaming Service.\n© 2024, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).\nAll rights reserved.\nexternalDocs:\ndescription: 3GPP TS 29.550 V18.3.0; Steering Of Roaming Application Function Services.\nurl: http://www.3gpp.org/ftp/Specs/archive/29_series/29.550/\nservers:\n- url: '{apiRoot}/nsoraf-sor/v1'\nvariables:\napiRoot:\ndefault: https://example.com\ndescription: apiRoot as defined in clause 4.4 of 3GPP TS 29.501\nsecurity:\n- {}\n- oAuth2ClientCredentials:\n- nsoraf-sor\npaths:\n/{supi}/sor-information:\nget:\nsummary: retrieve the steering of roaming information for a UE\noperationId: GetSorInformation\ntags:\n- SoR Information Retrieval\nparameters:\n- name: supi\nin: path\ndescription: Identifier of the UE\nrequired: true\nschema:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Supi'\n- name: supported-features\nin: query\ndescription: Supported Features\nschema:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'\n- name: plmn-id\nin: query\ndescription: serving PLMN ID or SNPN ID\nrequired: true\ncontent:\napplication/json:\nschema:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/PlmnIdNid'\n- name: access-type\nin: query\ndescription: Access type used by the UE\nschema:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/AccessType'\nresponses:\n'200':\ndescription: Expected response to a valid request\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/SorInformation'\nheaders:\nCache-Control:\ndescription: Cache-Control (as described in RFC 9111) with value \"no-cache\" to indicate that the returned SoR information should not be cached\nschema:\ntype: string\n'307':\n$ref: 'TS29571_CommonData.yaml#/components/responses/307'\n'308':\n$ref: 'TS29571_CommonData.yaml#/components/responses/308'\n'400':\n$ref: 'TS29571_CommonData.yaml#/components/responses/400'\n'401':\n$ref: 'TS29571_CommonData.yaml#/components/responses/401'\n'403':\n$ref: 'TS29571_CommonData.yaml#/components/responses/403'\n'404':\n$ref: 'TS29571_CommonData.yaml#/components/responses/404'\n'406':\n$ref: 'TS29571_CommonData.yaml#/components/responses/406'\n'429':\n$ref: 'TS29571_CommonData.yaml#/components/responses/429'\n'500':\n$ref: 'TS29571_CommonData.yaml#/components/responses/500'\n'502':\n$ref: 'TS29571_CommonData.yaml#/components/responses/502'\n'503':\n$ref: 'TS29571_CommonData.yaml#/components/responses/503'\ndefault:\ndescription: Unexpected error\n/{supi}/sor-information/sor-ack:\nput:\nsummary: SoR Acknowledgment Reception Notification\noperationId: SorAckInfo\ntags:\n- Providing the reception status of the acknowledgement of Steering of Roaming information reception by the UE\nparameters:\n- name: supi\nin: path\ndescription: Identifier of the UE\nrequired: true\nschema:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Supi'\nrequestBody:\nrequired: true\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/SorAckInfo'\nresponses:\n'204':\ndescription: Successful reception of the indication\n'307':\n$ref: 'TS29571_CommonData.yaml#/components/responses/307'\n'308':\n$ref: 'TS29571_CommonData.yaml#/components/responses/308'\n'400':\n$ref: 'TS29571_CommonData.yaml#/components/responses/400'\n'401':\n$ref: 'TS29571_CommonData.yaml#/components/responses/401'\n'403':\n$ref: 'TS29571_CommonData.yaml#/components/responses/403'\n'404':\n$ref: 'TS29571_CommonData.yaml#/components/responses/404'\n'429':\n$ref: 'TS29571_CommonData.yaml#/components/responses/429'\n'500':\n$ref: 'TS29571_CommonData.yaml#/components/responses/500'\n'502':\n$ref: 'TS29571_CommonData.yaml#/components/responses/502'\n'503':\n$ref: 'TS29571_CommonData.yaml#/components/responses/503'\ndefault:\ndescription: Unexpected error\ncomponents:\nsecuritySchemes:\noAuth2ClientCredentials:\ntype: oauth2\nflows:\nclientCredentials:\ntokenUrl: '{nrfApiRoot}/oauth2/token'\nscopes:\nnsoraf-sor: Access to the Nsoraf_SOR API\nschemas:\n#\n# COMPLEX DATA TYPES\n#\nSorInformation:\ndescription: Represents the SoR information to be conveyed to a UE.\ntype: object\nrequired:\n- sorAckIndication\n- sorSendingTime\nproperties:\nsupportedFeatures:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'\nsteeringContainer:\n$ref: '#/components/schemas/SteeringContainer'\nsorAckIndication:\ntype: boolean\nsorCmci:\n$ref: 'TS29503_Nudm_SDM.yaml#/components/schemas/SorCmci'\nstoreSorCmciInMe:\ntype: boolean\nsorSendingTime:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/DateTime'\nsorSnpnSi:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Bytes'\nsorSnpnSiLs:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Bytes'\nSorAckInfo:\ndescription: >\nRepresents an indication to the SOR-AF on the reception status of the\nacknowledgment of successful reception of SoR Information by a UE.\ntype: object\nrequired:\n- sorAckStatus\n- sorSendingTime\nproperties:\nsorAckStatus:\n$ref: '#/components/schemas/SorAckStatus'\nsorSendingTime:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/DateTime'\nmeSupportOfSorCmci:\ntype: boolean\nmeSupportOfSorSnpnSi:\ntype: boolean\nmeSupportOfSorSnpnSiLs:\ntype: boolean\nSteeringContainer:\ndescription: It consists of either a list (array) of SteeringInfo objects or a Secured Packet\noneOf:\n- type: array\nitems:\n$ref: '#/components/schemas/SteeringInfo'\nminItems: 1\n- $ref: 'TS29509_Nausf_SoRProtection.yaml#/components/schemas/SecuredPacket'\nSteeringInfo:\ndescription: >\nContains either a PLMN-ID, an SNPN-ID or a GIN and, for the case of PLMNs, zero or more\npreferred access technologies for accessing such PLMN\ntype: object\noneOf:\n- required: [ plmnId ]\n- required: [ snpnId ]\n- required: [ gin ]\nproperties:\nplmnId:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/PlmnId'\nsnpnId:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/PlmnIdNid'\ngin:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/PlmnIdNid'\naccessTechList:\ntype: array\nitems:\n$ref: 'TS29509_Nausf_SoRProtection.yaml#/components/schemas/AccessTech'\nminItems: 1\n#\n# ENUMS\n#\nSorAckStatus:\ndescription: >\nRepresents the reception status of the acknowledgment of successful reception of\nSoR Information by a UE.\nanyOf:\n- type: string\nenum:\n- ACK_SUCCESSFUL\n- ACK_NOT_RECEIVED\n- ACK_NOT_SUCCESSFUL\n- type: string\nAnnex B (informative):Change history\nChange history\nDate\nMeeting\nTDoc\nCR\nRev\nCat\nSubject/Comment\nNew version\n2019-11\nCT4#95\nC4-195242\nInitial Draft.\n0.1.0\n2020-03\nCT4#96e\nC4-200833\nPseudo-CR on the scope part of SOR-AF API\n0.2.0\n2020-03\nCT4#96e\nC4-201197\nPseudo-CR on the overview part of SOR-AF API\n0.2.0\n2020-03\nCT4#96e\nC4-201198\nPseudo-CR on the definition of Nsoraf service\n0.2.0\n2020-03\nCT4#96e\nC4-201206\nPseudo-CR on the resources part of SOR-AF API\n0.2.0\n2020-03\nCT4#96e\nC4-201208\nPseudo-CR on the data model aspects of SOR-AF API\n0.2.0\n2020-03\nCT4#96e\nC4-201209\nPseudo-CR on the OpenAPI part of SOR-AF API\n0.2.0\n2020-03\nCT-87e\nCP-200063\nTS presented for information and approval\n1.0.0\n2020-03\nCT-87e\nApproved at CT#87e\n16.0.0\n2020-07\nCT#88e\nCP-201042\n0001\nF\nSoR Information wording clarification\n16.1.0\n2020-07\nCT#88e\nCP-201042\n0002\n1\nF\nStorage of YAML files in ETSI Forge\n16.1.0\n2020-07\nCT#88e\nCP-201042\n0003\nF\nMiscellaneous Corrections\n16.1.0\n2020-07\nCT#88e\nCP-201042\n0006\n1\nF\nAdd Data type column in the URI variables tables\n16.1.0\n2020-07\nCT#88e\nCP-201042\n0007\n1\nF\nAdd supported headers tables\n16.1.0\n2020-07\nCT#88e\nCP-201042\n0008\nF\nAdd API descriptions table\n16.1.0\n2020-07\nCT#88e\nCP-201042\n0009\n2\nB\nRemaining input parameters to Nsoraf_SOR_Get service operation\n16.1.0\n2020-07\nCT#88e\nCP-201042\n0010\n1\nB\nSoR retrieval response timing control\n16.1.0\n2020-07\nCT#88e\nCP-201073\n0011\nF\n29.550 Rel-16 API version and External doc update\n16.1.0\n2020-09\nCT#89e\nCP-202115\n0012\nF\nMiscellaneous Corrections\n16.2.0\n2020-11\nCT#90e\nCP-203035\n0015\nF\nRemoval of the reference to ETSI forge\n16.3.0\n2021-03\nCT#91e\nCP-210034\n0018\n1\nF\nOpenAPI Reference\n17.0.0\n2021-06\nCT#92e\n0021\n1\nF\nAdding some missing description fields to data type definitions in OpenAPI specification files of the Nsoraf_SOR API\n17.1.0\n2021-09\nCT#93e\nCP-212247\n0023\n3\nF\nRedirect Response\n17.2.0\n2021-12\nCT#94e\n0027\n1\nB\nSOR-CMCI support\n17.3.0\n2022-06\nCT#96\nCP-221064\n0030\nA\naccess-type query parameter format\n17.4.0\n2022-06\nCT#96\nCP-221301\n0031\n2\nF\nSOR functionality with SNPNs\n17.4.0\n2022-06\nCT#96\nCP-221302\n0032\n1\nF\n29.550 Rel-17 API version and External doc update\n17.4.0\n2022-12\nCT#98\nCP-223028\n0035\n1\nF\nMissing Mandatory Status Codes in OpenAPI\n18.0.0\n2022-12\nCT#98\nCP-223033\n0036\nF\n29.550 Rel-18 API version and External doc update\n18.0.0\n2023-06\nCT#100\n0037\n4\nF\nLocation header and missing Redirection clause\n18.1.0\n2023-06\nCT#100\n0039\n4\nF\nSOR update information for localized services in SNPN\n18.1.0\n2023-12\nCT#102\nCP-233044\n0042\n1\nF\nMajor API version\n18.2.0\n2023-12\nCT#102\nCP-233029\n0043\n1\nF\nUpdate and replace obsoleted HTTP RFCs\n18.2.0\n2023-12\nCT#102\nCP-233031\n0045\nF\nReplacing obsoleted HTTP RFC 7807 with 9457\n18.2.0\n2023-12\nCT#102\nCP-233060\n0047\nF\nAPI version and External doc update\n18.2.0\n2024-06\nCT#104\nCP-241052\n0048\n-\nF\nAPI version and External doc update\n18.3.0",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.500_clause_6.10.3.4",
+        "ts_29.500_clause_6.10.9.1",
+        "ts_29.501_clause_5.3.1",
+        "ts_29.501_clause_5",
+        "ts_29.501_clause_4.4",
+        "clause_18.1.0",
+        "table_16.1.0",
+        "ts_29.500",
+        "ts_29.501",
+        "ts_21.900",
+        "ts_29.550"
+      ]
+    }
+  ]
+}

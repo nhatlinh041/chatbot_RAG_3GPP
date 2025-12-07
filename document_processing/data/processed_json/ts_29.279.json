@@ -1,0 +1,124 @@
+{
+  "metadata": {
+    "specification_id": "ts_29.279",
+    "version": "18.1.0",
+    "title": "3GPP TS 29.279",
+    "file_path": "/content/drive/MyDrive/RAG_thesis/data/29_series/29279-i10/29279-i10.docx"
+  },
+  "export_info": {
+    "export_date": "2025-07-26T09:02:54.275109",
+    "total_chunks": 11
+  },
+  "chunks": [
+    {
+      "chunk_id": "ts_29.279_1",
+      "section_id": "1",
+      "section_title": "Scope",
+      "content": "The present document specifies the stage 3 of the MIPv4 Based Mobility Protocol used over the S2a reference point defined in 3GPP TS 23.402 [3], and is thus applicable to the PDN Gateway and Trusted Non-3GPP Access. Protocol specification is compliant with relevant IETF RFCs.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.402"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.279_2",
+      "section_id": "2",
+      "section_title": "References",
+      "content": "The following documents contain provisions which, through reference in this text, constitute provisions of the present document.\n-\tReferences are either specific (identified by date of publication, edition number, version number, etc.) or non‑specific.\n-\tFor a specific reference, subsequent revisions do not apply.\n-\tFor a non-specific reference, the latest version applies. In the case of a reference to a 3GPP document (including a GSM document), a non-specific reference implicitly refers to the latest version of that document in the same Release as the present document.\n[1]\t3GPP TR 21.905: \"Vocabulary for 3GPP Specifications\".\n[2]\t3GPP TS 23.401: \"GPRS enhancements for E-UTRAN access\".\n[3]\t3GPP TS 23.402: \"Architecture Enhancements for non-3GPP accesses\".\n[4]\t3GPP TS 33.402: \"3GPP System Architecture Evolution (SAE); Security aspects of non-3GPP accesses\".\n[5]\tIETF RFC 5944: \" IP Mobility Support for IPv4, Revised\".\n[6]\tIANA Assigned Numbers Online Database, \"Private Enterprise Numbers\", <http://www.iana.org/assignments/enterprise-numbers>.\n[7]\t3GPP TS 24.008: \"Mobile radio interface Layer 3 specification; Core network protocols\".\n[8]\t3GPP TS 24.304: \"Mobility management based on Mobile IPv4; User Equipment (UE) - Foreign Agent interface\".\n[9]\tIETF RFC 3543 (August 2003): \"Registration Revocation in Mobile IPv4\".",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905",
+        "ts_23.401",
+        "ts_23.402",
+        "ts_33.402",
+        "ts_24.008",
+        "ts_24.304"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.279_3.1",
+      "section_id": "3.1",
+      "section_title": "Definitions",
+      "content": "For the purposes of the present document, the terms and definitions given in 3GPP TR 21.905 [1] and the following apply. A term defined in the present document takes precedence over the definition of the same term, if any, in 3GPP TR 21.905 [1].\nEvolved Packet Core: the successor to the 3GPP Release 7 packet-switched core network, developed by 3GPP within the framework of the 3GPP System Architecture Evolution (SAE).\nForeign agent: a router on a visited network which provide mobile IPv4 routing services to the UE while registered as described in IETF RFC 5944 [5].\nForeign agent care-of address: an address of a foreign agent with which the UE is registered as described in IETF RFC 5944 [5]\nHome agent: a mobile IPv4 router on a UE’s home network which tunnels datagrams for delivery to the UE while it is registered on a visited network as described in IETF RFC 5944 [5]. According to 3GPP TS 23.402 [3], the home agent functionality is implemented in the PDN Gateway.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_21.905",
+        "ts_23.402"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.279_3.2",
+      "section_id": "3.2",
+      "section_title": "Abbreviations",
+      "content": "For the purposes of the present document, the abbreviations given in 3GPP TR 21.905 [1] and the following apply. An abbreviation defined in the present document takes precedence over the definition of the same abbreviation, if any, in 3GPP TR 21.905 [1].\nEPC\tEvolved Packet Core\nFA\tForeign Agent\nFACoA\tForeign Agent Care-of Address\nPDN GW\tPacket Data Network Gateway\nHA\tHome Agent\nMIPv4\tMobile IPv4\nRRP\tRegistration Reply\nRRQ\tRegistration Request",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.279_4.1",
+      "section_id": "4.1",
+      "section_title": "General",
+      "content": "The MIPv4 Registration Request (RRQ) and Registration Reply (RRP) messages are used during the following registration procedures with MIPv4 FACoA on s2a:\nTrusted Non-3G Access shall follow the FA procedure as described in IETF RFC 5944 [5] and PDN-GW shall follow the HA procedure as described in IETF RFC 5944 [5].",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.279_4.1.1",
+      "section_id": "4.1.1",
+      "section_title": "MIPV4 Registration Request (RRQ)",
+      "content": "After receiving an RRQ from the UE, the FA shall process it and relay the RRQ message to the HA as described in IETF RFC 5944 [5], and 3GPP TS 24.304 [8] .\nThe RRQ message shall be protected between the FA and the HA according to TS 33.402 [4].",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_24.304",
+        "ts_33.402"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.279_4.1.2",
+      "section_id": "4.1.2",
+      "section_title": "MIPv4 Registration Reply (RRP)",
+      "content": "After receiving an RRQ from the FA, the HA shall process the message, and shall assign an IPv4 address for the UE, if requested by the UE, and send an RRP message to the FA, as described in IETF RFC 5944 [5], and 3GPP TS 24.304 [8]\nThe RRP message shall be protected between the FA and the HA according to 3GPP TS 33.402 [4].",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_24.304",
+        "ts_33.402"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.279_5.1",
+      "section_id": "5.1",
+      "section_title": "General",
+      "content": "The MIPv4 Registration Revocation and Registration Revocation Ack messages are used during the following registration revocation procedures with MIPv4 FACoA on s2a.\n-\tNetwork Initiated Detach: Trusted Non-3G Access follows the FA procedure as described in IETF RFC 3543 [9] and PDN-GW follows the HA procedure as described in IETF RFC 3543 [9], for 'FA initiated revocation' procedure.\n-\tHSS/AAA Initiated Detach: Trusted Non-3G Access follows the FA procedure as described in IETF RFC 3543 [9] and PDN-GW follows the HA procedure as described in IETF RFC 3543 [9], for 'FA initiated revocation' procedure.\n-\tPDN-GW Initiated Resource Allocation Deactivation: Trusted Non-3G Access follows the FA procedure as described in IETF RFC 3543 [9] and PDN-GW follows the HA procedure as described in IETF RFC 3543 [9], for 'HA initiated revocation' procedure.\nThe MIPv4 registration revocation procedure can be initiated by a node acting as FA or HA to revoke the binding of a mobile node with an HA.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.279_5.1.1",
+      "section_id": "5.1.1",
+      "section_title": "Extensions to RRQ and RRP",
+      "content": "The following extension has to be present in the RRQ message sent from the FA and the RRP message sent from HA to support Revocation Procedure. They must follow the Negotiation of Revocation Support as explained in IETF RFC 3543 [9].\nTable 5.1.1-1:\nInformation element\nIE Description\nReference\nRevocation support extension\nTo indicate the node supports registration revocation and can receive revocation messages.\nIETF RFC 3543 [9]",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.1.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.279_5.2",
+      "section_id": "5.2",
+      "section_title": "MIPv4 Registration Revocation",
+      "content": "The MIPv4 Registration Revocation message is sent from the FA to the HA as part of the FA initiated revocation procedure, or from the PDN GW (HA) to the FA as part of the HA Initiated revocation procedure.\nIn case of FA Initiated Revocation procedure, the FA must send a Registration Revocation message and follow the \"Foreign Agent Responsibilities\" in \"Foreign Domain Revoking\" as described in IETF RFC 3543 [9]. The HA must process the received Revocation Request as described in IETF RFC 3543 [9].\nIn case of HA Initiated Revocation procedure, the FA must process received Revocation Request as described in IETF RFC 3543 [9].\nIn both cases the FA may notify UE by as described in IETF RFC 3543 [9], however this is outside the scope of this document.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.279_5.3",
+      "section_id": "5.3",
+      "section_title": "MIPv4 Registration Revocation Ack",
+      "content": "The MIPv4 Registration Revocation Ack message is sent from the HA to the FA as part of the FA initiated revocation procedure, or from the FA to the HA as part of the HA initiated revocation procedure procedure.\nIn case of FA Initiated Revocation Procedure, the HA shall reply with a Registration Revocation Acknowledge message and follow the \"Home Agent responsibilities\" in \"Foreign Domain Revoking\" as described in IETF RFC 3543 [9].\nIn case of HA Initiated Revocation Procedure, the FA shall reply with a Registration Revocation Acknowledge message and follow \"Foreign Agent responsibilities\" in \"Home Domain Revoking\" as described in IETF RFC 3543 [9].\nAnnex A (informative):Change history:\nDate\nTSG #\nTSG Doc\nCR\nRev\nCat\nSubject/Comment\nNew\n2008-12\nCT#42\nCP-080713\nV2.0.0approved in CT#42\n8.0.0\n2009-12\n-\n-\n-\n-\n-\nUpdate to Rel-9 version (MCC)\n9.0.0\n2011-03\n-\n-\n-\n-\n-\nUpdate to Rel-10 version (MCC)\n10.0.0\n2012-09\n-\n-\n-\n-\n-\nUpdate to Rel-11 version (MCC)\n11.0.0\n2014-09\nCT#65-\n-\n-\n-\n-\nUpdate to Rel-12 version (MCC)\n12.0.0\n2015-12\nCT#70\n-\n-\n-\n-\nUpdate to Rel-13 version (MCC)\n13.0.0\n2017-03\nCT#75\n-\n-\n-\n-\nUpdate to Rel-14 version (MCC)\n14.0.0\n2018-06\nCT#80\n-\n-\n-\n-\nUpdate to Rel-15 version (MCC)\n15.0.0\n2020-07\nCT#88e\n-\n-\n-\n-\nUpdate to Rel-16 version (MCC)\n16.0.0\n2022-04\n-\n-\n-\nUpdate to Rel-17 version (MCC)\n17.0.0\n2024-03\n-\n-\n-\n-\nUpdate to Rel-18 version (MCC)\n18.0.0\n2024-09\nCT#105\nCP-242071\n0011\n-\nA\nUpdates on the reference of draft IETF specs\n18.1.0",
+      "chunk_type": "general",
+      "cross_references": []
+    }
+  ]
+}

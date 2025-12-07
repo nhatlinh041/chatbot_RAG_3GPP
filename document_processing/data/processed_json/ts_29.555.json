@@ -1,0 +1,1051 @@
+{
+  "metadata": {
+    "specification_id": "ts_29.555",
+    "version": "18.5.0",
+    "title": "3GPP TS 29.555",
+    "file_path": "/content/drive/MyDrive/RAG_thesis/data/29_series/29555-i50/29555-i50.docx"
+  },
+  "export_info": {
+    "export_date": "2025-07-26T08:46:35.224067",
+    "total_chunks": 91
+  },
+  "chunks": [
+    {
+      "chunk_id": "ts_29.555_1",
+      "section_id": "1",
+      "section_title": "Scope",
+      "content": "The present document specifies the stage 3 protocol and data model for the N5g-ddnmf Service Based Interface. It provides stage 3 protocol definitions and message flows, and specifies the API for each service offered by the 5G DDNMF as specified in 3GPP TS 23.304 [4].\nThe 5G System stage 2 architecture and procedures are specified in 3GPP TS 23.501 [2] and 3GPP TS 23.502 [3].\nThe Technical Realization of the Service Based Architecture and the Principles and Guidelines for Services Definition are specified in 3GPP TS 29.500 [5] and 3GPP TS 29.501 [6].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.304",
+        "ts_23.501",
+        "ts_23.502",
+        "ts_29.500",
+        "ts_29.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.555_2",
+      "section_id": "2",
+      "section_title": "References",
+      "content": "The following documents contain provisions which, through reference in this text, constitute provisions of the present document.\n-\tReferences are either specific (identified by date of publication, edition number, version number, etc.) or non‑specific.\n-\tFor a specific reference, subsequent revisions do not apply.\n-\tFor a non-specific reference, the latest version applies. In the case of a reference to a 3GPP document (including a GSM document), a non-specific reference implicitly refers to the latest version of that document in the same Release as the present document.\n[1]\t3GPP TR 21.905: \"Vocabulary for 3GPP Specifications\".\n[2]\t3GPP TS 23.501: \"System Architecture for the 5G System; Stage 2\".\n[3]\t3GPP TS 23.502: \"Procedures for the 5G System; Stage 2\".\n[4]\t3GPP TS 23.304: \"Proximity based Services (ProSe) in the 5G System (5GS)\".\n[5]\t3GPP TS 29.500: \"5G System; Technical Realization of Service Based Architecture; Stage 3\".\n[6]\t3GPP TS 29.501: \"5G System; Principles and Guidelines for Services Definition; Stage 3\".\n[7]\tOpenAPI : \"OpenAPI Specification Version 3.0.0\", https://spec.openapis.org/oas/v3.0.0.\n[8]\tIETF RFC 9113: \"HTTP/2\".\n[9]\tIETF RFC 8259: \"The JavaScript Object Notation (JSON) Data Interchange Format\".\n[10]\tIETF RFC 9457: \"Problem Details for HTTP APIs\".\n[11]\t3GPP TS 33.501: \"Security architecture and procedures for 5G system\".\n[12]\tIETF RFC 6749: \"The OAuth 2.0 Authorization Framework\".\n[13]\t3GPP TS 29.510: \"Network Function Repository Services; Stage 3\".\n[14]\t3GPP TR 21.900: \"Technical Specification Group working methods\".\n[15]\tIETF RFC 7396: \"JSON Merge Patch\".\n[16]\t3GPP TS 29.571: \"5G System; Common Data Types for Service Based Interfaces Stage 3\".\n[17]\t3GPP TS 23.003: \"Numbering, addressing and identification\".",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905",
+        "ts_23.501",
+        "ts_23.502",
+        "ts_23.304",
+        "ts_29.500",
+        "ts_29.501",
+        "ts_33.501",
+        "ts_29.510",
+        "ts_21.900",
+        "ts_29.571",
+        "ts_23.003"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.555_3.1",
+      "section_id": "3.1",
+      "section_title": "Definitions",
+      "content": "For the purposes of the present document, the terms and definitions given in 3GPP TR 21.905 [1] and the following apply. A term defined in the present document takes precedence over the definition of the same term, if any, in 3GPP TR 21.905 [1].\n5G DDNMF: The 5G DDNMF is the logical function handling network related actions required for dynamic ProSe Direct Discovery. The 5G DDNMF in the HPLMN may interact with the 5G DDNMF in a VPLMN or Local PLMN in order to manage the ProSe Direct Discovery service.\nProSe Direct Discovery: A procedure employed by a ProSe-enabled UE to discover other ProSe-enabled UEs in its vicinity based on direct radio transmissions between the two UEs with NR technology.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_21.905"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.555_3.2",
+      "section_id": "3.2",
+      "section_title": "Symbols",
+      "content": "For the purposes of the present document, the following symbols apply:\n<symbol>\t<Explanation>",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.555_3.3",
+      "section_id": "3.3",
+      "section_title": "Abbreviations",
+      "content": "For the purposes of the present document, the abbreviations given in 3GPP TR 21.905 [1] and the following apply. An abbreviation defined in the present document takes precedence over the definition of the same abbreviation, if any, in 3GPP TR 21.905 [1].\n5G DDNMF\t5G Direct Discovery Name Management Function\n5G ProSe\t5G Proximity-based Services\nRPAUID\tRestricted ProSe Application User ID\nPDUID\tProSe Discovery UE ID",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.555_4",
+      "section_id": "4",
+      "section_title": "Overview",
+      "content": "The 5G Direct Discovery Name Management Function (5G DDNMF) is the network entity in the 5G Core Network (5GC) supporting Direct Discovery Services. Within the 5GC, the 5G DDNMF in HPLMN invokes services provided by the 5G DDNMF in Local PLMN and/or in VPLMN via the N5g-ddnmf service based interface (see 3GPP TS 23.304 [4]).\nFigure 4-1 provides the reference model (in service based interface representation and in reference point representation), with focus on the 5G DDNMF:\nFigure 4-1: Reference model – 5G DDNMF\nThe functionalities supported by the 5G DDNMF are listed in clause 4.3.2 of 3GPP TS 23.304 [4].\nNOTE: Only service based interfaces between 5G DDNMFs will be covered in this TS, other interfaces won't be covered for the time being.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_23.304_clause_4.3.2",
+        "ts_23.304_figure_4-1",
+        "figure_4-1",
+        "ts_23.304"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.555_5.1",
+      "section_id": "5.1",
+      "section_title": "Introduction",
+      "content": "The table 5.1-1 shows the 5G DDNMF Services and 5G DDNMF Service Operations:\nTable 5.1-1: List of 5G DDNMF Services\nService Name\nService Operations\nOperation\nSemantics\nExample Consumer(s)\nN5g-ddnmf_Discovery\nAnnounceAuthorize\nRequest/Response\n5G DDNMF\nAnnounceUpdate\nRequest/Response\n5G DDNMF\nMonitorAuthorize\nRequest/Response\n5G DDNMF\nMonitorUpdate\nRequest/Response\n5G DDNMF\nMonitorUpdateResult\nNotify\n5G DDNMF\nDiscoveryAuthorize\nRequest/Response\n5G DDNMF\nMatchReport\nRequest/Response\n5G DDNMF\nMatchInformation\nNotify\n5G DDNMF\nTable 5.1-2 summarizes the corresponding APIs defined for this specification.\nTable 5.1-2: API Descriptions\nService Name\nClause\nDescription\nOpenAPI Specification File\napiName\nAnnex\nN5g-ddnmf_Discovery\n6.1\nN5g-ddnmf Discovery Service\nTS29555_ N5g-ddnmf_Discovery.yaml\nn5gddnmf-disc\nA.2",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.1-1",
+        "table_5.1-2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.555_5.2.1",
+      "section_id": "5.2.1",
+      "section_title": "Service Description",
+      "content": "The N5g-ddnmf_Discovery service enables an NF or SCP to manage inter-PLMN ProSe Direct Discovery operations for a target UE. The following are the key functionalities of this NF service.\n-\tAllow the consumer NF to obtain the authorization from the 5G DDNMF for announcing in the PLMN.\n-\tAllow the consumer NF to update or revoke the authorization from the 5G DDNMF for announcing in the PLMN.\n-\tAllow the consumer NF to obtain the authorization from the 5G DDNMF for monitoring in the PLMN.\n-\tAllow the consumer NF to update or revoke the authorization for the indicated UE to monitor in the PLMN.\n-\tAllow the consumer NF to inform the 5G DDNMF of the monitoring revocation results.\n-\tAllow the consumer NF to obtain the authorization from the 5G DDNMF for a discoverer UE in the PLMN to operate Model B restricted discovery.\n-\tAllow the consumer NF to obtain the information about the indicated discovery code from the 5G DDNMF.\n-\tAllow the consumer NF to receive from the 5G DDNMF of a matching result, and the information can be used for charging purpose.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.555_5.2.2.1",
+      "section_id": "5.2.2.1",
+      "section_title": "Introduction",
+      "content": "This clause introduces the service operations defined for the N5g-ddnmf_Discovery services as follows:\n-\tAnnounceAuthorize\n-\tAnnounceUpdate\n-\tMonitorAuthorize\n-\tMonitorUpdate\n-\tMonitorUpdateResult\n-\tDiscoveryAuthorize\n-\tMatchReport\n-\tMatchInformation",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.555_5.2.2.2.1",
+      "section_id": "5.2.2.2.1",
+      "section_title": "General",
+      "content": "The AnnounceAuthorize service operation shall be used by the NF Service consumer to obtain the authorization to announce for a UE from the 5G DDNMF in the PLMN. The following procedures are supported using the AnnounceAuthorize service operation:\n-\tDiscovery Request procedures (see 3GPP 3GPP TS 23.304 [4], clause 6.3.1.4)\n-\tAnnouncing Alert Procedures for restricted discovery (see 3GPP 3GPP TS 23.304 [4], clause 6.3.1.6)\n-\tDirect Discovery Update Procedures (see 3GPP 3GPP TS 23.304 [4], clause 6.3.1.7)",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_23.304_clause_6.3.1.4",
+        "ts_23.304_clause_6.3.1.6",
+        "ts_23.304_clause_6.3.1.7",
+        "ts_23.304"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.555_5.2.2.2.2",
+      "section_id": "5.2.2.2.2",
+      "section_title": "Obtain the authorization to announce for a UE",
+      "content": "The AnnounceAuthorize service operation is invoked by a NF Service Consumer, e.g. HPLMN 5G DDNMF, towards the 5G DDNMF (e.g. VPLMN 5G DDNMF or Local PLMN 5G DDNMF) to request to obtain the authorization from the 5G DDNMF for announcing for a target UE. See Figure 5.2.2.2.2-1. The request contains the UE's identity (/{ueId}) which shall be a SUPI or GPSI and the discovery Entry ID (/{discEntryId}) which is used to identify the discovery entry related to this request.\nFigure 5.2.2.2.2-1: Obtain the authorization to announce for a UE\n1.\tThe NF Service Consumer shall send an HTTP PUT request to the resource representing the authorization to announce for a UE to obtain the authorization to announce for this UE. The request shall include the Discovery Type, if the Discovery Type is OPEN the Announce Authorisation Data for open discovery shall be included, and if the Discovery Type is RESTRICTED the Announce Authorisation Data for restricted discovery shall be included in the HTTP PUT request body.\n2a.\tIf the context indicated by the discEntryId doesn't exist, the 5G DDNMF shall create the new resource, and upon success of creation of the resource, \"201 created\" shall be returned.\n2b.\tIf the context indicated by the discEntryId already exists, the 5G DDNMF shall replace the stored data using the received data, and upon success of the update of the resource, \"204 No Content\" shall be returned.\n2c.\tOn failure or redirection, one of the HTTP status code listed in Table 6.1.3.2.3.1-3 may be returned. For a 4xx/5xx response, the message body may contain a ProblemDetails structure with the \"cause\" attribute set to one of the application error listed in Table 6.1.3.2.3.1-3.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.1.3.2.3.1-3",
+        "figure_5.2.2.2.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.555_5.2.2.3.1",
+      "section_id": "5.2.2.3.1",
+      "section_title": "General",
+      "content": "The AnnounceUpdate service operation shall be used by the NF Service consumer to update or revoke the authorization from the 5G DDNMF for announcing in the PLMN. The following procedures are supported using the AnnounceUpdate service operation:\n-\tDirect Discovery Update Procedures (see 3GPP 3GPP TS 23.304 [4], clause 6.3.1.7)",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_23.304_clause_6.3.1.7",
+        "ts_23.304"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.555_5.2.2.3.2",
+      "section_id": "5.2.2.3.2",
+      "section_title": "Update the authorization for announcing for a UE",
+      "content": "The AnnounceUpdate service operation is invoked by a NF Service Consumer, e.g. HPLMN 5G DDNMF, towards the 5G DDNMF (e.g. VPLMN 5G DDNMF or Local PLMN 5G DDNMF) to request to update the authorization for announcing in the PLMN from the 5G DDNMF for a target UE. See Figure 5.2.2.3.2-1. The request contains the UE's identity (/{ueId}) which shall be a SUPI or GPSI and the discovery Entry ID (/{discEntryId}) which is used to identify the discovery entry related to this request.\nFigure 5.2.2.3.2-1: Update the authorization for announcing for a UE\n1.\tThe NF Service Consumer shall send an HTTP PATCH request to the resource representing the authorization to announce for a UE to update or revoke the authorization from the 5G DDNMF for announcing in the PLMN. The request shall include Discovery Type, the Validity Timer, and the ProSe Application Code if the ProSe Application Code is changed in the HTTP PATCH request body. If the Validity Timer sets to a full zero, it indicates to revoke the authorization for the announcing in the PLMN.\n2a.\tOn success, \"204 No Content\" shall be returned.\n2b.\tOn failure or redirection, one of the HTTP status code listed in Table 6.1.3.2.3.2-3 may be returned. For a 4xx/5xx response, the message body may contain a ProblemDetails structure with the \"cause\" attribute set to one of the application error listed in Table 6.1.3.2.3.2-3.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.1.3.2.3.2-3",
+        "figure_5.2.2.3.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.555_5.2.2.4.1",
+      "section_id": "5.2.2.4.1",
+      "section_title": "General",
+      "content": "The MonitorAuthorize service operation shall be used by the NF Service consumer to obtain the authorization from the 5G DDNMF for monitoring for an UE in the PLMN. The following procedures are supported using the MonitorAuthorize service operation:\n-\tDiscovery Request procedures (see 3GPP 3GPP TS 23.304 [4], clause 6.3.1.4).",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_23.304_clause_6.3.1.4",
+        "ts_23.304"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.555_5.2.2.4.2",
+      "section_id": "5.2.2.4.2",
+      "section_title": "Obtain the authorization to monitor for a UE",
+      "content": "The MonitorAuthorize service operation is invoked by a NF Service Consumer, e.g. HPLMN 5G DDNMF, towards the 5G DDNMF (e.g. VPLMN 5G DDNMF or Local PLMN 5G DDNMF) to request to obtain the authorization from the 5G DDNMF for monitoring for a target UE. See Figure 5.2.2.4.2-1. The request contains the UE's identity (/{ueId}) which shall be a SUPI or GPSI and the discovery Entry ID (/{discEntryId}) which is used to identify the discovery entry related to this request.\nFigure 5.2.2.4.2-1: Obtain the authorization to monitor for a UE\n1.\tThe NF Service Consumer shall send an HTTP PUT request to the resource representing the authorization to monitor for a UE to obtain the authorization to monitor for this UE. The request shall include the Discovery Type, if the Discovery Type is OPEN the Monitor Authorisation Data for open discovery shall be included, and if the Discovery Type is RESTRICTED the Monitor Authorisation Data for restricted discovery shall be included in the HTTP PUT request body.\n2a.\tIf the context indicated by the discEntryId doesn't exist, the 5G DDNMF shall create the new resource, and upon success of creation of the resource, \"201 created\" shall be returned. The response body shall contain the parameters related to the determined authorization data to monitor for the UE.\n2b.\tIf the context indicated by the discEntryId already exists, the 5G DDNMF shall replace the stored data using the received data, and upon success of the update of the resource, \"204 No Content\" shall be returned.\n2c.\tOn failure or redirection, one of the HTTP status code listed in Table 6.1.3.3.3.1-3 may be returned. For a 4xx/5xx response, the message body may contain a ProblemDetails structure with the \"cause\" attribute set to one of the application error listed in Table 6.1.3.3.3.1-3.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.1.3.3.3.1-3",
+        "figure_5.2.2.4.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.555_5.2.2.5.1",
+      "section_id": "5.2.2.5.1",
+      "section_title": "General",
+      "content": "The MonitorUpdate service operation shall be used by the NF Service consumer to update or revoke the authorization for the indicated UE to monitor in the PLMN. The following procedures are supported using the MonitorUpdate service operation:\n-\tDirect Discovery Update Procedures (see 3GPP 3GPP TS 23.304 [4], clause 6.3.1.7).",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_23.304_clause_6.3.1.7",
+        "ts_23.304"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.555_5.2.2.5.2",
+      "section_id": "5.2.2.5.2",
+      "section_title": "Update the authorization for monitoring for a UE",
+      "content": "The MonitorUpdate service operation is invoked by a NF Service Consumer, e.g. HPLMN 5G DDNMF, towards the 5G DDNMF (e.g. VPLMN 5G DDNMF or Local PLMN 5G DDNMF) to request to update the authorization for monitoring in the PLMN from the 5G DDNMF for a target UE. See Figure 5.2.2.5.2-1. The request contains the UE's identity (/{ueId}) which shall be a SUPI or GPSI and the discovery Entry ID (/{discEntryId}) which is used to identify the discovery entry related to this request.\nFigure 5.2.2.5.2-1: Update the authorization for monitoring for a UE\n1.\tThe NF Service Consumer shall send an HTTP PATCH request to the resource representing the authorization to monitor for a UE to update or revoke the authorization for the indicated UE to monitor in the PLMN. The request shall include Discovery Type, if the Discovery Type indicates \"RESTRICTED\", the ProSe Application ID Name, and the TTL shall be included in the HTTP PATCH request body. And if the value of TTL in the request sets to zero, it indicates to revoke the previously authorized monitoring to the given Discovery Entry ID, if the Discovery Type indicates \"OPEN\", ProSe Restricted Code, Application ID, Banned RPAUID, and Banned PDUID shall be included in the HTTP PATCH request body, and monitorUpdateResultCallbackRef may be included in the request body if the NF Service Consumer expects to receive the monitoring revocation results\n2a.\tOn success, \"204 No Content\" shall be returned.\n2b.\tOn failure or redirection, one of the HTTP status code listed in Table 6.1.3.3.3.2-3 may be returned. For a 4xx/5xx response, the message body may contain a ProblemDetails structure with the \"cause\" attribute set to one of the application error listed in Table 6.1.3.3.3.2-3.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.1.3.3.3.2-3",
+        "figure_5.2.2.5.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.555_5.2.2.6.1",
+      "section_id": "5.2.2.6.1",
+      "section_title": "General",
+      "content": "The MonitorUpdateResult service operation shall be used by the 5G DDNMF to notify the NF Service consumer of the 5G DDNMF of the monitoring revocation results. The following procedures are supported using the MonitorUpdateResult service operation:\n-\tDirect Discovery Update Procedures (see 3GPP 3GPP TS 23.304 [4], clause 6.3.1.7).",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_23.304_clause_6.3.1.7",
+        "ts_23.304"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.555_5.2.2.6.2",
+      "section_id": "5.2.2.6.2",
+      "section_title": "Monitor Update Result Notification",
+      "content": "The MonitorUpdateResult service operation notifies the NF service consumer (e.g. HPLMN 5G DDNMF) serving the user about the monitoring revocation results for the user. The request contains the monitorUpdateResultCallbackRef URI. See Figure 5.2.2.6.2-1.\nFigure 5.2.2.6.2-1: Monitor Update Result Notification\n1.\tThe 5G DDNMF sends a POST request to the monitorUpdateResultCallbackRef to notify the NF service consumer about the monitoring revocation results for the user. The request shall the Discovery Type, the ProSe Restricted Code, the Application ID, the Banned RPAUID, the Banned PDUID, and the monitoring revocation results.\n2a.\tOn success, the NF service consumer responds with \"204 No Content\".\n2b.\tOn failure or redirection, one of the HTTP status code listed in Table 6.1.5.2.3.1-3 may be returned. For a 4xx/5xx response, the message body may contain a ProblemDetails structure with the \"cause\" attribute set to one of the application error listed in Table 6.1.5.2.3.1-3.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.1.5.2.3.1-3",
+        "figure_5.2.2.6.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.555_5.2.2.7.1",
+      "section_id": "5.2.2.7.1",
+      "section_title": "General",
+      "content": "The DiscoveryAuthorize service operation shall be used by the NF Service consumer to obtain the authorization from the 5G DDNMF for a discoverer UE in the PLMN to operate Model B restricted discovery. The following procedures are supported using the DiscoveryAuthorize service operation:\n-\tDiscovery Request procedures (see 3GPP 3GPP TS 23.304 [4], clause 6.3.1.4).",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_23.304_clause_6.3.1.4",
+        "ts_23.304"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.555_5.2.2.7.2",
+      "section_id": "5.2.2.7.2",
+      "section_title": "Obtain the authorization for a discoverer UE to operate Model B restricted discovery",
+      "content": "The DiscoveryAuthorize service operation is invoked by a NF Service Consumer, e.g. HPLMN 5G DDNMF, towards the 5G DDNMF (e.g. VPLMN 5G DDNMF or Local PLMN 5G DDNMF) to request to obtain the authorization from the 5G DDNMF for a discoverer UE in the PLMN to operate Model B restricted discovery. See Figure 5.2.2.7.2-1. The request contains the UE's identity (/{ueId}) which shall be a SUPI or GPSI and the discovery Entry ID (/{discEntryId}) which is used to identify the discovery entry related to this request.\nFigure 5.2.2.7.2-1: Obtain the authorization for a discoverer UE to operate Model B restricted discovery\n1.\tThe NF Service Consumer shall send an HTTP PUT request to the resource representing the authorization for a discoverer UE to obtain the authorization for a discoverer UE to operate Model B restricted discovery. The request shall include the Discovery Type, authorisation data for restricted discovery in the HTTP PUT request body.\n2a.\tIf the context indicated by the discEntryId doesn't exist, the 5G DDNMF shall create the new resource, and upon success of creation of the resource, \"201 created\" shall be returned. The response body shall contain the parameters related to the determined authorization data for the discoverer UE to operate Model B restricted discovery.\n2b.\tIf the context indicated by the discEntryId already exists, the 5G DDNMF shall replace the stored data using the received data, and upon success of the update of the resource, \"204 No Content\" shall be returned.\n2c.\tOn failure or redirection, one of the HTTP status code listed in Table 6.1.3.4.3.1-3 may be returned. For a 4xx/5xx response, the message body may contain a ProblemDetails structure with the \"cause\" attribute set to one of the application error listed in Table 6.1.3.4.3.1-3.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.1.3.4.3.1-3",
+        "figure_5.2.2.7.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.555_5.2.2.8.1",
+      "section_id": "5.2.2.8.1",
+      "section_title": "General",
+      "content": "The MatchReport service operation shall be used by the NF Service consumer to obtain the information about the indicated discovery code from the 5G DDNMF. The following procedures are supported using the MatchReport service operation:\n-\tDiscovery Reporting procedures (see 3GPP 3GPP TS 23.304 [4], clause 6.3.1.5).",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_23.304_clause_6.3.1.5",
+        "ts_23.304"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.555_5.2.2.8.2",
+      "section_id": "5.2.2.8.2",
+      "section_title": "Obtain the information about the indicated discovery code",
+      "content": "The MatchReport service operation is invoked by a NF Service Consumer, e.g. HPLMN 5G DDNMF, towards the 5G DDNMF (e.g. VPLMN 5G DDNMF or Local PLMN 5G DDNMF) to request to obtain the information about the indicated discovery code from the 5G DDNMF. See Figure 5.2.2.8.2-1. The request contains the UE's identity (/{ueId}) which shall be a SUPI or GPSI, the type of request (/match-report).\nFigure 5.2.2.8.2-1: Obtain the information about the indicated discovery code\n1.\tThe NF Service Consumer shall send an HTTP POST request to the resource representing the information about the indicated discovery code to obtain the information about the indicated discovery code. The request shall include the Discovery Type, the ProSe Application Codes if the discovery type is OPEN in the HTTP POST request body, and optionally includes Monitored PLMN ID in the HTTP POST request body.\n2a.\tOn success, \"200 OK\" shall be returned. The response body shall contain the parameters related to the information about the indicated discovery code.\n2b\tOn failure or redirection, one of the HTTP status code listed in Table 6.1.3.5.3.1-3 may be returned. For a 4xx/5xx response, the message body may contain a ProblemDetails structure with the \"cause\" attribute set to one of the application error listed in Table 6.1.3.5.3.1-3.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.1.3.5.3.1-3",
+        "figure_5.2.2.8.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.555_5.2.2.9.1",
+      "section_id": "5.2.2.9.1",
+      "section_title": "General",
+      "content": "The MatchInformation service operation shall be used by the 5G DDNMF to notify the NF Service consumer of a matching result, and the information that can be used for charging purpose. The following procedures are supported using the MatchInformation service operation:\n-\tDiscovery Reporting procedures (see 3GPP 3GPP TS 23.304 [4], clause 6.3.1.5)",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_23.304_clause_6.3.1.5",
+        "ts_23.304"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.555_5.2.2.9.2",
+      "section_id": "5.2.2.9.2",
+      "section_title": "Match Information Notification",
+      "content": "The MatchInformation service operation notifies the NF service consumer (e.g. VPLMN 5G DDNMF or Local PLMN 5G DDNMF) about match information including a matching result, and the information can be used for charging purpose. The request contains the matchInfoCallbackRef URI. See Figure 5.2.2.9.2-1.\nFigure 5.2.2.9.2-1: Match Information Notification\n1.\tThe 5G DDNMF sends a POST request to the matchInfoCallbackRef URI to notify the NF service consumer about match information including a matching result, and the information can be used for charging purpose. The request shall include the Discovery Type, match report information for open discovery type if match report information for open discovery type is OPEN, and match report information for restricted discovery type if match report information for open discovery type is RESTRICTED\n2a.\tOn success, the NF service consumer responds with \"204 No Content\".\n2b.\tOn failure or redirection, one of the HTTP status code listed in Table 6.1.5.3.3.1-3 may be returned. For a 4xx/5xx response, the message body may contain a ProblemDetails structure with the \"cause\" attribute set to one of the application error listed in Table 6.1.5.3.3.1-3.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.1.5.3.3.1-3",
+        "figure_5.2.2.9.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.555_6.1.1",
+      "section_id": "6.1.1",
+      "section_title": "Introduction",
+      "content": "The N5g-ddnmf_Discovery shall use the N5g-ddnmf_Discovery API.\nThe API URI of the N5g-ddnmf_Discovery API shall be:\n{apiRoot}/<apiName>/<apiVersion>\nThe request URIs used in HTTP requests from the NF service consumer towards the NF service producer shall have the Resource URI structure defined in clause 4.4.1 of 3GPP TS 29.501 [6], i.e.:\n{apiRoot}/<apiName>/<apiVersion>/<apiSpecificResourceUriPart>\nwith the following components:\n-\tThe {apiRoot} shall be set as described in 3GPP TS 29.501 [6].\n-\tThe <apiName> shall be \"n5g-ddnmf-disc\".\n-\tThe <apiVersion> shall be \"v1\".\n-\tThe <apiSpecificResourceUriPart> shall be set as described in clause 6.1.3.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.501_clause_4.4.1",
+        "clause_6.1.3",
+        "ts_29.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.555_6.1.2.1",
+      "section_id": "6.1.2.1",
+      "section_title": "General",
+      "content": "HTTP/2, IETF RFC 9113 [8], shall be used as specified in clause 5 of 3GPP TS 29.500 [5].\nHTTP/2 shall be transported as specified in clause 5.3 of 3GPP TS 29.500 [5].\nThe OpenAPI [7] specification of HTTP messages and content bodies for the n5g-ddnmf-disc API is contained in Annex A.2.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.500_clause_5",
+        "ts_29.500_clause_5.3",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.555_6.1.2.2.1",
+      "section_id": "6.1.2.2.1",
+      "section_title": "General",
+      "content": "See clause 5.2.2 of 3GPP TS 29.500 [5] for the usage of HTTP standard headers.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.500_clause_5.2.2",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.555_6.1.2.2.2",
+      "section_id": "6.1.2.2.2",
+      "section_title": "Content type",
+      "content": "JSON, IETF RFC 8259 [9], shall be used as content type of the HTTP bodies specified in the present specification as specified in clause 5.4 of 3GPP TS 29.500 [5]. The use of the JSON format shall be signalled by the content type \"application/json\".\n\"Problem Details\" JSON object shall be used to indicate additional details of the error in a HTTP response body and shall be signalled by the content type \"application/problem+json\", as defined in IETF RFC 9457 [10].\nJSON Merge Patch, as defined in IETF RFC 7396 [15], signalled by the content type \"application/merge-patch+json\".",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_5.4",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.555_6.1.2.3",
+      "section_id": "6.1.2.3",
+      "section_title": "HTTP custom headers",
+      "content": "The mandatory HTTP custom header fields specified in clause 5.2.3.2 of 3GPP TS 29.500 [5] shall be supported, and the optional HTTP custom header fields specified in clause 5.2.3.3 of 3GPP TS 29.500 [4] may be supported.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_5.2.3.2",
+        "ts_29.500_clause_5.2.3.3",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.555_6.1.3.1",
+      "section_id": "6.1.3.1",
+      "section_title": "Overview",
+      "content": "This clause describes the structure for the Resource URIs and the resources and methods used for the service.\nFigure 6.1.3.1-1 depicts the resource URIs structure for the N5g-ddnmf_Discovery API.\nFigure 6.1.3.1-1: Resource URI structure of the N5g-ddnmf_Discovery API\nTable 6.1.3.1-1 provides an overview of the resources and applicable HTTP methods.\nTable 6.1.3.1-1: Resources and methods overview\nResource name\nResource URI\nHTTP method or custom operation\nDescription\nAnnounceData\n/{ueId}/announce-authorize/{discEntryId}\nPUT\nObtain the authorization to announce for a UE from the 5G DDNMF in the PLMN.\nPATCH\nUpdate or revoke the authorization from the 5G DDNMF for announcing in the PLMN.\nMonitorData\n/{ueId}/monitor-authorize/{discEntryId}\nPUT\nObtain the authorization from the 5G DDNMF for monitoring for an UE in the PLMN.\nPATCH\nUpdate or revoke the authorization for the indicated UE to monitor in the PLMN.\nDiscoveryData\n/{ueId}/discovery-authorize/{discEntryId}\nPUT\nObtain the authorization from the 5G DDNMF for a discoverer UE in the PLMN to operate Model B restricted discovery.\nUeData\n/{ueId}/match-report\nmatch-report(POST)\nObtain the information about the indicated discovery code from the 5G DDNMF.\nNOTE:\tThe Custom operation URI above are deviating from the URI Path Segment Naming Conventions defined in clause 5.1.3.2 of 3GPP TS 29.501 [5], but they are not changed to maintain backwards compatibility.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.501_clause_5.1.3.2",
+        "table_6.1.3.1-1",
+        "figure_6.1.3.1-1",
+        "ts_29.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.555_6.1.3.2.2",
+      "section_id": "6.1.3.2.2",
+      "section_title": "Resource Definition",
+      "content": "Resource URI: {apiRoot}/n5g-ddnmf-disc/<apiVersion>/{ueId}/announce-authorize/{discEntryId}\nThis resource shall support the resource URI variables defined in table 6.1.3.2.2-1.\nTable 6.1.3.2.2-1: Resource URI variables for this resource\nName\nData type\nDefinition\napiRoot\nstring\nSee clause 6.1.1\nueId\nVarUeId\nRepresents the Subscription Identifier SUPI or GPSI (see 3GPP TS 23.501 [2] clause 5.9.2)\tpattern: See pattern of type VarUeId in 3GPP TS 29.571 [16]\ndiscEntryId\nDiscoveryEntryId\nRepresents Discovery Entry Id.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_6.1.1",
+        "ts_23.501_clause_5.9.2",
+        "table_6.1.3.2.2-1",
+        "ts_23.501",
+        "ts_29.571"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.555_6.1.3.2.3",
+      "section_id": "6.1.3.2.3",
+      "section_title": "Resource Standard Methods",
+      "content": "6.1.3.2.3.1\tPUT\nThis method shall support the URI query parameters specified in table 6.1.3.2.3.1-1.\nTable 6.1.3.2.3.1-1: URI query parameters supported by the PUT method on this resource\nName\nData type\nP\nCardinality\nDescription\nApplicability\nn/a\nThis method shall support the request data structures specified in table 6.1.3.2.3.1-2 and the response data structures and response codes specified in table 6.1.3.2.3.1-3.\nTable 6.1.3.2.3.1-2: Data structures supported by the PUT Request Body on this resource\nData type\nP\nCardinality\nDescription\nAnnounceAuthData\nM\n1\nContains the Announce Authorization Data for the indicated UE and indicated discovery entry.\nTable 6.1.3.2.3.1-3: Data structures supported by the PUT Response Body on this resource\nData type\nP\nCardinality\nResponse\ncodes\nDescription\nAnnounceAuthData\n201 Created\nUpon success of creation of the resource, a response body shall be returned.\nThe HTTP response shall include a \"Location\" HTTP header that contains the resource URI of the created resource.\nn/a\n204 No Content\nUpon success of the update of the resource, an empty response body shall be returned.\nRedirectResponse\nO\n0..1\n307 Temporary Redirect\nTemporary redirection.\n(NOTE 2)\nRedirectResponse\nO\n0..1\n308 Permanent Redirect\nPermanent redirection.\n(NOTE 2)\nProblemDetails\nO\n0..1\n403 Forbidden\nThe \"cause\" attribute may be used to indicate one of the following application errors:\n- PROSE_SERVICE_UNAUTHORIZED\nSee table 6.1.7.3-1 for the description of these errors.\nNOTE 1:\tThe manadatory HTTP error status code for the PUT method listed in Table 5.2.7.1-1 of 3GPP TS 29.500 [5] also apply.\nNOTE 2:\tRedirectResponse may be inserted by an SCP, see clause 6.10.9.1 of 3GPP TS 29.500 [5].\nTable 6.1.3.2.3.1-4: Headers supported by the 201 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nContains the URI of the newly created resource, according to the structure: {apiRoot}/n5g-ddnmf-disc>/<apiVersion>/{ueId}/announce-authorize/{discEntryId}\nTable 6.1.3.2.3.1-5: Headers supported by the 307 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located on an alternative service instance within the same 5G DDNMF or 5G DDNMF (service) set.\nFor the case, when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target NF (service) instance ID towards which the request is redirected\nTable 6.1.3.2.3.1-6: Headers supported by the 308 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located on an alternative service instance within the same 5G DDNMF or 5G DDNMF (service) set.\nFor the case, when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target NF (service) instance ID towards which the request is redirected\n6.1.3.2.3.2\tPATCH\nThis method shall support the URI query parameters specified in table 6.1.3.2.3.2-1.\nTable 6.1.3.2.3.2-1: URI query parameters supported by the PATCH method on this resource\nName\nData type\nP\nCardinality\nDescription\nApplicability\nn/a\nThis method shall support the request data structures specified in table 6.1.3.2.3.2-2 and the response data structures and response codes specified in table 6.1.3.2.3.2-3.\nTable 6.1.3.2.3.2-2: Data structures supported by the PATCH Request Body on this resource\nData type\nP\nCardinality\nDescription\nAnnounceUpdateData\nM\n1\nContains the Announce Authorization Data to update for the indicated UE and indicated discovery entry.\nTable 6.1.3.2.3.2-3: Data structures supported by the PATCH Response Body on this resource\nData type\nP\nCardinality\nResponse\ncodes\nDescription\nn/a\n204 No Content\nUpon success, an empty response body shall be returned.\nPatchResult\nM\n1\n200 OK\nUpon success, the execution report is returned. (NOTE 3)\nRedirectResponse\nO\n0..1\n307 Temporary Redirect\nTemporary redirection.\n(NOTE 2)\nRedirectResponse\nO\n0..1\n308 Permanent Redirect\nPermanent redirection.\n(NOTE 2)\nProblemDetails\nO\n0..1\n404 Not Found\nThe \"cause\" attribute may be used to indicate one of the following application errors:\n-\tCONTEXT_NOT_FOUND\nSee table 6.1.7.3-1 for the description of these errors.\nProblemDetails\nO\n0..1\n422 Unprocessable Entity\nThe \"cause\" attribute may be used to indicate one of the following application errors:\n- UNPROCESSABLE_REQUEST\nNOTE 1:\tThe manadatory HTTP error status code for the PATCH method listed in Table 5.2.7.1-1 of 3GPP TS 29.500 [5] also apply.\nNOTE 2:\tRedirectResponse may be inserted by an SCP, see clause 6.10.9.1 of 3GPP TS 29.500 [5].\nNOTE 3:\tIf all the modification instructions in the PATCH request have been implemented, the 5G DDNMF shall respond with 204 No Content response; if some of the modification instructions in the PATCH request have been discarded, and the NF service consumer has included in the supported-feature query parameter the \"PatchReport\" feature number, the 5G DDNMF shall respond with PatchResult.\nTable 6.1.3.2.3.2-4: Headers supported by the 307 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located on an alternative service instance within the same 5G DDNMF or 5G DDNMF (service) set.\nFor the case, when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target NF (service) instance ID towards which the request is redirected\nTable 6.1.3.2.3.2-5: Headers supported by the 308 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located on an alternative service instance within the same 5G DDNMF or 5G DDNMF (service) set.\nFor the case, when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target NF (service) instance ID towards which the request is redirected",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_6.10.9.1",
+        "table_6.1.3.2.3.1-1",
+        "table_6.1.3.2.3.1-2",
+        "table_6.1.3.2.3.1-3",
+        "table_6.1.7.3-1",
+        "ts_29.500_table_5.2.7.1-1",
+        "ts_29.500_table_6.1.3.2.3.1-4",
+        "table_6.1.3.2.3.1-5",
+        "table_6.1.3.2.3.1-6",
+        "table_6.1.3.2.3.2-1",
+        "table_6.1.3.2.3.2-2",
+        "table_6.1.3.2.3.2-3",
+        "table_6.1.3.2.3.2-4",
+        "table_6.1.3.2.3.2-5",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.555_6.1.3.3.1",
+      "section_id": "6.1.3.3.1",
+      "section_title": "Description",
+      "content": "This resource represents the Monitor data.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.555_6.1.3.3.2",
+      "section_id": "6.1.3.3.2",
+      "section_title": "Resource Definition",
+      "content": "Resource URI: {apiRoot}/n5g-ddnmf-disc/<apiVersion>/{ueId}/monitor-authorize/{discEntryId}\nThis resource shall support the resource URI variables defined in table 6.1.3.3.2-1.\nTable 6.1.3.3.2-1: Resource URI variables for this resource\nName\nData type\nDefinition\napiRoot\nstring\nSee clause 6.1.1\nueId\nVarUeId\nRepresents the Subscription Identifier SUPI or GPSI (see 3GPP TS 23.501 [2] clause 5.9.2)\tpattern: See pattern of type VarUeId in 3GPP TS 29.571 [16]\ndiscEntryId\nDiscoveryEntryId\nRepresents Discovery Entry Id.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_6.1.1",
+        "ts_23.501_clause_5.9.2",
+        "table_6.1.3.3.2-1",
+        "ts_23.501",
+        "ts_29.571"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.555_6.1.3.3.3",
+      "section_id": "6.1.3.3.3",
+      "section_title": "Resource Standard Methods",
+      "content": "6.1.3.3.3.1\tPUT\nThis method shall support the URI query parameters specified in table 6.1.3.3.3.1-1.\nTable 6.1.3.3.3.1-1: URI query parameters supported by the PUT method on this resource\nName\nData type\nP\nCardinality\nDescription\nApplicability\nn/a\nThis method shall support the request data structures specified in table 6.1.3.3.3.1-2 and the response data structures and response codes specified in table 6.1.3.3.3.1-3.\nTable 6.1.3.3.3.1-2: Data structures supported by the PUT Request Body on this resource\nData type\nP\nCardinality\nDescription\nMonitorAuthReqData\nM\n1\nContains the Monitor Authorization Data for the indicated UE and indicated discovery entry.\nTable 6.1.3.3.3.1-3: Data structures supported by the PUT Response Body on this resource\nData type\nP\nCardinality\nResponse\ncodes\nDescription\nMonitorAuthRespData\nM\n1\n201 Created\nUpon success of creation of the resource, a response body containing a representation of the authorized data to monitor for the UE shall be returned.\nThe HTTP response shall include a \"Location\" HTTP header that contains the resource URI of the created resource.\nn/a\n204 No Content\nUpon success of the update of the resource, an empty response body shall be returned.\nRedirectResponse\nO\n0..1\n307 Temporary Redirect\nTemporary redirection.\n(NOTE 2)\nRedirectResponse\nO\n0..1\n308 Permanent Redirect\nPermanent redirection.\n(NOTE 2)\nProblemDetails\nO\n0..1\n403 Forbidden\nThe \"cause\" attribute may be used to indicate one of the following application errors:\n- PROSE_SERVICE_UNAUTHORIZED\nSee table 6.1.7.3-1 for the description of these errors.\nProblemDetails\nO\n0..1\n404 Not Found\nThe \"cause\" attribute may be used to indicate one of the following application errors:\n-\tAPPLICATION_NOT_FOUND\nSee table 6.1.7.3-1 for the description of these errors.\nNOTE 1:\tThe manadatory HTTP error status code for the PUT method listed in Table 5.2.7.1-1 of 3GPP TS 29.500 [5] also apply.\nNOTE 2:\tRedirectResponse may be inserted by an SCP, see clause 6.10.9.1 of 3GPP TS 29.500 [5].\nTable 6.1.3.3.3.1-4: Headers supported by the 201 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nContains the URI of the newly created resource, according to the structure: {apiRoot}/n5g-ddnmf-disc>/<apiVersion>/{ueId}/monitor-authorize/{discEntryId}\nTable 6.1.3.3.3.1-5: Headers supported by the 307 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located on an alternative service instance within the same 5G DDNMF or 5G DDNMF (service) set.\nFor the case, when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target NF (service) instance ID towards which the request is redirected\nTable 6.1.3.3.3.1-6: Headers supported by the 308 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located on an alternative service instance within the same 5G DDNMF or 5G DDNMF (service) set.\nFor the case, when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target NF (service) instance ID towards which the request is redirected\n6.1.3.3.3.2\tPATCH\nThis method shall support the URI query parameters specified in table 6.1.3.3.3.2-1.\nTable 6.1.3.3.3.2-1: URI query parameters supported by the PATCH method on this resource\nName\nData type\nP\nCardinality\nDescription\nApplicability\nn/a\nThis method shall support the request data structures specified in table 6.1.3.3.3.2-2 and the response data structures and response codes specified in table 6.1.3.3.3.2-3.\nTable 6.1.3.3.3.2-2: Data structures supported by the PATCH Request Body on this resource\nData type\nP\nCardinality\nDescription\nMonitorUpdateData\nM\n1\nContains the Monitor Authorization Data to update for the indicated UE and indicated discovery entry.\nTable 6.1.3.3.3.2-3: Data structures supported by the PUT Response Body on this resource\nData type\nP\nCardinality\nResponse\ncodes\nDescription\nn/a\n204 No Content\nUpon success, an empty response body shall be returned.\nPatchResult\nM\n1\n200 OK\nUpon success, the execution report is returned. (NOTE 3)\nRedirectResponse\nO\n0..1\n307 Temporary Redirect\nTemporary redirection.\n(NOTE 2)\nRedirectResponse\nO\n0..1\n308 Permanent Redirect\nPermanent redirection.\n(NOTE 2)\nProblemDetails\nO\n0..1\n404 Not Found\nThe \"cause\" attribute may be used to indicate one of the following application errors:\n-\tCONTEXT_NOT_FOUND\nSee table 6.1.7.3-1 for the description of these errors.\nProblemDetails\nO\n0..1\n422 Unprocessable Entity\nThe \"cause\" attribute may be used to indicate one of the following application errors:\n- UNPROCESSABLE_REQUEST\nNOTE 1:\tThe manadatory HTTP error status code for the PATCH method listed in Table 5.2.7.1-1 of 3GPP TS 29.500 [5] also apply.\nNOTE 2:\tRedirectResponse may be inserted by an SCP, see clause 6.10.9.1 of 3GPP TS 29.500 [5].\nNOTE 3:\tIf all the modification instructions in the PATCH request have been implemented, the 5G DDNMF shall respond with 204 No Content response; if some of the modification instructions in the PATCH request have been discarded, and the NF service consumer has included in the supported-feature query parameter the \"PatchReport\" feature number, the 5G DDNMF shall respond with PatchResult.\nTable 6.1.3.3.3.2-4: Headers supported by the 307 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located on an alternative service instance within the same 5G DDNMF or 5G DDNMF (service) set.\nFor the case, when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target NF (service) instance ID towards which the request is redirected\nTable 6.1.3.3.3.2-5: Headers supported by the 308 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located on an alternative service instance within the same 5G DDNMF or 5G DDNMF (service) set.\nFor the case, when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target NF (service) instance ID towards which the request is redirected",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_6.10.9.1",
+        "table_6.1.3.3.3.1-1",
+        "table_6.1.3.3.3.1-2",
+        "table_6.1.3.3.3.1-3",
+        "table_6.1.7.3-1",
+        "ts_29.500_table_5.2.7.1-1",
+        "ts_29.500_table_6.1.3.3.3.1-4",
+        "table_6.1.3.3.3.1-5",
+        "table_6.1.3.3.3.1-6",
+        "table_6.1.3.3.3.2-1",
+        "table_6.1.3.3.3.2-2",
+        "table_6.1.3.3.3.2-3",
+        "table_6.1.3.3.3.2-4",
+        "table_6.1.3.3.3.2-5",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.555_6.1.3.4.1",
+      "section_id": "6.1.3.4.1",
+      "section_title": "Description",
+      "content": "This resource represents the Discovery Data.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.555_6.1.3.4.2",
+      "section_id": "6.1.3.4.2",
+      "section_title": "Resource Definition",
+      "content": "Resource URI: {apiRoot}/n5g-ddnmf-disc/<apiVersion>/{ueId}/discovery-authorize/{discEntryId}\nThis resource shall support the resource URI variables defined in table 6.1.3.4.2-1.\nTable 6.1.3.4.2-1: Resource URI variables for this resource\nName\nData type\nDefinition\napiRoot\nstring\nSee clause 6.1.1\nueId\nVarUeId\nRepresents the Subscription Identifier SUPI or GPSI (see 3GPP TS 23.501 [2] clause 5.9.2)\tpattern: See pattern of type VarUeId in 3GPP TS 29.571 [16]\ndiscEntryId\nDiscoveryEntryId\nRepresents Discovery Entry Id.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_6.1.1",
+        "ts_23.501_clause_5.9.2",
+        "table_6.1.3.4.2-1",
+        "ts_23.501",
+        "ts_29.571"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.555_6.1.3.4.3",
+      "section_id": "6.1.3.4.3",
+      "section_title": "Resource Standard Methods",
+      "content": "6.1.3.4.3.1\tPUT\nThis method shall support the URI query parameters specified in table 6.1.3.4.3.1-1.\nTable 6.1.3.4.3.1-1: URI query parameters supported by the PUT method on this resource\nName\nData type\nP\nCardinality\nDescription\nApplicability\nn/a\nThis method shall support the request data structures specified in table 6.1.3.4.3.1-2 and the response data structures and response codes specified in table 6.1.3.4.3.1-3.\nTable 6.1.3.4.3.1-2: Data structures supported by the PUT Request Body on this resource\nData type\nP\nCardinality\nDescription\nDiscoveryAuthReqData\nM\n1\nContains the Discovery Authorization Data for the indicated discoverer UE and indicated discovery entry.\nTable 6.1.3.4.3.1-3: Data structures supported by the PUT Response Body on this resource\nData type\nP\nCardinality\nResponse\ncodes\nDescription\nDiscoveryAuthRespData\nM\n1\n201 Created\nUpon success of creation of the resource, a response body containing a representation of the authorized data for the discoverer UE in the PLMN to operate Model B restricted discovery shall be returned.\nThe HTTP response shall include a \"Location\" HTTP header that contains the resource URI of the created resource.\nn/a\n204 No Content\nUpon success of the update of the resource, an empty response body shall be returned.\nRedirectResponse\nO\n0..1\n307 Temporary Redirect\nTemporary redirection.\n(NOTE 2)\nRedirectResponse\nO\n0..1\n308 Permanent Redirect\nPermanent redirection.\n(NOTE 2)\nProblemDetails\nO\n0..1\n403 Forbidden\nThe \"cause\" attribute may be used to indicate one of the following application errors:\n- PROSE_SERVICE_UNAUTHORIZED\n- ANNOUNCING_UNAUTHORIZED_IN_PLMN\nSee table 6.1.7.3-1 for the description of these errors.\nProblemDetails\nO\n0..1\n404 Not Found\nThe \"cause\" attribute may be used to indicate one of the following application errors:\n-\tAPPLICATION_NOT_FOUND\nSee table 6.1.7.3-1 for the description of these errors.\nNOTE 1:\tThe manadatory HTTP error status code for the PUT method listed in Table 5.2.7.1-1 of 3GPP TS 29.500 [5] also apply.\nNOTE 2:\tRedirectResponse may be inserted by an SCP, see clause 6.10.9.1 of 3GPP TS 29.500 [5].\nTable 6.1.3.4.3.1-4: Headers supported by the 201 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nContains the URI of the newly created resource, according to the structure: {apiRoot}/n5g-ddnmf-disc>/<apiVersion>/{ueId}/discovery -authorize/{discEntryId}\nTable 6.1.3.4.3.1-5: Headers supported by the 307 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located on an alternative service instance within the same 5G DDNMF or 5G DDNMF (service) set.\nFor the case, when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target NF (service) instance ID towards which the request is redirected\nTable 6.1.3.4.3.1-6: Headers supported by the 308 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located on an alternative service instance within the same 5G DDNMF or 5G DDNMF (service) set.\nFor the case, when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target NF (service) instance ID towards which the request is redirected",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_6.10.9.1",
+        "table_6.1.3.4.3.1-1",
+        "table_6.1.3.4.3.1-2",
+        "table_6.1.3.4.3.1-3",
+        "table_6.1.7.3-1",
+        "ts_29.500_table_5.2.7.1-1",
+        "ts_29.500_table_6.1.3.4.3.1-4",
+        "table_6.1.3.4.3.1-5",
+        "table_6.1.3.4.3.1-6",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.555_6.1.3.5.1",
+      "section_id": "6.1.3.5.1",
+      "section_title": "Description",
+      "content": "This resource represents the UE Data.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.555_6.1.3.5.2",
+      "section_id": "6.1.3.5.2",
+      "section_title": "Resource Definition",
+      "content": "Resource URI: {apiRoot}/n5g-ddnmf-disc/<apiVersion>/{ueId}\nThis resource shall support the resource URI variables defined in table 6.1.3.5.2-1.\nTable 6.1.3.5.2-1: Resource URI variables for this resource\nName\nData type\nDefinition\napiRoot\nstring\nSee clause 6.1.1\nueId\nVarUeId\nRepresents the Subscription Identifier SUPI or GPSI (see 3GPP TS 23.501 [2] clause 5.9.2)\tpattern: See pattern of type VarUeId in 3GPP TS 29.571 [16]",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_6.1.1",
+        "ts_23.501_clause_5.9.2",
+        "table_6.1.3.5.2-1",
+        "ts_23.501",
+        "ts_29.571"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.555_6.1.3.5.4",
+      "section_id": "6.1.3.5.4",
+      "section_title": "Resource Custom Operations",
+      "content": "No Standard Methods are supported for this resource.\n6.1.3.5.4.1\tOverview\nTable 6.1.3.5.4.1-1: Custom operations\nOperation name\nCustom operation URI\nMapped HTTP method\nDescription\nmatch-report\n/{ueId}/match-report\nPOST\nObtain the information about the indicated discovery code from the 5G DDNMF.\n6.1.3.5.4.2\tOperation: match-report\n6.1.3.5.4.2.1\tDescription\nThis operation is used to request the 5G DDNMF to resolve a matched ProSe Discovery Code(s) (ProSe Application Code for open discovery) and obtain the corresponding ProSe Application ID Name(s) and additional information, e.g. metadata.\n6.1.3.5.4.2.2\tOperation Definition\nThis operation shall support the request data structures specified in table 6.1.3.5.4.2.2-1 and the response data structure and response codes specified in table 6.1.3.5.4.2.2-2.\nTable 6.1.3.5.4.2.2-1: Data structures supported by the POST Request Body on this resource\nData type\nP\nCardinality\nDescription\nMatchReportReqData\nM\n1\nContains the Match Report information.\nTable 6.1.3.5.4.2.2-2: Data structures supported by the POST Response Body on this resource\nData type\nP\nCardinality\nResponse\ncodes\nDescription\nMatchReportRespData\nM\n1\n200 OK\nUpon success, a response body containing a representation of the Match Report Acknowledgement shall be returned.\nRedirectResponse\nO\n0..1\n307 Temporary Redirect\nTemporary redirection.\n(NOTE 2)\nRedirectResponse\nO\n0..1\n308 Permanent Redirect\nPermanent redirection.\n(NOTE 2)\nProblemDetails\nO\n0..1\n403 Forbidden\nThe \"cause\" attribute may be used to indicate one of the following application errors:\n- PROSE_SERVICE_UNAUTHORIZED\n- ANNOUNCING_UNAUTHORIZED_IN_PLMN\n- INVALID_APPLICATION_CODE\nSee table 6.1.7.3-1 for the description of these errors.\nNOTE 1:\tThe manadatory HTTP error status code for the POST method listed in Table 5.2.7.1-1 of 3GPP TS 29.500 [5] also apply.\nNOTE 2:\tRedirectResponse may be inserted by an SCP, see clause 6.10.9.1 of 3GPP TS 29.500 [5].\nTable 6.1.3.5.4.2.2-3: Headers supported by the 307 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located on an alternative service instance within the same 5G DDNMF or 5G DDNMF (service) set.\nFor the case, when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target NF (service) instance ID towards which the request is redirected\nTable 6.1.3.5.4.2.2-4: Headers supported by the 308 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located on an alternative service instance within the same 5G DDNMF or 5G DDNMF (service) set.\nFor the case, when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target NF (service) instance ID towards which the request is redirected",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.500_clause_6.10.9.1",
+        "table_6.1.3.5.4.1-1",
+        "table_6.1.3.5.4.2.2-1",
+        "table_6.1.3.5.4.2.2-2",
+        "table_6.1.7.3-1",
+        "ts_29.500_table_5.2.7.1-1",
+        "ts_29.500_table_6.1.3.5.4.2.2-3",
+        "table_6.1.3.5.4.2.2-4",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.555_6.1.4",
+      "section_id": "6.1.4",
+      "section_title": "Custom Operations without associated resources",
+      "content": "In this release of this specification, no custom operations without associated resources are defined for the N5g-ddnmf_Discovery Service.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.555_6.1.5.1",
+      "section_id": "6.1.5.1",
+      "section_title": "General",
+      "content": "Notifications shall comply to clause 6.2 of 3GPP TS 29.500 [5] and clause 4.6.2.3 of 3GPP TS 29.501 [6].\nTable 6.1.5.1-1: Notifications overview\nNotification\nCallback URI\nHTTP method or custom operation\nDescription\n(service operation)\nMonitorUpdateResult\n{monitorUpdateResultCallbackRef}\nPOST\nReport the monitoring revocation results.\nMatchInformation\n{matchInfoCallbackRef}\nPOST\nReport an observed matching result to a NF service consumer",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.500_clause_6.2",
+        "ts_29.500_clause_4.6.2.3",
+        "ts_29.501_table_6.1.5.1-1",
+        "ts_29.501_clause_4.6.2.3",
+        "ts_29.500",
+        "ts_29.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.555_6.1.5.2.1",
+      "section_id": "6.1.5.2.1",
+      "section_title": "Description",
+      "content": "The MonitorUpdateResult is used by the 5G DDNMF to report the monitoring revocation results (e.g. 5G DDNMF)",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.555_6.1.5.2.2",
+      "section_id": "6.1.5.2.2",
+      "section_title": "Target URI",
+      "content": "The Callback URI \"{monitorUpdateResultCallbackRef}\" shall be used with the callback URI variables defined in table 6.1.5.2.2-1.\nTable 6.1.5.2.2-1: Callback URI variables\nName\nDefinition\nmonitorUpdateResultCallbackRef\nString formatted as URI with the Callback Uri",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.1.5.2.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.555_6.1.5.2.3",
+      "section_id": "6.1.5.2.3",
+      "section_title": "Standard Methods",
+      "content": "6.1.5.2.3.1\tPOST\nThis method shall support the request data structures specified in table 6.1.5.2.3.1-1 and the response data structures and response codes specified in table 6.1.5.2.3.1-1.\nTable 6.1.5.2.3.1-2: Data structures supported by the POST Request Body\nData type\nP\nCardinality\nDescription\nMonitorUpdateResult\nM\n1\nThe MonitorUpdateResult shall contain the monitoring revocation results.\nTable 6.1.5.2.3.1-3: Data structures supported by the POST Response Body\nData type\nP\nCardinality\nResponse codes\nDescription\nn/a\n204 No Content\nUpon success, an empty response body shall be returned.\nRedirectResponse\nO\n0..1\n307 Temporary Redirect\nTemporary redirection.\nRedirectResponse\nO\n0..1\n308 Permanent Redirect\nPermanent redirection.\nProblemDetails\nO\n0..1\n404 Not Found\nThe \"cause\" attribute may be used to indicate one of the following application errors:\n-\tCONTEXT_NOT_FOUND\nSee table 6.1.7.3-1 for the description of these errors.\nNOTE 1:\tThe mandatory HTTP error status codes for the POST method listed in Table 5.2.7.1-1 of 3GPP TS 29.500 [5] also apply.\nNOTE 2:\tRedirectResponse may be inserted by an SCP, see clause 6.10.9.1 of 3GPP TS 29.500 [5].\nTable 6.1.5.2.3.1-4: Headers supported by the 307 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nA URI pointing to the endpoint of another NF service consumer to which the notification should be sent.\nFor the case, when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target NF (service) instance ID towards which the request is redirected\nTable 6.1.5.2.3.1-5: Headers supported by the 308 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nA URI pointing to the endpoint of another NF service consumer to which the notification should be sent.\nFor the case, when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target NF (service) instance ID towards which the request is redirected",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_6.10.9.1",
+        "table_6.1.5.2.3.1-1",
+        "table_6.1.5.2.3.1-2",
+        "table_6.1.5.2.3.1-3",
+        "table_6.1.7.3-1",
+        "ts_29.500_table_5.2.7.1-1",
+        "ts_29.500_table_6.1.5.2.3.1-4",
+        "table_6.1.5.2.3.1-5",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.555_6.1.5.3.1",
+      "section_id": "6.1.5.3.1",
+      "section_title": "Description",
+      "content": "The POST method is used by the 5G DDNMF to report an observed matching result to a NF service consumer (e.g. 5G DDNMF).",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.555_6.1.5.3.2",
+      "section_id": "6.1.5.3.2",
+      "section_title": "Target URI",
+      "content": "The Callback URI \"{matchInfoCallbackRef}\" shall be used with the callback URI variables defined in table 6.1.5.3.2-1.\nTable 6.1.5.3.2-1: Callback URI variables\nName\nDefinition\nmatchInfoCallbackRef\nString formatted as URI with the Callback Uri",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.1.5.3.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.555_6.1.5.3.3",
+      "section_id": "6.1.5.3.3",
+      "section_title": "Standard Methods",
+      "content": "6.1.5.3.3.1\tPOST\nThis method shall support the request data structures specified in table 6.1.5.3.3.1-1 and the response data structures and response codes specified in table 6.1.5.3.3.1-1.\nTable 6.1.5.3.3.1-1: Data structures supported by the POST Request Body\nData type\nP\nCardinality\nDescription\nMatchInformation\nM\n1\nThe MatchInformation shall contain a matching result of the corresponding operation.\nTable 6.1.5.3.3.1-2: Data structures supported by the POST Response Body\nData type\nP\nCardinality\nResponse codes\nDescription\nn/a\n204 No Content\nUpon success, an empty response body shall be returned.\nProblemDetails\nO\n0..1\n404 Not Found\nThe \"cause\" attribute may be used to indicate one of the following application errors:\n-\tCONTEXT_NOT_FOUND\nSee table 6.1.7.3-1 for the description of these errors.\nRedirectResponse\nO\n0..1\n307 Temporary Redirect\nTemporary redirection.\nRedirectResponse\nO\n0..1\n308 Permanent Redirect\nPermanent redirection.\nNOTE 1:\tThe mandatory HTTP error status codes for the POST method listed in Table 5.2.7.1-1 of 3GPP TS 29.500 [5] also apply.\nNOTE 2:\tRedirectResponse may be inserted by an SCP, see clause 6.10.9.1 of 3GPP TS 29.500 [5].\nTable 6.1.5.3.3.1-3: Headers supported by the 307 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nA URI pointing to the endpoint of another NF service consumer to which the notification should be sent.\nFor the case, when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target NF (service) instance ID towards which the request is redirected\nTable 6.1.5.3.3.1-4: Headers supported by the 308 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nA URI pointing to the endpoint of another NF service consumer to which the notification should be sent.\nFor the case, when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target NF (service) instance ID towards which the request is redirected",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_6.10.9.1",
+        "table_6.1.5.3.3.1-1",
+        "table_6.1.5.3.3.1-2",
+        "table_6.1.7.3-1",
+        "ts_29.500_table_5.2.7.1-1",
+        "ts_29.500_table_6.1.5.3.3.1-3",
+        "table_6.1.5.3.3.1-4",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.555_6.1.6.1",
+      "section_id": "6.1.6.1",
+      "section_title": "General",
+      "content": "This clause specifies the application data model supported by the API.\nTable 6.1.6.1-1 specifies the data types defined for the N5g-ddnmf service based interface protocol.\nTable 6.1.6.1-1: N5g-ddnmf specific Data Types\nData type\nClause defined\nDescription\nApplicability\nAnnounceAuthData\n6.1.6.2.2\nRepresents Data used to request the authorization to announce for a UE\nAnnounceDiscDataForOpen\n6.1.6.2.4\nRepresents Data for open discovery used to request the authorization to announce for a UE\nAnnounceDiscDataForRestricted\n6.1.6.2.5\nRepresents Data for restricted discovery used to request the authorization to announce for a UE\nAnnounceUpdateData\n6.1.6.2.6\nRepresents Announce Authorize Data to update.\nMonitorAuthReqData\n6.1.6.2.7\nRepresents Data used to request the authorization to monitor for a UE\nMonitorAuthRespData\n6.1.6.2.8\nRepresents the obtained Monitor Authorize Data for a UE\nMonitorDiscDataForOpen\n6.1.6.2.9\nRepresents Data for open discovery used to request the authorization to monitor for a UE\nMonitorDiscDataForRestricted\n6.1.6.2.10\nRepresents Data for restricted discovery used to request the authorization to monitor for a UE\nMonitorAuthDataForOpen\n6.1.6.2.11\nRepresents the obtained Announce Authorize Data for open discovery for a UE\nMonitorAuthDataForRestricted\n6.1.6.2.12\nRepresents the obtained Announce Authorize Data for restricted discovery for a UE\nMonitorUpdateData\n6.1.6.2.13\nRepresents Monitor Authorize Data to update.\nDiscoveryAuthReqData\n6.1.6.2.14\nRepresents Data used to request the authorization for a discoverer UE\nDiscoveryAuthRespData\n6.1.6.2.15\nRepresents the obtained authorization Data for a discoverer UE.\nDiscDataForRestricted\n6.1.6.2.16\nRepresents Data for restricted discovery used to request the authorization for a discoverer UE\nAuthDataForRestricted\n6.1.6.2.17\nRepresents obtained authorization Data for restricted discovery for a discoverer UE\nMatchReportReqData\n6.1.6.2.18\nRepresents the Match Report information\nMatchReportRespData\n6.1.6.2.19\nRepresents Match Report Acknowledgement\nMonitorUpdateResult\n6.1.6.2.20\nRepresents the monitoring revocation results.\nMatchInformation\n6.1.6.2.21\nRepresents a report including a matching result, and the information that can be used for charging purpose\nMatchInfoForOpen\n6.1.6.2.22\nRepresents a report including a matching result, and the information that can be used for charging purpose for the open discovery type.\nMatchInfoForRestricted\n6.1.6.2.23\nRepresents a report including a matching result, and the information that can be used for charging purpose for the restricted discovery type.\nRestrictedCodeSuffixPool\n6.1.6.2.24\nContains the Restricted Code Suffix Pool.\nRestrictedCodeSuffixRange\n6.1.6.2.25\nContains a range of the Restricted Code Suffixes which are consecutive.\nProseApplicationCodeSuffixPool\n6.1.6.2.26\nContains the Prose Application Code Suffix Pool.\nProseAppCodeSuffixRange\n6.1.6.2.27\nContains a range of the Prose Application Code Suffixes which are consecutive.\nMonitorUpdateDataForOpen\n6.1.6.2.28\nRepresents Monitor Update Data for the Discovery Type \"OPEN\"\nMonitorUpdateDataForRestricted\n6.1.6.2.29\nRepresents Monitor Update Data for the Discovery Type \"RESTRICTED\".\nDiscoveryType\n6.1.6.3.3\nRepresents Discovery Type for ProSe Service\nAuthorizationResult\n6.1.6.3.4\nRepresents Authorization Result Type for ProSe Service\nRevocationResult\n6.1.6.3.5\nRepresents the monitoring Revocation Result for ProSe Service\nTable 6.1.6.1-2 specifies data types re-used by the N5g-ddnmf service based interface protocol from other specifications, including a reference to their respective specifications and when needed, a short description of their use within the N<NF> service based interface.\nTable 6.1.6.1-2: N5g-ddnmf re-used Data Types\nData type\nReference\nComments\nApplicability\nVarUeId\n3GPP TS 29.571 [16]\nString represents the SUPI or GPSI.\nDateTime\n3GPP TS 29.571 [16]\nDataTime\nPlmnId\n3GPP TS 29.571 [16]\nPlmn ID\nSupi\n3GPP TS 29.571 [16]\nSUPI\nUri\n3GPP TS 29.571 [16]\nURI\nProblemDetails\n3GPP TS 29.571 [16]",
+      "chunk_type": "definition",
+      "cross_references": [
+        "table_6.1.6.1-1",
+        "table_6.1.6.1-2",
+        "ts_29.571"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.555_6.1.6.2.1",
+      "section_id": "6.1.6.2.1",
+      "section_title": "Introduction",
+      "content": "This clause defines the structures to be used in resource representations.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.555_6.1.6.2.2",
+      "section_id": "6.1.6.2.2",
+      "section_title": "Type: AnnounceAuthData",
+      "content": "Table 6.1.6.2.2-1: Definition of type AnnounceAuthData\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\ndiscType\nDiscoveryType\nM\n1\nThis IE shall contain the discovery type for ProSe Service.\nopenDiscData\nAnnounceDiscDataForOpen\nC\n0..1\nThis IE shall contain the input data of announce authorisation for open discovery when present.\nIf the value of discType is \"OPEN\", this IE shall be present.\nrestrictedDiscData\nAnnounceDiscDataForRestricted\nC\n0..1\nThis IE shall contain the input data of announce authorisation for restricted discovery when present.\nIf the value of discType is \"RESTRICTED\", this IE shall be present.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.1.6.2.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.555_6.1.6.2.4",
+      "section_id": "6.1.6.2.4",
+      "section_title": "Type: AnnounceDiscDataForOpen",
+      "content": "Table 6.1.6.2.4-1: Definition of type AnnounceDiscDataForOpen\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\nproseAppId\nProseApplicationId\nM\n1\nThis IE shall contain the ProSe Application ID.\nvalidityTime\nDateTime\nM\n1\nThis IE shall contain validity timer up to which the ProSe Application Code is going to expire.\nproseAppCode\nProseApplicationCode\nC\n0..1\nWhen present, this IE shall contain the ProSe Application Code.\n(NOTE)\nproseAppCodePrefix\nProseApplicationPrefix\nC\n0..1\nWhen present, this IE shall contain the ProSe Application Code Prefix.\n(NOTE)\nproseAppCodeSuffixPool\nProseApplicationCodeSuffixPool\nO\n0..1\nThis IE shall contain the ProSe Application Code Suffix pool when present.\nmetaData\nMetaData\nO\n0..1\nThis IE shall contain the metadata when present.\nNOTE:\tEither attribute proseAppCode or attribute proseAppCodePrefix shall be present.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.1.6.2.4-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.555_6.1.6.2.5",
+      "section_id": "6.1.6.2.5",
+      "section_title": "Type: AnnounceDiscDataForRestricted",
+      "content": "Table 6.1.6.2.5-1: Definition of type AnnounceDiscDataForRestricted\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\nrpauid\nRpauid\nM\n1\nThis IE shall contain the RPAUID.\nappId\nApplicationId\nM\n1\nThis IE shall contain the Application ID\nvalidityTime\nDateTime\nM\n1\nThis IE shall contain validity timer up to which the ProSe Restricted Code is going to expire.\nIf the value sets to a full zero (i.e., 0000-00-00T00:00:00), it indicates to removes the resources indicated by the Discovery Entry ID for the UE.\nproseRestrictedCode\nProseRestrictedCode\nC\n0..1\nThis IE shall contain the ProSe Restricted Code when present.\n(NOTE)\nproseRestrictedPrefix\nProseRestrictedPrefix\nC\n0..1\nThis IE shall contain the ProSe Restricted Code Prefix when present.\n(NOTE)\ncodeSuffixPool\nRestrictedCodeSuffixPool\nO\n0..1\nThis IE shall contain the Restricted Code Suffix pool when present.\nNOTE:\tEither attribute proseRestrictedCode or attribute proseRestrictedPrefix shall be present.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.1.6.2.5-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.555_6.1.6.2.6",
+      "section_id": "6.1.6.2.6",
+      "section_title": "Type: AnnounceUpdateData",
+      "content": "Table 6.1.6.2.6-1: Definition of type AnnounceUpdateData\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\ndiscType\nDiscoveryType\nM\n1\nThis IE shall contain the discovery type for ProSe Service, only value \"OPEN\" is allowed.\nvalidityTime\nDateTime\nM\n1\nThis IE shall contain validity timer up to which the ProSe Application Code is going to expire.\nIf the value sets to a full zero (i.e., 0000-00-00T00:00:00), it indicates to revoke the authorization for the announcing in the PLMN.\nproseAppCode\nProseApplicationCode\nC\n0..1\nThis IE shall contain the ProSe Application Code when present.\nIf the ProSe Application Code is changed, this IE shall be present.\nIf the value of attribute is a full zero, this IE shall be absent.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.1.6.2.6-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.555_6.1.6.2.7",
+      "section_id": "6.1.6.2.7",
+      "section_title": "Type: MonitorAuthReqData",
+      "content": "Table 6.1.6.2.7-1: Definition of type MonitorAuthReqData\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\ndiscType\nDiscoveryType\nM\n1\nThis IE shall contain the discovery type for ProSe Service.\nopenDiscData\nMonitorDiscDataForOpen\nC\n0..1\nThis IE shall contain the input data of monitor authorisation for open discovery when present.\nIf the value of discType is \"OPEN\", this IE shall be present.\nrestrictedDiscData\nMonitorDiscDataForRestricted\nC\n0..1\nThis IE shall contain the input data of monitor authorisation for restricted discovery when present.\nIf the value of discType is \"RESTRICTED\", this IE shall be present.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.1.6.2.7-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.555_6.1.6.2.8",
+      "section_id": "6.1.6.2.8",
+      "section_title": "Type: MonitorAuthRespData",
+      "content": "Table 6.1.6.2.8-1: Definition of type MonitorAuthRespData\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\nauthDataOpen\nMonitorAuthDataForOpen\nC\n0..1\nThis IE shall contain a list of the ProSe Application Codes when present.\nIf the discovery type is \"OPEN\", this IE shall be present.\nauthDataRestricted\nMonitorAuthDataForRestricted\nC\n0..1\nThis IE shall contain the Prose Application Prefix when present.\nIf the discovery type in request is \"RESTRICTED\", this IE shall be present.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.1.6.2.8-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.555_6.1.6.2.9",
+      "section_id": "6.1.6.2.9",
+      "section_title": "Type: MonitorDiscDataForOpen",
+      "content": "Table 6.1.6.2.9-1: Definition of type MonitorDiscDataForOpen\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\nproseAppIdNames\narray(ProseApplicationIdName)\nM\n1..N\nThis IE shall contain a list of ProSe Application ID names.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.1.6.2.9-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.555_6.1.6.2.10",
+      "section_id": "6.1.6.2.10",
+      "section_title": "Type: MonitorDiscDataForRestricted",
+      "content": "Table 6.1.6.2.10-1: Definition of type MonitorDiscDataForRestricted\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\nrpauid\nRpauid\nM\n1\nThis IE shall contain the RPAUID.\ntargetPduid\nPduid\nM\n1\nThis IE shall contain the Target PDUID.\nappId\nApplicationId\nM\n1\nThis IE shall contain the Application ID\ntargetRpauid\nRpauid\nM\n1\nThis IE shall contain the Target RPAUID.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.1.6.2.10-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.555_6.1.6.2.11",
+      "section_id": "6.1.6.2.11",
+      "section_title": "Type: MonitorAuthDataForOpen",
+      "content": "Table 6.1.6.2.11-1: Definition of type MonitorAuthDataForOpen\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\nproseAppCodes\narray(ProseApplicationCode)\nC\n1..N\nWhen present, this IE shall contain a list of the ProSe Application Codes.\n(NOTE)\nproseAppPrefix\nProseApplicationPrefix\nC\n0..1\nWhen present, this IE shall contain the Prose Application Prefix.\n(NOTE)\nproseAppMasks\narray(ProseApplicationMask)\nM\n1..N\nThis IE shall contain a list of the ProSe Application Masks.\nttl\ninteger\nM\n1\nThis IE shall contain the TTL.\nIf the value sets to zero, it indicates to revoke the authorization for the monitoring in the PLMN.\nNOTE:\tEither attribute proseAppCodes or proseAppPrefix shall be present if the discovery type is open.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.1.6.2.11-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.555_6.1.6.2.12",
+      "section_id": "6.1.6.2.12",
+      "section_title": "Type: MonitorAuthDataForRestricted",
+      "content": "Table 6.1.6.2.12-1: Definition of type MonitorAuthDataForRestricted\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\nproseRestrictedCode\nProseRestrictedCode\nM\n1\nThis IE shall contain the ProSe Restricted Code.\naddProseRestrictedCodes\narray(ProseRestrictedCode)\nC\n1..N\nThis IE shall be present when multiple ProSe Restricted Codes are discovered.\nWhen present, this IE shall contain a list of additional ProSe Restricted Codes.\n(NOTE)\nEnRestrictedDiscovery\nproseRestrictedPrefix\nProseRestrictedPrefix\nC\n0..1\nWhen present, this IE shall contain the ProSe Restricted Code Prefix.\n(NOTE)\nEnRestrictedDiscovery\nvalidityTime\nDateTime\nM\n1\nThis IE shall contain validity timer up to which the ProSe Application Code is going to expire.\nNOTE:\tWhen the proseRestrictedPrefix IE is present, the proseRestrictedCode IE shall be ignored and the addProseRestrictedCodes IE shall be absent.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.1.6.2.12-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.555_6.1.6.2.13",
+      "section_id": "6.1.6.2.13",
+      "section_title": "Type: MonitorUpdateData",
+      "content": "Table 6.1.6.2.13-1: Definition of type MonitorUpdateData\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\ndiscType\nDiscoveryType\nM\n1\nThis IE shall contain the discovery type for ProSe Service.\nopenUpdateData\nMonitorUpdateDataForOpen\nC\n0..1\nThis IE shall contain the Monitor Update Data for open discovery when present.\nIf the value of discType is \"OPEN\", this IE shall be present.\nrestrictedUpdateData\nMonitorUpdateDataForRestricted\nC\n0..1\nThis IE shall contain the Monitor Update Data for restricted discovery when present.\nIf the value of discType is \"RESTRICTED\", this IE shall be present.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.1.6.2.13-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.555_6.1.6.2.14",
+      "section_id": "6.1.6.2.14",
+      "section_title": "Type: DiscoveryAuthReqData",
+      "content": "Table 6.1.6.2.14-1: Definition of type DiscoveryAuthReqData\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\ndiscType\nDiscoveryType\nM\n1\nThis IE shall contain the discovery type for ProSe Service.\nOnly value \"RESTRICTED\" is allowed.\nrestrictedDiscData\nDiscDataForRestricted\nC\n0..1\nThis IE shall contain the input data of authorisation for restricted discovery when present.\nIf the value of discType is \"RESTRICTED\", this IE shall be present.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.1.6.2.14-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.555_6.1.6.2.15",
+      "section_id": "6.1.6.2.15",
+      "section_title": "Type: DiscoveryAuthRespData",
+      "content": "Table 6.1.6.2.15-1: Definition of type DiscoveryAuthRespData\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\nauthDataRestricted\nAuthDataForRestricted\nC\n0..1\nThis IE shall contain the authorized data for restricted discovery when present.\nIf the discovery type in request is \"RESTRICTED\", this IE shall be present.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.1.6.2.15-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.555_6.1.6.2.16",
+      "section_id": "6.1.6.2.16",
+      "section_title": "Type: DiscDataForRestricted",
+      "content": "Table 6.1.6.2.16-1: Definition of type DiscDataForRestricted\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\nrpauid\nRpauid\nM\n1\nThis IE shall contain the RPAUID.\ntargetPduid\nPduid\nM\n1\nThis IE shall contain the Target PDUID.\nappId\nApplicationId\nM\n1\nThis IE shall contain the Application ID\ntargetRpauid\nRpauid\nM\n1\nThis IE shall contain the Target RPAUID.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.1.6.2.16-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.555_6.1.6.2.17",
+      "section_id": "6.1.6.2.17",
+      "section_title": "Type: AuthDataForRestricted",
+      "content": "Table 6.1.6.2.17-1: Definition of type AuthDataForRestricted\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\nproseQueryCodes\narray(ProseQueryCode)\nM\n1..N\nThis IE shall contain a list of the authorised ProSe Restricted Code.\nproseRespCode\nProseResponseCode\nM\n1\nThis IE shall contain the authorised ProSe Respond Code.\nvalidityTime\nDateTime\nM\n1\nThis IE shall contain validity timer up to which the ProSe Application Code is going to expire.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.1.6.2.17-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.555_6.1.6.2.18",
+      "section_id": "6.1.6.2.18",
+      "section_title": "Type: MatchReportReqData",
+      "content": "Table 6.1.6.2.18-1: Definition of type MatchReportReqData\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\ndiscType\nDiscoveryType\nM\n1\nThis IE shall contain the discovery type for ProSe Service.\nOnly value \"OPEN\" is allowed.\nproseAppCodes\narray(ProseApplicationCode)\nC\n1..N\nThis IE shall contain a list of the ProSe Application Codes when present.\nIf the value of DiscoveryType is \"OPEN\", this IE shall be present.\nmoniteredPlmnId\nPlmnId\nC\n0..1\nThis IE shall contain the Monitored PLMN ID when present.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.1.6.2.18-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.555_6.1.6.2.19",
+      "section_id": "6.1.6.2.19",
+      "section_title": "Type: MatchReportRespData",
+      "content": "Table 6.1.6.2.19-1: Definition of type MatchReportRespData\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\nproseAppIdNames\narray(ProseApplicationIdName)\nC\n1..N\nThis IE shall contain a list of ProSe Application ID names when present.\nIf the discovery type in the request is \"OPEN\", this IE shall be present.\nvalidityTime\nDateTime\nC\n0..1\nThis IE shall contain validity timer up to which the ProSe Application Code is going to expire when present.\nIf the discovery type in the request is \"OPEN\", this IE shall be present.\nmetaData\nMetaData\nO\n0..1\nThis IE shall contain the metadata when present.\nmetaDataIndexMasks\narray(MetaDataIndexMask)\nO\n1..N\nThis IE shall contain a list of the Meta Data Index Masks when present.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.1.6.2.19-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.555_6.1.6.2.20",
+      "section_id": "6.1.6.2.20",
+      "section_title": "Type: MonitorUpdateResult",
+      "content": "Table 6.1.6.2.20-1: Definition of type MonitorUpdateResult\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\ndiscType\nDiscoveryType\nM\n1\nThis IE shall contain the discovery type for ProSe Service.\nOnly value \"RESTRICTED\" is allowed.\nproseRestrictedCode\nProseRestrictedCode\nM\n1\nThis IE shall contain the ProSe Restricted Code.\nappId\nApplicationId\nM\n1\nThis IE shall contain the Application ID\nbannedRpauid\nRpauid\nM\n1\nThis IE shall contain the Banned RPAUID.\nbannedPduid\nPduid\nM\n1\nThis IE shall contain the Banned PDUID.\nrevocationResult\nRevocationResult\nM\n1\nThis IE shall contain the monitoring revocation results.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.1.6.2.20-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.555_6.1.6.2.21",
+      "section_id": "6.1.6.2.21",
+      "section_title": "Type: MatchInformation",
+      "content": "Table 6.1.6.2.21-1: Definition of type MatchInformation\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\ndiscType\nDiscoveryType\nM\n1\nThis IE shall contain the discovery type for ProSe Service.\nopenMatchInfoForOpen\nMatchInfoForOpen\nC\n0..1\nThis IE shall contain the match report information for open discovery type when present.\nIf the value of discType is \"OPEN\", this IE shall be present.\nrestrictedMatchInfo\nMatchInfoForRestricted\nC\n0..1\nThis IE shall contain the match report information for restricted discovery when present.\nIf the value of discType is \"RESTRICTED\", this IE shall be present.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.1.6.2.21-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.555_6.1.6.2.22",
+      "section_id": "6.1.6.2.22",
+      "section_title": "Type: MatchInfoForOpen",
+      "content": "Table 6.1.6.2.22-1: Definition of type MatchInfoForOpen\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\nsupi\nSupi\nM\n1\nThis IE shall contain the SUPI of UE.\nappId\narray(ApplicationId)\nM\n1\nThis IE shall contain a list of the Application IDs.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.1.6.2.22-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.555_6.1.6.2.23",
+      "section_id": "6.1.6.2.23",
+      "section_title": "Type: MatchInfoForRestricted",
+      "content": "Table 6.1.6.2.23-1: Definition of type MatchInfoForRestricted\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\nsupi\nSupi\nM\n1\nThis IE shall contain the SUPI of UE.\nrpauid\nRpauid\nM\n1\nThis IE shall contain the\nRPAUID.\ntargetRpauid\nRpauid\nM\n1\nThis IE shall contain the Target RPAUID.\nproseRestrictedCode\nProseRestrictedCode\nM\n1\nThis IE shall contain the ProSe Restricted Code.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.1.6.2.23-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.555_6.1.6.2.24",
+      "section_id": "6.1.6.2.24",
+      "section_title": "Type: RestrictedCodeSuffixPool",
+      "content": "Table 6.1.6.2.24-1: Definition of type RestrictedCodeSuffixPool\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\ncodeSuffixList\narray(RestrictedCodeSuffix)\nC\n1..N\nThis IE shall contain a list of the Restricted Code Suffixes\ncodeSuffixRangeList\narray(RestrictedCodeSuffixRange)\nC\n1..N\nThis IE shall contain a list of ranges of the Restricted Code Suffix.\nNOTE:\tAt least one of attributes codeSuffixList and codeSuffixRangeList shall be present.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.1.6.2.24-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.555_6.1.6.2.25",
+      "section_id": "6.1.6.2.25",
+      "section_title": "Type: RestrictedCodeSuffixRange",
+      "content": "Table 6.1.6.2.25-1: Definition of type RestrictedCodeSuffixRange\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\nbeginningSuffix\nRestrictedCodeSuffix\nM\n1\nThis IE shall contain the lowest ProSe Restricted Code Suffix in a consecutive sequence of ProSe Restricted Code suffixes.\nendingSuffix\nRestrictedCodeSuffix\nM\n1\nThis IE shall contain the highest ProSe Restricted Code Suffix in a consecutive sequence of ProSe Restricted Code suffixes.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.1.6.2.25-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.555_6.1.6.2.26",
+      "section_id": "6.1.6.2.26",
+      "section_title": "Type: ProseApplicationCodeSuffixPool",
+      "content": "Table 6.1.6.2.26-1: Definition of type ProseApplicationCodeSuffixPool\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\ncodeSuffix\nProseAppCodeSuffix\nC\n0..1\nThis IE shall contain the ProSe Application Code Suffix.\ncodeSuffixRange\nProseAppCodeSuffixRange\nC\n0..1\nThis IE shall contain the range of the ProSe Application Code Suffix.\nNOTE:\tAt least one of attributes codeSuffix and codeSuffixRange shall be present.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.1.6.2.26-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.555_6.1.6.2.27",
+      "section_id": "6.1.6.2.27",
+      "section_title": "Type: ProseAppCodeSuffixRange",
+      "content": "Table 6.1.6.2.27-1: Definition of type ProseAppCodeSuffixRange\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\nbeginningSuffix\nProseAppCodeSuffix\nM\n1\nThis IE shall contain the lowest ProSe Restricted Code Suffix in a consecutive sequence of ProSe Restricted Code suffixes.\nendingSuffix\nProseAppCodeSuffix\nM\n1\nThis IE shall contain the highest ProSe Restricted Code Suffix in a consecutive sequence of ProSe Restricted Code suffixes.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.1.6.2.27-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.555_6.1.6.2.28",
+      "section_id": "6.1.6.2.28",
+      "section_title": "Type: MonitorUpdateDataForOpen",
+      "content": "Table 6.1.6.2.28-1: Definition of type MonitorUpdateDataForOpen\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\nproseAppIdName\nProseApplicationIdName\nM\n1\nThis IE shall contain the ProSe Application ID Name.\nttl\ninteger\nM\n1\nThis IE shall contain the TTL.\nIf it sets to zero, it indicates to revoke the previously authorized monitoring.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.1.6.2.28-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.555_6.1.6.2.29",
+      "section_id": "6.1.6.2.29",
+      "section_title": "Type: MonitorUpdateDataForRestricted",
+      "content": "Table 6.1.6.2.29-1: Definition of type MonitorUpdateDataForRestricted\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\nproseRestrictedCode\nProseRestrictedCode\nM\n1\nThis IE shall contain the ProSe Restricted Code.\nappId\nApplicationId\nM\n1\nThis IE shall contain the Application ID\nbannedRpauid\nRpauid\nM\n1\nThis IE shall contain the Banned RPAUID.\nbannedPduid\nPduid\nM\n1\nThis IE shall contain the Banned PDUID.\nmonitorUpdateResultCallbackRef\nUri\nO\n0..1\nA URI provided by 5G DDNMF to receive (implicitly subscribed) notifications on the monitoring revocation results.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.1.6.2.29-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.555_6.1.6.3.1",
+      "section_id": "6.1.6.3.1",
+      "section_title": "Introduction",
+      "content": "This clause defines simple data types and enumerations that can be referenced from data structures defined in the previous clauses.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.555_6.1.6.3.2",
+      "section_id": "6.1.6.3.2",
+      "section_title": "Simple data types",
+      "content": "The simple data types defined in table 6.1.6.3.2-1 shall be supported.\nTable 6.1.6.3.2-1: Simple data types\nType Name\nType Definition\nDescription\nApplicability\nDiscoveryEntryId\nstring\nDiscovery Entry ID\nProseApplicationId\nstring\nProSe Application ID, the format of ProSe Application ID is defined in 3GPP TS 23.003 [17]\nProseApplicationCode\nstring\nProSe Application Code, the format of ProSe Application Code is defined in 3GPP TS 23.003 [17]\nRpauid\nstring\nRPAUID\nApplicationId\nstring\nApplication ID\nProseRestrictedCode\nstring\nProSe Restricted Code, the format of ProSe Restricted Code is defined in 3GPP TS 23.003 [17]\nProseRestrictedPrefix\nstring\nProSe Restricted Code Prefix, the format of ProSe Restricted Code Prefix is defined in 3GPP TS 23.003 [17]\nMetaData\nstring\nmetadata\nProseApplicationIdName\nstring\nProSe Application ID name, the format of ProSe Application ID name is defined in 3GPP TS 23.003 [17]\nPduid\nstring\nPDUID\nProseApplicationPrefix\nstring\nProse Application Code Prefix, the format of Prose Application Code Prefix is defined in 3GPP TS 23.003 [17]\nProseApplicationMask\nstring\nProse Application Mask\nProseQueryCode\nstring\nProSe Query Code, the format of ProSe Query Code is defined in 3GPP TS 23.003 [17]\nProseResponseCode\nstring\nProSe Response Code, the format of ProSe Response Code is defined in 3GPP TS 23.003 [17]\nMetaDataIndexMask\nstring\nMeta Data Index Mask\nRestrictedCodeSuffix\nstring\nProSe Restricted Code Suffix, the format of ProSe Restricted Code Suffix is defined in 3GPP TS 23.003 [17]\nProseAppCodeSuffix\nstring\nProSe Application Code Suffix, the format of ProSe Restricted Code Suffix is defined in 3GPP TS 23.003 [17]",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.1.6.3.2-1",
+        "ts_23.003"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.555_6.1.6.3.3",
+      "section_id": "6.1.6.3.3",
+      "section_title": "Enumeration: DiscoveryType",
+      "content": "The enumeration DiscoveryType represents Discovery Type for ProSe Service. It shall comply with the provisions defined in table 6.1.6.3.3-1.\nTable 6.1.6.3.3-1: Enumeration DiscoveryType\nEnumeration value\nDescription\nApplicability\n\"OPEN\"\nDiscovery type is \"open\".\n\"RESTRICTED\"\nDiscovery type is \"restricted\".",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.1.6.3.3-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.555_6.1.6.3.5",
+      "section_id": "6.1.6.3.5",
+      "section_title": "Enumeration: RevocationResult",
+      "content": "The enumeration RevocationResult represents the monitoring Revocation Result for ProSe Service. It shall comply with the provisions defined in table 6.1.6.3.5-1.\nTable 6.1.6.3.5-1: Enumeration RevocationResult\nEnumeration value\nDescription\nApplicability\n\"SUCCESSFUL\"\nThe Monitoring Revocation is successful.\n\"FAILED\"\nThe Monitoring Revocation is failed.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.1.6.3.5-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.555_6.1.6.4",
+      "section_id": "6.1.6.4",
+      "section_title": "Data types describing alternative data types or combinations of data types",
+      "content": "None.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.555_6.1.6.5",
+      "section_id": "6.1.6.5",
+      "section_title": "Binary data",
+      "content": "None.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.555_6.1.7.1",
+      "section_id": "6.1.7.1",
+      "section_title": "General",
+      "content": "For the N5g-ddnmf_Discovery API, HTTP error responses shall be supported as specified in clause 4.8 of 3GPP TS 29.501 [6]. Protocol errors and application errors specified in table 5.2.7.2-1 of 3GPP TS 29.500 [5] shall be supported for an HTTP method if the corresponding HTTP status codes are specified as mandatory for that HTTP method in table 5.2.7.1-1 of 3GPP TS 29.500 [5].\nIn addition, the requirements in the following clauses are applicable for the N5g-ddnmf_Discovery API.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.501_clause_4.8",
+        "ts_29.500_table_5.2.7.2-1",
+        "ts_29.500_table_5.2.7.1-1",
+        "ts_29.501",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.555_6.1.7.2",
+      "section_id": "6.1.7.2",
+      "section_title": "Protocol Errors",
+      "content": "Protocol errors handling shall be supported as specified in clause 5.2.7 of 3GPP TS 29.500 [5].",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_5.2.7",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.555_6.1.7.3",
+      "section_id": "6.1.7.3",
+      "section_title": "Application Errors",
+      "content": "The application errors defined for the N5g-ddnmf_Discovery service are listed in Table 6.1.7.3-1.\nTable 6.1.7.3-1: Application errors\nApplication Error\nHTTP status code\nDescription\nPROSE_SERVICE_UNAUTHORIZED\n403 Forbidden\nIt is used when the requested ProSe service is not authorized for this UE Identity.\nANNOUNCING_UNAUTHORIZED_IN_PLMN\n403 Forbidden\nIt is used when the ProSe Application Code received is not authorized to be announced in the indicated monitored/announcing PLMN for the specified PC5 radio technology\nINVALID_APPLICATION_CODE\n403 Forbidden\nIt is used when none of the requested ProSe Application Code(s) is valid\nCONTEXT_NOT_FOUND\n404 Not Found\nIt is used when no corresponding context exists.\nAPPLICATION_NOT_FOUND\n404 Not Found\nIt is used when the requested ProSe Application doesn't exist",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.1.7.3-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.555_6.1.8",
+      "section_id": "6.1.8",
+      "section_title": "Feature negotiation",
+      "content": "The optional features in table 6.1.8-1 are defined for the N5g-ddnmf_Discovery API. They shall be negotiated using the extensibility mechanism defined in clause 6.6 of 3GPP TS 29.500 [5].\nTable 6.1.8-1: Supported Features\nFeature number\nFeature Name\nDescription\n1\nPatchReport\nIf some of the modifications included in the PATCH request are not successfully implemented, the 5G DDNMF reports the result of PATCH request execution to the consumer. See clause 5.2.7.2 of 3GPP TS 29.500 [5].\n2\nEnRestrictedDiscovery\nThe 5G-DDNMF and the NF consumer supporting this feature shall support multiple ProSe Restricted Codes or ProSe Restricted Prefix in MonitorAuthorize service operation outpout for \"restricted\" discovery.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_6.6",
+        "ts_29.500_clause_5.2.7.2",
+        "table_6.1.8-1",
+        "ts_29.500_table_6.1.8-1",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.555_6.1.9",
+      "section_id": "6.1.9",
+      "section_title": "Security",
+      "content": "As indicated in 3GPP TS 33.501 [11] and 3GPP TS 29.500 [5], the access to the N5g-ddnmf_Discovery API may be authorized by means of the OAuth2 protocol (see IETF RFC 6749 [12]), based on local configuration, using the \"Client Credentials\" authorization grant, where the NRF (see 3GPP TS 29.510 [13]) plays the role of the authorization server.\nIf OAuth2 is used, an NF Service Consumer, prior to consuming services offered by the N5g-ddnmf_Discovery API, shall obtain a \"token\" from the authorization server, by invoking the Access Token Request service, as described in 3GPP TS 29.510 [13], clause 5.4.2.2.\nNOTE:\tWhen multiple NRFs are deployed in a network, the NRF used as authorization server is the same NRF that the NF Service Consumer used for discovering the N5g-ddnmf_Discovery service.\nThe N5g-ddnmf_Discovery API defines the following scopes for OAuth2 authorization as specified in 3GPP TS 33.501 [11]:\nTable 6.1.9-1: OAuth2 scopes defined in N5g-ddnmf_Discovery API\nScope\nDescription\n\"n5g-ddnmf-disc\"\nAccess to the Npanf_ProseKey API.\n\"n5g-ddnmf-disc:announce-authorize:modify\"\nAccess to modify the authorization to announce for a UE in the PLMN.\n\"n5g-ddnmf-disc:monitor-authorize:modify\"\nAccess to modify the authorization for monitoring for an UE in the PLMN\n\"n5g-ddnmf-disc:discovery-authorize:modify\"\nAccess to modify the authorization from the 5G DDNMF for a discoverer UE in the PLMN to operate Model B restricted discovery\n\"n5g-ddnmf-disc:match-report:invoke\"\nAccess to invoke the information about the indicated discovery code",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.510_clause_5.4.2.2",
+        "ts_33.501_table_6.1.9-1",
+        "ts_33.501",
+        "ts_29.500",
+        "ts_29.510"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.555_6.1.10",
+      "section_id": "6.1.10",
+      "section_title": "HTTP redirection",
+      "content": "An HTTP request may be redirected to a different 5G DDNMF service instance, within the same 5G DDNMF or a different 5G DDNMF of an 5G DDNMF set, e.g. when an 5G DDNMF service instance is part of an 5G DDNMF (service) set or when using indirect communications (see 3GPP TS 29.500 [5]).\nAn SCP that reselects a different 5G DDNMF producer instance will return the NF Instance ID of the new 5G DDNMF producer instance in the 3gpp-Sbi-Producer-Id header, as specified in clause 6.10.3.4 of 3GPP TS 29.500 [5].\nIf an 5G DDNMF within an 5G DDNMF set redirects a service request to a different 5G DDNMF of the set using an 307 Temporary Redirect or 308 Permanent Redirect status code, the identity of the new 5G DDNMF towards which the service request is redirected shall be indicated in the 3gpp-Sbi-Target-Nf-Id header of the 307 Temporary Redirect or 308 Permanent Redirect response as specified in clause 6.10.9.1 of 3GPP TS 29.500 [5].\nAnnex A (normative):OpenAPI specification\nA.1\tGeneral\nThis Annex specifies the formal definition of the API(s) defined in the present specification. It consists of OpenAPI 3.0.0 specifications in YAML format.\nThis Annex takes precedence when being discrepant to other parts of the specification with respect to the encoding of information elements and methods within the API(s).\nNOTE 1:\tThe semantics and procedures, as well as conditions, e.g. for the applicability and allowed combinations of attributes or values, not expressed in the OpenAPI definitions but defined in other parts of the specification also apply.\nInformative copies of the OpenAPI specification files contained in this 3GPP Technical Specification are available on a Git-based repository that uses the GitLab software version control system (see clause 5.3.1 of 3GPP TS 29.501 [6] and clause 5B of 3GPP TR 21.900 [14]).\nA.2\tN5g-ddnmf_Discovery API\nopenapi: 3.0.0\ninfo:\ntitle: N5g-ddnmf_Discovery API\nversion: '1.1.0'\ndescription: |\nN5g-ddnmf_Discovery Service.\n© 2024, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).\nAll rights reserved.\nexternalDocs:\ndescription: >\n3GPP TS 29.555 V18.5.0; 5G System; 5G Direct Discovery Name Management Services; Stage 3.\nurl: https://www.3gpp.org/ftp/Specs/archive/29_series/29.555/\nservers:\n- url: '{apiRoot}/n5g-ddnmf-disc/v1'\nvariables:\napiRoot:\ndefault: https://example.com\ndescription: apiRoot as defined in clause 4.4 of 3GPP TS 29.501\nsecurity:\n- {}\n- oAuth2ClientCredentials:\n- n5g-ddnmf-disc\npaths:\n/{ueId}/announce-authorize/{discEntryId}:\nput:\nsummary: Obtain the authorization to announce for a UE\noperationId: ObtainAnnounceAuth\ntags:\n- Obtain the authorization to announce for a UE\nsecurity:\n- {}\n- oAuth2ClientCredentials:\n- n5g-ddnmf-disc\n- oAuth2ClientCredentials:\n- n5g-ddnmf-disc\n- n5g-ddnmf-disc:announce-authorize:modify\nparameters:\n- name: ueId\nin: path\ndescription: Identifier of the UE\nrequired: true\nschema:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/VarUeId'\n- name: discEntryId\nin: path\ndescription: Discovery Entry Id\nrequired: true\nschema:\n$ref: '#/components/schemas/DiscoveryEntryId'\nrequestBody:\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/AnnounceAuthData'\nrequired: true\nresponses:\n'201':\ndescription: Successful creation of the resource\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/AnnounceAuthData'\nheaders:\nLocation:\ndescription: >\nContains the URI of the newly created resource, according to the structure:\n{apiRoot}/n5g-ddnmf-disc>/<apiVersion>/{ueId}/announce-authorize/{discEntryId}\nrequired: true\nschema:\ntype: string\n'204':\ndescription: Successful update of the resource.\n'307':\n$ref: 'TS29571_CommonData.yaml#/components/responses/307'\n'308':\n$ref: 'TS29571_CommonData.yaml#/components/responses/308'\n'400':\n$ref: 'TS29571_CommonData.yaml#/components/responses/400'\n'401':\n$ref: 'TS29571_CommonData.yaml#/components/responses/401'\n'403':\n$ref: 'TS29571_CommonData.yaml#/components/responses/403'\n'404':\n$ref: 'TS29571_CommonData.yaml#/components/responses/404'\n'411':\n$ref: 'TS29571_CommonData.yaml#/components/responses/411'\n'413':\n$ref: 'TS29571_CommonData.yaml#/components/responses/413'\n'415':\n$ref: 'TS29571_CommonData.yaml#/components/responses/415'\n'429':\n$ref: 'TS29571_CommonData.yaml#/components/responses/429'\n'500':\n$ref: 'TS29571_CommonData.yaml#/components/responses/500'\n'502':\n$ref: 'TS29571_CommonData.yaml#/components/responses/502'\n'503':\n$ref: 'TS29571_CommonData.yaml#/components/responses/503'\ndefault:\ndescription: Unexpected error\npatch:\nsummary: Update the authorization for announcing for a UE\noperationId: UpdateAnnounceAuth\ntags:\n- Update the authorization for announcing for a UE\nsecurity:\n- {}\n- oAuth2ClientCredentials:\n- n5g-ddnmf-disc\n- oAuth2ClientCredentials:\n- n5g-ddnmf-disc\n- n5g-ddnmf-disc:announce-authorize:modify\nparameters:\n- name: ueId\nin: path\ndescription: Identifier of the UE\nrequired: true\nschema:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/VarUeId'\n- name: discEntryId\nin: path\ndescription: Discovery Entry Id\nrequired: true\nschema:\n$ref: '#/components/schemas/DiscoveryEntryId'\nrequestBody:\ncontent:\napplication/merge-patch+json:\nschema:\n$ref: '#/components/schemas/AnnounceUpdateData'\nrequired: true\nresponses:\n'200':\ndescription: Expected response to a valid request\ncontent:\napplication/json:\nschema:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/PatchResult'\n'204':\ndescription: Expected response to a valid request\n'307':\n$ref: 'TS29571_CommonData.yaml#/components/responses/307'\n'308':\n$ref: 'TS29571_CommonData.yaml#/components/responses/308'\n'400':\n$ref: 'TS29571_CommonData.yaml#/components/responses/400'\n'401':\n$ref: 'TS29571_CommonData.yaml#/components/responses/401'\n'403':\n$ref: 'TS29571_CommonData.yaml#/components/responses/403'\n'404':\n$ref: 'TS29571_CommonData.yaml#/components/responses/404'\n'411':\n$ref: 'TS29571_CommonData.yaml#/components/responses/411'\n'413':\n$ref: 'TS29571_CommonData.yaml#/components/responses/413'\n'415':\n$ref: 'TS29571_CommonData.yaml#/components/responses/415'\n'422':\ndescription: Unprocessable Request\ncontent:\napplication/problem+json:\nschema:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/ProblemDetails'\n'429':\n$ref: 'TS29571_CommonData.yaml#/components/responses/429'\n'500':\n$ref: 'TS29571_CommonData.yaml#/components/responses/500'\n'502':\n$ref: 'TS29571_CommonData.yaml#/components/responses/502'\n'503':\n$ref: 'TS29571_CommonData.yaml#/components/responses/503'\ndefault:\ndescription: Unexpected error\n/{ueId}/monitor-authorize/{discEntryId}:\nput:\nsummary: Obtain the authorization to monitor for a UE\noperationId: ObtainMonitorAuth\ntags:\n- Obtain the authorization to monitor for a UE\nsecurity:\n- {}\n- oAuth2ClientCredentials:\n- n5g-ddnmf-disc\n- oAuth2ClientCredentials:\n- n5g-ddnmf-disc\n- n5g-ddnmf-disc:monitor-authorize:modify\nparameters:\n- name: ueId\nin: path\ndescription: Identifier of the UE\nrequired: true\nschema:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/VarUeId'\n- name: discEntryId\nin: path\ndescription: Discovery Entry Id\nrequired: true\nschema:\n$ref: '#/components/schemas/DiscoveryEntryId'\nrequestBody:\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/MonitorAuthReqData'\nrequired: true\nresponses:\n'201':\ndescription: Created\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/MonitorAuthRespData'\nheaders:\nLocation:\ndescription: >\nContains the URI of the newly created resource, according to the structure:\n{apiRoot}/n5g-ddnmf-disc>/<apiVersion>/{ueId}/monitor-authorize/{discEntryId}\nrequired: true\nschema:\ntype: string\n'204':\ndescription: Successful update of the resource.\n'307':\n$ref: 'TS29571_CommonData.yaml#/components/responses/307'\n'308':\n$ref: 'TS29571_CommonData.yaml#/components/responses/308'\n'400':\n$ref: 'TS29571_CommonData.yaml#/components/responses/400'\n'401':\n$ref: 'TS29571_CommonData.yaml#/components/responses/401'\n'403':\n$ref: 'TS29571_CommonData.yaml#/components/responses/403'\n'404':\n$ref: 'TS29571_CommonData.yaml#/components/responses/404'\n'411':\n$ref: 'TS29571_CommonData.yaml#/components/responses/411'\n'413':\n$ref: 'TS29571_CommonData.yaml#/components/responses/413'\n'415':\n$ref: 'TS29571_CommonData.yaml#/components/responses/415'\n'429':\n$ref: 'TS29571_CommonData.yaml#/components/responses/429'\n'500':\n$ref: 'TS29571_CommonData.yaml#/components/responses/500'\n'502':\n$ref: 'TS29571_CommonData.yaml#/components/responses/502'\n'503':\n$ref: 'TS29571_CommonData.yaml#/components/responses/503'\ndefault:\ndescription: Unexpected error\npatch:\nsummary: Update the authorization for monitoring for a UE\noperationId: UpdateMonitorAuth\ntags:\n- Update the authorization for monitoring for a UE\nsecurity:\n- {}\n- oAuth2ClientCredentials:\n- n5g-ddnmf-disc\n- oAuth2ClientCredentials:\n- n5g-ddnmf-disc\n- n5g-ddnmf-disc:monitor-authorize:modify\nparameters:\n- name: ueId\nin: path\ndescription: Identifier of the UE\nrequired: true\nschema:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/VarUeId'\n- name: discEntryId\nin: path\ndescription: Discovery Entry Id\nrequired: true\nschema:\n$ref: '#/components/schemas/DiscoveryEntryId'\nrequestBody:\ncontent:\napplication/merge-patch+json:\nschema:\n$ref: '#/components/schemas/MonitorUpdateData'\nrequired: true\nresponses:\n'200':\ndescription: Expected response to a valid request\ncontent:\napplication/json:\nschema:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/PatchResult'\n'204':\ndescription: Expected response to a valid request\n'307':\n$ref: 'TS29571_CommonData.yaml#/components/responses/307'\n'308':\n$ref: 'TS29571_CommonData.yaml#/components/responses/308'\n'400':\n$ref: 'TS29571_CommonData.yaml#/components/responses/400'\n'401':\n$ref: 'TS29571_CommonData.yaml#/components/responses/401'\n'403':\n$ref: 'TS29571_CommonData.yaml#/components/responses/403'\n'404':\n$ref: 'TS29571_CommonData.yaml#/components/responses/404'\n'411':\n$ref: 'TS29571_CommonData.yaml#/components/responses/411'\n'413':\n$ref: 'TS29571_CommonData.yaml#/components/responses/413'\n'415':\n$ref: 'TS29571_CommonData.yaml#/components/responses/415'\n'422':\ndescription: Unprocessable Request\ncontent:\napplication/problem+json:\nschema:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/ProblemDetails'\n'429':\n$ref: 'TS29571_CommonData.yaml#/components/responses/429'\n'500':\n$ref: 'TS29571_CommonData.yaml#/components/responses/500'\n'502':\n$ref: 'TS29571_CommonData.yaml#/components/responses/502'\n'503':\n$ref: 'TS29571_CommonData.yaml#/components/responses/503'\ndefault:\ndescription: Unexpected error\ncallbacks:\nonMonitorUpdateResult:\n'{$request.body#/monitorUpdateResultCallbackRef}':\npost:\nrequestBody:\nrequired: true\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/MonitorUpdateResult'\nresponses:\n'204':\ndescription: Successful Notification response\n'307':\n$ref: 'TS29571_CommonData.yaml#/components/responses/307'\n'308':\n$ref: 'TS29571_CommonData.yaml#/components/responses/308'\n'400':\n$ref: 'TS29571_CommonData.yaml#/components/responses/400'\n'401':\n$ref: 'TS29571_CommonData.yaml#/components/responses/401'\n'403':\n$ref: 'TS29571_CommonData.yaml#/components/responses/403'\n'404':\n$ref: 'TS29571_CommonData.yaml#/components/responses/404'\n'411':\n$ref: 'TS29571_CommonData.yaml#/components/responses/411'\n'413':\n$ref: 'TS29571_CommonData.yaml#/components/responses/413'\n'415':\n$ref: 'TS29571_CommonData.yaml#/components/responses/415'\n'429':\n$ref: 'TS29571_CommonData.yaml#/components/responses/429'\n'500':\n$ref: 'TS29571_CommonData.yaml#/components/responses/500'\n'502':\n$ref: 'TS29571_CommonData.yaml#/components/responses/502'\n'503':\n$ref: 'TS29571_CommonData.yaml#/components/responses/503'\ndefault:\ndescription: Unexpected error\nonMatchInformation:\n'{request.body#/matchInfoCallbackRef}':\npost:\nrequestBody:\nrequired: true\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/MatchInformation'\nresponses:\n'204':\ndescription: Successful Notification response\n'307':\n$ref: 'TS29571_CommonData.yaml#/components/responses/307'\n'308':\n$ref: 'TS29571_CommonData.yaml#/components/responses/308'\n'400':\n$ref: 'TS29571_CommonData.yaml#/components/responses/400'\n'401':\n$ref: 'TS29571_CommonData.yaml#/components/responses/401'\n'403':\n$ref: 'TS29571_CommonData.yaml#/components/responses/403'\n'404':\n$ref: 'TS29571_CommonData.yaml#/components/responses/404'\n'411':\n$ref: 'TS29571_CommonData.yaml#/components/responses/411'\n'413':\n$ref: 'TS29571_CommonData.yaml#/components/responses/413'\n'415':\n$ref: 'TS29571_CommonData.yaml#/components/responses/415'\n'429':\n$ref: 'TS29571_CommonData.yaml#/components/responses/429'\n'500':\n$ref: 'TS29571_CommonData.yaml#/components/responses/500'\n'502':\n$ref: 'TS29571_CommonData.yaml#/components/responses/502'\n'503':\n$ref: 'TS29571_CommonData.yaml#/components/responses/503'\ndefault:\ndescription: Unexpected error\n/{ueId}/discovery-authorize/{discEntryId}:\nput:\nsummary: >\nObtain the authorization from the 5G DDNMF for a discoverer UE in the PLMN to operate\nModel B restricted discovery\noperationId: ObtainDiscAuth\ntags:\n- Obtain the authorization for a discoverer UE\nsecurity:\n- {}\n- oAuth2ClientCredentials:\n- n5g-ddnmf-disc\n- oAuth2ClientCredentials:\n- n5g-ddnmf-disc\n- n5g-ddnmf-disc:discovery-authorize:modify\nparameters:\n- name: ueId\nin: path\ndescription: Identifier of the UE\nrequired: true\nschema:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/VarUeId'\n- name: discEntryId\nin: path\ndescription: Discovery Entry Id\nrequired: true\nschema:\n$ref: '#/components/schemas/DiscoveryEntryId'\nrequestBody:\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/DiscoveryAuthReqData'\nrequired: true\nresponses:\n'201':\ndescription: Created\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/DiscoveryAuthRespData'\nheaders:\nLocation:\ndescription: >\nContains the URI of the newly created resource, according to the structure:\n{apiRoot}/n5g-ddnmf-disc>/<apiVersion>/{ueId}/discovery-authorize/{discEntryId}\nrequired: true\nschema:\ntype: string\n'204':\ndescription: Successful update of the resource.\n'307':\n$ref: 'TS29571_CommonData.yaml#/components/responses/307'\n'308':\n$ref: 'TS29571_CommonData.yaml#/components/responses/308'\n'400':\n$ref: 'TS29571_CommonData.yaml#/components/responses/400'\n'401':\n$ref: 'TS29571_CommonData.yaml#/components/responses/401'\n'403':\n$ref: 'TS29571_CommonData.yaml#/components/responses/403'\n'404':\n$ref: 'TS29571_CommonData.yaml#/components/responses/404'\n'411':\n$ref: 'TS29571_CommonData.yaml#/components/responses/411'\n'413':\n$ref: 'TS29571_CommonData.yaml#/components/responses/413'\n'415':\n$ref: 'TS29571_CommonData.yaml#/components/responses/415'\n'429':\n$ref: 'TS29571_CommonData.yaml#/components/responses/429'\n'500':\n$ref: 'TS29571_CommonData.yaml#/components/responses/500'\n'502':\n$ref: 'TS29571_CommonData.yaml#/components/responses/502'\n'503':\n$ref: 'TS29571_CommonData.yaml#/components/responses/503'\ndefault:\ndescription: Unexpected error\ncallbacks:\nonMatchInformation:\n'{request.body#/matchInfoCallbackRef}':\npost:\nrequestBody:\nrequired: true\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/MatchInformation'\nresponses:\n'204':\ndescription: Successful Notification response\n'307':\n$ref: 'TS29571_CommonData.yaml#/components/responses/307'\n'308':\n$ref: 'TS29571_CommonData.yaml#/components/responses/308'\n'400':\n$ref: 'TS29571_CommonData.yaml#/components/responses/400'\n'401':\n$ref: 'TS29571_CommonData.yaml#/components/responses/401'\n'403':\n$ref: 'TS29571_CommonData.yaml#/components/responses/403'\n'404':\n$ref: 'TS29571_CommonData.yaml#/components/responses/404'\n'411':\n$ref: 'TS29571_CommonData.yaml#/components/responses/411'\n'413':\n$ref: 'TS29571_CommonData.yaml#/components/responses/413'\n'415':\n$ref: 'TS29571_CommonData.yaml#/components/responses/415'\n'429':\n$ref: 'TS29571_CommonData.yaml#/components/responses/429'\n'500':\n$ref: 'TS29571_CommonData.yaml#/components/responses/500'\n'502':\n$ref: 'TS29571_CommonData.yaml#/components/responses/502'\n'503':\n$ref: 'TS29571_CommonData.yaml#/components/responses/503'\ndefault:\ndescription: Unexpected error\n/{ueId}/match-report:\npost:\nsummary: Obtain the information about the indicated discovery code from the 5G DDNMF\noperationId: MatchReport\ntags:\n- Obtain the information about the indicated discovery code\nsecurity:\n- {}\n- oAuth2ClientCredentials:\n- n5g-ddnmf-disc\n- oAuth2ClientCredentials:\n- n5g-ddnmf-disc\n- n5g-ddnmf-disc:match-report:modify\nparameters:\n- name: ueId\nin: path\ndescription: Identifier of the UE\nrequired: true\nschema:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/VarUeId'\nrequestBody:\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/MatchReportReqData'\nresponses:\n'200':\ndescription: Expected response to a valid request\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/MatchReportRespData'\n'307':\n$ref: 'TS29571_CommonData.yaml#/components/responses/307'\n'308':\n$ref: 'TS29571_CommonData.yaml#/components/responses/308'\n'400':\n$ref: 'TS29571_CommonData.yaml#/components/responses/400'\n'401':\n$ref: 'TS29571_CommonData.yaml#/components/responses/401'\n'403':\n$ref: 'TS29571_CommonData.yaml#/components/responses/403'\n'404':\n$ref: 'TS29571_CommonData.yaml#/components/responses/404'\n'411':\n$ref: 'TS29571_CommonData.yaml#/components/responses/411'\n'413':\n$ref: 'TS29571_CommonData.yaml#/components/responses/413'\n'415':\n$ref: 'TS29571_CommonData.yaml#/components/responses/415'\n'429':\n$ref: 'TS29571_CommonData.yaml#/components/responses/429'\n'500':\n$ref: 'TS29571_CommonData.yaml#/components/responses/500'\n'502':\n$ref: 'TS29571_CommonData.yaml#/components/responses/502'\n'503':\n$ref: 'TS29571_CommonData.yaml#/components/responses/503'\ndefault:\ndescription: Unexpected error\ncomponents:\nsecuritySchemes:\noAuth2ClientCredentials:\ntype: oauth2\nflows:\nclientCredentials:\ntokenUrl: '{nrfApiRoot}/oauth2/token'\nscopes:\nn5g-ddnmf-disc: Access to the N5g-ddnmf_Discovery API\nn5g-ddnmf-disc:announce-authorize:modify: >\nAccess to modify the authorization to announce for a UE in the PLMN\nn5g-ddnmf-disc:monitor-authorize:modify: >\nAccess to modify the authorization for monitoring for an UE in the PLMN\nn5g-ddnmf-disc:discovery-authorize:modify: >\nAccess to modify the authorization from the 5G DDNMF for a discoverer UE in the\nPLMN to operate Model B restricted discovery\nn5g-ddnmf-disc:match-report:invoke: >\nAccess to invoke the information about the indicated discovery code\nschemas:\n# COMPLEX TYPES:\nAnnounceAuthData:\ntype: object\ndescription: Represents Data used to request the authorization to announce for a UE\nrequired:\n- discType\nproperties:\ndiscType:\n$ref: '#/components/schemas/DiscoveryType'\nopenDiscData:\n$ref: '#/components/schemas/AnnounceDiscDataForOpen'\nrestrictedDiscData:\n$ref: '#/components/schemas/AnnounceDiscDataForRestricted'\nAnnounceDiscDataForOpen:\ntype: object\ndescription: >\nRepresents Data for open discovery used to request the authorization to announce for a UE\nrequired:\n- proseAppId\n- validityTime\nproperties:\nproseAppId:\n$ref: '#/components/schemas/ProseApplicationId'\nvalidityTime:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/DateTime'\nproseAppCode:\n$ref: '#/components/schemas/ProseApplicationCode'\nproseAppCodePrefix:\n$ref: '#/components/schemas/ProseApplicationPrefix'\nproseAppCodeSuffixPool:\n$ref: '#/components/schemas/ProseApplicationCodeSuffixPool'\nmetaData:\n$ref: '#/components/schemas/MetaData'\nAnnounceDiscDataForRestricted:\ntype: object\ndescription: >\nRepresents Data for restricted discovery used to request the authorization to announce\nfor a UE\nrequired:\n- rpauid\n- appId\n- validityTime\nproperties:\nrpauid:\n$ref: '#/components/schemas/Rpauid'\nappId:\n$ref: '#/components/schemas/ApplicationId'\nvalidityTime:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/DateTime'\nproseRestrictedCode:\n$ref: '#/components/schemas/ProseRestrictedCode'\nproseRestrictedPrefix:\n$ref: '#/components/schemas/ProseRestrictedPrefix'\ncodeSuffixPool:\n$ref: '#/components/schemas/RestrictedCodeSuffixPool'\nAnnounceUpdateData:\ntype: object\ndescription: Represents Announce Authorize Data to update\nrequired:\n- discType\n- validityTime\nproperties:\ndiscType:\n$ref: '#/components/schemas/DiscoveryType'\nvalidityTime:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/DateTime'\nproseAppCode:\n$ref: '#/components/schemas/ProseApplicationCode'\nMonitorAuthReqData:\ntype: object\ndescription: Represents Data used to request the authorization to monitor for a UE\nrequired:\n- discType\nproperties:\ndiscType:\n$ref: '#/components/schemas/DiscoveryType'\nopenDiscData:\n$ref: '#/components/schemas/MonitorDiscDataForOpen'\nrestrictedDiscData:\n$ref: '#/components/schemas/MonitorDiscDataForRestricted'\nMonitorAuthRespData:\ntype: object\ndescription: Represents the obtained Monitor Authorize Data for a UE\nproperties:\nauthDataOpen:\n$ref: '#/components/schemas/MonitorAuthDataForOpen'\nauthDataRestricted:\n$ref: '#/components/schemas/MonitorAuthDataForRestricted'\nMonitorDiscDataForOpen:\ntype: object\ndescription: >\nRepresents Data for open discovery used to request the authorization to monitor for a UE\nrequired:\n- proseAppIdNames\nproperties:\nproseAppIdNames:\ntype: array\nitems:\n$ref: '#/components/schemas/ProseApplicationIdName'\nminItems: 1\nMonitorDiscDataForRestricted:\ntype: object\ndescription: >\nRepresents Data for restricted discovery used to request the authorization to monitor for\na UE\nrequired:\n- rpauid\n- targetPduid\n- appId\n- targetRpauid\nproperties:\nrpauid:\n$ref: '#/components/schemas/Rpauid'\ntargetPduid:\n$ref: '#/components/schemas/Pduid'\nappId:\n$ref: '#/components/schemas/ApplicationId'\ntargetRpauid:\n$ref: '#/components/schemas/Rpauid'\nMonitorAuthDataForOpen:\ntype: object\ndescription: Represents the obtained Announce Authorize Data for open discovery for a UE\nrequired:\n- proseAppMasks\n- ttl\nproperties:\nproseAppCodes:\ntype: array\nitems:\n$ref: '#/components/schemas/ProseApplicationCode'\nminItems: 1\nproseAppPrefix:\n$ref: '#/components/schemas/ProseApplicationPrefix'\nproseAppMasks:\ntype: array\nitems:\n$ref: '#/components/schemas/ProseApplicationMask'\nminItems: 1\nttl:\ntype: integer\nMonitorAuthDataForRestricted:\ntype: object\ndescription: Represents the obtained Announce Authorize Data for restricted discovery for a UE\nrequired:\n- proseRestrictedCode\n- validityTime\nproperties:\nproseRestrictedCode:\n$ref: '#/components/schemas/ProseRestrictedCode'\naddProseRestrictedCodes:\ntype: array\nitems:\n$ref: '#/components/schemas/ProseRestrictedCode'\nminItems: 1\nproseRestrictedPrefix:\n$ref: '#/components/schemas/ProseRestrictedPrefix'\nvalidityTime:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/DateTime'\nMonitorUpdateData:\ntype: object\ndescription: Represents Monitor Authorize Data to update.\nrequired:\n- discType\nproperties:\ndiscType:\n$ref: '#/components/schemas/DiscoveryType'\nopenUpdateData:\n$ref: '#/components/schemas/MonitorUpdateDataForOpen'\nrestrictedUpdateData:\n$ref: '#/components/schemas/MonitorUpdateDataForRestricted'\nDiscoveryAuthReqData:\ntype: object\ndescription: Represents Data used to request the authorization for a discoverer UE.\nrequired:\n- discType\nproperties:\ndiscType:\n$ref: '#/components/schemas/DiscoveryType'\nrestrictedDiscData:\n$ref: '#/components/schemas/DiscDataForRestricted'\nDiscoveryAuthRespData:\ntype: object\ndescription: Represents the obtained authorization Data for a discoverer UE\nproperties:\nauthDataRestricted:\n$ref: '#/components/schemas/AuthDataForRestricted'\nDiscDataForRestricted:\ntype: object\ndescription: >\nRepresents Data for restricted discovery used to request the authorization for a\ndiscoverer UE\nrequired:\n- rpauid\n- targetPduid\n- appId\n- targetRpauid\nproperties:\nrpauid:\n$ref: '#/components/schemas/Rpauid'\ntargetPduid:\n$ref: '#/components/schemas/Pduid'\nappId:\n$ref: '#/components/schemas/ApplicationId'\ntargetRpauid:\n$ref: '#/components/schemas/Rpauid'\nAuthDataForRestricted:\ntype: object\ndescription: >\nRepresents obtained authorization Data for restricted discovery for a discoverer UE\nrequired:\n- proseQueryCodes\n- proseRespCode\n- validityTime\nproperties:\nproseQueryCodes:\nitems:\n$ref: '#/components/schemas/ProseQueryCode'\nminItems: 1\nproseRespCode:\n$ref: '#/components/schemas/ProseResponseCode'\nvalidityTime:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/DateTime'\nMatchReportReqData:\ntype: object\ndescription: Represents the Match Report information\nrequired:\n- discType\nproperties:\ndiscType:\n$ref: '#/components/schemas/DiscoveryType'\nproseAppCodes:\nitems:\n$ref: '#/components/schemas/ProseApplicationCode'\nminItems: 1\nmoniteredPlmnId:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/PlmnId'\nMatchReportRespData:\ntype: object\ndescription: Represents Match Report Acknowledgement\nproperties:\nproseAppIdNames:\nitems:\n$ref: '#/components/schemas/ProseApplicationIdName'\nminItems: 1\nvalidityTime:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/DateTime'\nmetaData:\n$ref: '#/components/schemas/MetaData'\nmetaDataIndexMasks:\nitems:\n$ref: '#/components/schemas/MetaDataIndexMask'\nminItems: 1\nMonitorUpdateResult:\ntype: object\ndescription: Represents the monitoring revocation results.\nrequired:\n- discType\n- proseRestrictedCode\n- appId\n- bannedRpauid\n- bannedPduid\n- revocationResult\nproperties:\ndiscType:\n$ref: '#/components/schemas/DiscoveryType'\nproseRestrictedCode:\n$ref: '#/components/schemas/ProseRestrictedCode'\nappId:\n$ref: '#/components/schemas/ApplicationId'\nbannedRpauid:\n$ref: '#/components/schemas/Rpauid'\nbannedPduid:\n$ref: '#/components/schemas/Pduid'\nrevocationResult:\n$ref: '#/components/schemas/RevocationResult'\nMatchInformation:\ntype: object\ndescription: >\nRepresents a report including a matching result, and the information that\ncan be used for charging purpose.\nrequired:\n- discType\nproperties:\ndiscType:\n$ref: '#/components/schemas/DiscoveryType'\nopenMatchInfoForOpen:\n$ref: '#/components/schemas/MatchInfoForOpen'\nrestrictedMatchInfo:\n$ref: '#/components/schemas/MatchInfoForRestricted'\nMatchInfoForOpen:\ntype: object\ndescription: >\nRepresents a report including a matching result, and the information that\ncan be used for charging purpose for the open discovery type.\nrequired:\n- supi\n- appId\nproperties:\nsupi:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Supi'\nappId:\nitems:\n$ref: '#/components/schemas/ApplicationId'\nminItems: 1\nMatchInfoForRestricted:\ntype: object\ndescription: >\nRepresents a report including a matching result, and the information that\ncan be used for charging purpose for the restricted discovery type.\nrequired:\n- supi\n- rpauid\n- targetRpauid\n- proseRestrictedCode\nproperties:\nsupi:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Supi'\nrpauid:\n$ref: '#/components/schemas/Rpauid'\ntargetRpauid:\n$ref: '#/components/schemas/Rpauid'\nproseRestrictedCode:\n$ref: '#/components/schemas/ProseRestrictedCode'\nRestrictedCodeSuffixPool:\ntype: object\ndescription: Contains the Restricted Code Suffix Pool.\nanyOf:\n- required: [ codeSuffixList ]\n- required: [ codeSuffixRangeList ]\nproperties:\ncodeSuffixList:\ntype: array\nitems:\n$ref: '#/components/schemas/RestrictedCodeSuffix'\nminItems: 1\ncodeSuffixRangeList:\ntype: array\nitems:\n$ref: '#/components/schemas/RestrictedCodeSuffixRange'\nminItems: 1\nRestrictedCodeSuffixRange:\ntype: object\ndescription: Contains a range of the Restricted Code Suffixes which are consecutive.\nrequired:\n- beginningSuffix\n- endingSuffix\nproperties:\nbeginningSuffix:\n$ref: '#/components/schemas/RestrictedCodeSuffix'\nendingSuffix:\n$ref: '#/components/schemas/RestrictedCodeSuffix'\nProseApplicationCodeSuffixPool:\ntype: object\ndescription: Contains the Prose Application Code Suffix Pool.\nanyOf:\n- required: [ codeSuffix ]\n- required: [ codeSuffixRange ]\nproperties:\ncodeSuffix:\n$ref: '#/components/schemas/ProseAppCodeSuffix'\ncodeSuffixRange:\n$ref: '#/components/schemas/ProseAppCodeSuffixRange'\nProseAppCodeSuffixRange:\ntype: object\ndescription: Contains a range of the Prose Application Code Suffixes which are consecutive.\nrequired:\n- beginningSuffix\n- endingSuffix\nproperties:\nbeginningSuffix:\n$ref: '#/components/schemas/ProseAppCodeSuffix'\nendingSuffix:\n$ref: '#/components/schemas/ProseAppCodeSuffix'\nMonitorUpdateDataForOpen:\ntype: object\ndescription: Represents Monitor Update Data for the Discovery Type \"OPEN\".\nrequired:\n- proseAppIdName\n- ttl\nproperties:\nproseAppIdName:\n$ref: '#/components/schemas/ProseApplicationIdName'\nttl:\ntype: integer\nminimum: 0\nMonitorUpdateDataForRestricted:\ntype: object\ndescription: Represents Monitor Update Data for the Discovery Type \"RESTRICTED\".\nrequired:\n- proseRestrictedCode\n- appId\n- bannedRpauid\n- bannedPduid\nproperties:\nproseRestrictedCode:\n$ref: '#/components/schemas/ProseRestrictedCode'\nappId:\n$ref: '#/components/schemas/ApplicationId'\nbannedRpauid:\n$ref: '#/components/schemas/Rpauid'\nbannedPduid:\n$ref: '#/components/schemas/Pduid'\nmonitorUpdateResultCallbackRef:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Uri'\n# SIMPLE TYPES:\nDiscoveryEntryId:\ndescription: Contains the Discovery Entry ID.\ntype: string\nProseApplicationId:\ndescription: Contains the ProSe Application ID.\ntype: string\nProseApplicationCode:\ndescription: Contains the ProSe Application Code.\ntype: string\nRpauid:\ndescription: Contains the RPAUID.\ntype: string\nApplicationId:\ndescription: Contains the Application ID.\ntype: string\nProseRestrictedCode:\ndescription: Contains the ProSe Restricted Code.\ntype: string\nProseRestrictedPrefix:\ndescription: Contains the ProSe Restricted Code Prefix.\ntype: string\nMetaData:\ndescription: Contains the metadata.\ntype: string\nProseApplicationIdName:\ndescription: Contains the ProSe Application ID name.\ntype: string\nPduid:\ndescription: Contains the PDUID.\ntype: string\nProseApplicationPrefix:\ndescription: Contains the Prose Application Code Prefix.\ntype: string\nProseApplicationMask:\ndescription: Contains the Prose Application Mask.\ntype: string\nProseQueryCode:\ndescription: Contains the ProSe Query Code.\ntype: string\nProseResponseCode:\ndescription: Contains the ProSe Response Code.\ntype: string\nMetaDataIndexMask:\ndescription: Contains the Meta Data Index Mask.\ntype: string\nRestrictedCodeSuffix:\ndescription: Contains the ProSe Restricted Code Suffix.\ntype: string\nProseAppCodeSuffix:\ndescription: Contains the ProSe Application Code Suffix.\ntype: string\n# ENUMS:\nDiscoveryType:\nanyOf:\n- type: string\nenum:\n- OPEN\n- RESTRICTED\n- type: string\ndescription: >\nThis string provides forward-compatibility with future\nextensions to the enumeration but is not used to encode\ncontent defined in the present version of this API.\ndescription: >\nPossible values are\n- OPEN: Discovery type is \"open\".\n- RESTRICTED: Discovery type is \"restricted\".\nRevocationResult:\nanyOf:\n- type: string\nenum:\n- SUCCESSFUL\n- FAILED\n- type: string\ndescription: >\nThis string provides forward-compatibility with future\nextensions to the enumeration but is not used to encode\ncontent defined in the present version of this API.\ndescription: >\nPossible values are\n- SUCCESSFUL: The Monitoring Revocation is successful.\n- FAILED: The Monitoring Revocation is failed.\nAnnex B (informative):Change history\nChange history\nDate\nMeeting\nTDoc\nCR\nRev\nCat\nSubject/Comment\nNew version\n2021-04\nC4#103-e\nC4-212597\nImplementation of pCRs agreed in CT4 # 103-e including C4-212149, C4-212151, C4-212455.\n0.1.0\n2021-06\nC4#104-e\nC4-213528\nImplementation of pCRs agreed in CT4#104-e including C4-213188, C4-213207, C4-213338, C4-213340, C4-213341, C4-213342, C4-213455, C4-213457, C4-213463.\n0.2.0\n2021-09\nC4#105-e\nC4-214757\nImplementation of pCRs agreed in CT4#105-e including C4-214266, C4-214267, C4-214268, C4-214269, C4-214433, C4-214435, C4-214436, C4-214437, C4-214438, C4-214439, C4-214441, C4-214442, C4-214604, C4-214605, C4-214830, C4-214832.\n0.3.0\n2021-10\nC4#105-e\nC4-215521\nImplementation of pCRs agreed in CT4#106-e including C4-215097, C4-215353, C4-215448, C4-215449.\n0.4.0\n2021-12\nCT#94e\nCP-213159\nV1.0.0 presented for information\n1.0.0\n2022-01\nCT4#107-bis-e\nC4-220455\nImplementation of pCRs agreed in CT4#107-bis-e including C4-220281\n1.1.0\n2022-03\nCT4#108-e\nC4-221593\nImplementation of pCRs agreed in CT4#108-e including C4-221337, C4-221349\n1.2.0\n2022-03\nCT#95e\nCP-220108\nTS presented for information\n2.0.0\n2022-03\nCT#95e\nTS approved\n17.0.0\n2022-06\nCT#96\nCP-221043\n0001\n1\nF\nCorrection on the description of RevocationResult\n17.1.0\n2022-06\nCT#96\nCP-221029\n0002\n1\nF\nRemove the apiVersion placeholder from the resource URI variables table\n17.1.0\n2022-06\nCT#96\nCP-221299\n0003\n1\nF\n29.555 0003 Rel-17 API version and External doc update\n17.1.0\n2022-12\nCT#98-e\nCP-223028\n0005\n1\nF\nMissing Mandatory Status Codes in OpenAPI\n18.0.0\n2022-12\nCT#98-e\nCP-223033\n0006\n-\nF\n29.555 Rel-18 API version and External doc update\n18.0.0\n2023-03\nCT#99\nCP-230067\n0008\n-\nF\nPatch Report feature in 5G DDNMF\n18.1.0\n2023-06\nCT#100\nCP-231026\n0007\n3\nF\nLocation header description\n18.2.0\n2023-06\nCT#100\nCP-231026\n0010\n-\nB\nOAuth2 scopes in the N5g-ddnmf_Discovery API\n18.2.0\n2023-06\nCT#100\nCP-231070\n0011\n-\nF\n29.555 Rel-18 API version and External doc update\n18.2.0\n2023-09\nCT#101\nCP-232058\n0012\n-\nF\nvalidityTimer attribute correction\n18.3.0\n2023-12\nCT#102\nCP-233028\n0013\n1\nF\nHTTP RFCs obsoleted by IETF RFC 9113\n18.4.0\n2023-12\nCT#102\nCP-233030\n0015\n-\nF\nProblemDetails RFC 7807 obsoleted by 9457\n18.4.0\n2023-12\nCT#102\nCP-233062\n0017\n1\nA\nCorrections on Announce Auth\n18.4.0\n2023-12\nCT#102\nCP-233060\n0018\n-\nF\n29.555 Rel-18 API version and External doc update\n18.4.0\n2024-06\nCT#104\nCP-241028\n0020\n1\nF\nCallbacks\n18.5.0\n2024-06\nCT#104\nCP-241038\n0021\n1\nF\nCorrection on N5g-ddnmf_Discovery API\n18.5.0\n2024-06\nCT#104\nCP-241050\n0023\n1\nF\nClarification on URI Path Segment Naming Conventions\n18.5.0\n2024-06\nCT#104\nCP-241050\n0024\n-\nF\nStyle Corrections of N5g-ddnmf_Discovery API\n18.5.0\n2024-06\nCT#104\nCP-241052\n0025\n-\nF\n29.555 Rel-18 API version and External doc update\n18.5.0",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.500_clause_6.10.3.4",
+        "ts_29.500_clause_6.10.9.1",
+        "ts_29.501_clause_5.3.1",
+        "ts_29.501_clause_5",
+        "ts_29.501_clause_4.4",
+        "table_17.1.0",
+        "ts_29.500",
+        "ts_29.501",
+        "ts_21.900",
+        "ts_29.555"
+      ]
+    }
+  ]
+}

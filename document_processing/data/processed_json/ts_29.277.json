@@ -1,0 +1,283 @@
+{
+  "metadata": {
+    "specification_id": "ts_29.277",
+    "version": "18.0.0",
+    "title": "3GPP TS 29.277",
+    "file_path": "/content/drive/MyDrive/RAG_thesis/data/29_series/29277-i00/29277-i00.docx"
+  },
+  "export_info": {
+    "export_date": "2025-07-26T08:56:39.702894",
+    "total_chunks": 29
+  },
+  "chunks": [
+    {
+      "chunk_id": "ts_29.277_1",
+      "section_id": "1",
+      "section_title": "Scope",
+      "content": "The present document specifies the stage 3 of the Evolved Packet System S102 interface between the MME and the 1x CS IWS to relay the 1xCS signalling messages documented in 3GPP TS 23.216 [2] and 3GPP TS 23.272 [4]. 1x CS signalling messages are those messages that are defined for A21 interface as described in 3GPP2 A.S0008-D [3] and 3GPP2 A.S0009-D [6]. The S102 interface messages shall be based on A21 messages.\nThe S102 interface is used to support UEs that do not transmit and receive on both the LTE and 1x radio interfaces simultaneously. S102 protocol aspects for SRVCC from E-UTRAN access to 3GPP2 1xCS is covered in this specification. Handling of non-voice component and protocol aspects for SRVCC from 3GPP2 1xCS to E-UTRAN direction is not specified in this release.\nThe S102 interface is also used to support CS fallback to 1xRTT procedures from E-UTRAN access to CDMA 1x RTT CS domain and to support SMS over S102 with the CDMA 1xRTT CS domain through support of registration over EPS procedures as specified in 3GPP TS 23.272[4].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.216",
+        "ts_23.272"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.277_2",
+      "section_id": "2",
+      "section_title": "References",
+      "content": "The following documents contain provisions which, through reference in this text, constitute provisions of the present document.\n-\tReferences are either specific (identified by date of publication, edition number, version number, etc.) or non‑specific.\n-\tFor a specific reference, subsequent revisions do not apply.\n-\tFor a non-specific reference, the latest version applies. In the case of a reference to a 3GPP document (including a GSM document), a non-specific reference implicitly refers to the latest version of that document in the same Release as the present document.\n[1]\t3GPP TR 21.905: \"Vocabulary for 3GPP Specifications\".\n[2]\t3GPP TS 23.216: \"Single Radio Voice Call Continuity (SRVCC)\".\n[3]\t3GPP2 A.S0008-D v1.0: \"Interoperability Specification (IOS) for High Rate Packet Data (HRPD) Radio Access Network Interfaces with Session Control in the Access Network\".\n[4]\t3GPP TS 23.272:\" Circuit Switched Fallback in Evolved Packet System\".\n[5]\t3GPP TS 36.413: \"Evolved Universal Terrestrial Radio Access (E-UTRA); S1 Application Protocol (S1AP)\".\n[6]\t3GPP2 A.S0009-D v1.0: \"Interoperability Specification (IOS) for High Rate Packet Data (HRPD) Radio Access Network Interfaces with Session Control in the Packet Control Function\".",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905",
+        "ts_23.216",
+        "ts_23.272",
+        "ts_36.413"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.277_3.1",
+      "section_id": "3.1",
+      "section_title": "Definitions",
+      "content": "For the purposes of the present document, the terms and definitions given in TR 21.905 [1] and the following apply. A term defined in the present document takes precedence over the definition of the same term, if any, in TR 21.905 [1].",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_21.905"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.277_3.2",
+      "section_id": "3.2",
+      "section_title": "Abbreviations",
+      "content": "For the purposes of the present document, the abbreviations given in TR 21.905 [1] and the following apply. An abbreviation defined in the present document takes precedence over the definition of the same abbreviation, if any, in TR 21.905 [1].\n1xCS IWS\t1xCS Interworking Solution function for 3GPP2 1xCS\nGCSNA\tGeneric Circuit Services Notification Application\nIMSI\tInternational Mobile Station Identity\nIP\tInternet Protocol\nMEID\tMobile Equipment Identity\nMME\tMobility Management Entity\nPDU\tProtocol Data Unit\nSRVCC\tSingle Radio Voice Call Continuity\nUDP\tUser Datagram Protocol",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.277_4.1",
+      "section_id": "4.1",
+      "section_title": "Introduction",
+      "content": "The S102 application is based on UDP/IP transport medium.\nS102 (MME-to-IWS)  /udp/23272 - This is the registered destination UDP port number to be used for signalling interconnection between an MME and an IWS for the S102 application.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.277_4.2",
+      "section_id": "4.2",
+      "section_title": "S102 Requirements",
+      "content": "There are no additional requirments to those defined in 3GPP TS 23.216 [2] and 3GPP2 A.S0008-D [3] and 3GPP2 A.S0009-D [6].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.216"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.277_5",
+      "section_id": "5",
+      "section_title": "S102 Header",
+      "content": "The S102 message header shall be a fixed length header. The S102 header shall be at least 7 octets long.  Octet 1 consists of A21 Message type and Octets 2-7 contain the Correlation Identifier.\nDetailed information about the coding and format of the header fields of the A21 messages is specified in 3GPP2 A.S0008-D [3] and 3GPP2 A.S0009-D [6].",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.277_6.1",
+      "section_id": "6.1",
+      "section_title": "Introduction",
+      "content": "The S102 application defines a set of messages between the MME and 1xCS IWS to provide SR VCC and CSFB. The messages to be used are described in the following sections.\nThe S102 messages shall be based on A21 messages. The following A21 messages shall be used to support interworking and CS fallback to 1x RTT procedures between MME and 1xCS IWS.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.277_6.2.1",
+      "section_id": "6.2.1",
+      "section_title": "A21-1x Air Interface Signalling message",
+      "content": "This message is A21-1x air interface signalling message specified in 3GPP2 A.S0008-D [3] and 3GPP2 A.S0009-D [6]. This message shall be sent from an MME or 1xCS IWS to transport 1x air interface message to the peer 1xCS IWS or MME.\nThe MME shall be provisioned to be able to reach a 1XCS IWS over the S102 interface. The IWS shall then decide which MSC to contact. The MME selects the 1XCS IWS based on the Reference Cell ID that it receives via the eNodeB.\nThis message shall be used by the MME or 1xCS IWS during Registration, paging, handover (SRVCC) procedures, and mobile originated and mobile terminated SMS procedures.\nWhen the MME receives a 1x air interface message from the UE that is to be sent to 1xCS IWS, the MME encapsulates the 1x air interface message in a A21-1x air interface signalling message and sends it to the 1xCS IWS via the S102 interface.  To support CS fallback to 1xRTT registration procedures, it contains the CDMA 2000 sector ID.\nWhen sent from the 1xCS IWS to the MME, the 1xCS IWS encapsulates the 1x handoff direction message or 1xRTT CS paging request (after successful registration for CS fallback to 1xRTT) into A21-1x air interface signalling message.\nDetails about Information Element contents of A21-1x Air Interface signalling messages are found in 3GPP2 A.S0008-D [3] section 5.1.6.1.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_5.1.6.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.277_6.2.2",
+      "section_id": "6.2.2",
+      "section_title": "A21-Ack message",
+      "content": "This message is A21-Ack message specified in 3GPP2 A.S0008-D [3] and 3GPP2 A.S0009-D [6]. This message shall be sent from an MME or 1xCS IWS to acknowledge receipt of some A21 message to the peer 1xCS IWS or MME.\nThe Correlation ID in a A21-Ack message shall be copied from the request message that the MME or 1xCS IWS is replying to.\nDetails about Information Element contents of S102-Ack message are found in 3GPP2 A.S0008-D [3] section 5.1.6.2.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_5.1.6.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.277_6.2.3",
+      "section_id": "6.2.3",
+      "section_title": "A21-Event Notification",
+      "content": "This message is A21-Event Notification message specified in 3GPP2 A.S0008-D [3] and 3GPP2 A.S0009-D [6]. This message shall be sent by either MME or 1xCS IWS to notify the peer node of a specific event.\nTo support S102 tunnel redirection in case of MME relocation, \"S102 Redirection\" value shall be used.\nTo support notifying the 1xCS IWS, specifically if the UE switches off or if the MME changes the UE EMM state to EMM-DEREGISTERED, i.e. if the UE becomes unreachable, the \"Power Down/Connection Closed Event\" value shall be used.\nDetails about Information Element contents of S102-Event Notification message are found in 3GPP2 A.S0008-D [3] section 5.1.6.4.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_5.1.6.4"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.277_6.3",
+      "section_id": "6.3",
+      "section_title": "Reliable Delivery of Signalling Messages",
+      "content": "The A21 messages are transmitted using best-effort service.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.277_6.4.1",
+      "section_id": "6.4.1",
+      "section_title": "Information Element Assignments",
+      "content": "An A21 message may contain several information elements. Detailed information about the contents of the A21 messages is specified in 3GPP2 A.S0008-D [3] and 3GPP2 A.S0009-D [6]. The following sections highlight the relevant S102 specific parameters.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.277_6.4.1.1",
+      "section_id": "6.4.1.1",
+      "section_title": "A21 Message Type",
+      "content": "This IE is used to indicate the type of message on S102 interface. Typical values of this IE are as follows:\nTable 6.4.1.1-1: A21 Message Type on S102 interface\nMessage Type\nA21 Message Name\n01H\nA21-1x Air Interface Signalling message\n02H\nA21-Ack message\n04H\nA21-Event Notification message",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.4.1.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.277_6.4.1.2",
+      "section_id": "6.4.1.2",
+      "section_title": "Correlation ID",
+      "content": "This IE is used to correlate the A21 messages transported across the S102 interface. Details of format and content of this IE are specified in 3GPP2 A.S0008-D [3] and 3GPP2 A.S0009-D [6].",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.277_6.4.1.3",
+      "section_id": "6.4.1.3",
+      "section_title": "Mobile Identity",
+      "content": "This IE is used to identify the UE's identity. Details of format of this IE are specified in 3GPP2 A.S0008-D [3] and 3GPP2 A.S0009-D [6]. Typical values of this IE relevant for S102 are as follows.\nTable 6.4.1.3-1: Mobile identity\nBinary\nValues\nMN-Id\n'001'\nMEID\n'110'\nIMSI\nAll other values are reserved\nESN value shall not be used for S102 messages.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.4.1.3-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.277_6.4.1.5",
+      "section_id": "6.4.1.5",
+      "section_title": "Authentication Challenge Parameter (RAND)",
+      "content": "This IE contains information used for authentication over S102 interface. Details of format and contents of this IE are specified in 3GPP2 A.S0008-D [3] and 3GPP2 A.S0009-D [6].",
+      "chunk_type": "parameter",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.277_6.4.1.6",
+      "section_id": "6.4.1.6",
+      "section_title": "A21 Mobile Subscription Information",
+      "content": "This IE includes mobile subscription information records. Details of format and contents of this IE are specified in 3GPP2 A.S0008-D [3] and 3GPP2 A.S0009-D [6].",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.277_6.4.1.7",
+      "section_id": "6.4.1.7",
+      "section_title": "Cause",
+      "content": "The Cause IE shall be included in the response message only if the request is not accepted and shall be set to a value that describes the problem encountered. Typical values of IE relevant for S102 are as follows:\nTable 6.4.1.7: Cause values for the corresponding request\nValues\nCause value meaning\n00H\nUnknown mobile\n01H\nUnknown cell identifier(s)\n02H\nTunnelling of 1x messages not available\n03H\nResources not available\n07H\nUnspecified\n08H\nRejection\n0AH\nAbort handoff from LTE to 1x\n0BH\nVersion not supported\nAll other values are reserved",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.4.1.7"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.277_6.4.1.8",
+      "section_id": "6.4.1.8",
+      "section_title": "A21-Event",
+      "content": "This IE contains the value used to indicate the event that has occurred. Typical values of IE relevant for S102 are as follows:\n6.4.1.8-1: A21-Event values\nValues\nCause value meaning\n03H\nUE Power Down/Connection Closed\n04H\nHandoff Rejected\n0BH\nS102 Redirection\nAll other values are reserved",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.277_6.4.1.9",
+      "section_id": "6.4.1.9",
+      "section_title": "GCSNA PDU",
+      "content": "This IE contains the GCSNA header and GCSNA information, which can be 1x LAC encapsulated PDU or any other GCSNA information including 3G1x parameters, to be transported over the S102 interface. The IE is passed transparently for the MME. Details of inclusion rules, format and contents of this IE are specified in 3GPP2 A.S0008-D [3] and 3GPP2 A.S0009-D [6].",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.277_6.4.1.10",
+      "section_id": "6.4.1.10",
+      "section_title": "GCSNA Status",
+      "content": "This IE contains the GCSNA status information to be transported over the S102 interface. The MME maps the Status field values (Handoff successful, Handoff failure) from the GCSNA Status IE to the CDMA2000 HO Status IE (enumeration values HO Success and HO Failure, as defined in 3GPP TS 36.413 [5]). Details of inclusion rules, format and contents of this IE are specified in 3GPP2 A.S0008-D [3] and 3GPP2 A.S0009-D [6].\nThe Activity Type field in the 1x IWS to MME direction provides information to the MME regarding the activity (i.e.  SMS or CSFB) being undertaken as a result of processing of the GCSNA PDU at the UE. The MME may use the Activity Type indication received from the 1x IWS in order to control the paging based on operator policy, such as:\n-     paging retransmission strategies;\n-     determining whether to send the Paging message to the eNodeBs during certain MME high load conditions.\nThe Call Priority field in the 1x IWS to MME direction indicates the priority of the activity being undertaken for CSFB Priority Call Handling (see 3GPP TS 23.272 Annex B).\nThe Global Emergency Call field in the MME to 1x IWS direction indicates whether the call is an emergency call.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_36.413",
+        "ts_23.272"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.277_6.4.1.11",
+      "section_id": "6.4.1.11",
+      "section_title": "Reference Cell ID",
+      "content": "This IE contains the CDMA2000 Sector ID received from S1AP and passed to the MME from the eNB. Details of inclusion rules, format and contents of this IE are specified in 3GPP2 A.S0008-D [3] and 3GPP2 A.S0009-D [6].",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.277_6.4.1.12",
+      "section_id": "6.4.1.12",
+      "section_title": "Pilot List",
+      "content": "This IE contains the 1xRTT Pilot List passed to the MME from the eNodeB. It is included by the MME whenever the MME receives the 1xRTT Pilot List from the eNodeB.  Details of format and contents of this IE are specified in 3GPP2 A.S0008-D [3] and 3GPP2 A.S0009-D [6].",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.277_7.1",
+      "section_id": "7.1",
+      "section_title": "Protocol Errors",
+      "content": "A protocol error is defined as a message with unknown, unforeseen or erroneous content. When the Tack timer expires, the sender may resend the request to the receiver and restart the Tack timer a configurable number of times. A cause value of \"Unspecified\" as indicated in section 6.4.1.7 shall be included in the response message to indicate protocol errors.\nDetailed error handling procedures specific to each A21 message are found in 3GPP2 A.S0008-D [3] section 2.8.2 and 3GPP2 A.S0009-D [6].",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_6.4.1.7",
+        "clause_2.8.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.277_7.2",
+      "section_id": "7.2",
+      "section_title": "Restoration and Recovery",
+      "content": "There are no new specific Restoration and recovery requirements to be supported over S102 interface.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.277_8",
+      "section_id": "8",
+      "section_title": "Security provided to Communication over the S102 Interface",
+      "content": "Protection of A21 communication over S102 interface shall be provided according to security mechanisms defined in 3GPP2 A.S0008-D [3] and 3GPP2 A.S0009-D [6].",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.277_9.1.1",
+      "section_id": "9.1.1",
+      "section_title": "Introduction",
+      "content": "The parameters defined here and their recommended values shall not be fixed, but shall be possible to configure as described in section \"Reliable delivery of messages\".\nThe method used for retry sending of messages on S102 shall be based on the A21 retry method. In 3GPP2 A.S0008-D [3] section 2.8.2 and 3GPP2 A.S0009-D [6], the procedures for each of the A21 messages have a \"Failure Operation\" section where there are references to the use of timers and retries. In addition, there are flows in section 4.6 provided.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_2.8.2",
+        "clause_4.6"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.277_9.1.2",
+      "section_id": "9.1.2",
+      "section_title": "Acknowledgement Timer (Tack)",
+      "content": "This timer is started when the MME or 1xCS IWS sends an A21-1x Air interface signalling message or a A21 Event Notification message and is stopped when the corresponding A21-Ack message is received from the peer 1xCS IWS or MME.\nFurther details about recommended timer values and specifics are found in 3GPP2 A.S0008-D [3] section 5.3 and 3GPP2 A.S0009-D [6].\nAnnex 1 (informative):Change history\nChange history\nDate\nMeeting\nTDoc\nCR\nRev\nCat\nSubject/Comment\nNew version\n2008-09\nCT#41\nCP-080478\nV2.0.0 approved in CT#41\n8.0.0\n2008-12\nCT#42\nCP-080689\n0001\nS102 Redirection\n8.1.0\n2009-06\nCT#44\nCP-090293\n0003\nCorrelation ID Length\n8.2.0\nCP-090293\n0004\n1\nUDP Port Value\nCP-090293\n0005\n1\nSupport for 03H (Power Down/Connection Closed) Event Value\n2009-09\nCT#45\nCP-090530\n0007\n1\nPower Down/Connection Closed Event\n8.3.0\nCP-090536\n0008\n1\nGeneric Circuit Services Notification Application on S102\nCP-090536\n0009\n1\nReference Cell ID on S102\nCP-090536\n0010\n1\nPilot List on S102\n2009-12\nCT#46\nCP-090772\n0011\nS102 UDP port number\n8.4.0\n2009-12\nCT#46\nCP-090785\n0012\nAddition of Round Trip Delay to S102\n2009-12\nCT#46\nRelease 9 version was created after CT#46\n9.0.0\n2010-03\nCT#47\nCP-100019\n0016\n2\nGCSNA Status\n9.1.0\n2010-03\nCT#47\nCP-100059\n0019\nRemoval of E-UTRAN Round Trip Delay Estimation Info\n2010-06\nCT#48\nCP-100263\n0021\nCorrection to 3GPP2 references\n9.2.0\n0023\n1\nMissing 3GPP2 reference A.S0009-C\n2011-03\n-\n-\n-\n-\nUpdate to Rel-10 version (MCC)\n10.0.0\n2012-06\nCT#56\n0024\nMissing success code in S102\n10.1.0\n2012-09\nCT#57\nCP-120459\n0025\n1\nGCSNA Status IE\n11.0.0\n2012-12\nCT#58\nCP-120754\n0027\n-\nRemoval of the \"Preemption Allowed\" and \"Queuing Allowed\" fields from the GCSNA Status IE\n11.1.0\n2013-12\nCT#62\nCP-130629\n0028\n-\nE-UTRAN to 3GPP2 1xCS SRVCC emergency handover\n12.0.0\n2013-12\nCT#62\nCP-130626\n0029\n1\nCleanup Editors Note\n2015-12\nCT#70\n-\n-\n-\nUpdate to Rel-13 version (MCC)\n13.0.0\n2017-03\nCT#75\n-\n-\n-\nUpdate to Rel-14 version (MCC)\n14.0.0\n2018-06\nCT#80\n-\n-\n-\nUpdate to Rel-15 version (MCC)\n15.0.0\n2020-07\nCT#88e\n-\n-\n-\nUpdate to Rel-16 version (MCC)\n16.0.0\n2022-04\n-\n-\n-\n-\n-\nUpdate to Rel-17 version (MCC)\n17.0.0\n2024-03\n-\n-\n-\n-\n-\nUpdate to Rel-18 version (MCC)\n18.0.0",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_5.3"
+      ]
+    }
+  ]
+}

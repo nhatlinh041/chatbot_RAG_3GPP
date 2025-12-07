@@ -1,0 +1,554 @@
+{
+  "metadata": {
+    "specification_id": "ts_23.108",
+    "version": "18.0.0",
+    "title": "3GPP TS 23.108",
+    "file_path": "/content/drive/MyDrive/RAG_thesis/data/23_series/23108-i00/23108-i00.docx"
+  },
+  "export_info": {
+    "export_date": "2025-07-26T09:40:23.278262",
+    "total_chunks": 43
+  },
+  "chunks": [
+    {
+      "chunk_id": "ts_23.108_1",
+      "section_id": "1",
+      "section_title": "Scope",
+      "content": "The present document specifies the procedures used at the radio interface (Reference Point Um, see 3GPP TS 24.002 [15]) for Call Control (CC), Mobility Management (MM), and Session Management (SM).\nWhen the notations for \"further study\" or \"FS\" or \"FFS\" are present in the present document they mean that the indicated text is not a normative portion of this standard.\nThese procedures are defined in terms of messages exchanged over the control channels of the radio interface. The control channels are described in 3GPP TS 44.003 [16].\nThe structured functions and procedures of this protocol and the relationship with other layers and entities are described in general terms in 3GPP TS 24.007 [20].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_24.002",
+        "ts_44.003",
+        "ts_24.007"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.108_1.1",
+      "section_id": "1.1",
+      "section_title": "Scope of the Technical Specification",
+      "content": "The procedures currently described in the present document are for the call control of circuit-switched connections, session management for GPRS services, mobility management and radio resource management for circuit-switched and GPRS services.\n3GPP TS 24.010 [21] contains functional procedures for support of supplementary services.\n3GPP TS 24.011 [22] contains functional procedures for support of point-to-point short message services.\n3GPP TS 24.012 [23] contains functional description of short message - cell broadcast.\n3GPP TS 44.060 [76] contains procedures for radio link control and medium access control (RLC/MAC) of packet data physical channels.\n3GPP TS 44.018 [80] contains the procedures for the RR protocol.\n3GPP TS 24.008 [81] contains the procedures for the CN protocols.\n3GPP TS 44.071 [23a] contains functional descriptions and procedures for support of location services.\nNOTE:\t\"layer 3\" includes the functions and protocols described in this Technical Specification. The terms \"data link layer\" and \"layer 2\" are used interchangeably to refer to the layer immediately below layer 3.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_24.010",
+        "ts_24.011",
+        "ts_24.012",
+        "ts_44.060",
+        "ts_44.018",
+        "ts_24.008",
+        "ts_44.071"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.108_1.2",
+      "section_id": "1.2",
+      "section_title": "Application to the interface structures",
+      "content": "The layer 3 procedures apply to the interface structures defined in 3GPP TS 44.003 [16]. They use the functions and services provided by layer 2 defined in 3GPP TS 44.005 [18] and 3GPP TS 44.006 [19]. 3GPP TS 24.007 [20] gives the general description of layer 3 including procedures, messages format and error handling.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_44.003",
+        "ts_44.005",
+        "ts_44.006",
+        "ts_24.007"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.108_1.3",
+      "section_id": "1.3",
+      "section_title": "Structure of layer 3 procedures",
+      "content": "A building block method is used to describe the layer 3 procedures.\nThe basic building blocks are \"elementary procedures\" provided by the protocol control entities of the three sublayers, i.e. radio resource management, mobility management and connection management sublayer.\nComplete layer 3 transactions consist of specific sequences of elementary procedures. The term \"structured procedure\" is used for these sequences.",
+      "chunk_type": "procedure",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.108_1.4",
+      "section_id": "1.4",
+      "section_title": "Test procedures",
+      "content": "Test procedures of the GSM radio interface signalling are described in 3GPP TS 51.010 [39] and 3GPP TS 51.02x series.",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "ts_51.010",
+        "ts_51.02"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.108_1.5",
+      "section_id": "1.5",
+      "section_title": "Use of logical channels",
+      "content": "The logical control channels are defined in 3GPP TS 45.002 [32]. In the following those control channels are considered which carry signalling information or specific types of user packet information:\ni)\tBroadcast Control CHannel (BCCH): downlink only, used to broadcast Cell specific information;\nii)\tSynchronization CHannel (SCH): downlink only, used to broadcast synchronization and BSS identification information;\niii)\tPaging CHannel (PCH): downlink only, used to send page requests to Mobile Stations (MSs);\niv)\tRandom Access CHannel (RACH): uplink only, used to request a Dedicated Control CHannel;\nv)\tAccess Grant CHannel (AGCH): downlink only, used to allocate a Dedicated Control CHannel;\nvi)\tStandalone Dedicated Control CHannel (SDCCH): bi-directional;\nvii)\tFast Associated Control CHannel (FACCH): bi-directional, associated with a Traffic CHannel;\nviii)Slow Associated Control CHannel (SACCH): bi-directional, associated with a SDCCH or a Traffic CHannel;\nix)\tCell Broadcast CHannel (CBCH): downlink only used for general (not point to point) short message information.\nx)\tNotification CHannel (NCH): downlink only, used to notify mobile stations of VBS (Voice Broadcast Service) calls or VGCS (Voice Group Call Service) calls.\nTwo service access points are defined on signalling layer 2 which are discriminated by their Service Access Point Identifiers (SAPI) (see 3GPP TS 44.006 [19]):\ni)\tSAPI 0: supports the transfer of signalling information including user-user information;\nii)\tSAPI 3: supports the transfer of user short messages.\nLayer 3 selects the service access point, the logical control channel and the mode of operation of layer 2 (acknowledged, unacknowledged or random access, see 3GPP TS 44.005 [18] and 3GPP TS 44.006 [19]) as required for each individual message.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_45.002",
+        "ts_44.006",
+        "ts_44.005"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.108_1.6.1",
+      "section_id": "1.6.1",
+      "section_title": "List of procedures",
+      "content": "The following procedures are specified in the Technical Specification:\na)\tClause 4 specifies elementary procedures for Mobility Management:\n-\tmobility management common procedures (subclause 4.3);\n-\tTMSI reallocation procedure (subclause 4.3.1);\n-\tauthentication procedure (subclause 4.3.2);\n-\tidentification procedure (subclause 4.3.3);\n-\tIMSI detach procedure (subclause 4.3.4);\n-\tabort procedure (subclause 4.3.5);\n-\tMM information procedure (subclause 4.3.6);\n-\tmobility management specific procedures (subclause 4.4);\n-\tlocation updating procedure (subclause 4.4.1);\n-\tperiodic updating (subclause 4.4.2);\n-\tIMSI attach procedure (subclause 4.4.3);\n-\tgeneric location updating procedure (subclause 4.4);\n-\tconnection management sublayer service provision;\n-\tmobility management connection establishment (subclause 4.5.1);\n-\tmobility management connection information transfer phase (subclause 4.5.2);\n-\tmobility management connection release (subclause 4.5.3);\n-\tGPRS specific mobility management procedures (subclause 4.7);\n-\tGPRS attach procedure (subclause 4.7.3);\n-\tGPRS detach procedure (subclause 4.7.4);\n-\tGPRS routing area updating procedure (subclause 4.7.5);\n-\tGPRS common mobility management procedures (subclause 4.7);\n-\tGPRS P-TMSI reallocation procedure (subclause 4.7.6);\n-\tGPRS authentication and ciphering procedure (subclause 4.7.7);\n-\tGPRS identification procedure (subclause 4.7.8);\n-\tGPRS information procedure (subclause 4.7.12);\nb)\tClause 5 specifies elementary procedures for circuit switched Call Control comprising the following elementary procedures:\n-\tmobile originating call establishment (subclause 5.2.1);\n-\tmobile terminating call establishment (subclause 5.2.2);\n-\tsignalling procedures during the active state (subclause 5.3);\n-\tuser notification procedure (subclause 5.3.1);\n-\tcall rearrangements (subclause 5.3.2);\n-\tDTMF protocol control procedure (subclause 5.5.7);\n-\tin-call modification (subclause 5.3.4);\n-\tcall clearing initiated by the mobile station (subclause 5.4.3);\n-\tcall clearing initiated by the network (subclause 5.4.4);\n-\tmiscellaneous procedures;\n-\tin-band tones and announcements (subclause 5.5.1);\n-\tstatus enquiry procedure (subclause 5.5.3);\n-\tcall re-establishment procedure (subclause 5.5.4);\nd)\tClause 6 specifies elementary procedures for session management:\n-\tGPRS session management procedures (subclause 6.1);\n-\tPDP context activation (subclause 6.1.1);\n-\tPDP context modification (subclause 6.1.2);\n-\tPDP context deactivation (subclause 6.1.3);\n-\tanonymous PDP context activation (subclause 6.1.4);\n-\tanonymous PDP context deactivation (subclause 6.1.5).\nThe elementary procedures can be combined to form structured procedures. Examples of such structured procedures are given in clause 7. This part of the Technical Specification is only provided for guidance to assist implementations.\nClause 8 specifies actions to be taken on various error conditions and also provides rules to ensure compatibility with future enhancements of the protocol.",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "clause_4",
+        "clause_4.3",
+        "clause_4.3.1",
+        "clause_4.3.2",
+        "clause_4.3.3",
+        "clause_4.3.4",
+        "clause_4.3.5",
+        "clause_4.3.6",
+        "clause_4.4",
+        "clause_4.4.1",
+        "clause_4.4.2",
+        "clause_4.4.3",
+        "clause_4.5.1",
+        "clause_4.5.2",
+        "clause_4.5.3",
+        "clause_4.7",
+        "clause_4.7.3",
+        "clause_4.7.4",
+        "clause_4.7.5",
+        "clause_4.7.6",
+        "clause_4.7.7",
+        "clause_4.7.8",
+        "clause_4.7.12",
+        "clause_5",
+        "clause_5.2.1",
+        "clause_5.2.2",
+        "clause_5.3",
+        "clause_5.3.1",
+        "clause_5.3.2",
+        "clause_5.5.7",
+        "clause_5.3.4",
+        "clause_5.4.3",
+        "clause_5.4.4",
+        "clause_5.5.1",
+        "clause_5.5.3",
+        "clause_5.5.4",
+        "clause_6",
+        "clause_6.1",
+        "clause_6.1.1",
+        "clause_6.1.2",
+        "clause_6.1.3",
+        "clause_6.1.4",
+        "clause_6.1.5",
+        "clause_7",
+        "clause_8"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.108_1.7",
+      "section_id": "1.7",
+      "section_title": "Applicability of implementations",
+      "content": "The applicability of procedures of this technical specification for the mobile station is dependent on the services and functions which are to be supported by a mobile station.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.108_1.7.1",
+      "section_id": "1.7.1",
+      "section_title": "Voice Group Call Service (VGCS) and Voice Broadcast Service (VBS)",
+      "content": "For mobile stations supporting the Voice Group Call Service or the Voice Broadcast Service, it is explicitly mentioned throughout this technical specification if a certain procedure is applicable only for such a service and, if necessary, how mobile stations not supporting such a service shall behave.\nFor VGCS and VBS, the following possible mobile station implementations exist:\n-\tsupport of listening to voice broadcast calls (VBS listening);\n-\tsupport of originating a voice broadcast call (VBS originating);\n-\tsupport of listening to voice group calls (VGCS listening);\n-\tsupport of talking in voice group calls (VGCS talking. This always includes the implementation for VGCS listening);\n-\tsupport of originating a voice group call (VGCS originating. This always includes the implementation for VGCS talking).\nApart from the explicitly mentioned combinations, all possible combinations are optional and supported by this technical specification.\nThe related terms are used in this technical specification, if information on these implementation options is required.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.108_1.7.2",
+      "section_id": "1.7.2",
+      "section_title": "General Packet Radio Service (GPRS)",
+      "content": "For mobile stations supporting the General Packet Radio Service (GPRS), it is explicitly mentioned throughout the technical specification if a certain procedure is applicable only for such a service and, if necessary, how mobile stations not supporting such a service shall behave.\nA GPRS MS may operate in one of the following MS operation modes, see 3GPP TS 23.060 [74]:\n-\tMS operation mode A;\n-\tMS operation mode B; or\n-\tMS operation mode C.\nThe MS operation mode depends on the services that the MS is attached to, i.e., only GPRS or both GPRS and non-GPRS services, and upon the MS's capabilities to operate GPRS and other GSM services simultaneously. Mobile stations that are capable to operate GPRS services are referred to as GPRS MSs.\nNOTE:\tOther GSM technical specifications may refer to the MS operation modes A, B, and C as GPRS class‑A MS, GPRS class‑B MS, and GPRS class‑C MS.\nIt should be noted that it is possible that for a GPRS MS, the GMM procedures currently described in the ETS do not support combinations of VGCS, VBS and GPRS. The possible interactions are not studied yet.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_23.060"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.108_2",
+      "section_id": "2",
+      "section_title": "References",
+      "content": "The following documents contain provisions which, through reference in this text, constitute provisions of the present document.\n-\tReferences are either specific (identified by date of publication, edition number, version number, etc.) or non‑specific.\n-\tFor a specific reference, subsequent revisions do not apply.\n-\tFor a non-specific reference, the latest version applies. In the case of a reference to a 3GPP document (including a GSM document), a non-specific reference implicitly refers to the latest version of that document in the same Release as the present document.\n[1]\tVoid.\n[2]\tVoid.\n[2a]\t3GPP TR 21.905 \"Vocabulary for 3GPP Specifications\"\n[3]\tVoid.\n[4]\tVoid.\n[5]\tVoid.\n[6]\tVoid.\n[7]\tVoid.\n[8]\tVoid.\n[9]\tVoid\n[10]\tVoid.\n[11]\tVoid.\n[12]\tVoid.\n[12a]\tVoid.\n[13]\tVoid.\n[14]\tVoid.\n[15]\t3GPP TS 24.002: \"GSM-UMTS Public Land Mobile Network (PLMN) access reference configuration\".\n[16]\t3GPP TS 44.003: \"Mobile Station - Base Station System (MS - BSS) interface; Channel structures and access capabilities\".\n[17]\tVoid.\n[18]\t3GPP TS 44.005: \"Data Link (DL) layer; General aspects\".\n[19]\t3GPP TS 44.006: \"Mobile Station - Base Station System (MS - BSS) interface; Data Link (DL) layer specification\".\n[20]\t3GPP TS 24.007: \"Mobile radio interface signalling layer 3; General aspects\".\n[21]\t3GPP TS 24.010: \"Mobile radio interface layer 3; Supplementary services specification; General aspects\".\n[22]\t3GPP TS 24.011: \"Point-to-Point (PP) Short Message Service (SMS) support on mobile radio interface\".\n[23]\t3GPP TS 24.012: \"Short Message Service Cell Broadcast (SMSCB) support on the mobile radio interface\".\n[23a]\t3GPP TS 44.071: \"Location Services (LCS); Mobile radio interface layer 3 specification\".\n[23b]\tVoid.\n[24]\tVoid.\n[25]\tVoid.\n[26]\tVoid.\n[27]\tVoid.\n[28]\tVoid.\n[29]\tVoid.\n[30]\tVoid.\n[31]\tVoid.\n[32]\t3GPP TS 45.002: \"Multiplexing and multiple access on the radio path\".\n[33]\tVoid.\n[34]\tVoid.\n[35]\tVoid.\n[36]\tVoid.\n[37]\tVoid.\n[38]\tVoid.\n[39]\t3GPP TS 51.010: \"Mobile Station (MS) conformance specification\".\n[40]\tVoid.\n[41]\tVoid.\n[42]\tVoid.\n[43]\tVoid.\n[44]\tVoid.\n[45]\tVoid.\n[46]\tVoid.\n[47]\tVoid.\n[48]\tVoid.\n[49]\tVoid.\n[50]\tVoid.\n[51]\tVoid.\n[52]\tVoid.\n[53]\tVoid.\n[54]\tVoid.\n[55]\tVoid.\n[56]\tVoid.\n[57]\tVoid.\n[58]\tVoid.\n[59]\tVoid.\n[60]\tVoid.\n[61]\tVoid.\n[62]\tVoid.\n[63]\tVoid.\n[64]\tVoid.\n[65]\tVoid.\n[66]\tVoid.\n[67]\tVoid.\n[68]\tVoid.\n[69]\tVoid.\n[70]\tVoid.\n[71]\tVoid.\n[72]\tVoid.\n[73]\tVoid.\n[74]\t3GPP TS 23.060: \"General Packet Radio Service (GPRS); Service Description; Stage 2\".\n[75]\tVoid.\n[76]\t3GPP TS 44.060: \"General Packet Radio Service (GPRS); Mobile Station (MS) - Base Station System (BSS) interface; Radio Link Control/Medium Access Control (RLC/MAC) protocol\".\n[77]\tVoid.\n[78]\tVoid.\n[79]\tVoid.\n[80]\t3GPP TS 44.018: \"Mobile radio interface layer 3 specification; Radio Resource Control Protocol\".\n[81]\t3GPP TS 24.008: \"Mobile radio interface Layer 3 specification; Core network protocols; Stage 3\".",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905",
+        "ts_24.002",
+        "ts_44.003",
+        "ts_44.005",
+        "ts_44.006",
+        "ts_24.007",
+        "ts_24.010",
+        "ts_24.011",
+        "ts_24.012",
+        "ts_44.071",
+        "ts_45.002",
+        "ts_51.010",
+        "ts_23.060",
+        "ts_44.060",
+        "ts_44.018",
+        "ts_24.008"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.108_2.1",
+      "section_id": "2.1",
+      "section_title": "Definitions and abbreviations",
+      "content": "For the purposes of the present document, the abbreviations defined in 3GPP TR 21.905 [2a] apply.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_21.905"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.108_2.1.1",
+      "section_id": "2.1.1",
+      "section_title": "Random values",
+      "content": "For the RR protocol see 3GPP TS 44.018 and for the CN protocols see 3GPP TS 24.008 [81].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_44.018",
+        "ts_24.008"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.108_2.2.2",
+      "section_id": "2.2.2",
+      "section_title": "Vocabulary",
+      "content": "For the RR protocol see 3GPP TS 44.018 [80] and for the CN protocols see 3GPP TS 24.008 [81].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_44.018",
+        "ts_24.008"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.108_3",
+      "section_id": "3",
+      "section_title": "Radio Resource management procedures",
+      "content": "See 3GPP TS 44.018 [80].",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "ts_44.018"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.108_4",
+      "section_id": "4",
+      "section_title": "Elementary procedures for Mobility Management",
+      "content": "See 3GPP TS 24.008 [81].",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "ts_24.008"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.108_5",
+      "section_id": "5",
+      "section_title": "Elementary procedures for circuit-switched Call Control",
+      "content": "See 3GPP TS 24.008 [81].",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "ts_24.008"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.108_6",
+      "section_id": "6",
+      "section_title": "Support for packet services",
+      "content": "See 3GPP TS 24.008 [81].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_24.008"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.108_7",
+      "section_id": "7",
+      "section_title": "Examples of structured procedures",
+      "content": "Clause 7 is informative.",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "clause_7"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.108_7.1",
+      "section_id": "7.1",
+      "section_title": "General",
+      "content": "Clause 7 contains examples of how the network may group together the elementary procedures (i.e. the procedures defined in clauses 3 to 5) in order to provide normal service.\nThe layer 3 signalling at the radio interface may be divided into so-called structured procedures which consist of specific combinations of elementary procedures. In subclause 7.3, selected examples of structured procedures are described. A structured procedure consists of (not necessarily all) components shown in figure 7.1. These components are characterized by the purpose of their use in structured procedures and their message flow in the following subclauses 7.1.1 to 7.1.7.\n+-                          -+\n│     Paging request         │  RR connection\n│   Immediate  assignment    │  establishment\n+-                          -+\n+-                          -+\n│    Service request and     │\n│   Contention resolution    │\n+-                          -+\n+-                          -+\n│     Authentication         │\n+-                          -+\n+-                          -+\n│   Ciphering mode setting   │\n+-                          -+\n+-                          -+\n│     Transaction phase      │\n+-                          -+\n+-                          -+\n│     Channel release        │  RR connection\n+-                          -+  release\nFigure 7.1/3GPP TS 23.108: Components of structured procedures",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_7",
+        "clause_7.3",
+        "figure_7.1",
+        "ts_23.108_figure_7.1",
+        "ts_23.108"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.108_7.1.1",
+      "section_id": "7.1.1",
+      "section_title": "Paging request",
+      "content": "The paging procedure is used to locate a mobile station to which a connection shall be established.\nUpon receipt of a PAGING REQUEST message the addressed mobile station initiates the immediate assignment procedure.\nMobile Station          Network\nPAGING REQUEST<-------------------\nFigure 7.2/3GPP TS 23.108: Paging request",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_23.108_figure_7.2",
+        "ts_23.108"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.108_7.1.2",
+      "section_id": "7.1.2",
+      "section_title": "Immediate assignment",
+      "content": "The immediate assignment procedure is always initiated by the mobile station. It may be triggered by a paging request or by a mobile originating service request.\nThe mobile station sends a CHANNEL REQUEST message on the Random Access Channel. The network responds with an IMMEDIATE ASSIGNMENT message which causes the mobile station to seize the indicated dedicated channel.\nMobile Station                Network\nCHANNEL REQUEST------------------------->IMMEDIATE ASSIGNMENT<------------------------\nFigure 7.3/3GPP TS 23.108: Immediate assignment",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.108_figure_7.3",
+        "ts_23.108"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.108_7.1.3",
+      "section_id": "7.1.3",
+      "section_title": "Service request and contention resolution",
+      "content": "The initial service request message (a PAGING RESPONSE, LOCATION UPDATING REQUEST, IMSI DETACH, CM SERVICE REQUEST, or CM RE-ESTABLISHMENT REQUEST message) is sent by the mobile station to the network piggy-backed in the L2 SABM frames establishing the main signalling link. Its purpose is:\n-\tto provide non-confidential information relevant to the service requested for the RR and MM sublayer in the network;\n-\tin particular to identify the user in the network without jeopardising the confidentiality of the user's identity; this is achieved by using as mobile identity the TMSI, which was never before transmitted un-encrypted over the radio interface;\n-\tto allow for contention resolution;\n-\toptionally, in the CM SERVICE REQUEST message to inform the network of the priority level associated with the call.\nContention resolution provides a resolution process when more than one MS try to seize a channel allocated during the immediate assignment procedure (because they happened to use the same random reference at the same time during random access). This is achieved by the network including in a L2 UA frame the same information field as that one received in the L2 SABM frame to which the UA frame responds. By comparing the two information fields the MS can verify whether it was the originator of the L2 establishment, because the service request contains the mobile identity.\nMobile Station                  Network\nSABM(service request)------------------------->UA(service request)<------------------------\nFigure 7.4/3GPP TS 23.108: Service request and contention resolution",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.108_figure_7.4",
+        "ts_23.108"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.108_7.1.4",
+      "section_id": "7.1.4",
+      "section_title": "Authentication",
+      "content": "The purpose of authentication is to validate the identity provided by the mobile station . It is initiated by the network. The authentication procedure also provides the mobile station with information from which a new ciphering key can be derived. The network decides whether or not to use authentication. This may depend on the context.\nMobile Station                 Network\nAUTHentication REQuest<--------------------------AUTHentication  RESponse--------------------------->\nFigure 7.5/3GPP TS 23.108: Authentication",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.108_figure_7.5",
+        "ts_23.108"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.108_7.1.5",
+      "section_id": "7.1.5",
+      "section_title": "Ciphering mode setting",
+      "content": "Ciphering mode setting is initiated by the network. Its purpose is to instruct the mobile station whether or not to use ciphering and which algorithm to use.\nWhere ciphering is used, this procedure synchronizes the start of ciphering at the mobile station and in the network.\nMobile Station                 Network\nCIPHer MODE CoMmanD<----------------------CIPHer MODe COMplete----------------------->\nFigure 7.6/3GPP TS 23.108: Ciphering mode setting",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.108_figure_7.6",
+        "ts_23.108"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.108_7.1.6",
+      "section_id": "7.1.6",
+      "section_title": "Transaction phase",
+      "content": "A variety of elementary procedures described in clauses 3 to 5 may be performed during the transaction phase. In this subclause, only the channel mode modify procedure is characterized.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.108_7.1.6.1",
+      "section_id": "7.1.6.1",
+      "section_title": "Channel mode modify",
+      "content": "The channel mode modify procedure may be used when a traffic channel has been assigned e.g.:\n-\tduring the in-call modification procedure in order that the channel mode of the TCH be changed to that one requested by call control;\n-\tduring call establishment with very early assignment in order that the channel mode of the TCH be changed from signalling only to the mode requested by call control;\n-\tduring the active phase of a data call in order that the speed of the data transmission be changed.\nThe channel mode modify procedure is initiated by the network sending a CHANNEL MODE MODIFY message and completed by the mobile station changing the mode of the TCH and sending back a CHANNEL MODE MODIFY ACKNOWLEDGE message.\nMobile Station                         Network\nCHANNEL MODE MODIFY<-----------------------------------CHANNEL MODE MODIFY ACKNOWLEDGE------------------------------------>\nFigure 7.7/3GPP TS 23.108: Channel mode change",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.108_figure_7.7",
+        "ts_23.108"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.108_7.1.7",
+      "section_id": "7.1.7",
+      "section_title": "Channel release",
+      "content": "Once the transaction phase has been completed, the channel is released by the channel release procedure. The data link layer is released explicitly as described in 3GPP TS 44.006 [19]. After the channel release is completed, the radio resources which were in use may be reallocated by the network.\nMobile Station          Network\nCHANNEL RELEASE<----------------------\nFigure 7.8/3GPP TS 23.108 Channel release",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.108_figure_7.8",
+        "ts_44.006",
+        "ts_23.108"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.108_7.2",
+      "section_id": "7.2",
+      "section_title": "Abnormal cases",
+      "content": "Abnormal cases are not described in the examples of clause 7. They may arise from:\na)\tfailure at a lower layer (e.g. loss of radio connection);\nb)\tfailure of an elementary procedure;\nc)\terrors in an elementary procedure.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_7"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.108_7.3",
+      "section_id": "7.3",
+      "section_title": "Selected examples",
+      "content": "The following examples are considered:\n-\tlocation updating;\n-\tmobile originating call establishment;\na)\twithout OACSU (early assignment);\nb)\twith OACSU;\nc)\twith very early assignment;\n-\tmobile terminating call establishment;\na)\twithout OACSU (early assignment);\nb)\twith OACSU;\n-\tcall clearing:\na)\tnetwork initiated;\nb)\tmobile initiated;\n-\tDTMF protocol control.\n-\thandover:\na)\tbetween finely synchronized cells;\nb)\tbetween non-synchronized cells;\nc)\thandover failure, where reconnection of the old channel is possible;\n-\tin-call modification;\n-\tcall re-establishment;\n-\tnetwork initiated MO call, e.g. CCBS Recall $(CCBS)$:\na)\tassignment before A party alerting;\nb)\tassignment before B party alerting;\nc)\tassignment after A and B party alerting.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.108_7.3.1",
+      "section_id": "7.3.1",
+      "section_title": "Location updating",
+      "content": "The location updating procedure is always initiated by the mobile station e.g. when it finds itself in a different location area from the one in which it was registered before. The cases where the procedure is triggered are described in clause 4.\nThe procedure is shown in figure 7.9/3GPP TS 23.108. The network may decide whether to allocate a new TMSI during location updating, and this option is reflected in this example.\nThe mobile station initiates immediate assignment, service request using the LOCATION UPDATING REQUEST message, and contention resolution.\nThe network requires authentication (this again is an option).\nAs the network intends to allocate a new TMSI, it should activate ciphering. The network includes the new TMSI in the LOCATION UPDATING ACCEPT message (it could also use the explicit TMSI reallocation procedure, see clause 4). The mobile station sends a TMSI REALLOCATION COMPLETE message to the network to acknowledge the receipt of the new TMSI. Upon receipt of the TMSI REALLOCATION COMPLETE message the network initiates the channel release if no further transactions are scheduled.\nMobile Station                    Network\n+-                                            -+\n│         CHANNEL REQUEST                      │ RR connection\n│    --------------------------------------->  │ establishment\n│                                              │ (MO)\n│                                              │\n│         IMMEDIATE ASSIGNMENT                 │\n│    <--------------------------------------   │\n+-                                            -+\n+-                                            -+\n│                                              │\n│         LOCATION UPDATING REQUEST            │\n│    ----------------------------------------> │ Service request\n│                                              │\n│                                              │\n│                                              │\n│                                              │\n+-                                            -+\n+-                                            -+\n│         AUTHENTICATION REQUEST               │\n│    <---------------------------------------  │ Authentication\n│                                              │\n│         AUTHENTICATION RESPONSE              │\n│    ----------------------------------------> │\n+-                                            -+\n+-                                            -+\n│                                              │\n│         CIPHER MODE COMMAND                  │\n│    <---------------------------------------  │ Ciphering mode\n│                                              │  setting\n│         CIPHER MODE COMPLETE                 │\n│    ----------------------------------------->│\n+-                                            -+\n+-                                            -+\n│         LOCATION UPDATING ACCEPT             │\n│    <---------------------------------------  │\n│                                              │\n│         TMSI REALLOCATION COMPLETE           │\n│    --------------------------------------->  │\n+-                                            -+\n+-                                            -+\n│         CHANNEL RELEASE                      │  RR connection\n│    <---------------------------------------  │  release\n│                                              │\n+-                                            -+\nFigure 7.9/3GPP TS 23.108: Location updating: successful case",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_4",
+        "ts_23.108_figure_7.9",
+        "ts_23.108"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.108_7.3.2",
+      "section_id": "7.3.2",
+      "section_title": "Mobile originating call establishment",
+      "content": "The mobile station initiates immediate assignment, service request using the CM SERVICE REQUEST message, and contention resolution. The network may initiate authentication and may start the ciphering mode setting.\nAfter sending the CIPHERING MODE COMPLETE message, the mobile station initiates call establishment by sending the SETUP message to the network. The network answers with a CALL PROCEEDING message.\na)\tNon-OACSU option (early assignment):\nWith this option the network allocates a traffic channel to the mobile station before it initiates call establishment in the fixed network.\nIf call queuing is applied, it may cause variable delay in the traffic channel assignment.\nWhen user alerting has been initiated at the called side, an ALERTING message is sent to the mobile station. The network may optionally instruct the MS to attach the user connection at this stage of the call, by means of the progress indicator information element set to the value #1 or #8 (if the ringing tone will be sent by the remote end) in the ALERTING message. In that case, an alerting ringing tone has to be generated by the network.\nNOTE:\tThe speech codec is transparent for supervisory tones.\nA CONNECT message and its acknowledgement CONNECT ACKNOWLEDGE complete the call establishment when the called party has answered.\nThe mobile originating call setup with early assignment is shown in figure 7.10a/3GPP TS 23.108.\nb)\tOACSU option (late assignment):\nThe network determines when the traffic channel is to be assigned. The assignment may be performed at any time after call establishment has been initiated in the fixed network. In the following the case is considered where the network will only allocate a traffic channel after the called party has answered the call (late assignment).\nAs in a) an ALERTING message is sent to the mobile station when user alerting has been initiated at the called side. If the ringing tone is needed, it has to be generated locally at the mobile station as no traffic channel is allocated. When the called party has answered, the network will initiate the channel assignment procedure in order to allocate a traffic channel to the mobile station. If call queuing is applied, it may cause variable delay in the traffic channel assignment. Once the channel assignment has been completed the network will send a CONNECT message to the mobile station. The MS attaches then the user connection. The CONNECT ACKNOWLEDGE message will complete the call setup.\nThe mobile originating call setup with late assignment is shown in figure 7.10b/3GPP TS 23.108.\nc)\tVery early assignment:\nThe network assigns the traffic channel at the earliest possible moment, i.e. in the immediate assignment procedure. The mode of the traffic channel is changed from signalling only to the mode necessary for the call by means of the channel mode change procedure. An appropriate moment for that change is after the network has sent the CALL PROCEEDING message, when the call is established towards the called user.\nWith this option, call queuing is never applied.\nThe further establishment of the call is as in a).\nThe mobile originating call setup with very early assignment is shown in figure 7.10c/3GPP TS 23.108.\nß\nMobile Station              Network\n+-                               -+\n│         CHANNEL REQUEST         │  RR connection\n│    ------------------------->   │  establishment\n│       IMMEDIATE ASSIGNMENT      │  (MO)\n│    <------------------------    │\n+-                               -+\n+-                               -+\n│       CM SERVICE REQUEST        │\n│    ------------------------->   │  Service request\n│                                 │\n+-                               -+\n+-                               -+\n│      AUTHENTICATION REQUEST     │  Authentication\n│    <-------------------------   │\n│      AUTHENTICATION RESPONSE    │\n│    -------------------------->  │\n+-                               -+\n+-                               -+\n│       CIPHER MODE COMMAND       │\n│    <-------------------------   │  Ciphering\n│       CIPHER MODE COMPLETE      │  mode setting\n│    -------------------------->  │\n+-                               -+\n+-                               -+\n│              SETUP              │\n│    -------------------------->  │  Call initiation\n│         CALL PROCEEDING         │\n│    <-------------------------   │\n+-                               -+\n+-                               -+\n│        ASSIGNMENT COMMAND       │\n│    <--------------------------  │  Assignment of\n│        ASSIGNMENT COMPLETE      │  a traffic\n│    -------------------------->  │  channel\n+-                               -+\n+-                               -+\n│              ALERTING           │\n│    <--------------------------  │  User alerting\n+-                               -+\n+-                               -+\n│              CONNECT            │\n│    <--------------------------  │  Call accepted\n│        CONNECT ACKNOWLEDGE      │\n│    -------------------------->  │\n+-                               -+\nFigure 7.10a/3GPP TS 23.108: Mobile originating call establishment without OACSU (early assignment)\nMobile Station              Network\n+-                               -+\n│         CHANNEL REQUEST         │  RR connection\n│    ------------------------->   │  establishment\n│      IMMEDIATE ASSIGNMENT       │  (MO)\n│    <------------------------    │\n+-                               -+\n+-                               -+  Service indication\n│        CM SERVICE REQUEST       │\n│    ------------------------->   │\n│                                 │\n│                                 │\n+-                               -+\n+-                               -+\n│      AUTHENTICATION REQUEST     │  Authentication\n│    <-------------------------   │\n│      AUTHENTICATION RESPONSE    │\n│    -------------------------->  │\n+-                               -+\n+-                               -+\n│       CIPHER MODE COMMAND       │\n│    <-------------------------   │  Ciphering\n│       CIPHER MODE COMPLETE      │  mode setting\n│    -------------------------->  │\n+-                               -+\n+-                               -+\n│               SETUP             │\n│    -------------------------->  │  Call initiation\n│         CALL PROCEEDING         │\n│    <-------------------------   │\n+-                               -+\n+-                               -+\n│             ALERTING            │\n│    <--------------------------  │  User alerting\n+-                               -+\n+-                               -+\n│        ASSIGNMENT COMMAND       │\n│    <-------------------------   │  Assignment of\n│        ASSIGNMENT COMPLETE      │  a traffic\n│    -------------------------->  │  channel\n+-                               -+\n+-                               -+\n│               CONNECT           │\n│    <--------------------------  │  Call accepted\n│        CONNECT ACKNOWLEDGE      │\n│    -------------------------->  │\n+-                               -+\nFigure 7.10b/3GPP TS 23.108: Mobile originating call establishment with OACSU (late assignment)\nMobile Station              Network\n+-                               -+\n│         CHANNEL REQUEST         │  RR connection\n│   -------------------------->   │  establishment\n│     IMMEDIATE ASSIGNMENT(TCH)   │  (MO)\n│   <-------------------------    │\n+-                               -+\n+-                               -+\n│      CM SERVICE REQUEST         │\n│   -------------------------->   │  Service request\n│                                 │\n+-                               -+\n+-                               -+\n│      AUTHentication REQuest     │  Authentication\n│   <--------------------------   │\n│      AUTHENTICATION RESPONSE    │\n│   --------------------------->  │\n+-                               -+\n+-                               -+\n│        CIPHER MODE COMMAND      │\n│   <--------------------------   │  Ciphering\n│       CIPHer MODe COMplete      │  mode setting\n│   --------------------------->  │\n+-                               -+\n+-                               -+\n│              SETUP              │\n│   -------------------------->   │  Call initiation\n│         CALL PROCeeding         │\n│   <--------------------------   │\n+-                               -+\n+-                               -+\n│       CHANNEL MODE MODIFY       │\n│   <---------------------------  │  Transmission\n│ CHANNEL MODE MODIFY ACKNOWLEDGE │  mode\n│   --------------------------->  │  change\n+-                               -+\n+-                               -+\n│             ALERTING            │\n│   <---------------------------- │  User alerting\n+-                               -+\n+-                               -+\n│         CONNect                 │\n│   <---------------------------  │  Call accepted\n│       CONNect ACKnowledge       │\n│   --------------------------->  │\n+-                               -+\nFigure 7.10c/3GPP TS 23.108: Mobile originating call establishment with very early assignment",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.108_figure_7.10",
+        "ts_23.108"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.108_7.3.3",
+      "section_id": "7.3.3",
+      "section_title": "Mobile terminating call establishment",
+      "content": "Mobile terminating call establishment is initiated by the network sending a PAGING REQUEST message (see figure 7.11a/3GPP TS 23.108). Upon receiving this message the mobile station initiates the immediate assignment procedure and responds to the network by sending the PAGING RESPONSE message within a layer 2 SABM frame. The network returns a layer 2 UA frame containing the same information field as was sent in the SABM frame.\nAuthentication and ciphering are treated by the network in the same way as defined for the mobile originating call establishment (subclause 7.3.2). After ciphering has been started, the network sends a SETUP message to the mobile station. The capability of the mobile station (at that time) to accept the call is confirmed when the mobile station returns a CALL CONFIRMED message to the network.\na)\tNon-OACSU option (early assignment):\nWith this option the network initiates the assignment of a traffic channel upon receiving the CALL CONFIRMED message.\nThe signal IE is not included in the SETUP message, therefore user alerting is initiated only after a traffic channel has been allocated. An ALERTING message will be sent to the network.\nWhen the called user answers, the mobile station sends a CONNECT message to the network. Upon receiving the CONNECT message the network completes the through connection of the communication path and sends a CONNECT ACK message to the mobile station.\nb)\tOACSU option (late assignment):\nIn that option, the signalling IE is included in the SETUP message. Consequently, user alerting is initiated as soon as the MS has accepted the call.\nThe network determines when the traffic channel is to be assigned. The assignment may be performed at any time after user alerting has been initiated. In the following the case is considered where the network will only allocate a traffic channel to the mobile station after having received the CONNECT message sent from the mobile station (see figure 7.11b).\nUpon receiving the ASSIGNMENT COMPLETE message from the mobile station, the network completes the through connection of the communication path and sends a CONNECT ACKNOWLEDGE message to the mobile station.\nMobile Station              Network\n+-                               -+\n│          PAGING  REQUEST        │\n│    <-------------------------   │\n│          CHANNEL REQUEST        │  RR connection\n│    ------------------------->   │  establishment\n│      IMMEDIATE ASSIGNMENT       │  (MT)\n│    <------------------------    │\n+-                               -+\n+-                               -+\n│          PAGING RESPONSE        │\n│    ------------------------->   │  Service request\n+-                               -+\n+-                               -+\n│      AUTHENTICATION REQUEST     │  Authentication\n│    <-------------------------   │\n│      AUTHENTICATION RESPONSE    │\n│    -------------------------->  │\n+-                               -+\n+-                               -+\n│       CIPHer MODe COMMAND       │\n│    <-------------------------   │  Ciphering\n│       CIPHER MODE COMPLETE      │  mode setting\n│    -------------------------->  │\n+-                               -+\n+-                               -+\n│               SETUP             │\n│    <--------------------------  │  Call initiation\n│           CALL CONFIRMED        │\n│    -------------------------->  │\n+-                               -+\n+-                               -+\n│        ASSIGNMENT COMMAND       │\n│    <--------------------------  │  Assignment of\n│        ASSIGNMENT COMPLETE      │  a traffic\n│    -------------------------->  │  channel\n+-                               -+\n+-                               -+\n│              ALERTING           │\n│     ------------------------->  │  User alerting\n+-                               -+  information\n+-                               -+\n│              CONNECT            │\n│    -------------------------->  │  Call accepted\n│        CONNECT ACKNOWLEDGE      │\n│    <--------------------------  │\n+-                               -+\nFigure 7.11a/3GPP TS 23.108: Mobile terminating: call establishment without OACSU (early assignment)\nMobile Station              Network\n+-                               -+\n│          PAGING  REQUEST        │\n│    <-------------------------   │\n│          CHANNEL REQUEST        │  RR connection\n│    ------------------------->   │  establishment\n│      IMMEDIATE ASSIGNMENT       │  (MT)\n│    <------------------------    │\n+-                               -+\n+-                               -+\n│          PAGING RESPONSE        │\n│    ------------------------->   │  Service request\n+-                               -+\n+-                               -+\n│      AUTHENTICATION REQUEST     │  Authentication\n│    <-------------------------   │\n│      AUTHENTICATION RESPONSE    │\n│    -------------------------->  │\n+-                               -+\n+-                               -+\n│       CIPHer MODe COMMAND       │\n│    <-------------------------   │  Ciphering\n│       CIPHER MODE COMPLETE      │  mode setting\n│    -------------------------->  │\n+-                               -+\n+-                               -+\n│               SETUP             │\n│    <--------------------------  │  Call initiation\n│           CALL CONFIRMED        │\n│    -------------------------->  │\n+-                               -+\n+-                               -+\n│              ALERTING           │\n│     ------------------------->  │  User alerting\n+-                               -+  information\n+-                               -+\n│              CONNECT            │\n│     ------------------------->  │\n+-                               -+\n+-                               -+\n│        ASSIGNMENT COMMAND       │\n│    <--------------------------  │  Assignment of\n│        ASSIGNMENT COMPLETE      │  a traffic\n│    -------------------------->  │  channel\n+-                               -+\n+-                               -+\n│        CONNECT ACKNOWLEDGE      │\n│    <--------------------------  │\n+-                               -+\nFigure 7.11b/3GPP TS 23.108: Mobile terminating: call establishment with OACSU (late assignment)",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_7.3.2",
+        "ts_23.108_figure_7.11",
+        "figure_7.11",
+        "ts_23.108"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.108_7.3.4",
+      "section_id": "7.3.4",
+      "section_title": "Call clearing",
+      "content": "a)\tinitiated by the network\nThe network initiates the clearing of a call by sending a DISCONNECT message to the mobile station (see also subclause 5.4.4).\nUpon receiving the DISCONNECT message from the network the mobile station sends a RELEASE message to the network.\nUpon receiving the RELEASE message from the mobile station, the network sends a RELEASE COMPLETE to the mobile station and, if the traffic channel is longer needed (e.g. last activity on the traffic channel), performs the channel release procedure as described in subclause 7.1.7.\nUpon receiving the RELEASE COMPLETE message and if the cleared call was the last activity on the traffic channel, the mobile station waits for the release of the channel which is always initiated by the network.\nWhen there exist multiple traffic channels in the Multicall environment the network does not release (i.e. retains) a traffic channel even if the cleared call was the last activity on the traffic channel under the condition as follows;\n-\ta waiting call exists and the mobile station does not indicates to the network which bearer will be used for accepting the waiting call yet; and\n-\tthere exists no retained bearer for the waiting call.\nWhen the mobile station receives SETUP message with Signal IE indicating Call Waiting, which means the network cannot provide any additional traffic channel, then:\n-\tthe MS shall not request a new SI value before releasing any other call (that leads to release any other bearers than the retained bearer);\n-\tIf the mobile station indicates the different SI value from the retained bearer after releasing any other calls (that leads to release any other bearer than the retained bearer), the network allocates a new TCH for the call, and releases the retained bearer.\nCall clearing initiated by the network is shown in figure 7.12a.\nb) initiated by the mobile station:\nThe mobile station initiates the clearing of a call by sending a DISCONNECT message to the network (see also subclause 5.4.3).\nUpon receiving the DISCONNECT message from the mobile station the network sends a RELEASE message to the mobile station.\nUpon receiving the RELEASE message from the network, the mobile station sends a RELEASE COMPLETE to the network, which, if the traffic channel is no longer needed (e.g. last activity on the traffic channel), performs the channel release procedure as described in subclause 7.1.6.\nWhen there exist multiple traffic channels in the Multicall environment the network does not release (i.e. retains) a traffic channel even if the cleared call was the last activity on the traffic channel under the condition as follows:\n-\ta waiting call exists and the mobile station does not indicates to the network which bearer will be used for accepting the waiting call yet; and\n-\tthere exists no retained bearer for the waiting call.\nWhen the mobile station receives SETUP message with Signaling IE indicating Call Waiting, which means network cannot provide any additional traffic channel, then:\n-\tThe MS shall not request a new SI value before releasing any other call (that leads to release any other bearers than the retained bearer);\n-\tIf the mobile station indicates the different SI value from the retained bearer after releasing any other calls (that leads to release any other bearer than the retained bearer), the network allocates a new TCH for the call, and releases the retained bearer.\nCall clearing initiated by the mobile station is shown in figure 7.12b.\nMobile Station        Network\n+-                         -+\n│        DISCONNECT         │\n│ <------------------------ │  Call clearing\n│        RELEASE            │\n│  -----------------------> │\n│      RELEASE COMPLETE     │\n│  <----------------------- │\n+-                         -+\n+-                         -+\n│      CHANNEL RELEASE      │  RR connection\n│ <------------------------ │  release\n+-                         -+\na)\tCall clearing initiated by the network\nFigure 7.12a/3GPP TS 23.108: Call clearing\na)\nMobile Station        Network\n+-                         -+\n│        DISCONNECT         │\n│ ------------------------> │  Call clearing\n│        RELEASE            │\n│ <------------------------ │\n│      RELEASE COMPLETE     │\n│  -----------------------> │\n+-                         -+\n+-                         -+\n│      CHANNEL RELEASE      │  RR connection\n│ <------------------------ │  release\n+-                         -+\nb) Call clearing initiated by the MS\nFigure 7.12b/3GPP TS 23.108: Call clearing",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_5.4.4",
+        "clause_7.1.7",
+        "clause_5.4.3",
+        "clause_7.1.6",
+        "figure_7.12",
+        "ts_23.108_figure_7.12",
+        "ts_23.108"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.108_7.3.5",
+      "section_id": "7.3.5",
+      "section_title": "DTMF protocol control",
+      "content": "Figure 7.13 shows the structured procedure for DTMF protocol control.\nMobile Station              Network\n+-                               -+\n│                                 │  active call\n│                                 │\n+-                               -+\n.\n+-                                -+\n│          START DTMF              │  DTMF generation\n│  ------------------------------> │  started\n│        START DTMF ACKNOWLEDGE    │\n│  <-----------------------------  │\n+-                                -+\n+-                                 -+\n│          STOP DTMF                │ DTMF generation stopped\n│  -------------------------------> │\n│       STOP DTMF ACKNOWLEDGE       │\n│  <------------------------------- │\n+-                :                -+\n:\n+-                                -+\n│                                  │  active call\n│                                  │\n+-                                -+\nFigure 7.13/3GPP TS 23.108: DTMF protocol control",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_7.13",
+        "ts_23.108_figure_7.13",
+        "ts_23.108"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.108_7.3.6",
+      "section_id": "7.3.6",
+      "section_title": "Handover",
+      "content": "Figure 7.14 shows the structured procedure for handover to a finely synchronized cell, successful case.\nFigure 7.15 shows the structured procedure for handover to a non-synchronized cell, successful case.\nFigure 7.16 shows the structured procedure for handover failure, and reconnection to the old traffic channel.\nMobile Station          Network\n+-                         -+\n│                           │\n│                           │  RR connection established\n│                           │\n+-                         -+\n+-                         -+  handover\n│     HANDOVER COMMAND      │      old channel,\n│ <------------------------ │      old cell\n-│- - - - - - - - - - - - - -│-- - - - - - - - - -\n│     HANDOVER ACCESS       │      new channel,\n│  ------------------------>│      new cell\n│                           │\n│     HANDOVER ACCESS       │\n│  ------------------------>│\n│                           │\n│     HANDOVER ACCESS       │\n│  ------------------------>│\n│                           │\n│     HANDOVER ACCESS       │\n│  ------------------------>│\n│                           │\n│     HANDOVER COMPLETE     │\n│  ------------------------>│\n+-                         -+\nFigure 7.14/3GPP TS 23.108: Handover to a finely synchronized cell, successful case\nMobile Station        Network\n+-                         -+\n│                           │\n│                           │  RR connection established\n│                           │\n+-                         -+\n+-                         -+  handover\n│     HANDOVER COMMAND      │      old channel,\n│ <------------------------ │      old cell\n-│- - - - - - - - - - - - - -│-- - - - - - - - - -\n│     HANDOVER ACCESS       │      new channel,\n│  ------------------------>│      new cell\n│             .             │\n│             .             │\n│             .             │\n│     HANDOVER ACCESS       │      new channel,\n│  ------------------------>│      new cell\n│                           │\n│    PHYSICAL INFORMATION   │\n│ <-----------------------  │\n│     HANDOVER COMPLETE     │\n│  ------------------------>│\n+-                         -+\n+-                         -+\n│             .             │\n│             .             │\n│             .             │\n+-                         -+\nFigure 7.15/3GPP TS 23.108: Handover to a non-synchronized cell, successful case\nMobile Station        Network\n+-                         -+\n│                           │\n│                           │  RR connection established\n│                           │\n+-                         -+\n+-                         -+  handover\n│    HANDOVER COMMAND       │     old channel,\n│ <------------------------ │     old cell\n-│- - - - - - - - - - - - - -│- - - - - - - -\n│      T3124 expiry or      │     new channel,\n│    lower layer failure    │     new cell\n-│- - - - - - - - - - - - - -│- - - - - - - - -\n│    HANDOVER FAILURE       │     old channel,\n│  ------------------------>│     old cell\n+-                         -+\n+-                         -+\n│             .             │\n│             .             │\n│             .             │\n+-                         -+\nFigure 7.16/3GPP TS 23.108: Handover failure, reconnection to the old traffic channel",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_7.14",
+        "figure_7.15",
+        "figure_7.16",
+        "ts_23.108_figure_7.14",
+        "ts_23.108_figure_7.15",
+        "ts_23.108_figure_7.16",
+        "ts_23.108"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.108_7.3.7",
+      "section_id": "7.3.7",
+      "section_title": "In-call modification",
+      "content": "Figure 7.17/3GPP TS 23.108 shows the structured procedure for in-call modification.\nMobile Station        Network\n+-                               -+\n│                                 │  active call\n│                                 │\n+-                               -+\n.\n+-                               -+\n│             MODIFY              │\n│ ------------------------------> │  in-call modification\n│                                 │  e.g. from speech\n│                                 │  to data\n+-                               -+  channel\n│                                 │  mode modify\n│                                 │\n+-                               -+\n│                                 │\n│      MODIFY COMPLETE            │\n│ <-----------------------------  │\n+-                               -+\n+-                               -+\n│                                 │  active call\n│                                 │\n+-                               -+\nFigure 7.17/3GPP TS 23.108: In-call modification",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.108_figure_7.17",
+        "ts_23.108"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.108_7.3.8",
+      "section_id": "7.3.8",
+      "section_title": "Call re-establishment",
+      "content": "Figure 7.18/3GPP TS 23.108 shows the structured procedure for call re-establishment.\nMobile Station            Network\n+-                               -+\n│                                 │  active call\n│                                 │\n+-                               -+\n--------------------------------------  radio link failure\n+-                               -+\n│         CHANNEL REQUEST         │  RR connection\n│    ------------------------->   │  establishment\n│      IMMEDIATE ASSIGNMENT       │  (MO)\n│    <------------------------    │\n+-                               -+\n+-                               -+\n│    CM RE-ESTABLISHMENT REQUEST   │\n│    ------------------------->   │  Service request\n+-                               -+\n+-                               -+\n│       CIPHer MODe COMMAND       │\n│    <-------------------------   │  Ciphering\n│       CIPHER MODE COMPLETE      │  mode setting\n│    ------------------------->   │\n+-                               -+\n+-                               -+\n│       ASSIGNMENT COMMAND        │\n│    <-------------------------   │  assignment of\n│       ASSIGNMENT COMPLETE       │  a traffic channel\n│    ------------------------->   │\n+-                               -+\n+-                               -+\n│                                 │  active call\n│                                 │\n+-                               -+\nFigure 7.18/3GPP TS 23.108: Call re-establishment",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.108_figure_7.18",
+        "ts_23.108"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.108_7.3.9",
+      "section_id": "7.3.9",
+      "section_title": "Network initiated mobile originating call $(CCBS)$",
+      "content": "Network initiated mobile originating call establishment (which is used, for example, for CCBS Service) is initiated by the network sending a PAGING REQUEST message. Upon receiving this message the mobile station initiates the immediate assignment procedure and responds to the network by sending the PAGING RESPONSE message within a layer 2 SABM frame. The network returns a layer 2 UA frame containing the same information field as was sent in the SABM frame.\nAuthentication and ciphering are treated by the network in the same way as defined for the mobile originating call establishment (subclause 7.3.2). After ciphering has been started, the network sends a CM SERVICE PROMPT message, indicating that the CM protocol is to be started, to the mobile station. The basic capability of the mobile station to accept any form of recall service is confirmed when the mobile station returns a START CC message to the network.\na)\tassignment before A party alerting:\nWith this option the network allocates a traffic channel to the mobile station before the mobile station alerts its user.\nThe network responds to the START CC message with a CC-ESTABLISHMENT message. The MS answers with a CC-ESTABLISHMENT CONFIRMED message indicating the wanted channel characteristics. The network then initiates traffic channel assignment.\nWhen the traffic channel has been assigned, the network indicates a pending recall by sending a RECALL message.\nIf the calling user accepts the recall, a SETUP message is sent to the network. The network responds with a CALL PROCEEDING message and initiates call establishment in the fixed network.\nWhen user alerting has been initiated at the called side, an ALERTING message is sent to the mobile station. The network may optionally instruct the MS to attach the user connection at this stage of the call, by means of the progress indicator information element set to the value #1 or #8(if the ringing tone will be sent by the remote end) in the ALERTING message. In that case, an alerting ringing tone has to be generated by the network.\nNOTE 1:\tThe speech codec is transparent for supervisory tones.\nA CONNECT message and its acknowledgement CONNECT ACKNOWLEDGE complete the call establishment when the called party has answered.\nThe network initiated mobile originating call establishment with assignment before A part alerting is shown in figure 7.19/3GPP TS 23.108.\nb)\tassignment before B party alerting:\nWith this option the network allocates a traffic channel to the mobile station after the mobile station has alerted its user and after its user has accepted the recall but before the network initiates call establishment in the fixed network.\nThe network responds to the START CC message with a CC-ESTABLISHMENT message. The MS answers with a CC-ESTABLISHMENT CONFIRMED message indicating the wanted channel characteristics.\nThe network indicates a pending recall by sending a RECALL message. If the calling user accepts the recall, a SETUP message is sent to the network. The network responds with a CALL PROCEEDING message and initiates traffic channel assignment.\nWhen the traffic channel has been assigned, the network initiates call establishment in the fixed network.\nWhen user alerting has been initiated at the called side, an ALERTING message is sent to the mobile station. The network may optionally instruct the MS to attach the user connection at this stage of the call, by means of the progress indicator information element set to the value #1 or #8(if the ringing tone will be sent by the remote end) in the ALERTING message. In that case, an alerting ringing tone has to be generated by the network.\nNOTE 2:\tThe speech codec is transparent for supervisory tones.\nA CONNECT message and its acknowledgement CONNECT ACKNOWLEDGE complete the call establishment when the called party has answered.\nThe network initiated mobile originating call establishment with assignment before B party alerting is shown in figure 7.20/3GPP TS 23.108.\nc)\tassignment after A and B party alerting\nWith this option, the network determines when the traffic channel is to be assigned. The assignment may be performed at any time after call establishment has been initiated in the fixed network. In the following, the case is considered where the network will only allocate a traffic channel after the called party has answered the call (late assignment).\nThe network responds to the START CC message with a CC-ESTABLISHMENT. The MS answers with a CC-ESTABLISHMENT CONFIRMED message indicating the wanted channel characteristics.\nThe network indicates a pending recall by sending a RECALL message. If the calling user accepts the recall, a SETUP message is sent to the network. The network responds with a CALL PROCEEDING message and initiates call establishment in the fixed network.\nAs in a) and b) an ALERTING message is sent to the mobile station when user alerting has been initiated at the called side. If the ringing tone is needed, it has to be generated locally at the mobile station as no traffic channel is allocated. When the called party has answered, the network will initiate the channel assignment procedure in order to allocate a traffic channel to the mobile station. Once the channel assignment has been completed the network will send a CONNECT message to the mobile station. The MS attaches then the user connection. The CONNECT ACKNOWLEDGE message will complete the call setup.\nThe network initiated mobile originating call establishment with assignment after A and B party alerting is shown in figure 7.21/3GPP TS 23.108.\nMobile Station              Network\n+-                               -+\n│          PAGING  REQUEST        │\n│    <-------------------------   │\n│          CHANNEL REQUEST        │  RR connection\n│    ------------------------->   │  establishment\n│      IMMEDIATE ASSIGNMENT       │  (MT)\n│    <-------------------------   │\n+-                               -+\n+-                               -+\n│          PAGING RESPONSE        │\n│    ------------------------->   │\n+-                               -+\n+-                               -+\n│      AUTHENTICATION REQUEST     │  Authentication\n│    <-------------------------   │\n│      AUTHENTICATION RESPONSE    │\n│    ------------------------->   │\n+-                               -+\n+-                               -+\n│       CIPHer MODe COMMAND       │\n│    <-------------------------   │  Ciphering\n│       CIPHER MODE COMPLETE      │  mode setting\n│    ------------------------->   │\n+-                               -+\n+-                               -+\n│       CM SERVICE PROMPT         │\n│    <-------------------------   │  Service Request\n│            START CC             │\n│    ------------------------->   │\n+-                               -+\n+-                               -+\n│          CC-ESTABLISHMENT       │\n│    <-------------------------_  │  Recall initiation\n│    CC-ESTABLISHMENT CONFIRMED   │\n│    ------------------------->   │\n+-                               -+\n+-                               -+\n│        ASSIGNMENT COMMAND       │\n│    <-------------------------   │  Assignment of\n│        ASSIGNMENT COMPLETE      │  a traffic channel.\n│    ------------------------->   │\n+-                               -+\n+-                               -+\n│               RECALL            │\n│    <-------------------------   │ User notified about recall\n│               SETUP             │\n│    ------------------------->   │ Recall accepted and\n│           CALL PROCEEDING       │ call initiation\n│    <-------------------------   │\n+-                               -+\n+-                               -+\n│              ALERTING           │\n│    <-------------------------   │  Called user alerting\n+-                               -+  information\n+-                               -+\n│              CONNECT            │\n│    <-------------------------   │  Call accepted\n│        CONNECT ACKNOWLEDGE      │\n│    ------------------------->   │\n+-                               -+\nß\nFigure 7.19/3GPP TS 23.108: Network initiated mobile originating call establishment with assignment before A party alerting\nMobile Station              Network\n+-                               -+\n│          PAGING  REQUEST        │\n│    <-------------------------   │\n│          CHANNEL REQUEST        │  RR connection\n│    ------------------------->   │  establishment\n│      IMMEDIATE ASSIGNMENT       │  (MT)\n│    <-------------------------   │\n+-                               -+\n+-                               -+\n│          PAGING RESPONSE        │\n│    ------------------------->   │\n+-                               -+\n+-                               -+\n│      AUTHENTICATION REQUEST     │  Authentication\n│    <-------------------------   │\n│      AUTHENTICATION RESPONSE    │\n│    ------------------------->   │\n+-                               -+\n+-                               -+\n│       CIPHer MODe COMMAND       │\n│    <-------------------------   │  Ciphering\n│       CIPHER MODE COMPLETE      │  mode setting\n│    ------------------------->   │\n+-                               -+\n+-                               -+\n│       CM SERVICE PROMPT         │\n│    <-------------------------   │  Service Request\n│            START CC             │\n│    ------------------------->   │\n+-                               -+\n+-                               -+\n│          CC-ESTABLISHMENT       │\n│    <-------------------------_  │  Recall initiation\n│    CC-ESTABLISHMENT CONFIRMED   │\n│    ------------------------->   │\n+-                               -+\n+-                               -+\n│               RECALL            │\n│    <-------------------------   │ User notified about recall\n│               SETUP             │\n│    ------------------------->   │ Recall accepted and\n│           CALL PROCEEDING       │ call initiation\n│    <-------------------------   │\n+-                               -+\n+-                               -+\n│        ASSIGNMENT COMMAND       │\n│    <-------------------------   │  Assignment of\n│        ASSIGNMENT COMPLETE      │  a traffic\n│    ------------------------->   │  channel\n+-                               -+\n+-                               -+\n│              ALERTING           │\n│    <-------------------------   │  Called user alerting\n+-                               -+  information\n+-                               -+\n│              CONNECT            │\n│    <-------------------------   │  Call accepted\n│        CONNECT ACKNOWLEDGE      │\n│    ------------------------->   │\n+-                               -+\nß\nß\nFigure 7.20/3GPP TS 23.108: Network initiated mobile originating call establishment with assignment before B party alerting\nMobile Station              Network\n+-                               -+\n│          PAGING  REQUEST        │\n│    <-------------------------   │\n│          CHANNEL REQUEST        │  RR connection\n│    ------------------------->   │  establishment\n│      IMMEDIATE ASSIGNMENT       │  (MT)\n│    <-------------------------   │\n+-                               -+\n+-                               -+\n│          PAGING RESPONSE        │\n│    ------------------------->   │\n+-                               -+\n+-                               -+\n│      AUTHENTICATION REQUEST     │  Authentication\n│    <-------------------------   │\n│      AUTHENTICATION RESPONSE    │\n│    ------------------------->   │\n+-                               -+\n+-                               -+\n│       CIPHer MODe COMMAND       │\n│    <-------------------------   │  Ciphering\n│       CIPHER MODE COMPLETE      │  mode setting\n│    ------------------------->   │\n+-                               -+\n+-                               -+\n│       CM SERVICE PROMPT         │\n│    <-------------------------   │  Service Request\n│            START CC             │\n│    ------------------------->   │\n+-                               -+\n+-                               -+\n│          CC-ESTABLISHMENT       │\n│    <-------------------------_  │  Recall initiation\n│    CC-ESTABLISHMENT CONFIRMED │\n│    ------------------------->   |\n+-                               -+\n+-                               -+\n│               RECALL            │\n│    <-------------------------   │ User notified about recall\n│               SETUP             │\n│    ------------------------->   │  Recall accepted and\n│           CALL PROCEEDING       │  call initiation\n│    <-------------------------   │\n+-                               -+\n+-                               -+\n│              ALERTING           │\n│    <-------------------------   │  Called user alerting\n+-                               -+  information\n+-                               -+\n│        ASSIGNMENT COMMAND       │\n│    <-------------------------   │  Assignment of\n│        ASSIGNMENT COMPLETE      │  a traffic\n│    ------------------------->   │  channel\n+-                               -+\n+-                               -+\n│              CONNECT            │\n│    <-------------------------   │  Call accepted\n│        CONNECT ACKNOWLEDGE      │\n│    ------------------------->   │\n+-                               -+\nß\nFigure 7.21/3GPP TS 23.108: Network initiated mobile originating call establishment with assignment after A and B party alerting",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_7.3.2",
+        "ts_23.108_figure_7.19",
+        "ts_23.108_figure_7.20",
+        "ts_23.108_figure_7.21",
+        "ts_23.108"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.108_8",
+      "section_id": "8",
+      "section_title": "Handling of unknown, unforeseen, and erroneous protocol data",
+      "content": "For the RR protocol see 3GPP TS 44.018 [80] and for the CN protocols see 3GPP TS 24.008 [81].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_44.018",
+        "ts_24.008"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.108_9",
+      "section_id": "9",
+      "section_title": "Message functional definitions and contents",
+      "content": "For the RR protocol see 3GPP TS 44.018 [80] and for the CN protocols see 3GPP TS 24.008 [81].",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_44.018",
+        "ts_24.008"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.108_10",
+      "section_id": "10",
+      "section_title": "General message format and information elements coding",
+      "content": "For the RR protocol see 3GPP TS 44.018 [80] and for the CN protocols see 3GPP TS 24.008 [81].",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_44.018",
+        "ts_24.008"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.108_11",
+      "section_id": "11",
+      "section_title": "List of system parameters",
+      "content": "For the RR protocol see 3GPP TS 44.018 [80] and for the CN protocols see 3GPP TS 24.008 [81].\nAnnex A (informative):Change History\nBased on 3GPP TS 04.08 version 7.1.1 and inclusion of CRs:\nTdoc\nSPEC\nCR\nREV\nVERS\nSUBJECT\nCAT\nNEW_VERS\nP-99-510\n24.008\nA371\n2\n7.1.0\nBCIE modifications due to EDGE\nB\n8.0.0\nP-99-523\n24.008\nA515\n1\n7.1.0\nSplit of 24.008 in RR and CN parts (Clause 7, \"L3 stage2\")\nF\n8.0.0\nP-99-388\n24.008\nA562\n7.1.0\nCR to 24.008 due to EDGE SMG2 EDGE WS\nB\n8.0.0\nP-99-523\n24.008\nA567\n1\n7.1.0\nSplit of 24.008 in RR and CN parts\nF\n8.0.0\nP-99-390\n24.008\nA592\n1\n7.1.0\nGSM 400 and Mobile Station Classmark\nB\n8.0.0\nP-99-523\n24.008\nA611\n1\n7.1.0\nSplit of 24.008 in RR and CN parts\nF\n8.0.0\nP-99-523\n24.008\nA613\n1\n7.1.0\nSplit of 24.008 in RR and CN parts\nF\n8.0.0\nP-99-512\n24.008\nA621\n2\n7.1.0\nIE Daylight saving time\nB\n8.0.0\nP-99-461\n24.008\nA687\n7.1.0\nTransfer of the LSA Information to the MS\nB\n8.0.0\n3.0.0\nTransferred to TSGN / June 1999\nNP-99446\n23.108\n002\n3.0.0\nmirror R99 LCS CR\nA\n3.1.0\nNP-00095\n23.108\n004\n3.1.0\nClarification on timing to release TCH\nC\n3.2.0\n3.2.0\nNP-11: upgrade to Rel-4\n4.0.0\nNP-15: withdrawn\n4.0.0\nNP-16: approved for Rel-5; MCC editorials & corrections to references\n5.0.0\n5.0.0\nRel-6 published after CN#26\n6.0.0\n6.0.0\nUpgraded to Rel-7 by MCC\n7.0.0\n7.0.0\nUpgraded to Rel-8 by MCC\n8.0.0\n8.0.0\nUpgraded to Rel-9 by MCC\n9.0.0\n9.0.0\nUpgraded to Rel-10 by MCC\n10.0.0\nCP-110695\n23.108\n0005\n10.0.0\nRefence update for TS 23.108\nF\n11.0.0\n11.0.0\nUpgraded to Rel-12 by MCC\n12.0.0\n12.0.0\nUpgraded to Rel-13 by MCC\n13.0.0\nChange history\nDate\nMeeting\nTDoc\nCR\nRev\nCat\nSubject/Comment\nNew version\n2017-03\nCT-75\n-\n-\n-\nUpdate to Rel-14 version (MCC)\n14.0.0\n2018-06\nSA-80\n-\n-\n-\n-\nUpdate to Rel-15 version (MCC)\n15.0.0\n2020-07\nSA-88e\n-\n-\n-\n-\nUpdate to Rel-16 version (MCC)\n16.0.0\n2022-03\nSA-95e\n-\n-\n-\n-\nUpdate to Rel-17 version (MCC)\n17.0.0\n2024-03\n-\n-\n-\n-\n-\nUpdate to Rel-18 version (MCC)\n18.0.0",
+      "chunk_type": "parameter",
+      "cross_references": [
+        "clause_7",
+        "ts_44.018",
+        "ts_24.008",
+        "ts_04.08",
+        "ts_23.108"
+      ]
+    }
+  ]
+}

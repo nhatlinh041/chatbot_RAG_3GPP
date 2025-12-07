@@ -1,0 +1,192 @@
+{
+  "metadata": {
+    "specification_id": "ts_23.919",
+    "version": "Unknown",
+    "title": "3GPP TS 23.919",
+    "file_path": "/content/drive/MyDrive/RAG_thesis/data/23_series/23919-i00/23919-i00.docx"
+  },
+  "export_info": {
+    "export_date": "2025-07-26T09:20:35.190302",
+    "total_chunks": 18
+  },
+  "chunks": [
+    {
+      "chunk_id": "ts_23.919_1",
+      "section_id": "1",
+      "section_title": "Scope",
+      "content": "The present document contains deployment guidelines for the use of direct tunnelling of user plane data between the RNC and the GGSN (earlier known as the One Tunnel approach).\nThis report highlights the impacts of the 3GPP Release 7 Direct Tunnel solution to the current UMTS system in order to guide equipment development and network deployment.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.919_2",
+      "section_id": "2",
+      "section_title": "References",
+      "content": "The following documents contain provisions which, through reference in this text, constitute provisions of the present document.\n-\tReferences are either specific (identified by date of publication, edition number, version number, etc.) or non‑specific.\n-\tFor a specific reference, subsequent revisions do not apply.\n-\tFor a non-specific reference, the latest version applies.  In the case of a reference to a 3GPP document (including a GSM document), a non-specific reference implicitly refers to the latest version of that document in the same Release as the present document.\n[1]\t3GPP TS 23.060: \"General Packet Radio Service (GPRS); Service description; Stage 2\".\n[2]\t3GPP TS 23.107: \" Quality of Service (QoS) concept and architecture\".\n[3]\t3GPP TS 23.203: \"Policy and charging control architecture\".\n[4]\t3GPP TS 33.106: \"Lawful interception requirements\".\n[5]\t3GPP TS 33.107: \"3G security; Lawful interception architecture and functions\".\n[6]\t3GPP TS 33.108: \"3G security; Handover interface for Lawful Interception (LI)\".",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.060",
+        "ts_23.107",
+        "ts_23.203",
+        "ts_33.106",
+        "ts_33.107",
+        "ts_33.108"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.919_3",
+      "section_id": "3",
+      "section_title": "Abbreviations",
+      "content": "For the purposes of the present document, the following abbreviations apply:\nDT\tDirect Tunnel\nLI\tLawful Interception",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.919_4.1",
+      "section_id": "4.1",
+      "section_title": "General",
+      "content": "Direct Tunnel is an optional feature in Iu mode that allows the SGSN to establish a direct user plane tunnel between RAN and GGSN within the PS domain.\nThe SGSN handles the control plane signalling and makes the decision when to establish a Direct Tunnel. In case of Direct Tunnel, the SGSN provides the RAN with the TEID and user plane address of the GGSN, and provides the GGSN with the TEID and user plane address of the RAN. The detailed procedures are specified in TS 23.060 [1].\nFigure 4-1: Direct Tunnel concept",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_23.060_figure_4-1",
+        "ts_23.060"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.919_5.1",
+      "section_id": "5.1",
+      "section_title": "Charging",
+      "content": "When a Direct Tunnel is active, the SGSN will no longer be able to count data volumes associated with the PDP context for which the Direct Tunnel is established. As a result of activating a Direct Tunnel for a specific PDP context, an inconsistency in the data volumes captured by the SGSN and GGSN will arise for that PDP context.\nHence, if Direct Tunnel is active, volume based charging can no longer operate when relying on SGSN charging information alone (e.g. CAMEL pre-paid service or charging only on S-CDRs).\nDuring an upgrade phase when there exist Pre-DT GGSN or Pre-DT RNC in the network there may in some error situations as described in clause 8 occur a discrepancy in CDR closure time between S-CDRs and G-CDRs.\nHowever, no impacts on flow based charging, as defined in TS 23.203 [3], are foreseen.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_8",
+        "ts_23.203"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.919_5.2",
+      "section_id": "5.2",
+      "section_title": "Lawful Interception",
+      "content": "If a Direct Tunnel is in use, the LI system can only collect the communication content from the GGSN.\nWhen the LI function in the GGSN is used, some control plane related information, such as SMS and MM-related information can only be collected from the SGSN.\nDetails for LI are specified in following documents: TS 33.106 [4], TS 33.107 [5], and TS 33.108 [6].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_33.106",
+        "ts_33.107",
+        "ts_33.108"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.919_5.3",
+      "section_id": "5.3",
+      "section_title": "CAMEL",
+      "content": "Direct Tunnel is not enabled for a subscriber that has controlling PS domain CAMEL services active.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.919_5.4",
+      "section_id": "5.4",
+      "section_title": "Error Handling",
+      "content": "With the Rel-7 Direct Tunnel feature, the GTP-U related error handling has been slightly changed in the GGSN and RNC. For the Error Handling function to work fully correctly, the GGSN and RNC need to be upgraded to support Direct Tunnel. During a deployment phase, the Direct Tunnel feature may however be used without the GGSN and/or the RNC being upgraded. The shortcomings and issues related with this are mainly that the network may experience hanging PDP contexts or inconsistent PDP context data in some rare error cases, e.g. at node failures or restarts. This is further explained in clause 8.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_8"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.919_6.1",
+      "section_id": "6.1",
+      "section_title": "SGSN",
+      "content": "The main principle is that whenever a RAB is assigned for a PDP context (or re-assigned) the SGSN decides whether to use a direct user plane tunnel between RNC and GGSN, or, if it needs to handle user plane data and use two tunnels as in earlier 3GPP releases. Further, when a Direct Tunnel was in use and the RAB assigned for a PDP context is released (i.e. the PDP context is preserved) the GTP-U tunnel is (re)established between the GGSN and SGSN in order to be able to handle the downlink packets.\nThe SGSN needs to decide before every RAB assignment and every SRNS relocation if direct tunnel will be used or not.\nFigure 6-1: Connected mode and Idle mode handling\nIn the Intra SGSN Inter-system Change procedure from 3G to 2G, the SGSN needs to perform a PDP Context Update Procedure to establish the tunnel between the 2G SGSN and the GGSN and release the Direct Tunnel between RNC and GGSN.\nIn the Intra SGSN Inter-system Change procedure from 2G to 3G, the SGSN provides to the RNC the GGSN's Address(es) for User Plane and TEID(s) for Uplink data in the RAB Assignment Request during the Service Request Procedure. Then the SGSN performs a PDP Context Update Procedure to establish the Direct Tunnel between the RNC and the GGSN and release the tunnel between SGSN and GGSN.\nToggling between 2G and 3G might (or might not) be frequent. This may effect the Gn signalling when Direct Tunnel is deployed. It is implementation specific how this is addressed.",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_6-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.919_6.2",
+      "section_id": "6.2",
+      "section_title": "GGSN",
+      "content": "In order to inform the GGSN of the IP address of the RNC and the TEID for the active PDP context, the SGSN will send an Update PDP Context Request message to the GGSN during every PDP Context Activation procedure for which a Direct Tunnel is established. This message, which is an optional message in two-tunnel system, increases the signalling load on SGSN and GGSN.\nRAB release and re-establishment procedures, which become visible to the GGSN in a Direct Tunnel system, also increase the signalling load on SGSN and GGSN. If the radio-link is bad, and the RNC releases the Iu connection, the frequent RAB release and re-establishment increases the signalling load on SGSN and GGSN. One consequence is that it is useful if the RNC utilises URA-PCH state.\nSome Intra SGSN procedures, such as Intra SGSN inter RNC, Intra SGSN Inter-system change, and possibly other procedures, which are invisible to the GGSN in two-tunnel system, will become visible to the GGSN and increase the signalling load on both SGSN and GGSN.\nReceipt of the Direct Tunnel Indicator makes the GGSN aware that the SGSN is using a Direct Tunnel.\nWhen using Direct Tunnel, if the GGSN receives a GTP-U Error Indication (from the RNC) it shall not release the related PDP context locally but the GGSN shall notify the SGSN that the RAB in RAN is invalid. This needs the GGSN to be updated.\nNOTE:\tDuring a deployment phase, the Direct Tunnel feature may however be used without the GGSN being upgraded. This is further explained in clause 8.1.\nIf, when using two tunnels transport network QoS was used on Iu-PS but not on Gn then moving to Direct Tunnel requires the GGSN to implement transport network QoS.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_8.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.919_6.3",
+      "section_id": "6.3",
+      "section_title": "RNC",
+      "content": "RNCs that only support ATM transport should support IP transport for the Iu-PS interface. Alternatively a solution as described below in clause 6.4 can be used.\nDue to this Direct Tunnel feature, the Error Handling Behaviour of Rel-7 RNC is changed.\nNOTE:\tDuring a deployment phase, the Direct Tunnel feature may however be used without the RNC being upgraded. This is further explained in clause 8.3.\nIf, when using two tunnels transport network QoS was used on Gn but not on Iu-PS then moving to Direct Tunnel requires the RNC to implement transport network QoS.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_6.4",
+        "clause_8.3"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.919_6.4",
+      "section_id": "6.4",
+      "section_title": "IP Backbone Network",
+      "content": "Within the network area where Direct Tunnel is used, the Iu-PS and Gn transport networks must be made visible to each other, this is a network configuration issue.\nThis is minor security drawback. The risk could be reduced by using firewall between Iu-PS and Gn networks instead of simple router (this might impact user-plane latency). Only IP traffic to predefined IP-addresses/ports from predefined addresses/ports would be allowed between Iu-PS and Gn networks. Considering network security, a firewall can be deployed between the RNC and the IP network.\nFor an ATM based Iu-PS, the ATM connection needs to be terminated and \"interworked\" to IP. The location of the interworking may be within the Iu-PS network or at the edge of the Iu-PS network.\nFigure 6-2 shows the connectivity between the Iu-PS network and the Gn (backbone) network.\nFigure 6-2: Connectivity with Iu-PS",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_6-2"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.919_6.5",
+      "section_id": "6.5",
+      "section_title": "IP versions",
+      "content": "The Iu-PS and Gn transport networks need to be using the same IP version.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.919_6.6",
+      "section_id": "6.6",
+      "section_title": "QoS Architecture",
+      "content": "Currently, UMTS QoS architecture is defined in TS 23.107 [2], which is based on the two tunnel architecture. However, it is believed that this QoS architecture should be updated due to this Direct Tunnel feature.\nThe deployment of Direct Tunnel requires consistent QoS treatment on Iu-PS and Gn interfaces.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.107"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.919_7",
+      "section_id": "7",
+      "section_title": "Limitations of Direct Tunnel Solution",
+      "content": "Direct Tunnel shall not be used in following traffic cases:\n1)\tIn roaming cases when the GGSN is not in the VPLMN\n-\tThe SGSN needs to know whether the GGSN is in the same or different PLMN.\n2)\tSGSN has received CAMEL Subscription Information in the subscriber profile.\n-\tIf Direct Tunnel is established then volume reporting from SGSN is not possible as the SGSN no longer has visibility of the User Plane. Since a CAMEL server can invoke volume reporting at anytime during the life time of a PDP Context, the use of Direct Tunnel shall be prohibited for a subscriber whose profile contains CAMEL Subscription Information.\n3)\tGGSN does not support GTP protocol version 1.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.919_8.1",
+      "section_id": "8.1",
+      "section_title": "Interworking with Pre-DT GGSN",
+      "content": "A Pre-DT GGSN is unaware of the Direct Tunnel feature. Therefore, the Pre-DT GGSN cannot differentiate a Direct Tunnel case from a two-tunnel case. If the Pre-DT GGSN receives a GTP Error Indication from the RNC, it will treat this indication as if it came from the SGSN. This means that the Pre-DT GGSN marks the related PDP context as invalid without informing the SGSN. This may result in the PDP Context being deleted in the GGSN and, if the PDP context is the last context for that IP address, the release of the related IP address. When downlink data arrives at this GGSN, the GGSN will discard the data locally if no valid PDP context is found that is able to route the data (e.g. as dictated by allocated UE IP address or by packets filters belonging to installed TFTs). This means e.g. Push services will be blocked in this situation.\nIn the case that the GGSN marks the related PDP context as invalid, any effected PDP contexts that use Direct Tunnel and have an invalid tunnel in the GGSN will be recovered when the SGSN receives an Iu connection establishment request from the MS as specified in clause \"Handling of Un-synchronous States in the UE and the Network\" in TS 23.060 [1]. This may take a relatively long time and lead to the services re-establishing on the effected PDP contexts.\nIn the case that the GGSN deletes the PDP context and releases the related IP address, the effected PDP contexts have to be re-established, which leads to the service re-establishing.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.060"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.919_8.2",
+      "section_id": "8.2",
+      "section_title": "Interworking with Pre-DT SGSN",
+      "content": "In the scenario of Inter-SGSN SRNS Relocation, if the source SGSN is a Pre-DT SGSN, the source SGSN does not include the Direct Tunnel Flags in the Forward Relocation Request message sent to the target SGSN. If the Direct Tunnel Flags are absent, then the target DT enabled SGSN cannot know if a GPRS CAMEL Subscription Information was present in the subscriber's profile in the old SGSN.\nHow a target DT SGSN should react in this case needs to reflect the operator's preferences. For example:\n-\tan operator using CAMEL for PS domain pre-pay might want the target SGSN to wait for the subscriber's profile from the HLR before the Direct Tunnel decisions is made; while\n-\tan operator that does not use CAMEL in the PS domain, might want the target SGSN to automatically establish a Direct Tunnel (for non-roaming subscribers).",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.919_8.3",
+      "section_id": "8.3",
+      "section_title": "Interworking with Pre-Rel-7 RNC",
+      "content": "If a Pre-Rel-7 RNC receives a GTP Error Indication from the GGSN, it will treat it as if it came from the SGSN. This means that the RNC locally releases the RAB without informing the SGSN. The GGSN sent the GTP Error Indication because that PDP Context is not valid at the GGSN, so, when downlink data arrives at the recovered GGSN, the GGSN will discard this data locally. Any such effected PDP contexts that use Direct Tunnel and have no related RAB in the RNC will be recovered when the SGSN receives an Iu connection establishment request from the MS as specified in clause \"Handling of Un-synchronous States in the UE and the Network\" in TS 23.060 [1]. This may take a relative long time and lead to the services re-establishing on the effected PDP contexts.\nAnnex A:Change history\nChange history\nDate\nTSG #\nTSG Doc.\nCR\nRev\nSubject/Comment\nOld\nNew\n2007-05\nSP-36\nSP-070404\n-\n-\nMCC editing of draft for presentation to TSG SA for approval\n0.1.0\n1.0.0\n2007-06\n-\n-\n-\n-\nApproved at SP-36 and updated to version 7.0.0\n1.0.0\n7.0.0\n2008-12\nSP-42\n-\n-\n-\nUpdate to Rel-8 version (MCC)\n7.0.0\n8.0.0\n2009-12\nSP-46\n-\n-\n-\nUpdate to Rel-9 version (MCC)\n8.0.0\n9.0.0\n2011-03\nSP-51\n-\n-\n-\nUpdate to Rel-10 version (MCC)\n9.0.0\n10.0.0\n2012-09\n-\n-\n-\n-\nUpdate to Rel-11 version (MCC)\n10.0.0\n11.0.0\n2014-09\nSP-65\n-\n-\n-\nUpdate to Rel-12 version (MCC)\n11.0.0\n12.0.0\n2015-12\n-\n-\n-\n-\nUpdate to Rel-13 version (MCC)\n12.0.0\n13.0.0\n2017-03\n-\n-\n-\n-\nUpdate to Rel-14 version (MCC)\n13.0.0\n14.0.0\n2018-06\nSP-80\n-\n-\n-\nUpdate to Rel-15 version (MCC)\n14.0.0\n15.0.0\n2020-07\nSP-88E\n-\n-\n-\nUpdate to Rel-16 version (MCC)\n15.0.0\n16.0.0\n2022-03\nSP-95E\n-\n-\n-\nUpdate to Rel-17 version (MCC)\n16.0.0\n17.0.0\n2024-03\n-\n-\n-\n-\nUpdate to Rel-18 version (MCC)\n17.0.0\n18.0.0",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.060"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,739 @@
+{
+  "metadata": {
+    "specification_id": "ts_29.674",
+    "version": "18.0.0",
+    "title": "3GPP TS 29.674",
+    "file_path": "/content/drive/MyDrive/RAG_thesis/data/29_series/29674-i00/29674-i00.docx"
+  },
+  "export_info": {
+    "export_date": "2025-07-26T08:47:42.146831",
+    "total_chunks": 75
+  },
+  "chunks": [
+    {
+      "chunk_id": "ts_29.674_1",
+      "section_id": "1",
+      "section_title": "Scope",
+      "content": "The present document specifies the UE Radio Capability Management Protocol used on the interface between the MME and UCMF as specified in 3GPP TS 23.401 [2]. In the related stage 2 specifications the prefix S17 is used for these common procedures realised by URCMP.\nNOTE: As an alternative of URCMP, the MME could use SBI interface to access UCMF Services.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.401"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.674_2",
+      "section_id": "2",
+      "section_title": "References",
+      "content": "The following documents contain provisions which, through reference in this text, constitute provisions of the present document.\n-\tReferences are either specific (identified by date of publication, edition number, version number, etc.) or non‑specific.\n-\tFor a specific reference, subsequent revisions do not apply.\n-\tFor a non-specific reference, the latest version applies. In the case of a reference to a 3GPP document (including a GSM document), a non-specific reference implicitly refers to the latest version of that document in the same Release as the present document.\n[1]\t3GPP TR 21.905: \"Vocabulary for 3GPP Specifications\".\n[2]\t3GPP TS 23.401: \"General Packet Radio Service (GPRS) enhancements for Evolved Universal Terrestrial Radio Access Network (E-UTRAN) access\".\n[3]\tIETF RFC 768: \"User Datagram Protocol\".\n[4]\tIETF RFC 791: \"INTERNET PROTOCOL\".\n[5]\tIETF RFC 8200: \"Internet Protocol, Version 6 (Ipv6) Specification\".\n[6]\t3GPP TS 23.003: \"Numbering, addressing and identification\".\n[7]\t3GPP TS 24.301: \"Non-Access-Stratum (NAS) protocol for Evolved Packet System (EPS); Stage 3\".\n[8]\t3GPP TS 36.413: \"Evolved Universal Terrestrial Radio Access Network (E-UTRAN); S1 Application Protocol (S1AP)\".\n[9]\t3GPP TS 29.274: \"3GPP Evolved Packet System (EPS); Evolved General Packet Radio Service (GPRS) Tunnelling Protocol for Control plane (GTPv2-C); Stage 3\".\n[10]\tIETF RFC 5905: \"Network Time Protocol Version 4: Protocol and Algorithms Specification\".\n[11]\t3GPP TS 38.413: \"NG Radio Access Network (NG-RAN); NG Application Protocol (NGAP)\".",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905",
+        "ts_23.401",
+        "ts_23.003",
+        "ts_24.301",
+        "ts_36.413",
+        "ts_29.274",
+        "ts_38.413"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.674_3.1",
+      "section_id": "3.1",
+      "section_title": "Terms",
+      "content": "void",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.674_3.2",
+      "section_id": "3.2",
+      "section_title": "Symbols",
+      "content": "void",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.674_3.3",
+      "section_id": "3.3",
+      "section_title": "Abbreviations",
+      "content": "For the purposes of the present document, the abbreviations given in 3GPP TR 21.905 [1] and the following apply. An abbreviation defined in the present document takes precedence over the definition of the same abbreviation, if any, in 3GPP TR 21.905 [1].\nMME\tMobility Management Entity\nURCMP\tUE Radio Capability Management Protocol\nUCMF\tUE radio Capability Management Function",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.674_4.1",
+      "section_id": "4.1",
+      "section_title": "Introduction",
+      "content": "The protocol stack for the control plane over the S17 reference points shall be as depicted in Figure 4.1-1. Clauses 4.2 and 4.3 further specify the related UDP and IP requirements.\nFigure 4.1-1: Control Plane stack over S17",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "figure_4.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.674_4.2.1",
+      "section_id": "4.2.1",
+      "section_title": "General",
+      "content": "A User Datagram Protocol (UDP) compliant with IETF RFC 768 [3] shall be used.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.674_4.2.2",
+      "section_id": "4.2.2",
+      "section_title": "Request Message",
+      "content": "The UDP Destination Port number for a Request message shall be the one and only one configured by the operator for a given PLMN, e.g. in the range of 49152 to 65535.\nThe UDP Source Port for a Request message is a locally allocated port number at the sending entity.\nNOTE:\tThe locally allocated source port number can be reused for multiple Request messages.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.674_4.2.3",
+      "section_id": "4.2.3",
+      "section_title": "Response Message",
+      "content": "The UDP Destination Port value of a Response message shall be the value of the UDP Source Port of the corresponding Request message.\nThe UDP Source Port of a Response message shall be the value from the UDP Destination Port of the corresponding message.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.674_4.3.1",
+      "section_id": "4.3.1",
+      "section_title": "General",
+      "content": "In this clause, \"IP\" refers either to Ipv4 as defined by IETF RFC 791 [4] or Ipv6 as defined by IETF RFC 8200 [5]. A URCMP entity shall support both Ipv4 and Ipv6.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.674_4.3.2",
+      "section_id": "4.3.2",
+      "section_title": "Request Message",
+      "content": "The IP Destination Address of a Request message shall be an IP address of the peer entity.\nThe IP Source Address of a Request message shall be an IP address of the sending entity.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.674_4.3.3",
+      "section_id": "4.3.3",
+      "section_title": "Response Message",
+      "content": "The IP Destination Address of a Response message shall be copied from the IP Source Address of the corresponding Request message.\nThe IP Source Address of a Response message shall be copied from the IP destination address of the corresponding Request message.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.674_5.1",
+      "section_id": "5.1",
+      "section_title": "Introduction",
+      "content": "This document describes the procedures, messages and information elements over the S17 reference point between the MME and the UCMF to support UE Radio Capability Signalling optimization as specified in clause 5.11.3A of 3GPP TS 23.401 [2].\nThe UE Radio Capability Management Protocol (URCMP) is used over S17 reference point.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.401_clause_5.11.3",
+        "ts_23.401"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.674_6.1",
+      "section_id": "6.1",
+      "section_title": "Introduction",
+      "content": "The following clauses specify the procedures supported over the S17 reference points.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.674_6.2.1",
+      "section_id": "6.2.1",
+      "section_title": "General",
+      "content": "The following clauses specify the node related procedures over the S17 reference points.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.674_6.2.2.1",
+      "section_id": "6.2.2.1",
+      "section_title": "General",
+      "content": "Two messages are specified for URCMP heartbeat procedure: Heartbeat Request and Heartbeat Response. The use of these messages is further specified in clause 19B of 3GPP TS 23.007 [3] for EPC.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_23.007_clause_19",
+        "ts_23.007"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.674_6.2.2.2",
+      "section_id": "6.2.2.2",
+      "section_title": "Heartbeat Request",
+      "content": "The MME or UCMF may send a Heartbeat Request on a path to the peer node to find out if it is alive. Heartbeat Request messages may be sent for each peer which is known by the sender, e.g. based on the configuration.\nAn MME or a UCMF shall be prepared to receive a Heartbeat Request at any time and it shall reply with a Heartbeat Response message.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.674_6.2.2.3",
+      "section_id": "6.2.2.3",
+      "section_title": "Heartbeat Response",
+      "content": "The message shall be sent as a response to a received Heartbeat Request message.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.674_6.2.3.1",
+      "section_id": "6.2.3.1",
+      "section_title": "General",
+      "content": "The URCMP Subscription Management Procedure shall be used to create or delete a subscription in the UCMF, where the subscription is to get notifications for one or more new dictionary entries creation or for the deletion of one or more PLMN Assigned UE Radio Capability IDs.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.674_6.2.3.2",
+      "section_id": "6.2.3.2",
+      "section_title": "Procedures in the MME",
+      "content": "To create or delete a subscription in the UCMF which is used to receive notifications afterwards, the MME shall initiate the Subscription Management Procedure by sending a Subscription Management Request message towards the UCMF including:\n-\ta \"Subscription Management Operation Type\" IE, which is set to either \"Creation\" or \"Deletion\";\n-\tthe MME Address Information IE which is used to receive subsequent notifications from the UCMF if the operation type is set to \"Creation\". The MME address information includes an IP address;\n-\tthe Subscription ID which is used to address a subscription in the UCMF if the operation code is set to \"Deletion\";\nThe MME shall create only one subscription in the UCMF.\nWhen the MME receives the Subscription Management Response message with a successful cause for a subscription creation request, the MME function shall be prepared to receive subsequent notifications at the provided MME address.",
+      "chunk_type": "procedure",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.674_6.2.3.3",
+      "section_id": "6.2.3.3",
+      "section_title": "Procedures in the UCMF",
+      "content": "When the UCMF receives a Subscription Management Request message, it shall reply with a Subscription Management Response message.\nOn success:\n-\tIf the operation code is set to \"Creation\", the UCMF shall create a new subscription together with the MME address and the timestamp of the request to create the subscription, and include the following information in the Subscription Management Response message;\n-\ta Subscription ID;\n-\tthe current highest Dictionary Entry ID which has been allocated in the UCMF;\n-\tIf the operation code is set to \"Deletion\", the UCMF shall delete the subscription and include a success cause code in the Subscription Management Response message;\nOn failure, the UCMF shall:\n-\treturn an appropriate error cause value, e.g. MANDATORY_IE_MISSING for the creation of a subscription, or SUBSCRIPTION_NOT_FOUND for the deletion of a subscription, discard all the received information.",
+      "chunk_type": "procedure",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.674_6.2.4.1",
+      "section_id": "6.2.4.1",
+      "section_title": "General",
+      "content": "The URCMP Event Notification Procedure shall be used to send a notification for an event, e.g. the creation of one or more new dictionary entries, towards an MME which has a valid subscription in the UCMF.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.674_6.2.4.2",
+      "section_id": "6.2.4.2",
+      "section_title": "Procedures in the UCMF",
+      "content": "When one or more new dictionary entries are created in the UCMF since the time of the creation of the subscription, or when a PLMN decides to switch to operate based on manufacturer-assigned UE Radio Capability ID for a particular type of UE, the UCMF shall initiate the Event Notification Procedure by sending an Event Notification Request message towards the MME including:\n-\tan Event Type IE, which is set to either \"Creation of Dictionary Entry\" or \"Deletion of PLMN-assigned UE Radio Capability ID\" or \"NEW_VERSION_ID_OF_PLMN_ASSIGNED_IDs\";\n-\tthe updated highest Dictionary Entry ID if the Event Type is set to \" CREATION_OF_DICTIONARY_ENTRY \";\n-\ta new Version ID if the Event Type is set to \" NEW_VERSION_ID_OF_PLMN_ASSIGNED_IDs\";\n-\tthe Manufacturer Assigned operation requested list if the Event Type is set to \" DELETION_OF_PLMN_ASSIGNED_IDS \" which shall include one of the following (not both):;\n-\tone or more PLMN Assigned UE Radio Capability IDs to be deleted;\n-\tor, one or more Type Allocation Codes in corresponding to the PLMN Assigned UE Radio Capability IDs to be deleted.",
+      "chunk_type": "procedure",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.674_6.2.4.3",
+      "section_id": "6.2.4.3",
+      "section_title": "Procedures in the MME",
+      "content": "When the MME receives an Event Notification Request message, it shall reply with an Event Notification Response message.\nOn success, the MME:\n-\tmay determine and then retrieve those dictionary entries which are not available yet locally using the Dictionary Entry ID if the Event Type is set to \" Creation of Dictionary Entry\";\n-\tshall retrieve affected UE contexts which are using those PLMN-assigned UE Radio Capability IDs which are to be deleted and behave as specified in clause 5.11.3a of 3GPP TS 23.401 [2] if the Event Type is set to \"Deletion of PLMN-assigned UE Radio Capability ID\";\n-\tmay determine to retrieve a new PLMN Assigned UE Radio Capability ID, e.g. for a UE with signalling connection established to the MME;\n-\tshall include a success cause code in the Event Notification Response message;\nOn failure, the MME:\n-\tshall return an appropriate error cause value in the Event Notification Response message, e.g. MANDATORY_IE_MISSING, and discard all the received information.",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "ts_23.401_clause_5.11.3",
+        "ts_23.401"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.674_6.3.1",
+      "section_id": "6.3.1",
+      "section_title": "General",
+      "content": "The following clauses describe the session related procedures over the S17 reference points. A URCMP session refers to a signalling transaction addressing a dictionary entry containing the mapping information between the UE Radio Capability ID(s) and UE Radio Access Capability Information.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.674_6.3.2.1",
+      "section_id": "6.3.2.1",
+      "section_title": "General",
+      "content": "The URCMP Create Dictionary Entry procedure shall be used to create a dictionary entry in the UCMF, and obtain a PLMN assigned UE Radio Capability ID.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.674_6.3.2.2",
+      "section_id": "6.3.2.2",
+      "section_title": "Procedures in the MME",
+      "content": "When the UE Radio Capability ID, either PLMN-assigned or Manufacturer-assigned, is not received by the MME from a UE, or from the source MME during an inter MME mobility procedure or if the MME receives a rejection response from the UCMF with the cause code \"NO_DICTIONARY_ENTRY_FOUND\" when it uses a Manufacturer-assigned UE Radio Capability ID to retrieve the corresponding UE Radio Access Capability Information, or if the MME receives a rejection response from the UCMF with the cause code \"OUT_DATED_VERSION_ID_IN_RAC_ID\" when it uses a PLMN-assigned UE Radio Capability ID to retrieve the corresponding UE Radio Access Capability Information, the MME shall initiate the Create Dictionary Entry Procedure by sending a Create Dictionary Entry Request message towards the UCMF including:\n-\tthe UE Radio Access Capability Information, which is received from the eNB, encoded as specified in 3GPP TS 36.413 [8], and optionally also including information encoded as specified in 3GPP TS 38.413 [11]\n-\tType Allocation Code in the IMEI of the UE\nWhen the MME receives a Create Dictionary Entry Response message with a successful cause, the MME function shall continue with the procedure which triggered the Create Dictionary Entry procedure as specified in 3GPP TS 23.401 [2].",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "ts_36.413",
+        "ts_38.413",
+        "ts_23.401"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.674_6.3.2.3",
+      "section_id": "6.3.2.3",
+      "section_title": "Procedures in the UCMF",
+      "content": "When the UCMF receives a Create Dictionary Entry Request message, it shall reply with a Create Dictionary Entry Response message.\nOn success, the UCMF shall check whether for the provided input a dictionary entry already exists and a PLMN Assigned UE Radio Capability ID has already been assigned. If this is not the case, the UCMF shall create a new dictionary entry with the received information and a new PLMN assigned UE Radio Capability ID. The UCMF shall include the following (already existing or newly created) information in the Create Dictionary Entry Response message;\n-\ta dictionary entry ID;\n-\ta PLMN assigned UE Radio Capability ID, if PLMN is configured to use a PLMN specific UE Radio Capability ID.\nOn failure, the UCMF shall:\n-\treturn an appropriate error cause value, e.g. MANDATORY_IE_MISSING, discard all the received information and not create any dictionary entry.\nA UCMF configured to operate in Mode of Operation A (3GPPP TS 23.401, Clause 5.11.3a) shall reject the operation if the request does not contain UE Radio Access Capability Information in both the formats and UCMF is not able to find match of the received UE Radio Access Capability Information in its database.",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "ts_23.401_clause_5.11.3",
+        "ts_23.40"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.674_6.3.3.1",
+      "section_id": "6.3.3.1",
+      "section_title": "General",
+      "content": "The URCMP Query Dictionary Entry procedure shall be used to retrieve UE Radio Access Capability Information from a dictionary entry in the UCMF.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.674_6.3.3.2",
+      "section_id": "6.3.3.2",
+      "section_title": "Procedures in the MME",
+      "content": "When the MME receives a UE Radio Capability ID from a UE or the source MME (during an inter MME mobility procedure), which is either PLMN-assigned or Manufacturer-assigned, while there is no corresponding UE Radio Access Capability Information stored in the MME, the MME shall initiate the Query Dictionary Entry Procedure by sending a Query Dictionary Entry Request message towards the UCMF including:\n-\ta PLMN-assigned UE Radio Capability ID;\n-\tor a Manufacturer-assigned UE Radio Capability ID;\n-\tor a Dictionary Entry ID;\nWhen the MME receives a Query Dictionary Entry Response message with a successful cause, the MME function shall continue with the procedure which triggered the Create Dictionary Entry procedure as specified in 3GPP TS 23.401 [2].",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "ts_23.401"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.674_6.3.3.3",
+      "section_id": "6.3.3.3",
+      "section_title": "Procedures in the UCMF",
+      "content": "When the UCMF receives a Query Dictionary Entry Request message, it shall look up the dictionary entries and reply with a Query Dictionary Entry Response message.\nOn success, the UCMF shall provide the information included in the dictionary entry which matches the query parameter in the Query Dictionary Entry Response message, and the following information shall be included (if available):\n-\tthe UE Radio Access Capability Information in correspondence to the querying parameter, e.g. the UE Radio Capability ID included in the request message;\n-\ta PLMN specific UE Radio Capability ID if allocated, e.g. when the querying UE Radio Capability ID is a Manufacturer-assigned UE Radio Capability ID and if PLMN is configured to use a PLMN specific UE Radio Capability ID;\n-\tthe dictionary entry id;\n-\ta Manufacturer-assigned UE Radio Capability ID if available;\n-\tthe Type Allocation Code.\nNOTE:\tThe UCMF will not provide the information in a dictionary entry which is already included as a query parameter in the request message.\nOn failure, the UCMF shall:\n-\treturn an appropriate error cause value, e.g. NO_DICTIONARY_ENTRY_FOUND, OUT_DATED_VERSION_ID_IN_RAC_ID.",
+      "chunk_type": "procedure",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.674_6.4",
+      "section_id": "6.4",
+      "section_title": "Reliable Delivery of URCMP Messages",
+      "content": "Reliable delivery of URCMP messages is accomplished by retransmission of these messages as specified in this clause.\nA URCMP entity shall maintain, for each triplet of local IP address, local UDP port and remote peer's IP address, a sending queue with Request messages to be sent to that peer. Each message shall be sent with a Sequence Number and be held until a corresponding Response is received or until the URCMP entity ceases retransmission of that message. The Sequence Number shall be unique for each outstanding Request message sourced from the same IP/UDP endpoint. A URCMP entity may have several outstanding Requests waiting for replies.\nWhen sending a Request message, the sending URCMP entity shall start a timer T1. The sending entity shall consider that the Request message has been lost if a corresponding Response message has not been received before the T1 timer expires. If so, the sending entity shall retransmit the Request message, if the total number of retry attempts is less than N1 times. The setting of the T1 timer and N1 counter is implementation specific.\nA retransmitted URCMP message shall have the same message content, including the same URCMP header, UDP ports, source and destination IP addresses as the originally transmitted message.\nA Request and its Response message shall have the same Sequence Number value, i.e. the Sequence Number in the URCMP header of the Response message shall be copied from the respective Request message. A Request and its Response messages are matched based on the Sequence Number and the IP address and UDP port.\nNot counting retransmissions, a Request message shall be answered with a single Response message. Duplicated Response messages shall be discarded by the receiver. A received Response message not matching an outstanding Request message waiting for a reply should be discarded.\nThe URCMP entity should inform the upper layer when detecting an unsuccessful transfer of a Request message to enable the controlling upper entity to take any appropriate measure.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.674_7.2",
+      "section_id": "7.2",
+      "section_title": "Transmission Order and Bit Definitions",
+      "content": "URCMP messages shall be transmitted in network octet order starting with octet 1 with the most significant bit sent first.\nThe most significant bit of an octet in a URCMP message is bit 8. If a field in a URCMP message spans over several octets, the most significant bit is bit 8 of the octet with the lowest number, unless specified otherwise.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.674_7.3.1",
+      "section_id": "7.3.1",
+      "section_title": "General",
+      "content": "The format of a URCMP message is depicted in Figure 7.3.1-1.\nBits\nOctets\n8\n7\n6\n5\n4\n3\n2\n1\n1 to m\nURCMP message header\nm+1 to n\nZero or more Information Element(s)\nFigure 7.3.1-1: URCMP Message Format\nA URCMP message shall contain the URCMP message header and may contain subsequent information element(s) dependent on the type of message.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "figure_7.3.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.674_7.3.2",
+      "section_id": "7.3.2",
+      "section_title": "Message Header",
+      "content": "URCMP messages use a fixed length header. The message header length shall be a multiple of 4 octets. Figure 7.3.2.1-1 illustrates the format of the URCMP Header.\nBits\nOctets\n8\n7\n6\n5\n4\n3\n2\n1\n1\nVersion\nSpare\n2\nMessage Type\n3\nMessage Length (1st Octet)\n4\nMessage Length (2nd Octet)\n5\nMessage Length (3rd Octet)\n6\nSequence Number (1st Octet)\n7\nSequence Number (2nd Octet)\n8\nSequence Number (3rd Octet)\nFigure 7.3.2-1: General format of URCMP Header",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "figure_7.3.2.1-1",
+        "figure_7.3.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.674_7.3.3",
+      "section_id": "7.3.3",
+      "section_title": "Usage of the URCMP Header",
+      "content": "The format of the URCMP header is specified in clause 7.3.2.\nThe usage of the URCMP header shall be as defined below.\nThe first octet of the header shall be used is the following way:\n-\tBit 1-5 are spare bits. The sending entity shall set it to \"0\" and the receiving entity shall ignore it.\n-\tBits 6 to 8, which represent the URCMP version, shall be set to decimal 1 (\"001\").\nThe usage of the fields in octets 2 - n of the header shall be as specified below.\n-\tOctet 2 represents the Message type field, which shall be set to the unique value for each type of control plane message. Message type values are specified in Table 7.3-1 \"Message types\".\n-\tOctets 3 to 5 represent the Message Length field. This field shall indicate the length of the message in octets excluding the mandatory part of the URCMP header (the first 5 octets). The Sequence Number shall be included in the length count. The format of the Length field of information elements is specified in clause 8.2 \"Information Element Format\".\n-\tOctets 6 to 8 represent URCMP Sequence Number field.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_7.3.2",
+        "clause_8.2",
+        "table_7.3-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.674_7.3.4.1",
+      "section_id": "7.3.4.1",
+      "section_title": "General",
+      "content": "The format of URCMP Information Elements are defined in clause 8.2.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_8.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.674_7.3.4.2",
+      "section_id": "7.3.4.2",
+      "section_title": "Presence Requirements of Information Elements",
+      "content": "Ies within URCMP messages shall be specified with one of the following presence requirement:\n-\tMandatory: this means that the IE shall be included by the sending entity, and that the receiver diagnoses a \"Mandatory IE missing\" error when detecting that the IE is not present. A response including a \"Mandatory IE missing\" cause, shall include the type of the missing IE.\n-\tConditional: this means that:\n-\tthe IE shall be included by sending entity if the conditions specified are met;\n-\tthe receiver shall check the conditions as specified in the corresponding message type description, based on the parameter combination in the message and/or on the state of the receiving node, to infer if a conditional IE shall be expected. Only if a receiver has sufficient information, if a conditional IE, which is necessary for the receiving entity to complete the procedure, is missing, then the receiver shall abort the procedure.\n-\tConditional-Optional: this means that:\n-\tthe IE shall be included by a sending entity complying with the version of the specification, if the conditions specified in the relevant protocol specification are met. An entity, which is at an earlier version of the protocol and therefore is not up-to-date, cannot send this IE;\n-\tthe receiver need not check the presence of the IE in the message. If the receiver checks the presence of the Conditional-Optional IE, then the IE's absence shall not trigger any of the error handling procedures. The handling of an absence or erroneous such Ies shall be treated as Optional Ies as specified in clause 7.6.\n-\tOptional: this means that:\n-\tthe IE shall be included as a service option. Therefore, the IE may be included or not in a message. The handling of an absent optional IE, or an erroneous optional IE is specified in clause 7.6.\nFor conditional Ies, the clause describing the URCMP message explicitly defines the conditions under which the inclusion of each IE becomes mandatory or optional for that particular message. These conditions shall be defined so that the presence of a conditional IE only becomes mandatory if it is critical for the receiving entity. The definition might reference other protocol specifications for final terms used as part of the condition.\nFor grouped Ies, the presence requirement of the embedded IE shall follow the rules:\n-\tIf the grouped IE is Mandatory within a given message: the presence requirements of individual embedded Ies are as stated within the Mandatory grouped IE for the given message;\n-\tif the grouped IE is Conditional within a given message: if the embedded IE in the grouped IE is Mandatory or Conditional, this embedded IE is viewed as Conditional IE by the receiver. If the embedded IE in the grouped IE is Conditional-Optional, this embedded IE is viewed as Optional IE by the receiver. If the embedded IE in the grouped IE is Optional, this embedded IE is viewed as Optional IE by the receiver;\n-\tif the grouped IE is Conditional-Optional within a given message: if the embedded IE in the grouped IE is Mandatory or Conditional, this embedded IE is viewed as Conditional-Optional IE by the receiver. If the embedded IE in the grouped IE is Conditional-Optional, this embedded IE is viewed as Optional IE by the receiver. If the embedded IE in the grouped IE is Optional, this embedded IE is viewed as Optional IE by the receiver;\n-\tif the grouped IE is Optional within a given message: all embedded Ies in the grouped IE are viewed as Optional Ies by the receiver.\nIn all of the above cases, appropriate error handling as described in clause 7.6 shall be applied for protocol errors of the embedded Ies.\nOnly the Cause IE at message level shall be included in the response if the Cause contains a value that indicates that the request is not accepted, regardless of whether there are other mandatory or conditional Ies defined for a given response message.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_7.6"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.674_7.3.4.3",
+      "section_id": "7.3.4.3",
+      "section_title": "Grouped Information Elements",
+      "content": "A Grouped IE is an IE which may contain other Ies.\nGrouped Ies have a length value in the TLV encoding, which includes the added length of all the embedded Ies. Overall coding of a grouped IE with 4 octets long IE header is defined in clause 8.2. Each IE within a grouped IE also shall also contain 4 octets long IE header.\nGrouped Ies are not marked by any flag or limited to a specific range of IE type values. The clause describing an IE in this specification shall explicitly state if it is a Grouped IE.\nNOTE:\tEach entry into each Grouped IE creates a new scope level. Exit from the grouped IE closes the scope level. The URCMP message level is the top most scope.\nIf more than one grouped Ies of the same type, but for a different purpose are sent with a message, these Ies shall have different IE types.\nIf more than one grouped Ies of the same type and for the same purpose are sent with a message, these Ies shall have exactly the same IE type to represent a list.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_8.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.674_7.2.3.4",
+      "section_id": "7.2.3.4",
+      "section_title": "Information Element Type",
+      "content": "An IE in a URCMP message or Grouped IE is identified by its IE Type and described by a specific row in the corresponding tables in clause 7.\nIf several Ies with the same Type are included in a URCMP message or Grouped IE, they represent a list for the corresponding IE name.\nAn IE Type value uniquely identifies a specific IE.\nOne IE type value is specified for Vendor Specific Ies.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_7"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.674_7.4",
+      "section_id": "7.4",
+      "section_title": "Message Types",
+      "content": "The URCMP message types to be used over the S17 reference points are defined in Table 7.4-1.\nTable 7.4-1: Message Types\nMessage Type value (Decimal)\nMessage\n0\nReserved\nURCMP Node related messages\n1\nHeartbeat Request\n2\nHeartbeat Response\n3\nSubscription Management Request\n4\nSubscription Management Response\n5\nEvent Notification Request\n6\nEvent Notification Response\n7 to 49\nFor future use\nURCMP Session related messages\n50\nCreate Dictionary Entry Request\n51\nCreate Dictionary Entry Response\n52\nQuery Dictionary Entry Request\n53\nQuery Dictionary Entry Response\n54 to 99\nFor future use\nOther messages\n100 to 255\nFor future use",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_7.4-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.674_7.5.1.1",
+      "section_id": "7.5.1.1",
+      "section_title": "General",
+      "content": "This clause specifies the URCMP node related messages used over the S17 reference points.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.674_7.5.1.2",
+      "section_id": "7.5.1.2",
+      "section_title": "Heartbeat Request",
+      "content": "Table 7.5.1.2-1: Information Elements in Heartbeat Request\nInformation elements\nP\nCondition / Comment\nIE Type\nRecovery Time Stamp\nM\nThis IE shall contain the time stamp when the URCMP entity was started.\nRecovery Time Stamp",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_7.5.1.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.674_7.5.1.3",
+      "section_id": "7.5.1.3",
+      "section_title": "Heartbeat Response",
+      "content": "Table 7.5.1.3-1: Information Elements in Heartbeat Response\nInformation elements\nP\nCondition / Comment\nIE Type\nRecovery Time Stamp\nM\nThis IE shall contain the time stamp when the URCMP entity was started.\nRecovery Time Stamp",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_7.5.1.3-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.674_7.5.1.4",
+      "section_id": "7.5.1.4",
+      "section_title": "Subscription Management Request",
+      "content": "The Subscription Management Request shall be sent over the S17 interface by the MME to the UCMF to create a subscription in the UCMF to receive the notifications, or to delete an existing subscription.\nTable 7.5.1.4-1: Information Elements in a Subscription Management Request\nInformation elements\nP\nCondition / Comment\nIE Type\nMME Address Information\nC\nThis IE shall be included to contain the MME Address Information to receive the subsequent notifications for the subscription if the Subscription Management Operation Type indicates to create a new subscription.\nMME Address Information\nSubscription Management Operation Type\nM\nSubscription Management Operation Type\nSubscription ID\nC\nThis IE shall be included to contain the Subscription ID that  allocated by the UCMF for this subscription if the Subscription Management Operation Type indicates to delete the subscription.\nSubscription ID",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_7.5.1.4-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.674_7.5.1.5",
+      "section_id": "7.5.1.5",
+      "section_title": "Subscription Management Response",
+      "content": "The Subscription Management Response shall be sent over the S17 interface by the UCMF to the MME as a reply to the Subscription Management Request.\nTable 7.5.1.5-1: Information Elements in a Subscription Management Response\nInformation elements\nP\nCondition / Comment\nIE Type\nCause\nM\nCause\nDictionary Entry ID\nC\nThis IE shall be included to contain the highest Dictionary Entry ID has been allocated in the UCMF if the cause indicates an acceptance code.\nDictionary Entry ID\nSubscription ID\nC\nThis IE shall be included to contain the Subscription ID that created in the UCMF for this subscription if the cause indicates an acceptance code and the request is to create a new subscription.\nSubscription ID",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_7.5.1.5-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.674_7.5.1.6",
+      "section_id": "7.5.1.6",
+      "section_title": "Event Notification Request",
+      "content": "The Event Notification Request shall be sent over the S17 interface by the UCMF to the MME to send a notification for the subscription created earlier by the MME.\nTable 7.5.1.6-1: Information Elements in a Event Notification Request\nInformation elements\nP\nCondition / Comment\nIE Type\nDictionary Entry ID\nM\nThis IE shall be included to contain the highest Dictionary Entry ID has been allocated in the UCMF.\nDictionary Entry ID\nEvent Type\nM\nEvent Type\nManufacturer Assigned Operation Requested List\nC\nThis IE shall be present if the Event Type indicates to delete one or more PLMN assigned UE Radio Capability IDs.\nManufacturer Assigned Operation Requested List\nVersion ID\nO\nThis IE may be present if Event Type indicates to notify a new version id of PLMN Assigned UE Radio Capability Id(s).\nVersion ID\nTable 7.5.1.6-2: Manufacturer Assigned Operation Requested List IE in a Event Notification Request\nOctet 1 and 2\nDeletion of PLMN Assigned UE Radio Capability ID IE Type = 13 (decimal)\nOctets 3 and 4\nLength = n\nInformation elements\nP\nCondition / Comment\nIE Type\nPLMN Assigned UE Radio Capability ID\nC\nThis IE shall be included to contain a PLMN Assigned UE Radio Capability ID to be deleted.\nSeveral IEs with the same IE type may be present to represent a list of PLMN Assigned UE Radio Capability IDs.\nThe UCMF shall always provide a complete list of PLMN Assigned UE Radio Capability IDs to enable the AMF to overwrite the existing list.\nPLMN Assigned UE Radio Capability ID\nType Allocation Code\nC\nThis IE shall contain a Type Allocation Code in corresponding to the PLMN Assigned UE Radio Capability IDs to be deleted.\nSeveral IEs with the same IE type may be present to represent a list of Type Allocation Codes.\nThe UCMF shall always provide a complete list of Type Allocation Codes to enable the AMF to overwrite the existing list.\nType Allocation Code",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_7.5.1.6-1",
+        "table_7.5.1.6-2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.674_7.5.1.7",
+      "section_id": "7.5.1.7",
+      "section_title": "Event Notification Response",
+      "content": "The Event Notification Response shall be sent over the S17 interface by the MME to the UCMF as a reply to the Event Notification Request.\nTable 7.5.1.7-1: Information Elements in a Subscription Management Response\nInformation elements\nP\nCondition / Comment\nIE Type\nCause\nM\nCause",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_7.5.1.7-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.674_7.5.2.1",
+      "section_id": "7.5.2.1",
+      "section_title": "General",
+      "content": "This clause specifies the URCMP session related messages used over the S17 interface.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.674_7.5.2.2",
+      "section_id": "7.5.2.2",
+      "section_title": "Create Dictionary Entry Request",
+      "content": "The Create Dictionary Entry Request shall be sent over the S17 interface by the MME to create a dictionary entry in the UCMF, and then to obtain a PLMN assigned UE Radio Capability ID.\nTable 7.5.2.2-1: Information Elements in a Create Dictionary Entry Request\nInformation elements\nP\nCondition / Comment\nIE Type\nType Allocation Code\nM\nThis IE shall be included by the MME over S17 reference point.\nType Allocation Code\nUE Radio Access Capability Information\nM\nUE Radio Access Capability Information",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_7.5.2.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.674_7.5.2.3",
+      "section_id": "7.5.2.3",
+      "section_title": "Create Dictionary Entry Response",
+      "content": "The Create Dictionary Entry Response shall be sent over the S17 interface by the UCMF to the MME as a reply to the Create Dictionary Entry Request.\nTable 7.5.2.3-1: Information Elements in a Create Dictionary Entry Response\nInformation elements\nP\nCondition / Comment\nIE Type\nCause\nM\nCause\nDictionary Entry ID\nC\nThis IE shall be included to contain a dictionary entry identifier allocated by the UCMF for newly created dictionary entry as requested by the MME if the Cause indicates an acceptance code.\nDictionary Entry ID\nPLMN Assigned UE Radio Capability ID\nC\nThis IE shall be included to contain a PLMN Assigned UE Radio Capability ID allocated by the UCMF for the UE Radio Access Capability Information included in the request message if the cause indicates an acceptance code.\nPLMN Assigned UE Radio Capability ID",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_7.5.2.3-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.674_7.5.2.4",
+      "section_id": "7.5.2.4",
+      "section_title": "Query Dictionary Entry Request",
+      "content": "The Query Dictionary Entry Request shall be sent over the S17 interface by the MME to retrieve UE Radio Access Capability Information from a dictionary entry in the UCMF.\nTable 7.5.2.4-1: Information Elements in a Query Dictionary Entry Request\nInformation elements\nP\nCondition / Comment\nIE Type\nDictionary Entry ID\nC\nThis IE shall be included if the MME uses a Dictionary Entry ID to retrieve a dictionary entry. (NOTE 1)\nDictionary Entry ID\nPLMN Assigned UE Radio Capability ID\nC\nThis IE shall be included if the MME uses a PLMN Assigned UE Radio Capability ID to retrieve a dictionary entry. (NOTE 1)\nPLMN Assigned UE Radio Capability ID\nManufacturer Assigned UE Radio Capability ID\nC\nThis IE shall be included if the MME uses a Manufacturer Assigned UE Radio Capability ID to retrieve a dictionary entry. (NOTE 1)\nManufacturer Assigned UE Radio Capability ID\nNOTE 1:\tAt least one of query parameters, Dictionary Entry ID, PLMN Assigned UE Radio Capability ID, Manufacture Assigned UE Radio Capability ID or Type Allocation Code shall be used to retrieve a dictionary entry.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_7.5.2.4-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.674_7.5.2.5",
+      "section_id": "7.5.2.5",
+      "section_title": "Query Dictionary Entry Response",
+      "content": "The Query Dictionary Entry Response shall be sent over the S17 interface by the UCMF to the MME as a reply to the Query Dictionary Entry Request.\nTable 7.5.2.5-1: Information Elements in a Query Dictionary Entry Response\nInformation elements\nP\nCondition / Comment\nIE Type\nCause\nM\nCause\nDictionary Entry ID\nC\nThis IE shall be included to contain a dictionary entry identifier if the Cause indicates an acceptance cause.\nDictionary Entry ID\nPLMN Assigned UE Radio Capability ID\nC\nThis IE shall be included to contain a PLMN Assigned UE Radio Capability ID if allocated for the UE Radio Access Capability Information in the dictionary entry and if the Cause indicates an acceptance cause.\nPLMN Assigned UE Radio Capability ID\nManufacturer Assigned UE Radio Capability ID\nC\nThis IE shall be included to contain a Manufacturer Assigned UE Radio Capability ID if available for the UE Radio Access Capability Information in the dictionary entry and if the Cause indicates an acceptance cause.\nManufacturer Assigned UE Radio Capability ID\nUE Radio Access Capability Information\nC\nThis IE shall be included to provide the UE Radio Access Capability Information if the Cause indicates an acceptance cause. [NOTE]\nUE Radio Access Capability Information\nType Allocation Code\nC\nThis IE shall be included to provide the Type Allocation Code in corresponding to the UE Radio Access Capability in the dictionary entry if the Cause indicates an acceptance cause.\nType Allocation Code\nNOTE:\tIn this message, \"UE Radio Access Capability Information\" shall contain \"UE Radio Access Capability Information (EPS)\" field. \"UE Radio Access Capability Information (5GS)\" may be present.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_7.5.2.5-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.674_7.6.1",
+      "section_id": "7.6.1",
+      "section_title": "Protocol Errors",
+      "content": "A protocol error is defined as a message or an Information Element received from a peer entity with an unknown type, or if it is unexpected, or if it has an erroneous content.\nThe term silently discarded is used in the following clauses to mean that the receiving URCMP entity's implementation shall discard such a message without further processing or that the receiving URCMP entity discards such an IE and continues processing the message. The conditions for the receiving URCMP entity to silently discard an IE are specified in the subsequent clauses.\nThe handling of unknown, unexpected or erroneous URCMP messages and IEs shall provide for the forward compatibility of URCMP. Therefore, the sending URCMP entity shall be able to safely include in a message a new conditional-optional or an optional IE. Such an IE may also have a new type value. Any legacy receiving URCMP entity shall, however, silently discard such an IE and continue processing the message.\nIf a protocol error is detected by the receiving URCMP entity, it should log the event including the erroneous message and may include the error in a statistical counter.\nFor Response messages containing a rejection Cause value, see clause 7.3.4.2.\nThe receiving URCMP entity shall apply the error handling specified in the subsequent clauses.\nIf the received erroneous message is a reply to an outstanding URCMP message, the URCMP transaction layer shall stop retransmissions and notify the URCMP application layer of the error even if the reply is silently discarded.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_7.3.4.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.674_7.6.2",
+      "section_id": "7.6.2",
+      "section_title": "URCMP Message of Invalid Length",
+      "content": "If a URCMP entity receives a message, which is too short to contain the respective URCMP header, the URCMP-PDU shall be silently discarded.\nIf a URCMP entity receives a Request message within an IP/UDP packet of a length that is inconsistent with the value specified in the Length field of the URCMP header, then the receiving URCMP entity should log the error and shall send the Response message with Cause IE value set to \"Invalid Length\".\nIf a URCMP entity receives a Response message within an IP/UDP packet of a length that is inconsistent with the value specified in the Length field of the URCMP header, then the receiving URCMP entity should log the error and shall silently discard the message.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.674_7.6.4",
+      "section_id": "7.6.4",
+      "section_title": "Unknown URCMP Message",
+      "content": "If a URCMP entity receives a message with an unknown Message Type value, it shall silently discard the message.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.674_7.6.5",
+      "section_id": "7.6.5",
+      "section_title": "Unexpected URCMP Message",
+      "content": "If a URCMP entity receives an unexpected request message, for example a known message that is sent over an interface for which the message is not defined, or a message that is sent over an interface for which the message is defined, but the direction is incorrect, then the URCMP entity shall silently discard the message and shall log an error.\nIf a URCMP entity receives an unexpected response message which is not a request message, for example a message for which there is no corresponding outstanding request, it shall discard the message and may log an error.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.674_7.6.6",
+      "section_id": "7.6.6",
+      "section_title": "Missing Information Elements",
+      "content": "A URCMP entity shall check if all mandatory IEs are present in the received Request message. If one or more mandatory information elements are missing in the received Request message, the URCMP entity should log the error and shall send a Response message with Cause IE value set to \"Mandatory IE missing\" with the type of the missing mandatory IE.\nIf a URCMP entity receives a Response message with Cause IE value set to \"Mandatory IE missing\", it shall notify its upper layer.\nA URCMP entity shall check if all mandatory IEs are present in the received Response message without a rejection Cause value. If one or more mandatory information elements are missing, the URCMP entity shall notify the upper layer and should log the error.\nA URCMP entity shall check if conditional information elements are present in the received Request message, if possible (i.e. if the receiving entity has sufficient information available to check if the respective conditions were met). If one or more conditional information elements are missing, a URCMP entity should log the error and shall send a Response message with Cause IE value set to \"Conditional IE missing\" together with the type of the missing conditional IE.\nA URCMP entity shall check if conditional information elements are present in the received Response message without a rejection Cause value, if possible (i.e. if the receiving entity has sufficient information available to check if the respective conditions were met). If one or more conditional information elements are missing, a URCMP entity shall notify the upper layer and should log the error.\nAbsence of an optional information element shall not trigger any error handling.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.674_7.6.7",
+      "section_id": "7.6.7",
+      "section_title": "Semantically incorrect Information Element",
+      "content": "Apart from Echo Request message, the receiver of a URCMP signalling message Request including a mandatory or a verifiable conditional information element with a semantically invalid Value shall discard the request, should log the error, and shall send a response with Cause IE value set to \"Mandatory IE incorrect\" together with a type and instance of the offending IE.\nThe receiver of a URCMP signalling message Response including a mandatory or a verifiable conditional information element with a semantically invalid Value shall notify the upper layer that a message with this sequence number has been received and should log the error.\nIf a URCMP entity receives an information element with a value which is shown as reserved, it shall treat that information element as invalid and should log the error. If the invalid IE is received in a Request, and it is a mandatory IE or a verifiable conditional IE, the URCMP entity shall send a response with Cause set to \"Mandatory IE incorrect\" together with a type and instance of the offending IE.\nThe principle is: the use of reserved values invokes error handling; the use of spare values can be silently discarded and for IEs with spare values used, processing shall be continued ignoring the spare values.\nThe receiver of a URCMP signalling message including an optional information element with a Value that is not in the range defined for this information element value shall discard this IE, but shall treat the rest of the message as if this IE was absent and continue processing. The receiver shall not check the content of an information element field that is defined as \"spare\".\nAll semantically incorrect optional information elements in a URCMP signalling message shall be treated as not present in the message.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.674_7.6.8",
+      "section_id": "7.6.8",
+      "section_title": "Unknown or unexpected Information Element",
+      "content": "The receiver of a URCMP message including an unexpected information element with a known Type value that is not defined for this message shall discard the IE and log an error. The receiver shall process the message.\nNOTE:\tAn Information Element in an encoded URCMP message or grouped IE is identified by the IE Type.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.674_7.6.9",
+      "section_id": "7.6.9",
+      "section_title": "Repeated Information Elements",
+      "content": "An Information Element is repeated if there is more than one IE with the same IE Type in the scope of the URCMP message (or in the scope of the grouped IE). Such an IE is a member in a list.\nIf an information element is repeated in a URCMP signalling message in which repetition of the information element is not specified, only the contents of the information element appearing first shall be handled and all subsequent repetitions of the information element shall be ignored. When the number of repetitions of information elements is specified, only the contents of specified repeated information elements shall be handled and all subsequent repetitions of the information element shall be ignored.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.674_8.1",
+      "section_id": "8.1",
+      "section_title": "Information Elements Format",
+      "content": "Figure 8.1-1 depicts the format of an Information Element.\nBits\nOctets\n8\n7\n6\n5\n4\n3\n2\n1\n1 to 2\nType = xxx (decimal)\n2 to 3\nLength = n\np to (p+1)\nEnterprise ID\nk to (n+4)\nIE specific data or content of a grouped IE\nFigure 8.1-1: Information Element Format\nNOTE 1:\tIf the Bit 8 of Octet 1 is not set, this indicates that the IE is defined by 3GPP and the Enterprise ID is absent. If Bit 8 of Octet 1 is set, this indicates that the IE is defined by a vendor and the Enterprise ID is present identified by the Enterprise ID.\nAn IE has the following mandatory fields:\n-\tType: this field indicates the type of the Information Element. IE type values within the range of 0 to 32767 are reserved for IE defined by 3GPP and are listed in clause 8.2. IE type values within the range of 32768 to 65535 are used for vendor-specific IE and the value allocation is controlled by the vendor.\n-\tLength: this field contains the length of the IE excluding the first four octets, which are common for all IEs (Type and Length) and is denoted \"n\" in Figure 8.1-1 and in Figure 8.1-2. Bit 8 of the lowest numbered octet is the most significant bit and bit 1 of the highest numbered octet is the least significant bit.\nAn IE has the following optional fields:\n-\tEnterprise ID: if the IE type value is within the range of 32768 to 65535, this field shall contain the IANA-assigned \"SMI Network Management Private Enterprise Codes\" value of the vendor defining the IE. The Enterprise ID set to \"10415\" (IANA-assigned \"SMI Network Management Private Enterprise Codes\") shall not be used for the vendor specific IEs.\nFor illustration, Figure 8.1-2 depicts the format of a Information Element (IE) defined by 3GPP and is specified in this specification. For IE's defined by 3GPP, the IE type shall be within the range of 0 to 32767.\nBits\nOctets\n8\n7\n6\n5\n4\n3\n2\n1\n1 to 2\nType = xxx (decimal)\n3 to 4\nLength = n\n5 to (n+4)\nIE specific data or content of a grouped IE\nFigure 8.1-2: 3GPP defined Information Element Format\nNOTE 2:\tBit 8 of Octet 1 is not set. This indicates that the Information Element type value has been allocated by 3GPP.\nFor illustration, Figure 8.1-3 depicts the format of a vendor-specific Information Element, which content is not specified and the IE type value shall be within the range of 32768 to 65535.\nBits\nOctets\n8\n7\n6\n5\n4\n3\n2\n1\n1 to 2\nType = xxx (decimal)\n3 to 4\nLength = n\n5 to 6\nEnterprise ID\n7 to (n+4)\nIE specific data or content of a grouped IE\nFigure 8.1-3: Vendor-Specific Information Element Format\nNOTE 3:\tBit 8 of Octet 1 is set. This indicates that the IE type value has been allocated by the vendor identified by the Enterprise ID. The content of this IE is vendor specific and therefore out of scope of this specification.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_8.2",
+        "figure_8.1-1",
+        "figure_8.1-2",
+        "figure_8.1-3"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.674_8.2.0",
+      "section_id": "8.2.0",
+      "section_title": "General",
+      "content": "A URCMP message may contain several IEs. In order to have forward compatible type definitions for the URCMP IEs, all of them shall be TLV (Type, Length, Value) coded. URCMP IE type values are specified in the Table 8.2.0-1. The last column of this table indicates whether the IE is:\n-\tFixed Length: the IE has a fixed set of fields, and a fixed number of octets;\n-\tVariable Length: the IE has a fixed set of fields, and has a variable number of octets.For example, the last octets may be numbered similar to \"5 to (n+4)\". In this example, if the value of the length field, n, is 0, then the last field is not present;\n-\tExtendable: the IE has a variable number of fields, and has a variable number of octets.The last fields are typically specified with the statement: \"These octet(s) is/are present only if explicitly specified\". The legacy receiving entity shall ignore the unknown octets.\nIn order to improve the efficiency of troubleshooting, it is recommended that the IEs should be arranged in the signalling messages as well as in the grouped IEs, according to the order the IEs are listed in the message definition table or grouped IE definition table in clause 7. However the receiving entity shall be prepared to handle the messages with IEs in any order.\nWithin IEs, certain fields may be described as spare. These bits shall be transmitted with the value set to 0 to allow for future features, the receiver shall not evaluate these bits.\nTable 8.2.0-1: Information Element Types\nIE Type value\n(Decimal)\nInformation elements\nComment / Reference\nNumber of Fixed Octets\n0\nReserved\n1\nCause\nFixed Length / 8.2.1\n1\n2\nType Allocation Code\nFixed Length / 8.2.2\n4\n3\nPLMN Assigned UE Radio Capability ID\nVariable Length / 8.2.3\nNot Applicable\n4\nManufacturer Assigned UE Radio Capability ID\nVariable Length / 8.2.4\nNot Applicable\n5\nDictionary ID\nFixed Length / 8.2.5\n4\n6\nUE Radio Access Capability Information\nExtendable / 8.2.6\n1\n7\nSubscription Management Operation Type\nFixed Length / 8.2.7\n1\n8\nMME Address Information\nVariable Length / 8.2.8\nNot Applicable\n9\nSubscription ID\nFixed Length / 8.2.9\n4\n10\nEvent Type\nFixed Length / 8.2.10\n1\n11\nRecovery Time Stamp\nFixed Length / 8.2.11\n4\n12\nManufacturer Assigned Operation Requested List\nExtendable / Table 7.5.1.6-2\nNot Applicable\n13\nVersion ID\nFixed Length / 8.2.xx\n1\n14 to 65535\nSpare. For future use.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_7",
+        "table_8.2.0-1",
+        "table_7.5.1.6-2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.674_8.2.1",
+      "section_id": "8.2.1",
+      "section_title": "Cause",
+      "content": "Cause IE is coded as depicted in Figure 8.2.1-1.\n.\nBits\nOctets\n8\n7\n6\n5\n4\n3\n2\n1\n1 to 2\nType = 1 (decimal)\n3 to 4\nLength = 1\n5\nCause value\nFigure 8.2.1-1: Cause\nThe Cause value shall be included in a response message. In a response message, the Cause value indicates the acceptance or the rejection of the corresponding request message. The Cause value indicates the explicit reason for the rejection.\nTable 8.2.1-1: Cause values\nMessage Type\nCause value\n(decimal)\nMeaning\nDescription\n0\nReserved.\nShall not be sent and if received the Cause shall be treated as an invalid IE\nAcceptance in a response\n1\nRequest accepted (success)\n\"Request accepted (success)\" is returned when the PFCP entity has accepted a request.\n2-63\nSpare.\nThis value range shall be used by Cause values in an acceptance response message. See NOTE 1.\nRejection in a response\n64\nRequest rejected (reason not specified)\nThis cause shall be returned to report an unspecified rejection cause\n65\nMandatory IE missing\nThis cause shall be returned when the receiver detects that a mandatory IE is missing in a request message\n66\nConditional IE missing\nThis cause shall be returned when the receiver detects that a Conditional IE is missing in a request message.\n67\nInvalid length\nThis cause shall be returned when the receiver detects that an IE with an invalid length in a request message\n68\nMandatory IE incorrect\nThis cause shall be returned when the receiver detects that a Mandatory IE is incorrect in a request message, e.g. the Mandatory IE is malformed or it carries an invalid or unexpected value.\n69\nNO_DICTIONARY_ENTRY_FOUND\nThis cause shall be used by the UCMF if a dictionary entry cannot be found to match the query parameter included in the request message.\n70\nSUBSCRIPTION_NOT_FOUND\nThis cause shall be used by the UCMF if the subscription to be deleted cannot be found.\n71\nOUT_DATED_VERSION_ID_IN_RAC_ID\nThe version id in the requested PLMN Assigned UE Radio Capability Id is out-dated.\n72 to 255\nSpare for future use in a response message. See NOTE 2.\nThis value range shall be used by Cause values in a rejection response message. See NOTE 2.\nNOTE 1:\tThis value is or may be used in future version of the specification. If the receiver cannot comprehend the value, it shall be interpreted as an unspecified acceptance cause. Unspecified/unrecognized acceptance cause shall be treated in the same ways as the cause value 1 \" Request accepted (success)\".\nNOTE 2:\tThis value is or may be used in a future version of the specification. If the receiver cannot comprehend the value, it shall be interpreted as an unspecified rejection cause. Unspecified/unrecognized rejection cause shall be treated in the same ways as the cause value 32 \"Request rejected (reason not specified)\".",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_8.2.1-1",
+        "figure_8.2.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.674_8.2.2",
+      "section_id": "8.2.2",
+      "section_title": "Type Allocation Code",
+      "content": "Type Allocation Code (TAC) is the first 8 digits in an IMEI (15 decimal digits) or an IMEISV (16 decimal digits). See clause 6.2 of 3GPP TS 23.003 [6]. The Type Allocation Code shall be encoded as in Figure 8.2.2-1.\nBits\nOctets\n8\n7\n6\n5\n4\n3\n2\n1\n1 to 2\nType = 2 (decimal)\n3 to 4\nLength = 4\n5 - 8\nType Allocation Code\nFigure 8.2.2-1: Type Allocation Code\nEach digit of the Type Allocation Code digits is encoded with BCD coding, starting with the first digit coded in bits 4 to 1 of octet 5, the last digit coded in bits 8 to 5 of octet 8.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_23.003_clause_6.2",
+        "figure_8.2.2-1",
+        "ts_23.003"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.674_8.2.3",
+      "section_id": "8.2.3",
+      "section_title": "PLMN Assigned UE Radio Capability ID",
+      "content": "The PLMN Assigned UE Radio Capability ID shall be encoded as in Figure 8.2.3-1.\nBits\nOctets\n8\n7\n6\n5\n4\n3\n2\n1\n1 to 2\nType = 3 (decimal)\n3 to 4\nLength = n\n5 - n\nPLMN Assigned UE Radio Capability ID\nFigure 8.2.3-1: PLMN Assigned UE Radio Capability ID\nThe PLMN Assigned UE Radio Capability ID field shall be encoded as the \"UE radio capability ID\" IE (starting from octet 3) as specified in clause the clause 9.9.3.60 of 3GPP TS24.301 [7].",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_9.9.3.60",
+        "figure_8.2.3-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.674_8.2.4",
+      "section_id": "8.2.4",
+      "section_title": "Manufacturer Assigned UE Radio Capability ID",
+      "content": "The Manufacturer Assigned UE Radio Capability ID shall be encoded as in Figure 8.2.4-1.\nBits\nOctets\n8\n7\n6\n5\n4\n3\n2\n1\n1 to 2\nType = 4 (decimal)\n3 to 4\nLength = n\n5 - n\nManufacturer Assigned UE Radio Capability ID\nFigure 8.2.4-1: PLMN Assigned UE Radio Capability ID\nThe Manufacturer Assigned UE Radio Capability ID field shall be encoded as the \"UE radio capability ID\" IE (starting from octet 3) as specified in clause the clause 9.9.3.60 of 3GPP TS24.301 [7].",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_9.9.3.60",
+        "figure_8.2.4-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.674_8.2.5",
+      "section_id": "8.2.5",
+      "section_title": "Dictionary Entry ID",
+      "content": "The Dictionary Entry ID IE is coded as in Figure 8.2.5-1. The Dictionary Entry ID identifies a dictionary entry including the mapping between UE Radio Access Capability Information and UE Radio Capability ID(s), Type Allocation Code.\nBits\nOctets\n8\n7\n6\n5\n4\n3\n2\n1\n1 to 2\nType = 5 (decimal)\n3 to 4\nLength = 4\n5 to 8\nDictionary Entry ID\nFigure 8.2.5-1: Dictionary Entry ID\nOctets 5 to 8 shall contain the Dictionary Entry ID and shall be encoded as an Unsigned32 binary integer value.",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_8.2.5-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.674_8.2.6",
+      "section_id": "8.2.6",
+      "section_title": "UE Radio Access Capability Information",
+      "content": "Bits\nOctets\n8\n7\n6\n5\n4\n3\n2\n1\n1 to 2\nType = 6 (decimal)\n3 to 4\nLength = n\n5\nSpare\n5GSP\nEPSP\n5GS\nEPS\nm to (m+2)\nLength = x\n(m+3) to (m+3+x)\nUE Radio Access Capability Information (EPS)\np to (p+2)\nLength = y\n(p+3) to (p+3+y)\nUE Radio Access Capability Information (5GS)\nq to (q+2)\nLength = u\n(q+3) to (q+3+u)\nUE Radio Access Capability Information for paging (EPS)\nr to (r+2)\nLength = v\n(r+3) to (r+3+v)\nUE Radio Access Capability Information for paging (5GS)\n(r+3+v) to (n+4)\nThese octet(s) is/are present only if explicitly specified\nFigure 8.2.6-1: UE Radio Access Capability Information\nThe following flags are coded within Octet 5:\n-\tBit 1 – EPS: If this bit is set to \"1\", then the UE Radio Access Capability Information (EPS) field shall be present, otherwise the UE Radio Access Capability Information (EPS) field shall not be present.\n-\tBit 2 – 5GS: If this bit is set to \"1\", then the UE Radio Access Capability Information (5GS) field shall be present, otherwise the UE Radio Access Capability Information (5GS) field shall not be present.\n-\tBit 3 – EPSP: If this bit is set to \"1\", then the UE Radio Access Capability Information for paging (EPS) field shall be present, otherwise the UE Radio Access Capability Information for paging (EPS) field shall not be present.\n-\tBit 4 – 5GSP: If this bit is set to \"1\", then the UE Radio Access Capability Information for paging (5GS) field shall be present, otherwise the UE Radio Access Capability Information for paging (5GS) field shall not be present.\n-\tBit 5 to 8 Spare, for future use and set to 0.\nOctets \"m to (m+2)\", shall be present when EPS bit is set to 1. When present, it represents length of UE Radio Access Capability Information (EPS) field.\nThe UE Radio Access Capability Information (EPS) field, when present, shall be encoded as an OctetString which contains the OCTET STRING of UE Radio Capability IE specified in clause 9.2.1.27 of 3GPP TS 36.413 [8]).\nOctets \"p to (p+2)\", shall be present when 5GS bit is set to 1. When present, it represents length of UE Radio Access Capability Information (5GS) field\nThe UE Radio Access Capability Information (5GS) field, when present, shall be encoded as an OctetString which contains the OCTET STRING of UE Radio Capability IE specified in clause 9.3.1.74 of 3GPP TS 38.413 [11]).\nOctets \"q to (q+2)\", shall be present when EPSP bit is set to 1. When present, it represents length of UE Radio Access Capability Information for paging (EPS) field.\nThe UE Radio Access Capability Information for paging (EPS) field, when present, shall be encoded as an OctetString which contains the OCTET STRING of UE Radio Capability IE specified in clause 9.2.1.98 of 3GPP TS 36.413 [8]).\nOctets \"r to (r+2)\", shall be present when 5GSP bit is set to 1. When present, it represents length of UE Radio Access Capability Information for paging (5GS) field\nThe UE Radio Access Capability Information for paging (5GS) field, when present, shall be encoded as an OctetString which contains the OCTET STRING of UE Radio Capability IE specified in clause 9.3.1.68 of 3GPP TS 38.413 [11]).\nNOTE:\tAnnex B of 3GPP TS 29.274 [9] specifies how to retrieve an OCTET STRING from a S1AP IE.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_36.413_clause_9.2.1.27",
+        "ts_38.413_clause_9.3.1.74",
+        "ts_36.413_clause_9.2.1.98",
+        "ts_38.413_clause_9.3.1.68",
+        "figure_8.2.6-1",
+        "ts_36.413",
+        "ts_38.413",
+        "ts_29.274"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.674_8.2.7",
+      "section_id": "8.2.7",
+      "section_title": "Subscription Management Operation Type",
+      "content": "The Subscription Management Operation Type IE type shall be encoded as shown in Figure 8.2.7-1. The Subscription Management Operation Type indicates the intention for a Subscription Management Request message.\nBits\nOctets\n8\n7\n6\n5\n4\n3\n2\n1\n1 to 2\nType = 7 (decimal)\n3 to 4\nLength = 1\n5\nSpare\nSubscription Management Operation Type Value\nFigure 8.2.7-1: Subscription Management Operation Type\nThe Subscription Management Operation Type value shall be encoded as a 4 bits binary integer as specified in Table 8.2.7-1.\nTable 8.2.7-1: Subscription Management Operation Type value\nSubscription Management Operation Type\nValues (Decimal)\nCreate a subscription\n0\nDelete a subscription\n1\nSpare\n2 to 15",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_8.2.7-1",
+        "figure_8.2.7-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.674_8.2.8",
+      "section_id": "8.2.8",
+      "section_title": "MME Address Information",
+      "content": "The MME Address Information IE type shall be encoded as shown in Figure 8.2.8-1.\nBits\nOctets\n8\n7\n6\n5\n4\n3\n2\n1\n1 to 2\nType = 8 (decimal)\n3 to 4\nLength = n\n5\nSpare\nPort\nV4\nV6\nm to (m+3)\nIPv4 address\np to (p+15)\nIPv6 address\nq\nPort Number\nFigure 8.2.8-1: MME Address Information\nThe following flags are coded within Octet 5:\n-\tBit 1 – V6: If this bit is set to \"1\", then the IPv6 address field shall be present, otherwise the IPv6 address field shall not be present.\n-\tBit 2 – V4: If this bit is set to \"1\", then the IPv4 address field shall be present, otherwise the IPv4 address field shall not be present.\n-\tBit 3 – Port: If this bit is set to \"1\", then the Port Number field shall be present, otherwise the IPv4 address field shall not be present.\n-\tBit 4 to 8 Spare, for future use and set to 0.\nOctets \"m to (m+3)\" or \"p to (p+15)\" (IPv4 address / IPv6 address fields), if present, shall contain the address value.\nOctet q, if present, shall contain the port number that the MME has allocated to receive the notifications.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "figure_8.2.8-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.674_8.2.9",
+      "section_id": "8.2.9",
+      "section_title": "Subscription ID",
+      "content": "The Subscription ID IE is coded as in Figure 8.2.9-1. The Subscription ID identifies a subscription identifier created in the UCMF.\nBits\nOctets\n8\n7\n6\n5\n4\n3\n2\n1\n1 to 2\nType = 10 (decimal)\n3 to 4\nLength = 4\n5 to 8\nSubscription ID\nFigure 8.2.9-1: Subscription ID\nOctets 5 to 8 shall contain the Subscription ID and shall be encoded as an Unsigned32 binary integer value.",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_8.2.9-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.674_8.2.10",
+      "section_id": "8.2.10",
+      "section_title": "Event Type",
+      "content": "The Event Type IE type shall be encoded as shown in Figure 8.2.10-1. The Event Type represents different type of events included in a notification from the UCMF.\nBits\nOctets\n8\n7\n6\n5\n4\n3\n2\n1\n1 to 2\nType = 10 (decimal)\n3 to 4\nLength = 1\n5\nSpare\nEvent Type Value\nFigure 8.2.10-1: Event Type\nThe Event Type value shall be encoded as a 4 bits binary integer as specified in Table 8.2.10-1.\nTable 8.2.10-1: Event Type value\nEvent Type Value\nValues (Decimal)\nCREATION_OF_DICTIONARY_ENTRY\n0\nDELETION_OF_PLMN_ASSIGNED_IDS\n1\nNEW_VERSION_ID_OF_PLMN_ASSIGNED_IDs\n3\nSpare\n4 to 15",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_8.2.10-1",
+        "figure_8.2.10-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.674_8.2.11",
+      "section_id": "8.2.11",
+      "section_title": "Recovery Time Stamp",
+      "content": "The Recovery Time Stamp IE is coded as shown in Figure 8.2.11-1. It indicates the UTC time when the URCMP entity started. Octets 5 to 8 are encoded in the same format as the first four octets of the 64-bit timestamp format as defined in clause 6 of IETF RFC 5905 [10].\nNOTE:\tThe encoding is defined as the time in seconds relative to 00:00:00 on 1 January 1900.\nBits\nOctets\n8\n7\n6\n5\n4\n3\n2\n1\n1 to 2\nType = 11 (decimal)\n3 to 4\nLength = 4\n5 to 8\nRecovery Time Stamp value\nFigure 8.2.11-1: Recovery Time Stamp",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_6",
+        "figure_8.2.11-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.674_8.2.12",
+      "section_id": "8.2.12",
+      "section_title": "Version ID",
+      "content": "The Version ID IE is coded as in Figure 8.2.12-1.The Version Id included in a PLMN Assigned UE Radio Capability ID is specified as in clause 29.2 of 3GPP TS 23.003 [6].\nBits\nOctets\n8\n7\n6\n5\n4\n3\n2\n1\n1 to 2\nType = 13 (decimal)\n3 to 4\nLength = 1\n5\nVersion ID\nFigure 8.2.12-1: Version Id\nOctets 5 to 8 shall contain the Version ID and shall be encoded as an Unsigned8 binary integer value.\nAnnex A (informative):Change history\nChange history\nDate\nMeeting\nTDoc\nCR\nRev\nCat\nSubject/Comment\nNew version\n2019-09\nCT4#93\nC4-193850\nIntial draft\n0.1.0\n2019-10\nCT4#94\nC4-194243\nSubscription management and Event Notification procedures\n0.2.0\n2019-10\nCT4#94\nC4-194244\nURCMP general protocol aspects\n0.2.0\n2019-11\nCT4#95\nC4-195086\nMessages and IEs for Create/Query Dictionary Entry Procedure\n0.3.0\n2019-11\nCT4#95\nC4-195087\nMessages and IEs for Subscription Management/Event Notification Procedure and Heartbeat procedure\n0.3.0\n2019-12\nCT#86\nCP-193070\nTS presented for information\n1.0.0\n2019-12\nCT#86\nCP-193286\nA title and abbreviation were updated/added\n1.0.1\n2020-03\nCT4#96e\nC4-200624\nEvent Notification for Deletion\n1.1.0\n2020-03\nCT4#96e\nC4-200625\nOther alignment with stage 2 requirements and cleanup\n1.1.0\n2020-03\nCT#87e\nCP-200068\nTS presented for approval\n2.0.0\n2020-03\nCT#87e\nApproved at CT#87e\n16.0.0\n2020-06\nCT#88e\nCP-201035\n0001\n-\nF\nDestination Port used for URCMP Request messages\n16.1.0\n2020-06\nCT#88e\nCP-201035\n0002\n1\nF\nMultiple Coding Formats Supports in RAC-Information\n16.1.0\n2020-06\nCT#88e\nCP-201035\n0003\n-\nF\nNew application error at receiving out-dated UE RAC-ID\n16.1.0\n2020-06\nCT#88e\nCP-201035\n0004\n1\nF\nPopulating New Version Id via Notification\n16.1.0\n2020-09\nCT#89e\nCP-202108\n0005\n-\nF\nCorrection to DicEntryData Retrieval\n16.2.0\n2020-09\nCT#89e\nCP-202108\n0006\n-\nF\nUE Radio Capability ID retrieval\n16.2.0\n2021-09\nCT#93e\nCP-212065\n0007\n1\nF\nHandling of UE Radio Capability for Paging\n16.3.0\n2022-04\n-\n-\n-\n-\nUpdate to Rel-17 version (MCC)\n17.0.0\n2024-03\n-\n-\n-\n-\n-\nUpdate to Rel-18 version (MCC)\n18.0.0",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.003_clause_29.2",
+        "figure_8.2.12-1",
+        "ts_23.003",
+        "ts_0.2"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,370 @@
+{
+  "metadata": {
+    "specification_id": "ts_23.072",
+    "version": "18.0.0",
+    "title": "3GPP TS 23.072",
+    "file_path": "/content/drive/MyDrive/RAG_thesis/data/23_series/23072-i00/23072-i00.docx"
+  },
+  "export_info": {
+    "export_date": "2025-07-26T09:39:23.639625",
+    "total_chunks": 37
+  },
+  "chunks": [
+    {
+      "chunk_id": "ts_23.072_1",
+      "section_id": "1",
+      "section_title": "Scope",
+      "content": "This Technical Specification gives the stage 2 description of the Call Deflection supplementary service.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.072_2",
+      "section_id": "2",
+      "section_title": "Normative references",
+      "content": "The following documents contain provisions which, through reference in this text, constitute provisions of the present document.\n-\tReferences are either specific (identified by date of publication, edition number, version number, etc.) or non‑specific.\n-\tFor a specific reference, subsequent revisions do not apply.\n-\tFor a non-specific reference, the latest version applies.  In the case of a reference to a 3GPP document (including a GSM document), a non-specific reference implicitly refers to the latest version of that document in the same Release as the present document.\n[1]\t3GPP TR 21.905: \"3GPP Vocabulary\".\n[2]\t3GPP TS 23.011: \"Technical realization of supplementary services\".\n[3]\t3GPP TS 23.018: \"Basic call handling; Technical realization\".\n[4]\t3GPP TS 23.078: \"Customised Applications for Mobile network Enhanced Logic (CAMEL) Phase 2; Stage 2\"\n[5]\t3GPP TS 23.079: \"Support of Optimal Routeing (SOR); Technical realisation\"\n[6]\t3GPP TS 23.081: \"Line identification supplementary services - Stage 2\".\n[7]\t3GPP TS 23.085: \"Closed User Group (CUG) supplementary services - Stage 2\".\n[8]\t3GPP TS 23.091: \"Explicit Call Transfer (ECT) supplementary service - Stage 2\".\n[9]\t3GPP TS 23.093: \"Technical Realisation of Completion of Calls to Busy Subscriber (CCBS)\".",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905",
+        "ts_23.011",
+        "ts_23.018",
+        "ts_23.078",
+        "ts_23.079",
+        "ts_23.081",
+        "ts_23.085",
+        "ts_23.091",
+        "ts_23.093"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.072_3.1",
+      "section_id": "3.1",
+      "section_title": "Abbreviations",
+      "content": "Abbreviations used in this specification are listed in TR 21.905.\nFor the purpose of this specification the following abbreviations apply:\nCD:\tCall Deflection",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.072_4",
+      "section_id": "4",
+      "section_title": "Information flow",
+      "content": "Figure 4.1: Information flow for Call Deflection",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_4.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.072_5.1.1",
+      "section_id": "5.1.1",
+      "section_title": "CD Request",
+      "content": "The CD Request message is sent from the MS to MSC direction.\nInformation element name\nRequired\nDescription\nDeflected-to number\nM\nNumber of the C subscriber as entered by the served subscriber.\nDeflected-to subaddress\nC\nSubaddress of the C subscriber; shall be present if it was entered by the served subscriber; otherwise shall be absent",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.072_5.1.2",
+      "section_id": "5.1.2",
+      "section_title": "CD Request ack",
+      "content": "The CD Request ack message is sent from the MSC to MS direction. This message contains no information elements.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.072_5.1.3",
+      "section_id": "5.1.3",
+      "section_title": "CD Request negative response",
+      "content": "CD Request negative response message is sent from the MSC to MS direction. The negative response information element can take the following values:\n-\tservice not subscribed;\n-\tdeflected-to number is own number;\n-\tdeflected-to number is a special service code;\n-\tnumber invalid;\n-\tcall barred;\n-\tSS incompatibility;\n-\tforwarding violation;\n-\tforwarding failure.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.072_5.2.1",
+      "section_id": "5.2.1",
+      "section_title": "Process Call Waiting negative response",
+      "content": "For the description of the Process Call Waiting negative response message refer to TS 23.018. The negative response information element can take the following additional value:\n-\tCall Deflection.\nFor the purpose of the CD supplementary service the following additional information elements for the Process Call Waiting negative response message are required.\nInformation element name\nRequired\nDescription\nDeflected-to number\nM\nNumber of the C subscriber as entered by the served subscriber.\nDeflected-to subaddress\nC\nSubaddress of the C subscriber; shall be present if it was entered by the served subscriber; otherwise shall be absent",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "ts_23.018"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.072_5.2.2",
+      "section_id": "5.2.2",
+      "section_title": "Complete Call negative response",
+      "content": "For the description of the Complete Call negative response message refer to TS 23.018. The negative response information element can take the following additional value:\n-\tCall Deflection.\nFor the purpose of the CD supplementary service the following additional information elements for the Complete Call negative response message are required.\nInformation element name\nRequired\nDescription\nDeflected-to number\nM\nNumber of the C subscriber as entered by the served subscriber.\nDeflected-to subaddress\nC\nSubaddress of the C subscriber; shall be present if it was entered by the served subscriber; otherwise shall be absent",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.018"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.072_5.2.3",
+      "section_id": "5.2.3",
+      "section_title": "Send Info for Incoming Call negative response",
+      "content": "For the description of the Send Info for Incoming Call negative response message refer to TS 23.018. The negative response information element can take the following additional values:\n-\tservice not subscribed;\n-\tdeflected-to number is own number;\n-\tdeflected-to number is a special service code;\n-\tnumber invalid;\n-\tcall barred.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.018"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.072_6",
+      "section_id": "6",
+      "section_title": "Functions of the serving MSC",
+      "content": "The functions of the serving MSC are specified in TS 23.018. The procedures specific to the CD supplementary service are specified in this clause.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.018"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.072_6.1",
+      "section_id": "6.1",
+      "section_title": "Procedure Handling_CD_MSC",
+      "content": "This procedure is called when a CD request is received from the MS.",
+      "chunk_type": "procedure",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.072_6.2",
+      "section_id": "6.2",
+      "section_title": "Procedure CD_Reject",
+      "content": "This procedure is called if the CD request was treated unsuccessful in the VLR.",
+      "chunk_type": "procedure",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.072_6.3",
+      "section_id": "6.3",
+      "section_title": "Procedure CD_Failure",
+      "content": "This procedure is called if the CD request was treated unsuccessful in the serving MSC.",
+      "chunk_type": "procedure",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.072_6.4",
+      "section_id": "6.4",
+      "section_title": "Procedure CD_UUS_Interaction",
+      "content": "This procedure is called if the CD request was treated unsuccessful in the serving MSC due to the interaction with the UUS supplementary service.",
+      "chunk_type": "procedure",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.072_6.5",
+      "section_id": "6.5",
+      "section_title": "Procedure CD_Success",
+      "content": "This procedure is called if the CD request was treated successful in the serving MSC.",
+      "chunk_type": "procedure",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.072_6.6",
+      "section_id": "6.6",
+      "section_title": "Procedure CD_Notify_SS_Invocation",
+      "content": "This procedure is called by the procedures CD_OR_Clear and CD_Success to send notification of the CD invocation to the gsmSCF if required.\nThe output signal SS Invocation Notify is sent if the SS-CSI was received in the SIFIC ack. The SS-CSI will only be included in the SIFIC ack if there is a requirement to notify the gsmSCF that CD has been invoked.\nFigure 6.1: Procedure Handling_CD_MSC\nFigure 6.2: Procedure CD_Reject\nFigure 6.3: Procedure CD_Failure\nFigure 6.4: Procedure CD_UUS_Interaction\nFigure 6.5: Procedure CD_Success\nFigure 6.6\tProcedure CD_Notify_SS_Invocation",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_6.1",
+        "figure_6.2",
+        "figure_6.3",
+        "figure_6.4",
+        "figure_6.5",
+        "figure_6.6"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.072_7",
+      "section_id": "7",
+      "section_title": "Functions of the serving VLR",
+      "content": "The functions of the serving VLR are specified in TS 23.018. The procedure specific to the CD supplementary service is specified in this clause.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.018"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.072_7.1",
+      "section_id": "7.1",
+      "section_title": "Procedure CD_Authorization",
+      "content": "This procedure examines the authorization related to Call Deflection.\nThe procedure CAMEL_Check_CD_Interaction is specific to CAMEL phase 2. If CAMEL phase 2 is not supported in the VLR, processing continues from the \"No\" exit of the test \"Result=Pass?\".\nThe procedure CAMEL_CHECK_SII2_CDTI is specific to CAMEL Phase 3 or higher. If CAMEL Phase 3 or higher is not supported in the VLR, processing continues from the \"Yes\" exit of the test \"Result = Pass?\".",
+      "chunk_type": "procedure",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.072_7.2",
+      "section_id": "7.2",
+      "section_title": "Procedure CAMEL_Check_CD_Interaction",
+      "content": "This procedure examines whether a Translation Interaction Flag (TIF-CSI) is provided for the served subscriber.\nFigure 7.1 (sheet 1): Procedure CD_Authorization\nFigure 7.2: Procedure CAMEL_Check_CD_Interaction",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_7.1",
+        "figure_7.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.072_8.1",
+      "section_id": "8.1",
+      "section_title": "Line Identification services",
+      "content": "If the serving MSC receives an Answer message from the destination C network after the successful invocation of the call deflection supplementary service, the process MAF039 of TS 23.081 shall be performed. Refer to Process ICH_MSC of TS 23.018 for further details.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_23.081",
+        "ts_23.018"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.072_8.2",
+      "section_id": "8.2",
+      "section_title": "Call Forwarding services",
+      "content": "No impact.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.072_8.3",
+      "section_id": "8.3",
+      "section_title": "Call Waiting",
+      "content": "The MS may send a CD Request message for an incoming waiting call. Refer to procedure Process_Call_Waiting_MSC of TS 23.018 for further details.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.018"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.072_8.4",
+      "section_id": "8.4",
+      "section_title": "Call Hold",
+      "content": "No impact.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.072_8.5",
+      "section_id": "8.5",
+      "section_title": "Multi Party (MPTY)",
+      "content": "No impact.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.072_8.6",
+      "section_id": "8.6",
+      "section_title": "Closed User Group",
+      "content": "The serving VLR shall perform the forwarding CUG authorisation as defined in TS 23.085 while processing a call deflection request. Refer to Process ICH_VLR of TS 23.018 for details.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_23.085",
+        "ts_23.018"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.072_8.7",
+      "section_id": "8.7",
+      "section_title": "Advice of Charge (AoC)",
+      "content": "No impact.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.072_8.8",
+      "section_id": "8.8",
+      "section_title": "Call Barring Services",
+      "content": "If a call deflection request is processed, the serving VLR shall check whether the requested deflected-to number contradicts active and operative outgoing barring programs. Refer to Procedure CD_Authorization (figure 6.6) for details.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "figure_6.6"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.072_8.9",
+      "section_id": "8.9",
+      "section_title": "Explicit call transfer (ECT)",
+      "content": "If in the originating network ECT is invoked (one call answered, the other alerting), the serving MSC shall map a redirection number parameter received in the ECT notification into the calling identity parameter of the outgoing IAM message. Refer to TS 23.091 (Interaction of Call Forwarding on mobile subscriber busy due to UDUB and explicit call transfer) for details.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_23.091"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.072_8.10",
+      "section_id": "8.10",
+      "section_title": "Completion of Calls to Busy Subscriber (CCBS)",
+      "content": "If a call is deflected to a NDUB destination, the serving MSC shall set the diagnostic to \"CCBS not possible\" when it releases the call towards the calling network. Refer to Process ICH_MSC of TS 23.018 for further details.\nThe serving MSC shall remove the CCBS call Indicator from the IAM message when deflecting a call.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_23.018"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.072_9.1",
+      "section_id": "9.1",
+      "section_title": "Customised Applications for Mobile network Enhanced Logic (CAMEL)",
+      "content": "If the served subscriber is provided with a Translation Information Flag (TIF-CSI) as defined in TS 23.018 the VLR shall neither perform checks regarding the validity of the deflected-to number nor perform interactions with BOIC and BOIC-exHC barring programs. Refer to Procedure CD_Authorization for further details.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_23.018"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.072_9.2",
+      "section_id": "9.2",
+      "section_title": "Support of Optimal Routeing",
+      "content": "The procedures for optimal routeing of late call forwarding shall apply if the Call Deflection supplementary service is invoked. Refer to TS 23.079 for further details.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_23.079"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.072_10",
+      "section_id": "10",
+      "section_title": "Information stored in the HLR",
+      "content": "The following logical states are applicable for the Call Deflection service (refer to TS 23.011 for an explanation of the notation):\nProvisioning State\tRegistration State\tActivation State\tHLR Induction State\n(Not Provisioned,\tNot Applicable,\tNot Active,\tNot Induced)\n(Provisioned,\tNot Applicable,\tActive and Operative,\tNot Induced)\nThe HLR shall store:\n-\tthe logical state of the Call Deflection service (which shall be one of the valid states listed above) on a per subscriber basis.\n-\tthe subscription option \"notification to the calling party\" on a per subscriber basis;This subscription option takes one of the following values:-\tno notification;-\tnotification.\n-\tthe subscription option \"MSISDN of the served subscriber can be presented to the forwarded-to subscriber\" on a per subscriber basis;This subscription option takes one of the following values:-\tpresentation restricted;-\tpresentation allowed.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.011"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.072_11",
+      "section_id": "11",
+      "section_title": "State transition model",
+      "content": "Figure 11.1 shows the successful cases of transition between the applicable logical states of the Call Deflection service. The state changes are caused by actions of the service provider.\nNote that error cases are not shown in the diagram as they normally do not cause a state change. Additionally, some successful requests may not cause a state change and are therefore not shown in the diagram.\nFigure 11.1: State transition model",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_11.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.072_12",
+      "section_id": "12",
+      "section_title": "Transfer of information from HLR to VLR",
+      "content": "If the provisioning state for the Call Deflection service is \"Provisioned\" then when the subscriber registers on a VLR the HLR shall send that VLR information about the logical state of the Call Deflection service In this case the following additional information shall be sent to the VLR:\n-\tsubscription options \"notification to the calling party\" and \"MSISDN of the served subscriber can be presented to the forwarded-to subscriber\".\n-\tTranslation Information Flag (TIF-CSI) if contained in the CAMEL subscriber data of the served subscriber (refer to TS 23.078 for further details).\nIf the logical state of the Call Deflection service or the value of the subscription options \"notification to the calling party\" or \"MSISDN of the served subscriber can be presented to the forwarded-to subscriber\" or the presence of the Translation Information Flag (TIF-CSI) is changed while a subscriber is registered on a VLR then the HLR shall inform the VLR of the new logical state or the new value of the subscription option or the presence of the Translation Information Flag (TIF-CSI).",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_23.078"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.072_13",
+      "section_id": "13",
+      "section_title": "Information stored in the VLR",
+      "content": "For the supplementary service Call Deflection the VLR shall store the service state information, information about the subscription options \"notification to the calling party\" and \"MSISDN of the served subscriber can be presented to the forwarded-to subscriber\" and the Translation Information Flag (TIF-CSI) received from the HLR.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.072_14",
+      "section_id": "14",
+      "section_title": "Handover",
+      "content": "Handover will have no impact on the control procedures and the operation of the service.\nAnnex A (informative):Change history\nChange history\nDate\nMeeting\nTDoc\nCR\nRev\nCat\nSubject/Comment\nNew version\nApr 1999\nTransferred to 3GPP CN1\nCN#03\nApproved at CN#03\n3.0.0\nCN#05\n001\nApproved at CN#05\n3.1.0\nCN#05\n003\nApproved at CN#05\n3.1.0\nCN#06\n002\n1\nApproved at CN#06\n3.2.0\nCN#09\n004\nTransfer of Procedure Check_CD_SII2 to TS 23.078\n3.3.0\nCN#09\n005\nHandling of the Call Diversion Treatment Indicator\n3.3.0\nCN#11\nRelease 4 after CN#11\n4.0.0\nCN#16\nReferences updated\n4.0.1\nCN#16\nRelease 5 after CN#16\n5.0.0\nCN#26\nRelease 6 after CN#26\n6.0.0\nCT#36\nUpgraded unchanged from Rel-6\n7.0.0\nCT#42\nUpgraded unchanged from Rel-7\n8.0.0\nCT#46\n-\nUpdate to Rel-9 version (MCC)\n9.0.0\n2011-03\n-\nUpdate to Rel-10 version (MCC)\n10.0.0\n2012-09\n-\nUpdate to Rel-11 version (MCC)\n11.0.0\n2014-09\n-\nUpdate to Rel-12 version (MCC)\n12.0.0\n2015-12\n-\nUpdate to Rel-13 version (MCC)\n13.0.0\n2017-03\n-\nUpdate to Rel-14 version (MCC)\n14.0.0\n2018-06\n-\nUpdate to Rel-15 version (MCC)\n15.0.0\n2020-07\n-\nUpdate to Rel-16 version (MCC)\n16.0.0\n2022-03\n-\n-\n-\n-\n-\nUpdate to Rel-17 version (MCC)\n17.0.0\n2024-03\n-\n-\n-\n-\n-\nUpdate to Rel-18 version (MCC)\n18.0.0",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.078"
+      ]
+    }
+  ]
+}

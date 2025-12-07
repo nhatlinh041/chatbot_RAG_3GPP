@@ -1,0 +1,543 @@
+{
+  "metadata": {
+    "specification_id": "ts_23.087",
+    "version": "18.0.0",
+    "title": "3GPP TS 23.087",
+    "file_path": "/content/drive/MyDrive/RAG_thesis/data/23_series/23087-i00/23087-i00.docx"
+  },
+  "export_info": {
+    "export_date": "2025-07-26T09:40:09.163396",
+    "total_chunks": 58
+  },
+  "chunks": [
+    {
+      "chunk_id": "ts_23.087_1",
+      "section_id": "1",
+      "section_title": "Scope",
+      "content": "The present document gives the stage 2 description of the User-to-User signalling supplementary services.\nThe User-to-user supplementary service is divided into 3 different services:\n-\tService 1\t(UUS1)\n-\tService 2\t(UUS2)\n-\tService 3\t(UUS3)",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.087_2",
+      "section_id": "2",
+      "section_title": "References",
+      "content": "The following documents contain provisions which, through reference in this text, constitute provisions of the present document.\n-\tReferences are either specific (identified by date of publication, edition number, version number, etc.) or non‑specific.\n-\tFor a specific reference, subsequent revisions do not apply.\n-\tFor a non-specific reference, the latest version applies.  In the case of a reference to a 3GPP document (including a GSM document), a non-specific reference implicitly refers to the latest version of that document in the same Release as the present document.\n[1]\t3GPP TS 21.905: \"3G Vocabulary\".\n[2]\t3GPP TS 22.087: \"User-to-user signalling (UUS); Stage 1\".\n[3]\t3GPP TS 23.018: \"Basic Call Handling – Technical Realization\".\n[4]\t3GPP TS 23.078: \"CAMEL Stage 2\".\n[5]\t3GPP TS 23.079: \"Support for Optimal Routeing (SOR) – Technical Realization\".",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905",
+        "ts_22.087",
+        "ts_23.018",
+        "ts_23.078",
+        "ts_23.079"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.087_3.1",
+      "section_id": "3.1",
+      "section_title": "Definitions",
+      "content": "For the purposes of the present document, the following terms and definitions apply.\nBurst parameter: parameter indicating the absolute maximum number of UUS 3 service related user information messages that can be sent at intervals indicated by the value of timer T2-UUS3\nRemote network: network of the remote subscriber\nRemote subscriber: for service 1 and 2 the remote subscriber is the called party of a call to which the served subscriber activates the UUS supplementary service. For service 3 the remote subscriber can be either the called or the calling party of an established call to whom the use of the UUS supplementary service is requested by the served subscriber\nServed subscriber: subscriber who has a provision of the UUS supplementary service and who activates the UUS supplementary service. For service 1 and 2 the served subscriber is always the calling subscriber, for service 3 either the calling or the called subscriber can be the served subscriber\nServing network: network of the served subscriber\nUser-to-User Information (UUI): information transferred by using the UUS supplementary service\nUUS Service: UUS services (Service 1, 2 and 3) are components of the UUS supplementary service. If the UUS supplementary service is provided to a subscriber, he can handle the UUS services independently within a call",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.087_3.2",
+      "section_id": "3.2",
+      "section_title": "Abbreviations",
+      "content": "For the purposes of the present document, the following abbreviations apply:\nACM\tAddress Complete Message\nANM\tANswer Message\nCON\tCONnect\nCPG\tCall ProGress\nIAM\tInitial Address Message\nMS\tMobile Station\nREL\tRELease\nSIFOC\tSend Info For Outgoing Call\nSRI\tSend Routing Info\nUUI\tUser-to-User Information\nUUS\tUser-to-User Signalling\nUUS1\tUser-to-User Signalling Service 1\nUUS2\tUser-to-User Signalling Service 2\nUUS3\tUser-to-User Signalling Service 3\nFurther GSM related abbreviations are listed in GSM 01.04.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.087_4",
+      "section_id": "4",
+      "section_title": "General",
+      "content": "The UUS supplementary service allows the transfer of UUI to a remote subscriber over the signalling channel in association with a call to this subscriber. The UUS supplementary service is divided in Service 1, Service 2 and Service 3.\nThe UUS Service 1 allows the transfer of UUI embedded within Call Control messages.\nThe UUS Service 2 allows the transfer of UUI with a specific User-to-user message after the served subscriber has received an address complete indication and prior to the answer indication from the B-side.\nThe UUS Service 3 allows the transfer of UUI with a specific User-to-user message during an active call.\nFor the use of the UUS supplementary service in GSM PLMNs the support of UUS capabilities within the inter‑exchange signalling system (e.g. ISUP) is necessary. However this is out of scope of the present document.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.087_4.1",
+      "section_id": "4.1",
+      "section_title": "Activation of UUS components",
+      "content": "If any of the UUS Services 1, 2 or 3 shall be used within a call, the UUS capabilities have to be activated by the served subscriber either when initiating this outgoing call (Service 1, 2 and 3) or during an established call (Service 3).\nThe UUS capabilities for a call can be requested by means of an implicit request or an explicit request. UUS Service 1 can be requested either implicitly or explicitly. Service 2 and 3 can only be requested explicitly.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.087_4.1.1",
+      "section_id": "4.1.1",
+      "section_title": "Implicit request",
+      "content": "The UUS1 service is activated implicitly by the presence of UUI in the set-up request from the mobile station. The network shall transfer the received UUI transparently to the B-side. For the purpose of UUS service 1 implicitly requested, no explicit check for the availability of UUS capabilities at the destination network has to be performed by the originating network.\nIf the calling subscriber has UUS 1 provisioned and implicitly requested, the network shall transfer all UUI contained in call control messages.\nIf the calling subscriber has UUS1 not provisioned, the contained UUI shall be discarded by the serving MSC. The call shall be established without further restrictions.\nThe served subscriber shall not be informed whether the implicit request was successful or not.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.087_4.1.2",
+      "section_id": "4.1.2",
+      "section_title": "Explicit request",
+      "content": "Any UUS Service can be explicitly activated by the served subscriber within the set-up request initiating a mobile originated call. In addition UUS Service 3 can be activated during an established call with a Facility message. A UUS Service 1 request can be accompanied by appropriate UUI.\nThe network shall check for the availability of UUS capabilities for the call by passing the UUS request and the eventually accompanied UUI to the remote side. If a UUS Service is available for the call an appropriate \"UUS provided\" indication for this UUS Service shall be sent within the first backward message from the remote side.\nA UUS Service shall not be activated for the call if a \"UUS not provided\" indication or no indication about the availability of this UUS Service is received from the remote side.\nService 3 can be explicitly activated during an active call by both parties. This may lead to a collision of activation requests. The collision of activation requests occurs when there is an outstanding request for service 3 and a subsequent request is received from the remote user. The entity (user or network) that observes the collision shall reject the second request with Facility message. This leads to the rejection of both requests.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.087_4.1.3",
+      "section_id": "4.1.3",
+      "section_title": "UUS required option",
+      "content": "As an option at call set-up the served subscriber can specify whether the requested UUS Service is required or not required for the call. If service 1 is implicitly requested or if service 3 is requested during the call, it cannot be requested as required.\nIf the served subscriber has specified that one of the UUS services is required for the call and this UUS service can not be activated by the network, the call attempt of the served subscriber shall be cleared.\nIf the served subscriber has specified that one of the UUS services is not required for the call and this UUS service can not be activated by the network, the call establishment shall be continued.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.087_5.1",
+      "section_id": "5.1",
+      "section_title": "Timers",
+      "content": "UUS related timers are needed only for UUS service 3. Timers T1-UUS3, T3-UUS3 and T4-UUS3 are used only when UUS service 3 is requested during an active call.\nTable 5.1: UUS Timers\nTimer\nName\nValue\nRun at\nStarted\nStopped\nExpiry\nT1-UUS3\nRemote network control\n10s\nMSC of the remote subscriber\nUUS3 service request sent to the remote subscriber\nAnswer to UUS3 service request received from the remote subscriber\nRejection of UUS3 service is sent toward the requesting network\nT2-UUS3\nUUS3 flow control\n10s\nMSC of the served subscriber and MSC of the remote subscriber\nThe MSC receives service acceptance\nWhen UUS3 service is deactivated\nFlow control parameter is incremented. Timer is restarted.  Note 1.\nT3-UUS3\nServed subscriber control\n10s\nMS of the served subscriber\nUUS3 service request sent to the requesting network\nAcceptance to UUS3 service received from requesting network\nConsider UUS3 service as not activated\nT4-UUS3\nServing network control\n10s\nMSC of the served subscriber\nUUS3 service request sent to the remote network\nAcceptance to UUS3 service received from remote network\nRejection of UUS3 service is sent toward the served subscriber\nNOTE:\tIf a user information message has been discarded due to flow control, a congestion control message shall be sent to the user.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.087_5.2.1.1",
+      "section_id": "5.2.1.1",
+      "section_title": "Flow control",
+      "content": "No specific flow control is needed to restrict the amount of messages sent for either implicit or explicit UUS service 1 as the user-to-user information is transferred in call control messages.",
+      "chunk_type": "procedure",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.087_5.2.1.2",
+      "section_id": "5.2.1.2",
+      "section_title": "Information flows",
+      "content": "Figure 5.2.1.2: MAF043",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_5.2.1.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.087_5.2.1.2.1",
+      "section_id": "5.2.1.2.1",
+      "section_title": "Implicit activation",
+      "content": "Figure 5.2.1.2.1.1: Information flow for UUS1 implicit request (mobile to mobile call)",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_5.2.1.2.1.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.087_5.2.1.2.2",
+      "section_id": "5.2.1.2.2",
+      "section_title": "Explicit activation",
+      "content": "Figure 5.2.1.2.2.1: Information flow for UUS 1 explicit request (mobile to mobile call)",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_5.2.1.2.2.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.087_5.2.2.1",
+      "section_id": "5.2.2.1",
+      "section_title": "Flow control",
+      "content": "Up to two UUI messages can be sent in each direction. If either party tries to send more than two UUI messages, they are discarded.",
+      "chunk_type": "procedure",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.087_5.2.2.2",
+      "section_id": "5.2.2.2",
+      "section_title": "Information flows",
+      "content": "Figure 5.2.2.2: MAF044\nFigure 5.2.2.2.1: Information flow for UUS2 explicit request (mobile to mobile call)",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_5.2.2.2",
+        "figure_5.2.2.2.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.087_5.2.3.1",
+      "section_id": "5.2.3.1",
+      "section_title": "Flow control",
+      "content": "Network flow control mechanisms shall exist after the connection has been established in order to restrict the amount of UUI sent in each direction. A burst capability of sending N messages shall immediately be available to each user, where N initially equals the value of the burst parameter X. The value of N shall be decremented by one for every message sent by the user and incremented by Y at regular intervals of T2-UUS3 (see table 5.1). The value of N shall be limited to a maximum of X.\nThe value of the burst parameter X shall be 16.\nThe value of the replenishment parameter Y shall be 8.\nNetwork flow control shall be performed only by the sending user's network.\nIf the MSC receives UUI messages from the MS at a rate which exceeds the flow control limit, it shall discard the UUI messages that cannot be handled and respond to the first discarded UUI message with a congestion control message.\nWhen the flow control restrictions are removed, an indication that further UUI messages can be accepted shall be given. See the Processes Serving_MSC_Handle_UUS_In_Active_Call and Remote_ MSC_Handle_UUS_In_Active_Call.",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "table_5.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.087_5.2.3.2",
+      "section_id": "5.2.3.2",
+      "section_title": "Information flows",
+      "content": "Figure 5.2.3.2: MAF045\nFigure 5.2.3.2.1: Information flow for UUS3 explicit request during call establishment (mobile to mobile call)\nFigure 5.2.3.2.2: Information flow for UUS3 explicit request during active call (mobile to mobile call)",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_5.2.3.2",
+        "figure_5.2.3.2.1",
+        "figure_5.2.3.2.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.087_5.3",
+      "section_id": "5.3",
+      "section_title": "Messages and their contents",
+      "content": "This clause contains the detailed description of the information flows used by UUS.\nEach Information Element, IE is marked as (M) Mandatory, (C) Conditional, or (O) Optional. A mandatory information element shall always be present. A conditional information element shall be present if certain conditions are fulfilled; if those conditions are not fulfilled it shall be absent. An optional information element may be present or absent, at the discretion of the application at the sending entity. This categorisation is a functional classification, i.e. stage 2 information and not a stage 3 classification to be used for the protocol.\nThe stage 2 and stage 3 message and information element names are not necessarily identical.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.087_5.3.1",
+      "section_id": "5.3.1",
+      "section_title": "Information elements used in the messages",
+      "content": "The following UUS specific constructed information elements are used in the messages.\nTable 5.3.1.1: UUS specific information elements\nParent Information Element\nChild Information Element name\nInformation element Required\nInformation element description\nUUS options\nUUS1\nUUS2\nUUS3\nC\nC\nC\nThe information element is present if UUS1 service is requested; otherwise it shall be absent. It may contain the following values:\n-\tRequired\n-\tNot Required\nThe information element is present if UUS2 service is requested; otherwise it shall be absent. It may contain the following values:\n-\tRequired\n-\tNot Required\nThe information element is present if UUS3 service is requested; otherwise it shall be absent. It may contain the following values:\n-\tRequired\n-\tNot Required\nUUS provision\nUUS1\nUUS2\nUUS3\nC\nC\nC\nIf UUS1 services is requested and provisioned the information element is present, otherwise it shall be absent.\nIf UUS2 services is requested and provisioned the information element is present, otherwise it shall be absent.\nIf UUS3 services is requested and provisioned the information element is present, otherwise it shall be absent.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.3.1.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.087_5.3.2",
+      "section_id": "5.3.2",
+      "section_title": "Messages between MS and MSC",
+      "content": "Call control messages (Setup, Alert, Connect, Disconnect, Release and Release Complete, refer to GSM 04.08) may carry UUS service activation request and response. They can carry also UUI for UUS1.\nFacility message, refer to GSM 04.08, can carry UUS service 3 activation request and response.\nDedicated User-To-User message, refer to GSM 04.08, carries UUI for UUS service 2 and 3.\nThese messages are used both in serving and remote networks.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.087_5.3.3",
+      "section_id": "5.3.3",
+      "section_title": "Messages between MSC and VLR (B interface)",
+      "content": "These messages are used in the serving network.\nTable 5.3.3.1: Messages between MSC and VLR\nMessage\nMessage sender\nInformation element name\nInformation element Required\nInformation element description\nSend Info For Outgoing Call\nMSC\n-\nUUS options\n-\nC\nRefer to GSM 03.18.\nIn addition:\nThe information element is present if MS A requested UUS service; otherwise it shall be absent. The structure of UUS options is defined in table 5.3.1.1\nSend Info For Outgoing Call negative response\nVLR\n-\nUUS reject\n-\nC\nRefer to GSM 03.18\nIn addition:\nThe information element is present, if required UUS service was requested by MS A and service is not provided, otherwise it shall be absent.\nComplete Call\nVLR\n-\nUUS provision\n-\nC\nRefer to GSM 03.18\nIn addition:\nThe information element is present if MS A requested UUS service(s); otherwise it shall be absent. The structure of UUS Provision is defined in table 5.3.1.1\nSend Info For UUS3\nMSC\n-\n-\nThe message is sent when UUS3 service is requested during active call. NOTE: This message is used in serving and remote MSCs.\nSend Info For UUS3 Ack\nVLR\nUUS provision\nC\nThe information element is present if UUS3 service is provisioned; otherwise it shall be absent",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.3.3.1",
+        "table_5.3.1.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.087_5.3.4",
+      "section_id": "5.3.4",
+      "section_title": "Messages between MSC – MSC (E interface)",
+      "content": "These messages are used in the remote network when UUS is supported in remote MSC in conjunction of SOR, refer to GSM 03.79.\nTable 5.3.4.1: Messages between MSC – MSC\nMessage\nMessage sender\nInformation element name\nInformation element Required\nInformation element description\nResume Call Handling\nMSCB\n-\nUUS1 Service request\nUUS2 Service request\nUUS3 Service request\nUUS1 UUI\nUUS CF interaction\n-\nC\nC\nC\nC\nC\nRefer to GSM 03.79.\nIn addition:\nThe information element is present if UUS1 Service was requested in the original call and remote MSC supports UUS service; otherwise it shall be absent.\nThe information element is present if UUS2 Service was requested in the original call and remote MSC supports UUS service; otherwise it shall be absent\nThe information element is present if UUS3 Service was requested in the original call and remote MSC supports UUS service; otherwise it shall be absent.\nThe information element is present if UUS1 UUI was present in the original call and remote MSC supports UUS service; otherwise it shall be absent.\nThe information element is present if the remote subscriber has accepted UUS1 service request and call forwarding or call deflection has been activated after that; otherwise it shall be absent.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.3.4.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.087_6",
+      "section_id": "6",
+      "section_title": "Interaction with other supplementary services",
+      "content": "GSM 02.87 specifies interaction of UUS with other supplementary services. Additional details are provided in this clause.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.087_6.1",
+      "section_id": "6.1",
+      "section_title": "Call forwarding unconditional (CFU)",
+      "content": "No impact.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.087_6.2",
+      "section_id": "6.2",
+      "section_title": "Call forwarding on mobile subscriber busy (CFB)",
+      "content": "No impact, if CFB is invoked due to a NDUB condition or due to UDUB before an alerting message was received from the mobile station.\nIf CFB is invoked due to a UDUB indication from the B forwarding subscriber the same interaction as for CFNRy shall apply.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.087_6.3",
+      "section_id": "6.3",
+      "section_title": "Call forwarding on no reply (CFNRy)",
+      "content": "If UUS Service 1 is implicitly requested for a call to a subscriber who has Call Forwarding on no reply active and operative, the forwarding MSC shall store the UUI. If CFNRy is invoked, the stored UUI shall be forwarded with the call.\nIf UUS Service 1 is explicitly requested as not required for a call to a subscriber who has Call Forwarding on no reply active and operative, the forwarding MSC shall store UUS 1 service request and UUI, if any. If the forwarding user accepts the UUS1 supplementary service request in the Alerting message, the CFNRy supplementary service can be invoked and the stored UUS1 service request and UUI, if any, shall be forwarded with the call. If the forwarding user rejects the UUS1 supplementary service request or does not include a response related to it in the Alerting message, then the CFNRy supplementary service can be invoked but the UUS1 service request and UUI, if any, shall not be forwarded with the call.\nIf UUS Service 1 is explicitly requested as required for a call to a subscriber who has Call Forwarding on no reply active and operative and the no reply condition timer expires, the remote MSC shall release the call towards the calling subscriber.\nIf Call Forwarding on no reply is invoked for a call for which UUS Service 2 was requested as not required, UUS Service 2 shall not be requested for the forwarding leg, i.e. UUS 2 is no longer available for the call.\nCall Forwarding on no reply shall not be invoked if UUS Service 2 was requested required for the initial mobile terminated call.\nIf UUS Service 3 is requested for a call to a subscriber who has Call Forwarding on no reply active and operative, the forwarding MSC shall store the UUS3 request. If CFNRy is invoked the UUS3 request shall be forwarded with the call.\nFor further details refer to procedures UUS_ICH_Check_Forwarding and UUS_MSC_Clear_UUS.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.087_6.4",
+      "section_id": "6.4",
+      "section_title": "Call forwarding on mobile subscriber not reachable (CFNRc)",
+      "content": "No impact.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.087_6.5",
+      "section_id": "6.5",
+      "section_title": "Call waiting (CW)",
+      "content": "No impact.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.087_6.6",
+      "section_id": "6.6",
+      "section_title": "Call hold (HOLD)",
+      "content": "No impact.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.087_6.7",
+      "section_id": "6.7",
+      "section_title": "Completion of calls to busy subscribers (CCBS)",
+      "content": "Requests for the activation of the UUS supplementary service contained in the original call request shall be maintained along with other call information used for the CCBS supplementary service.\nThe network shall also store any UUI containing in the original call request and use this stored UUI in the CCBS call.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.087_6.8",
+      "section_id": "6.8",
+      "section_title": "Explicit call transfer (ECT)",
+      "content": "When calls are transferred as a result of invocation of explicit call transfer supplementary service, the UUS supplementary service activated on either of the calls prior to the invocation of the explicit call transfer supplementary service shall be cancelled by the network.\nNo specific notification shall be sent to the users on the resulting call when the UUS supplementary service is no longer activated.\nThe users on the resulting call can request service 3 again, if required.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.087_6.9",
+      "section_id": "6.9",
+      "section_title": "Multi party service (MPTY)",
+      "content": "No impact.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.087_6.10",
+      "section_id": "6.10",
+      "section_title": "Advice of charge (AoC)",
+      "content": "No impact.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.087_6.11",
+      "section_id": "6.11",
+      "section_title": "Barring of outgoing calls (BAOC)",
+      "content": "No impact.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.087_6.12",
+      "section_id": "6.12",
+      "section_title": "Barring of outgoing international calls (BOIC)",
+      "content": "No impact.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.087_6.13",
+      "section_id": "6.13",
+      "section_title": "Barring of outgoing international calls except those directed to the home PLMN country (BOIC-exHC)",
+      "content": "No impact.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.087_6.14",
+      "section_id": "6.14",
+      "section_title": "Barring of incoming calls (BAIC)",
+      "content": "No impact.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.087_6.15",
+      "section_id": "6.15",
+      "section_title": "Barring of incoming calls when roaming outside the home PLMN country (BIC-Roam)",
+      "content": "No impact.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.087_6.16",
+      "section_id": "6.16",
+      "section_title": "Call deflection (CD)",
+      "content": "If Call Deflection is invoked before alerting there is no impact.\nIf Call Deflection is invoked after alerting the same interactions as for Call forwarding on no reply shall apply.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.087_7.1",
+      "section_id": "7.1",
+      "section_title": "Customised Applications for Mobile network Enhanced Logic (CAMEL)",
+      "content": "No impact.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.087_7.2",
+      "section_id": "7.2",
+      "section_title": "Support for Optimal Routeing(SOR)",
+      "content": "The invocation of Optimal Routeing in case of late call forwarding shall have no impact on the interactions of UUS with the call forwarding supplementary services as defined in clause 6.\nThe UUS request, UUI and UUS CF interaction indicator, if any, shall be added to the Resume Call Handling message in remote MSC when SOR late call forwarding is applied. For details refer to the procedure UUS_ICH_Handle_LCF in SDLs and the procedure Handle_ORLCF_VMSC (see GSM 03.79).\nThe UUS request and UUI, if any, shall be copied from the Resume Call Handling message to the IAM in GMSC when SOR late call forwarding is applied. For details refer to the procedure UUS_GMSC_Check_Forwarding in SDLs and the procedure OR_Handle_RCH (see GSM 03.79).\nIf UUS CF interaction indicator was present in Resume Call Handling message, the presence of UUS1 Service acceptance and UUI, if any, shall be modified during call setup time. For further details refer to the procedure MT_CF_MSC (see GSM 03.18) and UUS_MSC_Clear_UUS.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_6"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.087_8.1",
+      "section_id": "8.1",
+      "section_title": "Interworking with GSM PLMN/ISDN network supporting only a maximum User-user information element length of 35 octets",
+      "content": "If interworking occurs with a network supporting only a maximum of User-user information element length of 35 octets, no notification shall be given to the calling user or called user sending the user information.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.087_8.2",
+      "section_id": "8.2",
+      "section_title": "Interworking with non-ISDN network",
+      "content": "In the case of interworking with non-ISDN network or with a non-ISDN called user, a progress indicator information element indicating #1 \"call is not end-to-end ISDN; further progress information may be available in-band\" or #2 \"destination address is non-ISDN\", respectively, is sent to the calling user as part of basic call.\nThis progress information shall serve as indication that the requested service cannot be guaranteed.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.087_9.1.1",
+      "section_id": "9.1.1",
+      "section_title": "Procedures in MSC",
+      "content": "Figure 9.1.1.1 Procedure UUS_OCH_Check_Setup\nThis procedure is called when Setup is received from A-subscriber. It sets requested UUS service options into SIFOC message.\nFigure 9.1.1.2 Procedure UUS_OCH_Set_Info_In_IAM\nRequested UUS service options and possible UUS1 data is copied in IAM. The procedure is controlled by the Complete Call message parameters from the VLR.\nFigure 9.1.1.3 Procedure UUS_OCH_Set_Alert_And_Connect_Param\nIn this procedure UUS related parameters are checked and set into the Alerting/Connect message that is sent to A‑subscriber. If any of the UUS services is requested as required and positive service acknowledgement is not received from the remote end, the check will fail and the call will be cleared.\nFigure 9.1.1.1: Procedure UUS_OCH_Check_Setup\nFigure 9.1.1.2: Procedure UUS_OCH_Set_Info_In_IAM\nFigure 9.1.1.3: Procedure UUS_OCH_Set_Alert_And_Connect_Param",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_9.1.1.1",
+        "figure_9.1.1.2",
+        "figure_9.1.1.3"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.087_9.1.2",
+      "section_id": "9.1.2",
+      "section_title": "Procedures in VLR",
+      "content": "Figure 9.1.2.1 Procedure UUS_OCH_Check_Provision.\nThis procedure is called in the VLR during subscription checks for an outgoing call. It sets requested UUS service provision information in Complete call message. If any of the UUS services is requested as required and the service is not provided to the subscription, the check will fail and the call will be cleared.\nFigure 9.1.2.1: Procedure UUS_OCH_Check_Provision",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_9.1.2.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.087_9.2.1",
+      "section_id": "9.2.1",
+      "section_title": "Procedures in GMSC",
+      "content": "Figure 9.2.1.1 Procedure UUS_GMSC_Check_Forwarding.\nThis procedure is called when Resume Call Handling message is received from the remote MSC. If the message contains UUS related information, that is copied to the subsequent IAM message.\nFigure 9.2.1.1: Procedure UUS_GMSC_Check_Forwarding",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_9.2.1.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.087_9.2.2",
+      "section_id": "9.2.2",
+      "section_title": "Procedures in MSC",
+      "content": "Figure 9.2.2.1 Procedure UUS_ICH_Check_Support.\nThis procedure is called after Alerting/Connect message is received from B-subscriber. It checks whether UUS service is possible and if not whether the call setup can be continued.\nFigure 9.2.2.2 Procedure UUS_ICH_Check_Forwarding.\nThis procedure is called when no reply is received from B-subscriber. It checks whether call forwarding is allowed from UUS service point of view.\nFigure 9.2.2.3 Procedure UUS_ICH_Handle_LCF.\nThis procedure is used to add UUS information to Resume Call Handling message when Optimal Routeing late call forwarding is supported.\nFigure 9.2.2.4 Procedure UUS_ICH_Set_Info_In_IAM.\nThis procedure is used to add UUS specific information to forwarded call IAM message.\nFigure 9.2.2.5 Procedure UUS_ICH_UUS1_Implicit_Active.\nThis procedure is used to set UUS1 implicit service active at the remote MSC when only UUI for service 1 is received.\nFigure 9.2.2.1: Procedure UUS_ICH_Check_Support\nFigure 9.2.2.2: Procedure UUS_ICH_Check_Forwarding\nFigure 9.2.2.3: Procedure UUS_ICH_Handle_LCF\nFigure 9.2.2.4: Procedure UUS_ICH_Set_Info_In_IAM\nFigure 9.2.2.5: Procedure UUS_ICH_UUS1_Implicit_Active",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_9.2.2.1",
+        "figure_9.2.2.2",
+        "figure_9.2.2.3",
+        "figure_9.2.2.4",
+        "figure_9.2.2.5"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.087_9.3",
+      "section_id": "9.3",
+      "section_title": "Procedures common in serving and remote networks",
+      "content": "Figure 9.3.1 Procedure UUS_MSC_Check_UUS1_UUI.\nThis procedure is used to check whether it is allowed to pass UUI for UUS1 from MS to network or vice versa.\nFigure 9.3.2 Procedure UUS_MSC_Check_UUS2_UUI_to_MS.\nThis procedure is used to check whether it is allowed to pass User-To-User messages for UUS2 from network to MS.\nFigure 9.3.3 Procedure UUS_MSC_Check_UUS2_UUI_to_NW.\nThis procedure is used to check whether it is allowed to pass User-To-User messages for UUS2 from MS to network.\nFigure 9.3.4 Procedure UUS_MSC_Check_UUS3_UUI_to_MS.\nThis procedure is used to check whether it is allowed to pass User-To-User messages for UUS3 from network to MS.\nFigure 9.3.5 Procedure UUS_MSC_Check_UUS3_UUI_to_NW.\nThis procedure is used to check whether it is allowed to pass User-To-User messages for UUS3 from MS to network.\nFigure 9.3.6 Procedure UUS_MSC_Clear_UUS.\nThis procedure is used to handle the call forwarding interaction with UUS when call control messages are received from the forwarded-to NW.\nFigure 9.3.7 Macrodefinition UUS_MSC_Check_UUS1.\nMacro used in procedures UUS_OCH_Set_Alert_And_Connect_Param and UUS_ICH_Check_Support. It checks whether UUS service 1 is supported.\nFigure 9.3.8 Macrodefinition UUS_MSC_Check_UUS2.\nMacro used in procedures UUS_OCH_Set_Alert_And_Connect_Param and UUS_ICH_Check_Support. It checks whether UUS service 2 is supported.\nFigure 9.3.9 Macrodefinition UUS_MSC_Check_UUS3.\nMacro used in procedures UUS_OCH_Set_Alert_And_Connect_Param and UUS_ICH_Check_Support. It checks whether UUS service 3 is supported.\nFigure 9.3.1: Procedure UUS_MSC_Check_UUS1_UUI\nFigure 9.3.2: Procedure UUS_MSC_Check_UUS2_UUI_to_MS\nFigure 9.3.3: Procedure UUS_MSC_Check_UUS2_UUI_to_NW\nFigure 9.3.4: Procedure UUS_MSC_Check_UUS3_UUI_to_MS\nFigure 9.3.5: Procedure UUS_MSC_Check_UUS3_UUI_to_NW\nFigure 9.3.6: Procedure UUS_MSC_Clear_UUS\nFigure 9.3.7: Macrodefinition UUS_MSC_Check_UUS1\nFigure 9.3.8: Macrodefinition UUS_MSC_Check_UUS2\nFigure 9.3.9: Macrodefinition UUS_MSC_Check_UUS3",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_9.3.1",
+        "figure_9.3.2",
+        "figure_9.3.3",
+        "figure_9.3.4",
+        "figure_9.3.5",
+        "figure_9.3.6",
+        "figure_9.3.7",
+        "figure_9.3.8",
+        "figure_9.3.9"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.087_9.4",
+      "section_id": "9.4",
+      "section_title": "Processes used during Active Call",
+      "content": "There are different processes running for UUS3 during active call in serving and remote network. However, this differentiation does not implicitly mean that call originator's network is serving network. The differentiation is based on which party initiates the UUS3 service. Thus, serving network process shall be used on initiator's side and remote network process on the opposite end.",
+      "chunk_type": "procedure",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.087_9.4.1",
+      "section_id": "9.4.1",
+      "section_title": "Process and procedures in serving MSC",
+      "content": "Figure 9.4.1.1 Process Serving_MSC_Handle_UUS_In_Active_Call\nThis process is used to check UUS3 activation during active call, handle UUS3 flow control and interaction with ECT supplementary service. The process starts during the call setup and checks the content of the Connect message in order to start the UUS3 flow control correctly. If the UUS3 is not activated the process stays in the Idle state and waits UUS3 activation request from the MS.\nFigure 9.4.1.2 Procedure UUS_MSC_Check_UUS3_Activation\nThis procedure is used to handle the dialogue towards the serving VLR when provisioning check is done.\nFigure 9.4.1.1: Process Serving_MSC_Handle_UUS_In_Active_Call (sheet 1)\nFigure 9.4.1.1: Process Serving_MSC_Handle_UUS_In_Active_Call (sheet 2)\nFigure 9.4.1.1: Process Serving_MSC_Handle_UUS_In_Active_Call (sheet 3)\nFigure 9.4.1.1: Process Serving_MSC_Handle_UUS_In_Active_Call (sheet 4)\nFigure 9.4.1.2: Procedure UUS_MSC_Check_UUS3_Activation",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_9.4.1.1",
+        "figure_9.4.1.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.087_9.4.2",
+      "section_id": "9.4.2",
+      "section_title": "Process and procedures in serving VLR",
+      "content": "Figure 9.4.2.1 Process Serving_VLR_Handle_UUS_In_Active_Call\nThis process is running in the serving VLR. If the UUS3 activation request comes during the active call, this process is used to check whether the service is provisioned to the subscriber.\nFigure 9.4.2.1: Process Serving_VLR_Handle_UUS_In_Active_Call",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_9.4.2.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.087_9.4.3",
+      "section_id": "9.4.3",
+      "section_title": "Process and procedures in remote MSC",
+      "content": "Figure 9.4.3.1 Process Remote_MSC_Handle_UUS_In_Active_Call\nThis process is running in the remote MSC. It is used for checking whether UUS3 UUI's can be passed on and control the flow control for UUS3. The process starts during the call setup and checks the content of the Connect message in order to start the UUS3 flow control correctly. If the UUS3 is not activated the process stays in the Idle state and waits UUS3 activation request from the NW.\nFigure 9.4.3.1: Process Remote_MSC_Handle_UUS_In_Active_Call (sheet 1)\nFigure 9.4.3.1: Process Remote_MSC_Handle_UUS_In_Active_Call (sheet 2)\nFigure 9.4.3.1: Process Remote_MSC_Handle_UUS_In_Active_Call (sheet 3)\nFigure 9.4.3.1: Process Remote_MSC_Handle_UUS_In_Active_Call (sheet 4)",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_9.4.3.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.087_10.1",
+      "section_id": "10.1",
+      "section_title": "Information stored in the HLR",
+      "content": "The following logical states are applicable for each of the 3 Services of the User-to-user supplementary service (refer to GSM 03.11 for an explanation of the notation):\nProvisioning State\nRegistration State\nActivation State\nHLR Induction State\n(Not Provisioned,\nNot Applicable,\nNot Active,\nNot Induced)\n(Provisioned,\nNot Applicable,\nActive and operative,\nNot Induced)\nThe HLR shall store:\n-\tthe logical state of each of the 3 services of the UUS supplementary service (which shall be one of the valid states listed above) on a per subscriber basis.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.087_10.2",
+      "section_id": "10.2",
+      "section_title": "Transfer of information from HLR to VLR",
+      "content": "If the provisioning state for the UUS services is \"Provisioned\" then when the subscriber registers on a VLR the HLR shall send that VLR information about the logical state of these UUS services.\nIf the logical state of the UUS services is changed while a subscriber is registered on a VLR then the HLR shall inform the VLR of the new logical state of the UUS services.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.087_10.3",
+      "section_id": "10.3",
+      "section_title": "Information stored in the VLR",
+      "content": "For the supplementary service UUS the VLR shall store the service state information received from the HLR.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.087_11",
+      "section_id": "11",
+      "section_title": "State transition model",
+      "content": "Figure 11.1 shows the successful cases of transition between the applicable logical states of the service. The state changes are caused by actions of the service provider.\nNote that error cases are not shown in the diagram as they normally do not cause a state change. Additionally, some successful requests may not cause a state change and are therefore not shown in the diagram.\nFigure 11.1: State transition model",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_11.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.087_12",
+      "section_id": "12",
+      "section_title": "Handover",
+      "content": "Handover will have no impact on the control procedures and the operation of the service.\nAnnex A (informative):Change history\nChange history\nDate\nMeeting\nTDoc\nCR\nRev\nCat\nSubject/Comment\nNew version\nApr 1999\nTransferred to 3GPP CN1\nCN#03\nApproved at CN#03\n3.0.0\nReferences updated from 2G to 3G\n3.0.1\nCN#09\n001\n1\nSDL refresh\n3.1.0\nCN#11\nRelease 4 after CN#11\n4.0.0\nCN#16\nRelease 5 after CN#16\n5.0.0\nCN#26\nRelease 6 after CN#26\n6.0.0\nCT#36\nUpgraded unchanged from Rel-6\n7.0.0\nCT#42\nUpgraded unchanged from Rel-7\n8.0.0\nCT#46\n-\n-\nUpdate to Rel-9 version (MCC)\n9.0.0\n2011-03\n-\n-\nUpdate to Rel-10 version (MCC)\n10.0.0\n2012-09\n-\n-\nUpdate to Rel-11 version (MCC)\n11.0.0\n2014-09\n-\n-\nUpdate to Rel-12 version (MCC)\n12.0.0\n2015-12\n-\n-\nUpdate to Rel-13 version (MCC)\n13.0.0\n2017-03\n-\n-\nUpdate to Rel-14 version (MCC)\n14.0.0\n2018-06\n-\n-\nUpdate to Rel-15 version (MCC)\n15.0.0\n2020-07\n-\n-\nUpdate to Rel-16 version (MCC)\n16.0.0\n2022-03\n-\n-\n-\n-\n-\nUpdate to Rel-17 version (MCC)\n17.0.0\n2024-03\n-\n-\n-\n-\n-\nUpdate to Rel-18 version (MCC)\n18.0.0",
+      "chunk_type": "general",
+      "cross_references": []
+    }
+  ]
+}

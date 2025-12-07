@@ -1,0 +1,1190 @@
+{
+  "metadata": {
+    "specification_id": "ts_29.229",
+    "version": "18.1.0",
+    "title": "3GPP TS 29.229",
+    "file_path": "/content/drive/MyDrive/RAG_thesis/data/29_series/29229-i10/29229-i10.docx"
+  },
+  "export_info": {
+    "export_date": "2025-07-26T09:01:50.427251",
+    "total_chunks": 135
+  },
+  "chunks": [
+    {
+      "chunk_id": "ts_29.229_1",
+      "section_id": "1",
+      "section_title": "Scope",
+      "content": "The present document defines a transport protocol for use in the IP multimedia (IM) Core Network (CN) subsystem based on Diameter base protocol as specified in IETF RFC 6733 [28].\nThe present document is applicable to:\n-\tThe Cx interface between the I-CSCF/S-CSCF and the HSS.\n-\tThe Dx interface between the I-CSCF/S-CSCF and the SLF.\nWhenever it is possible, this document specifies the requirements for this protocol by reference to specifications produced by the IETF within the scope of Diameter base protocol as specified in IETF RFC 6733 [28]. Where this is not possible, extensions to Diameter base protocol as specified in IETF RFC 6733 [28] are defined within this document.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.229_2",
+      "section_id": "2",
+      "section_title": "References",
+      "content": "The following documents contain provisions, which through reference in this text constitute provisions of the present document.\n-\tReferences are either specific (identified by date of publication, edition number, version number, etc.) or non‑specific.\n-\tFor a specific reference, subsequent revisions do not apply.\n-\tFor a non-specific reference, the latest version applies.  In the case of a reference to a 3GPP document (including a GSM document), a non-specific reference implicitly refers to the latest version of that document in the same Release as the present document.\n[1]\t3GPP TS 29.228: \"IP Multimedia (IM) Subsystem Cx and Dx interface; signalling flows and message contents\".\n[2]\t3GPP TS 33.210: \"3G Security; Network Domain Security; IP Network Layer Security\".\n[3]\tIETF RFC 3261: \"SIP: Session Initiation Protocol\".\n[4]\tIETF RFC 2396: \"Uniform Resource Identifiers (URI): generic syntax\".\n[5]\tVoid.\n[6]\tVoid.\n[7]\tIETF RFC 2234: \"Augmented BNF for syntax specifications\".\n[8]\tIETF RFC 3966: \"The tel URI for Telephone Numbers\".\n[9]\tVoid.\n[10]\tVoid.\n[11]\t3GPP TS 29.329: \"Sh Interface based on the Diameter protocol; protocol details\".\n[12]\tIETF RFC 3589: \"Diameter Command Codes for Third Generation Partnership Project (3GPP) Release 5\".\n[13]\t3GPP TS 23.003: \"Numbering, addressing and identification\".\n[14]\tVoid.\n[15]\tIETF RFC 4740: \"Diameter Session Initiation Protocol (SIP) Application\".\n[16]\t3GPP TS 29.328: \"IP Multimedia (IM) Subsystem Sh interface; Signalling flows and message contents\".\n[17]\tIETF RFC 3327: \"Session Initiation Protocol Extension Header Field for Registering Non-Adjacent Contacts\".\n[18]\t3GPP TS 29.273: \"3GPP EPS AAA interfaces\".\n[19]\tIETF RFC 4005: \"Diameter Network Access Server Application\".\n[20]\tIETF RFC 4590: \" RADIUS Extension for Digest Authentication\".\n[21]\tIETF RFC 4960: \"Stream Control Transmission Protocol\".\n[22]\tIETF RFC 3162: \"RADIUS and IPv6\".\n[23]\tIETF RFC 7683: \"Diameter Overload Indication Conveyance\".\n[24]\t3GPP TS 23.380: \"IMS Restoration Procedures\".\n[25]\tVoid\n[26]\tIETF RFC 7944: \"Diameter Routing Message Priority\".\n[27]\tIEFT RFC 8583: \"Diameter Load Information Conveyance\".\n[28]\tIETF RFC 6733: \"Diameter Base Protocol\".\n[29]\tIETF RFC 7616: \"HTTP Digest Access Authentication\".",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.228",
+        "ts_33.210",
+        "ts_29.329",
+        "ts_23.003",
+        "ts_29.328",
+        "ts_29.273",
+        "ts_23.380"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.229_3.1",
+      "section_id": "3.1",
+      "section_title": "Definitions",
+      "content": "Refer to IETF RFC 6733 [28] for the definitions of some terms used in this document.\nFor the purposes of the present document, the following terms and definitions apply.\nAttribute-Value Pair: see IETF RFC 6733 [28], it corresponds to an Information Element in a Diameter message.\nDiameter Multimedia client: a client that implements the Diameter Multimedia application. The client is one of the communicating Diameter peers that usually initiate transactions. Examples in 3GPP are the I-CSCF and S-CSCF.\nDiameter Multimedia server: a server that implements the Diameter Multimedia application. A Diameter Multimedia server that also supported the NASREQ and MobileIP applications would be referred to as a Diameter server. An example of a Diameter Multimedia server in 3GPP is the HSS.\nRegistration: SIP-registration.\nServer: SIP-server.\nUser data: user profile data.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.229_3.2",
+      "section_id": "3.2",
+      "section_title": "Abbreviations",
+      "content": "For the purposes of the present document, the following abbreviations apply:\nAAA\tAuthentication, Authorization and Accounting\nABNF\tAugmented Backus-Naur Form\nAVP\tAttribute-Value Pair\nCN\tCore Network\nCSCF\tCall Session Control Function\nDSCP\tDifferentiated Services Code Point\nDRMP\tDiameter Routing Message Priority\nHSS\tHome Subscriber Server\nIANA\tInternet Assigned Numbers Authority\nI-CSCF\tInterrogating CSCF\nIETF\tInternet Engineering Task Force\nIMS\tIP Multimedia Subsystem\nNDS\tNetwork Domain Security\nRFC\tRequest For Comments\nS-CSCF\tServing CSCF\nSCTP\tStream Control Transport Protocol\nSIP\tSession Initiation Protocol\nSLF\tServer Locator Function\nUCS\tUniversal Character Set\nURL\tUniform Resource Locator\nUTF\tUCS Transformation Formats\nWAF\tWebRTC Authentication Function\nWWSF\tWebRTC Web Server Function",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.229_4",
+      "section_id": "4",
+      "section_title": "General",
+      "content": "The Diameter base protocol as specified in IETF RFC 6733 [28] shall apply except as modified by the defined support of the methods and the defined support of the commands and AVPs, result and event codes specified in clause 5 of this specification. Unless otherwise specified, the procedures (including error handling and unrecognised information handling) are unmodified.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_5"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.229_5",
+      "section_id": "5",
+      "section_title": "Use of the Diameter base protocol",
+      "content": "With the clarifications listed in the following clauses the Diameter base protocol defined by IETF RFC 6733 [28] shall apply.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.229_5.1",
+      "section_id": "5.1",
+      "section_title": "Securing Diameter Messages",
+      "content": "For secure transport of Diameter messages, see 3GPP TS 33.210 [2].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_33.210"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.229_5.2",
+      "section_id": "5.2",
+      "section_title": "Accounting functionality",
+      "content": "Accounting functionality (Accounting Session State Machine, related command codes and AVPs) is not used on the Cx interface.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.229_5.3",
+      "section_id": "5.3",
+      "section_title": "Use of sessions",
+      "content": "Both between the I-CSCF and the HSS and between the S-CSCF and the HSS, Diameter sessions are implicitly terminated. An implicitly terminated session is one for which the server does not maintain state information. The client does not need to send any re-authorization or session termination requests to the server.\nThe Diameter base protocol includes the Auth-Session-State AVP as the mechanism for the implementation of implicitly terminated sessions.\nThe client (server) shall include in its requests (responses) the Auth-Session-State AVP set to the value NO_STATE_MAINTAINED (1), as described in IETF RFC 6733 [28]. As a consequence, the server does not maintain any state information about this session and the client does not need to send any session termination request. Neither the Authorization-Lifetime AVP nor the Session-Timeout AVP shall be present in requests or responses.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.229_5.4",
+      "section_id": "5.4",
+      "section_title": "Transport protocol",
+      "content": "Diameter messages over the Cx and the Dx interfaces shall make use of SCTP IETF RFC 4960 [21].",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.229_5.5",
+      "section_id": "5.5",
+      "section_title": "Routing considerations",
+      "content": "This clause specifies the use of the Diameter routing AVPs Destination-Realm and Destination-Host.\nIf an I-CSCF or S-CSCF knows the address/name of the HSS for a certain user, both the Destination-Realm and Destination-Host AVPs shall be present in the request. Otherwise, only the Destination-Realm AVP shall be present and the command shall be routed to the next Diameter node, e.g. the SLF or a Diameter Proxy Agent (see 3GPP TS 29.228 [1]), based on the Diameter routing table in the client.\nIf the next Diameter node is an SLF, then once the SLF has returned the address or the destination HSS (using Redirect-Host AVP), the redirected request to the HSS shall include both Destination-Realm and Destination-Host AVPs. If the next Diameter node is a Diameter Proxy Agent, the Diameter Proxy Agent shall determine the destination HSS. The Diameter Proxy Agent, based on the result of this determination of the destination HSS, shall modify the Destination-Realm AVP and Destination-Host AVP of the request appropriately. The Diameter Proxy Agent shall then append a Route-Record AVP to the request and shall send the request to the destination HSS. Consequently, the Destination-Host AVP is declared as optional in the ABNF for all requests initiated by an I-CSCF or an S-CSCF.\nIf the response is routed back to a Diameter Proxy Agent, the Diameter Proxy Agent shall send the response back to the I-CSCF or S-CSCF without modifying the Origin-Realm AVP and Origin-Host AVP. The response shall contain the Origin-Realm AVP set to the realm of the HSS together with the Origin-Host AVP set to the HSS that sent the response. The S-CSCF shall store the HSS realm and HSS address for each Public Identity, after the first request sent to the User Identity to HSS resolution function.\nRequests initiated by the HSS towards an S-CSCF shall include both Destination-Host and Destination-Realm AVPs. The HSS obtains the Destination-Host AVP to use in requests towards an S-CSCF, from the Origin-Host AVP received in previous requests from the S-CSCF. Consequently, the Destination-Host AVP is declared as mandatory in the ABNF for all requests initiated by the HSS.\nDestination-Realm AVP is declared as mandatory in the ABNF for all requests.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.228"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.229_5.6",
+      "section_id": "5.6",
+      "section_title": "Advertising Application Support",
+      "content": "The HSS, S-CSCF and I-CSCF shall advertise support of the Diameter Multimedia Application by including the value of the application identifier (see clause 6) in the Auth-Application-Id AVP within the Vendor-Specific-Application-Id grouped AVP of the Capabilities-Exchange-Request and Capabilities-Exchange-Answer commands.\nThe vendor identifier value of 3GPP (10415) and ETSI (13019) shall be included in the Supported-Vendor-Id AVP of the Capabilities-Exchange-Request and Capabilities-Exchange-Answer commands, and in the Vendor-Id AVP within the Vendor-Specific-Application-Id grouped AVP of the Capabilities-Exchange-Request and Capabilities-Exchange-Answer commands.\nNote:\tThe Vendor-Id AVP included in Capabilities-Exchange-Request and Capabilities-Exchange-Answer commands that is not included in the Vendor-Specific-Application-Id AVPs as described above shall indicate the manufacturer of the Diameter node as per IETF RFC 6733 [28].",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_6"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.229_6",
+      "section_id": "6",
+      "section_title": "Diameter application for Cx interface",
+      "content": "This clause specifies a Diameter application that allows a Diameter Multimedia server and a Diameter Multimedia client:\n-\tto exchange location information\n-\tto authorize a user to access the IMS\n-\tto exchange authentication information\n-\tto download and handle changes in the user data stored in the server\nThe Cx interface protocol is defined as an IETF vendor specific Diameter application, where the vendor is 3GPP. The vendor identifier assigned by IANA to 3GPP (http://www.iana.org/assignments/enterprise-numbers) is 10415.\nThe Diameter application identifier assigned to the Cx/Dx interface application is 16777216 (allocated by IANA).",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.229_6.1",
+      "section_id": "6.1",
+      "section_title": "Command-Code values",
+      "content": "This clause defines Command-Code values for this Diameter application.\nEvery command is defined by means of the ABNF syntax IETF RFC 2234 [7], according to the Command Code Format (CCF) specification defined in IETF RFC 6733 [28]. Whenever the definition and use of an AVP is not specified in this document, what is stated in IETF RFC 6733 [28] shall apply.\nNOTE:\tAs the Diameter commands described in this specification have been defined based on the former specification of the Diameter base protocol, the Vendor-Specific-Application-Id AVP is still listed as a required AVP (an AVP indicated as {AVP}) in the command code format specifications defined in this specification to avoid backward compatibility issues, even if the use of this AVP has been deprecated in the new specification of the Diameter base protocol (IETF RFC 6733 [28]).\nThe command codes for the Cx/Dx interface application are taken from the range allocated by IANA in IETF RFC 3589 [12] as assigned in this specification. For these commands, the Application-ID field shall be set to 16777216 (application identifier of the Cx/Dx interface application, allocated by IANA).\nThe following Command Codes are defined in this specification:\nTable 6.1.1: Command-Code values\nCommand-Name\nAbbreviation\nCode\nClause\nUser-Authorization-Request\nUAR\n300\n6.1.1\nUser-Authorization-Answer\nUAA\n300\n6.1.2\nServer-Assignment-Request\nSAR\n301\n6.1.3\nServer-Assignment-Answer\nSAA\n301\n6.1.4\nLocation-Info-Request\nLIR\n302\n6.1.5\nLocation-Info-Answer\nLIA\n302\n6.1.6\nMultimedia-Auth-Request\nMAR\n303\n6.1.7\nMultimedia-Auth-Answer\nMAA\n303\n6.1.8\nRegistration-Termination-Request\nRTR\n304\n6.1.9\nRegistration-Termination-Answer\nRTA\n304\n6.1.10\nPush-Profile-Request\nPPR\n305\n6.1.11\nPush-Profile-Answer\nPPA\n305\n6.1.12",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.1.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.229_6.1.1",
+      "section_id": "6.1.1",
+      "section_title": "User-Authorization-Request (UAR) Command",
+      "content": "The User-Authorization-Request (UAR) command, indicated by the Command-Code field set to 300 and the 'R' bit set in the Command Flags field, is sent by a Diameter Multimedia client to a Diameter Multimedia server in order to request the authorization of the registration of a multimedia user.\nMessage Format\n< User-Authorization-Request> ::=\t< Diameter Header: 300, REQ, PXY, 16777216 >\n< Session-Id >\n[ DRMP ]\n{ Vendor-Specific-Application-Id }\n{ Auth-Session-State }\n{ Origin-Host }\n{ Origin-Realm }\n[ Destination-Host ]\n{ Destination-Realm }\n{ User-Name }\n[ OC-Supported-Features ]\n*[ Supported-Features ]\n{ Public-Identity }\n{ Visited-Network-Identifier }\n[ User-Authorization-Type ]\n[ UAR-Flags ]\n*[ AVP ]\n*[ Proxy-Info ]\n*[ Route-Record ]",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.229_6.1.2",
+      "section_id": "6.1.2",
+      "section_title": "User-Authorization-Answer (UAA) Command",
+      "content": "The User-Authorization-Answer (UAA) command, indicated by the Command-Code field set to 300 and the 'R' bit cleared in the Command Flags field, is sent by a server in response to the User-Authorization-Request command. The Experimental-Result AVP may contain one of the values defined in clause 6.2.\nMessage Format\n< User-Authorization-Answer> ::=\t< Diameter Header: 300, PXY, 16777216 >\n< Session-Id >\n[ DRMP ]\n{ Vendor-Specific-Application-Id }\n[ Result-Code ]\n[ Experimental-Result ]\n{ Auth-Session-State }\n{ Origin-Host }\n{ Origin-Realm }\n[ OC-Supported-Features ]\n[ OC-OLR ]\n*[ Load ]\n*[ Supported-Features ]\n[ Server-Name ]\n[ Server-Capabilities ]\n*[ AVP ]\n[ Failed-AVP ]\n*[ Proxy-Info ]\n*[ Route-Record ]",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_6.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.229_6.1.3",
+      "section_id": "6.1.3",
+      "section_title": "Server-Assignment-Request (SAR) Command",
+      "content": "The Server-Assignment-Request (SAR) command, indicated by the Command-Code field set to 301 and the 'R' bit set in the Command Flags field, is sent by a Diameter Multimedia client to a Diameter Multimedia server in order to request it to store the name of the server that is currently serving the user.\nMessage Format\n<Server-Assignment-Request> ::=\t< Diameter Header: 301, REQ, PXY, 16777216 >\n< Session-Id >\n[ DRMP ]\n{ Vendor-Specific-Application-Id }\n{ Auth-Session-State }\n{ Origin-Host }\n{ Origin-Realm }\n[ Destination-Host ]\n{ Destination-Realm }\n[ User-Name ]\n[ OC-Supported-Features ]\n*[ Supported-Features ]\n*[ Public-Identity ]\n[ Wildcarded-Public-Identity ]\n{ Server-Name }\n{ Server-Assignment-Type }\n{ User-Data-Already-Available }\n[ SCSCF-Restoration-Info ]\n[ Multiple-Registration-Indication ]\n[ Session-Priority ]\n[ SAR-Flags ]\n[ Failed-PCSCF ]\n*[ AVP ]\n*[ Proxy-Info ]\n*[ Route-Record ]",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.229_6.1.4",
+      "section_id": "6.1.4",
+      "section_title": "Server-Assignment-Answer (SAA) Command",
+      "content": "The Server-Assignment-Answer (SAA) command, indicated by the Command-Code field set to 301 and the 'R' bit cleared in the Command Flags field, is sent by a server in response to the Server-Assignment-Request command. The Experimental-Result AVP may contain one of the values defined in clause 6.2. If Result-Code or Experimental-Result does not inform about an error, the User-Data AVP shall contain the information that the S-CSCF needs to give service to the user.\nMessage Format\n<Server-Assignment-Answer> ::=\t< Diameter Header: 301, PXY, 16777216 >\n< Session-Id >\n[ DRMP ]\n{ Vendor-Specific-Application-Id }\n[ Result-Code ]\n[ Experimental-Result ]\n{ Auth-Session-State }\n{ Origin-Host }\n{ Origin-Realm }\n[ User-Name ]\n[ OC-Supported-Features ]\n[ OC-OLR ]\n*[ Load ]\n*[ Supported-Features ]\n[ User-Data ]\n[ Charging-Information ]\n[ Associated-Identities ]\n[ Loose-Route-Indication ]\n*[ SCSCF-Restoration-Info ]\n[ Associated-Registered-Identities ]\n[ Server-Name ]\n[ Wildcarded-Public-Identity ]\n[ Priviledged-Sender-Indication ]\n[ Allowed-WAF-WWSF-Identities ]\n*[ AVP ]\n[ Failed-AVP ]\n*[ Proxy-Info ]\n*[ Route-Record ]",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_6.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.229_6.1.5",
+      "section_id": "6.1.5",
+      "section_title": "Location-Info-Request (LIR) Command",
+      "content": "The Location-Info-Request (LIR) command, indicated by the Command-Code field set to 302 and the 'R' bit set in the Command Flags field, is sent by a Diameter Multimedia client to a Diameter Multimedia server in order to request name of the server that is currently serving the user.\nMessage Format\n<Location-Info-Request> ::=\t< Diameter Header: 302, REQ, PXY, 16777216 >\n< Session-Id >\n[ DRMP ]\n{ Vendor-Specific-Application-Id }\n{ Auth-Session-State }\n{ Origin-Host }\n{ Origin-Realm }\n[ Destination-Host ]\n{ Destination-Realm }\n[ Originating-Request ]\n[ OC-Supported-Features ]\n*[ Supported-Features ]\n{ Public-Identity }\n[ User-Authorization-Type ]\n[ Session-Priority ]\n*[ AVP ]\n*[ Proxy-Info ]\n*[ Route-Record ]",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.229_6.1.6",
+      "section_id": "6.1.6",
+      "section_title": "Location-Info-Answer (LIA) Command",
+      "content": "The Location-Info-Answer (LIA) command, indicated by the Command-Code field set to 302 and the 'R' bit cleared in the Command Flags field, is sent by a server in response to the Location-Info-Request command. The Experimental-Result AVP may contain one of the values defined in clause 6.2.\nMessage Format\n<Location-Info-Answer> ::=\t< Diameter Header: 302, PXY, 16777216 >\n< Session-Id >\n[ DRMP ]\n{ Vendor-Specific-Application-Id }\n[ Result-Code ]\n[ Experimental-Result ]\n{ Auth-Session-State }\n{ Origin-Host }\n{ Origin-Realm }\n[ OC-Supported-Features ]\n[ OC-OLR ]\n*[ Load ]\n*[ Supported-Features ]\n[ Server-Name ]\n[ Server-Capabilities ]\n[ Wildcarded-Public-Identity ]\n[ LIA-Flags ]\n*[ AVP ]\n[ Failed-AVP ]\n*[ Proxy-Info ]\n*[ Route-Record ]",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_6.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.229_6.1.7",
+      "section_id": "6.1.7",
+      "section_title": "Multimedia-Auth-Request (MAR) Command",
+      "content": "The Multimedia-Auth-Request (MAR) command, indicated by the Command-Code field set to 303 and the 'R' bit set in the Command Flags field, is sent by a Diameter Multimedia client to a Diameter Multimedia server in order to request security information.\nMessage Format\n< Multimedia-Auth-Request > ::=  < Diameter Header: 303, REQ, PXY, 16777216 >\n< Session-Id >\n[ DRMP ]\n{ Vendor-Specific-Application-Id }\n{ Auth-Session-State }\n{ Origin-Host }\n{ Origin-Realm }\n{ Destination-Realm }\n[ Destination-Host ]\n{ User-Name }\n[ OC-Supported-Features ]\n*[ Supported-Features ]\n{ Public-Identity }\n{ SIP-Auth-Data-Item }\n{ SIP-Number-Auth-Items }\n{ Server-Name }\n*[ AVP ]\n*[ Proxy-Info ]\n*[ Route-Record ]",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.229_6.1.8",
+      "section_id": "6.1.8",
+      "section_title": "Multimedia-Auth-Answer (MAA) Command",
+      "content": "The Multimedia-Auth-Answer (MAA) command, indicated by the Command-Code field set to 303 and the 'R' bit cleared in the Command Flags field, is sent by a server in response to the Multimedia-Auth-Request command. The Experimental-Result AVP may contain one of the values defined in clause 6.2.\nMessage Format\n< Multimedia-Auth-Answer > ::=  < Diameter Header: 303, PXY, 16777216 >\n< Session-Id >\n[ DRMP ]\n{ Vendor-Specific-Application-Id }\n[ Result-Code ]\n[ Experimental-Result ]\n{ Auth-Session-State }\n{ Origin-Host }\n{ Origin-Realm }\n[ User-Name ]\n[ OC-Supported-Features ]\n[ OC-OLR ]\n*[ Load ]\n*[ Supported-Features ]\n[ Public-Identity ]\n[ SIP-Number-Auth-Items ]\n*[SIP-Auth-Data-Item ]\n*[ AVP ]\n[ Failed-AVP ]\n*[ Proxy-Info ]\n*[ Route-Record ]",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_6.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.229_6.1.9",
+      "section_id": "6.1.9",
+      "section_title": "Registration-Termination-Request (RTR) Command",
+      "content": "The Registration-Termination-Request (RTR) command, indicated by the Command-Code field set to 304 and the 'R' bit set in the Command Flags field, is sent by a Diameter Multimedia server to a Diameter Multimedia client in order to request the de-registration of a user.\nMessage Format\n<Registration-Termination-Request> ::=\t< Diameter Header: 304, REQ, PXY, 16777216 >\n< Session-Id >\n[ DRMP ]\n{ Vendor-Specific-Application-Id }\n{ Auth-Session-State }\n{ Origin-Host }\n{ Origin-Realm }\n{ Destination-Realm }\n{ User-Name }\n[ Associated-Identities ]\n*[ Supported-Features ]\n*[ Public-Identity ]\n{ Deregistration-Reason }\nRTR-Flags ]\n*[ AVP ]\n*[ Proxy-Info ]\n*[ Route-Record ]",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.229_6.1.10",
+      "section_id": "6.1.10",
+      "section_title": "Registration-Termination-Answer (RTA) Command",
+      "content": "The Registration-Termination-Answer (RTA) command, indicated by the Command-Code field set to 304 and the 'R' bit cleared in the Command Flags field, is sent by a client in response to the Registration-Termination-Request command. The Experimental-Result AVP may contain one of the values defined in clause 6.2.\nMessage Format\n<Registration-Termination-Answer> ::=\t< Diameter Header: 304, PXY, 16777216 >\n< Session-Id >\n< Session-Id >\n[ DRMP ]\n{ Vendor-Specific-Application-Id }\n[ Result-Code ]\n[ Experimental-Result ]\n{ Auth-Session-State }\n{ Origin-Host }\n{ Origin-Realm }\n[ Associated-Identities ]\n*[ Supported-Features ]\n*[ Identity-with-Emergency-Registration ]\n*[ AVP ]\n[ Failed-AVP ]\n*[ Proxy-Info ]\n*[ Route-Record ]",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_6.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.229_6.1.11",
+      "section_id": "6.1.11",
+      "section_title": "Push-Profile-Request (PPR) Command",
+      "content": "The Push-Profile-Request (PPR) command, indicated by the Command-Code field set to 305 and the 'R' bit set in the Command Flags field, is sent by a Diameter Multimedia server to a Diameter Multimedia client in order to update the subscription data and for SIP Digest authentication the authentication data of a multimedia user in the Diameter Multimedia client whenever a modification has occurred in the subscription data or digest password that constitutes the data used by the client.\nMessage Format\n< Push-Profile-Request > ::=\t< Diameter Header: 305, REQ, PXY, 16777216 >\n< Session-Id >\n[ DRMP ]\n{ Vendor-Specific-Application-Id }\n{ Auth-Session-State }\n{ Origin-Host }\n{ Origin-Realm }\n{ Destination-Host }\n{ Destination-Realm }\n{ User-Name }\n*[ Supported-Features ]\n[ User-Data ]\n[ Charging-Information ]\n[ SIP-Auth-Data-Item ]\n[ Allowed-WAF-WWSF-Identities ]\n*[ AVP ]\n*[ Proxy-Info ]\n*[ Route-Record ]",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.229_6.1.12",
+      "section_id": "6.1.12",
+      "section_title": "Push-Profile-Answer (PPA) Command",
+      "content": "The Push-Profile-Answer (PPA) command, indicated by the Command-Code field set to 305 and the 'R' bit cleared in the Command Flags field, is sent by a client in response to the Push-Profile-Request command. The Experimental-Result AVP may contain one of the values defined in clause 6.2.\nMessage Format\n< Push-Profile-Answer > ::=           < Diameter Header: 305, PXY, 16777216 >\n< Session-Id >\n[ DRMP ]\n{ Vendor-Specific-Application-Id }\n[Result-Code ]\n[ Experimental-Result ]\n{ Auth-Session-State }\n{ Origin-Host }\n{ Origin-Realm }\n*[ Supported-Features ]\n*[ AVP ]\n[ Failed-AVP ]\n*[ Proxy-Info ]\n*[ Route-Record ]",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_6.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.229_6.2",
+      "section_id": "6.2",
+      "section_title": "Result-Code AVP values",
+      "content": "This clause defines new result code values that must be supported by all Diameter implementations that conform to this specification. When one of the result codes defined here is included in a response, it shall be inside an Experimental-Result AVP and Result-Code AVP shall be absent.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.229_6.2.1",
+      "section_id": "6.2.1",
+      "section_title": "Success",
+      "content": "Result codes that fall within the Success category are used to inform a peer that a request has been successfully completed.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.229_6.2.1.1",
+      "section_id": "6.2.1.1",
+      "section_title": "DIAMETER_FIRST_REGISTRATION (2001)",
+      "content": "The HSS informs the I-CSCF that:\n-\tThe user is authorized to register this public identity;\n-\tA S-CSCF shall be assigned to the user.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.229_6.2.1.2",
+      "section_id": "6.2.1.2",
+      "section_title": "DIAMETER_SUBSEQUENT_REGISTRATION (2002)",
+      "content": "The HSS informs the I-CSCF that:\n-\tThe user is authorized to register this public identity;\n-\tA S-CSCF is already assigned and there is no need to select a new one.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.229_6.2.1.3",
+      "section_id": "6.2.1.3",
+      "section_title": "DIAMETER_UNREGISTERED_SERVICE (2003)",
+      "content": "The HSS informs the I-CSCF that:\n-\tThe public identity is not registered but has services related to unregistered state;\n-\tA S-CSCF shall be assigned to the user.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.229_6.2.1.4",
+      "section_id": "6.2.1.4",
+      "section_title": "DIAMETER_SUCCESS_SERVER_NAME_NOT_STORED (2004)",
+      "content": "The HSS informs to the S-CSCF that:\n-\tThe de-registration is completed;\n-\tThe S-CSCF name is not stored in the HSS.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.229_6.2.2",
+      "section_id": "6.2.2",
+      "section_title": "Permanent Failures",
+      "content": "Errors that fall within the Permanent Failures category are used to inform the peer that the request failed, and should not be attempted again.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.229_6.2.2.1",
+      "section_id": "6.2.2.1",
+      "section_title": "DIAMETER_ERROR_USER_UNKNOWN (5001)",
+      "content": "A message was received for a user or a wildcarded identity that is unknown.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.229_6.2.2.2",
+      "section_id": "6.2.2.2",
+      "section_title": "DIAMETER_ERROR_IDENTITIES_DONT_MATCH (5002)",
+      "content": "A message was received with a public identity and a private identity for a user, and the server determines that the public identity does not correspond to the private identity.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.229_6.2.2.3",
+      "section_id": "6.2.2.3",
+      "section_title": "DIAMETER_ERROR_IDENTITY_NOT_REGISTERED (5003)",
+      "content": "A query for location information is received for a public identity that has not been registered before. The user to which this identity belongs cannot be given service in this situation.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.229_6.2.2.4",
+      "section_id": "6.2.2.4",
+      "section_title": "DIAMETER_ERROR_ROAMING_NOT_ALLOWED (5004)",
+      "content": "The user is not allowed to roam in the visited network.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.229_6.2.2.5",
+      "section_id": "6.2.2.5",
+      "section_title": "DIAMETER_ERROR_IDENTITY_ALREADY_REGISTERED (5005)",
+      "content": "The identity has already a server assigned and the registration status does not allow that it is overwritten.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.229_6.2.2.6",
+      "section_id": "6.2.2.6",
+      "section_title": "DIAMETER_ERROR_AUTH_SCHEME_NOT_SUPPORTED (5006)",
+      "content": "The authentication scheme indicated in an authentication request is not supported.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.229_6.2.2.7",
+      "section_id": "6.2.2.7",
+      "section_title": "DIAMETER_ERROR_IN_ASSIGNMENT_TYPE (5007)",
+      "content": "The identity being registered has already the same server assigned and the registration status does not allow the server assignment type or the Public Identity type received in the request is not allowed for the indicated server-assignment-type.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.229_6.2.2.8",
+      "section_id": "6.2.2.8",
+      "section_title": "DIAMETER_ERROR_TOO_MUCH_DATA (5008)",
+      "content": "The volume of the data pushed to the receiving entity exceeds its capacity.\nNOTE: This error code is also used in 3GPP TS 29.329 [11].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.329"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.229_6.2.2.9",
+      "section_id": "6.2.2.9",
+      "section_title": "DIAMETER_ERROR_NOT_SUPPORTED_USER_DATA (5009)",
+      "content": "The S-CSCF informs HSS that the received subscription data contained information, which was not recognised or supported.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.229_6.2.2.11",
+      "section_id": "6.2.2.11",
+      "section_title": "DIAMETER_ERROR_FEATURE_UNSUPPORTED (5011)",
+      "content": "A request application message was received indicating that the origin host requests that the command pair would be handled using a feature which is not supported by the destination host.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.229_6.2.2.12",
+      "section_id": "6.2.2.12",
+      "section_title": "DIAMETER_ERROR_SERVING_NODE_FEATURE_UNSUPPORTED (5012)",
+      "content": "This error is used when the HSS supports the P-CSCF-Restoration-mechanism feature, but none of the user serving node(s) supports it, as described by 3GPP TS 23.380 [24] clause 5.4.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.380_clause_5.4",
+        "ts_23.380"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.229_6.3.0",
+      "section_id": "6.3.0",
+      "section_title": "General",
+      "content": "The following table describes the Diameter AVPs defined by 3GPP for the Cx interface protocol, their AVP Code values, types, possible flag values and whether or not the AVP may be encrypted. The Vendor-ID header of all AVPs defined in this specification shall be set to 3GPP (10415) if not otherwise indicated.\nTable 6.3.0.1: Diameter Multimedia Application AVPs\nAVP Flag rules\nAttribute Name\nAVP Code\nClause defined\nValue Type\nMust\nMay\nShould not\nMust not\nMay Encr.\nVisited-Network-Identifier\n600\n6.3.1\nOctetString\nM, V\nNo\nPublic-Identity\n601\n6.3.2\nUTF8String\nM, V\nNo\nServer-Name\n602\n6.3.3\nUTF8String\nM, V\nNo\nServer-Capabilities\n603\n6.3.4\nGrouped\nM, V\nNo\nMandatory-Capability\n604\n6.3.5\nUnsigned32\nM, V\nNo\nOptional-Capability\n605\n6.3.6\nUnsigned32\nM, V\nNo\nUser-Data\n606\n6.3.7\nOctetString\nM, V\nNo\nSIP-Number-Auth-Items\n607\n6.3.8\nUnsigned32\nM, V\nNo\nSIP-Authentication-Scheme\n608\n6.3.9\nUTF8String\nM, V\nNo\nSIP-Authenticate\n609\n6.3.10\nOctetString\nM, V\nNo\nSIP-Authorization\n610\n6.3.11\nOctetString\nM, V\nNo\nSIP-Authentication-Context\n611\n6.3.12\nOctetString\nM, V\nNo\nSIP-Auth-Data-Item\n612\n6.3.13\nGrouped\nM, V\nNo\nSIP-Item-Number\n613\n6.3.14\nUnsigned32\nM, V\nNo\nServer-Assignment-Type\n614\n6.3.15\nEnumerated\nM, V\nNo\nDeregistration-Reason\n615\n6.3.16\nGrouped\nM, V\nNo\nReason-Code\n616\n6.3.17\nEnumerated\nM, V\nNo\nReason-Info\n617\n6.3.18\nUTF8String\nM, V\nNo\nCharging-Information\n618\n6.3.19\nGrouped\nM, V\nNo\nPrimary-Event-Charging-Function-Name\n619\n6.3.20\nDiameterURI\nM, V\nNo\nSecondary-Event-Charging-Function-Name\n620\n6.3.21\nDiameterURI\nM, V\nNo\nPrimary-Charging-Collection-Function-Name\n621\n6.3.22\nDiameterURI\nM, V\nNo\nSecondary-Charging-Collection-Function-Name\n622\n6.3.23\nDiameterURI\nM, V\nNo\nUser-Authorization-Type\n623\n6.3.24\nEnumerated\nM, V\nNo\nUser-Data-Already-Available\n624\n6.3.26\nEnumerated\nM, V\nNo\nConfidentiality-Key\n625\n6.3.27\nOctetString\nM, V\nNo\nIntegrity-Key\n626\n6.3.28\nOctetString\nM, V\nNo\nSupported-Features\n628\n6.3.29\nGrouped\nV\nM\nNo\nFeature-List-ID\n629\n6.3.30\nUnsigned32\nV\nM\nNo\nFeature-List\n630\n6.3.31\nUnsigned32\nV\nM\nNo\nSupported-Applications\n631\n6.3.32\nGrouped\nV\nM\nNo\nAssociated-Identities\n632\n6.3.33\nGrouped\nV\nM\nNo\nOriginating-Request\n633\n6.3.34\nEnumerated\nM,V\nNo\nWildcarded-Public-Identity\n634\n6.3.35\nUTF8String\nV\nM\nNo\nSIP-Digest-Authenticate\n635\n6.3.36\nGrouped\nV\nM\nNo\nDigest-Realm\n104\nNOTE 3\n6.3.37\nUTF8String\nM\nV\nNo\nDigest-Algorithm\n111\nNOTE 3\n6.3.39\nUTF8String\nM\nV\nNo\nDigest-QoP\n110\nNOTE 3\n6.3.40\nUTF8String\nM\nV\nNo\nDigest-HA1\n121\nNOTE 3\n6.3.41\nUTF8String\nM\nV\nNo\nUAR-Flags\n637\n6.3.44\nUnsigned32\nV\nM\nNo\nLoose-Route-Indication\n638\n6.3.45\nEnumerated\nV\nM\nNo\nSCSCF-Restoration-Info\n639\n6.3.46\nGrouped\nV\nM\nNo\nPath\n640\n6.3.47\nOctetString\nV\nM\nNo\nContact\n641\n6.3.48\nOctetString\nV\nM\nNo\nSubscription-Info\n642\n6.3.49\nGrouped\nV\nM\nNo\nCall-ID-SIP-Header\n643\n6.3.49.1\nOctetString\nV\nM\nNo\nFrom-SIP-Header\n644\n6.3.49.2\nOctetString\nV\nM\nNo\nTo-SIP-Header\n645\n6.3.49.3\nOctetString\nV\nM\nNo\nRecord-Route\n646\n6.3.49.4\nOctetString\nV\nM\nNo\nAssociated-Registered-Identities\n647\n6.3.50\nGrouped\nV\nM\nNo\nMultiple-Registration-Indication\n648\n6.3.51\nEnumerated\nV\nM\nNo\nRestoration-Info\n649\n6.3.52\nGrouped\nV\nM\nNo\nSession-Priority\n650\n6.3.56\nEnumerated\nV\nM\nNo\nIdentity-with-Emergency-Registration\n651\n6.3.57\nGrouped\nV\nM\nNo\nPriviledged-Sender-Indication\n652\n6.3.58\nEnumerated\nV\nM\nNo\nLIA-Flags\n653\n6.3.59\nUnsigned32\nV\nM\nNo\nOC-Supported-Features\n621\nNOTE 4\n6.3.60\nGrouped\nM, V\nNo\nOC-OLR\n623\nNOTE 4\n6.3.61\nGrouped\nM, V\nNo\nInitial-CSeq-Sequence-Number\n654\n6.3.62\nUnsigned32\nV\nM\nNo\nSAR-Flags\n655\n6.3.63\nUnsigned32\nV\nM\nNo\nAllowed-WAF-WWSF-Identities\n656\n6.3.64\nGrouped\nV\nM\nNo\nWebRTC-Authentication-Function-Name\n657\n6.3.65\nUTF8String\nV\nM\nNo\nWebRTC-Web-Server-Function-Name\n658\n6.3.66\nUTF8String\nV\nM\nNo\nDRMP\n301\nNOTE 5\n6.3.67\nEnumerated\nM, V\nNo\nLoad\nNOTE 6\n6.3.68\nGrouped\nM, V\nNo\nRTR-Flags\n659\n6.3.69\nUnsigned32\nV\nM\nNo\nP-CSCF-Subscription-Info\n660\n6.3.70\nGrouped\nV\nM\nNo\nRegistration-Time-Out\n661\n6.3.71\nTime\nV\nM\nNo\nAlternate-Digest-Algorithm\n662\nNOTE 7\n6.3.72\nUTF8String\nV\nM\nNo\nAlternate-Digest-HA1\n663\nNOTE 7\n6.3.73\nUTF8String\nV\nM\nNo\nFailed-PCSCF\n664\n6.3.74\nGrouped\nV\nM\nNo\nPCSCF-FQDN\n665\n6.3.75\nDiameterIdentity\nV\nM\nNo\nPCSCF-IP-Address\n666\n6.3.76\nAddress\nV\nM\nNo\nNOTE 1:\tThe AVP header bit denoted as 'M', indicates whether support of the AVP is required. The AVP header bit denoted as 'V', indicates whether the optional Vendor-ID field is present in the AVP header. For further details, see IETF RFC 6733 [28].\nNOTE 1a:\tIf the M-bit is set for an AVP and the receiver does not understand the AVP, it shall return a rejection. If the M-bit is not set for an AVP, the receiver shall not return a rejection, whether or not it understands the AVP. If the receiver understands the AVP but the M-bit value does not match with the definition in this table, the receiver shall ignore the M-bit.\nNOTE 2:\tDepending on the concrete command.\nNOTE 3:\tThe value of these attributes is defined in IETF RFC 4590 [20].\nNOTE 4:\tThe value of these attributes is defined in IETF RFC 7683 [23].\nNOTE 5:\tThe value of this attribute is defined in IETF RFC 7944 [26].\nNOTE 6:\tThe value of this attribute is defined in IEFT RFC 8583 [27].\nNOTE 7:\tThe Alternate-Digest-HA1 AVP is defined in the same way as Digest-HA1 AVP in accordance with IETF RFC 7616 [29]. If the Alternate-Digest-HA1 AVP is present, the Digest-HA1 AVP shall also be present and the Digest-HA1 AVP shall contain the MD5 hash. The algorithm of the Alternate-Digest-HA1 AVP shall be determined by the Alternate-Digest-Algorithm AVP.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "table_6.3.0.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.229_6.3.1",
+      "section_id": "6.3.1",
+      "section_title": "Visited-Network-Identifier AVP",
+      "content": "The Visited-Network-Identifier AVP is of type OctetString. This AVP contains an identifier that helps the HSS to identify the visited network (e.g. the visited network domain name). Coding of octets is H-PLMN operator specific. The I-CSCF maps a received P-Visited-Network-ID onto an Octet String value that is consistently configured in I-CSCF and HSS to uniquely identify the visited network.",
+      "chunk_type": "parameter",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.229_6.3.2",
+      "section_id": "6.3.2",
+      "section_title": "Public-Identity AVP",
+      "content": "The Public-Identity AVP is of type UTF8String. This AVP contains the public identity of a user in the IMS. The syntax of this AVP corresponds either to a SIP URL (with the format defined in IETF RFC 3261 [3] and IETF RFC 2396 [4]) or a TEL URL (with the format defined in IETF RFC 3966 [8]). Both SIP URL and TEL URL shall be in canonical form, as described in 3GPP TS 23.003 [13].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.003"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.229_6.3.3",
+      "section_id": "6.3.3",
+      "section_title": "Server-Name AVP",
+      "content": "The Server-Name AVP is of type UTF8String. This AVP contains a SIP-URL (as defined in IETF RFC 3261 [3] and IETF RFC 2396 [4]), used to identify a SIP server (e.g. S-CSCF name).",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.229_6.3.4",
+      "section_id": "6.3.4",
+      "section_title": "Server-Capabilities AVP",
+      "content": "The Server-Capabilities AVP is of type Grouped. This AVP contains information to assist the I-CSCF in the selection of an S-CSCF.\nAVP format\nServer-Capabilities ::= <AVP header: 603 10415>\n*[Mandatory-Capability]\n*[Optional-Capability]\n*[Server-Name]\n*[AVP]",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.229_6.3.5",
+      "section_id": "6.3.5",
+      "section_title": "Mandatory-Capability AVP",
+      "content": "The Mandatory-Capability AVP is of type Unsigned32. Each value included in this AVP can be used to represent a single determined mandatory capability or a set of capabilities of an S-CSCF, as described in 3GPP TS 29.228 [1] (clause 6.7).",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.228_clause_6.7",
+        "ts_29.228"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.229_6.3.6",
+      "section_id": "6.3.6",
+      "section_title": "Optional-Capability AVP",
+      "content": "The Optional-Capability AVP is of type Unsigned32. Each value included in this AVP can be used to represent a single determined optional capability or a set of capabilities of an S-CSCF, as described in 3GPP TS 29.228 [1] (clause 6.7).",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.228_clause_6.7",
+        "ts_29.228"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.229_6.3.7",
+      "section_id": "6.3.7",
+      "section_title": "User-Data AVP",
+      "content": "The User-Data AVP is of type OctetString. This AVP contains the user data required to give service to a user. The exact content and format of this AVP is described in 3GPP TS 29.228 [1].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.228"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.229_6.3.8",
+      "section_id": "6.3.8",
+      "section_title": "SIP-Number-Auth-Items AVP",
+      "content": "The SIP-Number-Auth-Items AVP is of type Unsigned32.\nWhen used in a request, the SIP-Number-Auth-Items indicates the number of authentication vectors the S-CSCF is requesting. This can be used, for instance, when the client is requesting several pre-calculated authentication vectors. In the answer message, the SIP-Number-Auth-Items AVP indicates the actual number of SIP-Auth-Data-Item AVPs provided by the Diameter server.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.229_6.3.9",
+      "section_id": "6.3.9",
+      "section_title": "SIP-Authentication-Scheme AVP",
+      "content": "The Authentication-Scheme AVP is of type UTF8String and indicates the authentication scheme used in the authentication of SIP messages. The following values are defined:\n- \"Digest-AKAv1-MD5\": it indicates IMS-AKA authentication scheme.\nNOTE 1:\tThe S-CSCF uses the \"Digest-AKAv1-MD5\" authentication scheme towards the HSS for Digest-AKAv1 and Digest-AKAv2 versions. E.g. digest algorithms \"AKAv1-MD5\" and \"AKAv2-SHA-256\" require from the HSS the same procedures i.e. the same authentication information: random number RAND, authentication token AUTN, expected response XRES, cipher key CK and integrity key IK.\nNOTE 2:\tThe \"AKAv1-MD5\" digest AKA algorithm is only supported for backward compatibility.\n- \"SIP Digest\":  it indicates SIP Digest authentication scheme.\n- \"NASS-Bundled\": it indicates NASS Bundled authentication scheme.\n- \"Early‑IMS‑Security\": it indicates GPRS-IMS-Bundled authentication scheme.\n- \"Unknown\": it indicates that the authentication scheme to be used is unknown at this point.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.229_6.3.10",
+      "section_id": "6.3.10",
+      "section_title": "SIP-Authenticate AVP",
+      "content": "The SIP-Authenticate AVP is of type OctetString and contains specific parts of the data portion of the WWW-Authenticate or Proxy-Authenticate SIP headers that are to be present in a SIP response.\nIt shall contain, binary encoded, the concatenation of the authentication challenge RAND and the token AUTN. See 3GPP TS 33.203 [3] for further details about RAND and AUTN. The Authentication Information has a fixed length of 32 octets; the 16 most significant octets shall contain the RAND, the 16 least significant octets shall contain the AUTN.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_33.203"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.229_6.3.11",
+      "section_id": "6.3.11",
+      "section_title": "SIP-Authorization AVP",
+      "content": "The SIP-Authorization AVP is of type OctetString and contains specific parts of the data portion of the Authorization or Proxy-Authorization SIP headers suitable for inclusion in a SIP request.\nWhen included in an Authentication Request, it shall contain the concatenation of RAND, as sent to the terminal, and AUTS, as received from the terminal. RAND and AUTS shall both be binary encoded. See 3GPP TS 33.203 [3] for further details about RAND and AUTS. The Authorization Information has a fixed length of 30 octets; the 16 most significant octets shall contain the RAND, the 14 least significant octets shall contain the AUTS.\nWhen included in an Authentication Request Response, it shall contain, binary encoded, the expected response XRES. See 3GPP TS 33.203 [3] for further details about XRES.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_33.203"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.229_6.3.12",
+      "section_id": "6.3.12",
+      "section_title": "SIP-Authentication-Context AVP",
+      "content": "The SIP-Authentication-Context AVP is of type OctectString.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.229_6.3.13",
+      "section_id": "6.3.13",
+      "section_title": "SIP-Auth-Data-Item AVP",
+      "content": "The SIP-Auth-Data-Item is of type Grouped, and contains the authentication and/or authorization information for the Diameter client.\nAVP format\nSIP-Auth-Data-Item :: = < AVP Header : 612 10415 >\n[ SIP-Item-Number ]\n[ SIP-Authentication-Scheme ]\n[ SIP-Authenticate ]\n[ SIP-Authorization ]\n[ SIP-Authentication-Context ]\n[ Confidentiality-Key ]\n[ Integrity-Key ]\n[ SIP-Digest-Authenticate ]\n[ Framed-IP-Address ]\n[ Framed-IPv6-Prefix ]\n[ Framed-Interface-Id ]\n* [ Line-Identifier ]\n* [AVP]",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.229_6.3.14",
+      "section_id": "6.3.14",
+      "section_title": "SIP-Item-Number AVP",
+      "content": "The SIP-Item-Number AVP is of type Unsigned32.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.229_6.3.15",
+      "section_id": "6.3.15",
+      "section_title": "Server-Assignment-Type AVP",
+      "content": "The Server-Assignment-Type AVP is of type Enumerated, and indicates the type of server update, request or notification being performed in a Server-Assignment-Request operation. The following values are defined:\nNO_ASSIGNMENT (0)\nThis value is used to request from HSS the user profile assigned to one or more public identities and to retrieve the S-CSCF restoration information for a registered Public User Identity, without affecting the registration state of those identities.\nREGISTRATION (1)\nThe request is generated as a consequence of a first registration of an identity.\nRE_REGISTRATION (2)\nThe request corresponds to the re-registration of an identity or update of the S-CSCF Restoration Information.\nUNREGISTERED_USER (3)\nThe request is generated in the following cases:\n-\tThe S-CSCF received a request for a Public Identity that is not registered, or\n-\tAn AS sent an originating request on behalf of a Public Identity that is not registered, or\n-\tThe S-CSCF identified a P-CSCF failure for a Public User Identity that is registered with only one Private User Identity and started the P-CSCF Restoration procedure including the P-CSCF Restoration Indication in the request to the HSS.\nTIMEOUT_DEREGISTRATION (4)\nThe SIP registration timer of an identity has expired.\nUSER_DEREGISTRATION (5)\nThe S-CSCF has received a user initiated de-registration request.\nTIMEOUT_DEREGISTRATION_STORE_SERVER_NAME (6)\nThe request is generated in the following cases:\nThe SIP registration timer of an identity has expired. The S-CSCF keeps the user data stored in the S-CSCF and requests HSS to store the S-CSCF name.\nThe S-CSCF identified a P-CSCF failure for a Public User Identity that is registered with only one Private User Identity and started the PCRF-based P-CSCF Restoration procedure.\nUSER_DEREGISTRATION_STORE_SERVER_NAME (7)\nThe S-CSCF has received a user initiated de-registration request. The S-CSCF keeps the user data stored in the S-CSCF and requests HSS to store the S-CSCF name.\nADMINISTRATIVE_DEREGISTRATION (8)\nThe request is generated in the following cases:\n-\tThe S-CSCF, due to administrative reasons or network issues, has performed the de-registration of an identity.\n-\tThe S-CSCF identified a P-CSCF failure for a Public User Identity that is registered with more than one Private User Identity and started the P-CSCF Restoration procedure including the P-CSCF Restoration Indication in the request to the HSS.\nThe S-CSCF identified a P-CSCF failure for a Public User Identity that is registered with more than one Private User Identity and started the PCRF-based P-CSCF Restoration procedure.\nAUTHENTICATION_FAILURE (9)\nThe authentication of a user has failed.\nAUTHENTICATION_TIMEOUT (10)\nThe authentication timeout has occurred.\nDEREGISTRATION_TOO_MUCH_DATA (11)\nThe S-CSCF has requested user profile information from the HSS and has received a volume of data higher than it can accept.\nAAA_USER_DATA_REQUEST (12)\nUsed in the SWx protocol, defined in 3GPP TS 29.273 [18]. This value is not used in the Cx protocol.\nPGW_UPDATE (13)\nUsed in the SWx protocol, defined in 3GPP TS 29.273 [18]. This value is not used in the Cx protocol.\nRESTORATION (14)\nUsed in the SWx protocol, defined in 3GPP TS 29.273 [18]. This value is not used in the Cx protocol.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.273"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.229_6.3.16",
+      "section_id": "6.3.16",
+      "section_title": "Deregistration-Reason AVP",
+      "content": "The Deregistration-Reason AVP is of type Grouped, and indicates the reason for a de-registration operation.\nAVP format\nDeregistration-Reason :: = < AVP Header : 615 10415 >\n{ Reason-Code }\n[ Reason-Info ]\n* [AVP]",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.229_6.3.17",
+      "section_id": "6.3.17",
+      "section_title": "Reason-Code AVP",
+      "content": "The Reason-Code AVP is of type Enumerated, and defines the reason for the network initiated de-registration. The following values are defined:\nPERMANENT_TERMINATION (0)\nNEW_SERVER_ASSIGNED (1)\nSERVER_CHANGE (2)\nREMOVE_S-CSCF (3)\nThe detailed behaviour of the S-CSCF is defined in 3GPP TS 29.228 [1].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.228"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.229_6.3.18",
+      "section_id": "6.3.18",
+      "section_title": "Reason-Info AVP",
+      "content": "The Reason-Info AVP is of type UTF8String, and contains textual information to inform the user about the reason for a de-registration.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.229_6.3.19",
+      "section_id": "6.3.19",
+      "section_title": "Charging-Information AVP",
+      "content": "The Charging-Information is of type Grouped, and contains the addresses of the charging functions.\nAVP format\nCharging-Information :: = < AVP Header : 618 10415 >\n[ Primary-Event-Charging-Function-Name ]\n[ Secondary-Event-Charging-Function-Name ]\n[ Primary-Charging-Collection-Function-Name ]\n[ Secondary-Charging-Collection-Function-Name ]\n*[ AVP]",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.229_6.3.20",
+      "section_id": "6.3.20",
+      "section_title": "Primary-Event-Charging-Function-Name AVP",
+      "content": "The Primary-Event-Charging-Function-Name AVP is of type DiameterURI. This AVP contains the address of the Primary Online Charging Function. The receiving network element shall extract the FQDN of the DiameterURI in this AVP and may use it as content of the Destination-Host AVP for the Diameter accounting requests. The parent domain of the FQDN in the DiameterURI shall be used as Destination-Realm. The number of labels used for the Destination-Realm shall be determined before the Charging Information is provisioned and may be a configuration option.\nNOTE:\tA FQDN is an absolute domain name including a subdomain and its parent domain. The subdomain and the parent domain contain one or more labels separated by dots.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.229_6.3.21",
+      "section_id": "6.3.21",
+      "section_title": "Secondary-Event-Charging-Function-Name AVP",
+      "content": "The Secondary-Event-Charging-Function-Name AVP is of type DiameterURI. This AVP contains the address of the Secondary Online Charging Function. The Destination-Host and Destination-Realm values for the Diameter accounting requests should be extracted from the DiameterURI in the way indicated in clause 6.3.20.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_6.3.20"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.229_6.3.22",
+      "section_id": "6.3.22",
+      "section_title": "Primary-Charging-Collection-Function-Name AVP",
+      "content": "The Primary-Charging-Collection-Function-Name AVP is of type DiameterURI. This AVP contains the address of the Primary Charging Data Function. The Destination-Host and Destination-Realm values for the Diameter accounting requests should be extracted from the DiameterURI in the way indicated in clause 6.3.20.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_6.3.20"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.229_6.3.23",
+      "section_id": "6.3.23",
+      "section_title": "Secondary-Charging-Collection-Function-Name AVP",
+      "content": "The Secondary-Charging-Collection-Function-Name AVP is of type DiameterURI. This AVP contains the address of the Secondary Charging Data Function. The Destination-Host and Destination-Realm for the Diameter accounting requests values should be extracted from the DiameterURI in the way indicated in clause 6.3.20.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_6.3.20"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.229_6.3.24",
+      "section_id": "6.3.24",
+      "section_title": "User-Authorization-Type AVP",
+      "content": "The User-Authorization-Type AVP is of type Enumerated, and indicates the type of user authorization being performed in a User Authorization operation, i.e. UAR command. The following values are defined:\nREGISTRATION (0)\nThis value is used in case of the initial registration or re-registration. I-CSCF determines this from the Expires field or expires parameter in Contact field in the SIP REGISTER method if it is not equal to zero.\nThis is the default value.\nDE_REGISTRATION (1)\nThis value is used in case of the de-registration. I-CSCF determines this from the Expires field or expires parameter in Contact field in the SIP REGISTER method if it is equal to zero.\nREGISTRATION_AND_CAPABILITIES (2)\nThis value is used when the I-CSCF explicitly requests S-CSCF capability information from the HSS. The I-CSCF shall use this value when the user's current S-CSCF, which is stored in the HSS, cannot be contacted and a new S-CSCF needs to be selected",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.229_6.3.26",
+      "section_id": "6.3.26",
+      "section_title": "User-Data-Already-Available AVP",
+      "content": "The User-Data-Already-Available AVP is of type Enumerated, and indicates to the HSS whether or not the S-CSCF already has the part of the user profile that it needs to serve the user. The following values are defined:\nUSER_DATA_NOT_AVAILABLE (0)\nThe S-CSCF does not have the data that it needs to serve the user.\nUSER_DATA_ALREADY_AVAILABLE (1)\nThe S-CSCF already has the data that it needs to serve the user.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.229_6.3.27",
+      "section_id": "6.3.27",
+      "section_title": "Confidentiality-Key AVP",
+      "content": "The Confidentiality-Key is of type OctetString, and contains the Confidentiality Key (CK).",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.229_6.3.28",
+      "section_id": "6.3.28",
+      "section_title": "Integrity-Key AVP",
+      "content": "The Integrity-Key is of type OctetString, and contains the Integrity Key (IK).",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.229_6.3.29",
+      "section_id": "6.3.29",
+      "section_title": "Supported-Features AVP",
+      "content": "The Supported-Features AVP is of type Grouped. If this AVP is present it may inform the destination host about the features that the origin host supports for the application. The Feature-List AVP contains a list of supported features of the origin host. The Vendor-Id AVP and the Feature-List-ID AVP shall together identify which feature list is carried in the Supported-Features AVP for the Application-ID present in the command header.\nWhere a Supported-Features AVP is used to identify features that have been defined by 3GPP, the Vendor-Id AVP shall contain the vendor ID of 3GPP. Vendors may define proprietary features, but it is strongly recommended that the possibility is used only as the last resort. Where the Supported-Features AVP is used to identify features that have been defined by a vendor other than 3GPP, it shall contain the vendor ID of the specific vendor in question.\nIf there are multiple feature lists defined by the same vendor and the same application, the Feature-List-ID AVP shall differentiate those lists from one another. The destination host shall use the value of the Feature-List-ID AVP to identify the feature list.\nAVP format\nSupported-Features ::=\t< AVP header: 628 10415 >\n{ Vendor-Id }\n{ Feature-List-ID }\n{ Feature-List }\n*[AVP]",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.229_6.3.30",
+      "section_id": "6.3.30",
+      "section_title": "Feature-List-ID AVP",
+      "content": "The Feature-List-ID AVP is of type Unsigned32 and it contains the identity of a feature list.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.229_6.3.31",
+      "section_id": "6.3.31",
+      "section_title": "Feature-List AVP",
+      "content": "The Feature-List AVP is of type Unsigned32 and it contains a bit mask indicating the supported features of an application. When the bit set, indicates the corresponding feature is supported by the application. For the Cx application, the meaning of the bits has been defined in 7.1.1.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.229_6.3.32",
+      "section_id": "6.3.32",
+      "section_title": "Supported-Applications AVP",
+      "content": "The Supported-Applications AVP is of type Grouped and it contains the supported application identifiers of a Diameter node.\nAVP format\nSupported-Applications ::=\t< AVP header: 631 10415 >\n*[ Auth-Application-Id ]\n*[ Acct-Application-Id ]\n*[ Vendor-Specific-Application-Id ]\n*[ AVP ]",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.229_6.3.33",
+      "section_id": "6.3.33",
+      "section_title": "Associated-Identities AVP",
+      "content": "The Associated-Identities AVP is of type Grouped and it contains the private user identities associated to an IMS subscription.\nAVP format\nAssociated-Identities ::= < AVP header: 632, 10415 >\n*[ User-Name ]\n*[ AVP ]",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.229_6.3.34",
+      "section_id": "6.3.34",
+      "section_title": "Originating-Request AVP",
+      "content": "The Originating-Request AVP is of type Enumerated. The following value is defined:\nORIGINATING (0)\nThis value indicates to the HSS that the request is related to an AS originating SIP request in the Location-Information-Request operation.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.229_6.3.35",
+      "section_id": "6.3.35",
+      "section_title": "Wildcarded-Public-Identity AVP",
+      "content": "The Wildcarded-Public-Identity AVP is of type UTF8String. This AVP contains a Wildcarded PSI or Wildcarded Public User Identity stored in the HSS. The syntax of the contents of this AVP is described in 3GPP TS 23.003 [13].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.003"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.229_6.3.36",
+      "section_id": "6.3.36",
+      "section_title": "SIP-Digest-Authenticate AVP",
+      "content": "The SIP-Digest-Authenticate is of type Grouped and it contains a reconstruction of either the SIP WWW-Authenticate or Proxy-Authentication header fields specified in IETF RFC 7616 [29].\nAVP format\nSIP-Digest-Authenticate ::= < AVP Header: 635 10415>\n{ Digest-Realm }\n[ Digest-Algorithm ]\n{ Digest-QoP }\n{ Digest-HA1}\n[ Alternate-Digest-Algorithm ]\n[ Alternate-Digest-HA1 ]\n*[ AVP ]",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.229_6.3.37",
+      "section_id": "6.3.37",
+      "section_title": "Digest-Realm AVP",
+      "content": "The Digest-Realm AVP is defined in IETF RFC 4740 [15].",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.229_6.3.39",
+      "section_id": "6.3.39",
+      "section_title": "Digest-Algorithm AVP",
+      "content": "The Digest-Algorithm AVP is defined in IETF RFC 4740 [15] and contains values as defined in IETF RFC 7616 [29].\nNOTE:\tThe MD5 algorithm is only supported for backward compatibility.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.229_6.3.40",
+      "section_id": "6.3.40",
+      "section_title": "Digest-QoP AVP",
+      "content": "The Digest-QoP AVP is defined in IETF RFC 4740 [15].",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.229_6.3.41",
+      "section_id": "6.3.41",
+      "section_title": "Digest-HA1 AVP",
+      "content": "The Digest-HA1 AVP is defined in IETF RFC 4740 [15].",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.229_6.3.42",
+      "section_id": "6.3.42",
+      "section_title": "Line-Identifier AVP",
+      "content": "The Line-Identifier AVP is of type OctetString. This AVP has Vendor Id ETSI (13019) and AVP code 500. This AVP contains a fixed broadband access line identifier associated with the user.",
+      "chunk_type": "parameter",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.229_6.3.43",
+      "section_id": "6.3.43",
+      "section_title": "Wildcarded-IMPU AVP",
+      "content": "The Wildcarded-IMPU AVP is of type UTF8String. This AVP contains a Wildcarded Public User Identity stored in the HSS. The syntax of the contents of this AVP is described in 3GPP TS 23.003 [13].\nNote: This AVP is used by Sh interface as specified in the 3GPP TS 29.328 [16] and 3GPP TS 29.329 [11].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.003",
+        "ts_29.328",
+        "ts_29.329"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.229_6.3.44",
+      "section_id": "6.3.44",
+      "section_title": "UAR-Flags AVP",
+      "content": "The UAR-Flags AVP is of type Unsigned32 and it contains a bit mask. The meaning of the bits is defined in the following table:\nTable 6.3.44.1: UAR-Flags\nBit\nName\nDescription\n0\nIMS Emergency Registration\nThis bit, when set, indicates that the request corresponds to an IMS Emergency Registration.\nBits not defined in this table shall be cleared by the sending I-CSCF and discarded by the receiving HSS.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.3.44.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.229_6.3.45",
+      "section_id": "6.3.45",
+      "section_title": "Loose-Route-Indication AVP",
+      "content": "The Loose-Route-Indication AVP is of type Enumerated and indicates to the S-CSCF whether or not the loose route mechanism is required to serve the registered Public User Identities. The following values are defined:\nLOOSE_ROUTE_NOT_REQUIRED (0)\nLOOSE_ROUTE_REQUIRED (1)",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.229_6.3.46",
+      "section_id": "6.3.46",
+      "section_title": "SCSCF-Restoration-Info AVP",
+      "content": "The SCSCF-Restoration-Info AVP is of type Grouped and it contains the information required for an S-CSCF to handle the requests for a user.\nAVP format\nSCSCF-Restoration-Info ::= < AVP Header: 639, 10415>\n{ User-Name }\n1*{ Restoration-Info }\n[ Registration-Time-Out ]\n[ SIP-Authentication-Scheme ]\n*[ AVP ]",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.229_6.3.47",
+      "section_id": "6.3.47",
+      "section_title": "Path AVP",
+      "content": "The Path AVP is of type OctetString and it contains a comma separated list of SIP proxies in the Path header as defined in IETF RFC 3327 [17].",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.229_6.3.48",
+      "section_id": "6.3.48",
+      "section_title": "Contact AVP",
+      "content": "The Contact AVP is of type OctetString and it contains the Contact Addresses and Parameters in the Contact header as defined in IETF RFC 3261 [11].",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.229_6.3.49",
+      "section_id": "6.3.49",
+      "section_title": "Subscription-Info AVP",
+      "content": "The Subscription-Info AVP is of type Grouped and it contains the UE's subscription information. The Contact AVP contains the Contact Address and Parameters in the Contact header of the subscription request.\nAVP format\nSubscription-Info ::= < AVP Header: 642, 10415>\n{ Call-ID-SIP-Header }\n{ From-SIP-Header }\n{ To-SIP-Header }\n{ Record-Route }\n{Contact}\n*[ AVP ]",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.229_6.3.49.1",
+      "section_id": "6.3.49.1",
+      "section_title": "Call-ID-SIP-Header AVP",
+      "content": "The Call-ID-SIP-Header AVP is of type OctetString and it contains the information in the Call-ID header as defined in IETF RFC 3261 [11].",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.229_6.3.49.2",
+      "section_id": "6.3.49.2",
+      "section_title": "From-SIP-Header AVP",
+      "content": "The From-SIP-Header AVP is of type OctetString and it contains the information in the From header as defined in IETF RFC 3261 [11].",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.229_6.3.49.3",
+      "section_id": "6.3.49.3",
+      "section_title": "To-SIP-Header AVP",
+      "content": "The To-SIP-Header AVP is of type OctetString and it contains the information in the To header as defined in IETF RFC 3261 [11].",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.229_6.3.49.4",
+      "section_id": "6.3.49.4",
+      "section_title": "Record-Route AVP",
+      "content": "The Record-Route AVP is of type OctetString and it contains a comma separated list of Record Route header(s) as defined in IETF RFC 3261 [11].",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.229_6.3.50",
+      "section_id": "6.3.50",
+      "section_title": "Associated-Registered-Identities AVP",
+      "content": "The Associated-Registered-Identities AVP is of type Grouped and it contains the Private User Identities registered with the Public User Identity received in the request command.\nAVP format\nAssociated-Registered-Identities ::= < AVP header: 647, 10415 >\n*[ User-Name ]\n*[ AVP ]",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.229_6.3.51",
+      "section_id": "6.3.51",
+      "section_title": "Multiple-Registration-Indication",
+      "content": "The Multiple-Registration-Indication AVP is of type Enumerated and indicates to the HSS whether or not the request is related to a multiple registration. The following values are defined:\nNOT_MULTIPLE_REGISTRATION (0)\nMULTIPLE_REGISTRATION (1)",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.229_6.3.52",
+      "section_id": "6.3.52",
+      "section_title": "Restoration-Info AVP",
+      "content": "The Restoration-Info AVP is of type Grouped and it contains the information related to a specific registration required for an S-CSCF to handle the requests for a user. The Contact AVP contains the Contact Address and Parameters in the Contact header of the registration request.\nAVP format\nRestoration-Info ::= < AVP Header: 649, 10415>\n{ Path }\n{ Contact }\n[ Initial-CSeq-Sequence-Number ]\n[ Call-ID-SIP-Header ]\n[ Subscription-Info ]\n[ P-CSCF-Subscription-Info ]\n*[ AVP ]",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.229_6.3.53",
+      "section_id": "6.3.53",
+      "section_title": "Framed-IP-Address AVP",
+      "content": "The Framed-IP-Address AVP is defined in IETF RFC 4005 [19].",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.229_6.3.54",
+      "section_id": "6.3.54",
+      "section_title": "Framed-IPv6-Prefix AVP",
+      "content": "The Framed-IPv6-Prefix AVP is defined in IETF RFC 4005 [19], and it shall be encoded as defined in IETF RFC 3162 [22].",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.229_6.3.55",
+      "section_id": "6.3.55",
+      "section_title": "Framed-Interface-Id AVP",
+      "content": "The Framed-Interface-Id AVP is defined in IETF RFC 4005 [19].",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.229_6.3.56",
+      "section_id": "6.3.56",
+      "section_title": "Session-Priority AVP",
+      "content": "The Session-Priority AVP is of type Enumerated and indicates to the HSS the session's priority. The following values are defined:\nPRIORITY-0 (0)\nPRIORITY-1 (1)\nPRIORITY-2 (2)\nPRIORITY-3 (3)\nPRIORITY-4 (4)\nPRIORITY-0 is the highest priority.\nThe value of the AVP when sent to the HSS is mapped from the value received by the CSCF as described in 3GPP TS 24.229 table A.162. The mapping is operator specific.\nThis AVP may be placed as close to the Diameter header as possible in order to potentially allow optimized processing at the receiver.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_24.22"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.229_6.3.57",
+      "section_id": "6.3.57",
+      "section_title": "Identity-with-Emergency-Registration AVP",
+      "content": "The Identity-with-Emergency-Registration AVP is of type Grouped and it contains a pair of private/public user identities which are emergency registered.\nAVP format\nIdentity-with-Emergency-Registration ::= < AVP header: 651, 10415 >\n{ User-Name }\n{ Public-Identity }\n*[ AVP ]",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.229_6.3.58",
+      "section_id": "6.3.58",
+      "section_title": "Priviledged-Sender-Indication AVP",
+      "content": "The Priviledged-Sender-Indication AVP is of type Enumerated and indicates to the S-CSCF whether or not the Private User Identity shall be considered as a priviledged sender. The following values are defined:\nNOT_PRIVILEDGED_SENDER (0)PRIVILEDGED_SENDER (1)",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.229_6.3.59",
+      "section_id": "6.3.59",
+      "section_title": "LIA-Flags",
+      "content": "The LIA-Flags AVP is of type Unsigned32 and it shall contain a bit mask. The meaning of the bits shall be as defined in table 6.3.59.1.\nTable 6.3.59.1: LIA-Flags\nBit\nName\nDescription\n0\nPSI Direct Routing Indication\nThis bit, when set, indicates the request corresponds to PSI Direct Routing, what implies that HSS returns an AS name in Server-Name AVP.\nNOTE: Bits not defined in this table shall be cleared by the sending HSS and discarded by the receiving I-CSCF.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.3.59.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.229_6.3.60",
+      "section_id": "6.3.60",
+      "section_title": "OC-Supported-Features",
+      "content": "The OC-Supported-Features AVP is of type Grouped and it is defined in IETF RFC 7683 [23]. This AVP is used to support Diameter overload control mechanism.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.229_6.3.61",
+      "section_id": "6.3.61",
+      "section_title": "OC-OLR",
+      "content": "The OC-OLR AVP is of type Grouped and it is defined in IETF RFC 7683 [23]. This AVP is used to support Diameter overload control mechanism.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.229_6.3.62",
+      "section_id": "6.3.62",
+      "section_title": "Initial-CSeq-Sequence-Number AVP",
+      "content": "The Initial-CSeq-Sequence-Number AVP is of type Unsigned32, and it contains the sequence number of the CSeq header field contained in the initial successful REGISTER request, as defined in IETF RFC 3261 [11].",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.229_6.3.63",
+      "section_id": "6.3.63",
+      "section_title": "SAR-Flags",
+      "content": "The SAR-Flags AVP is of type Unsigned32 and it contains a bit mask. The meaning of the bits is defined in the following table:\nTable 6.3.63.1: SAR-Flags\nBit\nName\nDescription\n0\nP-CSCF Restoration Indication\nThis bit, when set, indicates that the P-CSCF-Restoration-mechanism feature shall be executed, as described in 3GPP TS 23.380 [24], clause 5.4.\nThis AVP is optionally present only when Server-Assignment-Type takes the value ADMINISTRATIVE_DEREGISTRATION or UNREGISTERED_USER.\nNote:\tBits not defined in this table shall be cleared by the sending S-CSCF and discarded by the receiving HSS.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.380_clause_5.4",
+        "table_6.3.63.1",
+        "ts_23.380"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.229_6.3.64",
+      "section_id": "6.3.64",
+      "section_title": "Allowed-WAF-WWSF-Identities AVP",
+      "content": "The Allowed-WAF-WWSF-Identities AVP is of type Grouped and contains the addresses of the WAFs and WWSFs allowed for the subscription.\nAVP format\nAllowed-WAF-WWSF-Identities :: = < AVP Header : 656 10415 >\n*[ WebRTC-Authentication-Function-Name ]\n*[ WebRTC-Web-Server-Function-Name ]\n*[ AVP]",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.229_6.3.65",
+      "section_id": "6.3.65",
+      "section_title": "WebRTC-Authentication-Function-Name AVP",
+      "content": "The WebRTC-Authentication-Function-Name AVP is of type UTF8String and contains the address of a WAF allowed for the subscription.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.229_6.3.66",
+      "section_id": "6.3.66",
+      "section_title": "WebRTC-Web-Server-Function-Name AVP",
+      "content": "The WebRTC-Web-Server-Function-Name AVP is of type UTF8String and contains the address of a WWSF allowed for the subscription.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.229_6.3.67",
+      "section_id": "6.3.67",
+      "section_title": "DRMP AVP",
+      "content": "The DRMP AVP is of type Enumerated and it is defined in IETF RFC 7944 [26]. This AVP allows the HSS/SLF and the S-CSCF/I-CSCF to indicate the relative priority of Diameter messages. The DRMP AVP may be used to set the DSCP marking for transport of the associated Diameter message.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.229_6.3.68",
+      "section_id": "6.3.68",
+      "section_title": "Load",
+      "content": "The Load AVP is of type Grouped and it is defined in IEFT RFC 8583 [27]. This AVP is used to support the Diameter load control mechanism.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.229_6.3.69",
+      "section_id": "6.3.69",
+      "section_title": "RTR-Flags",
+      "content": "The RTR-Flags AVP is of type Unsigned32 and it shall contain a bit mask. The meaning of the bits shall be as defined in table 6.3.69.1.\nTable 6.3.69.1: RTR-Flags\nBit\nName\nDescription\n0\nReference Location Information change\nThis bit, when set, indicates the request is sent due to change of Reference Location Information.\nNOTE: Bits not defined in this table shall be cleared by the sending HSS and discarded by the receiving I-CSCF.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.3.69.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.229_6.3.70",
+      "section_id": "6.3.70",
+      "section_title": "P-CSCF-Subscription-Info AVP",
+      "content": "The P-CSCF-Subscription-Info AVP is of type Grouped and it contains the P-CSCF''s subscription information. The Contact AVP contains the Contact Address and Parameters in the Contact header of the subscription request.\nAVP format\nP-CSCF-Subscription-Info ::= < AVP Header: 660, 10415>\n{ Call-ID-SIP-Header }\n{ From-SIP-Header }\n{ To-SIP-Header }\n{ Contact }\n*[ AVP ]",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.229_6.3.71",
+      "section_id": "6.3.71",
+      "section_title": "Registration-Time-Out",
+      "content": "The Registration-Time-Out AVP is of type Time (see IETF RFC 6733 [28]), and contains the point of time at which the UE's registration expires.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.229_6.3.72",
+      "section_id": "6.3.72",
+      "section_title": "Alternate-Digest-Algorithm AVP",
+      "content": "The Alternate-Digest-Algorithm AVP contains algorithm values specified in IETF RFC 7616 [29].\nNOTE:\tThe MD5 algorithm is only supported for backward compatibility and can only be provided within the Digest-Algorithm AVP.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.229_6.3.73",
+      "section_id": "6.3.73",
+      "section_title": "Alternate-Digest-HA1 AVP",
+      "content": "The Alternate-Digest-HA1 AVP contains H(A1) value specified in IETF RFC 7616 [29].",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.229_6.3.74",
+      "section_id": "6.3.74",
+      "section_title": "Failed-PCSCF",
+      "content": "The Failed-PCSCF AVP is of type Grouped and contains the FQDN and/or IP addresses of the failed P-CSCF.\nAVP format\nFailed-PCSCF ::= < AVP Header: 664, 10415>\n[ PCSCF-FQDN ]\n*[ PCSCF-IP-Address ]\n*[ AVP ]",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.229_6.3.75",
+      "section_id": "6.3.75",
+      "section_title": "PCSCF-FQDN",
+      "content": "The PCSCF-FQDN AVP is of type DiameterIdentity and contains the FQDN of the P-CSCF.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.229_6.3.76",
+      "section_id": "6.3.76",
+      "section_title": "PCSCF-IP-Address",
+      "content": "The PCSCF-IP-Address AVP is of type Address and contains the IPv4 or IPv6 address of the P-CSCF.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.229_6.4",
+      "section_id": "6.4",
+      "section_title": "Use of namespaces",
+      "content": "This clause contains the namespaces that have either been created in this specification, or the values assigned to existing namespaces managed by IANA.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.229_6.4.1",
+      "section_id": "6.4.1",
+      "section_title": "AVP codes",
+      "content": "This specification assigns the AVP values from the AVP Code namespace managed by 3GPP for its Diameter vendor-specific applications. See clause 6.3 for the assignment of the namespace in this specification.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_6.3"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.229_6.4.2",
+      "section_id": "6.4.2",
+      "section_title": "Experimental-Result-Code AVP values",
+      "content": "This specification has assigned Experimental-Result-Code AVP values 2001-2005 and 5001-5011. See clause 6.2.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_6.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.229_6.4.3",
+      "section_id": "6.4.3",
+      "section_title": "Command Code values",
+      "content": "This specification assigns the values 300-305 from the range allocated by IANA to 3GPP in IETF RFC 3589 [12].",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.229_6.4.4",
+      "section_id": "6.4.4",
+      "section_title": "Application-ID value",
+      "content": "IANA has allocated the value 16777216 for the 3GPP Cx interface application.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.229_7.1",
+      "section_id": "7.1",
+      "section_title": "Version Control",
+      "content": "New functionality - i.e. functionality beyond the Rel-5 standard - shall be introduced by post-Rel-5 versions of this specification to the Diameter applications as follows:\n1.\tIf possible, the new functionality shall be defined optional.\n2.\tIf backwards incompatible changes can not be avoided, the new functionality should be introduced as a feature, see 7.1.1.\n3.\tIf the change would be backwards incompatible even as if it was defined as a feature, a new version of the interface shall be created by changing the application identifier of the Diameter application, see 7.1.2.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.229_7.1.1",
+      "section_id": "7.1.1",
+      "section_title": "Defining a new feature",
+      "content": "The base functionality for the Cx is the 3GPP Rel-5 standard and a feature is an extension to that functionality. A feature is a functional entity that has a significant meaning to the operation of a Diameter application i.e. a single new parameter without a substantial meaning to the functionality of the Diameter endpoints should not be defined to be a new feature. If the support for a feature is defined mandatory in a post-Rel-5 versions of this specification, the feature concept enables interworking between Diameter endpoints regardless of whether they support all, some or none of the features of the application. Features should be defined so that they are independent from one another.\nThe content of a feature shall be defined as a part of the specification of the affected application messages. If new AVPs are added to the commands because of the new feature, the new AVPs shall have the 'M' bit cleared and the AVP shall not be defined mandatory in the command ABNF. The support for a feature may be defined to be mandatory behaviour of a node.\nAs an option to defining a feature, an extension to S-CSCF functionality for post-Rel-5 version may be defined as part of the list of mandatory capabilities that is used by the I-CSCF during the process of selecting an S-CSCF, as described in 3GPP TS 29.228 [1]. Any new feature should be taken into account in the definition of the list of mandatory and optional S-CSCF capabilities. Guidelines for the definition of S-CSCF Capabilities are described in 3GPP TS 29.228 [1].\nThe following table of features shall apply to the Cx interface.\nTable 7.1.1: Features of Feature-List-ID 1 used in Cx\nFeature bit\nFeature\nM/O\nDescription\n0\nSiFC\nO\nShared iFC sets\nThis feature is applicable for the SAR/SAA and PPR/PPA command pairs.\nIf both the HSS and the S-CSCF support this feature, subsets of Initial Filter Criteria may be shared by several service profiles and the HSS shall download the shared iFC sets implicitly by downloading the unique identifiers of the shared iFC sets to the S-CSCF. By means of a locally administered database, the S-CSCF then maps the downloaded identifiers onto the shared iFC sets.\nIf the DSAI feature, as defined in 3GPP TS 29.328 [16], is also active with the shared iFC sets feature then the HSS shall behave as described below:\nIf the DSAI feature is active with the shared iFC sets feature and if all the iFCs bounding to a Shared iFC set are not masked by the DSAI, the HSS shall download the unique identifier of the shared iFC set to the S-CSCF. If some iFCs or all the iFCs bounding to a shared iFC set are masked by the DSAI, the HSS shall not download the identifier of the shared iFC set. Instead the HSS shall\n-\tdownload the remaining non masked iFCs of the shared iFC set explicitly or\n-\tdownload suitable identifiers of other shared iFC sets, i.e. those covering exactly the remaining non masked iFCs and which do not contain masked iFCs or\n-\tdownload a combination of identifiers of shared iFC sets and explicit iFCs which cover exactly the remaining non masked iFCs.\nIf the S-CSCF does not support this feature, the HSS shall not download identifiers of shared iFC sets. Instead as a default behavior the HSS shall (by means of a locally administered database) download the iFCs of a shared iFC set explicitly.\nIf the HSS does not support this feature, no special default behaviour is required for the S-CSCF.\nNote: In using this feature option, the network operator is responsible for keeping the local databases in the S-CSCFs and HSSs consistent.\n1\nAliasInd\nM\nAlias Indication\nThis feature is applicable for the SAR/SAA and PPR/PPA command pairs.\nIf both the HSS and the S-CSCF support this feature, different aliases groups may be sent within the same service profile. Identities within the same service profile that are aliases shall be sent with identical alias group ID.\nIf the S-CSCF does not support this feature, the HSS shall send within the service profile only those identities that are aliases. Public User Identities that are not aliases of each other shall be sent in different service profiles even if these service profiles have exactly the same Core Network Service Authorization, Initial Filter Criteria, and Shared iFC Set information and these service profiles only differ in the contained Public User Identities. This is done in order to allow backwards compatibility since part of the handling of aliases in the S-CSCF was there before this indication was required and it applied to identities that share the same service profile and implicit registration set. In this case, the S-CSCF does not provide any additional treatment of aliases than that which existed before this indication was required.\nIf the HSS does not support this feature, no special default behaviour is required for the S-CSCF.\nNote: All identities included in a single SAA or PPR command are always within one implicit registration set.\n2\nIMSRestorationInd\nO\nIMS Restoration Indication\nThis feature is applicable for the UAR/UAA, LIR/LIA, SAR/SAA command pairs.\nIf both the HSS and the I-CSCF support this feature, in case the S-CSCF currently assigned in the HSS to the Public User Identity cannot be contacted the I-CSCF shall trigger the assignment of a new S-CSCF.\nIf both the HSS and the S-CSCF support this feature, the S-CSCF shall send S-CSCF Restoration Information to the HSS. The HSS shall send this information element in SAA to the S-CSCF when required.\nIf the S-CSCF does not support this feature, the HSS shall not send the IMS Restoration Information to the S-CSCF.\n3\nP-CSCF-Restoration-mechanism\nO\nHSS-based P-CSCF Restoration mechanism.\nThis feature is applicable for the SAR/SAA command pair.\nIf both the HSS and the S-CSCF support this feature, the S-CSCF shall send the P-CSCF-Restoration-Indication in SAR-Flags AVP to the HSS when required as described by 3GPP TS 23.380 [24] clause 5.4.\nIf the HSS does not support this feature, the S-CSCF shall not send the P-CSCF-Restoration-Indication to HSS.\nFeature bit: The order number of the bit within the Supported-Features AVP, e.g. \"1\".\nFeature: A short name that can be used to refer to the bit and to the feature, e.g. \"MOM\".\nM/O: Defines if the implementation of the feature is mandatory (\"M\") or optional (\"O\").\nDescription: A clear textual description of the feature.\nThe origin host may discover the supported features of the destination host with the dynamic discovery mechanism defined in 7.2 or via local O&M interfaces.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.380_clause_5.4",
+        "table_7.1.1",
+        "ts_29.228",
+        "ts_29.328",
+        "ts_23.380"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.229_7.1.2",
+      "section_id": "7.1.2",
+      "section_title": "Changing the version of the interface",
+      "content": "The version of an interface shall be changed by a future version of this specification only if there is no technically feasible means to avoid backwards incompatible changes to the Diameter application, i.e. to the current version of the interface. However, if the incompatible changes can be capsulated within a feature, there is no need to change the version of the interface. The versioning of an interface shall be implemented by assigning a new application identifier for the interface. This procedure is in line with the Diameter base protocol (see IETF RFC 3588) which defines that if an incompatible change is made to a Diameter application, a new application identifier shall be assigned for the Diameter application.\nThe following table shall apply to the Cx interface, column Application identifier lists the used application identifiers on Cx and 3GPP.\nTable 7.1.2: Application identifiers used in Cx\nApplication identifier\nFirst applied\n16777216\n3GPP Rel-5\nThe origin host may discover which versions of an interface the destination host supports within the capabilities exchange (i.e. CER/CEA command), via the error messages defined in the clause 7.3 or via local O&M interfaces.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_7.3",
+        "table_7.1.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.229_7.2",
+      "section_id": "7.2",
+      "section_title": "Supported features",
+      "content": "Features that are not indicated in the Supported-Features AVPs within a given application message shall not be used to construct that message. A request application message shall always be compliant with the list of supported features indicated in the Supported-Features AVPs within the application message. If a feature does not have an effect on constructing an application message, the message is by definition compliant with the feature. If no features are indicated in the application message, no features - i.e. no extensions to Rel-5 - shall be used to construct the application message. An answer application message shall always indicate in the Supported-Features AVPs the complete set of features supported by the sender of the answer application message. An answer application message shall be compliant with the features commonly supported by the sender of the request and answer application messages.\nThe sender of a request application message shall discover for a given application message pair which features a destination host supports as described in 7.2.1. The discovered features of one command pair may be applicable to other command pairs within the application. Different commands within an application may support a different set of features. After discovering the features a destination host supports for a given application message pair, the sender of the request application message may store the information on the supported features of the destination host and it may use the features the destination host supports to construct the subsequent request application messages sent to the destination host.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.229_7.2.1",
+      "section_id": "7.2.1",
+      "section_title": "Dynamic discovery of supported features",
+      "content": "When sending a request application message to a destination host whose supported features the sender does not know, the request application message shall include the Supported-Features AVP containing the set of features required to process the request and generate the answer. An exception to this is where the origin host does not use any features to construct the request application message and it is not prepared to accept an answer application message which is constructed by making use of any features. For this exception the origin host need not include the Supported-Features AVP within the message.\nThe Supported-Features AVP within a request application message shall always have the 'M' bit set and within an answer application message the AVP shall never have the 'M' bit set. An exception to this is where the origin host does not use any supported feature to construct the request application message but is prepared to accept an answer application message which is constructed by making use of supported features. For this exception it is optional for the origin host to set the 'M' bit of the Supported-Features AVP within the request application message.\nOn receiving a request application message, the destination host shall do one of the following:\n-\tIf it supports all features indicated in the Supported-Features AVPs within the request message, the answer application message shall include Supported-Features AVPs identifying the complete set of features that it supports. The Experimental-Result-Code AVP shall not be set to DIAMETER_ERROR_FEATURE_UNSUPPORTED.\n-\tIf the request application message does not contain any Supported-Features AVPs, the answer application message shall include either Supported-Features AVPs identifying the complete set of features that it supports or, if it does not support any features, no Supported-Features AVPs shall be present. The Experimental-Result-Code AVP shall not be set to DIAMETER_ERROR_FEATURE_UNSUPPORTED.\n-\tIf it does not support all the features indicated in the Supported-Features AVPs with the 'M' bit set, it shall return the answer application message with the Experimental-Result-Code AVP set to DIAMETER_ERROR_FEATURE_UNSUPPORTED and it shall include also Supported-Features AVPs containing lists of all features that it supports.\n-\tIf it does not support Supported-Features AVP and it receives a request application message containing Supported-Features AVPs with the 'M' bit set, it will return the answer application message with the Result-Code AVP set to DIAMETER_AVP_UNSUPPORTED and a Failed-AVP AVP containing at least one Supported-Features AVP as received in the request application message.\nIf an answer application message is received with the Experimental-Result-Code AVP set to DIAMETER_ERROR_FEATURE_UNSUPPORTED or with the Result-Code AVP set to DIAMETER_AVP_UNSUPPORTED, the sender of the request application message may, based on the information in the received Supported-Features AVP or the lack of the AVP in the message, re-send the Diameter message containing only the common supported features.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.229_7.3",
+      "section_id": "7.3",
+      "section_title": "Interface versions",
+      "content": "The sender of the request application message may discover which versions of an interface a destination host supports together with the capabilities exchange (i.e. CER/CEA command pair) and with error mechanisms defined to the application messages in 7.3.1. The sender of the request application message should store information on all versions of the interface the destination host supports. The sender of the request application message should use the latest common version of the application supported by the destination host to send the request.\nIf the receiver of the request application message itself or the versions of the interface it supports are not yet known, the sender of the request application message should use the latest supported version of the interface of the Diameter peer (i.e. Diameter proxy, redirect or relay agent) discovered during the capabilities exchange. If the Diameter peer is a redirect or relay agent, which advertises the 0xffffffff as an application identifier, the sender of the request application message shall use its own latest supported version of the interface when initiating the request.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.229_7.3.1",
+      "section_id": "7.3.1",
+      "section_title": "Discovery of supported interface versions",
+      "content": "When a Diameter agent receives a request application message and the Diameter agent doesn't find any upstream peer that would support the application identifier indicated in the request, the Diameter agent shall return the result code DIAMETER_UNABLE_TO_DELIVER and it may also return the list of the application identifiers, which are supported by the destination host of the request application message. The supported application identifiers are carried in the answer application message in the Supported-Applications grouped AVP.\nMessage format for the answer application message (based on the RFC 3588, clause 7.2) is as follows:\n<answer-message> ::=\t< Diameter Header: code, ERR [PXY] >\n0*1< Session-Id >\n{ Origin-Host }\n{ Origin-Realm }\n{ Result-Code }\n[ Origin-State-Id ]\n[ Error-Reporting-Host ]\n[ Proxy-Info ]\n[ Supported-Applications ]\n* [ AVP ]\nIf the receiver of a request application message does not support the application identifier indicated in the message, it shall return the result code DIAMETER_APPLICATION_UNSUPPORTED and it may also return the list of all application identifiers it supports. The supported application identifiers are carried in the Supported-Applications grouped AVP. The error message format is as specified above.\nIf an answer application message is received with Result-Code AVP set to DIAMETER_UNABLE_TO_DELIVER or Experimental-Result-Code AVP set to DIAMETER_APPLICATION_UNSUPPORTED and the message contains the Supported-Applications AVP, the receiver of the answer application message may select, based on the information in the Supported-Applications AVP, the latest common version of the interface with the destination host and re-send the Diameter message with a structure conforming to the ABNF of that release.\nAnnex A (informative):Change history\nDate\nTSG #\nTSG Doc.\nCR#\nRev\nCat\nSubject/Comment\nOut\nJun 2002\nCN#16\nNP-020265\nVersion 2.0.0 approved at CN#16\n5.0.0\nSep 2002\nCN#17\nNP-020449\n001\n-\nAdd a reference to the new IETF RFC on SCTP checksum\n5.1.0\nSep 2002\nCN#17\nNP-020449\n003\n-\nWrong format of Charging Function Addresses\n5.1.0\nSep 2002\nCN#17\nNP-020449\n005\n-\nEditorial mistake in the definition of command MAA\n5.1.0\nDec 2002\nCN#18\nNP-020587\n006\n-\nAddition of User-Name AVP to SAA\n5.2.0\nDec 2002\nCN#18\nNP-020587\n007\n-\nEditorial correction of SIP-Auth-Data-Item AVP definition\n5.2.0\nDec 2002\nCN#18\nNP-020589\n008\n1\nClarification of REGISTRATION_AND_CAPABILITIES value\n5.2.0\nDec 2002\nCN#18\nNP-020588\n009\n-\nCorrection in charging information\n5.2.0\nDec 2002\nCN#18\nNP-020590\n010\n1\nError handling in S-CSCF when receiving too much data\n5.2.0\nMar 2003\nCN#19\nNP-030101\n012\n1\nUpdate TS 29.229 after Diameter has become RFC\n5.3.0\nMar 2003\nCN#19\nNP-030101\n015\n1\nClarification on Re-allocation of S-CSCF\n5.3.0\nMar 2003\nCN#19\nNP-030101\n018\n1\nHandling of non supported data in the S-CSCF when the profile is being updated.\n5.3.0\nMar 2003\nCN#19\nNP-030101\n014\n-\nCorrection to the values of User-Authorizatin-Type AVP\n5.3.0\nMar 2003\nCN#19\nNP-030101\n013\n-\nReplacement of the NAS-Session-Key AVP\n5.3.0\nJun 2003\nCN#20\nNP-030215\n019\n-\nConditionality of User-Name AVP in Server-Assignment-Answer\n5.4.0\nSep 2003\nCN#21\nNP-030383\n022\n1\nCritical Correction on the PPR command code\n5.5.0\nDec 2003\nCN#22\nNP-030500\n021\n1\nThe S-CSCF name needs to be checked always in MAR and SAR\n5.6.0\nDec 2003\nCN#22\nNP-030500\n027\n-\nUser-Authorization-Type\n5.6.0\nDec 2003\nCN#22\nNP-030518\n029\n-\nClarification of inclusion of elements in Charging Information\n5.6.0\nDec 2003\nCN#22\nApplication IDs and references updated\n5.6.0\nMar 2004\nCN#23\nNP-040055\n035\n-\nError for no identification in SAR command\n6.0.0\nJun 2004\nCN#24\nNP-040215\n037\n1\nUpdate of the charging addresses from HSS\n6.1.0\nJun 2004\nCN#24\nNP-040215\n043\n-\nMultimedia-Auth-Request (MAR) Command Message Format Corrections\n6.1.0\nJun 2004\nCN#24\nNP-040215\n050\n2\nUse of Vendor-Id by 3GPP\n6.1.0\nSep 2004\nCN#25\nNP-040395\n065\n2\nApplication version control\n6.2.0\nSep 2004\nCN#25\nNP-040401\n056\n-\nOptimization of User Profile Download\n6.2.0\nSep 2004\nCN#25\nNP-040396\n058\n-\nSimplification of the User Profile Split concept\n6.2.0\nSep 2004\nCN#25\nNP-040401\n061\n-\nCorrection of the Application-Id code\n6.2.0\nSep 2004\nCN#25\nNP-040412\n063\n1\nRe-numbering of 3GPP specific AVP codes\n6.2.0\nDec 2004\nCN#26\nNP-040523\n070\n-\nCx ABNF corrections\n6.3.0\nMar 2005\nCN#27\nNP-050030\n078\n2\nCorrection of authentication-related AVPs\n6.4.0\nMar 2005\nCN#27\nNP-050037\n079\n-\nTEL-URI reference update\n6.4.0\nMar 2005\nCN#27\nNP-050030\n082\n1\nIntroduction of Failed-AVP\n6.4.0\nJun 2005\nCT#28\nCP-050086\n087\n-\nCorrection of reference\n6.5.0\nJun 2005\nCT#28\nCP-050086\n089\n1\nEditorial corrections\n6.5.0\nJun 2005\nCT#28\nCP-050086\n088\n2\nCorrections to message parameters\n6.5.0\nSep 2005\nCT#29\nCP-050440\n091\n2\nPrivate identities on the Cx\n6.6.0\nSep 2005\nCT#29\nCP-050282\n093\n1\nCharging-Information correction\n6.6.0\nSep 2005\nCT#29\nCP-050296\n094\n-\nError code cleanup\n6.6.0\nDec 2005\nCT#30\nCP-050611\n095\n1\nRemoval of overhead in Private Identities handling in RTR\n6.7.0\nDec 2005\nCT#30\nCP-050611\n098\n1\nIncorrect Definition of Supported-Applications AVP\n6.7.0\nJan 2006\nRel-7 version was created because of ETSI TISPAN references.\n7.0.0\nMar 2006\nCT#31\nCP-060084\n0099\n-\nSupported Features Text missing\n7.1.0\nJun 2006\nCT#32\nCP-060302\n0108\n-\nS-CSCF reselection removal\n7.2.0\nJun 2006\nCT#32\nCP-060308\n0110\n3\nDefinition of new Feature for Cx\n7.2.0\nSep 2006\nCT#33\nCP-060417\n0114\n3\nAS originating requests on behalf of a user\n7.3.0\nSep 2006\nCT#33\nCP-060405\n0118\n2\nCorrection of discovery of supported features in Sh and Cx\n7.3.0\nSep 2006\nCT#33\nCP-060417\n0119\n1\nSharing feature support information between command pairs\n7.3.0\nDec 2006\nCT#34\nCP-060566\n0124\n1\nOptimization of handling of Wildcarded PSIs\n7.4.0\nMar 2007\nCT#35\nCP-070020\n0125\n1\nM-bit in SupportedFeatures AVP\n7.5.0\nSep 2007\nCT#37\nCP-070520\n0129\n-\nMisalignment of Mandatory Items in the MAR\n7.6.0\nNov 2007\nCT#38\nCP-070744\n0132\n6\nAdd alias as a new feature\n7.7.0\nNov 2007\nCT#38\nCP-070755\n0130\n4\nUpdates to 29.229 for Digest on the Cx interface\n8.0.0\nMar 2008\nCT#39\nCP-080022\n0138\n2\nUpdate 29.229 for Supporting NASS-Bundled-Authentication\n8.1.0\nMar 2008\nCT#39\nCP-080019\n0139\n-\nSIP Digest password push\n8.1.0\nMar 2008\nCT#39\nCP-080019\n0141\n2\nWildcarded Public User Identities\n8.1.0\nJun 2008\nCT#40\nCP-080261\n0145\n1\nCorrection to the behavior of the HSS defined in the SiFC feature\n8.2.0\nJun 2008\nCT#40\nCP-080261\n0146\n2\nRealm and Host to be used for Charging\n8.2.0\nSep 2008\nCT#41\nCP-080456\n0149\n1\nEmergency Public User Identity Removal\n8.3.0\nSep 2008\nCT#41\nCP-080460\n0155\n1\nSupport of \"Loose-Route\" indication from HSS\n8.3.0\nSep 2008\nCT#41\nCP-080463\n0156\n1\nCx Impacts of IMS Restoration Procedures\n8.3.0\nSep 2008\nCT#41\nCP-080463\n0158\nAdd IMS Restoration as a new feature\n8.3.0\nSep 2008\nCT#41\nCP-080463\n0159\n1\nAddition of Registered Private Identities in SAA\n8.3.0\nSep 2008\nCT#41\nCP-080460\n0160\n1\nAdd Assigned S-CSCF name to SAA\n8.3.0\nDec 2008\nCT#42\nCP-080708\n0163\nRemoval of Digest Domain\n8.4.0\nDec 2008\nCT#42\nCP-080708\n0166\n2\nDiameter Proxy Agent - an alternative User Identity to HSS resolution mechanism\n8.4.0\nMar 2009\nCT#43\nCP-090026\n0167\nMultiple Registrations in Registration\n8.5.0\nMar 2009\nCT#43\nCP-090026\n0168\n1\nRestoration Information for Multiple Registrations\n8.5.0\nMar 2009\nCT#43\nCP-090026\n0169\nUpdate for Restoration\n8.5.0\nMar 2009\nCT#43\nCP-090051\n0170\n1\nDefinition of Server-Assignment-Type values in Cx\n8.5.0\nMar 2009\nCT#43\nCP-090028\n0171\nSupport for GPRS IMS Bundled Authentication (GIBA) in Cx\n8.5.0\nMar 2009\nCT#43\nCP-090025\n0172\nUse of canonical form for SIP URI/tel URI in Cx interface\n8.5.0\nMar 2009\nCT#43\nCP-090026\n0175\n1\nComma separated list for Path, Contact and Record-Route AVPs\n8.5.0\nJun 2009\nCT#44\nCP-090484\n0176\n2\nContact storage in reg event subscription\n8.6.0\nJun 2009\nCT#44\nCP-090303\n0177\n1\nComma separated list for path AVP\n8.6.0\nSep\nCT#45\nCP-090526\n0181\nDx over SCTP\n8.7.0\nDec 2009\nCT#46\nCP-090784\n0182\n2\nSIP Digest AVP Flag Settings\n8.8.0\nDec 2009\nCT#46\nCP-090781\n0185\n1\nUnregistered user clarification\n8.8.0\nDec 2009\nCT#46\nCP-090778\n0188\n2\nSession-Priority AVP\n8.8.0\nDec 2009\nCT#46\nCP-091030\n0189\nValidity of Feature Bit Value in Feature-List AVP\n8.8.0\nDec 2009\nCT#46\nUpgraded unchanged from Rel-8\n9.0.0\nMar 2010\nCT#47\nCP-100239\n0195\n1\nWildcarded Public Identity\n9.1.0\nMar 2010\nCT#47\nCP-100031\n0199\nWildcarded Public Identities handling\n9.1.0\nJun 2010\nCT#48\nCP-100412\n0205\n1\nDigest AVPs wrongly defined\n9.2.0\nSep 2010\nCT#49\nCP-100447\n0207\n2\nWildcarded Identities handling\n9.3.0\nSep 2010\nCT#49\nCP-100442\n0209\n2\nMandatory and optional capabilities handling\n9.3.0\nSep 2010\nCT#49\nCP-100442\n0212\nReference to SCTP IETF RFC obsolete\n9.3.0\nSep 2010\nCT#49\nCP-100463\n0213\n2\nRestoration Data Backup\n9.3.0\nSep 2010\nCT#49\nCP-100447\n0216\nEncoding of Framed-IPv6-Prefix AVP\n9.3.0\n2011-03\n-\n-\n-\n-\nUpdate to Rel-10 version (MCC)\n10.0.0\nJun 2011\nCT#52\nCP-110349\n0224\n2\nHandling of RTR for Emergency Registration\n10.1.0\nJun 2011\nCT#52\nCP-110349\n0227\nError in assignment type for backward compatibility scenarios\n10.1.0\nJun 2011\nCT#52\nCP-110349\n0230\nUser-Authorization-Type AVP error in description\n10.1.0\nSep 2011\nCT#53\nCP-110566\n0233\n1\nPriviledged sender\n10.2.0\nDec 2011\nCT#54\nCP-110781\n0240\n1\nRestoration of Wildcarded-IMPU AVP\n10.3.0\nDec 2011\nCT#54\nCP-110812\n0235\n2\nServer Assignment Type AVP definition\n11.0.0\nSep 2012\nCT#57\nCP-120440\n0247\n1\nEmergency registrations do not affect registration status\n11.1.0\nDec 2012\nCT#58\nCP-120743\n0251\n2\nPSI direct routing with restoration procedures\n11.2.0\nMar 2013\nCT#59\nCP-130011\n0258\n1\nOriginating-request AVP in LIR\n11.3.0\nJun 2013\nCT#60\nCP-130374\n0260\n1\nSupported-Feature AVP carries list of features specific to the Application-ID\n11.4.0\nJun 2013\nCT#60\nCP-130380\n0259\n-\nVisited Network ID coding\n12.0.0\nDec 2013\nCT#62\nCP-130627\n0263\n1\nSession-Priority AVP\n12.1.0\nJun 2014\nCT#64\nCP-140243\n0264\n2\nDiameter Overload Control Over Cx\n12.2.0\nSep 2014\nCT#65\nCP-140515\n0265\n1\nT-GRUU restoration\n12.3.0\nSep 2014\nCT#65\nCP-140506\n0266\n2\nP-CSCF Restoration indication\n12.3.0\nDec 2014\nCT#66\nCP-140794\n0268\n2\nP-CSCF Restoration mechanism new feature\n12.4.0\nDec 2014\nCT#66\nCP-140794\n0270\n1\nP-CSCF Restoration mechanism new error\n12.4.0\nDec 2014\nCT#66\nCP-140773\n0269\n-\nM-bit clarification\n12.4.0\nMar 2015\nCT#67\nCP-150023\n0273\n1\nSIP-Authentication-Scheme AVP encoding\n12.5.0\nJun 2015\nCT#68\nCP-150261\n0274\n-\nSAR-Flags inclusion in SAR command\n12.6.0\nSep 2015\nCT#69\nCP-150428\n0276\n1\nSIP-Auth-Data-Item sub AVPs clarifications\n12.7.0\nSep 2015\nCT#69\nCP-150436\n0275\n1\nServer-Assignment-Type AVP update to consider P-CSCF Restoration\n12.7.0\nDec 2015\nCT#70\nCP-150754\n0279\n2\nAllowed WAF and/or WWSF Identities\n12.8.0\nDec 2015\nCT#70\nCP-150759\n0281\n1\nUpdate reference to DOIC new IETF RFC\n12.8.0\nDec 2015\nCT#70\nCP-150768\n0282\n2\nSupport of the DRMP AVP over Cx/Dx\n13.0.0\n2016-12\nCT#74\nCP-160664\n0284\n1\nCorrection to change IETF drmp draft version to official RFC 7944\n13.1.0\n2016-12\nCT#74\nCP-160681\n0283\n1\nLoad Control\n14.0.0\n2017-03\nCT#75\nCP-170048\n0285\n1\nUpdate of reference for the Diameter base protocol\n14.1.0\n2017-03\nCT#75\nCP-170048\n0286\n-\nCardinality of the Failed-AVP AVP in answer\n14.1.0\n2017-06\nCT#76\nCP-171018\n0288\n1\nSupport for signaling transport level packet marking\n14.2.0\n2018-06\nCT#80\n-\n-\n-\nUpdate to Rel-15 version (MCC)\n15.0.0\n2019-03\nCT#83\nCP-190035\n0289\n1\nReference Location Information change\n15.1.0\n2019-09\nCT#85\nCP-192094\n0293\n2\ndraft-ietf-dime-load published as RFC 8583\n15.2.0\n2019-09\nCT#85\nCP-192125\n0291\n-\nAdd P-CSCF subscription info to Restoration information\n16.0.0\n2019-12\nCT#86\nCP-193040\n0294\n-\nS-CSCF restoration after registration timer expiry\n16.1.0\n2020-06\nCT#88e\nCP-201053\n0295\n-\nSupport of PCRF-based P-CSCF restoration\n16.2.0\n2021-12\nCT#94e\nCP-213104\n0297\n-\nB\nUpdate of SIP Digest Access Authentication\n17.0.0\n2022-03\nCT#95e\nCP-220052\n0300\n-\nF\nReference identity for RFC 7616\n17.1.0\n2022-03\nCT#95e\nCP-220052\n0301\n2\nB\nSupport of the hash value for alternate SIP Digest algorithm\n17.1.0\n2022-03\nCT#95e\nCP-220054\n0298\n-\nB\nFailed P-CSCF\n17.1.0\n2022-06\nCT#96\nCP-221041\n0303\n-\nF\nIMS authentication using AKAv2-SHA-256 digest AKA algorithm\n17.2.0\n2024-03\n-\n-\n-\n-\nUpdate to Rel-18 version (MCC)\n18.0.0\n2024-09\nCT#105\nCP-242066\n0310\n-\nA\nWAF and WWSF identity\n18.1.0",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_7.2",
+        "ts_29.229",
+        "ts_6.7"
+      ]
+    }
+  ]
+}

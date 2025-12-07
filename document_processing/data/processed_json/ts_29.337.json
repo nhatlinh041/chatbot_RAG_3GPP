@@ -1,0 +1,439 @@
+{
+  "metadata": {
+    "specification_id": "ts_29.337",
+    "version": "18.0.0",
+    "title": "3GPP TS 29.337",
+    "file_path": "/content/drive/MyDrive/RAG_thesis/data/29_series/29337-i00/29337-i00.docx"
+  },
+  "export_info": {
+    "export_date": "2025-07-26T08:56:23.538398",
+    "total_chunks": 44
+  },
+  "chunks": [
+    {
+      "chunk_id": "ts_29.337_1",
+      "section_id": "1",
+      "section_title": "Scope",
+      "content": "The present document describes the Diameter based interface between the Machine Type Communications-InterWorking Function (MTC-IWF) and the Short Message Service-Service Centre (SMS-SC) for communications with packet data networks and applications.\nThis specification defines the Diameter application for the T4 reference point between the MTC-IWF and the SMS-SC. The interactions between the MTC-IWF and the SMS-SC are specified.\nMTC-IWF and SMS-SC (SMS-IWMSC) may also support the Diameter application for the SGd reference point to exchange SGd-OFR and SGd-OFA commands via T4. The stage 3 description for the SGd Diameter application is specified in 3GPP TS 29.338 [13].\nThe stage 2 description for communications with packet data networks and applications (architecture and functionality) is specified in the 3GPP TS 23.682 [2].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.338",
+        "ts_23.682"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.337_2",
+      "section_id": "2",
+      "section_title": "References",
+      "content": "The following documents contain provisions which, through reference in this text, constitute provisions of the present document.\n-\tReferences are either specific (identified by date of publication, edition number, version number, etc.) or non‑specific.\n-\tFor a specific reference, subsequent revisions do not apply.\n-\tFor a non-specific reference, the latest version applies. In the case of a reference to a 3GPP document (including a GSM document), a non-specific reference implicitly refers to the latest version of that document in the same Release as the present document.\n[1]\t3GPP TR 21.905: \"Vocabulary for 3GPP Specifications\".\n[2]\t3GPP TS 23.682: \"Architecture enhancements to facilitate communications with packet data networks and applications\".\n[3]\tVoid.\n[4]\t3GPP TS 33.210: \"3G Security; Network Domain Security; IP Network Layer Security\".\n[5]\tIETF RFC 4960: \"Stream Control Transmission Protocol\".\n[6]\t3GPP TS 29.229: \"Cx and Dx interfaces based on the Diameter protocol\".\n[7]\t3GPP TS 29.228: \"IP multimedia (IM) Subsystem Cx and Dx Interfaces; Signalling flows and Message Elements\".\n[8]\t3GPP TS 23.003: \"Numbering, addressing and identification\".\n[9]\t3GPP TS 23.040: \"Technical realization of the Short Message Service (SMS)\".\n[10]\tIETF RFC 5234: \"Augmented BNF for Syntax Specifications: ABNF\".\n[11]\t3GPP TS 29.329: \"Sh Interface based on the Diameter protocol\".\n[12]\t3GPP TS 29.336: \"Home Subscriber Server (HSS) diameter interfaces for interworking with packet data networks and applications\".\n[13]\t3GPP TS 29.338: \"Diameter based protocols to support SMS capable MMEs\".\n[14]\t3GPP TS 29.173: \"Diameter-based SLh interface for Control Plane LCS\".\n[15]\t3GPP TS 29.368: \"Tsp interface protocol between the MTC Interworking Function (MTC-IWF) and Service Capability Server (SCS)\".\n[16]\t3GPP TS 29.272: \"Mobility Management Entity (MME) and Serving GPRS Support Node (SGSN) related interfaces based on Diameter protocol\".\n[17]\tIETF RFC 4006: \"Diameter Credit-Control Application\".\n[18]\tIETF RFC 7944: \"Diameter Routing Message Priority\".\n[19]\tIETF RFC 6733: \"Diameter Base Protocol\".",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905",
+        "ts_23.682",
+        "ts_33.210",
+        "ts_29.229",
+        "ts_29.228",
+        "ts_23.003",
+        "ts_23.040",
+        "ts_29.329",
+        "ts_29.336",
+        "ts_29.338",
+        "ts_29.173",
+        "ts_29.368",
+        "ts_29.272"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.337_3.1",
+      "section_id": "3.1",
+      "section_title": "Abbreviations",
+      "content": "For the purposes of the present document, the abbreviations given in TR 21.905 [1] and the following apply. An abbreviation defined in the present document takes precedence over the definition of the same abbreviation, if any, in TR 21.905 [1].\nABNF\tAugmented Backus-Naur Form\nAVP\tAttribute-Value Pair\nC\tConditional\nDRMP\tDiameter Routing Message Priority\nDSCP\tDifferentiated Services Code Point\nIANA\tInternet Assigned Numbers Authority\nMTC\tMachine-Type Communications\nMTC-IWF\tMTC Interworking Function\nO\tOptional\nSCS\tService Capability Server\nSMSF\tShort Message Service Function\nUDM\tUnified Data Management",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.337_4",
+      "section_id": "4",
+      "section_title": "General Description",
+      "content": "The T4 reference point between the MTC-IWF and the SMS-SC is an intra PLMN interface, as defined in the 3GPP TS 23.682 [7].\nThis document describes the T4 interface related procedures, message parameters and protocol specifications.\nThe T4 interface allows transfer of device trigger from MTC-IWF to SMS-SC inside HPLMN domain, along with the serving SGSN/MME/MSC/SMSF identities, and allows SMS-SC to report to MTC-IWF the submission outcome of a device trigger and the success or failure of delivering the device trigger to the UE.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_23.682"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.337_5.1",
+      "section_id": "5.1",
+      "section_title": "Introduction",
+      "content": "This section describes the Diameter-based T4 interface related procedures and information elements exchanged between the MTC-IWF and the SMS-SC. For the use of SGd-OFR and SGd-OFA commands over T4 (i.e. between MTC-IWF and SMS-SC) see 3GPP TS 29.338 [13].\nIn the tables that describe the Information Elements transported by each Diameter command, each Information Element is marked as (M) Mandatory, (C) Conditional or (O) Optional in the \"Cat.\" column. For the correct handling of the Information Element according to the category type, see the description detailed in clause 6 of the 3GPP TS 29.228 [7].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.228_clause_6",
+        "ts_29.338",
+        "ts_29.228"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.337_5.2.1.1",
+      "section_id": "5.2.1.1",
+      "section_title": "General",
+      "content": "This procedure shall be used between the MTC-IWF and the SMS-SC for device trigger. The procedure shall be invoked by the MTC-IWF and is used:\n-\tto transfer device trigger to SMS-SC inside HPLMN domain;\n-\tto transfer to the SMS-SC the identities of the serving MSC or MME but not both, and/or SGSN, and/or SMSF (for 3GPP and non-3GPP accesses); and/or IP-SM-GW serving the user for SMS along with device trigger.\n-\tto transfer device trigger replace/recall message to SMS-SC inside HPLMN domain.\nThis procedure is mapped to the commands Device-Trigger-Request/Answer in the Diameter application specified in chapter 6. Tables 5.2.1.1/1 and 5.2.1.1/2 detail the involved information elements.\nTable 5.2.1.1/1: Device Trigger Request\nInformation Element Name\nMapping to Diameter AVP\nCat.\nDescription\nUser Identifier\n(See 3GPP TS 29.336 [12])\nUser-Identifier\nM\nThis information element shall contain the IMSI of the UE the trigger is to be applied, formatted according to 3GPP TS 23.003 [8], clause 2.2.\nThis Information Element may contain the international ISDN number of the UE the device trigger was delivered, formatted according to 3GPP TS 23.003 [8], clause 3.3. The ISDN number shall be present if it is available to the MTC-IWF.\nThis Information Element may contain the external identifier of the UE the device trigger was delivered, formatted according to 3GPP TS 23.003 [8], clause 19.7.2. The external identifier shall be present if it is available to the MTC-IWF.\nSM RP SMEA\n(See 3GPP TS 29.338 [13])\nSM-RP-SMEA\nM\nThis Information Element shall contain the SME address of the Service Capability Server that is requesting a device trigger to the UE. It shall be encoded according to the formatting rules of the address fields described in 3GPP TS 23.040 [9].\nPayload(See 3GPP TS 29.368 [15])\nPayload\nM\nThis information element shall contain the device triggering payload as received over the Tsp.\nFor device trigger recall, this IE shall be empty.\nServing Node Identity\n(See 3GPP TS 29.173 [14])\nServing-Node\nC\nThis information element shall contain the serving node identity, i.e. SGSN/MME/MSC/SMSF identity serving the UE.\nIt shall be present if it is available to the MTC-IWF, e.g. the MTC-IWF retrieved this information from the HSS/UDM.\nAdditional Serving Node Identity\n(See 3GPP TS 29.173 [14])\nAdditional-Serving-Node\nC\nThis information element shall contain another serving node identity, e.g. SGSN/MME/MSC/SMSF identity, if there is any serving the UE.\nThere may be multiple instances of this information elements.\nTrigger Reference Number\n(See 3GPP TS 29.368 [15])\nReference-Number\nC\nThis information element shall contain the Reference Number related to the device trigger request.\nIt shall be present if it is available to the MTC-IWF, e.g. the MTC-IWF received this information over Tsp.\nOld Trigger Reference Number\n(See 3GPP TS 29.368 [15])\nOld-Reference-Number\nC\nThis information element shall contain the Reference Number of the device trigger to be replaced.\nIt shall be present if it is available to the MTC-IWF, e.g. the MTC-IWF received this information over Tsp.\nValidity Time\n(See 3GPP TS 29.368 [15])\nValidity-Time\nC\nThis information element shall contain the validity time of the device trigger request.\nIt shall be present if it is available to the MTC-IWF, e.g. the MTC-IWF received this information over Tsp.\nPriority Indication\n(See 3GPP TS 29.368 [15])\nPriority-Indication\nC\nThis information element shall contain the priority of the device trigger request..\nIt shall be present if it is available to the MTC-IWF, e.g. the MTC-IWF received this information over Tsp.\nSMS Application Port ID\n(See 3GPP TS 29.368 [15])\nSMS-Application-Port-ID\nC\nThis information element shall contain the Application Port ID of the triggering application for the device trigger request.\nIt shall be present if it is available to the MTC-IWF, e.g. the MTC-IWF received this information over Tsp.\nSupported Features\n(See 3GPP TS 29.229 [6])\nSupported-Features\nO\nIf present, this information element shall contain the list of features supported by the origin host.\nTrigger-Action\n(See 6.3.6)\nTrigger-Action\nC\nThis information element shall be present for device trigger action replace or recall.\nThis information element may be present for a normal device.\nTable 5.2.1.1/2: Device Trigger Answer\nInformation Element Name\nMapping to Diameter AVP\nCat.\nDescription\nResult(See 7)\nResult-Code / Experimental-Result\nM\nThis IE shall contain the result of the operation.\nThe Result-Code AVP shall be used to indicate success / errors as defined in the Diameter base protocol (see IETF RFC 6733 [19]).\nThe Experimental-Result AVP shall be used for T4 errors. This is a grouped AVP which shall contain the 3GPP Vendor ID in the Vendor-Id AVP, and the error code in the Experimental-Result-Code AVP.\nThe following errors are applicable:\n-\tService Centre Congestion;\n-\tInvalid Short Message Entity Address;\n-\tSubscriber not Service Centre Subscriber;\n-\tSM Protocol Error;\n-\tTrigger Replace failed;\n-\tTrigger Recall failed;\n-\tOriginal Message not pending.\nMTC-Error-Diagnostic\nMTC-Error-Diagnostic\nO\nIf the Experimental Result indicates either \"DIAMETER_ERROR_TRIGGER_REPLACE_FAILURE \" or \"DIAMETER_ERROR_ORIGINAL_MESSAGE_NOT_PENDING\", Error Diagnostic may be present to indicate the reason why the replace has failed.\nSupported Features\n(See 3GPP TS 29.229 [6])\nSupported-Features\nO\nIf present, this information element shall contain the list of features supported by the origin host.\nOld Trigger Reference Number\n(See 3GPP TS 29.368 [15])\nOld-Reference-Number\nC\nThis information element shall be included if the SMS-SC was requested to perform device trigger recall or replace. It shall contain the Reference Number of the device trigger which was intended to be replaced or recalled in the request.\nTrigger-Action\n(see 6.3.6)\nTrigger-Action\nC\nThis information element shall be present for device trigger action replace or recall.\nThis information element may be present for a normal device trigger.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_23.003_clause_2.2",
+        "ts_23.003_clause_3.3",
+        "ts_23.003_clause_19.7.2",
+        "table_5.2.1.1",
+        "ts_29.336",
+        "ts_23.003",
+        "ts_29.338",
+        "ts_23.040",
+        "ts_29.368",
+        "ts_29.173",
+        "ts_29.229"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.337_5.2.1.2",
+      "section_id": "5.2.1.2",
+      "section_title": "Detailed Behaviour of the MTC-IWF",
+      "content": "The MTC-IWF shall make use of this procedure to transfer device trigger request received over Tsp interface from SCS to the SMS-SC.\nIf the MTC-IWF retrieved the IMSI and serving node identities of the UE from the HSS/UDM, the MTC-IWF shall include these identities in the request to the SMS-SC.\nThe MTC-IWF shall include the External Identifier of the UE if received over Tsp interface from SCS.\nThe MTC-IWF shall include the Old Trigger Reference Number if received over Tsp interface from SCS.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.337_5.2.1.3",
+      "section_id": "5.2.1.3",
+      "section_title": "Detailed Behaviour of the SMS-SC",
+      "content": "When receiving a Device Trigger Request, the SMS-SC shall check the identity of the UE received (i.e. IMSI or MSISDN) if it serves this UE. If not, a Result Code of DIAMETER_ERROR_USER_UNKNOWN shall be returned.\nIf the SM-RP-SMEA AVP contains an invalid SME address, the SMS-SC shall return a Result Code of DIAMETER_ERROR_INVALID_SME_ADDRESS.\nIf the SMS-SC cannot fulfil the received request due to congestion, it shall return a Result Code of DIAMETER_ERROR_SC_CONGESTION.\nIf there are routing information (i.e. MSC or MME, SGSN, SMSF for 3GPP access, SMSF for non-3GPP access, IP-SM-GW identities serving the UE for SMS) present in the request, the SMS-SC shall use the information for delivery of device trigger request for the UE. The SMS-SC shall return a Result Code of DIAMETER_SUCCESS to the MTC-IWF.\nNOTE:\tIf the IP-SM-GW address is received, the SMS-SC uses the IP-SM-GW as the serving node with highest priority for delivery of device trigger request for the UE.\nIf there is no routing information (i.e. MSC or MME, SGSN, SMSF, IP-SM-GW identities serving the UE for SMS) present in the request, the SMS-SC shall send a Report-SM-Delivery-Status message to the HLR/UDM in order to update the MWD in the HLR/UDM (see 3GPP TS 23.040 [9]).\nIf Trigger-Action is received from the MTC-IWF and set to TRIGGER (0), SMS-SC shall store the new trigger message received from MTC-IWF.\nIf Trigger-Action is received from the MTC-IWF and set to RECALL (1), SMS-SC checks if message corresponding to Reference-Number is pending. If trigger message is pending then SMS-SC deletes the old trigger message. The SMS-SC shall return Old-Reference-Number and a Result Code of DIAMETER_SUCCESS to the MTC-IWF. For the successful scenario the SMS-SC is not required to initiate a device trigger reporting to the device trigger of Old-Reference-Number. If trigger message is not pending then SMS-SC shall return a Result Code of DIAMETER_ERROR_ORIGINAL_MESSAGE_NOT_PENDING to the MTC-IWF.\nIf Trigger-Action is received from the MTC-IWF and set to REPLACE (2), SMS-SC checks if message corresponding to Old-Reference-Number is pending. If trigger message is pending then SMS-SC shall delete the old trigger message and store the new trigger message received from MTC-IWF. The SMS-SC shall return OLD-Reference-Number and a Result Code of DIAMETER_SUCCESS to the MTC-IWF. For the successful scenario the SMS-SC is not required to initiate a device trigger reporting to the device trigger of Old-Reference-Number. If trigger message is not pending then SMS-SC shall return OLD-Reference-Number and a Result Code of DIAMETER_ERROR_ORIGINAL_MESSAGE_NOT_PENDING to the MTC-IWF and shall interpret the trigger replace message as a new device trigger. If the SMS-SC fails to perform deletion of the old trigger or fails to store the new trigger, it shall not delete the old trigger and shall not store the new trigger and shall return result code of DIAMETER_ERROR_TRIGGER_REPLACE_FAILURE.\nThe SMS SC shall use the most appropriate cause code indicating the real reason for the unsuccessful handling of the request message.\nIf the SMS-SC cannot fulfil the received request for reasons not stated in the above steps, e.g. due to system failure, it shall stop processing the request and set Result-Code to DIAMETER_UNABLE_TO_COMPLY.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_23.040"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.337_5.2.2.1",
+      "section_id": "5.2.2.1",
+      "section_title": "General",
+      "content": "This procedure shall be used between the SMS-SC and the MTC-IWF for Delivery Report of Device Trigger. The procedure shall be invoked by the SMS-SC and is used:\n-\tto report the success or failure of delivering the device trigger to the UE.\nThis procedure is mapped to the commands Delivery-Report-Request/Answer in the Diameter application specified in chapter 6. Tables 5.2.2.1/1 and 5.2.2.1/2 detail the involved information elements.\nTable 5.2.2.1/1: Delivery Report Request\nInformation Element Name\nMapping to Diameter AVP\nCat.\nDescription\nUser Identifier\n(See 3GPP TS 29.336 [12])\nUser-Identifier\nM\nThis information element shall contain the IMSI of the UE the device trigger was delivered, formatted according to 3GPP TS 23.003 [8], clause 2.2.\nThis Information Element may contain the international ISDN number of the UE the device trigger was delivered, formatted according to 3GPP TS 23.003 [8], clause 3.3. The ISDN number shall be present if it is available to the SMS-SC.\nThis Information Element may contain the external identifier of the UE the device trigger was delivered, formatted according to 3GPP TS 23.003 [8], clause 19.7.2. The external identifier shall be present if it is available to the SMS-SC.\nSM RP SMEA\n(See 3GPP TS 29.338 [13])\nSM-RP-SMEA\nM\nThis Information Element shall contain the SME address of the Service Capability Server that is requesting a device trigger to the UE as received from the MTC-IWF.\nSM Delivery Outcome\n(See 6.3.1)\nSM-Delivery-Outcome\nM\nThis information element shall be present and indicate one of the following outcomes of the device trigger delivery:\n-\tAbsent subscriber;\n-\tUE memory capacity exceeded;\n-\tSuccessful transfer.\nAbsent Subscriber Diagnostic SM\n(See 6.3.2)\nAbsent-Subscriber-Diagnostic-SM\nC\nThis information element shall indicate the reason why the subscriber is absent.\nIt shall be present if the device trigger failed to be delivered due to absent subscriber.\nTrigger Reference Number\n(See 3GPP TS 29.368 [15])\nReference-Number\nC\nThis information element shall contain the Trigger Reference Number as received from the MTC-IWF for the device trigger.\nThis information element shall be present if it is available in the SMS-SC.\nSupported Features\n(See 3GPP TS 29.229 [6])\nSupported-Features\nO\nIf present, this information element shall contain the list of features supported by the origin host.\nTable 5.2.2.1/2: Delivery Report Answer\nInformation Element Name\nMapping to Diameter AVP\nCat.\nDescription\nResult\n(See 7)\nResult-Code / Experimental-Result\nM\nThis IE shall contain the result of the operation.\nThe Result-Code AVP shall be used to indicate success / errors as defined in the Diameter base protocol (see IETF RFC 6733 [19]).\nThe Experimental-Result AVP shall be used for T4 errors. This is a grouped AVP which shall contain the 3GPP Vendor ID in the Vendor-Id AVP, and the error code in the Experimental-Result-Code AVP.\nSupported Features\n(See 3GPP TS 29.229 [6])\nSupported-Features\nO\nIf present, this information element shall contain the list of features supported by the origin host.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_23.003_clause_2.2",
+        "ts_23.003_clause_3.3",
+        "ts_23.003_clause_19.7.2",
+        "table_5.2.2.1",
+        "ts_29.336",
+        "ts_23.003",
+        "ts_29.338",
+        "ts_29.368",
+        "ts_29.229"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.337_5.2.2.2",
+      "section_id": "5.2.2.2",
+      "section_title": "Detailed Behaviour of the SMS-SC",
+      "content": "The SMS-SC shall make use of this procedure to report the success or failure of delivering the device trigger to the UE to the MTC-IWF.\nThe SMS-SC shall include the IMSI of the UE and, if available, other identities of the UE, i.e. the MSISDN and the external identifier.\nThe SMS-SC shall include the External Identifier of the UE if the SMS-SC received it from MTC-IWF in the device trigger request message.\nThe SMS-SC shall include an SM-RP-SMEA AVP that contains the SME address of the Service Capability Server that requested the device trigger to the UE as received from the MTC-IWF in the device trigger request message.\nThe SMS-SC shall include an SM-Delivery-Outcome-T4 AVP that contains the outcome of the success or failure of delivering the device trigger to the UE.\nThe SMS-SC shall include an Absent-Subscriber-Diagnostic-T4 AVP that contains the reason why the subscriber is absent if the device trigger failed to be delivered due to absent subscriber.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.337_5.2.2.3",
+      "section_id": "5.2.2.3",
+      "section_title": "Detailed Behaviour of the MTC-IWF",
+      "content": "The MTC-IWF shall return a Result Code of DIAMETER_SUCCESS to the SMS-SC.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.337_6.1.1",
+      "section_id": "6.1.1",
+      "section_title": "Use of Diameter Base Protocol",
+      "content": "The Diameter base protocol as specified in IETF RFC 6733 [19] shall apply except as modified by the defined support of the methods and the defined support of the commands and AVPs, result and error codes as specified in this specification. Unless otherwise specified, the procedures (including error handling and unrecognised information handling) shall be used unmodified.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.337_6.1.2",
+      "section_id": "6.1.2",
+      "section_title": "Securing Diameter Messages",
+      "content": "For secure transport of Diameter messages, see 3GPP TS 33.210 [4]",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_33.210"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.337_6.1.3",
+      "section_id": "6.1.3",
+      "section_title": "Accounting Functionality",
+      "content": "Accounting functionality (Accounting Session State Machine, related command codes and AVPs) shall not be used on the T4 interface.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.337_6.1.4",
+      "section_id": "6.1.4",
+      "section_title": "Use of Sessions",
+      "content": "Between the MTC-IWF and the SMS-SC, Diameter sessions shall be implicitly terminated. An implicitly terminated session is one for which the server does not maintain state information. The client shall not send any re-authorization or session termination requests to the server.\nThe Diameter base protocol specified in IETF RFC 6733 [19] includes the Auth-Session-State AVP as the mechanism for the implementation of implicitly terminated sessions.\nThe client (server) shall include in its requests (responses) the Auth-Session-State AVP set to the value NO_STATE_MAINTAINED (1), as described in IETF RFC 6733 [19]. As a consequence, the server shall not maintain any state information about this session and the client shall not send any session termination request. Neither the Authorization-Lifetime AVP nor the Session-Timeout AVP shall be present in requests or responses.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.337_6.1.5",
+      "section_id": "6.1.5",
+      "section_title": "Transport Protocol",
+      "content": "Diameter messages over the T4 interface shall make use of SCTP, see IETF RFC 4960 [5].",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.337_6.1.6",
+      "section_id": "6.1.6",
+      "section_title": "Routing Considerations",
+      "content": "This clause specifies the use of the Diameter routing AVPs Destination-Realm and Destination-Host.\nThe T4 reference point is defined as an intra-operator interface, and both MTC-IWF and the SMS-SC are located in the same network domain. If the MTC-IWF knows the address/name of the SMS-SC for a certain user, both the Destination-Realm and Destination-Host AVPs shall be present in the request. Otherwise, the Destination-Realm AVP shall be present and the command shall be routed to the next Diameter node. Consequently, the Destination-Host AVP is declared as optional in the ABNF for all requests initiated by the MTC-IWF.\nThe SMS-SC obtains the Destination-Host AVP to use in requests towards the MTC-IWF, from the Origin-Host AVP received in previous requests from the MTC-IWF. Consequently, the Destination-Host AVP is declared as mandatory in the ABNF for all requests initiated by the SMS-SC.\nIf the Vendor-Specific-Application-ID AVP is received in any of the commands defined in this specification, it shall be ignored by the receiving node, and it shall not be used for routing purposes.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.337_6.1.7",
+      "section_id": "6.1.7",
+      "section_title": "Advertising Application Support",
+      "content": "The MTC-IWF and SMS-SC shall advertise support of the Diameter T4 Application by including the value of the application identifier in the Auth-Application-Id AVP within the Vendor-Specific-Application-Id grouped AVP of the Capabilities-Exchange-Request and Capabilities-Exchange-Answer commands.\nThe vendor identifier value of 3GPP (10415) shall be included in the Supported-Vendor-Id AVP of the Capabilities-Exchange-Request and Capabilities-Exchange-Answer commands, and in the Vendor-Id AVP within the Vendor-Specific-Application-Id grouped AVP of the Capabilities-Exchange-Request and Capabilities-Exchange-Answer commands.\nThe Vendor-Id AVP included in Capabilities-Exchange-Request and Capabilities-Exchange-Answer commands that is not included in the Vendor-Specific-Application-Id AVPs as described above shall indicate the manufacturer of the Diameter node as per IETF RFC 6733 [19].",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.337_6.1.8",
+      "section_id": "6.1.8",
+      "section_title": "Diameter Application Identifier",
+      "content": "The T4 interface protocol shall be defined as an IETF vendor specific Diameter application, where the vendor is 3GPP. The vendor identifier assigned by IANA to 3GPP (http://www.iana.org/assignments/enterprise-numbers) is 10415.\nThe Diameter application identifier assigned to the T4 interface application is 16777311 (allocated by IANA).",
+      "chunk_type": "parameter",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.337_6.1.9",
+      "section_id": "6.1.9",
+      "section_title": "Use of the Supported-Features AVP",
+      "content": "When new functionality is introduced on the T4 interface, it should be defined as optional. If backwards incompatible changes cannot be avoided, the new functionality shall be introduced as a new feature and support advertised with the Supported-Features AVP. The usage of the Supported-Features AVP on the T4 interface is consistent with the procedures for the dynamic discovery of supported features as defined in clause 7.2 of 3GPP TS 29.229 [6].\nWhen extending the application by adding new AVPs for a feature, the new AVPs shall have the M bit cleared and the AVP shall not be defined mandatory in the command ABNF.\nAs defined in 3GPP TS 29.229 [6], the Supported-Features AVP is of type grouped and contains the Vendor-Id, Feature-List-ID and Feature-List AVPs. On the all reference points as specified in this specification, the Supported-Features AVP is used to identify features that have been defined by 3GPP and hence, for features defined in this document, the Vendor-Id AVP shall contain the vendor ID of 3GPP (10415). If there are multiple feature lists defined for the reference point, the Feature-List-ID AVP shall differentiate those lists from one another.\nThe Table 6.3.5 defines the features applicable to the T4 reference point for the feature list with a Feature-List-ID of 1.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.229_clause_7.2",
+        "table_6.3.5",
+        "ts_29.229"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.337_6.2.1",
+      "section_id": "6.2.1",
+      "section_title": "Introduction",
+      "content": "This section defines the Command code values and related ABNF for each command described in this specification.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.337_6.2.2",
+      "section_id": "6.2.2",
+      "section_title": "Command-Code Values",
+      "content": "This section defines Command-Code values for the T4 interface application as allocated by IANA.\nEvery command is defined by means of the ABNF syntax IETF RFC 5234 [10], according to the Command Code Format (CCF) specification defined in IETF RFC 6733 [19]. In the case, the definition and use of an AVP is not specified in this document, the guidelines in IETF RFC 6733 [19] shall apply.\nThe Vendor-Specific-Application-Id AVP shall not be included in any command sent by Diameter nodes supporting applications defined in this specification. If the Vendor-Specific-Application-Id AVP is received in any of the commands defined in this specification, it shall be ignored by the receiving node.\nNOTE:\tThe Vendor-Specific-Application-Id is included as an optional AVP in all Command Code Format specifications defined in this specification in order to overcome potential interoperability issues with intermediate Diameter agents non-compliant with the IETF RFC 6733 [19].\nThe following Command Codes are defined in this specification:\nTable 7.2.2/1: Command-Code values for T4\nCommand-Name\nAbbreviation\nCode\nSection\nDevice-Trigger-Request\nDTR\n8388643\n6.2.3\nDevice-Trigger- Answer\nDTA\n8388643\n6.2.4\nDelivery-Report-Request\nDRR\n8388644\n6.2.5\nDelivery-Report-Answer\nDRA\n8388644\n6.2.6\nFor these commands, the Application-ID field shall be set to 16777311 (application identifier of the T4 interface application, allocated by IANA).",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_7.2.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.337_6.2.3",
+      "section_id": "6.2.3",
+      "section_title": "Device-Trigger-Request (DTR) Command",
+      "content": "The Device-Trigger-Request (DTR) command, indicated by the Command-Code field set to 8388643 and the \"R\" bit set in the Command Flags field, is sent from the MTC-IWF to the SMS-SC.\nMessage Format\n< Device-Trigger-Request > ::=\t< Diameter Header: 8388643, REQ, PXY, 16777311 >\n< Session-Id >\n[ DRMP ]\n{ Auth-Session-State }\n{ Origin-Host }\n{ Origin-Realm }\n[ Destination-Host ]\n{ Destination-Realm }\n{ User-Identifier }\n{ SM-RP-SMEA }\n{ Payload }\n[ Serving-Node ]\n*[ Additional-Serving-Node ]\n[ Reference-Number ]\n[ Validity-Time ]\n[ Priority-Indication ]\n[ SMS-Application-Port-ID ]\n[ Old-Rference-Number ]\n[ Trigger-Action ]\n*[ Supported-Features ]\n*[ AVP ]\n*[ Proxy-Info ]\n*[ Route-Record ]",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.337_6.2.4",
+      "section_id": "6.2.4",
+      "section_title": "Device-Trigger-Answer (DTA) Command",
+      "content": "The Device-Trigger-Answer (DTA) command, indicated by the Command-Code field set to 8388643 and the \"R\" bit cleared in the Command Flags field, is sent from the SMS-SC to the MTC-IWF.\nMessage Format\n< Device-Trigger-Answer > ::=\t< Diameter Header: 8388643, PXY, 16777311 >\n< Session-Id >\n[ DRMP ]\n[ Vendor-Specific-Application-Id ]\n[ Result-Code ]\n[ Experimental-Result ]\n[ MTC-Error-Diagnostic ]\n{ Auth-Session-State }\n{ Origin-Host }\n{ Origin-Realm }\n[ Old-Reference-Number ]\n[ Trigger-Action ]\n*[ Supported-Features ]\n*[ AVP ]\n[ Failed-AVP ]\n*[ Proxy-Info ]\n*[ Route-Record ]",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.337_6.2.5",
+      "section_id": "6.2.5",
+      "section_title": "Delivery-Report-Request (DRR) Command",
+      "content": "The Delivery-Report-Request (DRR) command, indicated by the Command-Code field set to 8388644 and the \"R\" bit set in the Command Flags field, is sent from the SMS-SC to the MTC-IWF.\nMessage Format\n< Delivery-Report-Request > ::=\t< Diameter Header: 8388644, REQ, PXY, 16777311 >\n< Session-Id >\n[ DRMP ]\n{ Auth-Session-State }\n{ Origin-Host }\n{ Origin-Realm }\n{ Destination-Host }\n{ Destination-Realm }\n{ User-Identifier }\n{ SM-RP-SMEA }\n{ SM-Delivery-Outcome-T4 }\n[ Absent-Subscriber-Diagnostic-T4 ]\n[ Reference-Number ]\n*[ Supported-Features ]\n*[ AVP ]\n*[ Proxy-Info ]\n*[ Route-Record ]",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.337_6.2.6",
+      "section_id": "6.2.6",
+      "section_title": "Delivery-Report-Answer (DRA) Command",
+      "content": "The Delivery-Report-Answer (DRA) command, indicated by the Command-Code field set to 8388644 and the \"R\" bit cleared in the Command Flags field, is sent from the MTC-IWF to the SMS-SC.\nMessage Format\n< Delivery-Report-Answer > ::=\t< Diameter Header: 8388644, PXY, 16777311 >\n< Session-Id >\n[ DRMP ]\n[ Vendor-Specific-Application-Id ]\n[ Result-Code ]\n[ Experimental-Result ]\n{ Auth-Session-State }\n{ Origin-Host }\n{ Origin-Realm }\n*[ Supported-Features ]\n*[ AVP ]\n[ Failed-AVP ]\n*[ Proxy-Info ]\n*[ Route-Record ]",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.337_6.3",
+      "section_id": "6.3",
+      "section_title": "AVPs",
+      "content": "The following table specifies the Diameter AVPs defined for the T4 interface protocol, their AVP Code values, types, possible flag values and whether or not the AVP may be encrypted. The Vendor-ID header of all AVPs defined in this specification shall be set to 3GPP (10415).\nTable 6.3.1/1: T4 specific Diameter AVPs\nAVP Flag rules\nAttribute Name\nAVP Code\nSection defined\nValue Type\nMust\nMay\nShould not\nMust not\nMay Encr.\nSM-Delivery-Outcome-T4\n3200\n6.3.1\nEnumerated\nM, V\nNo\nAbsent-Subscriber-Diagnostic-T4\n3201\n6.3.2\nEnumerated\nM, V\nNo\nTrigger-Action\n3202\n6.3.6\nUnsigned32\nV\nM\nNo\nMTC-Error-Diagnostic\n3203\n6.3.7\nUnsigned32\nV\nM\nNo\nNOTE 1:\tThe AVP header bit denoted as \"M\", indicates whether support of the AVP is required. The AVP header bit denoted as \"V\", indicates whether the optional Vendor-ID field is present in the AVP header. For further details, see IETF RFC 6733 [19].\nNOTE 2:\tIf the M-bit is set for an AVP and the receiver does not understand the AVP, it shall return a rejection. If the M-bit is not set for an AVP, the receiver shall not return a rejection, whether or not it understands the AVP. If the receiver understands the AVP but the M-bit value does not match with the definition in this table, the receiver shall ignore the M-bit.\nThe following table specifies the Diameter AVPs re-used by the T4 interface protocol from existing Diameter Applications, including a reference to their respective specifications and when needed, a short description of their use within T4.\nAny other AVPs from existing Diameter Applications, except for the AVPs from Diameter base protocol specified in IETF RFC 6733 [19], do not need to be supported. The AVPs from Diameter base protocol specified in IETF RFC 6733 [19] are not included in table 6.3.1/2, but they may be re-used for the T4 protocol.\nTable 6.3.1/2: T4 re-used Diameter AVPs\nAttribute Name\nReference\nComments\nM-bit\nUser-Identifier\n3GPP TS 29.336 [12]\nSM-RP-SMEA\n3GPP TS 29.338 [13]\nPayload\n3GPP TS 29.368 [15]\nServing-Node\n3GPP TS 29.173 [14]\nSee 6.3.3\nAdditional-Serving-Node\n3GPP TS 29.173 [14]\nSee 6.3.4\nReference-Number\n3GPP TS 29.368 [15]\nOld-Reference-Number\n3GPP TS 29.368 [15]\nValidity-Time\nIETF RFC 4006 [17]\nPriority-Indication\n3GPP TS 29.368 [15]\nSMS-Application-Port-ID\n3GPP TS 29.368 [15]\nSupported-Features\n3GPP TS 29.229 [6]\nFeature-List-ID\n3GPP TS 29.229 [6]\nFeature-List\n3GPP TS 29.229 [6]\nIP-SM-GW-Name\n3GPP TS 29.336 [12]\nIP-SM-GW-Realm\n3GPP TS 29.336 [12]\nIP-SM-GW-Number\n3GPP TS 29.336 [12]\nMME-Number-for-MT-SMS\n3GPP TS 29.272 [16]\nDRMP\nIETF RFC 7944 [18]\nsee clause 6.3.8\nMust not set\nSMSF-3GPP-Number\n3GPP TS 29.338 [13]\nSMSF-Non-3GPP-Number\n3GPP TS 29.338 [13]\nSMSF-3GPP-Name\n3GPP TS 29.338 [13]\nSMSF-Non-3GPP-Name\n3GPP TS 29.338 [13]\nSMSF-3GPP-Realm\n3GPP TS 29.338 [13]\nSMSF-Non-3GPP-Realm\n3GPP TS 29.338 [13]\nNOTE 1:\tThe M-bit settings for re-used AVPs override those of the defining specifications that are referenced. Values include: \"Must set\", \"Must not set\". If the M-bit setting is blank, then the defining specification applies.\nNOTE 2:\tIf the M-bit is set for an AVP and the receiver does not understand the AVP, it shall return a rejection. If the M-bit is not set for an AVP, the receiver shall not return a rejection, whether or not it understands the AVP. If the receiver understands the AVP but the M-bit value does not match with the definition in this table, the receiver shall ignore the M-bit.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_6.3.8",
+        "table_6.3.1",
+        "ts_29.336",
+        "ts_29.338",
+        "ts_29.368",
+        "ts_29.173",
+        "ts_29.229",
+        "ts_29.272"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.337_6.3.1",
+      "section_id": "6.3.1",
+      "section_title": "SM-Delivery-Outcome-T4",
+      "content": "The SM-Delivery-Outcome-T4 AVP is of type Enumerated and indicates the outcomes of the device trigger delivery. The following values are defined:\nABSENT_SUBSCRIBER (0)\nThis value is used when the device trigger delivery failed due to absent subscriber.\nUE_MEMORY_CAPACITY_EXCEEDED (1)\nThis value is used when the device trigger delivery failed due to UE memory capacity exceeded.\nSUCCESSFUL_TRANSFER (2)\nThis value is used when the device trigger delivery is successfully transferred to the UE.\nVALIDITY_TIME_EXPIRED (3)\nThis value is used when the message was deleted in the SMS-SC due to expiration of the validity time.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.337_6.3.2",
+      "section_id": "6.3.2",
+      "section_title": "Absent-Subscriber-Diagnostic-T4",
+      "content": "The Absent-Subscriber-Diagnostic-T4 AVP is of type Enumerated and indicates the reason why the subscriber is absent if the device trigger failed to be delivered due to absent subscriber. The following values are defined:\nNO_PAGING_RESPONSE (0)\nThis value is used when there is no paging response via some of the serving nodes.\nUE_DETACHED (1)\nThis value is used when the UE is detached from all of the serving nodes.\nUE_DEREGISTERED (2)\nThis value is used when the UE is deregistered in the network.\nUE_PURGED (3)\nThis value is used when the UE is purged by some of the serving nodes.\nROAMING_RESTRICTION (4)\nThis value is used when the UE is roaming restricted.\nUNIDENTIFIED_SUBSCRIBER (5)\nThis value is used when the user is unidentified in all of the serving nodes.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.337_6.3.3",
+      "section_id": "6.3.3",
+      "section_title": "Serving-Node",
+      "content": "The Serving-Node AVP is of type Grouped and it shall contain the name/number of the serving node to be used for T4-triggering. It is originally defined in 3GPP TS 29.173 [8].\nServing-Node ::=\t<AVP header: 2401 10415>\n[ SMSF-3GPP-Name ]\n[ SMSF-3GPP-Realm ]\n[ SMSF-3GPP-Number ]\n[ SMSF-Non-3GPP-Name ]\n[ SMSF-Non-3GPP-Realm ]\n[ SMSF-Non-3GPP-Number ]\n[ SGSN-Name ]\n[ SGSN-Realm ]\n[ SGSN-Number ]\n[ MME-Name ]\n[ MME-Realm ]\n[ MME-Number-for-MT-SMS ]\n[ MSC-Number ]\n[ IP-SM-GW-Number ]\n[ IP-SM-GW-Name ]\n[ IP-SM-GW-Realm ]\n*[AVP]\nThe following combinations are allowed:\na) SGSN-Number\nb) SGSN-Name & SGSN-Realm & SGSN-Number\nc) MME-Name & MME-Realm & MME-Number-for-MT-SMS\nd) MSC-Number\ne) MSC-Number & MME-Name & MME-Realm\nf) IP-SM-GW-Number\ng) IP-SM-GW-Number & IP-SM-GW-Name & IP-SM-GW-Realm\nh) SMSF-3GPP-Number\ni) SMSF-3GPP-Name & SMSF-3GPP-Realm & SMSF-3GPP-Number\nj) SMSF-Non-3GPP-Number\nk) SMSF-Non-3GPP-Name & SMSF-Non-3GPP-Realm & SMSF-Non-3GPP-Number",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.173"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.337_6.3.4",
+      "section_id": "6.3.4",
+      "section_title": "Additional-Serving-Node",
+      "content": "The Additional Serving-Node AVP is of type Grouped and when present it shall contain the name/number of an additional serving node to be used for T4-triggering. It is originally defined in 3GPP TS 29.173 [8],\nAdditional-Serving-Node ::=\t<AVP header: 2406 10415>\n[ SMSF-3GPP-Name ]\n[ SMSF-3GPP-Realm ]\n[ SMSF-3GPP-Number ]\n[ SMSF-Non-3GPP-Name ]\n[ SMSF-Non-3GPP-Realm ]\n[ SMSF-Non-3GPP-Number ]\n[ SGSN-Name ]\n[ SGSN-Realm ]\n[ SGSN-Number ]\n[ MME-Name ]\n[ MME-Realm ]\n[ MME-Number-for-MT-SMS ]\n[ MSC-Number ]\n*[AVP]\nThe following combinations are allowed:\na) SGSN-Number\nb) SGSN-Name & SGSN-Realm & SGSN-Number\nc) MME-Name & MME-Realm & MME-Number-for-MT-SMS\nd) MSC-Number\ne) MSC-Number & MME-Name & MME-Realm\nf) SMSF-3GPP-Number\ng) SMSF-3GPP-Name & SMSF-3GPP-Realm & SMSF-3GPP-Number\nh) SMSF-Non-3GPP-Number\ni) SMSF-Non-3GPP-Name & SMSF-Non-3GPP-Realm & SMSF-Non-3GPP-Number",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.173"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.337_6.3.5",
+      "section_id": "6.3.5",
+      "section_title": "Supported-Feature-List AVP for the T4 application",
+      "content": "The syntax of this AVP is defined in 3GPP TS 29.229 [6].\nFor the T4 application, the meaning of the bits shall be as defined in table 6.3.5 for the Supported-Feature-List-ID of 1.\nTable 6.3.5: Features of Feature-List-ID 1 used in T4\nFeature bit\nFeature\nM/O\nDescription\n0\nDevice-Trigger-Recall-Replace\nO\nThis Feature indicates the support of the applicability to support the functionalty for device trigger recall and and device trigger replace.\nThis Feature is applicable for the DTR/DTA command pair\nFor recall if an MTC-IWF or SMS-SC does not indicate the support of the feature the MTC-IWF shall not send device trigger recall requests to an SMS-SC and send a negative reply to the SCS.\nFor Replace if an MTC-IWF or SMS-SC does not indicate the support of the feature the MTC-IWF shall treat the device trigger replace as a new device trigger.\nFeature bit: The order number of the bit within the Supported-Features AVP, e.g. \"1\".\nFeature: A short name that can be used to refer to the bit and to the feature, e.g. \" Device-Trigger-Recall-Replace \".\nM/O: Defines if the implementation of the feature is mandatory (\"M\") or optional (\"O\").\nDescription: A clear textual description of the feature.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.3.5",
+        "ts_29.229"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.337_6.3.6",
+      "section_id": "6.3.6",
+      "section_title": "Trigger-Action",
+      "content": "The Trigger Action AVP is of type Unsigned32 and indicates the type of the device trigger. The following values are defined:\nTRIGGER (0)\nThis value is used when device trigger requests the storage and sending of a new device trigger.\nRECALL (1)\nThis value is used when device trigger requests the removal of a pending device trigger.\nREPLACE (2)\nThis value is used when device trigger requests the replacement of a pending device trigger.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.337_6.3.7",
+      "section_id": "6.3.7",
+      "section_title": "MTC-Error-Diagnostic",
+      "content": "The MTC-Error-Diagnostic AVP is of type Unsigned32. The following values are defined:\n-\tORIGINAL_MESSAGE_NOT_DELETED (0)\nThis cause should be sent if the replace failed due to the fact that the old message is pending but could not be deleted in the SMS-SC.\n-\tNEW_MESSAGE_NOT_STORED (1)\nThis cause should be sent if the replace failed due to the fact that the new message could not be stored in the SMS-SC e.g. no resource available.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.337_6.3.8",
+      "section_id": "6.3.8",
+      "section_title": "DRMP",
+      "content": "The DRMP AVP is of type Enumerated and it is defined in IETF RFC 7944 [18]. This AVP allows the SMS-SC and the MTC-IWF to indicate the relative priority of Diameter messages. The DRMP AVP may be used to set the DSCP marking for transport of the associated Diameter message.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.337_7.1",
+      "section_id": "7.1",
+      "section_title": "General",
+      "content": "This section defines result code values that shall be supported by all Diameter implementations that conform to this specification.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.337_7.2",
+      "section_id": "7.2",
+      "section_title": "Success",
+      "content": "Result codes that fall within the Success category shall be used to inform a peer that a request has been successfully completed. The Result-Code AVP values defined in the Diameter base protocol specified in IETF RFC 6733 [19] shall be applied.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.337_7.3",
+      "section_id": "7.3",
+      "section_title": "Permanent Failures",
+      "content": "Errors that fall within the Permanent Failures category shall be used to inform the peer that the request has failed, and should not be attempted again. The Result-Code AVP values defined in Diameter base protocol specified in IETF RFC 6733 [19] shall be applied. When one of the result codes defined here is included in a response, it shall be inside an Experimental-Result AVP and the Result-Code AVP shall be absent.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.337_7.3.1",
+      "section_id": "7.3.1",
+      "section_title": "DIAMETER_ERROR_USER_UNKNOWN (5001)",
+      "content": "This result code shall be sent by the SMS-SC to indicate that the user identified by the IMSI or the MSISDN is unknown.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.337_7.3.2",
+      "section_id": "7.3.2",
+      "section_title": "DIAMETER_ERROR_INVALID_SME_ADDRESS (5530)",
+      "content": "This result code shall be sent by the SMS-SC to indicate that the SME address is invalid.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.337_7.3.3",
+      "section_id": "7.3.3",
+      "section_title": "DIAMETER_ERROR_SC_CONGESTION (5531)",
+      "content": "This result code shall be sent by the SMS-SC to indicate that SC is congested and unable to deliver the device trigger request.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.337_7.3.5",
+      "section_id": "7.3.5",
+      "section_title": "DIAMETER_ERROR_TRIGGER_REPLACE_FAILURE (5533)",
+      "content": "This result code shall be sent by the SMS-SC to indicate that trigger replace has failed to delete the old message and/or to store the new message.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.337_7.3.6",
+      "section_id": "7.3.6",
+      "section_title": "DIAMETER_ERROR_TRIGGER_RECALL_FAILURE (5534)",
+      "content": "This result code shall be sent by the SMS-SC to indicate that trigger recall has failed.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.337_7.3.7",
+      "section_id": "7.3.7",
+      "section_title": "DIAMETER_ERROR_ORIGINAL_MESSAGE_NOT_PENDING (5535)",
+      "content": "This result code shall be sent by the SMS-SC to indicate that trigger recall or replace has failed because the original message to be recalled or replaced is not stored any more in the SMS-SC.\nAnnex A (normative):Diameter message priority mechanism\nA.1\tGeneral\nIETF RFC 7944 [18] specifies a Diameter routing message priority mechanism that allows Diameter nodes to indicate the relative priority of Diameter messages. With this information, other Diameter nodes may leverage the relative priority of Diameter messages into routing, resource allocation, set the DSCP marking for transport of the associated Diameter message, and also abatement decisions when overload control is applied.\nA.2\tT4 interface\nA.2.1\tGeneral\nThe Diameter message priority mechanism is an optional feature.\nA.2.2\tSMS-SC and MTC-IWF behaviour\nWhen the SMS-SC or the MTC-IWF support the Diameter message priority mechanism over the T4 interface, the SMS-SC or the MTC-IWF shall comply with IETF RFC 7944 [18].\nThe SMS-SC or the MTC-IWF sending a request shall determine the required priority according to its policies. When priority is required, the SMS-SC or the MTC-IWF shall include the DRMP AVP indicating the required priority level in the request it sends, and shall prioritise the request according to the required priority level.\nWhen the SMS-SC or the MTC-IWF receives the corresponding response, it shall prioritise the received response according to the priority level received within the DRMP AVP if present in the response, otherwise according to the priority level of the corresponding request.\nWhen the SMS-SC or the MTC-IWF receives a request, it shall handle the request according to the received DRMP AVP priority level. For the response, the SMS-SC or the MTC-IWF may modify the priority level received in the DRMP AVP according to its policies and shall handle the response according to the required priority level. If the required priority level is different from the priority level received in the request, the SMS-SC or the MTC-IWF shall include the DRMP AVP in the response.\nThe SMS-SC and MTC-IWF decisions for a required priority and for the priority level value are implementation specific.\nIf:\n-\tSMS-SC and the MTC-IWF supports using the Diameter message priority mechanism for DSCP marking purposes,\n-\tthe transport network utilizes DSCP marking, and\n-\tmessage-dependant DSCP marking is possible for the protocol stack transporting Diameter,\nthen the SMS-SC and the MTC-IWF shall set the DSCP marking for transport of the request or response according to the required priority level.\nDiameter requests related to high priority traffic shall contain a DRMP AVP with a high priority of which the level value is operator dependent.\nIf the SMS-SC supporting the Diameter message priority mechanism receives a request message containing both the Priority-Indication AVP and the DRMP AVP, the SMS-SC shall prioritize the request according to priority level received within the DRMP AVP.\nAnnex B (informative):Change history\nChange history\nDate\nMeeting\nTDoc\nCR\nRev\nCat\nSubject/Comment\nNew version\n2012-09\nCT#57\nCP-120486\nTS prsented for information and approval\n11.0.0\n2012-12\nCT#58\nCP-120731\n0001\n2\nT4 Device Triggering via IMS\n11.1.0\nCP-120731\n0002\n1\nMWD update\nCP-120731\n0003\n1\nAdd Reference for the Information Elements\nCP-120731\n0004\n3\nRemoval of Editor's Notes\n2013-03\nCT#59\nCP-130028\n0005\n-\nApplication Port ID in T4\n11.2.0\n2013-06\nCT#60\nCP-130297\n0006\n-\nDelivery-Report-Request/Answer Description\n11.3.0\n2013-06\nCT#60\nCP-130300\n0007\n1\nT4 complements related to Diameter for SMS with SGSN\n12.0.0\n2014-03\nCT#63\nCP-140180\n0008\n3\nProtocol enhancements for the support of device recall and replace procedure\n12.1.0\n2014-06\nCT#64\nCP-140251\n0010\n2\nHandling of error scenarios on trigger replace\n12.2.0\nCP-140251\n0011\n2\nError handling, MTC error diagnostic\n2014-09\nCT#65\nCP-140508\n0012\n1\nReporting of Validity period of the trigger message expired in SMS-SC\n12.3.0\n2014-12\nCT#66\nCP-140792\n0014\n1\nTrigger action in device trigger request\n12.4.0\n2015-06\nCT#68\nCP-150247\n0016\n-\nPayload T4 parameter\n12.5.0\nCP-150247\n0020\n-\nSCS address for SMS over T4\nCP-150248\n0018\n1\nIP-SM-GW-Realm\n2015-09\nCT#69\nCP-150429\n0023\n-\nAVP names corrections\n12.6.0\n2015-12\nCT#70\nCP-150746\n0025\n2\nDestination Host in the DTR command, IMSI presence\n12.7.0\n2015-12\nCT#70\nAutomatic upgrade from previous Release version 12.7.0\n13.0.0\n2016-03\nCT#71\nCP-160023\n0026\n1\nDiameter message priority over T4\n13.1.0\n2016-12\nCT#74\nCP-160664\n0027\n-\nCorrection to change IETF drmp draft version to official RFC 7944\n13.2.0\n2017-03\nCT#75\nCP-170036\n0028\n-\nSMS-MO over T4\n14.0.0\n2017-03\nCT#75\nCP-170048\n0029\n-\nUpdate of reference for the Diameter base protocol\n14.0.0\n2017-03\nCT#75\nCP-170048\n0030\n1\nHandling of the Vendor-Specific-Application-Id AVP\n14.0.0\n2017-03\nCT#75\nCP-170048\n0031\n-\nCardinality of the Failed-AVP AVP in answer\n14.0.0\n2017-06\nCT#76\nCP-171018\n0033\n1\nSupport for signaling transport level packet marking\n14.1.0\n2017-09\nCT#77\nCP-172013\n0035\n-\nCorrection of DRMP Procedures\n14.2.0\n2018-06\nCT#80\n-\n-\n-\nUpdate to Rel-15 version (MCC)\n15.0.0\n2020-07\nCT#88e\n-\n-\n-\nUpdate to Rel-16 version (MCC)\n16.0.0\n2021-03\nCT#91e\nCP-210048\n0036\n-\nDevice Trigger Request for 5G Devices\n16.1.0\n2022-04\n-\n-\n-\n-\n-\nUpdate to Rel-17 version (MCC)\n17.0.0\n2024-03\n-\n-\n-\n-\n-\nUpdate to Rel-18 version (MCC)\n18.0.0",
+      "chunk_type": "requirement",
+      "cross_references": []
+    }
+  ]
+}

@@ -1,0 +1,498 @@
+{
+  "metadata": {
+    "specification_id": "ts_29.276",
+    "version": "18.0.0",
+    "title": "3GPP TS 29.276",
+    "file_path": "/content/drive/MyDrive/RAG_thesis/data/29_series/29276-i00/29276-i00.docx"
+  },
+  "export_info": {
+    "export_date": "2025-07-26T08:56:06.847002",
+    "total_chunks": 44
+  },
+  "chunks": [
+    {
+      "chunk_id": "ts_29.276_1",
+      "section_id": "1",
+      "section_title": "Scope",
+      "content": "The present document specifies the stage 3 of the Evolved Packet System S101and S121 reference points between the MME and the HRPD Access Network. The S101 interface supports procedures for Pre-Registration, Session Maintenance and Active handoffs between E-UTRAN and HRPD networks. The S121 interface supports procedures for RIM information exchange between the MME and the HRPD Access Network.\nIt also specifies the S103 interface between the Serving GW and HSGW. This User Plane interface is used to forward DL data to minimize packet losses in mobility from E-UTRAN to HRPD. Signalling procedures on the S101 interface are used to set up tunnels on the S103 interface.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.276_2",
+      "section_id": "2",
+      "section_title": "References",
+      "content": "The following documents contain provisions which, through reference in this text, constitute provisions of the present document.\n-\tReferences are either specific (identified by date of publication, edition number, version number, etc.) or non‑specific.\n-\tFor a specific reference, subsequent revisions do not apply.\n-\tFor a non-specific reference, the latest version applies. In the case of a reference to a 3GPP document (including a GSM document), a non-specific reference implicitly refers to the latest version of that document in the same Release as the present document.\n[1]\t3GPP TR 21.905: \"Vocabulary for 3GPP Specifications\".\n[2]\t3GPP TS 23.402: \"Architecture enhancements for non-3GPP accesses\".\n[3]\tIETF RFC 3232: \"Assigned Numbers\".\n[4]\tIETF RFC 2784: \"Generic Routing Encapsulation (GRE)\".\n[5]\tIETF RFC 2890: \"Key and Sequence Number Extensions to GRE\".\n[6]\t3GPP TS 29.274: \"Evolved GPRS Tunnelling Protocol for Control Plane (GTPv2-C); Stage 3\".\n[7]\t3GPP2 C.S0024-B: \"cdma2000 High Rate Packet Data Air Interface Specification\".\n[8]\t3GPP TS 23.007: \"Restoration procedures\".\n[9]\t3GPP2 C.S0087-0 v2.0: \"E-UTRAN - HRPD and CDMA2000 1x Connectivity and Interworking: Air Interface Aspects\".\n[10]\t3GPP TS 24.301: \"Non-Access-Stratum (NAS) protocol for Evolved Packet System (EPS); Stage 3\".\n[11]\t3GPP TS 33.402: \"3GPP System Architecture Evolution: Security Architecture\".\n[12]\t3GPP TS 36.413: \"Evolved Universal Terrestrial Radio Access (E-UTRA) ; S1 Application Protocol (S1AP)\".\n[13]\t3GPP TS 24.008: \" Mobile radio interface Layer 3 specification; Core network protocols; Stage 3\".\n[14]\t3GPP TS 29.280: \"3GPP EPS Sv interface (MME to MSC) for SRVCC\".\n[15]\t3GPP TS 48.018: \"General Packet Radio Service (GPRS); Base Station System (BSS) - Serving GPRS Support Node (SGSN); BSS GPRS protocol (BSSGP)\".",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905",
+        "ts_23.402",
+        "ts_29.274",
+        "ts_23.007",
+        "ts_24.301",
+        "ts_33.402",
+        "ts_36.413",
+        "ts_24.008",
+        "ts_29.280",
+        "ts_48.018"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.276_3.1",
+      "section_id": "3.1",
+      "section_title": "Definitions",
+      "content": "For the purposes of the present document, the terms and definitions given in TR 21.905 [1] and the following apply. A term defined in the present document takes precedence over the definition of the same term, if any, in TR 21.905 [1].\nHRPD Access: Combination of the eAN - PCF of the cdma2000 access",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_21.905"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.276_3.2",
+      "section_id": "3.2",
+      "section_title": "Abbreviations",
+      "content": "For the purposes of the present document, the abbreviations given in TR 21.905 [1] and the following apply. An abbreviation defined in the present document takes precedence over the definition of the same abbreviation, if any, in TR 21.905 [1].\nAN\tAccess Network\neAN\tenhanced AN\neNodeB\tenhanced Node B\nE-UTRAN\tEnhanced UMTS Terrestial Radio Access Network\nGRE\tGeneric Routing Encapsulation\nGW\tGateway\nHO\tHandOver\nHRPD\tHigh Rate Packet Data\nHSGW\tHRPD Serving GateWay\nIMSI\tInternational Mobile Station Identity\nIP\tInternet Protocol\nMME\tMobility Management Entity\nPCF\tPacket Control Function\nPDN\tPacket data Network\nPMIP\tProxy Mobile IP\nRIM\tRAN Information Management\nTEID\tTunnel End Point Identifier\nUDP\tUser Datagram Protocol\nVS\tVendor Specific",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.276_4",
+      "section_id": "4",
+      "section_title": "General",
+      "content": "The S101 and S121 reference points are defined between the MME and the HRPD access, enabling interactions between E-UTRAN Access and cdma2000 HRPD Access. The S101 interface is required to perform procedures related to optimise HO from the E-UTRAN Access to cdma2000 HRPD Access to allow for pre-registration and handover signalling with the target system. The S121 interface is required to perform procedures related to RIM information exchange between the E-UTRAN Access and cdma2000 HRPD Access.\nThe S103 interface is defined between the Serving GW and HSGW and supports the forwarding of DL data during mobility from E-UTRAN to HRPD. Signalling procedures on the S101 interface are used to set up tunnels on the S103 interface.\nThe requirements for these interfaces are defined in 3GPP TS 23.402 [2].\nThe protocol stack used for the S101 and S121 interfaces shall be based on GTPv2-C, see 3GPP TS 29.274 [6] Figure 4.2.0-1.\nThe UDP header and port numbers definitions shall be as defined in GTPv2-C, see 3GPP TS 29.274 [6] section 4. 2.1.\nThe IP header and IP addresses definitions shall be as defined in GTPv2-C, see 3GPP TS 29.274 [6] section 4.2.2.\nLayer 1 and Layer 2 requirements shall as defined in GTPv2-C, see 3GPP TS 29.274 [6] sections 4.2.3 and 4.2.4.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.274_clause_4",
+        "ts_29.274_clause_4.2.2",
+        "ts_29.274_figure_4.2.0-1",
+        "ts_23.402",
+        "ts_29.274"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.276_5",
+      "section_id": "5",
+      "section_title": "Transmission Order and Bit Definitions",
+      "content": "Transmission Order and Bit Definitions shall be as defined in GTPv2-C, see 3GPP TS 29.274 [6] section 4.3.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.274_clause_4.3",
+        "ts_29.274"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.276_6.1",
+      "section_id": "6.1",
+      "section_title": "Introduction",
+      "content": "The S101 Message Header is conformant to the GTPv2-C Message Header, see 3GPP TS 29.274 [6] section 5. All S101 messages shall have a header that includes specific parameters. The following list of header parameters are defined for the S101 interface:\n-\tVersion\n-\tFlags (T = TEID Included)\n-\tMessage Type\n-\tLength",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.274_clause_5",
+        "ts_29.274"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.276_6.2",
+      "section_id": "6.2",
+      "section_title": "S101 Message Header",
+      "content": "The S101 header is a variable length header. The minimum length of the S101 header is eight octets. Space has been reserved for four flags that may be used in the future to signal the presence of additional optional header fields or utilities.\n-\tBit 4 (the T bit) may be set to one to indicate that a TEID is present in the header, as per 3GPP TS 29.274 [6]. The T bit shall be set to zero to indicate that the TEID field shall not be present in any message sent on the S101 interface.\nIf the header fields do not occupy a full eight octets, then spare octets shall be added after the last valid field in the S101 header to complete eight octets.  Spare octets and bits shall be set to zero.\nAlways present fields:\n-\tVersion field: This field is used to determine the version of the S101 protocol. The version number shall be set to '010'.\n-\tMessage Type: This field indicates the type of S101 message. The valid values of the message type are defined in clause 7.1. Note that values chosen for Message Type shall be coordinated with and shall not overlap the Message Type values chosen for GTPv2-C in 3GPP TS 29.274 [6].\n-\tLength: This field indicates the length in octets of the payload, i.e. the rest of the packet following the mandatory part of the S101 header (that is the first 4 octets).\n-\tSequence Number: This field enables the target system to identify any missing receipt of messages and is used also for acknowledgement of messages.\nBits\nOctets\n8\n7\n6\n5\n4\n3\n2\n1\n1\nVersion=010\n(*)\nT=0\n(*)\n(*)\n(*)\n2\nMessage Type\n3\nLength (1st Octet)\n4\nLength (2nd Octet)\n5\nSequence Number (1st Octet)\n6\nSequence Number (2nd Octet)\n7\nSequence Number (3rd Octet)\n8\nSpare\nNOTE 0:\t(*) This bit is a spare bit. It shall be sent as '0'. The receiver shall not evaluate this bit.\nFigure 6.2-1: Layout of the S101 Message Header\n6A\tS121 Message Header\n6A.1\tIntroduction\nThe S121 Message Header is conformant to the GTPv2-C Message Header, see 3GPP TS 29.274 [6] section 5. All S121 messages shall have a header that includes specific parameters. The following header parameters are defined for the S121 interface:\n-\tVersion\n-\tFlags (T = TEID Included)\n-\tMessage Type\n-\tLength\n6A.2\tS121 Message Header\nThe S121 header is a variable length header. The minimum length of the S121 header is eight octets. Space has been reserved for four flags that may be used in the future to signal the presence of additional optional header fields or utilities.\n-\tBit 4 (the T bit) indicates whether a TEID is present in the header, as per 3GPP TS 29.274 [6]. The T bit shall be set to zero to indicate that the TEID field shall not be present in any message sent on the S121 interface.\nIf the header fields do not occupy a full eight octets, then spare octets shall be added after the last valid field in the S121 header to complete eight octets.  Spare octets and bits shall be set to zero.\nAlways present fields:\n-\tVersion field: This field is used to determine the version of the S121 protocol. The version number shall be set to '010'.\n-\tMessage Type: This field indicates the type of S121 message. The valid values of the message type are defined in clause 7A.1. Note that values chosen for Message Type shall be coordinated with and shall not overlap the Message Type values chosen for GTPv2-C in 3GPP TS 29.274 [6].\n-\tLength: This field indicates the length in octets of the payload, i.e. the rest of the packet following the mandatory part of the S121 header (that is the first 4 octets).\n-\tSequence Number: This field enables the target system to identify any missing receipt of messages and is used also for acknowledgement of messages.\nBits\nOctets\n8\n7\n6\n5\n4\n3\n2\n1\n1\nVersion=010\n(*)\nT=0\n(*)\n(*)\n(*)\n2\nMessage Type\n3\nLength (1st Octet)\n4\nLength (2nd Octet)\n5\nSequence Number (1st Octet)\n6\nSequence Number (2nd Octet)\n7\nSequence Number (3rd Octet)\n8\nSpare\nNOTE 0:\t(*) This bit is a spare bit. It shall be sent as '0'. The receiver shall not evaluate this bit.\nFigure 6A.2-1: Layout of the S121 Message Header",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_7.1",
+        "ts_29.274_clause_5",
+        "clause_7",
+        "figure_6.2-1",
+        "figure_6",
+        "ts_29.274"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.276_7.1",
+      "section_id": "7.1",
+      "section_title": "Introduction",
+      "content": "This section is divided into path management which defines the general messages for the pre-configured tunnel and a section for the specific messages used for information transfer over the control plane.\nTable 7.1 specifies GTPv2-C message types that are used across the S101 interface.\nTable 7.1: Message types for S101\nMessage Type value (Decimal)\nMessage\nReference\n0\nReserved\n3GPP TS 29.274 [6]\n1\nEcho Request\n3GPP TS 29.274 [6]\n2\nEcho Response\n3GPP TS 29.274 [6]\n3\nVersion Not Supported Indication\n3GPP TS 29.274 [6]\n4\nDirect Transfer Request message\n7.3.2\n5\nDirect Transfer Response message\n7.3.3\n6\nNotification Request message\n7.3.4\n7\nNotification Response message\n7.3.5\n8-16\nFor future S101 interface use\n17-24\nReserved for S121 interface\n7A\n25-31\nReserved for Sv interface\n3GPP TS 29.280 [14]\n32-239\nReserved for GTPv2-C spec\n3GPP TS 29.274 [6]\n240 to 247\nReserved for Sv interface\n3GPP TS 29.280 [14]\n248 to 255\nReserved for GTPv2-C spec\n3GPP TS 29.274 [6]",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_7.1",
+        "ts_29.274",
+        "ts_29.280"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.276_7.2.1",
+      "section_id": "7.2.1",
+      "section_title": "Introduction",
+      "content": "The path from the MME to the non-3GPP Access Network operationally requires management capabilities. The following GTPv2-C messages support path management for the S101 interface:\n-\tEcho Request\n-\tEcho Response\n-\tVersion Not Supported Indication\nThese messages are defined for GTPv2-C and the handling and definition shall also be as defined in GTPv2-C, see 3GPP TS 29.274 [6].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.274"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.276_7.2.2",
+      "section_id": "7.2.2",
+      "section_title": "Echo Request message",
+      "content": "An MME or an HRPD access node may send an Echo Request to find out if the peer HRPD access node or MME is alive (see section Path Failure). When and how often an Echo Request message may be sent is implementation specific but an Echo Request shall not be sent more often than every 60 s on each path.\nAn MME or an HRPD access node shall be prepared to receive an Echo Request at any time and it shall reply with an Echo Response.  The optional Private Extension contains vendor or operator specific information.\n3GPP TS 29.274 [6] specifies the information elements included in the Echo Request message.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.274"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.276_7.2.3",
+      "section_id": "7.2.3",
+      "section_title": "Echo Response message",
+      "content": "The message shall be sent as a response to a received Echo Request.\n3GPP TS 29.274 [6] specifies the information elements included in the Echo Response message.\nThe Recovery information element contains the local Restart Counter (see section Restoration and Recovery) value for the node that sends the Echo Response message.\nThe MME or an HRPD access node that receives an Echo Response from a peer MME or an HRPD access node shall compare the Restart Counter value received with the previous Restart Counter value stored for that peer MME or HRPD access node. If no previous value was stored, the Restart Counter value received in the Echo Response shall be stored for the peer MME or HRPD access node.\nThe value of a Restart Counter previously stored for a peer MME or HRPD access node may differ from the Restart Counter value received in the Echo Response from that peer MME or HRPD access node. In this case, the MME or HRPD access node shall handle the Restart Counter as specified in clause 18 of 3GPP TS 23.007 [3].\nThe optional Private Extension contains vendor or operator specific information.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_23.007_clause_18",
+        "ts_29.274",
+        "ts_23.007"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.276_7.2.4",
+      "section_id": "7.2.4",
+      "section_title": "Version Not Supported Indication message",
+      "content": "This message contains only the S101 header and indicates the latest S101 version that the MME or HRPD access node entity on the identified UDP/IP address can support (see 3GPP TS 29.274 [6] subclause 7.1.3).\n3GPP TS 29.274 [6] specifies the detailed handling and information elements included in the Version Not Supported Indication message.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.274_clause_7.1.3",
+        "ts_29.274"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.276_7.3.1",
+      "section_id": "7.3.1",
+      "section_title": "Introduction",
+      "content": "The following messages are used to support interworking between the MME and the non-3GPP access network:\n-\tDirect Transfer Request\n-\tDirect Transfer Response\n-\tNotification Request\n-\tNotification Response",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.276_7.3.2",
+      "section_id": "7.3.2",
+      "section_title": "Direct Transfer Request message",
+      "content": "A Direct Transfer Request shall be sent from an MME or HRPD access node to transport an HRPD or an E-UTRAN message to the peer HRPD access node or MME.\nOne of the IEs Session ID or Session ID2 but not both shall be included in the message.\nTable 7.3.2-1 specifies the information elements included in the Direct Transfer message.\nTable 7.3.2-1: Information Elements in a Direct Transfer Request\nInformation elements\nPresence Requirement\nReference\nInstance\nSession ID\nConditional\n7.5.2\n0\nSession ID2\nConditional\n7.5.2A\n0\nHRPD Sector ID\nConditional\n7.5.5\n0\nS101 Transparent Container\nMandatory\n7.5.6\n0\nPDN GW PMIP GRE Tunnel Info\nConditional\n7.5.9\n0\nS103 GRE Tunnel Info\nConditional\n7.5.10\n0\nS103 HSGW IP Address\nConditional\n7.5.11\n0\nHandover Indicator\nConditional\n7.5.7\n0\nEUTRAN Round Trip Delay\nConditional\n7.5.14\n0\nUnauthenticated IMSI\nConditional\n7.5.13\n0\nRecovery\nConditional\n7.5.4\n0\nPrivate Extension\nOptional\n7.5.8\nVS\nThe HRPD Sector ID parameter shall be included if this message is being sent from the MME to the HRPD access node in case of handover from E-UTRAN to HRPD.\nIf an HRPD message is being tunnelled between an MME and an HRPD access node, the S101 Transparent Container shall contain the HRPD message.\nIf the MME receives the EUTRAN Round Trip Delay Estimation Info IE in a message from the eNodeB, the MME shall copy that round trip delay estimation value into the EUTRAN Round Trip Delay parameter and shall include the EUTRAN Round Trip Delay parameter in this message.\nIf an E-UTRAN message is being tunnelled between an MME and an HRPD access node, the S101 Transparent Container shall contain the E-UTRAN message.\nIf the Direct Transfer Request message is sent from the MME to the HRPD AN and the MME has the PDN GW IP Address and the PDN GW GRE Key for a PDN Connection, the PDN GW PMIP GRE Tunnel Info IE shall be included when the MME receives CDMA2000 HO Required Indication from the eNodeB, see 3GPP TS 36.413 [12]. The PDN GW PMIP GRE Tunnel Info shall include the PDN Identity and the PDN GW GRE Key for the PDN connection. For each PDN Connection of the UE, there shall be a PDN GW PMIP GRE Tunnel Info Information Element included in the message. The Handover Indicator shall indicate Handover Required in this case. For each PDN GW PMIP GRE Tunnel of the UE, there shall be a PDN GW PMIP GRE Tunnel Info Information Element included in the message.\nIf the Handover Indicator IE indicates HO Ready during optimized active handover from E-UTRAN to HRPD, the S101 Transparent Container shall contain the HRPD message (=HRPD TCA message). If data forwarding applies, the S103 GRE Tunnel Info IE shall be included. The S103 GRE Tunnel Info IE shall include the PDN Identity and the HSGW GRE Key for a PDN connection. The S103 HSGW IP Address IE shall also be included in this case in the message but only one occurrence. For each PDN connection of the UE which requires data forwarding towards the HSGW, there shall be a S103 GRE Tunnel Info Information Element included in the message.\nThe Handover Indicator parameter shall be included, if the encapsulated message being carried will cause the UE to leave the source system and tune its radio to the target system. It shall also be included for the case of LTE to HRPD handover, if a Direct Transfer Request message is sent from the MME to the HRPD AN, the MME shall include a Handover Required indication in the Handover Indicator IE, if a Handover Required was received by the MME from the eNodeB.\nIf the node is contacting its peer for the first time or if the node has restarted recently and the new Restart Counter value has not yet been indicated to the peer, the Recovery IE shall be included.\nIf the Handover is for an emergency attached UE and the IMSI is available but not authenticated, then unauthenticated IMSI IE shall be included which shall contain the unauthenticated IMSI of the UE.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_7.3.2-1",
+        "ts_36.413"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.276_7.3.3",
+      "section_id": "7.3.3",
+      "section_title": "Direct Transfer Response message",
+      "content": "The message shall be sent from an MME or HRPD access node to its peer HRPD access node or MME as a response to a Direct Transfer Request.\nOne of the IEs Session ID or Session ID2 but not both shall be included in the message.\nTable 7.3.3-1 specifies the information elements included in the Direct Transfer Response message.\nTable 7.3.3-1: Information Elements in a Direct Transfer Response message\nInformation elements\nPresence Requirement\nReference\nInstance\nSession ID\nConditional\n7.5.2\n0\nSession ID2\nConditional\n7.5.2A\n0\nCause\nMandatory\n7.5.3\n0\nRecovery\nOptional\n7.5.4\n0\nPrivate Extension\nOptional\n7.5.8\nVS\nThe Cause value indicates that the encapsulated message was received. Possible Cause values are:\n-\t\"Request Accepted\".\n-\t\"System failure\".\n-\t\"Mandatory IE incorrect\".\n-\t\"Mandatory IE missing\".\n-\t\"Invalid message format\".\n-\t\"Conditional IE missing\".\n'No resources available' indicates that not enough resources are available within the receiving system.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_7.3.3-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.276_7.3.4",
+      "section_id": "7.3.4",
+      "section_title": "Notification Request message",
+      "content": "A Notification Request message shall be sent from an MME or HRPD access node to its peer HRPD access node or MME to notify its peer of a fact or event.\nOne of the IEs Session ID or Session ID2 but not both shall be included in the message.\nTable 7.3.4-1 specifies the information elements included in the Notification Request message.\nTable 7.3.4-1: Information Elements in a Notification Request\nInformation elements\nPresence Requirement\nReference\nInstance\nSession ID\nConditional\n7.5.2\n0\nSession ID2\nConditional\n7.5.2A\n0\nHandover Indicator\nConditional\n7.5.7\n0\nRecovery\nConditional\n7.5.4\n0\nPrivate Extension\nOptional\n7.5.8\nVS\nThe Handover Indicator information element (=HO Complete) shall be included if the sending system needs to notify the receiving system of the completion of a handover.\nThe Handover Indicator information element (=Redirection) shall be included if the sending system needs to notify the receiving system of the S101 tunnel end point redirection.\nThe optional Private Extension contains vendor or operator specific information.\nIf the Handover Indicator IE (= Redirection) and the node is contacting its peer for the first time or if the node has restarted recently and the new Restart Counter value has not yet been indicated to the peer , the Recovery IE shall be included.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_7.3.4-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.276_7.3.5",
+      "section_id": "7.3.5",
+      "section_title": "Notification Response message",
+      "content": "A Notification Response message shall be sent from an MME or HRPD access node to its peer HRPD access node or MME to acknowledge receipt of a Notification Request message.\nOne of the IEs Session ID or Session ID2 but not both shall be included in the message.\nTable 7.3.5-1 specifies the information elements included in the Notification Response message.\nTable 7.3.5-1: Information Elements in a Notification Response message\nInformation elements\nPresence Requirement\nReference\nInstance\nSession ID\nConditional\n7.5.2\n0\nSession ID2\nConditional\n7.5.2A\n0\nCause\nMandatory\n7.5.3\n0\nRecovery\nOptional\n7.5.4\n0\nPrivate Extension\nOptional\n7.5.8\nVS\nIf the MME or HRPD access node receives a Notification Response with a Cause value other than 'Notification Accepted', it should note and log the event and response.\nPossible Cause values are:\n-\t\"Notification Accepted\".\n-\t\"System failure\".\n-\t\"Mandatory IE incorrect\".\n-\t\"Mandatory IE missing\".\n-\t\"Conditional IE missing\".\n-\t\"Invalid message format\".",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_7.3.5-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.276_7.4",
+      "section_id": "7.4",
+      "section_title": "Reliable Delivery of Signalling Messages",
+      "content": "For the S101 interface protocol, the reliable delivery of signalling messages shall have the same handling as GTPv2-C. See 3GPP TS 29.274 [6] but with S101 node replacing GTPv2-C node as appropriate.\nFor certain types of messages, i.e. Direct Transfer messages, retransmission at this layer level would be harmful to the session so for Direct Transfer messages retransmissions shall not be allowed and their N3-REQUESTS value shall be set to one, i.e. message is only sent once.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.274"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.276_7.5.1",
+      "section_id": "7.5.1",
+      "section_title": "Information Element Assignments",
+      "content": "An S101 message may contain several information elements. The TLIV (Type, Length, Instance, Value) encoding format shall be used for all S101 information elements. See TS 29.274 [6] subclause 8.2 for the general encoding of the IEs.\nWithin information elements, certain fields may be described as spare. These bits shall be transmitted with the value defined for them. To allow for future features, the receiver shall not evaluate these bits.\nTable 7.5-1: Information Elements\nIE Type Value\nInformation Element\nComment / Reference\nNumber of Fixed Octets\n1\nSession ID\nVariable Length / 7.5.2\nNot Applicaple\n2\nCause\nVariable Length / 7.5.3\nNot Applicaple\n3\nRecovery\nVariable Length / 7.5.4\nNot Applicaple\n4\nHRPD Sector ID\nFixed Length / 7.5.5\n16\n5\nS101 Transparent Container\nVariable Length / 7.5.6\nNot Applicaple\n6\nHandover Indicator\nFixed Length / 7.5.7\n1\n7\nPDN GW PMIP GRE Tunnel Info\nVariable Length / 7.5.9\nNot Applicaple\n8\nS103 GRE Tunnel Info\nVariable Length / 7.5.10\nNot Applicaple\n9\nS103 HSGW IP Address\nVariable Length / 7.5.11\nNot Applicaple\n10\nReserved (NOTE 3)\n11See NOTE 1\nSession ID2\nVariable Length / 7.5.2A\nNot Applicaple\n12\nUnauthenticated IMSI\nVariable Length / 7.5.13\nNot Applicaple\n13\nEUTRAN Round Trip Delay\nVariable Length / 7.5.14\nNot Applicaple\n14-34\nFor future use. Shall not be sent. If received, shall be treated as an Unknown IE.\n35-50\nReserved for the S121 interface\n7A\n51-70\nReserved for Sv interface. Shall not be sent. If received, shall be treated as an Unknown IE.\n3GPP TS 29.280 [14]\n3GPP TS 29.280 [14]\n71-254\nReserved for GTPv2-C. Shall not be sent. If received, shall be treated as an Unknown IE.\n3GPP TS 29.274 [6]\n3GPP TS 29.274 [6]\n255\nPrivate Extension\n7.5.8\n3GPP TS 29.274 [6]\nNOTE 1:\tAlthough Session ID2 is encoded as per MEI IE in 3GPP TS 29.274 [6], the IE type value used is as defined here, i.e. not 75.\nNOTE 2:\tThe size of the TLI (Type, Length and Instance) fields, i.e \"4\" octets, has been subtracted from the number of the fixed octets of the \"Fixed Length\" and \"Extendable\" IEs.\nNOTE 3:\tThis value was allocated in an earlier version of the protocol and shall not be used.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.274_clause_8.2",
+        "table_7.5-1",
+        "ts_29.274",
+        "ts_29.280"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.276_7.5.2",
+      "section_id": "7.5.2",
+      "section_title": "Session ID",
+      "content": "For the S101 interface, the Session ID Information Element is conditional for all S101 messages apart from the path management messages and, if present, shall always be the first IE following the S101 Header.\nThe IMSI IE shall be used for the parameter Session ID for a UE with an authenticated IMSI. The Session ID IE shall be encoded as per the International Mobile Station Identity information element, as defined in 3GPP TS 29.274 [6].\n7.5.2A\tSession ID2\nFor emergency attached UEs which do not have an IMSI or have an IMSI but not one authenticated by the network, the MEI IE shall be used as the Session ID2, i.e. using the IMEI as the Session ID. The Session ID2 IE is conditional and if present, shall always be the first IE following the S101 Header.\nIn this case, the Session ID2 IE shall be encoded as per the Mobile Equipment Identity Type IE, as defined in 3GPP TS 29.274 [6].",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.274"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.276_7.5.3",
+      "section_id": "7.5.3",
+      "section_title": "Cause",
+      "content": "In a response, the Cause Value shall indicate the acceptance or the rejection of the corresponding request. The Cause value shall be included in the response message.\n\"Request accepted\" shall be returned when an MME or an HRPD Access has accepted a Direct Transfer request.\n\"Notification accepted\" shall be returned when an MME or an HRPD Access has accepted a notification.\n\"No memory available\" shall indicate that the MME or an HRPD Access does not have enough memory to use.\n\"System failure\" shall indicate that a generic permanent error condition has occurred.\n\"Invalid message format\", \"Mandatory IE incorrect\", \"Mandatory IE missing\" and \"Conditional IE missing\" shall indicate protocol errors as described in the section on Error handling.\nRefer to 3GPP TS 29.274 [6] for the encoding of this Information Element.\nTable 7.5.3-1 Cause Values used on the S101 Interface\nMessage Type\nCause value\n(decimal)\nMeaning\n0\nReserved. Shall not be sent and if received the Cause shall be treated as an invalid IE\nRequest\n1-15\nSpare. This value range is reserved for Cause values in a request message\nAcceptance Response\n16\nRequest accepted\n17\nRequest accepted partially\n18\nNotification accepted\n19-63\nSpare. This value range is reserved for Cause values in acceptance response message\nRejection Response\n64\nContext Non Existent/Found\n65\nInvalid Message Format\n66\nSpare\n67\nInvalid length\n68\nService not supported\n69\nMandatory IE incorrect\n70\nMandatory IE missing\n71\nReserved (See NOTE 1.)\n72\nSystem failure\n73\nNo resources available\n74\nNo memory available\n75-102\nSpare\n103\nConditional IE missing\n104-255\nSpare. This value range is reserved for Cause values in rejection response message\nNOTE 1:\tThis value was allocated in an earlier version of the specification.\nNOTE:\tIn the first release of the present document the value of the length field of this IE is 1 for cause values without \"offending IE\", and 4 + the length of the offending IE for those including it. In future releases of the specification additional octets may be specified. The legacy receiving entity simply ignores the unknown octets and values in the spare bits.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_7.5.3-1",
+        "ts_29.274"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.276_7.5.4",
+      "section_id": "7.5.4",
+      "section_title": "Recovery",
+      "content": "The Recovery information element shall indicate if the peer MME or HRPD Access has restarted. Refer to 3GPP TS 29.274 [6] for the encoding of this Information Element.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.274"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.276_7.5.5",
+      "section_id": "7.5.5",
+      "section_title": "HRPD Sector ID",
+      "content": "The HRPD Sector ID information element shall provide a reference in the target system that can be used to create a unique mapping to an HRPD Access or MME that is appropriate to operate as the peer entity for an S101 interface tunnel.\nThe HRPD Sector Identifier is defined in 3GPP2 C.S0024-B [7] section 13.9.\nThe E-UTRAN Access makes the HRPD Sector ID available by provisioning this in the E-UTRAN Access equipment.\nTable 7.5.5-1: HRPD Sector ID IE\nBits\nOctets\n8\n7\n6\n5\n4\n3\n2\n1\n1\nType = 4\n2 to 3\nLength = 16\n4\nSpare\nInstance\n5 to 20\nHRPD Sector Identifier",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_13.9",
+        "table_7.5.5-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.276_7.5.6",
+      "section_id": "7.5.6",
+      "section_title": "S101 Transparent Container",
+      "content": "The S101 Transparent Container information element shall contain an encapsulated HRPD message or an encapsulated E-UTRAN message that is either generated by the UE and is being transferred to the MME or HRPD access, or is generated by the MME or HRPD access and is being transferred to the UE. It is variable in length and shall always be an integral number of octets. The highest numbered octet shall be filled, if necessary, with extra bits set to '0' in the low order bit positions to create an integral number of octets.\nTable 7.5.6-1: S101 Transparent Container IE\nBits\nOctets\n8\n7\n6\n5\n4\n3\n2\n1\n1\nType = 5\n2 to 3\nLength = n\n4\nSpare\nInstance\n5 to (n+4)\nS101 Transparent Container\nThe format of an encapsulated E-UTRAN message is defined in 3GPP TS 24.301 [10].\nThe format of the encapsulated HRPD messages is defined in 3GPP2 C.S0087-0 [9].",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_7.5.6-1",
+        "ts_24.301"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.276_7.5.7",
+      "section_id": "7.5.7",
+      "section_title": "Handover Indicator",
+      "content": "The Handover Indicator information element shall indicate the status of the Handover to the receiving system as a result of the encapsulated message carried in an S101 Transparent Container message.\nTable 7.5.7-1: Handover Indicator IE\nBits\nOctets\n8\n7\n6\n5\n4\n3\n2\n1\n1\nType = 6\n2 to 3\nLength = 1\n4\nSpare\nInstance\n5\nHandover Indicator\nTable 7.5.7-2: Handover Indicator\nHandover Indicator (Decimal)\nMeaning\n0\nNot Used\n1\nHO Ready\n2\nHO Failure\n3\nHO Complete\n4\nRedirection\n5\nHO Required\nAll Others\nSpare",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_7.5.7-1",
+        "table_7.5.7-2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.276_7.5.8",
+      "section_id": "7.5.8",
+      "section_title": "Private Extension",
+      "content": "The Private Extension information element shall contain vendor specific information. Refer to 3GPP TS 29.274 [6] for the encoding of this Information Element.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.274"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.276_7.5.9",
+      "section_id": "7.5.9",
+      "section_title": "PDN GW PMIP GRE Tunnel Info",
+      "content": "The PDN GW PMIP GRE Tunnel Info shall contain: the PDN Identity, i.e. APN, the PDN GW Address and the PDN GW GRE Key, which identifies a PMIP GRE tunnel towards a PDN GW.\nTable 7.5.9-1: PDN GW PMIP GRE Tunnel Info IE\nBits\nOctets\n8\n7\n6\n5\n4\n3\n2\n1\n1\nType = 7\n2 to 3\nLength = n\n4\nSpare\nInstance\n5\nPDN Identity Length = m\n6 to (m+5)\nPDN Identity (=APN)\nm+6\nPDN GW IP Address Length = k\n(m+7) to (k+m+6)\nPDN GW IP Address\n(k+m+7) to (k+m+10)\nPDN GW GRE Key",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_7.5.9-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.276_7.5.10",
+      "section_id": "7.5.10",
+      "section_title": "S103 GRE Tunnel Info",
+      "content": "The S103 GRE Tunnel Info IE shall contain the PDN Identity and HSGW GRE Key, which identifies a GRE tunnel towards a HSGW.\nTable 7.5.10-1: S103 GRE Tunnel Info IE\nBits\nOctets\n8\n7\n6\n5\n4\n3\n2\n1\n1\nType = 8\n2 to 3\nLength = n\n4\nSpare\nInstance\n5\nPDN Identity Length = m\n6 to (m+5)\nPDN Identity (=APN)\n(m+6) to (m+9)\nHSGW GRE Key",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_7.5.10-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.276_7.5.11",
+      "section_id": "7.5.11",
+      "section_title": "S103 HSGW IP Address",
+      "content": "The S103 HSGW IP Address IE shall contain S103 HSGW IP Address.\nTable 7.5.11-1: S103 HSGW IP Address\nBits\nOctets\n8\n7\n6\n5\n4\n3\n2\n1\n1\nType = 9\n2 to 3\nLength = n\n4\nSpare\nInstance\n5 to (n+4)\nS103 HSGW IP Address",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_7.5.11-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.276_7.5.13",
+      "section_id": "7.5.13",
+      "section_title": "Unauthenticated IMSI",
+      "content": "The unauthenticated IMSI IE includes the IMSI of UE when UE is emergency attached and contains an IMSI which is not authenticated.\nTable 7.5.13-1: Unauthenticated IMSI IE\nBits\nOctets\n8\n7\n6\n5\n4\n3\n2\n1\n1\nType = 12 (decimal)\n2 to 3\nLength = n\n4\nSpare\nInstance\n5\nNumber digit 2\nNumber digit 1\n6\nNumber digit 4\nNumber digit 3\n…\n…\n…\nn+4\nNumber digit m\nNumber digit m-1\nOctets 5 to (n+4) represent the IMSI value in international number format as described in ITU-T Rec E.164 [25], encoded as TBCD digits, i.e. digits from 0 through 9 are encoded \"0000\" to \"1001\". When there is an odd number of digits, bits 8 to 5 of the last octet are encoded with the filler \"1111\". The maximum number of digits is 15.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_7.5.13-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.276_7.5.14",
+      "section_id": "7.5.14",
+      "section_title": "EUTRAN Round Trip Delay",
+      "content": "The EUTRAN Round Trip Delay information element provides an estimate of the radio round trip delay from the UE to the serving eNB.\nTable 7.5.14-1: EUTRAN Round Trip Delay IE\nBits\nOctets\n8\n7\n6\n5\n4\n3\n2\n1\n1\nType = 13\n2 to 3\nLength = n\n4\nSpare\nInstance\n5 to 6\nEUTRAN Round Trip Delay Estimation Info - Integer (0..2047) as specified in 3GPP TS 36.413 [12]\n7A\tS121 Messages and Message Formats\n7A.1\tIntroduction\nThis section is divided into path management which defines the general messages for the pre-configured tunnel and a section for the specific messages used for information transfer over the control plane.\nTable 7A.1 specifies GTPv2-C message types that are used across the S121 interface.\nTable 7A.1: Message types for S121\nMessage Type value (Decimal)\nMessage\nReference\n0\nReserved\n3GPP TS 29.274 [6]\n1\nEcho Request\n3GPP TS 29.274 [6]\n2\nEcho Response\n3GPP TS 29.274 [6]\n3\nVersion Not Supported Indication\n3GPP TS 29.274 [6]\n4-16\nReserved for S101 interface\n7\n17\nRIM Information Transfer\n7A.3.1\n18-24\nFor future S121 interface use\n25 to 31\nReserved for Sv interface\n3GPP TS 29.280 [14]\n32-239\nReserved for GTPv2-C spec\n3GPP TS 29.274 [6]\n240-247\nReserved for Sv interface\n3GPP TS 29.280 [14]\n248-255\nReserved for GTPv2-C spec\n3GPP TS 29.274 [6]\n7A.2\tPath Management Messages\n7A.2.1\tIntroduction\nThe path from the MME to the non-3GPP Access Network operationally requires management capabilities. The following GTPv2-C messages support path management for the S121 interface:\n-\tEcho Request\n-\tEcho Response\n-\tVersion Not Supported Indication\nThese messages are defined for GTPv2-C and the handling and definition shall also be as defined in GTPv2-C, see 3GPP TS 29.274 [6].\n7A.2.2\tEcho Request message\nAn MME or an HRPD access node may send an Echo Request to find out if the peer HRPD access node or MME is alive (see subclause 9.2). When and how often an Echo Request message may be sent is implementation specific but an Echo Request shall not be sent more often than every 60 s on each path.\nAn MME or an HRPD access node shall be prepared to receive an Echo Request at any time and it shall reply with an Echo Response.  The optional Private Extension contains vendor or operator specific information.\n3GPP TS 29.274 [6] specifies the information elements included in the Echo Request message.\n7A.2.3\tEcho Response message\nThe message shall be sent as a response to a received Echo Request.\n3GPP TS 29.274 [6] specifies the information elements included in the Echo Response message.\nThe Recovery information element contains the local Restart Counter (see subclause 9.3) value for the node that sends the Echo Response message.\nIn this release of the specification, the MME and HRPD access node do not need to determine whether the peer node has restarted or not, i.e. they may ignore the Recovery information element.\nThe optional Private Extension contains vendor or operator specific information.\n7A.2.4\tVersion Not Supported Indication message\nThis message contains only the S121 header and indicates the latest S121 version that the MME or HRPD access node entity on the identified UDP/IP address can support (see 3GPP TS 29.274 [6] subclause 7.1.3).\n3GPP TS 29.274 [6] specifies the detailed handling and information elements included in the Version Not Supported Indication message.\n7A.3\tS121 Messages\n7A.3.1\tIntroduction\nThe following message is used to support RIM information exchange between the MME and the HRPD Access Network:\n-\tRIM Information Transfer\n7A.3.2\tRIM Information Transfer\nThe RIM Information Transfer message shall be sent on the S121 interface between MME and the HRPD Access Network to transfer RIM information between an eNodeB and the HRPD Access Network (see 3GPP TS 23.402 [2]).\nFor handling of protocol errors the RIM Information Transfer message is treated as a Response message.\nTable 7A.3.2-1 specifies the information elements included in the RIM Information Transfer message.\nTable 7A.3.2-1: Information Elements in a RIM Information Transfer\nInformation elements\nPresence Requirement\nReference\nInstance\nS121 Transparent Container\nMandatory\n7A.5.2\n0\nRIM Routing Address\nMandatory\n7A.5.3\n0\nPrivate Extension\nOptional\n7A.5.4\nVS\nThe S121 Transparent Container information element shall contain encapsulated RIM Information exchanged between the MME and the HRPD Access Network, i.e. all information elements from the BSSGP RIM PDU, starting from and including the BSSGP \"PDU type\" (see 3GPP TS 48.018 [15]).\nThe RIM Routing Address IE shall identify the destination RAN node where the RIM information needs to be sent to. It shall contain:\n-\tan eNodeB ID when the message is sent from the HRPD Access Network to the MME;\n-\tan HRPD Sector ID when the message is sent from the MME to the HRPD Access Network.\n7A.4\tReliable Delivery of Signalling Messages\nFor the S121 interface protocol, the reliable delivery of signalling messages shall have the same handling as GTPv2-C. See 3GPP TS 29.274 [6] but with S121 node replacing GTPv2-C node as appropriate.\nNOTE:\tIn this release of the specification, the MME and HRPD access node do not need to and can not determine whether the peer node has received the RIM Information Transfer message.\n7A.5\tInformation Elements\n7A.5.1\tInformation Element Assignments\nAn S121 message may contain several information elements. The TLIV (Type, Length, Instance, Value) encoding format shall be used for all S121 information elements. See TS 29.274 [6] subclause 8.2 for the general encoding of the IEs.\nWithin information elements, certain fields may be described as spare. These bits shall be transmitted with the value defined for them. To allow for future features, the receiver shall not evaluate these bits.\nTable 7A.5-1: Information Elements\nIE Type Value\nInformation Element\nComment / Reference\nNumber of Fixed Octets\n0\nReserved\n3GPP TS 29.274 [3]\n3GPP TS 29.274 [3]\n1-3\nReserved for GTPv2-C.\n3GPP TS 29.274 [3]\n3GPP TS 29.274 [3]\n4-34\nReserved for S101 interface\n35\nS121 Transparent Container\nVariable Length / 7A.5.2\nNot Applicaple\n36\nRIM Routing Address\nVariable Length / 7A.5.3\nNot Applicaple\n37-50\nFor future use for the S121 interface.\n51-70\nReserved for Sv interface.\n3GPP TS 29.280 [14]\n3GPP TS 29.280 [14]\n71-254\nReserved for GTPv2-C.\n3GPP TS 29.274 [6]\n3GPP TS 29.274 [6]\n255\nPrivate Extension\n7A.5.4\n3GPP TS 29.274 [6]\n7A.5.2\tS121 Transparent Container\nThe S121 Transparent Container information element shall contain encapsulated RIM information, i.e. a transparent copy of the BSSGP RIM PDU as specified in 3GPP TS 48.018 [15].\nIt is variable in length and shall always be an integral number of octets. The highest numbered octet shall be filled, if necessary, with extra bits set to '0' in the low order bit positions to create an integral number of octets.\nTable 7A.5.2-1: S121 Transparent Container IE\nBits\nOctets\n8\n7\n6\n5\n4\n3\n2\n1\n1\nType = 35\n2 to 3\nLength = n\n4\nSpare\nInstance\n5 to (n+4)\nS121 Transparent Container\n7A.5.3\tRIM Routing Address\nThe RIM Routing Address IE shall identify the destination RAN node to which the RIM Information needs to be sent to.\nThe RIM Routing Address information element is coded as depicted in Table 7A.5.3-1\nTable 7A.5.3-1: RIM Routing Address IE\nBits\nOctets\n8\n7\n6\n5\n4\n3\n2\n1\n1\nType = 36\n2 to 3\nLength = n\n4\nSpare\nInstance\n5\nRouting Address Type\n6 to (n+4)\nRouting Address\nRouting Address Type values are specified in Table 7A.5.3-2.\nTable 7A.5.3-2: Routing Address Type values\nTarget Types\nValues (Decimal)\nMacro eNodeB ID\n0\nHome eNodeB ID\n1\nHRPD Sector Identifier\n2\n<spare>\n3 to 255\nThe Routing Address Type is either a Macro eNodeB ID or a Home eNodeB ID for RIM Information Transfer towards E-UTRAN. In this case the Routing Address field includes Macro or Home eNodeB ID as defined in Figure 8.51-2 and 8.51-3 of 3GPP TS 29.274 [6].\nThe Routing Address Type is HRPD Sector Identifier for RIM Information Transfer towards HRPD Access Network. In this case the Routing Address field includes HRPD Sector Identifier which is defined in 3GPP2 C.S0024-B [7] section 13.9.\n7A.5.4\tPrivate Extension\nThe Private Extension information element shall contain vendor specific information. Refer to 3GPP TS 29.274 [6] for the encoding of this Information Element.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_9.2",
+        "clause_9.3",
+        "ts_29.274_clause_7.1.3",
+        "ts_29.274_clause_8.2",
+        "clause_13.9",
+        "table_7.5.14-1",
+        "table_7",
+        "ts_29.274_figure_8.51-2",
+        "ts_36.413",
+        "ts_29.274",
+        "ts_29.280",
+        "ts_23.402",
+        "ts_48.018"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.276_8",
+      "section_id": "8",
+      "section_title": "Path Protocols",
+      "content": "Path handling is specified in 3GPP TS 29.274 [6].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.274"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.276_9.1",
+      "section_id": "9.1",
+      "section_title": "Protocol Errors",
+      "content": "See 3GPP TS 29.274 [6] section 7.7 for the complete specification of protocol error handling.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.274_clause_7.7",
+        "ts_29.274"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.276_9.2",
+      "section_id": "9.2",
+      "section_title": "Path Failure",
+      "content": "See 3GPP TS 29.274 [6] for the complete specification of the path failure procedures.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.274"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.276_9.3",
+      "section_id": "9.3",
+      "section_title": "Restoration and Recovery",
+      "content": "See 3GPP TS 23.007 [8] for the complete specification of the restoration and recovery procedures.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.007"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.276_10",
+      "section_id": "10",
+      "section_title": "Security provided to Communication over the S101/S121 Interface",
+      "content": "Protection of communication over the S101 interfaces shall be provided according to security mechanisms defined in 3GPP TS 33.402 [11].\nProtection of communication over the S121 interface shall be secured as described in clause 11 of 3GPP TS 33.402 [11].",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_33.402_clause_11",
+        "ts_33.402"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.276_11.1",
+      "section_id": "11.1",
+      "section_title": "IP Version",
+      "content": "See 3GPP TS 29.274 [6] for the complete specification of the IP versions supported over the GTPv2-C like S101 and S121 reference points.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.274"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.276_11.2",
+      "section_id": "11.2",
+      "section_title": "IP Fragmentation",
+      "content": "See 3GPP TS 29.274 [6] for the complete specification of the fragmentation procedures used in S101 and S121.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.274"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.276_12.1",
+      "section_id": "12.1",
+      "section_title": "General",
+      "content": "The S101 interface system parameters defined and their recommended values shall not be fixed but it shall be possible to configure them as described in 3GPP TS 29.274 [6].",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.274"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.276_12.2",
+      "section_id": "12.2",
+      "section_title": "Timers",
+      "content": "See 3GPP TS 29.274 [6] for the complete specification of the timers and their recommended values used over S101, e.g. response time to wait for a request message.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.274"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.276_12.3",
+      "section_id": "12.3",
+      "section_title": "Others",
+      "content": "See 3GPP TS 29.274 [6] for the complete specification of the maximum number of retry attempts to resend a request message used over S101.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.274"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.276_13.1",
+      "section_id": "13.1",
+      "section_title": "Introduction",
+      "content": "The S103 interface is defined between the Serving GW and HSGW and supports the forwarding of DL data during mobility from E-UTRAN to HRPD access networks. Signalling procedures on the S101 interface, documented in 3GPP TS 23.402 [2], are used to set up tunnels on the S103 user plane interface.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.402"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.276_13.2",
+      "section_id": "13.2",
+      "section_title": "S103 Interface",
+      "content": "The S103 interface protocol stack and signalling requirements are specified in 3GPP TS 23.402 [2]. The S103 interface shall use Generic Routing Encapsulation as specified in IETF RFC 2784 [4] including the Key and Sequence Number Extensions to GRE in IETF RFC 2890 [5]. The Key Field value of each GRE packet header shall uniquely identify the UE-PDN connection.\nAnnex A (informative):Change history\nChange history\nDate\nMeeting\nTDoc\nCR\nRev\nCat\nSubject/Comment\nNew version\n2008-09\nCT#41\nCP-080477\nV2.0.0 approved in CT#41\n8.0.0\n2008-12\nCT#42\nCP-080693\n0001\n1\nAdding references to the GTP-C specification for S101Revised from agreed version in C4-082683\n8.1.0\n0003\nPrivate Extension IE in the Direct Transfer Request\n0005\nPath Management Messages and Version Not Supported Cause\n0006\n2\nReliable Delivery of Signalling MessagesWas agreed version of C4-082756\n0008\n3\nGRE Tunnel KeysRevised from agreed version C4-083145\n0009\n2\nS101 Sector ID\n0011\nS101 Session ID\n0012\n2\nS101 interface messages and UEs\n0013\nRemoval of APN Editor's Notes\n0014\nSorting of Type Fields\n0015\nDTR and NR IE restriction\n0018\nS Bit Removal\n0019\nHandover Required Indication from the MME\n0021\nHRPD air interface reference specification correction\n0022\n1\nRecovery IE over S101\n2009-03\nCT#43\nCP-090053\n0023\nEditorial clean-up of S101\n8.2.0\n0024\n1\nMaking Session ID Generic and Adding Instance Value to the Messages\n2009-09\nCT#45\nCP-090530\n0031\n1\nSequence Number to be 3 Octets and Removal of Header Extension\n8.3.0\n2009-09\nCT#45\nCP-090562\n0028\n6\nEmergency Session Id\n9.0.0\nCP-090562\n0030\n2\nUnauthenticated IMSI for emergency in S101\n2009-12\nCT#46\nCP-090764\n0036\nGRE Keys CR Misimplementation\n9.1.0\n0033\nAdding the RTD information in UPLINK CDMA2000 TUNNELING\n2010-03\nCT#47\nCP-100019\n0038\n1\nReference for HRPD Sector ID\n9.2.0\nCP-100019\n0041\n1\nCorrecting Cause values for S101\nCP-100039\n0039\n1\nEUTRAN Round Trip Delay Estimation Info\n2010-06\nCT#48\nCP-100263\n0043\nCorrection to 3GPP2 references\n9.3.0\n2010-07\nEditorial correction to previous entry in history table\n9.3.1\n2010-09\nCT#49\nCP-100451\n0044\n1\nReference to GTPv2\n9.4.0\n2011-03\nCT#51\nCP-110071\n0045\nCorrect the endpoint node of S103 tunnel\n10.0.0\n2011-06\nCT#52\nCP-110355\n0051\n1\nIE Type Extandable Corrections\n10.1.0\n2011-09\nCT#53\nCP-110567\n0052\n1\nConditional IE missing cause value\n10.2.0\n2011-12\nCT#54\nCP-110790\n0056\n2\nHandling of Extendable IEs\n10.3.0\n2012-09\n-\n-\n-\n-\nAutomatic update from previous version 10.3.0 (MCC)\n11.0.0\n2013-09\nCT#61\nCP-130470\n0057\n1\nPath management messages over the S121 reference point\n12.0.0\n0062\n1\nDefinition of S121 Messages and Message Formats\n0058\n1\nSecurity requirements for the S121 reference point\n0059\n1\nNetworking Technology for the S121 reference point\n0060\n1\nUpdate scope to cover the S121 reference point\n0061\n1\nDefinition of S121 Message Header\n0063\n1\nGTP-C message types for rSRVCC\n2013-12\nCT#62\nCP-130635\n0064\n1\nHRPD Sector ID definition\n12.1.0\n2014-06\nCT#64\nCP-140250\n0065\n-\nHRPD Sector ID definition\n12.2.0\nCP-140261\n0066\n1\nVersion Not Supported Indication\nCP-140261\n0067\n1\nCorrect the handling of Restart Counter\n2014-12\nCT#66\nCP-140972\n0068\n1\nRemoval of Optimized HO procedure from HRPD to EUTRAN\n12.3.0\n2015-12\nCT#70\n-\n-\n-\nUpdate to Rel-13 version (MCC)\n13.0.0\n2017-03\nCT#75\n-\n-\n-\nUpdate to Rel-14 version (MCC)\n14.0.0\n2018-06\nCT#80\n-\n-\n-\nUpdate to Rel-15 version (MCC)\n15.0.0\n2020-07\nCT#88e\n-\n-\n-\nUpdate to Rel-16 version (MCC)\n16.0.0\n2022-04\n-\n-\n-\n-\n-\nUpdate to Rel-17 version (MCC)\n17.0.0\n2024-03\n-\n-\n-\n-\n-\nUpdate to Rel-18 version (MCC)\n18.0.0",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_9.3.1",
+        "ts_23.402"
+      ]
+    }
+  ]
+}

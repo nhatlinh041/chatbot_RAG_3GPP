@@ -1,0 +1,1050 @@
+{
+  "metadata": {
+    "specification_id": "ts_23.180",
+    "version": "18.0.0",
+    "title": "3GPP TS 23.180",
+    "file_path": "/content/drive/MyDrive/RAG_thesis/data/23_series/23180-i00/23180-i00.docx"
+  },
+  "export_info": {
+    "export_date": "2025-07-26T09:39:36.054633",
+    "total_chunks": 106
+  },
+  "chunks": [
+    {
+      "chunk_id": "ts_23.180_1",
+      "section_id": "1",
+      "section_title": "Scope",
+      "content": "This document specifies the functional architecture, procedures and information flows needed to support mission critical services in the IOPS mode of operation. The IOPS mode of operation is defined in 3GPP TS 23.401 [2].\nThe corresponding service requirements are defined in 3GPP TS 22.346 [9] and 3GPP TS 22.280 [11].\nThe present document is applicable primarily to support mission critical services in the IOPS mode of operation defined in 3GPP TS 23.401 [2]. For that, the mission critical services are supported using E-UTRAN access based on the EPC architecture.\nThe functional architecture to support mission critical services in the IOPS mode of operation can be used for public safety applications and also for general commercial applications, e.g. utility companies and railways, for the case of a backhaul failure.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.401",
+        "ts_22.346",
+        "ts_22.280"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.180_2",
+      "section_id": "2",
+      "section_title": "References",
+      "content": "The following documents contain provisions which, through reference in this text, constitute provisions of the present document.\n-\tReferences are either specific (identified by date of publication, edition number, version number, etc.) or non‑specific.\n-\tFor a specific reference, subsequent revisions do not apply.\n-\tFor a non-specific reference, the latest version applies. In the case of a reference to a 3GPP document (including a GSM document), a non-specific reference implicitly refers to the latest version of that document in the same Release as the present document.\n[1]\t3GPP TR 21.905: \"Vocabulary for 3GPP Specifications\".\n[2]\t3GPP TS 23.401: \"General Packet Radio Service (GPRS) enhancements for Evolved Universal Terrestrial Radio Access Network (E-UTRAN) access\".\n[3]\t3GPP TS 23.280: \"Common functional architecture to support mission critical services \".\n[4]\t3GPP TS 23.468: \"Group Communication System Enablers for LTE (GCSE_LTE); Stage 2\".\n[5]\t3GPP TS 23.379: \"Functional architecture and information flows to support Mission Critical Push To Talk (MCPTT); Stage 2\".\n[6]\t3GPP TS 23.282: \"Functional architecture and information flows to support Mission Critical Data (MCData); Stage 2\".\n[7]\t3GPP TS 23.002: \"Network Architecture\".\n[8]\t3GPP TS 23.203: \"Policy and charging control architecture\".\n[9]\t3GPP TS 22.346: \"Isolated Evolved Universal Terrestrial Radio Access Network (E-UTRAN) operation for public safety; Stage 1\".\n[10]\t3GPP TS 23.281: \"Functional architecture and information flows to support Mission Critical Video (MCVideo); Stage 2\".\n[11]\t3GPP TS 22.280: \"Mission Critical Services Common Requirements (MCCoRe); Stage 1\".",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905",
+        "ts_23.401",
+        "ts_23.280",
+        "ts_23.468",
+        "ts_23.379",
+        "ts_23.282",
+        "ts_23.002",
+        "ts_23.203",
+        "ts_22.346",
+        "ts_23.281",
+        "ts_22.280"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.180_3.1",
+      "section_id": "3.1",
+      "section_title": "Definitions",
+      "content": "For the purposes of the present document, the terms and definitions given in 3GPP TR 21.905 [1] and the following apply. A term defined in the present document takes precedence over the definition of the same term, if any, in 3GPP TR 21.905 [1].\nIOPS MC system: The collection of application functions and enabling capabilities required to support mission critical services in the IOPS mode of operation.\nIOPS mode of operation: As described in 3GPP TS 23.401 Annex K [2].\nFor the purposes of the present document, the following terms given in 3GPP TS 23.280 [3] apply\nMC service\nMC service client\nMC service group\nMC service ID\nMC service user\nMC service UE\nMC user",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_21.905",
+        "ts_23.401",
+        "ts_23.280"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.180_3.2",
+      "section_id": "3.2",
+      "section_title": "Abbreviations",
+      "content": "For the purposes of the present document, the abbreviations given in 3GPP TR 21.905 [1] and the following apply. An abbreviation defined in the present document takes precedence over the definition of the same abbreviation, if any, in 3GPP TR 21.905 [1].\nAPN\tAccess Point Name\nIOPS\tIsolated Operation for Public Safety\nEPC\tEvolved Packet Core\nEPS\tEvolved Packet System\nMBMS\tMultimedia Broadcast and Multicast Service\nMC\tMission Critical\nPLMN\tPublic Land Mobile Network",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.180_4",
+      "section_id": "4",
+      "section_title": "Introduction",
+      "content": "For the case of a backhaul failure, mission critical (MC) services (e.g. MCPTT defined in 3GPP TS 23.379 [5] and MCData defined in 3GPP TS 23.282 [6]) can also be supported based on the availability of an isolated operation for public safety (IOPS) MC system. The IOPS MC system provides MC services support to the MC service UE via a single public land mobile network (PLMN) dedicated to the IOPS mode of operation. This IOPS dedicated PLMN is provided by an evolved packet system (EPS) supporting the IOPS mode of operation, as defined in 3GPP TS 23.401 [2].\nA common functional architecture, including application plane and signalling plane, to support MC services in the IOPS mode of operation is specified in this document.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.379",
+        "ts_23.282",
+        "ts_23.401"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.180_5.1.1",
+      "section_id": "5.1.1",
+      "section_title": "Description",
+      "content": "This clause specifies the general requirements for the support of MC services in the IOPS mode of operation.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.180_5.1.2",
+      "section_id": "5.1.2",
+      "section_title": "Requirements",
+      "content": "[AR-5.1.2-a] For the case of a backhaul failure between the radio access network and the macro EPC, the IOPS MC system shall provide support for MC services in the IOPS mode of operation until the failure is recovered.\n[AR-5.1.2-b] MC service UEs within the coverage of the IOPS EPS shall be able to provide MC services over the IOPS MC system.\n[AR-5.1.2-c] The IOPS MC system shall provide mechanisms to verify the availability of MC service UEs within the IOPS MC system.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.180_5.2.1",
+      "section_id": "5.2.1",
+      "section_title": "Description",
+      "content": "This clause specifies the MC service requirements in the IOPS mode of operation.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.180_5.2.2",
+      "section_id": "5.2.2",
+      "section_title": "Requirements",
+      "content": "[AR-5.2.2-a] The following MCPTT service features shall be supported in the IOPS mode of operation\n-\tMCPTT group call\n-\tMCPTT emergency group call\n-\tMCPTT private call\n-\tMCPTT emergency private call\n[AR-5.2.2-b] The following MCData service features shall be supported in the IOPS mode of operation\n-\tMCData short data service",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.180_5.3.1",
+      "section_id": "5.3.1",
+      "section_title": "Description",
+      "content": "This clause specifies the network bearer requirements in the IOPS mode of operation.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.180_5.3.2",
+      "section_id": "5.3.2",
+      "section_title": "Requirements",
+      "content": "[AR-5.3.2-a] The IOPS MC system shall provide support for unicast bearer establishment and modification to support MC services via unicast transmissions in the IOPS mode of operation.\n[AR-5.3.2-b] The IOPS MC system shall provide support for multicast bearer establishment and modification to support MC services via multicast transmissions in the IOPS mode of operation.\n[AR-5.3.2-c] The IOPS MC system shall support announcement of multicast bearers to the MC service UEs.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.180_5.4.1",
+      "section_id": "5.4.1",
+      "section_title": "Description",
+      "content": "The support of MC services in the IOPS mode of operation can be based on the support of the IP connectivity functionality. The IP connectivity functionality enables that MC services are provided by the MC service clients via the IOPS MC connectivity function.\nAn IOPS MC connectivity function supporting the IP connectivity functionality does not provide MC services. Instead, the IOPS MC connectivity function enables discovering MC service users and provides IP connectivity for the communication among the discovered MC service users, i.e. it distributes the related IP traffic to the MC service UEs over IP unicast and/or multicast transmissions. A MC service UE supporting the IP connectivity functionality in the IOPS mode of operation enables transmitting the IP packets related to a MC service communication over the IOPS MC connectivity function.\nThis clause specifies requirements for the support of the IP connectivity functionality in the IOPS mode of operation.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.180_5.4.2",
+      "section_id": "5.4.2",
+      "section_title": "General requirements",
+      "content": "[AR-5.4.2-a] The IOPS MC connectivity function supporting the IP connectivity functionality shall support discovering MC service users within the coverage of the IOPS EPS.\n[AR-5.4.2-b] The IOPS MC connectivity function supporting the IP connectivity functionality shall support announcement, subscription and notification mechanisms for discovered MC service users supporting the IP connectivity functionality.\n[AR-5.4.2-c] The IOPS MC connectivity function supporting the IP connectivity functionality shall provide IP connectivity for communication among MC service users requesting the support of the IP connectivity functionality.\n[AR-5.4.2-d] The MC service UEs supporting the IP connectivity functionality in the IOPS mode of operation shall enable transmitting the IP packets related to a MC service communication over the IOPS MC connectivity function.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.180_5.4.3",
+      "section_id": "5.4.3",
+      "section_title": "Bearer management requirements",
+      "content": "[AR-5.4.3-a] The MC service UEs shall use specific APNs for the support of the IP connectivity functionality, as follows:\n-\tAn APN for the IOPS related application signalling related to the IP connectivity functionality support, e.g. for IOPS discovery, subscription and notification.\n-\tAn MC service APN for the communication with another MC user or group via the IOPS MC connectivity function based on the IP connectivity functionality, e.g. for the signalling and media.\n[AR-5.4.3-b] The APNs for the IP connectivity functionality support shall be made available to the MC service UEs either via UE (pre)configuration or via initial UE configuration, as described in 3GPP TS 23.280 [3].",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_23.280"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.180_6",
+      "section_id": "6",
+      "section_title": "Involved business relationships",
+      "content": "The description of the involved business relationships for the support of MC services in the IOPS mode of operation is contained in clause 6 of 3GPP TS 23.280 [3].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.280_clause_6",
+        "ts_23.280"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.180_7.1",
+      "section_id": "7.1",
+      "section_title": "General",
+      "content": "The functional model to support MC services in the IOPS mode of operation in case of a backhaul failure consists of a set of functions and reference points.\nNOTE:\tTerminology such as client and server are not meant to imply specific physical implementation of a functional entity.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.180_7.2",
+      "section_id": "7.2",
+      "section_title": "Description of the planes",
+      "content": "The functional model for the support of MC services in the IOPS mode of operation is defined as a series of planes to allow for the breakdown of the architectural description.\nThe application plane supports all the necessary functions to establish and provide MC services in the IOPS mode of operation. The application plane uses the services of the signalling control plane to establish the association of the users involved in an MC service. The signalling control plane also offers access to and control of services across MC services.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.180_7.3.1",
+      "section_id": "7.3.1",
+      "section_title": "General",
+      "content": "The application plane and signalling plane supporting the functional model for the IOPS mode of operation are described in this clause.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.180_7.3.2",
+      "section_id": "7.3.2",
+      "section_title": "Functional model for the signalling control plane in the IOPS mode of operation",
+      "content": "Figure 7.3.2-1 shows the common functional model for the signalling control plane in the IOPS mode of operation.\nFigure 7.3.2-1 Functional model for the signalling control plane in the IOPS mode of operation\nNOTE:\tThe functional model for the signalling plane in the IOPS mode of operation is described as a common functional model across MC services.",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_7.3.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.180_7.3.3",
+      "section_id": "7.3.3",
+      "section_title": "MCPTT functional model for the application plane in the IOPS mode of operation",
+      "content": "Figure 7.3.3-1 shows the MCPTT functional model for the application plane in the IOPS mode of operation.\nFigure 7.3.3-1 MCPTT functional model for the application plane in the IOPS mode of operation\nNOTE:\tMC-IOPS-1, MC-IOPS-5 and MC-IOPS-6 reference points are common across MC services.\nIn the model shown in figure 7.3.3-1, the following apply:\n-\tMCPTT-IOPS-2 carries signalling related to the support of multicast transmissions, e.g. MBMS bearer announcement, between the IOPS MC connectivity function and the MCPTT client.\n-\tMCPTT-IOPS-3 carries signalling and media over IP unicast transmissions between the IOPS distribution function and the MCPTT client of the MCPTT UE.\n-\tMCPTT-IOPS-4 carries signalling and media on downlink over IP multicast transmissions between the IOPS distribution function and the MCPTT client of the MCPTT UE.",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_7.3.3-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.180_7.3.4",
+      "section_id": "7.3.4",
+      "section_title": "MCData functional model for the application plane in the IOPS mode of operation",
+      "content": "Figure 7.3.4-1 shows the MCData functional model for the application plane in the IOPS mode of operation.\nFigure 7.3.4-1 MCData functional model for the application plane in the IOPS mode of operation\nNOTE:\tMC-IOPS-1, MC-IOPS-5 and MC-IOPS-6 reference points are common across MC services.\nIn the model shown in figure 7.3.4-1, the following apply:\n-\tMCData-IOPS-2 carries signalling related to the support of multicast transmissions, e.g. MBMS bearer announcement, between the IOPS MC connectivity function and the MCData client.\n-\tMCData-IOPS-3 carries signalling and media over IP unicast transmissions between the IOPS distribution function and the MCData client of the MCData UE.\n-\tMCData-IOPS-4 carries signalling and media on downlink over IP multicast transmissions between the IOPS distribution function and the MCData client of the MCData UE.",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_7.3.4-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.180_7.4.1.1",
+      "section_id": "7.4.1.1",
+      "section_title": "General",
+      "content": "Entities within the application plane of an IOPS MC system provide application specific functions to support MC services in the IOPS mode of operation.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.180_7.4.1.2",
+      "section_id": "7.4.1.2",
+      "section_title": "IOPS connectivity client",
+      "content": "The IOPS connectivity client functional entity provides support for enabling that a user at the MC service client is registered and discovered by the IOPS MC system in the IOPS mode of operation. This functional entity is located in the MC service UE.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.180_7.4.1.3",
+      "section_id": "7.4.1.3",
+      "section_title": "IOPS MC connectivity function",
+      "content": "The IOPS MC connectivity function entity provides supporting MC services in the IOPS mode of operation. It includes registering and discovering users within the IOPS MC system. The IOPS MC connectivity functional entity represents a specific instantiation of the GCS AS described in 3GPP TS 23.468 [4] to manage unicast and multicast transmissions for group communication related sessions.\nThe IOPS MC connectivity function entity is supported by the signalling application server functional entity of the signalling control plane.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.468"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.180_7.4.1.4",
+      "section_id": "7.4.1.4",
+      "section_title": "IOPS distribution function",
+      "content": "The IOPS distribution function entity provides support for distributing the IP packets containing the MC service application data received from a MC service UE in the IOPS mode of operation.\nBy means of information provided by the IOPS MC connectivity function (e.g. IP addresses, transport layer ports), it will provide the following functionality:\n-\treceiving uplink IP transmissions from the MC service UE by means of the MCPTT-IOPS-3 reference point for MCPTT and the MCData-IOPS-3 reference point for MCData;\n-\tdistributing the related IP packets via downlink IP unicast transmissions to MC service UEs by means of the MCPTT-IOPS-3 reference point for MCPTT and the MCData-IOPS-3 reference point for MCData;\n-\tdistributing the related IP packets via downlink IP multicast transmissions to MC service UEs by means of the MCPTT-IOPS-4 reference point for MCPTT and the MCData-IOPS-4 reference point for MCData.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.180_7.4.1.5",
+      "section_id": "7.4.1.5",
+      "section_title": "MC service client",
+      "content": "The MC service client functional entity, e.g. a MCPTT client and a MCData client, supporting the IOPS mode of operation acts as the user agent for the corresponding MC service transactions as well as all IOPS related application transactions.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.180_7.4.2.1",
+      "section_id": "7.4.2.1",
+      "section_title": "Signalling user agent client",
+      "content": "The signalling user agent client functional entity supports at the MC service client all required transactions related to the IOPS discovery. This includes supporting registration, publication, subscription and notification events.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.180_7.4.2.2",
+      "section_id": "7.4.2.2",
+      "section_title": "Signalling application server",
+      "content": "The signalling application server functional entity supports at the IOPS MC system all required transactions related to the IOPS discovery. This includes supporting registration, publication, subscription and notification events.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.180_7.5.1.1",
+      "section_id": "7.5.1.1",
+      "section_title": "Reference point MC-IOPS-1 (between the IOPS MC connectivity function and the IOPS connectivity client)",
+      "content": "The MC-IOPS-1 reference point, which exists between the IOPS MC connectivity function and the IOPS connectivity client, is used for IOPS related application signalling (e.g. registration, publication, subscription and notification events). The MC-IOPS-1 reference point utilizes the MC-IOPS-X1 reference point for transport and routing of the IOPS related signalling.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.180_7.5.1.2",
+      "section_id": "7.5.1.2",
+      "section_title": "Reference point MCPTT-IOPS-2 (between the IOPS MC connectivity function and the MCPTT client)",
+      "content": "The MCPTT-IOPS-2 reference point, which exists between the IOPS MC connectivity function and the MCPTT client, is used to communicate signalling related to the MBMS bearers utilized for multicast transmissions, e.g. MBMS bearer announcement in the IOPS mode of operation.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.180_7.5.1.3",
+      "section_id": "7.5.1.3",
+      "section_title": "Reference point MCData-IOPS-2 (between the IOPS MC connectivity function and the MCData client)",
+      "content": "The MCData-IOPS-2 reference point, which exists between the IOPS MC connectivity function and the MCData client, is used to communicate signalling related to the MBMS bearers utilized for multicast transmissions, e.g. MBMS bearer announcement in the IOPS mode of operation.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.180_7.5.1.4",
+      "section_id": "7.5.1.4",
+      "section_title": "Reference point MCPTT-IOPS-3 (between the IOPS distribution function and the MCPTT client)",
+      "content": "The MCPTT-IOPS-3 reference point, which exists between the IOPS distribution function and the MCPTT client, is used for IP unicast transmissions in uplink and downlink. The MCPTT-IOPS-3 reference point uses the SGi reference point defined in 3GPP TS 23.002 [7].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.002"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.180_7.5.1.5",
+      "section_id": "7.5.1.5",
+      "section_title": "Reference point MCData-IOPS-3 (between the IOPS distribution function and the MCData client)",
+      "content": "The MCData-IOPS-3 reference point, which exists between the IOPS distribution function and the MCData client, is used for IP unicast transmissions in uplink and downlink. The MCData-IOPS-3 reference point uses the SGi reference point defined in 3GPP TS 23.002 [7].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.002"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.180_7.5.1.6",
+      "section_id": "7.5.1.6",
+      "section_title": "Reference point MCPTT-IOPS-4 (between the IOPS distribution function and the MCPTT client)",
+      "content": "The MCPTT-IOPS-4 reference point, which exists between the IOPS distribution function and the MCPTT client, is used for IP multicast transmissions in downlink. The MCPTT-IOPS-4 reference point uses the MB2-U reference point defined in 3GPP TS 23.468 [4].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.468"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.180_7.5.1.7",
+      "section_id": "7.5.1.7",
+      "section_title": "Reference point MCData-IOPS-4 (between the IOPS distribution function and the MCData client)",
+      "content": "The MCData-IOPS-4 reference point, which exists between the IOPS distribution function and the MCData client, is used for IP multicast transmissions in downlink. The MCData-IOPS-4 reference point uses the MB2-U reference point defined in 3GPP TS 23.468 [4].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.468"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.180_7.5.1.8",
+      "section_id": "7.5.1.8",
+      "section_title": "Reference point MC-IOPS-5 (between the IOPS MC connectivity function and the 3GPP system (IOPS EPS))",
+      "content": "The MC-IOPS-5 reference point, which exists between the IOPS MC connectivity function and the 3GPP system (IOPS EPS), is used to obtain unicast bearers with appropriate QoS from the IOPS EPS. The MC-IOPS-5 reference point utilizes the Rx interface of the EPS according to 3GPP TS 23.203 [8].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.203"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.180_7.5.1.9",
+      "section_id": "7.5.1.9",
+      "section_title": "Reference point MC-IOPS-6 (between the IOPS MC connectivity function and the 3GPP system (IOPS EPS))",
+      "content": "The MC-IOPS-6 reference point, which exists between the IOPS MC connectivity function and the 3GPP system (IOPS EPS), is used to request the allocation and activation of multicast transport resources, i.e. MBMS bearers, during the IOPS mode of operation. The MC-IOPS-6 reference point uses the MB2-C interface as defined in 3GPP TS 23.468 [4].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.468"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.180_7.5.2.1",
+      "section_id": "7.5.2.1",
+      "section_title": "Reference point MC-IOPS-X1 (between the signalling application server and the signalling user agent client)",
+      "content": "The MC-IOPS-X1 reference point, which exists between the signalling application server and the signalling user agent client, is used to support the IOPS related application signalling (e.g. registration, publication, subscription and notification events).\nNOTE:\tThe IOPS related signalling supporting, e.g., the IOPS discovery, subscription and notification events can be SIP-based. In such a case, the signalling application server acts as a SIP application server (AS) and the signalling user agent client acts as the SIP user agent for all SIP related transactions.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.180_8.1.1.1",
+      "section_id": "8.1.1.1",
+      "section_title": "General",
+      "content": "The IOPS MC ID is used for identifying an MC user in the IOPS mode of operation. The IOPS MC ID uniquely identifies an MC user on the IOPS MC system.\nThe IOPS MC ID can be used for the user authentication with the IOPS MC system.\nNOTE:\tThe specific security and authentication mechanisms required in order to use the IOPS MC user identity need to be specified by SA3.\nEditor's Note:\tAdding reference to the IOPS user authentication procedure in SA3 TS is FFS.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.180_8.1.2.1",
+      "section_id": "8.1.2.1",
+      "section_title": "General",
+      "content": "The IOPS MC service ID is a unique identifier within the MC service that represents the MC service user in the IOPS mode of operation. The IOPS MC service ID is the IOPS MCPTT ID for the MCPTT service as defined in 3GPP TS 23.379 [5], and is the IOPS MCData ID for the MCData service as defined in 3GPP TS 23.282 [6].\nNOTE: MCVideo service as defined in 3GPP TS 23.281 [10] is not supported in the current release.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_23.379",
+        "ts_23.282",
+        "ts_23.281"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.180_8.1.3.1",
+      "section_id": "8.1.3.1",
+      "section_title": "General",
+      "content": "An IOPS MC service group ID is used for identifying an MC service group in the IOPS mode of operation. The MC service UE is able to make one or more MC service communications (as per the group configuration) with other member UEs whose users are within the same IOPS MC service group ID.\nThe general description of an MC service group ID is provided in 3GPP TS 23.280 [3].",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_23.280"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.180_8.1.3.2",
+      "section_id": "8.1.3.2",
+      "section_title": "IOPS MC service group ID management (IP connectivity functionality)",
+      "content": "Figure 8.1.3.2-1 illustrates how the IOPS MC service group ID and the IOPS group IP multicast address are mapped to each other for the support of the IP connectivity functionality. The IOPS group IP multicast address is pre-configured in the MC service UEs supporting the IOPS mode of operation in accordance with the IOPS MC service group ID.\nNOTE:\tThe association between the IOPS MC service group ID and the IOPS group IP multicast address may be pre-defined in the MC services UEs.\nFigure 8.1.3.2-1: IOPS MC service group ID management (IP connectivity functionality)",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_8.1.3.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.180_9.1",
+      "section_id": "9.1",
+      "section_title": "Overview",
+      "content": "The IOPS architectural model includes application functions at the IOPS MC system and UEs to support MC services in the IOPS mode of operation during a backhaul failure. The IOPS MC system provides MC services support to the MC service UE via a single PLMN dedicated to the IOPS mode of operation. The IOPS mode of operation is described in 3GPP TS 23.401 [2].\nThe architectural model to support MC services in the IOPS mode of operation consists of a signalling control plane and an application plane. The signalling control plane provides the necessary signalling support for the related IOPS application layer transactions, e.g. the registration and discovery of UEs on the IOPS MC system. The IOPS application plane provides the necessary support for the transport of the IOPS operation related application data as well as the IP packets containing the MC service application data to be distributed via the IOPS MC system.\nThe MC service application data includes all signalling control data and application data (control and media) required to provide MC services between MC service clients. The IP related transmissions are established over the IOPS MC system via IP unicast and multicast transmissions.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_23.401"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.180_9.2",
+      "section_id": "9.2",
+      "section_title": "IOPS architectural model diagram",
+      "content": "Figure 9.2-1 shows the IOPS architectural model for the IOPS MC system solution in case of a backhaul failure.\nFigure 9.2-1 Architectural model in the IOPS mode of operation",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_9.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.180_9.2.1",
+      "section_id": "9.2.1",
+      "section_title": "IOPS application services support layer",
+      "content": "The IOPS MC system is composed of the following functional entities for the support of MC services in the IOPS mode of operation:\n-\tan IOPS MC connectivity function as described in clause 7.4.1.3, an IOPS distribution function as described in clause 7.4.1.4 and a signalling application server as described in clause 7.4.2.2.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_7.4.1.3",
+        "clause_7.4.1.4",
+        "clause_7.4.2.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.180_9.2.2",
+      "section_id": "9.2.2",
+      "section_title": "IOPS EPS",
+      "content": "The IOPS EPS provides point-to-point and point-to-multipoint bearer services with QoS in the IOPS mode of operation, as described in 3GPP TS 23.401 [2].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.401"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.180_9.2.3",
+      "section_id": "9.2.3",
+      "section_title": "UE 1",
+      "content": "The UE 1 is an MC service UE supporting the IOPS mode of operation. It supports bearer services and applications to provide MC services over the IOPS MC system. The UE 1 is composed of the following functional entities:\n-\tfor MC services over the IOPS MC system, MC service client(s) as described in clause 7.4.1.5;\n-\tfor IOPS application plane, an IOPS connectivity client as described in clause 7.4.1.2; and\n-\tfor IOPS signalling control, a signalling user agent as described in subclause 7.4.2.1.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_7.4.1.5",
+        "clause_7.4.1.2",
+        "clause_7.4.2.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.180_9.2.4",
+      "section_id": "9.2.4",
+      "section_title": "UE 2",
+      "content": "The UE 2 represents one or more UEs with the same functionality as UE 1.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.180_10.1.1",
+      "section_id": "10.1.1",
+      "section_title": "General",
+      "content": "The following clause describes a high level procedure used for the user authentication in the IOPS mode of operation.\nNOTE:\tThe specific user authentication required in the IOPS mode of operation needs to be specified by SA3.\nEditor's Note:\tAdding reference to the IOPS user authentication procedure in SA3 TS is FFS.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.180_10.1.2",
+      "section_id": "10.1.2",
+      "section_title": "Procedure",
+      "content": "A procedure for the user authentication in the IOPS mode of operation is illustrated in figure 10.1.2-1.\nFigure 10.1.2-1 User authentication in the IOPS mode of operation\n1.\tThe IOPS connectivity client initiates the IOPS user authentication procedure with the IOPS MC connectivity function.",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_10.1.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.180_10.2.1",
+      "section_id": "10.2.1",
+      "section_title": "General",
+      "content": "The support of the IP connectivity functionality in the IOPS mode of operation enables that MC services are provided by the MC service clients via the IOPS MC connectivity function. An IOPS MC connectivity function provides IP connectivity for the communication among MC service users based on an IOPS discovery procedure.\nThe IOPS discovery procedure enables that the IOPS MC connectivity function discovers MC service users within the coverage of the system and receives connectivity information required to establish a communication between discovered users based on the IP connectivity functionality.\nThe following clauses specify the IOPS discovery procedure and information flows for the IP connectivity functionality in the IOPS mode of operation.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.180_10.2.2.1",
+      "section_id": "10.2.2.1",
+      "section_title": "IP connectivity request",
+      "content": "Table 10.2.2.1-1 describes the information flow for the IP connectivity request from the IOPS connectivity client to the IOPS MC connectivity function.\nTable 10.2.2.1-1: IP connectivity request\nInformation element\nStatus\nDescription\nIOPS MC service ID\nM\nThe IOPS MC service ID of the user requesting support of the IP connectivity functionality",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_10.2.2.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.180_10.2.2.2",
+      "section_id": "10.2.2.2",
+      "section_title": "IP connectivity response",
+      "content": "Table 10.2.2.2-1 describes the information flow for the IP connectivity response from the IOPS MC connectivity function to the IOPS connectivity client.\nTable 10.2.2.2-1: IP connectivity response\nInformation element\nStatus\nDescription\nIOPS MC service ID\nM\nThe IOPS MC service ID of the user requesting support of the IP connectivity functionality\nIP connectivity support\nM\nIt indicates if the IP connectivity functionality is supported or not for the user",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_10.2.2.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.180_10.2.2.3",
+      "section_id": "10.2.2.3",
+      "section_title": "IOPS discovery request",
+      "content": "Table 10.2.2.3-1 describes the information flow for the IOPS discovery request from the IOPS connectivity client to the IOPS MC connectivity function.\nTable 10.2.2.3-1: IOPS discovery request\nInformation element\nStatus\nDescription\nIOPS MC service ID\nM\nThe IOPS MC service ID of the requesting MC user\nIP connectivity information\nM\nIt includes the requesting MC service UE's IP address (NOTE 1)\nList of IOPS MC service group ID (NOTE 2)\nM\nIt includes the IOPS group (IOPS MC service group ID and its associated IOPS group IP multicast address) or list of IOPS groups the requesting MC user is configured with\nAvailability of connectivity information\nO\nIt indicates if the connectivity information of the requesting MC user can be made available to other users on the system\nList of IOPS MC service IDs (NOTE 2 and NOTE 3)\nO\nThe specific list of IOPS MC service IDs that the requesting MC user's connectivity information can be shared with\nPriority state\nM\nIndicates whether the requesting MC user is requesting higher priority or not\nNOTE 1:\tThe MC service UE's IP address is assigned by the IOPS EPS based on the PDN connection established by the MC user for the IOPS IP connectivity functionality.\nNOTE 2:   The list of IOPS MC service IDs or IOPS MC service group IDs shall be of the same MC service as the MC user requesting to be discovered.\nNOTE 3:\tIf present, the user's connectivity information availability can be only made available to the provided specific list of IOPS MC service IDs.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_10.2.2.3-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.180_10.2.2.4",
+      "section_id": "10.2.2.4",
+      "section_title": "IOPS discovery response",
+      "content": "Table 10.2.2.4-1 describes the information flow for the IOPS discovery response from the IOPS MC connectivity function to the IOPS connectivity client.\nTable 10.2.2.4-1: IOPS discovery response\nInformation element\nStatus\nDescription\nIOPS MC service ID\nM\nThe IOPS MC service ID of the user requesting to be discovered\nConnectivity status\nM\nIt indicates the connectivity status of the requesting MC user on the system\nIOPS discovery request periodicity\nM\nIt indicates the periodicity at which the requesting MC user is required to transmit IOPS discovery requests (NOTE)\nNOTE:\tAn MC user is required to periodically transmit an IOPS discovery request. The periodic IOPS discovery requests are used by the IOPS MC connectivity function to verify the availability of the MC user and its IP connectivity information within the IOPS MC system.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_10.2.2.4-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.180_10.2.3",
+      "section_id": "10.2.3",
+      "section_title": "Procedure",
+      "content": "After an MC service user is authenticated on the IOPS MC connectivity function, the IOPS discovery procedure is initiated by the MC users requesting support of the IP connectivity functionality to the IOPS MC connectivity function. If the IOPS MC connectivity function indicates the support of the IP connectivity functionality, the MC service users can send an IOPS discovery request.\nThe procedure for requesting support of the IP connectivity functionality by the IOPS connectivity client to the IOPS MC connectivity function is described in figure 10.2.3-1.\nNOTE 1:\tThe procedure for requesting support of the IP connectivity functionality is only required when the IOPS connectivity client does not contain information about the support of this functionality by the serving IOPS MC connectivity function.\nPre-conditions:\n-\tThe MC service user is authenticated on the IOPS MC connectivity function.\n-\tThe MC service user has an active PDN connection to the IOPS MC connectivity function for the specific IP connectivity functionality procedure\n-\tThe IOPS connectivity client does not contain information about the support of the IP connectivity functionality by the serving IOPS MC connectivity function\nFigure 10.2.3-1 IP connectivity functionality request in the IOPS mode of operation\n1.\tThe IOPS connectivity client requests to the IOPS MC connectivity function the support of the IP connectivity functionality.\n2.\tThe IOPS MC connectivity function indicates to the IOPS connectivity client if the IP connectivity functionality is supported or not for the MC user.\nThe procedure for the discovery of MC users in the IOPS mode of operation is described in figure 10.2.3-2. The IOPS discovery is initiated by the MC users to support MC services based on the IP connectivity functionality.\nAs part of the IOPS discovery procedure, an MC user can request higher priority from the IOPS MC connectivity function by including a priority state indication within the IOPS discovery request. Based on this indication, the IOPS MC connectivity function can decide to handle with higher priority the transactions related to the MC user, e.g. the distribution of packets related to any MC communication from or to the corresponding MC user, subscriptions, and notifications. When an MC user intends to establish an IOPS emergency (group or private) call, the MC user can request a priority state from the IOPS MC connectivity function.\nThe MC user's priority state remains unchanged until the MC user explicitly changes it (i.e. by sending a new IOPS discovery request) or the discovery status of the MC user changes to not-discovered on the IOPS MC connectivity function.\nPre-conditions:\n-\tThe MC service user is authenticated on the IOPS MC connectivity function.\n-\tThe MC service user has an active PDN connection to the IOPS MC connectivity function for the specific IP connectivity functionality procedure\n-\tThe IOPS MC connectivity function has indicated to the IOPS connectivity client the support of the IP connectivity functionality.\nFigure 10.2.3-2 User discovery in the IOPS mode of operation\n1.\tThe MC user sends an IOPS discovery request to the IOPS MC connectivity function. The request includes providing connectivity information for the support of MC services based on the IP connectivity functionality.\n2.\tThe IOPS MC connectivity function stores the information received from the MC user and registers the user's connectivity status as discovered.\n3.\tThe IOPS MC connectivity function provides a response to the IOPS connectivity client indicating the success or failure of the discovery of the requesting MC user.\nNOTE 2:\tThe MC user shall send a new IOPS discovery request to update or modify information elements.\nNOTE 3:\tThe IOPS MC connectivity function shall send a new IOPS discovery response to the IOPS connectivity client for the case that the periodic IOPS discovery request has not been received yet or when the IOPS discovery request periodicity needs to be changed. The IOPS MC connectivity function can verify the availability and IP connectivity information of the discovered MC user within the IOPS MC system based on the reception of periodic IOPS discovery requests.",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_10.2.3-1",
+        "figure_10.2.3-2"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.180_10.3.1",
+      "section_id": "10.3.1",
+      "section_title": "General",
+      "content": "The support of the IP connectivity functionality in the IOPS mode of operation enables that MC services are provided by the MC service clients over the IOPS MC connectivity function. An MC user that has been discovered by the IOPS MC connectivity function can subscribe to be notified about the connectivity information of other discovered MC users on the IOPS MC connectivity function. Also, a discovered MC user can subscribe to be notified about the number of other discovered MC users on the IOPS MC connectivity function within its associated IOPS groups.\nThe following clauses specify the IOPS subscription and notification procedures and information flows for the IP connectivity functionality in the IOPS mode of operation.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.180_10.3.2.1",
+      "section_id": "10.3.2.1",
+      "section_title": "IP connectivity subscribe request",
+      "content": "Table 10.3.2.1-1 describes the information flow for the IP connectivity subscribe request from the IOPS connectivity client to the IOPS MC connectivity function.\nTable 10.3.2.1-1: IP connectivity subscribe request\nInformation element\nStatus\nDescription\nIOPS MC service ID\nM\nThe IOPS MC service ID of the requesting MC user\nList of IOPS MC service IDs (NOTE 1)\nO\nList of IOPS MC service IDs the requesting MC user subscribes to receive connectivity information from\nList of IOPS groups (NOTE 1 and NOTE 2)\nO\nList of IOPS groups (IOPS MC service group IDs) the requesting MC user subscribes to receive group connectivity information from\nNOTE 1:\tThe list of IOPS MC service IDs or IOPS MC service group IDs shall be of the same MC service as the MC user subscribing to receive the connectivity information. At least one should be present.\nNOTE 2:\tThe IOPS group(s) should belong to the list of IOPS groups the requesting MC user included in its IOPS discovery request.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_10.3.2.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.180_10.3.2.2",
+      "section_id": "10.3.2.2",
+      "section_title": "IP connectivity subscribe response",
+      "content": "Table 10.3.2.2-1 describes the information flow for the IP connectivity subscribe response from the IOPS MC connectivity function to the IOPS connectivity client.\nTable 10.3.2.2-1: IP connectivity subscribe response\nInformation element\nStatus\nDescription\nIOPS MC service ID\nM\nThe IOPS MC service ID of the requesting MC user\nSubscription status\nM\nIt lists the subscription status, success or failure, of the requested subscription(s)",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_10.3.2.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.180_10.3.2.3",
+      "section_id": "10.3.2.3",
+      "section_title": "IP connectivity notify request",
+      "content": "Table 10.3.2.3-1 describes the information flow for the IP connectivity notify request from the IOPS MC connectivity function to the IOPS connectivity client.\nTable 10.3.2.3-1: IP connectivity notify request\nInformation element\nStatus\nDescription\nIOPS MC service ID\nM\nThe IOPS MC service ID of the MC user with active subscription(s)\nIOPS MC service ID (NOTE 1)\nM\nThe IOPS MC service ID associated to the active subscription for which connectivity information is being notified\nConnectivity information (NOTE 1)\nM\nIt provides connectivity information about the MC service ID of the corresponding subscription. It includes the MC service UE's IP address of the associated IOPS MC service ID in the system and its connectivity status on the system (see NOTE 2)\nNOTE 1:\tIt can be a list associated to multiple active subscriptions.\nNOTE 2:\tWhether the IOPS MC connectivity function provides within the IP connectivity notify request the actual MC service UE's IP address or an associated application IP address assigned by the IOPS MC connectivity function is implementation specific. For the latter, it is up to the IOPS MC connectivity function to correctly maintain the defined association.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_10.3.2.3-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.180_10.3.2.4",
+      "section_id": "10.3.2.4",
+      "section_title": "IP connectivity notify response",
+      "content": "Table 10.3.2.4-1 describes the information flow for the IP connectivity notify response from the IOPS connectivity client to the IOPS MC connectivity function.\nTable 10.3.2.4-1: IP connectivity notify response\nInformation element\nStatus\nDescription\nIOPS MC service ID\nM\nThe IOPS MC service ID of the responding MC user\nIOPS MC service ID (NOTE)\nM\nThe IOPS MC service ID for which connectivity information was received\nNOTE:\tIt can be a list associated to multiple active subscriptions.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_10.3.2.4-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.180_10.3.2.5",
+      "section_id": "10.3.2.5",
+      "section_title": "IP connectivity group notify request",
+      "content": "Table 10.3.2.5-1 describes the information flow for the IP connectivity group notify request from the IOPS MC connectivity function to the IOPS connectivity client.\nTable 10.3.2.5-1: IP connectivity group notify request\nInformation element\nStatus\nDescription\nIOPS MC service ID\nM\nThe IOPS MC service ID of the MC user with active subscription(s)\nIOPS group (NOTE)\nM\nThe IOPS MC service group ID related to the active group subscription for which group connectivity information is being notified\nGroup connectivity information (NOTE)\nM\nIt indicates the number of other discovered MC users on the IOPS MC connectivity function of the corresponding group subscription\nNOTE:\tIt can be a list associated to multiple active group subscriptions.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_10.3.2.5-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.180_10.3.2.6",
+      "section_id": "10.3.2.6",
+      "section_title": "IP connectivity group notify response",
+      "content": "Table 10.3.2.6-1 describes the information flow for the IP connectivity group notify response from the IOPS connectivity client to the IOPS MC connectivity function.\nTable 10.3.2.6-1: IP connectivity group notify response\nInformation element\nStatus\nDescription\nIOPS MC service ID\nM\nThe IOPS MC service ID of the responding MC user\nIOPS group (NOTE)\nM\nThe IOPS MC service group ID for which group connectivity information was received\nNOTE:\tIt can be a list associated to multiple active group subscriptions.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_10.3.2.6-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.180_10.3.3",
+      "section_id": "10.3.3",
+      "section_title": "Procedures",
+      "content": "The procedure for the IP connectivity subscription of MC users in the IOPS mode of operation is described in figure 10.3.3-1.\nPre-conditions:\n-\tThe MC service user has an active PDN connection to the IOPS MC connectivity function for the specific IP connectivity functionality procedure\n-\tThe MC service user is discovered by the IOPS MC connectivity function to support MC services based on the IP connectivity functionality.\n-\tThe MC service user has decided to subscribe to receive connectivity information of other discovered MC users and/or IOPS groups on the IOPS MC connectivity function.\nFigure 10.3.3-1 IP connectivity subscription in the IOPS mode of operation\n1.\tThe IOPS connectivity client subscribes to receive connectivity information of other discovered MC users and/or groups on the IOPS MC connectivity function.\n2.\tThe IOPS MC connectivity function checks if a subscription for the MC service ID(s) and/or IOPS group(s) included in the request can be activated for the requesting MC user.\nNOTE:\tA subscription cannot be activated if an MC user associated to the requested MC service ID has indicated in its IOPS discovery request that its connectivity information is not available to other users on the IOPS MC connectivity function. Besides, a subscription may not be activated if a requested IOPS group does not belong to the list of IOPS groups the requesting MC user has included in its IOPS discovery request.\n3.\tThe IOPS MC connectivity function indicates to the IOPS connectivity client the subscription status associated to the request.\nThe procedure for the IP connectivity notification of MC users in the IOPS mode of operation is described in figure 10.3.3-2.\nPre-conditions:\n-\tThe MC service user has an active PDN connection to the IOPS MC connectivity function for the specific IP connectivity functionality procedure\n-\tThe MC service user has an active IP connectivity subscription associated to one or multiple MC service IDs.\n-\tThe IOPS MC connectivity function has available information related to an IP connectivity subscription associated to one or multiple MC service IDs.\nFigure 10.3.3-2 IP connectivity notification in the IOPS mode of operation\n1.\tThe IOPS MC connectivity function notifies to the IOPS connectivity client the connectivity information related to an active IP connectivity subscription associated to one or multiple MC service IDs. The connectivity information can be retrieved by the MC service client to establish an MC service communication based on the IP connectivity functionality.\n2.\tThe IOPS connectivity client provides an IP connectivity notify response to the IOPS MC connectivity function.\nThe procedure for the IP connectivity group notification of MC users in the IOPS mode of operation is described in figure 10.3.3-3.\nPre-conditions:\n-\tThe MC service user has an active PDN connection to the IOPS MC connectivity function for the specific IP connectivity functionality procedure\n-\tThe MC service user has an active IP connectivity subscription associated to one or multiple IOPS MC service group IDs.\n-\tThe IOPS MC connectivity function has available information related to an IP connectivity subscription associated to one or multiple IOPS MC service group IDs.\nFigure 10.3.3-3 IP connectivity group notification in the IOPS mode of operation\n1.\tThe IOPS MC connectivity function notifies to the IOPS connectivity client the group connectivity information related to an active IP connectivity group subscription associated to one or multiple IOPS MC service group IDs. The group connectivity information can be retrieved by the MC service client to establish an MC service group communication based on the IP connectivity functionality.\n2.\tThe IOPS connectivity client provides an IP connectivity group notify response to the IOPS MC connectivity function.",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_10.3.3-1",
+        "figure_10.3.3-2",
+        "figure_10.3.3-3"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.180_10.4.1",
+      "section_id": "10.4.1",
+      "section_title": "General",
+      "content": "An IOPS MC connectivity function can provide support for group communications based on MBMS transmissions. MBMS transmissions can be used for the downlink delivery of MC service application signalling and media to the MC service UEs over MBMS bearers.\nThe use of MBMS transmissions in the IOPS mode of operation are based on the related information flows and procedures specified in 3GPP TS 23.280 [3], 3GPP TS 23.379 [5], and 3GPP TS 23.282 [6].",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_23.280",
+        "ts_23.379",
+        "ts_23.282"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.180_10.4.2.1",
+      "section_id": "10.4.2.1",
+      "section_title": "MapIOPSGroupToBearer (IP connectivity functionality)",
+      "content": "Table 10.4.2.1-1 describes the information flow to associate a group session based on the IP connectivity functionality to an MBMS bearer. It is sent from the IOPS MC connectivity function to the MC service client.\nTable 10.4.2.1-1: MapIOPSGroupToBearer (IP connectivity functionality)\nInformation element\nStatus\nDescription\nIOPS MC service group ID\nM\nThis element identifies the IOPS MC service group, in which the group session is started.\nMedia stream identifier\nM\nThis element identifies the media stream of the SDP used for the group session (e.g. MBMS subchannel).\nTMGI (NOTE)\nO\nThe MBMS bearer identifier if the media of the group session is not sent on the same MBMS bearer as this MapIOPSGroupToBearer message.\nSession acknowledgement indicator\nO\nIndication that the group session requires acknowledgement from receiving MC service clients.\nNOTE:\tTMGI shall be present if this message is sent over a different MBMS bearer than the media of the group session; TMGI may be present if this message is sent over the same MBMS bearer as the media of the group session.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_10.4.2.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.180_10.4.2.2",
+      "section_id": "10.4.2.2",
+      "section_title": "UnmapIOPSGroupFromBearer (IP connectivity functionality)",
+      "content": "Table 10.4.2.2-1 describes the information flow to disconnect a group session based on the IP connectivity functionality from an MBMS bearer. It is sent from the IOPS MC connectivity function to the MC service client.\nTable 10.4.2.2-1: UnmapIOPSGroupFromBearer\nInformation element\nStatus\nDescription\nIOPS MC service group ID\nM\nThis element identifies the IOPS MC service group, in which the group session is started.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_10.4.2.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.180_10.4.3",
+      "section_id": "10.4.3",
+      "section_title": "Use of pre-established MBMS bearers",
+      "content": "The MC services in the IOPS mode of operation shall support the procedure for using pre-established MBMS bearers as specified 3GPP TS 23.280 [3] with the following clarification:\n-\tThe MC service server is the IOPS MC connectivity function.\nThe MCPTT service shall use the MCPTT-IOPS-2, MCPTT-IOPS-4, and MC-IOPS-6 reference points for this procedure.\nThe MCData service shall use the MCData-IOPS-2, MCData-IOPS-4, and MC-IOPS-6 reference points for this procedure.\nThe IOPS MC system may use pre-established MBMS bearers for distributing the media associated to group sessions. Depending on the capacity of the MBMS bearer, the bearer can be used to broadcast one or more group sessions in parallel.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_23.280"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.180_10.4.4",
+      "section_id": "10.4.4",
+      "section_title": "Use of dynamic MBMS bearer establishment",
+      "content": "The MC services in the IOPS mode of operation shall support the procedure for using dynamic MBMS bearers as specified 3GPP TS 23.280 [3] with the following clarification:\n-\tThe MC service server is the IOPS MC connectivity function.\nThe MCPTT service shall use the MCPTT-IOPS-2, MCPTT-IOPS-4, and MC-IOPS-6 reference points for this procedure.\nThe MCData service shall use the MCData-IOPS-2, MCData-IOPS-4, and MC-IOPS-6 reference points for this procedure.\nThe IOPS MC system may use dynamic MBMS bearer establishment for distributing the media associated to group sessions.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_23.280"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.180_10.4.5.1",
+      "section_id": "10.4.5.1",
+      "section_title": "General",
+      "content": "MBMS bearers can be used for group sessions based on the IP connectivity functionality. One MBMS bearer can be associated to one or more specific groups or group sessions. Before sending packets related to a group session, i.e. signalling and media, over an MBMS bearer, the IOPS MC connectivity function transmits the association information between the group session and the MBMS bearer. When the group session over the MBMS bearer is finished, this temporary association information of a group session to specific resources on a MBMS bearer is undone. Prior to the association of a group session to an MBMS bearer the MBMS bearer is activated and announced to the MC service clients.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.180_10.4.5.2.1",
+      "section_id": "10.4.5.2.1",
+      "section_title": "Group Session connect over MBMS",
+      "content": "In figure 10.4.5.2.1-1 the MC service client 1 is the client that initiates a group session, e.g. an MCPTT client initiating a group call. The MC service client 1 may be within the MBMS service area. The MC service clients 2 … n represent MC service clients, e.g. MCPTT clients, receiving the group session packets over an MBMS bearer. There may be other receiving MC service clients both over unicast bearers and over this or other MBMS bearer(s), however, they are not illustrated in this figure.\nPre-conditions:\n-\tThe MC service user profile used for the IOPS mode of operation is pre-provisioned in the MC service UEs\n-\tThe IOPS MC service group ID and its associated IOPS group IP multicast address are pre-configured in the MC service clients\n-\tThe MC service users have an active PDN connection to the IOPS MC connectivity function for the communication based on the IP connectivity functionality\n-\tThe MC service users are discovered by the IOPS MC connectivity function to support MC services based on the IP connectivity functionality\nFigure 10.4.5.2.1-1: Group session connect on MBMS bearer (IP connectivity functionality)\n1.\tActivation and announcement of MBMS bearer availability.\n2.\tMC user at the MC service client 1 wants to initiate an MC service group session with a specific IOPS MC service group based on the IP connectivity functionality.\n3.\tThe MC service client 1 transmits the related group session packets via the IOPS MC connectivity function targeting the IOPS MC service group (i.e. using the corresponding IOPS group IP multicast address)\n4.\tThe IOPS MC connectivity function determines that the received packets correspond to a group session. Therefore, the IOPS MC connectivity function transmits a MapIOPSGroupToBearer message over a previously established MBMS bearer to all users monitoring the MBMS bearer. The MapIOPSGroupToBearer message includes association information between the group session and the MBMS bearer. It includes the corresponding IOPS MC service group ID associated to the IOPS group IP multicast address related to the group session.\n5.\tThe IOPS MC connectivity function distributes the received group session packets from the MC service client 1 to other MC service clients (e.g. MC service clients 2 … n) over the MBMS bearer.\nNOTE:\tMC service clients receiving the group session packets over the MBMS bearer only decode the packets that are addressed to their pre-configured IOPS group IP multicast address(es). Otherwise, the MC service clients discard the packets.",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_10.4.5.2.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.180_10.4.5.2.2",
+      "section_id": "10.4.5.2.2",
+      "section_title": "Group session disconnect over MBMS",
+      "content": "Figure 10.4.5.2.2-1 shows the high level procedure where an UnmapIOPSGroupFromBearer message is transmitted from the IOPS MC connectivity function to MC service clients to indicate that a group session is being disconnected or dissociated from the MBMS bearer.\nFigure 10.4.5.2.2-1: Group session disconnect on MBMS bearer (IP connectivity functionality)\n1.\tA group session based on the IP connectivity functionality is ongoing; the group session packets received from the MC service client 1 are distributed over MBMS bearer to other MC service clients within the system.\n2.\tThe IOPS MC connectivity function has determined to disconnect the group session from the MBMS bearer for the MC service clients within the system.\nNOTE:\tThe IOPS MC connectivity function may decide to disconnect a group session from an MBMS bearer if group session packets are not anymore received addressing the corresponding IOPS MC service group (or IOPS group IP multicast address).\n3.\tAn UnmapGroupFromBearer message is transmitted from the IOPS MC connectivity function to the MC service clients and possibly to the MC service client 1 (if it is within the MBMS coverage area) on MBMS bearer(s).",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_10.4.5.2.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.180_10.5.1.1",
+      "section_id": "10.5.1.1",
+      "section_title": "General",
+      "content": "The support of MCPTT group calls based on the IP connectivity functionality in the IOPS mode of operation enables that the service is provided by the MCPTT clients over the IOPS MC connectivity function. The IOPS MC connectivity function provides IP connectivity for the communication among MCPTT users.\nIOPS group calls based on the IP connectivity functionality can use pre-configured information provided to MCPTT clients prior to the IOPS group call. Therefore, when a MCPTT client initiates an IOPS group call it uses the pre-configured IOPS group IP multicast address associated to the target IOPS MCPTT group ID to establish the IOPS group call based on the IP connectivity functionality. The related packets, i.e. signalling and media, of the IOPS group call are transmitted to the IOPS MC connectivity function for distribution to the corresponding discovered MC users of the target IOPS MCPTT group.\nThe IOPS MC connectivity function can distribute the group session packets to the discovered MC users over MBMS bearers as described in clause 10.4.5.\nThe IOPS MC connectivity function can also replicate and distribute the group session packets over unicast transmissions to MCPTT UEs associated to the target IOPS MCPTT group. MCPTT UEs receiving the group session packets are associated to discovered MC users that included the target IOPS MCPTT group ID in the IOPS discovery request, as described in clause 10.5.2.3.\nThe following clauses specify the IOPS group call procedures and information flows for the IP connectivity functionality in the IOPS mode of operation.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_10.4.5",
+        "clause_10.5.2.3"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.180_10.5.1.2.1",
+      "section_id": "10.5.1.2.1",
+      "section_title": "IOPS group call announcement",
+      "content": "Table 10.5.1.2.1-1 describes the information flow for the IOPS group call announcement from one MCPTT client to other MCPTT clients. The packet(s) carrying the IOPS group call announcement are transmitted from the originating MCPTT client to the IOPS MC connectivity function for distribution to the target MCPTT clients.\nTable 10.5.1.2.1-1: IOPS group call announcement\nInformation Element\nStatus\nDescription\nIOPS MCPTT ID\nM\nThe identity of the calling party\nIOPS MCPTT group ID\nM\nThe IOPS MCPTT group ID on which the call is to be conducted\nSDP offer\nM\nMedia parameters of the MCPTT client\nAnnouncement period\nM\nPeriod of the group call announcement\nEncryption parameters\nO\nEncryption parameters to be used for the call, if the call is to be encrypted\nConfirm mode indicator\nO\nIndicates whether the MCPTT group call is to be confirmed\nEmergency indicator\nO\nIndicates that the MCPTT group call is an MCPTT emergency call",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_10.5.1.2.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.180_10.5.1.2.2",
+      "section_id": "10.5.1.2.2",
+      "section_title": "IOPS group call response",
+      "content": "Table 10.5.1.2.2-1 describes the information flow for the IOPS group call response from one MCPTT client to other MCPTT clients. The packet(s) carrying the IOPS group call response is transmitted from the called MCPTT client to the IOPS MC connectivity function for distribution to the target MCPTT clients.\nTable 10.5.1.2.2-1: IOPS group call response\nInformation Element\nStatus\nDescription\nIOPS MCPTT ID\nM\nThe identity of the called party\nIOPS MCPTT group ID\nM\nThe IOPS MCPTT group ID of the group on which the call is requested\nSDP answer\nM\nMedia parameters selected\nResult\nM\nResult of the group call announcement (success or failure)",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_10.5.1.2.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.180_10.5.1.2.3",
+      "section_id": "10.5.1.2.3",
+      "section_title": "IOPS emergency group call upgrade",
+      "content": "Table 10.5.1.2.3-1 describes the information flow for the IOPS emergency group call upgrade from one MCPTT client to other MCPTT clients. The packet(s) carrying the IOPS emergency group call upgrade are transmitted from the originating MCPTT client to the IOPS MC connectivity function for distribution to the target MCPTT clients.\nTable 10.5.1.2.3-1: IOPS emergency group call upgrade\nInformation Element\nStatus\nDescription\nIOPS MCPTT ID\nM\nThe identity of the upgrading MC user\nIOPS MCPTT group ID\nM\nThe IOPS MCPTT group ID on which the call is to be upgraded to emergency call",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_10.5.1.2.3-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.180_10.5.1.2.4",
+      "section_id": "10.5.1.2.4",
+      "section_title": "IOPS emergency group call state cancel",
+      "content": "Table 10.5.1.2.4-1 describes the information flow for the IOPS emergency group call state cancel from one MCPTT client to other MCPTT clients. The packet(s) carrying the IOPS emergency group call state cancel are transmitted from the originating MCPTT client to the IOPS MC connectivity function for distribution to the target MCPTT clients.\nTable 10.5.1.2.4-1: IOPS emergency group call state cancel\nInformation Element\nStatus\nDescription\nIOPS MCPTT ID\nM\nThe identity of the cancelling MC user\nIOPS MCPTT group ID\nM\nThe IOPS MCPTT group ID on which the emergency call state is to be cancelled",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_10.5.1.2.4-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.180_10.5.1.3",
+      "section_id": "10.5.1.3",
+      "section_title": "IOPS group call setup",
+      "content": "The procedure in figure 10.5.1.3-1 illustrates the procedure for an IOPS MCPTT group call establishment based on the IP connectivity functionality. The procedure describes how an MCPTT client initiates and establishes an IOPS MCPTT group call with other MCPTT clients.\nPre-conditions:\n-\tMCPTT user profile used for the IOPS mode of operation is pre-provisioned in the MCPTT UEs;\n-\tThe IOPS MCPTT group ID and its associated IOPS group IP multicast address are pre-configured in the MCPTT clients;\n-\tMCPTT users have an active PDN connection to the IOPS MC connectivity function for the communication based on the IP connectivity functionality;\n-\tMCPTT users affiliated to the target IOPS MCPTT group are discovered by the IOPS MC connectivity function supporting the IP connectivity functionality;\n-\tThe IOPC MC connectivity function may have established an MBMS bearer and announced it to the MCPTT clients;\n-\tMCPTT client 1 may have retrieved group connectivity information from the IOPS connectivity client related to the target IOPS MCPTT group;\n-\tMCPTT clients 1, 2 … n are configured within the same IOPS MCPTT group.\nFigure 10.5.1.3-1: IOPS group call setup based on the IP connectivity functionality\n1.\tThe MCPTT user at MCPTT client 1 would like to initiate an IOPS group call with a specific IOPS MCPTT group based on the IP connectivity functionality.\n2.\tThe MCPTT client 1 sends an IOPS group call announcement to the target IOPS MCPTT group. The MCPTT client 1 transmits the group session packets carrying the IOPS group call announcement to the IOPS MC connectivity function for distribution to the corresponding IOPS group IP multicast address.\n3.\tThe IOPS MC connectivity function determines that the received packets correspond to a group session targeting a specific IOPS MCPTT group. The IOPS MC connectivity function decides distributing the received group session packets to the target MCPTT clients over MBMS and/or unicast transmissions.\n4.\tThe IOPS MC connectivity function distributes the group session packets carrying the IOPS group call announcement to the MCPTT clients from the target IOPS MCPTT group.\n5.\tThe MCPTT clients receiving the IOPS group call announcement join the IOPS group call and notify the target MCPTT users about the IOPS group call.\n6.\tIf confirm mode indication is included in the IOPS group call announcement, the receiving MCPTT clients respond to the IOPS MCPTT group indicating the result of the establishment of the announced IOPS group call. The receiving MCPTT clients transmit the group session packets carrying the IOPS group call response to the IOPS MC connectivity function for distribution to the corresponding IOPS group IP multicast address.\nNOTE 1:\tStep 6 can also occur prior to step 5.\n7.\tThe IOPS MC connectivity function determines that the received packets correspond to a group session targeting a specific IOPS MCPTT group. The IOPS MC connectivity function decides distributing the received group session packets to the target MCPTT clients over MBMS and/or unicast transmissions.\n8.\tThe IOPS MC connectivity function distributes the group session packets carrying the IOPS group call response to the MCPTT clients from the target IOPS MCPTT group. The MCPTT clients recognize the IOPS group call originator through the IOPS group call announcement and can check the participants of the IOPS group call through the received response message.\n9.\tThe MCPTT clients have successfully established the IOPS group call with floor control based on the IP connectivity functionality.\nNOTE 2:\tDue to the movement of the participants (in and out of the IOPS EPS coverage) during the IOPS group call, the IOPS group call announcement is periodically sent by the MCPTT client 1.\nNOTE 3:\tThe participating MCPTT clients do not need to respond to the periodic IOPS group call announcement.",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_10.5.1.3-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.180_10.5.1.4",
+      "section_id": "10.5.1.4",
+      "section_title": "IOPS emergency group call",
+      "content": "The procedure in figure 10.5.1.4-1 illustrates the procedure for an IOPS MCPTT emergency group call establishment based on the IP connectivity functionality. The IOPS emergency group call is a special case of the IOPS group call setup procedure described in clause 10.5.1.3, wherein the IOPS group call announcement contains an indication that the IOPS group call is an IOPS emergency group call. The group call participants can become aware of the IOPS MCPTT group's in-progress emergency state based on the emergency indicator.\nWhen an MCPTT client intends to initiate an IOPS emergency group call, the MCPTT client can request higher priority from the IOPS MC connectivity function via the IOPS discovery request.\nAn IOPS group call in-progress can be upgraded to an IOPS emergency group call by including the emergency indicator within the periodic IOPS group call announcement. An IOPS group call in-progress can also be upgraded by a participating MCPTT client by sending an IOPS emergency group call upgrade to the IOPS group.\nThe MCPTT user who initiated an IOPS emergency group call, or upgraded an IOPS group call to an emergency group call, or an authorized user can cancel the emergency state of the group call by sending an IOPS emergency group call state cancel to the IOPS MCPTT group. The emergency state of the IOPS group call remains active until the emergency group call ends or the in-progress emergency state is cancelled.\nPre-conditions:\n-\tMCPTT user profile used for the IOPS mode of operation is pre-provisioned in the MCPTT UEs;\n-\tThe IOPS MCPTT group ID and its associated IOPS group IP multicast address are pre-configured in the MCPTT clients;\n-\tMCPTT users have an active PDN connection to the IOPS MC connectivity function for the communication based on the IP connectivity functionality;\n-\tMCPTT users affiliated to the target IOPS MCPTT group are discovered by the IOPS MC connectivity function supporting the IP connectivity functionality;\n-\tThe IOPC MC connectivity function may have established an MBMS bearer and announced it to the MCPTT clients;\n-\tMCPTT client 1 may have retrieved group connectivity information from the IOPS connectivity client related to the target IOPS MCPTT group;\n-\tMCPTT clients 1, 2 … n are configured within the same IOPS MCPTT group.\nFigure 10.5.1.4-1: IOPS emergency group call setup based on the IP connectivity functionality\n1.\tThe MCPTT user at MCPTT client 1 would like to initiate an IOPS emergency group call with a specific IOPS MCPTT group based on the IP connectivity functionality.\nNOTE 1:\tThe MCPTT client 1 may have previously requested higher priority from the IOPS MC connectivity function using the IOPS discovery request.\n2.\tThe MCPTT client 1 sends an IOPS group call announcement to the target IOPS MCPTT group. The announcement contains an indication that the call is an IOPS emergency group call. The MCPTT client 1 transmits the group session packets carrying the IOPS group call announcement to the IOPS MC connectivity function for distribution to the corresponding IOPS group IP multicast address.\n3.\tThe IOPS MC connectivity function determines that the received packets correspond to a group session targeting a specific IOPS MCPTT group. The IOPS MC connectivity function decides to distribute the received group session packets to the target MCPTT clients over MBMS and/or unicast transmissions. If the MCPTT client 1 requested a priority state from the IOPS MC connectivity function, the IOPS MC connectivity function distributes the group session packets with higher priority.\n4.\tThe IOPS MC connectivity function distributes the group session packets carrying the IOPS group call announcement to the MCPTT clients from the target IOPS MCPTT group.\n5.\tThe MCPTT clients receiving the IOPS group call announcement with an emergency indicator join the IOPS emergency group call and notify the target MCPTT users about the IOPS emergency group call. The IOPS MCPTT group's emergency state is defined.\nNOTE 2:\tWhilst the emergency state of the IOPS group call remains active, other participating MCPTT clients of the group call may also request higher priority from the IOPS MC connectivity function using the IOPS discovery request.\n6.\tIf confirm mode indication is included in the IOPS group call announcement, the receiving MCPTT clients respond to the IOPS MCPTT group indicating the result of the establishment of the announced IOPS emergency group call. The receiving MCPTT clients transmit the group session packets carrying the IOPS group call response to the IOPS MC connectivity function for distribution to the corresponding IOPS group IP multicast address.\nNOTE 3:\tStep 6 can also occur prior to step 5.\n7.\tThe IOPS MC connectivity function determines that the received packets correspond to a group session targeting a specific IOPS MCPTT group. The IOPS MC connectivity function decides to distribute the received group session packets to the target MCPTT clients over MBMS and/or unicast transmissions. If any participating MCPTT client of the group call requested a priority state from the IOPS MC connectivity function, the IOPS MC connectivity function distributes the group session packets with higher priority.\n8.\tThe IOPS MC connectivity function distributes the group session packets carrying the IOPS group call response to the MCPTT clients from the target IOPS MCPTT group. The MCPTT clients recognize the IOPS emergency group call originator through the IOPS group call announcement and can check the participants of the IOPS group call through the received response message.\n9.\tThe MCPTT clients have successfully established the IOPS emergency group call based on the IP connectivity functionality.\nNOTE 4:\tDue to the movement of the participants (in and out of the IOPS EPS coverage) during the IOPS emergency group call, the IOPS group call announcement is periodically sent by the MCPTT client 1.\nNOTE 5:\tThe participating MCPTT clients do not need to respond to the periodic IOPS group call announcement.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_10.5.1.3",
+        "figure_10.5.1.4-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.180_10.5.1.5",
+      "section_id": "10.5.1.5",
+      "section_title": "IOPS group call release",
+      "content": "Each MCPTT client may release itself from an ongoing IOPS group call without the transmission of any signalling if the call has been inactive for a specific duration.\nNOTE:\tInactivity time can be set according to the policy of the MCPTT service provider.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.180_10.5.2.1",
+      "section_id": "10.5.2.1",
+      "section_title": "General",
+      "content": "The support of MCPTT private calls based on the IP connectivity functionality in the IOPS mode of operation enables that the service is provided by the MCPTT clients over the IOPS MC connectivity function. The IOPS MC connectivity function provides IP connectivity for the communication among MCPTT users.\nWhen an MCPTT user wants to communicate with a specific target MCPTT user based on the IP connectivity functionality, the MCPTT client retrieves the connectivity information of the target MCPTT user (i.e. the MCPTT UE's IP address) from the IOPS connectivity client. Then, the MCPTT clients enable establishing the IOPS private call over the IOPS MC connectivity function. The related session packets, i.e. signalling and media, of the IOPS private call are transmitted to the IOPS MC connectivity function addressing the corresponding target MCPTT UE's IP address.\nNOTE:\tThe IOPS connectivity client can only provide connectivity information of the target MCPTT user if it is already available (see clauses 10.3 on IOPS subscription and notification procedures).\nThe IOPS MC connectivity function distributes the received session packets over unicast transmissions to the target MCPTT client.\nIOPS private calls can be setup in two different commencement modes, automatic commencement mode and manual commencement mode.\nThe following clauses specify the IOPS private call procedures and information flows for the IP connectivity functionality in the IOPS mode of operation.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.180_10.5.2.2.1",
+      "section_id": "10.5.2.2.1",
+      "section_title": "IOPS call setup request",
+      "content": "Table 10.5.2.2.1-1 describes the information flow for the IOPS call setup request from one MCPTT client to another MCPTT client. The packet(s) carrying the IOPS call setup request are transmitted from the calling MCPTT client to the IOPS MC connectivity function for distribution to the called MCPTT client.\nTable 10.5.2.2.1-1: IOPS call setup request\nInformation element\nStatus\nDescription\nIOPS MCPTT ID\nM\nThe identity of the calling party\nIOPS MCPTT ID\nM\nThe identity of the called party\nSDP offer for the IOPS private call\nM\nSDP with media information offered by (to) client\nLocation information\nO\nLocation of the calling party\nRequested commencement mode\nO\nAn indication that is included if the user is requesting a particular commencement mode\nImplicit floor request\nO\nAn indication that the user is also requesting the floor.\nEmergency indicator\nO\nIndicates that the MCPTT private call is an MCPTT emergency call",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_10.5.2.2.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.180_10.5.2.2.2",
+      "section_id": "10.5.2.2.2",
+      "section_title": "IOPS call setup response",
+      "content": "Table 10.5.2.2.2-1 describes the information flow for the IOPS call setup response from one MCPTT client to another MCPTT client. The packet(s) carrying the IOPS call setup response are transmitted from the called MCPTT client to the IOPS MC connectivity function for distribution to the calling MCPTT client.\nTable 10.5.2.2.2-1: IOPS call setup response\nInformation element\nStatus\nDescription\nIOPS MCPTT ID\nM\nThe identity of the calling party\nIOPS MCPTT ID\nM\nThe identity of the called party\nSDP answer for private call\nM\nSDP with media parameters selected\nAcceptance confirmation\nO\nAn indication whether the user has positively accepted the call.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_10.5.2.2.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.180_10.5.2.2.3",
+      "section_id": "10.5.2.2.3",
+      "section_title": "IOPS MCPTT ringing",
+      "content": "Table 10.5.2.2.3-1 describes the information flow for the IOPS MCPTT ringing from one MCPTT client to another MCPTT client. The packet(s) carrying the IOPS MCPTT ringing are transmitted from the called MCPTT client to the IOPS MC connectivity function for distribution to the calling MCPTT client.\nTable 10.5.2.2.3-1: IOPS MCPTT ringing information elements\nInformation Element\nStatus\nDescription\nIOPS MCPTT ID\nM\nThe MCPTT ID of the calling party\nIOPS MCPTT ID\nM\nThe MCPTT ID of the called party\nRinging indication\nO\nIndication to the caller.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_10.5.2.2.3-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.180_10.5.2.2.4",
+      "section_id": "10.5.2.2.4",
+      "section_title": "IOPS call release request",
+      "content": "Table 10.5.2.2.4-1 describes the information flow for the IOPS call release request from one MCPTT client to another MCPTT client. The packet(s) carrying the IOPS call release request are transmitted from one MCPTT client to the IOPS MC connectivity function for distribution to the other MCPTT client.\nTable 10.5.2.2.4-1: IOPS call release request\nInformation element\nStatus\nDescription\nIOPS MCPTT ID\nM\nThe identity of the calling party\nIOPS MCPTT ID\nM\nThe identity of the called party\nMCPTT private call release reason\nO\nThis element indicates the reason for the private call release. e.g., Originating client requested.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_10.5.2.2.4-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.180_10.5.2.2.5",
+      "section_id": "10.5.2.2.5",
+      "section_title": "IOPS call release response",
+      "content": "Table 10.5.2.2.5-1 describes the information flow for the IOPS call release response from one MCPTT client to another MCPTT client. The packet(s) carrying the IOPS call release response are transmitted from one MCPTT client to the IOPS MC connectivity function for distribution to the other MCPTT client.\nTable 10.5.2.2.5-1: IOPS call release response\nInformation element\nStatus\nDescription\nIOPS MCPTT ID\nM\nThe identity of the calling party\nIOPS MCPTT ID\nM\nThe identity of the called party",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_10.5.2.2.5-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.180_10.5.2.2.6",
+      "section_id": "10.5.2.2.6",
+      "section_title": "IOPS emergency private call upgrade",
+      "content": "Table 10.5.2.2.6-1 describes the information flow for the IOPS emergency private call upgrade from one MCPTT client to another MCPTT client. The packet(s) carrying the IOPS emergency private call upgrade are transmitted from the originating MCPTT client to the IOPS MC connectivity function for distribution to the target MCPTT client.\nTable 10.5.2.2.6-1: IOPS emergency private call upgrade\nInformation Element\nStatus\nDescription\nIOPS MCPTT ID\nM\nThe identity of the calling party\nIOPS MCPTT ID\nM\nThe identity of the called party",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_10.5.2.2.6-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.180_10.5.2.3",
+      "section_id": "10.5.2.3",
+      "section_title": "IOPS private call setup in automatic commencement mode procedure",
+      "content": "The procedure in figure 10.5.2.3-1 is the basic procedure for an MCPTT client initiating the establishment of an IOPS MCPTT private call with a target MCPTT client based on the IP connectivity functionality.\nThe procedure focuses on the case of an IOPS MCPTT private call using an automatic commencement mode.\nPre-conditions:\n-\tMCPTT user profile used for the IOPS mode of operation is pre-provisioned in the MCPTT UEs.\n-\tMCPTT users have an active PDN connection to the IOPS MC connectivity function for the communication based on the IP connectivity functionality\n-\tThe MCPTT users are discovered by the IOPS MC connectivity function supporting the IP connectivity functionality.\n-\tMCPTT clients have retrieved connectivity information from target MCPTT users.\nFigure 10.5.2.3-1: IOPS private call setup in automatic commencement mode based on the IP connectivity functionality\n1.\tThe MCPTT user at MCPTT client 1 would like to initiate an IOPS private call with the MCPTT user at MCPTT client 2 based on the IP connectivity functionality.\n2.\tThe MCPTT client 1 retrieves the connectivity information of the target MCPTT user from the IOPS connectivity client 1 (not shown in figure) and sends an IOPS call setup request towards the MCPTT client 2. The MCPTT client 1 transmits the session packets carrying the IOPS call setup request to the IOPS MC connectivity function for distribution to the corresponding target MCPTT UE 2's IP address.\nThe IOPS call setup request contains an SDP offer, an automatic commencement mode indication, and an element that indicates that MCPTT client 1 is requesting the floor. The IOPS private call request may include location information.\n3.\tThe IOPS MC connectivity function receives the session packets addressing the MCPTT UE 2's IP address. The IOPS MC connectivity function checks if the MCPTT UE 2's IP address corresponds to a discovered MC user in order to distribute the received session packets. If it does, the IOPS MC connectivity function distributes the received session packets to the target MCPTT client over unicast transmissions.\n4.\tThe IOPS MC connectivity function distributes the session packets carrying the IOPS call setup request to the MCPTT client 2.\n5.\tThe MCPTT client 2 notifies the target MCPTT user about the incoming IOPS private call.\n6.\tThe receiving MCPTT client 2 accepts the IOPS private call automatically, and an IOPS call setup response indicating the successful call establishment is sent to MCPTT client 1. The MCPTT client 2 transmits the session packet(s) carrying the IOPS call setup response to the IOPS MC connectivity function for distribution to the corresponding target MCPTT UE 1's IP address.\nIf MCPTT client 2 rejected the incoming call, the MCPTT client 2 sends an IOPS call setup response indicating the failure reason to the MCPTT client 1.\nNOTE:\tStep 6 can also occur prior to step 5.\n7.\tThe IOPS MC connectivity function receives the session packets addressing the MCPTT UE 1's IP address. The IOPS MC connectivity function checks if the MCPTT UE 1's IP address corresponds to a discovered MC user in order to distribute the received session packets. If it does, the IOPS MC connectivity function distributes the received session packets to the target MCPTT client over unicast transmissions.\n8.\tThe IOPS MC connectivity function distributes the session packets carrying the IOPS call setup response to the MCPTT client 1.\n9.\tThe MCPTT client 1 and the MCPTT client 2 have successfully established the IOPS private call with floor control based on the IP connectivity functionality. The MCPTT client 1 is automatically granted the floor.",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_10.5.2.3-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.180_10.5.2.4",
+      "section_id": "10.5.2.4",
+      "section_title": "IOPS private call setup in manual commencement mode procedure",
+      "content": "The procedure in figure 10.5.2.4-1 focuses on the case where an MCPTT user is initiating an IOPS MCPTT private call for communicating with another MCPTT user using a manual commencement mode. The IOPS MCPTT private call is based on the IP connectivity functionality.\nPre-conditions:\n-\tMCPTT user profile used for the IOPS mode of operation is pre-provisioned in the MCPTT UEs.\n-\tMCPTT users have an active PDN connection to the IOPS MC connectivity function for the communication based on the IP connectivity functionality.\n-\tThe MCPTT users are discovered by the IOPS MC connectivity function supporting the IP connectivity functionality.\n-\tMCPTT clients have retrieved connectivity information from target MCPTT users.\nFigure 10.5.2.4-1: IOPS private call setup in manual commencement mode based on the IP connectivity functionality\n1.\tThe MCPTT user at MCPTT client 1 would like to initiate an IOPS MCPTT private call with the MCPTT user at MCPTT client 2 based on the IP connectivity functionality.\n2.\tThe MCPTT client 1 retrieves the connectivity information of the target MCPTT user from the IOPS connectivity client 1 (not shown in figure) and sends an IOPS call setup request towards the MCPTT client 2. The MCPTT client 1 transmits the session packets carrying the IOPS call setup request to the IOPS MC connectivity function for distribution to the corresponding target MCPTT UE 2's IP address.\nThe IOPS call setup request contains an SDP offer, a manual commencement mode indication, and an element that indicates that MCPTT client 1 is requesting the floor. The IOPS private call request may include location information.\n3.\tThe IOPS MC connectivity function receives the session packets addressing the MCPTT UE 2's IP address. The IOPS MC connectivity function checks if the MCPTT UE 2's IP address corresponds to a discovered MC user in order to distribute the received session packets. If it does, the IOPS MC connectivity function distributes the received session packets to the MCPTT client 2 over unicast transmissions.\n4.\tThe IOPS MC connectivity function distributes the session packets carrying the IOPS call setup request to the MCPTT client 2.\n5.\tThe MCPTT client 2 notifies the target MCPTT user about the incoming IOPS private call.\n6.\tThe MCPTT client 2 sends an IOPS MCPTT ringing message to the MCPTT client 1. The MCPTT client 2 transmits the session packet(s) carrying the IOPS MCPTT ringing to the IOPS MC connectivity function for distribution to the corresponding target MCPTT UE 1's IP address.\nNOTE 1:\tStep 6 can also occur prior to step 5.\n7.\tThe IOPS MC connectivity function receives the session packets addressing the MCPTT UE 1's IP address. The IOPS MC connectivity function checks if the MCPTT UE 1's IP address corresponds to a discovered MC user in order to distribute the received session packets. If it does, the IOPS MC connectivity function distributes the received session packets to the MCPTT client 1 over unicast transmissions.\n8.\tThe IOPS MC connectivity function distributes the session packets carrying the IOPS MCPTT ringing to the MCPTT client 1.\n9.\tThe MCPTT user at the MCPTT client 2 has accepted the call using manual commencement mode (i.e., it has taken some action to accept it via the user interface). The MCPTT user may also reject or fail to answer the incoming call.\nNOTE 2:\tStep 9 can also occur at any time between steps 6 and 8.\n10.\tThe MCPTT client 2 sends an IOPS call setup response indicating the successful call establishment to the MCPTT client 1. If the MCPTT client 2 rejected the call or the MCPTT user 2 rejected or failed to answer the incoming call, the MCPTT client 2 sends an IOPS call setup response indicating the failure reason to the MCPTT client 1. The MCPTT client 2 transmits the session packet(s) carrying the IOPS call setup response to the IOPS MC connectivity function for distribution to the corresponding target MCPTT UE 1's IP address.\n11.\tThe IOPS MC connectivity function receives the session packets addressing the MCPTT UE 1's IP address. The IOPS MC connectivity function checks if the MCPTT UE 1's IP address corresponds to a discovered MC user in order to distribute the received session packets. If it does, the IOPS MC connectivity function distributes the received session packets to the MCPTT client 1 over unicast transmissions.\n12.\tThe IOPS MC connectivity function distributes the session packets carrying the IOPS call setup response to the MCPTT client 1.\n13.\tThe MCPTT client 1 and the MCPTT client 2 have successfully established the IOPS private call with floor control based on the IP connectivity functionality. The MCPTT client 1 is automatically granted the floor.",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_10.5.2.4-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.180_10.5.2.5",
+      "section_id": "10.5.2.5",
+      "section_title": "IOPS private call release",
+      "content": "The procedure in figure 10.5.2.5-1 focuses on the case where an MCPTT client is requesting to release an ongoing IOPS MCPTT private call based on the IP connectivity functionality. Either MCPTT client can initiate the call release procedure.\nPre-conditions:\n-\tTwo MCPTT users are currently engaged in an IOPS MCPTT private call based on the IP connectivity functionality.\nFigure 10.5.2.5-1: IOPS private call release based on the IP connectivity functionality\n1.\tThe MCPTT user at MCPTT client 1 would like to initiate an IOPS MCPTT private call release to the MCPTT user at MCPTT client 2 based on the IP connectivity functionality.\n2.\tThe MCPTT client 1 retrieves the connectivity information of the target MCPTT user from the IOPS connectivity client 1 (not shown in figure) and sends an IOPS call release request towards the MCPTT client 2. The MCPTT client 1 transmits the session packets carrying the IOPS call release request to the IOPS MC connectivity function for distribution to the corresponding target MCPTT UE 2's IP address.\n3.\tThe IOPS MC connectivity function receives the session packets addressing the MCPTT UE 2's IP address. The IOPS MC connectivity function checks if the MCPTT UE 2's IP address corresponds to a discovered MC user in order to distribute the received session packets. If it does, the IOPS MC connectivity function distributes the received session packets to the MCPTT client 2 over unicast transmissions.\n4.\tThe IOPS MC connectivity function distributes the session packets carrying the IOPS call release request to the MCPTT client 2.\n5.\tThe MCPTT client 2 notifies the MCPTT user about the IOPS private call release.\n6.\tThe MCPTT client 2 sends an IOPS call release response indicating the successful call release to the MCPTT client 1. The MCPTT client 2 transmits the session packet(s) carrying the IOPS call release response to the IOPS MC connectivity function for distribution to the corresponding target MCPTT UE 1's IP address.\nNOTE:\tStep 6 can also occur prior to step 5.\n7.\tThe IOPS MC connectivity function receives the session packets addressing the MCPTT UE 1's IP address. The IOPS MC connectivity function checks if the MCPTT UE 1's IP address corresponds to a discovered MC user in order to distribute the received session packets. If it does, the IOPS MC connectivity function distributes the received session packets to the MCPTT client 1 over unicast transmissions.\n8.\tThe IOPS MC connectivity function distributes the session packets carrying the IOPS call release response to the MCPTT client 1.\n9.\tThe MCPTT client 1 and the MCPTT client 2 release all associated call resources from the private call communication based on the IP connectivity functionality.",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_10.5.2.5-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.180_10.5.2.6",
+      "section_id": "10.5.2.6",
+      "section_title": "IOPS emergency private call",
+      "content": "The procedure in figure 10.5.2.6-1 is the basic procedure for an MCPTT client initiating the establishment of an IOPS emergency private call with a target MCPTT client based on the IP connectivity functionality. The IOPS emergency private call is a special case of the IOPS private call setup procedures described in clause 10.5.2.3, wherein the IOPS call setup request contains an indication that the IOPS private call is an IOPS emergency private call. The called MCPTT user can become aware of the emergency state of the calling MCPTT user based on the emergency indicator.\nWhen an MCPTT client intends to initiate an IOPS emergency private call, the MCPTT client can request higher priority from the IOPS MC connectivity function via the IOPS discovery request.\nFor the case of an IOPS private call in-progress, either call participant can upgrade the call to an IOPS emergency private call by sending an IOPS emergency private call upgrade.\nThe emergency state of the call remains until the emergency call ends.\nPre-conditions:\n-\tMCPTT user profile used for the IOPS mode of operation is pre-provisioned in the MCPTT UEs.\n-\tMCPTT users have an active PDN connection to the IOPS MC connectivity function for the communication based on the IP connectivity functionality\n-\tThe MCPTT users are discovered by the IOPS MC connectivity function supporting the IP connectivity functionality.\n-\tMCPTT clients have retrieved connectivity information from target MCPTT users.\nFigure 10.5.2.6-1: IOPS emergency private call setup based on the IP connectivity functionality\n1.\tThe MCPTT user at MCPTT client 1 would like to initiate an IOPS emergency private call with the MCPTT user at MCPTT client 2 based on the IP connectivity functionality.\nNOTE 1:\tThe MCPTT client 1 may have previously requested higher priority from the IOPS MC connectivity function using the IOPS discovery request.\n2.\tThe MCPTT client 1 retrieves the connectivity information of the target MCPTT user from the IOPS connectivity client 1 (not shown in figure) and sends an IOPS call setup request towards the MCPTT client 2. The request contains an indication that the call is an IOPS emergency private call. The MCPTT client 1 transmits the session packets carrying the IOPS call setup request to the IOPS MC connectivity function for distribution to the corresponding target MCPTT UE 2's IP address.\n3.\tThe IOPS MC connectivity function receives the session packets addressing the MCPTT UE 2's IP address. The IOPS MC connectivity function checks if the MCPTT UE 2's IP address corresponds to a discovered MC user in order to distribute the received session packets. If it does, the IOPS MC connectivity function distributes the received session packets to the target MCPTT client over unicast transmissions. If the MCPTT client 1 requested a priority state from the IOPS MC connectivity function, the IOPS MC connectivity function distributes the session packets with higher priority.\n4.\tThe IOPS MC connectivity function distributes the session packets carrying the IOPS call setup request to the MCPTT client 2.\n5.\tThe MCPTT client 2 notifies the target MCPTT user about the incoming IOPS emergency private call.\n6.\tThe receiving MCPTT client 2 accepts the IOPS emergency private call and an IOPS call setup response indicating the successful call establishment is sent to MCPTT client 1. The MCPTT client 2 transmits the session packet(s) carrying the IOPS call setup response to the IOPS MC connectivity function for distribution to the corresponding target MCPTT UE 1's IP address.\nNOTE 2:\tWhilst the IOPS emergency private call is in progress, the MCPTT client 2 may also request higher priority from the IOPS MC connectivity function using the IOPS discovery request.\nNOTE 3:\tStep 6 can also occur prior to step 5.\n7.\tThe IOPS MC connectivity function receives the session packets addressing the MCPTT UE 1's IP address. The IOPS MC connectivity function checks if the MCPTT UE 1's IP address corresponds to a discovered MC user in order to distribute the received session packets. If it does, the IOPS MC connectivity function distributes the received session packets to the target MCPTT client over unicast transmissions. If any participating MCPTT client of the call requested a priority state from the IOPS MC connectivity function, the IOPS MC connectivity function distributes the session packets with higher priority.\n8.\tThe IOPS MC connectivity function distributes the session packets carrying the IOPS call setup response to the MCPTT client 1.\n9.\tThe MCPTT client 1 and the MCPTT client 2 have successfully established the IOPS emergency private call based on the IP connectivity functionality.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_10.5.2.3",
+        "figure_10.5.2.6-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.180_10.5.3.1",
+      "section_id": "10.5.3.1",
+      "section_title": "General",
+      "content": "For MCPTT calls based on the IP connectivity functionality in the IOPS mode of operation, floor control is performed by using floor control messages among the MCPTT clients without a centralized MCPTT server. The MCPTT client can transmit voice packets over the IOPS MC connectivity function once it is granted the right to speak, either locally in the UE or by the reception of a floor granted message from another MCPTT client.\nThe MCPTT client currently speaking performs the temporary floor arbitrator during speaking since there is no centralized MCPTT floor control server. The floor arbitrator controls the floor whether or not queue is supported, and when floor is requested with override. If queue is supported, the MCPTT client performing floor arbitrator grants the right to speak to the next speaker and transfers the floor arbitrator role after completing the voice transfer and releasing the floor. For IOPS group calls, the floor arbitrator also transfers the floor control queue when granting the floor. The next MCPTT client receiving the right to speak becomes the new floor arbitrator and, for IOPS group calls, has the floor control queue.\nFor IOPS group calls, the group session packets carrying the floor control messages can be transmitted by the IOPS MC connectivity function over MBMS transmissions and can be monitored by all the members from the target IOPS MCPTT group.\nThe following clauses specify the floor control procedures and information flows for IOPS private calls and IOPS group calls based on the IP connectivity functionality in the IOPS mode of operation.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.180_10.5.3.2.1",
+      "section_id": "10.5.3.2.1",
+      "section_title": "IOPS floor request",
+      "content": "Table 10.5.3.2.1-1 describes the information flow for the IOPS floor request, from the floor participant to another floor participant, which is used to request the floor for media transfer. The packet(s) carrying the IOPS floor request are transmitted from the requesting MCPTT client to the IOPS MC connectivity function for distribution to the target MCPTT client.\nTable 10.5.3.2.1-1: IOPS floor request\nInformation element\nStatus\nDescription\nIOPS MCPTT ID\nM\nRequester identity\nFloor priority\nM\nPriority of the request",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_10.5.3.2.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.180_10.5.3.2.2",
+      "section_id": "10.5.3.2.2",
+      "section_title": "IOPS floor taken",
+      "content": "Table 10.5.3.2.2-1 describes the information flow for the IOPS floor taken, from the floor participant to the floor participant, which is used to indicate the floor is granted to an MCPTT user. The packet(s) carrying the IOPS floor taken are transmitted from the originating MCPTT client to the IOPS MC connectivity function for distribution to target MCPTT client.\nTable 10.5.3.2.2-1: IOPS floor taken\nInformation element\nStatus\nDescription\nIOPS MCPTT ID\nM\nIdentity for the granted party\nAcknowledgement required\nO\nIndicates if acknowledgement from the floor participant is required",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_10.5.3.2.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.180_10.5.3.3",
+      "section_id": "10.5.3.3",
+      "section_title": "IOPS floor control during silence",
+      "content": "If a floor arbitrator does not exist, figure 10.5.3.3-1 shows the successful high level floor control procedure during periods when there is no detectable talker in an IOPS group call based on the IP connectivity functionality.\nNOTE 1:\tThe description also applies to IOPS private calls.\nPre-conditions:\n-\tMCPTT user profile used for the IOPS mode of operation is pre-provisioned in the MCPTT UEs.\n-\tMCPTT users have an active PDN connection to the IOPS MC connectivity function for the communication based on the IP connectivity functionality\n-\tThe IOPS MCPTT group ID and its associated IOPS group IP multicast address are pre-configured in the MCPTT clients (for the case of an IOPS group call)\n-\tThe IOPC MC connectivity function may have established an MBMS bearer and announced it to the MCPTT clients\n-\tThe MCPTT users are discovered by the IOPS MC connectivity function supporting the IP connectivity functionality.\n-\tMCPTT clients has retrieved connectivity information from the target MCPTT user (for the case of an IOPS private call).\n-\tAn IOPS private call or IOPS group call based on the IP connectivity functionality has been established. No participant is currently talking (i.e. the floor is idle) and no floor arbitrator is identified.\nFigure 10.5.3.3-1: Successful floor taken flow in an IOPS group call based on the IP connectivity functionality (no floor contention)\n1.\tThe MCPTT client 1 sends the IOPS floor request message to the target IOPS MCPTT group. The MCPTT client 1 transmits the group session packets carrying the IOPS floor request message to the IOPS MC connectivity function for distribution to the corresponding IOPS group IP multicast address.\n2.\tThe IOPS MC connectivity function determines that the received packets correspond to a group session targeting a specific IOPS MCPTT group. The IOPS MC connectivity function decides distributing the received group session packets to the target MCPTT clients over MBMS and/or unicast transmissions.\n3.\tThe IOPS MC connectivity function distributes the group session packets carrying the IOPS floor request to the MCPTT clients from the target IOPS MCPTT group.\n4.\tThe MCPTT client 1 does not detect any floor contention. Floor contention occurs when multiple floor requests may exist simultaneously.\nNOTE 2:\tThe mechanism for detecting floor contention in the IOPS mode of operation is out of scope of the present document.\n5.\tThe MCPTT client 1 sends the IOPS floor taken message to the IOPS MCPTT group. The MCPTT client 1 transmits the group session packets carrying the IOPS floor taken message to the IOPS MC connectivity function for distribution to the corresponding IOPS group IP multicast address.\n6.\tThe IOPS MC connectivity function determines that the received packets correspond to a group session targeting a specific IOPS MCPTT group. The IOPS MC connectivity function decides distributing the received group session packets to the target MCPTT clients over MBMS and/or unicast transmissions.\n7.\tThe IOPS MC connectivity function distributes the group session packets carrying the IOPS floor taken message to the MCPTT clients from the target IOPS MCPTT group.\n8.\tThe MC user at MCPTT client 1 gets a notification that the IOPS floor request was successful (the floor has been granted).\nNOTE 3:\tStep 8 can also occur prior to steps 6 and 7.\n9.\tThe MCPTT client 1 begins voice transmission with the target IOPS MCPTT group based on the IP connectivity functionality.",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_10.5.3.3-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.180_10.6.1.1",
+      "section_id": "10.6.1.1",
+      "section_title": "General",
+      "content": "The support of the MCData short data service (SDS) based on the IP connectivity functionality in the IOPS mode of operation enables that the service is provided by the MCData clients over the IOPS MC connectivity function. The IOPS MC connectivity function provides IP connectivity for the communication among MCData users.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.180_10.6.1.2.1",
+      "section_id": "10.6.1.2.1",
+      "section_title": "IOPS MCData standalone data request",
+      "content": "Table 10.6.1.2.1-1 describes the information flow for the IOPS MCData standalone data request from one MCData client to another MCData client. The packet(s) carrying the IOPS MCData standalone data request are transmitted from the sending MCData client to the IOPS MC connectivity function for distribution to the target MCData client.\nTable 10.6.1.2.1-1: IOPS MCData standalone data request\nInformation element\nStatus\nDescription\nIOPS MCData ID\nM\nThe identity of the MCData user sending data\nIOPS MCData ID\nM\nThe identity of the MCData user towards which the data is sent\nConversation Identifier\nM\nIdentifies the conversation\nTransaction Identifier\nM\nIdentifies the MCData transaction\nReply Identifier\nO\nIdentifies the original MCData transaction to which the current transaction is a reply to\nDisposition Type\nO\nIndicates the disposition type expected from the receiver (i.e., delivered or read or both)\nPayload Destination Type\nM\nIndicates whether the payload is for application consumption or MCData user consumption\nApplication identifier (see NOTE)\nO\nIdentifies the application for which the payload is intended (e.g. text string, port address, URI)\nPayload\nM\nSDS content\nNOTE:\tThe application identifier shall be included only if the payload destination type indicates that the payload is for application consumption.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_10.6.1.2.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.180_10.6.1.2.2",
+      "section_id": "10.6.1.2.2",
+      "section_title": "IOPS MCData data disposition notification",
+      "content": "Table 10.6.1.2.2-1 describes the information flow for the IOPS MCData data disposition notification from one MCData client to another MCData client. The packet(s) carrying the IOPS MCData data disposition notification are transmitted from the sending MCData client to the IOPS MC connectivity function for distribution to the target MCData client.\nTable 10.6.1.2.2-1: IOPS MCData data disposition notification\nInformation element\nStatus\nDescription\nIOPS MCData ID\nM\nThe identity of the MCData user towards which the notification is sent\nIOPS MCData ID\nM\nThe identity of the MCData user sending notification\nConversation Identifier\nM\nIdentifies the conversation\nDisposition association\nM\nIdentity of the original MCData transaction\nDisposition\nM\nDisposition which is delivered or read or both",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_10.6.1.2.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.180_10.6.1.2.3",
+      "section_id": "10.6.1.2.3",
+      "section_title": "IOPS MCData group standalone data request",
+      "content": "Table 10.6.1.2.3-1 describes the information flow for the IOPS MCData group standalone data request from one MCData client to other MCData clients. The packet(s) carrying the IOPS MCData group standalone data request are transmitted from the sending MCData client to the IOPS MC connectivity function for distribution to the target MCData clients.\nTable 10.6.1.2.3-1: IOPS MCData group standalone data request\nInformation element\nStatus\nDescription\nIOPS MCData ID\nM\nThe identity of the MCData user sending data\nIOPS MCData group ID\nM\nThe IOPS MCData group ID to which the data is to be sent\nConversation Identifier\nM\nIdentifies the conversation\nTransaction Identifier\nM\nIdentifies the MCData transaction\nReply Identifier\nO\nIdentifies the original MCData transaction to which the current transaction is a reply to\nDisposition Type\nO\nIndicates the disposition type expected from the receiver (i.e., delivered or read or both)\nPayload Destination Type\nM\nIndicates whether the payload is for application consumption or MCData user consumption\nApplication identifier (see NOTE)\nO\nIdentifies the application for which the payload is intended (e.g. text string, port address, URI)\nPayload\nM\nSDS content\nNOTE:\tThe application identifier shall be included only if the payload destination type indicates that the payload is for application consumption.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_10.6.1.2.3-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.180_10.6.1.3.1",
+      "section_id": "10.6.1.3.1",
+      "section_title": "General",
+      "content": "When an MCData user initiates an IOPS standalone SDS data transfer with another MCData user using the signalling control plane based on the IP connectivity functionality, the MCData client retrieves the connectivity information of the target MCData user (i.e. the MCData UE's IP address) from the IOPS connectivity client. Then, the MCData client enables the IOPS SDS data transfer over the IOPS MC connectivity function. The related session packets, i.e. signalling messages, carrying the data are transmitted to the IOPS MC connectivity function addressing the corresponding target MCData UE's IP address.\nNOTE:\tThe IOPS connectivity client can only provide connectivity information of the target MCData user if it is already available (see clauses 10.3 on IOPS subscription and notification procedures).\nThe IOPS MC connectivity function distributes the received session packets over unicast transmissions to the target MCData client.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.180_10.6.1.3.2",
+      "section_id": "10.6.1.3.2",
+      "section_title": "Procedure",
+      "content": "The procedure in figure 10.6.1.3.2-1 describes the case where an MCData user is initiating an IOPS one-to-one MCData communication for sending standalone SDS data over signalling control plane to another MCData user, with or without disposition request. Standalone refers to sending unidirectional data in one transaction.\nPre-conditions:\n-\tMCData user profile used for the IOPS mode of operation is pre-provisioned in the MCData UEs.\n-\tMCData users have an active PDN connection to the IOPS MC connectivity function for the communication based on the IP connectivity functionality.\n-\tThe MCData users are discovered by the IOPS MC connectivity function supporting the IP connectivity functionality.\n-\tMCData clients have retrieved connectivity information from target MCData users.\nFigure 10.6.1.3.2-1: IOPS one-to-one standalone SDS using signalling control plane based on the IP connectivity functionality\n1.\tThe MCData user at MCData client 1 would like to initiate an IOPS SDS data transfer with the MCData user at MCData client 2 based on the IP connectivity functionality. The MCData client 1 checks whether the MCData user 1 is authorized to send an IOPS MCData standalone data request.\n2.\tThe MCData client 1 retrieves the connectivity information of the target MCData user from the IOPS connectivity client 1 (not shown in figure) and sends an IOPS MCData standalone data request towards the MCData client 2. The MCData client 1 transmits the session packets carrying the IOPS MCData standalone data request to the IOPS MC connectivity function for distribution to the corresponding target MCData UE 2's IP address.\nThe IOPS MCData standalone data request contains the data payload, i.e. the SDS content. The request also contains a conversation identifier for message thread indication and may contain a disposition request if indicated by the user at MCData client 1.\n3.\tThe IOPS MC connectivity function receives the session packets addressing the MCData UE 2's IP address. The IOPS MC connectivity function checks if the MCData UE 2's IP address corresponds to a discovered MC user in order to distribute the received session packets. If it does, the IOPS MC connectivity function distributes the received session packets to the target MCData client over unicast transmissions.\n4.\tThe IOPS MC connectivity function distributes the session packets carrying the IOPS MCData standalone data request to the MCData client 2.\n5.\tUpon the receipt of the IOPS MCData standalone data request, the MCData client 2 checks whether any policy is to be asserted to limit certain types of message or content to certain members due to, for example, location or user privilege. If the policy assertion is positive and the payload is for MCData user consumption (e.g. it is not application data, not command instructions, etc.) then the MCData client 2 notifies the target MCData user.\nThe actions taken when the payload contains application data or command instructions are based on the payload content. Payload content received by MCData client 2 which is addressed to a known local non-MCData application that is not yet running shall cause the MCData client 2 to start the local non-MCData application (i.e., remote start application) and shall pass the payload content to the just started application.\nNOTE:\tIf the policy assertion was negative, the MCData client 2 sends an appropriate notification to MCData client 1.\n6.\tIf MCData data disposition was indicated (for delivery, read or both) within the request sent by the MCData client 1, then the receiving MCData client 2 initiates the corresponding IOPS MCData data disposition notification(s) towards the MCData client 1, i.e. addressing the MCData UE 1's IP address.\n7.\tThe IOPS MC connectivity function receives the session packets addressing the MCData UE 1's IP address. The IOPS MC connectivity function checks if the MCData UE 1's IP address corresponds to a discovered MC user in order to distribute the received session packets. If it does, the IOPS MC connectivity function distributes the received session packets to the target MCData client over unicast transmissions.\n8.\tThe IOPS MC connectivity function distributes the session packets carrying the IOPS MCData data disposition notification to the MCData client 1.",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_10.6.1.3.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.180_10.6.1.4.1",
+      "section_id": "10.6.1.4.1",
+      "section_title": "General",
+      "content": "IOPS group standalone SDS using signalling control plane based on the IP connectivity functionality can use pre-configured information provided to MCData clients prior to initiating the data service. When an MCData client initiates an IOPS group standalone SDS based on the IP connectivity functionality it uses the pre-configured IOPS group IP multicast address associated to the target IOPS MCData group ID. The related group session packets, i.e. signalling messages, carrying the data are transmitted to the IOPS MC connectivity function for distribution to the corresponding discovered MC users of the target IOPS MCData group.\nThe IOPS MC connectivity function can distribute the group session packets to the discovered MC users over MBMS bearers as described in clause 10.4.5.\nThe IOPS MC connectivity function can also replicate and distribute the group session packets over unicast transmissions to MCData UEs associated to the target IOPS MCData group. MCData UEs receiving the group session packets are associated to discovered MC users that included the target IOPS MCData group ID within the IOPS discovery request, as described in clause 10.5.2.3.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_10.4.5",
+        "clause_10.5.2.3"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.180_10.6.1.4.2",
+      "section_id": "10.6.1.4.2",
+      "section_title": "Procedure",
+      "content": "The procedure in figure 10.6.1.4.2-1 describes the case where an MCData user is initiating an IOPS group MCData communication for sending standalone SDS data over signalling control plane to an IOPS MCData group, with or without disposition request. Standalone refers to sending unidirectional data in one transaction.\nPre-conditions:\n-\tMCData user profile used for the IOPS mode of operation is pre-provisioned in the MCData UEs.\n-\tThe IOPS MCData group ID and its associated IOPS group IP multicast address are pre-configured in the MCData clients.\n-\tMCData users have an active PDN connection to the IOPS MC connectivity function for the communication based on the IP connectivity functionality.\n-\tMCData users affiliated to the target IOPS MCData group are discovered by the IOPS MC connectivity function supporting the IP connectivity functionality.\n-\tThe IOPS MC connectivity function may have established an MBMS bearer and announced it to the MCData clients.\n-\tMCData client 1 may have retrieved group connectivity information from the IOPS connectivity client related to the target IOPS MCData group.\n-\tMCData clients 1, 2 … n are configured within the same IOPS MCData group.\nFigure 10.6.1.4.2-1: IOPS group standalone SDS using signalling control plane based on the IP connectivity functionality\n1.\tThe MCData user at MCData client 1 would like to initiate an IOPS SDS data transfer with a specific IOPS MCData group based on the IP connectivity functionality. The MCData client 1 checks whether the MCData user 1 is authorized to send an IOPS MCData group standalone data request.\n2.\tThe MCData client 1 sends an IOPS MCData group standalone data request to the target IOPS MCData group. The MCData client 1 transmits the group session packets carrying the IOPS MCData group standalone data request to the IOPS MC connectivity function for distribution to the corresponding IOPS group IP multicast address.\nThe IOPS MCData group standalone data request contains the data payload, i.e. the SDS content. The request also contains a conversation identifier for message thread indication and may contain a disposition request if indicated by the user at MCData client 1.\n3.\tThe IOPS MC connectivity function determines that the received packets correspond to a group session targeting a specific IOPS MCData group. The IOPS MC connectivity function decides distributing the received group session packets to the target MCData clients over MBMS and/or unicast transmissions.\n4.\tThe IOPS MC connectivity function distributes the group session packets carrying the IOPS MCData group standalone data request to the discovered MCData clients from the target IOPS MCData group.\n5.\tThe MCData clients receiving the IOPS MCData group standalone data request check whether any policy is to be asserted to limit certain types of message or content to certain members due to, for example, location or user privilege. If the policy assertion is positive and the payload is for MCData user consumption (e.g. it is not application data, not command instructions, etc.) then the MCData clients notify the target MCData users.\nThe actions taken when the payload contains application data or command instructions are based on the payload content. Payload content received by an MCData client which is addressed to a known local non-MCData application that is not yet running shall cause the MCData client to start the local non-MCData application (i.e., remote start application) and shall pass the payload content to the just started application.\nNOTE:\tIf the policy assertion was negative, the corresponding MCData client sends an appropriate notification to MCData client 1.\n6.\tIf MCData data disposition was indicated (for delivery, read or both) within the request sent by the MCData client 1, then the receiving MCData clients initiate the corresponding IOPS MCData data disposition notification(s) towards the MCData client 1, i.e. addressing the MCData UE 1's IP address.\n7.\tThe IOPS MC connectivity function receives the session packets addressing the MCData UE 1's IP address. The IOPS MC connectivity function checks if the MCData UE 1's IP address corresponds to a discovered MC user in order to distribute the received session packets. If it does, the IOPS MC connectivity function distributes the received session packets to the target MCData client over unicast transmissions.\n8.\tThe IOPS MC connectivity function distributes the session packets carrying the IOPS MCData data disposition notification to the MCData client 1.",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_10.6.1.4.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.180_10.7.1",
+      "section_id": "10.7.1",
+      "section_title": "General",
+      "content": "In the IOPS mode of operation, it is assumed that the IOPS MC system does not have connectivity to the primary MC system due to the backhaul failure. Therefore, the primary MC system cannot be aware of the initiation of the IOPS operation and the corresponding activation of an IOPS MC connectivity function within the primary MC system coverage.\nWhen an IOPS MC system is active, MC service UEs can move around and may enter and leave the IOPS MC system coverage, i.e. the MC service users may switch from the active IOPS MC connectivity function to the MC service server of the primary MC system, and vice versa.\nIn order to notify the primary MC service server about the active IOPS MC connectivity function, when MC service users register to the primary MC service server after being recently registered to the IOPS MC connectivity function, the MC service users can provide information to the primary MC service server about the active IOPS MC connectivity function and optionally include associated dynamic information. The primary MC service server uses the provided information to become aware of the active IOPS MC connectivity function.\nNOTE:\tDynamic information can be, e.g., information about other available MC service users or active MC service groups that the MC service user identified while on the IOPS MC connectivity function. The primary MC service server can use the dynamic information to determine that affiliated MC service users might be registered on the active IOPS MC connectivity function and might not be reachable on the system.\nUpon the receipt of the notification, the primary MC service server may notify other MC service users in the proximity of the IOPS MC system coverage about the corresponding active IOPS MC connectivity function. This information can be used by the MC service users to optimize the user experience, e.g. to improve the switching time between systems and to obtain information about the potential availability of other registered MC service users or active MC service groups on the IOPS MC connectivity function.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.180_10.7.2.1",
+      "section_id": "10.7.2.1",
+      "section_title": "MC IOPS notification",
+      "content": "Table 10.7.2.1-1 describes the information flow MC IOPS notification from the MC service client to the primary MC service server.\nTable 10.7.2.1-1: MC IOPS notification\nInformation element\nStatus\nDescription\nMC service ID\nM\nThe identity of the MC service user providing the notification\nIOPS MC system information\nM\nInformation related to the identified active IOPS MC connectivity function (see NOTE)\nList of MC service group IDs\nO\nThe list of groups identified by the MC service user as active on the IOPS MC connectivity function\nList of MC service IDs\nO\nThe list of other users identified by the MC service user as available on the IOPS MC connectivity function\nNOTE:\tThe IOPS MC system information consists of the following elements: IOPS PLMN ID, server URI of the IOPS MC connectivity function, and location information (set of coordinates including altitude, longitude and latitude, and time of measurement and optional accuracy) related to the MC service user registration on the IOPS MC connectivity function.\nTable 10.7.2.1-2 describes the information flow MC IOPS notification from the primary MC service server to the MC service client.\nTable 10.7.2.1-2: MC IOPS notification\nInformation element\nStatus\nDescription\nMC service ID (see NOTE 1)\nM\nThe identity of the MC service user receiving the notification\nIOPS MC system information\nM\nInformation related to the identified active IOPS MC connectivity function (see NOTE 2)\nList of MC service group IDs (see NOTE 3)\nO\nThe list of MC service groups identified as active on the IOPS MC connectivity function\nList of MC service IDs (see NOTE 3)\nO\nThe list of MC service users identified as available on the IOPS MC connectivity function\nNOTE 1:\tThis information element is not included if the notification is transmitted over MBMS.\nNOTE 2:\tThe IOPS MC system information consists of the following elements: server URI of the IOPS MC connectivity function, and location information (set of coordinates including altitude, longitude and latitude) where the IOPS MC connectivity function is identified as active.\nNOTE 3:\tThe MC service server may provide information about identified active MC service groups or available MC service users on the IOPS MC connectivity function. This information is only included if the MC service user receiving the notification is authorized, e.g. if the MC service user is a member of the corresponding MC service groups. This information element is not included if the notification is transmitted over MBMS.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_10.7.2.1-1",
+        "table_10.7.2.1-2"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.180_10.7.3",
+      "section_id": "10.7.3",
+      "section_title": "MC IOPS notification procedure",
+      "content": "Figure 10.7.3-1 describes the IOPS MC notification procedure when an MC service user has left an active IOPS MC system and enters the primary MC system.\nPre-conditions:\n-\tThere is an active IOPS MC connectivity function and the neighbouring cells of the IOPS MC system are part of the primary MC system.\n-\tThe MC service user 1 is initially registered to the IOPS MC connectivity function for the support of MC services in the IOPS mode of operation. The MC service user 1 is authorized to provide MC IOPS notifications to the primary MC service server.\n-\tThe MC service user 2 is registered to the primary MC service server and is in the proximity of the IOPS MC system coverage.\n-\tMC server users 1 and 2 are members of the same MC service group or are authorized to have a one-to-one MC service communication.\nFigure 10.7.3-1: MC IOPS notification procedure\n1.\tAn IOPS mode of operation is active and the MC service communication is handled by the IOPS MC connectivity function. The MC service client 1 is registered to the IOPS MC connectivity function.\n2.\tThe MC service client 1 moves out of the coverage of the IOPS MC system and registers to the primary MC service server.\n3.\tThe MC service client 1 sends a MC IOPS notification to the primary MC service server to provide information about an active IOPS MC connectivity function in the area. This notification includes information about the active IOPS MC connectivity function such as server URI, associated IOPS PLMN ID, and location information. Also, the MC service client 1 may indicate which MC service groups and MC service users were identified as active and available on the IOPS MC connectivity function.\n4.\tThe primary MC service server becomes aware of the active IOPS MC connectivity function and can use the received information to determine that affiliated MC service users might be registered on the active IOPS MC connectivity function and might not be reachable on the system. If the primary MC service server determines that the IOPS MC connectivity function is active and identifies that affiliated MC service users are in the proximity of the IOPS MC system, the primary MC service server may notify the corresponding MC service users about the IOPS MC connectivity function.\nNOTE 1:\tThe primary MC service server can use received information from different MC IOPS notifications (e.g. location information including the time of measurement) and the information obtained from location information subscriptions (as described in 3GPP TS 23.280 [3]) to determine if the IOPS MC connectivity function might be still active. For instance, if information received from location information subscriptions indicates that MC service users are located within the notified active IOPS MC system coverage, the primary MC service server can determine that the IOPS MC connectivity function is no longer active.\n5.\tIf the primary MC service server determines that the IOPS MC connectivity function is active, it sends a MC IOPS notification to the MC service client 2 in proximity of the active IOPS MC system coverage. This information can be used by the MC service user to become aware of the active IOPS MC connectivity function. Hence, the MC service user might decide to not move into the IOPS MC system coverage or to improve the switching time between the systems. Also, the MC service user can be aware of the potential availability of MC service users or active MC service groups on the IOPS MC connectivity function.\nNOTE 2:\tThe MC IOPS notification can be sent on an MBMS bearer configured within the proximity of the active IOPS MC system to target multiple MC service users. In this case, information about the active MC service IDs and MC service group IDs is not included in the MC IOPS notification.\nAnnex A (normative):Configuration data for the support of MC services in the IOPS mode of operation\nA.1\tGeneral\nThis Annex provides information about the static configuration data needed for the support of MC services in the IOPS mode of operation.\nThe configuration data belong to one of the following categories:\n-\tMC service UE configuration data (see subclause A.2);\n-\tMC service user profile configuration data (see subclause A.3);\n-\tMC service group configuration data (see subclause A.4); and\n-\tMC service configuration data (see subclause A.5).\nThe configuration data in each configuration category corresponds to a single instance of the category type i.e. the MC service UE, MC service group, MC service user and MC service configuration data refers to the information that will be stored against each MC service UE, MC service group, MC service user and MC service.\nNOTE:\tThe configuration data described in this Annex together with corresponding configuration data provided in 3GPP TS 23.280 [3], 3GPP TS 23.379 [5] and 3GPP TS 23.282 [6] represent the complete set of data for each configuration data category element.\nThe columns in the tables have the following meanings:\n-\tReference: the reference of the corresponding requirement in 3GPP TS 22.346 [9] and 3GPP TS 22.280 [11] or the corresponding clause from either the present document or the referenced document.\n-\tParameter description: A short definition of the semantics of the corresponding item of data, including denotation of the level of the parameter in the configuration hierarchy.\n-\tWhen it is not clear to which functional entities the parameter is configured, then one or more columns indicating this are provided where the following nomenclature is used:\n-\t\"Y\" to denote \"Yes\" i.e. the parameter denoted for the row needs to be configured to the functional entity denoted for the column.\n-\t\"N\" to denote \"No\" i.e. the parameter denoted for the row does not need to be configured to the functional entity denoted for the column.\nParameters within a set of configuration data have a level within a hierarchy that pertains only to that configuration data. The level of a parameter within the hierarchy of the configuration data is denoted by use of the character \">\" in the parameter description field within each table, one per level. Parameters that are at the top‑most level within the hierarchy have no \">\" character. Parameters that have one or more \">\" characters are child parameters of the first parameter above them that has one less \">\" character. Parent parameters are parameters that have one or more child parameters. Parent parameters act solely as a \"grouping\" of their child parameters and therefore do not contain an actual value themselves i.e. they are just containers for their child parameters.\nEach parameter that can be configured online shall only be configured through one online reference point. Each parameter that can be configured offline shall only be configured through one offline reference point. The most recent configuration data made available to the MC service UE shall always overwrite previous configuration data, irrespective of whether the configuration data was provided via the online or offline mechanism.\nA.2\tMC service UE configuration data\nMC service UE configuration data has to be known by an MC service UE after MC service authorization. The CSC-4 reference point, specified in 3GPP TS 23.280 [3], is used for configuration between the configuration management server and the configuration management client on the MC service UE when the MC service UE is on-network.\nMC service UE configuration data can be configured offline using the CSC-11 reference point specified in 3GPP TS 23.280 [3].\nWithin each MC service, the MC service UE configuration data can be the same or different across MC service UEs.\nThe MCPTT UE configuration data specified in table A.2-1 in 3GPP TS 23.379 [5] is also used, as needed, in the IOPS mode of operation for the MCPTT service.\nThe MCData UE configuration data specified in table A.2-1 in 3GPP TS 23.282 [6] is also used, as needed, in the IOPS mode of operation for the MCData service.\nA.3\tMC service user profile configuration data\nThe MC service user profile configuration data is stored in the MC service user database. The configuration management server is used to configure the MC service user profile configuration data to the MC service user database (CSC-13) and MC service UE (CSC-4), as specified in 3GPP TS 23.280 [3].\nMC service user profile configuration data can be configured offline using the CSC-11 reference point specified in 3GPP TS 23.280 [3].\nFor the MCPTT service, the MCPTT user profile configuration data specified in table A.3-1 in 3GPP TS 23.379 [5] is also used, as needed, in the IOPS mode of operation, wherein the IOPS MCPTT user identity (IOPS MCPTT ID) can be the MCPTT user identity (MCPTT ID) or a specific ID configured for the IOPS mode of operation.\nFor the MCData service, the MCData user profile configuration data specified in table A.3-1 in 3GPP TS 23.282 [6] is also used, as needed, in the IOPS mode of operation, wherein the IOPS MCData user identity (IOPS MCData ID) can be the MCData user identity (MCData ID) or a specific ID configured for the IOPS mode of operation.\nTable A.3-1 described below contains additional MC service user profile configuration required to support MC services in the IOPS mode of operation.\nTable A.3-1: MC service user profile data (IOPS)\nReference\nParameter description\nMC service UE\nConfiguration management server\nMC service user database\n[R-10-001] of 3GPP TS 22.280 [11]\nList of IOPS MC service groups for use by an MC service user\nY\nY\nY\n> IOPS MC service Group ID\n> Application plane server identity information of group management server where group is defined\n>> Server URI\nY\nY\nY\n> Application plane server identity information of identity management server which provides authorization for group (see NOTE 1)\n>> Server URI\nY\nY\nY\n[R-10-001] of 3GPP TS 22.280 [11]\nAuthorization for participant to change an IOPS group call in-progress to IOPS emergency group call (see NOTE 2)\nY\nY\nY\n[R-10-001] of 3GPP TS 22.280 [11]\nAuthorization for MC services in the IOPS mode of operation\nY\nY\nY\nClause 10.2.2.3\nAuthorization for participant to indicate availability of connectivity information\nY\nY\nY\nClause 10.2.2.3\nAuthorization for participant to request priority state\nY\nY\nY\nNOTE 1:\tIf this parameter is not configured, authorization to use the group shall be obtained from the identity management server identified in the initial MC service UE configuration data configured in 3GPP TS 23.280 [3].\nNOTE 2:\tThis parameter only applies for the MCPTT service.\nA.4\tGroup configuration data\nAs specified in 3GPP TS 23.280 [3], the group configuration data is stored in the group management server. The group management server is used to configure the group configuration data to the MC service UE (CSC-2). The group configuration data can be configured offline using the CSC-12 reference point.\nThe common group configuration data specified in table A.4-1 in 3GPP TS 23.280 [3] is also used, as needed, in the IOPS mode of operation.\nTable A.4-1 described below contains additional group configuration data required to support MC services in the IOPS mode of operation.\nTable A.4-1: Group configuration data (IOPS)\nReference\nParameter description\nMC service UE\nGroup management server\n[R-10-001] of 3GPP TS 22.280 [11]\nList of IOPS MC service groups\nY\nY\n> IOPS MCPTT Group ID\nClause 8.1.3\n>> IOPS group IP multicast address\nY\nY\n>> Preferred voice codecs for IOPS MCPTT group\nY\nY\n>> Indication whether emergency group call is permitted on the IOPS MCPTT group\nY\nY\n> IOPS MCData Group ID\nClause 8.1.3\n>> IOPS group IP multicast address\nY\nY\n>> MCData sub-services and features enabled for the group\n>>> Short data service enabled\nY\nY\n>>> Whether MCData user is permitted to transmit data in the group\nY\nY\n>>> Maximum amount of data that the MCData user can transmit in a single request during group communication\nY\nY\n>>> Maximum amount of time that the MCData user can transmit in a single request during group communication\nY\nY\nA.5\tMC service configuration data\nAs specified in 3GPP TS 23.280 [3], the configuration management server is used to configure the MC service configuration data to the MC service UE (CSC-4). The MC service configuration data can be configured offline using the CSC-11 reference point.\nTables A.5-1 and A.5-2 describe the configuration data required to support in IOPS the use of MCPTT service and MCData service, respectively.\nTable A.5-1: MCPTT service configuration data (IOPS)\nReference\nParameter description\nMCPTT UE\nConfiguration management server\n[R-10-001] of 3GPP TS 22.280 [11]\nMax IOPS private call (with floor control) duration\nY\nY\n[R-10-001] of 3GPP TS 22.280 [11]\nHang timer for private calls in IOPS\nY\nY\n[R-10-001] of 3GPP TS 22.280 [11]\nPriority hierarchy for floor control override in IOPS\nY\nY\n[R-10-001] of 3GPP TS 22.280 [11]\nTransmit time limit from a single request to transmit in a group or private call.\nY\nY\n[R-10-001] of 3GPP TS 22.280 [11]\nConfiguration of warning time before time limit of transmission is reached in an IOPS call\nY\nY\n[R-10-001] of 3GPP TS 22.280 [11]\nConfiguration of warning time before hang time is reached in an IOPS call\nY\nY\n[R-10-001] of 3GPP TS 22.280 [11]\nConfiguration of metadata to log\nY\nY\nTable A.5-2: MCData service configuration data (IOPS)\nReference\nParameter description\nMCData UE\nConfiguration management server\n[R-10-001] of 3GPP TS 22.280 [11]\nTransmission and reception control\n> Time limit for the temporarily stored data waiting to be delivered to a receiving user\nY\nY\n> Timer for periodic announcement with the list of available recently invited data group communications\nY\nY\nA.6\tInitial MC service UE configuration data\nInitial MC service UE configuration data is essential to the MC service UE to successfully connect to the MC system, as described in 3GPP TS 23.280 [3].\nThe configuration data defined in table A.6-1 is additionally provided to the MC service UE's clients to successfully connect to the IOPS MC system in the IOPS mode of operation. The MC service UE's clients (e.g. MC service client, IOPS connectivity client) obtain the data during the bootstrap process (described in clause 10.1.1 in 3GPP TS 23.280 [3]), and can be configured on the MC service UE offline using the CSC-11 reference point or via other means e.g. as part of the MC service client's provisioning on the UE, using a device management procedure.\nTable A.6-1: Initial MC service UE configuration data (IOPS)\nReference\nParameter description\nClause 5.4.3\nPDN connectivity information in IOPS\n> IOPS HPLMN ID and optionally IOPS VPLMN ID to which the data pertains\n> MC services PDN in IOPS\n>> APN\n>> PDN access credentials\nApplication plane server identity information\n> Indication of whether the UE shall use IPv4 or IPv6 for the support of MC services in IOPS\n> IOPS MC connectivity function\n>> Server URI\nAnnex B (informative):Change history\nChange history\nDate\nMeeting\nTDoc\nCR\nRev\nCat\nSubject/Comment\nNew version\n2019-09\nSA6#33\nTS skeleton\n0.0.0\n2019-09\nSA6#33\nImplementation of the following pCRs approved by SA6:\nS6-191814, S6-191821, S6-191815, S6-191816, S6-191817, S6-191818, S6-191851, S6-191820, S6-191822.\nEditorial changes by the rapporteur.\n0.1.0\n2019-11\nSA6#34\nImplementation of the following pCRs approved by SA6:\nS6-192226, S6-192227, S6-192228, S6-192229, S6-192230, S6-192231, S6-192233, S6-192349, S6-192350.\nEditorial changes by the rapporteur.\n0.2.0\n2020-01\nSA6#35\nImplementation of the following pCRs approved by SA6:\nS6-200280, S6-200185, S6-200186, S6-200187, S6-200097, S6-200098.\nEditorial changes by the rapporteur.\n0.3.0\n2020-04\nSA6#36 BIS-e\nImplementation of the following pCRs approved by SA6:\nS6-200588, S6-200589, S6-200590, S6-200591, S6-200561, S6-200562, S6-200563.\nEditorial changes by the rapporteur.\n0.4.0\n2020-05\nSA6#37-e\nImplementation of the following pCRs approved by SA6:\nS6-200928, S6-200933.\nEditorial changes by the rapporteur.\n0.5.0\n2020-06\nSA#88-e\nSP-200334\nPresentation for information at SA#88-e\n1.0.0\n2020-07\nSA6#38-e\nImplementation of the following pCRs approved by SA6:\nS6-201084, S6-201085, S6-201087, S6-201088, S6-201108, S6-201109, S6-201110.\nEditorial changes by the rapporteur.\n1.1.0\n2020-09\nSA6#39-e\nImplementation of the following pCRs approved by SA6:\nS6-201432, S6-201433, S6-201434, S6-201435, S6-201532.\nEditorial changes by the rapporteur.\n1.2.0\n2020-09\nSA#89-e\nSP-200826\nPresentation for approval at SA#89-e\n2.0.0\n2020-09\nSA#89-e\nSP-200826\nMCC Editorial update for publication after TSG SA approval (SA#89)\n17.0.0\n2024-05\nUpdate to Rel-18 version (MCC)\n18.0.0",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "clause_10.2.2.3",
+        "clause_8.1.3",
+        "ts_23.280_clause_10.1.1",
+        "clause_5.4.3",
+        "figure_10.7.3-1",
+        "ts_23.280",
+        "ts_23.379",
+        "ts_23.282",
+        "ts_22.346",
+        "ts_22.280"
+      ]
+    }
+  ]
+}

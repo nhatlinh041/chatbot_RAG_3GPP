@@ -1,0 +1,1248 @@
+{
+  "metadata": {
+    "specification_id": "ts_29.556",
+    "version": "18.6.0",
+    "title": "3GPP TS 29.556",
+    "file_path": "/content/drive/MyDrive/RAG_thesis/data/29_series/29556-i60/29556-i60.docx"
+  },
+  "export_info": {
+    "export_date": "2025-07-26T08:48:27.235950",
+    "total_chunks": 107
+  },
+  "chunks": [
+    {
+      "chunk_id": "ts_29.556_1",
+      "section_id": "1",
+      "section_title": "Scope",
+      "content": "The present document specifies the stage 3 protocol and data model for the Neasdf Service Based Interface. It provides stage 3 protocol definitions and message flows, and specifies the API for each service offered by the EASDF.\nThe 5G System stage 2 architecture and procedures are specified in 3GPP TS 23.501 [2], 3GPP TS 23.502 [3] and 3GPP TS 23.548 [14].\nThe Technical Realization of the Service Based Architecture and the Principles and Guidelines for Services Definition are specified in 3GPP TS 29.500 [4] and 3GPP TS 29.501 [5].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.501",
+        "ts_23.502",
+        "ts_23.548",
+        "ts_29.500",
+        "ts_29.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.556_2",
+      "section_id": "2",
+      "section_title": "References",
+      "content": "The following documents contain provisions which, through reference in this text, constitute provisions of the present document.\n-\tReferences are either specific (identified by date of publication, edition number, version number, etc.) or non‑specific.\n-\tFor a specific reference, subsequent revisions do not apply.\n-\tFor a non-specific reference, the latest version applies. In the case of a reference to a 3GPP document (including a GSM document), a non-specific reference implicitly refers to the latest version of that document in the same Release as the present document.\n[1]\t3GPP TR 21.905: \"Vocabulary for 3GPP Specifications\".\n[2]\t3GPP TS 23.501: \"System Architecture for the 5G System; Stage 2\".\n[3]\t3GPP TS 23.502: \"Procedures for the 5G System; Stage 2\".\n[4]\t3GPP TS 29.500: \"5G System; Technical Realization of Service Based Architecture; Stage 3\".\n[5]\t3GPP TS 29.501: \"5G System; Principles and Guidelines for Services Definition; Stage 3\".\n[6]\tOpenAPI: \"OpenAPI Specification Version 3.0.0\", https://spec.openapis.org/oas/v3.0.0.\n[7]\t3GPP TR 21.900: \"Technical Specification Group working methods\".\n[8]\t3GPP TS 33.501: \"Security architecture and procedures for 5G system\".\n[9]\tIETF RFC 6749: \"The Oauth 2.0 Authorization Framework\".\n[10]\t3GPP TS 29.510: \"5G System; Network Function Repository Services; Stage 3\".\n[11]\tIETF RFC 9113: \"HTTP/2\".\n[12]\tIETF RFC 8259: \"The JavaScript Object Notation (JSON) Data Interchange Format\".\n[13]\tIETF RFC 9457: \"Problem Details for HTTP APIs\".\n[14]\t3GPP TS 23.548: \"5G System Enhancements for Edge Computing; Stage 2\".\n[15]\tIETF RFC 6902: \"JavaScript Object Notation (JSON) Patch\".\n[16]\t3GPP TS 29.571: \"5G System; Common Data Types for Service Based Interfaces; Stage 3\".\n[17]\tVoid.\n[18]\tIETF RFC 7871: \"Client Subnet in DNS Queries\".\n[19]\t3GPP TS 23.003: \"Numbering, addressing and identification\".\n[20]\t3GPP TS 29.502: \"5G System; Session Management Services; Stage 3\".",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905",
+        "ts_23.501",
+        "ts_23.502",
+        "ts_29.500",
+        "ts_29.501",
+        "ts_21.900",
+        "ts_33.501",
+        "ts_29.510",
+        "ts_23.548",
+        "ts_29.571",
+        "ts_23.003",
+        "ts_29.502"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.556_3.1",
+      "section_id": "3.1",
+      "section_title": "Definitions",
+      "content": "For the purposes of the present document, the terms and definitions given in 3GPP TR 21.905 [1] and the following apply. A term defined in the present document takes precedence over the definition of the same term, if any, in 3GPP TR 21.905 [1].\nOne-Time DNS Rule: A DNS Rule that applies only once to a specific DNS message earlier buffered in the EASDF and reported to the SMF (see clause 5.2.3.2.4).",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_5.2.3.2.4",
+        "ts_21.905"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.556_3.2",
+      "section_id": "3.2",
+      "section_title": "Abbreviations",
+      "content": "For the purposes of the present document, the abbreviations given in 3GPP TR 21.905 [1] and the following apply. An abbreviation defined in the present document takes precedence over the definition of the same abbreviation, if any, in 3GPP TR 21.905 [1].\nBD AIT\tBaseline DNS Action Information Template\nBD MDT\tBaseline DNS Message Detection Template\nEASDF\tEdge Application Server Discovery Function\nECS\tEDNS Client Subnet\nEDNS\tExtension mechanisms for DNS\nHR-SBO\tHome Routed Session BreakOut\nMDT\t(DNS Query or DNS Response) Message Detection Template",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.556_4.1",
+      "section_id": "4.1",
+      "section_title": "Introduction",
+      "content": "Within the 5GC, the EASDF offers services to the SMF via the Neasdf service based interface (see 3GPP TS 23.548 [14], 3GPP TS 23.501 [2] and 3GPP TS 23.502 [3]).\nFigure 4.1-1 provides the reference model (in service based interface representation and in reference point representation), with focus on the EASDF and the scope of the present specification.\nFigure 4.1-1: Reference model – EASDF\nThe functionalities supported by the EASDF are listed in clause 5.1.1 of 3GPP TS 23.548 [14].\nIn roaming scenarios, the V-EASDF offers service to the SMF in the VPLMN in both LBO roaming and HR with Session Breakout (HR-SBO) roaming scenarios (see clause 4.2 of 3GPP TS 23.548 [14]).",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.548_clause_5.1.1",
+        "ts_23.548_clause_4.2",
+        "ts_23.501_figure_4.1-1",
+        "figure_4.1-1",
+        "ts_23.548",
+        "ts_23.501",
+        "ts_23.502"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.556_5.1",
+      "section_id": "5.1",
+      "section_title": "Introduction",
+      "content": "The EASDF offers to other NFs the following service:\nTable 5.1-1: NF Service provided by EASDF\nService Name\nDescription\nExample Consumer\nNeasdf_DNSContext\nThis service enables the consumer to create, update and delete DNS context in EASDF, or subscribe to DNS message reporting from EASDF.\nSMF, V-SMF\nNeasdf_BaselineDNSPattern\nThis service enables the consumer to create, update and delete Baseline DNS pattern in EASDF.\nSMF, V-SMF\nThe Neasdf_DNSContext service and Neasdf_BaselineDNSPattern service are specified in 3GPP TS 23.548 [14].\nTable 5.1-2 summarizes the corresponding APIs defined for this specification.\nTable 5.1-2: API Descriptions\nService Name\nClause\nDescription\nOpenAPI Specification File\napiName\nAnnex\nNeasdf_DNSContext\n6.1\nEASDF DNSContext Service\nTS29556_Neasdf_DNSContext.yaml\nneasdf-dnscontext\nA.2\nNeasdf_BaselineDNSPattern\n6.2\nEASDF BaselineDNSPattern Service\nTS29556_Neasdf_BaselineDNSPattern.yaml\nneasdf-baselinednspattern\nA.3",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.1-1",
+        "ts_23.548_table_5.1-2",
+        "table_5.1-2",
+        "ts_23.548"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.556_5.2.1",
+      "section_id": "5.2.1",
+      "section_title": "Service Description",
+      "content": "The Neasdf_DNSContext service operates on the DNS contexts. The EASDF is acting as NF Service Producer, while the SMF is the NF Service Consumer.\nFollowing functionalities are provided by the Neasdf_DNSContext service:\n-\tCreate a DNS context in EASDF;\n-\tUpdate a DNS context in EASDF;\n-\tDelete a DNS context in EASDF;\n-\tEnable the EASDF to report DNS signalling related information to the NF service consumer when receiving DNS Query or DNS Response.\nThe Neasdf_DNSContext service supports the following service operations.\nTable 5.2.1-1: Service operations supported by the Neasdf_DNSContext service\nService Operations\nDescription\nOperation\nSemantics\nExample Consumer(s)\nCreate\nCreate a DNS context in EASDF.\nRequest/Response\nSMF, V-SMF\nUpdate\nUpdate a DNS context in EASDF.\nRequest/Response\nSMF, V-SMF\nDelete\nDelete a DNS context in EASDF.\nRequest/Response\nSMF, V-SMF\nNotify\nEASDF reports DNS signalling related information to the NF service consumer when receiving DNS Query or DNS Response.\nSubscribe/Notify\nSMF, V-SMF",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.2.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.556_5.2.2.1",
+      "section_id": "5.2.2.1",
+      "section_title": "Introduction",
+      "content": "See Table 5.2.1-1 for an overview of the service operations supported by the Neasdf_DNSContext service.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.2.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.556_5.2.2.2.1",
+      "section_id": "5.2.2.2.1",
+      "section_title": "General",
+      "content": "The Create service operation shall be used to create an individual DNS context for a given PDU Session in the EASDF.\nIt is used in the following procedures:\n-\tEAS Discovery Procedure with EASDF (see clause 6.2.3.2.2 of 3GPP TS 23.548 [14]); and\n-\tEAS Discovery Procedure with V-EASDF for HR-SBO (see clause 6.7 of 3GPP TS 23.548 [14]).\nThere shall be only one individual DNS context created in an EASDF per PDU session.\nThe NF Service Consumer (e.g. SMF) shall create a DNS context by using the HTTP POST method as shown in Figure 5.2.2.2.1-1.\nFigure 5.2.2.2.1-1: DNS context creation\n1.\tThe NF Service Consumer shall send a POST request to the resource representing the DNS contexts collection resource of the EASDF. The content of the POST request shall contain:\n-\tthe UE IP address, S-NSSAI and the DNN of the related PDU session;\n-\ta notification URI for receiving DNS context related event notifications, if notifications are requested;\n-\tone or more DNS rules.\nIn addition, for a DNS context creation in the V-EASDF for HR-SBO in VPLMN:\n-\tthe UE IP address shall be set to an unspecified address, i.e. to the IPv4 address 0.0.0.0, or the IPv6 address ::/128, if the IP address of the UE's PDU session is not known yet, or to a mapped address (when using UE source IP address mapping at the Local PSA-UPF);\n-\tthe S-NSSAI shall correspond to the VPLMN S-NSSAI value; and\n-\tthe content of the POST request shall contain the HPLMN ID.\nThe payload body of the POST request may further contain:\n-\tN6 traffic routing information that may contain the IP address and optional port number of the Local PSA-UPF and the IP address and optional port number of the V-EASDF, for HR-SBO in VPLMN, when using N6 tunneling between the L-PSA and V-EASDF, to disambiguate the DNS traffic using a private UE IP address from a certain HPLMN using a specific L-PSA UPF address and a specific V-EASDF address for of the N6 tunnel between the Local PSA-UPF and the V-EASDF.\n2a.\tOn success, a \"201 Created\" response shall be returned with the \"Location\" header containing the URI of the created resource.\nThe POST response content shall include:\n-\tthe IP address of the EASDF (to be sent by the SMF to the UE).\nThe POST response content may include:\n-\tDNS Security Information of the (V-)EASDF.\n2b.\tOn failure, or redirection, one of the HTTP status code listed in Table 6.1.3.2.3.1-3 shall be returned.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_23.548_clause_6.2.3.2.2",
+        "ts_23.548_clause_6.7",
+        "table_6.1.3.2.3.1-3",
+        "figure_5.2.2.2.1-1",
+        "ts_23.548"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.556_5.2.2.3.1",
+      "section_id": "5.2.2.3.1",
+      "section_title": "General",
+      "content": "The Update service operation shall be used to update an individual DNS context previously created in the EASDF. The update operation may apply to the whole DNS context (complete replacement of the data of the existing DNS context by new data), or it may apply to modify a subset of the parameters of the DNS context.\nIt is used in the following procedures:\n-\tEAS Discovery Procedure with EASDF (see clause 6.2.3.2.2 of 3GPP TS 23.548 [14]); and\n-\tEAS Discovery Procedure with V-EASDF for HR-SBO (see clauses 6.7.2.2, 6.7.2.3, 6.7.2.6 and 6.7.2.9 of 3GPP TS 23.548 [14]).\nTo perform a partial update of the DNS context of a given DNS context Id, the NF Service Consumer shall issue an HTTP PATCH request, as shown in Figure 5.2.2.3.1-1. This partial update shall be used to add, delete and/or replace individual parameters of the DNS context.\nFigure 5.2.2.3.1-1: DNS context Partial Update\n1.\tThe NF Service Consumer (e.g. SMF) shall send a PATCH request to the resource URI representing the individual DNS context, identified by the {dnsContextId}. The content of the PATCH request shall contain the list of operations (add/delete/replace) to be applied to parameters in the individual DNS context.\n2a.\tOn success, if all the modification instructions in the PATCH request have been implemented, \"204 No Content\" shall be returned.\n2b.\tIf some of the modification instructions for unknown attribute(s) in the PATCH request have been ignored, the EASDF shall respond with \"200 OK\" with the response body containing PatchResult, as specified in clause 5.2.7.2 of 3GPP TS 29.500 [4].\n2c.\tOn failure or redirection, one of the HTTP status code listed in Table 6.1.3.3.3.2-3 shall be returned.\nTo perform a complete replacement of the data of the DNS context of a given DNS context Id, the NF Service Consumer shall issue an HTTP PUT request, as shown in Figure 5.2.2.3.1-2:\nFigure 5.2.2.3.1-2: DNS context Complete Replacement\n1.\tThe NF service consumer (e.g. SMF) shall send a PUT request to the resource URI representing the individual DNS context, identified by the {dnsContextId}. The content of the PUT request shall contain a representation of the individual DNS context to be completely replaced in the EASDF.\n2a.\tOn success, \"204 No Content\" shall be returned.\n2b.\tOn failure or redirection, one of the HTTP status code listed in Table 6.1.3.3.3.3-3 shall be returned.\nFor HR-SBO in VPLMN, if the V-SMF has created the DNS context with an unspecified UE IP address, the V-SMF shall use either of the procedures above including the UE IP address assigned by the HPLMN to complete the configuration of the context in the V-EASDF.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_23.548_clause_6.2.3.2.2",
+        "ts_29.500_clause_5.2.7.2",
+        "table_6.1.3.3.3.2-3",
+        "table_6.1.3.3.3.3-3",
+        "figure_5.2.2.3.1-1",
+        "figure_5.2.2.3.1-2",
+        "ts_23.548",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.556_5.2.2.4.1",
+      "section_id": "5.2.2.4.1",
+      "section_title": "General",
+      "content": "The Delete Service operation shall be used by the NF service consumer (e.g. SMF) to delete the individual DNS context in the EASDF.\nIt is used in the following procedures:\n-\tDNS context removal in EASDF (see clauses 6.2.2.4, 6.2.3.2.2 and 6.2.3.2.3 of 3GPP TS 23.548 [14]); and\n-\tN2 Handover/inter V-SMF mobility registration update/Xn Handover with V-EASDF change or removal for HR-SBO (see clauses 6.7.2.6, 6.7.2.7 and 6.7.2.9 of 3GPP TS 23.548 [14]).\nFigure 5.2.2.4.1-1: DNS context deletion\n1.\tThe NF Service Consumer (e.g. SMF) shall send a DELETE request to delete the individual DNS context represented by the {dnsContextId}. The request body shall be empty.\n2a.\tOn success, \"204 No Content\" shall be returned. The response body shall be empty.\n2b.\tOn failure or redirection, one of the HTTP status code listed in Table 6.1.3.3.3.1-3 shall be returned.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "table_6.1.3.3.3.1-3",
+        "ts_23.548_figure_5.2.2.4.1-1",
+        "ts_23.548"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.556_5.2.2.5.1",
+      "section_id": "5.2.2.5.1",
+      "section_title": "General",
+      "content": "The Notify service operation shall be used to notify the NF Service Consumer (e.g. SMF or V-SMF) about a DNS context related event, e.g. if a received DNS Query message or DNS response message matches a DNS detection template of an DNS rule and the associated action requires to report the message to the NF service producer.\nIt is used in the following procedures:\n-\tEAS Discovery Procedure with EASDF (see clause 6.2.3.2.2 of 3GPP TS 23.548 [14]); and\n-\tEAS Discovery Procedure with V-EASDF for HR-SBO (see clauses 6.7.2.2 and 6.7.2.3) of 3GPP TS 23.548 [14].\nThe EASDF shall send an HTTP POST request targeting the DNS context notification URI provided by the NF Service Consumer in the Create or Update service operation (see clause 5.2.2.2.1). See also Figure 5.2.2.5.1-1.\nFigure 5.2.2.5.1-1: DNS Context Notify\n1.\tThe EASDF shall send a HTTP POST request to the DNS context notification URI, and the content of the POST request shall contain a DnsContextNotification data structure, with the DNS message report that was subscribed by the NF Service Consumer.\n2a.\tOn success, \"204 No Content\" shall be returned and the content of the POST response shall be empty.\n2b.\tOn failure or redirection, one of the HTTP status code listed in Table 6.1.5.2.3.1-3 shall be returned.\nIf the EASDF receives a \"404 Not Found\" response with the application error \"DNS_CONTEXT_NOT_FOUND\", the EASDF should consider that the DNS context is no longer valid and delete the DNS context.\nThe EASDF should not keep on sending notification requests to an NF service consumer and may consider that the DNS context is no longer valid and delete the DNS context, if it receives one or more \"404 Not Found\" responses without an application error or with other application errors.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_23.548_clause_6.2.3.2.2",
+        "clause_5.2.2.2.1",
+        "table_6.1.5.2.3.1-3",
+        "figure_5.2.2.5.1-1",
+        "ts_23.548"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.556_5.2.3.1",
+      "section_id": "5.2.3.1",
+      "section_title": "Introduction",
+      "content": "This clause specifies how the EASDF shall process DNS messages according to the instructions received from the SMF.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.556_5.2.3.2.1",
+      "section_id": "5.2.3.2.1",
+      "section_title": "DNS Context",
+      "content": "The SMF shall control how the EASDF processes DNS messages received for a particular UE's PDU session by creating one single DNS context per PDU session including the following information:\n-\tthe UE IP address, S-NSSAI and DNN of the PDU session;\n-\tthe H-PLMN ID for a PDU session supporting HR-SBO in VPLMN; and\n-\tone or more DNS rules.\nThere shall be at most one DNS context created in the EASDF with the same UE IP address, S-NSSAI and DNN, and for HR-SBO in VPLMN, in addition with the same H-PLMN ID. If the EASDF receives a request to create a DNS context for which another DNS context already exists with the same UE IP address, S-NSSAI and DNN, and for HR-SBO in VPLMN, in addition with the same H-PLMN ID,, the EASDF shall proceed with creating the DNS context and shall delete the earlier existing DNS context with the same UE IP address, S-NSSAI and DNN, and for HR-SBO in VPLMN, in addition with the same H-PLMN ID.\nAs an exception, for HR-SBO in VPLMN, several DNS contexts may be created in the V-EASDF with an unspecified UE IP address and the same S-NSSAI, DNN and H-PLMN ID (see clause 5.2.2.2.1). The V-EASDF shall support creating such DNS contexts without deleting earlier DNS contexts with the same unspecified UE IP address, S-NSSAI, DNN and H-PLMN ID.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_5.2.2.2.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.556_5.2.3.2.2",
+      "section_id": "5.2.3.2.2",
+      "section_title": "DNS Rule",
+      "content": "A DNS rule shall apply either to DNS Query messages or DNS Response messages. A DNS rule shall contain:\n-\tthe DNS Rule ID uniquely identifying the DNS rule within the DNS context, for a DNS rule other than a One-Time DNS rule;\n-\tprecedence information, indicating the order in which the EASDF shall attempt to match DNS messages against all the DNS rules provisioned in the DNS context, for a DNS rule other than a One-Time DNS rule;\n-\tfor a DNS rule provisioned for DNS Query messages:\n-\tfor a DNS rule other than a One-Time DNS rule:\n-\tat least one DNS Query Message Detection Template (MDT) or Baseline DNS Query Message Detection Template (BD MDT) ID referring to a BD MDT provisioned in a baseline DNS pattern; such a DNS rule may contain one or more DNS Query MDTs and/or BD MDT IDs referring to BD MDTs provisioned in one or more baseline DNS patterns; or\n-\tfor a One-Time DNS rule:\n-\tthe DNS message identifier uniquely identifying the DNS message buffered in the EASDF;\n-\tfor a DNS rule provisioned for DNS Response messages:\n-\tfor a DNS rule other than a One-Time DNS rule:\n-\tat least one DNS Response MDT or Baseline DNS Response MDT ID referring to a BD MDT provisioned in a baseline DNS pattern; a DNS rule may contain one or more DNS Response MDTs and/or BD MDT IDs referring to BD MDTs provisioned in one or more baseline DNS patterns;\n-\tfor a One-Time DNS rule:\n-\tthe DNS message identifier uniquely identifying the DNS message buffered in the EASDF;\n-\ta list of actions to apply to all DNS messages matching at least one DNS MDT of the DNS rule or one BD MDT referred by the DNS rule.\nSee clauses 5.2.3.5 and 5.2.3.2.4 for the description of baseline DNS patterns and One-Time DNS rules respectively.\nFigure 5.2.3.2-1 provides an overview of DNS contexts, DNS rules (other than One-Time DNS rules) and baseline DNS patterns, depicting one DNS context created with N DNS rules, some of them referring to baseline DNS patterns.\nFigure 5.2.3.2-1: Overview of DNS contexts, DNS rules and Baseline DNS Patterns",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "figure_5.2.3.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.556_5.2.3.2.3",
+      "section_id": "5.2.3.2.3",
+      "section_title": "Processing flow for incoming DNS messages",
+      "content": "Upon receipt of a DNS message, the EASDF shall first identify the DNS context corresponding to the DNS message as follows:\n-\tfor DNS Query message: by using the source IP address of the DNS Query message and by matching it with the UE IP address provisioned in the DNS Query MDTs if any or with the UE IP address provisioned in the DNS context; and\n-\tfor a DNS Response message: by matching the DNS response with the DNS Query (either by the EASDF assigning a specific Transaction ID when forwarding the DNS Query message and by matching the Transaction ID in the DNS Query and DNS Response, or by the EASDF using a unique couple of source IP address and UDP port per DNS context when forwarding the DNS Query message and by matching the DNS Response message using the destination IP address and UDP port) and by retrieving the DNS context that is associated with the DNS query.\nNOTE 1:\tThe EASDF has direct user plane connectivity (i.e., without any NAT) with the PSA UPF over N6 for the transmission of DNS signalling exchanged with the UE. The deployment of a NAT between EASDF and PSA UPF is not supported.\nThe following options may be used to support DNS contexts with the same (private) UE IP address from different S-NSSAI and DNNs:\n-\tthe EASDF may associate a specific EASDF address with a specific S-NSSAI and DNN and provide this address to the SMF during the creation of a DNS context associated with this S-NSSAI and DNN. If so, the EASDF shall also use the destination IP address of DNS Query messages to identify the DNS context matching an incoming DNS request;\n-\tthe SMF may set the UE IP address to a mapped N6 address, when using UE source IP address mapping at the Local PSA-UPF;\n-\tthe SMF may provide N6 traffic routing information (in the DNS context information) that may contain the IP address and optional port number of the Local PSA-UPF and the IP address and optional port number of the V-EASDF, for HR-SBO in VPLMN, when using N6 tunneling between the L-PSA and V-EASDF. If so, the V-EASDF shall also use the N6 traffic routing information of DNS Query messages to identify the DNS context matching an incoming DNS request.\nNOTE 2:\tWhen using N6 tunneling, the V-EASDF sends the DNS query response message in the same N6 tunnel as the one on which the related DNS Query messages was received.\nTo support DNS contexts with the same (private) UE IP address from different PLMNs and from different S-NSSAI and DNNs, the V-EASDF may associate a specific V-EASDF address with a specific HPLMN ID, S-NSSAI and DNN and provide this address to the V-SMF during the creation of a DNS context associated with this HPLMN ID, S-NSSAI and DNN. If so, the V-EASDF shall also use the destination IP address of DNS Query messages to identify the DNS context matching an incoming DNS request.\nA DNS context containing an unspecified UE IP address shall be considered to never match any DNS Query message.\nIf there is no DNS context matching a DNS Query or Response message, the EASDF should forward the DNS Query message towards a preconfigured DNS server and the DNS response towards the UE.\nAfter finding the DNS context, the EASDF shall look up for a DNS rule matching the DNS message, among all DNS rules provisioned in the DNS Context, starting with the DNS rules with the highest precedence and continuing then with DNS rules with a lower precedence, in decreasing order of precedence. If there is no DNS rule matching the DNS message, the EASDF should forward the DNS Query message towards a preconfigured DNS server/resolver for resolution.\nNOTE 3:\tThe SMF can provision in the DNS context a DNS rule with the lowest precedence and with a DNS Query MDT or a DNS Response MDT containing a wildcard FQDN, such as to associate a default behavior to all DNS messages not matching any other DNS rule, e.g. forward DNS Query messages to a specific DNS Server.\nAfter having found a matching DNS rule, the EASDF shall stop looking up for other DNS rules and shall apply the list of actions provisioned in the matching DNS rule.\nA DNS message matches a DNS rule if it matches at least one MDT of the DNS Rule or one BD MDT referred by the DNS rule.\nThe DNS message processing models for DNS Query and DNS Response are depicted in Figure 5.2.3.2-2 and 5.2.3.2-3 respectively.\nFigure 5.2.3.2-2: DNS Query processing flow in the EASDF\nFigure 5.2.3.2-3: DNS Response processing flow in the EASDF",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_5.2.3.2-2",
+        "figure_5.2.3.2-3"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.556_5.2.3.2.4",
+      "section_id": "5.2.3.2.4",
+      "section_title": "Processing of a One-Time DNS Rule applicable to a specific DNS message earlier buffered in the EASDF",
+      "content": "The SMF may instruct the EASDF to apply certain actions (e.g. forward, drop or respond to a DNS message, or send another DNS Query message) to a specific DNS message, that has been earlier buffered in the EASDF and reported to the SMF, by creating a new DNS rule in the DNS context that includes:\n-\tthe DNS message identifier uniquely identifying the DNS message within the DNS context, as reported earlier by the EASDF in the DNSContext Notify request; and\n-\tthe requested actions to apply to the DNS message.\nSuch a DNS rule shall not contain any DNS Rule ID, precedence, MBT nor BD MDT.\nUpon receipt of an DNSContext Update request that creates such a DNS rule, the EASDF shall apply the requested actions to the specific DNS message identified by the DNS message identifier and then delete the DNS Rule. If there is no buffered DNS message corresponding to the DNS message identifier received in the DNS rule, the EASDF shall reject the request with an error.\nNOTE:\tA DNS rule that includes a DNS message identifier is referred as a \"One-Time\" DNS rule throughout this specification since the DNS rule is applied only once for the indicated DNS message and the DNS rule is not further stored by the EASDF.",
+      "chunk_type": "procedure",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.556_5.2.3.3.1",
+      "section_id": "5.2.3.3.1",
+      "section_title": "General",
+      "content": "The contents of a DNS Query MDT or a DNS Response MDT may be provisioned directly in a DNS rule itself or in a BD MDT provisioned in a baseline DNS pattern. In the latter case, a DNS rule may refer to one or more BD MDTs (that are all either DNS Query MDTs or DNS Response MDTs) of one or more baseline DNS patterns by referencing the BD MDT IDs of the BD MDTs of the baseline DNS patterns.\nThe following clauses define the contents of DNS Query MDTs and DNS Response MDTs, provisioned in a DNS rule or in a BD MDT.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.556_5.2.3.3.2",
+      "section_id": "5.2.3.3.2",
+      "section_title": "DNS Query MDT",
+      "content": "A DNS Query Message Detection Template may include:\n-\ta UE IP address;\n-\ta list of FQDN ranges or a wildcard FQDN representing \"any FQDN\" (see clauses 6.1.6.2.5 and 6.1.6.2.6).\nA UE IP address may only be provisioned in a DNS Query MDT, i.e. it cannot be provisioned in a Baseline DNS MDT. However, a DNS rule may be provisioned with a reference to one or more Baseline DNS Query MDTs together with a UE IP address (see clause 6.1.6.2.20), in which case the referenced Baseline DNS Query MDTs shall be matched for the specific UE IP address.\nWhen present in a DNS Query MDT, or together with the reference to a Baseline DNS Query MDT, the UE IP address shall be used for matching the DNS Query message with the related DNS rule (see clause 5.2.3.2). Otherwise, the UE IP address provisioned in the DNS context shall be used.\nFQDNs shall be matched against the Query Domain Name of DNS Query messages.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_6.1.6.2.20",
+        "clause_5.2.3.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.556_5.2.3.3.3",
+      "section_id": "5.2.3.3.3",
+      "section_title": "DNS Response MDT",
+      "content": "A DNS Response Message Detection Template may include:\n-\ta list of FQDN ranges or a wildcard FQDN representing \"any FQDN\";\n-\ta list of EAS IP addresses ranges; and/or\n-\tthe source IP address(es) of the DNS Server (applicable to V-SMF and V-EASDF only, for HR-SBO).\nFQDNs shall be matched against the Domain Names in the Answers of DNS Response messages.\nEAS IP addresses ranges shall be matched against the IP addresses returned in the Answers of DNS Response messages.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.556_5.2.3.4.1",
+      "section_id": "5.2.3.4.1",
+      "section_title": "General",
+      "content": "Each DNS rule shall be provisioned with the list of actions to apply to all DNS messages matching the DNS rule.\nThe SMF may request the EASDF to apply one or more of the following actions:\n1)\tREPORT DNS message content to the SMF.\nThe SMF may further request the EASDF to send a report only once to the SMF, i.e. only when a first DNS message matches any MDT of the DNS rule. If so, the EASDF shall skip this action (i.e. report to SMF) for any subsequent DNS message matching the DNS rule.\nThe SMF may further request the EASDF to reset the reporting-once indication, in which case the EASDF shall send (only) one more report at the next DNS message that matches the DNS rule.\n2)\tBUFFER DNS message.\n3)\tFORWARD DNS message.\nThe SMF may further request the EASDF to set the destination IP address of the DNS Query message to a specific DNS Server address. The DNS Server address may either be included in the DNS rule or in a Baseline DNS Action Information Template (BD AIT); in the latter case, the DNS rule shall refer to the corresponding BD AIT ID. If no DNS Server address is provided by the SMF, the EASDF shall forward the DNS message to a locally pre-configured DNS server/resolver.\nThe SMF may request the EASDF to build an EDNS Client Subnet (ECS) option to be included in the DNS Query message as defined in IETF RFC 7871 [18], or to be used for replacing the ECS option if an ECS option is received in the DNS Query message from the UE. The information for the EASDF to build the ECS option may either be included in the DNS rule or in a Baseline DNS Action Information Template (BD AIT); in the latter case, the DNS rule shall refer to the corresponding BD AIT ID.\nWhen forwarding a DNS Query message, if the SMF did not request the EASDF to build an ECS option, the EASDF shall remove the ECS option received from the UE in the DNS Query, if any.\nWhen forwarding a DNS Response message to the UE, based on configuration, the EASDF shall either remove any received ECS option or, if an ECS option was received in the DNS Query from the UE, replace it with the latter ECS option.\n4)\tDISCARD DNS message.\n5)\tRESPOND to DNS Query message.If both the SMF and the EASDF support the CEASD feature (see clause 6.1.8), the SMF may instruct the EASDF to build a DNS Response message to a DNS Query message and to send it to the UE by setting the applyAction to the value \"RESPOND\", e.g. when a set of UEs shall use the same EAS (see clause 6.2.3.2.5 of 3GPP TS 23.548 [14]). When requesting so, the SMF shall indicate to the EASDF the EAS IP address(es) that the DNS response shall contain.Upon receipt of such a request, the EASDF shall build a DNS Response message to the DNS Query message, that includes the EAS IP address(es) indicated by the SMF and send it to the UE.\n6)\tSEND ANOTHER DNS Query message.The V-SMF may instruct the V-EASDF to send another DNS Query message to another DNS server, upon receiving a DNS Response message. If so, the V-EASDF shall drop the DNS Response message earlier received and send a new DNS Query message to the other DNS server, with the same FQDN as sent in the original DNS Query message. The behavior specified above for the \"FORWARD DNS message\" action shall also apply to the \"SEND ANOTHER DNS QUERY\" action, e.g. for the setting of the destination IP address of the new DNS Query message and the possible inclusion or removal of the ECS option.This action may be used by the V-SMF to request the V-EASDF to send another DNS Query message to the DNS server of the HPLMN, when the VPLMN Specific Offloading Information does not include FQDN ranges and the EAS IP address received from the DNS server used by the VPLMN is not part of the IP addresses ranges authorized in the VPLMN Offloading Information (see clause 6.7.2.3 of 3GPP TS 23.548 [14]).\nNOTE 1:\tThe V-SMF can instruct the V-EASDF to send another DNS Query message by provisioning a One-Time DNS rule (see clause 5.2.3.2.4) with the DNS message identifier of the DNS Response buffered and reported to the V-SMF, or alternatively by provisioning a (generic) DNS rule with a lower precedence for DNS Responses with any EAS IP address received from a DNS Server used by the VPLMN.\nNOTE 2:\tThe V-SMF can instruct the V-EASDF to forward the DNS Response message received from the DNS Server of the HPLMN to the UE, by provisioning a One-Time DNS rule (see clause 5.2.3.2.4) with the DNS message identifier of the DNS Response buffered and reported to the V-SMF, or alternatively by provisioning a (generic) DNS rule with an even lower precedence for DNS Responses with any EAS IP address received from any DNS Server.\nThe SMF may change the list of actions associated to a DNS rule (other than a One-Time DNS rule), e.g. to replace the actions to REPORT and BUFFER DNS Query messages to the SMF by the action to FORWARD the DNS messages. In such a case, any earlier buffered DNS message (matching the DNS rule) and any further incoming DNS message shall be processed according to the new instructions received from the SMF, e.g. they shall all be forwarded. The SMF may alternatively request the EASDF to apply certain actions to a specific DNS message by creating a One-Time DNS rule as defined in clause 5.2.3.2.4.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_6.1.8",
+        "ts_23.548_clause_6.2.3.2.5",
+        "ts_23.548_clause_6.7.2.3",
+        "clause_5.2.3.2.4",
+        "ts_23.548"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.556_5.2.3.4.2",
+      "section_id": "5.2.3.4.2",
+      "section_title": "Event reporting by EASDF",
+      "content": "The EASDF shall send a report to the SMF:\n-\tto report the contents of DNS (Query or Response) messages matching a DNS rule provisioned with the action to report the DNS message contents.\nThe EASDF shall send reports to the SMF as defined in clause 5.2.2.5. The notification request sent to the SMF may contain one or more reports, for DNS Query and/or DNS Response messages matching one or more DNS rules provisioned in the DNS context. For each report, the EASDF may provide a DNS message identifier uniquely identifying the DNS message reported to the SMF within the DNS context (see clause 5.2.3.2.4).",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_5.2.2.5",
+        "clause_5.2.3.2.4"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.556_5.2.3.5.1",
+      "section_id": "5.2.3.5.1",
+      "section_title": "General",
+      "content": "The SMF may create, modify or delete baseline DNS patterns in the EASDF using the Neasdf_BaselineDnsPattern service (see clause 5.3).\nA baseline DNS pattern contains baseline DNS information that may apply to multiple PDU sessions, e.g. to all PDU sessions with a certain DNN and S-NSSAI.\nA baseline DNS pattern may contain:\n-\tone or several BD MDTs; and/or\n-\tone or several BD AITs.\nA baseline DNS pattern may contain BD MDTs for DNS Query messages and BD MDTs for DNS Response messages. One BD MDT shall be either a DNS Query MDT or a DNS Response MDT (see clause 5.2.3.3).\nA BD AIT may include:\n-\tone or more local DNS Server IP address(es); and/or\n-\tECS option information.\nNOTE 1: Multiple DNS Server IP addresses can be provided for resiliency.\nA BD MDT and a BD AIT shall be uniquely identified in the EASDF by the combination of the following information:\n-\tthe URI of the baseline DNS pattern in which the BD MDT or BD AIT is defined; the URI shall be chosen by the SMF when creating the baseline DNS pattern (see clause 6.2.3); and\n-\tan MDT or AIT identifier (string) uniquely identifying the MDT or AIT within the baseline DNS pattern; this identifier shall be chosen by the SMF when creating the BD MDT or BD AIT.\nThe URI of a baseline DNS pattern shall be unique per SMF set, if an SMF set controls the EASDF, or unique per SMF otherwise.\nNOTE 2:\tThe URI of a baseline DNS pattern includes an identifier of the SMF or SMF set (see clause 6.2.3.1) and SMF implementation specific information. This ensures the uniqueness of the URI in the EASDF when several SMFs or SMF sets control the same EASDF. As an example, an SMF can encode the URI of the baseline DNS pattern and the MDT or AIT identifier to include the DNAI or a sequence number. The EASDF is not meant to understand the structure of this information.\nWhen a BD MDT or BD AIT of a baseline DNS pattern is modified by the SMF, the modified BD MDT or BD AIT shall apply to all DNS rules of all DNS contexts referring to that BD MDT or BD AIT.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_5.3",
+        "clause_5.2.3.3",
+        "clause_6.2.3",
+        "clause_6.2.3.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.556_5.3.1",
+      "section_id": "5.3.1",
+      "section_title": "Service Description",
+      "content": "The Neasdf_BaselineDNSPattern service operates on the Baseline DNS patterns in EASDF, which contains the DNS base information that may apply to multiple PDU sessions, e.g. DNS Query and Response MDTs applicable to all PDU sessions with a certain DNN and S-NSSAI. The EASDF is acting as NF Service Producer, while the SMF is the NF Service Consumer.\nFollowing functionalities are provided by the Neasdf_BaselineDNSPattern service:\n-\tCreate a Baseline DNS Pattern in EASDF;\n-\tUpdate the Baseline DNS Pattern in EASDF;\n-\tDelete the Baseline DNS Pattern in EASDF.\nThe Neasdf_BaselineDNSPattern service supports the following service operations.\nTable 5.3.1-1: Service operations supported by the Neasdf_BaselineDNSPattern service\nService Operations\nDescription\nOperation\nSemantics\nExample Consumer(s)\nCreate\nCreate a Baseline DNS Pattern in EASDF.\nRequest/Response\nSMF, V-SMF\nUpdate\nUpdate the Baseline DNS Pattern in EASDF.\nRequest/Response\nSMF, V-SMF\nDelete\nDelete the Baseline DNS Pattern in EASDF.\nRequest/Response\nSMF, V-SMF",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.3.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.556_5.3.2.1",
+      "section_id": "5.3.2.1",
+      "section_title": "Introduction",
+      "content": "See Table 5.3.1-1 for an overview of the service operations supported by the Neasdf_BaselineDNSPattern service.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.3.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.556_5.3.2.2.1",
+      "section_id": "5.3.2.2.1",
+      "section_title": "General",
+      "content": "The Create service operation shall be used to create the Baseline DNS Pattern in the EASDF.\nIt is used in the following procedures:\n-\tBaselineDNSPattern management in the EASDF procedure (see clause 6.2.3.4.4 of 3GPP TS 23.548 [14]).\nThe NF Service Consumer (e.g. SMF) shall create the Baseline DNS Pattern by using the HTTP PUT method as shown in Figure 5.3.2.2.1-1.\nFigure 5.3.2.2.1-1: Baseline DNS Pattern creation\n1.\tThe NF Service Consumer shall send a PUT request to create the Baseline DNS Pattern in the EASDF. The content of the PUT request may contain:\n-\tone or more Baseline DNS message detection templates (MDTs);\n-\tone or more Baseline DNS action information templates (AITs).\n2a.\tOn success, a \"201 Created\" response shall be returned with the \"Location\" header containing the URI of the created resource.\n2b.\tOn failure, or redirection, one of the HTTP status code listed in Table 6.2.3.2.3.2-3 shall be returned.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_23.548_clause_6.2.3.4.4",
+        "table_6.2.3.2.3.2-3",
+        "figure_5.3.2.2.1-1",
+        "ts_23.548"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.556_5.3.2.3.1",
+      "section_id": "5.3.2.3.1",
+      "section_title": "General",
+      "content": "The Update service operation shall be used to update an individual Baseline DNS Pattern previously created in the EASDF. The update operation may apply to the whole Baseline DNS Pattern (complete replacement of the data of the existing Baseline DNS Pattern by new data), or it may apply to modify a subset of the parameters of the Baseline DNS Pattern.\nIt is used in the following procedures:\n-\tBaselineDNSPattern management in the EASDF procedure (see clause 6.2.3.4.4 of 3GPP TS 23.548 [14]).\nTo perform a partial update of the Baseline DNS Pattern, the NF Service Consumer shall issue an HTTP PATCH request, as shown in Figure 5.3.2.3.1-1. This partial update shall be used to add, delete and/or replace individual parameters of the Baseline DNS Pattern.\nFigure 5.3.2.3.1-1: Baseline DNS Pattern Partial Update\n1.\tThe NF Service Consumer (e.g. SMF) shall send a PATCH request to the resource URI representing the individual Baseline DNS Pattern. The content of the PATCH request shall contain the list of operations (add/delete/replace) to be applied to parameters in the individual Baseline DNS Pattern.\n2a.\tOn success, if all the modification instructions in the PATCH request have been implemented, \"204 No Content\" shall be returned.\n2b.\tIf some of the modification instructions for unknown attribute(s) in the PATCH request have been ignored, the EASDF shall respond with \"200 OK\" with the response body containing PatchResult, as specified in clause 5.2.7.2 of 3GPP TS 29.500 [4].\n2c.\tOn failure or redirection, one of the HTTP status code listed in Table 6.2.3.2.3.1-3 shall be returned.\nTo perform a complete replacement of the data of the Baseline DNS Pattern, the NF Service Consumer shall issue an HTTP PUT request, as shown in Figure 5.3.2.3.1-2:\nFigure 5.3.2.3.1-2: Baseline DNS Pattern Complete Replacement\n1.\tThe NF service consumer (e.g. SMF) shall send a PUT request to the resource URI representing the individual Baseline DNS Pattern. The content of the PUT request shall contain a representation of the individual Baseline DNS Pattern to be completely replaced in the EASDF.\n2a.\tOn success, \"204 No Content\" shall be returned.\n2b.\tOn failure or redirection, one of the HTTP status code listed in Table 6.2.3.2.3.2-3 shall be returned.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_23.548_clause_6.2.3.4.4",
+        "ts_29.500_clause_5.2.7.2",
+        "table_6.2.3.2.3.1-3",
+        "table_6.2.3.2.3.2-3",
+        "figure_5.3.2.3.1-1",
+        "figure_5.3.2.3.1-2",
+        "ts_23.548",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.556_5.3.2.4.1",
+      "section_id": "5.3.2.4.1",
+      "section_title": "General",
+      "content": "The Delete service operation shall be used to delete an individual Baseline DNS Pattern previously created in the EASDF.\nIt is used in the following procedures:\n-\tBaselineDNSPattern management in the EASDF procedure (see clause 6.2.3.4.4 of 3GPP TS 23.548 [14]).\nTo perform a deletion of the Baseline DNS Pattern, the NF Service Consumer shall issue an HTTP DELETE request, as shown in Figure 5.3.2.4.1-1.\nFigure 5.3.2.4.1-1: Baseline DNS Pattern Deletion\n1.\tThe NF Service Consumer (e.g. SMF) shall send a DELETE request to delete the individual Baseline DNS Pattern. The request body shall be empty.\n2a.\tOn success, \"204 No Content\" shall be returned. The response body shall be empty.\n2b.\tOn failure or redirection, one of the HTTP status code listed in Table 6.2.3.2.3.3-3 shall be returned.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_23.548_clause_6.2.3.4.4",
+        "table_6.2.3.2.3.3-3",
+        "figure_5.3.2.4.1-1",
+        "ts_23.548"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.556_6.1.1",
+      "section_id": "6.1.1",
+      "section_title": "Introduction",
+      "content": "The Neasdf_DNSContext shall use the Neasdf_DNSContext API.\nThe API URI of the Neasdf_DNSContext API shall be:\n{apiRoot}/<apiName>/<apiVersion>\nThe request URIs used in HTTP requests from the NF service consumer towards the NF service producer shall have the Resource URI structure defined in clause 4.4.1 of 3GPP TS 29.501 [5], i.e.:\n{apiRoot}/<apiName>/<apiVersion>/<apiSpecificResourceUriPart>\nwith the following components:\n-\tThe {apiRoot} shall be set as described in 3GPP TS 29.501 [5].\n-\tThe <apiName> shall be \"neasdf-dnscontext\".\n-\tThe <apiVersion> shall be \"v1\".\n-\tThe <apiSpecificResourceUriPart> shall be set as described in clause 6.1.3.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.501_clause_4.4.1",
+        "clause_6.1.3",
+        "ts_29.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.556_6.1.2.1",
+      "section_id": "6.1.2.1",
+      "section_title": "General",
+      "content": "HTTP/2, IETF RFC 9113 [11], shall be used as specified in clause 5 of 3GPP TS 29.500 [4].\nHTTP/2 shall be transported as specified in clause 5.3 of 3GPP TS 29.500 [4].\nThe OpenAPI [6] specification of HTTP messages and content bodies for the Neasdf_DNSContext API is contained in Annex A.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.500_clause_5",
+        "ts_29.500_clause_5.3",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.556_6.1.2.2.1",
+      "section_id": "6.1.2.2.1",
+      "section_title": "General",
+      "content": "See clause 5.2.2 of 3GPP TS 29.500 [4] for the usage of HTTP standard headers.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.500_clause_5.2.2",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.556_6.1.2.2.2",
+      "section_id": "6.1.2.2.2",
+      "section_title": "Content type",
+      "content": "The following content types shall be supported:\n-\tJSON, as defined in IETF RFC 8259 [12], shall be used as content type of the HTTP bodies specified in the present specification as specified in clause 5.4 of 3GPP TS 29.500 [4]. The use of the JSON format shall be signalled by the content type \"application/json\".\n-\t\"Problem Details\" JSON Object shall be used to indicate additional details of the error in a HTTP response body and shall be signalled by the content type \"application/problem+json\", as defined in IETF RFC 9457 [13];\n-\tJSON Patch (IETF RFC 6902 [15]). The use of the JSON Patch format in a HTTP request body shall be signalled by the content type \"application/json-patch+json\".",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_5.4",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.556_6.1.2.3",
+      "section_id": "6.1.2.3",
+      "section_title": "HTTP custom headers",
+      "content": "The mandatory HTTP custom header fields specified in clause 5.2.3.2 of 3GPP TS 29.500 [4] shall be supported, and the optional HTTP custom header fields specified in clause 5.2.3.3 of 3GPP TS 29.500 [4] may be supported. In this release of this specification, no custom headers specific to the Neasdf_DNSContext service are defined.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_5.2.3.2",
+        "ts_29.500_clause_5.2.3.3",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.556_6.1.3.1",
+      "section_id": "6.1.3.1",
+      "section_title": "Overview",
+      "content": "Figure 6.1.3.1-1 describes the resource URI structure of the Neasdf_DNSContext API.\nFigure 6.1.3.1-1: Resource URI structure of the Neasdf_DNSContext API\nTable 6.1.3.1-1 provides an overview of the resources and applicable HTTP methods.\nTable 6.1.3.1-1: Resources and methods overview\nResource name\nResource URI\nHTTP method\nDescription\n(service operation)\nDNS contexts collection\n/dns-contexts\nPOST\nCreate\nIndividual DNS context\n/dns-contexts/{dnsContextId}\nPATCH\nUpdate (partial update)\nPUT\nUpdate (complete replacement)\nDELETE\nDelete",
+      "chunk_type": "definition",
+      "cross_references": [
+        "table_6.1.3.1-1",
+        "figure_6.1.3.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.556_6.1.3.2.1",
+      "section_id": "6.1.3.2.1",
+      "section_title": "Description",
+      "content": "This resource represents the collection of the individual DNS contexts created in the EASDF.\nThis resource is modelled with the Collection resource archetype (see clause C.2 of 3GPP TS 29.501 [5]).",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.556_6.1.3.2.2",
+      "section_id": "6.1.3.2.2",
+      "section_title": "Resource Definition",
+      "content": "Resource URI: {apiRoot}/neasdf-dnscontext/<apiVersion>/dns-contexts\nThis resource shall support the resource URI variables defined in table 6.1.3.2.2-1.\nTable 6.1.3.2.2-1: Resource URI variables for this resource\nName\nData type\nDefinition\napiRoot\nstring\nSee clause 6.1.1\napiVersion\nstring\nSee clause 6.1.1",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_6.1.1",
+        "table_6.1.3.2.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.556_6.1.3.2.3",
+      "section_id": "6.1.3.2.3",
+      "section_title": "Resource Standard Methods",
+      "content": "6.1.3.2.3.1\tPOST\nThis method creates an individual DNS context resource in the EASDF.\nThis method shall support the URI query parameters specified in table 6.1.3.2.3.1-1.\nTable 6.1.3.2.3.1-1: URI query parameters supported by the POST method on this resource\nName\nData type\nP\nCardinality\nDescription\nApplicability\nn/a\nThis method shall support the request data structures specified in table 6.1.3.2.3.1-2 and the response data structures and response codes specified in table 6.1.3.2.3.1-3.\nTable 6.1.3.2.3.1-2: Data structures supported by the POST Request Body on this resource\nData type\nP\nCardinality\nDescription\nDnsContextCreateData\nM\n1\nRepresentation of the DNS context to be created in the EASDF\nTable 6.1.3.2.3.1-3: Data structures supported by the POST Response Body on this resource\nData type\nP\nCardinality\nResponse\ncodes\nDescription\nDnsContextCreatedData\nM\n1\n201 Created\nSuccessful creation of a DNS context\nRedirectResponse\nO\n0..1\n307 Temporary Redirect\nTemporary redirection.\n(NOTE 2)\nRedirectResponse\nO\n0..1\n308 Permanent Redirect\nPermanent redirection.\n(NOTE 2)\nProblemDetails\nO\n0..1\n400 Bad Request\nThe \"cause\" attribute may be set to one of the following application errors:\n- BASELINE_DNS_PATTERN_UNKNOWN\n- BASELINE_DNS_MDT_UNKNOWN\n- BASELINE_DNS_AIT_UNKNOWN\nNOTE 1:\tThe mandatory HTTP error status code for the POST method listed in Table 5.2.7.1-1 of 3GPP TS 29.500 [4] also apply.\nNOTE 2:\tRedirectResponse may be inserted by an SCP, see clause 6.10.9.1 of 3GPP TS 29.500 [4].\nTable 6.1.3.2.3.1-4: Headers supported by the 201 response code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nContains the URI of the newly created resource, according to the structure: {apiRoot}/neasdf-dnscontext/<apiVersion>/dns-contexts/{dnsContextId}\nTable 6.1.3.2.3.1-5: Headers supported by the 307 response code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located on an alternative service instance within the same EASDF or EASDF (service) set. For the case, when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target EASDF (service) instance ID towards which the request is redirected\nTable 6.1.3.2.3.1-6: Headers supported by the 308 response code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located on an alternative service instance within the same EASDF or EASDF (service) set. For the case, when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target EASDF (service) instance ID towards which the request is redirected",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_6.10.9.1",
+        "table_6.1.3.2.3.1-1",
+        "table_6.1.3.2.3.1-2",
+        "table_6.1.3.2.3.1-3",
+        "ts_29.500_table_5.2.7.1-1",
+        "ts_29.500_table_6.1.3.2.3.1-4",
+        "table_6.1.3.2.3.1-5",
+        "table_6.1.3.2.3.1-6",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.556_6.1.3.2.4",
+      "section_id": "6.1.3.2.4",
+      "section_title": "Resource Custom Operations",
+      "content": "None.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.556_6.1.3.3.1",
+      "section_id": "6.1.3.3.1",
+      "section_title": "Description",
+      "content": "This resource represents an individual DNS context created in the EASDF.\nThis resource is modelled with the Document resource archetype (see clause C.1 of 3GPP TS 29.501 [5]).",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.556_6.1.3.3.2",
+      "section_id": "6.1.3.3.2",
+      "section_title": "Resource Definition",
+      "content": "Resource URI: {apiRoot}/neasdf-dnscontext/<apiVersion>/dns-contexts/{dnsContextId}\nThis resource shall support the resource URI variables defined in table 6.1.3.3.2-1.\nTable 6.1.3.3.2-1: Resource URI variables for this resource\nName\nData type\nDefinition\napiRoot\nstring\nSee clause 6.1.1.\napiVersion\nstring\nSee clause 6.1.1.\ndnsContextId\nstring\nDNS context Identifier assigned by the EASDF during the Create service operation.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_6.1.1",
+        "table_6.1.3.3.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.556_6.1.3.3.3",
+      "section_id": "6.1.3.3.3",
+      "section_title": "Resource Standard Methods",
+      "content": "6.1.3.3.3.1\tDELETE\nThis method deletes an individual DNS context resource in the EASDF.\nThis method shall support the URI query parameters specified in table 6.1.3.3.3.1-1.\nTable 6.1.3.3.3.1-1: URI query parameters supported by the DELETE method on this resource\nName\nData type\nP\nCardinality\nDescription\nApplicability\nn/a\nThis method shall support the request data structures specified in table 6.1.3.3.3.1-2 and the response data structures and response codes specified in table 6.1.3.3.3.1-3.\nTable 6.1.3.3.3.1-2: Data structures supported by the DELETE Request Body on this resource\nData type\nP\nCardinality\nDescription\nn/a\nTable 6.1.3.3.3.1-3: Data structures supported by the DELETE Response Body on this resource\nData type\nP\nCardinality\nResponse\ncodes\nDescription\nn/a\n204 No Content\nSuccessful deletion of the DNS context.\nRedirectResponse\nO\n0..1\n307 Temporary Redirect\nTemporary redirection.\n(NOTE 2)\nRedirectResponse\nO\n0..1\n308 Permanent Redirect\nPermanent redirection.\n(NOTE 2)\nProblemDetails\nO\n0..1\n404 Not Found\nIndicates that the deletion of the DNS context failed due to an application error.\nThe \"cause\" attribute may be used to indicate one of the following application errors:\n-\tDNS_CONTEXT_NOT_FOUND.\nNOTE 1:\tThe mandatory HTTP error status code for the DELETE method listed in Table 5.2.7.1-1 of 3GPP TS 29.500 [4] also apply.\nNOTE 2:\tRedirectResponse may be inserted by an SCP, see clause 6.10.9.1 of 3GPP TS 29.500 [4].\nTable 6.1.3.3.3.1-4: Headers supported by the 307 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located on an alternative service instance within the same EASDF or EASDF (service) set. For the case, when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target EASDF (service) instance ID towards which the request is redirected\nTable 6.1.3.3.3.1-5: Headers supported by the 308 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located on an alternative service instance within the same EASDF or EASDF (service) set. For the case, when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target EASDF (service) instance ID towards which the request is redirected\n6.1.3.3.3.2\tPATCH\nThis method updates (partial update) an individual DNS context resource in the EASDF.\nThis method shall support the URI query parameters specified in table 6.1.3.3.3.2-1.\nTable 6.1.3.3.3.2-1: URI query parameters supported by the PATCH method on this resource\nName\nData type\nP\nCardinality\nDescription\nApplicability\nn/a\nThis method shall support the request data structures specified in table 6.1.3.3.3.2-2 and the response data structures and response codes specified in table 6.1.3.3.3.2-3.\nTable 6.1.3.3.3.2-2: Data structures supported by the PATCH Request Body on this resource\nData type\nP\nCardinality\nDescription\narray(PatchItem)\nM\n1..N\nIt contains the list of changes to be made to the DNS context, according to the JSON PATCH format specified in IETF RFC 6902 [15].\nTable 6.1.3.3.3.2-3: Data structures supported by the PATCH Response Body on this resource\nData type\nP\nCardinality\nResponse\ncodes\nDescription\nPatchResult\nM\n1\n200 OK\nUpon partial success, e.g. some of the requested modifications for unknown attribute(s) are discarded while the rest of the modification instructions are fully accepted, the EASDF shall return the execution report.\nn/a\n204 No Content\nSuccessful update of the DNS context.\nRedirectResponse\nO\n0..1\n307 Temporary Redirect\nTemporary redirection.\n(NOTE 2)\nRedirectResponse\nO\n0..1\n308 Permanent Redirect\nPermanent redirection.\n(NOTE 2)\nProblemDetails\nO\n0..1\n404 Not Found\nIndicates that the modification of the DNS context failed due to an application error.\nThe \"cause\" attribute may be used to indicate one of the following application errors:\n-\tDNS_CONTEXT_NOT_FOUND.\nNOTE 1:\tThe mandatory HTTP error status code for the PATCH method listed in Table 5.2.7.1-1 of 3GPP TS 29.500 [4] also apply.\nNOTE 2:\tRedirectResponse may be inserted by an SCP, see clause 6.10.9.1 of 3GPP TS 29.500 [4].\nTable 6.1.3.3.3.2-4: Headers supported by the 307 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located on an alternative service instance within the same EASDF or EASDF (service) set. For the case, when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target EASDF (service) instance ID towards which the request is redirected\nTable 6.1.3.3.3.2-5: Headers supported by the 308 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located on an alternative service instance within the same EASDF or EASDF (service) set. For the case, when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target EASDF (service) instance ID towards which the request is redirected\n6.1.3.3.3.3\tPUT\nThis method updates (complete replacement) an individual DNS context resource in the EASDF.\nThis method shall support the URI query parameters specified in table 6.1.3.3.3.3-1.\nTable 6.1.3.3.3.3-1: URI query parameters supported by the PUT method on this resource\nName\nData type\nP\nCardinality\nDescription\nApplicability\nn/a\nThis method shall support the request data structures specified in table 6.1.3.3.3.3-2 and the response data structures and response codes specified in table 6.1.3.3.3.3-3.\nTable 6.1.3.3.3.3-2: Data structures supported by the PUT Request Body on this resource\nData type\nP\nCardinality\nDescription\nDnsContextCreateData\nM\n1\nDNS Context Data to replace the existing DNS context data\nTable 6.1.3.3.3.3-3: Data structures supported by the PUT Response Body on this resource\nData type\nP\nCardinality\nResponse\ncodes\nDescription\nn/a\n204 No Content\nSuccessful update of the DNS context.\nRedirectResponse\nO\n0..1\n307 Temporary Redirect\nTemporary redirection.\n(NOTE 2)\nRedirectResponse\nO\n0..1\n308 Permanent Redirect\nPermanent redirection.\n(NOTE 2)\nNOTE 1:\tThe mandatory HTTP error status code for the PUT method listed in Table 5.2.7.1-1 of 3GPP TS 29.500 [4] also apply.\nNOTE 2:\tRedirectResponse may be inserted by an SCP, see clause 6.10.9.1 of 3GPP TS 29.500 [4].\nTable 6.1.3.3.3.3-4: Headers supported by the 307 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located on an alternative service instance within the same EASDF or EASDF (service) set. For the case, when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target EASDF (service) instance ID towards which the request is redirected\nTable 6.1.3.3.3.3-5: Headers supported by the 308 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located on an alternative service instance within the same EASDF or EASDF (service) set. For the case, when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target EASDF (service) instance ID towards which the request is redirected",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_6.10.9.1",
+        "table_6.1.3.3.3.1-1",
+        "table_6.1.3.3.3.1-2",
+        "table_6.1.3.3.3.1-3",
+        "ts_29.500_table_5.2.7.1-1",
+        "ts_29.500_table_6.1.3.3.3.1-4",
+        "table_6.1.3.3.3.1-5",
+        "table_6.1.3.3.3.2-1",
+        "table_6.1.3.3.3.2-2",
+        "table_6.1.3.3.3.2-3",
+        "ts_29.500_table_6.1.3.3.3.2-4",
+        "table_6.1.3.3.3.2-5",
+        "table_6.1.3.3.3.3-1",
+        "table_6.1.3.3.3.3-2",
+        "table_6.1.3.3.3.3-3",
+        "ts_29.500_table_6.1.3.3.3.3-4",
+        "table_6.1.3.3.3.3-5",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.556_6.1.3.3.4",
+      "section_id": "6.1.3.3.4",
+      "section_title": "Resource Custom Operations",
+      "content": "There are no resource custom operations for the Neasdf_DNSContext service in this release of the specification.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.556_6.1.4",
+      "section_id": "6.1.4",
+      "section_title": "Custom Operations without associated resources",
+      "content": "There are no custom operations defined without any associated resources for the Neasdf_DNSContext service in this release of this specification.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.556_6.1.5.1",
+      "section_id": "6.1.5.1",
+      "section_title": "General",
+      "content": "This clause specifies the notifications supported by the Neasdf_DNSContext service.\nNotifications shall comply to clause 6.2 of 3GPP TS 29.500 [4] and clause 4.6.2.3 of 3GPP TS 29.501 [5].\nTable 6.1.5.1-1: Notifications overview\nNotification\nCallback URI\nHTTP method or custom operation\nDescription\n(service operation)\nDNS Context Notification\n{notifyUri}\n(Notification URI provided by NF Service Consumer)\nPOST\nDNS Context Notify",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.500_clause_6.2",
+        "ts_29.500_clause_4.6.2.3",
+        "ts_29.501_table_6.1.5.1-1",
+        "ts_29.501_clause_4.6.2.3",
+        "ts_29.500",
+        "ts_29.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.556_6.1.5.2.1",
+      "section_id": "6.1.5.2.1",
+      "section_title": "Description",
+      "content": "The Event Notification is used by the EASDF to report one or several observed Events to a NF service consumer(e.g. SMF) that has subscribed to such Notifications.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.556_6.1.5.2.2",
+      "section_id": "6.1.5.2.2",
+      "section_title": "Target URI",
+      "content": "The Callback URI \"{notifyUri}\" shall be used with the callback URI variables defined in table 6.1.5.2.2-1.\nTable 6.1.5.2.2-1: Callback URI variables\nName\nDefinition\nnotifyUri\nString formatted as URI with the Callback Uri",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.1.5.2.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.556_6.1.5.2.3",
+      "section_id": "6.1.5.2.3",
+      "section_title": "Standard Methods",
+      "content": "6.1.5.2.3.1\tPOST\nThis method shall support the request data structures specified in table 6.1.5.2.3.1-1 and the response data structures and response codes specified in table 6.1.5.2.3.1-1.\nTable 6.1.5.2.3.1-2: Data structures supported by the POST Request Body\nData type\nP\nCardinality\nDescription\nDnsContextNotification\nM\n1\nRepresentation of the DNS context notification\nTable 6.1.5.2.3.1-3: Data structures supported by the POST Response Body\nData type\nP\nCardinality\nResponse codes\nDescription\nn/a\n204 No Content\nSuccessful notification of the DNS context change\nRedirectResponse\nO\n0..1\n307 Temporary Redirect\nTemporary redirection.\n(NOTE 2)\nRedirectResponse\nO\n0..1\n308 Permanent Redirect\nPermanent redirection.\n(NOTE 2)\nProblemDetails\nO\n0..1\n404 Not Found\nIndicates that the notification for the DNS context failed due to an application error.\nThe \"cause\" attribute may be used to indicate one of the following application errors:\n-\tDNS_CONTEXT_NOT_FOUND.\nNOTE 1:\tThe mandatory HTTP error status codes for the POST method listed in Table 5.2.7.1-1 of 3GPP TS 29.500 [4] also apply.\nNOTE 2:\tRedirectResponse may be inserted by an SCP, see clause 6.10.9.1 of 3GPP TS 29.500 [4].\nTable 6.1.5.2.3.1-4: Headers supported by the 307 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located on an alternative service instance. For the case when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target NF (service) instance ID towards which the notification is redirected\nTable 6.1.5.2.3.1-5: Headers supported by the 308 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located on an alternative service instance. For the case when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target NF (service) instance ID towards which the notification is redirected",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_6.10.9.1",
+        "table_6.1.5.2.3.1-1",
+        "table_6.1.5.2.3.1-2",
+        "table_6.1.5.2.3.1-3",
+        "ts_29.500_table_5.2.7.1-1",
+        "ts_29.500_table_6.1.5.2.3.1-4",
+        "table_6.1.5.2.3.1-5",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.556_6.1.6.1",
+      "section_id": "6.1.6.1",
+      "section_title": "General",
+      "content": "This clause specifies the application data model supported by the API.\nTable 6.1.6.1-1 specifies the data types defined for the Neasdf_DNSContext service based interface protocol.\nTable 6.1.6.1-1: Neasdf_DNSContext specific Data Types\nData type\nClause defined\nDescription\nApplicability\nDnsContextCreateData\n6.1.6.2.2\nData in DNS Context Create request\nDnsContextCreatedData\n6.1.6.2.3\nData in DNS Context Create response\nDnsRule\n6.1.6.2.4\nDNS handling rule\nDnsQueryMdt\n6.1.6.2.5\nDNS Query Message Detection Template\nDnsRspMdt\n6.1.6.2.6\nDNS Response Message Detection Template\nIpv4AddressRange\n6.1.6.2.7\nIPv4 addresses range\nIpv6PrefixRange\n6.1.6.2.8\nIPv6 addresses range\nAction\n6.1.6.2.9\nAction to apply to DNS messages matching a message detection template\nDnsContextNotification\n6.1.6.2.10\nDNS context notification\nForwardingParameters\n6.1.6.2.11\nForwarding instructions\nEcsOption\n6.1.6.2.12\nECS Option information\nDnsContextEventReport\n6.1.6.2.13\nDNS context Event report\nDnsQueryReport\n6.1.6.2.14\nDNS Query Event Report\nDnsRspReport\n6.1.6.2.15\nDNS Response Event Report\nEcsOptionInfo\n6.1.6.2.16\nECS option information\nDnsServerAddressInfo\n6.1.6.2.17\nDNS Server address information\nBaselineDnsMdtId\n6.1.6.2.18\nBaseline DNS Message Detection Template Identifier\nBaselineDnsAitId\n6.1.6.2.19\nBaseline DNS Action Information Template Identifier\nBaselineDnsQueryMdtInfo\n6.1.6.2.20\nBaseline DNS Query MDT ID and\noptionally associated information\nBaselineDnsRspMdtInfo\n6.1.6.2.21\nBaseline DNS Response MDT ID and\noptionally associated information\nRespondParameters\n6.1.6.2.22\nInstructions to apply to build a DNS response message\nN6RoutingInfo\n6.1.6.2.23\nN6 traffic routing information\nApplyAction\n6.1.6.3.3\nAction to apply to the DNS packet\nTable 6.1.6.1-2 specifies data types re-used by the Neasdf_DNSContext service based interface protocol from other specifications, including a reference to their respective specifications and when needed, a short description of their use within the Neasdf_DNSContext service based interface.\nTable 6.1.6.1-2: Neasdf_DNSContext re-used Data Types\nData type\nReference\nComments\nApplicability\nIPv4Addr\n3GPP TS 29.571 [16]\nIPv4 address\nIPv6Prefix\n3GPP TS 29.571 [16]\nIPv6 prefix\nDnn\n3GPP TS 29.571 [16]\nDNN\nUri\n3GPP TS 29.571 [16]\nURI\nUint32\n3GPP TS 29.571 [16]\nUnsigned 32-bit integer\nIpAddr\n3GPP TS 29.571 [16]\nIP address\nIPv6Addr\n3GPP TS 29.571 [16]\nIPv6 address\nSupportedFeatures\n3GPP TS 29.571 [16]\nSupported features\nDateTime\n3GPP TS 29.571 [16]\nDate and time\nPatchResult\n3GPP TS 29.571 [16]\nFqdnPatternMatchingRule\n3GPP TS 29.571 [16]\nFQDN Pattern Matching Rule\nFqdn\n3GPP TS 29.571 [16]\nSnssai\n3GPP TS 29.571 [16]\nPlmnId\n3GPP TS 29.571 [16]\nPLMN Identity\nDnsServerSecurityInformation\n3GPP TS 29.502 [20]\nDNS server security information",
+      "chunk_type": "definition",
+      "cross_references": [
+        "table_6.1.6.1-1",
+        "table_6.1.6.1-2",
+        "ts_29.571",
+        "ts_29.502"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.556_6.1.6.2.1",
+      "section_id": "6.1.6.2.1",
+      "section_title": "Introduction",
+      "content": "This clause defines the structures to be used in resource representations.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.556_6.1.6.2.2",
+      "section_id": "6.1.6.2.2",
+      "section_title": "Type: DnsContextCreateData",
+      "content": "Table 6.1.6.2.2-1: Definition of type DnsContextCreateData\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\nueIpv4Addr\nIpv4Addr\nC\n0..1\nUE IPv4 address (NOTE 1)\nueIpv6Prefix\nIpv6Prefix\nC\n0..1\nUE IPv6 prefix (NOTE 1)\ndnn\nDnn\nM\n1\nDNN of the PDU session (NOTE 2)\nsNssai\nSnssai\nM\n1\nS-NSSAI of the PDU session (NOTE 2)\nhplmnId\nPlmnId\nC\n0..1\nThis IE shall be included by the V-SMF towards the V-EASDF, for a PDU session supporting HR-SBO. When present, it shall be set to the H-PLMN ID of the PDU session.\nHR-SBO\nn6RoutingInfo\nN6RoutingInfo\nO\n0..1\nThis IE may be present when using N6 tunneling between the L-PSA and V-EASDF, to disambiguate the DNS traffic using a private UE IP address from a certain HPLMN using a specific L-PSA UPF IP address and optional port number of the N6 tunnel between the Local PSA-UPF and V-EASDF\nHR-SBO\ndnsRules\nmap(DnsRule)\nM\n1..N\nMap of DNS message handling rules.\nThe key of the map shall be a (unique) valid JSON string per clause 7 of IETF RFC 8259 [12], with a maximum of 32 characters.\nnotifyUri\nUri\nC\n0..1\nCallback URI to receive notifications.\nThis IE shall be present if the NF service consumer subscribes to receive DNS context notifications.\nsupportedFeatures\nSupportedFeatures\nC\n0..1\nThis IE shall be present if at least one optional feature defined in clause 6.1.8 is supported.\nNOTE 1:\tAt least one of the ueIpv4Addr and ueIpv6Prefix attributes shall be present. If the EASDF supports the HR-SBO feature (i.e. if it supports acting as a V-EASDF), for a PDU session supporting HR-SBO, the V-SMF shall set the ueIpv4Addr IE and/or ueIpv6Prefix to an unspecified address (see clause 5.2.2.2.1) if the UE IP address is not yet known.\nNOTE 2:\tThe UE IP address shall be used together with the DNN and S-NSSAI to uniquely identify the DNS context associated with a PDU session (e.g. in deployments where the same EASDF is used for PDU sessions to DNs with overlapping IP address spaces) and to associate the DNS context with a specific DN (and e.g. related tunnels connecting to the DN).",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_7",
+        "clause_6.1.8",
+        "clause_5.2.2.2.1",
+        "table_6.1.6.2.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.556_6.1.6.2.3",
+      "section_id": "6.1.6.2.3",
+      "section_title": "Type: DnsContextCreatedData",
+      "content": "Table 6.1.6.2.3-1: Definition of type DNSContextCreatedData\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\neasdfIpv4Addr\nIpv4Addr\nC\n0..1\nEASDF IPv4 address\neasdfIpv6Addr\nIpv6Addr\nC\n0..1\nEASDF IPv6 address\ndnsSecurityInfo\narray(DnsServerSecurityInformation)\nO\n1..N\nWhen present, this IE shall contain one or more DNS server security information with length of two octets container(s), set with the DNS security information of the (V-)EASDF.\nsupportedFeatures\nSupportedFeatures\nC\n0..1\nThis IE shall be present if at least one optional feature defined in clause 6.1.8 is supported.\nNOTE:\tAt least one of the easdfIpv4Addr and easdfIpv6Addr attributes shall be present.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_6.1.8",
+        "table_6.1.6.2.3-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.556_6.1.6.2.4",
+      "section_id": "6.1.6.2.4",
+      "section_title": "Type: DnsRule",
+      "content": "Table 6.1.6.2.4-1: Definition of type DnsRule\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\ndnsRuleId\nstring\nC\n0..1\nUnique Identifier of the DNS rule within the DNS context\nThis IE shall be present for a DNS rule other than a One-Time DNS rule.\nlabel\nstring\nO\n0..1\nDNS rule's label\n(NOTE 5)\nprecedence\nUint32\nC\n0..1\nPrecedence of the DNS message handling rule.\nThis IE shall be present for a DNS rule other than a One-Time DNS rule.\nThe lower precedence values indicate higher precedence of the DNS rule, and the higher precedence values indicate lower precedence of the DNS rule when matching a DNS message.\ndnsQueryMdtList\nmap(DnsQueryMdt)\nC\n1..N\nMap of DNS Query message detection templates.\nThe key of the map shall be a (unique) valid JSON string per clause 7 of IETF RFC 8259 [12], with a maximum of 32 characters.\n(NOTE 3)\nbaseDnsQueryMdtList\narray(BaselineDnsQueryMdtInfo)\nC\n1..N\nList of Baseline DNS Query Message Detection Template IDs and optionally associated information.\n(NOTE 3)\ndnsRspMdtList\nmap(DnsRspMdt)\nC\n1..N\nMap of DNS Response message detection templates.\nThe key of the map shall be a (unique) valid JSON string per clause 7 of IETF RFC 8259 [12], with a maximum of 32 characters.\n(NOTE 4)\nbaseDnsRspMdtList\narray(BaselineDnsRspMdtInfo)\nC\n1..N\nList of Baseline DNS Response Message Detection Template IDs and optionally associated information. (NOTE 4)\ndnsMsgId\nstring\nC\n0..1\nDNS message identifier\nThis IE shall be present for a One-Time DNS Rule and it shall be set to the identifier of the DNS message buffered in the EASDF for which the DNS rule shall apply (see clause 5.2.3.2.4).\n(NOTE 6)\nactionList\nmap(Action)\nM\n1..N\nMap of Actions to apply to DNS messages matching the DNS message detection templates.\nThe key of the map shall be a (unique) valid JSON string per clause 7 of IETF RFC 8259 [12], with a maximum of 32 characters.\nNOTE 1:\tA DNS rule shall be provisioned either for DNS Query messages or for DNS Response messages.\nNOTE 2:\tA DNS rule including the dnsMsgId IE shall be considered as a One-Time DNS Rule (see clause 5.2.3.2.4).\nNOTE 3:\tFor a DNS rule other than a One-Time DNS rule provisioned for DNS Query messages, at least one of the dnsQueryMdtList and baseDnsQueryMdtList IEs shall be present.\nNOTE 4:\tFor a DNS Rule other than a One-Time DNS rule provisioned for DNS Response messages, at least one of the dnsRspMdtList and baseDnsRspMdtList IEs shall be present.\nNOTE 5:\tThis attribute may contain free information describing the scope of the DNS rule. It may be used e.g. for trouble-shooting.\nNOTE 6:\tAn EASDF can encode the DNS message identifier as the ID field in the header of the DNS message, or as any other string uniquely identifying the DNS message within the DNS context.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_7",
+        "clause_5.2.3.2.4",
+        "table_6.1.6.2.4-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.556_6.1.6.2.5",
+      "section_id": "6.1.6.2.5",
+      "section_title": "Type: DnsQueryMdt",
+      "content": "Table 6.1.6.2.5-1: Definition of type DnsQueryMdt\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\nmdtId\nstring\nM\n1\nIdentifier of the DNS Query message detection template, with a maximum of 32 characters.\nlabel\nstring\nO\n0..1\nDNS Query MDT's label\n(NOTE 2)\nsourceIpv4Addr\nIpv4Addr\nO\n0..1\nUE IPv4 address (NOTE 1)\nsourceIpv6Prefix\nIpv6Prefix\nO\n0..1\nUE IPv6 prefix (NOTE 1)\nfqdnPatternList\narray(FqdnPatternMatchingRule)\nO\n1..N\nList of FQDN patterns, where each FQDN pattern is described by a FQDN Pattern Matching Rule.\nAn FQDN value is considered part of the template if and only if the FQDN in the Queries field in the DNS Query message fully matches at least one FQDN pattern.\n(NOTE 3)\nNOTE 1:\tIf neither the sourceIpv4Addr IE nor the sourceIpv6Prefix IE is present, the UE IP address in the DNS Context Data shall be assumed.\nNOTE 2:\tThis attribute may contain free information describing the scope of the DNS Query MDT. It may be used e.g. for trouble-shooting.\nNOTE 3:\tThe list of FQDN patterns may encode some FQDN patterns with a string matching rule and others with a regular expression (when the FQDN patterns cannot be described by a string matching rule).",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.1.6.2.5-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.556_6.1.6.2.6",
+      "section_id": "6.1.6.2.6",
+      "section_title": "Type: DnsRspMdt",
+      "content": "Table 6.1.6.2.6-1: Definition of type DnsRspMdt\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\nmdtId\nstring\nM\n1\nIdentifier of the DNS Response message detection template, with a maximum of 32 characters.\nlabel\nstring\nO\n0..1\nDNS Response MDT's label\n(NOTE 1)\nfqdnPatternList\narray(FqdnPatternMatchingRule)\nO\n1..N\nList of FQDN patterns, where each FQDN pattern is described by a FQDN Pattern Matching Rule.\nAn FQDN value is considered part of the template if and only if the FQDN in the Queries field in the DNS Response message fully matches at least one FQDN pattern.\n(NOTE 2)\neasIpv4AddrRanges\narray(Ipv4AddressRange)\nO\n1..N\nList of EAS IPv4 addresses ranges\neasIpv6PrefixRanges\narray(Ipv6PrefixRange)\nO\n1..N\nList of EAS IPv6 prefixes ranges\ndnsServerSrcAddrList\narray(IpAddr)\nO\n1..N\nList of DNS Server source IP addresses\nHR-SBO\nNOTE 1:\tThis attribute may contain free information describing the scope of the DNS Response MDT. It may be used e.g. for trouble-shooting.\nNOTE 2:\tThe list of FQDN patterns may encode some FQDN patterns with a string matching rule and others with a regular expression (when the FQDN patterns cannot be described by a string matching rule).",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.1.6.2.6-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.556_6.1.6.2.7",
+      "section_id": "6.1.6.2.7",
+      "section_title": "Type: Ipv4AddressRange",
+      "content": "Table 6.1.6.2.7-1: Definition of type Ipv4AddressRange\nAttribute name\nData type\nP\nCardinality\nDescription\nstart\nIpv4Addr\nM\n1\nFirst value identifying the start of an IPv4 address range\nend\nIpv4Addr\nM\n1\nLast value identifying the end of an IPv4 address range",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.1.6.2.7-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.556_6.1.6.2.8",
+      "section_id": "6.1.6.2.8",
+      "section_title": "Type: Ipv6PrefixRange",
+      "content": "Table 6.1.6.2.8-1: Definition of type Ipv6PrefixRange\nAttribute name\nData type\nP\nCardinality\nDescription\nstart\nIpv6Prefix\nM\n1\nFirst value identifying the start of an IPv6 prefix range\nend\nIpv6Prefix\nM\n1\nLast value identifying the end of an IPv6 prefix range",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.1.6.2.8-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.556_6.1.6.2.9",
+      "section_id": "6.1.6.2.9",
+      "section_title": "Type: Action",
+      "content": "Table 6.1.6.2.9-1: Definition of type Action\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\napplyAction\nApplyAction\nM\n1\nAction to apply to the DNS message\nfwdParas\nForwardingParameters\nO\n0..1\nThis IE may be present if the applyAction IE is set to \" FORWARD\" or \"SEND_ANOTHER_DNS_QUERY\".\nWhen present, it shall contain forward instructions to apply to the DNS message before forwarding it.\nreportingOnceInd\nboolean\nO\n0..1\nReporting-once Indication\nThis IE may be present if the applyAction is set to \"REPORT\".\nWhen present, it shall be set as follows:\n- true: only one report shall be sent to the SMF, i.e. one report shall only be sent when a first DNS message matches any Message Detection Template of the DNS rule.\n- false (default): a report shall be sent to the SMF for any DNS message matching any Message Detection Template of the DNS rule.\nresetReportingOnceInd\nboolean\nO\n0..1\nReset the Reporting-once Indication\nThis IE may be present in a request modifying a DNS rule, if the applyAction is set to \"REPORT\" and the reportingOnceInd is set to \"true\".\nWhen present, it shall be set as follows:\n- true: reset the Reporting-once Indication, i.e. send (only) one more report to the SMF when a next first DNS message matches any Message Detection Template of the DNS rule.\n- false (default): do not reset the Reporting-once Indication\nrespParas\nRespondParameters\nC\n0..1\nThis IE shall be present if the applyAction IE is set to \" RESPOND\".\nWhen present, it shall contain instructions to apply to build the DNS response message.\nCEASD",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.1.6.2.9-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.556_6.1.6.2.10",
+      "section_id": "6.1.6.2.10",
+      "section_title": "Type: DnsContextNotification",
+      "content": "Table 6.1.6.2.10-1: Definition of type DnsContextNotification\nAttribute name\nData type\nP\nCardinality\nDescription\neventreportList\narray(DnsContextEventReport)\nO\n1..N\nList of event reports",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.1.6.2.10-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.556_6.1.6.2.11",
+      "section_id": "6.1.6.2.11",
+      "section_title": "Type: ForwardingParameters",
+      "content": "Table 6.1.6.2.11-1: Definition of type ForwardingParameters\nAttribute name\nData type\nP\nCardinality\nDescription\necsOptionInfo\nEcsOptionInfo\nO\n0..1\nInformation to build optional EDNS Client Subnet (ECS) option to be included in the DNS Query as defined in IETF RFC 7871 [18], or to be used for replacing the ECS option received in the DNS Query message from the UE.\ndnsServerAddressInfo\nDnsServerAddressInfo\nO\n0..1\nDNS Server Address Information to be used as destination address of the outgoing DNS Query",
+      "chunk_type": "parameter",
+      "cross_references": [
+        "table_6.1.6.2.11-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.556_6.1.6.2.12",
+      "section_id": "6.1.6.2.12",
+      "section_title": "Type: EcsOption",
+      "content": "Table 6.1.6.2.12-1: Definition of type EcsOption\nAttribute name\nData type\nP\nCardinality\nDescription\nsourcePrefixLength\ninteger\nM\n1\nLeftmost number of significant bits of the IP address as defined for the SOURCE PREFIX-LENGTH in clause 6 of IETF RFC 7871 [18].\nMinimum=0. Maximum=128\nscopePrefixLength\ninteger\nO\n0..1\nLeftmost number of bits of the IP address that the DNS response covers as defined for the SCOPE PREFIX-LENGTH in clause 6 of IETF RFC 7871 [18]. This attribute shall only be sent in EASDF notification to the SMF.\nMinimum=0. Maximum=128\nipAddr\nIpAddr\nM\n1\nIP address as defined for the ADDRESS in clause 6 of IETF RFC 7871 [18]",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_6",
+        "table_6.1.6.2.12-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.556_6.1.6.2.13",
+      "section_id": "6.1.6.2.13",
+      "section_title": "Type: DnsContextEventReport",
+      "content": "Table 6.1.6.2.13-1: Definition of type DnsContextEventReport\nAttribute name\nData type\nP\nCardinality\nDescription\ntimestamp\nDateTime\nM\n1\nTime of detection of the event\ndnsRuleId\nUint32\nC\n0..1\nIdentifies the DNS rule that triggered the report. This IE shall be present if the report is triggered by an event matching a DNS rule.\ndnsQueryReport\nDnsQueryReport\nO\n0..1\nDNS Query Report\ndnsRspReport\nDnsRspReport\nO\n0..1\nDNS Response Report\ndnsMsgId\nstring\nO\n0..1\nDNS message identifier\nWhen present, this IE shall be set to a unique identifier of the DNS message for which the event is reported (see clause 5.2.3.2.4)",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_5.2.3.2.4",
+        "table_6.1.6.2.13-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.556_6.1.6.2.14",
+      "section_id": "6.1.6.2.14",
+      "section_title": "Type: DnsQueryReport",
+      "content": "Table 6.1.6.2.14-1: Definition of type DnsQueryReport\nAttribute name\nData type\nP\nCardinality\nDescription\nfqdn\nFqdn\nO\n0..1\nFQDN received in the DNS Query",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.1.6.2.14-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.556_6.1.6.2.15",
+      "section_id": "6.1.6.2.15",
+      "section_title": "Type: DnsRspReport",
+      "content": "Table 6.1.6.2.15-1: Definition of type DnsRspReport\nAttribute name\nData type\nP\nCardinality\nDescription\nfqdn\nFqdn\nO\n0..1\nFQDN received in the DNS Response\neasIpv4Addresses\narray(Ipv4Addr)\nO\n1..N\nEAS IPv4 address(es) received in the DNS Response\neasIpv6Addresses\narray(Ipv6Addr)\nO\n1..N\nEAS IPv6 address(es) received in the DNS Response\necsOption\nEcsOption\nO\n0..1\nEDNS Client Subnet (ECS) option received in the DNS Response (as defined in IETF RFC 7871 [18])",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.1.6.2.15-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.556_6.1.6.2.16",
+      "section_id": "6.1.6.2.16",
+      "section_title": "Type: EcsOptionInfo",
+      "content": "Table 6.1.6.2.16-1: Definition of type EcsOptionInfo\nAttribute name\nData type\nP\nCardinality\nDescription\necsOption\nEcsOption\nC\n0..1\nInformation to build optional EDNS Client Subnet (ECS) option to be included in the DNS Query as defined in IETF RFC 7871 [18], or to be used for replacing the ECS option received in the DNS Query message from the UE. (NOTE 1)\nbaseDnsAitId\nBaselineDnsAitId\nC\n0..1\nIdentifier of the Baseline DNS Action Information Template that contains information to build optional EDNS Client Subnet (ECS) option to be included in the DNS Query as defined in IETF RFC 7871 [18], or to be used for replacing the ECS option received in the DNS Query message from the UE.\n(NOTE 1, NOTE 2)\nNOTE 1:\tEither the ecsOption IE or the baseDnsAitId IE shall be present.\nNOTE 2:\tThe referenced baseline DNS Action Information Template may contain other information beyond the information to build the ECS option, in which case the EADSF shall only apply the information to build the ECS option.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.1.6.2.16-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.556_6.1.6.2.17",
+      "section_id": "6.1.6.2.17",
+      "section_title": "Type: DnsServerAddressInfo",
+      "content": "Table 6.1.6.2.17-1: Definition of type DnsServerAddressInfo\nAttribute name\nData type\nP\nCardinality\nDescription\ndnsServerAddressList\narray(IpAddr)\nC\n1..N\nDNS Server Address to be used as destination address of the outgoing DNS Query. More than one IP address may be provided for resiliency. (NOTE 1)\nbaseDnsAitId\nBaselineDnsAitId\nC\n0..1\nIdentifier of the Baseline DNS Action Information Template that contains DNS Server Address to be used as destination address of the outgoing DNS Query. (NOTE 1, NOTE 2)\nNOTE 1:\tEither the dnsServerAddressList IE or the baseDnsAitId IE shall be present.\nNOTE 2:\tThe referenced baseline DNS Action Information Template may contain other information beyond the DNS Server Address information, in which case the EADSF shall only apply the DNS Server Address information.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.1.6.2.17-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.556_6.1.6.2.18",
+      "section_id": "6.1.6.2.18",
+      "section_title": "Type: BaselineDnsMdtId",
+      "content": "Table 6.1.6.2.18-1: Definition of type BaselineDnsMdtId\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\nbaseDnsPatternUri\nUri\nM\n1\nURI of the baseline DNS pattern returned in the Location header in the baseline DNS pattern creation response\nmdtId\nstring\nM\n1\nIdentifier of the baseline DNS Message Detection Template ID within the baseline DNS pattern",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.1.6.2.18-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.556_6.1.6.2.19",
+      "section_id": "6.1.6.2.19",
+      "section_title": "Type: BaselineDnsAitId",
+      "content": "Table 6.1.6.2.19-1: Definition of type BaselineDnsAitId\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\nbaseDnsPatternUri\nUri\nM\n1\nURI of the baseline DNS pattern returned in the Location header in the baseline DNS pattern creation response\naitId\nstring\nM\n1\nIdentifier of the baseline DNS Action Information Template ID within the baseline DNS pattern",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.1.6.2.19-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.556_6.1.6.2.20",
+      "section_id": "6.1.6.2.20",
+      "section_title": "Type: BaselineDnsQueryMdtInfo",
+      "content": "Table 6.1.6.2.20-1: Definition of type BaselineDnsQueryMdtInfo\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\nsourceIpv4Addr\nIpv4Addr\nO\n0..1\nUE IPv4 address (NOTE)\nsourceIpv6Prefix\nIpv6Prefix\nO\n0..1\nUE IPv6 prefix (NOTE)\nbaseDnsMdtList\narray(BaselineDnsMdtId)\nM\n1..N\nList of Baseline DNS Query Message Detection Template IDs.\nNOTE:\tIf neither the sourceIpv4Addr IE nor the sourceIpv6Prefix IE is present, the UE IP address in the DNS Context Data shall be assumed.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.1.6.2.20-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.556_6.1.6.2.21",
+      "section_id": "6.1.6.2.21",
+      "section_title": "Type: BaselineDnsRspMdtInfo",
+      "content": "Table 6.1.6.2.21-1: Definition of type BaselineDnsRspMdtInfo\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\nbaseDnsMdtList\narray(BaselineDnsMdtId)\nM\n1..N\nList of Baseline DNS Response Message Detection Template IDs.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.1.6.2.21-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.556_6.1.6.2.22",
+      "section_id": "6.1.6.2.22",
+      "section_title": "Type: RespondParameters",
+      "content": "Table 6.1.6.2.22-1: Definition of type RespondParameters\nAttribute name\nData type\nP\nCardinality\nDescription\neasIpv4Addresses\narray(Ipv4Addr)\nO\n1..N\nEAS IPv4 address(es) to be included in the DNS Response\neasIpv6Addresses\narray(Ipv6Addr)\nO\n1..N\nEAS IPv6 address(es) to be included in the DNS Response",
+      "chunk_type": "parameter",
+      "cross_references": [
+        "table_6.1.6.2.22-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.556_6.1.6.2.23",
+      "section_id": "6.1.6.2.23",
+      "section_title": "Type: N6RoutingInfo",
+      "content": "Table 6.1.6.2.23-1: Definition of type N6RoutingInfo\nAttribute name\nData type\nP\nCardinality\nDescription\nupfIpv4Address\nIpv4Addr\nO\n0..1\nIPv4 address of the Local PSA-UPF for the N6 tunnel between the Local PSA-UPF and V-EASDF\nupfIpv6Address\nIpv6Addr\nO\n0..1\nIPv6 address of the Local PSA-UPF for the N6 tunnel between the Local PSA-UPF and V-EASDF\nupfPortNumber\nUinteger\nO\n0..1\nPort number of the Local PSA-UPF for the N6 tunnel between the Local PSA-UPF and V-EASDF.\neasdfIpv4Address\nIpv4Addr\nO\n0..1\nIPv4 address of the V-EASDF for the N6 tunnel between the Local PSA-UPF and V-EASDF\neasdfIpv6Address\nIpv6Addr\nO\n0..1\nIPv6 address of the V-EASDF for the N6 tunnel between the Local PSA-UPF and V-EASDF\neasdfPortNumber\nUinteger\nO\n0..1\nPort number of the V-EASDF for the N6 tunnel between the Local PSA-UPF and V-EASDF.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.1.6.2.23-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.556_6.1.6.3.1",
+      "section_id": "6.1.6.3.1",
+      "section_title": "Introduction",
+      "content": "This clause defines simple data types and enumerations that can be referenced from data structures defined in the previous clauses.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.556_6.1.6.3.2",
+      "section_id": "6.1.6.3.2",
+      "section_title": "Simple data types",
+      "content": "The simple data types defined in table 6.1.6.3.2-1 shall be supported.\nTable 6.1.6.3.2-1: Simple data types\nType Name\nType Definition\nDescription\nApplicability\n<one simple data type, i.e. boolean, integer, number, or string>",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.1.6.3.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.556_6.1.6.3.3",
+      "section_id": "6.1.6.3.3",
+      "section_title": "Enumeration: ApplyAction",
+      "content": "The enumeration ApplyAction represents an action to apply to the DNS packet. It shall comply with the provisions defined in table 6.1.6.3.3-1.\nTable 6.1.6.3.3-1: Enumeration ApplyAction\nEnumeration value\nDescription\nApplicability\n\"BUFFER\"\nBuffer the DNS Query or Response message\n\"REPORT\"\nReport the DNS Query or Response message content to the SMF\n\"FORWARD\"\nForward the DNS Query or Response message, after applying the instructions indicated in the forwarding parameters if any\n\"DISCARD\"\nDiscard DNS messages\n\"RESPOND\"\nRespond to a DNS Query message, i.e. build and send a DNS Response message to the UE, after applying the instructions indicated in the respond parameters.\nCEASD\n\"SEND_ANOTHER_DNS_QUERY\"\nSend another DNS Query message, after applying the instructions indicated in the forwarding parameters if any.\nHR-SBO",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.1.6.3.3-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.556_6.1.6.4",
+      "section_id": "6.1.6.4",
+      "section_title": "Data types describing alternative data types or combinations of data types",
+      "content": "There is no alternative data types or combinations of data types used for the Neasdf_DNSContext service in this version of the API.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.556_6.1.6.5",
+      "section_id": "6.1.6.5",
+      "section_title": "Binary data",
+      "content": "There is no binary data used for the Neasdf_DNSContext service in this version of the API.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.556_6.1.7.1",
+      "section_id": "6.1.7.1",
+      "section_title": "General",
+      "content": "For the Neasdf_DNSContext API, HTTP error responses shall be supported as specified in clause 4.8 of 3GPP TS 29.501 [5]. Protocol errors and application errors specified in table 5.2.7.2-1 of 3GPP TS 29.500 [4] shall be supported for an HTTP method if the corresponding HTTP status codes are specified as mandatory for that HTTP method in table 5.2.7.1-1 of 3GPP TS 29.500 [4].\nIn addition, the requirements in the following clauses are applicable for the Neasdf_DNSContext API.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.501_clause_4.8",
+        "ts_29.500_table_5.2.7.2-1",
+        "ts_29.500_table_5.2.7.1-1",
+        "ts_29.501",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.556_6.1.7.2",
+      "section_id": "6.1.7.2",
+      "section_title": "Protocol Errors",
+      "content": "Protocol errors handling shall be supported as specified in clause 5.2.7 of 3GPP TS 29.500 [4]. No further specific procedures for the Neasdf_DNSContext service are specified.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_5.2.7",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.556_6.1.7.3",
+      "section_id": "6.1.7.3",
+      "section_title": "Application Errors",
+      "content": "The application errors defined for the Neasdf_DNSContext service are listed in Table 6.1.7.3-1.\nTable 6.1.7.3-1: Application errors\nApplication Error\nHTTP status code\nDescription\nBASELINE_DNS_PATTERN_UNKNOWN\n400 Bad Request\nThe request to create or modify a DNS context is rejected due to a baseline DNS pattern being unknown to the EASDF (i.e the URI of the baseline DNS pattern is unknown).\nBASELINE_DNS_MDT_UNKNOWN\n400 Bad Request\nThe request to create or modify a DNS context is rejected due to a baseline DNS Message Detection Template being unknown to the EASDF (the baseline DNS pattern is known).\nBASELINE_DNS_AIT_UNKNOWN\n400 Bad Request\nThe request to create or modify a DNS context is rejected due to a baseline DNS Action Information Template being unknown to the EASDF (the baseline DNS pattern is known).\nDNS_CONTEXT_NOT_FOUND\n404 Not Found\nThe request to modify or delete a DNS context, or the notification about an event of a DNS context, is rejected because the DNS context is not found.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.1.7.3-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.556_6.1.8",
+      "section_id": "6.1.8",
+      "section_title": "Feature negotiation",
+      "content": "The optional features in table 6.1.8-1 are defined for the Neasdf_DNSContext API. They shall be negotiated using the extensibility mechanism defined in clause 6.6 of 3GPP TS 29.500 [4].\nTable 6.1.8-1: Supported Features\nFeature number\nFeature Name\nM/O\nDescription\n1\nCEASD\nO\nSupport of Common EAS Discovery for a set of UEs\ndefined as part of EDGE Phase 2 in 3GPP Release 18.\nAn NF Service Consumer and EASDF which support this feature shall support DNS rules with an applyAction requesting the EASDF to respond to a DNS query with EAS IP addresses provided by the NF Service Consumer, i.e. with the ApplyAction value \"RESPOND\". See clauses 5.2.3.4.1 and 6.1.6.3.3.\n2\nHR-SBO\nO\nSupport of EAS Discovery Procedure with V-EASDF for HR-SBO\nAn EASDF which supports this feature shall support behaving as a V-EASDF including support of:\n-\tDNS context creation with an unspecified UE IP address and DNS context update with the UE IP address assigned by the H-PLMN;\n-\tDNS context creation and handling with the H-PLMN ID of the H-PLMN of the HR PDU session;\n-\tthe new ApplyAction enumeration value \"SEND_ANOTHER_DNS_QUERY\" (see clause 5.2.3.4.1); and\n-\tDns Response MDT including DNS Server Source IP Addresses.\nFeature number: The order number of the feature within the supportedFeatures attribute (starting with 1).\nFeature: A short name that can be used to refer to the bit and to the feature.\nM/O: Defines if the implementation of the feature is mandatory (\"M\") or optional (\"O\").\nDescription: A clear textual description of the feature.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_6.6",
+        "clause_5.2.3.4.1",
+        "table_6.1.8-1",
+        "ts_29.500_table_6.1.8-1",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.556_6.1.9",
+      "section_id": "6.1.9",
+      "section_title": "Security",
+      "content": "As indicated in 3GPP TS 33.501 [8] and 3GPP TS 29.500 [4], the access to the Neasdf_DNSContext API may be authorized by means of the OAuth2 protocol (see IETF RFC 6749 [9]), based on local configuration, using the \"Client Credentials\" authorization grant, where the NRF (see 3GPP TS 29.510 [10]) plays the role of the authorization server.\nIf OAuth2 is used, an NF Service Consumer, prior to consuming services offered by the Neasdf_DNSContext API, shall obtain a \"token\" from the authorization server, by invoking the Access Token Request service, as described in 3GPP TS 29.510 [10], clause 5.4.2.2.\nNOTE:\tWhen multiple NRFs are deployed in a network, the NRF used as authorization server is the same NRF that the NF Service Consumer used for discovering the Neasdf_DNSContext service.\nThe Neasdf_DNSContext API defines a single scope \"neasdf-dnscontext\" for the entire service, and it does not define any additional scopes at resource or operation level.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.510_clause_5.4.2.2",
+        "ts_33.501",
+        "ts_29.500",
+        "ts_29.510"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.556_6.1.10",
+      "section_id": "6.1.10",
+      "section_title": "HTTP redirection",
+      "content": "An HTTP request may be redirected to a different EASDF service instance within the same EASDF, or to a different EASDF of an EASDF set, when using direct or indirect communications (see 3GPP TS 29.500 [4]).\nAn SCP that reselects a different EASDF producer instance will return the NF Instance ID of the new EASDF producer instance in the 3gpp-Sbi-Producer-Id header, as specified in clause 6.10.3.4 of 3GPP TS 29.500 [4].\nIf an EASDF redirects a service request to a different EASDF using an 307 Temporary Redirect or 308 Permanent Redirect status code, the identity of the new EASDF towards which the service request is redirected shall be indicated in the 3gpp-Sbi-Target-Nf-Id header of the 307 Temporary Redirect or 308 Permanent Redirect response as specified in clause 6.10.9.1 of 3GPP TS 29.500 [4].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.500_clause_6.10.3.4",
+        "ts_29.500_clause_6.10.9.1",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.556_6.2.1",
+      "section_id": "6.2.1",
+      "section_title": "Introduction",
+      "content": "The Neasdf_BaselineDNSPattern service shall use the Neasdf_BaselineDNSPattern API.\nThe API URI of the Neasdf_BaselineDNSPattern API shall be:\n{apiRoot}/<apiName>/<apiVersion>\nThe request URIs used in HTTP requests from the NF service consumer towards the NF service producer shall have the Resource URI structure defined in clause 4.4.1 of 3GPP TS 29.501 [5], i.e.:\n{apiRoot}/<apiName>/<apiVersion>/<apiSpecificResourceUriPart>\nwith the following components:\n-\tThe {apiRoot} shall be set as described in 3GPP TS 29.501 [5].\n-\tThe <apiName> shall be \"neasdf-baselinednspattern\".\n-\tThe <apiVersion> shall be \"v1\".\n-\tThe <apiSpecificResourceUriPart> shall be set as described in clause 6.2.3.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.501_clause_4.4.1",
+        "clause_6.2.3",
+        "ts_29.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.556_6.2.2.1",
+      "section_id": "6.2.2.1",
+      "section_title": "General",
+      "content": "HTTP/2, IETF RFC 9113 [11], shall be used as specified in clause 5 of 3GPP TS 29.500 [4].\nHTTP/2 shall be transported as specified in clause 5.3 of 3GPP TS 29.500 [4].\nThe OpenAPI [6] specification of HTTP messages and content bodies for the Neasdf_BaselineDNSPattern API is contained in Annex A.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.500_clause_5",
+        "ts_29.500_clause_5.3",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.556_6.2.2.2.1",
+      "section_id": "6.2.2.2.1",
+      "section_title": "General",
+      "content": "See clause 5.2.2 of 3GPP TS 29.500 [4] for the usage of HTTP standard headers.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.500_clause_5.2.2",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.556_6.2.2.2.2",
+      "section_id": "6.2.2.2.2",
+      "section_title": "Content type",
+      "content": "The following content types shall be supported:\n-\tJSON, as defined in IETF RFC 8259 [12], shall be used as content type of the HTTP bodies specified in the present specification as specified in clause 5.4 of 3GPP TS 29.500 [4]. The use of the JSON format shall be signalled by the content type \"application/json\".\n-\t\"Problem Details\" JSON Object shall be used to indicate additional details of the error in a HTTP response body and shall be signalled by the content type \"application/problem+json\", as defined in IETF RFC 9457 [13].\n-\tJSON Patch (IETF RFC 6902 [15]). The use of the JSON Patch format in a HTTP request body shall be signalled by the content type \"application/json-patch+json\".",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_5.4",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.556_6.2.2.3",
+      "section_id": "6.2.2.3",
+      "section_title": "HTTP custom headers",
+      "content": "The mandatory HTTP custom header fields specified in clause 5.2.3.2 of 3GPP TS 29.500 [4] shall be supported, and the optional HTTP custom header fields specified in clause 5.2.3.3 of 3GPP TS 29.500 [4] may be supported.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_5.2.3.2",
+        "ts_29.500_clause_5.2.3.3",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.556_6.2.3.1",
+      "section_id": "6.2.3.1",
+      "section_title": "Overview",
+      "content": "Figure 6.2.3.1-1 describes the resource URI structure of the Neasdf_BaselineDNSPattern API.\nFigure 6.2.3.1-1: Resource URI structure of the Neasdf_BaselineDNSPattern API\nTable 6.2.3.1-1 provides an overview of the resources and applicable HTTP methods.\nTable 6.2.3.1-1: Resources and methods overview\nResource name\nResource URI\nHTTP method\nDescription\n(service operation)\nIndividual Baseline DNS Pattern\n/base-dns-patterns/{smfId}/{smfImplementationSegmentPaths}\nPUT\nCreate a new Baseline DNS pattern, or replace the existing Baseline DNS pattern, by providing an Baseline DNS pattern\nPATCH\nUpdate (partial update)\nDELETE\nDelete",
+      "chunk_type": "definition",
+      "cross_references": [
+        "table_6.2.3.1-1",
+        "figure_6.2.3.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.556_6.2.3.2.1",
+      "section_id": "6.2.3.2.1",
+      "section_title": "Description",
+      "content": "This resource represents an individual Baseline DNS Pattern created in the EASDF.\nThis resource is modelled with the Document resource archetype (see clause C.1 of 3GPP TS 29.501 [5]).",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.556_6.2.3.2.2",
+      "section_id": "6.2.3.2.2",
+      "section_title": "Resource Definition",
+      "content": "Resource URI: {apiRoot}/neasdf-baselinednspattern/<apiVersion>/base-dns-patterns/{smfId}/{smfImplementationSegmentPaths}\nThis resource shall support the resource URI variables defined in table 6.2.3.2.2-1.\nTable 6.2.3.2.2-1: Resource URI variables for this resource\nName\nData type\nDefinition\napiRoot\nstring\nSee clause 6.2.1.\napiVersion\nstring\nSee clause 6.2.1.\nsmfId\nVarNfId\nRepresents the SMF Set Identifier (see NF Set Identifier in clause 28.12 of 3GPP TS 23.003 [19]) or the Set ID part within the SMF Set Identifier (see <Set Id> within the NF Set Identifier in clause 28.12 of 3GPP TS 23.003 [19]) or NF Instance Id of the SMF.\nThe SMF Set Identifier or the Set ID part within the SMF Set ID shall be included if the EASDF is controlled by the SMF set, or the NF Instance Id of the SMF shall be included if the EASDF is controlled by a SMF.\nEXAMPLE 1:\t.../base-dns-patterns/smfInstanceId=4947a69a-f61b-4bc1-b9da-47c9c5d14b64/{smfImplementationSegmentPaths}\nEXAMPLE 2:\t.../base-dns-patterns/smfSetId=set1.smfset.5gc.mnc012.mcc345/{smfImplementationSegmentPaths}\nEXAMPLE 3:\t.../base-dns-patterns/setId=set1/{smfImplementationSegmentPaths}",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_6.2.1",
+        "ts_23.003_clause_28.12",
+        "table_6.2.3.2.2-1",
+        "ts_23.003"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.556_6.2.3.2.3",
+      "section_id": "6.2.3.2.3",
+      "section_title": "Resource Standard Methods",
+      "content": "6.2.3.2.3.1\tPATCH\nThis method updates (partial update) an individual Baseline DNS Pattern resource in the EASDF.\nThis method shall support the URI query parameters specified in table 6.2.3.2.3.1-1.\nTable 6.2.3.3.3.1-1: URI query parameters supported by the PATCH method on this resource\nName\nData type\nP\nCardinality\nDescription\nApplicability\nn/a\nThis method shall support the request data structures specified in table 6.2.3.2.3.1-2 and the response data structures and response codes specified in table 6.2.3.2.3.1-3.\nTable 6.2.3.2.3.1-2: Data structures supported by the PATCH Request Body on this resource\nData type\nP\nCardinality\nDescription\narray(PatchItem)\nM\n1..N\nIt contains the list of changes to be made to the Baseline DNS pattern, according to the JSON PATCH format specified in IETF RFC 6902 [15].\nTable 6.2.3.2.3.1-3: Data structures supported by the PATCH Response Body on this resource\nData type\nP\nCardinality\nResponse\ncodes\nDescription\nPatchResult\nM\n1\n200 OK\nUpon partial success, e.g. some of the requested modifications for unknown attribute(s) are discarded while the rest of the modification instructions are fully accepted, the EASDF shall return the execution report.\nn/a\n204 No Content\nSuccessful update of the Baseline DNS Pattern.\nRedirectResponse\nO\n0..1\n307 Temporary Redirect\nTemporary redirection.\n(NOTE 2)\nRedirectResponse\nO\n0..1\n308 Permanent Redirect\nPermanent redirection.\n(NOTE 2)\nProblemDetails\nO\n0..1\n404 Not Found\nIndicates that the modification of the baseline DNS pattern failed due to an application error.\nThe \"cause\" attribute may be used to indicate one of the following application errors:\n-\tBASELINE_DNS_PATTERN_NOT_FOUND.\nNOTE 1:\tThe mandatory HTTP error status code for the PATCH method listed in Table 5.2.7.1-1 of 3GPP TS 29.500 [4] also apply.\nNOTE 2:\tRedirectResponse may be inserted by an SCP, see clause 6.10.9.1 of 3GPP TS 29.500 [4].\nTable 6.2.3.2.3.1-4: Headers supported by the 307 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located on an alternative service instance within the same EASDF or EASDF (service) set. For the case, when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target EASDF (service) instance ID towards which the request is redirected\nTable 6.2.3.2.3.1-5: Headers supported by the 308 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located on an alternative service instance within the same EASDF or EASDF (service) set. For the case, when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target EASDF (service) instance ID towards which the request is redirected\n6.2.3.2.3.2\tPUT\nThis method creates or updates (complete replacement) an individual Baseline DNS Pattern resource in the EASDF.\nThis method shall support the URI query parameters specified in table 6.2.3.2.3.2-1.\nTable 6.2.3.2.3.2-1: URI query parameters supported by the PUT method on this resource\nName\nData type\nP\nCardinality\nDescription\nApplicability\nn/a\nThis method shall support the request data structures specified in table 6.2.3.2.3.2-2 and the response data structures and response codes specified in table 6.2.3.2.3.2-3.\nTable 6.2.3.2.3.2-2: Data structures supported by the PUT Request Body on this resource\nData type\nP\nCardinality\nDescription\nBaseDnsPatternCreateData\nM\n1\nBaseline DNS Pattern Data to be created or to replace the existing Baseline DNS Pattern data\nTable 6.2.3.2.3.2-3: Data structures supported by the PUT Response Body on this resource\nData type\nP\nCardinality\nResponse\ncodes\nDescription\nDnsBasePatternCreatedData\nM\n1\n201 Created\nSuccessful creation of a Baseline DNS Pattern\nn/a\n204 No Content\nSuccessful update of the Baseline DNS Pattern.\nRedirectResponse\nO\n0..1\n307 Temporary Redirect\nTemporary redirection.\n(NOTE 2)\nRedirectResponse\nO\n0..1\n308 Permanent Redirect\nPermanent redirection.\n(NOTE 2)\nNOTE 1:\tThe mandatory HTTP error status code for the PUT method listed in Table 5.2.7.1-1 of 3GPP TS 29.500 [4] also apply.\nNOTE 2:\tRedirectResponse may be inserted by an SCP, see clause 6.10.9.1 of 3GPP TS 29.500 [4].\nTable 6.2.3.2.3.2-4: Headers supported by the 307 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located on an alternative service instance within the same EASDF or EASDF (service) set. For the case, when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target EASDF (service) instance ID towards which the request is redirected\nTable 6.2.3.2.3.2-5: Headers supported by the 308 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located on an alternative service instance within the same EASDF or EASDF (service) set. For the case, when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target EASDF (service) instance ID towards which the request is redirected\n6.2.3.2.3.3\tDELETE\nThis method deletes an individual Baseline DNS Pattern resource in the EASDF.\nThis method shall support the URI query parameters specified in table 6.2.3.2.3.3-1.\nTable 6.2.3.2.3.3-1: URI query parameters supported by the DELETE method on this resource\nName\nData type\nP\nCardinality\nDescription\nApplicability\nn/a\nThis method shall support the request data structures specified in table 6.2.3.3.3.3-2 and the response data structures and response codes specified in table 6.2.3.2.3.3-3.\nTable 6.2.3.2.3.3-2: Data structures supported by the DELETE Request Body on this resource\nData type\nP\nCardinality\nDescription\nn/a\nTable 6.2.3.2.3.3-3: Data structures supported by the DELETE Response Body on this resource\nData type\nP\nCardinality\nResponse\ncodes\nDescription\nn/a\n204 No Content\nSuccessful deletion of the Baseline DNS Pattern.\nRedirectResponse\nO\n0..1\n307 Temporary Redirect\nTemporary redirection..\n(NOTE 2)\nRedirectResponse\nO\n0..1\n308 Permanent Redirect\nPermanent redirection..\n(NOTE 2)\nProblemDetails\nO\n0..1\n404 Not Found\nIndicates that the deletion of the baseline DNS pattern failed due to an application error.\nThe \"cause\" attribute may be used to indicate one of the following application errors:\n-\tBASELINE_DNS_PATTERN_NOT_FOUND.\nNOTE 1:\tThe mandatory HTTP error status code for the DELETE method listed in Table 5.2.7.1-1 of 3GPP TS 29.500 [4] also apply.\nNOTE 2:\tRedirectResponse may be inserted by an SCP, see clause 6.10.9.1 of 3GPP TS 29.500 [4].\nTable 6.2.3.2.3.3-4: Headers supported by the 307 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located on an alternative service instance within the same EASDF or EASDF (service) set. For the case, when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target EASDF (service) instance ID towards which the request is redirected\nTable 6.2.3.2.3.3-5: Headers supported by the 308 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located on an alternative service instance within the same EASDF or EASDF (service) set. For the case, when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target EASDF (service) instance ID towards which the request is redirected",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_6.10.9.1",
+        "table_6.2.3.2.3.1-1",
+        "table_6.2.3.3.3.1-1",
+        "table_6.2.3.2.3.1-2",
+        "table_6.2.3.2.3.1-3",
+        "ts_29.500_table_5.2.7.1-1",
+        "ts_29.500_table_6.2.3.2.3.1-4",
+        "table_6.2.3.2.3.1-5",
+        "table_6.2.3.2.3.2-1",
+        "table_6.2.3.2.3.2-2",
+        "table_6.2.3.2.3.2-3",
+        "ts_29.500_table_6.2.3.2.3.2-4",
+        "table_6.2.3.2.3.2-5",
+        "table_6.2.3.2.3.3-1",
+        "table_6.2.3.3.3.3-2",
+        "table_6.2.3.2.3.3-3",
+        "table_6.2.3.2.3.3-2",
+        "ts_29.500_table_6.2.3.2.3.3-4",
+        "table_6.2.3.2.3.3-5",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.556_6.2.3.3.4",
+      "section_id": "6.2.3.3.4",
+      "section_title": "Resource Custom Operations",
+      "content": "6.2.3.3.4.1\tOverview\nTable 6.2.3.3.4.1-1: Custom operations\nOperation Name\nCustom operation URI\nMapped HTTP method\nDescription\n(Service operation)",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.2.3.3.4.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.556_6.2.4",
+      "section_id": "6.2.4",
+      "section_title": "Custom Operations without associated resources",
+      "content": "There are no custom operations defined without any associated resources for the Neasdf_BaselineDNSPattern service in this release of this specification.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.556_6.2.5",
+      "section_id": "6.2.5",
+      "section_title": "Notifications",
+      "content": "There are no notifications defined for the Neasdf_BaselineDNSPattern service in this release of the specification.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.556_6.2.6.1",
+      "section_id": "6.2.6.1",
+      "section_title": "General",
+      "content": "This clause specifies the application data model supported by the API.\nTable 6.2.6.1-1 specifies the data types defined for the Neasdf_BaselineDNSPattern service based interface protocol.\nTable 6.2.6.1-1: Neasdf_BaselineDNSPattern specific Data Types\nData type\nClause defined\nDescription\nApplicability\nBaseDnsPatternCreateData\n6.2.6.2.2\nData in Baseline DNS Pattern Create request\nBaseDnsPatternCreatedData\n6.2.6.2.3\nData in Baseline DNS Pattern Create response\nBaselineDnsMdt\n6.2.6.2.4\nBaseline DNS message detection template\nBaselineDnsAit\n6.2.6.2.5\nBaseline DNS action information Template\nVarNfId\n6.2.6.2.6\nSMF or SMF Set Id or Set Id part in SMF set identifier\nTable 6.2.6.1-2 specifies data types re-used by the Neasdf_BaselineDNSPattern service based interface protocol from other specifications and from other service APIs in current specification, including a reference to the respective specifications and when needed, a short description of their use within the Neasdf_BaselineDNSPattern service based interface.\nTable 6.2.6.1-2: Neasdf_BaselineDNSPattern re-used Data Types\nData type\nReference\nComments\nApplicability\nDnsQueryMdt\n6.1.6.2.5\nDefined in the Neasdf_DNSContext API.\nDNS Query Message Detection Template\nDnsRspMdt\n6.1.6.2.6\nDefined in the Neasdf_DNSContext API.\nDNS Response Message Detection Template\nEcsOption\n6.1.6.2.12\nDefined in the Neasdf_DNSContext API.\nECS Option information\nIpAddr\n3GPP TS 29.571 [16]\nIP address\nNfSetId\n3GPP TS 29.571 [16]\nNF Set Id\nNfInstanceId\n3GPP TS 29.571 [16]\nNF Instance Id\nPatchResult\n3GPP TS 29.571 [16]",
+      "chunk_type": "definition",
+      "cross_references": [
+        "table_6.2.6.1-1",
+        "table_6.2.6.1-2",
+        "ts_29.571"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.556_6.2.6.2.1",
+      "section_id": "6.2.6.2.1",
+      "section_title": "Introduction",
+      "content": "This clause defines the structures to be used in resource representations.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.556_6.2.6.2.2",
+      "section_id": "6.2.6.2.2",
+      "section_title": "Type: BaseDnsPatternCreateData",
+      "content": "Table 6.2.6.2.2-1: Definition of type BaseDnsPatternCreateData\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\nlabel\nstring\nO\n0..1\nBaseline DNS pattern's label\n(NOTE)\nbaseDnsMdtList\nmap(BaselineDnsMdt)\nO\n1..N\nWhen present, this IE contains the map of DNS message detection templates.\nThe key of the map shall be a (unique) valid JSON string per clause 7 of IETF RFC 8259 [12], carrying the identifier of the baseline DNS Message Detection Template, with a maximum of 32 characters.\nbaseDnsAitList\nmap(BaselineDnsAit)\nO\n1..N\nWhen present, this IE contains the map of Baseline DNS action information Templates.\nThe key of the map shall be a (unique) valid JSON string per clause 7 of IETF RFC 8259 [12], carrying the identifier of the baseline DNS Message Detection Template, with a maximum of 32 characters.\nsupportedFeatures\nSupportedFeatures\nC\n0..1\nThis IE shall be present if at least one optional feature defined in clause 6.2.8 is supported.\nNOTE:\tThis attribute may contain free information describing the scope of the baseline DNS pattern. It may be used e.g. for trouble-shooting.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_7",
+        "clause_6.2.8",
+        "table_6.2.6.2.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.556_6.2.6.2.3",
+      "section_id": "6.2.6.2.3",
+      "section_title": "Type: BaseDnsPatternCreatedData",
+      "content": "Table 6.2.6.2.3-1: Definition of type BaseDnsPatternCreatedData\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\nsupportedFeatures\nSupportedFeatures\nC\n0..1\nThis IE shall be present if at least one optional feature defined in clause 6.2.8 is supported.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_6.2.8",
+        "table_6.2.6.2.3-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.556_6.2.6.2.4",
+      "section_id": "6.2.6.2.4",
+      "section_title": "Type: BaselineDnsMdt",
+      "content": "Table 6.2.6.2.4-1: Definition of type BaselineDnsMdt\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\nmdtId\nstring\nM\n1\nIdentifier of the DNS message detection template within the baseline DNS pattern, with a maximum of 32 characters.\nlabel\nstring\nO\n0..1\nBaseline DNS MDT's label\n(NOTE 2)\ndnsQueryMdtList\nmap(DnsQueryMdt)\nC\n1..N\nMap of DNS Query message detection templates.\nThe key of the map shall be a (unique) valid JSON string per clause 7 of IETF RFC 8259 [12], carrying the identifier of the DNS Query message detection template, with a maximum of 32 characters.\nIf present, only fqdnList attribute shall be included in the DNS Query message detection template.\n(NOTE 1)\ndnsRspMdtList\nmap(DnsRspMdt)\nC\n1..N\nMap of DNS Response message detection templates.\nThe key of the map shall be a (unique) valid JSON string per clause 7 of IETF RFC 8259 [12], carrying the identifier of the DNS Response message detection template, with a maximum of 32 characters.\n(NOTE 1)\nNOTE 1:\tEither the dnsQueryMdtList IE or the dnsRspMdtList IE shall be present.\nNOTE 2:\tThis attribute may contain free information describing the scope of the baseline DNS MDT. It may be used e.g. for trouble-shooting.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_7",
+        "table_6.2.6.2.4-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.556_6.2.6.2.5",
+      "section_id": "6.2.6.2.5",
+      "section_title": "Type: BaselineDnsAit",
+      "content": "Table 6.2.6.2.5-1: Definition of type BaselineDnsAit\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\naitId\nstring\nM\n1\nIdentifier of the DNS message handling action within the baseline DNS pattern\nlabel\nstring\nO\n0..1\nBaseline DNS AIT's label\n(NOTE)\necsOption\nEcsOption\nC\n0..1\nInformation to build optional EDNS Client Subnet (ECS) option to be included in the DNS Query as defined in IETF RFC 7871 [18], or to be used for replacing the ECS option received in the DNS Query message from the UE.\ndnsServerAddressList\narray(IpAddr)\nC\n1..N\nDNS Server Address to be used as destination address of the outgoing DNS Query More than one IP address may be provided for resiliency.\nNOTE:\tThis attribute may contain free information describing the scope of the baseline DNS AIT. It may be used e.g. for trouble-shooting.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.2.6.2.5-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.556_6.2.6.2.6",
+      "section_id": "6.2.6.2.6",
+      "section_title": "Type: VarNfId",
+      "content": "Table 6.2.6.2.6-1: Definition of type VarNfId\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\nsmfSetId\nNfSetId\nC\n0..1\nThis IE shall be present if available.\nWhen present, this IE includes the SMF Set Id (NOTE)\nsetId\nstring\nC\n0..1\nThis IE shall be present if available.\nWhen present, this IE includes Set Id part in NF Set Identifier (see clause 28.12 of 3GPP TS 23.003 [7]), formatted as the following string:\n\"set<Set ID>\"\nwith\n<Set ID> encoded as a string of characters consisting of alphabetic characters (A-Z and a-z), digits (0-9) and/or the hyphen (-) and that shall end with either an alphabetic character or a digit.\nPattern: '^([A-Za-z0-9\\-]*[A-Za-z0-9])$'\nExamples:    \"setxyz\"\n\"set12\"\n(NOTE)\nsmfInstanceId\nNfInstanceId\nC\n0..1\nThis IE shall be present if available.\nWhen present, this IE includes SMF Instance Id (NOTE)\nNOTE:\tEither smfSetId attribute or setId or smfInstanceId attribute shall be included.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_23.003_clause_28.12",
+        "table_6.2.6.2.6-1",
+        "ts_23.003"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.556_6.2.7.1",
+      "section_id": "6.2.7.1",
+      "section_title": "General",
+      "content": "For the Neasdf_BaselineDNSPattern API, HTTP error responses shall be supported as specified in clause 4.8 of 3GPP TS 29.501 [5]. Protocol errors and application errors specified in table 5.2.7.2-1 of 3GPP TS 29.500 [4] shall be supported for an HTTP method if the corresponding HTTP status codes are specified as mandatory for that HTTP method in table 5.2.7.1-1 of 3GPP TS 29.500 [4].\nIn addition, the requirements in the following clauses are applicable for the Neasdf_BaselineDNSPattern API.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.501_clause_4.8",
+        "ts_29.500_table_5.2.7.2-1",
+        "ts_29.500_table_5.2.7.1-1",
+        "ts_29.501",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.556_6.2.7.2",
+      "section_id": "6.2.7.2",
+      "section_title": "Protocol Errors",
+      "content": "No specific procedures for the Neasdf_BaselineDNSPattern API service are specified.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.556_6.2.7.3",
+      "section_id": "6.2.7.3",
+      "section_title": "Application Errors",
+      "content": "The application errors defined for the Neasdf_BaselineDNSPattern service are listed in Table 6.2.7.3-1.\nTable 6.2.7.3-1: Application errors\nApplication Error\nHTTP status code\nDescription\nBASELINE_DNS_PATTERN_NOT_FOUND\n404 Not Found\nThe request to modify or delete a baseline DNS pattern is rejected because the baseline DNS pattern is not found (i.e. the URI of the baseline DNS pattern is not found).",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.2.7.3-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.556_6.2.8",
+      "section_id": "6.2.8",
+      "section_title": "Feature negotiation",
+      "content": "The optional features in table 6.2.8-1 are defined for the Neasdf_BaselineDNSPattern API. They shall be negotiated using the extensibility mechanism defined in clause 6.6 of 3GPP TS 29.500 [4].\nTable 6.2.8-1: Supported Features\nFeature number\nFeature Name\nDescription",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_6.6",
+        "table_6.2.8-1",
+        "ts_29.500_table_6.2.8-1",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.556_6.2.9",
+      "section_id": "6.2.9",
+      "section_title": "Security",
+      "content": "As indicated in 3GPP TS 33.501 [8] and 3GPP TS 29.500 [4], the access to the Neasdf_BaselineDNSPattern API may be authorized by means of the OAuth2 protocol (see IETF RFC 6749 [9]), based on local configuration, using the \"Client Credentials\" authorization grant, where the NRF (see 3GPP TS 29.510 [10]) plays the role of the authorization server.\nIf OAuth2 is used, an NF Service Consumer, prior to consuming services offered by the Neasdf_BaselineDNSPattern API, shall obtain a \"token\" from the authorization server, by invoking the Access Token Request service, as described in 3GPP TS 29.510 [10], clause 5.4.2.2.\nNOTE:\tWhen multiple NRFs are deployed in a network, the NRF used as authorization server is the same NRF that the NF Service Consumer used for discovering the Neasdf_BaselineDNSPattern service.\nThe Neasdf_BaselineDNSPattern API defines a single scope \"neasdf-baselinednspattern\" for the entire service, and it does not define any additional scopes at resource or operation level.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.510_clause_5.4.2.2",
+        "ts_33.501",
+        "ts_29.500",
+        "ts_29.510"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.556_6.2.10",
+      "section_id": "6.2.10",
+      "section_title": "HTTP redirection",
+      "content": "An HTTP request may be redirected to a different EASDFF service instance within the same EASDF, or to a different EASDF of an EASDF set, when using direct or indirect communications (see 3GPP TS 29.500 [4]).\nAn SCP that reselects a different EASDF producer instance will return the NF Instance ID of the new EASDF producer instance in the 3gpp-Sbi-Producer-Id header, as specified in clause 6.10.3.4 of 3GPP TS 29.500 [4].\nIf an EASDF redirects a service request to a different EASDF using an 307 Temporary Redirect or 308 Permanent Redirect status code, the identity of the new EASDF towards which the service request is redirected shall be indicated in the 3gpp-Sbi-Target-Nf-Id header of the 307 Temporary Redirect or 308 Permanent Redirect response as specified in clause 6.10.9.1 of 3GPP TS 29.500 [4].\nAnnex A (normative):OpenAPI specification\nA.1\tGeneral\nThis Annex specifies the formal definition of the API(s) defined in the present specification. It consists of OpenAPI  specifications in YAML format.\nThis Annex takes precedence when being discrepant to other parts of the specification with respect to the encoding of information elements and methods within the API(s).\nNOTE 1:\tThe semantics and procedures, as well as conditions, e.g. for the applicability and allowed combinations of attributes or values, not expressed in the OpenAPI definitions but defined in other parts of the specification also apply.\nInformative copies of the OpenAPI specification files contained in this 3GPP Technical Specification are available on a Git-based repository that uses the GitLab software version control system (see 3GPP TS 29.501 [5] clause 5.3.1 and 3GPP TR 21.900 [7] clause 5B).\nA.2\tNeasdf_DNSContext API\nopenapi: 3.0.0\ninfo:\nversion: '1.1.0'\ntitle: 'Neasdf_DNSContext'\ndescription: |\nEASDF DNS Context Service.\n© 2024, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).\nAll rights reserved.\nexternalDocs:\ndescription: 3GPP TS 29.556 V18.6.0; 5G System; Edge Application Server Discovery Services; Stage3\nurl: https://www.3gpp.org/ftp/Specs/archive/29_series/29.556/\nservers:\n- url: '{apiRoot}/neasdf-dnscontext/v1'\nvariables:\napiRoot:\ndefault: https://example.com\ndescription:  apiRoot as defined in clause 4.4 of 3GPP TS 29.501.\nsecurity:\n- {}\n- oAuth2ClientCredentials:\n- neasdf-dnscontext\npaths:\n/dns-contexts:\npost:\nsummary:  Create\ntags:\n- DNS contexts collection\noperationId: CreateDnsContext\nrequestBody:\ndescription: representation of the DNS context to be created in the EASDF\nrequired: true\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/DnsContextCreateData'\ncallbacks:\ndnsContextNotification:\n'{$request.body#/notifyUri}':\npost:\nrequestBody:  # contents of the DNS context Notify request\nrequired: true\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/DnsContextNotification'\nresponses:\n'204':\ndescription: successful notification\n'307':\n$ref: 'TS29571_CommonData.yaml#/components/responses/307'\n'308':\n$ref: 'TS29571_CommonData.yaml#/components/responses/308'\n'400':\n$ref: 'TS29571_CommonData.yaml#/components/responses/400'\n'403':\n$ref: 'TS29571_CommonData.yaml#/components/responses/403'\n'404':\n$ref: 'TS29571_CommonData.yaml#/components/responses/404'\n'411':\n$ref: 'TS29571_CommonData.yaml#/components/responses/411'\n'413':\n$ref: 'TS29571_CommonData.yaml#/components/responses/413'\n'415':\n$ref: 'TS29571_CommonData.yaml#/components/responses/415'\n'429':\n$ref: 'TS29571_CommonData.yaml#/components/responses/429'\n'500':\n$ref: 'TS29571_CommonData.yaml#/components/responses/500'\n'502':\n$ref: 'TS29571_CommonData.yaml#/components/responses/502'\n'503':\n$ref: 'TS29571_CommonData.yaml#/components/responses/503'\ndefault:\n$ref: 'TS29571_CommonData.yaml#/components/responses/default'\nresponses:\n'201':\ndescription: successful creation of a DNS context\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/DnsContextCreatedData'\nheaders:\nLocation:\ndescription: >\n'Contains the URI of the newly created resource, according to the structure:\n{apiRoot}/neasdf-dnscontext/<apiVersion>/dns-contexts/{dnsContextId}'\nrequired: true\nschema:\ntype: string\n'307':\n$ref: 'TS29571_CommonData.yaml#/components/responses/307'\n'308':\n$ref: 'TS29571_CommonData.yaml#/components/responses/308'\n'400':\n$ref: 'TS29571_CommonData.yaml#/components/responses/400'\n'401':\n$ref: 'TS29571_CommonData.yaml#/components/responses/401'\n'403':\n$ref: 'TS29571_CommonData.yaml#/components/responses/403'\n'404':\n$ref: 'TS29571_CommonData.yaml#/components/responses/404'\n'411':\n$ref: 'TS29571_CommonData.yaml#/components/responses/411'\n'413':\n$ref: 'TS29571_CommonData.yaml#/components/responses/413'\n'415':\n$ref: 'TS29571_CommonData.yaml#/components/responses/415'\n'429':\n$ref: 'TS29571_CommonData.yaml#/components/responses/429'\n'500':\n$ref: 'TS29571_CommonData.yaml#/components/responses/500'\n'502':\n$ref: 'TS29571_CommonData.yaml#/components/responses/502'\n'503':\n$ref: 'TS29571_CommonData.yaml#/components/responses/503'\ndefault:\n$ref: 'TS29571_CommonData.yaml#/components/responses/default'\n/dns-contexts/{dnsContextId}:\ndelete:\nsummary:  Delete the DNS Context\ntags:\n- Individual DNS context\noperationId: DeleteDnsContext\nparameters:\n- name: dnsContextId\nin: path\ndescription:  DNS context Identifier\nrequired: true\nschema:\ntype: string\nresponses:\n'204':\ndescription: successful deletion of an SM context\n'307':\n$ref: 'TS29571_CommonData.yaml#/components/responses/307'\n'308':\n$ref: 'TS29571_CommonData.yaml#/components/responses/308'\n'400':\n$ref: 'TS29571_CommonData.yaml#/components/responses/400'\n'401':\n$ref: 'TS29571_CommonData.yaml#/components/responses/401'\n'403':\n$ref: 'TS29571_CommonData.yaml#/components/responses/403'\n'404':\n$ref: 'TS29571_CommonData.yaml#/components/responses/404'\n'411':\n$ref: 'TS29571_CommonData.yaml#/components/responses/411'\n'413':\n$ref: 'TS29571_CommonData.yaml#/components/responses/413'\n'415':\n$ref: 'TS29571_CommonData.yaml#/components/responses/415'\n'429':\n$ref: 'TS29571_CommonData.yaml#/components/responses/429'\n'500':\n$ref: 'TS29571_CommonData.yaml#/components/responses/500'\n'502':\n$ref: 'TS29571_CommonData.yaml#/components/responses/502'\n'503':\n$ref: 'TS29571_CommonData.yaml#/components/responses/503'\ndefault:\n$ref: 'TS29571_CommonData.yaml#/components/responses/default'\npatch:\nsummary: Updates the DNS context\noperationId: UpdateDnsContext\ntags:\n- Individual DNS context\nparameters:\n- name: dnsContextId\nin: path\ndescription:  DNS context Identifier\nrequired: true\nschema:\ntype: string\n- name: Content-Encoding\nin: header\ndescription: Content-Encoding, described in IETF RFC 7231\nschema:\ntype: string\nrequestBody:\ncontent:\napplication/json-patch+json:\nschema:\ntype: array\nitems:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/PatchItem'\nrequired: true\nresponses:\n'200':\ndescription: Partial update of the DNS context\ncontent:\napplication/json:\nschema:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/PatchResult'\n'204':\ndescription: Successful update of the DNS context\nheaders:\nAccept-Encoding:\ndescription: Accept-Encoding, described in IETF RFC 7694\nschema:\ntype: string\n'307':\n$ref: 'TS29571_CommonData.yaml#/components/responses/307'\n'308':\n$ref: 'TS29571_CommonData.yaml#/components/responses/308'\n'400':\n$ref: 'TS29571_CommonData.yaml#/components/responses/400'\n'401':\n$ref: 'TS29571_CommonData.yaml#/components/responses/401'\n'403':\n$ref: 'TS29571_CommonData.yaml#/components/responses/403'\n'404':\n$ref: 'TS29571_CommonData.yaml#/components/responses/404'\n'411':\n$ref: 'TS29571_CommonData.yaml#/components/responses/411'\n'413':\n$ref: 'TS29571_CommonData.yaml#/components/responses/413'\n'415':\n$ref: 'TS29571_CommonData.yaml#/components/responses/415'\n'429':\n$ref: 'TS29571_CommonData.yaml#/components/responses/429'\n'500':\n$ref: 'TS29571_CommonData.yaml#/components/responses/500'\n'501':\n$ref: 'TS29571_CommonData.yaml#/components/responses/501'\n'502':\n$ref: 'TS29571_CommonData.yaml#/components/responses/502'\n'503':\n$ref: 'TS29571_CommonData.yaml#/components/responses/503'\ndefault:\n$ref: 'TS29571_CommonData.yaml#/components/responses/default'\nput:\nsummary: Updates the DNS context (complete replacement)\noperationId: ReplaceDnsContext\ntags:\n- Individual DNS context\nparameters:\n- name: dnsContextId\nin: path\ndescription:  DNS context Identifier\nrequired: true\nschema:\ntype: string\n- name: Content-Encoding\nin: header\ndescription: Content-Encoding, described in IETF RFC 7231\nschema:\ntype: string\nrequestBody:\nrequired: true\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/DnsContextCreateData'\nresponses:\n'204':\ndescription: Successful update of the DNS context\nheaders:\nAccept-Encoding:\ndescription: Accept-Encoding, described in IETF RFC 7694\nschema:\ntype: string\n'307':\n$ref: 'TS29571_CommonData.yaml#/components/responses/307'\n'308':\n$ref: 'TS29571_CommonData.yaml#/components/responses/308'\n'400':\n$ref: 'TS29571_CommonData.yaml#/components/responses/400'\n'401':\n$ref: 'TS29571_CommonData.yaml#/components/responses/401'\n'403':\n$ref: 'TS29571_CommonData.yaml#/components/responses/403'\n'404':\n$ref: 'TS29571_CommonData.yaml#/components/responses/404'\n'411':\n$ref: 'TS29571_CommonData.yaml#/components/responses/411'\n'413':\n$ref: 'TS29571_CommonData.yaml#/components/responses/413'\n'415':\n$ref: 'TS29571_CommonData.yaml#/components/responses/415'\n'429':\n$ref: 'TS29571_CommonData.yaml#/components/responses/429'\n'500':\n$ref: 'TS29571_CommonData.yaml#/components/responses/500'\n'501':\n$ref: 'TS29571_CommonData.yaml#/components/responses/501'\n'502':\n$ref: 'TS29571_CommonData.yaml#/components/responses/502'\n'503':\n$ref: 'TS29571_CommonData.yaml#/components/responses/503'\ndefault:\n$ref: 'TS29571_CommonData.yaml#/components/responses/default'\ncomponents:\nsecuritySchemes:\noAuth2ClientCredentials:\ntype: oauth2\nflows:\nclientCredentials:\ntokenUrl: '{nrfApiRoot}/oauth2/token'\nscopes:\nneasdf-dnscontext: Access to the neasdf-dnscontext API\nschemas:\n#\n# STRUCTURED DATA TYPES\n#\nDnsContextCreateData:\ndescription: Data within Create request\ntype: object\nproperties:\nueIpv4Addr:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Ipv4Addr'\nueIpv6Prefix:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Ipv6Prefix'\ndnn:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Dnn'\nsNssai:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Snssai'\nhplmnId:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/PlmnId'\nn6RoutingInfo:\n$ref: '#/components/schemas/N6RoutingInfo'\ndnsRules:\ndescription: map of DNS message handling rules where a valid JSON string serves as key\ntype: object\nadditionalProperties:\n$ref: '#/components/schemas/DnsRule'\nminProperties: 1\nnotifyUri:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Uri'\nsupportedFeatures:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'\nrequired:\n- dnn\n- sNssai\n- dnsRules\nanyOf:\n- required: [ ueIpv4Addr ]\n- required: [ ueIpv6Prefix ]\nDnsContextCreatedData:\ndescription: Data within Create response\ntype: object\nproperties:\neasdfIpv4Addr:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Ipv4Addr'\neasdfIpv6Addr:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Ipv6Addr'\ndnsSecurityInfo:\ntype: array\nitems:\n$ref: 'TS29502_Nsmf_PDUSession.yaml#/components/schemas/DnsServerSecurityInformation'\nminItems: 1\nsupportedFeatures:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'\nanyOf:\n- required: [ easdfIpv4Addr ]\n- required: [ easdfIpv6Addr ]\nDnsRule:\ndescription: DNS message handling rule\ntype: object\nproperties:\ndnsRuleId:\ntype: string\nlabel:\ntype: string\nprecedence:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Uint32'\ndnsQueryMdtList:\ndescription: >\nmap of DNS query message detection templates where a valid JSON string serves as key\ntype: object\nadditionalProperties:\n$ref: '#/components/schemas/DnsQueryMdt'\nminProperties: 1\nbaseDnsQueryMdtList:\ntype: array\nitems:\n$ref: '#/components/schemas/BaselineDnsQueryMdtInfo'\nminItems: 1\ndnsRspMdtList:\ndescription: >\nmap of DNS response message detection templates where a valid JSON string serves as key\ntype: object\nadditionalProperties:\n$ref: '#/components/schemas/DnsRspMdt'\nminProperties: 1\nbaseDnsRspMdtList:\ntype: array\nitems:\n$ref: '#/components/schemas/BaselineDnsRspMdtInfo'\nminItems: 1\ndnsMsgId:\ntype: string\nactionList:\ndescription: map of actions where a valid JSON string serves as key\ntype: object\nadditionalProperties:\n$ref: '#/components/schemas/Action'\nminProperties: 1\nrequired:\n- actionList\nallOf:\n- not:\nrequired: [ dnsQueryMdtList, dnsRspMdtList ]\n- not:\nrequired: [ dnsQueryMdtList, baseDnsRspMdtList ]\n- not:\nrequired: [ baseDnsQueryMdtList, dnsRspMdtList ]\n- not:\nrequired: [ baseDnsQueryMdtList, baseDnsRspMdtList ]\nDnsQueryMdt:\ndescription: DNS Query message detection template\ntype: object\nproperties:\nmdtId:\ntype: string\nlabel:\ntype: string\nsourceIpv4Addr:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Ipv4Addr'\nsourceIpv6Prefix:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Ipv6Prefix'\nfqdnPatternList:\ntype: array\nitems:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/FqdnPatternMatchingRule'\nminItems: 1\nrequired:\n- mdtId\nDnsRspMdt:\ndescription: DNS Response message detection template\ntype: object\nproperties:\nmdtId:\ntype: string\nlabel:\ntype: string\nfqdnPatternList:\ntype: array\nitems:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/FqdnPatternMatchingRule'\nminItems: 1\neasIpv4AddrRanges:\ntype: array\nitems:\n$ref: '#/components/schemas/Ipv4AddressRange'\nminItems: 1\neasIpv6PrefixRanges:\ntype: array\nitems:\n$ref: '#/components/schemas/Ipv6PrefixRange'\nminItems: 1\ndnsServerSrcAddrList:\ntype: array\nitems:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/IpAddr'\nminItems: 1\nrequired:\n- mdtId\nIpv4AddressRange:\ndescription: Range of IPv4 addresses\ntype: object\nproperties:\nstart:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Ipv4Addr'\nend:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Ipv4Addr'\nrequired:\n- start\n- end\nIpv6PrefixRange:\ndescription: Range of IPv6 prefixes\ntype: object\nproperties:\nstart:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Ipv6Prefix'\nend:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Ipv6Prefix'\nrequired:\n- start\n- end\nAction:\ndescription: Action to apply to DNS messages matching a message detection template\ntype: object\nproperties:\napplyAction:\n$ref: '#/components/schemas/ApplyAction'\nfwdParas:\n$ref: '#/components/schemas/ForwardingParameters'\nreportingOnceInd:\ntype: boolean\ndefault: false\nresetReportingOnceInd:\ntype: boolean\ndefault: false\nrespParas:\n$ref: '#/components/schemas/RespondParameters'\nrequired:\n- applyAction\nDnsContextNotification:\ndescription: Data within DNS Context Notify\ntype: object\nproperties:\neventreportList:\ntype: array\nitems:\n$ref: '#/components/schemas/DnsContextEventReport'\nminItems: 1\nForwardingParameters:\ndescription: Forwarding instructions\ntype: object\nproperties:\necsOptionInfo:\n$ref: '#/components/schemas/EcsOptionInfo'\ndnsServerAddressInfo:\n$ref: '#/components/schemas/DnsServerAddressInfo'\nEcsOptionInfo:\ndescription: ECS Option Information\ntype: object\nproperties:\necsOption:\n$ref: '#/components/schemas/EcsOption'\nbaseDnsAitId:\n$ref: '#/components/schemas/BaselineDnsAitId'\noneOf:\n- required: [ ecsOption ]\n- required: [ baseDnsAitId ]\nDnsServerAddressInfo:\ndescription: DNS Server Address Information\ntype: object\nproperties:\ndnsServerAddressList:\ntype: array\nitems:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/IpAddr'\nminItems: 1\nbaseDnsAitId:\n$ref: '#/components/schemas/BaselineDnsAitId'\noneOf:\n- required: [ dnsServerAddressList ]\n- required: [ baseDnsAitId ]\nBaselineDnsMdtId:\ndescription: Baseline DNS Message Detection Template Identifier\ntype: object\nproperties:\nbaseDnsPatternUri:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Uri'\nmdtId:\ntype: string\nrequired:\n- baseDnsPatternUri\n- mdtId\nBaselineDnsAitId:\ndescription: Baseline DNS Action Information Template Identifier\ntype: object\nproperties:\nbaseDnsPatternUri:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Uri'\naitId:\ntype: string\nrequired:\n- baseDnsPatternUri\n- aitId\nEcsOption:\ndescription: ECS Option Information\ntype: object\nproperties:\nsourcePrefixLength:\ntype: integer\nminimum: 0\nmaximum: 128\nscopePrefixLength:\ntype: integer\nminimum: 0\nmaximum: 128\nipAddr:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/IpAddr'\nrequired:\n- sourcePrefixLength\n- ipAddr\nDnsContextEventReport:\ndescription: DNS context event report\ntype: object\nproperties:\ntimestamp:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/DateTime'\ndnsRuleId:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Uint32'\ndnsQueryReport:\n$ref: '#/components/schemas/DnsQueryReport'\ndnsRspReport:\n$ref: '#/components/schemas/DnsRspReport'\ndnsMsgId:\ntype: string\nrequired:\n- timestamp\nDnsQueryReport:\ndescription: DNS Query Event Report\ntype: object\nproperties:\nfqdn:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Fqdn'\nDnsRspReport:\ndescription: DNS Response Event Report\ntype: object\nproperties:\nfqdn:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Fqdn'\neasIpv4Addresses:\ntype: array\nitems:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Ipv4Addr'\nminItems: 1\neasIpv6Addresses:\ntype: array\nitems:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Ipv6Addr'\nminItems: 1\necsOption:\n$ref: '#/components/schemas/EcsOption'\nBaselineDnsQueryMdtInfo:\ndescription: Baseline DNS Query MDT Information\ntype: object\nproperties:\nsourceIpv4Addr:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Ipv4Addr'\nsourceIpv6Prefix:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Ipv6Prefix'\nbaseDnsMdtList:\ntype: array\nitems:\n$ref: '#/components/schemas/BaselineDnsMdtId'\nminItems: 1\nrequired:\n- baseDnsMdtList\nBaselineDnsRspMdtInfo:\ndescription: Baseline DNS Response MDT Information\ntype: object\nproperties:\nbaseDnsMdtList:\ntype: array\nitems:\n$ref: '#/components/schemas/BaselineDnsMdtId'\nminItems: 1\nrequired:\n- baseDnsMdtList\nRespondParameters:\ndescription: Respond instructions\ntype: object\nproperties:\neasIpv4Addresses:\ntype: array\nitems:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Ipv4Addr'\nminItems: 1\neasIpv6Addresses:\ntype: array\nitems:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Ipv6Addr'\nminItems: 1\nN6RoutingInfo:\ndescription: N6 traffic routing information\ntype: object\nproperties:\nupfIpv4Address:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Ipv4Addr'\nupfIpv6Address:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Ipv6Addr'\nupfPortNumber:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Uinteger'\neasdfIpv4Address:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Ipv4Addr'\neasdfIpv6Address:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Ipv6Addr'\neasdfPortNumber:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Uinteger'\n#\n# SIMPLE DATA TYPES\n#\n#\n# ENUMERATIONS\n#\nApplyAction:\nanyOf:\n- type: string\nenum:\n- BUFFER\n- REPORT\n- FORWARD\n- DISCARD\n- RESPOND\n- SEND_ANOTHER_DNS_QUERY\n- type: string\ndescription: >\nThis string provides forward-compatibility with future\nextensions to the enumeration but is not used to encode\ncontent defined in the present version of this API.\ndescription: >\nAction to apply to the DNS packet\nA.3\tNeasdf_BaselineDNSPattern API\nopenapi: 3.0.0\ninfo:\nversion: '1.1.0'\ntitle: 'Neasdf_BaselineDNSPattern'\ndescription: |\nEASDF Baseline DNS Pattern Service.\n© 2024, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).\nAll rights reserved.\nexternalDocs:\ndescription: 3GPP TS 29.556 V18.6.0; 5G System; Edge Application Server Discovery Services; Stage 3\nurl: 'https://www.3gpp.org/ftp/Specs/archive/29_series/29.556/'\nservers:\n- url: '{apiRoot}/neasdf-baselinednspattern/v1'\nvariables:\napiRoot:\ndefault: https://example.com\ndescription:  apiRoot as defined in clause 4.4 of 3GPP TS 29.501.\nsecurity:\n- {}\n- oAuth2ClientCredentials:\n- neasdf-baselinednspattern\npaths:\n/base-dns-patterns/{smfId}/{smfImplementationSegmentPaths}:\npatch:\nsummary: Updates the Baseline DNS Pattern\noperationId: UpdateBaseDNSPattern\ntags:\n- Individual Baseline DNS Pattern\nparameters:\n- name: smfId\nin: path\ndescription: SMF or SMF set identifier or Set Id part in SMF set identifier\nrequired: true\nschema:\n$ref: '#/components/schemas/VarNfId'\nstyle: simple\nexplode: true\n- name: smfImplementationSegmentPaths\nin: path\ndescription: SMF Implementation Dependent Segment Paths\nrequired: true\nschema:\ntype: string\n- name: Content-Encoding\nin: header\ndescription: Content-Encoding, described in IETF RFC 7231\nschema:\ntype: string\nrequestBody:\ncontent:\napplication/json-patch+json:\nschema:\ntype: array\nitems:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/PatchItem'\nrequired: true\nresponses:\n'200':\ndescription: Partial update of the Baseline DNS Pattern\ncontent:\napplication/json:\nschema:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/PatchResult'\n'204':\ndescription: Successful update of the Baseline DNS Pattern\nheaders:\nAccept-Encoding:\ndescription: Accept-Encoding, described in IETF RFC 7694\nschema:\ntype: string\n'307':\n$ref: 'TS29571_CommonData.yaml#/components/responses/307'\n'308':\n$ref: 'TS29571_CommonData.yaml#/components/responses/308'\n'400':\n$ref: 'TS29571_CommonData.yaml#/components/responses/400'\n'401':\n$ref: 'TS29571_CommonData.yaml#/components/responses/401'\n'403':\n$ref: 'TS29571_CommonData.yaml#/components/responses/403'\n'404':\n$ref: 'TS29571_CommonData.yaml#/components/responses/404'\n'411':\n$ref: 'TS29571_CommonData.yaml#/components/responses/411'\n'413':\n$ref: 'TS29571_CommonData.yaml#/components/responses/413'\n'415':\n$ref: 'TS29571_CommonData.yaml#/components/responses/415'\n'429':\n$ref: 'TS29571_CommonData.yaml#/components/responses/429'\n'500':\n$ref: 'TS29571_CommonData.yaml#/components/responses/500'\n'501':\n$ref: 'TS29571_CommonData.yaml#/components/responses/501'\n'502':\n$ref: 'TS29571_CommonData.yaml#/components/responses/502'\n'503':\n$ref: 'TS29571_CommonData.yaml#/components/responses/503'\ndefault:\n$ref: 'TS29571_CommonData.yaml#/components/responses/default'\nput:\nsummary: Creates or Updates the Baseline DNS Pattern (complete replacement)\noperationId: CreateOrReplaceBaseDnsPattern\ntags:\n- Individual Baseline DNS Pattern\nparameters:\n- name: smfId\nin: path\ndescription: SMF or SMF set identifier or Set Id part in SMF set identifier\nrequired: true\nschema:\n$ref: '#/components/schemas/VarNfId'\nstyle: simple\nexplode: true\n- name: smfImplementationSegmentPaths\nin: path\ndescription: SMF Implementation Dependent Segment Paths\nrequired: true\nschema:\ntype: string\n- name: Content-Encoding\nin: header\ndescription: Content-Encoding, described in IETF RFC 7231\nschema:\ntype: string\nrequestBody:\nrequired: true\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/BaseDnsPatternCreateData'\nresponses:\n'201':\ndescription: successful creation of a Baseline DNS pattern\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/BaseDnsPatternCreatedData'\nheaders:\nLocation:\ndescription: >\n'Contains the URI of the newly created resource, according to the structure:\n{apiRoot}/neasdf-baselinednspattern/<apiVersion>/\nbase-dns-patterns/{smfId}/{smfImplementationSegmentPaths}'\nrequired: true\nschema:\ntype: string\n'204':\ndescription: Successful update of the Baseline DNS Pattern\nheaders:\nAccept-Encoding:\ndescription: Accept-Encoding, described in IETF RFC 7694\nschema:\ntype: string\n'307':\n$ref: 'TS29571_CommonData.yaml#/components/responses/307'\n'308':\n$ref: 'TS29571_CommonData.yaml#/components/responses/308'\n'400':\n$ref: 'TS29571_CommonData.yaml#/components/responses/400'\n'401':\n$ref: 'TS29571_CommonData.yaml#/components/responses/401'\n'403':\n$ref: 'TS29571_CommonData.yaml#/components/responses/403'\n'404':\n$ref: 'TS29571_CommonData.yaml#/components/responses/404'\n'411':\n$ref: 'TS29571_CommonData.yaml#/components/responses/411'\n'413':\n$ref: 'TS29571_CommonData.yaml#/components/responses/413'\n'415':\n$ref: 'TS29571_CommonData.yaml#/components/responses/415'\n'429':\n$ref: 'TS29571_CommonData.yaml#/components/responses/429'\n'500':\n$ref: 'TS29571_CommonData.yaml#/components/responses/500'\n'501':\n$ref: 'TS29571_CommonData.yaml#/components/responses/501'\n'502':\n$ref: 'TS29571_CommonData.yaml#/components/responses/502'\n'503':\n$ref: 'TS29571_CommonData.yaml#/components/responses/503'\ndefault:\n$ref: 'TS29571_CommonData.yaml#/components/responses/default'\ndelete:\nsummary:  Deletes a Baseline DNS Pattern\ntags:\n- Individual Baseline DNS Pattern\noperationId: DeleteBaseDnsPattern\nparameters:\n- name: smfId\nin: path\ndescription: SMF or SMF set identifier or Set Id part in SMF set identifier\nrequired: true\nschema:\n$ref: '#/components/schemas/VarNfId'\nstyle: simple\nexplode: true\n- name: smfImplementationSegmentPaths\nin: path\ndescription: SMF Implementation Dependent Segment Paths\nrequired: true\nschema:\ntype: string\nresponses:\n'204':\ndescription: successful deletion of a Baseline DNS Pattern\n'307':\n$ref: 'TS29571_CommonData.yaml#/components/responses/307'\n'308':\n$ref: 'TS29571_CommonData.yaml#/components/responses/308'\n'400':\n$ref: 'TS29571_CommonData.yaml#/components/responses/400'\n'401':\n$ref: 'TS29571_CommonData.yaml#/components/responses/401'\n'403':\n$ref: 'TS29571_CommonData.yaml#/components/responses/403'\n'404':\n$ref: 'TS29571_CommonData.yaml#/components/responses/404'\n'411':\n$ref: 'TS29571_CommonData.yaml#/components/responses/411'\n'413':\n$ref: 'TS29571_CommonData.yaml#/components/responses/413'\n'415':\n$ref: 'TS29571_CommonData.yaml#/components/responses/415'\n'429':\n$ref: 'TS29571_CommonData.yaml#/components/responses/429'\n'500':\n$ref: 'TS29571_CommonData.yaml#/components/responses/500'\n'502':\n$ref: 'TS29571_CommonData.yaml#/components/responses/502'\n'503':\n$ref: 'TS29571_CommonData.yaml#/components/responses/503'\ndefault:\n$ref: 'TS29571_CommonData.yaml#/components/responses/default'\ncomponents:\nsecuritySchemes:\noAuth2ClientCredentials:\ntype: oauth2\nflows:\nclientCredentials:\ntokenUrl: '{nrfApiRoot}/oauth2/token'\nscopes:\nneasdf-baselinednspattern: Access to the neasdf-baselinednspattern API\nschemas:\n#\n# STRUCTURED DATA TYPES\n#\nBaseDnsPatternCreateData:\ndescription: Data in Baseline DNS Pattern Create request\ntype: object\nproperties:\nlabel:\ntype: string\nbaseDnsMdtList:\ndescription: >\nmap of baseline DNS message detection templates where a valid JSON string serves as key\ntype: object\nadditionalProperties:\n$ref: '#/components/schemas/BaselineDnsMdt'\nminProperties: 1\nbaseDnsAitList:\ndescription: >\nmap of Baseline DNS action information Template where a valid JSON string serves as key\ntype: object\nadditionalProperties:\n$ref: '#/components/schemas/BaselineDnsAit'\nminProperties: 1\nsupportedFeatures:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'\nBaseDnsPatternCreatedData:\ndescription: Data in Baseline DNS Pattern Create response\ntype: object\nproperties:\nsupportedFeatures:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'\nBaselineDnsMdt:\ndescription: Baseline DNS message detection template\ntype: object\nproperties:\nmdtId:\ntype: string\nlabel:\ntype: string\ndnsQueryMdtList:\ndescription: >\nmap of DNS query message detection templates where a valid JSON string serves as key\ntype: object\nadditionalProperties:\n$ref: 'TS29556_Neasdf_DNSContext.yaml#/components/schemas/DnsQueryMdt'\nminProperties: 1\ndnsRspMdtList:\ndescription: >\nmap of DNS response message detection templates where a valid JSON string serves as key\ntype: object\nadditionalProperties:\n$ref: 'TS29556_Neasdf_DNSContext.yaml#/components/schemas/DnsRspMdt'\nminProperties: 1\nrequired:\n- mdtId\noneOf:\n- required: [ dnsQueryMdtList ]\n- required: [ dnsRspMdtList ]\nBaselineDnsAit:\ndescription: Baseline DNS action information Template\ntype: object\nproperties:\naitId:\ntype: string\nlabel:\ntype: string\necsOption:\n$ref: 'TS29556_Neasdf_DNSContext.yaml#/components/schemas/EcsOption'\ndnsServerAddressList:\ntype: array\nitems:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/IpAddr'\nminItems: 1\nrequired:\n- aitId\nVarNfId:\ndescription: SMF or SMF Set Id or Set Id part in NF Set Id\ntype: object\nproperties:\nsmfSetId:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/NfSetId'\nsetId:\ntype: string\npattern: '^([A-Za-z0-9\\-]*[A-Za-z0-9])$'\nsmfInstanceId:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/NfInstanceId'\n#\n# SIMPLE DATA TYPES\n#\n#\n# ENUMERATIONS\n#\nAnnex B (informative):Change history\nChange history\nDate\nMeeting\nTDoc\nCR\nRev\nCat\nSubject/Comment\nNew version\n2021-04\nCT4#103e\nC4-212440\nTS skeleton\n0.0.0\n2021-04\nCT4#103e\nC4-212441\nC4-212442\nImplementation of pCRs agreed in CT4#103E\n0.1.0\n2021-06\nCT4#104e\nC4-213092\nC4-213093\nC4-213094\nC4-213095\nC4-213096\nC4-213182\nC4-213184\nC4-213185\nC4-213429\nC4-213430\nC4-213479\nImplementation of pCRs agreed in CT4#104E\n0.2.0\n2021-09\nCT4#105e\nC4-214676\nImplementation of pCRs agreed in CT4#105E\n0.3.0\n2021-10\nCT4#106e\nC4-215049\nC4-215365\nC4-215366\nC4-215488\nC4-215489\nC4-215246\nC4-215429\nC4-215430\nC4-215431\nC4-215432\nC4-215433\nC4-215434\nImplementation of pCRs agreed in CT4#106E\n0.4.0\n2021-11\nCT4#107e\nC4-216189\nC4-216551\nC4-216303\nC4-216304\nC4-216305\nC4-216306\nC4-216307\nImplementation of pCRs agreed in CT4#107E\n0.5.0\n2021-12\nCT#94\nCP-213156\nV1.0.0 presented for information\n1.0.0\n2022-01\nCT4#107bise\nC4-220101\nC4-220103\nC4-220239\nC4-220399\nC4-220419\nC4-220452\nImplementation of pCRs agreed in CT4#107bisE\n1.1.0\n2022-03\nCT4#108e\nC4-221136\nC4-221296\nC4-221482\nImplementation of pCRs agreed in CT4#108E\n1.2.0\n2022-03\nCT#95e\nCP-220105\nTS send for approval\n2.0.0\n2022-03\nCT#95e\nTS approved\n17.0.0\n2022-06\nCT#96\nCP-221034\n0001\n2\nF\nKey of Map in Data Structure for Baseline DNS Pattern\n17.1.0\n2022-06\nCT#96\nCP-221034\n0002\nF\nReference point between SMF and EASDF\n17.1.0\n2022-06\nCT#96\nCP-221034\n0003\n1\nB\nUsing FQDN Pattern Matching Rule for fqdnPatternList\n17.1.0\n2022-06\nCT#96\nCP-221034\n0004\nF\nReuse of type Fqdn from 29.571\n17.1.0\n2022-06\nCT#96\nCP-221034\n0005\nF\nS-NSSAI in Create DNS context\n17.1.0\n2022-06\nCT#96\nCP-221051\n0006\nF\n29.556 Rel-17 API version and External doc update\n17.1.0\n2022-12\nCT#98e\nCP-223045\n0009\n1\nF\nHandling of EDNS Client Subnet option by EASDF\n17.2.0\n2022-12\nCT#98e\nCP-223045\n0010\nF\nCorrections on DnsServerAddressInfo\n17.2.0\n2022-12\nCT#98e\nCP-223029\n0008\n1\nF\nMissing mandatory status codes in OpenAPI\n18.0.0\n2022-12\nCT#98e\nCP-223033\n0012\nF\n29.556 Rel-18 API version and External doc update\n18.0.0\n2023-03\nCT#99\nCP-230033\n0013\n2\nB\nCommon EAS discovery for a set of UEs\n18.1.0\n2023-03\nCT#99\nCP-230060\n0014\n1\nF\nApplication errors of Neasdf_DNSContext API\n18.1.0\n2023-03\nCT#99\nCP-230075\n0016\n1\nA\nMisalignments between OpenAPI definitions and normative tables\n18.1.0\n2023-03\nCT#99\nCP-230033\n0019\n1\nB\nSupport of edge computing in roaming\n18.1.0\n2023-03\nCT#99\nCP-230071\n0023\nF\n29.556 Rel-18 API version and External doc update\n18.1.0\n2023-06\nCT#100\nCP-231027\n0022\n4\nF\nLocation header and missing Redirection clause\n18.2.0\n2023-06\nCT#100\nCP-231033\n0025\n3\nB\nHR-SBO impacts on Neasdf_DNSContext service\n18.2.0\n2023-06\nCT#100\nCP-231070\n0026\nF\n29.556 Rel-18 API version and External doc update\n18.2.0\n2023-09\nCT#101\nCP-232036\n0027\nB\nBaselineDNSPattern for HR-SBO roaming\n18.3.0\n2023-12\nCT#102\nCP-233027\n0028\nF\nHTTP RFC obsoleted by IETF RFC 9113\n18.4.0\n2023-12\nCT#102\nCP-233038\n0030\n1\nB\nDNS traffic routing between UE and V-EASDF where multiple DNN networks with the same IP address range are deployed\n18.4.0\n2023-12\nCT#102\nCP-233038\n0031\nB\nRemove editor note for unspecified IPv6 Prefix\n18.4.0\n2023-12\nCT#102\nCP-233030\n0032\nF\nProblemDetails RFC 7807 obsoleted by 9457\n18.4.0\n2023-12\nCT#102\nCP-233060\n0033\nF\n29.556 Rel-18 API version and External doc update\n18.4.0\n2024-03\nCT#103\nCP-240031\n0034\nB\nEnforcement of VPLMN specific offloading information for IP addresses ranges\n18.5.0\n2024-03\nCT#103\nCP-240053\n0035\nF\nEditorial and Style Corrections\n18.5.0\n2024-03\nCT#103\nCP-240056\n0036\nF\n29.556 Rel-18 API version and External doc update\n18.5.0\n2024-06\nCT#104\nCP-241031\n0037\n1\nB\nN6 tunneling between V-UPF and V-EASDF for HR-SBO PDU sessions with overlapping IP addresses\n18.6.0\n2024-06\nCT#104\nCP-241050\n0038\nF\nCorrection on data type names of IPv4Addr and IPv6Addr\n18.6.0\n2024-06\nCT#104\nCP-241050\n0039\n1\nF\nClarifying the self-references and editorial corrections\n18.6.0\n2024-06\nCT#104\nCP-241031\n0040\n2\nF\nSecurity of EAS discovery procedure via (V-)EASDF\n18.6.0\n2024-06\nCT#104\nCP-241031\n0042\nF\nService operations supported in HR-SBO\n18.6.0\n2024-06\nCT#104\nCP-241052\n0043\nF\n29.556 Rel-18 API version and External doc update\n18.6.0",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.500_clause_6.10.3.4",
+        "ts_29.500_clause_6.10.9.1",
+        "ts_29.501_clause_5.3.1",
+        "ts_29.501_clause_5",
+        "ts_29.501_clause_4.4",
+        "clause_18.2.0",
+        "ts_29.500",
+        "ts_29.501",
+        "ts_21.900",
+        "ts_29.556"
+      ]
+    }
+  ]
+}

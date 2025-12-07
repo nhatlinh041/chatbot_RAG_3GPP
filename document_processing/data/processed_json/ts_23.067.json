@@ -1,0 +1,414 @@
+{
+  "metadata": {
+    "specification_id": "ts_23.067",
+    "version": "18.0.0",
+    "title": "3GPP TS 23.067",
+    "file_path": "/content/drive/MyDrive/RAG_thesis/data/23_series/23067-i00/23067-i00.docx"
+  },
+  "export_info": {
+    "export_date": "2025-07-26T09:38:53.731611",
+    "total_chunks": 39
+  },
+  "chunks": [
+    {
+      "chunk_id": "ts_23.067_1",
+      "section_id": "1",
+      "section_title": "Scope",
+      "content": "The present document specifies the stage 2 description of the enhanced Multi-Level Precedence and Pre-emption Service (eMLPP) which provides different call priorities in combination with fast call set-up and pre-emption for different applications according to 3GPP TS 22.067.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_22.067"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.067_2",
+      "section_id": "2",
+      "section_title": "References",
+      "content": "The following documents contain provisions which, through reference in this text, constitute provisions of the present document.\n-\tReferences are either specific (identified by date of publication, edition number, version number, etc.) or non‑specific.\n-\tFor a specific reference, subsequent revisions do not apply.\n-\tFor a non-specific reference, the latest version applies.\n[1]\t3GPP TR 21.905: \"3G Vocabulary\".\n[2]\t3GPP TS 22.101: \"UMTS Service Principles\".\n[3]\t3GPP TS 22.067: \"enhanced Multi‑Level Precedence and Pre‑emption service (eMLPP) ‑ Stage 1\".\n[4]\t3GPP TS 23.011:\"Technical realization of supplementary services\".\n[5]\t3GPP TS 43.068: \"Voice Group Call Service (VGCS) ‑ Stage 2\".\n[6]\t3GPP TS 43.069: \"Voice Broadcast Service (VBS) ‑ Stage 2\".\n[7]\t3GPP TS 48.008: \"Mobile Switching Centre ‑ Base Station System (MSC ‑ BSS) interface  Layer 3 specification\".\n[8]\tITU-T Recommendation Q.85: \"Stage 2 description for community of interest supplementary services (clause 3: Multi-Level Precedence and Pre-emption MLPP)\".\n[9]\tITU-T Recommendation Q.735: \"Stage 3 description for community of interest supplementary services using SS No. 7 (clause 3: Multi-Level Precedence and Pre-emption (MLPP)\".\n[10]\tVoid\n[11]\t3GPP TS 25,331: \"RRC Protocol Specification\".\n[12]\t3GPP TS 25.413: \"UTRAN Iu Interface RANAP Signalling\".\n[13]\t3GPP TS 24.008: \"Core Network Protocols - Stage 3\".\n[14]\t3GPP TS 23.107: \"Quality of Service (QoS) concept and architecture\".\n[15]\t3GPP TS 29.002: \"Mobile Application Part (MAP) specification\".",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_3",
+        "ts_21.905",
+        "ts_22.101",
+        "ts_22.067",
+        "ts_23.011",
+        "ts_43.068",
+        "ts_43.069",
+        "ts_48.008",
+        "ts_25.413",
+        "ts_24.008",
+        "ts_23.107",
+        "ts_29.002"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.067_3.1",
+      "section_id": "3.1",
+      "section_title": "Definitions",
+      "content": "For the purposes of the present document, the terms and definitions given in 3GPP TS 22.067 and the following apply:\nresource pre-emption: the termination of a call of a low priority user such that resources can be made available for a precedence call of higher priority. Resource pre-emption could be initiation resource pre-emption or handover resource pre-emption\ncalled-party pre-emption: termination of a call to a particular user when a higher priority call is directed towards that specific user. Called party pre-emption is decided by the Mobile Station. In case of point-to-point calls, this shall be performed by Call Waiting with automatic acceptance of the waiting call by the Mobile Station\ncompatible Mobile Station: mobile stations which support eMLPP and therefore have precedence and pre-emption capabilities\nnon-compatible Mobile Station: mobile stations which do not support eMLPP\nSIM: subscriber Identity Module. This specification makes no distinction between SIM and USIM.\nHandover: This specification uses the term handover for GSM and the same term meaning relocation in UMTS.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_22.067"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.067_3.2",
+      "section_id": "3.2",
+      "section_title": "Abbreviations",
+      "content": "For the purposes of the present document, the abbreviations given in 3G TR 21.905 apply.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.067_4",
+      "section_id": "4",
+      "section_title": "Main concepts",
+      "content": "The enhanced Multi-Level Precedence and Pre-emption service (eMLPP) provides different levels of precedence for call set-up and for call continuity in case of handover.\nThere are seven priority levels which are defined in 3GPP TS 22.067. The highest level (A) is reserved for network internal use. The second highest level (B) may be used for network internal use or, optionally, depending on regional requirements, for subscription. These two levels (A and B) may only be used locally, i.e. in the domain of one MSC. The other five priority levels are offered for subscription and may be applied globally, e.g. on inter switch trunks, if supported by all related network elements, and also for interworking with ISDN networks providing the MLPP service.\nThe seven priority levels are defined as follows:\nA\t(highest, for network internal use)\nB\t(for network internal use or, optionally, for subscription)\n0\t(for subscription)\n1\t(for subscription)\n2\t(for subscription)\n3\t(for subscription)\n4\t(lowest, for subscription).\nLevels A and B shall be mapped to level 0 for priority treatment outside of the MSC area in which they are applied.\nAs a network specific configuration, the ability to pre-empt other calls of lower priority and the application of fast call set-up procedures can be assigned to each priority level. An example for an eMLPP configuration is given in 3GPP TS 22.067.\nNOTE 1:\tThe present specification defines the concepts for handling of priorities in the network including the indication whether pre-emption or fast call set-up procedures are to be applied. Note that the call set-up procedures themselves are specified in the corresponding stage 2 descriptions of the services where they are to be used. There is presently only a requirement for VBS and VGCS (3GPP TS 43.069 and 3GPP TS 43.068, respectively).\nNOTE 2:\tThe network operator has to assure that the particular eMLPP configuration he applies and the subscriptions he issues are co-ordinated with the network planning (especially for blocking) and the implementation options applied (e.g. the use of OACSU) in order to guarantee the service performance for the subscriber.\nConsidering aspects of priority handling, the following issues can be considered for each call:\na)\tcontention during the initial random access (no specific definitions apply for eMLPP. Delays due to access collision have to be managed by a corresponding planning of the network resources);\nb)\tin GSM, contention in gaining radio resources during the call set-up phase and during handover (this item relates to the assignment of SDCCH and TCH for which queuing and pre-emption mechanisms are applied for eMLPP);\nin UMTS, contention in gaining radio resources during the call set-up phase and during relocation (this item relates to the assignment of DCCH and DTCH for which queuing and pre-emption mechanisms are applied for eMLPP);\nA pre-emption might already be performed as a network option on the basis of the establishment cause if a network specific eMLPP configuration assigns a certain priority level to a particular establishment cause.\nc)\tcontention in gaining terrestrial resources inside the GSM or UMTS network (this item relates to the assignment of terrestrial channels between the GSM or UMTS network nodes. Priority actions shall be performed on basis of the MLPP service implementations. The eMLPP priority levels A and B shall be mapped to the MLPP priority level 0. No further specific definitions apply for eMLPP);\nd)\tcontention in gaining terrestrial resources in external networks (this item relates to interworking with external networks which shall be performed on basis of the MLPP service if provided in the related external networks.);\ne)\tapplication of different call set-up procedures in relation to the priority levels and the network specific configuration (three classes of set-up performance are defined in 3GPP TS 22.067, one very fast class for VBS or VGCS emergency call services, one class for fast but normal set-up times and one class allowing some delay in the set-up. The application of the corresponding procedures shall be decided by the network on the basis of the requested priority level);\nf)\tautomatic answering of calls if the incoming call exceeds a defined priority level (if the MS is in idle mode), or called party pre-emption (if the called subscriber is engaged in communication of a lower priority);\ng)\tthe means by which the called user is informed of priority issues and is able to make appropriate decisions if no called party pre-emption applies;\nh)\tthe accommodation of non-compatible Mobile Stations.\nThe definitions in the present specification focus on the issues under item b), e), f), g) and h). Items c) and d) are related to the MLPP service implementation for the signalling system No. 7 according to ITU-T Recommendations Q.85 and Q.735.\nFor a call establishment, a subscriber shall be able to select any one of the priority levels he has subscribed to.\nPriorities shall be treated in the network as defined in 3GPP TS 22.067. Priority treatment is different for point-to-point calls and voice broadcast calls or voice group calls, respectively:\n-\tmobile originated point-to-point call:\nThe priority level depends on the calling subscriber. If the user has no eMLPP subscription, the call shall have a default priority level defined in the network. If the user has an eMLPP subscription, the call shall have the priority level selected by the user at set-up or the priority level predefined by the subscriber as default priority level by registration.\n-\tmobile terminated point-to-point calls:\nThe priority level depends on the calling party. For this, interworking with the ISDN MLPP service is required. If the call is not an MLPP call, i.e. no priority level is defined, the call shall be treated in the mobile network with a default priority level. If the call is an MLPP call, the call shall be treated with the priority level provided by the interfacing network.\n-\tmobile to mobile point-to-point calls:\nThe priority shall be treated for the calling subscriber as for mobile originated calls and for the called subscriber as for mobile terminated calls. However, an interworking with MLPP is not required if both the calling subscriber and the called subscriber are located in the same MSC area.\n-\tVoice Broadcast Calls (VBS) and Voice Group Calls (VGCS):\nThe link on the voice broadcast call channel or voice group call channel shall have the priority level as defined in the corresponding registration for the related voice broadcast call or voice group call in the GCR. At the early stage of a voice broadcast call or voice group call establishment, before the GCR request is made and the voice broadcast call channel or voice group call channels are assigned, the procedure shall be the same as for point-to-point calls. If the GCR response includes a priority level it shall be applied to the dedicated link of the calling mobile station as well.\nQueuing and resource pre-emption shall then be applied as appropriate according to the network service configuration. In addition, automatic answering or called party pre-emption shall be applied as appropriated according to the Mobile Station's internal service configuration.\nThe MSC shall maintain a record of the priority level of each call in progress in its area such that it can arbitrate over resources in a defined manner.\nThe priority level can be included in the CM_SERVICE_REQUEST message in the case that a user establishing a point-to-point call is using a compatible Mobile Station (see clause 6).\nIf the subscriber has not selected a priority level for that call or uses a non compatible Mobile Station (see clause 6), the priority level shall be assigned according to the respective VLR data.\nThe priority level of a call shall be determined by the MSC. Accordingly, the MSC shall request channel assignment with an indication of the priority level and the pre-emption capability of that call. For this the MSC shall use the priority message element as defined in 3GPP TS 48.008. Mapping of the priority information in this message element on the network specific eMLPP configuration shall be performed in the MSC. Queuing and resource pre-emption shall be performed accordingly if necessary.\nIn GSM, in addition to the priority signalling, the requirement for a direct assignment of a TCH shall be included in the establishment cause of the CHAN_REQ message in order to support a fast call set-up procedure in the BSC at the earliest possible stage of the call establishment for high priority calls if applicable.\nIn UMTS, in addition to the priority signalling, the RRC CONNECTION REQUEST message shall be included the establishment cause.\nAutomatic answering or, if necessary, called-party pre-emption has to be performed by the Mobile Station as defined in the following:\n-\tpoint-to-point calls:\nIf the user is in idle mode, the Mobile Station shall automatically connect to an incoming call of a sufficient priority level. The priority level shall be included in the paging message and in the set-up message. If the user is in dedicated mode and has a subscription to Call Waiting, a Call Waiting indication including the priority level of the call shall be given to the Mobile Station which automatically accepts the waiting call.\nThere is no called party pre-emption for point-to-point calls without Call Waiting.\n-\tvoice group calls and voice broadcast calls:\nNotifications for other voice group calls, voice broadcast calls or information on paging for point-to-point calls shall be given to the Mobile Stations involved in on-going voice group calls or voice broadcast calls as defined in 3GPP TS 43.068 and 3GPP TS 43.069, respectively. The notifications include the related priority level of the call. In case of a notified call with higher priority where called-party pre-emption applies, the Mobile Station shall automatically leave the on-going voice group call or voice broadcast call and react according to the type of the notified call type.\nFor both cases, the priority level applied shall be included, either in the paging message or Call Waiting indication, or in the notification message, in order to enable the Mobile Station to decide on an automatic reaction (automatic answering or called-party pre-emption) or to indicate the incoming, non pre-empting call to the user.\nThe priority information of the assignment request shall also be applied for BSS internal and also UTRAN internal handover. For external handover, the MSC shall include the priority information in the handover request according to the definition in 3GPP TS 48.008 (for GSM) and TS 25.413 (for UMTS) in the same way as for the assignment request.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_6",
+        "ts_22.067",
+        "ts_43.069",
+        "ts_43.068",
+        "ts_48.008",
+        "ts_25.413"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.067_5",
+      "section_id": "5",
+      "section_title": "General architecture",
+      "content": "No specific requirements are identified.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.067_6",
+      "section_id": "6",
+      "section_title": "Compatibility issues",
+      "content": "eMLPP cannot be applied with standard GSM Phase 1 or Phase 2 Mobile Stations (non compatible Mobile Stations) with all service aspects. A dedicated Mobile Station (compatible Mobile Station) with eMLPP capability is required.\nSpecific functions a compatible Mobile Station shall provide are:\n-\tpriority selection via MMI for call establishment in case of an eMLPP subscription including priority levels above level 4;\n-\tanalysis of the priority level included in a paging message, Call Waiting indication or notification into a voice group call or voice broadcast call, respectively;\n-\tautomatic reaction on basis of the analysed priority level in case of an incoming call while in dedicated mode, group transmit mode or group receive mode, respectively, according to the user defined Mobile Station configuration (for each subscribed priority level the user shall be able to configure the Mobile Station for automatic acceptation or indication or rejection of an incoming call);\nNOTE:\tFunctions related to notifications are only required for Mobile Stations providing VBS or VGCS functions as defined in 3GPP TS 43.069 and 3GPP TS 43.068, respectively.\nHowever, if eMLPP is provided in a network, it can be applied to non compatible Mobile Stations in the following way:\n-\tcalls of subscribers which have no specific eMLPP subscription shall be treated for resource pre-emption with a default priority level.\nThis shall also apply independent of the use of compatible or non compatible Mobile Stations;\n-\tcalls of eMLPP subscribers which use a non compatible Mobile Station shall be treated for resource pre-emption with the subscriber's default priority level;\n-\tcalls to eMLPP subscribers which use a non compatible Mobile Station shall be indicated to the user by Call Waiting as normal.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_43.069",
+        "ts_43.068"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.067_7",
+      "section_id": "7",
+      "section_title": "Transmission",
+      "content": "No specific requirements are identified.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.067_8.1",
+      "section_id": "8.1",
+      "section_title": "Stored in the HLR",
+      "content": "Information concerning the maximum priority level which a subscriber is entitled to use at call establishment shall be stored in the HLR.\nIf the maximum priority level is above level 4, one level shall be indicated as default level. This default level shall be used for mobile originated calls if no priority selection is performed by the user at call establishment.\nThe default selection can be performed by the subscriber by means of a registration procedure.\nNOTE\tThe priority levels in the subscription are related to point-to-point calls. VBS and VGCS calls are treated with the priority level defined in the GCR for a certain group ID in a certain group call area which can be different to the priority levels explicitly defined in the eMLPP subscription. However, these levels are then implicitly defined with the subscribed group IDs.\neMLPP may have the following logical states (refer to 3GPP TS 23.011 for an explanation of the notation):\nProvisioning State\tRegistration State\tActivation State\tHLR Induction State\n(Not Provisioned,\tNot Registered,\tNot Active\tNot Induced)\n(Provisioned,\tRegistered,\tActive and Operative\tNot Induced)\nThe HLR shall store the logical state of eMLPP (which shall be one of the valid states listed above) on a per subscriber basis.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_23.011"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.067_8.1.1",
+      "section_id": "8.1.1",
+      "section_title": "State transition model",
+      "content": "The following figure shows the successful cases of transition between the applicable logical states of eMLPP. The state changes are caused by actions of the service provider.\nNote that error cases are not shown in the diagram as they normally do not cause a state change. Additionally, some successful requests may not cause a state change. Hence they are not shown in the diagram.\nFigure 1: State transition model for eMLPP",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.067_8.1.2",
+      "section_id": "8.1.2",
+      "section_title": "Transfer of information from HLR to VLR",
+      "content": "If the provisioning state for eMLPP is \"Provisioned\" then, when the subscriber registers on a VLR, the HLR shall send that VLR information about the logical state of eMLPP, the maximum priority level and the default priority level.\nIf any of the eMLPP subscriber data is changed, the HLR shall send to the VLR the complete eMLPP subscriber data.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.067_8.2",
+      "section_id": "8.2",
+      "section_title": "Stored in the VLR",
+      "content": "For eMLPP, the VLR shall store the service state information, the maximum priority level a subscriber is entitled to use and the default priority level received from the HLR.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.067_8.3",
+      "section_id": "8.3",
+      "section_title": "Stored in the MSC",
+      "content": "The network specific service configuration of eMLPP defined by the network operator as specified in 3GPP TS 22.067 shall be stored within each MSC. This includes information on resource pre-emption actions for any given levels of incoming and on-going call priority. An example for a network specific service configuration is given in 3GPP TS 22.067.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_22.067"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.067_8.4",
+      "section_id": "8.4",
+      "section_title": "Stored in the SIM",
+      "content": "Each compatible Mobile Station shall be aware of the automatic answering actions for any given levels of priority so that when in idle mode or dedicated mode or group receive mode or group transmit mode, it can decide on the necessary reactions to be taken according to the priority information of the incoming call.\nFor this, the SIM shall store the following data:\nPriority level\nSubscription available\nAutomatic answering applies\nFast set-up actions (note)\nA\nyes/no\nyes/no\nyes/no\nB\nyes/no\nyes/no\nyes/no\n0\nyes/no\nyes/no\nyes/no\n1\nyes/no\nyes/no\nyes/no\n2\nyes/no\nyes/no\nyes/no\n3\nyes/no\nyes/no\nyes/no\n4\nyes/no\n--\nyes/no\nNOTE:\tFast set-up actions which shall be performed by the Mobile Stations if indicated in the SIM data are the use of the appropriate establishment cause and the reaction on accelerated establishment procedures allowed by the network (see clause 11.6).\nThe automatic reaction of the Mobile Station for automatic answering or called party pre-emption shall be predefined by the user via MMI. For each subscribed priority level the user shall be able to configure the Mobile Station for automatic acceptation or indication or rejection of an incoming call.\nIn addition, the Mobile Station shall verify a priority level selected by the user at call establishment against the priority levels stored on the SIM and act accordingly as defined in clause 11.5.1.2.\nThe Mobile Station shall perform automatically the related functions for a fast call set-up if related with a selected priority.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_11.6",
+        "clause_11.5.1.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.067_8.5",
+      "section_id": "8.5",
+      "section_title": "Stored in the GCR (GSM only)",
+      "content": "In the network, specific service configurations for VBS and VGCS calls which are registered in the GCR, a priority level shall be assigned to each voice broadcast call or voice group call configuration, according to 3GPP TS 43.069 and 3GPP TS 43.068, respectively.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_43.069",
+        "ts_43.068"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.067_9",
+      "section_id": "9",
+      "section_title": "Identities",
+      "content": "No specific requirements are identified.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.067_10",
+      "section_id": "10",
+      "section_title": "Operation and maintenance aspects",
+      "content": "NOTE:\tA list and short description of the operation and maintenance aspects will be given. This includes the options and parameters which can be set by the operator.\n-\tHandling of timers;\n-\tregistration aspects etc.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.067_11.1",
+      "section_id": "11.1",
+      "section_title": "Subscription",
+      "content": "When the subscriber record is created in the HLR, the maximum priority level a subscriber is entitled to use shall be included.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.067_11.2",
+      "section_id": "11.2",
+      "section_title": "Change of subscription",
+      "content": "The network operator can change the maximum priority level of any eMLPP subscriber at any time. A change of subscription shall not affect any on-going calls at the moment of change. The subscriber cannot change the maximum priority level via the MMI.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.067_11.3.1.1",
+      "section_id": "11.3.1.1",
+      "section_title": "Indication of priority",
+      "content": "The Mobile Station may indicate the priority of each call initiated. If no priority is indicated by the user or a non-compatible Mobile Station is used then the default priority level shall be applied which is stored in the VLR. The selection of priority shall be an MMI function.\nMobile stations indicate the priority of their call in the signalling that takes place during the call establishment process.\nNo preferential treatment will be possible during this initial random access until the point at which the priority information is received by the network (CM_SERV_REQ message). Alternatively, a resource pre-emption might already take place on basis of an establishment cause.\nIn GSM, prior to the indication of the selected priority level in the CM_SERV_REQ message, the BSC may decide on the assignment of an SDCCH or direct assignment of a TCH on the basis of the establishment cause in the CHAN_REQ message. This allows the BSC to support a fast call set-up at the earliest stage of the call establishment. The establishment cause for emergency calls or an establishment cause indicating the request for fast call set-up shall be able to trigger this function.\nIn UMTS, prior to the indication of the selected priority level in the CM_SERV_REQ message, the RNC shall receive the establishment cause in the RRC CONNECTION SETUP REQUEST.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.067_11.3.1.2",
+      "section_id": "11.3.1.2",
+      "section_title": "Subscription checking",
+      "content": "The Mobile Station shall verify the selected priority level against the priority levels stored in the SIM. If the selected priority is not allowed, then the priority of the call shall be modified to that of the nearest allowed priority level below the requested level.\nThe MSC shall request the VLR to verify if the subscriber is allowed to use the selected priority level.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.067_11.3.1.3",
+      "section_id": "11.3.1.3",
+      "section_title": "Authentication and ciphering",
+      "content": "A GSM network may wish to omit or postpone authentication and ciphering in order to provide for a faster call set-up.\nIf the network decides to omit or postpone authentication and ciphering for a call it can send a CM_SERV_ACC message in reply to the CM_SERV_REQ message.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.067_11.3.1.4",
+      "section_id": "11.3.1.4",
+      "section_title": "Indication of priority to the BSC/RNC",
+      "content": "In GSM, the channel assignment request to the BSC shall also include the priority level and pre-emption capability of the connection as defined in 3GPP TS 48.008. The MSC maps the eMLPP priority on these priority levels. In addition, the eMLPP priority shall be explicitly indicated to the BSC in the assignment request. The BSC shall store the priority level in order to decide on later actions, e.g. to arrange notifications to the Mobile Station according to priorities.\nIn UMTS, the RAB assignment request to the RNC may also include the priority level and pre-emption capability of the connection as defined in TS 25.413 [12]. The MSC maps the eMLPP priority on these priority levels. In addition, the eMLPP priority shall be explicitly indicated to the RNC in the RAB assignment request. Values for radio access bearer service attributes defined in TS 23.107 [14] should be taken into account for mapping from eMLPP priority into priority related information element in RANAP. The RNC shall store the priority level in order to decide on later actions, e.g. to arrange notifications to the Mobile Station according to priorities.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_48.008",
+        "ts_25.413",
+        "ts_23.107"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.067_11.3.1.5",
+      "section_id": "11.3.1.5",
+      "section_title": "Choice of radio channel",
+      "content": "If an appropriate radio channel is available the BSC (for GSM) or the RNC (for UMTS) shall assign it as normal. If no channels are available then the BSC (for GSM) or the RNC (for UMTS) shall perform queuing according to the priority levels. If the assignment request has a pre-emption capability indicator, pre-emption shall be performed.\nIn addition, the network related service configuration defines the set-up class in relation to a priority level and therefore the allowable delay of the call establishment (see 3GPP TS 22.067). By using this information, the MSC shall decide whether OACSU may be applied for a call or not.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_22.067"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.067_11.3.1.6",
+      "section_id": "11.3.1.6",
+      "section_title": "Indication of priority to the Mobile Station",
+      "content": "The network shall include the assigned priority level in a CALL_PROCEEDING message if the network supports priority.\nThe Mobile Station shall store the priority level requested by the user, possibly overridden by the level received by the network, to perform automatic answering of calls or pre-emption of on-going calls.\nNOTE: When the mobile station connects to the R98 or older network, the mobile station may not receive priority granted even if the network supports priority.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.067_11.3.2.1",
+      "section_id": "11.3.2.1",
+      "section_title": "Indication of priority",
+      "content": "For a mobile terminated call, the priority level is defined in the ISUP set-up message to the VMSC. It may also be present in the MAP_PROVIDE_ROAMING_NUMBER request (see 3GPP TS 29.002 [15]). The priority and pre-emption indications used in the ISUP shall follow the definitions of the MLPP service as defined in the ITU-T recommendations Q.85 and Q.735, respectively.\nIn GSM, a PAGING REQUEST message on CCCH may also include a priority level as described in GSM 04.08 [10], clause 'Paging initiation using paging subchannel on CCCH'.\nNOTE:\tA mobile stations in idle mode which are going to respond to a paging message do not need to analyse the priority level in the paging request message but can take the priority level provided in the set-up message. A mobile stations in group receive mode or an MS in class-B mode that communicates on GPRS radio channels when a dedicated channel is needed need to analyse the priority level in the paging request message in order to decide to respond to the paging request. (see TS 23.060 clause 16.2.2)\nIn UMTS, if the MSC identifies a mobile terminated call as a high priority call based on local configuration of the eMLPP service, the MSC shall include in the Paging message the Paging Cause IE set to the value \"Terminating High Priority Signalling\".",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.060_clause_16.2.2",
+        "ts_29.002",
+        "ts_23.06"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.067_11.3.2.2",
+      "section_id": "11.3.2.2",
+      "section_title": "Indication of priority to the BSC/RNC",
+      "content": "In GSM, the channel assignment request to the BSC may include the priority level and pre-emption capability of the connection as defined in 3GPP TS 48.008. The MSC maps the eMLPP priority on these priority levels. In addition, the eMLPP priority shall be explicitly indicated to the BSC in the assignment request. The BSC shall store the priority level in order to decide on later actions, e.g. to arrange notifications to the Mobile Station according to priorities.\nIn UMTS, the RAB assignment request to the RNC may include the priority level and pre-emption capability of the connection as defined in TS 25.413. The MSC maps the eMLPP priority on these priority levels. In addition, the eMLPP priority shall be explicitly indicated to the RNC in the RAB assignment request. Values for radio access bearer service attributes defined in TS 23.107 [14] should be taken into account for mapping from eMLPP priority into priority related information element in RANAP. The RNC shall store the priority level in order to decide on later actions, e.g. to arrange notifications to the Mobile Station according to priorities.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_48.008",
+        "ts_25.413",
+        "ts_23.107"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.067_11.3.2.3",
+      "section_id": "11.3.2.3",
+      "section_title": "Authentication and ciphering",
+      "content": "The network may wish to omit or postpone authentication and ciphering in order to provide for a faster call set-up according to the priority level to be applied for the call and the network specific service configuration stored in the MSC.\nIf the network decides to omit or postpone authentication and ciphering for a call it, can send the SETUP message immediately after reception of the initial layer 3 message.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.067_11.3.2.4",
+      "section_id": "11.3.2.4",
+      "section_title": "Termination with called subscriber in idle mode or group receive mode",
+      "content": "In this case the Mobile Station shall be paged in the normal manner, but with the paging messages also containing the priority level of the call. In addition, the priority level will be provided with the SETUP message.\nThe Mobile Station in group receive mode shall consult the internal service configuration list stored on the SIM to check whether it should automatically respond to the paging request. If it does respond to the paging request and if a following Call Control SETUP message (received as a response to paging response) specifies a priority different from the one specified in the paging request, this fact is not a reason for the mobile station to reject the (point-to-point) call for which the SETUP message was received.\nThe Mobile Station in idle mode does not need to analyse the priority level from the paging request message but can derive it from the SETUP message and then decide on automatic acceptance of the call.\nIn the case where the called subscriber is using a non compatible Mobile Station, automatic answering is not possible.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.067_11.3.2.5",
+      "section_id": "11.3.2.5",
+      "section_title": "Termination with called subscriber in dedicated mode",
+      "content": "In the case where the called subscriber has a subscription for eMLPP and for Call Waiting and is using a compatible Mobile Station, the Mobile Station shall be informed of the priority of the new call together with the call waiting indication. The Mobile Station will then consult the internal service configuration list stored on the SIM to establish whether it should automatically accept the waiting call without consulting the user, or whether the call waiting facility will be used as normal.\nIn the case where the called subscriber has no subscription for Call Waiting, called party pre-emption is not possible.\nIn the case where the called subscriber is using a non compatible Mobile Station and has a subscription for Call Waiting, Call Waiting shall be performed as normal.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.067_11.3.3.1",
+      "section_id": "11.3.3.1",
+      "section_title": "Indication of priority to the related MSC",
+      "content": "For each voice group call or voice broadcast call service configuration registered in the GCR as defined in 3GPP TS 43.068 and 3GPP TS 43.069, respectively, a priority level is assigned at registration of the GCR data by the service provider. The priority level will be provided by the GCR together with the call attributes.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_43.068",
+        "ts_43.069"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.067_11.3.3.2",
+      "section_id": "11.3.3.2",
+      "section_title": "Authentication and ciphering",
+      "content": "Authentication of the calling service subscriber shall be performed equivalent to the standard mobile originated call case as defined in clause 11.5.1.3. If the GCR response provides a priority level then the calling service subscriber shall be treated with the GCR defined priority. If not, then the calling service subscriber shall be treated with his selected priority or with his default priority as known in the VLR as long as he has an own link with the network (see 3GPP TS 43.068 and 3GPP TS 43.069). The priority which applies to the voice group call channel or voice broadcast call channel is defined in the GCR.\nAuthentication and ciphering of the calling service subscriber might therefore be performed, omitted or postponed (see clause 11.3.1.3).",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_11.5.1.3",
+        "clause_11.3.1.3",
+        "ts_43.068",
+        "ts_43.069"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.067_11.3.3.3",
+      "section_id": "11.3.3.3",
+      "section_title": "Indication of priority to the called Mobile Stations",
+      "content": "The priority level shall be indicated together with the related paging messages or notification messages and treated in the Mobile Station as defined in 3GPP TS 43.068 and 3GPP TS 43.069, respectively.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_43.068",
+        "ts_43.069"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.067_11.4.1",
+      "section_id": "11.4.1",
+      "section_title": "Choice of communication to pre-empt",
+      "content": "For all resources where pre-emption may be required, namely radio channels, A-interface (for GSM) or Iu interface (for UMTS) channels and inter switch trunks, the network specific service configuration stored within the MSC shall be used to determine whether pre-emption should occur, and if so, which communication to pre-empt. The MSC shall inform the BSS (for GSM) or RNC (for UMTS) about priority and pre-emption by using the priority message element in the assignment request as defined in 3GPP TS 48.008 (for GSM) and TS 25.413 [12] (for UMTS). Mapping of the priority information in this message element on the network specific eMLPP configuration shall be performed in the MSC.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_48.008",
+        "ts_25.413"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.067_11.4.2",
+      "section_id": "11.4.2",
+      "section_title": "Release procedures",
+      "content": "Suitable messages shall be passed from the point at which the pre-emption is to occur, to other affected entities. In the case of fast call set-up, such pre-indication may need to be foregone to meet the required set-up time.\nThe indication to the pre-empted user shall be performed by an indication for congestion as defined in 3GPP TS 22.101.",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "ts_22.101"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.067_11.5",
+      "section_id": "11.5",
+      "section_title": "Pre-emption at handover/relocation",
+      "content": "When an on-going call is handed over or relocated into a fully used cell, the BSC or RNC shall perform queuing and pre-emption if necessary according to the priority and pre-emption capability information received with the assignment request.\nIn case of BSS external handover or RNC relocation, the priority and pre-emption capability information shall be included in the handover request as defined in 3GPP TS 48.008 (for GSM) and TS 25.413 [12] (for UMTS).",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_48.008",
+        "ts_25.413"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.067_11.6",
+      "section_id": "11.6",
+      "section_title": "Overview of call related signalling",
+      "content": "In this overview, the message structure to implement the specified concept is identified, and brief details are given of each message.\nA diagrammatic representation of the transport procedures to be used to carry the priority information in case of standard point-to-point calls are given in figures 1 to 6. The message flow is not represented completely.\nThe corresponding message flows in case of voice group calls or voice broadcast calls are given in 3GPP TS 23.068 and 3GPP TS 23.069, respectively.\nFigure 2: Signalling information required for the prioritisation at mobile originating call establishment without fast call set-up (for GSM)\nInitial RACH CHAN_REQ: Standard message.\nIMM_ASS: Standard message.\nSABM (SERV_REQ): Modified form of the current L3-MM CM SERVICE REQUEST where the priority level is provided in addition if a priority selection is performed by the user. In case of no priority selection or use of a non-compatible Mobile Station the Mobile Station shall send a standard service request message and the network shall apply a default priority to their request.\nUA (SERV_REQ): Standard message.\nCOM_L3_INFO: The MSC is provided with initial information about the requested service together with the selected priority level if applicable.\nAUTH_REQ: Standard message.\nAUTH_RES: Standard message.\nCIPH_MOD_CMD: Standard message.\nCIPH_MOD_COM: Standard message.\nSETUP: Standard message.\nCALL_PROCEEDING: The network shall include the assigned priority level in a CALL_PROCEEDING message when the network supports priority.\nASS_REQ: This message is sent from the MSC to the BSC including the call priority and pre-emption capability to be applied as defined in 3GPP TS 48.008, according to the priority information the MSC has obtained from the service request or from the VLR data. In addition, the eMLPP level is included as explicit information.\nASS_CMD: Standard message.\nSABM: Standard message.\nUA: Standard message.\nASS_COM: Standard message.\nFigure 3: Signalling information required for the prioritisation at mobile originating call establishment with fast call set-up (for GSM)\nSYSTEM INFO: The network may provide information on the BCCH system information, that a MM connection is provisional granted after establishment of the main signalling link.\nIf such information is provided on the BCCH and the user has selected a fast call set-up, the Mobile Station shall immediately send a SETUP message to the network after the main signalling link is established.\nInitial RACH CHAN_REQ: Standard message.\nIMM_ASS: Standard message.\nSABM (SERV_REQ): Modified form of the current L3-MM CM SERVICE REQUEST where the priority level is provided in addition if a priority selection is performed by the user.\nUA (SERV_REQ): Standard message.\nCOM_L3_INFO: The MSC is provided with initial information about the requested service together with the selected priority level if applicable.\nIf the network itself decides not to perform ciphering, it shall send an CM_SERV_ACC message.\nSETUP: Standard message.\nCALL_PROCEEDING: The network shall include the assigned priority level in a CALL_PROCEEDING message when the network supports priority\nASS_REQ: This standard message is sent from the MSC to the BSC including the call priority and pre-emption capability to be applied as defined in 3GPP TS 48.008, according to the priority information the MSC has obtained from the service request or from the VLR data. In addition, the eMLPP level is included as explicit information.\nCHAN_MOD_MODIFY: Standard message.\nCHAN_MOD_MODIFY_ACK: Standard message.\nMS                 BSS                 MSC\n┌─┐                ┌─┐                 ┌─┐\n│ │                │ │                 │ │  SETUP (prec.)\n│ │                │ │                 │ │<──────────────\n│ │                │ │      PAGING     │ │  req. ind.\n│ │                │ │<────────────────┤ │\n│ │    PAG_REQ     │ │                 │ │\n│ │<───────────────┤ │                 │ │\n│ │                │ │                 │ │\n│ │RACH (CHAN_REQ) │ │                 │ │\n│ ├───────────────>┤ │                 │ │\n│ │                │ │                 │ │\n│ │   IMM_ASS      │ │                 │ │\n│ │<───────────────┤ │                 │ │\n│ │                │ │                 │ │\n│ │ SABM (PAG_RSP) │ │                 │ │\n│ ├───────────────>│ │                 │ │\n│ │                │ │                 │ │\n│ │  UA (PAG_RSP)  │ │     PAG_RSP     │ │\n│ │<───────────────┤ ├────────────────>│ │\n│ │                │ │                 │ │\n│ │                │ │     AUTH_REQ    │ │\n│ │<───────────────┼─┼─────────────────┤ │\n│ │                │ │                 │ │\n│ │    AUTH_RES    │ │                 │ │\n│ ├────────────────┼─┼────────────────>│ │\n│ │                │ │                 │ │\n│ │                │ │   CIPH_MOD_CMD  │ │\n│ │<───────────────┤ │<────────────────┤ │\n│ │                │ │                 │ │\n│ │  CIPH_MOD_COM  │ │                 │ │\n│ ├───────────────>│ ├────────────────>│ │\n│ │                │ │                 │ │\n│ │     SETUP      │ │                 │ │\n│ │<───────────────┼─┼─────────────────┤ │\n│ │                │ │                 │ │\n│ │   CALL_CONF    │ │                 │ │\n│ ├────────────────┼─┼────────────────>│ │\n│ │                │ │                 │ │\n│ │                │ │     ASS_REQ     │ │\n│ │                │ │<────────────────┤ │\n│ │                │ │                 │ │\n│ │    ASS_CMD     │ │                 │ │\n│ │<───────────────┤ │                 │ │\n│ │                │ │                 │ │\n│ │      SABM      │ │                 │ │\n│ ├───────────────>│ │                 │ │\n│ │                │ │                 │ │\n│ │       UA       │ │                 │ │\n│ │<───────────────┤ │                 │ │\n│ │                │ │                 │ │\n│ │    ASS_COM     │ │     ASS_COM     │ │\n│ ├───────────────>│ ├────────────────>│ │\n└─┘                └─┘                 └─┘\nFigure 4: Signalling information required for the prioritisation at mobile terminating call establishment without fast call set-up and without called-party pre-emption (for GSM)\nSETUP (prec.) req. ind.: In addition to the basic call requirements, the contents of the set-up information flow shall contain the information on the requested MLPP priority level.\nPAGING: Modified paging command including the priority level to be applied.\nPAG_REQ: Modified paging message including the related priority level.\nInitial RACH CHAN_REQ: Standard message.\nIMM_ASS: Standard message.\nSABM (PAG_RSP): Standard message.\nUA (PAG_RSP): Standard message.\nPAG_RSP: Standard message.\nAUTH_REQ: Standard message.\nAUTH_RES: Standard message.\nCIPH_MOD_CMD: Standard message.\nCIPH_MOD_COM: Standard message.\nSETUP: Standard message.\nCALL_CONF: Standard message.\nASS_REQ: This standard message is sent from the MSC to the BSC including the call priority and pre-emption capability to be applied as defined in 3GPP TS 48.008, according to the priority information the MSC has obtained from the incoming set-up message. In addition, the eMLPP level is included as explicit information.\nASS_CMD: Standard message.\nSABM: Standard message.\nUA: Standard message.\nASS_COM: Standard message.\nMS                    BSS                 MSC\n┌─┐                   ┌─┐                 ┌─┐\n│ │                   │ │                 │ │  SETUP (prec.)\n│ │                   │ │                 │ │<──────────────\n│ │                   │ │      PAGING     │ │  req. ind.\n│ │                   │ │<────────────────┤ │\n│ │      PAG_REQ      │ │                 │ │\n│ │<──────────────────┤ │                 │ │\n│ │                   │ │                 │ │\n│ │  RACH (CHAN_REQ)  │ │                 │ │\n│ ├──────────────────>│ │                 │ │\n│ │                   │ │                 │ │\n│ │      IMM_ASS      │ │                 │ │\n│ │<──────────────────┤ │                 │ │\n│ │                   │ │                 │ │\n│ │   SABM (PAG_RSP)  │ │                 │ │\n│ ├──────────────────>│ │                 │ │\n│ │                   │ │                 │ │\n│ │   UA (PAG_RSP)    │ │     PAG_RSP     │ │\n│ │<──────────────────┤ ├────────────────>│ │\n│ │                   │ │                 │ │\n│ │      SETUP        │ │                 │ │\n│ │<──────────────────┼─┼─────────────────┤ │\n│ │                   │ │                 │ │\n│ │     CALL_CONF     │ │                 │ │\n│ ├───────────────────┼─┼────────────────>│ │\n│ │                   │ │                 │ │\n│ │  CHAN_MOD_MODIFY  │ │                 │ │\n│ │<──────────────────┤ │                 │ │\n│ │                   │ │                 │ │\n│ │CHAN_MOD_MODIFY_ACK│ │                 │ │\n│ ├──────────────────>│ │                 │ │\n│ │                   │ │                 │ │\n└─┘                   └─┘                 └─┘\nFigure 5: Signalling information required for the prioritisation at mobile terminating call establishment with fast call set-up and without called-party pre-emption\nSETUP (prec.) req. ind.: In addition to the basic call requirements, the contents of the set-up information flow shall contain the information on the requested MLPP priority level.\nPAGING: Modified paging command including the priority level to be applied.\nPAG_REQ: Modified paging message including the related priority level.\nInitial RACH CHAN_REQ: Standard message. A new establishment cause shall be provided to indicate the requirement for the direct assignment of a TCH (very early assignment) for the support of fast call set-up procedure.\nIMM_ASS: Standard message.\nSABM (PAG_RSP): Standard message.\nUA (PAG_RSP): Standard message.\nPAG_RSP: Standard message.\nFor fast call set-up the network shall immediately send a SETUP message to the Mobile Station. Authentication and ciphering may not be performed or delayed by the network.]\nSETUP: Modified message with an indication of the priority level.\nCALL_CONF: Standard message.\nASS_REQ: This standard message is sent from the MSC to the BSC including the call priority and pre-emption capability to be applied as defined in 3GPP TS 48.008, according to the priority information the MSC has obtained from incoming set-up message. In addition, the eMLPP level is included as explicit information.\nCHAN_MOD_MODIFY: Standard message.\nCHAN_MOD_MODIFY_ACK: Standard message.\nMS                 BSS                 MSC\n┌─┐                ┌─┐                 ┌─┐\n│ │                │ │                 │ │  SETUP (prec.)\n│ │                │ │                 │ │<──────────────\n│ │                │ │                 │ │  req. ind.\n│ │                │ │    SETUP        │ │\n│ │<───────────────┤ ├─────────────────┤ │\n│ │                │ │                 │ │\n│ │   CALL_CONF    │ │                 │ │\n│ ├────────────────┤ ├────────────────>│ │\n│ │                │ │                 │ │\n│ │     ALERT      │ │                 │ │\n│ ├────────────────┤ ├────────────────>│ │\n│ │                │ │                 │ │\n│ │     HOLD       │ │                 │ │\n│ ├────────────────┤ ├────────────────>│ │\n│ │                │ │                 │ │\n│ │                │ │     HOLD_ACK    │ │\n│ │<───────────────┤ ├─────────────────┤ │\n│ │                │ │                 │ │\n│ │      CONNECT   │ │                 │ │\n│ ├────────────────┤ ├────────────────>│ │\n│ │                │ │                 │ │\n│ │                │ │     CONN_ACK    │ │\n│ │<───────────────┤ ├─────────────────┤ │\n│ │                │ │                 │ │\n└─┘                └─┘                 └─┘\nFigure 6: Signalling information required for the called-party pre-emption in case of an existing telephony call and subscription for HOLD\nCall Waiting should always be subscribed together with eMLPP. If not, no called party pre-emption is possible for point-to-point calls.\nSETUP (prec.) req. ind.: In addition to the basic call requirements, the contents of the set-up information flow shall contain the information on the requested MLPP priority level.\nSETUP: Modified SETUP message with an indication of the priority level.\nCALL_CONF: Standard message with cause user busy.\nOn reception of the SETUP message a compatible Mobile Station decides on called party pre-emption. If called party pre-emption applies, the Mobile Station shall automatically accept the waiting call and put the other call on hold.\nA non compatible Mobile Station shall not be harmed by the priority information and shall perform Call Waiting functions as normal.\nALERT: Standard message. ALERTING may be omitted in case of called party pre-emption.\nHOLD: Standard message.\nHOLD_ACK: Standard message.\nCONNECT: Standard message.\nCONN_ACK: Standard message.\nNOTE:\tIn case of an incoming data call a mode modify procedure has to be performed which is not included in figure 6.\nMS                 BSS                 MSC\n┌─┐                ┌─┐                 ┌─┐\n│ │                │ │                 │ │  SETUP (prec.)\n│ │                │ │                 │ │<──────────────\n│ │                │ │                 │ │  req. ind.\n│ │                │ │    SETUP        │ │\n│ │<───────────────┤ ├─────────────────┤ │\n│ │                │ │                 │ │\n│ │   CALL_CONF    │ │                 │ │\n│ ├────────────────┤ ├────────────────>│ │\n│ │                │ │                 │ │\n│ │     ALERT      │ │                 │ │\n│ ├────────────────┤ ├────────────────>│ │\n│ │                │ │                 │ │\n│ │  RELEASE_COM   │ │                 │ │\n│ ├────────────────┤ ├────────────────>│ │\n│ │                │ │                 │ │\n│ │    CONNECT     │ │                 │ │\n│ ├────────────────┤ ├────────────────>│ │\n│ │                │ │                 │ │\n│ │                │ │     CONN_ACK    │ │\n│ │<───────────────┤ ├─────────────────┤ │\n│ │                │ │                 │ │\n└─┘                └─┘                 └─┘\nFigure 7: Signalling information required for the called-party pre-emption in case of point-to-point data calls or no subscription for HOLD\nCall Waiting should always be subscribed together with eMLPP. If not, no called party pre-emption is possible for point-to-point calls.\nSETUP (prec.) req. ind.: In addition to the basic call requirements, the contents of the set-up information flow shall contain the information on the requested MLPP priority level.\nSETUP: Modified SETUP message with an indication of the priority level.\nCALL_CONF: Standard message with cause user busy.\nOn reception of the SETUP message a compatible Mobile Station decides on called party pre-emption. If called party pre-emption applies, the Mobile Station shall automatically accept the waiting call and clear the existing data call.\nA non compatible Mobile Station shall not be harmed by the priority information and shall perform Call Waiting functions as normal.\nALERT: Standard message. ALERTING may be omitted in case of called party pre-emption.\nRELEASE_COM: Standard message which shall be send immediately after the ALERT with a new cause for called party pre-emption.\nCONNECT: Standard message.\nCONN_ACK: Standard message.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_23.068_figure_2",
+        "figure_3",
+        "figure_4",
+        "figure_5",
+        "figure_6",
+        "figure_7",
+        "ts_23.068",
+        "ts_23.069",
+        "ts_48.008"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.067_11.7.1",
+      "section_id": "11.7.1",
+      "section_title": "Registration",
+      "content": "At the beginning of registration subscription, provision of the supplementary service and sufficiency of registration information has to be checked.\nThe default priority level has to be registered in the network.\nWhen the mobile subscriber registers eMLPP, the network shall attempt to register the service. The network will return notification of acceptance of the request. This notification will include the default priority level.\nIf the system cannot accept a registration request, the network sends a notification that eMLPP registration was not successful to the served mobile subscriber.\nThe information flow for registration of eMLPP is shown in figure 8.\nFigure 8: Registration of eMLPP",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_8"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.067_11.7.2",
+      "section_id": "11.7.2",
+      "section_title": "Interrogation",
+      "content": "The mobile subscriber can request the status of the supplementary service, the maximum and default priority levels and be informed if the service is provided to him/her and on the actual maximum and default priority levels. This procedure is illustrated in figure 9.\nFigure 9: Interrogation of eMLPP\nAnnex A (informative):Change history\nChange history\nDate\nMeeting\nTDoc\nCR\nRev\nCat\nSubject/Comment\nNew version\nApr 1999\nTransferred to 3GPP CN1\nCN#03\nApproved at CN#03\n3.0.0\nCN#07\n001\nCause pre-emption removed from HOLD message\n3.1.0\nCN#10\n002r2\nThe accepted priority in the call proceeding message\n3.2.0\nCN#10\n007r3\nCorrection of Pre-emption service (eMLPP)\n3.2.0\nCN#10\n008r1\nCorrection of Pre-emption service (eMLPP)\n3.2.0\nCN#10\n004\nCorrection of abbreviations\n4.0.0\nCN#10\n005r1\nMS strategy in case of discrepancy of priority in MT\n4.0.0\nCN#10\n006r1\nAutomatic answering\n4.0.0\nCN#12\n010r1\nRemove the statement when MS receives no priority granted\n4.1.0\nCN#16\n010r1\nReferences updated\n4.1.1\nCN#16\n010r1\nRelease 5 after CN#16\n5.0.0\nCN#19\n011r1\nOptional additional eMLPP priority level for subscription to accommodate Priority Service\n6.0.0\nCN#27\n012r1\nClarification on mapping of eMLPP priorities\n6.1.0\nCT#30\n0017\nCorrection to priority for calling subscriber's link in a voice group/ voice broadcast call\n7.0.0\nCT#31\n0018\nCorrection on references to non existing specifications\n7.1.0\nCT#41\n0019\neMLPP Priority in MAP SRI, PRN and PSI request\n8.0.0\nCT#42\nCopyright Notification updated\n8.0.1\nCT#46\n-\nUpdate to Rel-9 version (MCC)\n9.0.0\n2011-03\n-\nUpdate to Rel-10 version (MCC)\n10.0.0\n2012-09\n-\nUpdate to Rel-11 version (MCC)\n11.0.0\n2013-12\n0020r3\nHigh priority mobile terminated calls\n12.0.0\n2015-12\n-\nUpdate to Rel-13 version (MCC)\n13.0.0\n2017-03\n-\nUpdate to Rel-14 version (MCC)\n14.0.0\n2018-06\n-\nUpdate to Rel-15 version (MCC)\n15.0.0\n2020-07\n-\nUpdate to Rel-16 version (MCC)\n16.0.0\n2022-03\n-\n-\n-\n-\n-\nUpdate to Rel-17 version (MCC)\n17.0.0\n2024-03\n-\n-\n-\n-\n-\nUpdate to Rel-18 version (MCC)\n18.0.0",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_9"
+      ]
+    }
+  ]
+}

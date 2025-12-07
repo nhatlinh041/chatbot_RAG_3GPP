@@ -1,0 +1,2031 @@
+{
+  "metadata": {
+    "specification_id": "ts_29.538",
+    "version": "18.8.0",
+    "title": "3GPP TS 29.538",
+    "file_path": "/content/drive/MyDrive/RAG_thesis/data/29_series/29538-i80/29538-i80.docx"
+  },
+  "export_info": {
+    "export_date": "2025-07-26T09:00:46.235966",
+    "total_chunks": 189
+  },
+  "chunks": [
+    {
+      "chunk_id": "ts_29.538_1",
+      "section_id": "1",
+      "section_title": "Scope",
+      "content": "The present document specified the Application Programming Interface (API) for enabling the MSGin5G Service over MSGin5G-2/3/4/7/8 interfaces. The application layer architecture, functional requirements, procedures and information flows necessary for MSGin5G Service are contained in 3GPP TS 23.554 [2]. The requirements for MSGin5G are specified in 3GPP TS 22.262 [3].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.554",
+        "ts_22.262"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_2",
+      "section_id": "2",
+      "section_title": "References",
+      "content": "The following documents contain provisions which, through reference in this text, constitute provisions of the present document.\n-\tReferences are either specific (identified by date of publication, edition number, version number, etc.) or non‑specific.\n-\tFor a specific reference, subsequent revisions do not apply.\n-\tFor a non-specific reference, the latest version applies. In the case of a reference to a 3GPP document (including a GSM document), a non-specific reference implicitly refers to the latest version of that document in the same Release as the present document.\n[1]\t3GPP TR 21.905: \"Vocabulary for 3GPP Specifications\".\n[2]\t3GPP TS 23.554: \"Application architecture for MSGin5G Service\".\n[3]\t3GPP TS 22.262: \"Message Service within the 5G System\".\n[4]\t3GPP TS 29.500: \"5G System; Technical Realization of Service Based Architecture; Stage 3\".\n[5]\t3GPP TS 29.571: \"5G System; Common Data Types for Service Based Interfaces Stage 3\".\n[6]\tOpenAPI: \"OpenAPI Specification Version 3.0.0\", https://spec.openapis.org/oas/v3.0.0.\n[7]\t3GPP TS 23.222: \"Functional architecture and information flows to support Common API Framework for 3GPP Northbound APIs; Stage 2\".\n[8]\t3GPP TS 29.222: \"Common API Framework for 3GPP Northbound APIs; Stage 3\".\n[9]\t3GPP TS 29.501: \"5G System; Principles and Guidelines for Services Definition; Stage 3\".\n[10]\tIETF RFC 9112: \"HTTP/1.1\".\n[11]\tIETF RFC 9110: \"HTTP Semantics\"\n[12]\tVoid.\n[13]\tVoid.\n[14]\tIETF RFC 9111: Caching\".\n[15]\tVoid\n[16]\tIETF RFC 9113: HTTP/2\".\n[17]\tIETF RFC 8259: \"The JavaScript Object Notation (JSON) Data Interchange Format\".\n[18]\t3GPP TR 21.900: \"Technical Specification Group working methods\".\n[19]\t3GPP TR 33.862: \"Study on security aspects of the Message Service for MIoT over the 5G System (MSGin5G)\".\n[20]\t3GPP TS 33.501: \"Security architecture and procedures for 5G system\".\n[21]\tIETF RFC 6749: \"The OAuth 2.0 Authorization Framework\".\n[22]\t3GPP TS 33.122: \"Security Aspects of Common API Framework for 3GPP Northbound APIs\".\n[23]\t3GPP TS 29.522: \"5G System; Network Exposure Function Northbound APIs; Stage 3\".\n[24]\t3GPP TS 29.122: \"T8 reference point for northbound APIs\".",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905",
+        "ts_23.554",
+        "ts_22.262",
+        "ts_29.500",
+        "ts_29.571",
+        "ts_23.222",
+        "ts_29.222",
+        "ts_29.501",
+        "ts_21.900",
+        "ts_33.862",
+        "ts_33.501",
+        "ts_33.122",
+        "ts_29.522",
+        "ts_29.122"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_3.1",
+      "section_id": "3.1",
+      "section_title": "Terms",
+      "content": "For the purposes of the present document, the terms given in 3GPP TR 21.905 [1] and the following apply. A term defined in the present document takes precedence over the definition of the same term, if any, in 3GPP TR 21.905 [1].\nFor the purposes of the present document, the following terms and its definitions given in 3GPP TS 23.554 [2] shall apply:\nMSGin5G Service\nMSGin5G message\nMSGin5G UE\nMSGin5G Group\nMSGin5G Client\nMSGin5G Server\nLegacy 3GPP Message Gateway\nNon-3GPP Message Gateway\nBroadcast Message Gateway\nLegacy 3GPP UE\nNon-3GPP UE\nPoint-to-Point messaging\nPoint-to-Application messaging\nApplication-to-Point messaging\nGroup messaging\nBroadcast messaging\nMessaging Topic\nMessage Gateway\nBroadcast Area",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905",
+        "ts_23.554"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_3.2",
+      "section_id": "3.2",
+      "section_title": "Symbols",
+      "content": "For the purposes of the present document, the following symbols apply:\n<symbol>\t<Explanation>",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.538_3.3",
+      "section_id": "3.3",
+      "section_title": "Abbreviations",
+      "content": "For the purposes of the present document, the abbreviations given in 3GPP TR 21.905 [1] and the following apply. An abbreviation defined in the present document takes precedence over the definition of the same abbreviation, if any, in 3GPP TR 21.905 [1].\nAS\tApplication Server\nBC\tBroadcast\nBMG\tBroadcast Message Gateway\nCAPIF\tCommon API Framework\nL3G\tLegacy 3GPP Message Gateway\nN3G\tNon-3GPP Message Gateway",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_4",
+      "section_id": "4",
+      "section_title": "Overview",
+      "content": "The MSGin5G Service is designed and optimized for massive IoT device communication including thing-to-thing communication and person-to-thing communication and provides messaging capability in 5GS with messaging communication models including Point-to-Point, Application-to-Point/Point-to-Application, Group and Broadcast messaging.\n3GPP TS 23.554 [2] has specified the application layer architecture, architectural requirements, procedures, information flows and some APIs, in order to support the MSGin5G Service. Various features are defined to ensure the efficient use and deployment of MSGin5G Service, including configuration, registration, message delivery, message aggregation, segmentation and reassembly, topic messaging.\nThe present document specifies MSGin5G Services offered by MSGin5G Servers and MSGin5G Gateway, and APIs in detail, needed over MSGin5G-2/3/4/7/8 interfaces for interworking between MSGin5G Server and Legacy 3GPP UE, Non-3GPP UE, Broadcast Message Gateway or Application Server, with following functionalities need to be supported:\n1.\tServer-side functionality with the sending and receiving of messages to/from Application Servers and/or other MSGin5G Service endpoints on other UEs, provided by MSGin5G Server.\n2.\tInterconnecting two different messaging delivery mechanisms and assure the message integrity between different message delivery mechanisms, provided by Message Gateway.\nAnd the definition of APIs specified in TS 23.554 [2] clause 9 is introduced in present document.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_23.554_clause_9",
+        "ts_23.554"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_5.1",
+      "section_id": "5.1",
+      "section_title": "Introduction",
+      "content": "The Table 5.1-1 lists the services provided by the MSGin5G Server and corresponding service operations. A service description clause for each API gives a general description of the related API.\nTable 5.1-1 List of services provided by the MSGin5G Servers\nService Name\nService Operations\nOperation\nSemantics\nExample Consumer(s)\nMSGS_ASRegistration\nMSGS_ASRegistration_Request\nRequest/Response\nAS\nMSGS_ASRegistration_Deregister\nMSGS_MSGDelivery\nMSGS_MSGDelivery_ASODelivery\nRequest/ Response\nAS, Legacy 3GPP Message Gateway, Non-3GPP Message Gateway\nMSGS_MSGDelivery_ASODeliveryReport\nMSGS_MSGDelivery_UEODelivery\nMSGS_MSGDelivery_UEODeliveryReport\nMSGS_TopiclistEvent\nMSGS_TopiclistEvent_SubscribeMSGTopiclist\nSubscribe/Notify\nMSGin5G Server\nMSGS_TopiclistEvent_UnsubscribeMSGTopiclist\nMSGS_TopiclistEvent_NotifyMSGTopiclist\nMSGS_TopiclistEvent_SubscribeMSGTopic\nRequest/ Response\nMSGin5G Server\nMSGS_TopiclistEvent_UnsubscribeMSGTopic\nTable 5.1-2 summarizes the corresponding APIs defined in this specification.\nTable 5.1-2: API Descriptions\nService Name\nClause\nDescription\nOpenAPI Specification File\napiName\nAnnex\nMSGS_ASRegistration\n8.1\nAS Registration Service\nTS29538_MSGS_ASRegistration.yaml\nMsgs-asregistration\nA.2\nMSGS_MSGDelivery\n8.2\nMessage Delivery Service\nTS29538_MSGS_MSGDelivery.yaml\nMsgs-msgdelivery\nA.3\nMSGS_TopiclistEvent\n8.3\nTopic Messaging Service\nTS29538_MSGS_TopiclistEvent.yaml\nMsgs-topiclistevent\nA.7",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.1-1",
+        "table_5.1-2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_5.2.1",
+      "section_id": "5.2.1",
+      "section_title": "Service Description",
+      "content": "The MSGS_ASRegistration API, as defined in 3GPP TS 23.554 [2], allows an AS via Mm5s interface to register, and deregister at a given MSGin5G Server.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.554"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_5.2.2.1",
+      "section_id": "5.2.2.1",
+      "section_title": "Introduction",
+      "content": "The service operation defined for MSGS_ASRegistration API is shown in the Table 5.2.2.1-1.\nTable 5.2.2.1-1: Operations of the MSGS_ASRegistration API\nService operation name\nDescription\nInitiated by\nMSGS_ASRegistration_Request\nThis service operation is used by the AS to register itself to MSGin5G Server.\nAS\nMSGS_ASRegistration_Deregister\nThis service operation is used by the AS to deregister itself from a MSGin5G Server.\nAS",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.2.2.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_5.2.2.2.1",
+      "section_id": "5.2.2.2.1",
+      "section_title": "General",
+      "content": "This service operation is used by the AS to register itself to MSGin5G Server.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.538_5.2.2.2.2",
+      "section_id": "5.2.2.2.2",
+      "section_title": "Application Server registering to MSGin5G Server using MSGS_ASRegistration_Request operation",
+      "content": "Figure 5.2.2.2.2-1: AS Registering to MSGin5G Server\nTo register itself at the MSGin5G Server, the AS shall send an HTTP POST message to the MSGin5G Server on the \"AS Registrations\" collection resource. The body of the HTTP POST message shall include ASRegistration data structure that shall include:\n-\tthe Application Server Identifier within the \"asSvcId\" attribute; and\nmay include:\n-\tthe Application Identifier within the \"appId\" attribute;\n-\tthe notification target URI within the \"targetUri\" attribute; and\n-\tthe Application Server Profile Information within the \"asProf\" attribute, that may include:\n-\tthe Application Server name within the \"appName\" attribute;\n-\tthe list of Application Providers name within the \"appProviders\" attribute;\n-\tthe list of Application scenarios within the \"appScenarios\" attribute;\n-\tthe list of Application Server category within the \"appCategory\" attribute; and\n-\tthe list of Application Server status within the \"asStatus\" attribute.\nUpon receiving the HTTP POST message from the AS, the MSGin5G Server shall:\n1.\tprocess the AS registration request information;\n2.\tverify the identity of the AS and check if the AS is authorized to register itself at MSGin5G Server; and\n3.\tif the AS is authorized to register to MSGin5G Server, then the MSGin5G Server shall:\na.\tstore the AS registration information and create a new resource with the AS registration information as specified in clause 8.1.2.1; and\nb.\tIf the registration is successful, the MSGin5G Server shall respond to the AS with an HTTP \"201 Created\" status code, including an HTTP Location header field containing the URI of the created \"AS Registration\" resource and the response body containing ASRegistrationAck data structure that shall contain:\n-\tthe Application Server Identifier within the \"asSvcId\" attribute; and\n-\tthe registration result within the \"result\" attribute.\nIf errors occur when processing the HTTP POST request, the MSGin5G Server shall apply error handling procedures as specified in clause 8.1.6.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_8.1.2.1",
+        "clause_8.1.6",
+        "figure_5.2.2.2.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_5.2.2.3.1",
+      "section_id": "5.2.2.3.1",
+      "section_title": "General",
+      "content": "This service operation is used by the AS to deregister itself from a MSGin5G Server.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.538_5.2.2.3.2",
+      "section_id": "5.2.2.3.2",
+      "section_title": "Application Server deregistering from MSGin5G Server using MSGS_ASRegistration_Deregister operation",
+      "content": "Figure 5.2.2.3.2-1: AS Deregistering from MSGin5G Server\nTo deregister itself from the MSGin5G Server, the AS shall send HTTP DELETE message to the MSGin5G Server on the \"AS DeRegistration\" collection resource, as specified in clause 8.1.2.3.3.2.\nUpon receiving the HTTP DELETE request, the MSGin5G Server shall:\n1.\tverify the identity of the AS and check if the AS is authorized to deregister the AS registration information;\n2.\tif the AS is authorized to deregister the AS registration information, then the MSGin5G Server shall deregister the AS profile from the MSGin5G Server and delete the resource representing AS registration information; and\n3.\treturn the HTTP \"200 OK\" status code to the AS, indicating the successful deregistration of the AS information and shall include ASRegistrationAck data structure within the response body or HTTP \"204 No Content\" status code to the AS.\nIf errors occur when processing the HTTP DELETE request, the MSGin5G Server shall apply error handling procedures as specified in clause 8.1.6.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_8.1.2.3.3.2",
+        "clause_8.1.6",
+        "figure_5.2.2.3.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_5.3.1",
+      "section_id": "5.3.1",
+      "section_title": "Service Description",
+      "content": "The MSGS_MSGDelivery Service corresponding to Mm5s as defined in 3GPP TS 23.554 [2], is provided by the MSGin5G Server.\nThis service:\n-\tallows AS invokes services provided by MSGin5G Server to send MSGin5G Messages and MSGin5G message delivery status reports to MSGin5G Server; and\n-\tallows L3G/N3G invokes services provided by MSGin5G Server to send MSGin5G Messages and MSGin5G message delivery status reports to MSGin5G Server on behalf of Legacy 3GPP UE or Non-3GPP UE.\n-\tallows BMG invokes services provided by MSGin5G Server to send MSGin5G message delivery status reports to MSGin5G Server.\n-\tallows other MSGin5G Server invokes services provided by MSGin5G Server to send MSGin5G Messages and MSGin5G message delivery status reports to MSGin5G Server.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.554"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_5.3.2.1",
+      "section_id": "5.3.2.1",
+      "section_title": "Introduction",
+      "content": "The service operation defined for MSGS_MSGDelivery Service is shown in the Table 5.3.2.1-1.\nTable 5.3.2.1-1: Operations of the MSGS_MSGDelivery Service\nService operation name\nDescription\nInitiated by\nMSGS_MSGDelivery_ASODelivery\nThis service operation is used by AS to deliver MSGin5G message to the MSGin5G Server. This service operation corresponds to clause 9.1.1.1.2 as defined in 3GPP TS 23.554 [2].\nAS\nMSGS_MSGDelivery_ASODeliveryReport\nThis service operation is used by AS to deliver the delivery status report to the MSGin5G Server. This service operation corresponds to clause 9.1.1.3.2 as defined in 3GPP TS 23.554 [2].\nAS\nMSGS_MSGDelivery_UEODelivery\nThis service operation is used by Legacy 3GPP Message Gateway or Non-3GPP Message Gateway (on behalf of Legacy 3GPP UE or Non-3GPP UE) to deliver MSGin5G message to the MSGin5G Server. This service operation corresponds to clause 9.1.1.2.2 as defined in 3GPP TS 23.554 [2].\nLegacy 3GPP Message Gateway\nNon-3GPP Message Gateway\nMSGin5G Server\nMSGS_MSGDelivery_UEODeliveryReport\nThis service operation is used by Message Gateway (on behalf Legacy 3GPP UE or Non-3GPP UE) to deliver the delivery status report to the MSGin5G Server. This service operation corresponds to clause 9.1.1.4.2 as defined in 3GPP TS 23.554 [2].\nLegacy 3GPP Message Gateway\nNon-3GPP Message Gateway\nBroadcast Message Gateway\nMSGin5G Server",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.554_clause_9.1.1.1.2",
+        "ts_23.554_clause_9.1.1.3.2",
+        "ts_23.554_clause_9.1.1.2.2",
+        "ts_23.554_clause_9.1.1.4.2",
+        "table_5.3.2.1-1",
+        "ts_23.554"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_5.3.2.2.1",
+      "section_id": "5.3.2.2.1",
+      "section_title": "General",
+      "content": "This service operation corresponding to clause 9.1.1.1.2 as defined in 3GPP TS 23.554 [2], is used by AS to deliver MSGin5G message to the MSGin5G Server.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_23.554_clause_9.1.1.1.2",
+        "ts_23.554"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_5.3.2.2.2",
+      "section_id": "5.3.2.2.2",
+      "section_title": "AS Originating MSGin5G Message Delivery",
+      "content": "Figure 5.3.2.2.2-1: AS Originating MSGin5G Message Delivery\nWhen the AS needs to send the message to the MSGin5G Server, the AS shall send the HTTP POST method as step 1 of the Figure 5.3.2.2.2-1.\nThe AS shall include ASMessageDelivery data structure in the content of the HTTP POST request.\nThe ASMessageDelivery data structure shall include:\n-\tthe AS Service ID within the \"oriAddr\" attribute;\n-\tthe Recipient Address within the \"destAddr\" attribute;\n-\tthe Message ID within the \"msgId\" attribute;\n-\tthe store and forward flag within the \"stoAndFwInd\" attribute; and\nmay include:\n-\tthe Application ID within the \"appId\" attribute;\n-\tthe indication whether the message delivery status report is required within the \"delivStReqInd\" attribute;\n-\tthe Payload within the \"payload\" attribute;\n-\tthe priority type within the \"priority\" attribute;\n-\tthe message segment flag within the \"segInd\" attribute;\n-\tthe message segment parameters within the \"segParams\" attribute, this attribute may include:\n-\tthe segmentation set identifier within the \"segId\" attribute;\n-\tthe total number of message segments within the \"totalSegCount\" attribute;\n-\tthe message segment number within the \"segNumb\" attribute; and\n-\tthe last segment flag within the \"lastSegFlag\" attribute;\n-\tthe store and forward parameters within the \"stoAndFwParams\" attribute, this attribute may include:\n-\tthe message expiration time within the \"exprTime\" attribute;\n-\tThe latency within the \"latency\" attribute.\nWhen the MSGin5G Server receives the HTTP POST request from the AS, the MSGin5G Server shall make an authorization based on the information received from the AS. If the authorization is successful, the MSGin5G Server shall respond to the AS with a 200 OK message.\nIf errors occur when processing the HTTP POST request, the MSGin5G Server shall apply error handling procedures as specified in clause 8.2.6.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_8.2.6",
+        "figure_5.3.2.2.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_5.3.2.3.1",
+      "section_id": "5.3.2.3.1",
+      "section_title": "General",
+      "content": "This service operation corresponds to clause 9.1.1.3.2 as defined in 3GPP TS 23.554 [2], is used by AS to deliver the delivery status report to the MSGin5G Server.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_23.554_clause_9.1.1.3.2",
+        "ts_23.554"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_5.3.2.3.2",
+      "section_id": "5.3.2.3.2",
+      "section_title": "AS Originating Message Delivery Status Report",
+      "content": "Figure 5.3.2.3.2-1: AS Originating MSGin5G Delivery Report\nWhen the AS needs to send the delivery report to the MSGin5G Server, the AS shall send the HTTP POST method as step 1 of the Figure 5.3.2.3.2-1.\nThe AS shall include DeliveryStatusReport data structure in the content of the HTTP POST request.\nThe DeliveryStatusReport data structure shall include:\n-\tthe AS Service ID within the \"oriAddr\" attribute;\n-\tthe Recipient Address within the \"destAddr\" attribute;\n-\tthe Message ID within the \"msgId\" attribute;\n-\tthe delivery status within the \"delivSt\" attribute; and\nmay include:\n-\tthe failure cause within the \"failureCause\" attribute;\nWhen the MSGin5G Server receives the HTTP POST request from the AS, the MSGin5G Server shall make an authorization based on the information received from the AS. If the authorization is successful, the MSGin5G Server shall respond to the AS with a 200 OK message.\nIf errors occur when processing the HTTP POST request, the MSGin5G Server shall apply error handling procedures as specified in clause 8.2.6.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_8.2.6",
+        "figure_5.3.2.3.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_5.3.2.4.1",
+      "section_id": "5.3.2.4.1",
+      "section_title": "General",
+      "content": "This service operation corresponds to clause 9.1.1.2.2 as defined in 3GPP TS 23.554 [2], is used by Legacy 3GPP Message Gateway (on behalf of Legacy 3GPP UE), Non-3GPP Message Gateway (on behalf of Non-3GPP UE) or other MSGin5G Server to deliver MSGin5G message to the MSGin5G Server.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_23.554_clause_9.1.1.2.2",
+        "ts_23.554"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_5.3.2.4.2",
+      "section_id": "5.3.2.4.2",
+      "section_title": "UE Originating Message Delivery",
+      "content": "Figure 5.3.2.4.2-1: Legacy 3GPP UE or Non-3GPP UE Originating MSGin5G Message Delivery\nWhen the Legacy 3GPP Message Gateway (on behalf of Legacy 3GPP UE), Non-3GPP Message Gateway (on behalf of Non-3GPP UE) or other MSGin5G Server needs to send the message to the MSGin5G Server, the Legacy 3GPP Message Gateway, Non-3GPP Message Gateway or other MSGin5G Server shall send the HTTP POST method as step 1of the Figure 5.3.2.4.2-1.\nThe Legacy 3GPP Message Gateway, Non-3GPP Message Gateway or other MSGin5G Server shall include UEMessageDelivery data structure in the content of the HTTP POST request.\nThe UEMessageDelivery data structure shall include:\n-\tthe Originating UE Service ID within the \"oriAddr\" attribute;\n-\tthe Recipient Address within the \"destAddr\" attribute;\n-\tthe Message ID within the \"msgId\" attribute; and\n-\tthe store and forward flag within the \"stoAndFwInd\" attribute;\nand may include:\n-\tthe Application ID within the \"appId\" attribute;\n-\tthe Payload within the \"payload\" attribute;\n-\tthe indication whether the message delivery status report is required within the \"delivStReqInd\" attribute; and\n-\tthe message segment flag within the \"segInd\" attribute;\n-\tthe message segment parameters within the \"segParams\" attribute, this attribute may include:\n-\tthe segmentation set identifier within the \"segId\" attribute;\n-\tthe total number of message segments within the \"totalSegCount\" attribute;\n-\tthe message segment number within the \"segNumb\" attribute;\n-\tthe last segment flag within the \"lastSegFlag\" attribute;\n-\tthe store and forward parameters within the \"stoAndFwParams\" attribute, this attribute may include:\n-\tthe message expiration time within the \"exprTime\" attribute;\nWhen the MSGin5G Server receives the HTTP POST request from the Legacy 3GPP Message Gateway, Non-3GPP Message Gateway or other MSGin5G Server, the MSGin5G Server shall make an authorization based on the information received from the Legacy 3GPP Message Gateway, Non-3GPP Message Gateway or other MSGin5G Server. If the authorization is successful, the MSGin5G Server shall respond to the Legacy 3GPP Message Gateway, Non-3GPP Message Gateway or other MSGin5G Server with a 200 OK message.\nIf errors occur when processing the HTTP POST request, the MSGin5G Server shall apply error handling procedures as specified in clause 8.2.6.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_8.2.6",
+        "figure_5.3.2.4.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_5.3.2.5.1",
+      "section_id": "5.3.2.5.1",
+      "section_title": "General",
+      "content": "This service operation corresponds to clause 9.1.1.4.2 as defined in 3GPP TS 23.554 [2], is used by Message Gateway (on behalf Legacy 3GPP UE or Non-3GPP UE) or other MSGin5G Server to deliver the delivery status report to the MSGin5G Server.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_23.554_clause_9.1.1.4.2",
+        "ts_23.554"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_5.3.2.5.2",
+      "section_id": "5.3.2.5.2",
+      "section_title": "UE Originating Message Delivery Status Report",
+      "content": "Figure 5.3.2.5.2-1: Legacy 3GPP UE or Non-3GPP UE Originating MSGin5G Delivery Report\nWhen the Message Gateway (on behalf of Legacy 3GPP UE or Non-3GPP UE) or other MSGin5G Server needs to send the delivery report to the MSGin5G Server, the Message Gateway or other MSGin5G Server shall send the HTTP POST method as step 1 of the Figure 5.3.2.5.2-1.\nThe Message Gateway or other MSGin5G Server shall include DeliveryStatusReport data structure in the content of the HTTP POST request.\nThe DeliveryStatusReport data structure shall include:\n-\tthe Originating UE Service ID within the \"oriAddr\" attribute;\n-\tthe Recipient Address within the \"destAddr\" attribute;\n-\tthe Message ID within the \"msgId\" attribute; and\n-\tthe delivery status within the \"delivSt\" attribute;\nand may include:\n-\tThe failure cause within the \"failureCause\" attribute;\nWhen the MSGin5G Server receives the HTTP POST request from the Message Gateway or other MSGin5G Server, the MSGin5G Server shall make an authorization based on the information received from the Message Gateway or other MSGin5G Server. If the authorization is successful, the MSGin5G Server shall respond to the Message Gateway or other MSGin5G Server with a 200 OK message.\nIf errors occur when processing the HTTP POST request, the MSGin5G Server shall apply error handling procedures as specified in clause 8.2.6.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_8.2.6",
+        "figure_5.3.2.5.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_5.4.1",
+      "section_id": "5.4.1",
+      "section_title": "Service Description",
+      "content": "The MSGS_TopiclistEvent API Service corresponding to Mm5s as defined in 3GPP TS 23.554 [2], is provided by the MSGin5G Server.\nThis service:\n-\tallows another MSGin5G Server invokes services provided by MSGin5G Server to subscribe or unsubscribe to MSGin5G Messaging Topic;\n-\tallows another MSGin5G Server invokes services provided by MSGin5G Server to subscribe or unsubscribe to MSGin5G Messaging Topic list;\n-\tallows another MSGin5G Server invokes services provided by MSGin5G Server to notify changes of MSGin5G Messaging Topic list;",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.554"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_5.4.2.1",
+      "section_id": "5.4.2.1",
+      "section_title": "Introduction",
+      "content": "The service operation defined for MSGS_TopiclistEvent service is shown in the Table 5.4.2.1-1, corresponds to clause 9.1.1.6 as defined in 3GPP TS 23.554 [2].\nTable 5.4.2.1-1: Operations of the MSGS_TopiclistEvent Service\nService operation name\nDescription\nInitiated by\nMSGS_TopiclistEvent_SubscribeMSGTopiclist\nThis service operation is used by MSGin5G Server to subscribe to Messaging Topic list on another MSGin5G Server.\nMSGin5G Server\nMSGS_TopiclistEvent_UnsubscribeMSGTopiclist\nThis service operation is used by MSGin5G Server to unsubscribe to Messaging Topic list on another MSGin5G Server.\nMSGin5G Server\nMSGS_TopiclistEvent_NotifyMSGTopiclist\nThis service operation is used by MSGin5G Server,  to deliver the notification of Messaging Topic list changes.\nMSGin5G Server\nMSGS_TopiclistEvent_SubscribeMSGTopic\nThis service operation is used by MSGin5G Server (on behalf of Application Server or MSGin5G Client) to subscribe to Messaging Topic on the MSGin5G Server.\nMSGin5G Server\nMSGS_TopiclistEvent_UnsubscribeMSGTopic\nThis service operation is used by MSGin5G Server(on behalf of Application Server or MSGin5G Client) to unsubscribe to Messaging Topic on the MSGin5G Server.\nMSGin5G Server",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.554_clause_9.1.1.6",
+        "table_5.4.2.1-1",
+        "ts_23.554_table_5.4.2.1-1",
+        "ts_23.554"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_5.4.2.2.1",
+      "section_id": "5.4.2.2.1",
+      "section_title": "General",
+      "content": "This service operation is used by MSGin5G Server to subscribe to Messaging Topic list on another MSGin5G Server, corresponds to clause 9.1.1.6.2 as defined in 3GPP TS 23.554 [2].",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_23.554_clause_9.1.1.6.2",
+        "ts_23.554"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_5.4.2.2.2",
+      "section_id": "5.4.2.2.2",
+      "section_title": "MSGin5G Server subscribing to MSGin5G Messaging Topic List",
+      "content": "Figure 5.4.2.2.2-1: MSGin5G Server Subscribing to Messaging Topic List\nTo subscribe MSGin5G Messaging Topic list on another MSGin5G Server 2, the MSGin5G Server 1 shall send an HTTP POST message to the MSGin5G Server 2 on the \"Topic List Subscriptions\" collection resource. The body of the HTTP POST message shall include TopicListSubscription data structure.\nUpon receiving the HTTP POST message from the MSGin5G Server 1, the MSGin5G Server 2 shall:\n1.\tmake an authorization based on the information received from from MSGin5G Server 1;\n2.\tchecks the locally stored Messaging Topic list subscription(s):\na.\tIf the MSGin5G Server 1's subscription has already been created, the MSGin5G Server 2 updates the validity time of this subscription;\nb.\tIf the MSGin5G Server 1's subscription has not been created, the MSGin5G Server 2 creates new subscription; and\nIf the subscription request is successfully processed, the MSGin5G Server 2 shall respond to the MSGin5G Server 1 with an HTTP \"201 Created\" status code, including an HTTP Location header field containing the URI of the created \"Topic List Subscription\" resource and the response body containing TopicListSubscription data structure that shall contain the representation of the created resource within the TopicListSubscription data structure.\nIf errors occur when processing the HTTP POST request, the MSGin5G Server 2 shall apply error handling procedures as specified in clause 8.3.6.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_8.3.6",
+        "figure_5.4.2.2.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_5.4.2.3.1",
+      "section_id": "5.4.2.3.1",
+      "section_title": "General",
+      "content": "This service operation is used by MSGin5G Server to subscribe to Messaging Topic list on another MSGin5G Server, corresponds to clause 9.1.1.6.6 as defined in 3GPP TS 23.554 [2].",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_23.554_clause_9.1.1.6.6",
+        "ts_23.554"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_5.4.2.3.2",
+      "section_id": "5.4.2.3.2",
+      "section_title": "MSGin5G Server Unsubscribing to MSGin5G Messaging Topic List",
+      "content": "Figure 5.4.2.3.2-1: MSGin5G Server Unsubscribing to Messaging Topic List\nAs shown in Figure 5.4.2.3.2-1, to unsubscribe MSGin5G Messaging Topic list on the MSGin5G Server 2, the MSGin5G Server 1 shall send HTTP DELETE request message to the MSGin5G Server 2 on the \"Individual Topic List Subscription\" collection resource, where \"{subscriptionId}\" is the identifier of the existing Messaging Topic list subscription that is to be deleted.\nUpon receiving the HTTP DELETE request message from the MSGin5G Server 1, the MSGin5G Server 2 shall make an authorization based on the information received. If the authorization is successful, the MSGin5G Server 2 shall remove the corresponding subscription. If the unsubscription request is successfully processed, the MSGin5G Server 2 shall respond to the MSGin5G Server 1 with an HTTP \"204 No Content\" status code.\nIf errors occur when processing the HTTP POST request, the MSGin5G Server 2 shall apply error handling procedures as specified in clause 8.3.6.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_8.3.6",
+        "figure_5.4.2.3.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_5.4.2.4.1",
+      "section_id": "5.4.2.4.1",
+      "section_title": "General",
+      "content": "This service operation is used by MSGin5G Server 1 to notify another MSGin5G Server 2 about changes of Messaging Topic list, corresponds to clause 9.1.1.6.3 as defined in 3GPP TS 23.554 [2].",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_23.554_clause_9.1.1.6.3",
+        "ts_23.554"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_5.4.2.4.2",
+      "section_id": "5.4.2.4.2",
+      "section_title": "Notification about MSGin5G Messaging Topic List",
+      "content": "Figure 5.4.2.4.2-1:MSGin5G Server Notification about Messaging Topic List\nAs shown in Figure 5.4.2.4.2-1, the MSGin5G Server 1 shall invoke the MSGS_TopiclistEvent_NotifyMSGTopiclist service operation to notify about subscribed Messaging Topic list events. The MSGin5G Server 1 shall send HTTP POST request to the MSGin5G Server 2 with \"{notificationURI}\" previously received in the subscription. The TopicListNotification data structure provided in the request body shall include:\n-\tThe Messaging Topic list exists in MSGin5G Server 1within the \"msgTopics\" attribute, this attribute may include:\n-\tthe unique topic identifier within the \"msgTopic\" attribute;\n-\tthe topic update status indicating if such topic is newly created or deleted within the \"updateStat\" attribute; and\nmay include:\n-\tthe Expiration within the \"exprTime\" attribute;\nUpon receiving the HTTP POST message from the MSGin5G Server 1, the MSGin5G Server 2 shall make an authorization based on the information received. If the authorization is successful, the MSGin5G Server 2 shall update locally stored Messaging Topic list, and respond to the MSGin5G Server 1 with an HTTP \"204 No Content\" status code.\nIf errors occur when processing the HTTP POST request, the MSGin5G Server 2 shall apply error handling procedures as specified in clause 8.3.6.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_8.3.6",
+        "figure_5.4.2.4.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_5.4.2.5.1",
+      "section_id": "5.4.2.5.1",
+      "section_title": "General",
+      "content": "This service operation is used by MSGin5G Server 1 to subscribe to Messaging Topic on another MSGin5G Server 2, corresponding to clause 9.1.1.6.4 as defined in 3GPP TS 23.554 [2].",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_23.554_clause_9.1.1.6.4",
+        "ts_23.554"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_5.4.2.5.2",
+      "section_id": "5.4.2.5.2",
+      "section_title": "MSGin5G Server Subscribing to MSGin5G Messaging Topic",
+      "content": "Figure 5.4.2.5.2-1:Subscribing to Messaging Topic List\nAs shown in Figure 5.4.2.5.2-1, to subscribe MSGin5G Messaging Topic on the MSGin5G Server 2, the MSGin5G Server 1 shall send the HTTP POST method. The body of the HTTP POST message shall include TopicSubscription data structure.\nUpon receiving the HTTP POST message, the MSGin5G Server 2 shall:\n1.\t make an authorization based on the information received;\n2.\tchecks the locally stored Messaging Topic subscription(s):\na.\tIf the requested subscription has already been created, the MSGin5G Server 2 updates the validity time of this subscription;\nb.\tIf the requested subscription has not been created, the MSGin5G Server 2 creates new subscription; and\nIf the subscription request is successfully processed, the MSGin5G Server 2 shall respond with an HTTP \"200 OK\" status code with the response body containing the TopicSubscriptionAck data structure.\nIf errors occur when processing the HTTP POST request, the MSGin5G Server 2 shall apply error handling procedures as specified in clause 8.3.6.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_8.3.6",
+        "figure_5.4.2.5.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_5.4.2.6.1",
+      "section_id": "5.4.2.6.1",
+      "section_title": "General",
+      "content": "This service operation is used by MSGin5G Server to unsubscribe to Messaging Topic(s) on another MSGin5G Server, corresponding to clause 9.1.1.6.7 as defined in 3GPP TS 23.554 [2].",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_23.554_clause_9.1.1.6.7",
+        "ts_23.554"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_5.4.2.6.2",
+      "section_id": "5.4.2.6.2",
+      "section_title": "MSGin5G Server Unsubscribing to MSGin5G Messaging Topic",
+      "content": "Figure 5.4.2.6.2-1:Unsubscribing to Messaging Topic(s)\nAs shown in Figure 5.4.2.6.2-1, to unsubscribe one or more MSGin5G Messaging Topic(s) on the MSGin5G Server 2, the MSGin5G Server 1 shall send HTTP POST message to the MSGin5G Server 2. The body of the HTTP POST message shall include TopicUnsubscription data structure.\nUpon receiving the HTTP POST message, the MSGin5G Server 2 shall make an authorization based on the information received. If the authorization is successful, the MSGin5G Server 2 shall remove the corresponding subscription and respond with an HTTP \"204 No Content\" status code.\nIf errors occur when processing the HTTP POST request, the MSGin5G Server 2 shall apply error handling procedures as specified in clause 8.3.6.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_8.3.6",
+        "figure_5.4.2.6.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_6.1",
+      "section_id": "6.1",
+      "section_title": "Introduction",
+      "content": "The Table 6.1-1 lists the services provided by the MSGin5G Message Gateway and corresponding service operations. A service description clause for each API gives a general description of the related API.\nTable 6.1-1 List of services provided by the MSGin5G Message Gateway\nService Name\nService Operations\nOperation\nSemantics\nExample Consumer(s)\nMSGG_L3GDelivery\nMSGG_L3GDelivery_GTDelivery\nRequest/Response\nMSGin5G Server\nMSGG_L3GDelivery_GTDeliveryReport\nMSGG_N3GDelivery\nMSGG_N3GDelivery_GTDelivery\nRequest/Response\nMSGin5G Server\nMSGG_N3GDelivery_GTDeliveryReport\nMSGG_BGDelivery\nMSGG_BGDelivery_GTDelivery\nRequest/Response\nMSGin5G Server\nTable 6.1-2 summarizes the corresponding APIs defined in this specification.\nTable 6.1-2: API Descriptions\nService Name\nClause\nDescription\nOpenAPI Specification File\napiName\nAnnex\nMSGG_L3GDelivery\n9.1\nL3G Message Delivery Service\nTS29538_MSGG_ L3GDelivery.yaml\nmsgg-l3gdelivery\nA.4\nMSGG_N3GDelivery\n9.2\nN3G Message Delivery Service\nTS29538_MSGG_ N3GDelivery.yaml\nmsgg-n3gdelivery\nA.5\nMSGG_BGDelivery\n9.3\nBMG Message Delivery Service\nTS29538_MSGG_ BGDelivery.yaml\nmsgg-bgdelivery\nA.6",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.1-1",
+        "table_6.1-2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_6.2.1",
+      "section_id": "6.2.1",
+      "section_title": "Service Description",
+      "content": "The MSGG_L3GDelivery Service corresponding to Ml3g as defined in 3GPP TS 23.554 [2], is provided by the Legacy 3GPP Message Gateway.\nThis service:\n-\tallows MSGin5G Server invokes services provided by Legacy 3GPP Message Gateway to send MSGin5G Messages to Legacy 3GPP Message Gateway.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.554"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_6.2.2.1",
+      "section_id": "6.2.2.1",
+      "section_title": "Introduction",
+      "content": "The service operation defined for MSGG_L3GDelivery Service is shown in the table 6.2.2.1-1.\nTable 6.2.2.1-1: Operations of the MSGG_L3GDelivery Service\nService operation name\nDescription\nInitiated by\nMSGG_L3GDelivery_GTDelivery\nThis service operation is used by MSGin5G Server to deliver MSGin5G message to Legacy 3GPP Message Gateway. This service operation corresponds to clause 9.2.1.1.2 as defined in 3GPP TS 23.554 [2].\nMSGin5G Server\nMSGG_L3GDelivery_GTDeliveryReport\nThis service operation is used by MSGin5G Server to deliver the delivery status report to Legacy 3GPP Message Gateway. This service operation corresponds to clause 9.2.1.3.2 as defined in 3GPP TS 23.554 [2].\nMSGin5G Server",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.554_clause_9.2.1.1.2",
+        "ts_23.554_clause_9.2.1.3.2",
+        "table_6.2.2.1-1",
+        "ts_23.554"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_6.2.2.2.1",
+      "section_id": "6.2.2.2.1",
+      "section_title": "General",
+      "content": "This service operation corresponds to clause 9.2.1.1.2 as defined in 3GPP TS 23.554 [2], is used by MSGin5G Server to deliver MSGin5G message to the Legacy 3GPP Message Gateway.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_23.554_clause_9.2.1.1.2",
+        "ts_23.554"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_6.2.2.2.2",
+      "section_id": "6.2.2.2.2",
+      "section_title": "Legacy 3GPP Message Gateway Terminating Message Delivery",
+      "content": "Figure 6.2.2.2.2-1: Legacy 3GPP Message Gateway Terminating Message Delivery\nWhen the MSGin5G Server needs to send the message to the Legacy 3GPP Message Gateway, the MSGin5G Server shall send the HTTP POST request towards the \"deliver-message\" resource as shown in Figure 6.2.2.2.2-1.\nThe MSGin5G Server shall send a POST request to the resource with an L3gMessageDelivery object in the request body.\nThe L3gMessageDelivery data type shall include:\n-\tthe Originating UE Service ID/AS Service ID within the \"oriAddr\" attribute;\n-\tthe Recipient UE Service ID within the \"destAddr\" attribute;\n-\tthe Message ID within the \"msgId\" attribute; and\nmay include:\n-\tthe Application ID within the \"appId\" attribute;\n-\tthe indication whether the message delivery status report is required within the \"delivStReqInd\" attribute;\n-\tthe Payload within the \"payload\" attribute;\n-\tthe Message is segmented within the \"segInd\" attribute; and\n-\tthe message segment parameters within the \"segParams\" attribute, this attribute may include:\n-\tthe segmentation set identifier within the \"segId\" attribute;\n-\tthe total number of message segments within the \"totalSegCount\" attribute;\n-\tthe message segment number within the \"segNumb\" attribute; and\n-\tthe last segment flag within the \"lastSegFlag\" attribute.\nWhen the Legacy 3GPP Message Gateway receives the HTTP POST request from the MSGin5G Server, the Legacy 3GPP Message Gateway shall respond to the MSGin5G Server with a 204 No Content message.\nIf errors occur when processing the HTTP POST request, the Legacy 3GPP Message Gateway shall apply error handling procedures as specified in clause 9.1.6.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_9.1.6",
+        "figure_6.2.2.2.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_6.2.2.3.1",
+      "section_id": "6.2.2.3.1",
+      "section_title": "General",
+      "content": "This service operation corresponds to clause 9.2.1.3.2 as defined in 3GPP TS 23.554 [2], is used by MSGin5G Server to deliver the delivery status report to the Legacy 3GPP Message Gateway.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_23.554_clause_9.2.1.3.2",
+        "ts_23.554"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_6.2.2.3.2",
+      "section_id": "6.2.2.3.2",
+      "section_title": "Legacy 3GPP Message Gateway Terminating Message Delivery Status Report",
+      "content": "Figure 6.2.2.3.2-1: Legacy 3GPP Message Gateway Terminating Delivery Status Report\nWhen the MSGin5G Server needs to send the delivery status report to the Legacy 3GPP Message Gateway, the MSGin5G Server shall send the HTTP POST request towards the \"deliver-report\" resource as shown in Figure 6.2.2.3.2-1.\nThe MSGin5G Server shall send a POST request to the resource with a DeliveryStatusReport object in the request body.\nThe DeliveryStatusReport data type shall include:\n-\tthe Originating UE Service ID/AS Service ID within the \"oriAddr\" attribute;\n-\tthe Recipient UE Service ID within the \"destAddr\" attribute;\n-\tthe Message ID within the \"msgId\" attribute;\n-\tthe delivery status within the \"delivSt\" attribute; and\nmay include:\n-\tthe failure cause within the \"failureCause\" attribute.\nWhen the Legacy 3GPP Message Gateway receives the HTTP POST request from the MSGin5G Server, the Legacy 3GPP Message Gateway shall respond to the MSGin5G Server with a 204 No Content message.\nIf errors occur when processing the HTTP POST request, the Legacy 3GPP Message Gateway shall apply error handling procedures as specified in clause 9.1.6.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_9.1.6",
+        "figure_6.2.2.3.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_6.3.1",
+      "section_id": "6.3.1",
+      "section_title": "Service Description",
+      "content": "The MSGG_N3GDelivery Service corresponding to Mn3g as defined in 3GPP TS 23.554 [2], is provided by the Non-3GPP Message Gateway.\nThis service:\n-\tallows MSGin5G Server invokes services provided by Non-3GPP Message Gateway to send MSGin5G Messages to Non-3GPP Message Gateway.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.554"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_6.3.2.1",
+      "section_id": "6.3.2.1",
+      "section_title": "Introduction",
+      "content": "The service operation defined for MSGG_N3GDelivery Service is shown in the table 6.3.2.1-1.\nTable 6.3.2.1-1: Operations of the MSGG_N3GDelivery Service\nService operation name\nDescription\nInitiated by\nMSGG_N3GDelivery_GTDelivery\nThis service operation is used by MSGin5G Server to deliver MSGin5G message to Non-3GPP Message Gateway. This service operation corresponds to clause 9.2.2.1.2 as defined in 3GPP TS 23.554 [2].\nMSGin5G Server\nMSGG_N3GDelivery_GTDeliveryReport\nThis service operation is used by MSGin5G Server to deliver the delivery status report to Non-3GPP Message Gateway. This service operation corresponds to clause 9.2.2.2.2 as defined in 3GPP TS 23.554 [2].\nMSGin5G Server",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.554_clause_9.2.2.1.2",
+        "ts_23.554_clause_9.2.2.2.2",
+        "table_6.3.2.1-1",
+        "ts_23.554"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_6.3.2.2.1",
+      "section_id": "6.3.2.2.1",
+      "section_title": "General",
+      "content": "This service operation corresponds to clause 9.2.2.1.2 as defined in 3GPP TS 23.554 [2], is used by MSGin5G Server to deliver MSGin5G message to the Non-3GPP Message Gateway.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_23.554_clause_9.2.2.1.2",
+        "ts_23.554"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_6.3.2.2.2",
+      "section_id": "6.3.2.2.2",
+      "section_title": "Non-3GPP Message Gateway Terminating Message Delivery",
+      "content": "Figure 6.3.2.2.2-1: Non-3GPP Message Gateway Terminating Message Delivery\nWhen the MSGin5G Server needs to send the message to the Non-3GPP Message Gateway, the MSGin5G Server shall send the HTTP POST request towards the \"deliver-message\" resource as shown in figure 6.3.2.2.2-1.\nThe MSGin5G Server shall send a POST request to the resource with an N3gMessageDelivery object in the request body.\nThe N3gMessageDelivery data type shall include:\n-\tthe Originating UE Service ID/AS Service ID within the \"oriAddr\" attribute;\n-\tthe Recipient UE Service ID within the \"destAddr\" attribute;\n-\tthe Message ID within the \"msgId\" attribute; and\nmay include:\n-\tthe Application ID within the \"appId\" attribute;\n-\tthe indication whether the message delivery status report is required within the \"delivStReqInd\" attribute;\n-\tthe Payload within the \"payload\" attribute;\n-\tthe Message is segmented within the \"segInd\" attribute; and\n-\tthe message segment parameters within the \"segParams\" attribute, this attribute may include:\n-\tthe segmentation set identifier within the \"segId\" attribute;\n-\tthe total number of message segments within the \"totalSegCount\" attribute;\n-\tthe message segment number within the \"segNumb\" attribute; and\n-\tthe last segment flag within the \"lastSegFlag\" attribute.\nWhen the Non-3GPP Message Gateway receives the HTTP POST request from the MSGin5G Server, the Non-3GPP Message Gateway shall respond to the MSGin5G Server with a 204 No Content message.\nIf errors occur when processing the HTTP POST request, the Non-3GPP Message Gateway shall apply error handling procedures as specified in clause 9.2.6.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_9.2.6",
+        "figure_6.3.2.2.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_6.3.2.3.1",
+      "section_id": "6.3.2.3.1",
+      "section_title": "General",
+      "content": "This service operation corresponds to clause 9.2.2.2.2 as defined in 3GPP TS 23.554 [2], is used by MSGin5G Server to deliver the delivery status report to the Non-3GPP Message Gateway.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_23.554_clause_9.2.2.2.2",
+        "ts_23.554"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_6.3.2.3.2",
+      "section_id": "6.3.2.3.2",
+      "section_title": "Non-3GPP Message Gateway Terminating Message Delivery Status Report",
+      "content": "Figure 6.3.2.3.2-1: Non-3GPP Message Gateway Terminating Delivery Status Report\nWhen the MSGin5G Server needs to send the delivery status report to the Non-3GPP Message Gateway, the MSGin5G Server shall send the HTTP POST request towards the \"deliver-report\" resource as shown in figure 6.3.2.3.2-1.\nThe MSGin5G Server shall send a POST request to the resource with a DeliveryStatusReport object in the request body.\nThe DeliveryStatusReport data type shall include:\n-\tthe Originating UE Service ID/AS Service ID within the \"oriAddr\" attribute;\n-\tthe Recipient UE Service ID within the \"destAddr\" attribute;\n-\tthe Message ID within the \"msgId\" attribute;\n-\tthe delivery status within the \"delivSt\" attribute; and\nmay include:\n-\tthe failure cause within the \"failureCause\" attribute.\nWhen the Non-3GPP Message Gateway receives the HTTP POST request from the MSGin5G Server, the Non-3GPP Message Gateway shall respond to the MSGin5G Server with a 204 No Content message.\nIf errors occur when processing the HTTP POST request, the Non-3GPP Message Gateway shall apply error handling procedures as specified in clause 9.2.6.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_9.2.6",
+        "figure_6.3.2.3.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_6.4.1",
+      "section_id": "6.4.1",
+      "section_title": "Service Description",
+      "content": "The MSGG_BGDelivery Service corresponding to Mbg as defined in 3GPP TS 23.554 [2], is provided by the Broadcast Message Gateway.\nThis service:\n-\tallows MSGin5G Server invokes services provided by Broadcast Message Gateway to deliver MSGin5G messages to Broadcast Message Gateway.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.554"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_6.4.2.1",
+      "section_id": "6.4.2.1",
+      "section_title": "Introduction",
+      "content": "The service operation defined for MSGG_BGDelivery Service is shown in the table 6.4.2.1-1.\nTable 6.4.2.1-1: Operations of the MSGG_BGDelivery Service\nService operation name\nDescription\nInitiated by\nMSGG_BGDelivery_GTDelivery\nThis service operation is used by MSGin5G Server to deliver MSGin5G message to Broadcast Message Gateway. This service operation corresponds to clause 9.2.3.1.2 as defined in 3GPP TS 23.554 [2].\nMSGin5G Server",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.554_clause_9.2.3.1.2",
+        "table_6.4.2.1-1",
+        "ts_23.554"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_6.4.2.2.1",
+      "section_id": "6.4.2.2.1",
+      "section_title": "General",
+      "content": "This service operation corresponds to clause 9.2.3.1.2 as defined in 3GPP TS 23.554 [2], is used by MSGin5G Server to deliver MSGin5G message to the Broadcast Message Gateway.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_23.554_clause_9.2.3.1.2",
+        "ts_23.554"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_6.4.2.2.2",
+      "section_id": "6.4.2.2.2",
+      "section_title": "Broadcast Message Gateway Terminating Message Delivery",
+      "content": "Figure 6.4.2.2.2-1: Broadcast Message Gateway Terminating Message Delivery\nWhen the MSGin5G Server needs to send the message to the Broadcast Message Gateway, the MSGin5G Server shall send the HTTP POST request towards the \"deliver-message\" resource as shown in Figure 6.4.2.2.2-1.\nThe MSGin5G Server shall send a POST request to the resource with an BgMessageDelivery object in the request body.\nThe BgMessageDelivery data type shall include:\n-\tthe Originating UE Service ID/AS Service ID within the \"oriAddr\" attribute;\n-\tthe Message ID within the \"msgId\" attribute;\nmay include:\n-\tthe Recipient ID within the \"destAddr\" attribute;\n-\tthe Payload within the \"payload\" attribute; and\n-\tthe Application ID within the \"appId\" attribute; and\n-\tthe indication whether the message delivery status report is required within the \"delivStReqInd\" attribute;\n-\tthe priority type within the \"priority\" attribute;\n-\tthe message segment flag within the \"segInd\" attribute; and\n-\tthe message segment parameters within the \"segParams\" attribute, this attribute may include:\n-\tthe segmentation set identifier within the \"segId\" attribute;\n-\tthe total number of message segments within the \"totalSegCount\" attribute;\n-\tthe message segment number within the \"segNumb\" attribute; and\n-\tthe last segment flag within the \"lastSegFlag\" attribute.\nWhen the Broadcast Message Gateway receives the HTTP POST request from the MSGin5G Server, the Broadcast Message Gateway shall respond to the MSGin5G Server with a 204 No Content message.\nIf errors occur when processing the HTTP POST request, the Broadcast Message Gateway shall apply error handling procedures as specified in clause 9.3.6.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_9.3.6",
+        "figure_6.4.2.2.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_7.1",
+      "section_id": "7.1",
+      "section_title": "General",
+      "content": "MSGin5G APIs allow secure access to the capabilities provided by the MSGin5G.\nThis document specifies the procedures triggered at different functional entities as a result of API invocation requests and event notifications. The stage-2 level requirements and signalling flows are defined in 3GPP TS 23.554 [2].\nSeveral design aspects, as mentioned in the following clauses, are specified in 3GPP TS 29.122 [24] and referenced by this specification.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_23.554",
+        "ts_29.122"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_7.2.1",
+      "section_id": "7.2.1",
+      "section_title": "General",
+      "content": "This clause defines structured data types, simple data types and enumerations that are applicable to several APIs defined in the present specification and can be referenced from data structures defined in the subsequent clauses.\nIn addition, data types that are defined in OpenAPI Specification [6] can also be referenced from data structures defined in the subsequent clauses.\nNOTE:\tAs a convention, data types in the present specification are written with an upper-case letter in the beginning. Parameters are written with a lower-case letter in the beginning. As an exception, data types that are also defined in OpenAPI Specification [6] can use a lower-case case letter in the beginning for consistency.\nTable 7.2.1-1 specifies data types re-used by the MSGin5G from other specifications, including a reference to their respective specifications and when needed, a short description of their use within the APIs of this specification.\nTable 7.2.1-1: Re-used Data Types\nData type\nReference\nComments",
+      "chunk_type": "definition",
+      "cross_references": [
+        "table_7.2.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_7.2.2",
+      "section_id": "7.2.2",
+      "section_title": "Referenced structured data types",
+      "content": "Table 7.2.2-1 lists structured data types defined in this specification referenced by multiple services.\nTable 7.2.2-1: Referenced Structured Data Types\nData type\nReference\nDescription\nAddress\nClause 9.1.5.2.3\nRepresent an address\nDeliveryStatusReport\nClause 8.2.5.2.7\nThe message delivery status report request information.\nMessageSegmentParameters\nClause 8.2.5.2.5\nParameters for message segmentation",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_9.1.5.2.3",
+        "clause_8.2.5.2.7",
+        "clause_8.2.5.2.5",
+        "table_7.2.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_7.2.3",
+      "section_id": "7.2.3",
+      "section_title": "Referenced Simple data types and enumerations",
+      "content": "Following simple data types defined in Table 7.2.3.1-1 are applicable to several APIs in this document:\nTable 7.2.3.1-1: Simple data types applicable to several APIs\nType name\nReference\nDescription",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_7.2.3.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_7.3",
+      "section_id": "7.3",
+      "section_title": "Usage of HTTP",
+      "content": "For MSGin5G APIs, support of HTTP/1.1 (IETF RFC 9110 [11], IETF RFC 9111 [14] and IETF RFC 9112 [10]) over TLS is mandatory and support of HTTP/2 (IETF RFC 9113 [16]) over TLS is recommended.\nA functional entity desiring to use HTTP/2 shall use the HTTP upgrade mechanism to negotiate applicable HTTP version as described in IETF RFC 9113 [16].",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.538_7.4",
+      "section_id": "7.4",
+      "section_title": "Content type",
+      "content": "JSON, IETF RFC 8259 [17], shall be used as content type of the HTTP bodies specified in the present specification as specified in clause 5.2.3 of 3GPP TS 29.122 [24]. The use of the JSON format shall be signalled by the content type \"application/json\".",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.122_clause_5.2.3",
+        "ts_29.122"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_7.5.1",
+      "section_id": "7.5.1",
+      "section_title": "Resource URI structure",
+      "content": "The resource URI structure of all the APIs specified in this document shall be as specified in clause 5.2.4.1 of 3GPP TS 29.122 [24].",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.122_clause_5.2.4.1",
+        "ts_29.122"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_7.5.2",
+      "section_id": "7.5.2",
+      "section_title": "Custom operations URI structure",
+      "content": "The URI of a custom operation which is associated with a resource shall be as specified in clause 5.2.4.2 of 3GPP TS 29.122 [24].",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.122_clause_5.2.4.2",
+        "ts_29.122"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_7.6",
+      "section_id": "7.6",
+      "section_title": "Notifications",
+      "content": "None.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.538_7.7",
+      "section_id": "7.7",
+      "section_title": "Error Handling",
+      "content": "HTTP error handling shall be supported as specified in clause 5.2.6 of 3GPP TS 29.122 [24].",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.122_clause_5.2.6",
+        "ts_29.122"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_7.8",
+      "section_id": "7.8",
+      "section_title": "Feature negotiation",
+      "content": "The procedures in clause 5.2.7 of 3GPP TS 29.122 [24] shall be applicable for the APIs defined in the present specification. For each of the APIs defined, the applicable list of features is contained in the related API definition.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.122_clause_5.2.7",
+        "ts_29.122"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_7.9",
+      "section_id": "7.9",
+      "section_title": "HTTP headers",
+      "content": "The MSGin5G API shall support HTTP custom header fields specified in clause 5.2.8 of 3GPP TS 29.122 [24]. No specific custom headers are defined for the MSGin5G API in the present specification.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.122_clause_5.2.8",
+        "ts_29.122"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_7.10",
+      "section_id": "7.10",
+      "section_title": "Conventions for Open API specification files",
+      "content": "The conventions for Open API specification files as specified in clause 5.2.9 of 3GPP TS 29.122 [24] shall be applicable for all APIs in this document.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.122_clause_5.2.9",
+        "ts_29.122"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_8.1.1",
+      "section_id": "8.1.1",
+      "section_title": "API URI",
+      "content": "The MSGS_ASRegistration service shall use the MSGS_ASRegistration API.\nThe request URIs used in HTTP requests from the AS towards the MSGin5G Server shall have the Resource URI structure as defined in clause 7.5 with the following clarifications:\n-\tThe <apiName> shall be \"msgs-asregistration\".\n-\tThe <apiVersion> shall be \"v1\".\n-\tThe <apiSpecificResourceUriPart> shall be set as described in clause 8.1.2.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_7.5",
+        "clause_8.1.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_8.1.2.1",
+      "section_id": "8.1.2.1",
+      "section_title": "Overview",
+      "content": "Figure 8.1.2.1-1: Resource URI structure of the MSGS_ASRegistration API\nTable 8.1.2.1-1 provides an overview of the resources and applicable HTTP methods.\nTable 8.1.2.1-1: Resources and methods overview\nResource name\nResource URI\nHTTP method or custom operation\nDescription\nAS Registrations\n/registrations\nPOST\nRegisters a new AS at the MSGin5G Server.\nAS DeRegistration\n/registrations/{registrationId}\nDELETE\nRemoves an AS registration resource.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "table_8.1.2.1-1",
+        "figure_8.1.2.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_8.1.2.2.1",
+      "section_id": "8.1.2.2.1",
+      "section_title": "Description",
+      "content": "This resource represents all the Application Servers that are registered at a given MSGin5G Server.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.538_8.1.2.2.2",
+      "section_id": "8.1.2.2.2",
+      "section_title": "Resource Definition",
+      "content": "Resource URI: {apiRoot}/msgs-asregistration/<apiVersion>/registrations\nThis resource shall support the resource URI variables defined in the table 8.1.2.2.2-1.\nTable 8.1.2.2.2-1: Resource URI variables for this resource\nName\nData Type\nDefinition\napiRoot\nstring\nSee clause 7.5\napiVersion\nstring\nSee clause 8.1.1",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_7.5",
+        "clause_8.1.1",
+        "table_8.1.2.2.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_8.1.2.2.3.1",
+      "section_id": "8.1.2.2.3.1",
+      "section_title": "POST",
+      "content": "This method shall support the URI query parameters specified in table 8.1.2.2.3.1-1.\nTable 8.1.2.2.3.1-1: URI query parameters supported by the POST method on this resource\nName\nData type\nP\nCardinality\nDescription\nn/a\nThis method shall support the request data structures specified in table 8.1.2.2.3.1-2 and the response data structures and response codes specified in table 8.1.2.2.3.1-3.\nTable 8.1.2.2.3.1-2: Data structures supported by the POST Request Body on this resource\nData type\nP\nCardinality\nDescription\nASRegistration\nM\n1\nAS registration request information.\nTable 8.1.2.2.3.1-3: Data structures supported by the POST Response Body on this resource\nData type\nP\nCardinality\nResponse\ncodes\nDescription\nASRegistrationAck\nM\n1\n201 Created\nAS information is registered successfully at MSGin5G Server.\nThe URI of the created resource shall be returned in the \"Location\" HTTP header.\nNOTE:\tThe mandatory HTTP error status codes for the POST method listed in table 5.2.6-1 of 3GPP TS 29.122 [24] shall also apply.\nTable 8.1.2.2.3.1-4: Headers supported by the POST method on this resource\nName\nData type\nP\nCardinality\nDescription\nn/a\nTable 8.1.2.2.3.1-5: Headers supported by the 201 response code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nString\nM\n1\nContains the URI of the newly created resource, according to the structure: {apiRoot}/msgs-asregistration/<apiVersion>/registrations/{registrationId}\nTable 8.1.2.2.3.1-6: Links supported by the 200 Response Code on this endpoint\nName\nResource name\nHTTP method or custom operation\nLink parameter(s)\nDescription\nn/a",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_8.1.2.2.3.1-1",
+        "table_8.1.2.2.3.1-2",
+        "table_8.1.2.2.3.1-3",
+        "ts_29.122_table_5.2.6-1",
+        "table_8.1.2.2.3.1-4",
+        "table_8.1.2.2.3.1-5",
+        "table_8.1.2.2.3.1-6",
+        "ts_29.122"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_8.1.2.3.1",
+      "section_id": "8.1.2.3.1",
+      "section_title": "Description",
+      "content": "This resource represents all the Application Servers that are deregistered at a given MSGin5G Server.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.538_8.1.2.3.2",
+      "section_id": "8.1.2.3.2",
+      "section_title": "Resource Definition",
+      "content": "Resource URI: {apiRoot}/msgs-asregistration/<apiVersion>/registrations/{registrationId}\nThis resource shall support the resource URI variables defined in the table 8.1.2.3.2-1.\nTable 8.1.2.3.2-1: Resource URI variables for this resource\nName\nData Type\nDefinition\napiRoot\nstring\nSee clause 7.5\napiVersion\nstring\nSee clause 8.1.1\nregistrationId\nstring\nThe AS registration resource id",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_7.5",
+        "clause_8.1.1",
+        "table_8.1.2.3.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_8.1.2.3.3.1",
+      "section_id": "8.1.2.3.3.1",
+      "section_title": "DELETE",
+      "content": "This method deregisters an AS registration from the MSGin5G Server. This method shall support the URI query parameters specified in the table 8.1.2.3.3.1-1.\nTable 8.1.2.3.3.1-1: URI query parameters supported by the DELETE method on this resource\nName\nData type\nP\nCardinality\nDescription\nn/a\nThis method shall support the request data structures specified in table 8.1.2.3.3.1-2 and the response data structures and response codes specified in table 8.1.2.3.3.1-3.\nTable 8.1.2.3.3.1-2: Data structures supported by the DELETE Request Body on this resource\nData type\nP\nCardinality\nDescription\nn/a\nTable 8.1.2.3.3.1-3: Data structures supported by the DELETE Response Body on this resource\nData type\nP\nCardinality\nResponse\ncodes\nDescription\nASRegistrationAck\nM\n1\n200 OK\nThe AS DeRegistration information matching the registrationId is deleted.\nn/a\n204 No Content\nSuccessful response. The individual AS registration matching the registrationId is successfully deleted.\nNOTE:\tThe mandatory HTTP error status codes for the POST method listed in table 5.2.6-1 of 3GPP TS 29.122 [24] shall also apply.\nTable 8.1.2.3.3.1-4: Headers supported by the DELETE method on this resource\nName\nData type\nP\nCardinality\nDescription\nn/a\nTable 8.1.2.3.3.1-5: Headers supported by the 204 response code on this resource\nName\nData type\nP\nCardinality\nDescription\nn/a\nTable 8.1.2.3.3.1-6: Links supported by the 200 Response Code on this endpoint\nName\nResource name\nHTTP method or custom operation\nLink parameter(s)\nDescription\nn/a",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_8.1.2.3.3.1-1",
+        "table_8.1.2.3.3.1-2",
+        "table_8.1.2.3.3.1-3",
+        "ts_29.122_table_5.2.6-1",
+        "table_8.1.2.3.3.1-4",
+        "table_8.1.2.3.3.1-5",
+        "table_8.1.2.3.3.1-6",
+        "ts_29.122"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_8.1.3",
+      "section_id": "8.1.3",
+      "section_title": "Custom Operations without associated resources",
+      "content": "None.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.538_8.1.4",
+      "section_id": "8.1.4",
+      "section_title": "Notifications",
+      "content": "None.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.538_8.1.5.1",
+      "section_id": "8.1.5.1",
+      "section_title": "General",
+      "content": "This clause specifies the application data model supported by the API. Data types listed in clause 7.2 apply to this API Table 8.1.5.1-1 specifies the data types defined specifically for the MSGS_ASRegistration API service.\nTable 8.1.5.1-1: MSGS_ASRegistration API specific Data Types\nData type\nSection defined\nDescription\nApplicability\nASRegistration\n8.1.5.2.2\nThe AS registration request information.\nASRegistrationAck\n8.1.5.2.3\nThe AS registration response information.\nASProfile\n8.1.5.2.4\nThe profile information related to the AS in the ASRegistration data type.\nTable 8.1.5.1-2 specifies data types re-used by the MSGS_ASRegistration API service.\nTable 8.1.5.1-2: Re-used Data Types\nData type\nReference\nComments\nApplicability\nProblemDetails\n3GPP TS 29.571 [5]\nUri\n3GPP TS 29.571 [5]",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_7.2",
+        "table_8.1.5.1-1",
+        "table_8.1.5.1-2",
+        "ts_29.571"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_8.1.5.2.2",
+      "section_id": "8.1.5.2.2",
+      "section_title": "Type: ASRegistration",
+      "content": "Table 8.1.5.2.2-1: Definition of type ASRegistration\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\nasSvcId\nstring\nM\n1\nThe MSGin5G identifier of the Application Server.\nappId\nstring\nO\n0..1\nThe identifier of the application specified by the application provider\ntargetUri\nUri\nO\n0..1\nThe URL for receiving message, message delivery status report, etc. The MSGin5G Server uses this URL to interact to AS.\nasProf\nASProfile\nO\n0..1\nThe profile information of the AS.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_8.1.5.2.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_8.1.5.2.3",
+      "section_id": "8.1.5.2.3",
+      "section_title": "Type: ASRegistrationAck",
+      "content": "Table 8.1.5.2.3-1: Definition of type ASRegistrationAck\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\nasSvcId\nstring\nM\n1\nThe MSGin5G identifier of the Application Server.\nresult\nProblemDetails\nM\n1\nThe result of the registration.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_8.1.5.2.3-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_8.1.5.2.4",
+      "section_id": "8.1.5.2.4",
+      "section_title": "Type: ASProfile",
+      "content": "Table 8.1.5.2.4-1: Definition of type ASProfile\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\nappName\nstring\nO\n1\nThe name of the Application Server\nappProviders\narray(string)\nO\n1..N\nThe provider of the Application Server\nappSenarios\narray(string)\nO\n1..N\nThe application scenario description.\nappCategory\nstring\nO\n0..1\nThe category or type of Application Server.\nasStatus\nstring\nO\n0..1\nAS status (e.g. Enabled, Disabled etc.)",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_8.1.5.2.4-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_8.1.5.3",
+      "section_id": "8.1.5.3",
+      "section_title": "Simple data types and enumerations",
+      "content": "None.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.538_8.1.6.1",
+      "section_id": "8.1.6.1",
+      "section_title": "General",
+      "content": "HTTP error handling shall be supported as specified in clause 7.7.\nIn addition, the requirements in the following clauses shall apply.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_7.7"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_8.1.6.2",
+      "section_id": "8.1.6.2",
+      "section_title": "Protocol Errors",
+      "content": "In this Release of the specification, there are no additional protocol errors applicable for the MSGS_ASRegistration API.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.538_8.1.6.3",
+      "section_id": "8.1.6.3",
+      "section_title": "Application Errors",
+      "content": "The application errors defined for the MSGS_ASRegistration API are listed in table 8.1.6.3-1.\nTable 8.1.6.3-1: Application errors\nApplication Error\nHTTP status code\nDescription\nApplicability",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_8.1.6.3-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_8.1.7",
+      "section_id": "8.1.7",
+      "section_title": "Feature negotiation",
+      "content": "General feature negotiation procedures are defined in clause 7.8. Table 8.1.7-1 lists the supported features for MSGS_ASRegistration API.\nTable 8.1.7-1: Supported Features\nFeature number\nFeature Name\nDescription",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_7.8",
+        "table_8.1.7-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_8.2.1",
+      "section_id": "8.2.1",
+      "section_title": "API URI",
+      "content": "The MSGS_MSGDelivery service shall use the MSGS_MSGDelivery API, The MSGS_MSGDelivery API corresponding to Mm5s APIs as defined in in 3GPP TS 23.554 [2].\nThe request URIs used in HTTP requests from the Message Gateway (on behalf of Legacy 3GPP UE or Non-3GPP UE) or the Application Server towards the MSGin5G Server shall have the Resource URI structure as defined in clause 7.5 with the following clarifications:\n-\tThe <apiName> shall be \"msgs-msgdelivery\".\n-\tThe <apiVersion> shall be \"v1\".\n-\tThe <apiSpecificResourceUriPart> shall be set as described in clause 8.2.2.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_7.5",
+        "clause_8.2.2",
+        "ts_23.554"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_8.2.2",
+      "section_id": "8.2.2",
+      "section_title": "Resources",
+      "content": "None.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.538_8.2.3.1",
+      "section_id": "8.2.3.1",
+      "section_title": "Overview",
+      "content": "The structure of the custom operation URIs of the MSGS_MSGDelivery service is shown in Figure 8.2.3.1-1.\nFigure 8.2.3.1-1: Custom operation URI structure of the MSGS_MSGDelivery API\nTable 8.2.3.1-1 provides an overview of the custom operations and applicable HTTP methods.\nTable 8.2.3.1-1: Custom operations without associated resources\nCustom operation URI\nMapped HTTP method\nDescription\n{apiRoot}/msgs-msgdelivery/<apiVersion>/deliver-as-message\nPOST\nRequest of AS to deliver message to a given MSGin5G Server.\n{apiRoot}/msgs-msgdelivery/<apiVersion>/deliver-ue-message\nPOST\nRequest of Message Gateway (on behalf of Legacy 3GPP UE or Non-3GPP UE) to deliver message to a given MSGin5G Server.\n{apiRoot}/msgs-msgdelivery/<apiVersion>/deliver-report\nPOST\nRequest of Message Gateway (on behalf of Legacy 3GPP UE or Non-3GPP UE) to deliver status report to a given MSGin5G Server.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "table_8.2.3.1-1",
+        "figure_8.2.3.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_8.2.3.2.1",
+      "section_id": "8.2.3.2.1",
+      "section_title": "Description",
+      "content": "This operation is used by the Application Server to deliver message to a given MSGin5G Server.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.538_8.2.3.2.2",
+      "section_id": "8.2.3.2.2",
+      "section_title": "Operation Definition",
+      "content": "This operation shall support the response data structures and response codes specified in Table 8.2.3.2.2-1 and Table 8.2.3.2.2-2.\nTable 8.2.3.2.2-1: Data structures supported by the POST Request Body on this resource\nData type\nP\nCardinality\nDescription\nASMessageDelivery\nM\n1\nRepresents the data to be used for AS to deliver message.\nTable 8.2.3.2.2-2: Data structures supported by the POST Response Body on this resource\nData type\nP\nCardinality\nResponse\ncodes\nDescription\nMessageDeliveryAck\nM\n1\n200 OK\nAS Message is delivered successfully.\nNOTE:\tThe mandatory HTTP error status code for the POST method listed in Table 5.2.6-1 of 3GPP TS 29.122 [24] also apply.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "table_8.2.3.2.2-1",
+        "table_8.2.3.2.2-2",
+        "ts_29.122_table_5.2.6-1",
+        "ts_29.122"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_8.2.3.3.1",
+      "section_id": "8.2.3.3.1",
+      "section_title": "Description",
+      "content": "This operation is used by the Message Gateway (on behalf of Legacy 3GPP UE or Non-3GPP UE) to deliver message to a given MSGin5G Server.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.538_8.2.3.3.2",
+      "section_id": "8.2.3.3.2",
+      "section_title": "Operation Definition",
+      "content": "This operation shall support the response data structures and response codes specified in Table 8.2.3.3.2-1 and Table 8.2.3.3.2-2.\nTable 8.2.3.3.2-1: Data structures supported by the POST Request Body on this resource\nData type\nP\nCardinality\nDescription\nUEMessageDelivery\nM\n1\nRepresents the data to be used for Message Gateway (on behalf of Legacy 3GPP UE or Non-3GPP UE) to deliver message.\nTable 8.2.3.3.2-2: Data structures supported by the POST Response Body on this resource\nData type\nP\nCardinality\nResponse\ncodes\nDescription\nMessageDeliveryAck\nM\n1\n200 OK\nUE Message is delivered successfully.\nNOTE:\tThe mandatory HTTP error status code for the POST method listed in Table 5.2.7.1-1 of 3GPP TS 29.500 [4] also apply.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "table_8.2.3.3.2-1",
+        "table_8.2.3.3.2-2",
+        "ts_29.500_table_5.2.7.1-1",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_8.2.3.4.1",
+      "section_id": "8.2.3.4.1",
+      "section_title": "Description",
+      "content": "This operation is used by the Message Gateway (on behalf of Legacy 3GPP UE or Non-3GPP UE) or the Application Server to deliver status report to a given MSGin5G Server.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.538_8.2.3.4.2",
+      "section_id": "8.2.3.4.2",
+      "section_title": "Operation Definition",
+      "content": "This operation shall support the response data structures and response codes specified in Table 8.2.3.4.2-1 and Table 8.2.3.4.2-2.\nTable 8.2.3.4.2-1: Data structures supported by the POST Request Body on this resource\nData type\nP\nCardinality\nDescription\nDeliveryStatusReport\nM\n1\nRepresents the data to be used for Message Gateway (on behalf of Legacy 3GPP UE or Non-3GPP UE) or the Application Server to deliver status report.\nTable 8.2.3.4.2-2: Data structures supported by the POST Response Body on this resource\nData type\nP\nCardinality\nResponse\ncodes\nDescription\nMessageDeliveryAck\nM\n1\n200 OK\nThe status report is delivered successfully.\nNOTE:\tThe mandatory HTTP error status code for the POST method listed in Table 5.2.6-1 of 3GPP TS 29.122 [24] also apply.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "table_8.2.3.4.2-1",
+        "table_8.2.3.4.2-2",
+        "ts_29.122_table_5.2.6-1",
+        "ts_29.122"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_8.2.4",
+      "section_id": "8.2.4",
+      "section_title": "Notifications",
+      "content": "None.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.538_8.2.5.1",
+      "section_id": "8.2.5.1",
+      "section_title": "General",
+      "content": "This clause specifies the application data model supported by the API. Data types listed in clause 7.2 apply to this API. Table 8.2.5.1-1 specifies the data types defined specifically for the MSGS_MSGDelivery API service.\nTable 8.2.5.1-1: API specific Data Types\nData type\nSection defined\nDescription\nApplicability\nASMessageDelivery\n8.2.5.2.2\nThe AS message delivery request information.\nDeliveryStatus\n8.2.5.3.3\nIndicates if delivery is a failure, or if the message is stored for deferred delivery.\nDeliveryStatusReport\n8.2.5.2.7\nThe message delivery status report request information.\nMessageDeliveryAck\n8.2.5.2.4\nThe message delivery response information.\nMessageSegmentParameters\n8.2.5.2.5\nContains the message segment information of the message.\nPriority\n8.2.5.3.5\nApplication priority level requested for this message.\nReportDeliveryStatus\n8.2.5.3.4\nThe delivery status description, including success or failure in delivery.\nStoreAndForwardParameters\n8.2.5.2.6\nContains the store forward information of the message.\nUEMessageDelivery\n8.2.5.2.3\nThe UE message delivery request information.\nTable 8.2.5.1-2 specifies data types re-used by the MSGS_MSGDelivery API service.\nTable 8.2.5.1-2: Re-used Data Types\nData type\nReference\nComments\nApplicability\nAddress\n9.1.5.2.3\nThe data type of the oriAddr and destAddr.\nDateTime\n3GPP TS 29.571 [5]\nString with format \"date-time\" as defined in OpenAPI Specification [6].",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_7.2",
+        "table_8.2.5.1-1",
+        "table_8.2.5.1-2",
+        "ts_29.571"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_8.2.5.2.2",
+      "section_id": "8.2.5.2.2",
+      "section_title": "Type: ASMessageDelivery",
+      "content": "Table 8.2.5.2.2-1: Definition of type ASMessageDelivery\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\noriAddr\nAddress\nM\n1\nThe service identity of the sending Application Server (NOTE).\ndestAddr\nAddress\nM\n1\nThe service identity of the receiving Legacy 3GPP UE, Non-3GPP UE or MSGin5G UE.\nThe service identifier of the target MSGin5G Group.\nThe service identifier of the Broadcast Service Area where the message needs to be broadcast.\nIndicates which Messaging Topic this message is related to.\nappId\nstring\nO\n0..1\nIdentifies the application(s) for which the content is intended.\nThis list of Application IDs IE is required when the message is sent to one or multiple Application Clients served by same MSGin5G Client.\nmsgId\nstring\nM\n1\nUnique identifier of this message.\ndelivStReqInd\nboolean\nO\n0..1\nIndicates if delivery acknowledgement from the recipient is requested.\nSet to \"true\" if delivery acknowledgement from the recipient is requested. otherwise set to \"false\". Default value is \"false\".\npayload\nstring\nO\n0..1\nPayload of the message.\npriority\nPriority\nO\n0..1\nApplication priority level requested for this message.\nsegInd\nboolean\nO\n0..1\nIndicates this message is part of a segmented message.\nSet to \"true\" if the message is part of a segmented message. otherwise set to \"false\". Default value is \"false\".\nsegParams\nMessageSegmentParameters\nO\n0..1\nThe message segment parameters.\nThis IE shall be included only if the value of the message Segment Flag IE indicates that message Segment services are requested.\nstoAndFwInd\nboolean\nM\n1\nAn indicator of whether store and forward services are requested for this message.\nSet to \"true\" if it is required to store and forward services for this message. otherwise set to \"false\".\nstoAndFwParams\nStoreAndForwardParameters\nO\n0..1\nParameters used by MSGin5G Server for providing store and forward services, This IE shall be included only if the value of the Store and forward flag IE indicates that store and forward services are requested.\nlatency\ninteger\nO\n0..1\nThe latency requirement for the message which only applies to AS Originating MSGin5G Message. Unit: millisecond.\nNOTE:\tOnly \"AS\" is applicable to the addrType attribute in the Address data type to represent the originating type of message request.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_8.2.5.2.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_8.2.5.2.3",
+      "section_id": "8.2.5.2.3",
+      "section_title": "Type:UEMessageDelivery",
+      "content": "Table 8.2.5.2.3-1: Definition of type UEMessageDelivery\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\noriAddr\nAddress\nM\n1\nThe service identity of the sending Legacy 3GPP UE or Non-3GPP UE (NOTE).\ndestAddr\nAddress\nM\n1\nThe service identity of the receiving Application Server or MSGin5G UE.\nappId\nstring\nO\n0..1\nIdentifies the application(s) for which the content is intended.\nThis list of Application IDs IE is required when the message is sent to one or multiple Application Clients served by same MSGin5G Client.\nmsgId\nstring\nM\n1\nUnique identifier of this message.\ndelivStReqInd\nboolean\nO\n0..1\nIndicates if delivery acknowledgement from the recipient is requested.\nSet to \"true\" if delivery acknowledgement from the recipient is requested. otherwise set to \"false\". Default value is \"false\".\npayload\nstring\nO\n0..1\nPayload of the message.\nsegInd\nboolean\nO\n0..1\nIndicates this message is part of a segmented message.\nSet to \"true\" if the message is part of a segmented message. otherwise set to \"false\". Default value is \"false\".\nsegParams\nMessageSegmentParameters\nO\n0..1\nThe message segment parameters.\nThis IE shall be included only if the value of the message Segment Flag IE indicates that message Segment services are requested.\nstoAndFwInd\nboolean\nM\n1\nAn indicator of whether store and forward services are requested for this message.\nSet to \"true\" if it is required to store and forward services for this message. otherwise set to \"false\".\nstoAndFwParams\nStoreAndForwardParameters\nO\n0..1\nParameters used by MSGin5G Server for providing store and forward services, This IE shall be included only if the value of the Store and forward flag IE indicates that store and forward services are requested.\nNOTE:\tOnly \"UE\" is applicable to the addrType attribute in the Address data type to represent the originating type of message request.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_8.2.5.2.3-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_8.2.5.2.4",
+      "section_id": "8.2.5.2.4",
+      "section_title": "Type: MessageDeliveryAck",
+      "content": "Table 8.2.5.2.4-1: Definition of type MessageDeliveryAck\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\noriAddr\nAddress\nM\n1\nThe service identity of the sending Legacy 3GPP UE, Non-3GPP UE or the sending Application Server (NOTE).\nmsgId\nstring\nM\n1\nUnique identifier of this message.\nstatus\nDeliveryStatus\nO\n0..1\nIndicates if delivery is a failure, or if the message is stored for deferred delivery.\nfailureCause\nstring\nC\n0..1\nThe reason for failure.\nMay only be present if the \"status\" attribute is set to \"DELY_FAILED\".\nNOTE:\tEither \"UE\" or \"AS\" shall be included in the \"addrType\" attribute within the Address data type to represent the originating type of message request.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_8.2.5.2.4-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_8.2.5.2.5",
+      "section_id": "8.2.5.2.5",
+      "section_title": "Type:MessageSegmentParameters",
+      "content": "Table 8.2.5.2.5-1: Definition of type MessageSegmentParameters\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\nsegId\nstring\nO\n0..1\nAll segmented messages associated within the same set of segmented messages (i.e. associated with the same MSGin5G message) are assigned the same unique identifier.\ntotalSegCount\ninteger\nO\n0..1\nIndicates the total number of segments for the message.\nsegNumb\ninteger\nO\n0..1\nIndicates segmented message number of each segmented message within a set of segmented messages.\nlastSegFlag\nboolean\nO\n0..1\nAn indicator of whether this segmented message is the last segment in the set of segmented messages or not.\nSet to \"true\" if the segmented message is the last segment in the set of segmented messages. otherwise set to \"false\". Default value is \"false\".",
+      "chunk_type": "parameter",
+      "cross_references": [
+        "table_8.2.5.2.5-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_8.2.5.2.6",
+      "section_id": "8.2.5.2.6",
+      "section_title": "Type:StoreAndForwardParameters",
+      "content": "Table 8.2.5.2.6-1: Definition of type StoreAndForwardParameters\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\nexprTime\nDateTime\nO\n0..1\nIndicates message expiration time.",
+      "chunk_type": "parameter",
+      "cross_references": [
+        "table_8.2.5.2.6-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_8.2.5.2.7",
+      "section_id": "8.2.5.2.7",
+      "section_title": "Type:DeliveryStatusReport",
+      "content": "Table 8.2.5.2.7-1: Definition of type DeliveryStatusReport\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\noriAddr\nAddress\nM\n1\nThe service identity of the sending Legacy 3GPP UE, Non-3GPP UE or the sending Application Server (NOTE).\ndestAddr\nAddress\nM\n1\nThe service identity of the receiving Legacy 3GPP UE, Non-3GPP UE or the receiving Application Server (NOTE).\nmsgId\nstring\nM\n1\nUnique identifier of this message.\nfailureCause\nstring\nC\n0..1\nThe Failure Cause indicates the failure reason, if applicable.\nMay only be present if the ReportDeliveryStatus sets to \"REPT_DELY_FAILED\".\ndelivSt\nReportDeliveryStatus\nM\n1\nThe delivery status description, including success or failure in delivery.\nNOTE:\tEither \"UE\" or \"AS\" shall be included in the addrType attribute in Address data type to represent the originating type of message request.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_8.2.5.2.7-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_8.2.5.3.1",
+      "section_id": "8.2.5.3.1",
+      "section_title": "Introduction",
+      "content": "This clause defines simple data types and enumerations that can be referenced from data structures defined in the previous clauses.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.538_8.2.5.3.2",
+      "section_id": "8.2.5.3.2",
+      "section_title": "Simple data types",
+      "content": "None.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.538_8.2.5.3.3",
+      "section_id": "8.2.5.3.3",
+      "section_title": "Enumeration: DeliveryStatus",
+      "content": "Table 8.2.5.3.3-1: Enumeration DeliveryStatus\nEnumeration value\nDescription\nApplicability\nDELY_FAILED\nIndicates that the message delivery is failed.\nDELY_STORED\nIndicates that the message is stored for deferred delivery.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_8.2.5.3.3-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_8.2.5.3.4",
+      "section_id": "8.2.5.3.4",
+      "section_title": "Enumeration: ReportDeliveryStatus",
+      "content": "Table 8.2.5.3.4-1: Enumeration ReportDeliveryStatus\nEnumeration value\nDescription\nApplicability\nREPT_DELY_SUCCESS\nIndicates that the report delivery is successful.\nREPT_DELY_FAILED\nIndicates that the report delivery is failed.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_8.2.5.3.4-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_8.2.5.3.5",
+      "section_id": "8.2.5.3.5",
+      "section_title": "Enumeration:Priority",
+      "content": "Table 8.2.5.3.5-1: Enumeration Priority\nEnumeration value\nDescription\nApplicability\nHIGH\nIndicates the messages should be sent in high priority.\nMIDDLE\nIndicates the messages should be sent in middle priority.\nLOW\nIndicates the messages should be sent in low priority.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_8.2.5.3.5-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_8.2.6.1",
+      "section_id": "8.2.6.1",
+      "section_title": "General",
+      "content": "HTTP error handling shall be supported as specified in clause 7.7.\nIn addition, the requirements in the following clauses shall apply.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_7.7"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_8.2.6.2",
+      "section_id": "8.2.6.2",
+      "section_title": "Protocol Errors",
+      "content": "In this Release of the specification, there are no additional protocol errors applicable for the MSGS_MSGDelivery API.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.538_8.2.6.3",
+      "section_id": "8.2.6.3",
+      "section_title": "Application Errors",
+      "content": "The application errors defined for the MSGS_MSGDelivery API are listed in table 8.2.6.3-1.\nTable 8.2.6.3-1: Application errors\nApplication Error\nHTTP status code\nDescription\nApplicability",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_8.2.6.3-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_8.2.7",
+      "section_id": "8.2.7",
+      "section_title": "Feature negotiation",
+      "content": "General feature negotiation procedures are defined in clause 7.8. Table 8.2.7-1 lists the supported features for MSGS_MSGDelivery API.\nTable 8.2.7-1: Supported Features\nFeature number\nFeature Name\nDescription",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_7.8",
+        "table_8.2.7-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_8.3.1",
+      "section_id": "8.3.1",
+      "section_title": "API URI",
+      "content": "The MSGS_TopiclistEvent service shall use the MSGS_TopiclistEvent API.\nThe request URIs used in HTTP requests from the MSGin5G Server 1 towards the MSGin5G Server 2 shall have the Resource URI structure as defined in clause 7.5 with the following clarifications:\n-\tThe <apiName> shall be \"msgs-topiclistevent\".\n-\tThe <apiVersion> shall be \"v1\".\n-\tThe <apiSpecificResourceUriPart> shall be set as described in clause 8.3.2.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_7.5",
+        "clause_8.3.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_8.3.2.1",
+      "section_id": "8.3.2.1",
+      "section_title": "Overview",
+      "content": "Figure 8.3.2.1-1: Resource URI structure of the MSGS_TopiclistEvent API\nTable 8.3.2.1-1 provides an overview of the resources and applicable HTTP methods.\nTable 8.3.2.1-1: Resources and methods overview\nResource name\nResource URI\nHTTP method or custom operation\nDescription\nTopic List Subscriptions\n/topiclist-subscriptions\nPOST\nSubscribe to a Messaging Topic list on a MSGin5G Server.\nIndividual Topic List Subscription\n/topiclist-subscriptions/{subscriptionId}\nDELETE\nDelete an existing \"Individual Topic List Subscription” resource.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "table_8.3.2.1-1",
+        "figure_8.3.2.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_8.3.2.2.1",
+      "section_id": "8.3.2.2.1",
+      "section_title": "Description",
+      "content": "This resource represents all the MSGin5G Servers that are subscribed at a given Messaging Topic list on a MSGin5G Server.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.538_8.3.2.2.2",
+      "section_id": "8.3.2.2.2",
+      "section_title": "Resource Definition",
+      "content": "Resource URI: {apiRoot}/msgs-topiclistevent/<apiVersion>/topiclist-subscriptions\nThis resource shall support the resource URI variables defined in the table 8.3.2.2.2-1.\nTable 8.3.2.2.2-1: Resource URI variables for this resource\nName\nData Type\nDefinition\napiRoot\nstring\nSee clause 7.5\napiVersion\nstring\nSee clause 8.3.1",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_7.5",
+        "clause_8.3.1",
+        "table_8.3.2.2.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_8.3.2.2.3.1",
+      "section_id": "8.3.2.2.3.1",
+      "section_title": "POST",
+      "content": "This method shall support the URI query parameters specified in table 8.3.2.2.3.1-1.\nTable 8.3.2.2.3.1-1: URI query parameters supported by the POST method on this resource\nName\nData type\nP\nCardinality\nDescription\nn/a\nThis method shall support the request data structures specified in table 8.3.2.2.3.1-2 and the response data structures and response codes specified in table 8.3.2.2.3.1-3.\nTable 8.3.2.2.3.1-2: Data structures supported by the POST Request Body on this resource\nData type\nP\nCardinality\nDescription\nTopicListSubscription\nM\n1\nMessaging Topic list subscription request information.\nTable 8.3.2.2.3.1-3: Data structures supported by the POST Response Body on this resource\nData type\nP\nCardinality\nResponse\ncodes\nDescription\nTopicListSubscription\nM\n1\n201 Created\nSuccessful case. The creation of an Messaging Topic list subscription resource is confirmed, and the representation of the created \"Individual Topic List Subscription\" resource is returned in the response body.\nThe URI of the created resource shall be returned in the \"Location\" HTTP header.\nNOTE:\tThe mandatory HTTP error status codes for the POST method listed in table 5.2.6-1 of 3GPP TS 29.122 [24] shall also apply.\nTable 8.3.2.2.3.1-4: Headers supported by the POST method on this resource\nName\nData type\nP\nCardinality\nDescription\nn/a\nTable 8.3.2.2.3.1-5: Headers supported by the 201 response code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nContains the URI of the newly created resource, according to the structure:\n{apiRoot}/msgs-topiclistevent/<apiVersion>/topiclist-subscriptions/{subscriptionId}",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_8.3.2.2.3.1-1",
+        "table_8.3.2.2.3.1-2",
+        "table_8.3.2.2.3.1-3",
+        "ts_29.122_table_5.2.6-1",
+        "table_8.3.2.2.3.1-4",
+        "table_8.3.2.2.3.1-5",
+        "ts_29.122"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_8.3.2.3.1",
+      "section_id": "8.3.2.3.1",
+      "section_title": "Description",
+      "content": "The Individual Topic List Subscription resource represents single Messaging Topic list subscription at a given MSGin5G Server. The resource allows an MSGin5G Server to delete Individual Topic List Subscription resource.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.538_8.3.2.3.2",
+      "section_id": "8.3.2.3.2",
+      "section_title": "Resource Definition",
+      "content": "Resource URI: {apiRoot}/msgs-topiclistevent/<apiVersion>/topiclist-subscriptions/{subscriptionId}\nThis resource shall support the resource URI variables defined in the table 8.3.2.3.2-1.\nTable 8.3.2.3.2-1: Resource URI variables for this resource\nName\nData Type\nDefinition\napiRoot\nstring\nSee clause 7.5\napiVersion\nstring\nSee clause 8.3.1\nsubscriptionId\nstring\nThe MSGin5G Server Messaging Topic list subscription resource id",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_7.5",
+        "clause_8.3.1",
+        "table_8.3.2.3.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_8.3.2.3.3.1",
+      "section_id": "8.3.2.3.3.1",
+      "section_title": "DELETE",
+      "content": "This method shall support the URI query parameters specified in table 8.3.2.3.3.1-1.\nTable 8.3.2.3.3.1-1: URI query parameters supported by the DELETE method on this resource\nName\nData type\nP\nCardinality\nDescription\nn/a\nThis method shall support the request data structures specified in table 8.3.2.3.3.1-2 and the response data structures and response codes specified in table 8.3.2.3.3.1-3.\nTable 8.3.2.3.3.1-2: Data structures supported by the DELETE Request Body on this resource\nData type\nP\nCardinality\nDescription\nn/a\nTable 8.3.2.3.3.1-3: Data structures supported by the POST Response Body on this resource\nData type\nP\nCardinality\nResponse\ncodes\nDescription\nn/a\n204 No Content\nSuccessful response. The \"Individual Topic List Subscription\" resource is successfully deleted.\nn/a\n307 Temporary Redirect\nTemporary redirection.\nThe response shall include a Location header field containing an alternative URI of the resource located in an alternative MSGin5G Server.\nRedirection handling is described in clause 5.2.10 of 3GPP TS 29.122 [24].\nn/a\n308 Permanent Redirect\nPermanent redirection.\nThe response shall include a Location header field containing an alternative URI of the resource located in an alternative MSGin5G Server.\nRedirection handling is described in clause 5.2.10 of 3GPP TS 29.122 [24].\nNOTE:\tThe mandatory HTTP error status codes for the DELETE method listed in table 5.2.6-1 of 3GPP TS 29.122 [24] shall also apply.\nTable 8.3.2.3.3.1-4: Headers supported by the 307 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nContains an alternative URI of the resource located in an alternative MSGin5G Server.\nTable 8.3.2.3.3.1-5: Headers supported by the 308 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nContains an alternative URI of the resource located in an alternative MSGin5G Server.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.122_clause_5.2.10",
+        "table_8.3.2.3.3.1-1",
+        "table_8.3.2.3.3.1-2",
+        "table_8.3.2.3.3.1-3",
+        "ts_29.122_table_5.2.6-1",
+        "table_8.3.2.3.3.1-4",
+        "table_8.3.2.3.3.1-5",
+        "ts_29.122"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_8.3.3.1",
+      "section_id": "8.3.3.1",
+      "section_title": "Overview",
+      "content": "The structure of the custom operation URIs of the MSGS_MSGTopiclistEvent service is shown in Figure 8.3.3.1-1.\nFigure 8.3.3.1-1: Custom operation URI structure of the MSGS_TopiclistEvent API\nTable 8.3.3.1-1 provides an overview of the custom operations and applicable HTTP methods.\nTable 8.3.3.1-1: Custom operations without associated resources\nCustom operation URI\nMapped HTTP method\nDescription\n{apiRoot}/msgs-topiclistevent/<apiVersion>/request-topic-subscription\nPOST\nRequest of MSGin5G Server to deliver Messaging Topic subscription to another given MSGin5G Server.\n{apiRoot}/msgs-topiclistevent/<apiVersion>/request-topic-unsubscription\nPOST\nRequest of MSGin5G Server to deliver Messaging Topic unsubscription to another given MSGin5G Server.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "table_8.3.3.1-1",
+        "figure_8.3.3.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_8.3.3.2.1",
+      "section_id": "8.3.3.2.1",
+      "section_title": "Description",
+      "content": "The operation is used by the MSGin5G Server to request the other MSGin5G Server to create a subscription for one or more Messaging Topic(s).",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.538_8.3.3.2.2",
+      "section_id": "8.3.3.2.2",
+      "section_title": "Operation Definition",
+      "content": "This operation shall support the request data structures shown in Table 8.3.3.2.2-1 and the response data structures and error codes specified in Tables 8.3.3.2.2-2.\nTable 8.3.3.2.2-1: Data structures supported by the POST Request Body on this resource\nData type\nP\nCardinality\nDescription\nTopicSubscription\nM\n1\nInformation about the Messaging Topic subscription that the MSGin5G Server shall create.\nTable 8.3.3.2.2-2: Data structures supported by the POST Response Body on this resource\nData type\nP\nCardinality\nResponse\ncodes\nDescription\nTopicSubscriptionAck\nM\n1\n200 OK\nSuccessful request to trigger the creation of a subscription for Messaging Topic at the MSGin5G Server.\nNOTE:\tThe mandatory HTTP error status code for the POST method listed in Table 5.2.6-1 of 3GPP TS 29.122 [24] also apply.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "table_8.3.3.2.2-1",
+        "table_8.3.3.2.2-2",
+        "ts_29.122_table_5.2.6-1",
+        "ts_29.122"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_8.3.3.3.1",
+      "section_id": "8.3.3.3.1",
+      "section_title": "Description",
+      "content": "The operation is used by the MSGin5G Server to request the other MSGin5G Server to remove a subscription for one or more Messaging Topic(s).",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.538_8.3.3.3.2",
+      "section_id": "8.3.3.3.2",
+      "section_title": "Operation Definition",
+      "content": "This operation shall support the request data structures shown in Table 8.3.3.3.2-1 and the response data structures and error codes specified in Tables 8.3.3.3.2-2.\nTable 8.3.3.3.2-1: Data structures supported by the POST Request Body on this resource\nData type\nP\nCardinality\nDescription\nTopicUnsubscription\nM\n1\nReference used to identify the Messaging Topic subscription that the MSGin5G Server shall remove.\nTable 8.3.3.3.2-2: Data structures supported by the POST Response Body on this resource\nData type\nP\nCardinality\nResponse\ncodes\nDescription\nn/a\n204 No Content\nSuccessful request to trigger the removal of a subscription for Messaging Topic(s) on the MSGin5G Server.\nNOTE:\tThe mandatory HTTP error status code for the POST method listed in Table 5.2.6-1 of 3GPP TS 29.122 [24] also apply.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "table_8.3.3.3.2-1",
+        "table_8.3.3.3.2-2",
+        "ts_29.122_table_5.2.6-1",
+        "ts_29.122"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_8.3.4",
+      "section_id": "8.3.4",
+      "section_title": "Notifications",
+      "content": "Notifications shall comply to clause 5.2.5 of 3GPP TS 29.122 [24].\nTable 8.3.4.1-1: Notifications overview\nNotification\nCallback URI\nHTTP method or custom operation\nDescription\n(service operation)\nTopicList Notification\n{notificationURI}\nPOST\nNotify about Messaging Topic list changes from MSGin5G Server.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.122_clause_5.2.5",
+        "ts_29.122_table_8.3.4.1-1",
+        "ts_29.122"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_8.3.4.2.1",
+      "section_id": "8.3.4.2.1",
+      "section_title": "Description",
+      "content": "The Topiclist Notification is used by the MSGin5G Server to notify Messaging Topic list change events to another MSGin5G Server that has subscribed to such Messaging Topic list.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.538_8.3.4.2.2",
+      "section_id": "8.3.4.2.2",
+      "section_title": "Target URI",
+      "content": "The Callback URI \"{notificationURI}\" shall be used with the callback URI variables defined in table 8.3.4.2.2-1.\nTable 8.3.4.2.2-1: Callback URI variables\nName\nDefinition\nnotificationURI\nString formatted as URI with the Callback Uri",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_8.3.4.2.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_8.3.4.2.3.1",
+      "section_id": "8.3.4.2.3.1",
+      "section_title": "POST",
+      "content": "This method shall support the request data structures specified in table 8.3.4.2.3.1-1 and the response data structures and response codes specified in table 8.3.4.2.3.1-2.\nTable 8.3.4.2.3.1-1: Data structures supported by the POST Request Body\nData type\nP\nCardinality\nDescription\nTopicListNotification\nM\n1\nProvides information about subscribed Messaging Topic list.\nTable 8.3.4.2.3.1-2: Data structures supported by the POST Response Body\nData type\nP\nCardinality\nResponse codes\nDescription\nn/a\n204 No Content\nThe receipt of the Notification is acknowledged.\nNOTE 1:\tThe mandatory HTTP error status codes for the POST method listed in Table 5.2.6-1 of 3GPP TS 29.122 [24] also apply.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_8.3.4.2.3.1-1",
+        "table_8.3.4.2.3.1-2",
+        "ts_29.122_table_5.2.6-1",
+        "ts_29.122"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_8.3.5.1",
+      "section_id": "8.3.5.1",
+      "section_title": "General",
+      "content": "This clause specifies the application data model supported by the API. Data types listed in clause 7.2 apply to this API Table 8.3.5.1-1 specifies the data types defined specifically for the MSGS_TopiclistEvent API service.\nTable 8.3.5.1-1: TopiclistEvent API specific Data Types\nData type\nSection defined\nDescription\nApplicability\nTopicListSubscription\n8.3.5.2.2\nThe Messaging Topic list subscription request information.\nTopicListUnsubscriptionAck\n8.3.5.2.5\nThe Messaging Topic list unsubscription response information, indicating the subscription result.\nTopicSubscription\n8.3.5.2.6\nThe Messaging Topic subscription request information.\nTopicSubscriptionAck\n8.3.5.2.7\nThe Messaging Topic subscription response information.\nTopicUnsubscription\n8.3.5.2.8\nThe Messaging Topic list unsubscription request information.\nTopicListNotification\n8.3.5.2.9\nThe Messaging Topic list notification information, indicating changed Messaging Topics.\nMessagingTopic\n8.3.5.2.10\nThe individual Messaging Topic information\nTable 8.3.5.1-2 specifies data types re-used by the MSGS_TopiclistEvent API service.\nTable 8.3.5.1-2: Re-used Data Types\nData type\nReference\nComments\nApplicability\nUri\n3GPP TS 29.571 [5]\nSupportedFeatures\n3GPP TS 29.571 [5]\nUsed to negotiate the optional features defined in table 8.3.7-1.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_7.2",
+        "table_8.3.5.1-1",
+        "table_8.3.5.1-2",
+        "table_8.3.7-1",
+        "ts_29.571"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_8.3.5.2.2",
+      "section_id": "8.3.5.2.2",
+      "section_title": "Type: TopicListSubscription",
+      "content": "Table 8.3.5.2.2-1: Definition of type TopicListSubscription\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\noriAddr\nAddress\nM\n1\nThe service identity of the MSGin5G Server which requests the Messaging Topic list subscription.\ndestAddr\nAddress\nM\n1\nThe service identity of the receiving MSGin5G Server.\nnotificationURI\nUri\nM\n1\nNotification target address.\nexprTime\nDateTime\nO\n0..1\nContains the expiration time of this subscription.\nsuppFeat\nSupportedFeatures\nC\n0..1\nThis IE represents a list of Supported features as described in clause 8.3.7.\nIt shall be present if at least one feature defined in clause 8.3.7 is supported.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_8.3.7",
+        "table_8.3.5.2.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_8.3.5.2.5",
+      "section_id": "8.3.5.2.5",
+      "section_title": "Type: TopicListUnsubscriptionAck",
+      "content": "Table 8.3.5.2.5-1: Definition of type TopicListSubscriptionAck\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\nsubStat\nstring\nM\n1\nThe result of the subscription.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_8.3.5.2.5-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_8.3.5.2.6",
+      "section_id": "8.3.5.2.6",
+      "section_title": "Type: TopicSubscription",
+      "content": "Table 8.3.5.2.6-1: Definition of type TopicSubscription\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\noriAddr\nstring\nM\n1\nThe Service identifier of the originating MSGin5G Client or Application Server, or MSGin5G Server\nmsgTopics\narray(string)\nM\n1..N\nInformation of Messaging Topic(s) to be subscribed\nexprTime\nDateTime\nO\n0..1\nThe expiration time of this subscription requested, and should be larger than 0 if included. If not included, the expiration time subjects to operator policy.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_8.3.5.2.6-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_8.3.5.2.7",
+      "section_id": "8.3.5.2.7",
+      "section_title": "Type: TopicSubscriptionAck",
+      "content": "Table 8.3.5.2.7-1: Definition of type TopicSubscriptionAck\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\nsubStat\nstring\nM\n1\nIndicating update status of the Messaging Topic if newly created or deleted.\nexprTime\nDateTime\nO\n0..1\nThe expiration time of this subscription set by MSGin5G Server.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_8.3.5.2.7-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_8.3.5.2.8",
+      "section_id": "8.3.5.2.8",
+      "section_title": "Type: TopicUnsubscription",
+      "content": "Table 8.3.5.2.8-1: Definition of type TopicUnsubscription\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\noriAddr\nstring\nM\n0..1\nThe Service identifier of the  originating MSGin5G Client or Application Server, or MSGin5G Server.\nmsgTopics\narray(string)\nM\n1..N\nInformation of Messaging Topic(s) to be unsubscribed.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_8.3.5.2.8-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_8.3.5.2.9",
+      "section_id": "8.3.5.2.9",
+      "section_title": "Type: TopicListNotification",
+      "content": "Table 8.3.5.2.9-1: Definition of type TopicListNotification\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\nexprTime\nDateTime\nO\n0..1\nThe expiration time of this subscription set by MSGin5G Server.\nmsgTopics\narray(MessagingTopic)\nM\n1..N\nList of Messaging Topic(s) information notified by MSGin5G Server.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_8.3.5.2.9-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_8.3.5.2.10",
+      "section_id": "8.3.5.2.10",
+      "section_title": "Type: MessagingTopic",
+      "content": "Table 8.3.5.2.10-1: Definition of type MessagingTopic\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\nmsgTopic\nstring\nM\n1\nThe identifier of the Messaging Topic.\nupdateStat\nUpdateStatus\nM\n1\nIndicating update status of the Messaging Topic if newly created or deleted.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_8.3.5.2.10-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_8.3.5.3.1",
+      "section_id": "8.3.5.3.1",
+      "section_title": "Introduction",
+      "content": "This clause defines simple data types and enumerations that can be referenced from data structures defined in the previous clauses.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.538_8.3.5.3.2",
+      "section_id": "8.3.5.3.2",
+      "section_title": "Enumeration: UpdateStatus",
+      "content": "Table 8.3.5.3.2-1: Enumeration UpdateStatus\nEnumeration value\nDescription\nApplicability\nCREATED\nThe Messaging Topic is newly created.\nDELETED\nThe Messaging Topic is newly deleted.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_8.3.5.3.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_8.3.6.1",
+      "section_id": "8.3.6.1",
+      "section_title": "General",
+      "content": "HTTP error handling shall be supported as specified in clause 7.7.\nIn addition, the requirements in the following clauses shall apply.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_7.7"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_8.3.6.2",
+      "section_id": "8.3.6.2",
+      "section_title": "Protocol Errors",
+      "content": "In this Release of the specification, there are no additional protocol errors applicable for the MSGS_TopiclistEvent API.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.538_8.3.6.3",
+      "section_id": "8.3.6.3",
+      "section_title": "Application Errors",
+      "content": "The application errors defined for the MSGS_TopiclistEvent API are listed in table 8.3.6.3-1.\nTable 8.3.6.3-1: Application errors\nApplication Error\nHTTP status code\nDescription\nApplicability",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_8.3.6.3-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_8.3.7",
+      "section_id": "8.3.7",
+      "section_title": "Feature negotiation",
+      "content": "General feature negotiation procedures are defined in clause 7.8. Table 8.3.7-1 lists the supported features for MSGS_TopiclistEvent API.\nTable 8.3.7-1: Supported Features\nFeature number\nFeature Name\nDescription",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_7.8",
+        "table_8.3.7-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_9.1.1",
+      "section_id": "9.1.1",
+      "section_title": "API URI",
+      "content": "The MSGG_L3GDelivery service shall use the MSGG_L3GDelivery API, The MSGG_L3GDelivery API corresponding to Ml3g APIs as defined in in 3GPP TS 23.554 [2].\nThe request URIs used in HTTP requests from the MSGin5G Server towards the Legacy 3GPP Message Gateway shall have the Resource URI structure as defined in clause 7.5 with the following clarifications:\n-\tThe <apiName> shall be \"msgg-l3gdelivery\".\n-\tThe <apiVersion> shall be \"v1\".\n-\tThe <apiSpecificResourceUriPart> shall be set as described in clause 9.1.3.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_7.5",
+        "clause_9.1.3",
+        "ts_23.554"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_9.1.2",
+      "section_id": "9.1.2",
+      "section_title": "Resources",
+      "content": "None.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.538_9.1.3.1",
+      "section_id": "9.1.3.1",
+      "section_title": "Overview",
+      "content": "The structure of the custom operation URIs of the MSGG_L3GDelivery service is shown in Figure 9.1.3.1-1.\nFigure 9.1.3.1-1: Custom operation URI structure of the MSGG_L3GDelivery API\nTable 9.1.3.1-1 provides an overview of the custom operations and applicable HTTP methods.\nTable 9.1.3.1-1: Custom operations without associated resources\nCustom operation URI\nMapped HTTP method\nDescription\n{apiRoot}/msgg-l3gdelivery/<apiVersion>/deliver-message\nPOST\nRequest of MSGin5G Server to deliver message to a given Legacy 3GPP Message Gateway.\n{apiRoot}/msgg-l3gdelivery/<apiVersion>/deliver-report\nPOST\nRequest of MSGin5G Server to deliver status report to a given Legacy 3GPP Message Gateway.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "table_9.1.3.1-1",
+        "figure_9.1.3.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_9.1.3.2.1",
+      "section_id": "9.1.3.2.1",
+      "section_title": "Description",
+      "content": "This operation is used by the MSGin5G Server to deliver message to a given Legacy 3GPP Message Gateway.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.538_9.1.3.2.2",
+      "section_id": "9.1.3.2.2",
+      "section_title": "Operation Definition",
+      "content": "This operation shall support the response data structures and response codes specified in table 9.1.3.2.2-1 and table 9.1.3.2.2-2.\nTable 9.1.3.2.2-1: Data structures supported by the POST Request Body on this resource\nData type\nP\nCardinality\nDescription\nL3gMessageDelivery\nM\n1\nRepresents the data to be used for MSGin5G Server to deliver message.\nTable 9.1.3.2.2-2: Data structures supported by the POST Response Body on this resource\nData type\nP\nCardinality\nResponse\ncodes\nDescription\nn/a\n204 No Content\nThe Message is Delivered successfully.\nNOTE:\tThe mandatory HTTP error status code for the POST method listed in Table 5.2.6-1 of 3GPP TS 29.122 [24] also apply.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "table_9.1.3.2.2-1",
+        "table_9.1.3.2.2-2",
+        "ts_29.122_table_5.2.6-1",
+        "ts_29.122"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_9.1.3.3.1",
+      "section_id": "9.1.3.3.1",
+      "section_title": "Description",
+      "content": "This operation is used by the MSGin5G Server to deliver status report to a given Legacy 3GPP Message Gateway.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.538_9.1.3.3.2",
+      "section_id": "9.1.3.3.2",
+      "section_title": "Operation Definition",
+      "content": "This operation shall support the response data structures and response codes specified in Table 9.1.3.3.2-1 and Table 9.1.3.3.2-2.\nTable 9.1.3.3.2-1: Data structures supported by the POST Request Body on this resource\nData type\nP\nCardinality\nDescription\nDeliveryStatusReport\nM\n1\nRepresents the data to be used for MSGin5G Server to deliver status report.\nTable 9.1.3.3.2-2: Data structures supported by the POST Response Body on this resource\nData type\nP\nCardinality\nResponse\ncodes\nDescription\nn/a\n204 No Content\nThe status report is Delivered successfully.\nNOTE:\tThe mandatory HTTP error status code for the POST method listed in Table 5.2.6-1 of 3GPP TS 29.122 [24] also apply.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "table_9.1.3.3.2-1",
+        "table_9.1.3.3.2-2",
+        "ts_29.122_table_5.2.6-1",
+        "ts_29.122"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_9.1.4",
+      "section_id": "9.1.4",
+      "section_title": "Notifications",
+      "content": "None.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.538_9.1.5.1",
+      "section_id": "9.1.5.1",
+      "section_title": "General",
+      "content": "This clause specifies the application data model supported by the API. Data types listed in clause 7.2 apply to this API. Table 9.1.5.1-1 specifies the data types defined specifically for the MSGG_L3GDelivery API service.\nTable 9.1.5.1-1: MSGG_L3GDelivery API specific Data Types\nData type\nSection defined\nDescription\nApplicability\nL3gMessageDelivery\n9.1.5.2.2\nInformation within message delivery request.\nTable 9.1.5.1-2 specifies data types re-used by the MSGG_L3GDelivery API service.\nTable 9.1.5.1-2: Re-used Data Types\nData type\nReference\nComments\nApplicability\nDeliveryStatusReport\n8.2.5.2.7\nThe message delivery status report request information.\nMessageSegmentParameters\n8.2.5.2.5\nContains the message segment information of the message.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_7.2",
+        "table_9.1.5.1-1",
+        "table_9.1.5.1-2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_9.1.5.2.2",
+      "section_id": "9.1.5.2.2",
+      "section_title": "Type: L3gMessageDelivery",
+      "content": "Table 9.1.5.2.2-1: Definition of type L3gMessageDelivery\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\noriAddr\nAddress\nM\n1\nThe service identity of the originating MSGin5G Client or the originating Application Server.\nThis IE is copied from the associated inbound message (NOTE).\ndestAddr\nAddress\nM\n1\nThe service identity of the receiving entity. The receiving entity can only be Legacy 3GPP UE Service ID in MSGG_L3GDelivery API.\nappId\nstring\nO\n0..1\nIdentifies the application(s) for which the content is intended.\nThis list of Application IDs IE is required when the message is sent to one or multiple Application Clients served by same MSGin5G Client.\nmsgId\nstring\nM\n1\nUnique identifier of this message.\nThis IE is copied from the associated inbound message request\ndelivStReqInd\nboolean\nO\n0..1\nIndicates if delivery acknowledgement from the recipient is requested.\nThis IE is copied from the associated inbound message.\nSet to \"true\" if delivery acknowledgement from the recipient is requested. otherwise set to \"false\". Default value is \"false\".\npayload\nstring\nO\n0..1\nPayload of the message.\nThis IE is copied from the associated inbound message.\nsegInd\nboolean\nO\n0..1\nIndicates this message is part of a segmented message.\nSet to \"true\" if the message is part of a segmented message. otherwise set to \"false\". Default value is \"false\".\nsegParams\nMessageSegmentParameters\nO\n0..1\nThe message segment parameters.\nThis IE shall be included only if the value of segInd is true to indicate that message Segment services are requested.\nNOTE:\tThe addrType in Address data type shall only include AS or UE to represent the originating of message request.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_9.1.5.2.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_9.1.5.2.3",
+      "section_id": "9.1.5.2.3",
+      "section_title": "Type: Address",
+      "content": "Table 9.1.5.2.3-1: Definition of type Address\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\naddrType\nAddressType\nM\n1\nRepresent the type of message request.\naddr\nstring\nM\n1\nRefer to UE Service ID or AS Service ID or Group Service ID or Broadcast Area ID or Messaging Topic.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_9.1.5.2.3-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_9.1.5.3.1",
+      "section_id": "9.1.5.3.1",
+      "section_title": "Introduction",
+      "content": "This clause defines simple data types and enumerations that can be referenced from data structures defined in the previous clauses.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.538_9.1.5.3.2",
+      "section_id": "9.1.5.3.2",
+      "section_title": "Enumeration: AddressType",
+      "content": "Table 9.1.5.3.2-1: Enumeration AddressType\nEnumeration value\nDescription\nApplicability\nUE\nThe address type is UE.\nAS\nThe address type is AS.\nGROUP\nThe address type is GROUP.\nBC\nThe address type is BC.\nTOPIC\nThe address type is TOPIC.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_9.1.5.3.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_9.1.6.1",
+      "section_id": "9.1.6.1",
+      "section_title": "General",
+      "content": "HTTP error handling shall be supported as specified in clause 7.7.\nIn addition, the requirements in the following clauses shall apply.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_7.7"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_9.1.6.2",
+      "section_id": "9.1.6.2",
+      "section_title": "Protocol Errors",
+      "content": "In this Release of the specification, there are no additional protocol errors applicable for the MSGG_L3GDelivery API.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.538_9.1.6.3",
+      "section_id": "9.1.6.3",
+      "section_title": "Application Errors",
+      "content": "The application errors defined for the MSGG_L3GDelivery API are listed in table 9.1.6.3-1.\nTable 9.1.6.3-1: Application errors\nApplication Error\nHTTP status code\nDescription\nApplicability",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_9.1.6.3-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_9.1.7",
+      "section_id": "9.1.7",
+      "section_title": "Feature negotiation",
+      "content": "General feature negotiation procedures are defined in clause 7.8. Table 9.1.7-1 lists the supported features for MSGG_L3GDelivery API.\nTable 9.1.7-1: Supported Features\nFeature number\nFeature Name\nDescription",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_7.8",
+        "table_9.1.7-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_9.2.1",
+      "section_id": "9.2.1",
+      "section_title": "API URI",
+      "content": "The MSGG_N3GDelivery service shall use the MSGG_N3GDelivery API, The MSGG_N3GDelivery API corresponding to Mn3g APIs as defined in in 3GPP TS 23.554 [2].\nThe request URIs used in HTTP requests from the MSGin5G Server towards the Non-3GPP Message Gateway shall have the Resource URI structure as defined in clause 7.5 with the following clarifications:\n-\tThe <apiName> shall be \"msgg-n3gdelivery\".\n-\tThe <apiVersion> shall be \"v1\".\n-\tThe <apiSpecificResourceUriPart> shall be set as described in clause 9.2.3.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_7.5",
+        "clause_9.2.3",
+        "ts_23.554"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_9.2.2",
+      "section_id": "9.2.2",
+      "section_title": "Resources",
+      "content": "None.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.538_9.2.3.1",
+      "section_id": "9.2.3.1",
+      "section_title": "Overview",
+      "content": "The structure of the custom operation URIs of the MSGG_N3GDelivery service is shown in Figure 9.2.3.1-1.\nFigure 9.2.3.1-1: Custom operation URI structure of the MSGG_N3GDelivery API\nTable 9.2.3.1-1 provides an overview of the custom operations and applicable HTTP methods.\nTable 9.2.3.1-1: Custom operations without associated resources\nCustom operation URI\nMapped HTTP method\nDescription\n{apiRoot}/msgg-n3gdelivery/<apiVersion>/deliver-message\nPOST\nRequest of MSGin5G Server to deliver message to a given Non-3GPP Message Gateway\n{apiRoot}/msgg-n3gdelivery/<apiVersion>/deliver-report\nPOST\nRequest of MSGin5G Server to deliver status report to a given Non-3GPP Message Gateway",
+      "chunk_type": "definition",
+      "cross_references": [
+        "table_9.2.3.1-1",
+        "figure_9.2.3.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_9.2.3.2.1",
+      "section_id": "9.2.3.2.1",
+      "section_title": "Description",
+      "content": "This operation is used by the MSGin5G Server to deliver message to a given Non-3GPP Message Gateway.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.538_9.2.3.2.2",
+      "section_id": "9.2.3.2.2",
+      "section_title": "Operation Definition",
+      "content": "This operation shall support the response data structures and response codes specified in table 9.2.3.2.2-1 and table 9.2.3.2.2-2.\nTable 9.2.3.2.2-1: Data structures supported by the POST Request Body on this resource\nData type\nP\nCardinality\nDescription\nN3gMessageDelivery\nM\n1\nRepresents the data to be used for MSGin5G Server to deliver message.\nTable 9.2.3.2.2-2: Data structures supported by the POST Response Body on this resource\nData type\nP\nCardinality\nResponse\ncodes\nDescription\nn/a\n204 No Content\nThe Message is Delivered successfully.\nNOTE:\tThe mandatory HTTP error status code for the POST method listed in Table 5.2.6-1 of 3GPP TS 29.122 [24] also apply.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "table_9.2.3.2.2-1",
+        "table_9.2.3.2.2-2",
+        "ts_29.122_table_5.2.6-1",
+        "ts_29.122"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_9.2.3.3.1",
+      "section_id": "9.2.3.3.1",
+      "section_title": "Description",
+      "content": "This operation is used by the MSGin5G Server to deliver status report to a given Non-3GPP Message Gateway.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.538_9.2.3.3.2",
+      "section_id": "9.2.3.3.2",
+      "section_title": "Operation Definition",
+      "content": "This operation shall support the response data structures and response codes specified in table 9.2.3.3.2-1 and table 9.2.3.3.2-2.\nTable 9.2.3.3.2-1: Data structures supported by the POST Request Body on this resource\nData type\nP\nCardinality\nDescription\nDeliveryStatusReport\nM\n1\nRepresents the data to be used for MSGin5G Server to deliver status report.\nTable 9.2.3.3.2-2: Data structures supported by the POST Response Body on this resource\nData type\nP\nCardinality\nResponse\ncodes\nDescription\nn/a\n204 No Content\nThe status report is Delivered successfully.\nNOTE:\tThe mandatory HTTP error status code for the POST method listed in Table 5.2.6-1 of 3GPP TS 29.122 [24] also apply.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "table_9.2.3.3.2-1",
+        "table_9.2.3.3.2-2",
+        "ts_29.122_table_5.2.6-1",
+        "ts_29.122"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_9.2.4",
+      "section_id": "9.2.4",
+      "section_title": "Notifications",
+      "content": "None.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.538_9.2.5.1",
+      "section_id": "9.2.5.1",
+      "section_title": "General",
+      "content": "This clause specifies the application data model supported by the API. Data types listed in clause 7.2 apply to this API. Table 9.2.5.1-1 specifies the data types defined specifically for the MSGG_N3GDelivery API service.\nTable 9.2.5.1-1: MSGG_N3GDelivery API specific Data Types\nData type\nSection defined\nDescription\nApplicability\nN3gMessageDelivery\n9.2.5.2.2\nInformation within message delivery request.\nTable 9.2.5.1-2 specifies data types re-used by the MSGG_N3GDelivery API service.\nTable 9.2.5.1-2: Re-used Data Types\nData type\nReference\nComments\nApplicability\nDeliveryStatusReport\n8.2.5.2.7\nThe message delivery status report request information.\nMessageSegmentParameters\n8.2.5.2.5\nContains the message segment information of the message.\nAddress\n9.1.5.2.3\nThe data type of the oriAddr and destAddr.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_7.2",
+        "table_9.2.5.1-1",
+        "table_9.2.5.1-2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_9.2.5.2.2",
+      "section_id": "9.2.5.2.2",
+      "section_title": "Type: N3gMessageDelivery",
+      "content": "Table 9.2.5.2.2-1: Definition of type N3gMessageDelivery\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\noriAddr\nAddress\nM\n1\nThe oriAddr is the service identity of the originating MSGin5G Client or the originating Application Server.\nThis IE is copied from the associated inbound message (NOTE).\ndestAddr\nAddress\nM\n1\nThe destAddr is the service identity of the receiving entity. The receiving entity can only be Non-3GPP UE Service ID in MSGG_N3GDelivery API.\nappId\nstring\nO\n0..1\nIdentifies the application(s) for which the content is intended.\nThis list of Application IDs IE is required when the message is sent to one or multiple Application Clients served by same MSGin5G Client.\nmsgId\nstring\nM\n1\nUnique identifier of this message.\nThis IE is copied from the associated inbound message request.\ndelivStReqInd\nboolean\nO\n0..1\nIndicates if delivery acknowledgement from the recipient is requested.\nThis IE is copied from the associated inbound message.\nSet to \"true\" if delivery acknowledgement from the recipient is requested. otherwise set to \"false\". Default value is \"false\".\npayload\nstring\nO\n0..1\nPayload of the message.\nThis IE is copied from the associated inbound message.\nsegInd\nboolean\nO\n0..1\nIndicates this message is part of a segmented message.\nSet to \"true\" if the message is part of a segmented message. otherwise set to \"false\". Default value is \"false\".\nsegParams\nMessageSegmentParameters\nO\n0..1\nThe message segment parameters.\nThis IE shall be included only if the value of segInd is true to indicate that message Segment services are requested.\nNOTE:\tThe addrType in Address data type shall only include AS or UE to represent the originating of message request.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_9.2.5.2.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_9.2.6.1",
+      "section_id": "9.2.6.1",
+      "section_title": "General",
+      "content": "HTTP error handling shall be supported as specified in clause 7.7.\nIn addition, the requirements in the following clauses shall apply.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_7.7"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_9.2.6.2",
+      "section_id": "9.2.6.2",
+      "section_title": "Protocol Errors",
+      "content": "In this Release of the specification, there are no additional protocol errors applicable for the MSGG_N3GDelivery API.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.538_9.2.6.3",
+      "section_id": "9.2.6.3",
+      "section_title": "Application Errors",
+      "content": "The application errors defined for the MSGG_N3GDelivery API are listed in table 9.2.6.3-1.\nTable 9.2.6.3-1: Application errors\nApplication Error\nHTTP status code\nDescription\nApplicability",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_9.2.6.3-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_9.2.7",
+      "section_id": "9.2.7",
+      "section_title": "Feature negotiation",
+      "content": "General feature negotiation procedures are defined in clause 7.8. Table 9.2.7-1 lists the supported features for MSGG_N3GDelivery API.\nTable 9.2.7-1: Supported Features\nFeature number\nFeature Name\nDescription",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_7.8",
+        "table_9.2.7-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_9.3.1",
+      "section_id": "9.3.1",
+      "section_title": "API URI",
+      "content": "The MSGG_BGDelivery service shall use the MSGG_BGDelivery API, The MSGG_BGDelivery API corresponding to Mbg APIs as defined in in 3GPP TS 23.554 [2].\nThe request URIs used in HTTP requests from the MSGin5G Server towards the Broadcast Message Gateway shall have the Resource URI structure as defined in clause 7.5 with the following clarifications:\n-\tThe <apiName> shall be \"msgg-bgdelivery\".\n-\tThe <apiVersion> shall be \"v1\".\n-\tThe <apiSpecificResourceUriPart> shall be set as described in clause 9.3.3.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_7.5",
+        "clause_9.3.3",
+        "ts_23.554"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_9.3.2",
+      "section_id": "9.3.2",
+      "section_title": "Resources",
+      "content": "None.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.538_9.3.3.1",
+      "section_id": "9.3.3.1",
+      "section_title": "Overview",
+      "content": "The structure of the custom operation URIs of the MSGG_BGDelivery service is shown in Figure 9.3.3.1-1.\nFigure 9.3.3.1-1: Custom operation URI structure of the MSGG_BGDelivery API\nTable 9.3.3.1-1 provides an overview of the custom operations and applicable HTTP methods.\nTable 9.3.3.1-1: Custom operations without associated resources\nCustom operation URI\nMapped HTTP method\nDescription\n{apiRoot}/msgg-bgdelivery/<apiVersion>/deliver-message\nPOST\nRequest of MSGin5G Server to deliver message to a given Broadcast Message Gateway.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "table_9.3.3.1-1",
+        "figure_9.3.3.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_9.3.3.2.1",
+      "section_id": "9.3.3.2.1",
+      "section_title": "Description",
+      "content": "This operation is used by the MSGin5G Server to deliver message to a given Broadcast Message Gateway.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.538_9.3.3.2.2",
+      "section_id": "9.3.3.2.2",
+      "section_title": "Operation Definition",
+      "content": "This operation shall support the response data structures and response codes specified in table 9.3.3.2.2-1 and table 9.3.3.2.2-2.\nTable 9.3.3.2.2-1: Data structures supported by the POST Request Body on this resource\nData type\nP\nCardinality\nDescription\nBgMessageDelivery\nM\n1\nRepresents the data to be used for MSGin5G Server to deliver message.\nTable 9.3.3.2.2-2: Data structures supported by the POST Response Body on this resource\nData type\nP\nCardinality\nResponse\ncodes\nDescription\nn/a\n204 No Content\nThe Message is delivered successfully.\nNOTE:\tThe mandatory HTTP error status code for the POST method listed in Table 5.2.6-1 of 3GPP TS 29.122 [24] also apply.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "table_9.3.3.2.2-1",
+        "table_9.3.3.2.2-2",
+        "ts_29.122_table_5.2.6-1",
+        "ts_29.122"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_9.3.4",
+      "section_id": "9.3.4",
+      "section_title": "Notifications",
+      "content": "None.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.538_9.3.5.1",
+      "section_id": "9.3.5.1",
+      "section_title": "General",
+      "content": "This clause specifies the application data model supported by the API. Data types listed in clause 7.2 apply to this API. Table 9.3.5.1-1 specifies the data types defined specifically for the MSGG_BGDelivery API service.\nTable 9.3.5.1-1: MSGG_BGDelivery API specific Data Types\nData type\nSection defined\nDescription\nApplicability\nBgMessageDelivery\n9.3.5.2.2\nInformation within broadcast message delivery request.\nTable 9.3.5.1-2 specifies data types re-used by the MSGG_BGDelivery API service.\nTable 9.3.5.1-2: Re-used Data Types\nData type\nReference\nComments\nApplicability\nAddress\n9.1.5.2.3\nThe data type of the oriAddr and destAddr.\nMessageSegmentParameters\n8.2.5.2.5\nThe data type of the segParams\nPriority\n8.2.5.3.5\nThe data type of the priority",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_7.2",
+        "table_9.3.5.1-1",
+        "table_9.3.5.1-2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_9.3.5.2.2",
+      "section_id": "9.3.5.2.2",
+      "section_title": "Type: BgMessageDelivery",
+      "content": "Table 9.3.5.2.2-1: Definition of type BgMessageDelivery\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\noriAddr\nAddress\nM\n1\nThe service identity of the originating MSGin5G Client or the originating Application Server.\n(NOTE).\ndestAddr\nAddress\nO\n0..1\nThe service identity of the Broadcast Service Area where the message needs to be broadcast.\nappId\nstring\nO\n0..1\nIdentifies the application(s) for which the content is intended.\nThis list of Application IDs IE is required when the message is sent to one or multiple Application Clients served by same MSGin5G Client.\nmsgId\nstring\nM\n1\nUnique identifier of this message.\ndelivStReqInd\nboolean\nO\n0..1\nIndicates if delivery acknowledgement from the recipient is requested.\nSet to \"true\" if delivery acknowledgement from the recipient is requested. otherwise set to \"false\". Default value is \"false\".\npayload\nstring\nO\n0..1\nPayload of the message.\ngrpSrvId\nstring\nO\n0..1\nIdentifies Service Identifier of a Group.\nmsgTopic\nstring\nO\n0..1\nIndicates the related Messaging Topic.\nsegInd\nboolean\nO\n0..1\nIndicates this message is part of a segmented message.\nSet to \"true\" if the message is part of a segmented message. otherwise set to \"false\". Default value is \"false\".\nsegParams\nMessageSegmentParameters\nC\n0..1\nThe message segment parameters.\nThis IE shall be included only if the value of the attribute segInd is set to “true”.\npriority\nPriority\nO\n0..1\nApplication priority level requested for this message.\nNOTE:\tThe addrType in Address data type shall only include AS or UE to represent the originating of message request.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_9.3.5.2.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_9.3.5.3",
+      "section_id": "9.3.5.3",
+      "section_title": "Simple data types and enumerations",
+      "content": "None.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.538_9.3.6.1",
+      "section_id": "9.3.6.1",
+      "section_title": "General",
+      "content": "HTTP error handling shall be supported as specified in clause 7.7.\nIn addition, the requirements in the following clauses shall apply.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_7.7"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_9.3.6.2",
+      "section_id": "9.3.6.2",
+      "section_title": "Protocol Errors",
+      "content": "In this Release of the specification, there are no additional protocol errors applicable for the MSGG_BGDelivery API.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.538_9.3.6.3",
+      "section_id": "9.3.6.3",
+      "section_title": "Application Errors",
+      "content": "The application errors defined for the MSGG_BGDelivery API are listed in table 9.3.6.3-1.\nTable 9.3.6.3-1: Application errors\nApplication Error\nHTTP status code\nDescription\nApplicability",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_9.3.6.3-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_9.3.7",
+      "section_id": "9.3.7",
+      "section_title": "Feature negotiation",
+      "content": "General feature negotiation procedures are defined in clause 7.8. Table 9.3.7-1 lists the supported features for MSGG_BGDelivery API.\nTable 9.3.7-1: Supported Features\nFeature number\nFeature Name\nDescription",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_7.8",
+        "table_9.3.7-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_10",
+      "section_id": "10",
+      "section_title": "Security",
+      "content": "TLS shall be used to support the security communication between the service producer (e.g., MSGin5G Server, Message Gateway) and the service consumer as specified in 3GPP TS 33.862 [19] and 3GPP TS 33.501 [20].\nWhen CAPIF is not supported and/or not used, the access to the MSGin5G Service APIs shall be authorized by means of OAuth2 protocol (see IETF RFC 6749 [21]), based on local configuration, using the \"Client Credentials\" authorization grant. When OAuth2 is used, a client shall obtain a \"token\" from the authorization server prior to consuming services offered by any MSGin5G Service API.\nWhen the service producer (e.g., MSGin5G Server, Message Gateway) supports CAPIF for external exposure and CAPIF is used, the provisions of clause 11.2 shall apply for authorizing the access to the MSGin5G APIs.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_11.2",
+        "ts_33.862",
+        "ts_33.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_11.1",
+      "section_id": "11.1",
+      "section_title": "General",
+      "content": "When CAPIF is used with a MSGin5G service, the service producer (e.g., MSGin5G Server, Message Gateway) shall support the following as defined in 3GPP TS 29.222 [8]:\n-\tthe API exposing function and related APIs over CAPIF-2/2e and CAPIF-3/3e reference points;\n-\tthe API publishing function and related APIs over CAPIF-4/4e reference point;\n-\tthe API management function and related APIs over CAPIF-5/5e reference point; and\n-\tat least one of the security methods for authentication and authorization, and related security mechanisms.\nIn a centralized deployment as defined in 3GPP TS 23.222 [7], where the CAPIF core function and API provider domain functions are co-located, the interactions between the CAPIF core function and API provider domain functions may be independent of CAPIF-3/3e, CAPIF-4/4e and CAPIF-5/5e reference points.\nWhen CAPIF is used with a MSGin5G service, the service producer (e.g., MSGin5G Server, Message Gateway) shall register all the features for northbound APIs in the CAPIF Core Function.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.222",
+        "ts_23.222"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_11.2",
+      "section_id": "11.2",
+      "section_title": "Security",
+      "content": "When CAPIF is used for external exposure, before invoking the API exposed by the service producer (e.g., MSGin5G Server, Message Gateway), the NF service consumer (e.g. the Application Server) as API invoker shall negotiate the security method (PKI, TLS-PSK or OAUTH2) with CAPIF core function and ensure the service producer (e.g., MSGin5G Server, Message Gateway) has enough credential to authenticate the NF service consumer (e.g. the Application Server), see 3GPP TS 29.222 [8], clause 5.6.2.2 and clause 6.2.2.2.\nIf PKI or TLS-PSK is used as the selected security method between the NF service consumer (e.g. the Application Server) and the service producer (e.g., MSGin5G Server, Message Gateway), upon API invocation, the service producer (e.g., MSGin5G Server, Message Gateway) shall retrieve the authorization information from the CAPIF core function as described in 3GPP TS 29.222 [8], clause 5.6.2.4.\nAs indicated in 3GPP TS 33.122 [22], the access to the MSGin5G APIs may be authorized by means of the OAuth2 protocol (see IETF RFC 6749 [21]), using the \"Client Credentials\" authorization grant, where the CAPIF core function (see 3GPP TS 29.222 [8]) plays the role of the authorization server.\nNOTE 1:\tIn this release, only \"Client Credentials\" authorization grant is supported.\nIf OAuth2 is used as the selected security method between the NF service consumer (e.g. the Application Server) and the service producer (e.g., MSGin5G Server, Message Gateway), the the NF service consumer (e.g. the Application Server), prior to consuming services offered by the MSGin5G APIs, shall obtain a \"token\" from the authorization server, by invoking the Obtain_Authorization service, as described in 3GPP TS 29.222 [8], clause 5.6.2.3.2.\nThe MSGin5G APIs do not define any scopes for OAuth2 authorization. It is the service producer (e.g., MSGin5G Server, Message Gateway) responsibility to check whether the NF service consumer (e.g. the Application Server) is authorized to use an API based on the \"token\". Once the service producer (e.g., MSGin5G Server, Message Gateway)verifies the \"token\", it shall check whether the service producer (e.g., MSGin5G Server, Message Gateway) identifier in the \"token\" matches its own published identifier, and whether the API name in the \"token\" matches its own published API name. If those checks are passed, the NF service consumer (e.g. the Application Server) has full authority to access any resource or operation for the invoked API.\nNOTE 2:\tFor aforementioned security methods, the service producer (e.g., MSGin5G Server, Message Gateway) needs to apply admission control according to access control policies after performing the authorization checks.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.222_clause_5.6.2.2",
+        "clause_6.2.2.2",
+        "ts_29.222_clause_5.6.2.4",
+        "ts_29.222_clause_5.6.2.3.2",
+        "ts_29.222",
+        "ts_33.122"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.538_12",
+      "section_id": "12",
+      "section_title": "Usage of Network Capabilities",
+      "content": "As specified in 3GPP TS 23.554 [2], MSGin5G Server may perform procedures of UE reachability monitoring and device triggering by consuming the 3GPP core network capabilities from SCEF/NEF as specified in 3GPP TS 29.522 [23], with description of the AF applies to the MSGin5G Server. With usage of network capabilities, the following procedure for UE reachability monitoring and device triggering procedure could be supported. Upon the MSGin5G Server receiving a request to send MSGin5G message to a MSGin5G UE, the MSGin5G Server may determine whether the recipient MSGin5G Client is not reachable:\n-\tby using the recipient's information received when performing the procedures specified in clause 8.9.2.2 of 3GPP TS 23.554 [2]; or\n-\tby using the recipient's availability information provided by MSGin5G Client at registration as specified in clause 8.2.1 of 3GPP TS 23.554 [2].\nIf the recipient MSGin5G Client is not reachable, the MSGin5G Server may send a request for device triggering to SCEF/NEF as specified in clause 4.4.3 of 3GPP TS 29.522 [23]. The request uses the information provided by the MSGin5G Client at registration in the MSGin5G Client Triggering Information IE. And the MSGin5G Server may use the MSGin5G Client communication availability and/or pre-configured information to determine the timing of the device triggering request, e.g. the trigger request may be sent to ensure that the target UE is reachable prior to resuming MSGin5G communications.\nAs specified in clause 4.4.6 of 3GPP TS 29.122 [24], upon the MSGin5G Server receiving an HTTP POST request from SCEF/NEF indicating the result of the triggering delivery, the MSGin5G Server shall respond with an HTTP 200 OK or 204 No Content response.\nAnnex A (normative):OpenAPI specification\nA.1\tGeneral\nThis Annex is based on the OpenAPI Specification [6] and provides corresponding representations of all APIs defined in the present specification.\nNOTE 1:\tAn OpenAPIs representation embeds JSON Schema representations of HTTP message bodies.\nThis Annex shall take precedence when being discrepant to other parts of the specification with respect to the encoding of information elements and methods within the API(s).\nNOTE 2:\tThe semantics and procedures, as well as conditions, e.g. for the applicability and allowed combinations of attributes or values, not expressed in the OpenAPI definitions but defined in other parts of the specification also apply.\nInformative copies of the OpenAPI specification files contained in this 3GPP Technical Specification are available on a Git-based repository, that uses the GitLab software version control system (see clause 5B of the 3GPP TR 21.900 [18] and clause 5.3.1 of the 3GPP TS 29.501 [9] for further information).\nA.2\tMSGS_ASRegistration API\nopenapi: 3.0.0\ninfo:\ntitle: MSGS_ASRegistration\nversion: 1.1.0\ndescription: |\nAPI for MSGS AS Registration Service.\n© 2024, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).\nAll rights reserved.\nexternalDocs:\ndescription: >\n3GPP TS 29.538 V18.6.0; Enabling MSGin5G Service; Application Programming Interfaces (API)\nspecification; Stage 3\nurl: https://www.3gpp.org/ftp/Specs/archive/29_series/29.538/\nservers:\n- url: '{apiRoot}/msgs-asregistration/v1'\nvariables:\napiRoot:\ndefault: https://example.com\ndescription: apiRoot as defined in clause 5.2.4 of 3GPP TS 29.122\nsecurity:\n- {}\n- oAuth2ClientCredentials: []\npaths:\n/registrations:\npost:\nsummary: Registers a new AS at a MSGin5G Server\ntags:\n- AS registration\nrequestBody:\nrequired: true\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/ASRegistration'\nresponses:\n'201':\ndescription: AS information is registered successfully at MSGin5G Server\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/ASRegistrationAck'\nheaders:\nLocation:\ndescription: 'Contains the URI of the newly created resource'\nrequired: true\nschema:\ntype: string\n'400':\n$ref: 'TS29122_CommonData.yaml#/components/responses/400'\n'401':\n$ref: 'TS29122_CommonData.yaml#/components/responses/401'\n'403':\n$ref: 'TS29122_CommonData.yaml#/components/responses/403'\n'404':\n$ref: 'TS29122_CommonData.yaml#/components/responses/404'\n'411':\n$ref: 'TS29122_CommonData.yaml#/components/responses/411'\n'413':\n$ref: 'TS29122_CommonData.yaml#/components/responses/413'\n'415':\n$ref: 'TS29122_CommonData.yaml#/components/responses/415'\n'429':\n$ref: 'TS29122_CommonData.yaml#/components/responses/429'\n'500':\n$ref: 'TS29122_CommonData.yaml#/components/responses/500'\n'503':\n$ref: 'TS29122_CommonData.yaml#/components/responses/503'\ndefault:\n$ref: 'TS29122_CommonData.yaml#/components/responses/default'\n/registrations/{registrationId}:\ndelete:\nsummary: Delete an existing AS registration at MSGin5G Server\ntags:\n- AS DeRegistration\nparameters:\n- name: registrationId\nin: path\ndescription: AS registration Id\nrequired: true\nschema:\ntype: string\nresponses:\n'200':\ndescription: The individual AS registration is deleted successfully.\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/ASRegistrationAck'\n'204':\ndescription: >\nNo Content. The individual AS registration resource is deleted successfully.\n'400':\n$ref: 'TS29122_CommonData.yaml#/components/responses/400'\n'401':\n$ref: 'TS29122_CommonData.yaml#/components/responses/401'\n'403':\n$ref: 'TS29122_CommonData.yaml#/components/responses/403'\n'404':\n$ref: 'TS29122_CommonData.yaml#/components/responses/404'\n'429':\n$ref: 'TS29122_CommonData.yaml#/components/responses/429'\n'500':\n$ref: 'TS29122_CommonData.yaml#/components/responses/500'\n'503':\n$ref: 'TS29122_CommonData.yaml#/components/responses/503'\ndefault:\n$ref: 'TS29122_CommonData.yaml#/components/responses/default'\ncomponents:\nsecuritySchemes:\noAuth2ClientCredentials:\ntype: oauth2\nflows:\nclientCredentials:\ntokenUrl: '{tokenUrl}'\nscopes: {}\nschemas:\n#\n# STRUCTURED DATA TYPES\n#\nASRegistration:\ndescription: AS registration data\ntype: object\nrequired:\n- asSvcId\nproperties:\nasSvcId:\ntype: string\nappId:\ntype: string\ntargetUri:\n$ref: 'TS29122_CommonData.yaml#/components/schemas/Uri'\nasProf:\n$ref: '#/components/schemas/ASProfile'\nASRegistrationAck:\ndescription: AS registration response data\ntype: object\nrequired:\n- asSvcId\n- result\nproperties:\nasSvcId:\ntype: string\nresult:\n$ref: 'TS29122_CommonData.yaml#/components/schemas/ProblemDetails'\nASProfile:\ndescription: AS profile information\ntype: object\nproperties:\nappName:\ntype: string\nappProviders:\ntype: array\nitems:\ntype: string\nminItems: 1\ndescription: The provider of the AS.\nappSenarios:\ntype: array\nitems:\ntype: string\nminItems: 1\ndescription: The application scenario.\nappCategory:\ntype: string\nasStatus:\ntype: string\nA.3\tMSGS_MSGDelivery API\nopenapi: 3.0.0\ninfo:\ntitle: MSGS_MSGDelivery\nversion: 1.1.0\ndescription: |\nAPI for MSGG MSGin5G Server Message Delivery Service.\n© 2024, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).\nAll rights reserved.\nexternalDocs:\ndescription: >\n3GPP TS 29.538 V18.6.0; Enabling MSGin5G Service; Application Programming Interfaces (API)\nspecification; Stage 3\nurl: https://www.3gpp.org/ftp/Specs/archive/29_series/29.538/\nservers:\n- url: '{apiRoot}/msgs-msgdelivery/v1'\nvariables:\napiRoot:\ndefault: https://example.com\ndescription: apiRoot as defined in clause 5.2.4 of 3GPP TS 29.122\nsecurity:\n- {}\n- oAuth2ClientCredentials: []\npaths:\n/deliver-as-message:\npost:\nsummary: AS deliver message to MSGin5G Server\ntags:\n- AS Message delivery\nrequestBody:\nrequired: true\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/ASMessageDelivery'\nresponses:\n'200':\ndescription: OK, AS Message delivery successful\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/MessageDeliveryAck'\n'400':\n$ref: 'TS29122_CommonData.yaml#/components/responses/400'\n'401':\n$ref: 'TS29122_CommonData.yaml#/components/responses/401'\n'403':\n$ref: 'TS29122_CommonData.yaml#/components/responses/403'\n'404':\n$ref: 'TS29122_CommonData.yaml#/components/responses/404'\n'411':\n$ref: 'TS29122_CommonData.yaml#/components/responses/411'\n'413':\n$ref: 'TS29122_CommonData.yaml#/components/responses/413'\n'415':\n$ref: 'TS29122_CommonData.yaml#/components/responses/415'\n'429':\n$ref: 'TS29122_CommonData.yaml#/components/responses/429'\n'500':\n$ref: 'TS29122_CommonData.yaml#/components/responses/500'\n'503':\n$ref: 'TS29122_CommonData.yaml#/components/responses/503'\ndefault:\n$ref: 'TS29122_CommonData.yaml#/components/responses/default'\n/deliver-ue-message:\npost:\nsummary: UE deliver message to MSGin5G Server\ntags:\n- UE Message delivery\nrequestBody:\nrequired: true\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/UEMessageDelivery'\nresponses:\n'200':\ndescription: OK, UE Message delivery successful\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/MessageDeliveryAck'\n'400':\n$ref: 'TS29122_CommonData.yaml#/components/responses/400'\n'401':\n$ref: 'TS29122_CommonData.yaml#/components/responses/401'\n'403':\n$ref: 'TS29122_CommonData.yaml#/components/responses/403'\n'404':\n$ref: 'TS29122_CommonData.yaml#/components/responses/404'\n'411':\n$ref: 'TS29122_CommonData.yaml#/components/responses/411'\n'413':\n$ref: 'TS29122_CommonData.yaml#/components/responses/413'\n'415':\n$ref: 'TS29122_CommonData.yaml#/components/responses/415'\n'429':\n$ref: 'TS29122_CommonData.yaml#/components/responses/429'\n'500':\n$ref: 'TS29122_CommonData.yaml#/components/responses/500'\n'503':\n$ref: 'TS29122_CommonData.yaml#/components/responses/503'\ndefault:\n$ref: 'TS29122_CommonData.yaml#/components/responses/default'\n/deliver-report:\npost:\nsummary: AS or UE deliver status report to MSGin5G Server\ntags:\n- AS/UE status report delivery\nrequestBody:\nrequired: true\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/DeliveryStatusReport'\nresponses:\n'200':\ndescription: OK, status report delivery successfully\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/MessageDeliveryAck'\n'400':\n$ref: 'TS29122_CommonData.yaml#/components/responses/400'\n'401':\n$ref: 'TS29122_CommonData.yaml#/components/responses/401'\n'403':\n$ref: 'TS29122_CommonData.yaml#/components/responses/403'\n'404':\n$ref: 'TS29122_CommonData.yaml#/components/responses/404'\n'411':\n$ref: 'TS29122_CommonData.yaml#/components/responses/411'\n'413':\n$ref: 'TS29122_CommonData.yaml#/components/responses/413'\n'415':\n$ref: 'TS29122_CommonData.yaml#/components/responses/415'\n'429':\n$ref: 'TS29122_CommonData.yaml#/components/responses/429'\n'500':\n$ref: 'TS29122_CommonData.yaml#/components/responses/500'\n'503':\n$ref: 'TS29122_CommonData.yaml#/components/responses/503'\ndefault:\n$ref: 'TS29122_CommonData.yaml#/components/responses/default'\ncomponents:\nsecuritySchemes:\noAuth2ClientCredentials:\ntype: oauth2\nflows:\nclientCredentials:\ntokenUrl: '{tokenUrl}'\nscopes: {}\nschemas:\n#\n# STRUCTURED DATA TYPES\n#\nASMessageDelivery:\ndescription: Contains the AS message delivery data\ntype: object\nrequired:\n- oriAddr\n- destAddr\n- msgId\n- stoAndFwInd\nproperties:\noriAddr:\n$ref: 'TS29538_MSGG_L3GDelivery.yaml#/components/schemas/Address'\ndestAddr:\n$ref: 'TS29538_MSGG_L3GDelivery.yaml#/components/schemas/Address'\nappId:\ntype: string\nmsgId:\ntype: string\ndelivStReqInd:\ntype: boolean\npayload:\ntype: string\npriority:\n$ref: '#/components/schemas/Priority'\nsegInd:\ntype: boolean\nsegParams:\n$ref: '#/components/schemas/MessageSegmentParameters'\nstoAndFwInd:\ntype: boolean\nstoAndFwParams:\n$ref: '#/components/schemas/StoreAndForwardParameters'\nlatency:\ntype: integer\nUEMessageDelivery:\ndescription: Contains the UE message delivery data\ntype: object\nrequired:\n- oriAddr\n- destAddr\n- msgId\n- stoAndFwInd\nproperties:\noriAddr:\n$ref: 'TS29538_MSGG_L3GDelivery.yaml#/components/schemas/Address'\ndestAddr:\n$ref: 'TS29538_MSGG_L3GDelivery.yaml#/components/schemas/Address'\nappId:\ntype: string\nmsgId:\ntype: string\ndelivStReqInd:\ntype: boolean\npayload:\ntype: string\nsegInd:\ntype: boolean\nsegParams:\n$ref: '#/components/schemas/MessageSegmentParameters'\nstoAndFwInd:\ntype: boolean\nstoAndFwParams:\n$ref: '#/components/schemas/StoreAndForwardParameters'\nMessageDeliveryAck:\ndescription: Contains the message delivery ack data\ntype: object\nrequired:\n- oriAddr\n- msgId\nproperties:\noriAddr:\n$ref: 'TS29538_MSGG_L3GDelivery.yaml#/components/schemas/Address'\nmsgId:\ntype: string\nstatus:\n$ref: '#/components/schemas/DeliveryStatus'\nfailureCause:\ntype: string\nMessageSegmentParameters:\ndescription: Contains the message segment parameters data\ntype: object\nproperties:\nsegId:\ntype: string\ntotalSegCount:\ntype: integer\nsegNumb:\ntype: integer\nlastSegFlag:\ntype: boolean\nStoreAndForwardParameters:\ndescription: Contains the store and forward parameters data\ntype: object\nproperties:\nexprTime:\n$ref: 'TS29122_CommonData.yaml#/components/schemas/DateTime'\nDeliveryStatusReport:\ndescription: Contains the delivery status report data\ntype: object\nrequired:\n- oriAddr\n- destAddr\n- msgId\n- delivSt\nproperties:\noriAddr:\n$ref: 'TS29538_MSGG_L3GDelivery.yaml#/components/schemas/Address'\ndestAddr:\n$ref: 'TS29538_MSGG_L3GDelivery.yaml#/components/schemas/Address'\nmsgId:\ntype: string\nfailureCause:\ntype: string\ndelivSt:\n$ref: '#/components/schemas/ReportDeliveryStatus'\n#\n# SIMPLE DATA TYPES\n#\n#\n# ENUMERATIONS\n#\nDeliveryStatus:\nanyOf:\n- type: string\nenum:\n- DELY_FAILED\n- DELY_STORED\n- type: string\ndescription: >\nThis string provides forward-compatibility with future\nextensions to the enumeration but is not used to encode\ncontent defined in the present version of this API.\ndescription: |\nIndicates if delivery is a failure, or if the message is stored for deferred delivery.\nPossible values are:\n- DELY_FAILED: Indicates that the message delivery is failed.\n- DELY_STORED: Indicates that the message is stored for deferred delivery.\nReportDeliveryStatus:\nanyOf:\n- type: string\nenum:\n- REPT_DELY_SUCCESS\n- REPT_DELY_FAILED\n- type: string\ndescription: >\nThis string provides forward-compatibility with future\nextensions to the enumeration but is not used to encode\ncontent defined in the present version of this API.\ndescription: |\nThe delivery status description, including success or failure in delivery.\nPossible values are:\n- REPT_DELY_SUCCESS: Indicates that the report delivery is successful.\n- REPT_DELY_FAILED: Indicates that the report delivery is failed.\nPriority:\nanyOf:\n- type: string\nenum:\n- HIGH\n- MIDDLE\n- LOW\n- type: string\ndescription: >\nThis string provides forward-compatibility with future\nextensions to the enumeration but is not used to encode\ncontent defined in the present version of this API.\ndescription: |\nApplication priority level requested for this message.\nPossible values are:\n- HIGH: Indicates the messages should be sent in high priority.\n- MIDDLE: Indicates the messages should be sent in middle priority.\n- LOW: Indicates the messages should be sent in low priority.\nA.4\tMSGG_L3GDelivery API\nopenapi: 3.0.0\ninfo:\ntitle: MSGG_L3GDelivery\nversion: 1.1.0\ndescription: |\nAPI for MSGG L3G Message Delivery Service.\n© 2024, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).\nAll rights reserved.\nexternalDocs:\ndescription: >\n3GPP TS 29.538 V18.6.0; Enabling MSGin5G Service; Application Programming Interfaces (API)\nspecification; Stage 3\nurl: https://www.3gpp.org/ftp/Specs/archive/29_series/29.538/\nservers:\n- url: '{apiRoot}/msgg-l3gdelivery/v1'\nvariables:\napiRoot:\ndefault: https://example.com\ndescription: apiRoot as defined in clause 5.2.4 of 3GPP TS 29.122\nsecurity:\n- {}\n- oAuth2ClientCredentials: []\npaths:\n/deliver-message:\npost:\nsummary: deliver message to Legacy 3GPP Message Gateway\ntags:\n- L3G Message delivery\nrequestBody:\nrequired: true\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/L3gMessageDelivery'\nresponses:\n'204':\ndescription: No Content, Message delivery successful\n'400':\n$ref: 'TS29122_CommonData.yaml#/components/responses/400'\n'401':\n$ref: 'TS29122_CommonData.yaml#/components/responses/401'\n'403':\n$ref: 'TS29122_CommonData.yaml#/components/responses/403'\n'404':\n$ref: 'TS29122_CommonData.yaml#/components/responses/404'\n'411':\n$ref: 'TS29122_CommonData.yaml#/components/responses/411'\n'413':\n$ref: 'TS29122_CommonData.yaml#/components/responses/413'\n'415':\n$ref: 'TS29122_CommonData.yaml#/components/responses/415'\n'429':\n$ref: 'TS29122_CommonData.yaml#/components/responses/429'\n'500':\n$ref: 'TS29122_CommonData.yaml#/components/responses/500'\n'503':\n$ref: 'TS29122_CommonData.yaml#/components/responses/503'\ndefault:\n$ref: 'TS29122_CommonData.yaml#/components/responses/default'\n/deliver-report:\npost:\nsummary: deliver status report to Legacy 3GPP Message Gateway\ntags:\n- L3G status report delivery\nrequestBody:\nrequired: true\ncontent:\napplication/json:\nschema:\n$ref: 'TS29538_MSGS_MSGDelivery.yaml#/components/schemas/DeliveryStatusReport'\nresponses:\n'204':\ndescription: No Content, status report delivery successfully\n'400':\n$ref: 'TS29122_CommonData.yaml#/components/responses/400'\n'401':\n$ref: 'TS29122_CommonData.yaml#/components/responses/401'\n'403':\n$ref: 'TS29122_CommonData.yaml#/components/responses/403'\n'404':\n$ref: 'TS29122_CommonData.yaml#/components/responses/404'\n'411':\n$ref: 'TS29122_CommonData.yaml#/components/responses/411'\n'413':\n$ref: 'TS29122_CommonData.yaml#/components/responses/413'\n'415':\n$ref: 'TS29122_CommonData.yaml#/components/responses/415'\n'429':\n$ref: 'TS29122_CommonData.yaml#/components/responses/429'\n'500':\n$ref: 'TS29122_CommonData.yaml#/components/responses/500'\n'503':\n$ref: 'TS29122_CommonData.yaml#/components/responses/503'\ndefault:\n$ref: 'TS29122_CommonData.yaml#/components/responses/default'\ncomponents:\nsecuritySchemes:\noAuth2ClientCredentials:\ntype: oauth2\nflows:\nclientCredentials:\ntokenUrl: '{tokenUrl}'\nscopes: {}\nschemas:\n#\n# STRUCTURED DATA TYPES\n#\nL3gMessageDelivery:\ndescription: Contains the L3G message delivery data\ntype: object\nrequired:\n- oriAddr\n- destAddr\n- msgId\nproperties:\noriAddr:\n$ref: '#/components/schemas/Address'\ndestAddr:\n$ref: '#/components/schemas/Address'\nappId:\ntype: string\nmsgId:\ntype: string\ndelivStReqInd:\ntype: boolean\npayload:\ntype: string\nsegInd:\ntype: boolean\nsegParams:\n$ref: 'TS29538_MSGS_MSGDelivery.yaml#/components/schemas/MessageSegmentParameters'\nAddress:\ndescription: Contains the Message type data\ntype: object\nrequired:\n- addrType\n- addr\nproperties:\naddrType:\n$ref: '#/components/schemas/AddressType'\naddr:\ntype: string\n#\n# SIMPLE DATA TYPES\n#\n#\n# ENUMERATIONS\n#\nAddressType:\nanyOf:\n- type: string\nenum:\n- UE\n- AS\n- GROUP\n- BC\n- TOPIC\n- type: string\ndescription: >\nThis string provides forward-compatibility with future\nextensions to the enumeration but is not used to encode\ncontent defined in the present version of this API.\ndescription: |\nRepresent the type of message request.\nPossible values are:\n- UE: The address type is UE.\n- AS: The address type is AS.\n- GROUP: The address type is GROUP.\n- BC: The address type is BC.\n- TOPIC: The address type is TOPIC.\nA.5\tMSGG_N3GDelivery API\nopenapi: 3.0.0\ninfo:\ntitle: MSGG_N3GDelivery\nversion: 1.1.0\ndescription: |\nAPI for MSGG N3G Message Delivery Service.\n© 2024, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).\nAll rights reserved.\nexternalDocs:\ndescription: >\n3GPP TS 29.538 V18.6.0; Enabling MSGin5G Service; Application Programming Interfaces (API)\nspecification; Stage 3\nurl: https://www.3gpp.org/ftp/Specs/archive/29_series/29.538/\nservers:\n- url: '{apiRoot}/msgg-n3gdelivery/v1'\nvariables:\napiRoot:\ndefault: https://example.com\ndescription: apiRoot as defined in clause 5.2.4 of 3GPP TS 29.122\nsecurity:\n- {}\n- oAuth2ClientCredentials: []\npaths:\n/deliver-message:\npost:\nsummary: deliver message to NON-3GPP Message Gateway\ntags:\n- N3G Message delivery\nrequestBody:\nrequired: true\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/N3gMessageDelivery'\nresponses:\n'204':\ndescription: No Content,Message delivery successful\n'400':\n$ref: 'TS29122_CommonData.yaml#/components/responses/400'\n'401':\n$ref: 'TS29122_CommonData.yaml#/components/responses/401'\n'403':\n$ref: 'TS29122_CommonData.yaml#/components/responses/403'\n'404':\n$ref: 'TS29122_CommonData.yaml#/components/responses/404'\n'411':\n$ref: 'TS29122_CommonData.yaml#/components/responses/411'\n'413':\n$ref: 'TS29122_CommonData.yaml#/components/responses/413'\n'415':\n$ref: 'TS29122_CommonData.yaml#/components/responses/415'\n'429':\n$ref: 'TS29122_CommonData.yaml#/components/responses/429'\n'500':\n$ref: 'TS29122_CommonData.yaml#/components/responses/500'\n'503':\n$ref: 'TS29122_CommonData.yaml#/components/responses/503'\ndefault:\n$ref: 'TS29122_CommonData.yaml#/components/responses/default'\n/deliver-report:\npost:\nsummary: deliver status report to NON-3GPP Message Gateway\ntags:\n- N3G status report delivery\nrequestBody:\nrequired: true\ncontent:\napplication/json:\nschema:\n$ref: 'TS29538_MSGS_MSGDelivery.yaml#/components/schemas/DeliveryStatusReport'\nresponses:\n'204':\ndescription: No Content, status report delivery successfully\n'400':\n$ref: 'TS29122_CommonData.yaml#/components/responses/400'\n'401':\n$ref: 'TS29122_CommonData.yaml#/components/responses/401'\n'403':\n$ref: 'TS29122_CommonData.yaml#/components/responses/403'\n'404':\n$ref: 'TS29122_CommonData.yaml#/components/responses/404'\n'411':\n$ref: 'TS29122_CommonData.yaml#/components/responses/411'\n'413':\n$ref: 'TS29122_CommonData.yaml#/components/responses/413'\n'415':\n$ref: 'TS29122_CommonData.yaml#/components/responses/415'\n'429':\n$ref: 'TS29122_CommonData.yaml#/components/responses/429'\n'500':\n$ref: 'TS29122_CommonData.yaml#/components/responses/500'\n'503':\n$ref: 'TS29122_CommonData.yaml#/components/responses/503'\ndefault:\n$ref: 'TS29122_CommonData.yaml#/components/responses/default'\ncomponents:\nsecuritySchemes:\noAuth2ClientCredentials:\ntype: oauth2\nflows:\nclientCredentials:\ntokenUrl: '{tokenUrl}'\nscopes: {}\nschemas:\n#\n# STRUCTURED DATA TYPES\n#\nN3gMessageDelivery:\ndescription: N3G message delivery data\ntype: object\nrequired:\n- oriAddr\n- destAddr\n- msgId\nproperties:\noriAddr:\n$ref: 'TS29538_MSGG_L3GDelivery.yaml#/components/schemas/Address'\ndestAddr:\n$ref: 'TS29538_MSGG_L3GDelivery.yaml#/components/schemas/Address'\nappId:\ntype: string\nmsgId:\ntype: string\ndelivStReqInd:\ntype: boolean\npayload:\ntype: string\nsegInd:\ntype: boolean\nsegParams:\n$ref: 'TS29538_MSGS_MSGDelivery.yaml#/components/schemas/MessageSegmentParameters'\nA.6\tMSGG_BGDelivery API\nopenapi: 3.0.0\ninfo:\ntitle: MSGG_BGDelivery\nversion: 1.0.0\ndescription: |\nAPI for Broadcast Message Delivery Service.\n© 2024, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).\nAll rights reserved.\nexternalDocs:\ndescription: >\n3GPP TS 29.538 V18.6.0; Enabling MSGin5G Service; Application Programming Interfaces (API)\nspecification; Stage 3\nurl: https://www.3gpp.org/ftp/Specs/archive/29_series/29.538/\nservers:\n- url: '{apiRoot}/msgg-bgdelivery/v1'\nvariables:\napiRoot:\ndefault: https://example.com\ndescription: apiRoot as defined in clause 5.2.4 of 3GPP TS 29.122\nsecurity:\n- {}\n- oAuth2ClientCredentials: []\npaths:\n/deliver-message:\npost:\nsummary: deliver message to Broadcast Message Gateway\ntags:\n- Broadcast Message delivery\nrequestBody:\nrequired: true\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/BgMessageDelivery'\nresponses:\n'204':\ndescription: No Content, Message delivery successful\n'400':\n$ref: 'TS29122_CommonData.yaml#/components/responses/400'\n'401':\n$ref: 'TS29122_CommonData.yaml#/components/responses/401'\n'403':\n$ref: 'TS29122_CommonData.yaml#/components/responses/403'\n'404':\n$ref: 'TS29122_CommonData.yaml#/components/responses/404'\n'411':\n$ref: 'TS29122_CommonData.yaml#/components/responses/411'\n'413':\n$ref: 'TS29122_CommonData.yaml#/components/responses/413'\n'415':\n$ref: 'TS29122_CommonData.yaml#/components/responses/415'\n'429':\n$ref: 'TS29122_CommonData.yaml#/components/responses/429'\n'500':\n$ref: 'TS29122_CommonData.yaml#/components/responses/500'\n'503':\n$ref: 'TS29122_CommonData.yaml#/components/responses/503'\ndefault:\n$ref: 'TS29122_CommonData.yaml#/components/responses/default'\ncomponents:\nsecuritySchemes:\noAuth2ClientCredentials:\ntype: oauth2\nflows:\nclientCredentials:\ntokenUrl: '{tokenUrl}'\nscopes: {}\nschemas:\n#\n# STRUCTURED DATA TYPES\n#\nBgMessageDelivery:\ndescription: Broadcast message delivery data\ntype: object\nrequired:\n- oriAddr\n- msgId\nproperties:\noriAddr:\n$ref: 'TS29538_MSGG_L3GDelivery.yaml#/components/schemas/Address'\ndestAddr:\n$ref: 'TS29538_MSGG_L3GDelivery.yaml#/components/schemas/Address'\nappId:\ntype: string\nmsgId:\ntype: string\ndelivStReqInd:\ntype: boolean\ngrpSrvId:\ntype: string\nmsgTopic:\ntype: string\npayload:\ntype: string\nsegInd:\ntype: boolean\nsegParams:\n$ref: 'TS29538_MSGS_MSGDelivery.yaml#/components/schemas/MessageSegmentParameters'\npriority:\n$ref: 'TS29538_MSGS_MSGDelivery.yaml#/components/schemas/Priority'\nA.7\tMSGS_TopiclistEvent API\nopenapi: 3.0.0\ninfo:\ntitle: MSGS_TopiclistEvent\nversion: 1.0.2\ndescription: |\nAPI for Topic Messaging Event Service.\n© 2025, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).\nAll rights reserved.\nexternalDocs:\ndescription: >\n3GPP TS 29.538 V18.8.0; Enabling MSGin5G Service; Application Programming Interfaces (API)\nspecification; Stage 3\nurl: https://www.3gpp.org/ftp/Specs/archive/29_series/29.538/\nservers:\n- url: '{apiRoot}/msgs-topiclistevent/v1'\nvariables:\napiRoot:\ndefault: https://example.com\ndescription: apiRoot as defined in clause 5.2.4 of 3GPP TS 29.122\nsecurity:\n- {}\n- oAuth2ClientCredentials:\n- msgs-topiclistevent\npaths:\n/topiclist-subscriptions:\npost:\nsummary: subscribe to Messaging Topic list on a MSGin5G Server\ntags:\n- Topic List Subscription\nrequestBody:\nrequired: true\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/TopicListSubscription'\nresponses:\n'201':\ndescription: Topic list on the MSGin5G Server is successfully subscribed\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/TopicListSubscription'\nheaders:\nLocation:\ndescription: 'Contains the URI of the newly created resource'\nrequired: true\nschema:\ntype: string\n'400':\n$ref: 'TS29122_CommonData.yaml#/components/responses/400'\n'401':\n$ref: 'TS29122_CommonData.yaml#/components/responses/401'\n'403':\n$ref: 'TS29122_CommonData.yaml#/components/responses/403'\n'404':\n$ref: 'TS29122_CommonData.yaml#/components/responses/404'\n'411':\n$ref: 'TS29122_CommonData.yaml#/components/responses/411'\n'413':\n$ref: 'TS29122_CommonData.yaml#/components/responses/413'\n'415':\n$ref: 'TS29122_CommonData.yaml#/components/responses/415'\n'429':\n$ref: 'TS29122_CommonData.yaml#/components/responses/429'\n'500':\n$ref: 'TS29122_CommonData.yaml#/components/responses/500'\n'503':\n$ref: 'TS29122_CommonData.yaml#/components/responses/503'\ndefault:\n$ref: 'TS29122_CommonData.yaml#/components/responses/default'\ncallbacks:\nMessagingTopicListNotification:\n'{$request.body#/notificationURI}':\npost:\nrequestBody:\nrequired: true\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/TopicListNotification'\nresponses:\n'204':\ndescription: No Content (successful notification)\n'307':\n$ref: 'TS29122_CommonData.yaml#/components/responses/307'\n'308':\n$ref: 'TS29122_CommonData.yaml#/components/responses/308'\n'400':\n$ref: 'TS29122_CommonData.yaml#/components/responses/400'\n'401':\n$ref: 'TS29122_CommonData.yaml#/components/responses/401'\n'403':\n$ref: 'TS29122_CommonData.yaml#/components/responses/403'\n'404':\n$ref: 'TS29122_CommonData.yaml#/components/responses/404'\n'411':\n$ref: 'TS29122_CommonData.yaml#/components/responses/411'\n'413':\n$ref: 'TS29122_CommonData.yaml#/components/responses/413'\n'415':\n$ref: 'TS29122_CommonData.yaml#/components/responses/415'\n'429':\n$ref: 'TS29122_CommonData.yaml#/components/responses/429'\n'500':\n$ref: 'TS29122_CommonData.yaml#/components/responses/500'\n'503':\n$ref: 'TS29122_CommonData.yaml#/components/responses/503'\ndefault:\n$ref: 'TS29122_CommonData.yaml#/components/responses/default'\n/topiclist-subscriptions/{subscriptionId}:\nparameters:\n- name: subscriptionId\nin: path\ndescription: >\nRepresents the identifier of the Individual Topic List Subscription resource.\nrequired: true\nschema:\ntype: string\ndelete:\nsummary: Request the deletion of an existing Individual Topic List Subscription resource.\noperationId: DeleteIndTopicListSubsc\ntags:\n- Individual Topic List Subscription (Document)\nresponses:\n'204':\ndescription: >\nNo Content. The Individual Topic List Subscription resource is successfully\ndeleted.\n'307':\n$ref: 'TS29122_CommonData.yaml#/components/responses/307'\n'308':\n$ref: 'TS29122_CommonData.yaml#/components/responses/308'\n'400':\n$ref: 'TS29122_CommonData.yaml#/components/responses/400'\n'401':\n$ref: 'TS29122_CommonData.yaml#/components/responses/401'\n'403':\n$ref: 'TS29122_CommonData.yaml#/components/responses/403'\n'404':\n$ref: 'TS29122_CommonData.yaml#/components/responses/404'\n'429':\n$ref: 'TS29122_CommonData.yaml#/components/responses/429'\n'500':\n$ref: 'TS29122_CommonData.yaml#/components/responses/500'\n'503':\n$ref: 'TS29122_CommonData.yaml#/components/responses/503'\ndefault:\n$ref: 'TS29122_CommonData.yaml#/components/responses/default'\n/request-topic-subscription:\npost:\nsummary: subscribe to Messaging Topic on a MSGin5G Server\ntags:\n- Messaging Topic Subscription\nrequestBody:\nrequired: true\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/TopicSubscription'\nresponses:\n'200':\ndescription: The Messaging Topic subscription is created successfully.\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/TopicSubscriptionAck'\n'400':\n$ref: 'TS29122_CommonData.yaml#/components/responses/400'\n'401':\n$ref: 'TS29122_CommonData.yaml#/components/responses/401'\n'403':\n$ref: 'TS29122_CommonData.yaml#/components/responses/403'\n'404':\n$ref: 'TS29122_CommonData.yaml#/components/responses/404'\n'411':\n$ref: 'TS29122_CommonData.yaml#/components/responses/411'\n'413':\n$ref: 'TS29122_CommonData.yaml#/components/responses/413'\n'415':\n$ref: 'TS29122_CommonData.yaml#/components/responses/415'\n'429':\n$ref: 'TS29122_CommonData.yaml#/components/responses/429'\n'500':\n$ref: 'TS29122_CommonData.yaml#/components/responses/500'\n'503':\n$ref: 'TS29122_CommonData.yaml#/components/responses/503'\ndefault:\n$ref: 'TS29122_CommonData.yaml#/components/responses/default'\n/request-topic-unsubscription:\npost:\nsummary: unsubscribe to Messaging Topic on a MSGin5G Server\ntags:\n- Messaging Topic Unsubscription\nrequestBody:\nrequired: true\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/TopicUnsubscription'\nresponses:\n'204':\ndescription: >\nNo Content. The Messaging Topic subscription is removed successfully.\n'400':\n$ref: 'TS29122_CommonData.yaml#/components/responses/400'\n'401':\n$ref: 'TS29122_CommonData.yaml#/components/responses/401'\n'403':\n$ref: 'TS29122_CommonData.yaml#/components/responses/403'\n'404':\n$ref: 'TS29122_CommonData.yaml#/components/responses/404'\n'411':\n$ref: 'TS29122_CommonData.yaml#/components/responses/411'\n'413':\n$ref: 'TS29122_CommonData.yaml#/components/responses/413'\n'415':\n$ref: 'TS29122_CommonData.yaml#/components/responses/415'\n'429':\n$ref: 'TS29122_CommonData.yaml#/components/responses/429'\n'500':\n$ref: 'TS29122_CommonData.yaml#/components/responses/500'\n'503':\n$ref: 'TS29122_CommonData.yaml#/components/responses/503'\ndefault:\n$ref: 'TS29122_CommonData.yaml#/components/responses/default'\ncomponents:\nsecuritySchemes:\noAuth2ClientCredentials:\ntype: oauth2\nflows:\nclientCredentials:\ntokenUrl: '{tokenUrl}'\nscopes: {}\nschemas:\n#\n# STRUCTURED DATA TYPES\n#\nTopicListSubscription:\ndescription: Messaging Topic list subscription data\ntype: object\nrequired:\n- oriAddr\n- destAddr\n- notificationURI\nproperties:\noriAddr:\n$ref: 'TS29538_MSGG_L3GDelivery.yaml#/components/schemas/Address'\ndestAddr:\n$ref: 'TS29538_MSGG_L3GDelivery.yaml#/components/schemas/Address'\nnotificationURI:\n$ref: 'TS29122_CommonData.yaml#/components/schemas/Uri'\nexprTime:\n$ref: 'TS29122_CommonData.yaml#/components/schemas/DateTime'\nsuppFeat:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'\nTopicListUnsubscription:\ndescription: Messaging Topic list unsubscription data\ntype: object\nrequired:\n- oriAddr\n- destAddr\nproperties:\noriAddr:\n$ref: 'TS29538_MSGG_L3GDelivery.yaml#/components/schemas/Address'\ndestAddr:\n$ref: 'TS29538_MSGG_L3GDelivery.yaml#/components/schemas/Address'\nTopicListUnsubscriptionAck:\ndescription: Response of Messaging Topic list unsubscription\ntype: object\nrequired:\n- subStat\nproperties:\nsubStat:\ntype: string\nTopicSubscription:\ndescription: Messaging Topic subscription data\ntype: object\nrequired:\n- oriAddr\n- msgTopics\nproperties:\noriAddr:\n$ref: 'TS29538_MSGG_L3GDelivery.yaml#/components/schemas/Address'\nmsgTopics:\ntype: array\nitems:\ntype: string\nminItems: 1\ndescription: A list of Messaging Topics to be subscribed.\nexprTime:\n$ref: 'TS29122_CommonData.yaml#/components/schemas/DateTime'\nTopicSubscriptionAck:\ndescription: Response of Messaging Topic subscription\ntype: object\nrequired:\n- subStat\nproperties:\nsubStat:\ntype: string\nexprTime:\n$ref: 'TS29122_CommonData.yaml#/components/schemas/DateTime'\nTopicUnsubscription:\ndescription: Messaging Topic unsubscription data\ntype: object\nrequired:\n- oriAddr\n- msgTopics\nproperties:\noriAddr:\n$ref: 'TS29538_MSGG_L3GDelivery.yaml#/components/schemas/Address'\nmsgTopics:\ntype: array\nitems:\ntype: string\nminItems: 1\ndescription: A list of Messaging Topics to be unsubscribed.\nTopicListNotification:\ndescription: Messaging Topic list changes notification data\ntype: object\nrequired:\n- msgTopics\nproperties:\nexprTime:\n$ref: 'TS29122_CommonData.yaml#/components/schemas/DateTime'\nmsgTopics:\ntype: array\nitems:\n$ref: '#/components/schemas/MessagingTopic'\nminItems: 1\ndescription: list of Messaging Topics for notification.\nMessagingTopic:\ndescription: Represent Messaging Topic information\ntype: object\nrequired:\n- msgTopic\n- updateStat\nproperties:\nmsgTopic:\ntype: string\nupdateStat:\n$ref: '#/components/schemas/UpdateStatus'\n#\n# ENUMERATIONS DATA TYPES\n#\nUpdateStatus:\nanyOf:\n- type: string\nenum:\n- CREATED\n- DELETED\n- type: string\ndescription: >\nThis string provides forward-compatibility with future extensions to the enumeration\nand is not used to encode content defined in the present version of this API.\ndescription: |\nRepresents the Messaging Topic Update status.\nPossible values are:\n- CREATED: Indicates Topic newly created.\n- DELETED: Indicates Topic newly deleted.\nAnnex B (informative):Change history\nChange history\nDate\nMeeting\nTDoc\nCR\nRev\nCat\nSubject/Comment\nNew version\n2021-10\nCT3#118-e\nC3-215030\nDraft skeleton provided by the rapporteur\n0.0.0\n2021-10\nCT3#118-e\nC3-215479\nInclusion of documents agreed in CT3#118e C3-215116, C3-215165, C3-215206, C3-215432, C3-215441, C3-215462.\nEditorial change from the rapporteur.\nCorrection from the rapporteur.\n0.1.0\n2021-11\nCT3#119-e\nC3-216552\nInclusion of documents agreed in CT3#119e C3-216175, C3-216525, C3-216528, C3-216529, C3-216545, C3-216546, C3-216581.\nCorrection from the rapporteur.\n0.2.0\n2022-01\nCT3#119bis-e\nC3-220458\nInclusion of documents agreed in CT3#119bis-e C3-220384, C3-220385, C3-220386, C3-220387, C3-220389, C3-220391, C3-220410, C3-220411, C3-220412 and C3-220413.\nCorrection from the rapporteur.\n0.3.0\n2022-02\nCT3#120e\nC3-221559\nInclusion of documents agreed in CT3#120e C3-221245, C3-221246, C3-221247, C3-221248, C3-221249, C3-221529, C3-221530, C3-221531, C3-221532, C3-221533, C3-222534, C3-221535, C3-221536, C3-221537, C3-221538, C3-221541, C3-221542, C3-221543, C3-221544, C3-221545, C3-221546, C3-221547, C3-221548 and C3-221549.\nCorrection from the rapporteur.\n0.4.0\n2022-03\nCT#95e\nCP-220163\nPresentation to TSG CT for approval\n1.0.0\n2022-03\nCT#95e\nCP-220163\nApproved by TSG CT\n17.0.0\n2022-06\nCT#96\nCP-221118\n0001\n1\nB\nAdd Usage of Network Capabilities in MSGin5G Server\n17.1.0\n2022-06\nCT#96\nCP-221118\n0002\n1\nF\nUpdate of abbreviations and terms\n17.1.0\n2022-06\nCT#96\nCP-221118\n0003\n1\nF\nUpdate the Presence condition of appId in Table 8.1.5.2.2-1\n17.1.0\n2022-06\nCT#96\nCP-221151\n0004\nF\nUpdate of info and externalDocs fields\n17.1.0\n2022-09\nCT#97e\nCP-222092\n0005\n2\nF\nUpdate the Presence condition of Store and forward flag\n17.2.0\n2022-12\nCT#98-e\nCP-223199\n0007\n1\nF\nMSGS_ASRegistration_Deregister operation related corrections in the description clause\n18.0.0\n2022-12\nCT#98-e\nCP-223199\n0008\n1\nF\nMSGS_ASRegistration_Request operation related corrections in the description clause\n18.0.0\n2022-12\nCT#98-e\nCP-223185\n0009\nF\n\"Error handling\" clause: alignment with other NBI and 5GS APIs\n18.0.0\n2022-12\nCT#98-e\nCP-223200\n0010\n1\nF\nRewording some description of data structure in clasue 5.3.2\n18.0.0\n2022-12\nCT#98-e\nCP-223200\n0011\n1\nF\nChange the underline to hyphen of the apiname in clause 5.1\n18.0.0\n2022-12\nCT#98-e\nCP-223189\n0012\nF\nUpdate of info and externalDocs fields\n18.0.0\n2023-03\nCT#99\nCP-230156\n0013\n1\nF\nCorrection of the description fields in enumerations\n18.1.0\n2023-03\nCT#99\nCP-230161\n0014\nF\nUpdate of info and externalDocs fields\n18.1.0\n2023-06\nCT#100\nCP-231150\n0015\n1\nB\nUpdate of Scope for Broadcast Messaging\n18.2.0\n2023-06\nCT#100\nCP-231150\n0016\n1\nD\nEditorial Fixes of Words and Numbers\n18.2.0\n2023-06\nCT#100\nCP-231150\n0017\n1\nB\nUpdate the terms and overview\n18.2.0\n2023-06\nCT#100\nCP-231150\n0018\n1\nB\nMSGG_BGDelivery Service introduction\n18.2.0\n2023-06\nCT#100\nCP-231150\n0019\n1\nB\nMSGG_BGDelivery service description and operations\n18.2.0\n2023-06\nCT#100\nCP-231150\n0020\n1\nB\nMSGG_BGDelivery API\n18.2.0\n2023-06\nCT#100\nCP-231337\n0021\n1\nB\nNew OpenAPI file for MSGG_BGDelivery API\n18.2.0\n2023-06\nCT#100\nCP-231150\n0022\n1\nB\nUpdate Scope for Topic Messaging\n18.2.0\n2023-06\nCT#100\nCP-231150\n0023\n1\nB\nAdd service of Topic Messaging\n18.2.0\n2023-06\nCT#100\nCP-231150\n0024\n1\nD\nReference Clause Number Correction\n18.2.0\n2023-08\nCT#101\nCP-232111\n0026\n1\nF\nRemove the IE of security credentials in message delivery procedures\n18.3.0\n2023-08\nCT#101\nCP-232111\n0027\nF\nCorrections on MSGS_BGDelivery API\n18.3.0\n2023-08\nCT#101\nCP-232111\n0028\n1\nF\nUpdate the service operations of message delivery status report\n18.3.0\n2023-08\nCT#101\nCP-232085\n0029\nF\nUpdate of info and externalDocs fields\n18.3.0\n2023-12\nCT#102\nCP-233251\n0030\n1\nF\nCorrection on the openAPI files\n18.4.0\n2023-12\nCT#102\nCP-233251\n0032\n1\nF\nCorrections to BgMessageDelivery data type\n18.4.0\n2023-12\nCT#102\nCP-233251\n0033\n1\nB\nIntroduction update for Messaging Topic Events\n18.4.0\n2023-12\nCT#102\nCP-233251\n0034\n1\nB\nService Description of Messaging Topic Events\n18.4.0\n2023-12\nCT#102\nCP-233251\n0035\n1\nB\nService Operation for Messaging Topic List Subscription\n18.4.0\n2023-12\nCT#102\nCP-233251\n0036\n1\nB\nService Operation for Messaging Topic Subscription\n18.4.0\n2023-12\nCT#102\nCP-233251\n0037\n2\nB\nMessaging Topic Events API\n18.4.0\n2023-12\nCT#102\nCP-233251\n0039\n2\nF\nCorrection on Terms and Abbreviations\n18.4.0\n2023-12\nCT#102\nCP-233251\n0040\n1\nF\nCorrections to BgMessageDelivery data type\n18.4.0\n2023-12\nCT#102\nCP-233251\n0041\nF\nCorrection on Messaging Topic Events API\n18.4.0\n2023-12\nCT#102\nCP-233229\n0042\n1\nF\nIETF HTTP RFCs obsoleted by RFCs 9110, 9111, 9112 and 9113\n18.4.0\n2023-12\nCT#102\nCP-233237\n0044\nF\nUpdate of info and externalDocs fields\n18.4.0\n2024-03\nCT#103\nCP-240196\n0045\n1\nF\nCorrections in MSGG_BGDelivery API\n18.5.0\n2024-03\nCT#103\nCP-240196\n0046\nF\nUpdates API provided by MSGin5G Server\n18.5.0\n2024-03\nCT#103\nCP-240196\n0047\n1\nB\nOpenAPI and Corrections for TopiclistEvent\n18.5.0\n2024-03\nCT#103\nCP-240166\n0048\nF\nUpdate of info and externalDocs fields\n18.5.0\n2024-06\nCT#104\nCP-241123\n0049\n1\nF\nCallback correction to MSGS_TopicListEvent API\n18.6.0\n2024-06\nCT#104\nCP-241123\n0050\n1\nF\nEditorial fixes on service and API descriptions\n18.6.0\n2024-06\nCT#104\nCP-241123\n0051\nF\nEN resolutions within MSGG_BGDelivery API\n18.6.0\n2024-06\nCT#104\nCP-241251\n0052\n2\nF\nCorrect references and clarify regarding NBI usage\n18.6.0\n2024-06\nCT#104\nCP-241086\n0053\nF\nUpdate of info and externalDocs fields\n18.6.0\n2024-07\nCT#104\nCorrection to fix OpenAPI parsing errors\n18.6.1\n2024-09\nCT#105\nCP-242152\n0055\nF\nCorrections to add the missing resource representation in resource creation response\n18.7.0\n2024-09\nCT#105\nCP-242152\n0056\nF\nCorrections to the resource deletion definition\n18.7.0\n2024-09\nCT#105\nCP-242120\n0057\nF\nUpdate of info and externalDocs fields\n18.7.0\n2025-02\nCT#107\nCP-250120\n0064\nF\nNecessary corrections to the MSGS_TopiclistEvent API\n18.8.0\n2025-02\nCT#107\nCP-250128\n0067\nF\nUpdate of info and externalDocs fields\n18.8.0",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.554_clause_8.9.2.2",
+        "ts_23.554_clause_8.2.1",
+        "ts_29.522_clause_4.4.3",
+        "ts_29.122_clause_4.4.6",
+        "ts_21.900_clause_5",
+        "ts_21.900_clause_5.3.1",
+        "ts_29.122_clause_5.2.4",
+        "clause_18.0.0",
+        "clause_5.1",
+        "table_8.1.5.2.2-1",
+        "ts_23.554",
+        "ts_29.522",
+        "ts_29.122",
+        "ts_21.900",
+        "ts_29.501",
+        "ts_29.538",
+        "ts_18.4"
+      ]
+    }
+  ]
+}

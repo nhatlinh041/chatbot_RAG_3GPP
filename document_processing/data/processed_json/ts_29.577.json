@@ -1,0 +1,903 @@
+{
+  "metadata": {
+    "specification_id": "ts_29.577",
+    "version": "18.4.0",
+    "title": "3GPP TS 29.577",
+    "file_path": "/content/drive/MyDrive/RAG_thesis/data/29_series/29577-i40/29577-i40.docx"
+  },
+  "export_info": {
+    "export_date": "2025-07-26T08:46:24.694348",
+    "total_chunks": 77
+  },
+  "chunks": [
+    {
+      "chunk_id": "ts_29.577_1",
+      "section_id": "1",
+      "section_title": "Scope",
+      "content": "The present document specifies the stage 3 protocol and data model for the Nipsmgw and Nrouter Service Based Interface. It provides stage 3 protocol definitions and message flows, and specifies the API for each service offered by the IP-SM-GW and SMS Router.\nThe 5G System stage 2 architecture and procedures are specified in 3GPP TS 23.501 [2] and 3GPP TS 23.502 [3].\nThe Technical Realization of the Service Based Architecture and the Principles and Guidelines for Services Definition are specified in TS 29.500 [4] and TS 29.501 [5].\nThe Stage 2 architecture, procedures and services to support service based short message service (SMS) in 5G system (5GS) is specified in 3GPP TS 23.540 [14].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.501",
+        "ts_23.502",
+        "ts_29.500",
+        "ts_29.501",
+        "ts_23.540"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.577_2",
+      "section_id": "2",
+      "section_title": "References",
+      "content": "The following documents contain provisions which, through reference in this text, constitute provisions of the present document.\n-\tReferences are either specific (identified by date of publication, edition number, version number, etc.) or non‑specific.\n-\tFor a specific reference, subsequent revisions do not apply.\n-\tFor a non-specific reference, the latest version applies. In the case of a reference to a 3GPP document (including a GSM document), a non-specific reference implicitly refers to the latest version of that document in the same Release as the present document.\n[1]\t3GPP TR 21.905: \"Vocabulary for 3GPP Specifications\".\n[2]\t3GPP TS 23.501: \"System Architecture for the 5G System; Stage 2\".\n[3]\t3GPP TS 23.502: \"Procedures for the 5G System; Stage 2\".\n[4]\t3GPP TS 29.500: \"5G System; Technical Realization of Service Based Architecture; Stage 3\".\n[5]\t3GPP TS 29.501: \"5G System; Principles and Guidelines for Services Definition; Stage 3\".\n[6]\tOpenAPI: \"OpenAPI Specification Version 3.0.0\", https://spec.openapis.org/oas/v3.0.0.\n[7]\t3GPP TR 21.900: \"Technical Specification Group working methods\".\n[8]\t3GPP TS 33.501: \"Security architecture and procedures for 5G system\".\n[9]\tIETF RFC 6749: \"The OAuth 2.0 Authorization Framework\".\n[10]\t3GPP TS 29.510: \"5G System; Network Function Repository Services; Stage 3\".\n[11]\tIETF RFC 9113: \"HTTP/2\".\n[12]\tIETF RFC 8259: \"The JavaScript Object Notation (JSON) Data Interchange Format\".\n[13]\tIETF RFC 9457: \"Problem Details for HTTP APIs\".\n[14]\t3GPP TS 23.540: \"5G System; Technical realization of Service Based Short Message Service; Stage 2\".\n[15]\t3GPP TS 29.571: \"5G System; Common Data Types for Service Based Interfaces; Stage 3\".\n[16]\t3GPP TS 23.040: \"Technical realization of the Short Message Service (SMS)\".\n[17]\t3GPP TS 24.011: \"Point-to-Point (PP) Short Message Service (SMS) support on mobile radio interface\".\n[18]\tIETF RFC 2387: \"The MIME Multipart/Related Content-type\".\n[19]\tIETF RFC 2045: \"Multipurpose Internet Mail Extensions (MIME) Part One: Format of Internet Message Bodies\".",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905",
+        "ts_23.501",
+        "ts_23.502",
+        "ts_29.500",
+        "ts_29.501",
+        "ts_21.900",
+        "ts_33.501",
+        "ts_29.510",
+        "ts_23.540",
+        "ts_29.571",
+        "ts_23.040",
+        "ts_24.011"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.577_3.1",
+      "section_id": "3.1",
+      "section_title": "Definitions",
+      "content": "For the purposes of the present document, the terms and definitions given in 3GPP TR 21.905 [1] and the following apply. A term defined in the present document takes precedence over the definition of the same term, if any, in 3GPP TR 21.905 [1].\nGateway MSC For Short Message Service (SMS‑GMSC): function of an MSC capable of receiving a short message from an SC, interrogating an HLR/HSS/UDM for routing information and SMS info, and delivering the short message to the VMSC/SGSN/MME/SMSF of the recipient MS/UE.\nIP-Short-Message-Gateway (IP-SM-GW): function responsible for protocol interworking between the IP-based UE and the SC.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_21.905"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.577_3.2",
+      "section_id": "3.2",
+      "section_title": "Abbreviations",
+      "content": "For the purposes of the present document, the abbreviations given in 3GPP TR 21.905 [1] and the following apply. An abbreviation defined in the present document takes precedence over the definition of the same abbreviation, if any, in 3GPP TR 21.905 [1].\nIP-SM-GW\tIP Short Message Gateway\nSM MO\tShort Message Mobile Originated\nSM MT\tShort Message Mobile Terminated\nSMSF\tShort Message Service Function",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.577_4.1",
+      "section_id": "4.1",
+      "section_title": "Introduction",
+      "content": "Within the 5GC, the IP-SM-GW offers services to the UDM or SMS-GMSC via the Nipsmgw service based interface, the SMS Router offers services to the UDM or SMS-GMSC via the Nrouter service based interface (see 3GPP TS 23.540 [14], 3GPP TS 23.501 [2] and 3GPP TS 23.502 [3]).\nFigure 4.1-1 and Figure 4.1-2 provide the reference model (in service based interface representation and in reference point representation), with focus on the IP-SM-GW and SMS Router and the scope of the present specification.\nFigure 4.1-1: Reference model – IP-SM-GW\nFigure 4.1-2: Reference model – SMS Router\nThe functionalities supported by the IP-SM-GW and SMS Router are listed in 3GPP TS 23.540 [14].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.501_figure_4.1-1",
+        "figure_4.1-2",
+        "figure_4.1-1",
+        "ts_23.540",
+        "ts_23.501",
+        "ts_23.502"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.577_5.1",
+      "section_id": "5.1",
+      "section_title": "Introduction",
+      "content": "The IP-SM-GW offers to other NFs the following service:\n-\tNipsmgw_SMService\nThe SMS Router offers to other NFs the following service:\n-\tNrouter_SMService\nThe Nipsmgw_SMService service and Nrouter_SMService service are specified in 3GPP TS 23.540 [14].\nTable 5.1-1 summarizes the corresponding APIs defined for this specification.\nTable 5.1-1: API Descriptions\nService Name\nClause\nDescription\nOpenAPI Specification File\napiName\nAnnex\nNipsmgw_SMService\n6.1\nIP-SM-GW SMService Service\nTS29577_Nipsmgw_SMService.yaml\nnipsmgw-smservice\nA.2\nNrouter_SMService\n6.2\nSMS Router SMService Service\nTS29577_Nrouter_SMService.yaml\nnrouter-smservice\nA.3",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.540_table_5.1-1",
+        "table_5.1-1",
+        "ts_23.540"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.577_5.2.1",
+      "section_id": "5.2.1",
+      "section_title": "Service Description",
+      "content": "The Nipsmgw_SMService service provides SBI-based MT SM transmit through IP-SM-GW. The IP-SM-GW is acting as NF Service Producer, while the UDM or SMS-GMSC is the NF Service Consumer.\nFollowing functionalities are provided by the Nipsmgw_SMService service:\n-\tProvide Routing Information;\n-\tTransmit downlink SMS message.\nThe Nipsmgw_SMService service supports the following service operations.\nTable 5.2.1-1: Service operations supported by the Nipsmgw_SMService service\nService Operations\nDescription\nOperation\nSemantics\nExample Consumer(s)\nRoutingInfo\nProvide Routing Information.\nRequest/Response\nUDM\nMtForwardSm\nTransmit downlink SMS message.\nRequest/Response\nSMS-GMSC",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.2.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.577_5.2.2.1",
+      "section_id": "5.2.2.1",
+      "section_title": "Introduction",
+      "content": "See Table 5.2.1-1 for an overview of the service operations supported by the Nipsmgw_SMService service.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.2.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.577_5.2.2.2.1",
+      "section_id": "5.2.2.2.1",
+      "section_title": "General",
+      "content": "The RoutingInfo service operation shall be used to provide the SMSF Instance Id to the IP-SM-GW.\nIt is used in the following procedures:\n-\tSuccessful Mobile Terminated short message transfer via IP-SM-GW (see clause 5.1.4 of 3GPP TS 23.540 [14]).\n-\tUnsuccessful Mobile Terminated short message transfer via IP-SM-GW (see clause 5.1.6 of 3GPP TS 23.540 [14]).\nThe NF Service Consumer (e.g. UDM) shall provide the SMSF Instance Id to the IP-SM-GW by using the HTTP PUT method as shown in Figure 5.2.2.2.1-1.\nFigure 5.2.2.2.1-1: Routing Information creation\n1.\tThe NF Service Consumer shall send a PUT request to the resource representing the UE's Mobile Terminated Short Message Information resource (i.e. …/mt-sms/{gpsi}) of the IP-SM-GW to update or create the routing information for a given UE. The content of the PUT request shall contain:\n-\tSMSF Instance Id\n-\tSMSF Registration information (for each access type)\nNOTE:\tSMSF Instance Id is kept for backwards-compatibility reasons, but its content is included in the SMSF Registration information parameters.\n2a.\tIf the resource does not exist (there is no previous routing information stored in IP-SM-GW for that user), IP-SM-GW stores the received routing data and returns a \"201 Created\" response with the \"Location\" header containing the URI of the created resource.\nThe PUT response body shall include:\n-\tthe IP address of the IP-SM-GW (to be sent by the UDM to the SMS-GMSC); and/or\n-\tthe FQDN of the IP-SM-GW (to be sent by the UDM to the SMS-GMSC); and/or\n-\tthe NF Instance ID of the IP-SM-GW\n2b. If the resource exists (there is previous routing information stored in IP-SM-GW for that user), the IP-SM-GW updates the routing data by replacing it with the received information, and responds with \"200 OK\" or \"204 No Content\".\n2c.\tOn failure, or redirection, one of the HTTP status code listed in Table 6.1.3.3.3.1-3 shall be returned.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_23.540_clause_5.1.4",
+        "ts_23.540_clause_5.1.6",
+        "table_6.1.3.3.3.1-3",
+        "figure_5.2.2.2.1-1",
+        "ts_23.540"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.577_5.2.2.3.1",
+      "section_id": "5.2.2.3.1",
+      "section_title": "General",
+      "content": "The MtForwardSm service operation shall be used to transmit downlink SMS message via IP-SM-GW.\nIt is used in the following procedures:\n-\tSuccessful Mobile Terminated short message transfer via IP-SM-GW (see clause 5.1.4 of 3GPP TS 23.540 [14]).\n-\tUnsuccessful Mobile Terminated short message transfer via IP-SM-GW (see clause 5.1.6 of 3GPP TS 23.540 [14]).\nThe NF Service Consumer (e.g. SMS-GMSC) shall transmit downlink SMS message to the IP-SM-GW by using the HTTP POST method as shown in Figure 5.2.2.3.1-1.\nFigure 5.2.2.3.1-1: Transmit downlink SMS message\n1.\tThe NF Service Consumer shall send a POST request to the resource representing the UE's Mobile Terminated Short Message Information resource (i.e. …/mt-sms/{gpsi}/sendsms) of the IP-SM-GW. The content of the POST request shall contain the SMS message to be sent.\n2a.\tOn success, \"200 OK\" shall be returned with \"SmsDeliveryData\" object contains the MT SMS Delivery Report in the response body.\n2b.\tOn failure, or redirection, one of the HTTP status code listed in Table 6.1.3.3.4.2.2-2 shall be returned.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_23.540_clause_5.1.4",
+        "ts_23.540_clause_5.1.6",
+        "table_6.1.3.3.4.2.2-2",
+        "figure_5.2.2.3.1-1",
+        "ts_23.540"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.577_5.3.1",
+      "section_id": "5.3.1",
+      "section_title": "Service Description",
+      "content": "The Nrouter_SMService service provides SBI-based MT SM transmit through SMS Router. The SMS Router is acting as NF Service Producer, while the UDM or SMS-GMSC is the NF Service Consumer.\nFollowing functionalities are provided by the Nrouter_SMService service:\n-\tProvide Routing Information;\n-\tTransmit downlink SMS message.\nThe Nrouter_SMService service supports the following service operations.\nTable 5.3.1-1: Service operations supported by the Nrouter_SMService service\nService Operations\nDescription\nOperation\nSemantics\nExample Consumer(s)\nRoutingInfo\nProvide Routing Information.\nRequest/Response\nUDM\nMtForwardSm\nTransmit downlink SMS message.\nRequest/Response\nSMS-GMSC",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.3.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.577_5.3.2.1",
+      "section_id": "5.3.2.1",
+      "section_title": "Introduction",
+      "content": "See Table 5.3.1-1 for an overview of the service operations supported by the Nrouter_SMService service.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.3.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.577_5.3.2.2.1",
+      "section_id": "5.3.2.2.1",
+      "section_title": "General",
+      "content": "The RoutingInfo service operation shall be used to provide the SMSF Instance Id to the SMS Router.\nIt is used in the following procedures:\n-\tSuccessful Mobile Terminated short message transfer via SMS Router (see clause 5.1.3 of 3GPP TS 23.540 [14]).\n-\tUnsuccessful Mobile Terminated short message transfer via SMS Router (see clause 5.1.9 of 3GPP TS 23.540 [14]).\nThe NF Service Consumer (e.g. UDM) shall provide the SMSF Instance Id to the SMS Router by using the HTTP PUT method as shown in Figure 5.3.2.2.1-1.\nFigure 5.3.2.2.1-1: Routing Information creation\n1.\tThe NF Service Consumer shall send a PUT request to the resource representing the UE's Mobile Terminated Short Message Information resource (i.e. …/mt-sms/{gpsi}) of the SMS Router to update or create the routing information for a given UE. The content of the PUT request shall contain:\n-\tSMSF Instance Id\n-\tSMSF Registration information (for each access type)\nNOTE:\tSMSF Instance Id is kept for backwards-compatibility reasons, but its content is included in the SMSF Registration information parameters.\n2a.\tIf the resource does not exist (there is no previous routing information stored in SMS Router for that user), SMS Router stores the received routing data and returns a \"201 Created\" response with the \"Location\" header containing the URI of the created resource.\nThe PUT response body shall include:\n-\tthe IP address of the SMS Router (to be sent by the UDM to the SMS-GMSC); and/or\n-\tthe FQDN of the SMS Router (to be sent by the UDM to the SMS-GMSC); and/or\n-\tthe NF Instance ID of the SMS Router\n2b. If the resource exists (there is previous routing information stored in SMS Router for that user), the SMS Router updates the routing data by replacing it with the received information, and responds with \"200 OK\" or \"204 No Content\".\n2c.\tOn failure, or redirection, one of the HTTP status code listed in Table 6.2.3.3.3.1-3 shall be returned.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_23.540_clause_5.1.3",
+        "ts_23.540_clause_5.1.9",
+        "table_6.2.3.3.3.1-3",
+        "figure_5.3.2.2.1-1",
+        "ts_23.540"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.577_5.3.2.3.1",
+      "section_id": "5.3.2.3.1",
+      "section_title": "General",
+      "content": "The MtForwardSm service operation shall be used to transmit downlink SMS message via SMS Router.\nIt is used in the following procedures:\n-\tSuccessful Mobile Terminated short message transfer via SMS Router (see clause 5.1.3 of 3GPP TS 23.540 [14]).\n-\tUnsuccessful Mobile Terminated short message transfer via SMS Router (see clause 5.1.9 of 3GPP TS 23.540 [14]).\nThe NF Service Consumer (e.g. SMS-GMSC) shall transmit downlink SMS message to the SMS Router by using the HTTP POST method as shown in Figure 5.3.2.3.1-1.\nFigure 5.3.2.3.1-1: Transmit downlink SMS message\n1.\tThe NF Service Consumer shall send a POST request to the resource representing the UE's Mobile Terminated Short Message Information resource (i.e. …/mt-sms/{gpsi}/sendsms) of the SMS Router. The content of the POST request shall contain the SMS message to be sent.\n2a.\tOn success, \"200 OK\" shall be returned with \"SmsDeliveryData\" object contains the MT SMS Delivery Report in the response body.\n2b.\tOn failure, or redirection, one of the HTTP status code listed in Table 6.2.3.3.4.2.2-2 shall be returned.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_23.540_clause_5.1.3",
+        "ts_23.540_clause_5.1.9",
+        "table_6.2.3.3.4.2.2-2",
+        "figure_5.3.2.3.1-1",
+        "ts_23.540"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.577_6.1.1",
+      "section_id": "6.1.1",
+      "section_title": "Introduction",
+      "content": "The Nipsmgw_SMService shall use the Nipsmgw_SMService API.\nThe API URI of the Nipsmgw_SMService API shall be:\n{apiRoot}/<apiName>/<apiVersion>\nThe request URIs used in HTTP requests from the NF service consumer towards the NF service producer shall have the Resource URI structure defined in clause 4.4.1 of 3GPP TS 29.501 [5], i.e.:\n{apiRoot}/<apiName>/<apiVersion>/<apiSpecificResourceUriPart>\nwith the following components:\n-\tThe {apiRoot} shall be set as described in 3GPP TS 29.501 [5].\n-\tThe <apiName> shall be \"nipsmgw-smservice\".\n-\tThe <apiVersion> shall be \"v1\".\n-\tThe <apiSpecificResourceUriPart> shall be set as described in clause 6.1.3.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.501_clause_4.4.1",
+        "clause_6.1.3",
+        "ts_29.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.577_6.1.2.1",
+      "section_id": "6.1.2.1",
+      "section_title": "General",
+      "content": "HTTP/2, IETF RFC 9113 [11], shall be used as specified in clause 5 of 3GPP TS 29.500 [4].\nHTTP/2 shall be transported as specified in clause 5.3 of 3GPP TS 29.500 [4].\nThe OpenAPI [6] specification of HTTP messages and content bodies for the Nipsmgw_SMService API is contained in Annex A.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.500_clause_5",
+        "ts_29.500_clause_5.3",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.577_6.1.2.2.1",
+      "section_id": "6.1.2.2.1",
+      "section_title": "General",
+      "content": "See clause 5.2.2 of 3GPP TS 29.500 [4] for the usage of HTTP standard headers.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.500_clause_5.2.2",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.577_6.1.2.2.2",
+      "section_id": "6.1.2.2.2",
+      "section_title": "Content type",
+      "content": "JSON, IETF RFC 8259 [12], shall be used as content type of the HTTP bodies specified in the present specification as specified in clause 5.4 of 3GPP TS 29.500 [4]. The use of the JSON format shall be signalled by the content type \"application/json\".\n\"Problem Details\" JSON object shall be used to indicate additional details of the error in a HTTP response body and shall be signalled by the content type \"application/problem+json\", as defined in IETF RFC 9457 [13].\nMultipart messages shall also be supported (see clause 6.1.2.4) using the content type \"multipart/related\", comprising:\n-\tone JSON body part with the \"application/json\" content type; and\n-\tone binary body part with 3gpp vendor specific content subtypes.\nThe 3gpp vendor specific content subtypes defined in Table 6.1.2.2.2-1 shall be supported.\nTable 6.1.2.2.2-1: 3GPP vendor specific content subtypes\ncontent subtype\nDescription\nvnd.3gpp.sms\nBinary encoded payload, encoding SMS payload, as specified in 3GPP TS 23.040 [16] and 3GPP TS 24.011 [17].\nNOTE:\tUsing 3GPP vendor content subtypes allows to describe the nature of the opaque payload (e.g. SMS payload) without having to rely on metadata in the JSON payload.\nSee clause 6.1.2.4 for the binary payloads supported in the binary body part of multipart messages.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_5.4",
+        "clause_6.1.2.4",
+        "table_6.1.2.2.2-1",
+        "ts_29.500",
+        "ts_23.040",
+        "ts_24.011"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.577_6.1.2.3",
+      "section_id": "6.1.2.3",
+      "section_title": "HTTP custom headers",
+      "content": "The mandatory HTTP custom header fields specified in clause 5.2.3.2 of 3GPP TS 29.500 [4] shall be supported, and the optional HTTP custom header fields specified in clause 5.2.3.3 of 3GPP TS 29.500 [4] may be supported.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_5.2.3.2",
+        "ts_29.500_clause_5.2.3.3",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.577_6.1.2.4",
+      "section_id": "6.1.2.4",
+      "section_title": "HTTP multipart messages",
+      "content": "HTTP multipart messages shall be supported, to transfer opaque SMS payload (e.g. SMS message, CP Ack, etc.), in the following service operations (and HTTP messages):\n-\tMtForwardSm service operation;\nHTTP multipart messages shall include one JSON body part and one binary body part comprising content of SMS payload content (see clause 6.1.6.5).\nThe JSON body part shall be the \"root\" body part of the multipart message. It shall be encoded as the first body part of the multipart message. The \"Start\" parameter does not need to be included.\nThe multipart message shall include a \"type\" parameter (see IETF RFC 2387 [18]) specifying the media type of the root body part, i.e. \"application/json\".\nNOTE:\tThe \"root\" body part (or \"root\" object) is the first body part the application processes when receiving a multipart/related message, see IETF RFC 2387 [18]. The default root is the first body within the multipart/related message. The \"Start\" parameter indicates the root body part, e.g. when this is not the first body part in the message.\nA binary body part shall include a Content-ID header (see IETF RFC 2045 [19]), and the JSON body part shall make a reference to the binary body part using the Content-ID header field.\nExamples of multipart/related messages can be found in Annex B.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_6.1.6.5"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.577_6.1.3.1",
+      "section_id": "6.1.3.1",
+      "section_title": "Overview",
+      "content": "This clause describes the structure for the Resource URIs and the resources and methods used for the service.\nFigure 6.1.3.1-1 depicts the resource URIs structure for the Nipsmgw_SMService API.\nFigure 6.1.3.1-1: Resource URI structure of the Nipsmgw_SMService API\nTable 6.1.3.1-1 provides an overview of the resources and applicable HTTP methods.\nTable 6.1.3.1-1: Resources and methods overview\nResource purpose/name\nResource URI (relative path after API URI)\nHTTP method or custom operation\nDescription (service operation)\nMtSmInfos\n(Collection)\n/mt-sm-infos\nMtSmInfo\n(Document)\n/mt-sm-infos/{gpsi}\nPUT\nCreate Routing Information for MT SMS.\n/mt-sm-infos/{gpsi}/sendsms\nsendsms\n(POST)\nIt is used for the MtForwardSm service operation, to allow NF Service Consumer to send SMS payload in downlink direction.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "table_6.1.3.1-1",
+        "figure_6.1.3.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.577_6.1.3.2.1",
+      "section_id": "6.1.3.2.1",
+      "section_title": "Description",
+      "content": "This resource represents the collection of Mobile Terminated Short Message Information in IP-SM-GW.\nThis resource is modelled with the Collection resource archetype (see clause C.2 of 3GPP TS 29.501 [5]).\nNo HTTP method has been defined for this resource.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.577_6.1.3.2.2",
+      "section_id": "6.1.3.2.2",
+      "section_title": "Resource Definition",
+      "content": "Resource URI: {apiRoot}/nipsmgw-smsevice/<apiVersion>/mt-sm-infos\nThis resource shall support the resource URI variables defined in table 6.1.3.2.2-1.\nTable 6.1.3.2.2-1: Resource URI variables for this resource\nName\nData type\nDefinition\napiRoot\nstring\nSee clause 6.1.1",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_6.1.1",
+        "table_6.1.3.2.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.577_6.1.3.2.3",
+      "section_id": "6.1.3.2.3",
+      "section_title": "Resource Standard Methods",
+      "content": "No HTTP method has been defined for the Mobile Terminated Short Message Information collection resource.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.577_6.1.3.3.1",
+      "section_id": "6.1.3.3.1",
+      "section_title": "Description",
+      "content": "This resource represents an individual Mobile Terminated Short Message Information in IP-SM-GW.\nThis resource is modelled with the Document resource archetype (see clause C.1 of 3GPP TS 29.501 [5]).",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.577_6.1.3.3.2",
+      "section_id": "6.1.3.3.2",
+      "section_title": "Resource Definition",
+      "content": "Resource URI: {apiRoot}/nipsmgw-smsevice/<apiVersion>/mt-sm-infos/{gpsi}\nThis resource shall support the resource URI variables defined in table 6.1.3.3.2-1.\nTable 6.1.3.3.2-1: Resource URI variables for this resource\nName\nData type\nDefinition\napiRoot\nstring\nSee clause 6.1.1\ngpsi\ngpsi\nRepresents the Generic Public Subscription Identifier with MSISDN (see 3GPP TS 23.501 [2] clause 5.9.8)\npattern: See pattern of type Gpsi in 3GPP TS 29.571 [15]",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_6.1.1",
+        "ts_23.501_clause_5.9.8",
+        "table_6.1.3.3.2-1",
+        "ts_23.501",
+        "ts_29.571"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.577_6.1.3.3.3",
+      "section_id": "6.1.3.3.3",
+      "section_title": "Resource Standard Methods",
+      "content": "6.1.3.3.3.1\tPUT\nThis method creates an individual resource of Mobile Terminated Short Message Information in the IP-SM-GW, or updates the indicated resource of Mobile Terminated Short Message Information in the IP-SM-GW.\nThis method shall support the URI query parameters specified in table 6.1.3.3.3.1-1.\nTable 6.1.3.3.3.1-1: URI query parameters supported by the PUT method on this resource\nName\nData type\nP\nCardinality\nDescription\nApplicability\nn/a\nThis method shall support the request data structures specified in table 6.1.3.3.3.1-2 and the response data structures and response codes specified in table 6.1.3.3.3.1-3.\nTable 6.1.3.3.3.1-2: Data structures supported by the PUT Request Body on this resource\nData type\nP\nCardinality\nDescription\nCreateRoutingData\nM\n1\nRepresentation of the UE's Mobile Terminated Short Message Information to be created in the IP-SM-GW, or to be updated in the IP-SM-GW.\nTable 6.1.3.3.3.1-3: Data structures supported by the PUT Response Body on this resource\nData type\nP\nCardinality\nResponse\ncodes\nDescription\nCreatedRoutingData\nM\n1\n201 Created\nThis case represents the successful creation of an UE's Mobile Terminated Short Message Information.\nThe HTTP response shall include a \"Location\" HTTP header that contains the resource URI of the created resource.\nCreatedRoutingData\nM\n1\n200 OK\nUpon success, a response body containing a representation of the updated UE's Mobile Terminated Short Message Information shall be returned.\nn/a\n204 No Content\nUpon success, an empty response body shall be returned\nRedirectResponse\nO\n0..1\n307 Temporary Redirect\nTemporary redirection.\n(NOTE 2)\nRedirectResponse\nO\n0..1\n308 Permanent Redirect\nPermanent redirection.\n(NOTE 2)\nNOTE 1:\tThe manadatory HTTP error status code for the PUT method listed in Table 5.2.7.1-1 of 3GPP TS 29.500 [4] also apply.\nNOTE 2:\tRedirectResponse may be inserted by an SCP, see clause 6.10.9.1 of 3GPP TS 29.500 [4].\nTable 6.1.3.3.3.1-4: Headers supported by the 201 response code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nContains the URI of the newly created resource, according to the structure: {apiRoot}/nipsmgw-smsevice/<apiVersion>/mt-sm-infos/{gpsi}\nTable 6.1.3.3.3.1-5: Headers supported by the 307 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located on an alternative service instance within the same IP-SM-GW or IP-SM-GW (service) set.\nFor the case, when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target NF (service) instance ID towards which the request is redirected\nTable 6.1.3.3.3.1-6: Headers supported by the 308 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located on an alternative service instance within the same IP-SM-GW or IP-SM-GW (service) set.\nFor the case, when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target NF (service) instance ID towards which the request is redirected",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.500_clause_6.10.9.1",
+        "table_6.1.3.3.3.1-1",
+        "table_6.1.3.3.3.1-2",
+        "table_6.1.3.3.3.1-3",
+        "ts_29.500_table_5.2.7.1-1",
+        "ts_29.500_table_6.1.3.3.3.1-4",
+        "table_6.1.3.3.3.1-5",
+        "table_6.1.3.3.3.1-6",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.577_6.1.3.3.4",
+      "section_id": "6.1.3.3.4",
+      "section_title": "Resource Custom Operations",
+      "content": "6.1.3.3.4.1\tOverview\nTable 6.1.3.3.4.1-1: Custom operations\nOperation name\nCustom operaration URI\nMapped HTTP method\nDescription\nsendsms\n/mt-sm-infos/{gpsii}/sendsms\nPOST\nSend MT SMS message or the related Delivery Report.\n6.1.3.3.4.2\tOperation: sendsms\n6.1.3.3.4.2.1\tDescription\nThis custom operation is used for NF Service Consumers to send SMS message in downlink direction.\n6.1.3.3.4.2.2\tOperation Definition\nThis custom operation is used to send a SMS payload to an UE's Mobile Terminated Short Message Information resource in the IP-SM-GW.\nThis operation shall support the request data structures specified in table 6.1.3.3.4.2.2-1 and the response data structure and response codes specified in table 6.1.3.3.4.2.2-2.\nTable 6.1.3.3.4.2.2-1: Data structures supported by the POST Request Body on this resource\nData type\nP\nCardinality\nDescription\nSmsData\nM\n1\nRepresentation of the MT SMS message to be sent.\nTable 6.1.3.3.4.2.2-2: Data structures supported by the POST Response Body on this resource\nData type\nP\nCardinality\nResponse\ncodes\nDescription\nSmsDeliveryData\nM\n1\n200 OK\nThis case represents the successful of sending SMS message in downlink direction, with necessary response data on the received delivery report.\nRedirectResponse\nO\n0..1\n307 Temporary Redirect\nTemporary redirection.\n(NOTE 2)\nRedirectResponse\nO\n0..1\n308 Permanent Redirect\nPermanent redirection.\n(NOTE 2)\nProblemDetails\nO\n0..1\n400 Bad Request\nThis case represents an unsuccessful delivery of SMS message.\nThe \"cause\" attribute may be used to indicate one of the following application errors:\n-\tSMS_PAYLOAD_MISSING, if the expected SMS payload content is missing;\n-\tSMS_PAYLOAD_ERROR, if error exists in the SMS payload content.\nProblemDetails\nO\n0..1\n404 Not Found\nThis case represents an unsuccessful delivery of SMS payload.\nThe \"cause\" attribute may be used to indicate one of the following application errors:\n-\tROUTING_INFO_NOT_FOUND, if the routing information for SMS to be operated is invalid or not found in IP-SM-GW.\n-\tUSER_NOT_FOUND, if the UE identified by the GPSI is not found in the IP-SM-GW.\nNOTE 1:\tThe manadatory HTTP error status code for the POST method listed in Table 5.2.7.1-1 of 3GPP TS 29.500 [4] also apply.\nNOTE 2:\tRedirectResponse may be inserted by an SCP, see clause 6.10.9.1 of 3GPP TS 29.500 [4].\nTable 6.1.3.3.4.2.2-3: Headers supported by the 307 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located on an alternative service instance within the same IP-SM-GW or IP-SM-GW (service) set.\nFor the case, when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target NF (service) instance ID towards which the request is redirected\nTable 6.1.3.3.4.2.2-4: Headers supported by the 308 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located on an alternative service instance within the same IP-SM-GW or IP-SM-GW (service) set.\nFor the case, when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target NF (service) instance ID towards which the request is redirected",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.500_clause_6.10.9.1",
+        "table_6.1.3.3.4.1-1",
+        "table_6.1.3.3.4.2.2-1",
+        "table_6.1.3.3.4.2.2-2",
+        "ts_29.500_table_5.2.7.1-1",
+        "ts_29.500_table_6.1.3.3.4.2.2-3",
+        "table_6.1.3.3.4.2.2-4",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.577_6.1.4",
+      "section_id": "6.1.4",
+      "section_title": "Custom Operations without associated resources",
+      "content": "In this release of this specification, no custom operations without associated resources are defined.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.577_6.1.5",
+      "section_id": "6.1.5",
+      "section_title": "Notifications",
+      "content": "In this release of this specification, no notification procedures are defined.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.577_6.1.6.1",
+      "section_id": "6.1.6.1",
+      "section_title": "General",
+      "content": "This clause specifies the application data model supported by the API.\nTable 6.1.6.1-1 specifies the data types defined for the Nipsmgw_SMService service based interface protocol.\nTable 6.1.6.1-1: Nipsmgw_SMService specific Data Types\nData type\nClause defined\nDescription\nApplicability\nCreateRoutingData\n6.1.6.2.2\nInformation used for creating or updating the routing information of the user.\nCreatedRoutingData\n6.1.6.2.3\nInformation used for receiving the MT SMS.\nSmsData\n6.1.6.2.4\nInformation within request message for delivering SMS.\nSmsDeliveryData\n6.1.6.2.5\nInformation within response message invoking MtForwardSm service operation, for delivering MT SMS Delivery Report.\nTable 6.1.6.1-2 specifies data types re-used by the Nipsmgw_SMService service based interface protocol from other specifications, including a reference to their respective specifications and when needed, a short description of their use within the Nipsmgw_SMService service based interface.\nTable 6.1.6.1-2: Nipsmgw_SMService re-used Data Types\nData type\nReference\nComments\nApplicability\nProblemDetails\n3GPP TS 29.571 [15]\nCommon Data Type used in response bodies\nRedirectResponse\n3GPP TS 29.571 [15]\nRedirect Response\nGpsi\n3GPP TS 29.571 [15]\nGeneral Public Subscription Identifier\nNfInstanceId\n3GPP TS 29.571 [15]\nNF Instance ID\nRefToBinaryData\n3GPP TS 29.571 [15]\nInformation for indicating the binary content of SMS payload.\nIpv4Addr\n3GPP TS 29.571 [15]\nIPv4 address\nIpv6Addr\n3GPP TS 29.571 [15]\nIPv6 address\nSupportedFeatures\n3GPP TS 29.571 [15]\nSupported Features\nFqdn\n3GPP TS 29.571 [15]\nFully Qualified Domain Name\nSupi\n3GPP TS 29.571 [15]\nSubscription Permanent Identifier",
+      "chunk_type": "definition",
+      "cross_references": [
+        "table_6.1.6.1-1",
+        "table_6.1.6.1-2",
+        "ts_29.571"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.577_6.1.6.2.1",
+      "section_id": "6.1.6.2.1",
+      "section_title": "Introduction",
+      "content": "This clause defines the structures to be used in resource representations.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.577_6.1.6.2.2",
+      "section_id": "6.1.6.2.2",
+      "section_title": "Type: CreateRoutingData",
+      "content": "Table 6.1.6.2.2-1: Definition of type CreateRoutingData\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\nsmsfId\nNfInstanceId\nM\n1\nThis IE shall be present, and it shall contain the NF instance ID of the SMSF to receive the downlink MT SM.\n(NOTE 1)\nsmsf3Gpp\nSmsfRegistration\nO\n0..1\nThis IE shall contain the 3GPP Access Registration of the SMSF.\n(NOTE 1)\nsmsfNon3Gpp\nSmsfRegistration\nO\n0..1\nThis IE shall contain the Non-3GPP Access Registration of the SMSF.\n(NOTE 1)\nsupi\nSupi\nO\n0..1\nSUPI\nipSmGwGuidanceInd\nboolean\nC\n0..1\nThis IE indicates whether the SMS-GMSC is prepared to receive IP-SM-GW guidance information in the response; it shall be set by the consumer (UDM) to the same value as received from the SMS-GMSC.\nDefault value: false.\nsupportedFeatures\nSupportedFeatures\nC\n0..1\nThis IE shall be present if at least one optional feature defined in clause 6.1.8 is supported.\nNOTE 1:\tThe full SMSF addressing information (including SMSF access type, PLMN IDs, Diameter and MAP addresses…) are included in \"smsf3Gpp\" and \"smsfNon3Gpp\" attributes; API versions not supporting these attributes are limited to the SMSF information provided by the \"smsfId\" attribute.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_6.1.8",
+        "table_6.1.6.2.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.577_6.1.6.2.3",
+      "section_id": "6.1.6.2.3",
+      "section_title": "Type: CreatedRoutingData",
+      "content": "Table 6.1.6.2.3-1: Definition of type CreatedRoutingData\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\nipsmgwIpv4\nIpv4Addr\nC\n0..1\nThis IE shall be present if available.\nWhen present, this IE indicates the IPv4 address of the IP-SM-GW to receive the downlink short message.\nSee NOTE\nipsmgwIpv6\nIpv6Addr\nC\n0..1\nThis IE shall be present if available.\nWhen present, this IE indicates the IPv6 address of the IP-SM-GW to receive the downlink short message.\nSee NOTE\nipsmgwFqdn\nFqdn\nC\n0..1\nThis IE shall be present if available.\nWhen present, this IE indicates the FQDN of the IP-SM-GW to receive the downlink short message.\nSee NOTE\nipSmGwNfInstanceId\nNfInstanceId\nC\n0..1\nThis IE shall be present if available.\nWhen present, this IE indicates the NF Instance ID of the IP-SM-GW to receive the downlink short message.\nSee NOTE\ncorrelationId\nstring\nO\n0..1\nCorrelation ID\nipSmGwGuidance\nIpSmGwGuidance\nC\n0..1\nContains the recommended and the minimum timer values for supervision of MT SMS response.\nsupportedFeatures\nSupportedFeatures\nC\n0..1\nThis IE shall be present if at least one optional feature defined in clause 6.1.8 is supported.\nNOTE:\tAt least, one of IP-SM-GW addresses shall be included.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_6.1.8",
+        "table_6.1.6.2.3-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.577_6.1.6.2.4",
+      "section_id": "6.1.6.2.4",
+      "section_title": "Type: SmsData",
+      "content": "Table 6.1.6.2.4-1: Definition of type SmsData\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\nsmsPayload\nRefToBinaryData\nM\n1\nThis IE shall be present, and it shall contain the reference to the SMS Payload Information binary data (see clause 6.1.6.5)",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_6.1.6.5",
+        "table_6.1.6.2.4-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.577_6.1.6.2.5",
+      "section_id": "6.1.6.2.5",
+      "section_title": "Type: SmsDeliveryData",
+      "content": "Table 6.1.6.2.5-1: Definition of type SmsDeliveryData\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\nsmsPayload\nRefToBinaryData\nM\n1\nThis IE shall be present, and it shall contain the reference to the SMS Payload Information binary data (see clause 6.1.6.5)",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_6.1.6.5",
+        "table_6.1.6.2.5-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.577_6.1.6.3.1",
+      "section_id": "6.1.6.3.1",
+      "section_title": "Introduction",
+      "content": "This clause defines simple data types and enumerations that can be referenced from data structures defined in the previous clauses.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.577_6.1.6.3.2",
+      "section_id": "6.1.6.3.2",
+      "section_title": "Simple data types",
+      "content": "The simple data types defined in table 6.1.6.3.2-1 shall be supported.\nTable 6.1.6.3.2-1: Simple data types\nType Name\nType Definition\nDescription\nApplicability",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.1.6.3.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.577_6.1.6.4",
+      "section_id": "6.1.6.4",
+      "section_title": "Data types describing alternative data types or combinations of data types",
+      "content": "In this release of this specification, no alternative data types or combinations of data types are defined.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.577_6.1.6.5.1",
+      "section_id": "6.1.6.5.1",
+      "section_title": "Binary Data Types",
+      "content": "Table 6.1.6.5.1-1: Binary Data Types\nName\nClause defined\nContent type\nSMS Payload Information\n6.1.6.5.2\nvnd.3gpp.sms",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.1.6.5.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.577_6.1.6.5.2",
+      "section_id": "6.1.6.5.2",
+      "section_title": "SMS Payload Information",
+      "content": "SMS Payload Information shall encode a SMS payload as specified in 3GPP TS 23.040 [16] and 3GPP TS 24.011 [17], using the vnd.3gpp.sms content-type.\nSMS Payload Information may encode e.g. the following content:\n-\tCP-DATA, CP-ACK, CP-ERROR as specified in 3GPP TS 23.040 [16] and 3GPP TS 24.011 [17].",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_23.040",
+        "ts_24.011"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.577_6.1.7.1",
+      "section_id": "6.1.7.1",
+      "section_title": "General",
+      "content": "For the Nipsmgw_SMService API, HTTP error responses shall be supported as specified in clause 4.8 of 3GPP TS 29.501 [5]. Protocol errors and application errors specified in table 5.2.7.2-1 of 3GPP TS 29.500 [4] shall be supported for an HTTP method if the corresponding HTTP status codes are specified as mandatory for that HTTP method in table 5.2.7.1-1 of 3GPP TS 29.500 [4].\nIn addition, the requirements in the following clauses are applicable for the Nipsmgw_SMService API.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.501_clause_4.8",
+        "ts_29.500_table_5.2.7.2-1",
+        "ts_29.500_table_5.2.7.1-1",
+        "ts_29.501",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.577_6.1.7.2",
+      "section_id": "6.1.7.2",
+      "section_title": "Protocol Errors",
+      "content": "No specific procedures for the Nipsmgw_SMService service are specified.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.577_6.1.7.3",
+      "section_id": "6.1.7.3",
+      "section_title": "Application Errors",
+      "content": "The application errors defined for the Nipsmgw_SMService service are listed in Table 6.1.7.3-1.\nTable 6.1.7.3-1: Application errors\nApplication Error\nHTTP status code\nDescription\nSMS_PAYLOAD_MISSING\n400 Bad Request\nThe expected SMS payload content is missing.\nSMS_PAYLOAD_ERROR\n400 Bad Request\nErrors exist in the format of SMS payload.\nUSER_NOT_FOUND\n404 Not Found\nThe provided subscriber identifier is not found.\nROUTING_INFO_NOT_FOUND\n404 Not Found\nThe routing information for SMS to be operated is invalid or not found in IP-SM-GW",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.1.7.3-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.577_6.1.8",
+      "section_id": "6.1.8",
+      "section_title": "Feature negotiation",
+      "content": "The optional features in table 6.1.8-1 are defined for the Nipsmgw_SMService API. They shall be negotiated using the extensibility mechanism defined in clause 6.6 of 3GPP TS 29.500 [4].\nTable 6.1.8-1: Supported Features\nFeature number\nFeature Name\nDescription",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_6.6",
+        "table_6.1.8-1",
+        "ts_29.500_table_6.1.8-1",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.577_6.1.9",
+      "section_id": "6.1.9",
+      "section_title": "Security",
+      "content": "As indicated in 3GPP TS 33.501 [8] and 3GPP TS 29.500 [4], the access to the Nipsmgw_SMService API may be authorized by means of the OAuth2 protocol (see IETF RFC 6749 [9]), based on local configuration, using the \"Client Credentials\" authorization grant, where the NRF (see 3GPP TS 29.510 [10]) plays the role of the authorization server.\nIf OAuth2 is used, an NF Service Consumer, prior to consuming services offered by the Nipsmgw_SMService API, shall obtain a \"token\" from the authorization server, by invoking the Access Token Request service, as described in 3GPP TS 29.510 [10], clause 5.4.2.2.\nNOTE:\tWhen multiple NRFs are deployed in a network, the NRF used as authorization server is the same NRF that the NF Service Consumer used for discovering the Nipsmgw_SMService service.\nThe Nipsmgw_SMService API defines the following scopes for Oauth2 authorization as specified in 3GPP TS 33.501 [8]:\nTable 6.1.9-1: OAuth2 scopes defined in Nipsmgw_SMService API\nScope\nDescription\n\"nipsmgw_smservice\"\nAccess to the Nipsmgw_SMService API.\n\"nipsmgw_smservice:mtsminfos:write\"\nAccess to write MT SM Infos\n\"nipsmgw_smservice:sendsms:invoke\"\nAccess to invoke Send SMS",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.510_clause_5.4.2.2",
+        "ts_33.501_table_6.1.9-1",
+        "ts_33.501",
+        "ts_29.500",
+        "ts_29.510"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.577_6.1.10",
+      "section_id": "6.1.10",
+      "section_title": "HTTP redirection",
+      "content": "An HTTP request may be redirected to a different IP-SM-GW service instance, within the same IP-SM-GW or a different IP-SM-GW of an IP-SM-GW set, e.g. when an IP-SM-GW service instance is part of an IP-SM-GW (service) set or when using indirect communications (see 3GPP TS 29.500 [4]).\nAn SCP that reselects a different IP-SM-GW producer instance will return the NF Instance ID of the new IP-SM-GW producer instance in the 3gpp-Sbi-Producer-Id header, as specified in clause 6.10.3.4 of 3GPP TS 29.500 [4].\nIf an IP-SM-GW within an IP-SM-GW set redirects a service request to a different IP-SM-GW of the set using a 307 Temporary Redirect or 308 Permanent Redirect status code, the identity of the new IP-SM-GW towards which the service request is redirected shall be indicated in the 3gpp-Sbi-Target-Nf-Id header of the 307 Temporary Redirect or 308 Permanent Redirect response as specified in clause 6.10.9.1 of 3GPP TS 29.500 [4].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.500_clause_6.10.3.4",
+        "ts_29.500_clause_6.10.9.1",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.577_6.2.1",
+      "section_id": "6.2.1",
+      "section_title": "Introduction",
+      "content": "The Nrouter_SMService shall use the Nrouter_SMService API.\nThe API URI of the Nrouter_SMService API shall be:\n{apiRoot}/<apiName>/<apiVersion>\nThe request URIs used in HTTP requests from the NF service consumer towards the NF service producer shall have the Resource URI structure defined in clause 4.4.1 of 3GPP TS 29.501 [5], i.e.:\n{apiRoot}/<apiName>/<apiVersion>/<apiSpecificResourceUriPart>\nwith the following components:\n-\tThe {apiRoot} shall be set as described in 3GPP TS 29.501 [5].\n-\tThe <apiName> shall be \"nrouter-smservice\".\n-\tThe <apiVersion> shall be \"v1\".\n-\tThe <apiSpecificResourceUriPart> shall be set as described in clause 6.2.3.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.501_clause_4.4.1",
+        "clause_6.2.3",
+        "ts_29.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.577_6.2.2.1",
+      "section_id": "6.2.2.1",
+      "section_title": "General",
+      "content": "HTTP/2, IETF RFC 9113 [11], shall be used as specified in clause 5 of 3GPP TS 29.500 [4].\nHTTP/2 shall be transported as specified in clause 5.3 of 3GPP TS 29.500 [4].\nThe OpenAPI [6] specification of HTTP messages and content bodies for the Nrouter_SMService API is contained in Annex A.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.500_clause_5",
+        "ts_29.500_clause_5.3",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.577_6.2.2.2.1",
+      "section_id": "6.2.2.2.1",
+      "section_title": "General",
+      "content": "See clause 5.2.2 of 3GPP TS 29.500 [4] for the usage of HTTP standard headers.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.500_clause_5.2.2",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.577_6.2.2.2.2",
+      "section_id": "6.2.2.2.2",
+      "section_title": "Content type",
+      "content": "JSON, IETF RFC 8259 [12], shall be used as content type of the HTTP bodies specified in the present specification as specified in clause 5.4 of 3GPP TS 29.500 [4]. The use of the JSON format shall be signalled by the content type \"application/json\".\n\"Problem Details\" JSON object shall be used to indicate additional details of the error in a HTTP response body and shall be signalled by the content type \"application/problem+json\", as defined in IETF RFC 9457 [13].\nMultipart messages shall also be supported (see clause 6.2.2.4) using the content type \"multipart/related\", comprising:\n-\tone JSON body part with the \"application/json\" content type; and\n-\tone binary body part with 3gpp vendor specific content subtypes.\nThe 3gpp vendor specific content subtypes defined in Table 6.2.2.2.2-1 shall be supported.\nTable 6.2.2.2.2-1: 3GPP vendor specific content subtypes\ncontent subtype\nDescription\nvnd.3gpp.sms\nBinary encoded payload, encoding SMS payload, as specified in 3GPP TS 23.040 [16] and 3GPP TS 24.011 [17].\nNOTE:\tUsing 3GPP vendor content subtypes allows to describe the nature of the opaque payload (e.g. SMS payload) without having to rely on metadata in the JSON payload.\nSee clause 6.2.2.4 for the binary payloads supported in the binary body part of multipart messages.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_5.4",
+        "clause_6.2.2.4",
+        "table_6.2.2.2.2-1",
+        "ts_29.500",
+        "ts_23.040",
+        "ts_24.011"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.577_6.2.2.3",
+      "section_id": "6.2.2.3",
+      "section_title": "HTTP custom headers",
+      "content": "The mandatory HTTP custom header fields specified in clause 5.2.3.2 of 3GPP TS 29.500 [4] shall be supported, and the optional HTTP custom header fields specified in clause 5.2.3.3 of 3GPP TS 29.500 [4] may be supported.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_5.2.3.2",
+        "ts_29.500_clause_5.2.3.3",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.577_6.2.2.4",
+      "section_id": "6.2.2.4",
+      "section_title": "HTTP multipart messages",
+      "content": "HTTP multipart messages shall be supported, to transfer opaque SMS payload (e.g. SMS message, CP Ack, etc.), in the following service operations (and HTTP messages):\n-\tMtForwardSm service operation;\nHTTP multipart messages shall include one JSON body part and one binary body part comprising content of SMS payload content (see clause 6.2.6.4).\nThe JSON body part shall be the \"root\" body part of the multipart message. It shall be encoded as the first body part of the multipart message. The \"Start\" parameter does not need to be included.\nThe multipart message shall include a \"type\" parameter (see IETF RFC 2387 [18]) specifying the media type of the root body part, i.e. \"application/json\".\nNOTE:\tThe \"root\" body part (or \"root\" object) is the first body part the application processes when receiving a multipart/related message, see IETF RFC 2387 [18]. The default root is the first body within the multipart/related message. The \"Start\" parameter indicates the root body part, e.g. when this is not the first body part in the message.\nA binary body part shall include a Content-ID header (see IETF RFC 2045 [19]), and the JSON body part shall make a reference to the binary body part using the Content-ID header field.\nExamples of multipart/related messages can be found in Annex B.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_6.2.6.4"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.577_6.2.3.1",
+      "section_id": "6.2.3.1",
+      "section_title": "Overview",
+      "content": "This clause describes the structure for the Resource URIs and the resources and methods used for the service.\nFigure 6.2.3.1-1 depicts the resource URIs structure for the Nrouter_SMService API.\nFigure 6.2.3.1-1: Resource URI structure of the Nrouter_SMService API\nTable 6.2.3.1-1 provides an overview of the resources and applicable HTTP methods.\nTable 6.2.3.1-1: Resources and methods overview\nResource purpose/name\nResource URI (relative path after API URI)\nHTTP method or custom operation\nDescription (service operation)\nMtSmInfo\n(Document)\n/mt-sm-infos/{gpsi}\nPUT\nCreate Routing Information for MT SMS.\n/mt-sm-infos/{gpsi}/sendsms\nsendsms\n(POST)\nIt is used for the MtForwardSm service operation, to allow NF Service Consumer to send SMS payload in downlink direction.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "table_6.2.3.1-1",
+        "figure_6.2.3.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.577_6.2.3.2.1",
+      "section_id": "6.2.3.2.1",
+      "section_title": "Description",
+      "content": "This resource represents the collection of Mobile Terminated Short Message Information in SMS Router.\nThis resource is modelled with the Store resource archetype (see clause C.3 of 3GPP TS 29.501 [5]).\nNo HTTP method has been defined for this resource.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.577_6.2.3.2.2",
+      "section_id": "6.2.3.2.2",
+      "section_title": "Resource Definition",
+      "content": "Resource URI: {apiRoot}/nrouter-smsevice/<apiVersion>/mt-sm-infos\nThis resource shall support the resource URI variables defined in table 6.2.3.2.2-1.\nTable 6.2.3.2.2-1: Resource URI variables for this resource\nName\nData type\nDefinition\napiRoot\nstring\nSee clause 6.2.1",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_6.2.1",
+        "table_6.2.3.2.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.577_6.2.3.2.3",
+      "section_id": "6.2.3.2.3",
+      "section_title": "Resource Standard Methods",
+      "content": "No HTTP method has been defined for the Mobile Terminated Short Message Information collection resource.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.577_6.2.3.3.1",
+      "section_id": "6.2.3.3.1",
+      "section_title": "Description",
+      "content": "This resource represents an individual Mobile Terminated Short Message Information in SMS Router.\nThis resource is modelled with the Document resource archetype (see clause C.1 of 3GPP TS 29.501 [5]).",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.577_6.2.3.3.2",
+      "section_id": "6.2.3.3.2",
+      "section_title": "Resource Definition",
+      "content": "Resource URI: {apiRoot}/nrouter-smsevice/<apiVersion>/mt-sm-infos/{gpsi}\nThis resource shall support the resource URI variables defined in table 6.2.3.3.2-1.\nTable 6.2.3.3.2-1: Resource URI variables for this resource\nName\nData type\nDefinition\napiRoot\nstring\nSee clause 6.2.1\ngpsi\ngpsi\nRepresents the Generic Public Subscription Identifier with MSISDN (see 3GPP TS 23.501 [2] clause 5.9.8)\npattern: See pattern of type Gpsi in 3GPP TS 29.571 [15]",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_6.2.1",
+        "ts_23.501_clause_5.9.8",
+        "table_6.2.3.3.2-1",
+        "ts_23.501",
+        "ts_29.571"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.577_6.2.3.3.3",
+      "section_id": "6.2.3.3.3",
+      "section_title": "Resource Standard Methods",
+      "content": "6.2.3.3.3.1\tPUT\nThis method creates an individual resource of Mobile Terminated Short Message Information in the SMS Router, or updates the indicated resource of Mobile Terminated Short Message Information in the SMS Router.\nThis method shall support the URI query parameters specified in table 6.2.3.3.3.1-1.\nTable 6.2.3.3.3.1-1: URI query parameters supported by the PUT method on this resource\nName\nData type\nP\nCardinality\nDescription\nApplicability\nn/a\nThis method shall support the request data structures specified in table 6.2.3.3.3.1-2 and the response data structures and response codes specified in table 6.2.3.3.3.1-3.\nTable 6.1.3.3.3.1-2: Data structures supported by the PUT Request Body on this resource\nData type\nP\nCardinality\nDescription\nCreateRoutingData\nM\n1\nRepresentation of the UE's Mobile Terminated Short Message Information to be created in the SMS Router, or to be updated in the SMS Router.\nTable 6.2.3.3.3.1-3: Data structures supported by the PUT Response Body on this resource\nData type\nP\nCardinality\nResponse\ncodes\nDescription\nCreatedRoutingData\nM\n1\n201 Created\nThis case represents the successful creation of an UE's Mobile Terminated Short Message Information.\nThe HTTP response shall include a \"Location\" HTTP header that contains the resource URI of the created resource.\nCreatedRoutingData\nM\n1\n200 OK\nUpon success, a response body containing a representation of the updated UE's Mobile Terminated Short Message Information shall be returned.\nn/a\n204 No Content\nUpon success, an empty response body shall be returned\nRedirectResponse\nO\n0..1\n307 Temporary Redirect\nTemporary redirection.\n(NOTE 2)\nRedirectResponse\nO\n0..1\n308 Permanent Redirect\nPermanent redirection.\n(NOTE 2)\nNOTE 1:\tThe manadatory HTTP error status code for the PUT method listed in Table 5.2.7.1-1 of 3GPP TS 29.500 [4] also apply.\nNOTE 2:\tRedirectResponse may be inserted by an SCP, see clause 6.10.9.1 of 3GPP TS 29.500 [4].\nTable 6.2.3.3.3.1-4: Headers supported by the 201 response code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nContains the URI of the newly created resource, according to the structure: {apiRoot}/nrouter-smsevice/<apiVersion>/mt-sm-infos/{gpsi}\nTable 6.2.3.3.3.1-3: Headers supported by the 307 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located on an alternative service instance within the same SMS Router or SMS Router (service) set.\nFor the case, when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target NF (service) instance ID towards which the request is redirected\nTable 6.2.3.3.3.1-6: Headers supported by the 308 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located on an alternative service instance within the same SMS Router or SMS Router (service) set.\nFor the case, when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target NF (service) instance ID towards which the request is redirected",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.500_clause_6.10.9.1",
+        "table_6.2.3.3.3.1-1",
+        "table_6.2.3.3.3.1-2",
+        "table_6.2.3.3.3.1-3",
+        "table_6.1.3.3.3.1-2",
+        "ts_29.500_table_5.2.7.1-1",
+        "ts_29.500_table_6.2.3.3.3.1-4",
+        "table_6.2.3.3.3.1-6",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.577_6.2.3.3.4",
+      "section_id": "6.2.3.3.4",
+      "section_title": "Resource Custom Operations",
+      "content": "6.2.3.3.4.1\tOverview\nTable 6.2.3.3.4.1-1: Custom operations\nOperation name\nCustom operaration URI\nMapped HTTP method\nDescription\nsendsms\n/mt-sm-infos/{gpsii}/sendsms\nPOST\nSend MT SMS message or the related Delivery Report.\n6.2.3.3.4.2\tOperation: sendsms\n6.2.3.3.4.2.1\tDescription\nThis custom operation is used for NF Service Consumers to send SMS message in downlink direction.\n6.2.3.3.4.2.2\tOperation Definition\nThis custom operation is used to send a SMS payload to an UE's Mobile Terminated Short Message Information resource in the SMS Router.\nThis operation shall support the request data structures specified in table 6.2.3.3.4.2.2-1 and the response data structure and response codes specified in table 6.2.3.3.4.2.2-2.\nTable 6.2.3.3.4.2.2-1: Data structures supported by the POST Request Body on this resource\nData type\nP\nCardinality\nDescription\nSmsData\nM\n1\nRepresentation of the MT SMS message to be sent.\nTable 6.2.3.3.4.2.2-2: Data structures supported by the POST Response Body on this resource\nData type\nP\nCardinality\nResponse\ncodes\nDescription\nSmsDeliveryData\nM\n1\n200 OK\nThis case represents the successful of sending SMS message in downlink direction, with necessary response data on the received delivery report.\nRedirectResponse\nO\n0..1\n307 Temporary Redirect\nTemporary redirection.\n(NOTE 2)\nRedirectResponse\nO\n0..1\n308 Permanent Redirect\nPermanent redirection.\n(NOTE 2)\nProblemDetails\nO\n0..1\n400 Bad Request\nThis case represents an unsuccessful delivery of SMS message.\nThe \"cause\" attribute may be used to indicate one of the following application errors:\n-\tSMS_PAYLOAD_MISSING, if the expected SMS payload content is missing;\n-\tSMS_PAYLOAD_ERROR, if error exists in the SMS payload content.\nProblemDetails\nO\n0..1\n404 Not Found\nThis case represents an unsuccessful delivery of SMS payload.\nThe \"cause\" attribute may be used to indicate one of the following application errors:\n-\tROUTING_INFO_NOT_FOUND, if the routing information for SMS to be operated is invalid or not found in SMS Router.\n-\tUSER_NOT_FOUND, if the UE identified by the GPSI is not found in the SMS Router.\nNOTE 1:\tThe manadatory HTTP error status code for the POST method listed in Table 5.2.7.1-1 of 3GPP TS 29.500 [4] also apply.\nNOTE 2:\tRedirectResponse may be inserted by an SCP, see clause 6.10.9.1 of 3GPP TS 29.500 [4].\nTable 6.2.3.3.4.2.2-3: Headers supported by the 307 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located on an alternative service instance within the same SMS Router or SMS Router (service) set.\nFor the case, when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target NF (service) instance ID towards which the request is redirected\nTable 6.2.3.3.4.2.2-4: Headers supported by the 308 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nAn alternative URI of the resource located on an alternative service instance within the same SMS Router or SMS Router (service) set.\nFor the case, when a request is redirected to the same target resource via a different SCP, see clause 6.10.9.1 in 3GPP TS 29.500 [4].\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target NF (service) instance ID towards which the request is redirected",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.500_clause_6.10.9.1",
+        "table_6.2.3.3.4.1-1",
+        "table_6.2.3.3.4.2.2-1",
+        "table_6.2.3.3.4.2.2-2",
+        "ts_29.500_table_5.2.7.1-1",
+        "ts_29.500_table_6.2.3.3.4.2.2-3",
+        "table_6.2.3.3.4.2.2-4",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.577_6.2.4",
+      "section_id": "6.2.4",
+      "section_title": "Custom Operations without associated resources",
+      "content": "In this release of this specification, no custom operations without associated resources are defined.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.577_6.2.5",
+      "section_id": "6.2.5",
+      "section_title": "Notifications",
+      "content": "In this release of this specification, no notification procedures are defined.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.577_6.2.6.1",
+      "section_id": "6.2.6.1",
+      "section_title": "General",
+      "content": "This clause specifies the application data model supported by the API.\nTable 6.2.6.1-1 specifies the data types defined for the Nrouter_SMService service based interface protocol.\nTable 6.2.6.1-1: Nrouter_SMService specific Data Types\nData type\nClause defined\nDescription\nApplicability\nCreatedRoutingData\n6.2.6.2.2\nInformation used for receiving the MT SMS.\nTable 6.2.6.1-2 specifies data types re-used by the Nrouter_SMService service based interface protocol from other specifications, including a reference to their respective specifications and when needed, a short description of their use within the Nrouter_SMService service based interface.\nTable 6.2.6.1-2: Nrouter_SMService re-used Data Types\nData type\nReference\nComments\nApplicability\nCreateRoutingData\n6.1.6.2.2\nInformation used for creating or updating the routing information of the user.\nSmsData\n6.1.6.2.4\nInformation within request message invoking MtForwardSm service operation, for delivering MT SMS.\nSmsDeliveryData\n6.1.6.2.5\nInformation within response message invoking MtForwardSm service operation, for delivering MT SMS Delivery Report.\nProblemDetails\n3GPP TS 29.571 [15]\nCommon Data Type used in response bodies\nRedirectResponse\n3GPP TS 29.571 [15]\nRedirect Response\nGpsi\n3GPP TS 29.571 [15]\nGeneral Public Subscription Identifier\nNfInstanceId\n3GPP TS 29.571 [15]\nNF Instance ID\nRefToBinaryData\n3GPP TS 29.571 [15]\nInformation for indicating the binary content of SMS payload.\nIpv4Addr\n3GPP TS 29.571 [15]\nIPv4 address\nIpv6Addr\n3GPP TS 29.571 [15]\nIPv6 address\nSupportedFeatures\n3GPP TS 29.571 [15]\nSupported Features\nFqdn\n3GPP TS 29.571 [15]\nFully Qualified Domain Name",
+      "chunk_type": "definition",
+      "cross_references": [
+        "table_6.2.6.1-1",
+        "table_6.2.6.1-2",
+        "ts_29.571"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.577_6.2.6.2.1",
+      "section_id": "6.2.6.2.1",
+      "section_title": "Introduction",
+      "content": "This clause defines the structures to be used in resource representations.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.577_6.2.6.2.2",
+      "section_id": "6.2.6.2.2",
+      "section_title": "Type: CreatedRoutingData",
+      "content": "Table 6.2.6.2.2-1: Definition of type CreatedRoutingData\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\nrouterIpv4\nIpv4Addr\nC\n0..1\nThis IE shall be present if available.\nWhen present, this IE indicates the IPv4 address of the SMS Router to receive the downlink short message.\nSee NOTE\nrouterIpv6\nIpv6Addr\nC\n0..1\nThis IE shall be present if available.\nWhen present, this IE indicates the IPv6 address of the SMS Router to receive the downlink short message.\nSee NOTE\nrouterFqdn\nFqdn\nC\n0..1\nThis IE shall be present if available.\nWhen present, this IE indicates the FQDN of the SMS Router to receive the downlink short message.\nSee NOTE\nrouterNfInstanceId\nNfInstanceId\nC\n0..1\nThis IE shall be present if available.\nWhen present, this IE indicates the NF Instance ID of the SMS Router to receive the downlink short message.\nSee NOTE\nsupportedFeatures\nSupportedFeatures\nC\n0..1\nThis IE shall be present if at least one optional feature defined in clause 6.1.8 is supported.\nNOTE:\tAt least, one of SMS Router addresses shall be included.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_6.1.8",
+        "table_6.2.6.2.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.577_6.2.6.3.1",
+      "section_id": "6.2.6.3.1",
+      "section_title": "Introduction",
+      "content": "This clause defines simple data types and enumerations that can be referenced from data structures defined in the previous clauses.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.577_6.2.6.3.2",
+      "section_id": "6.2.6.3.2",
+      "section_title": "Simple data types",
+      "content": "The simple data types defined in table 6.2.6.3.2-1 shall be supported.\nTable 6.2.6.3.2-1: Simple data types\nType Name\nType Definition\nDescription\nApplicability",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.2.6.3.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.577_6.2.6.3.3",
+      "section_id": "6.2.6.3.3",
+      "section_title": "Enumeration: <EnumType1>",
+      "content": "The enumeration <EnumType1> represents <something>. It shall comply with the provisions defined in table 6.1.6.3.3-1.\nTable 6.2.6.3.3-1: Enumeration < EnumType1>\nEnumeration value\nDescription\nApplicability",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.1.6.3.3-1",
+        "table_6.2.6.3.3-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.577_6.2.6.4",
+      "section_id": "6.2.6.4",
+      "section_title": "Data types describing alternative data types or combinations of data types",
+      "content": "In this release of this specification, no alternative data types or combinations of data types are defined.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.577_6.2.6.5",
+      "section_id": "6.2.6.5",
+      "section_title": "Binary data",
+      "content": "See clause 6.1.6.5.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_6.1.6.5"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.577_6.2.7.1",
+      "section_id": "6.2.7.1",
+      "section_title": "General",
+      "content": "For the Nrouter_SMService API, HTTP error responses shall be supported as specified in clause 4.8 of 3GPP TS 29.501 [5]. Protocol errors and application errors specified in table 5.2.7.2-1 of 3GPP TS 29.500 [4] shall be supported for an HTTP method if the corresponding HTTP status codes are specified as mandatory for that HTTP method in table 5.2.7.1-1 of 3GPP TS 29.500 [4].\nIn addition, the requirements in the following clauses are applicable for the Nrouter_SMService API.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.501_clause_4.8",
+        "ts_29.500_table_5.2.7.2-1",
+        "ts_29.500_table_5.2.7.1-1",
+        "ts_29.501",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.577_6.2.7.2",
+      "section_id": "6.2.7.2",
+      "section_title": "Protocol Errors",
+      "content": "No specific procedures for the Nrouter_SMService service are specified.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.577_6.2.7.3",
+      "section_id": "6.2.7.3",
+      "section_title": "Application Errors",
+      "content": "The application errors defined for the Nrouter_SMService service are listed in Table 6.2.7.3-1.\nTable 6.2.7.3-1: Application errors\nApplication Error\nHTTP status code\nDescription\nSMS_PAYLOAD_MISSING\n400 Bad Request\nThe expected SMS payload content is missing.\nSMS_PAYLOAD_ERROR\n400 Bad Request\nErrors exist in the format of SMS payload.\nUSER_NOT_FOUND\n404 Not Found\nThe provided subscriber identifier is not found.\nROUTING_INFO_NOT_FOUND\n404 Not Found\nThe routing information for SMS to be operated is invalid or not found in SMS Router",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.2.7.3-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.577_6.2.8",
+      "section_id": "6.2.8",
+      "section_title": "Feature negotiation",
+      "content": "The optional features in table 6.2.8-1 are defined for the Nrouter_SMService API. They shall be negotiated using the extensibility mechanism defined in clause 6.6 of 3GPP TS 29.500 [4].\nTable 6.2.8-1: Supported Features\nFeature number\nFeature Name\nDescription",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_6.6",
+        "table_6.2.8-1",
+        "ts_29.500_table_6.2.8-1",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.577_6.2.9",
+      "section_id": "6.2.9",
+      "section_title": "Security",
+      "content": "As indicated in 3GPP TS 33.501 [8] and 3GPP TS 29.500 [4], the access to the Nrouter_SMService API may be authorized by means of the OAuth2 protocol (see IETF RFC 6749 [9]), based on local configuration, using the \"Client Credentials\" authorization grant, where the NRF (see 3GPP TS 29.510 [10]) plays the role of the authorization server.\nIf OAuth2 is used, an NF Service Consumer, prior to consuming services offered by the Nrouter_SMService API, shall obtain a \"token\" from the authorization server, by invoking the Access Token Request service, as described in 3GPP TS 29.510 [10], clause 5.4.2.2.\nNOTE:\tWhen multiple NRFs are deployed in a network, the NRF used as authorization server is the same NRF that the NF Service Consumer used for discovering the Nrouter_SMService service.\nThe Nrouter_SMService API defines the following scopes for Oauth2 authorization as specified in 3GPP TS 33.501 [8]:\nTable 6.2.9-1: OAuth2 scopes defined in Nrouter_SMService API\nScope\nDescription\n\"nrouter_smservice\"\nAccess to the Nrouter_SMService API.\n\"nrouter_smservice:mtsminfos:write\"\nAccess to write MT SM Infos\n\"nrouter_smservice:sendsms:invoke\"\nAccess to invoke Send SMS",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.510_clause_5.4.2.2",
+        "ts_33.501_table_6.2.9-1",
+        "ts_33.501",
+        "ts_29.500",
+        "ts_29.510"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.577_6.2.10",
+      "section_id": "6.2.10",
+      "section_title": "HTTP redirection",
+      "content": "An HTTP request may be redirected to a different SMS Router service instance, within the same SMS Router or a different SMS Router of an SMS Router set, e.g. when an SMS Router service instance is part of an SMS Router (service) set or when using indirect communications (see 3GPP TS 29.500 [4]).\nAn SCP that reselects a different SMS Router producer instance will return the NF Instance ID of the new SMS Router producer instance in the 3gpp-Sbi-Producer-Id header, as specified in clause 6.10.3.4 of 3GPP TS 29.500 [4].\nIf an SMS Router within an SMS Router set redirects a service request to a different SMS Router of the set using a 307 Temporary Redirect or 308 Permanent Redirect status code, the identity of the new SMS Router towards which the service request is redirected shall be indicated in the 3gpp-Sbi-Target-Nf-Id header of the 307 Temporary Redirect or 308 Permanent Redirect response as specified in clause 6.10.9.1 of 3GPP TS 29.500 [4].\nAnnex A (normative):OpenAPI specification\nA.1\tGeneral\nThis Annex specifies the formal definition of the API(s) defined in the present specification. It consists of OpenAPI specifications in YAML format.\nThis Annex takes precedence when being discrepant to other parts of the specification with respect to the encoding of information elements and methods within the API(s).\nNOTE 1:\tThe semantics and procedures, as well as conditions, e.g. for the applicability and allowed combinations of attributes or values, not expressed in the OpenAPI definitions but defined in other parts of the specification also apply.\nInformative copies of the OpenAPI specification files contained in this 3GPP Technical Specification are available on a Git-based repository that uses the GitLab software version control system (see clause 5.3.1 of 3GPP TS 29.501 [5] and clause 5B of 3GPP TR 21.900 [7]).\nA.2\tNipsmgw_SMService API\nopenapi: 3.0.0\ninfo:\nversion: '1.1.0'\ntitle: 'Nipsmgw_SMService Service API'\ndescription: |\nIP-SM-GW SMService.\n© 2024, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).\nAll rights reserved.\nexternalDocs:\ndescription: >\n3GPP TS 29.577 V18.4.0; 5G System; IP Short Message Gateway and SMS Router For\nShort Message Services; Stage 3\nurl: 'https://www.3gpp.org/ftp/Specs/archive/29_series/29.577/'\nsecurity:\n- oAuth2ClientCredentials:\n- nipsmgw-smservice\n- {}\nservers:\n- url: '{apiRoot}/nipsmgw-smservice/v1'\nvariables:\napiRoot:\ndefault: https://example.com\ndescription: apiRoot as defined in clause 4.4 of 3GPP TS 29.501.\npaths:\n/mt-sm-infos/{gpsi}:\nput:\nsummary: Create the routing information for a given UE\noperationId: RoutingInfo\ntags:\n- Creation of Routing Info\nsecurity:\n- {}\n- oAuth2ClientCredentials:\n- nipsmgw_smservice\n- oAuth2ClientCredentials:\n- nipsmgw_smservice\n- nipsmgw_smservice:mtsminfos:write\nparameters:\n- name: gpsi\nin: path\nrequired: true\ndescription: Generic Public Subscription Identifier (GPSI)\nschema:\ntype: string\nrequestBody:\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/CreateRoutingData'\nrequired: true\nresponses:\n'201':\ndescription: Routing Information is created in IP-SM-GW\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/CreatedRoutingData'\nheaders:\nLocation:\ndescription: >\n'Contains the URI of the newly created resource, according to the structure:\n{apiRoot}/nipsmgw-smservice/<apiVersion>/mt-sm-infos/{gpsi}'\nrequired: true\nschema:\ntype: string\n'200':\ndescription: Routing Information is updated in IP-SM-GW\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/CreatedRoutingData'\n'204':\ndescription: Routing Information is updated in IP-SM-GW\n'307':\n$ref: 'TS29571_CommonData.yaml#/components/responses/307'\n'308':\n$ref: 'TS29571_CommonData.yaml#/components/responses/308'\n'400':\n$ref: 'TS29571_CommonData.yaml#/components/responses/400'\n'401':\n$ref: 'TS29571_CommonData.yaml#/components/responses/401'\n'403':\n$ref: 'TS29571_CommonData.yaml#/components/responses/403'\n'404':\n$ref: 'TS29571_CommonData.yaml#/components/responses/404'\n'411':\n$ref: 'TS29571_CommonData.yaml#/components/responses/411'\n'413':\n$ref: 'TS29571_CommonData.yaml#/components/responses/413'\n'415':\n$ref: 'TS29571_CommonData.yaml#/components/responses/415'\n'429':\n$ref: 'TS29571_CommonData.yaml#/components/responses/429'\n'500':\n$ref: 'TS29571_CommonData.yaml#/components/responses/500'\n'502':\n$ref: 'TS29571_CommonData.yaml#/components/responses/502'\n'503':\n$ref: 'TS29571_CommonData.yaml#/components/responses/503'\ndefault:\n$ref: 'TS29571_CommonData.yaml#/components/responses/default'\n/mt-sm-infos/{gpsi}/sendsms:\npost:\nsummary: Send SMS payload for a given UE\noperationId: SendSMS\ntags:\n- Send MT SMS message and the delivery report\nsecurity:\n- {}\n- oAuth2ClientCredentials:\n- nipsmgw_smservice\n- oAuth2ClientCredentials:\n- nipsmgw_smservice\n- nipsmgw_smservice:sendsms:invoke\nparameters:\n- name: gpsi\nin: path\nrequired: true\ndescription: Generic Public Subscription Identifier (GPSI)\nschema:\ntype: string\nrequestBody:\ncontent:\nmultipart/related:  # message with a binary body part\nschema:\ntype: object\nproperties:\njsonData:\n$ref: '#/components/schemas/SmsData'\nbinaryPayload:\ntype: string\nformat: binary\nencoding:\njsonData:\ncontentType: application/json\nbinaryPayload:\ncontentType: application/vnd.3gpp.sms\nheaders:\nContent-Id:\nschema:\ntype: string\nrequired: true\nresponses:\n'200':\ndescription: sending delivery report\ncontent:\nmultipart/related:  # message with a binary body part\nschema:\ntype: object\nproperties:\njsonData:\n$ref: '#/components/schemas/SmsDeliveryData'\nbinaryPayload:\ntype: string\nformat: binary\nencoding:\njsonData:\ncontentType: application/json\nbinaryPayload:\ncontentType: application/vnd.3gpp.sms\nheaders:\nContent-Id:\nschema:\ntype: string\n'307':\n$ref: 'TS29571_CommonData.yaml#/components/responses/307'\n'308':\n$ref: 'TS29571_CommonData.yaml#/components/responses/308'\n'400':\n$ref: 'TS29571_CommonData.yaml#/components/responses/400'\n'401':\n$ref: 'TS29571_CommonData.yaml#/components/responses/401'\n'403':\n$ref: 'TS29571_CommonData.yaml#/components/responses/403'\n'404':\n$ref: 'TS29571_CommonData.yaml#/components/responses/404'\n'411':\n$ref: 'TS29571_CommonData.yaml#/components/responses/411'\n'413':\n$ref: 'TS29571_CommonData.yaml#/components/responses/413'\n'415':\n$ref: 'TS29571_CommonData.yaml#/components/responses/415'\n'429':\n$ref: 'TS29571_CommonData.yaml#/components/responses/429'\n'500':\n$ref: 'TS29571_CommonData.yaml#/components/responses/500'\n'502':\n$ref: 'TS29571_CommonData.yaml#/components/responses/502'\n'503':\n$ref: 'TS29571_CommonData.yaml#/components/responses/503'\ndefault:\n$ref: 'TS29571_CommonData.yaml#/components/responses/default'\ncomponents:\nsecuritySchemes:\noAuth2ClientCredentials:\ntype: oauth2\nflows:\nclientCredentials:\ntokenUrl: '{nrfApiRoot}/oauth2/token'\nscopes:\nnipsmgw-smservice: Access to the nipsmgw-smservice API\nnipsmgw-smservice:mtsminfos:write: Access to write MT SM Infos\nnipsmgw-smservice:sendsms:invoke: Access to invoke Send SMS\nschemas:\nCreateRoutingData:\ndescription: Information used for creating or updating the routing information of the user.\ntype: object\nrequired:\n- smsfId\nproperties:\nsmsfId:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/NfInstanceId'\nsmsf3Gpp:\n$ref: 'TS29503_Nudm_UECM.yaml#/components/schemas/SmsfRegistration'\nsmsfNon3Gpp:\n$ref: 'TS29503_Nudm_UECM.yaml#/components/schemas/SmsfRegistration'\nsupi:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Supi'\nipSmGwGuidanceInd:\ntype: boolean\ndefault: false\nsupportedFeatures:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'\nCreatedRoutingData:\ndescription: Information used for receiving the MT SMS.\ntype: object\nproperties:\nipsmgwIpv4:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Ipv4Addr'\nipsmgwIpv6:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Ipv6Addr'\nipsmgwFqdn:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Fqdn'\nipSmGwNfInstanceId:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/NfInstanceId'\ncorrelationId:\ntype: string\nipSmGwGuidance:\n$ref: 'TS29503_Nudm_UECM.yaml#/components/schemas/IpSmGwGuidance'\nsupportedFeatures:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'\nSmsData:\ndescription: Information within request message for delivering SMS.\ntype: object\nrequired:\n- smsPayload\nproperties:\nsmsPayload:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/RefToBinaryData'\nSmsDeliveryData:\ndescription: >\nInformation within response message invoking MtForwardSm service operation, for delivering\nMT SMS Delivery Report.\ntype: object\nrequired:\n- smsPayload\nproperties:\nsmsPayload:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/RefToBinaryData'\nA.3\tNrouter_SMService API\nopenapi: 3.0.0\ninfo:\nversion: '1.1.0'\ntitle: 'Nrouter_SMService Service API'\ndescription: |\nSMS Router SMService.\n© 2024, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).\nAll rights reserved.\nexternalDocs:\ndescription: >\n3GPP TS 29.577 V18.4.0; 5G System; IP Short Message Gateway and SMS Router For\nShort Message Services; Stage 3\nurl: 'https://www.3gpp.org/ftp/Specs/archive/29_series/29.577/'\nsecurity:\n- oAuth2ClientCredentials:\n- nrouter-smservice\n- {}\nservers:\n- url: '{apiRoot}/nrouter-smservice/v1'\nvariables:\napiRoot:\ndefault: https://example.com\ndescription: apiRoot as defined in clause 4.4 of 3GPP TS 29.501.\npaths:\n/mt-sm-infos/{gpsi}:\nput:\nsummary: Create the routing information for a given UE\noperationId: RoutingInfo\ntags:\n- Creation of Routing Info\nsecurity:\n- {}\n- oAuth2ClientCredentials:\n- nrouter_smservice\n- oAuth2ClientCredentials:\n- nrouter_smservice\n- nrouter_smservice:mtsminfos:write\nparameters:\n- name: gpsi\nin: path\nrequired: true\ndescription: Generic Public Subscription Identifier (GPSI)\nschema:\ntype: string\nrequestBody:\ncontent:\napplication/json:\nschema:\n$ref: 'TS29577_Nipsmgw_SMService.yaml#/components/schemas/CreateRoutingData'\nrequired: true\nresponses:\n'201':\ndescription: Routing Information is created in SMS Router\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/CreatedRoutingData'\nheaders:\nLocation:\ndescription: >\n'Contains the URI of the newly created resource, according to the structure:\n{apiRoot}/nrouter-smservice/<apiVersion>/mt-sm-infos/{gpsi}'\nrequired: true\nschema:\ntype: string\n'200':\ndescription: Routing Information is updated in SMS Router\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/CreatedRoutingData'\n'204':\ndescription: Routing Information is updated in SMS Router\n'307':\n$ref: 'TS29571_CommonData.yaml#/components/responses/307'\n'308':\n$ref: 'TS29571_CommonData.yaml#/components/responses/308'\n'400':\n$ref: 'TS29571_CommonData.yaml#/components/responses/400'\n'401':\n$ref: 'TS29571_CommonData.yaml#/components/responses/401'\n'403':\n$ref: 'TS29571_CommonData.yaml#/components/responses/403'\n'404':\n$ref: 'TS29571_CommonData.yaml#/components/responses/404'\n'411':\n$ref: 'TS29571_CommonData.yaml#/components/responses/411'\n'413':\n$ref: 'TS29571_CommonData.yaml#/components/responses/413'\n'415':\n$ref: 'TS29571_CommonData.yaml#/components/responses/415'\n'429':\n$ref: 'TS29571_CommonData.yaml#/components/responses/429'\n'500':\n$ref: 'TS29571_CommonData.yaml#/components/responses/500'\n'502':\n$ref: 'TS29571_CommonData.yaml#/components/responses/502'\n'503':\n$ref: 'TS29571_CommonData.yaml#/components/responses/503'\ndefault:\n$ref: 'TS29571_CommonData.yaml#/components/responses/default'\n/mt-sm-infos/{gpsi}/sendsms:\npost:\nsummary: Send SMS payload for a given UE\noperationId: SendSMS\ntags:\n- Send MT SMS message and the delivery report\nsecurity:\n- {}\n- oAuth2ClientCredentials:\n- nrouter_smservice\n- oAuth2ClientCredentials:\n- nrouter_smservice\n- nrouter_smservice:sendsms:invoke\nparameters:\n- name: gpsi\nin: path\nrequired: true\ndescription: Generic Public Subscription Identifier (GPSI)\nschema:\ntype: string\nrequestBody:\ncontent:\nmultipart/related:  # message with a binary body part\nschema:\ntype: object\nproperties:\njsonData:\n$ref: 'TS29577_Nipsmgw_SMService.yaml#/components/schemas/SmsData'\nbinaryPayload:\ntype: string\nformat: binary\nencoding:\njsonData:\ncontentType: application/json\nbinaryPayload:\ncontentType: application/vnd.3gpp.sms\nheaders:\nContent-Id:\nschema:\ntype: string\nrequired: true\nresponses:\n'200':\ndescription: sending delivery report\ncontent:\nmultipart/related:  # message with a binary body part\nschema:\ntype: object\nproperties:\njsonData:\n$ref: 'TS29577_Nipsmgw_SMService.yaml#/components/schemas/SmsDeliveryData'\nbinaryPayload:\ntype: string\nformat: binary\nencoding:\njsonData:\ncontentType: application/json\nbinaryPayload:\ncontentType: application/vnd.3gpp.sms\nheaders:\nContent-Id:\nschema:\ntype: string\n'307':\n$ref: 'TS29571_CommonData.yaml#/components/responses/307'\n'308':\n$ref: 'TS29571_CommonData.yaml#/components/responses/308'\n'400':\n$ref: 'TS29571_CommonData.yaml#/components/responses/400'\n'401':\n$ref: 'TS29571_CommonData.yaml#/components/responses/401'\n'403':\n$ref: 'TS29571_CommonData.yaml#/components/responses/403'\n'404':\n$ref: 'TS29571_CommonData.yaml#/components/responses/404'\n'411':\n$ref: 'TS29571_CommonData.yaml#/components/responses/411'\n'413':\n$ref: 'TS29571_CommonData.yaml#/components/responses/413'\n'415':\n$ref: 'TS29571_CommonData.yaml#/components/responses/415'\n'429':\n$ref: 'TS29571_CommonData.yaml#/components/responses/429'\n'500':\n$ref: 'TS29571_CommonData.yaml#/components/responses/500'\n'502':\n$ref: 'TS29571_CommonData.yaml#/components/responses/502'\n'503':\n$ref: 'TS29571_CommonData.yaml#/components/responses/503'\ndefault:\n$ref: 'TS29571_CommonData.yaml#/components/responses/default'\ncomponents:\nsecuritySchemes:\noAuth2ClientCredentials:\ntype: oauth2\nflows:\nclientCredentials:\ntokenUrl: '{nrfApiRoot}/oauth2/token'\nscopes:\nnrouter-smservice: Access to the nrouter-smservice API\nnrouter-smservice:mtsminfos:write: Access to write MT SM Infos\nnrouter-smservice:sendsms:invoke: Access to invoke Send SMS\nschemas:\nCreatedRoutingData:\ndescription: Information used for receiving the MT SMS.\ntype: object\nproperties:\nrouterIpv4:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Ipv4Addr'\nrouterIpv6:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Ipv6Addr'\nrouterFqdn:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Fqdn'\nrouterNfInstanceId:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/NfInstanceId'\nsupportedFeatures:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'\nAnnex B (Informative):HTTP Multipart Messages\nB.1\tExample of HTTP multipart message\nThis Annex provides a (partial) example of HTTP multipart message. The example does not aim to be a complete representation of the HTTP message, e.g. additional information or headers can be included.\nThis Annex is informative and the normative descriptions in this specification prevail over the description in this Annex if there is any difference.\nB.2\tExample HTTP multipart message with SMS binary data\nExample HTTP multipart message with SMS binary data:\nPOST /example.com/nipsmgw-smservice/v1/mt-sm-infos/{gpsi}/sendsms HTTP/2\nContent-Type: multipart/related; boundary=----Boundary\nContent-Length: xyz\n------Boundary\nContent-Type: application/json\n{\n\"smsPayload\": {\n\"contentId\": \"sms\"\n},\n}\n------Boundary\nContent-Type: application/vnd.3gpp.sms\nContent-Id: sms\n{ … SMS Message binary data …}\n------Boundary\nThe JSON part of the HTTP POST message includes an attribute named \"smsPayload\" which refers to RefToBinaryData structure. The \"contentId\" of RefToBinaryData is encoded as a string and used to reference the value of the Content-ID header field of the binary body part.\nAnnex C (informative):Change history\nChange history\nDate\nMeeting\nTDoc\nCR\nRev\nCat\nSubject/Comment\nNew version\n2022-04\nCT4#109e\nC4-222401\nTS skeleton\n0.0.0\n2022-04\nCT4#109e\nC4-222341\nImplementation of pCRs agreed at CT4#109e: C4-222279, C4-222280, C4-222283, C4-222398, C4-222399, C4-222402, C4-222403\n0.1.0\n2022-05\nCT4#110e\nC4-223450\nImplementation of pCRs agreed at CT4#110e: C4-223220, C4-223222, C4-223353\n0.2.0\n2022-06\nCT#96\nCP-221078\nTS presented for information and approval\n1.0.0\n2022-06\nCT#96\nCP-221078\nTS approved at CT#96\n17.0.0\n2022-09\nCT#97e\nCP-222027\n0001\n-\nF\nAlignment on the service name used with template\n17.1.0\n2022-09\nCT#97e\nCP-222027\n0002\n-\nF\nEditorial corrections\n17.1.0\n2022-09\nCT#97e\nCP-222027\n0003\n-\nF\nUpdate on the content type for OpenAPI\n17.1.0\n2022-09\nCT#97e\nCP-222058\n0004\n-\nF\n29.577 Rel-17 API version and External doc update\n17.1.0\n2022-12\nCT#98e\nCP-223028\n0005\n1\nF\nMissing Mandatory Status Codes in OpenAPI\n18.0.0\n2022-12\nCT#98e\nCP-223033\n0006\n-\nF\n29.577 Rel-18 API version and External doc update\n18.0.0\n2023-06\nCT#100\nCP-231026\n0007\n3\nF\nLocation header description\n18.1.0\n2023-06\nCT#100\nCP-231026\n0009\n-\nB\nOAuth2 scopes in the Nipsmgw_SMService API\n18.1.0\n2023-06\nCT#100\nCP-231028\n0010\n1\nB\nOAuth2 scopes in the Nrouter_SMService API\n18.1.0\n2023-06\nCT#100\nCP-231070\n0011\n-\nF\n29.577 Rel-18 API version and External doc update\n18.1.0\n2023-12\nCT#102\nCP-233027\n0012\n-\nF\nHTTP RFCs obsoleted by IETF RFC 9113\n18.2.0\n2023-12\nCT#102\nCP-233030\n0013\n-\nF\nProblemDetails RFC 7807 obsoleted by 9457\n18.2.0\n2024-03\nCT#103\nCP-240058\n0015\n-\nA\nSMSF Registration Information\n18.3.0\n2024-03\nCT#103\nCP-240056\n0016\n-\nF\n29.577 Rel-18 API version and External doc update\n18.3.0\n2024-06\nCT#104\nCP-241050\n0018\n1\nF\nStyle Corrections of Nipsmgw and Nrouter API\n18.4.0\n2024-06\nCT#104\nCP-241052\n0019\nF\n29.577 Rel-18 API version and External doc update\n18.4.0",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.500_clause_6.10.3.4",
+        "ts_29.500_clause_6.10.9.1",
+        "ts_29.501_clause_5.3.1",
+        "ts_29.501_clause_5",
+        "ts_29.501_clause_4.4",
+        "ts_29.500",
+        "ts_29.501",
+        "ts_21.900",
+        "ts_29.577"
+      ]
+    }
+  ]
+}

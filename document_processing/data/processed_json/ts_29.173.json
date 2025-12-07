@@ -1,0 +1,442 @@
+{
+  "metadata": {
+    "specification_id": "ts_29.173",
+    "version": "18.0.0",
+    "title": "3GPP TS 29.173",
+    "file_path": "/content/drive/MyDrive/RAG_thesis/data/29_series/29173-i00/29173-i00.docx"
+  },
+  "export_info": {
+    "export_date": "2025-07-26T09:19:07.202868",
+    "total_chunks": 45
+  },
+  "chunks": [
+    {
+      "chunk_id": "ts_29.173_1",
+      "section_id": "1",
+      "section_title": "Scope",
+      "content": "The present document describes the Diameter-based SLh interface between the GMLC and the HSS defined for the Control Plane LCS in EPC.\nLCS procedures over the SLh interface are defined in the 3GPP TS 23.271 [2].\nThis specification defines the Diameter application for the GMLC-HSS, SLh reference point. The interactions between the HSS and the GMLC are specified, including the signalling flows. As LCS procedures over the Diameter-based SLh interface are identical to the MAP-based Lh interface, the descriptions of the Lh MAP operations defined in the 3GPP TS 29.002 [3] are mapped into the descriptions of the SLh Diameter commands.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.271",
+        "ts_29.002"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.173_2",
+      "section_id": "2",
+      "section_title": "References",
+      "content": "The following documents contain provisions which, through reference in this text, constitute provisions of the present document.\n-\tReferences are either specific (identified by date of publication, edition number, version number, etc.) or non‑specific.\n-\tFor a specific reference, subsequent revisions do not apply.\n-\tFor a non-specific reference, the latest version applies. In the case of a reference to a 3GPP document (including a GSM document), a non-specific reference implicitly refers to the latest version of that document in the same Release as the present document.\n[1]\t3GPP TR 21.905: \"Vocabulary for 3GPP Specifications\".\n[2]\t3GPP TS 23.271: \"Functional stage 2 description of Location Services (LCS)\".\n[3]\t3GPP TS 29.002: \"Mobile Application Part (MAP) specification\".\n[4]\t3GPP TS 29.228: \"IP multimedia (IM) Subsystem Cx Interface; Signalling flows and Message Elements\".\n[5]\tVoid.\n[6]\t3GPP TS 33.210: \"3G security; Network Domain Security (NDS); IP network layer security\".\n[7]\tIETF RFC 4960: \"Stream Control Transport Protocol\".\n[8]\t3GPP TS 29.229: \"Cx and Dx Interfaces based on the Diameter protocol; protocol details\".\n[9]\t3GPP TS 29.329: \"Sh Interface based on the Diameter protocol; protocol details\".\n[10]\t3GPP TS 23.003: \"Numbering, addressing and identification \".\n[11]\t3GPP TS 23.012: \"Location Management Procedures\".\n[12]\t3GPP TS 29.272: \"Mobility Management Entity (MME) and Serving GPRS Support Node (SGSN) related interfaces based on Diameter protocol\".\n[13]\tIETF RFC 2234: \"Augmented BNF for syntax specifications\".\n[14]\tVoid\n[15]\tITU-T Recommendation E.164: \"The international public telecommunication numbering plan\".\n[16]\t3GPP TS 29.273: \"Evolved Packet System (EPS); 3GPP EPS AAA interfaces\".\n[17]\tIETF RFC 6733: \"Diameter Base Protocol\".",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905",
+        "ts_23.271",
+        "ts_29.002",
+        "ts_29.228",
+        "ts_33.210",
+        "ts_29.229",
+        "ts_29.329",
+        "ts_23.003",
+        "ts_23.012",
+        "ts_29.272",
+        "ts_29.273"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.173_3.1",
+      "section_id": "3.1",
+      "section_title": "Definitions",
+      "content": "For the purposes of the present document, the terms and definitions given in 3GPP TR 21.905 [1], 3GPP TS 23.271 [2] and the following apply. A term defined in the present document takes precedence over the definition of the same term, if any, in TR 21.905 [1].",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_21.905",
+        "ts_23.271"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.173_3.2",
+      "section_id": "3.2",
+      "section_title": "Abbreviations",
+      "content": "For the purposes of the present document, the abbreviations given in 3GPP TR 21.905 [1] and the following apply. An abbreviation defined in the present document takes precedence over the definition of the same abbreviation, if any, in 3GPP TR 21.905 [1].\nABNF\tAugmented Backus-Naur form\nAVP\tAttribute Value Pair\nH-GMLC\tHome-Gateway Mobile Location Centre\nIANA\tInternet Assigned Numbers Authority\nPMD\tPseudonym mediation device functionality\nPPR\tPrivacy Profile Register\nR-GMLC\tRequesting-Gateway Mobile Location Centre\nRFC\tRequest For Comments\nV-GMLC\tVisited-Gateway Mobile Location Centre",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.173_4.1",
+      "section_id": "4.1",
+      "section_title": "Introduction",
+      "content": "The SLh reference point between the GMLC and the HSS is defined in the 3GPP TS 23.271 [2].\nThis document describes the Diameter-based SLh interface related procedures, message parameters and protocol specifications.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.271"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.173_4.2",
+      "section_id": "4.2",
+      "section_title": "Architecture Overview",
+      "content": "The architecture for support of Location Services in GSM, UMTS and EPS has been defined in 3GPP TS 23.271 [2] and the relevant network elements and interfaces are shown in the figure 4.2-1.\nFigure 4.2-1: Overview of the LCS Functional Architecture\nIn this architecture, the SLh interface is defined between the Gateway Mobile Location Center (GMLC) and the Home Subscriber Server (HSS) to allow the GMLC to request routing information from the HLR or HSS.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "figure_4.2-1",
+        "ts_23.271"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.173_4.3",
+      "section_id": "4.3",
+      "section_title": "Functional Requirements of SLh Interface",
+      "content": "The requirements for SLh interface are defined in 3GPP TS 23.271 [2].\nThe SLh interface is used by the GMLC to request routing information from the HSS i.e. the address of the H-GMLC, and/or the address of the visited MSC/MSC server, SGSN, 3GPP AAA server or MME for a particular target UE whose location has been requested.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.271"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.173_5.1",
+      "section_id": "5.1",
+      "section_title": "Introduction",
+      "content": "This section describes the Diameter-based SLh interface related procedures and Information elements exchanged between functional entities.\nIn the tables that describe the Information Elements transported by each Diameter command, each Information Element is marked as (M) Mandatory, (C) Conditional or (O) Optional in the \"Cat.\" column. For the correct handling of the Information Element according to the category type, see the description detailed in section 6 of the 3GPP TS 29.228 [4].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.228_clause_6",
+        "ts_29.228"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.173_5.2.1.1",
+      "section_id": "5.2.1.1",
+      "section_title": "General",
+      "content": "This procedure is used between the GMLC and the HSS.  The procedure is invoked by the GMLC and is used:\n-\tTo retrieve routing information for LCS for a specified user from the HSS.\nThis procedure is mapped to the commands LCS-Routing-Info-Request/Answer in the Diameter application specified in chapter 6. Tables 5.2.1.1/1 and 5.2.1.1/2 detail the involved information elements.\nTable 5.2.1.1/1: Send Routing Information for LCS (SLh-LCS-SRI)\nInformation element name\nMapping to Diameter AVP\nCat.\nDescription\nIMSI\nUser-Name\nC\nThis information element shall contain the IMSI of the targeted user. This IE shall be present if the MSISDN is absent.\nMSISDN\nMSISDN\nC\nThis information element shall contain the MSISDN of the targeted user. This IE shall be present if the IMSI is absent.\nGMLC Number\nGMLC-Number\nO\nThis information element shall contain the ISDN (E.164) number of the requesting GMLC.\nSupported Features\n(See 3GPP TS 29.229 [8])\nSupported-Features\nO\nIf present, this information element shall contain the list of features supported by the origin host.\nTable 5.2.1.1/2: Send Routing Information for LCS (SLh-LCS-SRI) Resp\nInformation element name\nMapping to Diameter AVP\nCat.\nDescription\nResult\n(See 5.3.5)\nResult-Code / Experimental-Result\nM\nResult of the request.\nResult-Code AVP shall be used for errors defined in the Diameter base protocol (see IETF RFC 6733 [17]).\nExperimental-Result AVP shall be used for SLh errors. This is a grouped AVP which contains the 3GPP Vendor ID in the Vendor-Id AVP, and the error code in the Experimental-Result-Code AVP.\nIMSI\nUser-Name\nC\nThis information element shall contain the IMSI of the targeted user. This IE shall be present if Result-Code is DIAMETER_SUCCESS and the MSISDN is absent.\nMSISDN\nMSISDN\nC\nThis information element shall contain the MSISDN of the targeted user. This IE shall be present if Result-Code is DIAMETER_SUCCESS and the IMSI is absent.\nLMSI\nLMSI\nC\nThis information element shall contain the LMSI allocated by the VLR. This IE should be present if Result-Code is DIAMETER_SUCCESS and LMSI is available in the HSS and MSC-Number is included in the Serving-Node AVP or in an Additional-Serving-Node AVP.\nServing Node\nServing-Node\nC\nThis information element shall contain the information about the network node serving the targeted user i.e. the name/number of the serving node (MME, SGSN, 3GPP AAA server or MSC/MSC server), the LCS capabilities sets supported by the serving node and the IP address of the visited GMLC associated with the serving node. This IE shall be present if the Result- Code is DIAMETER_SUCCESS; otherwise it shall be absent.\nAdditional Serving Node\nAdditional-Serving-Node\nC\nThis information element shall contain the information about another network node serving the targeted user. This IE may be present if Result- Code is DIAMETER_SUCCESS; otherwise it shall be absent. There may be multiple instances of this IE in the response provided by the HSS.\nHome GMLC Address\nGMLC-Address\nC\nThis information element shall contain the IP address of the H-GMLC. This IE should be present if the Result-Code is DIAMETER_SUCCESS; otherwise it shall be absent.\nPPR Address\nPPR-Address\nC\nThis information element shall contain the IP address of the Privacy Profile Register (PPR). This IE should be present if available in the HSS and the Result-Code is DIAMETER_SUCCESS; otherwise it shall be absent.\nRIA Flags\nRIA-Flags\nO\nThis Information Element contains a bit mask. See 6.4.15 for the meaning of the bits.\nSupported Features\n(See 3GPP TS 29.229 [8])\nSupported-Features\nO\nIf present, this information element shall contain the list of features supported by the origin host.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "table_5.2.1.1",
+        "ts_29.229"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.173_5.2.1.2",
+      "section_id": "5.2.1.2",
+      "section_title": "Detailed Behaviour of the HSS",
+      "content": "Upon reception of the Send Routing Info for LCS request, the HSS shall, in the following order:\n1.\tCheck whether the requesting GMLC belongs to a network authorized to request UE location information. If not, Experimental-Result shall be set to DIAMETER_ERROR_UNAUTHORIZED_REQUESTING_NETWORK in the Send Routing Information for LCS Response.\n2.\tCheck that the User Identity for whom data is asked exists in HSS. If not, Experimental-Result shall be set to DIAMETER_ERROR_USER_UNKNOWN in the Send Routing Information for LCS Response.\n2a.\tIf both IMSI and MSISDN are present in the request, check whether they identify the same User. If not, the HSS Result-Code shall be set to DIAMETER_CONTRADICTING_AVPS in the Send Routing Information for LCS Response.\n3.\tCheck that there is at least one serving node associated with the targeted user. If not, Experimental-Result shall be set to DIAMETER_ERROR_ABSENT_USER in the Send Routing Information for LCS Response.\nIf there is an error in any of the above steps then the HSS shall stop processing and shall return the error code specified in the respective step (see 3GPP TS 29.329 [9] and 3GPP TS 29.229 [8] for an explanation of the error codes).\nIf the HSS cannot fulfil the received request for reasons not stated in the above steps, e.g. due to a database error or empty mandatory data elements, it shall stop processing the request and set Result-Code to DIAMETER_UNABLE_TO_COMPLY.\nOtherwise, the requested operation shall take place and the HSS shall return the Result-Code AVP set to DIAMETER_SUCCESS. The HSS returns one or several of the network addresses of the current MME, SGSN, 3GPP AAA server and/or VMSC/MSC server, the LCS capabilities of the serving nodes if available, the V-GMLC address associated with the serving nodes, if available, and whichever of the IMSI and MSISDN that was not provided in the Send Routing Info for LCS request. If MSISDN was not provided in the Send Routing Info for LCS request and the subscription is MSISDN-less, the HSS shall return the dummy MSISDN value (see 3GPP TS 23.003 [10]). If both MSISDN and IMSI were provided in the Send Routing Info for LCS request, the HSS returns either MSISDN or IMSI or both. The HSS returns the address of the H-GMLC. The HSS also provides the address of the PPR, if available.\nThe HSS shall include the Diameter Identity of the SGSN (i.e. SGSN-Name and SGSN-Realm), within the Serving-Node AVP or within an Additional-Serving-Node AVP, if and only if the HSS has received an indication that the Lgd interface is supported by the SGSN (see 3GPP TS 29.272 [12]).\nThe HSS shall include the SGSN Number, within the Serving-Node AVP or Additional Serving-Node AVP, except if the HSS has received an indication that the Lg interface is not supported by the SGSN (see 3GPP TS 29.272 [12]).\nIf the UE is served by the MME and SGSN parts of the same combined MME/SGSN (see 3GPP TS 29.272 [12] subclause 5.2.2.1.1 for how the HSS determines if the UE is served by the combined MME/SGSN) and if this combined MME/SGSN has indicated the support for optimized LCS procedure (via the Supported-Feature AVP as defined in 3GPP TS 29.272 [12] subclause 7.3.10) and if HSS supports this optimized LCS procedure, then the HSS shall set the \"Combined-MME/SGSN-Supporting-Optimized-LCS-Proc\" bit of the RIA-Flags.\nRegarding the LCS capabilities of the serving nodes, if the HSS registered an SGSN via the S6d reference point (i.e., the registered serving node is an S4-SGSN), the HSS shall set the LCS-Capabilities-Set value to indicate support of Capability Set 5 (i.e., LCS release 7 or later version). If the HSS registered an MME, the HSS shall not indicate any LCS capability value to the GMLC (i.e., the LCS-Capabilities-Set AVP shall be absent over SLh when the serving node is an MME); in this case, the GMLC shall assume that the MME supports LCS Capability Set 5.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.272_clause_5.2.2.1.1",
+        "ts_29.272_clause_7.3.10",
+        "ts_29.329",
+        "ts_29.229",
+        "ts_23.003",
+        "ts_29.272"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.173_5.2.1.3",
+      "section_id": "5.2.1.3",
+      "section_title": "Detailed Behaviour of the GLMC",
+      "content": "If there are a serving node as well as additional serving nodes in a successful Send Routing Info for LCS response, the receiving shall use the serving node in preference to the additional serving nodes.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.173_6.1.1",
+      "section_id": "6.1.1",
+      "section_title": "Use of Diameter Base Protocol",
+      "content": "The Diameter base protocol as specified in IETF RFC 6733 [17] shall apply except as modified by the defined support of the methods and the defined support of the commands and AVPs, result and error codes as specified in this specification. Unless otherwise specified, the procedures (including error handling and unrecognised information handling) shall be used unmodified.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.173_6.1.2",
+      "section_id": "6.1.2",
+      "section_title": "Securing Diameter Messages",
+      "content": "For secure transport of Diameter messages, see 3GPP TS 33.210 [6].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_33.210"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.173_6.1.3",
+      "section_id": "6.1.3",
+      "section_title": "Accounting Functionality",
+      "content": "Accounting functionality (Accounting Session State Machine, related command codes and AVPs) shall not be used on the SLh interface.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.173_6.1.4",
+      "section_id": "6.1.4",
+      "section_title": "Use of Sessions",
+      "content": "Between the GMLC and the HSS, Diameter sessions shall be implicitly terminated. An implicitly terminated session is one for which the server does not maintain state information. The client shall not send any re-authorization or session termination requests to the server.\nThe Diameter base protocol as specified in IETF RFC 6733 [17] includes the Auth-Session-State AVP as the mechanism for the implementation of implicitly terminated sessions.\nThe client (server) shall include in its requests (responses) the Auth-Session-State AVP set to the value NO_STATE_MAINTAINED (1), as described in IETF RFC 6733 [17]. As a consequence, the server shall not maintain any state information about this session and the client shall not send any session termination request. Neither the Authorization-Lifetime AVP nor the Session-Timeout AVP shall be present in requests or responses.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.173_6.1.5",
+      "section_id": "6.1.5",
+      "section_title": "Transport Protocol",
+      "content": "Diameter messages over the SLh interface shall make use of SCTP IETF RFC 4960 [7] as transport protocol.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.173_6.1.6",
+      "section_id": "6.1.6",
+      "section_title": "Routing Considerations",
+      "content": "This clause specifies the use of the Diameter routing AVPs Destination-Realm and Destination-Host.\nIf GMLC knows the address/name of the HSS for a certain user, both the Destination-Realm AVP and the Destination-Host AVP shall be present in the request. Otherwise, only the Destination-Realm AVP shall be present and the command shall be routed to the next Diameter node. Consequently, the Destination-Host AVP is declared as optional in the ABNF for all requests initiated by a GMLC.\nDestination-Realm AVP is declared as mandatory in the ABNF for all requests.\nIf the Vendor-Specific-Application-ID AVP is received in any of the commands defined in this specification, it shall be ignored by the receiving node, and it shall not be used for routing purposes.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.173_6.1.7",
+      "section_id": "6.1.7",
+      "section_title": "Advertising Application Support",
+      "content": "The HSS and GMLC shall advertise support of the Diameter SLh Application by including the value of the application identifier in the Auth-Application-Id AVP within the Vendor-Specific-Application-Id grouped AVP of the Capabilities-Exchange-Request and Capabilities-Exchange-Answer commands.\nThe vendor identifier value of 3GPP (10415) shall be included in the Supported-Vendor-Id AVP of the Capabilities-Exchange-Request and Capabilities-Exchange-Answer commands, and in the Vendor-Id AVP within the Vendor-Specific-Application-Id grouped AVP of the Capabilities-Exchange-Request and Capabilities-Exchange-Answer commands.\nThe Vendor-Id AVP included in Capabilities-Exchange-Request and Capabilities-Exchange-Answer commands that is not included in the Vendor-Specific-Application-Id AVPs as described above shall indicate the manufacturer of the Diameter node as per IETF RFC 6733 [17].",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.173_6.1.8",
+      "section_id": "6.1.8",
+      "section_title": "Diameter Application Identifier",
+      "content": "The SLh interface protocol shall be defined as an IETF vendor specific Diameter application, where the vendor is 3GPP. The vendor identifier assigned by IANA to 3GPP (http://www.iana.org/assignments/enterprise-numbers) is 10415.\nThe Diameter application identifier assigned to the SLh interface application is 16777291 (allocated by IANA).",
+      "chunk_type": "parameter",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.173_6.1.9",
+      "section_id": "6.1.9",
+      "section_title": "User Identity to HSS resolution",
+      "content": "The User identity to HSS resolution mechanism enables the GMLC (for non-roaming case) or Diameter Relay/proxy agents in the home network (for roaming case) to find the identity of the HSS that holds the LCS subscription data and routing information for the target user when multiple and separately addressable HSSs have been deployed in the home network. The resolution mechanism is not required in networks that utilise a single HSS.\nThis User identity to HSS resolution mechanism may rely on routing capabilities provided by Diameter and be implemented in the home operator network within dedicated Diameter Agents (Redirect Agents or Proxy Agents) responsible for determining the HSS identity based on the provided user identity. If this Diameter based implementation is selected by the Home network operator, the principles described in the 3GPP TS 29.272 [12] shall apply.\nNOTE:\tAlternatives to the user identity to HSS resolution Diameter based implementation are outside the scope of this specification.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.272"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.173_6.2.1",
+      "section_id": "6.2.1",
+      "section_title": "Introduction",
+      "content": "This section defines the Command code values and related ABNF for each command described in this specification.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.173_6.2.2",
+      "section_id": "6.2.2",
+      "section_title": "Command-Code values",
+      "content": "This section defines Command-Code values for the SLh interface application as allocated by IANA.\nEvery command is defined by means of the ABNF syntax IETF RFC 2234 [13], according to the Command Code Format (CCF) specification defined in IETF RFC 6733 [17]. In the case, the definition and use of an AVP is not specified in this document, the guidelines in IETF RFC 6733 [17] shall apply.\nThe Vendor-Specific-Application-Id AVP shall not be included in any command sent by Diameter nodes supporting applications defined in this specification. If the Vendor-Specific-Application-Id AVP is received in any of the commands defined in this specification, it shall be ignored by the receiving node.\nNOTE:\tThe Vendor-Specific-Application-Id AVP is included as an optional AVP in all Command Code Format specifications defined in this specification in order to overcome potential interoperability issues with intermediate Diameter agents non-compliant with IETF RFC 6733 [17].\nThe following Command Codes are defined in this specification:\nTable 6.2.2/1: Command-Code values for SLh\nCommand-Name\nAbbreviation\nCode\nSection\nLCS-Routing-Info-Request\nRIR\n8388622\n6.2.3\nLCS-Routing-Info-Answer\nRIA\n8388622\n6.2.4\nFor these commands, the Application-ID field shall be set to 16777291 (application identifier of the SLh interface application, allocated by IANA).",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.2.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.173_6.2.3",
+      "section_id": "6.2.3",
+      "section_title": "LCS-Routing-Info-Request (RIR) Command",
+      "content": "The LCS-Routing-Info-Request (RIR) command, indicated by the Command-Code field set to 8388622 and the \"R\" bit set in the Command Flags field, is sent from GMLC to HSS.\nMessage Format\n< LCS-Routing-Info-Request> ::=\t< Diameter Header: 8388622, REQ, PXY, 16777291 >\n< Session-Id >\n[ Vendor-Specific-Application-Id ]\n{ Auth-Session-State }\n{ Origin-Host }\n{ Origin-Realm }\n[ Destination-Host ]\n{ Destination-Realm }\n[ User-Name ]\n[ MSISDN ]\n[ GMLC-Number ]\n*[ Supported-Features ]\n*[ Proxy-Info ]\n*[ Route-Record ]\n*[ AVP ]",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.173_6.2.4",
+      "section_id": "6.2.4",
+      "section_title": "LCS-Routing-Info-Answer (RIA) Command",
+      "content": "The LCS-Routing-Info-Answer (RIA) command, indicated by the Command-Code field set to 8388622 and the 'R' bit cleared in the Command Flags field, is sent from HSS to GMLC.\nMessage Format\n< LCS-Routing-Info-Answer> ::=\t< Diameter Header: 8388622, PXY, 16777291 >\n< Session-Id >\n[ Vendor-Specific-Application-Id ]\n[ Result-Code ]\n[ Experimental-Result ]\n{ Auth-Session-State }\n{ Origin-Host }\n{ Origin-Realm }\n*[ Supported-Features ]\n[ User-Name ]\n[ MSISDN ]\n[ LMSI ]\n[ Serving-Node ]\n*[ Additional-Serving-Node ]\n[ GMLC-Address ]\n[ PPR-Address ]\n[ RIA-Flags ]\n*[ AVP ]\n[ Failed-AVP ]\n*[ Proxy-Info ]\n*[ Route-Record ]",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.173_6.3.1",
+      "section_id": "6.3.1",
+      "section_title": "General",
+      "content": "This section defines result code values that shall be supported by all Diameter implementations that conform to this specification.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.173_6.3.2",
+      "section_id": "6.3.2",
+      "section_title": "Success",
+      "content": "Result codes that fall within the Success category shall be used to inform a peer that a request has been successfully completed. The Result-Code AVP values defined in the Diameter base protocol specified in  IETF RFC 6733 [17] shall be applied.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.173_6.3.3",
+      "section_id": "6.3.3",
+      "section_title": "Permanent Failures",
+      "content": "Errors that fall within the Permanent Failures category shall be used to inform the peer that the request has failed, and should not be attempted again. The Result-Code AVP values defined in the Diameter base protocol specified in IETF RFC 6733 [17] shall be applied. When one of the result codes defined here is included in a response, it shall be inside an Experimental-Result AVP and the Result-Code AVP shall be absent.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.173_6.3.3.1",
+      "section_id": "6.3.3.1",
+      "section_title": "DIAMETER_ERROR_USER_UNKNOWN (5001)",
+      "content": "This result code shall be sent by the HSS to indicate that the user identified by the IMSI or the MSISDN is unknown. This error code is defined in 3GPP TS 29.229 [8]",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.229"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.173_6.3.3.2",
+      "section_id": "6.3.3.2",
+      "section_title": "DIAMETER_ERROR_UNAUTHORIZED_REQUESTING_NETWORK (5490)",
+      "content": "This result code shall be sent by the HSS to indicate that the requesting GMLC's network is not authorized to request UE location information.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.173_6.3.4",
+      "section_id": "6.3.4",
+      "section_title": "Transient Failures",
+      "content": "Errors that fall within the transient failures category are those used to inform a peer that the request could not be satisfied at the time that it was received. The request may be able to be satisfied in the future.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.173_6.3.4.1",
+      "section_id": "6.3.4.1",
+      "section_title": "DIAMETER_ERROR_ABSENT_USER (4201)",
+      "content": "This result code shall be sent by the HSS to indicate that the location of the targeted user is not known at this time to satisfy the requested operation.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.173_6.4.1",
+      "section_id": "6.4.1",
+      "section_title": "General",
+      "content": "The following table specifies the Diameter AVPs defined for the SLh interface protocol, their AVP Code values, types, possible flag values and whether or not the AVP may be encrypted. The Vendor-ID header of all AVPs defined in this specification shall be set to 3GPP (10415).\nFor all AVPs which contain bit masks and are of the type Unsigned32, bit 0 shall be the least significant bit. For example, to get the value of bit 0, a bit mask of 0x00000001 should be used.\nTable 6.4.1/1: SLh specific Diameter AVPs\nAVP Flag rules\nAttribute Name\nAVP Code\nSection defined\nValue Type\nMust\nMay\nShould not\nMust not\nMay Encr.\nLMSI\n2400\n6.4.2\nOctetString\nM, V\nNo\nServing-Node\n2401\n6.4.3\nGrouped\nM, V\nNo\nMME-Name\n2402\n6.4.4\nDiameterIdentity\nM, V\nNo\nMSC-Number\n2403\n6.4.5\nOctetString\nM, V\nNo\nLCS-Capabilities-Sets\n2404\n6.4.6\nUnsigned32\nM, V\nNo\nGMLC-Address\n2405\n6.4.7\nAddress\nM, V\nNo\nAdditional-Serving-Node\n2406\n6.4.8\nGrouped\nM, V\nNo\nPPR-Address\n2407\n6.4.9\nAddress\nM, V\nNo\nMME-Realm\n2408\n6.4.12\nDiameterIdentity\nV\nM\nNo\nSGSN-Name\n2409\n6.4.13\nDiameterIdentity\nV\nM\nNo\nSGSN-Realm\n2410\n6.4.14\nDiameterIdentity\nV\nM\nNo\nRIA-Flags\n2411\n6.4.15\nUnsigned32\nV\nM\nNo\nNOTE 1:\tThe AVP header bit denoted as \"M\", indicates whether support of the AVP is required. The AVP header bit denoted as \"V\", indicates whether the optional Vendor-ID field is present in the AVP header. For further details, see IETF RFC 6733 [17].\nThe following table specifies the Diameter AVPs re-used by the SLh interface protocol from existing Diameter Applications, including a reference to their respective specifications and when needed, a short description of their use within SLh.\nAny other AVPs from existing Diameter Applications, except for the AVPs from the Diameter base protocol as specified in IETF RFC 6733 [17], do not need to be supported. The AVPs from the Diameter base protocol as specified in IETF RFC 6733 [17] are not included in table 6.4.1/2, but they may be re-used for the SLh protocol.\nTable 6.4.1/2: SLh re-used Diameter AVPs\nAttribute Name\nReference\nComments\nMSISDN\n3GPP TS 29.329 [9]\nSGSN-Number\n3GPP TS 29.272 [12]\nSupported-Features\n3GPP TS 29.229 [8]\nFeature-List-ID\n3GPP TS 29.229 [8]\nSee section 6.4.10\nFeature-List\n3GPP TS 29.229 [8]\nSee section 6.4.11\nGMLC-Number\n3GPP TS 29.272 [12]\n3GPP-AAA-Server-Name\n3GPP TS 29.273 [16]",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.229_clause_6.4.10",
+        "ts_29.229_clause_6.4.11",
+        "table_6.4.1",
+        "ts_29.329",
+        "ts_29.272",
+        "ts_29.229",
+        "ts_29.273"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.173_6.4.2",
+      "section_id": "6.4.2",
+      "section_title": "LMSI",
+      "content": "The LMSI AVP is of type OctetString and it shall contain the Local Mobile Station Identity (LMSI) allocated by the VLR, as defined in 3GPP TS 23.003 [10]. For further details on the encoding of this AVP, see 3GPP TS 23.003[10].",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_23.003"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.173_6.4.3",
+      "section_id": "6.4.3",
+      "section_title": "Serving-Node",
+      "content": "The Serving-Node AVP is of type Grouped. This AVP shall contain the information about the network node serving the targeted user.\nAVP format\nServing-Node ::=\t<AVP header: 2401 10415>\n[ SGSN-Number ]\n[ SGSN-Name ]\n[ SGSN-Realm ]\n[ MME-Name ]\n[ MME-Realm ]\n[ MSC-Number ]\n[ 3GPP-AAA-Server-Name ]\n[ LCS-Capabilities-Sets ]\n[ GMLC-Address ]\n*[AVP]\nThe GMLC-Address AVP included in the Serving-Node grouped AVP shall contain, if present, the IPv4 or IPv6 address of the GMLC associated with the serving node (i.e., either the home GMLC or the visited GMLC, depending on the location of the serving node).",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.173_6.4.4",
+      "section_id": "6.4.4",
+      "section_title": "MME-Name",
+      "content": "The MME-Name AVP is of type DiameterIdentity and it shall contain the Diameter identity of the serving MME. For further details on the encoding of this AVP, see IETF RFC 6733 [17].",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.173_6.4.5",
+      "section_id": "6.4.5",
+      "section_title": "MSC-Number",
+      "content": "The MSC-Number AVP is of type OctetString and it shall contain the ISDN number of the serving MSC or MSC server in international number format as described in ITU-T Rec E.164 [15] and shall be encoded as a TBCD-string. See 3GPP TS 29.002 [3] for encoding of TBCD-strings.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.002"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.173_6.4.6",
+      "section_id": "6.4.6",
+      "section_title": "LCS-Capabilities-Sets",
+      "content": "The LCS-Capabilities-Sets AVP is of type Unsigned32 and it shall contain a bit mask. The meaning of the bits shall be as defined in 3GPP 29.002 [3].",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.173_6.4.7",
+      "section_id": "6.4.7",
+      "section_title": "GMLC-Address",
+      "content": "The GMLC-Address AVP is of type Address and shall contain the IPv4 or IPv6 address of H-GMLC or the V-GMLC associated with the serving node.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.173_6.4.8",
+      "section_id": "6.4.8",
+      "section_title": "Additional-Serving-Node",
+      "content": "The Additional-Serving-Node AVP is of type Grouped. This AVP shall contain the information about the network node serving the targeted user.\nAVP format\nAdditional-Serving-Node ::=\t<AVP header: 2406 10415>\n[ SGSN-Number ]\n[ MME-Name ]\n[ SGSN-Name ]\n[ SGSN-Realm ]\n[ MME-Realm ]\n[ MSC-Number ]\n[ 3GPP-AAA-Server-Name ]\n[ LCS-Capabilities-Sets ]\n[ GMLC-Address ]\n*[AVP]\nThe GMLC-Address AVP included in the Additional-Serving-Node grouped AVP shall contain, if present, the IPv4 or IPv6 address of the GMLC associated with the serving node (i.e., either the home GMLC or the visited GMLC, depending on the location of the serving node).",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.173_6.4.9",
+      "section_id": "6.4.9",
+      "section_title": "PPR-Address",
+      "content": "The PPR-Address AVP is of type Address and contains the IPv4 or IPv6 address of the Privacy Profile Register for the targeted user.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.173_6.4.10",
+      "section_id": "6.4.10",
+      "section_title": "Feature-List-ID AVP",
+      "content": "The syntax of this AVP is defined in 3GPP TS 29.229 [8]. For this release, the Feature-List-ID AVP value shall be set to 1.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.229"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.173_6.4.11",
+      "section_id": "6.4.11",
+      "section_title": "Feature-List AVP",
+      "content": "The syntax of this AVP is defined in 3GPP TS 29.229 [8]. A null value indicates that there is no feature used by the application.\nNOTE:\tThere is no feature defined for this release.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.229"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.173_6.4.12",
+      "section_id": "6.4.12",
+      "section_title": "MME-Realm",
+      "content": "The MME-Realm AVP is of type DiameterIdentity and it shall contain the Diameter Realm Identity of the serving MME. For further details on the encoding of this AVP, see IETF RFC 6733 [17].",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.173_6.4.13",
+      "section_id": "6.4.13",
+      "section_title": "SGSN-Name",
+      "content": "The SGSN-Name AVP is of type DiameterIdentity and it shall contain the Diameter identity of the serving SGSN. For further details on the encoding of this AVP, see IETF RFC 6733 [17].",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.173_6.4.14",
+      "section_id": "6.4.14",
+      "section_title": "SGSN-Realm",
+      "content": "The SGSN-Realm AVP is of type DiameterIdentity and it shall contain the Diameter Realm Identity of the serving SGSN. For further details on the encoding of this AVP, see IETF RFC 6733 [17].\n6.4.15\tRIA-Flags\nThe RIA-Flags AVP is of type Unsigned32 and it shall contain a bit mask. The meaning of the bits shall be as defined in table 6.4.15/1:\nTable 6.4.15/1: RIA-Flags\nBit\nName\nDescription\n0\nCombined-MME/SGSN-Supporting-Optimized-LCS-Proc\nThis bit, when set, indicates that the UE is served by the MME and the SGSN parts of the same combined MME/SGSN and this combined MME/SGSN supports the optimized LCS procedure.\nNOTE1:\tBits not defined in this table shall be cleared by the sending HSS and discarded by the receiving GMLC.\nAnnex A (informative):Change history\nChange history\nDate\nMeeting\nTDoc\nCR\nRev\nCat\nSubject/Comment\nNew version\n2010-03\nCT#47\nCP-090815\nTS presented for approval in CT#47\n9.0.0\n2010-09\nCT#49\nCP-100463\n0002\n1\nApplication ID and Command code values\n9.1.0\n2011-03\n-\n-\n-\n-\nUpdate to Rel-10 version (MCC)\n10.0.0\n2011-12\nCT#54\nCP-11786\n0004\n2\nIdentifications of MME in location procedures\n10.1.0\n2012-03\nCT#55\nCP-120023\n0007\n1\nMSC-Number format\n10.2.0\n2012-09\nCT#57\nCP-120490\n0008\n1\nLCS-Capabilities-Set AVP\n10.3.0\n2012-09\n-\n-\n-\n-\nUpdate to Rel-11 version (MCC)\n11.0.0\n2012-12\nCT#58\nCP-120719\n0013\n1\nClarification on the use of Vendor-Specific-Application-Id AVP\n11.1.0\n2013-03\nCT#59\nCP-130156\n0014\n1\nProviding Diameter identity of the SGSN to the GMLC over SLh interface\n12.0.0\n2013-12\nCT#62\nCP-130624\n0015\n2\nHSS and GMLC indicating the support for optimized LCS procedure\n12.1.0\n2014-09\nCT#65\nCP-140516\n0016\n1\nTitle Closing TS 29.234 and reused AVP in TS 29.273\n12.2.0\n2015-03\nCT#67\nCP-150022\n0017\n1\nSend Routing Information Behaviour\n12.3.0\n2015-03\nCT#67\nCP-150022\n0018\n1\nSend Routing Information - Conditions for presence of conditional parameters\n12.3.0\n2015-12\n-\n-\n-\n-\nUpdate to Rel-13 version (MCC)\n13.0.0\n2017-03\nCT#75\nCP-170036\n0019\n-\nBit ordering in Diameter AVPs used as bit-masks\n14.0.0\n2017-03\nCT#75\nCP-170048\n0020\n-\nUpdate of reference for the Diameter base protocol\n14.0.0\n2017-03\nCT#75\nCP-170048\n0021\n-\nHandling of the Vendor-Specific-Application-Id AVP\n14.0.0\n2017-03\nCT#75\nCP-170048\n0022\n1\nCardinality of the Failed-AVP AVP in answer\n14.0.0\n2018-06\nCT#80\n-\n-\n-\nUpdate to Rel-15 version (MCC)\n15.0.0\n2020-07\nCT#88e\n-\n-\n-\nUpdate to Rel-16 version (MCC)\n16.0.0\n2022-04\n-\n-\n-\n-\n-\nUpdate to Rel-17 version (MCC)\n17.0.0\n2024-03\n-\n-\n-\n-\n-\nUpdate to Rel-18 version (MCC)\n18.0.0",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.4.15",
+        "ts_29.234",
+        "ts_29.273"
+      ]
+    }
+  ]
+}

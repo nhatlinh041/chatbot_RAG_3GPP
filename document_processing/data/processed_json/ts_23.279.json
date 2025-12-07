@@ -1,0 +1,393 @@
+{
+  "metadata": {
+    "specification_id": "ts_23.279",
+    "version": "18.0.0",
+    "title": "3GPP TS 23.279",
+    "file_path": "/content/drive/MyDrive/RAG_thesis/data/23_series/23279-i00/23279-i00.docx"
+  },
+  "export_info": {
+    "export_date": "2025-07-26T09:28:15.892292",
+    "total_chunks": 36
+  },
+  "chunks": [
+    {
+      "chunk_id": "ts_23.279_1",
+      "section_id": "1",
+      "section_title": "Scope",
+      "content": "The present document provides architectural details to combine CS services and IMS services for using them in parallel between the same two users in a peer-to-peer context. The document provides a detailed description of how capabilities and identities are exchanged to enable the combination of CS and IMS services between the same two UEs.\nThe present document includes the following capabilities that enable the combination of CS and IMS services:\n-\tRadio capability exchange.\n-\tSIP based UE terminal capability exchange.\n-\tMSISDN number exchange in SIP.\n-\tEstablishing an IMS session in parallel to an ongoing CS call between the same two UEs.\n-\tEstablishing a CS call in parallel to an ongoing IMS session between the same two users UEs.\n-\tNetwork support for establishing multimedia sessions between a UE that uses IMS origination and a UE that uses CSI termination.\nThe individual CS call or IMS service that are combined are described in their respective specifications.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.279_2",
+      "section_id": "2",
+      "section_title": "References",
+      "content": "The following documents contain provisions, which, through reference in this text, constitute provisions of the present document.\n-\tReferences are either specific (identified by date of publication, edition number, version number, etc.) or non‑specific.\n-\tFor a specific reference, subsequent revisions do not apply.\n-\tFor a non-specific reference, the latest version applies.  In the case of a reference to a 3GPP document (including a GSM document), a non-specific reference implicitly refers to the latest version of that document in the same Release as the present document.\n[1]\t3GPP TR 21.905: \"Vocabulary for 3GPP Specifications\".\n[2]\t3GPP TS 23.228: \"IP Multimedia Subsystem (IMS); Stage 2\".\n[3]\t3GPP TS 23.081: \"Line Identification supplementary services; Stage 2\".\n[4]\t3GPP TS 23.221: \"Architectural Requirements\".\n[5]\t3GPP TS 23.002: \"Network Architecture\".\n[6]\t3GPP TS 24.008: \"Mobile radio interface Layer 3 specification; Core network protocols; Stage 3\".\n[7]\t3GPP TS 29.002: \"Mobile Application Part (MAP) specification\".\n[8]\t3GPP TS 23.082: \"Call Forwarding (CF) supplementary services; Stage 2\".\n[9]\t3GPP TS 23.083: \"Call Waiting (CW) and Call Hold (HOLD) supplementary services; Stage 2\".\n[10]\t3GPP TS 23.060: \"General Packet Radio Service (GPRS); Service description; Stage 2\".\n[11]\t3GPP TS 23.088: \"Call Barring (CB) Supplementary Service; Stage 2\".\n[12]\t3GPP TS 23.091: \"Explicit Call Transfer (ECT) Supplementary Service; Stage 2\".\n[13]\t3GPP TS 22.279: \"Combined CS Calls and IMS Sessions; Stage 1\".\n[14]\t3GPP TS 22.115: \"Service Aspects; Charging and Billing\".\n[15]\t3GPP TS 23.087: \"User-to-User Signalling (UUS) Supplementary Service; Stage 2\".\n[16]\t3GPP TS 23.078: \"Customised Applications for Mobile network Enhanced Logic (CAMEL) Phase 4; Stage 2\".\n[17]\t3GPP TS 23.206: \"Voice Call Continuity (VCC) between Circuit Switched (CS) and IP Multimedia Subsystem (IMS); Stage 2\".\n[18]\tIETF RFC 3840: \"Indicating User Agent Capabilities in the Session Initiation Protocol (SIP)\".\n[19]\tIETF RFC 3841: \"Caller Preferences for the Session Initiation Protocol (SIP)\".\n[20]\t3GPP TS 22.087: \"User-to-User Signalling (UUS); Service description; Stage 1\".",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905",
+        "ts_23.228",
+        "ts_23.081",
+        "ts_23.221",
+        "ts_23.002",
+        "ts_24.008",
+        "ts_29.002",
+        "ts_23.082",
+        "ts_23.083",
+        "ts_23.060",
+        "ts_23.088",
+        "ts_23.091",
+        "ts_22.279",
+        "ts_22.115",
+        "ts_23.087",
+        "ts_23.078",
+        "ts_23.206",
+        "ts_22.087"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.279_3.1",
+      "section_id": "3.1",
+      "section_title": "Definitions",
+      "content": "For the purposes of the present document, the terms and definitions given in TR 21.905 [1] and the following apply. A term defined in the present document takes precedence over the definition of the same term, if any, in TR 21.905 [1].\nCSI session: a multimedia session that uses the CS domain to transport all or some media components (typically, voice) and the IMS/PS domain to transport the other media components. A CSI session can be created either by establishing first a CS call and subsequently a concurrent IMS session(s), or by establishing first an IMS session(s) and subsequently a concurrent CS call. From the user point of view, a CSI session is conceived as a single multimedia session.\nMultimedia IMS session: a multimedia session that uses only the IMS/PS domain to transport both real-time and non-real-time media components.\nCSI origination: the case when a UE initiates a CS call and subsequently adds an IMS session(s), or vice versa, addressed towards the same user.\nCSI termination: the case when a call to a UE is terminated in the CS domain (e.g. for real-time component), while an IMS session(s) from the same originating user and towards the same UE is terminated in the IMS/PS domain.\nIMS origination: the case when a UE initiates an IMS session(s) and the CS domain is not involved in the originating part of the session(s).\nIMS termination: the case when an IMS session(s) is terminated in the IMS/PS domain and the CS domain is not involved in the terminating part of the session(s).",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_21.905"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.279_3.2",
+      "section_id": "3.2",
+      "section_title": "Abbreviations",
+      "content": "For the purposes of the present document, the following abbreviations apply:\nAS\tApplication Server\nCSI\tCombination of CS and IMS services\nDTM\tDual Transfer Mode\nIAM\tInitial Address Message\nCON\tConnect Message\nMRFC\tMedia Resource Function; Control part\nMRFP\tMedia Resource Function; Physical Part\nMSRP\tMessage Session Relay Protocol\nRAT\tRadio Access Technology\nRTP\tReal-time Transfer Protocol",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.279_4.1",
+      "section_id": "4.1",
+      "section_title": "General description",
+      "content": "The \"combination of CS and IMS services\" (CSI) is essentially a combination of existing CS and IMS services, i.e. mechanisms and procedures for the IMS part of the CSI session apply according to TS 23.228 [2].\nThe UE presents the CS call and IMS session within one context to the user. To facilitate this, the following capabilities shall be provided:\n1.\tExchange of information related to the current radio environment;\n2.\tExchange of terminal capability information;\n3.\tAddition of an IMS session to an ongoing CS call;\n4.\tAddition of a CS call to an ongoing IMS session.\n5.\tNetwork support for establishing multimedia sessions between a UE that uses IMS origination and a UE that uses CSI termination.\nCSI services can be provided:\n1.\tBetween two CSI capable UEs that both use CSI origination and CSI termination;\n2.\tBetween a UE that uses IMS origination and a UE that uses CSI termination.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_23.228"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.279_4.2",
+      "section_id": "4.2",
+      "section_title": "Service requirements",
+      "content": "The service requirements of combining IMS and CS services are described in TS 22.279 [13].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_22.279"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.279_5.1",
+      "section_id": "5.1",
+      "section_title": "Architectural requirements",
+      "content": "The following general requirements are applicable to CSI:\n-\tThe solution is applicable to GERAN and UTRAN;\n-\tA CSI capable UE requires DTM capability (in case of GERAN access) and MultiRAB capability (in case of UTRAN access);\n-\tIMS networks and IMS UEs without CSI support should not be impacted;\n-\tCS core, PS core, xRAN are not to be impacted. Conclusively, changes should be restricted to the IMS elements and the UEs that support CSI for IMS;\n-\tProcedures connecting the IMS to the CS domain, to the PSTN and to other SIP networks, including other IMS networks should remain unchanged;\n-\tCS only UEs and PS only UEs are not to be impacted;\n-\tCSI capable UE provides capabilities to associate the corresponding peer-to-peer CS and IMS communication  to present it within one context for the user. The IMS communication may be peer-to-peer session or session unrelated communication, e.g. IMS immediate messaging;\n-\tThe quality of the CS call (e.g. voice quality, setup delay, handover, etc.) shall not be impacted from a user perception point of view regardless of whether the CS call is combined with an IMS session or not;\n-\tThe use of CSI requires that the UE is CS attached, PS attached and IMS registered;\n-\tThe solution shall be transparent for the end-user;\n-\tExisting security mechanisms for CS and IMS shall be re-used;\n-\tFor network efficiency, the UE capability exchange functionality requires the terminal to store information about the other terminals' capabilities;\n-\tFunctionality is required to handle remote parties who use more than one device (e.g. with the same MSISDN or the same public user ID).\n-\tThe same MSISDN should be used for the users IMS subscription and their CS subscription. The system behaviour is not specified for the case where the MSISDN for the IMS subscription and the CS subscription are different.\n-\tIf the UE is not IMS registered and gets engaged in a CS call, then the UE should make an IMS registration using a Public User Identity causing the MSISDN used in the CS call to be implicitly registered.\nThe following general requirements are applicable to multimedia sessions between UEs that use IMS origination and UEs that use CSI termination:\n-\tIt shall be possible to interwork between IMS origination and CSI termination for sessions that include a real-time (e.g. voice) components.\nNOTE:\tThis implies the capability to perform the termination of the voice component of the session in the CS domain as a CS call, e.g. even if the UE for the CSI termination is not IMS registered.\n-\tThere shall be no requirement to maintain time synchronization between media transferred over different domains.\n-\tThe terminating CS domain and the originating IMS domain shall not to be impacted.\n-\tThe impact on UE behaviour relating to the origination and termination of IMS sessions shall be minimized.\n-\tThe impact on UE behaviour relating to the origination and termination of CS calls shall be minimized.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.279_5.2",
+      "section_id": "5.2",
+      "section_title": "Session scenarios",
+      "content": "The generic architectural requirements, as described in TS 23.221 [4], are applicable, and specifically\n-\tThe architectural solution shall support handover scenarios, including inter-system handover;\n-\tThe architectural solution shall support roaming scenarios with home GGSN (\"IMS with GPRS roaming\");\n-\tThe architectural solution shall support roaming scenarios with visited GGSN (\"IMS roaming\");\n-\tThe architectural solution shall be compatible with the IMS home control paradigm;\n-\tThe architectural solution shall consider future evolution to support interworking with conversational IMS services, which use PS bearers;\n-\tThe architectural solution shall consider future evolution to support migration towards conversational IMS services, which use PS bearers.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_23.221"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.279_5.3",
+      "section_id": "5.3",
+      "section_title": "UE logic",
+      "content": "A CSI-capable UE shall have logic to trigger the capability and identity exchange required for simultaneous communication on the CS and IMS domains.  Further, the logic shall be able to co-ordinate current activities in the UE , the user preferences, whether support for simultaneous CS and PS access is available and available IMS enablers in such a way, that only those services/enablers are offered to a user, which can be used simultaneously. This logic shall function in such a way that it makes the simultaneous usage of the CS and IMS domains for the media flows as transparent as possible for the user.\nFor the scenario of a CS call and an IMS session being established at the same time from an end user perspective, an IMS session can be setup first followed by adding a CS call to the IMS session using the call-flow of clause 8.4, or a CS call can be setup first followed by adding the IMS session to the CS call using the call-flow of clause 8.3.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_8.4",
+        "clause_8.3"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.279_6.1",
+      "section_id": "6.1",
+      "section_title": "General Architecture",
+      "content": "The figure below shows a high level E2E architecture of a simultaneous IMS session and CS call between two end-users belonging to the same operator.\nFigure 6-1: High level architecture\nNOTE 1:\tNo specific IMS user plane handling capabilities that are required to support CSI have been identified, i.e. regular IMS user plane handling applies.\n-\tUEThe UE needs to support simultaneous CS and PS domain access i.e. GERAN DTM and/or UTRAN multiRAB capabilities. Additionally, the UE should support the capability exchange mechanism outlined in clause 7, and the capability to present the CS call and IMS session within the same context to the user.\n-\txRAN The Radio Access Network is not impacted by Combinational Services. However, for CSI to function, for GERAN access DTM is required, for UTRAN multiRAB is required\n-\tPS CoreThe Packet Switched Core network remains unchanged.\nNOTE 2:\tFor CSI to function, the PS core needs to support IMS.\n-\tCS CoreThe CS Core Network remains unchanged. The CS core network contains MSC/VLR, HLR, and possibly other logical elements according to the 3GPP specifications TS 23.002 [5], TS 24.008 [6] and TS 29.002 [7]. However for the Current Radio Environment information exchange to work, support for User-User Signalling Service 1 is required (TS 22.087 [20]).\n-\tIMS CoreThe IMS routes the SIP signalling between the UE (A) and UE (B). In addition, the IMS provides the session control and supports UE capability exchange mechanism for the support of CSI. The IMS core includes the HSS, the CSCFs, and other logical elements like MRFC, MRFP, MGCF, or Messaging AS, according to 3GPP specifications TS 23.228 [2].\n-\tASThe means of using an AS is identical to its usage in IMS. The AS may be utilised to handle the control of the IMS specific aspects of a CSI session, for example service-based charging, as described in TS 22.115 [14]. If service-based charging mechanisms like charging based on the content of a multimedia message, the message type or the number of sent and/or received messages are required, then the AS should be involved. The AS may also provide support for time- and/or volume based charging, see TS 23.228 [2] for a more detailed description. For meeting the requirements of interworking between UEs that use IMS origination and UEs that use CSI termination, the AS will implement the role of a CSI AS as specified in clause 6.2.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_7",
+        "clause_6.2",
+        "figure_6-1",
+        "ts_23.002",
+        "ts_24.008",
+        "ts_29.002",
+        "ts_22.087",
+        "ts_23.228",
+        "ts_22.115"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.279_6.2.1",
+      "section_id": "6.2.1",
+      "section_title": "CSI AS functionality",
+      "content": "The CSI AS is an optional application server functionality in the IMS terminating network that serves as a control entity for enabling multimedia sessions between UEs that use IMS origination and UEs that use CSI termination. This functionality can be co-hosted within a standalone or any existing application servers. The main functionality of the CSI AS is:\n-\tto retrieve the CSI related capabilities of UEs which have CSI capability, via third-party registration when the UE registers to IMS;\n-\tto control the CSI termination by implementing a third-party call control logic (as per TS 23.228 [2], clause 4.2.4);\n-\tto perform termination logic, i.e. examine the media components of a multimedia IMS session targeted toward a CSI capable UE and make a decision how to terminate them;\n-\tto map a SIP URI to an associated Tel URI, in case the CSI AS decides to terminate an IMS session or part of the IMS session to the CS domain, and the CSI AS received a SIP URI of the called CSI capable user;\n-\tto decide whether to keep itself in the session path or not;\n-\tto handle session separation/forwarding for session initiation request, session modification request and session termination request.\n-\tfor CSI termination, to generate CSI capability information on behalf of the originating IMS UE and send it to the terminating CSI UE.\nSome of the factors that could influence the handling of session termination are:\n-\tSIP Caller preferences, Communication Service Identifiers or lack thereof;\n-\tSDP Media components;\n-\tUE capabilities.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.228_clause_4.2.4",
+        "ts_23.228"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.279_6.2.2",
+      "section_id": "6.2.2",
+      "section_title": "Initial Filter Criteria",
+      "content": "Initial filter criteria may be installed on a user's service profile regardless of their subscription so that applicable SIP requests are forwarded to the CSI AS in the terminating IMS network, and IMS registrations from a CSI capable UE are forwarded as third-party registrations to the CSI AS.\nTrigger Points in the initial filter criteria may use the following criteria:\n-\tIMS Communication Service ID, or lack of IMS Communication Service ID;\n-\tThe UE capability of CS voice and/or video capability during IMS registrations.\nNOTE:\tCSI AS can dynamically activate/deactivate the service indication data in HSS according to information collected, e.g. UE's CSI capability information.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.279_7.1",
+      "section_id": "7.1",
+      "section_title": "General",
+      "content": "It is highly advantageous if the set of services that can be supported between two endpoints is known to the endpoints when (or shortly after) communication is established. This information can be used to provide an indication to the user of the services that are available for a particular user-to-user communication session. This can encourage use of available services and avoid invocation of unavailable services, thereby avoiding customer dissatisfaction and unnecessary resource and bearer establishment attempts.\nTwo types of capability information are described: information about the current radio environment, and UE capability information.\nDuring the radio capability exchange procedure, if the UE find that the remote UE and its current radio environment supports simultaneous CS and PS services and the IM Status indicates that an IMS communication is likely to be successful, then the UE should attempt an IMS registration (in case IMS registration had not previously been performed) based on preconfigured user's preference.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.279_7.2.1",
+      "section_id": "7.2.1",
+      "section_title": "Information about the current radio environment",
+      "content": "The purpose of the information about the current radio environment is to use it as input to the UE's and/or the user's decision whether to initiate further procedures (e.g. whether to start UE capability exchange, or an IMS session, or \"in call MMS\", etc.).\nThis radio environment information exchange occurs over the CS domain during CS call set-up.\nThis radio environment information is only valid during the lifetime of the CS call. At the end of the CS call, the UE should not store the radio environment information. This information can be used while the CS call is on going to help decide how to present service options to the user and/or whether to initiate a UE capability information exchange.\nThe following information is exchanged:\na)\tThe terminal is capable of simultaneous CS and PS services and initiated/received the CS call in a radio environment that currently supports simultaneous CS and PS services.\nb)\tThe IM Status.\nc)\tUE capability version, which is used for identifying current capabilities of a terminal (to notify capability update).\nd)\tPersonal ME Identifier (as defined in clause 7.4).\nThe information flows for exchanging this information are shown in clause 8.1.\nFor the CSI termination, the MGCF may interwork the UUS1 element between the IMS and the CS domain.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_7.4",
+        "clause_8.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.279_7.2.2",
+      "section_id": "7.2.2",
+      "section_title": "UE capability information",
+      "content": "The UE capability information provides input to determine the set of services that can be successfully invoked between two users.\nNOTE 1:\tThis UE capability information is exchanged only over the IMS domain. The exchange of such capabilities may occur during peer-to-peer session or session unrelated communication.\nIt shall be possible to exchange the UE capabilities described below in this clause. Note that the exchange of these capabilities is subject to the availability of the information and privacy control.\n-\tIMS Media types which can be supported as IMS media streams (i.e. media component definitions of IMS sessions).\n-\tMedia format parameters for supported IMS media types (Codecs, media file formats etc.).\n-\tMSISDN and preferred SIP URI for the UE sending the UE capability information.\n-\tPersonal ME Identifier to identify which of the user's MEs the UE capability information is related to.\n-\tUE capability version.\nAdditionally, it shall be possible for the UE to use IMS to exchange capability information about:\n-\tCS video telephony capability;\n-\tCS voice capability;\n-\tSupport for other IMS based capabilities or services e.g. PoC.\nThe UE capability information is exchanged between the calling party and the called party.\nNOTE 2:\tdue to varying radio environments (e.g. DTM/non-DTM, etc.) a UE capability exchange has the best success rate when performed outside of any other service, i.e. when no other CS/PS/IMS service is currently invoked.\nThe information flows for exchanging UE capabilities are shown in clause 8.2.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_8.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.279_7.2.3",
+      "section_id": "7.2.3",
+      "section_title": "IM Status",
+      "content": "The IM Status provided by the sending UE as part of the current radio environment information can be used by the receiving UE as an input for IMS registration, session initiation and any subsequent attempt to perform UE capability exchange via OPTIONS.\nNOTE:\tThe IM Status includes the aspect that a UE may always register if the remote UE is in a state where IMS communication is possible.\nThe IM Status provided by a UE during CS all setup is valid for the duration of that CS call.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.279_7.3",
+      "section_id": "7.3",
+      "section_title": "Registering UE capability information",
+      "content": "During IMS registration, a UE may register its capability information using SIP User Agent capability registration mechanism specified in RFC 3840 [18] and endorsed by TS 23.228 [2]. To facilitate the operation of CSI, it shall be possible for the UE to register at least the following UE capabilities:\n-\tCS video telephony capability;\n-\tCS voice capability.\nRegistration of these UE capabilities could help the core IMS network in routing SIP messages to appropriate UE when the caller indicates preference for these capabilities in the a SIP message using mechanism specified in RFC 3841 [19] and endorsed by TS 23.228 [2].\nThe UE may update registered capabilities as specified in TS 23.228 [2].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.228"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.279_7.4",
+      "section_id": "7.4",
+      "section_title": "Multiple MEs per user",
+      "content": "For network efficiency, the capability detection functionality requires the terminal to store information about the other terminals' capabilities.\nIn order to cater for remote parties who use more than one ME (e.g. with the same MSISDN or the same public user ID), CSI needs a mechanism that allows for identifying a particular user's ME. This mechanism shall be capable of identifying a ME upon UE capability exchange, CS call setup and IMS session initiation. This enables the remote party to retrieve the correct stored ME capabilities.\nIn order to limit network signalling (e.g. use of SIP OPTIONS to trigger other party's request) and avoid an inconsistency between the actual and stored capabilities, it is necessary to exchange the UE capability version.\nProcedures are needed to avoid MEs of one user having the same Personal ME Identifier.\nThe Personal ME Identifier and UE capability version shall fulfil the following requirements:\n-\tMinimal impact on SIP signalling and no impact on the IM CN subsystem;\n-\tThe identifier and the capability version should fit into UUS-1 signalling, also allowing for other services to be run over UUS-1;\n-\tThe Personal ME Identifier uniquely identifies an ME of the user.\n-\tThe capability version is updated when UE changes its capability (e.g. UE performing online upgrade or configuration change). The capability version is unique for a given set of capabilities of a UE.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.279_8.1",
+      "section_id": "8.1",
+      "section_title": "Exchange of capability information at CS call setup",
+      "content": "It shall be possible for the UE to perform end-to-end information exchange about the current radio environment during CS call setup. The current radio environment information exchange procedure shall include the information as outlined in clause 7.2.1.\nNOTE:\tThere will exist UEs, which do not support the radio environment exchange procedure, but do support parallel CS calls and IMS sessions, e.g. Rel-5 IMS-capable UMTS UEs. Thus lack of an answer in the radio capability exchange procedure does not mean that the remote UE cannot handle a parallel IMS session or the SIP based capability exchange.\nThe sequence diagram in figure 8-1 outlines the exchange of information about the current radio environment, at CS call setup. The diagram the messages that should be used to transport the information of the current radio environment: the full message sequences for UUS-1 are specified in TS 23.087 [15]. For this procedure to be successful, the network must handle the radio capability information transparently.\nFigure 8-1: Exchange of current radio environment information \"at\" CS call setup\n1)\tThe UE-A initiates a CS call by sending a SETUP message towards UE-B, including the current radio environment information encoded in the User-User Signalling IE.\n2)\tThe CS domain of the originating network sends an IAM message including the current radio environment information of UE-A to the CS domain of the terminating network. Whether the MSC performs the procedures for UUS-1 (refer to TS 23.087 [15]), or, whether the MSC merely copies the User-User Signalling IE from the SETUP message into the IAM is implementation dependent. Additional MSC based policing of the UUS information content is also implementation dependent.\n3)\tThe CS domain of the terminating network sends a SETUP message IAM including the current radio environment information of UE-A to the UE-B. Whether the GMSC and/or the VMSC performs the procedures for UUS-1, or, whether they merely copy the information into the User-User Signalling IE of the SETUP message from the IAM is implementation dependent.\n4)\tThe UE-B stores the current radio environment information of UE-A and sends the current radio environment information of UE-B in the final response to the SETUP message, i.e. the CONNECT message. UE-B takes the current radio environment information of UE-A into account when deciding what service options to present to the user and/or whether to initiate a UE capability information exchange, see clause 8.2.\nIf UE-B find that UE-A and UE-A's current radio environment supports simultaneous CS and PS services and the IM Status indicates that an IMS communication is likely to be successful, then UE B should attempt an IMS registration (in case IMS registration had not previously been performed) based on preconfigured user's preference.\nNOTE:\tThe radio environment information is only sent in the CONNECT message to avoid sending non-relevant information to the originating side, e.g. in case Call Forwarding on No Reply is active.\n5)\tThe CS domain of the terminating network sends an ANM or CON message including the current radio environment information of UE-B to the CS domain of the originating network.\n6)\tThe CS domain of the originating network sends a CONNECT message including the current radio environment information of UE-B to the UE-A.\n7)\tThe UE-A takes the current radio environment information of UE-B received into account when deciding what service options to present to the user and/or whether to initiate a UE capability information exchange, see clause 8.2.\nIf  UE-A find that UE-B and UE-B's current radio environment supports simultaneous CS and PS services and the IM Status indicates that an IMS communication is likely to be successful, then UE‑A should attempt an IMS registration (in case IMS registration had not previously been performed) based on preconfigured user's preference.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_7.2.1",
+        "clause_8.2",
+        "figure_8-1",
+        "ts_23.087"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.279_8.2",
+      "section_id": "8.2",
+      "section_title": "Exchange of UE capability information",
+      "content": "This clause outlines the exchange of UE related capability information using the SIP OPTIONS procedure to minimize the amount of network signalling and resource usage as well as the number of failed SIP INVITE requests. It also allows an up-to-date indication to the user which capabilities he could add to the ongoing call. Note that UE capability information exchange at IMS session initiation is specified in clause 8.4.\nIt shall be possible for a UE to request the SIP OPTIONS request to be sent to any other registered UE. In case of existing IMS session between UE-A and UE-B, to guarantee that SIP OPTIONS request is routed to UE-B, the SIP OPTIONS request should be sent as part of the existing IMS session. In case there is an ongoing CS call between UE-A and UE-B, it should be possible to provide a higher probability that the UE capability exchange is routed to the UE-B.\nAs the SIP OPTIONS request include both the IMS Public User Identity in the form of an SIP URI and the MSISDN the procedure enables both UE-A and UE-B to correlate the IMS session with the CS call and within one context inform the user what capabilities the user is able to use.\nNOTE:\tIf the UICC is not provisioned with the MSISDN the UE may get it during the IMS registration as an associated identity.\nThe execution of this SIP OPTIONS request procedure is recommended when UE-A has not stored capability information for UE‑B, or when UE-A has become aware that UE-B has changed its capabilities by comparing the stored and received UE capability version.\nA SIP OPTIONS may also be sent by UE-A to UE-B in case UE-A's capabilities have been updated. This request triggers UE‑B to initiate SIP OPTIONS request towards UE-A to retrieve the updated capabilities.\nFigure 8-2: Exchange of UE capability information\n1)\tUE-A sends an SIP OPTIONS request towards UE-B preferably using a SIP URI of UE-B, or a TEL URI, if no valid SIP URI is available. In case of an existing IMS session, the OPTIONS request should be sent as part of the existing session.  Subject to privacy controls, in UE-A the SIP OPTIONS request shall contain MSISDN of UE-A, if available.\n2)\tThe IMS Core (A) performs the normal security procedures and forwards the SIP OPTIONS request towards IMS Core (B). If the destination address is in the format of a TEL URI, IMS Core (A) performs MSISDN to SIP URI translation as per clause 4.3.5 in TS 23.228 [2], before forwarding the SIP OPTIONS request to IMS Core (B).\nThe IMS Core (A) should add the MSISDN of UE-A to the SIP OPTIONS request, if not included by UE-A.\n3)\tIf the SIP OPTIONS request is not sent as part of an existing dialog, the IMS Core (B) makes a routing decision based on information in the caller preferences, as defined in RFC 3841 [19], in the SIP OPTIONS request and any registered caller capabilities, as defined in RFC 3840 [18], (e.g. CS-Voice or CS-Video).\n4)\tThe IMS Core (B) then forwards the SIP OPTIONS request to UE-B. If privacy is requested, IMS Core (B) shall remove the MSISDN of UE-A.\n5)\tThe UE-B stores the address information of UE-A.\n6)\tThe UE-B sends a 200 OK that, subject to UE-B's privacy settings contain the information outlined in clause 7.2.2.\n7)\tThe IMS Core (B) forwards the 200 OK to IMS Core (A).\nThe IMS Core (B) should add the MSISDN of UE-B to the 200 OK, if not included by UE-B.\n8)\tThe IMS Core (A) forwards the 200 OK to UEA-A. If privacy is requested, IMS Core (A) shall remove the MSISDN of UE-B.\n9)\tThe UE-A stores or updates the UE capability information received and if not already available stores the address information of UE-B.\nFor the capability exchange procedure to work properly UE-B should send an SIP OPTIONS request towards UE-A, in the following situations, provided that the associated conditions are met:\n1.\tAn SIP INVITE request is received from UE-A, and\n-\tThe SIP INVITE request received from UE-A did not include any UE's capabilities capability information, and\n-\tUE-B has not stored capability information for UE‑A's capabilities, or UE-B's capabilities have been updated e.g. UE-B has been upgraded with video capability or supports a new service, or;\n-\tThe UE capability version included in the SIP INVITE request received from UE-A is different from the previously stored UE-A's capability version.\n2.\tUE-B is in a CS call with UE-A, and\n-\tUE-B has not stored capability information for UE‑A or has received a UE capability version different from previously stored UE-A's capability version from UE-A during CS call setup, and\n-\tIf received, the current radio environment information indicates that UE-A is capable of supporting CS and PS simultaneously.\n3.\tA SIP OPTIONS request is received from UE-A, and\n-\tThere is no ongoing (or recently finished) UE-B initiated capability exchange with UE-A.\nNOTE:\tThe received SIP OPTIONS is not a result of a recent UE-B capability version sent from UE-B.\nIn the situations 1 and 2 above, a SIP OPTIONS request may also be sent by UE-B to UE-A in case UE-B's capabilities have been updated. This request triggers UE-A to initiate SIP OPTIONS request towards UE-B to retrieve the updated capabilities.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_8.4",
+        "ts_23.228_clause_4.3.5",
+        "clause_7.2.2",
+        "figure_8-2",
+        "ts_23.228"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.279_8.3.1",
+      "section_id": "8.3.1",
+      "section_title": "IMS session set up without media requiring resource reservation",
+      "content": "The following sequence diagram shows an IMS service being added to an ongoing CS call when the CSI capabilities of UE-B have not previously been stored by UE-A and are therefore exchanged after CS call setup.\nNOTE 1:\tThe SIP session may setup any service based on IMS and normal requirements as per TS 23.228 [2] apply.\nFigure 8.3-1: User adds an IMS session to an ongoing CS call\n1)\tA CS call is setup as per clause 8.1.\n2)\tThe UE-A should initiate an IMS capability exchange as described in clause 8.2.\nNOTE 2:\tThis step is only needed when UE-A does not have the UE-B IMS capabilities stored and vice versa.\nNOTE 3:\tThe IMS Capability exchange will also include the correlation between the MSISDN and the SIP URI.\n3)\tThe UE-A shall send the SIP INVITE request to the IMS Core along the signalling path established during registration.\n4)\tThe IMS Core (A) forwards the INVITE request to IMS Core (B).\n5)\tThe IMS Core (B) forwards the INVITE request to UE-B.\n6)\tThe UE-B shall associate the INVITE request with the ongoing CS call by using the MSISDN and SIP URI, obtained through the IMS Capability exchange procedure and/or included in the INVITE request\n7)\tThe UE-B invokes the correct application, which associates the SIP session with the ongoing call by matching the identities used in the CS call and the SIP session.  The UE-B then sends a 200 OK.\n8)\tThe IMS Core (B) forwards the 200 OK to IMS Core (A).\n9)\tThe IMS Core (A) forwards the 200 OK to UE-A.\n10)\tThe UE-A acknowledges the 200 OK.\n11)\tThe IMS Core (A) forwards the acknowledgement to IMS Core (B).\n12)\tThe IMS Core (B) forwards the acknowledgement to UE-B.\n13)\tMedia as per the session setup is sent between the two UEs.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_8.1",
+        "clause_8.2",
+        "ts_23.228_figure_8.3-1",
+        "ts_23.228"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.279_8.3.2",
+      "section_id": "8.3.2",
+      "section_title": "IMS session set- up with media requiring resource reservation",
+      "content": "For an IMS session setup in the context of CSI it shall be possible to require media resource reservation as per procedures in TS 23.228 [2], illustrated in the use case below.\nThe following sequence diagram shows an IMS service being added to an ongoing CS call when the CSI capabilities of UE-B have not previously been stored by UE-A and are therefore exchanged after CS call setup. Only media resource reservation based on the \"inactive\" mechanism is shown.\nFigure 8.3-2: User adds an IMS session to an ongoing CS call\n1)\tA CS call is setup as per clause 8.1.\n2)\tThe UE-A should initiate an IMS capability exchange as described in clause 8.2. If UE-B does not receive any IMS capability exchange from UE-A within a certain time limit the UE-B should initiate the IMS capability exchange, if required.\nNOTE 1:\tThis step is only needed when UE-A does not have the UE-B IMS capabilities stored and vice versa.\nNOTE 2:\tThe IMS Capability exchange will also include the correlation between the MSISDN and the SIP URI.\n3)\tThe UE-A shall send the SIP INVITE request with the media components marked \"inactive\" to the IMS Core along the signalling path established during registration.\n4)\tThe IMS Core (A) forwards the INVITE request to IMS Core (B).\n5)\tThe IMS Core (B) forwards the INVITE request to UE-B.\n6)\tThe UE-B shall associate the INVITE request with the ongoing CS call by using the MSISDN and SIP URI, obtained through the IMS Capability exchange procedure and/or included in the INVITE request. If required, UE-B immediately initiates IP-CAN bearer setup. No alerting of user B needs to be carried out.\n7)\tThe UE-B directly sends a 200 OK with the media components marked 'inactive'.\n8)\tThe IMS Core (B) forwards the 200 OK to IMS Core (A).\n9)\tThe IMS Core (A) forwards the 200 OK to UE-A.\n10) The UE-A initiates IP-CAN bearer setup for the media and acknowledges the 200 OK.\n11)\tThe IMS Core (A) forwards the acknowledgement to IMS Core (B).\n12)\tThe IMS Core (B) forwards the acknowledgement to UE-B.\n13)\tThe UE-A shall send the SIP INVITE request with the media components marked \"active\" to the IMS core when the IP-CAN bearer is established on UE-A access.\n14)\tThe IMS Core (A) forwards the INVITE request to IMS Core (B).\n15)\tThe IMS Core (B) forwards the INVITE request to UE-B.\n16)\tThe UE-B shall perform necessary service action to receive/send user plane media.\n17)\tThe UE-B shall send 200 OK with the media components marked 'active' when the IP-CAN bearer is setup and the UE is ready to receive media.\n18)\tThe IMS Core (B) forwards the 200 OK to IMS Core (A).\n19)\tThe IMS Core (A) forwards the 200 OK to UE-A.\n20)\tThe UE-A acknowledges the 200 OK.\n21)\tThe IMS Core (A) forwards the acknowledgement to IMS Core (B).\n22)\tThe IMS Core (B) forwards the acknowledgement to UE-B.\n23)\tUser plane connection is established.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_8.1",
+        "clause_8.2",
+        "figure_8.3-2",
+        "ts_23.228"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.279_8.4",
+      "section_id": "8.4",
+      "section_title": "User adds a CS call to an ongoing IMS session",
+      "content": "Figure 8.4-1: User adds a CS call to an ongoing IMS Session\n1)\tThe UE-A sends the SIP INVITE request to the IMS Core (A) using the address obtained during registration.\nThe SIP INVITE may contain CSI specific information including MSISDN and current CSI capabilities in addition to the standard information for the desired IMS service.\n2)\tThe IMS-Core (A) forwards the SIP INVITE request to the IMS Core (B)\n3)\tThe IMS-Core (B) forwards the SIP INVITE request to UE-B.\n4)\tThe UE-B should send a provisional response i.e. 18x (or a final response) and include the MSISDN of UE-B. If the session includes media requiring resource reservation then same principles apply as described in clause 8.3.2, except that the UE-B should reply with a provisional response to allow the user to answer from other UEs.\n5)\tThe IMS Core (B) forwards the provisional or final response to IMS Core (A).\n6)\tThe IMS Core (A) forwards the provisional or final response to UE-A\n7)\tThe IMS flow continues as standard.\n8)\tThe UE-A initiates a CS call by sending a SETUP message towards UE-B.\n9)\tThe CS domain of the originating network sends an IAM message to the CS domain of the terminating network.\n10)\tThe CS domain of the terminating network sends a SETUP message IAM of UE-A to the UE-B.\nUE-B recognises the calling party number as negotiated in SIP session setup.\nNOTE:\tWithout exchanging radio capabilities in IMS, the PS connection could be suspended. From the user experience perspective this is considered as acceptable.\n11)\tThe UE-B sends ALERTING message to UE-A.\n12)\tThe CS domain of the terminating network sends an ACM message to the CS domain of the originating network.\n13)\tThe CS domain of the originating network sends an ALERTING message to the UE-A.\n14)\tThe UE-B sends CONNECT message to UE-A.\n15)\tThe CS domain of the terminating network sends an ANM message to the CS domain of the originating network.\n16)\tThe CS domain of the originating network sends an CONNECT message to the UE-A.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_8.3.2",
+        "figure_8.4-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.279_8.5",
+      "section_id": "8.5",
+      "section_title": "Release of CSI",
+      "content": "The UE shall release the CS call and the IMS session independently of each other.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.279_8.6",
+      "section_id": "8.6",
+      "section_title": "Terminating a Multimedia IMS session to a CSI UE",
+      "content": "Figure 8.6-1 describes the call flow for a multimedia session (e.g. with both voice and messaging components of IMS origination and CSI termination. The assumption is that UE 1 is both CS attached and IMS domain registered. Also, the MSRP protocol is used for transporting the messaging component. Note that the procedure below is simplified for clarity, e.g. some entities are omitted, but the normal IMS procedure for IMS/CS interworking procedure shall be applied.\nFigure 8.6-1: Call flow for terminating a multimedia IMS session to a CSI UE\nThe procedure is as follows:\n1.\tUE 2 initiates the multimedia session for voice and MSRP by sending an INVITE message towards UE 1.\n2.\tThe S-CSCF 2 of the originating network sends the INVITE message for the voice and MSRP to the S-CSCF1 of the terminating network.\n3.\tTriggered by the applicable iFC, the S-CSCF1 of terminating network sends the INVITE message for the voice and MSRP to the CSI AS.\n4.\tThe CSI AS invokes the Termination Logic (see clause 6.2) that decides to split the original IMS session into two sessions: One with the voice media component that will be terminated via the CS domain 1 of the terminating network and another with the messaging component that will be terminated via the PS domain. The CSI AS acts as a 3rd party call control entity for initiating and controlling these two sessions.\n5.\tThe CSI AS initiates the first session with the voice component by sending an INVITE message to S-CSCF 1 containing a Tel URI corresponding to UE 1 and any additional information to terminate the session in the CS domain.\n6-8. and 11-14. Normal IMS/CS interworking functionality is invoked and a CS voice call is established toward UE 1 via CS domain 1 of the terminating network.\n9.\tThe CSI AS initiates the second session with the messaging component by sending an INVITE message to S-CSCF 1 containing a SIP URI corresponding to UE 1. CSI AS uses any information available to ensure to send the second session to the same terminating UE as the destination of the voice call.\n10. and 15-16.\tUE 1 accepts the messaging session by sending a 200 OK message to CSI AS.\n17-19. The CSI AS accepts the original INVITE message from UE 2 by sending to UE 2 a 200 OK response.\n20.\tFinally, the CS voice bearer, the PS VoIP bearer, and the PS MSRP bearer are created.\nNOTE:\tThe MSRP media could go through the CSI AS.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_6.2",
+        "figure_8.6-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.279_9.1",
+      "section_id": "9.1",
+      "section_title": "General",
+      "content": "CS supplementary services apply to the CS component of the CSI call only. The present clause describes how best to configure and utilize CS Supplementary Services in the context of CSI.\nNOTE:\tThe CS supplementary services are defined in TS 23.081 [3] (Line Identification), TS 23.082 [8] (Call Forwarding), TS 23.083 [9] (Call Waiting and Hold), TS 23.088 [11] (Barring) and TS 23.091 [12] (Explicit Call Transfer).\nThis TS covers only the Supplementary Services that are identified as having an impact on CSI within the current release as stated in TS 22.279 [13].",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_23.081",
+        "ts_23.082",
+        "ts_23.083",
+        "ts_23.088",
+        "ts_23.091",
+        "ts_22.279"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.279_9.2.1",
+      "section_id": "9.2.1",
+      "section_title": "Calling Line Identity Presentation (CLIP)",
+      "content": "It is beneficial to utilize CLIP in the context of CSI.\n1)\tThe called party uses the CLI of the calling party to correlate an incoming SIP INVITE with the CS call.\n2)\tWhen the called party wishes to establish an IMS session with the calling party in the context of the CS call, the called party uses the CLI of the calling party to derive the destination URI of the IMS session. The UE may use the CLI as TEL URL or may use the CLI to derive a SIP URI.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.279_9.2.2",
+      "section_id": "9.2.2",
+      "section_title": "Calling Line Identification Restriction (CLIR)",
+      "content": "If the calling party is subscribed to the automatic suppression of the presentation of her CLI, then it must be anticipated that the network must also automatically suppress her \"IMS CLI\", and, that her UE shall not reveal her CLI to other parties without her explicit permission. This can be achieved by either:\na)\tThe network operator refuses to give an IMS subscription to her.\nb)\tAppropriate mechanism for the HSS to control the removal of \"CLI\" based on subscription information.\nNOTE:\tPoint B is related to an IETF privacy mechanism and is identified as a generic IMS issue, not one specifically related to CSI. As this causes subscriber information to be sent around more than usual, it will be worked on as a generic IMS issue within 3GPP.\nThe calling party may also wish to use CLIR on a \"per call\" basis. In this case, the UE shall not include any CLI information in any OPTIONS data exchange linked to the CS call.\nThere are several mechanisms that can be imagined for the UEs to swap static terminal information as a background task, e.g., outside of CS calls and 'user initiated' IMS sessions. Because the E.164/identity information may need to be restricted from transmission to certain destinations, the UE shall ensure that the user's permission is obtained before such sensitive information is transmitted.\nGiven that CLIP is highly desirable and useful for CSI, it is accepted that the use of CLIR causes significant degradation to the overall user experience in case of CSI.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.279_9.2.3",
+      "section_id": "9.2.3",
+      "section_title": "Connected Line Identification Presentation (COLP)",
+      "content": "It is beneficial to utilize COLP in the context of CSI:\n1)\tThe calling party uses the COL of the connected party to correlate an incoming SIP INVITE with the CS call.\n2)\tWhen the calling party wishes to establish an IMS session with the connected party, the calling party uses the COL of the called party as the destination URI of the IMS session. The UE may use the COL as TEL URL or may use the COL to derive a SIP URI.\nNOTE:\tThe availability of the COL may be affected by Call Forwarding GSM supplementary service, regulations and network services such as IN.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.279_9.2.4",
+      "section_id": "9.2.4",
+      "section_title": "Connected Line Identification Restriction (COLR)",
+      "content": "If the presentation of her COL is suppressed by means of a subscription or on a per call basis, then automatic combination of the IMS session and the CS call is unavailable. Note that user can still manually combine the CS call and the IMS session.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.279_9.3",
+      "section_id": "9.3",
+      "section_title": "Call Forwarding",
+      "content": "When a call is subject to CS call forwarding, the calling party is notified that the call has been forwarded. In CS first scenario, when the user would like to establish an IMS session that is to be automatically combined with this call then the user initiates the IMS session to the forwarded-to user. In IMS first scenario, if the UE can not associate the Public User Identity of the remote UE (of the IMS session) with the COL of the CS connected party, the UE realizes that the CS call can't be established in context of the existing IMS session and appropriately notifies the user.\nCall forwarding may result in the restriction of the presentation of the COL, depending on subscriber option settings.  Refer to the clause on Line Identification for the usage of the CLI and COL for establishing an IMS session associated with the CS call and for correlating an incoming IMS session with the CS call.\nFor CSI termination scenario, if CSI AS gets the information that the CS call is forwarded, (e.g. MGCF gets this information from the COL number in CS Connect message and sends it to CSI AS), or CSI AS gets the information that the IMS session is forwarded/will be forwarded, it may decide what the further action will be based on local policy, i.e. keep the successfully established CS call or/and IMS session with the calling party.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.279_9.4.1",
+      "section_id": "9.4.1",
+      "section_title": "Explicit Call Transfer (ECT)",
+      "content": "If a UE has an ongoing IMS session with one of two parties and invokes ECT, the end user may keep or terminate this IMS session when ECT is invoked.\nThe two parties that have established a CS session after ECT will not have each others line identification and are therefore incapable of establishing a CSI call / session.\nIf the IMS session is established prior to the establishment of the CS call/session, then the two parties will not have each others line identification and are therefore incapable of establishing a CSI call/session.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.279_9.5.1",
+      "section_id": "9.5.1",
+      "section_title": "Call Waiting (CW) and Call Hold (CH)",
+      "content": "When a subscriber (calling or called) is engaged in a CS call and a second call is offered to her (Call Waiting), an IMS session may be ongoing between that subscriber and her speech partner of the ongoing call. The offering of the second call (i.e. the alerting) does not affect the ongoing IMS session.\nWhen a subscriber (calling or called) receives a CS call when already engaged in another CS call, then she may act as follows.\na)\tReject the incoming call. This action does not affect the IMS session of the active call.\nb)\tRelease the first CS call and answer the second CS call. The user may decide whether to keep the IMS session that was established in the context of the first CS call. The user may also decide to establish a new IMS session to be combined with the second CS call.\nc)\tInvoke Call Hold. The first call is placed on hold and the second call is answered. The following options apply to the IMS session for the first call:\nOption I:\tThe IMS session is retained, but the sending and receiving of streaming data is suspended.\nOption II:\tThe IMS session is retained and the sending and receiving of non real-time data continues.\nSimilar principles apply to the case where A-party places an ongoing call on hold and establishes a second CS call.\nFor CSI termination scenario, if the CSI AS gets the information that CS call is being held/retrieved (e.g. MGCF maps CS Call Hold/Call Retrieve signalling into SIP message and sends it to CSI AS), or the CSI AS gets the information that the non voice media is suspended/resumed, it may initiate session modification request to perform corresponding media modification towards the peer IMS UE.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.279_9.6",
+      "section_id": "9.6",
+      "section_title": "Call Barring",
+      "content": "If a CS call is barred, then IMS sessions in the context of the CS call are not applicable.\nIf an IMS session is active and the user intends to establish a CS call, then Call Barring categories apply.\nFor CSI termination scenario, if the CSI AS cannot establish a voice call/IMS session with the CSI capable UE, e.g. due to Call Barring service, it may remove the voice/non voice component by negotiating /renegotiating media with the calling party.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.279_10.1",
+      "section_id": "10.1",
+      "section_title": "Handover",
+      "content": "-\tHandover from DTM GERAN or UTRAN to non-DTM GERANIf, during a simultaneous IMS session and CS call between two end-users, one of the end-users makes an intersystem handover into a non-DTM GERAN access, in this case the data traffic on the PDP contexts are handled as per procedures described in TS 23.060 [10].\n-\tHandover from non-DTM GERAN to DTM GERAN or UTRANWhen a UE is participating in a CS call and not able to operate in Class A mode of operation, the UE cannot perform IMS capability exchange procedures.  When the UE is again able to operate in Class A mode of operation, the UE can perform the IMS capability exchange procedures during the CS call, if required according to procedures outlined in clauses 7 and 8.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.060"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.279_10.2",
+      "section_id": "10.2",
+      "section_title": "Relation to SMS",
+      "content": "A user should be able to send or receive SMS during an ongoing CSI session. SMS is in general treated independently from CSI.\nAnnex A (Informative):Support of CSI origination towards IMS termination with CSI interworking\nA.1\tIntroduction\nThis annex describes the flows and architecture for CSI originations towards IMS termination with CSI interworking.\nCSI interworking is the ability to perform the interworking between e.g. a pure IMS voice/video session and a combination of a CS call and an IMS session.\nA.2\tOverview\nCSI interworking from CSI origination to IMS termination is required to enable communication from UE's support CSI towards UEs supporting IMS termination. CSI interworking can be implemented in two different ways:\n1)\tCSI interworking can also be achieved in the terminating terminal if the operator has control of the terminal. This is beyond the scope of this document.\n2)\tCSI Interworking is detected and performed in the originating network.\n3)\tCSI Interworking is detected and performed in the terminating network.\nA.3\tProcedures\nA.3.1\tGeneral Architecture\nFigures A.1 and A.2 show an architecture for the general architecture for CSI interworking when CSI origination and IMS termination is used for the CSI interworking with the support of interworking in the network. Figure A.1 shows the case where the CSI interworking is performed in the originating network, and figure A.2 shows the case where the CSI interworking is performed in the terminating network.\nNOTE:\tWhen to support interworking in the originating network is a matter of policy in the home operator originating network. Such policy could take into account the destination network.\nFigure A.1: General architecture and signalling flow in case of CSI origination and IMS termination with CSI interworking in originating network\nFigure A.2: General architecture and signalling flow in case of CSI origination and IMS termination with CSI level interworking in terminating network\nThe solid lines present the signalling flow between UE 1 and UE 2. The voice call (yellow line) which is initiated by UE 1 is routed to the CSI‑AS, while the IMS session for other services is also routed to the CSI‑AS. The CSI‑AS continues the communication towards UE 2 with a single session using normal IMS routing procedure. The above examples illustrate the interworking in both originating and the terminating networks and further consideration is required in order to determine whether the CSI‑AS is in the originating network, terminating network or both.\nNOTE:\tThis is for the case when the UE in CSI origination is not subscribing the VCC service.\nA.3.3\tCall flows for setting up the voice session for CSI origination and IMS termination with CSI interworking\nFigure A.3 shows the flows for establishing the voice session for CSI origination and IMS termination with the interworking performed in the originating network. The flow is simplified and omits elements such as I‑CSCF and HSS from IMS Core B.\nFigure A.3: CSI interworking on originating side for CSI origination\nNOTE:\tThe functionality of the CAMEL Svc and CSAF are the same as described in TS 23.206 [17].\n1.\tThe CSI user originates a voice call in the CS domain using a CSI UE to party‑B.\n2.\tOrigination triggers at the VMSC are detected; VMSC sends an Initial DP message towards the gsmSCF.\n3.\tThe gsmSCF invokes the CSI interworking Application's CAMEL Service that determines that the call needs to be interworked to IMS for CSI; thus, the CAMEL Service interworks the call to the IMS by allocating an IMRN and returning it to the gsmSCF; otherwise it responds with a CAP Continue.\nNOTE:\tHow the information available to the CAMEL Service is used to decide whether the call should be routed through the IMS is implementation specific.\n4.\tThe gsmSCF responds with a CAP Connect message containing the Original Called party ID and Destination Routing Address. Destination Routing Address contains the IMRN to route the call to the CSAF. Handling of Destination Routing Address and Original Called party ID is as defined in TS 23.078 [16].\n5.\tThe VMSC routes the call towards the user's home IMS network using the IMRN via an MGCF in the home network.\n6.\tThe MGCF initiates an INVITE towards the I-CSCF in the home IMS of the originating CSI user. The calling party number and/or original called number are included in the INVITE if they are received from the PSTN call setup signalling (e.g. ISUP).\n7.\tThe I‑CSCF routes the INVITE based on one of the following standard procedures specified in \"PSI based Application Server termination - direct\" and \"PSI based Application Server termination – indirect\" procedures in TS 23.228 [2].\n7a.\tThe I‑CSCF forwards the INVITE to the CSAF via the S‑CSCF that is assigned to the IMRN.\n7b.\tThe I‑CSCF forwards the INVITE directly to the CSAF.\n8.\tIf, when the INVITE arrives at the CSI Interworking Application, it is processed by the CSAF of the CSI Interworking Application that may use the IMRN to retrieve the original called party number and the calling party number from the CAMEL Service. The CSAF uses the original called number and the calling party number to setup the outgoing call leg to party‑B in accordance with the AS origination procedure defined in clause 5.6.5 of TS 23.228 [2].\n9.\tThe CSAF sends the INVITE back to the S‑CSCF for completion of the call toward the remote end.\n10.\tThe S‑CSCF forwards the INVITE to the CSI‑AS\n11.\tThe CSI‑AS forwards the INVITE to the S‑CSCF.\n12.\tThe CSI‑AS forwards the INVITE to the IMS Core B.\nThe rest of the call is established as per normal SIP signalling with interworking towards the CS domain. The voice call is considered to be established.\nFigure A.4 shows the flows for establishing the voice session for CSI origination and IMS termination with the interworking performed in the terminating network. The flow is simplified and omits elements such as I‑CSCF and HSS.\nFigure A.4: CSI interworking on terminating side for CSI origination\n1.\tUE1 initiates a voice call on the CS side by sending a SETUP message to the CS domain (MSC).\n2.\tThe originating network generates an IAM which is forwarded to the visiting network. The IAM is routed to a MGCF.\n3.\tThe MGCF generates an INVITE and forwards the INVITE the call to S‑CSCF2.\n4.\tS‑CSCF2, based upon iFC, forwards the INVITE to CSI‑AS2.\n5.\tCSI‑AS2 terminates the INVITE from the MGCF and generates a new INVITE towards UE2. It also performs the service logic required for originating CSI interworking (e.g. 3rd party call control).\n6.\tCSI‑AS2 sends the INVITE back towards S‑CSCF2.\n7.\tS‑CSCF2 forwards the INVITE to UE2.\n8.\tUE2 accepts the session by responding to S‑CSCF2 with a 200OK.\n9.\tS‑CSCF2 forwards the 200 OK to CSI‑AS2.\n10.\tCSI‑AS2 forwards the 200OK back to S‑CSCF2.\n11.\tS‑CSCF2 forwards the200OK to the MGCF.\n12.\tThe MGCF generates a CON messages which is sent to the originating CS domain.\n13.\tThe MSC in the CS domain accepts the call by sending a CONNECT to UE1.\nThe voice bearer is considered to be established.\nA.3.4\tCall flows for adding IMS sessions to existing voice calls for CSI origination with CSI interworking\nIn addition to the call flows described above, the following call flows describe some of the cases where CSI interworking can occur within the network on the terminating side.\nFigure A.5 below shows a call flow for adding an IMS session (e.g. MSRP session) to an existing voice call. In this case the voice call was established with IMS origination, and the interworking is performed in the network. The addition of the IMS session is from the terminal that performed the IMS origination.\nNOTE:\tThe procedure below is simplified for clarity, e.g. some entities are omitted, but the normal IMS procedure for IMS/CS interworking procedure shall be applied.\nFigure A.5: Call flow for adding IMS session to existing voice call using a the existing dialog\n1.\tThe UE 2 initiates a request for adding the MSRP by sending the RE‑INVITE message within the existing dialogue.\n2.\tThe S‑CSCF 2 of the originating network sends the RE‑INVITE message for the MSRP to the S‑CSCF 1 of the terminating network, in accordance with the already established sessions.\n3.\tThe S‑CSCF 1 sends the INVITE message for the MSRP to the CSI‑AS\n4.\tThe CSI‑AS generates an INVITE that is targeted towards the user of UE1 and sends this to S‑CSCF1\n5.\tThe S‑CSCF1 sends the INVITE towards UE1\n6.\tThe UE 1 responds to the INVITE message with the 200OK message.\n7.\tThe S‑CSCF1 sends the 200OK message to the CSI‑AS1.\n8.\tThe CSI‑AS1 generates a 200OK and sends it to S‑CSCF1.\n9.\tS‑CSCF1 sends the 200OK message to S‑CSCF 2 of the originating network.\n10.\tThe S‑CSCF 2 of the originating network sends the 200OK message to the UE 2.\n11.\tFinally, the user plane for the MSRP is created.\nNOTE:\tThe MSRP media could go through the CSI AS.\nFigure A.6 shows a call flow for adding an IMS session (e.g. MSRP session) to an existing voice call. In this case the voice call was established with CSI origination, and the interworking is performed in the network. The addition of the IMS session is from the terminal that performed the CSI origination.\nNOTE:\tThe procedure below is simplified for clarity, e.g. some entities are omitted, but the normal IMS procedure for IMS/CS interworking procedure shall be applied.\nThe flow below assumes that the CSI interworking was performed in the originating network.\nFigure A.6: Call flow for adding IMS session to existing voice call using a the existing dialog\n1.\tThe UE1 initiates a request for adding the MSRP by sending an INVITE message within the destination towards UE2.\n2.\tThe S‑CSCF 1 of the originating network sends the INVITE message for the MSRP to CSI‑AS1 based upon the filter criteria.\n3.\tThe CSI‑AS1 generates a RE‑INVITE message within the existing dialogue towards UE2.  This is returned to the S‑CSCF1.  The RE‑INVITE contains the SDP for the original media (e.g. the audio) and the added media (e.g. MSRP).\n4.\tS‑CSCF1 forwards the RE‑INVITE message towards S‑CSCF2 within the existing dialogue.\n5.\tS‑CSCF2 forwards the RE‑INVITE towards UE2.\n6.\tThe UE 2 responds to the INVITE message with the 200OK message.\n7.\tThe S‑CSCF12sends the 200OK message to S‑CSCF2.\n8.\tS‑CSCF1 forwards the 200OK message CSI‑AS1.\n9.\tCS‑AS1 generates a 200OK messages and forwards the message to S‑CSCF1.\n10.\tS‑CSCF1 of the originating network sends the 200OK message to the UE1.\n11.\tFinally, the user plane for the MSRP is created. Note that the MSRP media could go through the CSI AS.\nFigure A.7 shows a call flow for adding a voice call to an existing IMS session (e.g. MSRP session). In this case the original IMS session was established with CSI origination, and the interworking is performed in the network. The addition of the IMS session is from the terminal that performed the CSI origination.\nNOTE:\tThe procedure below is simplified for clarity, e.g. some entities are omitted, but the normal IMS procedure for IMS/CS interworking procedure shall be applied.\nThe flow below assumes that the CSI interworking is performed in the originating network.\nNOTE:\tThe functionality of the CAMEL Svc and CSAF are the same as described in TS 23.206 [17].\nFigure A.7: Call flow for adding a voice call to an existing IMS session\n1.\tThe CSI user originates a voice call in the CS domain using a CSI UE to party‑B.\n2.\tOrigination triggers at the VMSC are detected; VMSC sends an Initial DP message towards the gsmSCF.\n3.\tThe gsmSCF invokes the CSI interworking Application's CAMEL Service that determines that the call needs to be interworked to IMS for CSI; thus, the CAMEL Service interworks the call to the IMS by allocating an IMRN and returning it to the gsmSCF; otherwise it responds with a CAP Continue.\nNOTE:\tHow the information available to the CAMEL Service is used to decide whether the call should be routed through the IMS is implementation specific.\n4.\tThe gsmSCF responds with a CAP Connect message containing the Original Called party ID and Destination Routing Address. Destination Routing Address contains the IMRN to route the call to the CSAF. Handling of Destination Routing Address and Original Called party ID is as defined in TS 23.078 [16].\n5.\tThe VMSC routes the call towards the user's home IMS network using the IMRN via an MGCF in the home network.\n6.\tThe MGCF initiates an INVITE towards the I‑CSCF in the home IMS of the originating CSI user. The calling party number and/or original called number are included in the INVITE if they are received from the PSTN call setup signalling (e.g. ISUP).\n7.\tThe I‑CSCF routes the INVITE based on one of the following standard procedures specified in \"PSI based Application Server termination ‑ direct\" and \"PSI based Application Server termination – indirect\" procedures in TS 23.228 [2].\n7a.\tThe I‑CSCF forwards the INVITE to the CSAF via the S‑CSCF that is assigned to the IMRN.\n7b.\tThe I‑CSCF forwards the INVITE directly to the CSAF.\n8.\tIf, when the INVITE arrives at the CSI Interworking Application, it is processed by the CSAF of the CSI Interworking Application that may use the IMRN to retrieve the original called party number and the calling party number from the CAMEL Service. The CSAF uses the original called number and the calling party number to setup the outgoing call leg to party‑B in accordance with the AS origination procedure defined in clause 5.6.5 of TS 23.228 [2].\n9.\tThe CSAF sends the INVITE back to the S‑CSCF for completion of the call toward the remote end.\n10.\tThe S‑CSCF forwards the INVITE to the CSI‑AS.\n11.\tThe CSI‑AS forwards the RE‑INVITE to the S‑CSCF. The RE‑INVITE contains the SDP for the original media (e.g. MSRP) and the added media (e.g. audio).\n13.\tThe CSI‑AS forwards the RE‑INVITE to the IMS Core B. The CS part of the CSI session is now interworked to IMS Core B.\nThe rest of the call is established as per normal SIP signalling with interworking towards the CS domain. The voice call is considered to be established.\nAnnex B (informative):Change history\nChange history\nDate\nTSG #\nTSG Doc.\nCR\nRev\nCat\nSubject/Comment\nOld\nNew\n2007-06\nSA#36\nSP-070398\n0036\n-\nB\nSupporting CSI capability exchange for CSI Interworking\n7.6.0\n8.0.0\n2007-09\nSA#37\nSP-070534\n0038\n2\nA\nCSI phase 1 alignment with stage 3\n8.0.0\n8.1.0\n2009-12\nSA#46\n-\n-\n-\n-\nUpdate to Rel-9 version (MCC)\n8.1.0\n9.0.0\n2011-03\nSA#51\n-\n-\n-\n-\nUpdate to Rel-10 version (MCC)\n9.0.0\n10.0.0\n2012-09\n-\n-\n-\n-\n-\nUpdate to Rel-11 version (MCC)\n10.0.0\n11.0.0\n2014-09\nSA#65\n-\n-\n-\n-\nUpdate to Rel-12 version (MCC)\n11.0.0\n12.0.0\n2015-12\n-\n-\n-\n-\n-\nUpdate to Rel-13 version (MCC)\n12.0.0\n13.0.0\n2017-03\n-\n-\n-\n-\n-\nUpdate to Rel-14 version (MCC)\n13.0.0\n14.0.0\n2018-06\nSP-80\n-\n-\n-\n-\nUpdate to Rel-15 version (MCC)\n14.0.0\n15.0.0\n2020-07\nSP-88E\n-\n-\n-\n-\nUpdate to Rel-16 version (MCC)\n15.0.0\n16.0.0\n2022-03\nSP-95E\n-\n-\n-\n-\nUpdate to Rel-17 version (MCC)\n16.0.0\n17.0.0\n2024-03\n-\n-\n-\n-\n-\nUpdate to Rel-18 version (MCC)\n17.0.0\n18.0.0",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.228_clause_5.6.5",
+        "ts_23.206",
+        "ts_23.078",
+        "ts_23.228"
+      ]
+    }
+  ]
+}

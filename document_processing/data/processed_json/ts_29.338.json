@@ -1,0 +1,1284 @@
+{
+  "metadata": {
+    "specification_id": "ts_29.338",
+    "version": "18.2.0",
+    "title": "3GPP TS 29.338",
+    "file_path": "/content/drive/MyDrive/RAG_thesis/data/29_series/29338-i20/29338-i20.docx"
+  },
+  "export_info": {
+    "export_date": "2025-07-26T09:02:24.216697",
+    "total_chunks": 130
+  },
+  "chunks": [
+    {
+      "chunk_id": "ts_29.338_1",
+      "section_id": "1",
+      "section_title": "Scope",
+      "content": "The present document defines the Diameter-based interfaces specific to SMS when they are used in conjunction with the \"SMS in MME\" architecture specified in 3GPP TS 23.272 [2] or for SGSN supporting EPS interfaces, or the\" SMS in 5GS\" architecture specified in 3GPP TS 23.501 [21]. It comprises:\n-\tthe Diameter application for the S6c interface between the HSS/UDM and the central SMS functions (SMS-GMSC, SMS Router) ;\n-\tthe Diameter application\n-\tfor the SGd interface between the MME/SMSF, the SMS-IWMSC, the SMS-GMSC and the SMS Router.\n-\tfor the Gdd interface between the SGSN, the SMS-IWMSC, the SMS-GMSC and the SMS Router.\nFor the purpose of supporting SMS in 5GS, the UDM may implement the requirements specified in the present specification for HSS, with the following modification:\n-\t\"HSS\" is to be replaced with \"UDM\".",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.272",
+        "ts_23.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.338_2",
+      "section_id": "2",
+      "section_title": "References",
+      "content": "The following documents contain provisions which, through reference in this text, constitute provisions of the present document.\n-\tReferences are either specific (identified by date of publication, edition number, version number, etc.) or non‑specific.\n-\tFor a specific reference, subsequent revisions do not apply.\n-\tFor a non-specific reference, the latest version applies. In the case of a reference to a 3GPP document (including a GSM document), a non-specific reference implicitly refers to the latest version of that document in the same Release as the present document.\n[1]\t3GPP TR 21.905: \"Vocabulary for 3GPP Specifications\".\n[2]\t3GPP TS 23.272: \"Circuit Switched (CS) fallback in Evolved Packet System (EPS); Stage 2\".\n[3]\t3GPP TS 23.040: \"Technical realization of the Short Message Service (SMS)\".\n[4]\t3GPP TS 29.272: \"Evolved Packet System (EPS); Mobility Management Entity (MME) and Serving GPRS Support Node (SGSN) related interfaces based on Diameter protocol\".\n[5]\t3GPP TS 29.229: \"Cx and Dx interfaces based on the Diameter protocol; Protocol details\".\n[6]\tIETF RFC 2234: \"Augmented BNF for Syntax Specifications: ABNF\".\n[7]\tVoid.\n[8]\tIETF RFC 5516: \"Diameter Command Code Registration for the Third Generation Partnership Project (3GPP) Evolved Packet System (EPS)\".\n[9]\t3GPP TS 29.002: \"Mobile Application Part (MAP) specification\".\n[10]\t3GPP TS 29.173: \"Location Services (LCS); Diameter-based SLh interface for Control Plane LCS\".\n[11]\t3GPP TS 33.210: \"3G security; Network Domain Security (NDS); IP network layer security \".\n[12]\tIETF RFC 4960: \"Stream Control Transport Protocol\".\n[13]\tITU-T Recommendation E.164: \"The international public telecommunication numbering plan\".\n[14]\t3GPP TS 29.329: \"Sh Interface based on the Diameter protocol; Protocol details\".\n[15]\t3GPP TS 29.336: \"Home Subscriber Server (HSS) diameter interfaces for interworking with packet data networks and applications\".\n[16]\t3GPP TS 23.003: \"Numbering, addressing and identification\".\n[17]\t3GPP TS 23.204: \"Support of Short Message Service (SMS) over generic 3GPP Internet Protocol (IP) access; Stage 2\".\n[18]\t3GPP TS 23.682: \"Architecture enhancements to facilitate communications with packet data networks and applications\".\n[19]\tIETF RFC 7944: \"Diameter Routing Message Priority\".\n[20]\tIETF RFC 6733: \"Diameter Base Protocol\".\n[21]\t3GPP TS 23.501:\"System Architecture for the 5G System\".",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905",
+        "ts_23.272",
+        "ts_23.040",
+        "ts_29.272",
+        "ts_29.229",
+        "ts_29.002",
+        "ts_29.173",
+        "ts_33.210",
+        "ts_29.329",
+        "ts_29.336",
+        "ts_23.003",
+        "ts_23.204",
+        "ts_23.682",
+        "ts_23.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.338_3.1",
+      "section_id": "3.1",
+      "section_title": "Definitions",
+      "content": "For the purposes of the present document, the terms and definitions given in TR 21.905 [1] and the following apply. A term defined in the present document takes precedence over the definition of the same term, if any, in TR 21.905 [1].",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_21.905"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.338_3.2",
+      "section_id": "3.2",
+      "section_title": "Abbreviations",
+      "content": "For the purposes of the present document, the abbreviations given in TR 21.905 [1] and the following apply. An abbreviation defined in the present document takes precedence over the definition of the same abbreviation, if any, in TR 21.905 [1].\nABNF\tAugmented Backus-Naur Form\nDRMP\tDiameter Routing Message Priority\nDSCP\tDifferentiated Services Code Point\nIANA\tInternet Assigned Numbers Authority\nIP-SM-GW\tIP Short Message Gateway\nMWD\tMessage Waiting Data\nRP\tRelay layer Protocol\nRP-MTI\tRP Message Type Indicator\nRP-SMEA\tRP SME-Address\nRP-UI\tRP User Information\nSM RL\tShort Message Relay Layer\nSMS-GMSC\tGateway MSC for SMS\nSMS-IWMSC\tInterworking MSC for SMS\nSMSMI\tSMS without MSISDN in IMS",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.338_4.1",
+      "section_id": "4.1",
+      "section_title": "Introduction",
+      "content": "The SMS in MME architecture is described in 3GPP TS 23.272 [2] and the SMS in 5GS architecture is described in 3GPP TS 23.501 [21], have specified the reference points S6c and SGd.\nThe clause 4 addresses Diameter aspects which are common to S6c, SGd and Gdd.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_4",
+        "ts_23.272",
+        "ts_23.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.338_4.2",
+      "section_id": "4.2",
+      "section_title": "Use of Diameter Base protocol",
+      "content": "The Diameter base protocol as specified in IETF RFC 6733 [20] shall apply except as modified by the defined support of the methods and the defined support of the commands and AVPs, result and error codes as specified in this specification. Unless otherwise specified, the procedures (including error handling and unrecognised information handling) shall be used unmodified.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.338_4.3",
+      "section_id": "4.3",
+      "section_title": "Securing Diameter messages",
+      "content": "For secure transport of Diameter messages, see 3GPP TS 33.210 [11].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_33.210"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.338_4.4",
+      "section_id": "4.4",
+      "section_title": "Accounting functionality",
+      "content": "Accounting functionality (Accounting Session State Machine, related command codes and AVPs) shall not be used on the S6c, SGd and Gdd interfaces.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.338_4.5",
+      "section_id": "4.5",
+      "section_title": "Use of sessions",
+      "content": "Diameter sessions shall be implicitly terminated over the S6c, SGd and Gdd interfaces. An implicitly terminated session is one for which the server does not maintain state information. The client shall not send any re-authorization or session termination requests to the server.\nThe Diameter base protocol specified in IETF RFC 6733 [20] includes the Auth-Session-State AVP as the mechanism for the implementation of implicitly terminated sessions.\nThe client (server) shall include in its requests (responses) the Auth-Session-State AVP set to the value NO_STATE_MAINTAINED (1), as described in IETF RFC 6733 [20]. As a consequence, the server shall not maintain any state information about this session and the client shall not send any session termination request. Neither the Authorization-Lifetime AVP nor the Session-Timeout AVP shall be present in requests or responses.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.338_4.6",
+      "section_id": "4.6",
+      "section_title": "Transport protocol",
+      "content": "Diameter messages over the S6c, SGd and Gdd interfaces shall make use of SCTP as specified in IETF RFC 4960 [12] as transport protocol.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.338_4.7",
+      "section_id": "4.7",
+      "section_title": "Advertising application support",
+      "content": "The MME, HSS, SMS-IWMSC, SMS-GMSC and SMS Router shall advertise support of the Diameter S6c Application over the S6c interface and of the Diameter SGd Application over the SGd interface by including the value of the application identifier in the Auth-Application-Id AVP within the Vendor-Specific-Application-Id grouped AVP of the Capabilities-Exchange-Request and Capabilities-Exchange-Answer commands. The MME, SMS-GMSC and SMS Router shall additionally advertise support of the Diameter S6c Application over the SGd interface if they support the Alert Service Centre procedure between the MME, SMS-GMSC and SMS Router.\nThe SGSN, SMS-IWMSC, SMS-GMSC and SMS Router shall advertise support of the Diameter SGd Application over the Gdd interface by including the value of the application identifier in the Auth-Application-Id AVP within the Vendor-Specific-Application-Id grouped AVP of the Capabilities-Exchange-Request and Capabilities-Exchange-Answer commands. The SGSN, SMS-GMSC and SMS Router shall additionally advertise support of the Diameter S6c Application over the Gdd interface if they support the Alert Service Centre procedure between the SGSN, SMS-GMSC and SMS Router.\nThe MTC-IWF and SMS-IWMSC shall advertise support of the Diameter SGd Application over the T4 interface if they support the MO-Forward-Short-Message procedure between the SMS-IWMSC and the MTC-IWF.\nThe vendor identifier value of 3GPP (10415) shall be included in the Supported-Vendor-Id AVP of the Capabilities-Exchange-Request and Capabilities-Exchange-Answer commands, and in the Vendor-Id AVP within the Vendor-Specific-Application-Id grouped AVP of the Capabilities-Exchange-Request and Capabilities-Exchange-Answer commands.\nThe Vendor-Id AVP included in Capabilities-Exchange-Request and Capabilities-Exchange-Answer commands that is not included in the Vendor-Specific-Application-Id AVPs as described above shall indicate the manufacturer of the Diameter node as per IETF RFC 6733 [20].",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.338_4.8",
+      "section_id": "4.8",
+      "section_title": "Diameter Application Identifier",
+      "content": "The S6c and the SGd/Gdd interface protocols shall be defined, each, as an IETF vendor specific Diameter application, where the vendor is 3GPP. The vendor identifier assigned by IANA to 3GPP (http://www.iana.org/assignments/enterprise-numbers) is 10415.\nThe Diameter application identifier assigned to the S6c Diameter application is 16777312 (allocated by IANA).\nThe Diameter application identifier assigned to the SGd Diameter application, which is also applicable to the Gdd and T4 interfaces is 16777313 (allocated by IANA).",
+      "chunk_type": "parameter",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.338_4.9",
+      "section_id": "4.9",
+      "section_title": "Use of the Supported-Features AVP",
+      "content": "When new functionality is introduced on the S6c or SGd Diameter applications, it should be defined as optional. If backwards incompatible changes can not be avoided, the new functionality shall be introduced as a new feature and support advertised with the Supported-Features AVP. The usage of the Supported-Features AVP on the S6c or SGd applications is consistent with the procedures for the dynamic discovery of supported features as defined in clause 7.2 of 3GPP TS 29.229 [5].\nWhen extending the application by adding new AVPs for a feature, the new AVPs shall have the M bit cleared and the AVP shall not be defined mandatory in the command ABNF.\nAs defined in 3GPP TS 29.229 [5], the Supported-Features AVP is of type grouped and contains the Vendor-Id, Feature-List-ID and Feature-List AVPs. On the all reference points as specified in this specification, the Supported-Features AVP is used to identify features that have been defined by 3GPP and hence, for features defined in this document, the Vendor-Id AVP shall contain the vendor ID of 3GPP (10415). If there are multiple feature lists defined for the reference point, the Feature-List-ID AVP shall differentiate those lists from one another.\nThe Table 5.3.3.13/1 defines the features applicable to the S6c interface for the feature list with a Feature-List-ID of 1.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.229_clause_7.2",
+        "table_5.3.3.13",
+        "ts_29.229"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.338_5.1",
+      "section_id": "5.1",
+      "section_title": "Introduction",
+      "content": "The S6c interface enables the retrieval of routing information for the transfer of short messages, the report of status of the delivery status of a short message and the alerting of the SMS-SC between the HSS, the SMS-GMSC and the SMS Router as described in 3GPP TS 23.040 [3].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.040"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.338_5.2.1.1",
+      "section_id": "5.2.1.1",
+      "section_title": "General",
+      "content": "This procedure shall be used between the SMS-GMSC or the IP-SM-GW and the HSS to retrieve the routing information needed for routing the short message to the serving MSC or MME or SGSN or SMSF. This procedure is also used between the SMS-GMSC and the SMS Router or the IP-SM-GW, and between the HSS and the SMS Router or the IP-SM-GW in order to enforce routing of the SM delivery via the HPLMN of the receiving MS.\nThis procedure is applicable to an IP-SM-GW for its SMS Router function when using the S6c interface.\nThis procedure is used according to the call flows described in 3GPP TS 23.040 [2] clause 10.\nTable 5.2.1.1-1 specifies the involved information elements for the request.\nTable 5.2.1.1-2 specifies the involved information elements for the answer.\nThis procedure is mapped to the commands Send-Routing-Info-for-SM-Request/Answer (SRR/SRA) in the Diameter application specified in clause 5.3.2.\nTable 5.2.1.1-1: Send Routing Info for SM Request\nInformation element name\nMapping to Diameter AVP\nCat.\nDescription\nMSISDN\nMSISDN\nC\nThis information element shall be present when the MSISDN exists and shall contain the MSISDN of the user.\nIMSI\nUser-Name\n(See IETF RFC 6733 [20])\nC\nThis information element shall be present when the MSISDN does not exist and shall contain\n- the IMSI of the user in the context of T4 device triggering (see 3GPP TS 23.682 [18];\n- or the HSS ID value in the context of MSISDN-less SMS delivery in IMS (see 3GPP TS 23.204 [17]),.\nSMSMI Correlation ID\nSMSMI-Correlation-ID\nC\nThis information element indicates by its presence that the request is sent in the context of MSISDN-less SMS delivery in IMS (see 3GPP TS 23.204 [17]).\nThis information element shall contain the SIP-URI of the (MSISDN-less) destination user. The SIP-URI of the originating user and the HSS-ID shall be absent from this information element.\nService Centre Address\nSC-Address\nM\nThis information element shall contain the Service Centre address.\nSM-RP-MTI\nSM-RP-MTI\nC\nThis information element shall contain the RP-Message Type Indicator of the Short Message. It is used to distinguish a SM sent to the mobile station in order to acknowledge an MO-SM initiated by the mobile from a normal MT-SM.\nSM-RP-SMEA\nSM-RP-SMEA\nC\nThis information element shall contain the RP-Originating SME-address of the Short Message Entity that has originated the SM. This information element shall be present if the SMS-GMSC supports receiving of the two numbers from the HSS. Used by the short message service relay sub-layer protocol it shall be formatted according to the formatting rules of address fields as described in 3GPP TS 23 040 [2].\nSRR Flags\nSRR-Flags\nC\nThis Information Element contains a bit mask. See 5.3.3.4 for the meaning of the bits and the condition for each bit to be set or not.\nSM-Delivery Not Intended\nSM-Delivery-Not-Intended\nO\nThis information element, when present, shall indicate that delivery of a short message is not intended. It further indicates whether only IMSI or only MCC+MNC are requested.\nThis information element may be set by entities that request the service without intending to deliver a short message, and shall be evaluated by the SMS Router and may be evaluated by the HSS.\nSupported Features\nSupported-Features\n(See 3GPP TS 29.229 [5])\nO\nIf present, this Information Element shall contain the list of features supported by the origin host.\nTable 5.2.1.1-2: Send Routing Info for SM Answer\nInformation element name\nMapping to Diameter AVP\nCat.\nDescription\nResult\nResult-Code / Experimental-Result\nM\nResult of the request.\nResult-Code AVP shall be used for errors defined in the Diameter base protocol (see IETF RFC 6733 [20]).\nExperimental-Result AVP shall be used for S6c errors. This is a grouped AVP which contains the 3GPP Vendor ID in the Vendor-Id AVP, and the error code in the Experimental-Result-Code AVP. This information element shall contain the result of the operation with an indication of the success / errors.\nThe following errors are applicable in this case:\n-\tUnknown User;\n-\tService Barred;\n-\tTeleservice Not Provisioned;\n-\tAbsent User;\n-\tFacility Not Supported.\nIMSI\nUser-Name\n(See IETF RFC 6733 [20])\nC\nThis information element:\nThis information element shall be present in a successful answer.\nThis information element shall be present in an answer from the HSS to the IP-SM-GW, if an Absent User result is returned and the UNRI is not set.\nServing-Node\nServing-Node\nC\nIf the \"SM-Delivery-Not-Intended\" Information Element was not present in the request, this information element shall contain the identity of one serving node on which the user is registered. This identity shall either be:\nIf the \"SM-Delivery-Not-Intended\" Information Element was present in the request, this information element may be absent.\nThis information element shall be present in a successful answer.\nSee NOTE.\nLMSI\nLMSI\nC\nThe HSS shall include the LMSI in a successful response, if the VLR has used the LMSI and if there is the ISDN number of an MSC in the answer.\nAdditional Serving Node\nAdditional-Serving-Node\nC\nThis information element, when present shall either contain:\nIt shall not contain information delivered in the Serving Node information element.\nSee NOTE.\nUser Identifier Alert\nUser-Identifier\nC\nThis information element shall contain the MSISDN stored in the HSS, when available.\nMWD Status\nMWD-Status\nC\nThis Information Element is sent when appropriate and shall contain a bit mask. See 5.3.3.8 for the meaning of the bits.\nMME Absent User Diagnostic SM\nMME-Absent-User-Diagnostic-SM\nC\nThis information element shall contain the reason of the absence of the user when given by the MME and stored in the HSS\nMSC Absent User Diagnostic SM\nMSC-Absent-User-Diagnostic-SM\nC\nThis information element shall contain the reason of the absence of the user when given by the MSC and stored in the HSS\nSGSN Absent User Diagnostic SM\nSGSN-Absent-User-Diagnostic-SM\nC\nThis information element shall contain the reason of the absence of the user when given by the SGSN and stored in the HSS\nSupported Features\nSupported-Features\n(See 3GPP TS 29.229 [5])\nO\nIf present, this information element shall contain the list of features supported by the origin host.\nSMSF 3GPP Address\nSMSF-3GPP-Address\nC\nIf the \"SM-Delivery-Not-Intended\" Information Element was not present in the request, this information element shall contain the identity of the  registered SMSF for 3GPP access.\nIf the \"SM-Delivery-Not-Intended\" Information Element was present in the request, this information element may be absent.\nSee NOTE.\nSMSF Non 3GPP Address\nSMSF-Non-3GPP-Address\nC\nIf the \"SM-Delivery-Not-Intended\" Information Element was not present in the request, this information element shall contain the identity of the registered SMSF or Non-3GPP access.\nIf the \"SM-Delivery-Not-Intended\" Information Element was present in the request, this information element may be absent.\nSee NOTE.\nSMSF 3GPP Absent User Diagnostic SM\nSMSF-3GPP-Absent-User-Diagnostic-SM\nC\nThis information element shall contain the reason of the absence of the user when given by the SMSF registered for 3GPP access.\nSee NOTE\nSMSF Non 3GPP Absent User Diagnostic SM\nSMSF-Non-3GPP-Absent-User-Diagnostic-SM\nC\nThis information element shall contain the reason of the absence of the user when given by the SMSF registered for Non-3GPP access.\nSee NOTE\nNOTE:\tIf the feature \"SMSF-Support\" is not supported by the SMS-GMSC, IP-SM-GW, or SMS Router, the AVPs SMSF-3GPP-Address, SMSF-Non-3GPP-Address, SMSF-3GPP-Absent-User-Diagnostic and SMSF-Non-3GPP-Absent-User-Diagnostic shall not be present. In this case the SMSF 3GPP Address and/or the SMSF Non 3GPP Address may be populated in the existing Serving-Node and Additional-Serving-Node AVPs as applicable.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_23.040_clause_10",
+        "clause_5.3.2",
+        "ts_23.040_table_5.2.1.1-1",
+        "table_5.2.1.1-2",
+        "table_5.2.1.1-1",
+        "ts_23.040",
+        "ts_23.682",
+        "ts_23.204",
+        "ts_29.229"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.338_5.2.1.2",
+      "section_id": "5.2.1.2",
+      "section_title": "Detailed behaviour of the SMS-GMSC",
+      "content": "The SMS-GMSC shall make use of this procedure to retrieve the routing information needed for routing the short message to the serving MSC or MME or SGSN or SMSF registered for 3GPP access or SMSF registered for non-3GPP access  for enforcing routing of the SM delivery via the SMS Router of HPLMN.\nIt shall populate the information elements in the Send Routing Info for SM request according to the table 5.2.1.1-1.\nWhen the Send Routing Info for SM Request is sent by the SMS-GMSC to the HSS in a retry context of SMS for IMS UE to IMS UE without MSISDN (see 3GPP TS 23.204 [17]), IMSI may not be available. In this case the IMSI information element shall be populated with the HSS-ID value.\nWhen receiving the Send Routing Info for-SM Answer, the SMS-GMSC or the SMS Router shall use the received Diameter address if the SMS-GMSC or the SMS Router transfers the terminating short message over the SGd or the Gdd interface.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_5.2.1.1-1",
+        "ts_23.204"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.338_5.2.1.3",
+      "section_id": "5.2.1.3",
+      "section_title": "Detailed behaviour of the HSS",
+      "content": "This clause describes the HSS behaviour when the HSS receives a Send Routing Info for SM request which is not forwarded to an SMS Router or an IP-SM-GW.\nThe HSS shall check if the user identified by the MSISDN is known; otherwise, the HSS shall return an Experimental-Result-Code set to DIAMETER_ERROR_USER_UNKNOWN.\nThe HSS shall check if a MT SMS Teleservice subscription exists; otherwise, the HSS shall return an Experimental-Result-Code set to DIAMETER_ERROR_SERVICE_NOT_SUBSCRIBED.\nThe HSS shall check if the user is not barred for receiving MT short messages; otherwise, the HSS shall return an Experimental-Result-Code set to DIAMETER_ SERVICE _ERROR_BARRED.\nThe HSS shall check if one or more serving nodes (not marked with the mobile not reachable flag) are registered for MT SMS; otherwise, the HSS shall return an Experimental-Result-Code set to DIAMETER_ERROR_ABSENT_USER and update the MWD list and MNRF/MNRG. If there is no serving node being registered for MT SMS and the Single-Attempt-Delivery flag in SRR-Flags AVP is set, the HSS shall not add the SC address into the MWD list.\nThe HSS shall then return a Send Routing Info for SM answer with a Result-Code set to DIAMETER_SUCCESSFUL that shall contain the addresses of the serving nodes that are registered for MT SMS according the following rules:\n-\tif the GPRS indicator is not set, only one serving node address shall be returned according to the SM transfer option where MME is considered as a MSC. The address of the MME, if returned, shall comprise the MME Diameter address and the MME Number for MT SMS. The address of the SMSF, if returned, shall comprise the SMSF Diameter address and the SMSF Number.\n-\tif the GPRS indicator is set, two serving node addresses may be returned of which\n-\tthe Diameter address of the SGSN if available and the SGSN number,\n-\teither the number of the MSC or the Diameter address and the number of the MME for MT SMS.\n-\twhen two serving g nodes addresses are returned, the HSS selects which serving node it will populate in the Serving Node information element and in the Additional Serving Node information elements.\n-\tif the feature SMSF-Support is commonly supported, the HSS includes addresses of the registered SMSFs (if any) in the response, regardless of the GPRS indicator.\nNOTE:\tMSC and MME cannot be both registered as serving nodes for MT SMS at a given time (cf 3GPP TS 23.272 [2])\nIf the stored MSISDN number is not the same as the one received in the Send Routing Info for SM request service, the stored MSISDN number shall be included in the message.\nIn the context of MSISDN-less SMS delivery in IMS (see 3GPP TS 23.204 [17]), if the HSS receives an SMSMI correlation ID, the HSS shall return the IP-SM-GW number and shall not forward the request to an IP-SM-GW.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_23.272",
+        "ts_23.204"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.338_5.2.1.4",
+      "section_id": "5.2.1.4",
+      "section_title": "Detailed behaviour of the SMS Router",
+      "content": "When receiving a Send Routing Info for SM request, the SMS Router shall:\n-\tsend a Send Routing Info for SM request to the HSS to retrieve the routing information needed for routing the short message to the serving MSC or MME or SGSN or SMSF;\n-\tif the Send Routing Info for SM answer received from HSS is successful, the SMS Router shall send a Send Routing Info for SM answer to the SMS-GMSC where\n-\tthe SMS router shall populate the same Serving Node and Additional Serving Node fields (i.e AVPs) as the ones it received in the Send Routing Info for SM answer from HSS, but with its own SMS Router number and its own SMS Router Diameter address;\n-\tif the Send Routing Info for SM answer received from HSS is not successful, the SMS Router shall send a Send Routing Info for SM answer to the SMS-GMSC with the same Diameter error result code.\nIf the SMS Router receives some of the following information elements, User Identifier Alert, MWD Status, MSC Absent User Diagnostic SM, MME Absent User Diagnostic SM, SGSN Absent User Diagnostic SM, it shall transfer them in the Send-Routing Info for SM answer to the SMS-GMSC.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.338_5.2.2.1",
+      "section_id": "5.2.2.1",
+      "section_title": "General",
+      "content": "This procedure shall be used between the HSS and the SMS-IWMSC to indicate that the MS is now recognized by the PLMN to have recovered its operation to allow for an MT SMS delivery. This procedure is used according to the call flows described in 3GPP TS 23.040 [2] clause 10.\nTable 5.2.2.1-1 specifies the involved information elements for the request.\nTable 5.2.2.1-2 specifies the involved information elements for the answer.\nThis procedure is mapped to the commands Alert-Service-Centre-Request/Answer (ALR/ALA) in the Diameter application specified in clause 5.3.2.\nTable 5.2.2.1-1: Alert Service Centre Request\nInformation element name\nMapping to Diameter AVP\nCat.\nDescription\nService Centre Address\nSC-Address\nM\nThis information element shall contain the Service Centre address received from the mobile station.\nUser Identifier Alert\nUser-Identifier\nM\nThis information element shall contain:\nSMSMI Correlation ID\nSMSMI-Correlation-ID\nC\nThis information shall contain the SIP-URI of the destination user which is stored in the Message Waiting Data list in a retry context of SMS for IMS UE to IMS UE without MSISDN (see 3GPP TS 23.204 [17]). The HSS-ID and the Originating SIP-URI shall be absent.\nMaximum UE Availability Time\nMaximum-UE-Availability-Time\nC\nThis information element shall be included, if available. When present, it shall indicate the timestamp (in UTC) until which a UE using a power saving mechanism (such as extended idle mode DRX) is expected to be reachable for SM Delivery.\nThis information may be used by the SMS Center to prioritize the retransmission of Short Message to UEs using a power saving mechanism.\nSupported Features\nSupported-Features\n(See 3GPP TS 29.229 [5])\nO\nIf present, this information element shall contain the list of features supported by the origin host.\nTable 5.2.2.1-2: Alert Service Centre Answer\nInformation element name\nMapping to Diameter AVP\nCat.\nDescription\nResult\nResult-Code / Experimental-Result\nM\nThis information element shall contain the result of the request.\nThe Result-Code AVP shall be used for errors defined in the Diameter base protocol see IETF RFC 6733 [20]).\nThe Experimental-Result AVP shall be used for S6c errors. This is a grouped AVP which contains the 3GPP Vendor ID in the Vendor-Id AVP, and the error code in the Experimental-Result-Code AVP. This information element shall contain the result of the operation with an indication of the success / errors. No errors are defined for this case.\nSupported Features\nSupported-Features\n(See 3GPP TS 29.229 [5])\nO\nIf present, this information element shall contain the list of features supported by the origin host.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_23.040_clause_10",
+        "clause_5.3.2",
+        "ts_23.040_table_5.2.2.1-1",
+        "table_5.2.2.1-2",
+        "table_5.2.2.1-1",
+        "ts_23.040",
+        "ts_23.204",
+        "ts_29.229"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.338_5.2.2.2",
+      "section_id": "5.2.2.2",
+      "section_title": "Detailed behaviour of the HSS",
+      "content": "The HSS shall make use of this procedure to alert the service centre when the mobile user is active after a short message transfer has failed because the mobile user is not reachable, or when the UE has indicated that it has memory capacity to accept a short message.\nIt is an operator option to resend an Alert Service Centre request to the SMS-IWMSC if the alert is unsuccessful. The number of repeat attempts and the interval between them is also an operator option. The service centre address should be purged from the MWD list if the alert is consistently unsuccessful.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.338_5.2.2.3",
+      "section_id": "5.2.2.3",
+      "section_title": "Detailed behaviour of the SMS-IWMSC",
+      "content": "When receiving an Alert Service Centre request the SMS-IWMSC shall check whether the service centre address is known. If the service centre address is not valid, then no further action shall be taken.\nIf the service centre address is valid, the SMS-IW-MSC generates an Alert Service Centre message towards the SMS Centre.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.338_5.2.3.1",
+      "section_id": "5.2.3.1",
+      "section_title": "General",
+      "content": "This procedure shall be used between the SMS-GMSC or the IP-SM-GW and the HSS to update the Message Waiting Data in the HSS or to inform the HSS of a successful SM transfer after polling. This procedure is invoked by the SMS-GMSC or the IP-SM-GW.\nThis procedure is applicable to an IP-SM-GW for its SMS Router function when using the S6c interface.\nThis procedure is used according to the call flows described in 3GPP TS 23.040 [2] clause 10.\nTable 5.2.3.1-1 specifies the involved information elements for the request.\nTable 5.2.3.1-2 specifies the involved information elements for the answer.\nThis procedure is mapped to the commands Report-SM-Delivery-Status-Request/Answer (RDR/RDA) in the Diameter application specified in clause 5.3.2.\nTable 5.2.3.1-1: Report SM Delivery Status Request\nInformation element name\nMapping to Diameter AVP\nCat.\nDescription\nUser Identifier\nUser-Identifier\nM\nThis information element shall contain:\nSMSMI-Correlation ID\nSMSMI-Correlation-ID\nC\nIn a retry context of SMS for IMS UE to IMS UE without MSISDN (see 3GPP TS 23.204 [17]), this information element shall contain the SIP-URI of the (MSISDN-less) destination user. The originating SIP-URI and the HSS-ID shall be absent from this information element.\nService Centre Address\nSC-Address\nM\nThis information element shall contain the Service Centre address.\nSM Delivery Outcome\nSM-Delivery-Outcome\nM\nThis information element shall contain the causes for setting the message waiting data in the HSS according to the network node(s) used for the SM delivery:\nAt least one cause shall be present. A cause originated from a MSC and a cause originated from a MME shall not be both present.\nWhen the cause is Absent User, the Absent User Diagnostic, if available, shall be associated to the cause.\nRDR Flags\nRDR-Flags\nO\nThis Information Element contains a bit mask. See 5.3.3.21 for the meaning of the bits and the condition for each bit to be set or not.\nSupported Features\nSupported-Features\n(See 3GPP TS 29.229 [5])\nO\nIf present, this Information Element shall contain the list of features supported by the origin host.\nTable 5.2.3.1-2: Report SM Delivery Status Answer\nInformation element name\nMapping to Diameter AVP\nCat.\nDescription\nResult\nResult-Code / Experimental-Result\nM\nThis information element shall contain the Result of the request.\nThe Result-Code AVP shall be used for errors defined in the Diameter base protocol (see IETF RFC 6733 [20]).\nThe Experimental-Result AVP shall be used for S6c errors. This is a grouped AVP which contains the 3GPP Vendor ID in the Vendor-Id AVP, and the error code in the Experimental-Result-Code AVP. This information element shall contain the result of the operation with an indication of the success / errors. The following errors are applicable:\n-\tUnknown User;\n-\tMessage Waiting List Full.\nMSISDN- Alert\nUser-Identifier\nC\nThis information element shall contain the Alert MSISDN of the user if it is different from the MSISDN received in the request.\nSupported Features\nSupported-Features\n(See 3GPP TS 29.229 [5])\nO\nIf present, this information element shall contain the list of features supported by the origin host.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_23.040_clause_10",
+        "clause_5.3.2",
+        "ts_23.040_table_5.2.3.1-1",
+        "table_5.2.3.1-2",
+        "table_5.2.3.1-1",
+        "ts_23.040",
+        "ts_23.204",
+        "ts_29.229"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.338_5.2.3.2",
+      "section_id": "5.2.3.2",
+      "section_title": "Detailed behaviour of the SMS-GMSC",
+      "content": "The SMS-GMSC shall make use of this procedure if:\n-\tthe reason received from the serving node for failure to deliver the message is absent user, unidentified user or SM delivery failure with error cause \"UE memory capacity exceeded\", and the SC address is not yet included in the MWD set, and the serving node did not request the SMS-GMSC to retransmit the Short Message at a later requested retransmission time, or\n-\tthe reason received from the serving node for failure to deliver the message is absent user, unidentified user or SM delivery failure with error cause \"UE memory capacity exceeded\", and the corresponding flag in the HSS (as indicated in the information received from HSS) is not set, or\n-\tthe reason received from the serving node (MSC/MME, SGSN or SMSF) for failure to deliver the message is absent user and the absent user diagnostic is different from the absent user diagnostic received from the HSS.\nIf absent user diagnostic information (see 3GPP TS 23.040 [3]) is received with the absent user error indication then the SMS-GMSC shall relay this information to the HSS.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_23.040"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.338_5.2.3.3",
+      "section_id": "5.2.3.3",
+      "section_title": "Detailed behaviour of IP-SM-GW",
+      "content": "The IP-SM-GW shall make use of this procedure if:\n-\tthe reason for failure to deliver the message is absent user, unidentified user or SM delivery failure with error cause \"UE memory capacity exceeded\", and the SC address is not yet included in the MWD set, or\n-\tthe reason for failure to deliver the message is absent user, unidentified user or SM delivery failure with error cause \"UE memory capacity exceeded\", and the corresponding flag in the HSS (as indicated in the information received in the MAP_INFORM_SERVICE_CENTRE) is not set, or\n-\tthe reason for failure to deliver the message is absent user and the absent user diagnostic is different from the absent user diagnostic received from the HSS.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.338_5.2.3.4",
+      "section_id": "5.2.3.4",
+      "section_title": "Detailed behaviour of the HSS",
+      "content": "When receiving a Report SM Delivery Status request the HSS shall check if the user is known.\nIf the user is not known, the HSS shall return an Experimental-Result-Code set to DIAMETER_ERROR_USER_UNKNOWN.\nIf it is known, the HSS shall update the Message Waiting data as described in 3GPP TS 23.040 [3]. If the Single-Attempt-Delivery flag in RDR-Flags AVP is set, the HSS shall not add the SC address into the MWD list.\nIf the message waiting data is full, the HSS shall return an Experimental-Result-Code set to DIAMETER_ERROR_MWD_LIST_FULL.\nIf the received MSISDN is different from the stored MSISDN, the HSS shall return the Alert MSISDN.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_23.040"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.338_5.3.1.1.1",
+      "section_id": "5.3.1.1.1",
+      "section_title": "Introduction",
+      "content": "The clauses in 5.3.1.1 specify the use of the Diameter routing AVPs Destination-Realm and Destination-Host over the S6c interface for Diameter command requests from the SMS-GMSC or the SMS router or the IP-SM-GW (i.e. for the Send Routing Info for SM and the Report SM Delivery Status procedures) The clause 5.3.1.1 also applies for the Report SM Delivery Status request generated by a SMS-SC in a retry context of SMS for IMS UE to IMS UE without MSISDN (see 3GPP TS 23.204 [17]) .",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_5.3.1.1",
+        "ts_23.204"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.338_5.3.1.1.2",
+      "section_id": "5.3.1.1.2",
+      "section_title": "Routing from the originating PLMN",
+      "content": "If the SMS-GMSC or the SMS router has stored or can obtain the address/name and the home network domain name of the HSS identified by the MSISDN or the IMSI, both the Destination-Realm and Destination-Host AVPs shall be present in the request.\nThe SMS Router shall use the MCC/MNC values of the PLMN to which it belongs, to build the MCC/MNC based network domain as described in clause 19.2 of 3GPP TS 23.003 [16] and include it in the Destination-Realm AVP of the request. The request shall then be routed to the next Diameter node.\nIf the SMS-GMSC can only obtain the MCC/MNC values from the MSISDN or the IMSI, the SMS-GMSC shall use them to build the MCC/MNC based network domain as described in clause 19.2 of 3GPP TS 23.003 [16] and include it in the Destination-Realm AVP of the request. The request shall then be routed to the next Diameter node.\nIf the SMS-GMSC cannot obtain the MCC/MNC values from the MSISDN of the user, the SMS-GMSC may forward the request to a Diameter node within the same PLMN, the Destination Realm content being left to the PLMN operator choice. Then:\n-\tif a Diameter node in the routing path insides the PLMN of the SMS-GSMC can obtain the MCC/MNC values of the PLMN to which the user is subscribed to (i.e. when the number portability is resolved in the network of the SMS-GMSC), or\n-\tif, otherwise, the Diameter node can obtain the MCC/MNC values of the PLMN associated to the CC and NDC codes of the MSISDN of the user, then\n-\tthe Diameter node shall use them to build the MCC/MNC based network domain as described in clause 19.2 of 3GPP TS 23.003 [16] and include it in the Destination-Realm AVP of the request. The request shall then be routed to the next Diameter node.\nIf the MCC/MNC values of the PLMN associated to the CC and NDC codes of the MSISDN or the MCC/MNC values of the PLMN to which the user is subscribed to cannot be obtained in the PLMN of the SMS-GMSC, the request shall be replaced in the PLMN of the SMS-GMSC by an equivalent request routed through a MAP interface (e.g. via an IWF).\nNOTE 1:\tThe inter PLMN routing principle is to reuse the routing based on a MCC/MNC based domain name as used by other Diameter applications such as S6a/d. It is assumed that obtaining the relevant MCC/MNC values from the MSISDN can be achieved in the PLMN to which the SMS-GMSC belongs. Otherwise MAP based routing is used. This routing principle may be completed with other routing solutions in the future.\nNOTE 2:\tThe Number portability resolution in the PLMN of the SMS-GMSC can be handled by an intermediate Diameter agent consulting a Number Portability Database of the Network Portability domain to which the PLMN of the SMS-GMSC belongs.\nIf the SMS-SC or the SMS-GMSC, in a retry context of SMS for IMS UE to IMS UE without MSISDN (see 3GPP TS 23.204 [17]), has stored or can obtain the address/name and the home network domain name of the HSS identified by the HSS ID, both the Destination-Realm and Destination-Host AVPs shall be present in the request.\nIf the SMS-SC or the SMS-GMSC, in a retry context of SMS for IMS UE to IMS UE without MSISDN (see 3GPP TS 23.204 [17]), can only obtain the MCC/MNC values from the HSS ID, the SMS-SC shall use them to build the MCC/MNC based network domain as described in clause 19.2 of 3GPP TS 23.003 [16] and include it in the Destination-Realm AVP of the request. The request shall then be routed to the next Diameter node.\nNOTE:\tIn a retry context of MSISDN-less SMS delivery in IMS (see 3GPP TS 23.204 [17]), the SMS-SC gets the HSS-ID from the MO Forward Short Message request as described in clause 6.2.1.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.003_clause_19.2",
+        "clause_6.2.1",
+        "ts_23.003",
+        "ts_23.204"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.338_5.3.1.1.3",
+      "section_id": "5.3.1.1.3",
+      "section_title": "Routing in the HPLMN",
+      "content": "When the request reaches a Diameter node in the home PLMN of the user and when multiple and separately addressable HSSs have been deployed in the home PLMN, the identity of the HSS that holds the subscriber data for a given user identified by its MSISDN may be retrieved by a user identity to HSS resolution mechanism as described in clause 5.4.\nWhen the request (i.e Send Routing Info for SM or Report SM Delivery Status) for SM occurs in the retry context of SMS for IMS UE to IMS UE without MSISDN (see 3GPP TS 23.204 [17]), the Diameter identity of the HSS that holds the subscriber data for a given user may be retrieved by a user identity to HSS resolution mechanism as described in clause 5.4, where the HSS ID conveyed in the request is considered as a user identity.\nConsequently, the Destination-Host AVP is declared as optional in the ABNF for all requests initiated by an SMS-GMSC or a SMS Router.\nThe HSS, when receiving a Send Routing Info for SM request, checks if an SMS Router is configured in the home network or if an IP-SM-GW has been registered for the user. If yes, the HSS shall act as a Diameter proxy and forward the request to the SMS Router or to the IP-SM-GW, by inserting the Diameter address of the SMS Router or of the IP-SM-GW as the Diameter destination address. If the Send Routing Info for SM request occurs in the retry context of SMS for IMS UE to IMS UE without MSISDN (see 3GPP TS 23.204 [17]), the HSS shall return the IP-SM-GW address and shall not forward the request to an IP-SM-GW.\nIf the Vendor-Specific-Application-ID AVP is received in any of the commands defined in this specification, it shall be ignored by the receiving node, and it shall not be used for routing purposes.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_5.4",
+        "ts_23.204"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.338_5.3.1.2",
+      "section_id": "5.3.1.2",
+      "section_title": "Requests from the HSS",
+      "content": "This clause specifies the use of the Diameter routing AVPs Destination-Realm and Destination-Host over the S6c interface for Diameter command requests from the HSS (i.e. for the Alert SC procedure).\nIf the HSS has stored the address/name of the SMS-SC and the associated home network domain name in the Message Waiting Data of the user, both the Destination-Realm and Destination-Host AVPs shall be present in the Diameter request. Otherwise the routing shall use MAP.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.338_5.3.2.1",
+      "section_id": "5.3.2.1",
+      "section_title": "Introduction",
+      "content": "This clause defines the Command code values and related ABNF for each command described for the S6c interface.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.338_5.3.2.2",
+      "section_id": "5.3.2.2",
+      "section_title": "Command-Code values",
+      "content": "This clause defines the Command-Code values for the S6c interface application as allocated by IANA in the IETF RFC 5516 [8].\nEvery command is defined by means of the ABNF syntax IETF RFC 2234 [6], according to the Command Code Format (CCF) specification defined in IETF RFC 6733 [20]. In the case, the definition and use of an AVP is not specified in this document, the guidelines in IETF RFC 6733 [20] shall apply.\nThe Vendor-Specific-Application-Id AVP shall not be included in any command sent by Diameter nodes supporting applications defined in this specification. If the Vendor-Specific-Application-Id AVP is received in any of the commands defined in this specification, it shall be ignored by the receiving node.\nNOTE:\tThe Vendor-Specific-Application-Id is included as an optional AVP in all Command Code Format specifications defined in this specification in order to overcome potential interoperability issues with intermediate Diameter agents non-compliant with IETF RFC 6733 [20].\nThe following Command Codes are defined in this specification:\nTable 5.3.2.2/1: Command-Code values for S6c\nCommand-Name\nAbbreviation\nCode\nClause\nSend-Routing-Info-for-SM-Request\nSRR\n8388647\n5.3.2.3\nSend-Routing-Info-for-SM-Answer\nSRA\n8388647\n5.3.2.4\nAlert-Service-Centre-Request\nALR\n8388648\n5.3.2.5\nAlert-Service-Centre-Answer\nALA\n8388648\n5.3.2.6\nReport-SM-Delivery-Status-Request\nRDR\n8388649\n5.3.2.7\nReport-SM-Delivery-Status-Answer\nRDA\n8388649\n5.3.2.8\nFor these commands, the Application-ID field shall be set to 16777312 (application identifier of the S6c interface application allocated by IANA).",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.3.2.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.338_5.3.2.3",
+      "section_id": "5.3.2.3",
+      "section_title": "Send-Routing-Info-for-SM-Request (SRR) Command",
+      "content": "The Send-Routing-Info-for-SM-Request (SRR) command, indicated by the Command-Code field set to 8388647 and the \"R\" bit set in the Command Flags field, is sent from SMS-GMSC to HSS or SMS Router or from SMS Router to HSS.\nMessage Format:\n< Send-Routing-Info-for-SM-Request > ::=\t< Diameter Header: 8388647, REQ, PXY, 16777312 >\n< Session-Id >\n[ DRMP ]\n[ Vendor-Specific-Application-Id ]\n{ Auth-Session-State }\n{ Origin-Host }\n{ Origin-Realm }\n[ Destination-Host ]\n{ Destination-Realm }\n[ MSISDN ]\n[ User-Name ]\n[ SMSMI-Correlation-ID ]\n*[ Supported-Features ]\n[ SC-Address ]\n[ SM-RP-MTI ]\n[ SM-RP-SMEA ]\n[ SRR-Flags ]\n[ SM-Delivery-Not-Intended ]\n*[ AVP ]\n*[ Proxy-Info ]\n*[ Route-Record ]",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.338_5.3.2.4",
+      "section_id": "5.3.2.4",
+      "section_title": "Send-Routing-info-for-SM-Answer (SRA) Command",
+      "content": "The Send-Routing-Info-for-SM-Answer command (SRA) command, indicated by the Command-Code field set to 8388647 and the 'R' bit cleared in the Command Flags field, is sent from HSS to SMS-GMSC or SMS Router or from SMS Router to SMS-GMSC.\nMessage Format\n< Send-Routing-info-for-SM-Answer > ::=\t< Diameter Header: 8388647, PXY, 16777312 >\n< Session-Id >\n[ DRMP ]\n[ Vendor-Specific-Application-Id ]\n[ Result-Code ]\n[ Experimental-Result ]\n{ Auth-Session-State }\n{ Origin-Host }\n{ Origin-Realm }\n[ User-Name ]\n*[ Supported-Features ]\n[ Serving-Node ]\n[ Additional-Serving-Node ]\n[ SMSF-3GPP-Address ]\n[ SMSF-Non-3GPP-Address ]\n[ LMSI ]\n[ User-Identifier ]\n[ MWD-Status ]\n[ MME-Absent-User-Diagnostic-SM ]\n[ MSC-Absent-User-Diagnostic-SM ]\n[ SGSN-Absent-User-Diagnostic-SM ]\n[ SMSF-3GPP-Absent-User-Diagnostic-SM ]\n[ SMSF-Non-3GPP-Absent-User-Diagnostic-SM ]\n*[ AVP ]\n[ Failed-AVP ]\n*[ Proxy-Info ]\n*[ Route-Record ]",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.338_5.3.2.5",
+      "section_id": "5.3.2.5",
+      "section_title": "Alert-Service-Centre-Request (ALR) Command",
+      "content": "The Alert-Service-Centre-Request (ALR) command, indicated by the Command-Code field set to 8388648 and the \"R\" bit set in the Command Flags field, is sent from the HSS to the SMS-IWMSC and from the MME or SGSN to the SMS-GMSC (possibly via an SMS Router).\nMessage Format:\n< Alert-Service-Centre-Request > ::=\t< Diameter Header: 8388648, REQ, PXY, 16777312 >\n< Session-Id >\n[ DRMP ]\n[ Vendor-Specific-Application-Id ]\n{ Auth-Session-State }\n{ Origin-Host }\n{ Origin-Realm }\n[ Destination-Host ]\n{ Destination-Realm }\n{ SC-Address }\n{ User-Identifier }\n[ SMSMI-Correlation-ID ]\n[ Maximum-UE-Availability-Time ]\n[ SMS-GMSC-Alert-Event ]\n[ Serving-Node ]\n*[ Supported-Features ]\n*[ AVP ]\n*[ Proxy-Info ]\n*[ Route-Record ]",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.338_5.3.2.6",
+      "section_id": "5.3.2.6",
+      "section_title": "Alert-Service-Centre-Answer (ALA) Command",
+      "content": "The Alert-Service-Centre-Answer (ALA) command, indicated by the Command-Code field set to 8388648 and the 'R' bit cleared in the Command Flags field, is sent from the SMS-IWMSC to the HSS and from the SMS-GMSC to the MME or SGSN (possibly via an SMS Router).\nMessage Format\n< Alert-Service-Centre-Answer > ::=\t< Diameter Header: 8388648, PXY, 16777312 >\n< Session-Id >\n[ DRMP ]\n[ Vendor-Specific-Application-Id ]\n[ Result-Code ]\n[ Experimental-Result ]\n{ Auth-Session-State }\n{ Origin-Host }\n{ Origin-Realm }\n*[ Supported-Features ]\n*[ AVP ]\n[ Failed-AVP ]\n*[ Proxy-Info ]\n*[ Route-Record ]",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.338_5.3.2.7",
+      "section_id": "5.3.2.7",
+      "section_title": "Report-SM-Delivery-Status-Request (RDR) Command",
+      "content": "The Report-SM-Delivery-Status-Request (RDR) command, indicated by the Command-Code field set to 8388649 and the \"R\" bit set in the Command Flags field, is sent from SMS-GMSC or IP-SM-GW to HSS.\nMessage Format:\n< Report-SM-Delivery-Status-Request > ::=\t< Diameter Header: 8388649, REQ, PXY, 16777312 >\n< Session-Id >\n[ DRMP ]\n[ Vendor-Specific-Application-Id ]\n{ Auth-Session-State }\n{ Origin-Host }\n{ Origin-Realm }\n[ Destination-Host ]\n{ Destination-Realm }\n*[ Supported-Features ]\n{ User-Identifier }\n[ SMSMI-Correlation-ID ]\n{ SC-Address }\n{ SM-Delivery-Outcome }\n[ RDR-Flags ]\n*[ AVP ]\n*[ Proxy-Info ]\n*[ Route-Record ]",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.338_5.3.2.8",
+      "section_id": "5.3.2.8",
+      "section_title": "Report-SM-Delivery-Status-Answer (RDA) Command",
+      "content": "The Report-SM-Delivery-Status-Answer (RDA) command, indicated by the Command-Code field set to 8388649 and the 'R' bit cleared in the Command Flags field, is sent from HSS to SMS-GMSC or IP-SM-GW.\nMessage Format\n< Report-SM-Delivery-Status-Answer > ::=\t< Diameter Header: 8388649, PXY, 16777312 >\n< Session-Id >\n[ DRMP ]\n[ Vendor-Specific-Application-Id ]\n[ Result-Code ]\n[ Experimental-Result ]\n{ Auth-Session-State }\n{ Origin-Host }\n{ Origin-Realm }\n*[ Supported-Features ]\n[ User-Identifier ]\n*[ AVP ]\n[ Failed-AVP ]\n*[ Proxy-Info ]\n*[ Route-Record ]",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.338_5.3.3.1",
+      "section_id": "5.3.3.1",
+      "section_title": "General",
+      "content": "The following table specifies the Diameter AVPs defined for the S6c interface protocol, their AVP Code values, types, possible flag values and whether or not the AVP may be encrypted. The Vendor-ID header of all AVPs defined in this specification shall be set to 3GPP (10415).\nFor all AVPs which contain bit masks and are of the type Unsigned32, e.g. TFR-Flags, bit 0 shall be the least significant bit. For example, to get the value of bit 0, a bit mask of 0x0001 should be used.\nTable 5.3.3.1/1: S6c specific Diameter AVPs\nAVP Flag rules\nAttribute Name\nAVP Code\nClause defined\nValue Type\nMust\nMay\nShould not\nMust not\nMay Encr.\nSM-RP-MTI\n3308\n5.3.3.2\nEnumerated\nM, V\nNo\nSM-RP-SMEA\n3309\n5.3.3.3\nOctetString\nM, V\nNo\nSRR-Flags\n3310\n5.3.3.4\nUnsigned32\nM, V\nNo\nSM-Delivery-Not-Intended\n3311\n5.3.3.5\nEnumerated\nM, V\nNo\nMWD-Status\n3312\n5.3.3.8\nUnsigned32\nM, V\nNo\nMME-Absent-User-Diagnostic-SM\n3313\n5.3.3.9\nUnsigned32\nM, V\nNo\nMSC-Absent-User-Diagnostic-SM\n3314\n5.3.3.10\nUnsigned32\nM, V\nNo\nSGSN-Absent-User-Diagnostic SM\n3315\n5.3.3.11\nUnsigned32\nM, V\nNo\nSM-Delivery-Outcome\n3316\n5.3.3.14\nGrouped\nM, V\nNo\nMME-SM-Delivery-Outcome\n3317\n5.3.3.15\nGrouped\nM, V\nNo\nMSC-SM-Delivery-Outcome\n3318\n5.3.3.16\nGrouped\nM, V\nNo\nSGSN-SM-Delivery-Outcome\n3319\n5.3.3.17\nGrouped\nM, V\nNo\nIP-SM-GW-SM-Delivery-Outcome\n3320\n5.3.3.18\nGrouped\nM, V\nNo\nSM-Delivery-Cause\n3321\n5.3.3.19\nEnumerated\nM, V\nNo\nAbsent-User-Diagnostic-SM\n3322\n5.3.3.20\nUnsigned32\nM, V\nNo\nRDR-Flags\n3323\n5.3.3.21\nUnsigned32\nV\nM\nNo\nMaximum-UE-Availability-Time\n3329\n5.3.3.22\nTime\nV\nM\nNo\nSMS-GMSC-Alert-Event\n3333\n5.3.3.23\nUnsigned32\nV\nM\nNo\nSMSF-3GPP-Absent-User-Diagnostic-SM\n3334\n5.3.3.25\nUnsigned32\nV\nM\nNo\nSMSF-Non-3GPP-Absent-User-Diagnostic-SM\n3335\n5.3.3.26\nUnsigned32\nV\nM\nNo\nSMSF-3GPP-SM-Delivery-Outcome\n3336\n5.3.3.27\nGrouped\nV\nM\nNo\nSMSF-Non-3GPP-SM-Delivery-Outcome\n3337\n5.3.3.28\nGrouped\nV\nM\nNo\nSMSF-3GPP-Number\n3338\n5.3.3.29\nOctetString\nV\nM\nNo\nSMSF-Non-3GPP-Number\n3339\n5.3.3.30\nOctetString\nV\nM\nNo\nSMSF-3GPP-Name\n3340\n5.3.3.31\nDiameterIdentity\nV\nM\nNo\nSMSF-Non-3GPP-Name\n3341\n5.3.3.32\nDiameterIdentity\nV\nM\nNo\nSMSF-3GPP-Realm\n3342\n5.3.3.33\nDiameterIdentity\nV\nM\nNo\nSMSF-Non-3GPP-Realm\n3343\n5.3.3.34\nDiameterIdentity\nV\nM\nNo\nSMSF-3GPP-Address\n3344\n5.3.3.35\nGrouped\nV\nM\nNo\nSMSF-Non-3GPP-Address\n3345\n5.3.3.36\nGrouped\nV\nM\nNo\nSMSF-3GPP-SBI-Support-Indicator\n3346\n5.3.3.37\nEnumerated\nV\nM\nNo\nSMSF-Non-3GPP-SBI-Support-Indicator\n3347\n5.3.3.38\nEnumerated\nV\nM\nNo\nIP-SM-GW-SBI-Support-Indicator\n3348\n5.3.3.39\nEnumerated\nV\nM\nNo\nNOTE 1:\tThe AVP header bit denoted as \"M\", indicates whether support of the AVP is required. The AVP header bit denoted as \"V\" indicates whether the optional Vendor-ID field is present in the AVP header. For further details, see IETF RFC 6733 [20].\nNOTE 2:\tIf the M-bit is set for an AVP and the receiver does not understand the AVP, it shall return a rejection. If the M-bit is not set for an AVP, the receiver shall not return a rejection, whether or not it understands the AVP. If the receiver understands the AVP but the M-bit value does not match with the definition in this table, the receiver shall ignore the M-bit.\nThe following table specifies the Diameter AVPs re-used from existing Diameter Applications, including a reference to their respective specifications and when needed, a short description of their use within this interface.\nAny other AVPs from existing Diameter Applications, except for the AVPs from Diameter Base Protocol specified in IETF RFC 6733 [20], do not need to be supported. The AVPs from Diameter base protocol specified in IETF RFC 6733 [20] are not included in table 5.3.3.1/2, but they may be re-used for this interface.\nTable 5.3.3.1/2: S6c re-used Diameter AVPs\nAttribute Name\nReference\nComments\nM-bit\nUser-Name\nIETF RFC 6733 [20]\nMust\nMSISDN\n3GPP TS 23.329 [14]\nSC-Address\n3GPP TS 29.338\nIt is defined for the SGd/Gdd interface, see clause 6.3.3.2\nLMSI\n3GPP TS 29.173 [10]\nServing-Node\n3GPP TS 29.173 [10]\nSee clause 5.3.3.6\nMSC-Number\n3GPP TS 29.173 [10]\nMME-Name\n3GPP TS 29.173 [10]\nMME-Realm\n3GPP TS 29.173 [10]\nMust\nMME-Number-for-MT-SMS\n3GPP TS 29.272 [4]\nMust\nSGSN-Number\n3GPP TS 29.272 [4]\nSGSN-Name\n3GPP TS 29.173 [10]\nSGSN-Realm\n3GPP TS 29.173[10]\nAdditional-Serving-Node\n3GPP TS 29.173 [10]\nSee clause 5.3.3.7\nUser-Identifier\n3GPP TS 29.336 [15]\nSM-Delivery-Failure-Cause\n3GPP TS 29.338\nIt is defined for the SGd/Gdd interface, see clause 6.3.3.5\nIP-SM-GW-Name\n3GPP TS 29.336 [15]\nIP-SM-GW-Number\n3GPP TS 29.336 [15]\nSMSMI-Correlation-ID\n3GPP TS 29.338\nIt is defined for the SGd/Gdd interface, see clause 6.3.3.2\nDestination-SIP-URI\n3GPP TS 29.338\nIt is defined for the SGd/Gdd interface, see clause 6.3.3.2\nSupported-Features\n3GPP TS 29.229 [5]\nFeature-List-ID\n3GPP TS 29.229 [5]\nSee clause 5.3.3.12\nFeature-List\n3GPP TS 29.229 [5]\nSee clause 5.3.3.13\nDRMP\nIETF RFC 7944 [19]\nsee clause 5.3.3.24\nMust not set\nNOTE 1:\tThe M-bit settings for re-used AVPs override those of the defining specifications that are referenced. Values include: \"Must set\", \"Must not set\". If the M-bit setting is blank, then the defining specification applies.\nNOTE 2:\tIf the M-bit is set for an AVP and the receiver does not understand the AVP, it shall return a rejection. If the M-bit is not set for an AVP, the receiver shall not return a rejection, whether or not it understands the AVP. If the receiver understands the AVP but the M-bit value does not match with the definition in this table, the receiver shall ignore the M-bit.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.173_clause_6.3.3.2",
+        "ts_29.173_clause_5.3.3.6",
+        "ts_29.173_clause_5.3.3.7",
+        "ts_29.336_clause_6.3.3.5",
+        "clause_6.3.3.2",
+        "ts_29.229_clause_5.3.3.12",
+        "ts_29.229_clause_5.3.3.13",
+        "clause_5.3.3.24",
+        "table_5.3.3.1",
+        "ts_23.329",
+        "ts_29.338",
+        "ts_29.173",
+        "ts_29.272",
+        "ts_29.336",
+        "ts_29.229"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.338_5.3.3.2",
+      "section_id": "5.3.3.2",
+      "section_title": "SM-RP-MTI",
+      "content": "The SM-RP-MTI AVP is of type Enumerated and shall contain the RP-Message Type Indicator of the Short Message. The following values are defined:\n-\tSM_DELIVER (0)\n-\tSM_STATUS_REPORT (1)",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.338_5.3.3.3",
+      "section_id": "5.3.3.3",
+      "section_title": "SM-RP-SMEA",
+      "content": "The SM-RP-SMEA AVP is of type OctetString and shall contain the RP-Originating SME-address of the Short Message Entity that has originated the SM. It shall be formatted according to the formatting rules of the address fields described in 3GPP TS 23.040 [3].",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_23.040"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.338_5.3.3.4",
+      "section_id": "5.3.3.4",
+      "section_title": "SRR-Flags",
+      "content": "The SRR-Flags AVP is of type Unsigned32 and it shall contain a bit mask. The meaning of the bits shall be as defined in table 5.3.3.4./1:\nTable 5.3.3.4/1: SRR-Flags\nBit\nName\nDescription\n0\nGPRS-Indicator\nThis bit shall be set if the SMS-GMSC supports receiving of two serving nodes addresses from the HSS.\n1\nSM-RP-PRI\nThis bit shall be set if the delivery of the short message shall be attempted when a service centre address is already contained in the Message Waiting Data file\n2\nSingle-Attempt-Delivery\nThis bit if set indicates that only one delivery attempt shall be performed for this particular SM.\nNOTE 1: Bits not defined in this table shall be cleared by the sending entity and discarded by the receiving entity.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_5.3.3.4"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.338_5.3.3.5",
+      "section_id": "5.3.3.5",
+      "section_title": "SM-Delivery-Not-Intended",
+      "content": "The SM-Delivery-Not-Intended AVP is of type Enumerated and shall indicate by its presence that delivery of a short message is not intended. It further indicates whether only IMSI or only MCC+MNC with the following values:\n-\tONLY_IMSI_REQUESTED (0),\n-\tONLY_MCC_MNC_REQUESTED (1).",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.338_5.3.3.6",
+      "section_id": "5.3.3.6",
+      "section_title": "Serving-Node",
+      "content": "The Serving-Node AVP is of type Grouped. This AVP shall contain the information about the network node serving the targeted SMS user. It is originally defined in 3GPP TS 29.173 [10].\nAVP format\nServing-Node ::=\t<AVP header: 2401 10415>\n[ SGSN-Name ]\n[ SGSN-Realm ]\n[ SGSN-Number ]\n[ MME-Name ]\n[ MME-Realm ]\n[ MME-Number-for-MT-SMS ]\n[ MSC-Number ]\n[ IP-SM-GW-Number ]\n[ IP-SM-GW-Name ]\n[ IP-SM-GW-Realm ]\n[ IP-SM-GW-SBI-Support-Indicator ]\n*[AVP]\nThe following combinations are allowed:\na) SGSN-Number\nb) SGSN-Name & SGSN-Realm & SGSN-Number if the HSS supports the \"Gdd in SGSN\" feature and has received the \"Gdd in SGSN\" indication over S6a or Gr interface from the SGSN (cf. 3GPP TS 29.272 [4] and 3GPP TS 29.002 [9])\nc) MME-Name & MME-Realm & MME-Number-for-MT-SMS\nd) MSC-Number\ne) MSC-Number & MME-Name & MME-Realm\nf) IP-SM-GW-Number\ng) IP-SM-GW-Number & IP-SM-GW-Name.\nh) IP-SM-GW-Number & IP-SM-GW-SBI-Support-Indicator\ni) IP-SM-GW-Number & IP-SM-GW-Name & IP-SM-GW-SBI-Support-Indicator.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.173",
+        "ts_29.272",
+        "ts_29.002"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.338_5.3.3.7",
+      "section_id": "5.3.3.7",
+      "section_title": "Additional-Serving-Node",
+      "content": "The Additional-Serving-Node AVP is of type Grouped. This AVP shall contain the information about the network node serving the targeted user. It is originally defined in 3GPP TS 29.173 [10].\nAVP format\nAdditional-Serving-Node ::=\t<AVP header: 2406 10415>\n[ SGSN-Name ]\n[ SGSN-Realm ]\n[ SGSN-Number ]\n[ MME-Name ]\n[ MME-Realm ]\n[ MME-Number-for-MT-SMS ]\n[ MSC-Number ]\n*[AVP]\nThe following combinations are allowed:\na) SGSN-Number\nb) SGSN-Name & SGSN-Realm & SGSN-Number if the HSS supports the \"Gdd in SGSN\" feature and has received the \"Gdd in SGSN\" indication over S6a or Gr interface from the SGSN (cf. 3GPP TS 29.272 [4] and 3GPP TS 29.002 [9]\nc) MME-Name & MME-Realm & MME-Number-for-MT-SMS\nd) MSC-Number\ne) MSC-Number & MME-Name & MME-Realm",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.173",
+        "ts_29.272",
+        "ts_29.002"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.338_5.3.3.8",
+      "section_id": "5.3.3.8",
+      "section_title": "MWD-Status",
+      "content": "The MWD-Status AVP is of type Unsigned32 and it shall contain a bit mask. The meaning of the bits shall be as defined in table 5.3.3.8/1:\nTable 5.3.3.8/1: MWD Status\nbit\nname\nDescription\n0\nSC-Address Not included\nThis bit when set shall indicate that the SC Address has not been added to the Message Waiting Data in the HSS.\n1\nMNRF-Set\nThis bit, when set, shall indicate that the MNRF flag is set in the HSS\n2\nMCEF-Set\nThis bit, when set, shall indicate that the MCEF flag is set in the HSS.\n3\nMNRG-Set\nThis bit, when set, shall indicate that the MNRG flag is set in the HSS\n4\nMNR5G-Set\nThis bit, when set, shall indicate that the HSS/UDM is waiting for a reachability notification / registration from 5G serving nodes.\nNOTE:\tBits not defined in this table shall be cleared by the sending HSS and discarded by the receiving MME.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_5.3.3.8"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.338_5.3.3.9",
+      "section_id": "5.3.3.9",
+      "section_title": "MME-Absent-User-Diagnostic-SM",
+      "content": "The MME-Absent-User-Diagnostic-SM AVP is of type Unsigned32 and shall indicate the diagnostic explaining the absence of the user given by the MME. The values are defined in 3GPP TS 23.040 [3] clause 3.3.2.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_23.040_clause_3.3.2",
+        "ts_23.040"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.338_5.3.3.10",
+      "section_id": "5.3.3.10",
+      "section_title": "MSC-Absent-User-Diagnostic-SM",
+      "content": "The MSC-Absent-User-Diagnostic-SM AVP is of type Unsigned32 and shall indicate the diagnostic explaining the absence of the user given by the MSC. The values are defined in 3GPP TS 23.040 [3] clause 3.3.2.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_23.040_clause_3.3.2",
+        "ts_23.040"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.338_5.3.3.11",
+      "section_id": "5.3.3.11",
+      "section_title": "SGSN-Absent-Subscriber-Diagnostic-SM",
+      "content": "The SGSN-Absent-User-Diagnostic-SM AVP is of type Unsigned32 and shall indicate the diagnostic explaining the absence of the user given by the SGSN. The values are defined in 3GPP TS 23.040 [3] clause 3.3.2.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_23.040_clause_3.3.2",
+        "ts_23.040"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.338_5.3.3.12",
+      "section_id": "5.3.3.12",
+      "section_title": "Feature-List-ID AVP",
+      "content": "The syntax of this AVP is defined in 3GPP TS 29.229 [5]. For this release, the Feature-List-ID AVP value shall be set to 1.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.229"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.338_5.3.3.13",
+      "section_id": "5.3.3.13",
+      "section_title": "Feature-List AVP",
+      "content": "The syntax of this AVP is defined in 3GPP TS 29.229 [5]. A null value indicates that there is no feature used by the application.\nFor the S6c application, the meaning of the bits shall be as defined in table 5.3.3.13/1 for the Feature-List-ID 1.\nTable 5.3.3.13/1: Features of Feature-List-ID 1 used in S6c\nFeature bit\nFeature\nM/O\nDescription\n0\nSMSF-Support\nO\nSMSF-Support\nThis feature is applicable for the SRR/SRA command pair.\nIf the SMS-GMSC or IP-SM-GW or SMS-Router does not support this feature, the HSS shall not return SMSF related AVPs (SMSF-3GPP-Address, SMSF-Non-3GPP-Address, SMSF-3GPP-Absent-User-Diagnostic-SM, SMSF-Non-3GPP-Absent-User-Diagnostic-SM) in SRA, and when the UE is known not to be reachable for SMS via MSC/MME and/or SGSN, the HSS may populate AVPs within the Serving-Node AVP and within the Additional-Serving-Node AVP with available SMSF address information.\nFeature bit: The order number of the bit within the Supported-Features AVP, e.g. \"1\".\nFeature: A short name that can be used to refer to the bit and to the feature, e.g. \"SMSF-Support\".\nM/O: Defines if the implementation of the feature is mandatory (\"M\") or optional (\"O\").\nDescription: A clear textual description of the feature.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_5.3.3.13",
+        "ts_29.229"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.338_5.3.3.14",
+      "section_id": "5.3.3.14",
+      "section_title": "SM-Delivery-Outcome",
+      "content": "The SM-Delivery-Outcome AVP is of type Grouped. This AVP contains the result of the SM delivery.\nAVP format:\nSM-Delivery-Outcome::= <AVP header: 3316 10415>\n[ MME-SM-Delivery-Outcome ]\n[ MSC-SM-Delivery-Outcome ]\n[ SGSN-SM-Delivery-Outcome ]\n[ IP-SM-GW-SM-Delivery-Outcome ]\n[ SMSF-3GPP-SM-Delivery-Outcome ]\n[ SMSF-Non-3GPP-SM-Delivery-Outcome ]\n*[AVP]",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.338_5.3.3.15",
+      "section_id": "5.3.3.15",
+      "section_title": "MME-SM-Delivery-Outcome",
+      "content": "The MME-Delivery-Outcome AVP is of type grouped and shall indicate the outcome of the SM delivery for setting the message waiting data in the HSS when the SM delivery is with an MME.\nAVP format:\nMME-SM-Delivery-Outcome::= <AVP header: 3317 10415>>\n[ SM-Delivery-Cause ]\n[ Absent-User-Diagnostic-SM ]",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.338_5.3.3.16",
+      "section_id": "5.3.3.16",
+      "section_title": "MSC-SM-Delivery-Outcome",
+      "content": "The MSC-Delivery-Outcome AVP is of type grouped and shall indicate the outcome of the SM delivery for setting the message waiting data in the HSS when the SM delivery is with an MSC.\nAVP format:\nMSC-SM-Delivery-Outcome::= <AVP header: 3318 10415>\n[ SM-Delivery-Cause ]\n[ Absent-User-Diagnostic-SM ]",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.338_5.3.3.17",
+      "section_id": "5.3.3.17",
+      "section_title": "SGSN-SM-Delivery-Outcome",
+      "content": "The SGSN-Delivery-Outcome AVP is of type grouped and shall indicate the outcome of the SM delivery for setting the message waiting data in the HSS when the SM delivery is with an SGSN.\nAVP format:\nSGSN-SM-Delivery-Outcome::= <AVP header: 3319 10415>\n[ SM-Delivery-Cause ]\n[ Absent-User-Diagnostic-SM ]",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.338_5.3.3.18",
+      "section_id": "5.3.3.18",
+      "section_title": "IP-SM-GW-SM-Delivery-Outcome",
+      "content": "The IP-SM-GW-SM-Delivery-Outcome AVP is of type grouped and shall indicate the outcome of the SM delivery for setting the message waiting data when the SM delivery is with an IP-SM-GW. The following values are defined.\nAVP format:\nIP-SM-GW-SM-Delivery-Outcome::= <AVP header: 3320 10415>\n[ SM-Delivery-Cause ]\n[ Absent-User-Diagnostic-SM ]",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.338_5.3.3.19",
+      "section_id": "5.3.3.19",
+      "section_title": "SM-Delivery-Cause",
+      "content": "The SM-Delivery-Cause AVP is of type Enumerated and shall indicate the cause of the SMP delivery result. The following values are defined:\n-\tUE_ MEMORY_CAPACITY_EXCEEDED (0)\n-\tABSENT_USER (1)\n-\tSUCCESSFUL_TRANSFER (2)",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.338_5.3.3.20",
+      "section_id": "5.3.3.20",
+      "section_title": "Absent-User-Diagnostic-SM",
+      "content": "The Absent-User-Diagnostic-SM AVP is of type Unsigned32 and shall indicate the diagnostic explaining the absence of the subscriber. The values are defined in 3GPP TS 23.040 [3] clause 3.3.2.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_23.040_clause_3.3.2",
+        "ts_23.040"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.338_5.3.3.21",
+      "section_id": "5.3.3.21",
+      "section_title": "RDR-Flags",
+      "content": "The RDR-Flags AVP is of type Unsigned32 and it shall contain a bit mask. The meaning of the bits shall be as defined in table 5.3.3.21/1:\nTable 5.3.3.21/1: RDR-Flags\nBit\nName\nDescription\n0\nSingle-Attempt-Delivery\nThis bit if set indicates that only one delivery attempt shall be performed for this particular SM.\nNOTE 1: Bits not defined in this table shall be cleared by the sending entity and discarded by the receiving entity.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_5.3.3.21"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.338_5.3.3.22",
+      "section_id": "5.3.3.22",
+      "section_title": "Maximum-UE-Availability-Time",
+      "content": "The Maximum-UE-Availability-Time is of type Time and in shall contain the timestamp (in UTC) until which a UE using a power saving mechanism (such as extended idle mode DRX) is expected to be reachable for SM Delivery.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.338_5.3.3.23",
+      "section_id": "5.3.3.23",
+      "section_title": "SMS-GMSC-Alert-Event",
+      "content": "The SMS-GMSC-Alert-Event AVP is of type Unsigned32 and it shall contain a bit mask. The meaning of the bits shall be as defined in table 5.3.3.23/1:\nTable 5.3.3.23/1: SMS-GMSC-Alert-Event\nBit\nName\nDescription\n0\nUE-Available-For-MT-SMS\nThis bit, when set, shall indicate that the UE is now available for MT SMS\n1\nUE-Under-New-Serving-Node\nThis bit, when set, shall indicate that the UE has moved under the coverage of another MME or SGSN.\nNOTE 1:\tBits not defined in this table shall be cleared by the sending entity and discarded by the receiving entity.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_5.3.3.23"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.338_5.3.3.24",
+      "section_id": "5.3.3.24",
+      "section_title": "DRMP",
+      "content": "The DRMP AVP is of type Enumerated and it is defined in IETF RFC 7944 [19]. This AVP allows the HSS, the SMS-GMSC, the SMS-Router and the IP-SM-GW to indicate the relative priority of Diameter messages over the S6c interface. The DRMP AVP may be used to set the DSCP marking for transport of the associated Diameter message.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.338_5.3.3.25",
+      "section_id": "5.3.3.25",
+      "section_title": "SMSF-3GPP-Absent-User-Diagnostic-SM",
+      "content": "The SMSF-3GPP-Absent-User-Diagnostic-SM AVP is of type Unsigned32 and shall indicate the diagnostic explaining the absence of the user given by the SMSF registered for 3GPP access. The values are defined in 3GPP TS 23.040 [3] clause 3.3.2.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_23.040_clause_3.3.2",
+        "ts_23.040"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.338_5.3.3.26",
+      "section_id": "5.3.3.26",
+      "section_title": "SMSF-Non-3GPP-Absent-User-Diagnostic-SM",
+      "content": "The SMSF-Non-3GPP-Absent-User-Diagnostic-SM AVP is of type Unsigned32 and shall indicate the diagnostic explaining the absence of the user given by the SMSF registered for Non-3GPP access. The values are defined in 3GPP TS 23.040 [3] clause 3.3.2.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_23.040_clause_3.3.2",
+        "ts_23.040"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.338_5.3.3.27",
+      "section_id": "5.3.3.27",
+      "section_title": "SMSF-3GPP-SM-Delivery-Outcome",
+      "content": "The SMSF-3GPP-SM-Delivery-Outcome AVP is of type grouped and shall indicate the outcome of the SM delivery for setting the message waiting data in the HSS when the SM delivery is with an SMSF registered for 3GPP access.\nAVP format:\nSMSF-3GPP-SM-Delivery-Outcome::= <AVP header: 3336 10415>>\n[ SM-Delivery-Cause ]\n[ Absent-User-Diagnostic-SM ]",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.338_5.3.3.28",
+      "section_id": "5.3.3.28",
+      "section_title": "SMSF-Non-3GPP-SM-Delivery-Outcome",
+      "content": "The SMSF-Non-3GPP-SM-Delivery-Outcome AVP is of type grouped and shall indicate the outcome of the SM delivery for setting the message waiting data in the HSS when the SM delivery is with an SMSF registered for Non-3GPP access.\nAVP format:\nSMSF-Non-3GPP-SM-Delivery-Outcome::= <AVP header: 3337 10415>>\n[ SM-Delivery-Cause ]\n[ Absent-User-Diagnostic-SM ]",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.338_5.3.3.29",
+      "section_id": "5.3.3.29",
+      "section_title": "SMSF-3GPP-Number",
+      "content": "The SMSF-3GPP-Number AVP is of type OctetString and it shall contain the ISDN number of the SMSF registered for 3GPP access. For further details on the definition of this AVP, see 3GPP TS 23.003 [3]. This AVP contains an SMSF-3GPP-Number in international number format as described in ITU-T Rec E.164 [13] and shall be encoded as a TBCD-string. See 3GPP TS 29.002 [9] for encoding of TBCD-strings. This AVP shall not include leading indicators for the nature of address and the numbering plan; it shall contain only the TBCD-encoded digits of the address.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_23.003",
+        "ts_29.002"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.338_5.3.3.30",
+      "section_id": "5.3.3.30",
+      "section_title": "SMSF-Non-3GPP-Number",
+      "content": "The SMSF-Non-3GPP-Number AVP is of type OctetString and it shall contain the ISDN number of the SMSF registered for Non-3GPP access. For further details on the definition of this AVP, see 3GPP TS 23.003 [3]. This AVP contains an SMSF-Non-3GPP-Number in international number format as described in ITU-T Rec E.164 [13] and shall be encoded as a TBCD-string. See 3GPP TS 29.002 [9] for encoding of TBCD-strings. This AVP shall not include leading indicators for the nature of address and the numbering plan; it shall contain only the TBCD-encoded digits of the address.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_23.003",
+        "ts_29.002"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.338_5.3.3.31",
+      "section_id": "5.3.3.31",
+      "section_title": "SMSF-3GPP-Name",
+      "content": "The SMSF-3GPP-Name AVP is of type DiameterIdentity and it shall contain the Diameter identity of the serving SMSF registered for 3GPP access. For further details on the encoding of this AVP, see IETF RFC 6733 [20].",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.338_5.3.3.32",
+      "section_id": "5.3.3.32",
+      "section_title": "SMSF-Non-3GPP-Name",
+      "content": "The SMSF-Non-3GPP-Name AVP is of type DiameterIdentity and it shall contain the Diameter identity of the serving SMSF registered for Non-3GPP access. For further details on the encoding of this AVP, see IETF RFC 6733  [20].",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.338_5.3.3.33",
+      "section_id": "5.3.3.33",
+      "section_title": "SMSF-3GPP-Realm",
+      "content": "The SMSF-3GPP-Realm AVP is of type DiameterIdentity and it shall contain the Diameter Realm Identity of the serving SMSF registered for 3GPP access. For further details on the encoding of this AVP, see IETF RFC 6733 [20].",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.338_5.3.3.34",
+      "section_id": "5.3.3.34",
+      "section_title": "SMSF-Non-3GPP-Realm",
+      "content": "The SMSF-Non-3GPP-Realm AVP is of type DiameterIdentity and it shall contain the Diameter Realm Identity of the serving SMSF registered for Non-3GPP access. For further details on the encoding of this AVP, see IETF RFC 6733 [20].",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.338_5.3.3.35",
+      "section_id": "5.3.3.35",
+      "section_title": "SMSF-3GPP-Address",
+      "content": "The SMSF-3GPP-Address AVP is of type Grouped. This AVP shall contain the information about the SMSF serving the targeted user for 3GPP access.\nAVP format\nSMSF-3GPP-Address ::=\t<AVP header: 3344 10415>\n[ SMSF-3GPP-Number ]\n[ SMSF-3GPP-Name ]\n[ SMSF-3GPP-Realm ]\n[ SMSF-3GPP-SBI-Support-Indicator ]\n*[AVP]",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.338_5.3.3.36",
+      "section_id": "5.3.3.36",
+      "section_title": "SMSF-Non-3GPP-Address",
+      "content": "The SMSF-Non-3GPP-Address AVP is of type Grouped. This AVP shall contain the information about the SMSF serving the targeted user for Non-3GPP access.\nAVP format\nSMSF-Non-3GPP-Address ::=\t<AVP header: 3345 10415>\n[ SMSF-Non-3GPP-Number ]\n[ SMSF-Non-3GPP-Name ]\n[ SMSF-Non-3GPP-Realm ]\n[ SMSF-Non-3GPP-SBI-Support-Indicator ]\n*[AVP]",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.338_5.3.3.37",
+      "section_id": "5.3.3.37",
+      "section_title": "SMSF-3GPP-SBI-Support-Indicator",
+      "content": "The SMSF-3GPP-SBI-Support-Indicator AVP is of type Enumerated and shall indicate whether the SMSF support service-based-interface or not, with the following values:\n-\tNOT_SUPPORT_SBI (0),\n-\tSUPPORT_SBI (1).",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.338_5.3.3.38",
+      "section_id": "5.3.3.38",
+      "section_title": "SMSF-Non-3GPP-SBI-Support-Indicator",
+      "content": "The SMSF-Non-3GPP-SBI-Support-Indicator AVP is of type Enumerated and shall indicate whether the SMSF support service-based-interface or not, with the following values:\n-\tNOT_SUPPORT_SBI (0),\n-\tSUPPORT_SBI (1).",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.338_5.3.3.39",
+      "section_id": "5.3.3.39",
+      "section_title": "IP-SM-GW-SBI-Support-Indicator",
+      "content": "The IP-SM-GW-SBI-Support-Indicator AVP is of type Enumerated and shall indicate whether the IP-SM-GW support service-based-interface or not, with the following values:\n-\tNOT_SUPPORT_SBI (0),\n-\tSUPPORT_SBI (1).",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.338_5.4",
+      "section_id": "5.4",
+      "section_title": "User identity to HSS resolution",
+      "content": "The User identity to HSS resolution mechanism enables the SMS-GMSC or SMS Router in the home PLMN or Diameter proxy agents in the home PLMN to find the identity of the HSS that holds the subscriber data for a given user identified by its MSISDN or by its IMSI when multiple and separately addressable HSSs have been deployed in the home PLMN. The resolution mechanism is not required in PLMNs that utilise a single HSS.\nThis User identity to HSS resolution mechanism may rely on routing capabilities provided by Diameter and be implemented in the home PLMN within dedicated Diameter Agents (Proxy Agents) responsible for determining the HSS identity based on the provided user identity. If this Diameter based implementation is selected by the home PLMN operator, the principles described below shall apply.\nWhen more than one independently addressable HSS are deployed in the home PLMN, each SMS-GMSC or SMS-Router network of the home PLMN shall be configured with the address/identity of a Diameter Agent (Proxy Agent) implementing this resolution mechanism.\nDiameter Relay agents and/or Diameter Proxy agents in the home PLMN receiving the Diameter signalling from SMS-GMSC located in other PLMNs shall be configured with the address/identity of a Diameter Agent (Proxy Agent) implementing this resolution mechanism.\nTo get the HSS identity that holds the subscriber data for a given user identity in the home network, the Diameter request normally destined to the HSS shall be sent to the pre-configured address/identity of a Diameter Proxy agent supporting the User identity to HSS resolution mechanism.\n-\tIf this Diameter request is received by a Diameter Redirect Agent, the Diameter Redirect Agent shall determine the HSS identity based on the provided user identity (i.e. MSISDN or IMSI) and shall return a notification of redirection towards the HSS identity, in response to the Diameter request. Multiple HSS identities may be included in the response, as specified in IETF RFC 6733 [20]. In such a case, the requesting Diameter entity shall send the Diameter request to the first HSS identity in the ordered list received in the Diameter response from the Diameter Redirect Agent. If no successful response to the Diameter request is received, the requesting Diameter entity shall send a Diameter request to the next HSS identity in the ordered list. This procedure shall be repeated until a successful response from an HSS is received. After the user identity to HSS resolution, the MME or the SGSN shall store the determined HSS identity/name/Realm and shall use it in further Diameter requests to the same user identity.\n-\tIf this Diameter request is received by a Diameter Proxy Agent, the Diameter Proxy Agent shall determine the HSS identity based on the provided user identity (i.e. MSISDN or IMSI) and shall forward the Diameter request directly to the HSS. In this case, the user identity to HSS resolution decision is communicated to the SMS-GMSC in the Origin-Host/Origin-Realm AVPs of the response.\nNOTE:\tAlternatives to the user identity to HSS resolution Diameter based implementation are outside the scope of this specification.\nThe User identity to HSS resolution mechanism, in a retry context of SMS for IMS UE to IMS UE without MSISDN (see 3GPP TS 23.204 [17]), applies as described in this clause for requests issued by the SMS-SC to a HSS and where the IMSI of the user is replaced by the HSS ID of the HSS storing the subscription data of the user.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.204"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.338_6.1",
+      "section_id": "6.1",
+      "section_title": "Introduction",
+      "content": "The SGd interface enables the transfer of short messages between the MME, the SMS-IWMSC, the SMS-GMSC and the SMS Router, and the alerting of the SMS-GMSC by the MME (possibly via an SMS Router), as described in 3GPP TS 23.040 [3].\nThe Gdd interface enables the transfer of short messages between the SGSN, the SMS-IWMSC, the SMS-GMSC and the SMS Router, and the alerting of the SMS-GMSC by the SGSN (possibly via an SMS Router) as described in 3GPP TS 23.040 [3].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.040"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.338_6.2.1.1",
+      "section_id": "6.2.1.1",
+      "section_title": "General",
+      "content": "This procedure shall be used between the serving MME or SGSN or IP-SM-GW and the SMS-IWMSC to forward mobile originated short messages from a mobile user to a Service Centre.\nThis procedure is used according to the call flows described in 3GPP TS 23.040 [3] clause 10.\nThis procedure may also be used between the SMS-IWMSC and the MTC-IWF to forward mobile originated short messages from a mobile user to an MTC-IWF; see 3GPP TS 23.682 [18].\nTable 6.2.1.1/1 specifies the involved information elements for the request.\nTable 6.2.1.1/2 specifies the involved information elements for the answer.\nThis procedure is mapped to the commands MO-Forward-Short-Message-Request/Answer (OFR/OFA) in the Diameter application specified in clause 6.3.2.\nTable 6.2.1.1/1: MO Forward Short Message Request\nInformation element name\nMapping to Diameter AVP\nCat.\nDescription\nSM RP DA\nSC-Address\nM\nWhen used between MME or SGSN or IP-SM-GW and SMS-IWMSC, this information element shall contain the Service Centre address received from the mobile station. When used between SMS-IWMSC and MTC-IWF, this information element shall contain the MTC-IWF address as pre-configured in the SMS-SC.\nSM RP OA\nUser-Identifier\nM\nThis information element shall contain:\n- the IMSI if it is available;\n- the MSISDN of the user when it exists.\n- a dummy MSISDN value in the context of MSISDN-less SMS delivery in IMS (see 3GPP TS 23.204 [17]), if IMSI is not available. In this case the originating user is identified by the Originating SIP-URI (see SMSMI-Correlation ID).\nSM RP UI\nSM-RP-UI\nM\nThis information element shall contain the short message transfer protocol data unit\nSMSMI-Correlation ID\nSMSMI-Correlation-ID\nC\nThis information element indicates by its presence that the request is sent in the context of MSISDN-less SMS delivery in IMS (see 3GPP TS 23.204 [17]).\nWhen present, this information element shall contain an HSS-ID identifying the destination user's HSS, a Destination SIP-URI identifying the MSISDN-less destination user, and an Originating SIP-URI identifying the MSISDN-less originating user.\nOFR Flags\nOFR-Flags\nC\nThis information element shall contain a bit mask. See 6.3.3.12 for the meaning of the bits.\nEPS-Location-Information\nEPS-Location-Information\nO\nWhen present, this Information Element shall contain the EPS-Location Information (as defined in TS 29.272, clause 7.3.111) indicating the serving cell where the UE is originating the SMS from.\nSM Delivery Outcome\nSM-Delivery-Outcome\nC\nThis information element shall be present if the SMSMI Correlation ID is present and shall contain the IP-SM-GW SM Delivery Outcome with the causes for setting the message waiting data in the HSS.\nSupported Features\nSupported-Features\nO\nIf present, this information element shall contain the list of features supported by the origin host.\nNOTE:\tIn the context of MSISDN-less SMS delivery in IMS (see 3GPP TS 23.204 [17]), the IP-SM-GW gets the HSS-ID and the SM Delivery Outcome from the SIP message coming from the IMS network of the destination user and indicating a temporary SMS delivery failure.\nTable 6.2.1.1/2: MO-Forward Short Message Answer\nInformation element name\nMapping to Diameter AVP\nCat.\nDescription\nResult\nResult-Code / Experimental-Result\nM\nThis information element shall contain the result of the operation.\nThe Result-Code AVP shall be used to indicate success / errors as defined in the Diameter base protocol (see IETF RFC 6733 [20]).\nThe Experimental-Result AVP shall be used for SGd/Gdd/T4 errors. This is a grouped AVP which shall contain the 3GPP Vendor ID in the Vendor-Id AVP, and the error code in the Experimental-Result-Code AVP. The following errors are applicable:\nSM Delivery Failure Cause\nSM-Delivery-Failure-Cause\nC\nIf the Experimental-Result-Code is set to DIAMETER_ERROR_SM_DELIVERY_FAILURE, this information element shall be present and indicate one of the following:\nIt may be completed with a Diagnostic information element.\nSM RP UI\nSM-RP-UI\nO\nIf present, this information element shall contain a short message transfer protocol data unit in the message delivery acknowledgement from the SMS-IWMSC to the MME or SGSN\nSupported Features\nSupported-Features\nO\nIf present, this information element shall contain the list of features supported by the origin host.\nExternal-Identifier\nExternal-Identifier\nC\nThis information element shall contain the External Identifier identifying the sender of the short message. Shall be present when the answer is sent over T4 to the SMS-IWMSC for charging.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_23.040_clause_10",
+        "clause_6.3.2",
+        "ts_29.272_clause_7.3.111",
+        "ts_23.682_table_6.2.1.1",
+        "table_6.2.1.1",
+        "ts_23.040",
+        "ts_23.682",
+        "ts_23.204",
+        "ts_29.27"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.338_6.2.1.2",
+      "section_id": "6.2.1.2",
+      "section_title": "Detailed behaviour of the MME, the SGSN and the IP-SM-GW",
+      "content": "When the \"SMS in MME\" feature is applied for the UE, the MME shall make use of this procedure to forward mobile originated short messages received from the UE to the SMS-IWMSC associated to the SMS-SC indicated by the UE.\nWhen the SGSN supports the SMS service for the UE, the SGSN shall make use of this procedure to forward mobile originated short messages received from the UE to the SMS-IWMSC associated to the SMS-SC indicated by the UE.\nThe IP-SM-GW shall make use of this procedure to forward mobile originated short messages received from the UE to the SMS-IWMSC associated to the SMS-SC indicated by the UE. This procedure shall be also used in the context of MSISDN-less SMS delivery in IMS (see 3GPP TS 23.204 [17]), when the direct SMS delivery has failed,\nThe MME or the SGSN shall check if the SMS related subscription data (e.g. ODB data and Call Barring) allows forwarding the short message.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_23.204"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.338_6.2.1.3",
+      "section_id": "6.2.1.3",
+      "section_title": "Detailed behaviour of the SMS-IWMSC",
+      "content": "When receiving the MO Forward Short Message Request, the SMS-IWMSC shall check if the SMS-SC is known, if it is not, an Experimental-Result-Code set to DIAMETER_ERROR_SM_DELIVERY_FAILURE and a SM Delivery Failure Cause indicating \"unknown Service Centre address\" shall be returned to the MME or the SGSN.\nThe SMS IWMSC shall then pass the short message to the addressed SMS-SC, or, if the destination user identity maps to an MTC-IWF based on a pre-configured mapping table, forward it to the appropriate MTC-IWF.\nIf the SMS-SC or MTC-IWF returns a negative acknowledgement, an Experimental-Result-Code set to DIAMETER_ERROR_SM_DELIVERY_FAILURE and a SM Delivery Failure Cause indicating the cause given by the SMC-SC or MTC-IWF shall be returned to the MME or the SGSN.\nIf the SMS-SC or MTC-IWF returns a positive acknowledgement to the SMS IWMSC, a Result-Code set to DIAMETER_SUCCESS shall be returned to the MME or the SGSN.\nIf a requested facility is not supported, an Experimental-Result-Code set to DIAMETER_ERROR_FACILITY_NOT_SUPPORTED shall be returned.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.338_6.2.2.1",
+      "section_id": "6.2.2.1",
+      "section_title": "General",
+      "content": "This procedure shall be used between the SMS-GMSC and the serving MME or SGSN (transiting an SMS Router, if present) or IP-SM-GW to forward mobile terminated short messages.\nThis procedure is used according to the call flows described in 3GPP TS 23.040 [3] clause 10.\nTable 6.2.2.1/1 specifies the involved information elements for the request.\nTable 6.2.2.1/2 specifies the involved information elements for the answer.\nThis procedure is mapped to the commands MT-Forward-Short-Message-Request/Answer (TFR/TFA) in the Diameter application specified in clause 6.3.2.\nTable 6.2.2.1/1: MT Forward Short Message Request\nInformation element name\nMapping to Diameter AVP\nCat.\nDescription\nSM RP DA\nUser-Name (See IETF RFC 6733 [20])\nM\nThis information element shall contain\n- either an IMSI\n- or a HSS ID value if an SMSMI-Correlation ID is present, the destination user being identified by the Destination SIP-URI within the SMSMI Correlation ID.\nSM RP OA\nSC-Address\nM\nThis information element shall contain the Service Centre address.\nSMSMI Correlation ID\nSMSMI-Correlation-ID\nC\nThis information element indicates by its presence that the request is sent in the context of MSISDN-less SMS delivery in IMS (see 3GPP TS 23.204 [17]).\nWhen present, this information element shall contain the Destination SIP-URI identifying the (MSISDN-less) destination user and the Originating SIP-URI identifying the (MSISDN-less) originating user. The HSS-ID shall be absent from this information element.\nSM RP UI\nSM-RP-UI\nM\nThis information element shall contain the short message transfer protocol data unit.\nMME Number for MT SMS\nMME-Number-for-MT-SMS\nC\nThis Information Element contains the ISDN number of the MME (see 3GPP TS 23.003 [3]) and shall be present when the request is sent to a MME.\nSGSN Number\nSGSN-Number\nC\nThis Information Element contains the ISDN number of the SGSN (see 3GPP TS 23.003 [3]) and shall be present when the request is sent to a SGSN.\nTFR-Flags\nTFR-Flags\nC\nThis information element shall contain a bit mask. Bit 0 indicates when set if the Service Centre has more messages to send\nSM Delivery Timer\nSM-Delivery-Timer\nC\nThis information element should be included. When present, it shall indicate the SM Delivery Timer value set in the SMS-GMSC to the IP-SM-GW, MME or S4-SGSN.\nSM Delivery Start Time\nSM-Delivery- Start-Time\nC\nThis information element should be included. When present, it shall indicate the timestamp (in UTC) at which the SM Delivery Supervision Timer was started in the SMS-GMSC.\nMaximum Retransmission Time\nMaximum-Retransmission-Time\nO\nThis information element, when present, shall indicate the maximum retransmission time (in UTC) until which the SMS-GMSC is capable to retransmit the MT Short Message.\nSMS-GMSC Address\nSMS-GMSC-Address\nC\nThis IE shall be present if the Maximum Retransmission Time IE is present in the message.\nWhen present, this IE shall contain the E.164 number of the SMS-GMSC in the request sent by the SMS-GMSC or the E.164 number of the SMS Router in the request sent by the SMS Router.\nSupported Features\nSupported-Features\n(See 3GPP TS 29.229 [5])\nO\nIf present, this information element shall contain the list of features supported by the origin host.\nTable 6.2.2.1/2: MT Forward Short Message Answer\nInformation element name\nMapping to Diameter AVP\nCat.\nDescription\nResult\nResult-Code / Experimental-Result\nM\nThis information element shall contain the result of the operation.\nThe Result-Code AVP shall be used to indicate success / errors as defined in the Diameter base protocol (see IETF RFC 6733 [20]).\nThe Experimental-Result AVP shall be used for SGd/Gdd errors. This is a grouped AVP which shall contain the 3GPP Vendor ID in the Vendor-Id AVP, and the error code in the Experimental-Result-Code AVP. The following errors are applicable:\nAbsent User Diagnostic SM\nAbsent-User-Diagnostic-SM\nO\nThis information element may be present when Experimental-Result-Code is set to DIAMETER_ERROR_ABSENT_USER and it shall contain the reason of the absence of the user given by the MME or the SGSN.\nSM Delivery Failure Cause\nSM-Delivery-Failure-Cause\nC\nIf Experimental-Result-Code is set to DIAMETER_ERROR_SM_DELIVERY_FAILURE, this information element shall be present and indicate one of the following:\nIt may be completed with a Diagnostic information element\nSM RP UI\nSM-RP-UI\nO\nIf present, this information element shall contain a short message transfer protocol data unit in the message delivery acknowledgement from the MME to the Service Centre.\nRequested Retransmission Time\nRequested-Retransmission-Time\nO\nThis information element may only be present if the Experimental-Result-Code is set to DIAMETER_ERROR_ABSENT_USER and if the Maximum Retransmission Time information element is present in the MT Forward Short Message Request. It may be included if the UE is using a power saving mechanism (such as extended idle mode DRX) and the UE is currently not reachable.\nWhen present, this shall indicate the retransmission time (in UTC) at which the SMS-GMSC is requested to retransmit the MT Short Message. The Requested Retransmission Time shall not exceed the Maximum Retransmission Time received from the SMS-GMSC.\nUser Identifier Alert\nUser-Identifier\nC\nThis IE shall be present in the message from the SMS Router to the SMS-GMSC, if the Requested Retransmission Time IE is present in the message.When present, this information shall contain an MT Correlation ID (encoded in the User-Name AVP).\nEPS-Location-Information\nEPS-Location-Information\nO\nWhen present, this Information Element shall contain the EPS-Location Information (as defined in TS 29.272, clause 7.3.111) indicating the serving cell where the MT UE is located.\nSupported Features\nSupported-Features\n(See 3GPP TS 29.229 [5])\nO\nIf present, this information element shall contain the list of features supported by the origin host.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_23.040_clause_10",
+        "clause_6.3.2",
+        "ts_29.272_clause_7.3.111",
+        "ts_23.040_table_6.2.2.1",
+        "table_6.2.2.1",
+        "ts_23.040",
+        "ts_23.204",
+        "ts_23.003",
+        "ts_29.229",
+        "ts_29.27"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.338_6.2.2.2",
+      "section_id": "6.2.2.2",
+      "section_title": "Detailed behaviour of the MME and the SGSN",
+      "content": "When receiving a MT Forward Short Message Request, the MME or the SGSN shall check if the IMSI is known,\nIf it is not known, an Experimental-Result-Code set to DIAMETER_ERROR_USER_UNKNOWN shall be returned.\nThe MME or the SGSN shall attempt to deliver the short message to the UE.\nIf the delivery of the short message to the UE is successful, the MME or the SGSN shall return a Result-Code set to DIAMETER_SUCCESS.\nIf the UE is not reachable via the MME, the MME shall set the MNRF flag and shall return an Experimental-Result-Code set to DIAMETER_ERROR_ABSENT_USER.\nIf the UE is not reachable via the SGSN, the SGSN shall set the MNRG flag and shall return an Experimental-Result-Code set to DIAMETER_ERROR_ABSENT_USER.\nIf the UE is using extended idle mode DRX (as defined in 3GPP TS 23.682 [18]) and the UE is expected to not respond to paging shortly or within the time frame indicated by the SM-Delivery-Timer and SM-Delivery-Start-Time IEs, the MME or SGSN may behave as specified above for a UE that is not reachachable, while still paging the UE.\nNOTE 1:\tThis mechanism is not intended for UEs which are known to wake up shortly (e.g. within the next 10 seconds) as enough time needs to elapse, between the sending of the MT Forward Short Message Answer and the subsequent Notification procedure towards the HSS when the UE becomes reachable, to enable the Report SM Delivery Status procedure to take place beforehand from the SMS-GMSC to the HSS.\nIf the UE is using extended idle mode DRX (as defined in 3GPP TS 23.682 [18]) and the UE is expected to respond to paging shortly or within the time frame indicated by the SM-Delivery-Timer and SM-Delivery-Start-Time IEs, the MME or SGSN should page the UE and attempt to deliver the short message to the UE.\nIf the UE is using a power saving mechanism such as extended idle mode DRX (see 3GPP TS 23.682 [18]), and if the MT Forward Short Message Request includes the Maximum-Retransmission-Time AVP, the MME or SGSN may return an MT Forward Short Message Answer with the Experimental-Result-Code set to DIAMETER_ERROR_ABSENT_USER and with the Requested-Retransmission-Time AVP requesting the SMS-GMSC to retransmit the Short Message at a later time prior to the Maximum Retransmission Time. In that case, the MME or SGSN shall store (if not already done) the Origin-Host, the Origin-Realm and the SMS-GMSC address received in request and shall not set the MNRF or MNRG flag.\nNOTE 2:\tThis mechanism does not cause additional signalling at the HSS to retransmit the Short Message.\nIf the delivery of the mobile terminated short message failed because of memory capacity exceeded or UE error or UE not SM equipped, the MME or the SGSN shall return an Experimental-Result-Code set to DIAMETER_ERROR_SM_DELIVERY_FAILURE complemented with a SM Delivery Failure Cause indication.\nIf a requested facility is not supported, the MME or the SGSN shall return an Experimental-Result-Code set to DIAMETER_ERROR_FACILITY_NOT_SUPPORTED.\nIf the user is busy for MT SMS, i.e. the mobile terminated short message transfer cannot be completed because:\n-\tanother mobile terminated short message transfer is going on and the delivery node does not support message buffering; or\n-\tanother mobile terminated short message transfer is going on and it is not possible to buffer the message for later delivery; or\n-\tthe message was buffered but it is not possible to deliver the message before the expiry of the buffering time defined in 3GPP TS 23.040 [3],\nthe MME or the SGSN shall return an Experimental-Result-Code set to DIAMETER_ERROR_USER_BUSY_FOR_MT_SMS.\nIf the delivery of the mobile terminated short message failed because the mobile station failed authentication, the MME or the SGSN shall return an Experimental-Result-Code set to DIAMETER_ERROR_ILLEGAL_USER.\nIf the delivery of the mobile terminated short message failed because an IMEI check failed, i.e. the IMEI was prohibite-listed or not permitted-listed, the MME or the SGSN shall return an Experimental-Result-Code set to DIAMETER_ERROR_ILLEGAL_EQUIPMENT.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_23.682",
+        "ts_23.040"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.338_6.2.2.3",
+      "section_id": "6.2.2.3",
+      "section_title": "Detailed behaviour of the SMS-GMSC",
+      "content": "The SMS-GMSC shall make use of this procedure over the SGd interface or over the Gdd interface for the delivery of a MT short message when it has selected the serving node of which it obtained the Diameter Identity from the answer of the Send Routing Info for SM procedure.\nNOTE:\tThe SMS-GMSC is not aware that the MT Forward Short Message Request may be routed to a SMS router.\nThe SMS-GMSC may include the Maximum-Retransmission-Time AVP in the MT Forward Short Request to indicate that it is capable to retransmit the Short Message until the indicated maximum retransmission time, if the following conditions are fulfilled:\n-\tthe destination user pertains to the PLMN of the SMS-GMSC; and\n-\tif an SMS Router is used for MT SMS sent to destination users pertaining to the PLMN of the SMS-GMSC, the SMS Router is known to support the Alert Service Centre procedure specified in clause 6.2.3.\nThe SMS-GMSC shall include its E.164 number in the SMS-GMSC address in the request if it also includes the Maximum-Retransmission-Time AVP.\nWhen the SMS router has received a MT Forward Short Message from the SMS-GMSC and the SMS Router has selected the MME or the SGSN for delivery, the SMS Router shall forward it to the MME or the SGSN.\nIf the MT Forward Short Message Request includes the Maximum-Retransmission-Time AVP, the SMS Router shall store the SMS-GMSC Diameter Identity (received in the Origin-Host and Origin-Realm AVPs) and the SMS-GMSC address received in the request and replace them by its SMS Router Diameter Identity (in the Origin-Host and Origin-Realm AVPs) and SMS Router address (E.164 number) when forwarding the request to the MME or SGSN.\nWhen a MT Forward Short Message Answer is received from the MME, the SMS Router shall forward it to the SMS-GMSC.\nIf the MT Forward Short Message Answer includes the Requested-Retransmission-Time AVP, the SMS Router shall include a User Identifier Alert AVP when forwarding the answer to the SMS-GMSC.\nNOTE:\tThe User Identifier Alert is further used in the Alert Service Centre procedure specified in clause 6.2.3 to enable the SMS-GMSC to identify and retransmit all pending MT SMS messages towards the destination user.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_6.2.3"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.338_6.2.3.1",
+      "section_id": "6.2.3.1",
+      "section_title": "General",
+      "content": "This procedure shall be used between the MME or SGSN and the SMS-GMSC, possibly via an SMS Router, to indicate that a UE, for which one or more MT SMS have been requested to be retransmitted at a later time, is now available for MT SMS delivery or that it has moved under the coverage of another MME or SGSN. This procedure is used according to the call flows described in 3GPP TS 23.040 [2] clause 10.\nTable 6.2.3.1-1 specifies the involved information elements for the request.\nTable 6.2.3.1-2 specifies the involved information elements for the answer.\nThis procedure is mapped to the commands Alert-Service-Centre-Request/Answer (ALR/ALA) in the Diameter application specified in clause 5.3.2.\nTable 6.2.3.1-1: Alert Service Centre Request\nInformation element name\nMapping to Diameter AVP\nCat.\nDescription\nService Centre Address\nSC-Address\nM\nThis IE shall contain the E.164 number of the SMS-GMSC (or SMS Router) previously received in the SMS-GMSC Address IE in the MT Forward Short Message Request.\nUser Identifier Alert\nUser-Identifier\nM\nThis IE shall contain:\nencoded in the User-Name AVP.\nSMS-GMSC Alert Event\nSMS-GMSC-Alert-Event\nM\nThis IE shall contain the type of event that caused the Alert Service Centre Request to the SMS-GMSC:\nNew Serving Node Identity\nServing-Node\nC\nThis IE shall be present if available and if the SMS-GMSC Alert Event indicates that the UE has moved under the coverage of another MME or SGSN.\nWhen present, this IE shall contain the Diameter Identity and/or the E.164 number of the new serving node of the UE.\nIt shall be encoded as:\nSupported Features\nSupported-Features\n(See 3GPP TS 29.229 [5])\nO\nIf present, this information element shall contain the list of features supported by the origin host.\nTable 6.2.3.1-2: Alert Service Centre Answer\nInformation element name\nMapping to Diameter AVP\nCat.\nDescription\nResult\nResult-Code / Experimental-Result\nM\nThis information element shall contain the result of the request.\nThe Result-Code AVP shall be used for errors defined in the Diameter base protocol (see IETF RFC 6733 [20]).\nThe Experimental-Result AVP shall be used for S6c errors. This is a grouped AVP which contains the 3GPP Vendor ID in the Vendor-Id AVP, and the error code in the Experimental-Result-Code AVP. This information element shall contain the result of the operation with an indication of the success / errors. No errors are defined for this case.\nSupported Features\nSupported-Features\n(See 3GPP TS 29.229 [5])\nO\nIf present, this information element shall contain the list of features supported by the origin host.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_23.040_clause_10",
+        "clause_5.3.2",
+        "ts_23.040_table_6.2.3.1-1",
+        "table_6.2.3.1-2",
+        "table_6.2.3.1-1",
+        "ts_23.040",
+        "ts_29.229"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.338_6.2.3.2",
+      "section_id": "6.2.3.2",
+      "section_title": "Detailed behaviour of the MME and the SGSN",
+      "content": "The MME or SGSN shall make use of this procedure to alert the SMS-GMSC when the UE, for which one or more MT SMS have been requested to be retransmitted at a later time, becomes available for MT SMS delivery or moves under the coverage of another MME or SGSN prior to the requested SM retransmission time.\nThe MME or SGSN shall delete the stored SMS-GMSC Diameter Identity (i.e. Origin-Host and Origin-Realm) and address after the Alert Service Centre procedure is completed.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.338_6.2.3.3",
+      "section_id": "6.2.3.3",
+      "section_title": "Detailed behaviour of the SMS-GMSC",
+      "content": "When receiving an Alert Service Centre request, the SMS-GMSC shall retransmit pending MT SMS(s) for the destination user identified by the User Identifier Alert, to the same serving node if the SMS-GMSC Alert Event indicates that the UE is available for MT SMS, or to the new serving node if the SMS-GMSC Alert Event indicates that the UE has moved under the coverage of another MME or SGSN. In the latter case, if no New Serving Node Identity is received in the Alert Service Centre request, the SMS-GMSC shall initiate a Send Routing Info for SM procedure to retrieve the new serving node 's address from the HSS.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.338_6.2.3.4",
+      "section_id": "6.2.3.4",
+      "section_title": "Detailed behaviour of the SMS-Router",
+      "content": "When receiving an Alert Service Centre request, the SMS-Router shall replace the IMSI received in the User Identifier Alert by the User Identifier Alert previously sent in the MT Forward Short Message Answer, and forward that request to the SMS-GMSC.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.338_6.3.1.1",
+      "section_id": "6.3.1.1",
+      "section_title": "Routing for MO Forward SM messages:",
+      "content": "This clause specifies the use of the Diameter routing AVPs Destination-Realm and Destination-Host over the SGd or Gdd interfaces for the Diameter command requests from the MME or from the SGSN (i.e. for the MO forward SM procedure).\nAlso, this clause specifies the use of the Diameter routing AVPs Destination-Realm and Destination-Host over the T4 interface for the Diameter command requests from the SMS-IWMSC (i.e. for the MO forward SM procedure).\nThis clause also applies for the Diameter command MO forward SM request from the IP-SM-GW towards an SMS-SC/SMS-IWMSC, including the case where the MO forward SM request occurs in the retry context of SMS for IMS UE to IMS UE without MSISDN (see 3GPP TS 23.204 [17]). MME or SGSN is replaced by IP-SM-GW in the text of this clause.\nIf the MME or the SGSN, from the SMS-SC E.164 number received from the UE, can obtain the address/name of the SMS-IWMSC and the associated home network domain name (e.g. by local configuration), both the Destination-Realm and Destination-Host AVPs shall be present in the request.\nIf the MME or the SGSN, from the SMS-SC E.164 number received from the UE, can only obtain the MCC/MNC values of the PLMN to which the SMS-SC belongs, the MME or the SGSN shall use them to build the MCC/MNC based network domain as described in clause 19.2 of 3GPP TS 23.003 [16] and include it in the Destination-Realm AVP of the request. The request shall then be routed to the next Diameter node.\nIf the MME or the SGSN cannot obtain the MCC/MNC values from the SMS-SC E.164 number, the MME or the SGSN shall forward the request to a Diameter node within the same PLMN, the Destination Realm content being left to the PLMN operator choice. Then:\n-\tif a Diameter node in the routing path insides the PLMN of the MME can obtain the MCC/MNC values of the PLMN to which the SMS-SC belongs,\n-\tit shall use them to build the MCC/MNC based network domain as described in clause 19.2 of 3GPP TS 23.003 [16] and include it in the Destination-Realm AVP of the request. The request shall then be routed to the next Diameter node.\nIf the MCC/MNC values of the PLMN to which the SMS-SC belongs cannot be obtained in the PLMN of the MME or the SGSN, the request shall be replaced in the PLMN of the MME or the SGSN by an equivalent request routed through a MAP interface (e.g. via an IWF).\nNOTE 1:\tThe inter PLMN routing principle is to reuse the routing based on a MCC/MNC based domain name as used by other Diameter applications such as S6a/d. It is assumed that obtaining the relevant MCC/MNC values from the E.164 number of the SMS-SC can be achieved in the PLMN which the MME belongs to. Otherwise a MAP based routing is used. This routing principle may be completed with other routing solutions in the future.\nConsequently, the Destination-Host AVP is declared as optional in the ABNF for all requests initiated by an MME or a SGSN.\nThe SMS-IWMSC shall be able to obtain the address/name of the MTC-IWF and the associated home network domain name from the destination SME address included in the MO TPDU (e.g. by local configuration); therefore both the Destination-Realm and Destination-Host AVPs shall be present in the request.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.003_clause_19.2",
+        "ts_23.204",
+        "ts_23.003"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.338_6.3.1.2",
+      "section_id": "6.3.1.2",
+      "section_title": "Routing for MT Forward SM messages:",
+      "content": "This clause specifies the use of the Diameter routing AVPs Destination-Realm and Destination-Host for the Diameter command requests from the SMS-GMSC or the SMS Router (i.e. for the MT forward SM procedure).\n-\tif the SMS-GMSC has received the Diameter address/name of an MME or of the SGSN in the answer to its interrogation to the HSS/HLR for retrieving routing information and if it selects this serving node, it shall use it to populate the Destination-Realm and Destination-Host AVPs.\n-\tIf the SMS Router has received the Diameter address/name of the MME or of the SGSN in the answer to its interrogation to the HSS/HLR for retrieving routing information and if it selects this serving node, it shall use this Diameter address/name to populate the Destination-Realm and Destination-Host AVPs.\nConsequently, the Destination-Host AVP is declared as mandatory in the ABNF for all requests initiated by an SMS-GMSC or a SMS router.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.338_6.3.2.1",
+      "section_id": "6.3.2.1",
+      "section_title": "Introduction",
+      "content": "This clause defines the Command code values and related ABNF for each command described for the SGd interface.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.338_6.3.2.2",
+      "section_id": "6.3.2.2",
+      "section_title": "Command-Code values",
+      "content": "This clause defines the Command-Code values for the SGd interface application as allocated by IANA in the IETF RFC 5516 [8], the SGd interface application being used over the SGd and Gdd interfaces. The Alert Service Centre procedure used over the SGd and Gdd interfaces also uses commands of the S6c interface application.\nEvery command is defined by means of the ABNF syntax IETF RFC 2234 [6], according to the Command Code Format (CCF) specification defined in IETF RFC 6733 [20]. In the case, the definition and use of an AVP is not specified in this document, the guidelines in IETF RFC 6733 [20] shall apply.\nThe Vendor-Specific-Application-Id AVP shall not be included in any command sent by Diameter nodes supporting applications defined in this specification. If the Vendor-Specific-Application-Id AVP is received in any of the commands defined in this specification, it shall be ignored by the receiving node.\nNOTE:\tThe Vendor-Specific-Application-Id is included as an optional AVP in all Command Code Format specifications defined in this specification in order to ensure potential interoperability issues with Diameter agents non-compliant with IETF RFC 6733 [20].\nThe following Command Codes are defined in this specification:\nTable 6.3.2.2/1: Command-Code values for SGd/Gdd\nCommand-Name\nAbbreviation\nCode\nClause\nMO-Forward-Short-Message Request\nOFR\n8388645\n6.3.2.3\nMO-Forward-Short-Message Answer\nOFA\n8388645\n6.3.2.4\nMT-Forward-Short-Message Request\nTFR\n8388646\n6.3.2.5\nMT-Forward-Short-Message Answer\nTFA\n8388646\n6.3.2.6\nAlert-Service-Centre-Request\nALR\n8388648\n5.3.2.5\nAlert-Service-Centre-Answer\nALA\n8388648\n5.3.2.6\nFor these commands, the Application-ID field shall be set to 16777313 (application identifier of the SGd interface application, allocated by IANA), except for the ALR/ALA commands for which the Application-ID field shall be set to 16777312 (application identifier of the S6c interface application, allocated by IANA).",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.3.2.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.338_6.3.2.3",
+      "section_id": "6.3.2.3",
+      "section_title": "MO-Forward-Short-Message-Request (OFR) Command",
+      "content": "The MO-Forward-Short-Message-Request (OFR) command, indicated by the Command-Code field set to 8388645 and the \"R\" bit set in the Command Flags field, is sent from the MME / SGSN to the SMS-IWMSC and it is also sent from the SMS-IWMSC to the MTC-IWF.\nMessage Format\n< MO-Forward-Short-Message-Request > ::=\t< Diameter Header: 8388645, REQ, PXY, 16777313 >\n< Session-Id >\n[ DRMP ]\n[ Vendor-Specific-Application-Id ]\n{ Auth-Session-State }\n{ Origin-Host }\n{ Origin-Realm }\n[ Destination-Host ]\n{ Destination-Realm }\n{ SC-Address }\n[ OFR-Flags ]\n*[ Supported-Features ]\n{ User-Identifier }\n[ EPS-Location-Information ]\n{ SM-RP-UI }\n[ SMSMI-Correlation-ID ]\n[ SM-Delivery-Outcome ]\n*[ AVP ]\n*[ Proxy-Info ]\n*[ Route-Record ]",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.338_6.3.2.4",
+      "section_id": "6.3.2.4",
+      "section_title": "MO-Forward-Short-Message-Answer (OFA) Command",
+      "content": "The MO-Forward-Short-Message-Answer Command (OFA) command, indicated by the Command-Code field set to 8388645 and the 'R' bit cleared in the Command Flags field, is sent from the SMS-IWMSC to the MME / SGSN and it is also sent from the MTC-IWF to the SMS-IWMSC.\nMessage Format\n< MO-Forward-Short-Message-Answer > ::=\t< Diameter Header: 8388645, PXY, 16777313 >\n< Session-Id >\n[ DRMP ]\n[ Vendor-Specific-Application-Id ]\n[ Result-Code ]\n[ Experimental-Result ]\n{ Auth-Session-State }\n{ Origin-Host }\n{ Origin-Realm }\n*[ Supported-Features ]\n[ SM-Delivery-Failure-Cause ]\n[ SM-RP-UI ]\n[ External-Identifier ]\n*[ AVP ]\n[ Failed-AVP ]\n*[ Proxy-Info ]\n*[ Route-Record ]",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.338_6.3.2.5",
+      "section_id": "6.3.2.5",
+      "section_title": "MT-Forward-Short-Message-Request (TFR) Command",
+      "content": "The MT-Forward-Short-Message-Request (TFR) command, indicated by the Command-Code field set to 8388646 and the \"R\" bit set in the Command Flags field, is sent from the SMS-GMSC to the MME / SGSN (transiting an SMS Router, if present).\nMessage Format\n< MT-Forward-Short-Message-Request > ::=\t< Diameter Header: 8388646, REQ, PXY, 16777313 >\n< Session-Id >\n[ DRMP ]\n[ Vendor-Specific-Application-Id ]\n{ Auth-Session-State }\n{ Origin-Host }\n{ Origin-Realm }\n{ Destination-Host }\n{ Destination-Realm }\n{ User-Name }\n*[ Supported-Features ]\n[ SMSMI-Correlation-ID ]\n{ SC-Address }\n{ SM-RP-UI }\n[ MME-Number-for-MT-SMS ]\n[ SGSN-Number ]\n[ TFR-Flags ]\n[ SM-Delivery-Timer ]\n[ SM-Delivery-Start-Time ]\n[ Maximum-Retransmission-Time ]\n[ SMS-GMSC-Address ]\n*[ AVP ]\n*[ Proxy-Info ]\n*[ Route-Record ]",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.338_6.3.2.6",
+      "section_id": "6.3.2.6",
+      "section_title": "MT-Forward-Short-Message-Answer (TFA) Command",
+      "content": "The MT-Forward-Short-Message-Answer Command (TFA) command, indicated by the Command-Code field set to 8388646 and the 'R' bit cleared in the Command Flags field, is sent from the MME / SGSN to the SMS-GMSC (transiting an SMS Router, if present).\nMessage Format\n< MT-Forward-Short-Message-Answer > ::=\t< Diameter Header: 8388646, PXY, 16777313 >\n< Session-Id >\n[ DRMP ]\n[ Vendor-Specific-Application-Id ]\n[ Result-Code ]\n[ Experimental-Result ]\n{ Auth-Session-State }\n{ Origin-Host }\n{ Origin-Realm }\n*[ Supported-Features ]\n[ Absent-User-Diagnostic-SM ]\n[ SM-Delivery-Failure-Cause ]\n[ SM-RP-UI ]\n[ Requested-Retransmission-Time ]\n[ User-Identifier ]\n[ EPS-Location-Information ]\n*[ AVP ]\n[ Failed-AVP ]\n*[ Proxy-Info ]\n*[ Route-Record ]",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.338_6.3.3.1",
+      "section_id": "6.3.3.1",
+      "section_title": "General",
+      "content": "The following table specifies the Diameter AVPs defined for the SGd/Gdd interface protocol, their AVP Code values, types, possible flag values and whether or not the AVP may be encrypted. The Vendor-ID header of all AVPs defined in this specification shall be set to 3GPP (10415).\nFor all AVPs which contain bit masks and are of the type Unsigned32, e.g., TFR-Flags, bit 0 shall be the least significant bit. For example, to get the value of bit 0, a bit mask of 0x0001 should be used.\nTable 6.3.3.1/1: SGd/Gdd specific Diameter AVPs\nAVP Flag rules\nAttribute Name\nAVP Code\nClause defined\nValue Type\nMust\nMay\nShould not\nMust not\nMay Encr.\nSC-Address\n3300\n6.3.3.2\nOctetString\nM, V\nNo\nSM-RP-UI\n3301\n6.3.3.3\nOctetString\nM, V\nNo\nTFR-Flags\n3302\n6.3.3.4\nUnsigned32\nM, V\nNo\nSM-Delivery-Failure-Cause\n3303\n6.3.3.5\nGrouped\nM, V\nNo\nSM-Enumerated-Delivery-Failure-Cause\n3304\n6.3.3.6\nEnumerated\nM, V\nNo\nSM-Diagnostic-Info\n3305\n6.3.3.7\nOctetString\nM, V\nNo\nSM-Delivery-Timer\n3306\n6.3.3.10\nUnsigned32\nM, V\nNo\nSM-Delivery-Start-Time\n3307\n6.3.3.11\nTime\nM, V\nNo\nSMSMI-Correlation-ID\n3324\n6.3.3.13\nGrouped\nV\nM\nNo\nHSS-ID\n3325\n6.3.3.14\nUTF8String\nV\nM\nNo\nOriginating-SIP-URI\n3326\n6.3.3.15\nUTF8String\nV\nM\nNo\nDestination-SIP-URI\n3327\n6.3.3.16\nUTF8String\nV\nM\nNo\nOFR-Flags\n3328\n6.3.3.12\nUnsigned32\nV\nM\nNo\nMaximum-Retransmission-Time\n3330\n6.3.3.17\nTime\nV\nM\nNo\nRequested-Retransmission-Time\n3331\n6.3.3.18\nTime\nV\nM\nNo\nSMS-GMSC-Address\n3332\n6.3.3.19\nOctetString\nV\nM\nNo\nNOTE 1:\tThe AVP header bit denoted as \"M\", indicates whether support of the AVP is required. The AVP header bit denoted as \"V\" indicates whether the optional Vendor-ID field is present in the AVP header. For further details, see IETF RFC 6733 [20].\nNOTE 2:\tIf the M-bit is set for an AVP and the receiver does not understand the AVP, it shall return a rejection. If the M-bit is not set for an AVP, the receiver shall not return a rejection, whether or not it understands the AVP. If the receiver understands the AVP but the M-bit value does not match with the definition in this table, the receiver shall ignore the M-bit.\nThe following table specifies the Diameter AVPs re-used from existing Diameter Applications, including a reference to their respective specifications and when needed, a short description of their use within this interface.\nAny other AVPs from existing Diameter Applications, except for the AVPs from Diameter base protocol specified in IETF RFC 6733 [20], do not need to be supported. The AVPs from Diameter base protocol specified in IETF RFC 6733 [20] are not included in table 6.3.3.1/2, but they may be re-used for this interface.\nTable 6.3.3.1/2: SGd/Gdd re-used Diameter AVPs\nAttribute Name\nReference\nComments\nM-bit\nUser-Name\nIETF RFC 6733 [20]\nMust\nUser-Identifier\n3GPP TS 29.336 [15]\nMME-Number-for-MT-SMS\n3GPP TS 29.272 [4]\nSGSN-Number\n3GPP TS 29.272 [4]\nMust not\nEPS-Location-Information\n3GPP TS 29.272 [4]\nMust not set\nAbsent-User-Diagnostic-SM\n3GPP TS 29.338\nIt is defined for the S6c interface, see clause 5.3.3.20\nSupported-Features\n3GPP TS 29.229 [5]\nFeature-List-ID\n3GPP TS 29.229 [5]\nSee clause 6.3.3.8\nFeature-List\n3GPP TS 29.229 [5]\nSee clause 6.3.3.9\nDRMP\nIETF RFC 7944 [19]\nsee clause 6.3.3.20\nMust not set\nExternal-Identifier\n3GPP TS 29.336 [15]\nMust not\nNOTE 1:\tThe M-bit settings for re-used AVPs override those of the defining specifications that are referenced. Values include: \"Must set\", \"Must not set\". If the M-bit setting is blank, then the defining specification applies.\nNOTE 2:\tIf the M-bit is set for an AVP and the receiver does not understand the AVP, it shall return a rejection. If the M-bit is not set for an AVP, the receiver shall not return a rejection, whether or not it understands the AVP. If the receiver understands the AVP but the M-bit value does not match with the definition in this table, the receiver shall ignore the M-bit.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_5.3.3.20",
+        "ts_29.229_clause_6.3.3.8",
+        "ts_29.229_clause_6.3.3.9",
+        "clause_6.3.3.20",
+        "table_6.3.3.1",
+        "ts_29.336",
+        "ts_29.272",
+        "ts_29.338",
+        "ts_29.229"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.338_6.3.3.2",
+      "section_id": "6.3.3.2",
+      "section_title": "SC-Address",
+      "content": "The SC-Address AVP is of type OctetString and it shall contain the E.164 number of the SMS-SC or MTC-IWF, in international number format as described in ITU-T Recommendation E.164 [13] and encoded as a TBCD-string. See 3GPP TS 29.002 [9] for encoding of TBCD-strings. This AVP shall not include leading indicators for the nature of address and the numbering plan; it shall contain only the TBCD-encoded digits of the address.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.002"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.338_6.3.3.3",
+      "section_id": "6.3.3.3",
+      "section_title": "SM-RP-UI",
+      "content": "The SM-RP-UI is of type OctetString and it shall contain a short message transfer protocol data unit (TPDU) which is defined in 3GPP TS 23.040 [3] and represents the user data field carried by the short message service relay sub-layer protocol. Its maximum length is of 200 octets.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_23.040"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.338_6.3.3.4",
+      "section_id": "6.3.3.4",
+      "section_title": "TFR-Flags",
+      "content": "The TFR-Flags AVP is of type Unsigned32 and it shall contain a bit mask. The meaning of the bits shall be as defined in table 6.3.3.4/1:\nTable 6.3.3.4/1: TFR-Flags\nBit\nName\nDescription\n0\nMore-Messages-To-Send\nThis bit, when set, shall indicate that the service centre has more short messages to send.\nNOTE 1: Bits not defined in this table shall be cleared by the sending entity and discarded by the receiving entity.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.3.3.4"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.338_6.3.3.5",
+      "section_id": "6.3.3.5",
+      "section_title": "SM-Delivery-Failure-Cause",
+      "content": "The SM-Delivery-Failure-Cause AVP is of type Grouped. It shall contain information about the cause of the failure of a SM delivery with an optional Diagnostic information.\nThe AVP format shall conform to:\nSM-Delivery-Failure-Cause ::= <AVP header: 3303 10415>\n{ SM-Enumerated-Delivery-Failure-Cause }\n[ SM-Diagnostic-Info ]\n*[ AVP ]",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.338_6.3.3.6",
+      "section_id": "6.3.3.6",
+      "section_title": "SM-Enumerated-Delivery-Failure-Cause",
+      "content": "The SM-Enumerated-Delivery-Failure-Cause AVP is of type enumerated and it shall contain the cause of the failure of a SM delivery. The following values are defined:\nMEMORY_CAPACITY_EXCEEDED  (0),\nEQUIPMENT_PROTOCOL_ERROR  (1),\nEQUIPMENT_NOT_SM-EQUIPPED  (2),\nUNKNOWN_SERVICE_CENTRE  (3),\nSC-CONGESTION  (4),\nINVALID_SME-ADDRESS  (5),\nUSER_NOT_SC-USER  (6).\nNOTE:\tThe values of the SM- Enumerated-Delivery-Failure-Cause AVP correspond to the ones for the SM-EnumeratedDeliveryFailureCause parameter in MAP as described in 3GPP TS 29.002[9].",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.002"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.338_6.3.3.7",
+      "section_id": "6.3.3.7",
+      "section_title": "SM-Diagnostic-Info",
+      "content": "The SM-Diagnostic-Info AVP is of type OctetString and it shall contain a complementary information associated to the SM Delivery Failure cause.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.338_6.3.3.8",
+      "section_id": "6.3.3.8",
+      "section_title": "Feature-List-ID AVP",
+      "content": "The syntax of this AVP is defined in 3GPP TS 29.229 [5]. For this release, the Feature-List-ID AVP value shall be set to 1.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.229"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.338_6.3.3.9",
+      "section_id": "6.3.3.9",
+      "section_title": "Feature-List AVP",
+      "content": "The syntax of this AVP is defined in 3GPP TS 29.229 [5]. A null value indicates that there is no feature used by the application.\nNOTE:\tThere is no feature defined for this release.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.229"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.338_6.3.3.10",
+      "section_id": "6.3.3.10",
+      "section_title": "SM-Delivery-Timer",
+      "content": "The SM-Delivery-Timer is of type Integer and it shall contain the value in seconds of the timer for SM Delivery.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.338_6.3.3.11",
+      "section_id": "6.3.3.11",
+      "section_title": "SM-Delivery-Start-Time",
+      "content": "The SM-Delivery-Start-Time is of type Time and in shall contain the timestamp (in UTC) at which the SM Delivery Supervision Timer was started.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.338_6.3.3.12",
+      "section_id": "6.3.3.12",
+      "section_title": "OFR-Flags",
+      "content": "The OFR-Flags AVP is of type Unsigned32 and it shall contain a bit mask. The meaning of the bits shall be as defined in table 6.3.3.12/1:\nTable 6.3.3.12/1: OFR-Flags\nBit\nName\nDescription\n0\nS6a/S6d-Indicator\nThis bit, when set, indicates that the OFR message is sent on the Gdd interface, i.e. the source node is an SGSN (or a combined MME/SGSN to which the UE is attached via UTRAN).\nThis bit, when cleared, indicates that the OFR message is sent on the SGd interface, i.e. the source node is an MME (or a combined MME/SGSN to which the UE is attached via UTRAN or GERAN).",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.3.3.12"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.338_6.3.3.13",
+      "section_id": "6.3.3.13",
+      "section_title": "SMSMI-Correlation-ID",
+      "content": "The SMSMI-Correlation-ID AVP is of type Grouped. It shall contain information identities used in the context of MSISDN-less SMS delivery in IMS (see 3GPP TS 23.204 [17]).\nThe AVP format shall conform to:\nSMS-MI-Correlation-ID  ::= <AVP header: 3308 10415>\n[ HSS-ID ]\n[ Originating-SIP-URI ]\n[ Destination-SIP-URI ]\n*[ AVP ]",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_23.204"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.338_6.3.3.14",
+      "section_id": "6.3.3.14",
+      "section_title": "HSS-ID",
+      "content": "The HSS-ID AVP is of type UTF8String. The definition and the composition of the HSS-ID are specified in 3GPP TS 23.003 [16].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.003"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.338_6.3.3.15",
+      "section_id": "6.3.3.15",
+      "section_title": "Originating-SIP-URI",
+      "content": "The Originating-SIP-URI AVP is of type UTF8String. It shall contain the Public identity of the IMS UE without MSISDN which is the sender of a short message, in the context of MSISDN-less SMS delivery in IMS (see 3GPP TS 23.204 [17]).",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_23.204"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.338_6.3.3.16",
+      "section_id": "6.3.3.16",
+      "section_title": "Destination-SIP-URI",
+      "content": "The Destination-SIP-URI AVP is of type UTF8String. It shall contain the Public identity of the IMS UE without MSISDN which is the recipient of a short message, in the context of MSISDN-less SMS delivery in IMS (see 3GPP TS 23.204 [17]).",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_23.204"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.338_6.3.3.17",
+      "section_id": "6.3.3.17",
+      "section_title": "Maximum-Retransmission-Time",
+      "content": "The Maximum-Retransmission-Time is of type Time and in shall contain the maximum retransmission time (in UTC) until which the SMS-GMSC is capable to retransmit the MT Short Message.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.338_6.3.3.18",
+      "section_id": "6.3.3.18",
+      "section_title": "Requested-Retransmission-Time",
+      "content": "The Requested-Retransmission-Time is of type Time and in shall contain the timestamp (in UTC) at which the SMS-GMSC is requested to retransmit the MT Short Message.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.338_6.3.3.19",
+      "section_id": "6.3.3.19",
+      "section_title": "SMS-GMSC-Address",
+      "content": "The SMS-GMSC-Address AVP is of type OctetString and it shall contain the E.164 number of the SMS-GMSC or SMS Router, in international number format as described in ITU-T Recommendation E.164 [13] and encoded as a TBCD-string. See 3GPP TS 29.002 [9] for encoding of TBCD-strings. This AVP shall not include leading indicators for the nature of address and the numbering plan; it shall contain only the TBCD-encoded digits of the address.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.002"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.338_6.3.3.20",
+      "section_id": "6.3.3.20",
+      "section_title": "DRMP",
+      "content": "The DRMP AVP is of type Enumerated and it is defined in IETF RFC 7944 [19]. This AVP allows the MME, the SGSN, the SMS-IWMSC, the SMS-GMSC, the SMS Router and the IP-SM-GW to indicate the relative priority of Diameter messages. The DRMP AVP may be used to set the DSCP marking for transport of the associated Diameter message.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.338_7.1",
+      "section_id": "7.1",
+      "section_title": "General",
+      "content": "This clause defines result code values that shall be supported by all Diameter implementations that conform to this specification.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.338_7.2",
+      "section_id": "7.2",
+      "section_title": "Success",
+      "content": "Result codes that fall within the Success category shall be used to inform a peer that a request has been successfully completed. The Result-Code AVP values defined in Diameter base protocol specified in IETF RFC 6733 [20] shall be applied.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.338_7.3.1",
+      "section_id": "7.3.1",
+      "section_title": "General",
+      "content": "Errors that fall within the Permanent Failures category shall be used to inform the peer that the request has failed, and should not be attempted again. The Result-Code AVP values defined in Diameter base protocol specified in IETF RFC 6733 [20] shall be applied. When one of the result codes defined here is included in a response, it shall be inside an Experimental-Result AVP and the Result-Code AVP shall be absent.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.338_7.3.2",
+      "section_id": "7.3.2",
+      "section_title": "DIAMETER_ERROR_USER_UNKNOWN (5001)",
+      "content": "This result code shall be sent by the MME over the SGd interface or by the SGSN over the Gdd interface to indicate that the user identified by the IMSI is unknown.\nThis result code shall be sent by the SMS-IWMSC over the SGd interface to indicate that the user identified by the MSISDN is unknown.\nThis result code shall be sent by the HSS or the SMS Router over the S6c interface to indicate that the user identified by the MSISDN is unknown.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.338_7.3.3",
+      "section_id": "7.3.3",
+      "section_title": "DIAMETER_ERROR_ABSENT_USER (5550)",
+      "content": "This result code shall be sent by the MME over the SGd interface or by the SGSN over the Gdd interface to indicate that the UE is not reachable.\nThis result code shall be sent by the HSS or the SMS Router over the S6c interface to indicate that the UE is not reachable.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.338_7.3.4",
+      "section_id": "7.3.4",
+      "section_title": "DIAMETER_ERROR_USER_BUSY_FOR_MT_SMS (5551)",
+      "content": "This result code shall be sent by the MME or the SGSN when the user is busy for MT SMS.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.338_7.3.5",
+      "section_id": "7.3.5",
+      "section_title": "DIAMETER_ERROR_FACILITY_NOT_SUPPORTED (5552)",
+      "content": "This result code shall be sent to indicate a requested facility is not supported.\nNOTE: This code corresponds to the Facility Not Supported MAP error and may be used by an IWF.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.338_7.3.6",
+      "section_id": "7.3.6",
+      "section_title": "DIAMETER_ERROR_ILLEGAL_USER (5553)",
+      "content": "This result code shall be sent by the MME or the SGSN to indicate that the delivery of the mobile terminated short message failed because the mobile station failed authentication.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.338_7.3.7",
+      "section_id": "7.3.7",
+      "section_title": "DIAMETER_ERROR_ILLEGAL_EQUIPMENT (5554)",
+      "content": "This result code shall be sent by the MME or the SGSN to indicate that the delivery of the mobile terminated short message failed because an IMEI check failed, i.e. the IMEI was prohibited-listed or not permitted-listed.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.338_7.3.8",
+      "section_id": "7.3.8",
+      "section_title": "DIAMETER_ERROR_SM_DELIVERY_FAILURE (5555)",
+      "content": "This result code shall be sent by the MME or the SGSN or the SMS-IWMSC to indicate that the delivery of the mobile terminated short message failed.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.338_7.3.9",
+      "section_id": "7.3.9",
+      "section_title": "DIAMETER_ERROR_SERVICE_NOT_SUBSCRIBED (5556)",
+      "content": "This result code shall be sent by the HSS or the SMS Router over the S6c interface to indicate that the MT SMS Teleservice is not part of the subscription.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.338_7.3.10",
+      "section_id": "7.3.10",
+      "section_title": "DIAMETER_ERROR_SERVICE_BARRED (5557)",
+      "content": "This result code shall be sent by the HSS or the SMS Router over the S6c interface to indicate that the MT SMS Teleservice is barred.\nThis result code shall be sent by the MME to indicate that the delivery of the mobile terminated short message failed because of the barring of the SMS service.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.338_7.3.11",
+      "section_id": "7.3.11",
+      "section_title": "DIAMETER_ERROR_MWD_LIST_FULL (5558)",
+      "content": "This result code shall be sent by the HSS over the S6c interface to indicate that the Message Waiting List is full.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.338_7.4.1",
+      "section_id": "7.4.1",
+      "section_title": "General",
+      "content": "Result codes that fall within the transient failures category shall be used to inform a peer that the request could not be satisfied at the time it was received, but may be able to satisfy the request in the future. The Result-Code AVP values defined in Diameter base protocol specified in IETF RFC 6733 [20] shall be applied.\nAnnex A (normative):Diameter message priority mechanism\nA.1\tGeneral\nIETF RFC 7944 [19] specifies a Diameter routing message priority mechanism that allows Diameter nodes to indicate the relative priority of Diameter messages. With this information, other Diameter nodes may leverage the relative priority of Diameter messages into routing, resource allocation, set the DSCP marking for transport of the associated Diameter message, and also abatement decisions when overload control is applied.\nA.2\tS6c, SGd, Gdd interfaces\nThe Diameter message priority mechanism is an optional feature which may apply on one or several of the S6c,SGd,Gdd interfaces.\nA 3GPP functional entity supporting the Diameter message priority mechanism over one or several of the S6c,SGd,Gdd interfaces shall comply with IETF RFC 7944 [19].\nA 3GPP functional entity sending a request shall determine the required priority according to its policies. When priority is required, it shall include the DRMP AVP indicating the required priority level in the request it sends, and shall prioritise the request according to the required priority level.\nWhen a 3GPP functional entity receives the corresponding response, it shall prioritise the received response according to the priority level received within the DRMP AVP if present in the response, otherwise according to the priority level of the corresponding request.\nWhen a 3GPP functional entity receives a request, it shall handle the request according to the received DRMP AVP priority level. For the response, it may modify the priority level received in the DRMP AVP according to its policies and shall handle the response according to the required priority level. If the required priority level is different from the priority level received in the request, it shall include the DRMP AVP in the response.\nThe decisions of the 3GPP functional entity for a required priority and for the priority level value are implementation specific.\nIf:\n-\ta 3GPP functional entity supports using the Diameter message priority mechanism for DSCP marking purposes,\n-\tthe transport network utilizes DSCP marking, and\n-\tmessage-dependant DSCP marking is possible for the protocol stack transporting Diameter,\nthen the 3GPP functional entity shall set the DSCP marking for transport of the request or response according to the required priority level.\nDiameter requests related to high priority traffic shall contain a DRMP AVP with a high priority of which the level value is operator dependent.\nAnnex B (informative):Change history\nChange history\nDate\nMeeting\nTDoc\nCR\nRev\nCat\nSubject/Comment\nNew version\n2012\nCT#58\nCP-120762\nF\nTS sent for approval\n2013-03\nCT#59\nCP-130030\n0003\n2\nF\nValidity Time of Short Message\n2013-06\nCT#60\nCP-130300\n0001\n2\nF\nDiameter for SMS with SGSN General\n2013-06\nCT#60\nCP-130300\n0002\n2\nF\nDiameter for SMS with SGSN Complements\n2013-06\nCT#60\nCP-130300\n0004\n1\nF\nS6c complements related to Diameter for SMS with SGSN\n2013-09\nCT#61\nCP-130450\n0007\n1\nF\nCorrection on Routing for MO SM\n2013-0\nCT#61\nCP-130456\n0008\n2\nF\nSGSN Diameter address with Gdd support\n2013-12\nCT#62\nCP-130800\n0009\n3\nF\nDiameter based protocols with SMS for IMS UE without MSISDN\n2014-09\nCT#65\nCP-140513\n0010\n2\nF\nIdentification of the HSS\n2014-12\nCT#66\nCP-140767\n0013\n1\nF\nCorrections for some AVPs\n2014-12\nCT#66\nCP-140767\n0011\n1\nF\nSC-Address in SRR\n2014-12\nCT#66\nCP-140767\n0014\n-\nF\nAVP codes corrections for SMSMI\n2014-12\nCT#66\nCP-140767\n0016\nF\nOFR-Flags AVP correction\n2015-12\nCT#70\nCP-150776\n0017\n3\nF\nMobile Terminating SMS handling for extended Idle mode DRX\n13.0.0\n2015-12\nCT#70\nCP-150776\n0018\n1\nF\nMobile Terminating SMS handling for extended Idle mode DRX – Additional Option\n2016-03\nCT#71\nCP-160030\n0019\n-\nF\nAlert procedure from MME/SGSN to SMS-GMSC for MT SMS to UE using eDRX\n13.1.0\n2016-03\nCT#71\nCP-160023\n0020\n1\nF\nDiameter message priority over S6c, SGd, Gdd\n2016-06\nCT#72\nCP-160226\n0021\n-\nF\nMissing Requested-Retransmission-Time AVP in TFA Command\n13.2.0\n2016-12\nCT#74\nCP-160664\n0023\nF\nCorrection to change IETF drmp draft version to official RFC 7944\n13.3.0\n2016-12\nCT#74\nCP-160673\n0022\n1\nF\nMO SMS over T4\n14.0.0\n2017-03\nCT#75\nCP-170036\n0024\nF\nSMS-MO over T4\n14.1.0\n2017-03\nCT#75\nCP-170048\n0025\n1\nF\nUpdate of reference for the Diameter base protocol\n14.1.0\n2017-03\nCT#75\nCP-170048\n0026\n1\nF\nHandling of the Vendor-Specific-Application-Id AVP\n14.1.0\n2017-03\nCT#75\nCP-170048\n0027\n1\nF\nCardinality of the Failed-AVP AVP in answer\n14.1.0\n2017-06\nCT#76\nCP-171018\n0029\n1\nF\nSupport for signaling transport level packet marking\n14.2.0\n2017-09\nCT#77\nCP-172013\n0032\n-\nF\nCorrection of DRMP Procedures\n14.3.0\n2017-09\nCT#77\nCP-172022\n0030\n2\nF\nCorrection of the data type used for SC-Address and SMS-GMSC-Address\n15.0.0\n2018-12\nCT#82\nCP-183100\n0033\n2\nF\nClarification on presence of SC-Address in SRR and on MWD Status\n15.1.0\n2020-06\nCT#88e\nCP-201016\n0034\n1\nF\nSMSF Address\n15.2.0\n2020-06\nCT#88e\nCP-201016\n0035\n1\nF\nSupport of SMS in 5G\n15.2.0\n2020-07\n-\n-\n-\n-\n-\nUpdate to Rel-16 version (MCC)\n16.0.0\n2020-09\nCT#89e\nCP-202043\n0037\n-\nA\nSMSF Address Corrections\n16.1.0\n2021-03\nCT#91e\nCP-210053\n0039\n1\nF\nCorrections on SM-Delivery-Not-Intended\n16.2.0\n2021-03\nCT#91e\nCP-210027\n0038\n-\nd\nInclusive language review: EIR lists\n17.0.0\n2022-06\nCT#96\nCP-221060\n0040\n-\nF\nClarification on detailed HSS behaviour for SMS\n17.1.0\n2022-12\nCT#98e\nCP-223038\n0042\n1\nB\nUE Location (Cell-ID) missing over SGd (OFR & TFA)\n18.0.0\n2023-06\nCT#100\nCP-231039\n0043\n-\nB\nAdd SBI support Indication in S6c Routing Info for SM Answer\n18.1.0\n2023-09\nCT#101\nCP-232076\n0050\n-\nA\nHSS-ID AVP type correction\n18.2.0\n2023-09\nCT#101\nCP-232077\n0058\n-\nA\nSM-Delivery-Failure-Cause AVP code correction\n18.2.0",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_17.0"
+      ]
+    }
+  ]
+}

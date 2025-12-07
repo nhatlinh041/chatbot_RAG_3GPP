@@ -1,0 +1,501 @@
+{
+  "metadata": {
+    "specification_id": "ts_23.032",
+    "version": "18.3.0",
+    "title": "3GPP TS 23.032",
+    "file_path": "/content/drive/MyDrive/RAG_thesis/data/23_series/23032-i30/23032-i30.docx"
+  },
+  "export_info": {
+    "export_date": "2025-07-26T09:44:30.396961",
+    "total_chunks": 52
+  },
+  "chunks": [
+    {
+      "chunk_id": "ts_23.032_1",
+      "section_id": "1",
+      "section_title": "Scope",
+      "content": "The present document defines an intermediate universal Geographical Area Description which subscriber applications, GSM, UMTS, EPS or 5GS services can use and the network can convert into an equivalent radio coverage map.\nFor GSM, UMTS, EPS or 5GS services which involve the use of an \"area\", it can be assumed that in the majority of cases the Service Requester will be forbidden access to data on the radio coverage map of a particular PLMN and that the Service Requester will not have direct access to network entities (e.g. BSC/BTS, RNC/Node B, eNB or gNB).\nThe interpretation by the PLMN operator of the geographical area in terms of cells actually used, cells that are partly within the given area and all other technical and quality of service aspects are out of the scope of the present document.\nThis specification also provides a description of velocity that may be associated with a universal Geographical Area Description when both are applied to a common entity at a common time.\nThe specification further provides a description of range and direction, relative location and relative velocity for a pair of devices such as 2 UEs.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.032_2",
+      "section_id": "2",
+      "section_title": "References",
+      "content": "The following documents contain provisions which, through reference in this text, constitute provisions of the present document.\n-\tReferences are either specific (identified by date of publication, edition number, version number, etc.) or non‑specific.\n-\tFor a specific reference, subsequent revisions do not apply.\n-\tFor a non-specific reference, the latest version applies.  In the case of a reference to a 3GPP document (including a GSM document), a non-specific reference implicitly refers to the latest version of that document in the same Release as the present document.\n[1]\tGSM 01.04: \"Digital cellular telecommunications system (Phase 2+); Abbreviations and acronyms\".\n[2]\tGSM 04.07: \"Digital cellular telecommunications system (Phase 2+); Mobile radio interface signalling layer 3 General aspects\".\n[3]\tMilitary Standard WGS84 Metric MIL-STD-2401 (11 January 1994): \"Military Standard Department of Defence World Geodetic System (WGS)\".\n[4]\t3GPP TS 29.572: \"5G System; Location Management Services; Stage 3\".",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.572"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.032_3.1",
+      "section_id": "3.1",
+      "section_title": "Definitions",
+      "content": "For the purposes of the present document, the following definitions apply.\nCoordinate ID: an identifier for a reference point that defines the origin of a particular local Cartesian System.\nLocal Co-ordinates: co-ordinates relative to a local Cartesian System whose origin is expressed by a reference point. The origin may have known WGS84 coordinates. Local Co-ordinates are only applicable in 5GS.\nService Requester: Entity, which uses the Geographical Area Description in any protocol to inform the network about a defined area.\nTarget: Entity whose precise geographic position is to be described.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.032_3.2",
+      "section_id": "3.2",
+      "section_title": "Abbreviations",
+      "content": "For the purposes of the present document, the abbreviations given in GSM 01.04 [1] and the following apply.\nGAD\tGeographical Area Description\nGPS\tGlobal Positioning System\nWGS\tWorld Geodetic System",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.032_4",
+      "section_id": "4",
+      "section_title": "Reference system",
+      "content": "Except for local co-ordinates, the reference system chosen for the coding of locations is the World Geodetic System 1984, (WGS 84), which is also used by the Global Positioning System, (GPS). The origin of the WGS 84 co-ordinate system is the geometric centre of the WGS 84 ellipsoid. The ellipsoid is constructed by the rotation of an ellipse around the minor axis which is oriented in the North-South direction. The rotation axis is the polar axis of the ellipsoid and the plane orthogonal to it and including the centre of symmetry is the equatorial plane.\nThe relevant dimensions are as follows:\nMajor Axis (a) = 6378137 m\nMinor Axis (b) = 6356752,314 m\nFirst eccentricity of the ellipsoid\nCo-ordinates are then expressed in terms of longitude and latitude relevant to this ellipsoid. The range of longitude is ‑180° to +180° and the range of latitude is -90° to +90°. 0° longitude corresponds to the Greenwich Meridian and positive angles are to the East, while negative angles are to the West. 0° latitude corresponds to the equator and positive angles are to the North, while negative angles are to the South. Altitudes are defined as the distance between the ellipsoid and the point, along a line orthogonal to the ellipsoid.\nLocal Co-ordinates are relative to a known reference point defined by an unique Coordinate ID configured by the PLMN operator. Local co-ordinates are then expressed in a local Cartesian co-ordinates system relative to the reference point.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.032_5",
+      "section_id": "5",
+      "section_title": "Shapes",
+      "content": "The intention is to incorporate a number of different shapes, that can be chosen according to need.\n-\tEllipsoid Point;\n-\tEllipsoid point with uncertainty circle;\n-\tEllipsoid point with uncertainty ellipse;\n-\tPolygon;\n-\tEllipsoid point with altitude;\n-\tEllipsoid point with altitude and uncertainty ellipsoid;\n-\tEllipsoid Arc;\n-\tHigh Accuracy Ellipsoid point with uncertainty ellipse;\n-\tHigh Accuracy Ellipsoid point with scalable uncertainty ellipse;\n-\tHigh Accuracy Ellipsoid point with altitude and uncertainty ellipsoid;\n-\tHigh Accuracy Ellipsoid point with altitude and scalable uncertainty ellipsoid.\nShapes relevant to Local Co-ordinates:\n-\tLocal 2D point with uncertainty ellipse (only in 5GS);\n-\tLocal 3D point with uncertainty ellipsoid (only in 5GS).\nShapes relevant to a pair of devices:\n-\tRange and Direction (only in 5GS);\n-\tRelative Location (only in 5GS).\nEach shape is discussed individually.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.032_5.1",
+      "section_id": "5.1",
+      "section_title": "Ellipsoid Point",
+      "content": "The description of an ellipsoid point is that of a point on the surface of the ellipsoid and consists of a latitude and a longitude. In practice, such a description can be used to refer to a point on Earth's surface, or close to Earth's surface, with the same longitude and latitude. No provision is made in this version of the standard to give the height of a point.\nFigure 1 illustrates a point on the surface of the ellipsoid and its co-ordinates.\nThe latitude is the angle between the equatorial plane and the perpendicular to the plane tangent to the ellipsoid surface at the point. Positive latitudes correspond to the North hemisphere. The longitude is the angle between the half-plane determined by the Greenwich meridian and the half-plane defined by the point and the polar axis, measured Eastward.\nFigure 1: Description of a Point as two co-ordinates",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.032_5.2",
+      "section_id": "5.2",
+      "section_title": "Ellipsoid point with uncertainty circle",
+      "content": "The \"ellipsoid point with uncertainty circle\" is characterised by the co-ordinates of an ellipsoid point (the origin) and a distance r. It describes formally the set of points on the ellipsoid which are at a distance from the origin less than or equal to r, the distance being the geodesic distance over the ellipsoid, i.e. the minimum length of a path staying on the ellipsoid and joining the two points, as shown in figure 2.\nAs for the ellipsoid point, this can be used to indicate points on the Earth surface, or near the Earth surface, of same latitude and longitude.\nThe typical use of this shape is to indicate a point when its position is known only with a limited accuracy.\nFigure 2: Description of an uncertainty Circle",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_2"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.032_5.3",
+      "section_id": "5.3",
+      "section_title": "Ellipsoid point with uncertainty ellipse",
+      "content": "The \"ellipsoid point with uncertainty ellipse\" is characterised by the co-ordinates of an ellipsoid point (the origin), distances r1 and r2 and an angle of orientation A. It describes formally the set of points on the ellipsoid which fall within or on the boundary of an ellipse with semi-major axis of length r1 oriented at angle A (0 to 180o) measured clockwise from north and semi-minor axis of length r2, the distances being the geodesic distance over the ellipsoid, i.e. the minimum length of a path staying on the ellipsoid and joining the two points, as shown in figure 2a.\nAs for the ellipsoid point, this can be used to indicate points on the Earth's surface, or near the Earth's surface, of same latitude and longitude. The confidence level with which the position of a target entity is included within this set of points is also included with this shape.\nThe typical use of this shape is to indicate a point when its position is known only with a limited accuracy, but the geometrical contributions to uncertainty can be quantified.\nFigure 2a: Description of an uncertainty Ellipse\n5.3a\tHigh Accuracy Ellipsoid point with uncertainty ellipse\nThe \"high accuracy ellipsoid point with uncertainty ellipse\" is characterised by the co-ordinates of an ellipsoid point (the origin), distances r1 and r2 and an angle of orientation A, as described in clause 5.3. Compared to the \"ellipsoid point with uncertainty ellipse\", the \"high accuracy ellipsoid point with uncertainty ellipse\" provides finer resolution for the co-ordinates and distances r1 and r2.\n5.3b\tHigh Accuracy Ellipsoid point with scalable uncertainty ellipse\nThe \"high accuracy ellipsoid point with scalable uncertainty ellipse\" is characterised by the co-ordinates of an ellipsoid point (the origin), distances r1 and r2 and an angle of orientation A, as described in clause 5.3. Compared to the \"ellipsoid point with uncertainty ellipse\", the \"high accuracy ellipsoid point with scalable uncertainty ellipse\" provides finer resolution for the co-ordinates and distances r1 and r2 and additionally provides possibility to choose uncertainty range compared to \"high accuracy ellipsoid point with uncertainty ellipse\".",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_5.3",
+        "figure_2"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.032_5.4",
+      "section_id": "5.4",
+      "section_title": "Polygon",
+      "content": "A polygon is an arbitrary shape described by an ordered series of points (in the example pictured in the drawing, A to E). The minimum number of points allowed is 3 and the maximum number of points allowed is 15. The points shall be connected in the order that they are given. A connecting line is defined as the line over the ellipsoid joining the two points and of minimum distance (geodesic). The last point is connected to the first. The list of points shall respect a number of conditions:\n-\ta connecting line shall not cross another connecting line;\n-\ttwo successive points must not be diametrically opposed on the ellipsoid.\nThe described area is situated to the right of the lines with the downward direction being toward the Earth's centre and the forward direction being from a point to the next.\nNOTE:\tThis definition does not permit connecting lines greater than roughly 20 000 km. If such a need arises, the polygon can be described by adding an intermediate point.\nComputation of geodesic lines is not simple. Approximations leading to a maximum distance between the computed line and the geodesic line of less than 3 metres are acceptable.\nFigure 3: Description of a Polygon",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_3"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.032_5.5",
+      "section_id": "5.5",
+      "section_title": "Ellipsoid Point with Altitude",
+      "content": "The description of an ellipsoid point with altitude is that of a point at a specified distance above or below a point on the earth's surface. This is defined by an ellipsoid point with the given longitude and latitude and the altitude above or below the ellipsoid point. Figure 3a illustrates the altitude aspect of this description.\nFigure 3a: Description of an Ellipsoid Point with Altitude",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_3"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.032_5.6",
+      "section_id": "5.6",
+      "section_title": "Ellipsoid point with altitude and uncertainty ellipsoid",
+      "content": "The \"ellipsoid point with altitude and uncertainty ellipsoid\" is characterised by the co-ordinates of an ellipsoid point with altitude, distances r1 (the \"semi-major uncertainty\"), r2 (the \"semi-minor uncertainty\") and r3 (the \"vertical uncertainty\") and an angle of orientation A (the \"angle of the major axis\"). It describes formally the set of points which fall within or on the surface of a general (three dimensional) ellipsoid centred on an ellipsoid point with altitude whose real semi-major, semi-mean and semi-minor axis are some permutation of r1, r2, r3 with r1 ≥ r2. The r3 axis is aligned vertically, while the r1 axis, which is the semi-major axis of the ellipse in a horizontal plane that bisects the ellipsoid, is oriented at an angle A (0 to 180 degrees) measured clockwise from north, as illustrated in Figure 3b.\nFigure 3b: Description of an Ellipsoid Point with Altitude and Uncertainty Ellipsoid\nThe typical use of this shape is to indicate a point when its horizontal position and altitude are known only with a limited accuracy, but the geometrical contributions to uncertainty can be quantified. The confidence level with which the position of a target entity is included within the shape is also included.\n5.6a\tHigh Accuracy Ellipsoid point with altitude and uncertainty ellipsoid\nThe \"high accuracy ellipsoid point with altitude and uncertainty ellipsoid\" is characterised by the co-ordinates of an ellipsoid point with altitude, distances r1 (the \"semi-major uncertainty\"), r2 (the \"semi-minor uncertainty\") and r3 (the \"vertical uncertainty\") and an angle of orientation A (the \"angle of the major axis\"), as described in clause 5.6. Compared to the \"ellipsoid point with altitude and uncertainty ellipsoid\", the \"high accuracy ellipsoid point with altitude and uncertainty ellipsoid\" provides finer resolution for the co-ordinates and distances r1, r2 and r3.\n5.6b\tHigh Accuracy Ellipsoid point with altitude and scalable uncertainty ellipsoid\nThe \"high accuracy ellipsoid point with altitude and scalable uncertainty ellipsoid\" is characterised by the co-ordinates of an ellipsoid point with altitude, distances r1 (the \"semi-major uncertainty\"), r2 (the \"semi-minor uncertainty\") and r3 (the \"vertical uncertainty\") and an angle of orientation A (the \"angle of the major axis\"), as described in clause 5.6. Compared to the \"ellipsoid point with altitude and uncertainty ellipsoid\", the \"high accuracy ellipsoid point with altitude and scalable uncertainty ellipsoid\" provides finer resolution for the co-ordinates and distances r1, r2 and r3 and additionally provides possibility to choose uncertainty range compared to \"high accuracy ellipsoid point with altitude and uncertainty ellipse\".",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_5.6",
+        "figure_3"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.032_5.7",
+      "section_id": "5.7",
+      "section_title": "Ellipsoid Arc",
+      "content": "An ellipsoid arc is a shape characterised by the co-ordinates of an ellipsoid point o (the origin), inner radius r1, uncertainty radius r2, both radii being geodesic distances over the surface of the ellipsoid, the offset angle (θ) between the first defining radius of the ellipsoid arc and North and the included angle (β) being the angle between the first and second defining radii. The offset angle is within the range of 0° to 359,999…° while the included angle is within the range from 0,000…1° to 360°. This is to be able to describe a full circle, 0° to 360°.\nThis shape-definition can also be used to describe a sector (inner radius equal to zero), a circle (included angle equal to 360°) and other circular shaped areas. The confidence level with which the position of a target entity is included within the shape is also included.\nFigure 3c: Description of an Ellipsoid Arc",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_3"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.032_5.8",
+      "section_id": "5.8",
+      "section_title": "Local 2D point with uncertainty ellipse",
+      "content": "The \"local 2D point with uncertainty ellipse\" is characterised by a point described in 2D local co-ordinates with origin in a known reference location, distances r1 and r2 and an angle of orientation A. The local Cartesian co-ordinates system and the reference location shall be identified with a unique identifier. It describes formally the set of points which fall within or on the boundary of an ellipse with semi-major axis of length r1 oriented at angle A (0 to 180o) measured clockwise from north and semi-minor axis of length r2. The confidence level with which the position of a target entity is included within this set of points is also included with this shape.\nThis shape is only applicable to 5GS.\nThe structure of local 2D point with uncertainty ellipse is defined in clause 6.1.6.2.38 in TS 29.572 [4].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.572_clause_6.1.6.2.38",
+        "ts_29.572"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.032_5.9",
+      "section_id": "5.9",
+      "section_title": "Local 3D point with uncertainty ellipsoid",
+      "content": "The \"local 3D point with uncertainty ellipsoid\" is characterised by a point described in 3D local co-ordinates with origin in a known reference location, distances r1 (the \"semi-major uncertainty\"), r2 (the \"semi-minor uncertainty\") and r3 (the \"vertical uncertainty\") and an angle of orientation A (the \"angle of the major axis\"). The local Cartesian co-ordinates system and the reference location shall be identified with a unique identifier. It describes formally the set of points which fall within or on the surface of a general (three dimensional) ellipsoid centred on a 3D point whose real semi-major, semi-mean and semi-minor axis are some permutation of r1, r2, r3 with r1 ≥ r2. The r3 axis is aligned vertically, while the r1 axis, which is the semi-major axis of the ellipse in a horizontal plane, is oriented at an angle A (0 to 180 degrees) measured clockwise from north. The confidence level with which the position of a target entity is included within the shape is also included.\nThis shape is only applicable to 5GS.\nThe structure of local 3D point with uncertainty ellipsoid is defined in clause 6.1.6.2.39 in TS 29.572 [4].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.572_clause_6.1.6.2.39",
+        "ts_29.572"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.032_5.10",
+      "section_id": "5.10",
+      "section_title": "Range and Direction",
+      "content": "The \"range and direction\" from a point A to a point B is characterised by three components comprising a range from point A to point B, an azimuth direction from point A to point B and an elevation direction from point A to point B as shown in Figure 3d. The range provides a straight-line distance from point A to point B. The azimuth provides a direction to point B from point A in a horizontal plane through point A and as measured clockwise from North. The elevation provides a direction to point B from point A in a vertical plane through the points A and B and as measured upwards or downwards from a horizontal plane through point A. The range, azimuth and elevation can be each independently included or excluded in a \"range and direction\" and each has an uncertainty and a confidence.\nFigure 3d: Description of a Range and Direction",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_3"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.032_5.11",
+      "section_id": "5.11",
+      "section_title": "Relative 2D Location with uncertainty ellipse",
+      "content": "The \"relative 2D location with uncertainty ellipse\" is characterised by a point described in 2D local co-ordinates with origin corresponding to another known point, distances r1 and r2 and an angle of orientation A. It describes formally a set of points which fall within or on the boundary of an ellipse cantered on a 2D point with semi-major axis of length r1 oriented at angle A (0 to 180o) measured clockwise from North and semi-minor axis of length r2. The confidence level with which the position of a target entity is included within this set of points is also included with this shape.\nThis shape is only applicable to 5GS.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.032_5.12",
+      "section_id": "5.12",
+      "section_title": "Relative 3D Location with uncertainty ellipsoid",
+      "content": "The \"relative 3D location with uncertainty ellipsoid\" is characterised by a point described in 3D local co-ordinates with origin corresponding to another known point, distances r1 (the \"semi-major uncertainty\"), r2 (the \"semi-minor uncertainty\") and r3 (the \"vertical uncertainty\") and an angle of orientation A (the \"angle of the major axis\"). It describes formally the set of points which fall within or on the surface of a general (three dimensional) ellipsoid centred on a 3D point whose semi-major, semi-minor and semi-mean axis are, respectively, r1, r2, r3 with r1  r2. The r3 axis is aligned vertically, while the r1 axis, which is the semi-major axis of the ellipse in a horizontal plane, is oriented at an angle A (0 to 180 degrees) measured clockwise from North. The confidence level with which the position of a target entity is included within the shape is also included.\nThis shape is only applicable to 5GS.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.032_6.1",
+      "section_id": "6.1",
+      "section_title": "Point",
+      "content": "The co-ordinates of an ellipsoid point are coded with an uncertainty of less than 3 metres.\nThe latitude is coded with 24 bits: 1 bit of sign and a number between 0 and 223-1 coded in binary on 23 bits. The relation between the coded number N and the range of (absolute) latitudes X it encodes is the following (X in degrees):\nexcept for N=223-1, for which the range is extended to include N+1.\nThe longitude, expressed in the range -180°, +180°, is coded as a number between -223 and 223-1, coded in 2's complement binary on 24 bits. The relation between the coded number N and the range of longitude X it encodes is the following (X in degrees):\n6.1a\tHigh Accuracy Point\nThe co-ordinates of a high accuracy ellipsoid point are coded with a resolution of less than 5 millimetre for latitude and less than 10 millimetre for longitude.\nThe latitude for a high accuracy point, expressed in the range -90°, +90°, is coded as a number between -231 and 231-1, coded in 2's complement binary on 32 bits. The relation between the latitude X in the range [-90°, 90°] and the coded number N is:\nwhere  denotes the greatest integer less than or equal to x (floor operator).\nThe longitude for a high accuracy point, expressed in the range -180°, +180°, is coded as a number between -231 and 231-1, coded in 2's complement binary on 32 bits. The relation between the longitude X in the range [-180°, 180°) and the coded number N is:",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.032_6.2",
+      "section_id": "6.2",
+      "section_title": "Uncertainty",
+      "content": "A method of describing the uncertainty for latitude and longitude has been sought which is both flexible (can cover wide differences in range) and efficient. The proposed solution makes use of a variation on the Binomial expansion. The uncertainty r, expressed in metres, is mapped to a number K, with the following formula:\nwith C = 10 and x = 0,1. With 0  K  127, a suitably useful range between 0 and 1800 kilometres is achieved for the uncertainty, while still being able to code down to values as small as 1 metre. The uncertainty can then be coded on 7 bits, as the binary encoding of K.\nTable 1: Example values for the uncertainty Function\nValue of K\nValue of uncertainty\n0\n0 m\n1\n1 m\n2\n2,1 m\n-\n-\n20\n57,3 m\n-\n-\n40\n443 m\n-\n-\n60\n3 km\n-\n-\n80\n20 km\n-\n-\n100\n138 km\n-\n-\n120\n927 km\n-\n-\n127\n1800 km\n6.2a\tHigh Accuracy Uncertainty\nThe high accuracy uncertainty r, expressed in metres, is mapped to a number K, with the following formula:\nwith C = 0.3 and x = 0.02. With 0  K  255, a suitably useful range between 0 and 46.49129 metres is achieved for the high accuracy uncertainty, while still being able to code down to values as small as 6 millimetre. The uncertainty can then be coded on 8 bits, as the binary encoding of K.\nTable 6.2a-1: Example values for the high accuracy uncertainty function\nValue of K\nValue of uncertainty\n0\n0 m\n1\n0.006 m\n2\n0.01212 m\n-\n-\n20\n0.14578 m\n-\n-\n40\n0.36241 m\n-\n-\n60\n0.68430 m\n-\n-\n80\n1.16263 m\n-\n-\n100\n1.87339 m\n-\n-\n120\n2.92954 m\n-\n-\n127\n3.40973 m\n-\n-\n255\n46.49129 m\n6.2b\tHigh Accuracy Extended Uncertainty\nThe high accuracy extended uncertainty r, expressed in metres, is mapped to a number K, with the following formula:\nwith C = 0.3 and x = 0.02594, with 0 * K * 253 and r = 200 m with K=254 and r > 200 m with K=255 a suitably useful range between 0 and 200 metres is achieved for the high accuracy uncertainty, while still being able to code down to values as small as 8 millimetres. The uncertainty can then be coded on 8 bits, as the binary encoding of K.\nTable 6.2b-1: Example values for the high accuracy uncertainty function\nValue of K\nValue of uncertainty\n0\n0 m\n1\n0.00778 m\n2\n0.01577 m\n-\n-\n20\n0.20068 m\n-\n-\n40\n0.53560 m\n-\n-\n60\n1.09457 m\n-\n-\n80\n2.02744 m\n-\n-\n100\n3.58434 m\n-\n-\n120\n6.18271 m\n-\n-\n127\n7.45551 m\n-\n-\n253\n195.12396 m\n254\n200 m\n255\n> 200 m",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_1",
+        "table_6.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.032_6.3",
+      "section_id": "6.3",
+      "section_title": "Altitude",
+      "content": "Altitude is encoded in increments of 1 meter using a 15 bit binary coded number N. The relation between the number N and the range of altitudes a (in metres) it encodes is described by the following equation:\nExcept for N=215-1 for which the range is extended to include all greater values of a.\nThe direction of altitude is encoded by a single bit with bit value 0 representing height above the WGS84 ellipsoid surface and bit value 1 representing depth below the WGS84 ellipsoid surface.\n6.3a\tHigh Accuracy Altitude\nHigh accuracy altitude is encoded as a number N between -64000 and 1280000 using 2's complement binary on 22 bits. The relation between the number N and the altitude a (in metres) it encodes is described by the following equation:\nSo, the altitude for a high accuracy point, with a scale factor of 2-7, ranges between -500 metres and 10000 metres. The altitude is encoded representing height above (plus) or below (minus) the WGS84 ellipsoid surface.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.032_6.4",
+      "section_id": "6.4",
+      "section_title": "Uncertainty Altitude",
+      "content": "The uncertainty in altitude, h, expressed in metres is mapped from the binary number K, with the following formula:\nwith C = 45 and x = 0,025. With 0  K  127, a suitably useful range between 0 and 990 meters is achieved for the uncertainty altitude. The uncertainty can then be coded on 7 bits, as the binary encoding of K.\nTable 2: Example values for the uncertainty altitude Function\nValue of K\nValue of uncertainty altitude\n0\n0 m\n1\n1,13 m\n2\n2,28 m\n-\n-\n20\n28,7 m\n-\n-\n40\n75,8 m\n-\n-\n60\n153,0 m\n-\n-\n80\n279,4 m\n-\n-\n100\n486,6 m\n-\n-\n120\n826,1 m\n-\n-\n127\n990,5 m",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_2"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.032_6.5",
+      "section_id": "6.5",
+      "section_title": "Confidence",
+      "content": "The confidence by which the position of a target entity is known to be within the shape description, (expressed as a percentage) is directly mapped from the 7 bit binary number K, except for K=0 which is used to indicate 'no information' and 100 < K ≤128 which should not be used but may be interpreted as \"no information\" if received.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.032_6.6",
+      "section_id": "6.6",
+      "section_title": "Radius",
+      "content": "Inner radius is encoded in increments of 5 meters using a 16 bit binary coded number N. The relation between the number N and the range of radius r (in metres) it encodes is described by the following equation:\nExcept for N=216-1 for which the range is extended to include all greater values of r. This provides a true maximum radius of 327,675 meters.\nThe uncertainty radius is encoded as for the uncertainty latitude and longitude.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.032_6.7",
+      "section_id": "6.7",
+      "section_title": "Angle",
+      "content": "Offset and Included angle are encoded in increments of 2° using an 8 bit binary coded number N in the range 0 to 179. The relation between the number N and the range offset (ao) and included (ai) of angles (in degrees) it encodes is described by the following equations:\nOffset angle (ao)\n2 N <= ao < 2 (N+1)\tAccepted values for ao are within the range from 0 to 359,9...9 degrees.\nIncluded angle (ai)\n2 N < ai <= 2 (N+1)\tAccepted values for ai are within the range from 0,0...1 to 360 degrees.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.032_7",
+      "section_id": "7",
+      "section_title": "General message format and information elements coding",
+      "content": "This clause describes a coding method for geographical area descriptions. A geographical area description is coded as a finite bit string. In the figures, the bit string is described by octets from top downward and in the octet from left to right. Number encoding strings start with the most significant bit.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.032_7.1",
+      "section_id": "7.1",
+      "section_title": "Overview",
+      "content": "A bit string encoding a geographical description shall consist of the following parts:\n-\tType of Shape;\n-\tShape Description.\nSuch a bit string is usually part of an information element. The structure of the information element (e.g. element identifier, length) depends on the protocol in which the message containing the description is defined and is specified in the protocol specification.\nThis organisation is illustrated in the example shown in figure 4.\nFigure 4: Example",
+      "chunk_type": "definition",
+      "cross_references": [
+        "figure_4"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.032_7.2",
+      "section_id": "7.2",
+      "section_title": "Type of Shape",
+      "content": "The Type of Shape information field identifies the type which is being coded in the Shape Description. The Type of Shape is coded as shown in table 2a.\nTable 2a: Coding of Type of Shape\nBits\n4 3 2 1\n0 0 0 0\nEllipsoid Point\n0 0 0 1\nEllipsoid point with uncertainty Circle\n0 0 1 1\nEllipsoid point with uncertainty Ellipse\n0 1 0 1\nPolygon\n1 0 0 0\nEllipsoid point with altitude\n1 0 0 1\nEllipsoid point with altitude and uncertainty Ellipsoid\n1 0 1 0\nEllipsoid Arc\n1 0 1 1\nHigh Accuracy Ellipsoid point with uncertainty ellipse\n1 1 0 0\nHigh Accuracy Ellipsoid point with altitude and uncertainty ellipsoid\n1 1 0 1\nHigh Accuracy Ellipsoid point with scalable uncertainty ellipse\n1 1 1 0\nHigh Accuracy Ellipsoid point with altitude and scalable uncertainty ellipsoid\nother values\nreserved for future use",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_2"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.032_7.3",
+      "section_id": "7.3",
+      "section_title": "Shape description",
+      "content": "The shape description consist of different elements.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.032_7.3.1",
+      "section_id": "7.3.1",
+      "section_title": "Ellipsoid Point",
+      "content": "The coding of a point is described in figure 5.\nFigure 5: Shape description of a point\nS:\tSign of latitude\tBit value 0\tNorth\tBit value 1\tSouth\nDegrees of latitude\nBit 1 of octet 4 is the low order bit\nDegrees of longitude\nBit 1 of octet 7 is the low order bit",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_5"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.032_7.3.2",
+      "section_id": "7.3.2",
+      "section_title": "Ellipsoid Point with uncertainty Circle",
+      "content": "Figure 6: Shape description of an ellipsoid point with uncertainty circle",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_6"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.032_7.3.3",
+      "section_id": "7.3.3",
+      "section_title": "Ellipsoid Point with uncertainty Ellipse",
+      "content": "Figure 6a: Shape description of an ellipsoid point with uncertainty ellipse\nOrientation of major axis\nangle in degrees between the major axis and north\n(0 = north, 90 = east, values of 180 and above are not used)\n7.3.3a\tHigh Accuracy Ellipsoid point with uncertainty ellipse\nFigure 7.3.3a-1: Shape description of a high accuracy ellipsoid point with uncertainty ellipse\nHigh Accuracy Degrees of Latitude:\nBit 8 of octet 2 is the high order bit.\nBit 1 of octet 5 is the low order bit.\nHigh Accuracy Degrees of Longitude:\nBit 8 of octet 6 is the high order bit.\nBit 1 of octet 9 is the low order bit.\nOrientation of major axis:\nangle in degrees between the major axis and north\n(0 = north, 90 = east, values of 180 and above are not used).\n7.3.3b\tHigh Accuracy Ellipsoid point with scalable uncertainty ellipse\nFigure 7.3.3b-1: Shape description of a high accuracy ellipsoid point with uncertainty ellipse\nHigh Accuracy Degrees of Latitude:\nBit 8 of octet 2 is the high order bit.\nBit 1 of octet 5 is the low order bit.\nHigh Accuracy Degrees of Longitude:\nBit 8 of octet 6 is the high order bit.\nBit 1 of octet 9 is the low order bit.\nOrientation of major axis:\nangle in degrees between the major axis and north\n(0 = north, 90 = east, values of 180 and above are not used).\nU:\tUncertainty Range\nBit value 0\tHigh Accuracy default uncertainty range used.\nBit value 1\tHigh Accuracy Extended Uncertainty Range used.",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_6",
+        "figure_7.3.3"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.032_7.3.4",
+      "section_id": "7.3.4",
+      "section_title": "Polygon",
+      "content": "Figure 7: Shape description of a polygon\nThe number of points field encodes in binary on 4 bits the number n of points in the description and ranges from 3 to 15.",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_7"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.032_7.3.5",
+      "section_id": "7.3.5",
+      "section_title": "Ellipsoid Point with Altitude",
+      "content": "The coding of an ellipsoid point with altitude is described in figure 8.\nFigure 8: Shape description of an ellipsoid point with altitude\nD:\tDirection of Altitude\nBit value 0\tAltitude expresses height\nBit value 1\tAltitude expresses depth\nAltitude\nBit 1 of octet 9 is the low order bit",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_8"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.032_7.3.6",
+      "section_id": "7.3.6",
+      "section_title": "Ellipsoid Point with altitude and uncertainty ellipsoid",
+      "content": "Figure 9: Shape description of an ellipsoid point with altitude and uncertainty ellipsoid\n7.3.6a\tHigh Accuracy Ellipsoid point with altitude and uncertainty ellipsoid\nFigure 7.3.6a-1: Shape description of an High Accuracy Ellipsoid point with altitude and uncertainty ellipsoid\nHigh Accuracy Degrees of Latitude:\nBit 8 of octet 2 is the high order bit.\nBit 1 of octet 5 is the low order bit.\nHigh Accuracy Degrees of Longitude:\nBit 8 of octet 6 is the high order bit.\nBit 1 of octet 9 is the low order bit.\nHigh Accuracy Altitude:\nBit 6 of octet 10 is the high order bit.\nBit 1 of octet 12 is the low order bit.\nOrientation of major axis:\nangle in degrees between the major axis and north\n(0 = north, 90 = east, values of 180 and above are not used).\nNOTE:\tThe same \"High Accuracy Uncertainty\" (defined in clause 6.2a) is used for both horizontal and vertical location.\n7.3.6b\tHigh Accuracy Ellipsoid point with altitude and scalable uncertainty ellipsoid\nFigure 7.3.6b-1: Shape description of a High Accuracy Ellipsoid point with altitude and uncertainty ellipsoid\nHigh Accuracy Degrees of Latitude:\nBit 8 of octet 2 is the high order bit.\nBit 1 of octet 5 is the low order bit.\nHigh Accuracy Degrees of Longitude:\nBit 8 of octet 6 is the high order bit.\nBit 1 of octet 9 is the low order bit.\nHigh Accuracy Altitude:\nBit 6 of octet 10 is the high order bit.\nBit 1 of octet 12 is the low order bit.\nOrientation of major axis:\nangle in degrees between the major axis and north\n(0 = north, 90 = east, values of 180 and above are not used).\nHU: Horizontal Uncertainty Range\nBit value 0\tHigh Accuracy default uncertainty range used.\nBit value 1\tHigh Accuracy Extended Uncertainty Range used.\nVU: Vertical Uncertainty Range\nBit value 0\tHigh Accuracy default uncertainty range used.\nBit value 1\tHigh Accuracy Extended Uncertainty Range used.\nNOTE:\tHorizontal and vertical accuracy are coded as specified by \"High Accuracy Uncertainty\" (defined in clause 6.2a) or \"High Accuracy Extended Uncertainty\" (defined in clause 6.2b). Different coding can be used for horizontal and vertical location components.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_6.2",
+        "figure_9",
+        "figure_7.3.6"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.032_7.3.7",
+      "section_id": "7.3.7",
+      "section_title": "Ellipsoid Arc",
+      "content": "Figure 10: Shape description of an Ellipsoid arc\nInner radius:\nBit 8 of octet 8 is the high order bit.\nBit 1 of octet 9 is the low order bit.",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_10"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.032_8",
+      "section_id": "8",
+      "section_title": "Description of Velocity",
+      "content": "A description of velocity is applicable to any target entity on or close to the surface of the WGS84 ellipsoid.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.032_8.1",
+      "section_id": "8.1",
+      "section_title": "Horizontal Velocity",
+      "content": "Horizontal velocity is characterised by the horizontal speed and bearing. The horizontal speed gives the magnitude of the horizontal component of the velocity of a target entity. The bearing provides the direction of the horizontal component of velocity taken clockwise from North.\nFigure 11: Description of Horizontal Velocity with Uncertainty",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_11"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.032_8.2",
+      "section_id": "8.2",
+      "section_title": "Horizontal and Vertical Velocity",
+      "content": "Horizontal and vertical velocity is characterised by horizontal speed, bearing, vertical speed and direction. The horizontal speed and bearing characterise the horizontal component of velocity. The vertical speed and direction provides the component of velocity of a target entity in a vertical direction.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.032_8.3",
+      "section_id": "8.3",
+      "section_title": "Horizontal Velocity with Uncertainty",
+      "content": "Horizontal velocity with uncertainty is characterised by a horizontal speed and bearing, giving a horizontal velocity vector V and an uncertainty speed s. It describes the set of velocity vectors v related to the given velocity V as follows:\n|v – V| ≤ s\nFigure 12: Description of Horizontal Velocity with Uncertainty",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_12"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.032_8.4",
+      "section_id": "8.4",
+      "section_title": "Horizontal and Vertical Velocity with Uncertainty",
+      "content": "Horizontal and vertical velocity with uncertainty is characterised by a horizontal speed and bearing, giving a horizontal velocity vector Vx,y, a vertical speed and direction giving a vertical velocity component Vz,and uncertainty speeds s1 and s2. It describes the set of velocity vectors v with horizontal and vertical components vx,y and vz that are related to the given velocity components Vx,y and Vz as follows:\n|vx,y,  – Vx,y, | ≤ s1\n|vz - Vz| ≤ s2\n8.4a\tRelative Velocity with Uncertainty\nThe relative velocity with uncertainty of a device B relative to a device A is characterised by a radial velocity component (measured in meters / second) and a perpendicular transverse velocity component (measured in degrees / second). The radial velocity component is characterized by a rate of change of a range between the device A and device B. The transverse velocity component is characterized by a rate of change of a direction to the device B from the device A, where the change rate of the direction includes the change rate of an angle of azimuth (measured in degrees / second) and change rate of an angle of elevation (measured in degrees / second). The angle of azimuth is measured clockwise from North in a horizontal plane through the device A and the angle of elevation measured upwards or downwards in a vertical plane through the devices A and B from a horizontal plane through the device A. The rates of change of the range and the angles of azimuth and elevation can be each independently included or excluded in the relative velocity and each has an uncertainty and a confidence,\nFigure 12a: Description of a Relative Velocity with Uncertainty",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_12"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.032_8.5",
+      "section_id": "8.5",
+      "section_title": "Coding Principles",
+      "content": "Velocity is encoded as shown in Figure 13. The velocity type in bits 8-5 of octet 1 defines the type of velocity information in succeeding bits.\nFigure 13: General Coding of Velocity",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_13"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.032_8.6",
+      "section_id": "8.6",
+      "section_title": "Coding of Velocity Type",
+      "content": "Table 3 shows the coding of the velocity type.\nTable 3: Coding of Velocity Type\nBits\n4 3 2 1\n0 0 0 0\nHorizontal Velocity\n0 0 0 1\nHorizontal with Vertical Velocity\n0 0 1 0\nHorizontal Velocity with Uncertainty\n0 0 1 1\nHorizontal with Vertical Velocity and Uncertainty\nother values\nreserved for future use",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_3"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.032_8.7",
+      "section_id": "8.7",
+      "section_title": "Coding of Horizontal Speed",
+      "content": "Horizontal speed is encoded in increments of 1 kilometre per hour using a 16 bit binary coded number N. The relation between the number N and the horizontal speed h (in kilometres per hour) it encodes is described by the following equations:\nN ≤ h < N + 0.5\t(N = 0)\nN – 0.5 ≤ h < N + 0.5\t(0 < N < 216-1)\nN – 0.5 ≤ h\t(N = 216-1)",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.032_8.8",
+      "section_id": "8.8",
+      "section_title": "Coding of Bearing",
+      "content": "Bearing is encoded in increments of 1 degree measured clockwise from North using a 9 bit binary coded number N. The relation between the number N and the bearing b (in degrees) it encodes is described by the following equation:\nN ≤ b < N+1\nexcept for 360 ≤ N < 511 which are not used.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.032_8.9",
+      "section_id": "8.9",
+      "section_title": "Coding of Vertical Speed",
+      "content": "Vertical speed is encoded in increments of 1 kilometre per hour using 8 bits giving a number N between 0 and 28-1. The relation between the number N and the vertical speed v (in kilometres per hour) it encodes is described by the following equations:\nN ≤ v < N + 0.5\t(N = 0)\nN – 0.5 ≤ v < N + 0.5\t(0 < N < 28-1)\nN – 0.5 ≤ v\t(N = 28-1)",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.032_8.10",
+      "section_id": "8.10",
+      "section_title": "Coding of Vertical Speed Direction",
+      "content": "Vertical speed direction is encoded using 1 bit: a bit value of 0 indicates upward speed; a bit value of 1 indicates downward speed.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.032_8.11",
+      "section_id": "8.11",
+      "section_title": "Coding of Uncertainty Speed",
+      "content": "Uncertainty speed is encoded in increments of 1 kilometre per hour using an 8 bit binary coded number N. The value of N gives the uncertainty speed except for N=255 which indicates that the uncertainty is not specified.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.032_8.12",
+      "section_id": "8.12",
+      "section_title": "Coding of Horizontal Velocity",
+      "content": "The coding of horizontal velocity is described in figure 14.\nFigure 14: Coding of Horizontal Velocity\nBearing\nBit 1 of octet 1 is the high order bit; bit 1 of octet 2 is the low order bit\nHorizontal Speed\nBit 1 of octet 4 is the low order bit",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_14"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.032_8.13",
+      "section_id": "8.13",
+      "section_title": "Coding of Horizontal with Vertical Velocity",
+      "content": "The coding of horizontal with vertical velocity is described in figure 15.\nFigure 15: Coding of Horizontal with Vertical Velocity\nD:\tDirection of Vertical Speed\nBit value 0\tUpward\nBit value 1\tDownward",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_15"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.032_8.14",
+      "section_id": "8.14",
+      "section_title": "Coding of Horizontal Velocity with Uncertainty",
+      "content": "The coding of horizontal velocity with uncertainty is described in figure 16.\nFigure 16: Coding of Horizontal Velocity with Uncertainty",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_16"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.032_8.15",
+      "section_id": "8.15",
+      "section_title": "Coding of Horizontal with Vertical Velocity and Uncertainty",
+      "content": "The coding of horizontal with vertical velocity and uncertainty is described in figure 17.\nFigure 17: Coding of Horizontal with Vertical Velocity and Uncertainty\nAnnex A (informative):Element description in compact notation\nThe notation is the one described in GSM 04.07 [2].\n<Geographical Area Description> ::=\n<Point> |\n<Point with uncertainty circle > |\n<Point with uncertainty ellipse> |\n<Polygon> |\n<Point with Altitude> |\n<Point with altitude and uncertainty ellipsoid> |\n<Arc>;\n<Point> : :=\n0000 <spare>(4)\n<Point horizontal co-ordinates> ;\n<point horizontal co-ordinates> ::=\n<Latitude sign : bit> <Unsigned latitude : bit string(23)>\n<Longitude : bit string(24)> ;\n<Point with uncertainty circle > ::=\n0001 <spare>(4)\n<Point horizontal co-ordinates>\n<spare bit> <Uncertainty: bit string(7)> ;\n<Point with uncertainty ellipse> ::=\n0011 <spare>(4)\n<Point co-ordinates>\n<spare bit> <Uncertainty semi-major: bit string(7)>\n<spare bit> <Uncertainty semi-minor: bit string(7)>\n<Orientation of major axis: bit string(8)>\n<spare bit> <Confidence: bit string(7)>;\n<Polygon> ::=\n0101 <Number of points>\n<Point co-ordinates>(val(Number of points)) ;\n<Number of points> ::=\n0011 | 0100 | 0101 | 0110 | 0111 | 1000 | 1001 | 1010 |\n1011 | 1100 | 1101 | 1110 | 1111 ;\n<Point with Altitude> ::=\n1000 <spare>(4)\n<Point horizontal co-ordinates>\n<Point vertical co-ordinate>;\n<point vertical co-ordinate> ::=\n<sign : bit> <Unsigned altitude : bit string(15)>\n<Point with altitude and uncertainty ellipsoid> ::=\n1001 <spare>(4)\n<Point horizontal co-ordinates>\n<point vertical co-ordinate>\n<spare bit> <Uncertainty semi-major: bit string(7)>\n<spare bit> <Uncertainty semi-minor: bit string(7)>\n<Orientation of major axis: bit string(8)>\n<spare bit> <Uncertainty altitude: bit string(7)>\n<spare bit> <Confidence: bit string(7)>;\n<Ellipsoid Arc> ::=\n<1010> spare(4)\n<Point horizontal co-ordinates>\n<Inner radius: bit string(16)>\n<Spare bit> <Uncertainty radius: bit string(7)>;\n<Offset angle: bit string(8)>\n<Included angle: bit string(8)>\n<spare bit> <Confidence: bit string(7)>;\n<Velocity Description> ::=\n<Horizontal Velocity> |\n<Horizontal and Vertical Velocity> |\n<Horizontal Velocity with Uncertainty>|\n<Horizontal and Vertical Velocity with Uncertainty>;\n<Horizontal Velocity> : :=\n0000 <spare>(3)\n<Bearing: bit string(9)>\n<Horizontal speed: bit string(16)>;\n<Horizontal and Vertical Velocity> : :=\n0001 <spare>(2)\n<Vertical direction : bit>\n<Bearing: bit string(9)>\n<Horizontal speed: bit string(16)>\n<Vertical speed: bit string(8)>;\n<Horizontal Velocity with Uncertainty> : :=\n0010 <spare>(3)\n<Bearing: bit string(9)>\n<Horizontal speed: bit string(16)>\n<Uncertainty Speed: bit string(8)>;\n<Horizontal and Vertical Velocity with Uncertainty> : :=\n0011 <spare>(2)\n<Vertical direction : bit>\n<Bearing: bit string(9)>\n<Horizontal speed: bit string(16)>\n<Vertical speed: bit string(8)>\n<Horizontal Uncertainty Speed: bit string(8)>\n<Vertical Uncertainty Speed: bit string(8)>;\nAnnex B (informative):Change history\nChange history\nDate\nMeeting\nTDoc\nCR\nRev\nCat\nSubject/Comment\nNew version\n2004-12\nSP-26\nCreated version 6.0.0\n6.0.0\n2007-06\nSP-36\n-\n-\n-\nUpdate to Rel-7 version (MCC)\n7.0.0\n2008-12\nSP-42\n-\n-\n-\nUpdate to Rel-8 version (MCC)\n8.0.0\n2009-12\nSP-46\n-\n-\n-\nUpdate to Rel-9 version (MCC)\n9.0.0\n2011-03\nSP-51\n-\n-\n-\n-\nUpdate to Rel-10 version (MCC)\n10.0.0\n2012-09\n-\n-\n-\n-\n-\nUpdate to Rel-11 version (MCC)\n11.0.0\n2014-09\nSP-65\n-\n-\n-\n-\nUpdate to Rel-12 version (MCC)\n12.0.0\n2015-12\n-\n-\n-\n-\n-\nUpdate to Rel-13 version (MCC)\n13.0.0\n2017-03\n-\n-\n-\n-\n-\nUpdate to Rel-14 version (MCC)\n14.0.0\n2018-03\nSP-79\nSP-180089\n0014\n-\nF\nCorrection to the speed encoding\n14.1.0\n2018-06\nSP-80\n-\n-\n-\nUpdate to Rel-15 version (MCC)\n15.0.0\n2018-09\nSP-81\nSP-180729\n0015\n1\nF\nGAD shape(s) for high accuracy positioning\n15.1.0\n2020-07\nSP-88E\n-\n-\n-\n-\nUpdate to Rel-16 version (MCC)\n16.0.0\n2021-03\nSP-91E\nSP-210063\n0018\n1\nC\nGAD shape for location estimate in Local Coordinates\n17.0.0\n2021-09\nSP-93E\nSP-210913\n0019\n1\nF\nAdd message formats for Local 2D point with uncertainty ellipse and Local 3D point with uncertainty ellipsoid\n17.1.0\n2021-12\nSP-94E\nSP-211279\n0021\n1\nA\nIntroducing new high accuracy GAD shape with scalable uncertainty\n17.2.0\n2023-06\nSP-100\nSP-230485\n0022\n1\nB\nNew GAD Shapes for Ranging and Sidelink Positioning Location Results\n18.0.0\n2023-09\nSP-101\nSP-230855\n0025\n-\nF\nRemove Editor's Note on feasibility of the Relative Velocity with Uncertainty shape\n18.1.0\n2024-09\nSP-105\nSP-241250\n0029\n1\nF\nRelative Velocity Clarification\n18.2.0\n2024-12\nSP-106\nSP-241465\n0030\n1\nF\nUpdates to definition on Range and Direction\n18.3.0",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_17",
+        "ts_18.0"
+      ]
+    }
+  ]
+}

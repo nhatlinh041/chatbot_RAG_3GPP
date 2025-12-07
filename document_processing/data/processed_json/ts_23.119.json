@@ -1,0 +1,1278 @@
+{
+  "metadata": {
+    "specification_id": "ts_23.119",
+    "version": "18.0.0",
+    "title": "3GPP TS 23.119",
+    "file_path": "/content/drive/MyDrive/RAG_thesis/data/23_series/23119-i00/23119-i00.docx"
+  },
+  "export_info": {
+    "export_date": "2025-07-26T09:43:50.599289",
+    "total_chunks": 128
+  },
+  "chunks": [
+    {
+      "chunk_id": "ts_23.119_1",
+      "section_id": "1",
+      "section_title": "Scope",
+      "content": "The present document gives the stage 2 description of the Gateway Location Register (GLR) within the UMTS Core Network as a means of reducing the amount of MAP signalling traffic associated with location management carried over inter-PLMN links for roaming users.\nThe present document will be restricted of the case where the GLR supports one VPLMN only.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.119_2",
+      "section_id": "2",
+      "section_title": "References",
+      "content": "The following documents contain provisions which, through reference in this text, constitute provisions of the present document.\n-\tReferences are either specific (identified by date of publication, edition number, version number, etc.) or non‑specific.\n-\tFor a specific reference, subsequent revisions do not apply.\n-\tFor a non-specific reference, the latest version applies.  In the case of a reference to a 3GPP document (including a GSM document), a non-specific reference implicitly refers to the latest version of that document in the same Release as the present document.\n[1]\t3GPP TS 22.003: \"Teleservices Supported by a GSM Public Land Mobile Network (PLMN)\".\n[2]\t3GPP TS 23.007: \"Restore procedure\".\n[3]\t3GPP TS 23.012: \"Location management\".\n[4]\t3GPP TS 23.018: \"Basic call handling\".\n[5]\t3GPP TS 23.040: \"Technical realization of the Short Message Service (SMS); Point-to-Point (PP)\".\n[6]\t3GPP TS 23.060: \"General Packet Radio Service; Service description; Stage 2\".\n[7]\t3GPP TS 23.171: \"Location Services (LCS); Functional Description; Stage 2\".\n[8]\t3GPP TS 23.093: \"Technical realization of Completion of Calls to Busy Subscriber (CCBS) ‑ Stage 2\".\n[9]\t3GPP TS 23.116: \"Super-Charger Technical Realisation; Stage2\".\n[10]\t3GPP TS 29.002: \"Mobile Application Part (MAP) specification\".\n[11]\t3GPP TS 29.120: \"Mobile Application Part (MAP) specification for GLR\".\n[12]\t3GPP TS 33.102: \"3G Security\".",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_22.003",
+        "ts_23.007",
+        "ts_23.012",
+        "ts_23.018",
+        "ts_23.040",
+        "ts_23.060",
+        "ts_23.171",
+        "ts_23.093",
+        "ts_23.116",
+        "ts_29.002",
+        "ts_29.120",
+        "ts_33.102"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.119_3.1",
+      "section_id": "3.1",
+      "section_title": "Definitions",
+      "content": "For the purposes of the present document, the following terms and definitions apply.\nGateway Location Register: this entity handles location management of roaming subscriber in visited network without involving HLR\nIntermediate GSN: this entity is used as serving GSN towards home network and relay some PDU notification messages between serving GSN and Gateway GSN\nIntermediate MSC: this entity is used as serving MSC towards home network and relay some messages between serving MSC and home network",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.119_3.2",
+      "section_id": "3.2",
+      "section_title": "Abbreviations",
+      "content": "For the purposes of the present document, the following abbreviations apply:\nCCBS\tCompletion of Calls to Busy Subscriber\nGLR\tGateway Location Register\nGPRS\tGeneral Packet Radio Service\nIM-GSN\tIntermediate GSN\nIM-MSC\tIntermediate MSC\nSGSN\tServing GPRS Support Node",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.119_4",
+      "section_id": "4",
+      "section_title": "Introduction",
+      "content": "UMTS will build on the success of GSM and is likely to become even more widespread. UMTS/ IMT-2000 networks based on GSM evolution are planned for Europe, Japan, USA and Korea. Coupled with steadily increasing rates of international travel for business and leisure, this means a significant increase in the number of roaming users needing to be supported. This will lead to an increase of the signalling traffic on \"short -haul\" and \"long-haul\" international links.\nThe GLR (Gateway Location Register) is a node between the VLR and/or SGSN and the HLR, which may be used to optimise the location updating and the handling of subscriber profile data across network boundaries. When a subscriber is roaming the GLR plays the role of the HLR towards the VLR and SGSN in the visited network and the role of the VLR and SGSN towards the HLR in the home network.\nThe GLR is an optional entity within the VPLMN. The network architecture where the presence of a GLR within a UMTS PLMN is not visible to either a second generation HPLMN (i.e. GSM release 98 or earlier) or a 3G HPLMN (i.e. GSM Release 99 or later).",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.119_5",
+      "section_id": "5",
+      "section_title": "Roaming Scenario",
+      "content": "Figure 1 shows that the GLR is deployed at the edge of visited network. It contains roamer's subscriber profile and location information, and handles mobility management within the visited network.\nThe subscriber information is downloaded from HLR to GLR at the first location update procedure under the GLR. Using the information, GLR handles Update Location message from VLR as if it is the HLR of the subscriber at second and further location updating procedures. GLR enables the procedure invisible from the home network so that this hierarchical location management can reduce the inter-network signalling for the location management.\nThe GLR keeps the information until receiving Cancel Location message from HLR.",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.119_5.1",
+      "section_id": "5.1",
+      "section_title": "Relationship between GLR and HLR",
+      "content": "A GLR interacts with multiple HLRs, which will be located in different PLMNs. The relationship between the GLR and the HLR is the same as that between the VLR and the HLR.\nThe implication of supporting multiple HPLMNs is that the GLR will need to store a large amount of profile data.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.119_5.2",
+      "section_id": "5.2",
+      "section_title": "Relationship between GLR and VLR",
+      "content": "A GLR interacts with multiple VLRs. For the purposes of this Technical Specification, the GLR supports only one VPLMN. The support of multiple VPLMNs by the GLR is outside the scope of this Technical Specification.\nHowever, it is an assumption of this specification that the proposed GLR architecture must not prevent future expansion to support multiple VPLMNs.\nFigure 5.2/1: Possible Location of GLR",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_5.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.119_5.3",
+      "section_id": "5.3",
+      "section_title": "Roaming to VPLMN with GLR from HPLMN without GLR",
+      "content": "Figure 5.3/1 shows the roaming scenario in case of a subscriber roaming to a new VPLMN with the GLR.\nFigure 5.3/1: Roaming to VPLMN with the GLR from HPLMN without the GLR",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_5.3"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.119_5.4",
+      "section_id": "5.4",
+      "section_title": "Intra-VPLMN with GLR roaming",
+      "content": "In this case, the second and further location updating procedure is handled within the VPLMN. No location management message issent to the HPLMN.\nFigure 5.4/1: Intra-VPLMN with GLR roaming",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_5.4"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.119_5.5",
+      "section_id": "5.5",
+      "section_title": "Inter-VPLMNs with GLR Roaming",
+      "content": "This roaming case is similar to the case of roaming from HPLMN to VPLMN. The first location update procedure is handle by HLR and VLR via GLR of a new VPLMN.\nFigure 5.5/1: Inter-VPLMN with GLR roaming",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_5.5"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.119_5.6",
+      "section_id": "5.6",
+      "section_title": "Roaming to VPLMN without GLR from VPLMN with GLR",
+      "content": "In this case the cancel location procedure is handled by HLR and VLR via GLR of old VPLMN.\nFigure 5.6/1: Roaming to VPLMN without GLR from VPLMN with GLR",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_5.6"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.119_6",
+      "section_id": "6",
+      "section_title": "Logical Network Model",
+      "content": "The GLR is logically located between HLR and VLR as an optional node to optimise inter-network signalling for location management. The overall GLR concept is achieved by the GLR itself, Intermediate-MSC (IM-MSC) and Intermediate-GSN (IM-GSN). The logical network model is shown in figure 6/1.\nFigure 6/1: GLR Network Model",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_6"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.119_6.1",
+      "section_id": "6.1",
+      "section_title": "GLR",
+      "content": "The GLR is pseudo-HLR located in visited network. The roamer's information is stored in it and handles location management of it within the network. Presence of GLR is invisible from home network therefore interface between HLR and GLR is same as one of HLR and VLR. Also, the interface between the VLR and GLR is the same as the one between the VLR and the HLR.\nThe GLR is a logical node and acts as a VLR for MAP signalling (e.g. PRN) from the HPLMN point of view. The GLR acts as a HLR for MAP signalling (e.g. Register SS) from the VPLMN point of view.\nThe GLR also acts as an SGSN for MAP signalling only (e.g. ISD) from the HPLMN point of view. This is because MAP operations such as ISD must be terminated at the GLR for the purpose of subscriber data caching.\nThe GLR shall terminate all TC dialogues and start new dialogues towards the HLR or the VLR. The GLR shall generate SCCP address of the HLR (i.e. E.214 MGT) from IMSI.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.119_6.2",
+      "section_id": "6.2",
+      "section_title": "Intermediate MSC",
+      "content": "The Intermediate MSC (IM-MSC) is the logical node, which represent MSCs in the visited network. Some service features use the MSC Number stored in the HLR directly to deliver message from a certain node in home network (e.g. SMS-GMSC) to serving MSC in visited network. In such case, the message is firstly distributed to representative MSC (i.e., IM-MSC) and it relays it to actual serving MSC interrogating routing information to GLR.\n-\tThe Intermediate MSC (IM-MSC) is a logical node and represents the VMSC in the GLR equipped VPLMN.\n-\tThe IM-MSC acts as the VMSC for the HPLMN in the same way that the GLR acts as a VLR for HPLMN. The IM-MSC terminates MAP signalling from the HPLMN towards the VMSC and forwards the signal to the actual VMSC.\n-\tThe IM-MSC has an address interrogation function with which it is able to obtain the actual VMSC Number from the GLR.\n-\tThe IM-MSC is implemented in the same physical node as the one in which the GLR is implemented.\n-\tThe GLR alters the VMSC Number to the IM-MSC Number within an Update Location message.\n-\tThe IM-MSC Number is the E.164 Number assigned to the IM-MSC.\n-\tThe interrogation function of the IM-MSC is similar to that in the SMS-GMSC.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.119_6.3",
+      "section_id": "6.3",
+      "section_title": "Intermediate GSN",
+      "content": "The Intermediate GSN (IM-GSN) is a logical node and represents the SGSN for some GTP signalling termination in a GLR equipped VPLMN.\nThe IM-GSN acts as an SGSN for only some GTP signalling messages (i.e. PDU_Notification request/response, PDU_Notification_reject request/response) from the HPLMN. The IM-GSN terminates these GTP signalling messages from the HPLMN towards SGSN and forwards the signal to the actual SGSN. The IM-GSN has an address interrogation function with which it is able to request the actual SGSN address from the GLR.\nApart from the case described above (i.e. PDU_Notification request/response, PDU_Notification_reject request/response), all other GTP signalling should be handled directly between the SGSN and the GGSN.\nNOTE:\tMAP signalling towards the SGSN is NOT terminated at the IM-GSN. Instead it is terminated at the GLR.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.119_6.4",
+      "section_id": "6.4",
+      "section_title": "Gate Node",
+      "content": "The Gate Node represents a GMSC, GMLC or SMS-GMSC.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.119_7.1",
+      "section_id": "7.1",
+      "section_title": "Logical Functions",
+      "content": "This clause gives the logical functions performed within the GLR.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.119_7.1.1",
+      "section_id": "7.1.1",
+      "section_title": "Message Relay Function",
+      "content": "This function is used for the exchange of MAP operation between HLR and VLR/SGSN via GLR. When a message is received from VLR or SGSN, the GLR identifies the relevant HLR using appropriate logic, and vice versa.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.119_7.1.2",
+      "section_id": "7.1.2",
+      "section_title": "Address Conversion Function",
+      "content": "The Address Conversion function in the GLR is performed when the GLR receives the Update Location message from the VLR or the Update GPRS Location message from the SGSN, and the HLR updating is required. The GLR will convert visited node addresses as follows:\n-\tVLR Number converts to the GLR Number.\n-\tMSC Number converts to the IM-MSC Number.\n-\tSGSN Number converts to the GLR Number.\n-\tSGSN Address converts to the IM-GSN Address.\nThe converted numbers are sent to the HLR with the Update Location message or Update GPRS message. The HLR stores these addresses as the location information. The HLR uses the GLR Number as the destination address of the messages to VLR and SGSN (e.g., Insert Subscriber Data) and the messages are actually routed to the GLR. The IM-MSC Number is sent to e.g., the SMS-GMSC with a Send Routing Info for Short Message ack message as a destination address to the MSC and the SMS-GMSC uses the IM-MSC Number as the destination address of a Forward Short Message. The IM-GSN Address is sent to the GGSN with Send Routing Info for GPRS ack message and used as the destination address of PDU Notification message.\nAccording to this scheme, the actual visited node addresses would be stored only in the GLR. The GLR can hide second and further UL messages towards the HLR. Consequently inter-PLMN signalling will be reduced.\nThe address conversion function in the GLR is performed also when the GLR receives any messages that include the HLR Number from the HLR. The GLR will modify the HLR Number as follows.\n-\tHLR Number converts to the GLR Number.\nThe GLR Number is sent to the VLR or SGSN with the same message received from HLR. The VLR or SGSN stores the GLR Number as the HLR number.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.119_7.1.3",
+      "section_id": "7.1.3",
+      "section_title": "Subscriber Information Caching Function",
+      "content": "This function is to store the subscriber's information, which is obtained from HLR during location updating procedure. When the HLR send Insert Subscriber Data message to VLR and/or SGSN via GLR for the location update, the subscriber information is also stored in the GLR and kept until it receives Cancel Location message from HLR. The stored information is used for HLR emulation Function.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.119_7.1.4",
+      "section_id": "7.1.4",
+      "section_title": "Subscriber Information Cancellation Function",
+      "content": "This function is to delete subscriber information stored in GLR and also in VLR and SGSN as requested from HLR or from Location Updating Screening Function in the GLR.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.119_7.1.5",
+      "section_id": "7.1.5",
+      "section_title": "HLR emulation Function",
+      "content": "This function is to handle the location management procedure only within the visited network. When it is decided that the request of location update can be handled at the GLR without involving HLR by Location Updating Screening Function, this function is invoked and GLR acts like the HLR of the subscriber.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.119_7.1.6",
+      "section_id": "7.1.6",
+      "section_title": "Location Updating Screening Function",
+      "content": "This function is used to judge, whether requested location updating is necessary to be indicated to HLR or not. When the GLR has the IMSI record, the GLR may not indicate the location updating to HLR and HLR emulation function is invoked. However, even though the GLR stores the IMSI record, the update location has to be indicated to HLR in some cases. The detail procedures of the cases are shown below.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.119_7.1.7",
+      "section_id": "7.1.7",
+      "section_title": "Routeing Information Providing Function",
+      "content": "This function is used to provide routeing information to the Intermediate MSC and the Intermediate GSN.\nAn Address Interrogation function is located within the IM-MSC, IM-GSN and GLR. The IM-MSC, IM-GSN and GLR need the actual visited node address when they need to forward messages to the actual visited node. The IM-MSC and IM-GSN interrogate the GLR to obtain these actual visited node addresses. The GLR holds the actual visited node address internally.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.119_7.1.8",
+      "section_id": "7.1.8",
+      "section_title": "Regional Restriction and Unsupported Services handling Function",
+      "content": "This function is used to handle the regional restriction indication or unsupported service indication in Insert Subscriber Data ack message. When the GLR receives the indication, the GLR initiates the location updating procedure toward the HLR. And later, when the user returns to an MSC/SGSN area that is not restricted due to regional subscription or an area that supports the services subscribed, the GLR identifies the need to notify the HLR of the return. Therefore the location updating procedure is initiated toward the HLR for this handling.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.119_7.1.9",
+      "section_id": "7.1.9",
+      "section_title": "Super Charger function",
+      "content": "This function is used handle the location management procedure from the serving node (i.e. VLR or SGSN) which supports the Super-Charger features. This is basically the same as the Super-Charged HLR. (Refer to 3G TS 23.116 [9]) Followings are supplementary explanation for the GLR behaviour as Super-Charged HLR:\n-\tWhen the subscription data is updated by insert subscriber data procedure from the HLR, the GLR shall update the age indicator to reflect the change of the subscription data and sends the subscription data to the serving node identified by the GLR.\nIf the GLR receives location registration request from the Super-Charged serving node and has no subscription data for the user, whatever the content of the age indicator in the request is, when the GLR receives the subscription data from the HLR, it relays the data to the serving node.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.116"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.119_7.2.1",
+      "section_id": "7.2.1",
+      "section_title": "Location Management Procedures",
+      "content": "[Editor's Note: This clause may be modified after the finalising of restructuring of 3G TS 23.012 [3] and clause 19 of 3G TS 29.002 [10].]",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "ts_23.012_clause_19",
+        "ts_23.012",
+        "ts_29.002"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.119_7.2.1.1",
+      "section_id": "7.2.1.1",
+      "section_title": "Location Updating Procedure",
+      "content": "In case of first location updating procedure in the network that introduces the GLR, this procedure is handled by HLR and VLR via GLR. For the second and further location updating, HLR is no longer involved with the procedure. The distinction of those two cases is controlled by GLR so that HLR and VLR is not necessary to be conscious of the difference.",
+      "chunk_type": "procedure",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.119_7.2.1.1.1",
+      "section_id": "7.2.1.1.1",
+      "section_title": "First Location Updating Procedure",
+      "content": "The first location updating procedure in a network is illustrated in figure 7.2/1. Each step is explained in the following list.\nFigure 7.2/1: First Location Updating Procedure in the Network\nProcedure:\n1)\tWhen the GLR receives an Update Location message from a VLR and does not hold the subscriber's information for the user (i.e. at first location updating to the GLR), the GLR:\n-\tstores the VLR Number and serving MSC Number included in the received message, and\n-\tsends an Update Location message to the HLR with the GLR Number as VLR Number, and IM-MSC Number as MSC Number.\n2)\tThe HLR stores the GLR Number and IM-MSC Number from received message as respectively VLR Number and serving MSC Number. Thereafter the HLR initiates insert subscriber data procedure and cancel location procedure. When the GLR receives Insert Subscriber Data message from the HLR, the GLR stores the subscriber's information in the message and transport it to the VLR.\n3)\tAfter these procedures, the HLR replies to an Update Location message from the GLR and the GLR transports the response to the VLR.",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_7.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.119_7.2.1.1.2",
+      "section_id": "7.2.1.1.2",
+      "section_title": "Second and further Location Updating Procedure",
+      "content": "The second and further location updating procedure in the network is illustrated in figure 7.2/2. Each step is explained in the following list.\nFigure 7.2/2: Second and further Location Updating Procedure in the Network\nProcedure:\n1)\tWhen the GLR receives an Update Location message from newly visited VLR and holds the subscriber information for the user (i.e. at second or further location updating to the GLR), the GLR stores the new VLR Number and new serving MSC Number included in the received message.\n2)\tThereafter the GLR initiates insert subscriber data procedure and cancel location procedure.\n3)\tAfter these procedures, the GLR replies to an Update Location message from the VLR.",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_7.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.119_7.2.1.1.3",
+      "section_id": "7.2.1.1.3",
+      "section_title": "Functional requirements of GLR",
+      "content": "7.2.1.1.3.1\tProcess Update_Location_GLR\nFigure 7.2/3 shows SDL chart for Process Update_Location_GLR.\nSheet1: the test \"HLR update required?\" takes the \"yes\" exit the GLR checks some flags (ex. CCBS mon. flag) to perform the \"Location Updating Screening Function (see to clause 7.1.6)\" and if it is needed to update location information to the HLR.\nSheet1: CCBS_Status_Report_GLR procedure is called only if Alternative 2 for CCBS is performed in GLR.\nSheet2: after the GLR sends an Update Location message to the HLR, the GLR receives the response with:\n-\tan Insert Subscriber Data message handled by the procedure Insert_Subscriber_Data_GLR.\n-\ta Forward Check SS indication message. This message will be relayed to the VLR without any change of the current state.\n-\tan Update Location ack message. If the GLR receives this message, this indicates that updating has been successfully completed. The GLR sets the \"(Location and Subscriber information) LSIC by HLR\" indicator to \"Confirmed\". The GLR send an Update Location ack message to the VLR.\n-\tan Update Location negative response message. If the GLR receives this message, this indicates that updating has been unsuccessfully completed. The GLR sets the \"(Location and Subscriber information) LSIC by HLR\" indicator to \"False\". The GLR sends an Update Location negative to the VLR.\nSheet1: process Cancel_Location_Initiated_GLR is specified in clause 7.2.1.2.1.2.\nSheet5: CCBS_Start_Report_GLR procedure is called only if Alternative 2 for CCBS performed in GLR.\nFigure7.2/3(1): Process Update_Location_GLR\nFigure7.2/3(2): Process Update_Location_GLR\nFigure7.2/3(3): Process Update_Location_GLR\nFigure7.2/3(4): Process Update_Location_GLR\nFigure7.2/3(5): Process Update_Location_GLR\nFigure7.2/3(6): Process Update_Location_GLR\nFigure7.2/3(7): Process Update_Location_GLR\n7.2.1.1.3.2\tProcess Subscriber_Present_GLR\nFigure 7.2/4 shows SDL chart for Process Subscriber_Present_GLR.\nFigure7.2/4: Process Subscriber_Present_GLR\n7.2.1.1.3.3\tProcedure Insert_Subscriber_Data_GLR\nFigure 7.2/5 shows SDL chart for Procedure Insert_Subscriber_Data_GLR. This procedure is initiated by receiving Insert Subscriber Data from the HLR. This procedure is used by Process Update_Location_GLR and Process Update_GPRS_Location_GLR.\nFigure7.2/5: Procedure Insert_Subscriber_Data_GLR\n7.2.1.1.3.4\tProcedure Insert_Subscriber_Data_Initiated_GLR\nFigure 7.2/6 shows SDL chart for Procedure Insert_Subscriber_Data_Initiated_GLR. This procedure is initiated if HLR update is not required.\nFigure7.2/6(1): Procedure Insert_Subscriber_Data_Initiated_GLR\nFigure7.2/6(2): Procedure Insert_Subscriber_Data_Initiated_GLR",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_7.1.6",
+        "clause_7.2.1.2.1.2",
+        "figure_7.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.119_7.2.1.2",
+      "section_id": "7.2.1.2",
+      "section_title": "Cancel Location Procedure",
+      "content": "The cancel location procedure in the network when MS leave the network is illustrated in figure 7.2/7. Each step is explained in the following list.\nFigure 7.2/7: Cancel Location Procedure in the Network\nProcedure:\n1)\tWhen the HLR receives an Update Location message from newly visited VLR after the MS left the network with the GLR, the HLR initiates cancel location procedure to the GLR.\n2)\tThe GLR receives a Cancel Location message from the HLR and transport to the previously visited VLR. When the GLR receives the response, the GLR transports it to the HLR and delete the roamer's subscriber profile and location information.\n3)\tThe HLR initiates insert subscriber data procedure to the newly visited VLR.\n4)\tAfter the procedure, the HLR returns the response of an Update Location message to the newly visited VLR.",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_7.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.119_7.2.1.2.1",
+      "section_id": "7.2.1.2.1",
+      "section_title": "Functional requirements of GLR",
+      "content": "7.2.1.2.1.1\tProcess Cancel_Location_GLR\nFigure 7.2/8 shows SDL chart for Process Cancel_Location_GLR. This process is initiated from the HLR.\nFigure7.2/8: Process Cancel_Location_GLR\n7.2.1.2.1.2\tProcess Cancel_Location_Initiated_GLR\nFigure 7.2/9 shows SDL chart for Process Cancel_Location_Initiated_GLR. This process is initiated if HLR update is not required.\nFigure7.2/9: Process Cancel_Location_Initiated_GLR",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_7.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.119_7.2.1.3",
+      "section_id": "7.2.1.3",
+      "section_title": "Handling of unsupported service",
+      "content": "The procedure can be used to handle the case where the VLR does not support the full set of services required by the user.\nSee figure 7.2/10. When the GLR receives the Insert Subscriber Data Acknowledge message indicating \"Service Not Supported\", it initiates the location updating procedure toward the HLR. The HLR takes some appropriate reaction (e.g. initiates service substitution or roaming restriction etc.) and determines whether to accept the location updating request or not for the user. The HLR generates a new profile (i.e. the profile after service substitution), which must be forwarded by the GLR to the VLR. The GLR must also maintain a copy of the actual service profile for the subscriber (i.e. the profile before service substitution).\nThe GLR will have to perform some transaction level processing on message 3 (i.e. Insert Subscriber Data ack) from the VLR. Subsequently, when the GLR sends message 6 (i.e. Insert Subscriber Data ack) to the HLR, the message format will have to match that of message 5 (Insert Subscriber Data) from the HLR.\nFigure 7.2/10: MS Arrives at a VLR That Cannot Handle all Services\nWhen the user roams from a VLR area with restricted service support into a VLR area where the VLR can support the full set of subscribed services, the GLR must:\n-\tIdentify that the new VLR can support the actual service profile required by the HLR, i.e. the profile before service substitution.\n-\tnotify the HLR to take the appropriate reaction to restore services. Therefore, the GLR initiates the location updating procedure towards the HLR. (refer to figure 7.2/11 in the case of circuit switched mode).\nThe GLR will have to perform some transaction level processing on message 3 (i.e. Insert Subscriber Data ack) from the VLR. Subsequently, when the GLR sends message 6 (i.e. Insert Subscriber Data ack) to the HLR, the message format will have to match that of message 5 (Insert Subscriber Data) from the HLR.\nFigure 7.2/11: MS Arrives at a VLR That Handles all Services",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_7.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.119_7.2.2",
+      "section_id": "7.2.2",
+      "section_title": "Retrieval of routeing information procedure",
+      "content": "In 3G TS 23.018 [4](Basic Call Handling) specification, the description for the basic call handling about MO and MT is stated.\nOnly the retrieval of routeing information for an MT call is related with the GLR.\nTherefore, this specification states the retrieval of routeing information for an MT call.",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "ts_23.018"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.119_7.2.2.1",
+      "section_id": "7.2.2.1",
+      "section_title": "Information flow for retrieval of routeing information for an MT call",
+      "content": "The information flow for retrieval of routeing information for an MT call is shown in figure 7.2/12. Solid lines show ISUP signalling between the originating exchange and GMSCB, and between GMSCB and VMSCB; signalling over the MAP interfaces between GMSCB and HLRB and between HLRB and VLRB is shown by chain lines.\nFigure 7.2/12: Information flow for retrieval of routeing information for a basic mobile terminated call\nWhen GMSCB receives an IAM, it analyses the called party address. If GMSCB can derive an HLR address from the B party address, it sends a request for routeing information (SRI) to HLRB. HLRB sends a request for a roaming number (PRN) to VLRB via GLRB. VLRB returns the roaming number in the PRN ack via GLR, and HLRB relays the roaming number to GMSCB in the SRI ack. GMSCB constructs an IAM using the roaming number, and sends it to VMSCB.\nIf the VLRB supports the Super-Charger features, when the VLRB receives a request for a roaming number (PRN) and has no subscriber data for the user, it checks whether the subscriber data record was removed by the Super-Charger database management function or not. (See 3G TS 23.116 [9]) If the subscriber data was removed by the Super-Charger feature, the VLRB shall return the cause information set to Purged MS to the GLR by sending PRN negative response. When the GLR receives this information, it deletes the subscriber data for the user and relays the message to the HLR.",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_7.2",
+        "ts_23.116"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.119_7.2.2.2",
+      "section_id": "7.2.2.2",
+      "section_title": "Functional requirements of network entities",
+      "content": "The text in this clause is a supplement to the definition in the SDL diagrams; it does not duplicate the information in the SDL diagrams.\nThe entities described in this clause interwork with other entities over the D interfaces, used to interwork between the VLR & HLR.\nThe protocol used over the D interfaces is MAP, which is specified in 3G TS 29.002 [10].\nFor the purposes of this specification, the protocol used over telephony signalling interfaces is ISUP, which is specified in ETS 300 356‑1 [27]; other telephony signalling systems may be used instead.\nThe SDL diagrams in this clause show the handling for a number of optional features and services. If the handling consists only of a call to a procedure specific to the feature or service, the procedure call is omitted if the entity does not support an optional feature or service. If the handling consists of more than a call to a procedure specific to the feature or service, the text associated with each SDL diagram specifies the handling that applies if the entity does not support an optional feature or service.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.002"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.119_7.2.2.2.1",
+      "section_id": "7.2.2.2.1",
+      "section_title": "Functional requirements of GLR",
+      "content": "7.2.2.2.1.1\tProcess PRN_GLR\nFigure 7.2/13 shows SDL chart for Process PRN_GLR.\nSheet1: the GLR receives a PRN message from the HLR.\nSheet1: after the GLR transfers the VLR Number, the GLR relays a PRN message to the VLR.\nSheet1: the GLR waits a PRN response and receives a PRN ack message or a PRN negative response message from the VLR.\nSheet1: after the GLR transfers the HLR Number, the GLR relays a PRN ack message or a PRN negative response message to the HLR.\nFigure 7.2/14 shows SDL chart for Procedure Super_Charged_PRN_Error_GLR.\nFigure7.2/13: Process PRN_GLR\nFigure7.2/14: Procedure Super_Charged_PRN_Error_GLR\n7.2.2.2.1.2\tProcess PSI_GLR\nFigure 7.2/15 shows SDL chart for Process PSI_GLR.\nSheet1: the GLR receives a PSI message from the HLR.\nSheet1: after the GLR transfers the VLR Number, the GLR relays a PSI message to the VLR.\nSheet1: the GLR waits a PSI response and receives a PSI ack message or a PSI negative response message from the VLR.\nSheet1: after the GLR transfers the HLR Number, the GLR relays a PSI ack message or a PSI negative response message to the HLR.\nFigure7.2/15: Process PSI_GLR",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_7.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.119_7.2.2.3",
+      "section_id": "7.2.2.3",
+      "section_title": "Contents of messages (HLR-GLR, GLR-VLR)",
+      "content": "There is no different between the contents of the following messages sent between HLR and VLR and the contents of the following messages sent between HLR and GLR, GLR and VLR. The same contents are sent from the HLR to VLR via the GLR. See 3G TS 23.018 [4].\n-\tProvide Roaming Number.\n-\tProvide Roaming Number ack.\n-\tProvide Roaming Number negative response.\n-\tProvide Subscriber Info.\n-\tProvide Subscriber Info ack.\n-\tProvide Subscriber Info negative response.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.018"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.119_7.2.3",
+      "section_id": "7.2.3",
+      "section_title": "Authentication Information Retrieval procedure ARRI",
+      "content": "The Authentication Information Retrieval procedure is illustrated in figure 7.2/16. Each step is explained in the following list.\nFigure 7.2/16: Send Authentication Info\nProcedure:\n1.\tWhen the VLR receives a service indication concerning a location registration, call set-up, operation on a supplementary service to initiate authentication. The VLR sends a Send Authentication Info message to the GLR in order to retrieve the authentication information.\n2.\tThe GLR transfers the received message to the HLR.\n3.\tWhen the GLR receives the response with authentication information for the user from the HLR, it transports to the VLR.\n4.\tThe VLR receives the authentication information of user by the response of Send Authentication Info message.",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_7.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.119_7.2.4.1",
+      "section_id": "7.2.4.1",
+      "section_title": "Insert Subscriber Data Procedure",
+      "content": "The Insert Subscriber Data procedure is illustrated in figure 7.2/17. Each step is explained in the following list.\nFigure 7.2/17: Insert Subscriber Data\nProcedure:\n1.\tThe HLR sends Insert Subscriber Data message to the GLR in order to update with the certain subscriber data.\n2.\tThe GLR updates the subscriber data and transfer the received message to the VLR.\n3.\tThe GLR receives the response from the VLR. The response may indicate regional restriction or unsupported services. The detail procedures are described in clause 7.5.\n4.\tThe GLR transfers the received message to the HLR.",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "clause_7.5",
+        "figure_7.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.119_7.2.4.2",
+      "section_id": "7.2.4.2",
+      "section_title": "Delete Subscriber Data Procedure",
+      "content": "The Delete Subscriber Data procedure is used by an HLR to remove certain subscriber data from a VLR and a SGSN if the subscription of one or more supplementary services or basic services is withdrawn. Note that this service is not used in case of erasure or deactivation of supplementary services. And the Delete Subscriber Data procedure is illustrated in figure 7.2/18. Each step is explained in the following list.\nFigure 7.2/18: Delete Subscriber Data\nProcedure:\n1.\tThe HLR sends a Delete Subscriber Data message to the GLR in order to remove with the certain subscriber data.\n2.\tThe GLR deletes the subscriber data indicated and transfers the received message to the VLR.\n3.\tThe GLR receives a Delete Subscriber Data ack message from the VLR.\n4.\tThe GLR transfers the received message to the HLR.",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_7.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.119_7.2.5",
+      "section_id": "7.2.5",
+      "section_title": "Supplementary services procedures",
+      "content": "Activation, deactivation, registration, erasure, and interrogation are the procedures involving the interface between the VLR and the HLR related to the control of state of the supplementary services. Also Registration of password and use of password are the procedures involving the interface. Additionally, Unstructured SS Data service and CCBS includes the procedure involving the interface. If the GLR is located between the HLR and the VLR, the GLR relays the messages between HLR and VLR of the procedures transparently.\nThe registration procedure involving the GLR is described in figure 7.2/19 as a typical case. The following procedures are the similar to the registration procedure. Each step is explained in the following list.\nFigure 7.2/19: Register SS\nProcedure:\n1.\tWhen the VLR receives a service indication of registration of SS data, such as a Forwarded-to-Number, the VLR sends a Register SS message.\n2.\tThe GLR transfers the received message to the HLR.\n3.\tThe GLR receives the acknowledgement from the HLR.\n4.\tThe GLR transfers the received message to the VLR.",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_7.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.119_7.3",
+      "section_id": "7.3",
+      "section_title": "Packet Switched Service",
+      "content": "This clause describes the GPRS procedures involving GLR except Short Message Service, Recovery and Restoration. The procedures for Short Message Service of GPRS are described in the clause \"Short Message Service.\" The procedures for Recovery and Restoration of GPRS are described in the clause \"Recovery and Restoration.\"",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.119_7.3.1",
+      "section_id": "7.3.1",
+      "section_title": "GPRS Attach Procedure",
+      "content": "Three cases are described in this section:\n-\tThe new SGSN is within a VPLMN served by the GLR. The old SGSN interfaces to the HLR directly.\n-\tThe new SGSN and old SGSN are within a VPLMN served by the same GLR.\n-\tThe new SGSN is within a VPLMN served by the GLR. The old SGSN is within a different VPLMN served by the GLR.\n-\tThe new SGSN interfaces to the HLR directly. The old SGSN is within a VPLMN served by the GLR.",
+      "chunk_type": "procedure",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.119_7.3.1.1",
+      "section_id": "7.3.1.1",
+      "section_title": "New SGSN served by GLR, old SGSN served by HLR",
+      "content": "Figure 7.3/1: GPRS Attach Procedure involving GLR (new SGSN is under the GLR. Old SGSN interfaces the HLR directly)\n1)\tto 5) These steps are the same as the steps not involving GLR. See TS 23.060 [6].\n6)\tIf the SGSN number has changed since the GPRS detach, or if it is the very first attach, then the SGSN informs the HLR via GLR:\na)\tThe SGSN sends an Update Location (SGSN Number, SGSN Address, and IMSI) to the GLR. Then the GLR sends an Update Location (GLR Number, IM-GSN address, IMSI) to the HLR, if the GLR does have the IMSI record. Note that, GLR Number and IM-GSN address should respectively be set in SGSN Number parameter and SGSN address parameters.\nb)\tThe HLR sends Cancel Location (IMSI, Cancellation Type) to the old SGSN with Cancellation Type set to Update Procedure.\nc)\tThe old SGSN acknowledges with Cancel Location Ack (IMSI). If there are any ongoing procedures for that MS, the old SGSN shall wait until these procedures are finished before removing the MM and PDP contexts.\nd)\tThe HLR sends Insert Subscriber Data (IMSI, GPRS subscription data) to the GLR. The GLR sends Insert Subscriber Data (IMSI, GPRS subscription data) to the new SGSN.\ne)\tThe new SGSN validates the MS's presence in the (new) RA. If due to regional subscription restrictions the MS is not allowed to attach in the RA, the SGSN rejects the Attach Request with an appropriate cause, and may return an Insert Subscriber Data Ack (IMSI, SGSN Area Restricted) message to the GLR. Then, the GLR set the SGSN area restricted flag \"true\" and transfers the SGSN area restricted indication to the HLR within the Insert Subscriber Data Ack message. Note that some modification at the application level might be needed here to maintain compatibility with the message format of (6d). If subscription checking fails for other reasons, the SGSN rejects the Attach Request with an appropriate cause and returns an Insert Subscriber Data Ack (IMSI, Cause) message to the GLR, which the GLR transfers to the HLR within the Insert Subscriber Data Ack message. Note that some modification at the application level might be needed here to maintain compatibility with the message format of (6d). If all checks are successful then the SGSN constructs an MM context for the MS and returns an Insert Subscriber Data Ack (IMSI) message to the GLR, which the GLR transfers to the HLR.\nf)\tThe HLR acknowledges the Update Location message by sending an Update Location Ack to the GLR and the GLR send it to the SGSN after the cancelling of old MM context and insertion of new MM context are finished. If the Update Location is rejected by the HLR, the SGSN rejects the Attach Request from the MS with an appropriate cause.\n8)\tand 9) These steps are the same as the steps not involving GLR. See TS 23.060 [6].\nIf the Attach Request cannot be accepted, the SGSN returns an Attach Reject (IMSI, Cause) message to the MS.",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_7.3",
+        "ts_23.060"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.119_7.3.1.2",
+      "section_id": "7.3.1.2",
+      "section_title": "New SGSN and old SGSN served by the same GLR",
+      "content": "Figure 7.3/2: GPRS Attach Procedure involving GLR (new SGSN and old SGSN are under in the same GLR)\n1)\tto 5) These steps are the same as the steps not involving GLR. See TS 23.060 [6].\n6)\tIf the SGSN number has changed since the GPRS detach, or if it is the very first attach, then the SGSN informs the GLR:\na)\tThe SGSN sends an Update Location (SGSN Number, SGSN Address, and IMSI) to the GLR. If the GLR has the IMSI record, the GLR does not send an Update Location message to the HLR.\nb)\tThe GLR sends Cancel Location (IMSI, Cancellation Type) to the old SGSN with Cancellation Type set to Update Procedure.\nc)\tThe old SGSN acknowledges with Cancel Location Ack (IMSI). If there are any ongoing procedures for that MS, the old SGSN shall wait until these procedures are finished before removing the MM and PDP contexts.\nd)\tThe GLR sends Insert Subscriber Data (IMSI, GPRS subscription data) to the new SGSN.\ne)\tThe new SGSN validates the MS's presence in the (new) RA. If due to regional subscription restrictions the MS is not allowed to attach in the RA, the SGSN rejects the Attach Request with an appropriate cause, and may return an Insert Subscriber Data Ack (IMSI, SGSN Area Restricted) message to the GLR. If the SGSN area restricted flag is set \"false\" in the GLR, the GLR sets the lag \"true\" and sends an Update Location (GLR Number, IM-GSN address, IMSI) to the HLR. Clause 7.5 describes the detail procedure. Note that, GLR Number and IM-GSN address should respectively be set in SGSN Number parameter and SGSN address parameters. If subscription checking fails for other reasons, the SGSN rejects the Attach Request with an appropriate cause and returns an Insert Subscriber Data Ack (IMSI, Cause) message to the GLR. If all checks are successful then the SGSN constructs an MM context for the MS and returns an Insert Subscriber Data Ack (IMSI) message to the GLR.\nf)\tThe GLR acknowledges the Update Location message by sending an Update Location Ack to the SGSN after the cancelling of old MM context and insertion of new MM context are finished. If the Update Location is rejected by the GLR, the SGSN rejects the Attach Request from the MS with an appropriate cause.\n8)\tand 9) These steps are the same as the steps not involving GLR. See TS 23.060 [6].\nIf the Attach Request cannot be accepted, the SGSN returns an Attach Reject (IMSI, Cause) message to the MS.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_7.5",
+        "figure_7.3",
+        "ts_23.060"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.119_7.3.1.3",
+      "section_id": "7.3.1.3",
+      "section_title": "New SGSN served by the GLR, and old SGSN served by the other GLR",
+      "content": "Figure 7.3/3: GPRS Attach Procedure involving GLR (new SGSN and old SGSN are under in the different GLR)\n1)\tto 5) These steps are the same as the steps not involving GLR. See TS 23.060 [6].\n6)\tIf the SGSN number has changed since the GPRS detach, or if it is the very first attach, then the SGSN informs the HLR via GLR:\na)\tThe SGSN sends an Update Location (SGSN Number, SGSN Address, and IMSI) to the GLR. Then the GLR sends an Update Location (GLR Number, IM-GSN address, IMSI) to the HLR if the GLR does not have the IMSI record. Note that, GLR Number and IM-GSN address should respectively be set in SGSN Number parameter and SGSN address parameters in the actual MAP operation.\nb)\tThe HLR sends Cancel Location (IMSI, Cancellation Type) to the old GLR with Cancellation Type set to Update Procedure. Then the GLR sends Cancel Location (IMSI, Cancellation Type) to the old SGSN with Cancellation Type set to Update Procedure.\nc)\tThe old SGSN acknowledges with Cancel Location Ack (IMSI). If there are any ongoing procedures for that MS, the old SGSN shall wait until these procedures are finished before removing the MM and PDP contexts.\nd)\tThe HLR sends Insert Subscriber Data (IMSI, GPRS subscription data) to the GLR. The GLR sends Insert Subscriber Data (IMSI, GPRS subscription data) to the new SGSN.\ne)\tThe new SGSN validates the MS's presence in the (new) RA. If due to regional subscription restrictions the MS is not allowed to attach in the RA, the SGSN rejects the Attach Request with an appropriate cause, and may return an Insert Subscriber Data Ack (IMSI, SGSN Area Restricted) message to the GLR. The GLR sets the SGSN area restricted flag \"true\" and transfers the SGSN area restricted indication to the HLR within the Insert Subscriber Data Ack message. Note that some modification at the application level might be needed here to maintain compatibility with the message format of (6d). If subscription checking fails for other reasons, the SGSN rejects the Attach Request with an appropriate cause and returns an Insert Subscriber Data Ack (IMSI, Cause) message to the GLR, which the GLR transfers to the HLR within the Insert Subscriber Data Ack message. Note that some modification at the application level might be needed here to maintain compatibility with the message format of (6d). If all checks are successful then the SGSN constructs an MM context for the MS and returns an Insert Subscriber Data Ack (IMSI) message to the GLR, which the GLR transfers to the HLR.\nf)\tThe HLR acknowledges the Update Location message by sending an Update Location Ack to the GLR and the GLR send it to the SGSN after the cancelling of old MM context and insertion of new MM context are finished. If the Update Location is rejected by the HLR, the SGSN rejects the Attach Request from the MS with an appropriate cause.\n8)\tand 9) These steps are the same as the steps not involving GLR. See TS 23.060 [6].\nIf the Attach Request cannot be accepted, the SGSN returns an Attach Reject (IMSI, Cause) message to the MS.",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_7.3",
+        "ts_23.060"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.119_7.3.1.4",
+      "section_id": "7.3.1.4",
+      "section_title": "New SGSN served by HLR, old SGSN served by GLR",
+      "content": "Figure 7.3/4: GPRS Attach Procedure involving GLR (new SGSN interfaces the HLR directly. Old SGSN is under the GLR)\n1)\tto 5) These steps are the same as the steps not involving GLR. See TS 23.060 [6].\n6)\tIf the SGSN number has changed since the GPRS detach, or if it is the very first attach, then the SGSN informs the HLR:\na)\tThe SGSN sends an Update Location (SGSN Number, SGSN Address, and IMSI) to the HLR.\nb)\tThe HLR sends Cancel Location (IMSI, Cancellation Type) to the old GLR, then the GLR sends Cancel Location (IMSI, Cancellation Type) to the old SGSN with Cancellation Type set to Update Procedure.\nc)\tThe old SGSN acknowledges with Cancel Location Ack (IMSI) via the GLR. If there are any ongoing procedures for that MS, the old SGSN shall wait until these procedures are finished before removing the MM and PDP contexts.\nd)\tThe HLR sends Insert Subscriber Data (IMSI, GPRS subscription data) to the new SGSN.\ne)\tThe new SGSN validates the MS's presence in the (new) RA. If due to regional subscription restrictions the MS is not allowed to attach in the RA, the SGSN rejects the Attach Request with an appropriate cause, and may return an Insert Subscriber Data Ack (IMSI, SGSN Area Restricted) message to the HLR. If subscription checking fails for other reasons, the SGSN rejects the Attach Request with an appropriate cause and returns an Insert Subscriber Data Ack (IMSI, Cause) message to the HLR. If all checks are successful then the SGSN constructs an MM context for the MS and returns an Insert Subscriber Data Ack (IMSI) message to the HLR.\nf)\tThe HLR acknowledges the Update Location message by sending an Update Location Ack to the SGSN after the cancelling of old MM context and insertion of new MM context are finished. If the Update Location is rejected by the HLR, the SGSN rejects the Attach Request from the MS with an appropriate cause.\n8)\tand 9) These steps are the same as the steps not involving GLR. See TS 23.060 [6].\nIf the Attach Request cannot be accepted, the SGSN returns an Attach Reject (IMSI, Cause) message to the MS.",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_7.3",
+        "ts_23.060"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.119_7.3.1.5.1",
+      "section_id": "7.3.1.5.1",
+      "section_title": "Process Update_GPRS_Location_GLR",
+      "content": "Figure 7.3/5 shows SDL chart for Process Update_GPRS_Location_GLR.\nSheet1: the test \"HLR update required?\" takes the \"yes\" exit the GLR checks some flags to perform the \"Location Updating Screening Function (see to clause 7.1.6)\" and if it is needed to update location information to the HLR.\nSheet2: after the GLR sends an Update GPRS Location message to the HLR, the GLR receives the response with:\n-\tan Insert Subscriber Data message, handled by the procedure Insert_Subscriber_Data_GLR shown in clause 7.2.1;\n-\tan Update GPRS Location ack message. If the GLR receives this message, this indicates that updating has been successfully completed. The GLR sets the \"(Location and Subscriber information) LSIC by HLR\" indicator to \"Confirmed\". The GLR send an Update GPRS Location ack message to the SGSN;\n-\tan Update GPRS Location negative response message. If the GLR receives this message, this indicates that updating has been unsuccessfully completed. The GLR sets the \"(Location and Subscriber information) LSIC by HLR\" indicator to \"False\". The GLR sends an Update GPRS Location negative to the SGSN.\nSheet3: process Cancel_GPRS_Location_Initiated_GLR is specified in clause 7.3.1.5.4.\nFigure7.3/5(1): Process Update_GPRS_Location_GLR\nFigure7.3/5(2): Process Update_GPRS_Location_GLR\nFigure7.3/5(3): Process Update_GPRS_Location_GLR\nFigure7.3/5(4): Process Update_GPRS_Location_GLR\nFigure7.3/5(5): Process Update_GPRS_Location_GLR\nFigure7.3/5(6): Process Update_GPRS_Location_GLR\nFigure7.3/5(7): Process Update_GPRS_Location_GLR",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "clause_7.1.6",
+        "clause_7.2.1",
+        "clause_7.3.1.5.4",
+        "figure_7.3"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.119_7.3.1.5.2",
+      "section_id": "7.3.1.5.2",
+      "section_title": "Process Subscriber_Present_GPRS_GLR",
+      "content": "Figure 7.3/6 shows SDL chart for Process Subscriber_Present_GPRS_GLR.\nFigure7.3/6: Process Subscriber_Present_GPRS_GLR",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_7.3"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.119_7.3.1.5.3",
+      "section_id": "7.3.1.5.3",
+      "section_title": "Procedure Insert_Subscriber_Data_GPRS_Initiated_GLR",
+      "content": "Figure 7.3/7 shows SDL chart for Procedure Insert_Subscriber_Data_GPRS_Initiated_GLR. This procedure is initiated if HLR update is not required.\nFigure7.3/7: Procedure Insert_Subscriber_Data_GPRS_Initiated_GLR",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_7.3"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.119_7.3.1.5.4",
+      "section_id": "7.3.1.5.4",
+      "section_title": "Process Cancel_GPRS_Location_Initiated_GLR",
+      "content": "Figure 7.3/8 shows SDL chart for Process Cancel_GPRS_Location_Initiated_GLR. This procedure is initiated if HLR update is not required.\nFigure7.3/8: Process Cancel_GPRS_Location_Initiated_GLR",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_7.3"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.119_7.3.2.1",
+      "section_id": "7.3.2.1",
+      "section_title": "HLR-Initiated Detach Procedure",
+      "content": "The HLR-Initiated Detach procedure is initiated by the HLR. The HLR uses this procedure for operator-determined purposes to request the removal of a subscriber's MM and PDP contexts at the SGSN. The HLR-Initiated Detach Procedure is illustrated in Figure 7.3/9. Each step is explained in the following list.\nFigure 7.3/9: HLR-Initiated GPRS Detach Procedure\n1)\tIf the HLR wants to request the immediate deletion of a subscriber's MM and PDP contexts from the SGSN, the HLR shall send a Cancel Location (IMSI, Cancellation Type) message to the SGSN via GLR with Cancellation Type set to Subscription Withdrawn.\n2)\tThe SGSN informs the MS that it has been detached by sending Detach Request (Detach Type) to the MS. Detach Type shall indicate that the MS is not requested to make a new attach and PDP context activation.\n3)\tThe active PDP contexts in the GGSNs regarding this particular MS are deactivated by the SGSN sending Delete PDP Context Request (TID) messages to the GGSNs. The GGSNs acknowledge with Delete PDP Context Response (TID) messages.\n4)\tIf the MS was both IMSI- and GPRS-attached, the SGSN sends a GPRS Detach Indication (IMSI) message to the VLR. The VLR removes the association with the SGSN and handles paging and location updating without going via the SGSN.\n5)\tThe MS sends a Detach Accept message to the SGSN any time after step 2.\n6)\tThe SGSN shall confirm the deletion of the MM and PDP contexts with a Cancel Location Ack (IMSI) message via GLR.",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_7.3"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.119_7.3.2.2.1",
+      "section_id": "7.3.2.2.1",
+      "section_title": "Process Cancel_GPRS_Location_GLR",
+      "content": "Figure 7.2/10 shows SDL chart for Process Cancel_GPRS_Location_GLR. This process is initiated from the HLR.\nFigure7.3/10: Process Cancel_GPRS_Location_GLR",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_7.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.119_7.3.3",
+      "section_id": "7.3.3",
+      "section_title": "Authentication of Subscriber",
+      "content": "Authentication procedures already defined in GSM shall be used, with the distinction that the procedures are executed from the SGSN. Additionally, the authentication procedure performs the selection of the ciphering algorithm and the synchronisation for the start of ciphering. Authentication triplets are stored in the SGSN. The MSC/VLR shall not authenticate the MS via the SGSN upon IMSI attach, nor location update, but may authenticate the MS during CS connection establishment. Security-related network functions are described in TS 33.102 [12].\nThe Authentication procedure is illustrated in Figure 7.3/11. Each step is explained in the following list.\nFigure 7.3/11: Authentication Procedure\n1)\tIf the SGSN does not have previously stored authentication triplets, a Send Authentication Info (IMSI) is sent to the GLR, which the GLR sends to the HLR without modification at the application layer. The HLR responds with Send Authentication Info Ack (Authentication Triplets). Each Authentication Triplet includes RAND, SRES and Kc.\n2)\tThe SGSN sends Authentication Request (RAND, CKSN, and Ciphering Algorithm). The MS responds with Authentication Response (SRES).\nThe MS starts ciphering after sending the Authentication Response message. The SGSN starts ciphering when a valid Authentication Response is received from the MS.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "figure_7.3",
+        "ts_33.102"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.119_7.3.4",
+      "section_id": "7.3.4",
+      "section_title": "Inter SGSN Routeing Area Update Procedure",
+      "content": "[Editor's note] This procedure may be replaced with inter SGSN SRNS relocation procedure.\n[Editor's note] This procedure may not need to be detailed, because the part of this procedure between SGSN and HLR is the same as the part of Attach procedure.\nThe Inter SGSN Routeing Area Update procedure is illustrated in Figure 7.3/12. Each step is explained in the following list.\nFigure 7.3/12: Inter SGSN Routeing Area Update Procedure\n1)\tThe MS sends a Routeing Area Update Request (old RAI, old P‑TMSI Signature, and Update Type) to the new SGSN. Update Type shall indicate RA update or periodic RA update. The BSS shall add the Cell Global Identity including the RAC and LAC of the cell where the message was received before passing the message to the SGSN.\n2)\tThe new SGSN sends SGSN Context Request (old RAI, TLLI, old P‑TMSI Signature, and New SGSN Address) to the old SGSN to get the MM and PDP contexts for the MS. The old SGSN validates the old P‑TMSI Signature and responds with an appropriate error cause if it does not match the value stored in the old SGSN. This should initiate the security functions in the new SGSN. If the security functions authenticate the MS correctly, the new SGSN shall send an SGSN Context Request (old RAI, TLLI, MS Validated, and New SGSN Address) message to the old SGSN. MS Validated indicates that the new SGSN has authenticated the MS. If the old P‑TMSI Signature was valid or if the new SGSN indicates that it has authenticated the MS, the old SGSN responds with SGSN Context Response (MM Context, PDP Contexts, and LLC Ack). If the MS is not known in the old SGSN, the old SGSN responds with an appropriate error cause. The old SGSN stores New SGSN Address, to allow the old SGSN to forward data packets to the new SGSN. LLC Ack contains the acknowledgements for each LLC connection used by the MS. Each PDP Context includes the GTP sequence number for the next downlink N‑PDU to be sent to the MS and the GTP sequence number for the next uplink N‑PDU to be tunnelled to the GGSN. The old SGSN starts a timer and stops the transmission of N-PDUs to the MS.\n3)\tSecurity functions may be executed. These procedures are defined in clause \"Security Function\". Ciphering mode shall be set if ciphering is supported.\n4)\tThe new SGSN sends an SGSN Context Acknowledge message to the old SGSN. This informs the old SGSN that the new SGSN is ready to receive data packets belonging to the activated PDP contexts. The old SGSN marks in its context that the MSC/VLR association and the information in the GGSNs and the GLR are invalid. This triggers the MSC/VLR, the GGSNs, and the GLR to be updated if the MS initiates a routeing area update procedure back to the old SGSN before completing the ongoing routeing area update procedure. If the security functions do not authenticate the MS correctly, then the routing area update shall be rejected, and the new SGSN shall send a reject indication to the old SGSN. The old SGSN shall continue as if the SGSN Context Request was never received.\n5)\tThe old SGSN duplicates the buffered N‑PDUs and starts tunnelling them to the new SGSN. Additional N‑PDUs received from the GGSN before the timer described in step 2 expires are also duplicated and tunnelled to the new SGSN. N‑PDUs that were already sent to the MS in acknowledged mode and that are not yet acknowledged by the MS are tunnelled together with the number of the LLC frame that transferred the last segment of the N‑PDU. No N‑PDUs shall be forwarded to the new SGSN after expiry of the timer described in step 2.\n6)\tThe new SGSN sends Update PDP Context Request (new SGSN Address, TID, and QoS Negotiated) to the GGSNs concerned. The GGSNs update their PDP context fields and return Update PDP Context Response (TID).\n7)\tThe new SGSN informs the GLR of the change of SGSN by sending Update Location (SGSN Number, SGSN Address, and IMSI) to the GLR.\n8)\tThe GLR sends Cancel Location (IMSI, Cancellation Type) to the old SGSN with Cancellation Type set to Update Procedure. If the timer described in step 2 is not running, then the old SGSN removes the MM and PDP contexts. Otherwise, the contexts are removed only when the timer expires. This allows the old SGSN to complete the forwarding of N‑PDUs. It also ensures that the MM and PDP contexts are kept in the old SGSN in case the MS initiates another inter SGSN routeing area update before completing the ongoing routeing area update to the new SGSN. The old SGSN acknowledges with Cancel Location Ack (IMSI).\n9)\tThe GLR sends Insert Subscriber Data (IMSI, GPRS subscription data) to the new SGSN. The new SGSN validates the MS's presence in the (new) RA. If due to regional subscription restrictions the MS is not allowed to be attached in the RA, the SGSN rejects the Routeing Area Update Request with an appropriate cause, and may return an Insert Subscriber Data Ack (IMSI, SGSN Area Restricted) message to the GLR. If all checks are successful then the SGSN constructs an MM context for the MS and returns an Insert Subscriber Data Ack (IMSI) message to the GLR.\n10)\tThe GLR acknowledges the Update Location by sending Update Location Ack (IMSI) to the new SGSN.\n11)\tThe new SGSN validates the MS's presence in the new RA. If due to roaming restrictions the MS is not allowed to be attached in the SGSN, or if subscription checking fails, then the new SGSN rejects the routeing area update with an appropriate cause. If all checks are successful then the new SGSN constructs MM and PDP contexts for the MS. A logical link is established between the new SGSN and the MS. The new SGSN responds to the MS with Routeing Area Update Accept (P‑TMSI, LLC Ack, and P‑TMSI Signature). LLC Ack contains the acknowledgements for each LLC connection used by the MS, thereby confirming all mobile-originated N‑PDUs successfully transferred before the start of the update procedure.\n12)\tThe MS acknowledges the new P‑TMSI with a Routeing Area Update Complete (P‑TMSI, LLC Ack). LLC Ack contains the acknowledgements for each LLC connection used by the MS, thereby confirming all mobile-terminated N‑PDUs successfully transferred before the start of the update procedure. If LLC Ack confirms reception of N‑PDUs that were forwarded from the old SGSN, then these N‑PDUs shall be discarded by the new SGSN. LLC and SNDCP in the MS are reset.\nIn the case of a rejected routeing area update operation, due to regional subscription or roaming restrictions, the new SGSN shall not construct an MM context. A reject shall be returned to the MS with an appropriate cause. The MS shall not re-attempt a routeing area update to that RA. The RAI value shall be deleted when the MS is powered-up.\nIf the SGSN is unable to update the PDP context in one or more GGSNs, then the SGSN shall deactivate the corresponding PDP contexts as described in clause \"PDP Context Deactivation Initiated by SGSN Procedure\". This shall not cause the SGSN to reject the routeing area update.\nIf the timer described in step 2 expires and no Cancel Location (IMSI) was received from the GLR, then the old SGSN shall stop forwarding N-PDUs to the new SGSN.\nIf the routeing area update procedure fails a maximum allowable number of times, or if the SGSN returns a Routeing Area Update Reject (Cause) message, the MS shall enter IDLE state.",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_7.3"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.119_7.3.5",
+      "section_id": "7.3.5",
+      "section_title": "Subscriber Management Procedures",
+      "content": "Whenever the GPRS subscription data is changed for a GPRS subscriber in the HLR, and the changes affect the GPRS subscription data stored in the SGSN, then the SGSN node shall be informed about these changes by means of the following procedures:\n-\tInsert Subscriber Data procedure, used to add or modify GPRS subscription data in the SGSN; or\n-\tDelete Subscriber Data procedure, used to remove GPRS subscription data in the SGSN.",
+      "chunk_type": "procedure",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.119_7.3.5.1",
+      "section_id": "7.3.5.1",
+      "section_title": "Insert Subscriber Data Procedure",
+      "content": "In addition to the insertion and modification of general GPRS subscription data for a GPRS subscriber, see TS 29.002 [10], the HLR may request the insertion or modification of one or several new or existing PDP contexts in the SGSN.\nThe Insert Subscriber Data procedure is illustrated in Figure 7.3/13. Each step is explained in the following list.\nFigure 7.3/13: Insert Subscriber Data Procedure\n1)\tThe HLR sends an Insert Subscriber Data (IMSI, GPRS Subscription Data) message to the GLR. The GLR updates its GPRS subscription data and sends an Insert Subscriber Data (IMSI, GPRS Subscription Data) message to the SGSN.\n2)\tThe SGSN updates its GPRS subscription data and acknowledges the Insert Subscriber Data message by returning an Insert Subscriber Data Ack (IMSI) message. The GLR receives the ack message, then it sends the Insert Subscriber Data Ack (IMSI) message to the HLR. For each PDP context that is included in GPRS Subscription Data the SGSN shall check whether it is a new, an active, or an inactive PDP context:\n-\tFor a new or inactive PDP context, no further action is required except storage in the SGSN.\n-\tFor an active PDP context, the SGSN shall in addition compare the new QoS Subscribed with QoS Negotiated and shall, if necessary, initiate a PDP Context Modification procedure as described in clause \"Modification Procedures\". Furthermore, if VPLMN Address Allowed is changed, the SGSN shall, if necessary (e.g., if the PDP context is currently routed via a GGSN in the VPLMN and VPLMN Address Allowed is changed to not allowed), initiate a PDP Context Deactivation procedure as explained in clause \"Deactivation Procedures\".",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_7.3",
+        "ts_29.002"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.119_7.3.5.2",
+      "section_id": "7.3.5.2",
+      "section_title": "Delete Subscriber Data Procedure",
+      "content": "In addition to the deletion of general GPRS subscription data for a GPRS subscriber, see TS 29.002 [10], the HLR may request the deletion of one or several PDP contexts from the SGSN.\nThe Delete Subscriber Data procedure is illustrated in Figure 7.3/14. Each step is explained in the following list.\nFigure 7.3/14: Delete Subscriber Data Procedure\n1)\tThe HLR sends a Delete Subscriber Data (IMSI, PDP Context Identifiers List) message to the GLR. The GLR deletes its PDP Context indicated and sends an Insert Subscriber Data (IMSI, PDP Context Identifiers List) message to the SGSN.\n2)\tThe SGSN acknowledges the Delete Subscriber Data message by returning a Delete Subscriber Data Ack (IMSI) message. For each PDP context identifier included in PDP Context Identifiers List, the SGSN shall check whether it belongs to an active or an inactive PDP context:\n-\tFor an inactive PDP context no further action is required except deletion of the PDP context.\n-\tFor an active PDP context, the SGSN shall initiate the PDP Context Deactivation Initiated by SGSN procedure as explained in clause \"Deactivation Procedures\" before the PDP context is deleted.",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_7.3",
+        "ts_29.002"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.119_7.3.6.1",
+      "section_id": "7.3.6.1",
+      "section_title": "Successful Network-Requested PDP Context Activation Procedure with GLR",
+      "content": "The Successful Network-Requested PDP Context Activation procedure is illustrated in Figure 7.3/15. Each step is explained in the following list.\nFigure 7.3/15: Successful Network-Requested PDP Context Activation Procedure\n1)\tWhen receiving a PDP PDU the GGSN determines if the Network-Requested PDP Context Activation procedure has to be initiated. The GGSN may store subsequent PDUs received for the same PDP address.\n2)\tThe GGSN may send a Send Routeing Information for GPRS (IMSI) message to the HLR. If the HLR determines that the request can be served, it returns a Send Routeing Information for GPRS Ack (IMSI, SGSN Address, Mobile Station Not Reachable Reason) message to the GGSN. The SGSN Address parameter includes actually the value of the IM-GSN Address. The Mobile Station Not Reachable Reason parameter is included if the MNRG flag is set in the HLR. The Mobile Station Not Reachable Reason parameter indicates the reason for the setting of the MNRG flag as stored in the MNRR record (see TS 23.040 [5]). If the MNRR record indicates a reason other than 'No Paging Response', the HLR shall include the GGSN number in the GGSN‑list of the subscriber.\n-\tIf the HLR determines that the request cannot be served (e.g., IMSI unknown in HLR), the HLR shall send a Send Routeing Information for GPRS Ack (IMSI, MAP Error Cause) message. Map Error Cause indicates the reason for the negative response.\n3)\tIf the SGSN address is present and either Mobile Station Not Reachable Reason is not present or Mobile Station Not Reachable Reason indicates 'No Paging Response', the GGSN shall send a PDU Notification Request (IMSI, PDP Type, PDP Address) message to the IM-GSN indicated by the HLR. Otherwise, the GGSN shall set the MNRG flag for that MS. The IM-GSN sends a Send Routeing Information for GPRS (IMSI) message to the GLR. If the GLR determines that the request can be served, it returns a Send Routeing Information for GPRS Ack (IMSI, SGSN Address, Mobile Station Not Reachable Reason) message to the IM-GSN. If the SGSN address is present and either Mobile Station Not Reachable Reason is not present or Mobile Station Not Reachable Reason indicates 'No Paging Response', the IM-GSN shall send a PDU Notification Request (IMSI, PDP Type, PDP Address) message to the SGSN indicated by the GLR. The SGSN returns a PDU Notification Response (Cause) message to the GGSN via the IM-GSN in order to acknowledge that it shall request the MS to activate the PDP context indicated with PDP Address.\n4)\tThe SGSN sends a Request PDP Context Activation (TI, PDP Type, and PDP Address) message to request the MS to activate the indicated PDP context.\n5)\tThe PDP context is activated with the PDP Context Activation procedure (see clause \"PDP Context Activation Procedure\" in 3G TS 23.060 [6]).",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_7.3",
+        "ts_23.040",
+        "ts_23.060"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.119_7.3.6.2",
+      "section_id": "7.3.6.2",
+      "section_title": "Unsuccessful Network-Requested PDP Context Activation Procedure with GLR",
+      "content": "If the PDP context requested by the GGSN cannot be established, the SGSN sends a PDU Notification Response (Cause) or a PDU Notification Reject Request (IMSI, PDP Type, PDP Address, Cause) message to the GGSN depending on whether the context activation fails before or after the SGSN has sent a Request PDP Context Activation message to the MS. Cause indicates the reason why the PDP context could not be established:\n-\t'IMSI Not Known'. The SGSN has no MM context for that IMSI (Cause in PDU Notification Response).\n-\t'MS GPRS Detached'. The MM state of the MS is IDLE (Cause in PDU Notification Response).\n-\t'MS Not GPRS Responding'. The MS is GPRS-attached to the SGSN but the MS does not respond. This may be due to:\n-\tthe lack of a response to a GPRS Paging Request;\n-\tan Abnormal RLC condition, or\n-\tno Activate PDP Context Request message received within a certain time after the Request PDP Context Activation message was delivered to the MS (Cause in PDU Notification Reject Request).\n-\t'MS Refuses'. The MS refuses explicitly the network-requested PDP context (Cause in PDU Notification Reject Request).\nWhen receiving the PDU Notification Response or the PDU Notification Reject Request message the GGSN may reject or discard the PDP PDU depending on the PDP type.\nAfter an unsuccessful Network-Requested PDP Context Activation procedure the network may perform some actions to prevent unnecessary enquires to the HLR. The actions taken depend on the cause of the delivery failure.\n-\tIf the MS is not reachable or if the MS refuses the PDP PDU (Cause value 'MS Not GPRS Responding' or 'MS Refuses'), then the SGSN shall not change the setting of MNRG for this MS. The GGSN may refuse any PDP PDU for that PDP address during a certain period. The GGSN may store the SGSN address during a certain period and send subsequent PDU Notification Request messages to that SGSN via IM-GSN.\n-\tIf the MS is GPRS-detached or if the IMSI is not known in the SGSN (Cause value 'MS GPRS Detached' or 'IMSI Not Known'), then the SGSN, the GGSN, and the HLR may perform the Protection and Mobile User Activity procedures.\nThe Protection procedure is illustrated in Figure 7.3/16. Each step is explained in the following list.\nFigure 7.3/16: Protection Procedure\n1)\tIf the MM context of the mobile is IDLE or if the SGSN has no information about that user, the SGSN returns a PDU Notification Response (Cause) message to the GGSN via IM-GSN with Cause equal to 'MS GPRS Detached' or 'IMSI Not Known', otherwise the Cause shall be 'Activation Proceeds'. If the Cause is 'MS GPRS Detached' or 'IMSI Not Known' and if the SGSN has an MM context for that user, the SGSN sets MNRG to indicate the need to report to the HLR when the next contact with that MS is performed.\n2)\tIf the MS does not respond or refuses the activation request, the SGSN sends a PDU Notification Reject Request (IMSI, PDP Type, PDP Address, Cause) message to the GGSN via IM-GSN with Cause equal to 'MS Not GPRS Responding' or 'MS Refuses'. The GGSN returns a PDU Notification Reject Response message to the SGSN via IM-GSN.\n3)\tIf Cause equals 'IMSI Not Known' the IM-GSN may send a Send Routeing Information for GPRS (IMSI) message to the GLR before sending the PDP Notification response to GGSN. The GLR returns a Send Routeing Information for GPRS Ack (IMSI, SGSN Address, and Cause) message to the IM-GSN indicating the address of the SGSN that currently serves the MS. If SGSN Address is different from the one previously stored by the IM-GSN, then steps 3, 4, and 5 in Figure 6 are followed.If Cause equals 'IMSI Not Known' the GGSN may send a Send Routeing Information for GPRS (IMSI) message to the HLR. The HLR returns a Send Routeing Information for GPRS Ack (IMSI, SGSN Address, Cause) message to the GGSN (Note that the SGSN Address parameter includes actually the value of the IM-GSN Address.) indicating the address of the IM-GSN that currently serves the MS. If IM-GSN Address is different from the one previously stored by the GGSN, then steps 3, 4, and 5 in Figure 6 are followed.\n4)\tIf SGSN Address is the same as the one previously stored in the IM-GSN or if the Cause value returned in step 1 equals 'MS GPRS Detached', then the IM-GSN sets MNRG for that PDP address and sends a Failure Report (IMSI) message to the GLR to request MNRG to be set in the GLR. The GLR sets (if not already set) MNRG for the IMSI. Note that GLR does not store IM-GSN address and IM-GSN address to report to when activity from that IMSI is detected, and IM-GSN forgets the SGSN address after receiving PDU notification response or sending PDU notification reject response.\nIf IM-GSN Address is the same as the one previously stored in the GGSN, or if the Cause value returned in step 1 equals 'MS GPRS Detached', then the GGSN sets MNRG for that PDP address and sends a Failure Report (IMSI, GGSN Number, GGSN Address) message to the HLR to request MNRG to be set in the HLR. The HLR sets (if not already set) MNRG for the IMSI and adds GGSN Number and GGSN Address to the list of GGSNs to report to when activity from that IMSI is detected. GGSN Number is either the number of the GGSN, or, if a protocol converting GSN is used as an intermediate node, the number of the protocol-converting GSN. GGSN Address is an optional parameter that shall be included if a protocol-converting GSN is used.\nThe Mobile User Activity procedure is illustrated in Figure 7.3/17. Each step is explained in the following list.\nFigure 7.3/17: Mobile User Activity Procedure\n1)\tThe SGSN receives an indication that an MS is reachable, e.g., an Attach Request message from the MS.\n2a)\tIf the SGSN contains an MM context of the MS and MNRG for that MS is set, the SGSN shall send a Ready for SM (IMSI, MS Reachable) message to the GLR and clears MNRG for that MS. The GLR sends it without modification at the application level to HLR and clears MNRG for that MS.\n2b)\tIf the SGSN does not keep the MM context of the MS, the SGSN shall send an Update Location message (see clause \"Attach Function\") to the GLR. If the GLR does not keep the MM context of the MS, the SGSN shall send an Update Location message (see clause \"Attach Function\") to the HLR.\n2c) If the GLR contains an MM context of the MS and MNRG for that MS is set, the SGSN shall send a Ready for SM (IMSI, MS Reachable) message to the HLR and clears MNRG for that MS.\n3)\tWhen the HLR receives the Ready for SM message or the Update Location message for an MS that has MNRG set, it clears MNRG for that MS and sends a Note MS GPRS Present (IMSI, SGSN Address) message to all the GGSNs in the list of the subscriber. (The Ready for SM message also triggers the SMS alert procedure as described in clause \"Unsuccessful Mobile-terminated SMS Transfer\".) SGSN Address contains the address of the IM-GSN that currently serves the MS. Upon reception of Note MS Present, each GGSN shall clear MNRG.",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_7.3",
+        "figure_6"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.119_7.4",
+      "section_id": "7.4",
+      "section_title": "Purge MS Procedure",
+      "content": "This Purge MS procedure is used to cause the HLR to mark its data for an MS so that any request for routing information for a mobile terminated call, a mobile terminated short message or Network-requested PDP context activation will be treated as if the MS is not reachable. It is invoked when the subscriber record for the MS is to be deleted in the VLR or SGSN, either by MMI interaction or automatically, e.g. because the MS has been inactive for several days. This procedure is illustrated in figure 7.4/1. Each step is explained in the following list.\nFigure 7.4/1: Purge MS procedure\nProcedure:\n1) The serving node, i.e., the VLR or the SGSN, sends a Purge MS message to the GLR.\n2) When the GLR receives the Purge MS message from the serving node, it checks whether the subscriber is registered. If the subscriber is not registered, the GLR may report an error to the O&M interface, and sends back a negative response to the serving node. If the subscriber is registered, the GLR checks whether the purging notification came from the serving node where the MS was last registered.\n-\tIf the serving node that sent the purge MS request is the registered serving node, the GLR transports the received message to the HLR.\n-\tIf the serving node that sent the purge MS request is not the registered serving node, the GLR sends a purge MS ack to the serving node indicating that the TMSI or P-TMSI shall not be frozen.\n3) When the GLR receives the response from the HLR, the GLR deletes the subscriber data and transports the received message to the serving node.\n4) The serving node receives the Purge MS ack message indicating successful outcome of the procedure.",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_7.4"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.119_7.4.1.1",
+      "section_id": "7.4.1.1",
+      "section_title": "Process Purge_MS_GLR",
+      "content": "Figure 7.4/2 shows SDL chart for Process Purge_MS_GLR.\nFigure 7.4/2(1): Process Purge_MS_GLR\nFigure 7.4/2(2): Process Purge_MS_GLR",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_7.4"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.119_7.5",
+      "section_id": "7.5",
+      "section_title": "Regional Restriction Procedure",
+      "content": "In the case that GLR is introduced, during second and subsequent location updating, there is no interaction between the GLR and the HLR. However, the regional restriction service needs the location updating procedure towards the HLR.\nThe GLR stores the Zone Code List sent by the HLR in the Insert Subscriber Data message. On the location updates the GLR sends its stored Zone Code list to the VLR and/or SGSN (refer to figure 7.2/10). The GLR stores also the MSC area restricted flag and/or the SGSN are restricted flag. These flags are set \"False\" if the location updating procedure executed successfully.\nWhen the GLR receives the Insert Subscriber Data Acknowledge message indicating \"MSC area restricted\" or \"SGSN area restricted\" and the MSC area restricted flag or the SGSN area restricted flag is set as \"False\", the GLR initiates the location updating procedure toward the HLR. In addition, the GLR sets the MSC area restricted flag or the SGSN area restricted flag \"True\". Also, the HLR sets the MSC area restricted flag or the SGSN area restricted flag \"True\", and the location updating for the IMSI is rejected. These flags contribute to the \"MS Not Reachable\" state for handling of terminating traffic (i.e. mobile terminated call and mobile terminated SMS and so on) in the HLR.\nFigure 7.5/1: Regional Restriction Procedure (MS Enters a restricted Area)\nWhen the GLR receives the Insert Subscriber Data Acknowledge message indicating \"MSC area restricted\" or \"SGSN area restricted\" and the MSC area restricted flag or the SGSN area restricted flag is set as \"True\", The GLR reject the location updating procedure for the IMSI. No interaction with the HLR is needed.\nWhen the user returns to an MSC area that is not restricted due to regional subscription (see figure 7.2/11), i.e., when the GLR receives the Insert Subscriber Data Acknowledge message NOT indicating \"MSC area restricted\" or \"SGSN area restricted\" and the MSC area restricted flag or the SGSN area restricted flag is set as \"True\", the GLR initiates the location updating procedure toward the HLR.\nFigure 7.5/2: Regional Restriction Procedure (MS leaves the restricted area)",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_7.2",
+        "figure_7.5"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.119_7.6",
+      "section_id": "7.6",
+      "section_title": "Recovery and Restoration",
+      "content": "The recovery and restoration procedures are intended to maintain service if inconsistencies in databases occur and at lost or invalid database information. \"Invalid\" in this context means that the database entry cannot be regarded as reliable.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.119_7.6.1",
+      "section_id": "7.6.1",
+      "section_title": "GLR Failure",
+      "content": "A consequence of GLR restart is that an Update Location has to be performed for all roaming subscribers within the VPLMN.\nThe GLR will keep a part of the IMSI record in non-volatile memory by periodical backup. If the IMSI record in main memory is lost or broken by restart, it is retrieved from non-volatile backup memory as in HLR. This backup data would contain enough information to send \"Provide Roaming Number\" message to the VLR when it is requested by the HLR. The data which shall be stored in backed-up would be \"VLR number\", \"SGSN number\", \"IMSI\".\nIn case of GLR restart, it sends \"Reset\" message including the GLR number as the HLR number to VLR/SGSN where one or more of its mobile terminals are registered to prompt location updating attempt from VLR/SGSN. On receiving the location updating request, the GLR relays it to the HLR to restore its location and subscriber data. The restoration trigger can be the normal location updating from mobile terminal, call origination and call termination and so on.\nThe assumption in the case of terminating call in circuit switched service is that GLR would have VLR number in non-volatile memory so that it could know the exact VLR mobile terminal registered. If GLR loses VLR number or has only old VLR number, it loses the opportunity to restore its data at the timing of terminating call. This situation is the same as the case of HLR that loses VLR number after restart.\nAlso in this case, GLR shall have an indicator representing restart of GLR. This indicator is set \"Not Confirmed\" when GLR restarts, and kept the status until subscriber profile is successfully downloaded from HLR. This shall be triggered by radio contact of the mobile terminal.\nThe restoration indicator is called the \"Location and Subscriber information Confirmed by HLR\" (LSIC) and defined as follows:\nIf the LSIC is set to \"Not confirmed,\" the GLR send Update Location message to HLR.\n\"Location and Subscriber information confirmed by HLR\" is set to \"Not Confirmed\" at any of following events:\n-\tThe GLR receives an \"Update Location\" request for an MS for which the GLR has no IMSI records.\n-\tThe GLR receives a \"Reset\" message from the HLR with which the MS is registered.\n-\tThe GLR detects the restart of itself and the IMSI record does not seem to be guaranteed (e.g. data retrieved from backup non-volatile memory).\n\"Location and Subscriber information confirmed by HLR\" is set to \"Confirmed\" at any of following events:\n-\tThe GLR successfully performs an \"Update Location\" to the HLR.\nThe recovery procedure of GLR Failure is illustrated in Figure 7.6/1. Each step is explained in the following list.\nFigure 7.6/1: Recovery of the GLR\nProcedure:\n1.\tAfter restart of the GLR it sets the \"LSIC\" \"not confirmed\" and sends the Reset message to the VLR and/or SGSN. The VLR sets the indicator \"Location Information Confirmed in HLR\" of affected user \"not confirmed\" and waits for access from/to the user.\n2.\tAfter identifying access from the user and successful authentication the VLR or SGSN sends Update Location message to the GLR. After identifying access to the user and successful authentication the VLR or SGSN sends Restore data message to the GLR. If the GLR identifies the \"LSIC\" set in \"Not Confirmed\", it relays the message to the HLR.\n3.\tWhen the HLR receives the Update Location or Restore Data message from the GLR, it initiates insert subscriber procedure. During the procedure the GLR relay messages.\n4.\tAfter the insert subscriber procedure, the HLR returns Update Location ack or Restore Data ack message to the VLR via the GLR. When the VLR and the GLR receives the message, each indicator in both nodes is set \"confirmed\".",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_7.6"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.119_7.6.2",
+      "section_id": "7.6.2",
+      "section_title": "HLR Failure",
+      "content": "In the case of HLR restart when the GLR receives a reset message from a HLR, it marks all subscriber records for which the HLR number matches the HLR number received in the reset message. This indicates that when the MS next makes radio contact the GLR needs to initiate a location registration procedure to the HLR. If the HLR included an HLR-ID list in the reset message, then only those subscriber records for which the leading digits of the IMSI match one of the HLR-IDs in the HLR-ID list will be marked.\nThen the GLR sends a RESET message, which includes the GLR number as the HLR number and HLR-ID list if the GLR received it from the HLR, to the serving node (i.e. VLR or SGSN). The receiving serving node may use the HLR number or HLR-ID list (if present) to identify the affected users. In the case that the serving node uses the HLR number, it regards the users as affected, whose subscriber record stores the number as HLR number equal to the received GLR number. On the other hand in the case that the serving node uses the HLR-ID list, it regards the users as affected, whose IMSI has the leading digits equal to one of HLR-IDs. After that when the affected user accesses the network, the serving node initiates a location registration procedure to the GLR. When the GLR receives an Update Location message from the serving node and identifies that the subscriber record in the GLR is marked as needing to notify the HLR when the MS makes radio contact then the GLR sends the Update Location message to the HLR.\nThe recovery procedure of HLR Failure is illustrated in Figure 7.6/2. Each step is explained in the following list.\nFigure 7.6/2: Recovery procedure of HLR Failure\nProcedure:\n1.\tWhen the HLR restart occurs and the GLR receives a RESET message, the GLR identifies affected users by received HLR number and sets the indicator (\"LSIC\") \"not confirmed\" for the users. If the HLR included an HLR –ID list in the reset message, then only those subscriber records for which the leading digits of the IMSI match one of the HLR-IDs in the HLR-ID list will be marked.\n2.\tThe GLR sends reset messages to the serving node where the affected users are roaming. The reset message includes the GLR number as HLR number and HLR-ID list if the GLR receives it from the HLR. Receiving serving node may regard the users as affected by HLR number or HLR-ID list (if present).\n3.\tWhen the affected user accesses the network, the serving node initiates an update location procedure to the GLR. If the GLR identifies that the indicator (\"LSIC\") set to \"not confirmed\" for the user, it relays the message to the HLR.\n4.\tWhen the HLR receives the Update Location message, it initiates the insert subscriber data procedure. During the procedure the GLR relays the messages between the serving node and HLR transparently.\n5.\tIf the HLR implements Forward Check SS indication, it sends the Forward Check SS ind message to the GLR and the GLR relays the message to the VLR. (implemented only for CS domain).\n6.\tWhen the serving node receives the Update Location ack message, the restoration procedure is completed.",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_7.6"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.119_7.6.2.1",
+      "section_id": "7.6.2.1",
+      "section_title": "Suppression of Intra-PLMN signalling",
+      "content": "During the HLR restoration procedure involving the GLR, the GLR notifies the GLR number as the HLR number to the serving node in a Reset message. Therefore, in case the serving node does not use the HLR-ID list (i.e. the case that HLR did not send the HLR-ID list to the serving node via GLR or the case that the serving node does not support the usage of the HLR-ID list), the serving node regards all users accommodated into the GLR as affected. This leads to the unnecessary location updates for the restoration of the users not from the restarting HLR. To suppress this unnecessary signalling within VPLMN some mechanism as shown in following subsections may be used.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.119_7.6.2.1.1",
+      "section_id": "7.6.2.1.1",
+      "section_title": "Usage of the HLR id List (Tool 1)",
+      "content": "In this tool the GLR generates HLR-ID list, which is composed of MCC+MNC, by translating the CC and NDC of the HLR and sends it to the serving node in the Reset message. On receiving the HLR-ID list the serving node may or may not use this. If the serving node uses the HLR-ID list and identifies HPLMN where the restarting HLR exists, no unnecessary signaling traffic for the users from the other PLMNs occurs.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.119_7.6.2.1.2",
+      "section_id": "7.6.2.1.2",
+      "section_title": "Multiple GLR number allocation (Tool 2)",
+      "content": "In this tool the GLR has multiple GLR numbers corresponding to each HLR. The numbers, which can be routed to the GLR, are allocated as multiple GLR numbers. The correspondence between HLR numbers and GLR numbers is statistically kept in the non-volatile memory. See Figure 7.6/3.\nFigure 7.6/3: Multiple GLR number allocation\nPossible scenarios for GLR number allocation are as follows.\nIn this tool, if one GLR number is allocated for one HLR and VPLMN has the roaming agreements with many PLMNs, many GLR numbers are needed.\nAs possible variation of scenario, a GLR number may be assigned to a group of HLRs. This group can be grouped by, for instance, country code or network destination code and so on. If one GLR number is assigned for many HLRs, the occupied address space is small, however the unnecessary signalling traffic for the users not associated to restarting HLR increases. On the other hand, if one GLR number is assigned for few HLRs, the unnecessary signalling traffic is small, however the occupied address space is larger.\nHow many HLRs are grouped is operator dependent.",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_7.6"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.119_7.6.3",
+      "section_id": "7.6.3",
+      "section_title": "VLR Failure",
+      "content": "In the case of VLR restart, the VLR retrieves subscriber data from the GLR to recover its database. The required capability of the GLR to support this procedure is the same as that of the HLR in the case of VLR restart without GLR. The procedure is described in 3G TS 23.007 [2].\nBasically, data recovery is achieved through the restore procedure requested from the VLR in the case of mobile terminating call, or normal location updating in the case where there is radio contact (for example on location updating and call originating from the user).\nThe restoration procedure of VLR Failure is illustrated in Figure 7.6/4 and 7.6/5. Each step is explained in the following list.\nFigure 7.6/4: Restoration of the VLR by Mobile Terminated call\nProcedure:\n1)\tWhen the VLR receives Provide Roaming Number message, it identifies that no IMSI record exists and creates a skeleton IMSI record and returns the Provide Roaming Number ack message with MSRN to the HLR via the GLR. The GLR only relays these messages.\n2)\tThe VLR also sends the Restore Data message to the GLR when it identifies that no IMSI record exists in order to recover subscriber record for the IMSI.\n3)\tThe GLR that receives the message initiates insert subscriber procedure to the VLR.\n4)\tThe recovery of IMSI record in the VLR is completed after it receives Restore Data ack message.\nFigure 7.6/5: Restoration of the VLR by Mobile Originated activity and Update Location\nProcedure:\n1)\t(Mobile Originated case).When the VLR receives MO activity request and identifies that no IMSI record exists, it returns negative response with cause (Unidentified Subscriber). The user who receives the negative response initiates update location procedure and then the VLR creates a skeleton IMSI record.(Update Location case).When the user initiates location update procedure and the VLR identifies that no IMSI record exists, the VLR creates a skeleton IMSI record.\n2)\tAfter successful authentication the VLR sends Update Location message to the GLR.\n3)\tWhen the GLR receives the Update Location message from the VLR, it initiates insert subscriber procedure normally.\n4)\tAfter insert subscriber procedure completed the GLR sends Update Location ack message to the VLR.\n5)\tWhen the VLR receives the Update Location ack message, it confirms the registration for the user. At this time the recovery of IMSI record in the VLR is completed.",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_7.6",
+        "ts_23.007"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.119_7.6.4",
+      "section_id": "7.6.4",
+      "section_title": "SGSN Failure",
+      "content": "After an SGSN restart, the SGSN deletes all MM and PDP contexts affected by the restart. When GGSN detects the SGSN restarted by polling function (echo request and response), it shall delete all PDP contexts associated to the SGSN. After that during restoration procedure the SGSN initiates location update procedure. However the GLR does not need to know that the SGSN restart and it only proceeds usual location procedure.\nThe restoration procedure of SGSN Failure is illustrated in Figure 7.6/6. Each step is explained in the following list.\nFigure 7.6/6: Restoration of the SGSN\nProcedure:\n1.\tAfter the SGSN restart, it may broadcast a Reset message within SGSN area. This causes the MS to reinitiate Attach and Activate PDP context procedures.\n2.\tWhen the SGSN receives Attach Request message and identifies no MM context for the MS, it initiates update location procedure.\n3.\tThe GLR initiates insert subscriber data procedure as normal update location procedure.\n4.\tWhen the SGSN receives the Update GPRS Location ack message from the GLR, it returns the Attach Request ack message to the MS.\n5.\tThe MS which receives the message re-initiates Activate PDP context procedures, if needed.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "figure_7.6"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.119_7.6.5.1",
+      "section_id": "7.6.5.1",
+      "section_title": "Process Restore_Data_GLR",
+      "content": "Figure 7.6/7 shows SDL chart for Process Restore_Data_GLR.\nFigure 7.6/7(1): Process Restore_Data_GLR\nFigure 7.6/7(2): Process Restore_Data_GLR\nFigure 7.6/7(3): Process Restore_Data_GLR\nFigure 7.6/7(4): Process Restore_Data_GLR\nFigure 7.6/7(5): Process Restore_Data_GLR\nFigure 7.6/7(6): Process Restore_Data_GLR\nFigure 7.6/7(7): Process Restore_Data_GLR",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_7.6"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.119_7.7",
+      "section_id": "7.7",
+      "section_title": "Short Message Service",
+      "content": "The Short Message Mobile Terminated is realised by MAP signalling between SMS-GMSC and the visited node (i.e. MSC or SGSN). Signalling address is the E.164 MSC Number or the E.164 SGSN Number. Since in the case of GLR introduction address conversion (see clause 7.1.2) is performed some mechanism is needed to restore the actual visited node address from the converted one generated by the GLR. In principle that restoration is performed by the GLR itself.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_7.1.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.119_7.7.1",
+      "section_id": "7.7.1",
+      "section_title": "Scope",
+      "content": "This clause describes only SM MT with GLR under the following condition:\n-\tThe recipient MS in the visited PLMN with the GLR is roamed into the PLMN from other PLMN.\nSince SM MT in the case that is not applied to the above condition and SM MO have no relation to the introduction of the GLR those cases are not treated in this clause and just refer to 3G TS 23.040 [5]. This clause defines:\n-\tthe services and service elements (with regard to the GLR introduction);\n-\tthe network architecture (with regard to the GLR introduction);\n-\tthe IM-MSC functionality (with regard to the SMS);\n-\tthe GLR functionality (with regard to the SMS);\n-\tthe protocols and protocol layering (with regard to the GLR introduction);\nfor the Teleservices 22, as specified in the 3G TS 22.003 [1].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.040",
+        "ts_22.003"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.119_7.7.2",
+      "section_id": "7.7.2",
+      "section_title": "Definitions",
+      "content": "This clause only provides definitions specific to the GLR introduction. Other definitions regarding SMS are provided in 3G TS 23.040 [5].\nIntermediate-MSC (IM-MSC): The Intermediate MSC is an exchange which performs address interrogation to the GLR and relays the SMS to the MSC in the case of SM MT.\nMobile‑Station‑Not‑Reachable‑Flag (MNRF): The part of the MWI to be stored in the VLR and the HLR. It shall be stored also in the GLR. MNRF is a Boolean parameter indicating if the address list of MWD contains one or more entries because an attempt to deliver a short message to an MS has failed with a cause of Absent Subscriber.\nMobile‑station‑Not-Reachable-for-GPRS (MNRG): The part of the MWI to be stored in the SGSN and the HLR. It shall be stored also in the GLR. MNRG is a Boolean parameter indicating if the address list of MWD contains one or more entries because an attempt to deliver a short message to an MS has failed with a cause of Absent Subscriber.\nMore‑Messages‑To‑Send (MMS): The GLR shall keep a MAP dialogue open between the SMS-GMSC and the GLR and between the GLR and the SGSN where there are more messages to send. The IM-MSC shall keep a MAP dialogue open between the SMS-GMSC and the IM-MSC and between the IM-MSC and the MSC.\nGateway Location Register (GLR): The Gateway Location Register is an exchange that relays the SMS MT from SMS-GMSC to the SGSN. The GLR shall have interrogation function to forward the SM MT to the correct MSC or the SGSN.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_23.040"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.119_7.7.3.1.1",
+      "section_id": "7.7.3.1.1",
+      "section_title": "Messages‑Waiting",
+      "content": "Refer to 3G TS 23.040 [5] for the definition of the Message-Waiting service element.\nThe GLR shall have only the MNRF and the MNRG for the Message-Waiting. The GLR does not have other datum for the Message-Waiting service element.\nSetting the MNRF and the MNRG is mandatory in the GLR as in the VLR/SGSN. When the MS has been detected as becoming active, the VLR or the SGSN shall:\n-\tsend the \"MS Reachable\" message (see clause 7.7.7) to the HLR via the GLR, and then\n-\tclear MNRF in the VLR or the MNRG in SGSN (see 3G TS 23.040 [5]).\nWhen the GLR receives the \"MS Reachable\" message it is mandatory for the GLR to relay the \"MS Reachable\" message to the HLR and then clear MNRF or MNRG in the GLR.\nThe MNRG and MNRF in the GLR are updated in the following way:\n1a)\tWhen a mobile terminated short message delivery fails due to the MS being temporarily absent (i.e. either IMSI DETACH flag is set or there is no response from the MS to a paging request via the MSC), the MNRF is set (if it is not already set).\n1b)\tWhen a mobile terminated short message delivery fails due to the MS being temporarily absent (i.e. either GPRS DETACH flag is set or there is no response from the MS to a paging request via the SGSN), the MNRG is set (if it is not already set).\n1c)\tWhen a mobile terminated short message delivery fails due to the MS memory capacity via the MSC being exceeded, the MNRF is cleared.\n1d)\tWhen a mobile terminated short message delivery fails due to the MS memory capacity via the SGSN being exceeded, the MNRG is cleared.\n2a)\tWhen either the HLR or VLR detects that the MS (with a non‑empty MWD and the MCEF clear in the HLR and the MNRF set in the VLR) has recovered operation (e.g. has responded to a paging request over MSC), the HLR directly, or on request of the VLR or of the GLR, will invoke operations to alert the SCs within the MWD (see clause 7.7.3.1.2 and clause 7.7.7). Once the Alert SC operations have been invoked, the MNRF is cleared in the VLR and the GLR.\n2b)\tWhen either the HLR or SGSN detects that the MS (with a non‑empty MWD and the MCEF clear in the HLR and the MNRG set in the SGSN) has recovered operation (e.g. has responded to a paging request via the SGSN), the HLR directly or on request of the SGSN or the GLR will invoke operations to alert the SCs within the MWD (see clause 7.7.3.1.2 and clause 7.7.7). Once the Alert SC operations have been invoked, the MNRG is cleared in the SGSN and the GLR.\n2c)\tWhen the HLR receives (via the MSC, the VLR and the GLR) a notification that the MS (with a non‑empty MWD and the MCEF set in the HLR) has memory capacity available to receive one or more short messages, the HLR will invoke operations to alert the SCs within the MWD (see clause 7.7.3.1.2 and clause 7.7.7). Once the Alert SC operations have been invoked, the MNRF is cleared in the VLR and the GLR.\n2d)\tWhen the HLR receives (via the SGSN and the GLR) a notification that the MS (with a non‑empty MWD and the MCEF set in the HLR) has memory capacity available to receive one or more short messages, the HLR will invoke operations to alert the SCs within the MWD (see clause 7.7.3.1.2 and clause 7.7.7). Once the Alert SC operations have been invoked, the MNRG is cleared in the SGSN and the GLR.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_7.7.7",
+        "clause_7.7.3.1.2",
+        "ts_23.040"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.119_7.7.3.1.2",
+      "section_id": "7.7.3.1.2",
+      "section_title": "Alert‑SC",
+      "content": "Considering the Alert-SC service element, when the GLR receives the Update Location or the Update GPRS Location from the VLR or the SGSN if and only if the MNRF or the MNRG is set in the GLR the GLR shall send \"MS Reachable\" message (see clause 7.7.7) to the HLR. That enables the HLR to initiate Alert-SC.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_7.7.7"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.119_7.7.3.2",
+      "section_id": "7.7.3.2",
+      "section_title": "Unsuccessful short message TPDU transfer SC ‑> MS",
+      "content": "Some error(s) may occur in the IM-MSC or the GLR (see clauses 7.7.5 and 7.7.7).",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.119_7.7.4.1",
+      "section_id": "7.7.4.1",
+      "section_title": "Basic network structure",
+      "content": "The exchange of messages between an MS and an SME involves the entities shown in figure 7.7/1.\nThe basic network structure of the SM MT with GLR is depicted in figure 7.7/2.\nFigure 7.7/1: Entities involved in the provision of SM MT with GLR\nThe links of figure 7.7/2 support the SM MT with GLR in the following way:\n-\tthe operations performed on links 1, 2, 3 and 4 is described in 3G TS 29.002 [10];\n-\tinterface E is internal interface in one physical node. Procedure in the IM-MSC, the GLR and between them regarding interface 5 is described in 3G TS 29.002 [10].\nFigure 7.7/2: The main network structure serving as a basis for the SM MT with GLR",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_7.7",
+        "ts_29.002_figure_7.7",
+        "ts_29.002"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.119_7.7.5.1",
+      "section_id": "7.7.5.1",
+      "section_title": "General",
+      "content": "In the case of the GLR introduction as an option for the visited network operator, the existing functionality of the GSM entities regarding SMS MT (i.e. SMS-GMSC, MSC, VLR, SGSN and HLR) shall not be needed to modify.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.119_7.7.5.2",
+      "section_id": "7.7.5.2",
+      "section_title": "Functionality of the GLR",
+      "content": "When receiving a short message TPDU from the SMS‑GMSC (\"forwardShortMessage\", see clause 7.7.7.1), the GLR is responsible for the following operations:\n-\treception of the short message TPDU;\nif errors are detected by the GLR:\n-\treturning the appropriate error information to the SMS‑GMSC in a failure report (negative outcome of \"forwardShortMessage\" see clauses 7.7.7.1);\nif no errors are detected by the GLR:\n-\tretrieve the SGSN Number from the identity of the recipient MS;\n-\ttransferring the short message to the SGSN.\nWhen a delivery report is received by the GLR:\n-\trelaying the delivery report (positive outcome of \"forwardShortMessage\" see clause 7.7.7.1) to the SMS‑GMSC.\nWhen a failure report is received by the GLR:\n-\trelaying the failure report (negative outcome of \"forwardShortMessage\" see clause 7.7.7.1) to the SMS‑GMSC.\nWhen receiving \"ReadyForSM\" from the MSC or the SGSN:\nif errors are detected by the GLR:\n-\treturning the appropriate error information to the MSC or the SGSN in a failure report (negative outcome of \"ReadyForSM\", see clause 7.7.7.3);\nif no errors are detected by the GLR:\n-\trelaying the \"ReadyForSM\" to the HLR (see clause 7.7.7.3).",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_7.7.7.1",
+        "clause_7.7.7.3"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.119_7.7.5.3",
+      "section_id": "7.7.5.3",
+      "section_title": "Functionality of the IM-MSC",
+      "content": "When receiving a short message TPDU from the SMS‑GMSC (\"forwardShortMessage\", see clause 7.7.7.1), the IM-MSC is responsible for the following operations:\n-\treception of the short message TPDU;\n-\tretrieving information from the GLR (\"ObtainMSCNumber\", see clause 7.7.7.1); MSC Number and, when appropriate, error information;\nif errors are indicated by the GLR:\n-\treturning the appropriate error information to the SMS‑GMSC in a failure report (negative outcome of \"forwardShortMessage\" see clauses 7.7.7.1);\nif no errors are indicated by the GLR:\n-\trelaying the \"forwardShortMessage\" to the MSC is indicated by the retrieved MSC Number.\nWhen a delivery report is received by the IM-MSC:\n-\trelaying the delivery report (positive outcome of \"forwardShortMessage\" see clause 7.7.7.1) to the SMS‑GMSC.\nWhen a failure report is received by the IM-MSC:\n-\trelaying the failure report (negative outcome of \"forwardShortMessage\" see clause 7.7.7.1) to the SMS‑GMSC.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_7.7.7.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.119_7.7.6",
+      "section_id": "7.7.6",
+      "section_title": "Protocols and protocol architecture",
+      "content": "SM-RL shall be terminated at the GLR and the IM-MSC, since the GLR and the IM-MSC shall be able to retrieve the actual visited node address (i.e. the MSC Number or the SGSN Number) from the recipient MS identity. The protocol layers of the SMS are structured as shown in figure 7.7/3.\nFigure 7.7/3: Protocol layer overview for the SM MT with GLR",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "figure_7.7"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.119_7.7.6.1.1",
+      "section_id": "7.7.6.1.1",
+      "section_title": "General",
+      "content": "SM-RL messages and its information elements are the same as in the network without the GLR.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.119_7.7.6.1.2",
+      "section_id": "7.7.6.1.2",
+      "section_title": "Protocol element repertoire at SM‑RL",
+      "content": "Protocol element repertoire at SM-RL is the same as in the network without the GLR. Refer to 3G TS 23.040 [5] for the presence (i.e. mandatory, optional or not present) of each information element by replacing the term in the following manner.\n-\tSMS-GMSC <-> IM-MSC or IM-MSC <-> MSC : MSC <-> MSC.\n-\tSMS-GMSC <-> GLR or GLR <-> SGSN : MSC <-> SGSN.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.040"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.119_7.7.7",
+      "section_id": "7.7.7",
+      "section_title": "Fundamental procedures within the point‑to‑point SMS",
+      "content": "This clause provides the procedures specific to the GLR introduction.",
+      "chunk_type": "procedure",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.119_7.7.7.1",
+      "section_id": "7.7.7.1",
+      "section_title": "Short message mobile terminated",
+      "content": "The entities involved in this procedure are depicted in figure 7.7/4.\nFigure 7.7/4: Interface involved in the short message mobile terminated procedure with GLR\nNOTE:\tThe GLR and the IM-MSC shall not visible to the other entities. Especially the SMS-GMSC shall regard the GLR and the IM-MSC as the SGSN and the MSC respectively. Further the SGSN and MSC shall regard the GLR and the IM-MSC as the SMS-GMSC.\nIn figures 7.7/5, sequence diagrams are shown for the following basic situations of short message mobile terminated transfer attempt:\n-\tSuccessful short message transfer via the MSC;…a).\n-\tSuccessful short message transfer via the SGSN;…b).\n-\tShort message transfer attempt failing due to error at the MSC;…c).\n-\tShort message transfer attempt failing due to error at the SGSN;…d).\n-\tShort message transfer attempt failing due to error at the IM-MSC;…e).\n-\tShort message transfer attempt failing due to error at the IM-MSC/GLR;…f).\n-\tShort message transfer attempt failing due to error at the GLR;…g).\n-\tShort message transfer attempt failing over the SGSN as the first path and succeeding over the MSC as the second path;…h).\n-\tShort message transfer attempt failing over the SGSN as the first path and over the MSC as the second path;…I).\nFigure 7.7/5a): Successful short message transfer attempt via the MSC\nFigure 7.7/5b): Successful short message transfer attempt via the SGSN\nFigure 7.7/5c): Short message transfer attempt failing due to error at the MSC\nFigure 7.7/5d): Short message transfer attempt failing due to error at the SGSN\nFigure 7.7/5e): Short message transfer attempt failing due to error at the IM-MSC\nFigure 7.7/5f): Short message transfer attempt failing due to error at the IM-MSC/GLR\nFigure 7.7/5g): Short message transfer attempt failing due to error at the GLR\nFigure 7.7/5h): Short message transfer attempt failing over the SGSN as the first path and succeeding over the MSC as the second path\nFigure 7.7/5i): Short message transfer attempt failing over the SGSN as the first path and over the MSC as the second path\nOperation 1: Message transfer SMS‑GMSC ‑> GLR or IM-MSC.\nThis operation is used to transfer a short message from an SMS‑GMSC to a GLR or IM-MSC.\nThe operation consists of:\n-\tthe transfer of a message containing the TPDU from the SMS‑GMSC to the GLR or IM-MSC (see \"1a. ForwardShortMessage\" in figure 7.7.5), and\n-\tthe return of either a \"Failure report\" (see 1c. in figure 7.7.5) or a \"Delivery report\" (see 1b. in figure 7.7.5).\n\"Failure report\" is returned to the SMS‑GMSC when the GLR or IM-MSC has received indication from another entity (MSC, SGSN) or when an error has occurred in the GLR or IM-MSC the procedure was unsuccessful. The error indications which the GLR or IM-MSC may receive from the MSC, SGSN, VLR or MS enable the GLR or IM-MSC to return one of the error indications given in Table 23.040/1 back to the SMS-GMSC.\nNote that the SMS-GMSC shall regard the GLR as a SGSN and the IM-MSC a MSC and it is not aware the GLR and the IM-MSC as individual entities.\nOperation 2: ObtainMSCNumber.\nWhen the IM-MSC receives \"1a. ForwardShortMessage\" from an SMS-GMSC, the IM-MSC interrogates the GLR internally and obtains the E.164 number of the MSC at which the MS is currently located.\nOperation 3: forwardShortMessage.\nThe operation provides a means for the GLR or IM-MSC to transfer a short message to the MSC or to the SGSN respectively at which the MS is currently located.\nThe operation works in tandem with the forwarding of the short message from the MSC or from the SGSN to the MS. Thus, the outcome of the operation comprises either success, i.e. that the message has been delivered to the MS; or a failure that may be caused by several reasons, e.g. failure in the transfer IM-MSC ‑> MSC or GLR -> SGSN, MS being detached, or no paging response.\nNote that the MSC and the SGSN shall not be aware of existence of the GLR and the IM-MSC.\nOperation 4: InformSMDeliveryFailure.\nWhen the IM-MSC receives \"3c. FailureReport\" with absent subscriber cause, IM-MSC informs it to the GLR. The GLR checks if the reason of absent subscriber is due to the purged MS in the serving node (i.e. MSC or SGSN). If so, the GLR deletes the subscriber data for the user. Otherwise the GLR sets MNRF.\nWhen the GLR receives \"3c. FailureReport\" with absent subscriber cause, the GLR checks if the reason of absent subscriber is due to the purged MS in the serving node (i.e. MSC or SGSN). If so, the GLR deletes the subscriber data for the user. Otherwise the GLR sets MNRG.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_23.040",
+        "figure_7.7",
+        "figure_7.7.5"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.119_7.7.7.2.1",
+      "section_id": "7.7.7.2.1",
+      "section_title": "Process Obtain_MSC_Number_GLR",
+      "content": "Figure 7.7/6 shows the SDL chart for Process Obtain_MSC_Number_GLR.\nFigure 7.7/6: Process Obtain_MSC_Number_GLR",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_7.7"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.119_7.7.7.2.2",
+      "section_id": "7.7.7.2.2",
+      "section_title": "Process Inform_SM_Delivery_Failure_GLR",
+      "content": "Figure 7.7/7 shows the SDL chart for Process Inform_SM_Delivery_Failure_GLR.\nFigure 7.7/7: Process Inform_SM_Delivery_Failure_GLR",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_7.7"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.119_7.7.7.2.3",
+      "section_id": "7.7.7.2.3",
+      "section_title": "Procedure Check_Absent_SubscriberSM_In_GLR",
+      "content": "Figure 7.7/8 shows the SDL chart for Procedure Check_Absent_SubscriberSM_In_GLR.\nFigure 7.7/8: Procedure Check_Absent_SubscriberSM_In_GLR",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_7.7"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.119_7.7.7.3",
+      "section_id": "7.7.7.3",
+      "section_title": "Alert transfer",
+      "content": "The entities involved in this procedure are depicted in figure 7.7/9.\nFigure 7.7/9: Interfaces involved in the Alert procedure with GLR\nNOTE:\tThe GLR shall not visible to the other entities. Especially the HLR shall regard the GLR as the VLR or the SGSN. Further the SGSN and the VLR shall regard the GLR as the HLR.\nThis procedure consists of the operations shown in figure 7.7/10.\nRegarding the GLR introduction, the following four cases are distinguished:\n-\tthe MS becomes reachable when the MNRF is set in the VLR (figure 7.7/10a);\n-\tthe MS becomes reachable when the MNRG is set in the SGSN (figure 7.7/10b);\n-\tthe MS performs Location Update when the MNRF is not set in the VLR (figure 7.7/10c);\n-\tthe MS performs Routing Area Update when the MNRG is not set in the SGSN (figure 7.7/10d).\nThe operations between HLR and GLR are equivalent for HLR to those between HLR and VLR or between HLR and SGSN. The operations between GLR and SGSN are equivalent for SGSN to those between HLR and SGSN. The operations between GLR and VLR are equivalent for VLR to those between HLR and VLR.\nThe procedures in HLR, VLR and SGSN regarding the operations are the same as in the network without GLR. The procedures regarding the operations in GLR and IM-MSC are defined in 3G TS 29.002 [10].\nFigure 7.7/10a: The alert procedure when the MS becomes reachable, MNRF is set\nFigure 7.7/10b: The alert procedure when the MS becomes reachable, MNRG is set\nFigure 7.7/10c: The alert procedure when the GLR receives UpdateLocation, MNRF or MNRG is set\nFigure 7.7/10d: The alert procedure when the GLR receives UpdateGprsLocation, MNRF or MNRG is set\nOperation 5: ReadyForSM (invoked by UpdateLocation or UpdateGprsLocation).\nWhen the GLR receives UpdateLocation (see 7.7/10c) or UpdateGprsLocation (see 7.7/10d) the GLR shall invoke ReadyForSM to the HLR if and only if MNRF or MNRG is set. Note that if the GLR in which the MNRG is set receives Update Location the GLR shall invoke ReadyForSM also in that case. The converse case is also the case.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "figure_7.7",
+        "ts_29.002_figure_7.7",
+        "ts_29.002"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.119_7.8",
+      "section_id": "7.8",
+      "section_title": "Subscriber and Equipment Trace",
+      "content": "3G TS29.002 [10] states that subscriber and equipment trace is only available for subscribers within their HPLMN area. If the HLR receives a trace request for a subscriber, and the HLR detects that the subscriber is not in the HPLMN, then the HLR does not forward the trace request to the VPLMN. The trace request never reaches the GLR. Therefore it is concluded that the GLR has no impact on subscriber and equipment trace.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.119_7.9.1",
+      "section_id": "7.9.1",
+      "section_title": "The VLR supports CAMEL Phase 2 onwards",
+      "content": "When the GLR receives the MAP_UPDATE_LOCATION request message from the subscriber, the GLR checks that the CAMEL supported phase it previously received for that subscriber matches the CAMEL supported phase carried by MAP_UPDATE_LOCATION request message. If a difference is detected, the GLR relays the MAP_UPDATE_LOCATION request message to the HLR in order to obtain the proper CAMEL subscription information that corresponds to the current VLR. Refer to figure 7.9.1/1.\nIn order to perform this scenario, the CAMEL supported phase information needs to be added to the 'IMSI record in GLR' table.\nIt is possible that all the VLRs within a VPLMN do not support the same phase of CAMEL. This could happen in the case of an incremental upgrade of these VLRs within the VPLMN. In this case, it is possible that the HLR may receive frequent changes of the CAMEL supported phase information in the MAP_UPDATE_LOCATION request message from the GLR. The effect is that the HLR would perceive the GLR as a VLR that changes its CAMEL supported phase.\nOther CAMEL related messages between HLR and VLR, e.g. Provide Subscriber Info, Provide Subscriber Info ack are always relayed transparently from the HLR to the VLR or vice versa.\nFigure 7.9/1: CAMEL Subscription Information",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_7.9.1",
+        "figure_7.9"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.119_7.9.2",
+      "section_id": "7.9.2",
+      "section_title": "The VLR supports CAMEL Phase 1 or has no CAMEL Support",
+      "content": "If the Location Update Request message received by the GLR contains no indication that the VLR supports CAMEL, then this shows to the GLR that the VLR:\n-\teither has no support for CAMEL.\n-\tor supports CAMEL Phase 1.\nThe GLR will interpret this situation to mean that there is no CAMEL support within the VLR. Therefore the GLR will treat this as a case of an unsupported service (see clause 7.2.1.4). This will lead to an update location procedure being initiated between the GLR and HLR, causing the HLR to activate its service substitution rules.\nNote the following description of a current GSM network, i.e. where there is no GLR between the HLR and VLR. When the HLR receives a Location Update request with no indication of CAMEL support, then the HLR will attempt to request CAMEL Phase 1 support in the ISD message. If the ISD is accepted by the VLR, then support for CAMEL Phase 1 is indicated. If the ISD is rejected, then no support for CAMEL Phase 1 is indicated.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_7.2.1.4"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.119_7.10.1",
+      "section_id": "7.10.1",
+      "section_title": "Two possible treatments for interaction with CCBS",
+      "content": "In order to treat CCBS function in the GLR, There may be two possible treatments applied. When a subscriber is monitored (either as being a target or being the initiator of CCBS request), and roams to visited network which contains the GLR, the GLR manages monitoring state of subscriber.\nIf monitoring is ongoing when the GLR receives a Location Update request from the new VLR, the GLR can take one of the following actions:\n-\t(Alternative 1): Relay the Location Update request to the HLR to inform the appropriate CCBS processes in the HLR, or\n-\t(Alternative 2): Send a StatusReport MAP operation, indicating \"Idle\" to the HLR, handle the Location Update request locally in the GLR, and start monitoring on the new VLR, by sending a SetReportingState MAP operation to the new VLR.\nShould the SetReportingState response from the new VLR indicate \"Not reachable\" or \"Not Idle\", then the GLR will send this status information in a StatusReport towards the HLR.\nThe alternative 1 has the advantage that the GLR monitoring functionality is straightforward, but implies unnecessary MAP LU traffics.\nThe alternative 2 has the advantage that MAP LU traffic is saved, but implies monitoring logic to be available in the GLR.\nBoth options imply that the GLR needs to keep track of subscribers being monitored.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.119_7.10.2",
+      "section_id": "7.10.2",
+      "section_title": "The functionality in the GLR",
+      "content": "The CCBS Monitoring Flag is used in the GLR to judge whether requested location updating is necessary to be indicated to HLR or not. The figure 7.10/1 and figure 7.10/2 show how to handle a Location Update request signal referring with the CCBS Monitoring Flag in the GLR by using the alternative 1 treatment, the alternative 2 treatment respectively. These figures only indicate how a Location Update request signal is treated in the GLR. Refer to the 3G TS 23.093 [8] for a more detail treatment about the CCBS service.\nOther CCBS related MAP operations, e.g. RegisterCC-entry, EraseCC-Entry and RemoteUserFree are always relayed transparently from the HLR to the VLR or vice versa.\nFigure 7.10/1: Update Location request signal handling for CCBS in the GLR (Alternative 1)\nFigure 7.10/2: Update Location request signal handling for CCBS in the GLR (Alternative 2)",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_7.10",
+        "ts_23.093"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.119_7.10.2.1",
+      "section_id": "7.10.2.1",
+      "section_title": "Functional requirements of GLR",
+      "content": "The Alternative 1 introduced in this clause for Update Location request signal handling for CCBS in the GLR is illustrated in the clause 7.2.1 Location Management Procedures as one possible alternative.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_7.2.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.119_7.10.2.1.1",
+      "section_id": "7.10.2.1.1",
+      "section_title": "Process Set_reporting_GLR",
+      "content": "Figure 7.10/3 shows the SDL chart for Process Set_reporting_GLR.\nFigure 7.10/3: Process Set_reporting_GLR",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_7.10"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.119_7.10.2.1.2",
+      "section_id": "7.10.2.1.2",
+      "section_title": "Process Status report GLR",
+      "content": "Figure 7.10/4 shows the SDL chart for Process Status_report_GLR.\nFigure 7.10/4: Process Status_report_GLR",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_7.10"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.119_7.10.2.1.3",
+      "section_id": "7.10.2.1.3",
+      "section_title": "Process Remote_User_Free_GLR",
+      "content": "Figure 7.10/5 shows the SDL chart for Process Remote_User_Free_GLR.\nFigure 7.10/5: Process Remote_User_Free_GLR",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_7.10"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.119_7.10.2.1.4",
+      "section_id": "7.10.2.1.4",
+      "section_title": "Procedure CCBS_status_report_GLR",
+      "content": "Figure 7.10/6 shows the SDL chart for Procedure CCBS_status_report_GLR.\nFigure 7.10/6: Procedure CCBS_Status_Report_GLR",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_7.10"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.119_7.10.2.1.5",
+      "section_id": "7.10.2.1.5",
+      "section_title": "Procedure CCBS_start_report_GLR",
+      "content": "Figure 7.10/7 shows the SDL chart for Procedure CCBS_start_report_GLR\nFigure 7.10/7: Procedure CCBS_Start_Report_GLR",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_7.10"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.119_7.11",
+      "section_id": "7.11",
+      "section_title": "Location Service",
+      "content": "This clause is based on that in 3G TS 23.171 [7].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.171"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.119_7.11.1.1",
+      "section_id": "7.11.1.1",
+      "section_title": "Circuit Switched Mobile Terminating Location Request (CS-MT-LR)",
+      "content": "Figure 7.11/1: General Network Positioning for a MT-LR",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_7.11"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.119_7.11.1.1.1",
+      "section_id": "7.11.1.1.1",
+      "section_title": "Location Preparation Procedure",
+      "content": "1) and 2) Same as the steps not involving GLR. See 3G TS 23.171 [7].\n3)\tThe HLR returns the current 3G-VMSC address that includes actually IM-MSC address. The other action is the same as the step not involving GLR. See 3G TS 23.171 [7].\n4)\tThe GMLC sends a MAP_PROVIDE_SUBSCRIBER_LOCATION message to the IM-MSC indicated by the HLR. The other action is the same as the step not involving GLR. See 3G TS 23.171 [7].\n2')\tIf the IM-MSC already knows the VMSC location for the particular IMSI (e.g. from a previous location request), this step and step 3' may be skipped. Otherwise, the IM-MSC sends a MAP_SEND_ROUTING_INFO_FOR_LCS message to the GLR of the target MS to be located with the IMSI of this MS.\n3')\tThe GLR returns the current VMSC address and whichever of the IMSI and MSISDN was not provided in step (2') for the particular MS.\n4')\tThe IM-MSC sends a MAP_PROVIDE_SUBSCRIBER_LOCATION message to the VMSC indicated by the GLR.\n5) to 8) Same as the steps not involving GLR. See 3G TS 23.171 [7].",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "ts_23.171"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.119_7.11.1.1.2",
+      "section_id": "7.11.1.1.2",
+      "section_title": "Positioning Measurement Establishment Procedure",
+      "content": "9)\tSame as the step not involving GLR. See 3G TS 23.171 [7].",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "ts_23.171"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.119_7.11.1.1.3",
+      "section_id": "7.11.1.1.3",
+      "section_title": "Location Calculation and Release Procedure",
+      "content": "10)\tSame as the step not involving GLR. See 3G TS 23.171 [7].\n11')\tThe VMSC returns the location estimate and its age to the IM-MSC. The other action is the same as the step not involving GLR. See 3G TS 23.171 [7].\n11)\tThe IM-MSC receives the location estimate and its age, then sends them to the GMLC.\n12)\tSame as the step not involving GLR. See 3G TS 3G 23.171 [7].",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "ts_23.171"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.119_7.11.1.2",
+      "section_id": "7.11.1.2",
+      "section_title": "MT-LR for a previously obtained location estimate",
+      "content": "Figure 7.11/2: MT-LR for a previously obtained location estimate\n(1) to (4)\tSame as the step not involving GLR. See 3G TS 23.171 [7].\n(2') to (3')\tSame as step 2' for an MT-LR.\n(4')\tSame as step 4' for an MT-LR. The message sent to the 3G-VMSC requests either an initial location or current or last known location with \"no delay\".\n(5')\tSame as step 11 for an MT-LR.\n(5)\tSame as step 11 for an MT-LR.\n(6)\tSame as the step not involving GLR. See 3G TS 23.171 [7].",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_7.11",
+        "ts_23.171"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.119_7.11.1.3",
+      "section_id": "7.11.1.3",
+      "section_title": "Network Induced Location Request (NI-LR)",
+      "content": "This procedure is the same as the procedure not involving GLR. See 3G TS 23.171 [7].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.171"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.119_7.11.1.4",
+      "section_id": "7.11.1.4",
+      "section_title": "Network Induced Location Request (NI-LR) from a Serving RNC for a target UE in dedicated mode",
+      "content": "This procedure is not related to GLR.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.119_7.11.2.1",
+      "section_id": "7.11.2.1",
+      "section_title": "Mobile Originating Location Request, Circuit Switched (CS-MO-LR)",
+      "content": "This procedure is the same as the procedure not involving GLR. See 3G TS 23.171 [7].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.171"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.119_7.12",
+      "section_id": "7.12",
+      "section_title": "IST of non-CAMEL implementation",
+      "content": "If the GLR supports IST, when the GLR receives an Update Location request that indicates that the MSC/VLR supports IST, it relays the indication to the HLR. If not, the GLR may ignore the indication. When the GLR receives an IST Alert Request from the MSC, it relays the message to the HLR. The HLR sends an IST Alert Response to the GLR, and then the GLR relays the message to the MSC.\nWhen the IM-MSC receives an IST Command Request from the HLR, it retrieves the location information, i.e., MSC Number, from the GLR and sends the message to the MSC. Then the IM-MSC receives the response from the MSC and sends the response to the HLR.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.119_7.13",
+      "section_id": "7.13",
+      "section_title": "The interaction with Super-Charger",
+      "content": "Following clauses show the location updating procedures in the case that the serving nodes in the network with the GLR support the Super-Charger functionality.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.119_7.13.1",
+      "section_id": "7.13.1",
+      "section_title": "First Location Updating Procedure in the Super-Charged network",
+      "content": "The first location updating procedure in a Super-Charged network is illustrated in figure 7.13/1. Each step is explained in the following list.\nFigure 7.13/1: First Location Updating Procedure in the case that visited NW supports the Super-Charger features\nProcedure:\n1)\tWhen the GLR receives an Update Location or Update GPRS Location message from a serving node (i.e., VLR or SGSN) and does not hold the subscriber's information for the user (ex. at the first location updating to the GLR), it relays the message without age indicator (if age indicator is received from the serving node, the GLR deletes it) to the HLR.\n2)\tThe HLR stores the address and number of serving node. Thereafter the HLR initiates insert subscriber data procedure and cancel location procedure (only if both the HLR and previous serving node support the Super-Charger features). When the GLR receives Insert Subscriber Data message from the HLR, the GLR creates an age indicator and stores the subscriber's information in the message and transports it to the serving node with the age indicator.\n3)\tAfter these procedures, the HLR replies to an Update Location or Update GPRS Location message from the GLR and the GLR transports the response to the serving node.",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_7.13"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.119_7.13.2",
+      "section_id": "7.13.2",
+      "section_title": "Second and further Location Updating Procedure in the Super-Charged networks",
+      "content": "The second and further location updating procedure in a Super-Charged network is illustrated in figure 7.13/2. Each step is explained in the following list.\nFigure 7.13/2: Second and further Location Updating Procedure in the case that visited NW supports the Super-Charger features\nProcedure:\n1)\tWhen the GLR receives an Update Location or Update GPRS Location message with an age indicator from newly visited serving node (i.e. VLR or GSSN) and holds the subscriber information for the user (i.e. at second or further location updating to the GLR), it stores the address and number of newly visited serving node included in the received message.\n2)\tThe GLR does not initiate cancel location procedure if the previous node supports the Super-Charger features.\n3)\tWhen the age indicator from the serving node indicates the serving node does not request the subscription data, the GLR checks if the subscription data retained in serving node is consistent with that stored in the GLR. If so, the GLR shall not send subscription data to the newly visited serving node. Otherwise the GLR initiates the insert subscriber procedure to the serving node.\n4)\tAfter these procedures, the GLR replies to an Update Location or Update GPRS Location message from the serving node.",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_7.13"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.119_7.13.3",
+      "section_id": "7.13.3",
+      "section_title": "Cancel Location Procedure in the Super-Charged networks",
+      "content": "The cancel location procedure in a Super-Charged network when MS leave the network is illustrated in figure 7.13/3. Each step is explained in the following list.\nFigure 7.13/3: Cancel Location Procedure in the case that visited NW supports the Super-Charger features\nProcedure:\n1)\tWhen the GLR receives a Cancel Location message from the HLR, it checks whether the serving node supports the Super-Charger features or not.\n2)\tIf the serving node does not supports the Super-Charger features, the GLR initiates a cancel location procedure to the serving node.\n3)\tWhen the GLR receives the response of the Cancel Location message, it responses to the HLR by sending the Cancel Location ack message.",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_7.13"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.119_7.13.4.1",
+      "section_id": "7.13.4.1",
+      "section_title": "Procedure Super_Charged_Cancel_Location_GLR",
+      "content": "Figure 7.13/4 shows SDL chart for Procedure Super_Charged_Cancel_Location_GLR.\nFigure 7.13/4: Procedure Super_Charged_Cancel_Location_GLR",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_7.13"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.119_7.13.4.2",
+      "section_id": "7.13.4.2",
+      "section_title": "Procedure Super_Charged_Location_Updating_GLR",
+      "content": "Figure 7.13/5 shows SDL chart for Procedure Super_Charged_Location_Updating_GLR.\nFigure 7.13/5: Procedure Super_Charged_Location_Updating_GLR",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "figure_7.13"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.119_8",
+      "section_id": "8",
+      "section_title": "The subscriber information stored in the GLR",
+      "content": "The subscriber information stored in the GLR can be categorised in the following types.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.119_8.1",
+      "section_id": "8.1",
+      "section_title": "Information for HLR emulation",
+      "content": "The GLR retrieves this kind of subscriber information mainly from Insert Subscriber Data message received from the HLR and stores it. Then this message is transported to the VLR transparently.\nThis type of information is for example:\n-\tIMSI.\n-\tInternational MS ISDN number.\n-\tPDP Type.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.119_8.2",
+      "section_id": "8.2",
+      "section_title": "Information for address and identity conversion",
+      "content": "On location updating the VLR or SGSN sends Update Location message to the GLR and notifies its VLR number and MSC number or SGSN number and SGSN address by the message. On the first updating in the newly visited network, the GLR relays Update Location message to the HLR setting.\n-\tThe GLR number as the VLR number(E.164 address).\n-\tThe IM_MSC number as the MSC number(E.164 address).\n-\tThe GLR number as the SGSN number(E.164 address).\n-\tThe IM-GSN address as the SGSN address(IP address).\nThe GLR keeps the association of these numbers and addresses and updates it on the second and further updating. And when the GLR receives and stores the HLR number in Update Location ack message form the HLR, it relays the message to the VLR setting.\n-\tThe GLR number as the HLR number (E. 164 address).\n-\tIdentity Conversion.\nOn location updating the VLR creates and allocates the LMSI number (denote LMSIv) for the user and sends it to the GLR in Update Location message. When the GLR receives the message, it creates and allocates another LMSI number (denote LMSIg) and associates LMSIg with received LMSIv. The GLR notifies LMSIg to the HLR sending Update Location message. This method can speed up the search for subscriber data in the GLR when the GLR receives some message from the HLR.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.119_8.3",
+      "section_id": "8.3",
+      "section_title": "Information for Location updating Screening",
+      "content": "This information is used for the GLR to judge whether requested location updating is necessary to be indicated to HLR or not. Following are information categorized in this type.\nMNRF, MNRG.\n-\tCCBS Monitoring Flag.\n-\tMSC area restricted flag.\n-\tSGSN area restricted flag.\n-\tLocation and Subscriber information Confirmed by HLR indicator (LSIC).\nClause 7.7 shows the procedure for SMS alerting in the network with the GLR. In the procedure Mobile station Not Reachable Flag (MNRF) and Mobile station Not Reachable for GPRS (MNRG) are needed.\nThe CCBS Monitoring Flag is set when the user in the GLR area is CCBS monitored by the VLR. As one option, while it is set, the Update Location message is relayed to the HLR to inform the appropriate CCBS process in the HLR. More detailed procedures for the CCBS are included in clause 7.10.\nMSC area restricted flag and SGSN area restricted flag are needed for regional restriction service. See clause 7.5 for more detailed procedures.\nLSIC is used for restart procedures. clause 7.6.3 includes more detailed description for the usage of this indicator.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_7.7",
+        "clause_7.10",
+        "clause_7.5",
+        "clause_7.6.3"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.119_8.4",
+      "section_id": "8.4",
+      "section_title": "Information for support of Super-Charger functionality",
+      "content": "This information is used for the GLR to behave as the HLR supporting the Super-Charger functionality towards the serving node (i.e. VLR or SGSN) which also supports Super-Charger functionality. Following is information categorised in this type.\n-\tAge indicator for CS.\n-\tAge indicator for PS.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_23.119_8.5",
+      "section_id": "8.5",
+      "section_title": "Other Information",
+      "content": "The GLR has Service Substitution Induced Flag list. This information show which service is replaced by service substitution. See clause 7.2.1.3 for more detail on the handling of unsupported services.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_7.2.1.3"
+      ]
+    },
+    {
+      "chunk_id": "ts_23.119_8.6",
+      "section_id": "8.6",
+      "section_title": "IMSI Record in the GLR",
+      "content": "Table 8.5/1: Subscriber Information stored in the GLR\nPARAMETER\nPRESENCE\nCATEGORY (*1)\nNOTE\nIMSI\nM\nA\nNetwork Access Mode\nC\nA\nInternational MS ISDN number\nM\nA\nLMSI allocated by VLR\nC\nB\nLMSI allocated by GLR\nC\nB\nMobile Station Category\nM\nA\nLMU Identifier\nC\nA\nVLR number\nM\nB\nMSC number\nM\nB\nHLR number\nC\nB\nZone Code List\nC\nA\nRoaming restriction due to unsupported feature\nC\nA\nMSC area restricted flag\nM\nC\nLSA Identity\nC\nA\nLSA Priority\nC\nA\nLSA Only Access Indicator\nC\nA\nLSA Active Mode Indicator\nC\nA\nProvision of bearer service\nM\nA\nProvision of teleservice\nM\nA\nBC allocation\nC\nA\nSubscriber status\nC\nA\nBarring of outgoing calls\nC\nA\nBarring of premium rate calls\nC\nA\nBarring of supplementary service management\nC\nA\nBarring of invocation of call transfer\nC\nA\nMobile Station Not Reachable Flag\nM\nC\nVGCS Group Membership List\nC\nA\nVBS Group Membership List\nC\nA\nBroadcast Call Initiation Allowed List\nC\nA\nOriginating CAMEL Subscription Information\nC\nA\nSS invocation notification (SS-CSI)\nC\nA\nCCBS Monitoring Flag\nC\nC\nLocation and Subscriber information Confirmed by HLR indicator\nM\nC\nCAMEL Supported phases information\nC\nC\nService Substitution Induced Flag list\nC\nE\nForwarding information List\nC\nA\nCall barring information List\nC\nA\nCUG information List\nC\nA\nSS-Data List\nC\nA\nEMLPP Subscription\nC\nA\nNorth American Equal Access preferred Carrier Id List\nC\nA\nPrivacy Exception List\nC\nA\nHome GMLC Numbers\nC\nA\nIST Alert Timer\nC\nA\nAge indicator for CS\nC\nD\nPacket Specific Data\nSGSN number\nM\nB\nRoaming Restriction in the SGSN due to unsupported feature\nM\nA\nSGSN area restricted flag\nM\nC\nMNRG\nM\nC\nPDP Type\nC\nA\nPDP Address\nC\nA\nSGSN address\nM\nB\nAccess Point Name\nC\nA\nVPLMN Address Allowed\nC\nA\nQuality of Service Subscribed\nC\nA\nAge indicator for PS\nC\nD\n(*1)\tA: Information for HLR emulation.\nB: Information for address and identity conversion.\nC: Information for Location updating Screening.\nD: Information for support of Super-Charger functionality.\nE: Others.\nAnnex A (informative):Change history\nChange history\nDate\nMeeting\nTDoc\nCR\nRev\nCat\nSubject/Comment\nNew version\n08-1999\nThe first draft.\n0.1.0\n09-1999\nAddition of clause 7.10 and some editorial corrections.\n0.2.0\n10-1999\nAddition of clause 7.5.2, modification of clause 7.2.1.3 and clause 7.2.2, and, some editorial corrections.\n0.3.0\n11-1999\nMoved, modified and merged Purge MS descriptions from clause 7.3.1.3 and 7.3.3 to clause 7.4. Deleted clause 7.10 Location Service and remove LCS related data from table 8.5/1. Corrected some editing errors.\n0.4.0\n11-1999\nModified clause 2 References. Deleted one sentence from clause 4. Corrected minor editing errors in clause 5.3 and clause 8.5. Restored clause 7.11 Location Services and LCS related data to table 8.5/1.\n0.5.0\n02-2000\nAgreed by CN2B, Milan\n1.0.0\n03-2000\nSubmitted for approval to TSG CN#07\n2.0.0\n03-2000\nApproved by CN#07\n3.0.0\n03-2001\nRelease 4 after CN#11\n4.0.0\n06-2002\nRelease 5 after CN#16\n5.0.0\n12-2004\nRelease 6 after CN#26\n6.0.0\n06-2007\nUpgraded unchanged from Rel-6 after CT#36\n7.0.0\n12-2008\nUpgraded unchanged from Rel-7 after CT#42\n8.0.0\n12-2009\nUpdate to Rel-9 version (MCC)\n9.0.0\n03-2011\nUpdate to Rel-10 version (MCC)\n10.0.0\n09-2012\nUpdate to Rel-11 version (MCC)\n11.0.0\n09-2014\nUpdate to Rel-12 version (MCC)\n12.0.0\n12-2015\nUpdate to Rel-13 version (MCC)\n13.0.0\n03-2017\nUpdate to Rel-14 version (MCC)\n14.0.0\n06-2018\nUpdate to Rel-15 version (MCC)\n15.0.0\n07-2020\nUpdate to Rel-16 version (MCC)\n16.0.0\n2022-03\nCT#95-\n-\n-\n-\n-\nUpdate to Rel-17 version (MCC)\n17.0.0\n2024-03\n-\n-\n-\n-\n-\nUpdate to Rel-18 version (MCC)\n18.0.0",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_7.10",
+        "clause_7.5.2",
+        "clause_7.2.1.3",
+        "clause_7.2.2",
+        "clause_7.3.1.3",
+        "clause_7.4",
+        "clause_2",
+        "clause_4",
+        "clause_5.3",
+        "clause_8.5",
+        "clause_7.11",
+        "table_8.5"
+      ]
+    }
+  ]
+}

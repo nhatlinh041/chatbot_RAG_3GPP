@@ -1,0 +1,1230 @@
+{
+  "metadata": {
+    "specification_id": "ts_29.504",
+    "version": "18.9.0",
+    "title": "3GPP TS 29.504",
+    "file_path": "/content/drive/MyDrive/RAG_thesis/data/29_series/29504-i90/29504-i90.docx"
+  },
+  "export_info": {
+    "export_date": "2025-07-26T08:56:19.375582",
+    "total_chunks": 110
+  },
+  "chunks": [
+    {
+      "chunk_id": "ts_29.504_1",
+      "section_id": "1",
+      "section_title": "Scope",
+      "content": "The present document specifies the stage 3 protocol and high level data model for the Nudr Service Based Interface. It provides stage 3 protocol definitions and message flows, and specifies the API for each service offered by the Unified Data Repository (UDR). The data model and usage of the subscription data is specified in 3GPP TS 29.505 [2], and the data model and usage of the policy data, structured data for exposure and application data are specified in 3GPP TS 29.519 [3].\nThe 5G System architecture is specified in 3GPP TS 23.501 [4]. The stage 2 definition and related procedures for Nudr SBI service are specified in 3GPP TS 23.502 [5] and 3GPP TS 23.503 [6].\nThe Technical Realization of the Service Based Architecture is specified in 3GPP TS 29.500 [7] and the Principles and Guidelines for Services Definition is specified in 3GPP TS 29.501 [8].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.505",
+        "ts_29.519",
+        "ts_23.501",
+        "ts_23.502",
+        "ts_23.503",
+        "ts_29.500",
+        "ts_29.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.504_2",
+      "section_id": "2",
+      "section_title": "References",
+      "content": "The following documents contain provisions which, through reference in this text, constitute provisions of the present document.\n-\tReferences are either specific (identified by date of publication, edition number, version number, etc.) or non‑specific.\n-\tFor a specific reference, subsequent revisions do not apply.\n-\tFor a non-specific reference, the latest version applies. In the case of a reference to a 3GPP document (including a GSM document), a non-specific reference implicitly refers to the latest version of that document in the same Release as the present document.\n[1]\t3GPP TR 21.905: \"Vocabulary for 3GPP Specifications\".\n[2]\t3GPP TS 29.505: \"5G System; Usage of the Unified Data Repository Services for Subscription Data; Stage 3\".\n[3]\t3GPP TS 29.519: \"5G System; Usage of the Unified Data Repository Service for Policy Data, Structured Data for Exposure and Application Data; Stage 3\".\n[4]\t3GPP TS 23.501: \"System Architecture for the 5G System; Stage 2\".\n[5]\t3GPP TS 23.502: \"Procedures for the 5G System; Stage 2\".\n[6]\t3GPP TS 23.503: \"Policy and Charging Control Framework for the 5G System; Stage 2\".\n[7]\t3GPP TS 29.500: \"5G System; Technical Realization of Service Based Architecture; Stage 3\".\n[8]\t3GPP TS 29.501: \"5G System; Principles and Guidelines for Services Definition; Stage 3\".\n[9]\tIETF RFC 6901(April 2013): \"JavaScript Object Notation (JSON) Pointer\".\n[10]\t3GPP TS 29.571: \"5G System; Common Data Types for Service Based Interfaces Stage 3\".\n[11]\tIETF RFC 8259: \"The JavaScript Object Notation (JSON) Data Interchange Format\".\n[12]\t3GPP TS 33.501: \"Security architecture and procedures for 5G system\".\n[13]\tIETF RFC 6749: \"The OAuth 2.0 Authorization Framework\".\n[14]\t3GPP TS 29.510: \"Network Function Repository Services; Stage 3\".\n[15]\tIETF RFC 9110: \"HTTP Semantics \".\n[16]\tIETF RFC 9111: \"HTTP Caching\".\n[17]\tIETF RFC 9457: \"Problem Details for HTTP APIs\".\n[18]\tIETF RFC 7396: \"JSON Merge Patch\".\n[19]\tIETF RFC 6902: \"JavaScript Object Notation (JSON) Patch\".\n[20]\t3GPP TR 21.900: \"Technical Specification Group working methods\".\n[21]\tOpenAPI Initiative, \"OpenAPI Specification Version 3.0.0\", https://spec.openapis.org/oas/v3.0.0\n[22]\tIETF RFC 9113: \"HTTP/2\".\n[23]\tIETF RFC 3986: \"Uniform Resource Identifier (URI): Generic Syntax\".",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905",
+        "ts_29.505",
+        "ts_29.519",
+        "ts_23.501",
+        "ts_23.502",
+        "ts_23.503",
+        "ts_29.500",
+        "ts_29.501",
+        "ts_29.571",
+        "ts_33.501",
+        "ts_29.510",
+        "ts_21.900"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.504_3.1",
+      "section_id": "3.1",
+      "section_title": "Definitions",
+      "content": "For the purposes of the present document, the terms and definitions given in 3GPP TR 21.905 [1] and the following apply. A term defined in the present document takes precedence over the definition of the same term, if any, in 3GPP TR 21.905 [1].",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_21.905"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.504_3.2",
+      "section_id": "3.2",
+      "section_title": "Abbreviations",
+      "content": "For the purposes of the present document, the abbreviations given in 3GPP TR 21.905 [1] and the following apply. An abbreviation defined in the present document takes precedence over the definition of the same abbreviation, if any, in 3GPP TR 21.905 [1].\nGPSI\tGeneric Public Subscription Identifier\nNEF\tNetwork Exposure Function\nPCF\tPolicy Control Function\nSUPI\tSubscription Permanent Identifier\nUDM\tUnified Data Management\nUDR\tUnified Data Repository",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.504_4",
+      "section_id": "4",
+      "section_title": "Overview",
+      "content": "The Unified Data Repository (UDR) is the network entity in the 5G Core Network (5GC) supporting the following functionalities:\n-\tStorage and retrieval of subscription data as specified in 3GPP TS 29.505 [2];\n-\tStorage and retrieval of policy data as specified in 3GPP TS 29.519 [3];\n-\tStorage and retrieval of structured data for exposure as specified in 3GPP TS 29.519 [3];\n-\tStorage and retrieval of application data (including Packet Flow Descriptions (PFDs) for application detection, application request information for multiple UEs) as specified in 3GPP TS 29.519 [3];\n-\tSubscription to notification and the notification of subscribed data changes.\n-\tStorage and retrieval of NF-Group Id mapping data.\nFigures 4-1 shows the data storage architecture for the 5GC:\nFigure 4-1: Data storage architecture\nThe Nudr interface is used by the network functions (i.e. UDM, PCF, NEF and NRF) to access a particular set of the data stored in the UDR.\nNOTE:\tServices offered by the UDR via the Nudr service-based interface can also be consumed by the HSS as specified in 3GPP TS 23.632 clause 5.2.4.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_23.632_clause_5.2.4",
+        "figure_4-1",
+        "ts_29.505",
+        "ts_29.519",
+        "ts_23.63"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.504_5.1",
+      "section_id": "5.1",
+      "section_title": "Introduction",
+      "content": "The UDR offers the following services via the Nudr interface:\n-\tNudr_DataRepository Service\nNOTE:\tThis service corresponds to the Nudr_DataManagement service in 3GPP TS 23.501 [4], 3GPP TS 23.502 [5] and 3GPP TS 23.503 [6].\n-\tNudr_GroupIDmap Service\nTable 5.1-1 summarizes the corresponding APIs defined for this specification.\nTable 5.1-1: API Descriptions\nService Name\nClause\nDescription\nOpenAPI Specification File\napiName\nAnnex\nNudr_DataRepository\n6.1\nUnified Data Repository Service\nTS29504_Nudr_DR.yaml\nnudr-dr\nA.2\nNudr_GroupIDmap\n6.2\nUnified Data Repository Service for NF-Group ID retrieval\nTS29504_Nudr_GroupIDmap.yaml\nnudr-group-id-map\nA.3",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.1-1",
+        "ts_23.501",
+        "ts_23.502",
+        "ts_23.503"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.504_5.2.1.1",
+      "section_id": "5.2.1.1",
+      "section_title": "Service and operation description",
+      "content": "The UDR is acting as NF Service Producer. It provides Unified Data Repository service to the NF service consumer. The known NF Service Consumers are the UDM, PCF and NEF.\nFor the Nudr_DataRepository service, the following service operations are defined:\n-\tQuery\n-\tCreate\n-\tDelete\n-\tUpdate\n-\tSubscribe\n-\tUnsubscribe\n-\tNotify\n-\tDataRestorationNotification\nThis service allows NF service consumers to retrieve, create, update, modify and delete data stored in the UDR.\nThis service allows the NF service consumers to subscribe/unsubscribe the data change notification and to be notified of the data change.\nThis service allows the NF service consumers to be notified upon the UDR restoration.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.504_5.2.1.2",
+      "section_id": "5.2.1.2",
+      "section_title": "Service operation and data access authorization",
+      "content": "UDR provides one Nudr_DataRepository service to all of the NF consumers, while different types of data may have different data access authorizations, the UDR shall be able to have the authorization management mechanism to guarantee the safety of data access.\nAnd the information in the Nudr_DataRepository service operation should be able to identify the NF type of the consumer and the service operation type or name, and to indicate the requested data information including the data set and data subset, and the resource/data identifier. All HTTP methods for the service operation shall include the information in the appropriate place of the HTTP message.\nIf there is an illegal service operation or data access request initiated by a NF consumer, the service failure response should be returned through the Nudr interface with an explicit cause value.\nNOTE:\tFor allowed service operations or data access requests initiated by an NF consumer it is not expected (unless explicitly specified otherwise) that the UDR performs any consumer-specific application logic to check whether a requested service operation should be rejected.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.504_5.2.2.1",
+      "section_id": "5.2.2.1",
+      "section_title": "Introduction",
+      "content": "This clause specifies the generic Nudr_DataRepository service operations towards the different data sets as shown in Figure 4-1.\nThe HTTP request of the service operations contains a resource URI where the {apiSpecificResourceUriPart} (see clause 4.4.2 in 3GPP TS 29.501 [8]) consists of a top-level segment and sub-level segment(s), followed by query parameters (optional or required).\nIf multiple query parameters are defined for a method on the resource, the default logical relationship between the different query parameters shall be the logical \"AND\", unless explicitly indicated on each specific resource and operation on the Nudr_DataRepository API.\nNOTE:\tNot all query parameters imply necessarily a logical relationship with other parameters (e.g. \"supported-features\"); whether or not such logical relationship exists, is determined by the semantics of the different query parameters in each resource and operation.\nFor Create, Query, Update and Delete operations, the top-level segment indicates one top level resource representing one of the data sets, which are defined as \"/subscription-data\", \"/policy-data\", \"/exposure-data\" and \"/application-data\" in Figure 6.1.3.1-1. And a certain child resource is indicated by of the end URI of the sub-level segments, which are defined in 3GPP TS 29.505 [2] for use when the top-level segment is \"/subscription-data\" and in 3GPP TS 29.519 [3] for use when the top-level segment is \"/policy-data\", \"/exposure-data\" or \"/application-data\".\nFor Subscribe/Unsubscribe to data change notification operations, the resource of the subscription to the notification should be as the child resource of each of the data sets (i.e. \"/subscription-data\", \"/policy-data\", \"/exposure-data\" and \"/application-data\"), which are indicated by the top-level segment in the URI. And the resource representation of the subscription to the notification should be indicated by the sub-level segment of each data set.\nThe following procedures for each operation should be taken as the common procedures and applicable to corresponding detail procedures with the same service operation in 3GPP TS 29.505 [2] and 3GPP TS 29.519 [3].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.501_clause_4.4.2",
+        "figure_4-1",
+        "figure_6.1.3.1-1",
+        "ts_29.501",
+        "ts_29.505",
+        "ts_29.519"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.504_5.2.2.2.1",
+      "section_id": "5.2.2.2.1",
+      "section_title": "General",
+      "content": "The Query service operation is used to retrieve the data stored in the UDR. HTTP GET method shall be used for the service operation to request the certain data record(s). One piece of data records should be a data set, a data subset, a group of data in one data subset, or a specific data. If the data record(s) are the attribute(s), query parameter or the combination of query parameters should be used as the filters to control the content of result.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.504_5.2.2.2.2",
+      "section_id": "5.2.2.2.2",
+      "section_title": "Data retrieval",
+      "content": "Figure 5.2.2.2.2-1 shows a scenario where the NF service consumer (e.g. UDM, PCF or NEF) sends a request to the UDR to retrieve data.\nQuery parameters may be used for data retrieval:\ni)\tClause 5.2.2.2.3 specifies the query parameter used for retrieving subset of a resource;\nii)\tOther query parameters are defined in 3GPP TS 29.505 [2] and 3GPP TS 29.519 [3].\nFigure 5.2.2.2.2-1: Retrieving Data\n1.\tThe NF service consumer shall send a GET request to the resource representing the data. Query parameters may be used to restrict the response to the requested data record(s) of the resource's representation. Query parameters may also indicate the features that the NF service consumer supports as described in clause 6.6.2 of 3GPP TS 29.500 [7].\n2.\tOn success, the UDR shall respond with \"200 OK\" with the message body containing the requested data record(s) restricted to the query parameters. (and thus also to the indicated features supported by the NF service consumer).\nOn failure, the UDR shall return an appropriated error code with the error cause information.\nThe error codes of corresponding service operations in 3GPP TS 29.505 [2] and 3GPP TS 29.519 [3] shall align and comply with the failure response mechanism which is defined in 3GPP TS 29.500 [7].",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_5.2.2.2.3",
+        "ts_29.500_clause_6.6.2",
+        "figure_5.2.2.2.2-1",
+        "ts_29.505_figure_5.2.2.2.2-1",
+        "ts_29.505",
+        "ts_29.519",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.504_5.2.2.2.3",
+      "section_id": "5.2.2.2.3",
+      "section_title": "Retrieval of subset of a resource",
+      "content": "When a resource has multiple attributes, it is allowed for the NFs to retrieve a subset of the attributes. When the attribute is of type map, it is allowed for the NFs to retrieve individual member(s) of that map. For retrieval of subset of a resource, a new query parameter \"fields\" is defined to carry the identities of the attributes to be retrieved. The definition of \"fields\" query parameter is:\n1)\t\"fields\" query parameter is of type array; and\n2)\teach element of the array is of type string encoded as a JSON pointer as defined IETF RFC 6901 [9].\nNOTE:\tidentifying an individual element in the array is supported by JSON pointer, however it is not recommended to use this feature if the client is not exactly aware of the order of the members in the array.\nIf retrieval of subset of a particular resource is supported, then all the attributes of the corresponding data type of that resource shall be optional or conditional.\nEXAMPLE 1:\nGiven the following representation of ExResource:\n{\n\"lv1Attr1\": \"value1\"\n\"lv1Attr2\": \"value2\"\n\"lv1Attr3\": {\n\"lv2Attr1\": \"value3\"\n\"lv2Attr2\": \"value4\"\n}\n}\nTo retrieve \"lv1Attr1\" and \"lv2Attr2\", the NF sends the following request:\nGET /ExResource?fields=/lv1Attr1, /lv1Attr3/lv2Attr2\nUpon success, the UDR then returns the following representation:\n{\n\"lv1Attr1\": \"value1\"\n\"lv1Attr3\": {\n\"lv2Attr2\": \"value4\"\n}\n}\nEXAMPLE 2:\nGiven the following representation of ExResource:\n{\n\"Attr1\": \"value1\"\n\"Attr2\": \"value2\"\n\"AttrMap\": {\n\"Key1\": {ExObject1}\n\"Key2\": {ExObject2}\n}\n}\nTo retrieve \"Attr1\" and the second member of \"AttrMap \", the NF sends the following request:\nGET /ExResource?fields=/Attr1, /AttrMap/Key2\nUpon success, the UDR then returns the following representation:\n{\n\"Attr1\": \"value1\"\n\"AttrMap\": {\n\"Key2\": {ExObject2}\n}\n}",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.504_5.2.2.3.1",
+      "section_id": "5.2.2.3.1",
+      "section_title": "General",
+      "content": "The Create service operation is used by the NF service consumer (e.g. NEF) to create the data into the UDR.\nThe following procedures using the Create service operation are supported:\n-\tData creation using PUT\n-\tData creation using POST",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.504_5.2.2.3.2",
+      "section_id": "5.2.2.3.2",
+      "section_title": "Data Creation using PUT",
+      "content": "Figure 5.2.2.3.2-1 shows a scenario where the NF service consumer (e.g. NEF) sends a request to the UDR to create data. The parent resource of the resource identified by the resource URI shall be of archetype Store (see clause C.3 in 3GPP TS 29.501 [8]).\nFigure 5.2.2.3.2-1: Creating Data using PUT\n1.\tThe NF service consumer shall send a PUT request to the resource representing the data. The content of the PUT request shall contain the representation of the new data.\n2.\tOn success, the UDR shall respond with \"201 Created\" with the content containing the representation of the created data, and the \"Location\" header shall be present and contains the URI of the created data.\nOn failure, the UDR shall return an appropriated error code with the error cause information.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "figure_5.2.2.3.2-1",
+        "ts_29.501_figure_5.2.2.3.2-1",
+        "ts_29.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.504_5.2.2.3.3",
+      "section_id": "5.2.2.3.3",
+      "section_title": "Data Creation using POST",
+      "content": "Figure 5.2.2.3.3-1 shows a scenario where the NF service consumer (e.g. NEF) sends a request to the UDR to create data. The resource identified by the resource URI shall be of archetype Collection (see clause C.2 in 3GPP TS 29.501 [8]).\nFigure 5.2.2.3.3-1: Creating Data using POST\n1.\tThe NF service consumer shall send a POST request to create the new data record as the child resource of the parent resource in the UDR. The content of the POST request shall contain the representation of the new data.\n2.\tThe UDR generates the data identifier and constructs the URI for the created data record by appending the data identifier to the parent resource URI received as request URI of the POST request.\nOn success, the UDR shall respond with \"201 Created\" with the content containing the representation of the created data, and the \"Location\" header shall be present and contains the URI of the created data.\nOn failure, the UDR shall return an appropriated error code with the error cause information.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "figure_5.2.2.3.3-1",
+        "ts_29.501_figure_5.2.2.3.3-1",
+        "ts_29.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.504_5.2.2.4.1",
+      "section_id": "5.2.2.4.1",
+      "section_title": "General",
+      "content": "The Delete service operation is used by the NF service consumer (e.g. NEF) to remove the data from the UDR.\nThe following procedures using the Delete service operation are supported:\n-\tData Deletion\nHTTP DELETE method shall be used.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.504_5.2.2.4.2",
+      "section_id": "5.2.2.4.2",
+      "section_title": "Deleting Data",
+      "content": "Figure 5.2.2.4.2-1 shows a scenario where the NF service consumer (e.g. NEF) sends a request to the UDR to delete a data record.\nFigure 5.2.2.4.2-1: Deleting Data\n1.\tThe NF service consumer shall send a DELETE request to the resource representing the data. The content of the request shall be empty.\n2.\tOn success, the UDR shall respond with \"204 No Content\", the content of the DELETE response shall be empty.\nOn failure, the UDR shall return an appropriated error code with the error cause information.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "figure_5.2.2.4.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.504_5.2.2.5.1",
+      "section_id": "5.2.2.5.1",
+      "section_title": "General",
+      "content": "The Update service operation is used by the NF service consumer (e.g. UDM, PCF or NEF) to update the data stored in the UDR.\nThe following procedures using the Update service operation are supported:\n-\tData Update using PATCH\n-\tData Update using PUT\nHTTP PATCH method shall be used to add/create, delete or modify part of the value(s) in the data record (e.g. a specific data or a group of data in one data subset). HTTP PUT method shall be used to replace a complete data record.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.504_5.2.2.5.2",
+      "section_id": "5.2.2.5.2",
+      "section_title": "Data Update using PATCH",
+      "content": "Figure 5.2.2.5.2-1 shows a scenario where the NF service consumer (e.g. UDM, PCF or NEF) sends a request to the UDR to update some parts of the data record.\nFigure 5.2.2.5.2-1: Data Updating using PATCH\n1.\tThe NF service consumer shall send a PATCH request to the resource representing the data record. The content contains the modification instruction towards the data record.\n2.\tOn success, the UDR shall respond with \"204 No Content\".\nOn failure, the UDR shall return an appropriated error code with the error cause information.",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_5.2.2.5.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.504_5.2.2.5.3",
+      "section_id": "5.2.2.5.3",
+      "section_title": "Data Update using PUT",
+      "content": "Figure 5.2.2.5.3-1 shows a scenario where the NF service consumer (e.g. UDM, PCF or NEF) sends a request to the UDR to update the whole data record.\nFigure 5.2.2.5.3-1: Data Updating using PUT\n1.\tThe NF service consumer shall send a PUT request to the resource representing the data record. The content contains the new data for the resource.\n2.\tOn success, the UDR shall respond with \"204 No Content\" or \"200 OK\".\nOn failure, the UDR shall return an appropriated error code with the error cause information.",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_5.2.2.5.3-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.504_5.2.2.6.1",
+      "section_id": "5.2.2.6.1",
+      "section_title": "General",
+      "content": "The Subscribe service operation is used for the NF service consumer to explicitly subscribe to the data change notification from the UDR.\nPermanent Subscription Data i.e. sub-resources of the ProvisionedData resource (see 3GPP TS 29.505 [2]) can be modified only by means of provisioning at the UDR and may be (as a deployment option) implicitly subscribed by the UDM as described in 3GPP TS 29.501 [8] clause 4.6.2.2.1. If so and when a data modification of permanent subscription data occurs by means of provisioning and there is the need to notify at least one serving node (e.g. AMF, SMF, SMSF), the UDR shall select one of the suitable and available UDMs (as discovered via the NRF) and send a notification using the callback URI provided by the NRF during UDM discovery.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.501_clause_4.6.2.2.1",
+        "ts_29.505",
+        "ts_29.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.504_5.2.2.6.2",
+      "section_id": "5.2.2.6.2",
+      "section_title": "NF service consumer subscribes to notifications to UDR",
+      "content": "Figure 5.2.2.6.2-1 shows a scenario where the NF service consumer (e.g. UDM, PCF or NEF) sends a request to the UDR to subscribe to data change notifications.\nFigure 5.2.2.6.2-1: subscribing to data change notifications\n1.\tThe NF service consumer sends a POST request to the parent resource (...<top-level segment>/subs-to-notif). The NF service consumer describes the notifications it wants to receive, and it also indicates the features it supports (see clause 6.6.2 of 3GPP TS 29.500 [7]). The request may contain an expiry time, suggested by the NF Service Consumer as a hint, representing the time upto which the subscription is desired to be kept active.\n2.\tOn success, the UDR responds with \"201 Created\" with the message body containing a representation of the created subscription and indicating the supported features (see clause 6.6.2 of 3GPP TS 29.500 [7]). The Location HTTP header shall contain the URI of the created subscription. In subsequent notifications according to clause 5.2.2.8.2, the UDR only uses the indicated supported features.\nThe response based on operator policies and taking into account the expiry time included in the request, may contain an expiry time (i.e a future timestamp), as determined by the UDR, after which the subscription becomes invalid. If an expiry time was included in the request, then the expiry time returned in the response should be less than or equal to that value. Once the subscription expires, if the NF Service Consumer wants to keep receiving notifications, it shall create a new subscription in the UDR. The UDR shall not provide the same expiry time (i.e a future timestamp) for many subscriptions in order to avoid all of them expiring and recreating the subscription at the same time. If the expiry time is not included in the response, the NF Service Consumer shall consider the subscription to be valid without an expiry time.\nOn failure, the UDR returns an appropriated error code with the error cause information.\nOnce the subscription has been created, an NF Service Consumer may request the update of the subscription in UDR (e.g., to request an extension of the subscription lifetime before the subscription expires) by issuing a PUT or PATCH request, as described in 3GPP TS 29.501 [8], clause 4.6.2.2.3.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.500_clause_6.6.2",
+        "clause_5.2.2.8.2",
+        "ts_29.501_clause_4.6.2.2.3",
+        "figure_5.2.2.6.2-1",
+        "ts_29.500",
+        "ts_29.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.504_5.2.2.6.3",
+      "section_id": "5.2.2.6.3",
+      "section_title": "Stateless UDM subscribes to notifications to UDR",
+      "content": "Figure 5.2.2.6.3-1 shows a scenario where the stateless UDM subscribes to notification to the UDR.\nFigure 5.2.2.6.3-1: subscribing to data change notifications via stateless UDM\n1.\tThe stateless UDM sends a POST request to the UDR to subscribe to the notifications.\nThe SubData in the POST request body shall indicate the same data for which a change will trigger a notification.\nThe SubData in the POST request body shall contain a callbackReference URI to which the notifications will be sent to. The host part of the callbackReference URI shall be set to the FQDN of the UDM set to which the stateless UDM belongs.\nThe SubData in the POST request body shall contain an original callbackReference URI of the NF which initially triggers the subscription.\nThe request may contain an expiry time, suggested by the NF Service Consumer as a hint, representing the time upto which the subscription is desired to be kept active.\n2.\tOn success, the UDR responds with \"201 Created\" with the message body containing a representation of the created subscription. The Location HTTP header shall contain the URI of the created subscription and that URI shall contain the subscription ID allocated by the UDR.\nThe response based on operator policies and taking into account the expiry time included in the request, may contain an expiry time (i.e a future timestamp), as determined by the UDR, after which the subscription becomes invalid. If an expiry time was included in the request, then the expiry time returned in the response should be less than or equal to that value. Once the subscription expires, if the NF Service Consumer wants to keep receiving notifications, it shall create a new subscription in the UDR. The UDR shall not provide the same expiry time (i.e a future timestamp) for many subscriptions in order to avoid all of them expiring and recreating the subscription at the same time. If the expiry time is not included in the response, the NF Service Consumer shall consider the subscription to be valid without an expiry time.\nOn failure, the UDR returns an appropriated error code with the error cause information.\nOnce the subscription has been created, the stateless UDM may request the update of the subscription in UDR (e.g., to request an extension of the subscription lifetime before the subscription expires) by issuing a PUT or PATCH request, as described in 3GPP TS 29.501 [8], clause 4.6.2.2.3.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.501_clause_4.6.2.2.3",
+        "figure_5.2.2.6.3-1",
+        "ts_29.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.504_5.2.2.7.1",
+      "section_id": "5.2.2.7.1",
+      "section_title": "General",
+      "content": "The Unsubscribe service operation is used for the NF service consumer to unsubscribe to the data change notification from the UDR.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.504_5.2.2.7.2",
+      "section_id": "5.2.2.7.2",
+      "section_title": "Unsubscribe service operation",
+      "content": "Figure 5.2.2.7.2-1 shows a scenario where the NF service consumer (e.g. UDM, PCF or NEF) sends a request to the UDR to unsubscribe to data change notifications.\nFigure 5.2.2.7.2-1: Unsubscribing to the data change notifications\n1.\tThe NF service consumer sends a DELETE request to the resource identified by the URI previously received during subscription creation, i.e. in the Location header field of the HTTP 201 Created response.\n2.\tOn success, the UDR responds with \"204 No Content\".\nOn failure, the UDR returns an appropriated error code with the error cause information.",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_5.2.2.7.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.504_5.2.2.8.1",
+      "section_id": "5.2.2.8.1",
+      "section_title": "General",
+      "content": "The Notify service operation is used for the UDR to notify the data change notification to the previous subscribe operation requestor.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.504_5.2.2.8.2",
+      "section_id": "5.2.2.8.2",
+      "section_title": "Notification to NF service consumer on data change",
+      "content": "Figure 5.2.2.8.2-1 shows a scenario where the UDR notifies the NF service consumer about the subscribed data change. The request contains the CallbackReference URI as previously received in the subscribe operation (see clause 5.2.2.6).\nFigure 5.2.2.8.2-1: Data Change Notification\n1.\tThe UDR sends a POST request to the callbackReference URI as provided by the NF service consumer in the subscribe operation.\n2.\tOn success, the NF service consumer responds with \"204 No Content\".On failure, the NF service consumer responds an appropriated error code with the error cause information.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_5.2.2.6",
+        "figure_5.2.2.8.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.504_5.2.2.8.3",
+      "section_id": "5.2.2.8.3",
+      "section_title": "Notification to stateless UDM on data change",
+      "content": "Figure 5.2.2.8.3-1 shows a scenario where the UDR notifies the NF service consumer about the subscribed data change.\nFigure 5.2.2.8.3-1: Data Change Notification to stateless UDM\n1.\tThe UDR sends a POST request to the callbackReference URI as provided by the stateless UDM in the subscribe operation.\nThe notification in the POST request body shall contain the original callbackReference URI which is received in step 1 of Figure 5.2.2.6.3-1.\nWhen the notification in the POST request body includes one or more arrays, the UDR shall use the complete replacement representation of the arrays, see 3GPP TS29.501 [4], Annex E.\nWhen the notification in the POST request body includes one or more arrays where all the array elements have been removed, the UDR shall include the original array representation, i.e. in the origValue attribute of the ChangeItem.\n2.\tOn success, the stateless UDM responds with \"204 No Content\".\nOn failure, the stateless UDM responds an appropriated error code with the error cause information.",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_5.2.2.8.3-1",
+        "figure_5.2.2.6.3-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.504_5.2.2.9.1",
+      "section_id": "5.2.2.9.1",
+      "section_title": "General",
+      "content": "The DataRestorationNotification service operation is used for the UDR to send notfications on UDR restoration event to one or a set of NFs which are subject to the data restoration procedure.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.504_5.2.2.9.2",
+      "section_id": "5.2.2.9.2",
+      "section_title": "Notification on Data Restoration",
+      "content": "The notification on data restoration may be based on implicit subscription to data restoration event. When the NF service consumer (e.g. UDM) access UDR (i.e. to access the data stored in the UDR) for the first time, the UDR shall identify the identity of the NF service consumer via the NF instance ID contained in the 3gpp-Sbi-NF-Peer-Info header field of the request, then the UDR may create a default subscription on data restoration for that NF service consumer accordingly.\nFigure 5.2.2.9.2-1 shows a scenario where the UDR notifies the NF service consumer about the need to restore data due to a potential data-loss event occurred at the UDR. The dataRestorationCallbackUri contained in the request is the default callback URI as discovered from NRF.\nFigure 5.2.2.9.2-1: Data Restoration Notification\n1.\tThe UDR sends a POST request to the dataRestorationCallbackUri as discovered from NRF.\n2.\tOn success, the NF service consumer responds with \"204 No Content\".On failure, the NF service consumer responds an appropriated error code with the error cause information.",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_5.2.2.9.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.504_5.3.1.1",
+      "section_id": "5.3.1.1",
+      "section_title": "Service and operation description",
+      "content": "The Nudr_GroupIDmap service may be used by NF service consumers (e.g. NRF or SCP) to retrieve the NF Group ID for a given NF type and subscriber identifier (or information related to a set of subscribers served by a same NF Group ID, such as the Routing Indicator); see 3GPP TS 23.501 [4] and 3GPP TS 23.502 [5].\nIt may also be used to retrieve the list of Routing Indicators served by a given NF Group.\nFor the Nudr_GroupIDmap service, the following service operations are defined:\n-\tQuery\n-\tSubscribe\n-\tUnsubscribe\n-\tNotify\nThis service allows NF service consumers to retrieve, NF GroupID data stored in the UDR.\nThis service allows the NF service consumers to subscribe/unsubscribe to changes on user ID to NF Group ID mapping, and to be notified on changes of such mapping.\n-\tQueryRID\nThis service allows NF service consumers to retrieve Routing Indicator data stored in the UDR.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.501",
+        "ts_23.502"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.504_5.3.2.1",
+      "section_id": "5.3.2.1",
+      "section_title": "Introduction",
+      "content": "The service operations defined for the Nudr_GroupIDmap service are as follows:\n-\tQuery: It allows an NF consumer (e.g. NRF) to retrieve the NF Group ID for a given NF type and subscriber-related information.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.504_5.3.2.2.1",
+      "section_id": "5.3.2.2.1",
+      "section_title": "General",
+      "content": "The following procedure using the Query service operation is supported:\n-\tNF-Group ID Retrieval",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.504_5.3.2.2.2",
+      "section_id": "5.3.2.2.2",
+      "section_title": "NF Group ID retrieval",
+      "content": "Figure 5.3.2.2.2-1 shows a scenario where the NF service consumer (e.g. NRF) sends a request to the UDR to retrieve the NF Group ID.\nFigure 5.3.2.2.2-1: Retrieving NF Group ID\n1.\tThe NF service consumer shall send a GET request to the resource representing the data. Query parameters shall be used to identify the NF type (e.g. UDM) of the requested NF Group ID (e.g. UDM Group ID) and the subscriber-id, or information related to a set of subscribers.\n2.\tOn success, the UDR shall respond with \"200 OK\" with the message body containing the requested data\nOn failure, the UDR shall return an appropriated error code with the error cause information.",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_5.3.2.2.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.504_5.3.2.3.1",
+      "section_id": "5.3.2.3.1",
+      "section_title": "General",
+      "content": "The following procedure using the QueryRID service operation is supported:\n-\tRouting IDs Retrieval",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.504_5.3.2.3.2",
+      "section_id": "5.3.2.3.2",
+      "section_title": "Routing IDs retrieval",
+      "content": "Figure 5.3.2.x.2-1 shows a scenario where the NF service consumer (e.g. NRF) sends a request to the UDR to retrieve the Routing Indicators served by a given NF Group (identified by its NF type and its NF Group ID).\nFigure 5.3.2.3.2-1: Retrieving Routing Ids\n1.\tThe NF service consumer shall send a GET request to the resource representing the data. Query parameters shall be used to identify the NF type (e.g. UDM) and the NF Group ID (e.g. UDM Group ID).\n2.\tOn success, the UDR shall respond with \"200 OK\" with the message body containing the requested data.\nOn failure, the UDR shall return an appropriated error code with the error cause information.",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_5.3.2",
+        "figure_5.3.2.3.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.504_5.3.2.4.1",
+      "section_id": "5.3.2.4.1",
+      "section_title": "General",
+      "content": "The Subscribe service operation is used for the NF service consumer to subscribe to notifications from the UDR when there is a change in the mapping between a subscriber ID and an NF Group ID.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.504_5.3.2.4.2",
+      "section_id": "5.3.2.4.2",
+      "section_title": "NF service consumer subscribes to notifications to UDR",
+      "content": "Figure 5.3.2.4.2-1 shows a scenario where the NF service consumer (e.g. NRF or SCP) sends a request to the UDR to subscribe to NF Group ID mapping changes.\nFigure 5.3.2.4.2-1: Subscribing to NF Group ID mapping changes\n1.\tThe NF service consumer sends a POST request to the resource (…/nf-group-ids/subscriptions). The NF service consumer describes the notifications it wants to receive (i.e., the NF type and NF Group ID to be monitored for changes on mapping to subscriber IDs) and provides a notification URI. The request may contain an expiry time, suggested by the NF Service Consumer as a hint, representing the time upto which the subscription is desired to be kept active.\n2.\tOn success, the UDR responds with \"201 Created\" with the message body containing a representation of the created subscription. The Location HTTP header shall contain the URI of the created subscription.\nThe response based on operator policies and taking into account the expiry time included in the request, may contain an expiry time (i.e a future timestamp), as determined by the UDR, after which the subscription becomes invalid. If an expiry time was included in the request, then the expiry time returned in the response should be less than or equal to that value. Once the subscription expires, if the NF Service Consumer wants to keep receiving notifications, it shall create a new subscription in the UDR. The UDR shall not provide the same expiry time (i.e a future timestamp) for many subscriptions in order to avoid all of them expiring and recreating the subscription at the same time. If the expiry time is not included in the response, the NF Service Consumer shall consider the subscription to be valid without an expiry time.\nOn failure, the UDR returns an appropriated error code with the error cause information.\nOnce the subscription has been created, an NF Service Consumer may request the update of the subscription in UDR (e.g., to request an extension of the subscription lifetime before the subscription expires) by issuing a PATCH request.",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_5.3.2.4.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.504_5.3.2.5.1",
+      "section_id": "5.3.2.5.1",
+      "section_title": "General",
+      "content": "The Unsubscribe service operation is used for the NF service consumer to unsubscribe to NF Group ID mapping changes from the UDR.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.504_5.3.2.5.2",
+      "section_id": "5.3.2.5.2",
+      "section_title": "Unsubscribe service operation",
+      "content": "Figure 5.3.2.5.2-1 shows a scenario where the NF service consumer (e.g. NRF or SCP) sends a request to the UDR to unsubscribe to NF Group ID mapping changes.\nFigure 5.3.2.5.2-1: Unsubscribing to NF Group ID mapping changes\n1.\tThe NF service consumer sends a DELETE request to the resource identified by the URI previously received during subscription creation in the Location header field of the HTTP 201 Created response.\n2.\tOn success, the UDR responds with \"204 No Content\".\nOn failure, the UDR returns an appropriated error code with the error cause information.",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_5.3.2.5.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.504_5.3.2.6.1",
+      "section_id": "5.3.2.6.1",
+      "section_title": "General",
+      "content": "The Notify service operation is used for the UDR to notify the NF Group ID mapping change to the previous subscribe operation requestor.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.504_5.3.2.6.2",
+      "section_id": "5.3.2.6.2",
+      "section_title": "Notification to NF service consumer on data change",
+      "content": "Figure 5.3.2.6.2-1 shows a scenario where the UDR notifies the NF service consumer about the NF Group ID mapping change. The request is sent to the notificationURI as previously received in the subscribe operation (see clause 5.3.2.4.2).\nFigure 5.3.2.6.2-1: NF Group ID mapping change notification\n1.\tThe UDR sends a POST request to the notificationUri as provided by the NF service consumer in the subscribe operation. The content of the notification includes the identities whose mapping to a given NF Group ID has changed.\nNOTE:\tFor a subscriber identity that currently does not have any NF Group ID assigned, the notification is not needed, and the UDR can decide, based on implementation choice, to only send notifications when the mapping has changed from a given NF Group ID to a different one. Nonetheless, it can be reasonable to send such notifications, for example, when they are related to a large range of subscriber identities, no matter if the individual subscriber identities had, or not, a previous NF Group ID assigned.\n2.\tOn success, the NF service consumer responds with \"204 No Content\".On failure, the NF service consumer responds an appropriated error code with the error cause information.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_5.3.2.4.2",
+        "figure_5.3.2.6.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.504_6.1.1",
+      "section_id": "6.1.1",
+      "section_title": "API URI",
+      "content": "The Nudr-dr shall use the Nudr-dr API.\nThe request URI used in HTTP request from the NF service consumer towards the NF service producer shall have the structure defined in clause 4.4.1 of 3GPP TS 29.501 [8], i.e.:\n{apiRoot}/<apiName>/<apiVersion>/<apiSpecificResourceUriPart>\nwith the following components:\n-\tThe {apiRoot} shall be set as described in 3GPP TS 29.501 [8].\n-\tThe <apiName> shall be \"nudr-dr\".\n-\tThe <apiVersion> shall be \"v2\".\n-\tThe <apiSpecificResourceUriPart> shall be set as described in clause 6.1.3.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.501_clause_4.4.1",
+        "clause_6.1.3",
+        "ts_29.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.504_6.1.2.1",
+      "section_id": "6.1.2.1",
+      "section_title": "General",
+      "content": "Nudr service shall comply with the usage of HTTP/2.0 protocol over Service Based Interfaces. (See Clause 5, 3GPP TS 29.500[7]).",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.500_clause_5",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.504_6.1.2.2.1",
+      "section_id": "6.1.2.2.1",
+      "section_title": "General",
+      "content": "The usage of HTTP standard headers shall be supported on Nudr interface as defined in clause 5.2.2 of 3GPP TS 29.500 [7].",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.500_clause_5.2.2",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.504_6.1.2.2.2",
+      "section_id": "6.1.2.2.2",
+      "section_title": "Content type",
+      "content": "The following content types shall be supported:\n-\tJSON, as defined in IETF RFC 8259 [11], shall be used as content type of the HTTP bodies specified in the present specification as indicated in clause 5.4 of 3GPP TS 29.500 [7].\n-\tThe Problem Details JSON Object (IETF RFC 9457 [17]). The use of the Problem Details JSON object in a HTTP response body shall be signalled by the content type \"application/problem+json\".\n-\tJSON Merge Patch (IETF RFC 7396 [18]. The use of the JSON Merge Patch format in a HTTP request body shall be signalled by the content type \"application/merge-patch+json\".\n-\tJSON Patch (IETF RFC 6902 [19]). The use of the JSON Patch format in a HTTP request body shall be signalled by the content type \"application/json-patch+json\".",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_5.4",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.504_6.1.2.2.3",
+      "section_id": "6.1.2.2.3",
+      "section_title": "Cache-Control",
+      "content": "As described in IETF RFC 9111 [16] clause 5.2, a \"Cache-Control\" header should be included in HTTP responses carrying a representation of cacheable resources (e.g. SessionManagementSubscriptionData). If it is included, it shall contain a \"max-age\" value, indicating the amount of time in seconds after which the received response is considered stale.\nThe \"max-age\" value shall be configurable by operator policy.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_5.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.504_6.1.2.2.4",
+      "section_id": "6.1.2.2.4",
+      "section_title": "ETag",
+      "content": "As described in IETF RFC 9110 [15] clause 8.8.3, an \"ETag\" (entity-tag) header should be included in HTTP responses carrying a representation of cacheable resources (e.g. AccessAndMobilitySubscriptionData) or modifyable resources (e.g. Amf3GppAccessRegistration) to allow an NF Service Consumer performing a conditional GET request with \"If-None-Match\" header or a conditional POST / PUT / PATCH / DELETE request with \"If-Match\" header. If it is included, it shall contain a server-generated strong validator, that allows further matching of this value (included in subsequent client requests) with a given resource representation stored in the server or in a cache.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_8.8.3"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.504_6.1.2.2.5",
+      "section_id": "6.1.2.2.5",
+      "section_title": "If-None-Match",
+      "content": "As described in IETF RFC 9110 [15] clause 13.1.2, an NF Service Consumer may issue conditional GET request towards UDR by including an \"If-None-Match\" header in HTTP requests containing one or several entity tags received in previous responses for the same resource.\n6.1.2.2.5a\tIf-Match\nAs described in IETF RFC 9110 [15] clause 13.1.1, an NF Service Consumer may issue conditional POST / PUT / PATCH / DELETE request towards UDR by including an \"If-Match\" header in HTTP requests containing an entity tag received in previous responses for the same resource.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_13.1.2",
+        "clause_13.1.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.504_6.1.2.2.6",
+      "section_id": "6.1.2.2.6",
+      "section_title": "Last-Modified",
+      "content": "As described in IETF RFC 9110 [15] clause13.1.3, a \"Last-Modified\" header should be included in HTTP responses carrying a representation of cacheable resources (e.g. SmfSelectionSubscriptionData) to allow an NF Service Consumer performing a conditional request with \"If-Modified-Since\" header.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.504_6.1.2.2.7",
+      "section_id": "6.1.2.2.7",
+      "section_title": "If-Modified-Since",
+      "content": "As described in IETF RFC 7232 [15] clause 3.3, an NF Service Consumer may issue conditional GET request towards UDR, by including an \"If-Modified-Since\" header in HTTP requests.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_3.3"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.504_6.1.2.2.8",
+      "section_id": "6.1.2.2.8",
+      "section_title": "When to Use Entity-Tags and Last-Modified Dates",
+      "content": "Both \"ETag\" and \"Last-Modified\" headers should be sent in the same HTTP response as stated in IETF RFC 9110 [15] clause 15.3.1.\nNOTE: \"ETag\" is a stronger validator than \"Last-Modified\" and is preferred.\nIf the UDR included an \"ETag\" header with the resource then a conditional GET request for this resource shall be performed with the \"If-None-Match\" header, and a POST / PUT / PATCH / DELETE request for this resource shall be performed with the \"If-Match\" header.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_15.3.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.504_6.1.2.3.1",
+      "section_id": "6.1.2.3.1",
+      "section_title": "General",
+      "content": "The custom HTTP headers applicable to Nudr service are specified in the following clauses.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.504_6.1.2.3.2",
+      "section_id": "6.1.2.3.2",
+      "section_title": "3gpp-Sbi-Message-Priority",
+      "content": "Nudr interface shall support 3gpp-Sbi-Message-Priority custom header. The header contains the HTTP/2 message priority value. See details in Clause 5.2.3.2.2 of 3GPP TS 29.500 [7].",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_5.2.3.2.2",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.504_6.1.2.3.3",
+      "section_id": "6.1.2.3.3",
+      "section_title": "3gpp-Sbi-Notification-Correlation",
+      "content": "The 3gpp-Sbi-Notification-Correlation header field is used by a NF in a UDR resource create/update/delete request to indicate the subscription context(s) whose notification needs to be disabled when triggered as consequence of a request including this header. Subsequent create/update/delete requests that do not include the 3gpp-Sbi-Notification-Correlation header trigger the corresponding notifications as per currently defined procedures.\nThis header contains subscription identifier(s), as provided by the UDR during the subscribe operation.\nThe encoding of the header follows the ABNF as defined in IETF RFC 9110 [15].\nSbi-Notification-Correlation-Header = \"3gpp-Sbi-Notification-Correlation:\" OWS subscriptionId *(OWS \",\" OWS subscriptionId ) OWS\nsubscriptionId = token\nSee clause 5.6.2 of IETF RFC 9110 [15] for the \"token\" definition.\nEXAMPLE:\t3gpp-Sbi-Notification-Correlation: subsid123, subsid345.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_5.6.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.504_6.1.2.3.4",
+      "section_id": "6.1.2.3.4",
+      "section_title": "3gpp-Sbi-Etags",
+      "content": "The 3gpp-Sbi-Etags header field is used by the UDR in 200 OK responses to GET requests for multiple data set retrieval, allowing to convey one Etag per retrieved data set. The consumer may make use of a received Etag for a given data set in If-Match/If-None-Match headers of subsequent requests individually accessing the given data set.\nThe encoding of the header follows the ABNF as defined in IETF RFC 9110 [15].\nSbi-Etags-Header = \"3gpp-Sbi-Etags:\" OWS datasetEtag *(OWS \",\" OWS datasetEtag) OWS\ndatasetEtag = dataSetName \"=\" entity-tag\ndataSetName = UeSubscribedDataSetName\nUeSubscribedDataSetName = 1*( ALPHA / DIGIT / \"_\" )\nSee clause 5.4.3.11 of 3GPP TS 29.505 [2] for the \"UeSubscribedDataSetName\" definition.\nSee IETF RFC 9110 [15] section 8.8.3 for the \"entity-tag\" definition.\nEXAMPLE:\t3gpp-Sbi-Etags: AM=\"xxx\", SM=\"yyy\"",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.505_clause_5.4.3.11",
+        "clause_8.8.3",
+        "ts_29.505"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.504_6.1.3.1",
+      "section_id": "6.1.3.1",
+      "section_title": "Overview",
+      "content": "Figure 6.1.3.1-1: Resource URI structure of the Nudr_DataRepository API\nTable 6.1.3.1-1 provides an overview of the resources and applicable HTTP methods.\nTable 6.1.3.1-1: Resources and methods overview\nResource name\nResource URI\nHTTP method or custom operation\nDescription\nSubscriptionData\n/subscription-data\nnone\nFor sub-level resource names, resource URIs and HTTP methods see 3GPP TS 29.505 [2]\nPolicyData\n/policy-data\nnone\nFor sub-level resource names, resource URIs and HTTP methods see 3GPP TS 29.519 [3]\nStructuredDataForExposure\n/exposure-data\nnone\nFor sub-level resource names, resource URIs and HTTP methods see 3GPP TS 29.519 [3]\nApplicationData\n/application-data\nnone\nFor sub-level resource names, resource URIs and HTTP methods see 3GPP TS 29.519 [3]\nDataRestorationEvents\n/data-restoration-events\nPOST\nThis is a pseudo operation.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "table_6.1.3.1-1",
+        "figure_6.1.3.1-1",
+        "ts_29.505",
+        "ts_29.519"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.504_6.1.3.2",
+      "section_id": "6.1.3.2",
+      "section_title": "SubscriptionData",
+      "content": "See 3GPP TS 29.505 [2].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.505"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.504_6.1.3.3",
+      "section_id": "6.1.3.3",
+      "section_title": "PolicyData",
+      "content": "See 3GPP TS 29.519 [3].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.519"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.504_6.1.3.4",
+      "section_id": "6.1.3.4",
+      "section_title": "StructuredDataForExposure",
+      "content": "See 3GPP TS 29.519 [3].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.519"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.504_6.1.3.5",
+      "section_id": "6.1.3.5",
+      "section_title": "ApplicationData",
+      "content": "See 3GPP TS 29.519 [3].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.519"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.504_6.1.3.6.2",
+      "section_id": "6.1.3.6.2",
+      "section_title": "Resource Definition",
+      "content": "Resource URI: {apiRoot}/nudr-dr/<apiVersion>/data-restoration-events\nThis resource shall support the resource URI variables defined in table 6.1.3.6.2-1.\nTable 6.1.3.6.2-1: Resource URI variables for this resource\nName\nData type\nDefinition\napiRoot\nstring\nSee clause 6.1.1\napiVersion\nstring\nSee clause 6.1.1",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_6.1.1",
+        "table_6.1.3.6.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.504_6.1.3.6.3",
+      "section_id": "6.1.3.6.3",
+      "section_title": "Resource Standard Methods",
+      "content": "6.1.3.6.3.1\tPOST\nThis method will not be actually invoked.\nThis method shall support the URI query parameters specified in table 6.1.3.6.3.1-1.\nTable 6.1.3.6.3.1-1: URI query parameters supported by the POST method on this resource\nName\nData type\nP\nCardinality\nDescription\nApplicability\nn/a\nThis method shall support the request data structures specified in table 6.1.3.6.3.1-2 and the response data structures and response codes specified in table 6.1.3.6.3.1-3.\nTable 6.1.3.6.3.1-2: Data structures supported by the POST Request Body on this resource\nData type\nP\nCardinality\nDescription\nAny\nTable 6.1.3.6.3.1-3: Data structures supported by the POST Response Body on this resource\nData type\nP\nCardinality\nResponse\ncodes\nDescription\nn/a",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.1.3.6.3.1-1",
+        "table_6.1.3.6.3.1-2",
+        "table_6.1.3.6.3.1-3"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.504_6.1.4",
+      "section_id": "6.1.4",
+      "section_title": "Custom Operations without associated resources",
+      "content": "In this release of this specification, no custom operations without associated resources are defined for the Nudr_DataRepository Service.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.504_6.1.5.1",
+      "section_id": "6.1.5.1",
+      "section_title": "General",
+      "content": "This clause specifies the general mechanism of notifications in the following scenarios:\n-\tnotification of changed data which are stored in the UDR;\n-\tnotification of data restoration.\nThe mechanism shall be applicable to the data specified in 3GPP TS 29.505[2] and 3GPP TS 29.519[3].",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.505",
+        "ts_29.519"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.504_6.1.5.2",
+      "section_id": "6.1.5.2",
+      "section_title": "Data Change Notification",
+      "content": "The POST method shall be used for Data Change Notifications and the URI shall be as provided during the subscription procedure.\nResource URI: {callbackReference}\nSupport of POST request data structures should contain the object of changed data and conditionally the URI of original Callback reference, which is received from the original subscribed NF.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.504_6.1.5.3",
+      "section_id": "6.1.5.3",
+      "section_title": "Data Restoration Notification",
+      "content": "The POST method shall be used to inform the NF Service Consumer about a potential data-loss event occurred at the UDR, and the callback URI shall be dynamically discovered by UDR by querying NRF for a default notification URI.\nResource URI: {dataRestorationCallbackUri}\nSupport of URI query parameters is specified in table 6.1.5.3-1.\nTable 6.1.5.3-1: URI query parameters supported by the POST method\nName\nData type\nP\nCardinality\nDescription\nn/a\nSupport of request data structures is specified in table 6.1.5.3-2 and of response data structures and response codes is specified in table 6.1.5.3-3.\nTable 6.1.5.3-2: Data structures supported by the POST Request Body\nData type\nP\nCardinality\nDescription\nDataRestorationNotification\nM\n1\nContains identifiers representing those UEs potentially affected by a data-loss event at the UDR.\nTable 6.1.5.3-3: Data structures supported by the POST Response Body\nData type\nP\nCardinality\nResponse\ncodes\nDescription\nn/a\n204 No Content\nUpon success, an empty response body shall be returned.\nRedirectResponse\nO\n0..1\n307 Temporary Redirect\nTemporary redirection. The response shall include a Location header field containing a different URI. The URI shall be an alternative URI of the resource located on an alternative service instance within the same NF or NF (service) set.\nIf an SCP redirects the message to another SCP then the location header field shall contain the same URI or a different URI pointing to the endpoint of the NF service consumer to which the notification should be sent.\nRedirectResponse\nO\n0..1\n308 Permanent Redirect\nPermanent redirection. The response shall include a Location header field containing a different URI. The URI shall be an alternative URI of the resource located on an alternative service instance within the same NF or NF (service) set.\nIf an SCP redirects the message to another SCP then the location header field shall contain the same URI or a different URI pointing to the endpoint of the NF service consumer to which the notification should be sent.\nProblemDetails\nO\n0..1\n404 Not Found\nThe \"cause\" attribute may be used to indicate one of the following application errors:\n- CONTEXT_NOT_FOUND\nNOTE:\tIn addition, common data structures as listed in table 5.2.7.1-1 of 3GPP TS 29.500 [7] are supported.\nTable 6.1.5.3-4: Headers supported by the 307 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nContains the Callback URI of the target NF Service Consumer (e.g. UDM) to which the request is redirected\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target NF (service) instance ID towards which the request is redirected\nTable 6.1.5.3-5: Headers supported by the 308 Response Code on this resource\nName\nData type\nP\nCardinality\nDescription\nLocation\nstring\nM\n1\nContains the Callback URI of the target NF Service Consumer (e.g. AMF) to which the request is redirected\n3gpp-Sbi-Target-Nf-Id\nstring\nO\n0..1\nIdentifier of the target NF (service) instance ID towards which the request is redirected\n6.1.5a\tData Model\n6.1.5a.1\tGeneral\nThis clause specifies the application data model supported by the API.\nTable 6.1.5a.1-1 specifies the data types defined for the Nudr_DataRepository API.\nTable 6.1.5a.1-1: Nudr_DataRepository specific Data Types\nData type\nClause defined\nDescription\nDataRestorationNotification\n6.2.5a.2.2\nContains identities representing those UEs potentially affected by a data-loss event at the UDR\nTable 6.1.5a.1-2 specifies data types re-used by the Nudr_DataRepository service-based interface protocol from other specifications, including a reference to their respective specifications and when needed, a short description of their use within the Nudr_DataRepository service-based interface.\nTable 6.1.5a.1-2: Nudr_DataRepository re-used Data Types\nData type\nReference\nComments\nDnn\n3GPP TS 29.571 [10]\nData Network Name with Network Identifier only.\nSnssai\n3GPP TS 29.571 [10]\nSingle NSSAI\nNfGroupId\n3GPP TS 29.571 [10]\nNF Group ID\nIdentityRange\n3GPP TS 29.510 [14]\nIdentity Range\nSupiRange\n3GPP TS 29.510 [14]\nSUPI Range\n6.1.5a.2\tStructured data types\n6.1.5a.2.1\tIntroduction\nThis clause defines the structures to be used in resource representations.\n6.1.5a.2.2\tType: DataRestorationNotification\nTable 6.2.5a.2.2-1: Definition of type DataRestorationNotification\nAttribute name\nData type\nP\nCardinality\nDescription\nsupiRanges\narray(SupiRange)\nO\n1..N\nIf present, it contains the list of SUPIs potentially subject to a data-loss event at the UDR.\ngpsiRanges\narray(IdentityRange)\nO\n1..N\nIf present, it contains the list of GPSIs potentially subject to a data-loss event at the UDR.\nresetIds\narray(string)\nO\n1..N\nIf present, it contains the list of Reset-IDs of those UEs potentially subject to a data-loss event at the UDR.\nsNssaiList\narray(Snssai)\nO\n1..N\nIf present, it contains the list of slices (S-NSSAIs) potentially subject to a data-loss event at the UDR.\ndnnList\narray(Dnn)\nO\n1..N\nIf present, it contains the list of DNNs potentially subject to a data-loss event at the UDR.\nlastReplicationTime\nDateTime\nO\n0..1\nIf present, it contains the timestamp of the most recent instant when the data was assumed to be consistent at UDR (i.e. the potential data loss event at UDR did not occur before this instant).\nrecoveryTime\nDateTime\nO\n0..1\nIf present, it contains the timestamp of the instant when the potential data loss event was recovered at UDR (i.e. all data records stored by UDR after this time are assumed to be consistent).\nudrGroupId\nNfGroupId\nO\n0..1\nIf present, it contains the ID of the UDR Group whose UEs have been potentially subject to a data loss event at the UDR.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.1.5.3-1",
+        "table_6.1.5.3-2",
+        "table_6.1.5.3-3",
+        "ts_29.500_table_5.2.7.1-1",
+        "ts_29.500_table_6.1.5.3-4",
+        "table_6.1.5.3-5",
+        "table_6.1.5",
+        "table_6.2.5",
+        "ts_29.500",
+        "ts_29.571",
+        "ts_29.510"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.504_6.1.6",
+      "section_id": "6.1.6",
+      "section_title": "Error Handling",
+      "content": "Table 6.1.6-1 lists common response body data structures used within the nudr-dr (Nudr_DataRepository) API\nTable 6.1.6-1: Common Response Body Data Structures\nData type\nP\nCardinality\nResponse\ncodes\nDescription\nProblemDetails\nO\n0..1\n4xx, 5xx responses\nFor error status codes, the UDR may provide detailed information.\nNOTE:\tIn addition common data structures as defined in 3GPP TS 29.500 [7] are supported.\nThe \"ProblemDetails\" data structure may contain a \"cause\" attribute to indicate the application error, see 3GPP TS 29.571 [10]. The values for \"cause\" attribute are defined in table 6.1.6-2.\nTable 6.1.6-2: Application Errors\nApplication Error\nHTTP status code\nDescription\nNF_TYPE_NOT_ALLOWED\n403 Forbidden\nThe target data set is not permitted to access for the NF type of the NF consumer.\nUNSUPPORTED_MONITORED_URI\n501 Not Implemented\nThe subscribe service operation is not able to be implemented due to invalid resource URI to be monitored).\nUSER_NOT_FOUND\n404 Not Found\nThe user indicated in the HTTP/2 request does not exist in the UDR.\nDATA_NOT_FOUND\n404 Not Found\nThe data indicated in the HTTP/2 request is unavailable in the UDR.\nINCORRECT_CONDITIONAL_REQUEST\n412 Precondition Failed\nOne or more conditions given in the request header fields evaluated to false when tested in the UDR.\nUNPROCESSABLE_REQUEST\n422 Unprocessable Entity\nThe request cannot be procesed due to semantic errors when trying to process a patch method.\nDATABASE INCONSISTENCY\n500 Internal Server Error\nRequested data cannot be returned due to database inconsistency\nRESOURCE_TEMP_MOVED\n307 Temporary Redirect\nThe resource is unavailable in the current target URI but can be temporarily found in an alternative URI.\nRESOURCE_MOVED\n308 Permanent Redirect\nThe resource is unavailable in the current target URI but can be permanently found in an alternative URI.\nGROUP_IDENTIFIER_NOT_FOUND\n404 Not Found\nThe group identifier does not exist.\nMODIFICATION_NOT_ALLOWED\n403 Forbidden\nModification of the target resource representation is not permitted.\nPLMN_NOT_FOUND\n404 Not Found\nThe 'servingPlmnId' indicated in the HTTP/2 query is unavailable in the UDR. This status code is also used when 'servingPlmnId' path variable contains SNPN ID, see Table 5.2.3.2-1 in 3GPP TS 29.505 [2].\nINTERNAL_GROUP_ID_NOT_UNIQUE\n403 Forbidden\nThe internal group ID allocated by the UDM for a newly created 5G VN Group already exists in the UDR.\nNOTE:\tThe error codes shall apply to both 3GPP TS 29.505 [2] and 3GPP TS 29.519 [3]. In addition error codes shall comply with the definition in clause 5.2.7.2 of 3GPP TS 29.500 [7].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.500_clause_5.2.7.2",
+        "table_6.1.6-1",
+        "table_6.1.6-2",
+        "ts_29.505_table_5.2.3.2-1",
+        "ts_29.500",
+        "ts_29.571",
+        "ts_29.505",
+        "ts_29.519"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.504_6.1.7",
+      "section_id": "6.1.7",
+      "section_title": "Security",
+      "content": "As indicated in 3GPP TS 33.501 [12], the access to the Nudr_DataRepository API may be authorized by means of the OAuth2 protocol (see IETF RFC 6749 [13]), using the \"Client Credentials\" authorization grant, where the NRF (see 3GPP TS 29.510 [14]) plays the role of the authorization server.\nIf Oauth2 authorization is used, an NF Service Consumer, prior to consuming services offered by the Nudr_DataRepository API, shall obtain a \"token\" from the authorization server, by invoking the Access Token Request service, as described in 3GPP TS 29.510 [14], clause 5.4.2.2.\nNOTE:\tWhen multiple NRFs are deployed in a network, the NRF used as authorization server is the same NRF that the NF Service Consumer used for discovering the Nudr_DataRepository service.\nThe Nudr_DataRepository API defines the following scopes for OAuth2 authorization:\nTable 6.1.7-1: OAuth2 scopes defined in Nudr_DataRepository API\nScope\nDescription\n\"nudr-dr\"\nAccess to the Nudr DataRepository API\n\"nudr-dr:subscription-data\"\nAccess to the SubscriptionData data set.\n\"nudr-dr:subscription-data:authentication-subscription:read\"\nAccess to read the AuthenticationSubscription resource of the SubscriptionData data set.\n\"nudr-dr:subscription-data:authentication-subscription:modify\"\nAccess to update the AuthenticationSubscription resource of the SubscriptionData data set.\n\"nudr-dr:subscription-data:registrations:write\"\nWrite access to NF registration resources of the SubscriptionData data set.\n\"nudr-dr:policy-data\"\nAccess to the PolicyData data set.\n\"nudr-dr:policy-data:ues:read\"\nAccess to read the UEs resource.\n\"nudr-dr:policy-data:ues:am-data:read\"\nAccess to read the UEs Access and Mobility Policy data.\n\"nudr-dr:policy-data:ues:ue-policy-set:read\"\nAccess to read the UEs Policy Set data.\n\"nudr-dr:policy-data:ues:ue-policy-set:create\"\nAccess to create the UEs Policy Set data.\n\"nudr-dr:policy-data:ues:ue-policy-set:modify\"\nAccess to update the UEs Policy Set data.\n\"nudr-dr:policy-data:ues:sm-data:read\"\nAccess to read the UEs Session Management policy data.\n\"nudr-dr:policy-data:ues:sm-data:modify\"\nAccess to update the UEs Session Management policy data.\n\"nudr-dr:policy-data:ues:sm-data:create\"\nAccess to create the UEs Session Management policy data.\n\"nudr-dr:policy-data:sponsor-connectivity-data:read\"\nAccess to read the sponsored connectivity data.\n\"nudr-dr:policy-data:bdt-data:read\"\nAccess to read the BDT data resource.\n\"nudr-dr:policy-data:bdt-data:create\"\nAccess to create the BDT data resource.\n\"nudr-dr:policy-data:bdt-data:modify\"\nAccess to update the BDT data resource.\n\"nudr-dr:policy-data:subs-to-notify:read\"\nAccess to read Subscriptions resources.\n\"nudr-dr:policy-data:subs-to-notify:create\"\nAccess to create Subscriptions resources.\n\"nudr-dr:policy-data:subs-to-notify:modify\"\nAccess to update Subscriptions resources.\n\"nudr-dr:policy-data:ues:operator-specific-data:read\"\nAccess to read the UEs operator specific policy data.\n\"nudr-dr:policy-data:ues:operator-specific-data:modify\"\nAccess to update the UEs operator specific policy data.\n\"nudr-dr:policy-data:ues:operator-specific-data:create\"\nAccess to create the UEs operator specific policy data.\n\"nudr-dr:policy-data:plmns:ue-policy-set:read\"\nAccess to read UE Policy SET\n\"nudr-dr:policy-data:slice-control-data:read\"\nAccess to read Slice specific Policy Control Data.\n\"nudr-dr:policy-data:slice-control-data:modify\"\nAccess to update Slice specific Policy Control Data.\n\"nudr-dr:policy-data:mbs-session-pol-data:read\"\nAccess to read MBS Session Policy Data\n\"nudr-dr:policy-data:group-control-data:read\"\nAccess to read Group Control Data.\n\"nudr-dr:policy-data:group-control-data:modify\"\nAccess to update Group Control Data.\n\"nudr-dr:policy-data:pdtq-data:read\"\nAccess to read PDTQ Data\n\"nudr-dr:policy-data:pdtq-data:create\"\nAccess to create PDTQ Data\n\"nudr-dr:policy-data:pdtq-data:modify\"\nAccess to update PDTQ Data\n\"nudr-dr:exposure-data\"\nAccess to the ExposureData data set.\n\"nudr-dr:exposure-data:access-and-mobility-data:create\"\nAccess to create Access and Mobility data.\n\"nudr-dr:exposure-data:access-and-mobility-data:read\"\nAccess to read Access and Mobility data.\n\"nudr-dr:exposure-data:access-and-mobility-data:modify\"\nAccess to update Access and Mobility data.\n\"nudr-dr:exposure-data:session-management-data:create\"\nAccess to create Session Management data.\n\"nudr-dr:exposure-data:session-management-data:read\"\nAccess to read Session Management data.\n\"nudr-dr:exposure-data:session-management-data:modify\"\nAccess to update Session Management data.\n\"nudr-dr:exposure-data:subs-to-notify:create\"\nAccess to create Subscriptions resources.\n\"nudr-dr:exposure-data:subs-to-notify:modify\"\nAccess to update Subscriptions resources.\n\"nudr-dr:application-data\"\nAccess to the ApplicationData data set.\n\"nudr-dr:application-data:pfds:read\"\nAccess to read PFDData.\n\"nudr-dr:application-data:pfds:modify\"\nAccess to update PFDData.\n\"nudr-dr:application-data:pfds:create\"\nAccess to create PFDData.\n\"nudr-dr:application-data:influence-data:read\"\nAccess to read Traffic Influence Data.\n\"nudr-dr:application-data:influence-data:create\"\nAccess to create Traffic Influence Data.\n\"nudr-dr:application-data:influence-data:modify\"\nAccess to update Traffic Influence Data.\n\"nudr-dr:application-data:influence-data:subscriptions:create\"\nAccess to create Traffic Influence Data Subscriptions.\n\"nudr-dr:application-data:influence-data:subscriptions:read\"\nAccess to read Traffic Influence Data Subscriptions.\n\"nudr-dr:application-data:influence-data:subscriptions:modify\"\nAccess to update Traffic Influence Data Subscriptions.\n\"nudr-dr:application-data:bdt-policy-data:read\"\nAccess to read BDT Policy Data.\n\"nudr-dr:application-data:bdt-policy-data:create\"\nAccess to create BDT Policy Data.\n\"nudr-dr:application-data:bdt-policy-data:modify\"\nAccess to update BDT Policy Data.\n\"nudr-dr:application-data:iptv-config-data:read\"\nAccess to read IPTV Configuration Data.\n\"nudr-dr:application-data:iptv-config-data:create\"\nAccess to create IPTV Configuration Data.\n\"nudr-dr:application-data:iptv-config-data:modify\"\nAccess to update IPTV Configuration Data.\n\"nudr-dr:application-data:service-param-data:read\"\nAccess to read Service Parameter Data.\n\"nudr-dr:application-data:service-param-data:create\"\nAccess to create Service Parameter Data.\n\"nudr-dr:application-data:service-param-data:modify\"\nAccess to update Service Parameter Data.\n\"nudr-dr:application-data:am-influence-data:read\"\nAccess to read AM Influence Data.\n\"nudr-dr:application-data:am-influence-data:create\"\nAccess to create AM Influence Data.\n\"nudr-dr:application-data:am-influence-data:modify\"\nAccess to update AM Influence Data.\n\"nudr-dr:application-data:subs-to-notify:create\"\nAccess to create Subscriptions resources.\n\"nudr-dr:application-data:subs-to-notify:read\"\nAccess to read Subscriptions resources.\n\"nudr-dr:application-data:subs-to-notify:modify\"\nAccess to update Subscriptions resources.\n\"nudr-dr:application-data:eas-deploy-data:read\"\nAccess to read EAS Deployment Information Data.\n\"nudr-dr:application-data:eas-deploy-data:create\"\nAccess to create EAS Deployment Information Data.\n\"nudr-dr:application-data:eas-deploy-data:modify\"\nAccess to update EAS Deployment Information Data.\n\"nudr-dr:application-data:ecs-address-roaming:read\"\nAccess to read ECS Address Roaming Data resources\n\"nudr-dr:application-data:ecs-address-roaming:create\"\nAccess to create ECS Address Roaming Data resources\n\"nudr-dr:application-data:ecs-address-roaming:modify\"\nAccess to update ECS Address Roaming Data resources\n\"nudr-dr:application-data:dnai-eas:read\"\nAccess to read DNAI-EAS mapping resources.\n\"nudr-dr:application-data:af-qos-data-sets:read\nAccess to read AF QoS Data Sets\n\"nudr-dr:application-data:af-qos-data-sets:create\nAccess to create AF QoS Data Sets\n\"nudr-dr:application-data:af-qos-data-sets:modify\nAccess to update AF QoS Data Sets\n\"nudr-dr:application-data:ueid-mappings:read\"\nAccess to read UE Id Mappings\n\"nudr-dr:application-data:ueid-mappings:create\"\nAccess to create UE Id Mappings\n\"nudr-dr:application-data:ueid-mappings:delete\"\nAccess to delete UE Id Mappings",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.510_clause_5.4.2.2",
+        "table_6.1.7-1",
+        "ts_33.501",
+        "ts_29.510"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.504_6.1.8",
+      "section_id": "6.1.8",
+      "section_title": "Feature negotiation",
+      "content": "The optional features in table 6.1.8-1 are defined for the Nudr_DataRepository API. They shall be negotiated using the extensibility mechanism defined in clause 6.6 of 3GPP TS 29.500 [7].\nTable 6.1.8-1: Supported Features\nFeature number\nFeature Name\nDescription\n1\nResourceRemovalNotificationPolicyData\nThis feature indicates the support of the complete removal of a Policy Data resource.\n2\nResourceNotificationExposureDataFix\nThis feature indicates the support of corrections to Notifications of data changes in the Exposure Data resource.\n3\nDomainNameProtocol\nThis feature supports the additional protocol matching condition for the domain name in PFD data.\n4\nEnhancedBackgroundDataTransfer\nThis feature indicates the support of applying the Background Data Transfer Policy to a future PDU session requested by the AF for Policy Data resource and Application Data resource as defined in 3GPP TS 29.519 [3]. This feature requires the support of SessionManagementPolicyDataPatch feature to update Background Data Transfer data within the Session Management Policy Data.\n5\nMacAddressRange\nThis feature indicates the support of a set of MAC addresses with a specific range for the traffic filter in the application data resource as specified in 3GPP TS 29.519 [3].\n6\nMultiTemporalCondition\nThis feature indicates the support of multiple temporal validity conditions in the Traffic Influence Data resource as specified in 3GPP TS 29.519 [3].\n7\nPatchReport\nIf some of the modifications included in the PATCH request are not successfully implemented, the UDM reports the result of PATCH request execution to the consumer. See clause 5.2.7.2 of 3GPP TS 29.500 [7].\n8\nURLLC\nThis feature indicates support of Ultra Reliable Low Latency Communication (URLLC) requirements, i.e. AF application relocation and UE address(es) preservation in the Application Data resource as specified in 3GPP TS 29.519 [3].\n9\nSessionManagementPolicyDataPatch\nThis feature indicates the support of the HTTP PATCH method to update the session management policy data defined in a Policy Data resource as specified in 3GPP TS 29.519 [3].\n10\nConditionalSubscriptionwithPartialNotification\nThis feature indicates the support of subscription to notification of resource data changes conditioned to the change occurs in a fragment of the resource. It applies for Policy Data resources as specified in 3GPP TS 29.519 [3].\n11\nEnhancedInfluDataNotification\nThis feature indicates the support of enhancement of data change Notifications in the Influence Data resource as specified in 3GPP TS 29.519 [3].\n12\nPerUePerSnAuthStatus\nThis feature indicates the support of the Individual authentication status per UE per serving network as specified in 3GPP TS 29.505 [2].\n13\nOpSpecDataMapNotification\nThis feature indicates the support of the notification of data changes in the OperatorSpecificData resource by including the complete map of Operator Specific Data Containers. It applies to Policy Data resources as specified in 3GPP TS 29.519 [3].\n14\nReserved\n15\nOSDResource_Create_Delete\nThis feature indicates the support of the creation and the removal of the OperatorSpecificData resource by a Policy Data NF service consumer. It applies to Policy Data resources as specified in 3GPP TS 29.519 [3].\n16\nAF_latency\nThis feature indicates the support for Edge relocation considering user plane latency. It applies for Influence Data resource as specified in 3GPP TS 29.519 [3].\n17\nCHFsetSupport\nThis feature indicates the support of CHF redundancy and failover mechanisms based on CHF instance availability within a CHF Set, (i.e. secondary CHF address may be omitted). It applies to Policy Data resources as specified in 3GPP TS 29.519 [3].\n18\nConditionalSubscriptionWithExcludeNotification\nThis feature indicates the support in the subscription to notification of data changes of the indication of the properties whose changes do not trigger a notification. It applies to Policy Data resources as specified in 3GPP TS 29.519 [3]. It requires the support of OpSpecDataMapNotification feature\n19\nProSe\nThis feature indicates the support of UE 5G ProSe policies and subscription information. It applies for Policy Data resources as specified in 3GPP TS 29.519 [3].\n20\nNSAC\nThis feature indicates the support of NSAC (Network Slice Admission Control) related policy subscription information. It applies to Policy Data resources as specified in 3GPP TS 29.519 [3].\n21\nUESubDataSetRetrieve\nThis feature indicates the support of the UE Subscription Data Sets Retrieve as specified in clause 5.2.47 of 3GPP TS 29.505 [2].\n22\nSharedSmSubsData\nThis feature indicates the support of shared Session Management Subscription Data. If the NF consumer (UDM) does not support this feature, the UDR shall not take the alternative to include extendedSmSubsData in SmSubsData.It applies to Subscription Data resources as specified in 3GPP TS 29.505 [2]\n23\nDeliveryOutcome\nThis feature indicates the support of functionality to allow PCF notifications about the outcome of the UE Policy delivery related to the invocation of AF provisioned service parameters as specified in 3GPP TS 29.519 [3].\n24\nAfGuideURSP\nThis feature indicates the support of Application guidance for URSP determination related application data as specified in 3GPP TS 29.519 [3].\n25\nEasDeployment\nThis feature indicates the support of EAS Deployment Information Data and Subscription related application data as specified in 3GPP TS 29.519 [3].\n26\nDCAMP\nThis feature indicates the support of DCAMP related application data. It applies to Application Data resources as specified in 3GPP TS 29.519 [3].\n27\nFilterAnyUE\nThis feature indicates the support of queries and subscriptions to service parameter data resource filtered by the any UE indication as specified in 3GPP TS 29.519 [3].\n28\nSimultConnectivity\nThis feature indicates the support of temporary simultaneously connectivity at edge relocation. It applies for Influence Data resource as specified in 3GPP TS 29.519 [3].\n29\nEeSubscriptionExt\nThis feature indicates the support of handling EE subscription data along with associated subscription resources as specified in 3GPP TS 29.505 [2].\n30\nPeiResource\nThis feature indicates the support of storing PEI in the PeiInfo resource as specified in 3GPP TS 29.505 [2].\n31\nImmediateReportPcc\nThis feature indicates support of ImmediateReport within a PolicyDataSubscription in 3GPP TS 29.519 [3]. When a UDR consumer detects that the UDR supports the ImmediateReportPcc feature, it can indicate an immediateReport flag when invoking the Subscribe service operation. If the UDR receives the ImmediateReport flag in the received Subscribe service operation request, it shall return the resource's representation(s) of the monitored resource(s) in the service operation response body.\n32\nImmediateReport\nThis feature indicates support of ImmediateReport within an SubscriptionDataSubscription in 3GPP TS 29.505 [2]. When a UDR consumer detects that the UDR supports the ImmediateReport feature, it can indicate an immediateReport flag when invoking the Subscribe service operation. If the UDR receives the ImmediateReport flag in the received Subscribe service operation request, it shall return the resource's representation(s) of the monitored resource(s) in the service operation response body.\n33\nUESubDataSetRetrieveExt\nThis feature indicates the support of the Extended UE Subscription Data Sets Retrieve as specified in clause 5.2.47 of 3GPP TS 29.505 [2].\n34\nSFC\nThis feature indicates support of Service Function Chaining functionality. It applies for Influence Data resource as specified in 3GPP TS 29.519 [3].\n35\nSubscribedV2XPolicy\nThis feature indicates the support of subscribed V2X policy data as specified in 3GPP TS 29.519 [3].\n36\nCommonEASDNAI\nThis feature indicates the support of the common EAS/DNAI selection as specified in 3GPP TS 29.519 [3].\n37\nPolSubscRetrieval\nThis feature indicates the support of the indication, within the PolicyDataSubscription data type, of the variable part of the Individual Policy Data subscription. It applies to Policy Data subscription resources as specified in 3GPP TS 29.519 [3].\n38\nA2X\nThis feature indicates the support of A2X communication as specified in 3GPP TS 29.519 [3].\n39\nEpsUrsp\nThis feature indicates support of epsUrspInd within UePolicySet and UePolicySetPatch in 3GPP TS 29.519 [3].\n40\nDCAMP_Roaming_LBO\nThis feature indicates support for dynamically changing AM policy for inbound roaming UE using LBO as specified in 3GPP TS 29.519 [3].\n41\nGMEC\nThis feature indicates support of Generic Group Management, Exposure and Communication functionality. It applies to Policy Data resource and Application Data resource as specified in 3GPP TS 29.519 [3].\n42\nPatchCorrection\nThis feature introduces the correction to the PATCH method to support the service parameter urspGuidance to guide the URSP as specified in 3GPP TS 29.519 [3].\n43\nEnhancedUePolicy\nThis feature indicates the support of enhancement of the UE policy (e.g. Tracing Requirements). It applies to Policy Data resource as specified in 3GPP TS 29.519 [3].\n44\nProSe_Ph2\nThis feature indicates the support of UE 5G ProSe policies and subscription information for UE-to-UE relay service. It applies for Policy Data resources as specified in 3GPP TS 29.519 [3].\n45\nOpSpecAmPolicyData\nThis feature indicates the support of the operator specific data changes in the AccessAndMobilityPolicyData resource. It applies to AM Policy Data resource as specified in 3GPP TS 29.519 [3].\n46\nCHFInformation\nThis feature indicates the support of provisioning of CHF information. It applies to Policy Data resource as specified in 3GPP TS 29.519 [3].\n47\nSLAMUP\nThis feature indicates support of Spending Limits for AM and UE Policies in the 5GC. It applies to Policy Data resource as specified in 3GPP TS 29.519 [3].\nThis feature requires the support of the CHFInformation feature.\n48\nAfGuideTNAPs\nThis feature is used in 3GPP TS 29.519 [3] and indicates the support of AF-provided guidance to the HPLMN of the UE of the list of TNAP(s) collocated with a 5G-RG.\n49\nURSPEnforcement\nThis feature indicates support of urspEnfInd within UePolicySet and UePolicySetPatch in 3GPP TS 29.519 [3].\n50\nVPLMNSpecificURSP\nThis feature indicates support of the provisioning of VPLMN Specific URSP rules within ServiceParameterData and ServiceParameterDataPatch data types and the storage of vpsUrspInd within UePolicySet and UePolicySetPatch as defined in 3GPP TS 29.519 [3].\nIt requires the support of AfGuideURSP feature.\n51\nDnaiEasMappings\nThis feature indicates support of OAM-configured DNAI-EAS mapping information as specified in 3GPP TS 29.519 [3].\n52\nHR-SBO\nThis feature indicates support of provisioning ECS Address Configuration Information for Roaming UEs to the V-NEF for the support of Home-Routed deployments with Session Breakout in 3GPP TS 29.519 [3].\nThis feature requires the support of the “TrafficInfluSubExt” feature.\n53\nFinerGranUEs\nThis feature indicates support of finer granular UE sets as specified in 3GPP TS 29.519 [3].\n54\nCachingTimer\nThis feature indicates the support of storing caching timer with unit of duration second as specified in 3GPP TS 29.519 [3].\n55\nAccessAndMobilityPolicyDataModify\nThis feature indicates the support of the HTTP PATCH method to update the access and mobility policy data defined in a Policy Data resource as specified in 3GPP TS 29.519 [3].\n56\nRanging_SL\nThis feature indicates the support of the ranging and sidelink positioning functionality. It applies to Application Data resources as specified in 3GPP TS 29.519 [3].\n57\nPDTQ\nThis feature indicates the support of Planned Data Transfer with QoS requirements Data. It applies to Policy Data resources as specified in 3GPP TS 29.519 [3].\n58\nPfdDetermination\nThis feature inidicates the support of including the source NF type of the PFD in PFD Data as specified in 3GPP TS 29.519 [3].\n59\nReserved\n60\nTrafficInfluSubExt\nThis feature indicates support of subscriptions to Traffic Influence Data using various combinations of query parameters as specified in 3GPP TS 29.519 [3].\n61\nMultiPduSessInfo\nThis feature indicates support of multiple PDU Session Info query parameters as specified in 3GPP TS 29.519 [3].",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_6.6",
+        "ts_29.500_clause_5.2.7.2",
+        "ts_29.505_clause_5.2.47",
+        "table_6.1.8-1",
+        "ts_29.500_table_6.1.8-1",
+        "ts_29.500",
+        "ts_29.519",
+        "ts_29.505"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.504_6.2.1",
+      "section_id": "6.2.1",
+      "section_title": "API URI",
+      "content": "URIs of this API shall have the following root:\n{apiRoot}/<apiName>/<apiVersion>\nwhere \"apiRoot\" is defined in clause 4.4.1 of 3GPP TS 29.501 [8], the \"apiName\" shall be set to \"nudr-group-id-map\" and the \"apiVersion\" shall be set to \"v1\" for the current version of this specification.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.501_clause_4.4.1",
+        "ts_29.501"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.504_6.2.2.1",
+      "section_id": "6.2.2.1",
+      "section_title": "General",
+      "content": "HTTP/2, as defined in IETF RFC 9113 [22], shall be used as specified in clause 5 of 3GPP TS 29.500 [7].\nHTTP/2 shall be transported as specified in clause 5.3 of 3GPP TS 29.500 [7].\nHTTP messages and bodies for the Nudr_GroupIDmap service shall comply with the OpenAPI [21] specification contained in Annex A3.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.500_clause_5",
+        "ts_29.500_clause_5.3",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.504_6.2.2.2.1",
+      "section_id": "6.2.2.2.1",
+      "section_title": "General",
+      "content": "The usage of HTTP standard headers shall be supported on Nudr interface as defined in clause 5.2.2 of 3GPP TS 29.500 [7].",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.500_clause_5.2.2",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.504_6.2.2.2.2",
+      "section_id": "6.2.2.2.2",
+      "section_title": "Content type",
+      "content": "The following content types shall be supported:\n-\tJSON, as defined in IETF RFC 8259 [11], shall be used as content type of the HTTP bodies specified in the present specification as indicated in clause 5.4 of 3GPP TS 29.500 [7].\n-\tThe Problem Details JSON Object (IETF RFC 9457 [17]). The use of the Problem Details JSON object in a HTTP response body shall be signalled by the content type \"application/problem+json\".\n-\tJSON Patch (IETF RFC 6902 [19]). The use of the JSON Patch format in a HTTP request body shall be signalled by the content type \"application/json-patch+json\".",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_5.4",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.504_6.2.2.2.3",
+      "section_id": "6.2.2.2.3",
+      "section_title": "Cache-Control",
+      "content": "As described in IETF RFC 9111 [16] clause 5.2, a \"Cache-Control\" header should be included in HTTP responses carrying a representation of cacheable resources. If it is included, it shall contain a \"max-age\" value, indicating the amount of time in seconds after which the received response is considered stale.\nThe \"max-age\" value shall be configurable by operator policy.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_5.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.504_6.2.2.2.4",
+      "section_id": "6.2.2.2.4",
+      "section_title": "ETag",
+      "content": "As described in IETF RFC 9110 [15] clause 8.8.3, an \"ETag\" (entity-tag) header should be included in HTTP responses carrying a representation of cacheable resources to allow an NF Service Consumer performing a conditional GET request with \"If-None-Match\" header. If it is included, it shall contain a server-generated strong validator, that allows further matching of this value (included in subsequent client requests) with a given resource representation stored in the server or in a cache.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_8.8.3"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.504_6.2.2.2.5",
+      "section_id": "6.2.2.2.5",
+      "section_title": "If-None-Match",
+      "content": "As described in IETF RFC 9110 [15] clause 13.1.2, an NF Service Consumer may issue conditional GET request towards UDR by including an \"If-None-Match\" header in HTTP requests containing one or several entity tags received in previous responses for the same resource.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_13.1.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.504_6.2.2.2.6",
+      "section_id": "6.2.2.2.6",
+      "section_title": "Last-Modified",
+      "content": "As described in IETF RFC 9110 [15] clause 8.8.2, a \"Last-Modified\" header should be included in HTTP responses carrying a representation of cacheable resources (e.g. SmfSelectionSubscriptionData) to allow an NF Service Consumer performing a conditional request with \"If-Modified-Since\" header.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_8.8.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.504_6.2.2.2.7",
+      "section_id": "6.2.2.2.7",
+      "section_title": "If-Modified-Since",
+      "content": "As described in IETF RFC 9110 [15] clause 13.1.3, an NF Service Consumer may issue conditional GET request towards UDR, by including an \"If-Modified-Since\" header in HTTP requests.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_13.1.3"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.504_6.2.2.2.8",
+      "section_id": "6.2.2.2.8",
+      "section_title": "When to Use Entity-Tags and Last-Modified Dates",
+      "content": "Both \"ETag\" and \"Last-Modified\" headers should be sent in the same HTTP response as stated in IETF RFC 9110 [15] clause 15.3.1.\nNOTE: \"ETag\" is a stronger validator than \"Last-Modified\" and is preferred.\nIf the UDR included an \"ETag\" header with the resource then a conditional GET request for this resource shall be performed with the \"If-None-Match\" header.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_15.3.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.504_6.2.2.3.1",
+      "section_id": "6.2.2.3.1",
+      "section_title": "General",
+      "content": "In this release of this specification, no custom headers specific to the Nudr_GroupIDmap service are defined. For 3GPP specific HTTP custom headers used across all service-based interfaces, see clause 5.2.3 of 3GPP TS 29.500 [7].",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.500_clause_5.2.3",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.504_6.2.3.1",
+      "section_id": "6.2.3.1",
+      "section_title": "Overview",
+      "content": "Figure 6.2.3.1-1: Resource URI structure of the nudr-group-id-map API\nTable 6.2.3.1-1 provides an overview of the resources and applicable HTTP methods.\nTable 6.2.3.1-1: Resources and methods overview\nResource name\nResource URI\nHTTP method\nDescription\nNfGroupIds\n/nf-group-ids\nGET\nObtain the NF Group ID for a given subscriber ID\nSubscriptions\n/nf-group-ids/subscriptions\nPOST\nCreate a subscription\nIndividualSubscription\n/nf-group-ids/subscriptions/{subscriptionId}\nGET\nRetrieve an individual subscription\nPATCH\nModify an individual subscription\nDELETE\nDelete an individual subscription\nRoutingIds\n/routing-ids\nGET\nObtain the list of Routing IDs served by a given NF Group",
+      "chunk_type": "definition",
+      "cross_references": [
+        "table_6.2.3.1-1",
+        "figure_6.2.3.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.504_6.2.3.2.1",
+      "section_id": "6.2.3.2.1",
+      "section_title": "Description",
+      "content": "This resource represents the NF Group IDs for the provided subscriber information (e.g. the subscriber identifier, or information related to a set of subscribers, such as the Routing Indicator).",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.504_6.2.3.2.2",
+      "section_id": "6.2.3.2.2",
+      "section_title": "Resource Definition",
+      "content": "Resource URI: {apiRoot}/nudr-group-id-map/<apiVersion>/nf-group-ids\nThis resource shall support the resource URI variables defined in table 6.2.3.2.2-1.\nTable 6.2.3.2.2-1: Resource URI variables for this resource\nName\nDefinition\napiRoot\nSee clause 6.2.1",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_6.2.1",
+        "table_6.2.3.2.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.504_6.2.3.2.3",
+      "section_id": "6.2.3.2.3",
+      "section_title": "Resource Standard Methods",
+      "content": "6.2.3.2.3.1\tGET\nThis method shall support the URI query parameters specified in table 6.2.3.2.3.1-1.\nTable 6.2.3.2.3.1-1: URI query parameters supported by the GET method on this resource\nName\nData type\nP\nCardinality\nDescription\nnf-type\narray(NFType)\nM\n1..N\nsee 3GPP TS 29.510 [14]\nsubscriberId\nSubscriberId\nM\n1\nRepresents the Subscription Identifier SUPI or GPSI or IMPI or IMPU (see 3GPP TS 23.501 [4] clause 5.9.2 and clause 5.9.8) or Routing Indicatorpattern: ^(imsi-[0-9]{5,15}|nai-.+|msisdn-[0-9]{5,15}|extid-[^@]+@[^@]+|impi-.+|impu-.+|rid-[0-9]{1,4}|.+)$\nNOTE 1:\tThe format of the query parameter subscriberId is in line with the yaml and thus does not follow the lower-with-hyphen format specified in 3GPP TS 29.501 [8].\nNOTE 2:\tIf the UDR does not support a certain alternative in the regular expression pattern of the subscriberId query parameter (e.g. \"rid-xxxx\"), it returns an HTTP 404 error response.\nThis method shall support the request data structures specified in table 6.2.3.2.3.1-2 and the response data structures and response codes specified in table 6.2.3.2.3.1-3.\nTable 6.2.3.2.3.1-2: Data structures supported by the GET Request Body on this resource\nData type\nP\nCardinality\nDescription\nn/a\nTable 6.2.3.2.3.1-3: Data structures supported by the GET Response Body on this resource\nData type\nP\nCardinality\nResponse\ncodes\nDescription\nNfGroupIdMapResult\nM\n1\n200 OK\nUpon success, a response body containing the NF Group IDs for the requested NF types shall be returned.\nProblemDetails\nO\n0..1\n404 Not Found\nThe \"cause\" attribute may be set to one of the following application errors:\n- USER_NOT_FOUND\nNOTE:\tIn addition, common data structures as listed in table 5.2.7.1-1 of 3GPP TS 29.500 are supported.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_23.501_clause_5.9.2",
+        "clause_5.9.8",
+        "table_6.2.3.2.3.1-1",
+        "table_6.2.3.2.3.1-2",
+        "table_6.2.3.2.3.1-3",
+        "ts_29.500_table_5.2.7.1-1",
+        "ts_29.510",
+        "ts_23.501",
+        "ts_29.501",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.504_6.2.3.3.1",
+      "section_id": "6.2.3.3.1",
+      "section_title": "Description",
+      "content": "This resource represents the Routing Indicators served by an NF Group.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.504_6.2.3.3.2",
+      "section_id": "6.2.3.3.2",
+      "section_title": "Resource Definition",
+      "content": "Resource URI: {apiRoot}/nudr-group-id-map/<apiVersion>/routing-ids\nThis resource shall support the resource URI variables defined in table 6.2.3.3.2-1.\nTable 6.2.3.3.2-1: Resource URI variables for this resource\nName\nDefinition\napiRoot\nSee clause 6.2.1",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_6.2.1",
+        "table_6.2.3.3.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.504_6.2.3.3.3",
+      "section_id": "6.2.3.3.3",
+      "section_title": "Resource Standard Methods",
+      "content": "6.2.3.3.3.1\tGET\nThis method shall support the URI query parameters specified in table 6.2.3.3.3.1-1.\nTable 6.2.3.3.3.1-1: URI query parameters supported by the GET method on this resource\nName\nData type\nP\nCardinality\nDescription\nnf-type\nNFType\nM\n1\nsee 3GPP TS 29.510 [14]\nnf-group-id\nNfGroupId\nM\n1\nContains the identity of the NF Group\nThis method shall support the request data structures specified in table 6.2.3.3.3.1-2 and the response data structures and response codes specified in table 6.2.3.3.3.1-3.\nTable 6.2.3.3.3.1-2: Data structures supported by the GET Request Body on this resource\nData type\nP\nCardinality\nDescription\nn/a\nTable 6.2.3.3.3.1-3: Data structures supported by the GET Response Body on this resource\nData type\nP\nCardinality\nResponse\ncodes\nDescription\nRoutingIdResult\nM\n1\n200 OK\nUpon success, a response body containing the Routing IDs for the requested NF type and NF Group ID shall be returned.\nNOTE:\tIn addition, common data structures as listed in table 5.2.7.1-1 of 3GPP TS 29.500 are supported.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.2.3.3.3.1-1",
+        "table_6.2.3.3.3.1-2",
+        "table_6.2.3.3.3.1-3",
+        "ts_29.500_table_5.2.7.1-1",
+        "ts_29.510",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.504_6.2.3.4.1",
+      "section_id": "6.2.3.4.1",
+      "section_title": "Description",
+      "content": "This resource represents the subscriptions to changes on the mapping between user ID and NF Group ID.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.504_6.2.3.4.2",
+      "section_id": "6.2.3.4.2",
+      "section_title": "Resource Definition",
+      "content": "Resource URI: {apiRoot}/nudr-group-id-map/<apiVersion>/nf-group-ids/subscriptions\nThis resource shall support the resource URI variables defined in table 6.2.3.4.2-1.\nTable 6.2.3.4.2-1: Resource URI variables for this resource\nName\nDefinition\napiRoot\nSee clause 6.2.1",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_6.2.1",
+        "table_6.2.3.4.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.504_6.2.3.4.3",
+      "section_id": "6.2.3.4.3",
+      "section_title": "Resource Standard Methods",
+      "content": "6.2.3.4.3.1\tPOST\nThis method shall support the URI query parameters specified in table 6.2.3.4.3.1-1.\nTable 6.2.3.4.3.1-1: URI query parameters supported by the POST method on this resource\nName\nData type\nP\nCardinality\nDescription\nsupported-features\nSupportedFeatures\nO\n0..1\nsee 3GPP TS 29.500 [7] clause 6.6\nThis method shall support the request data structures specified in table 6.2.3.4.3.1-2 and the response data structures and response codes specified in table 6.2.3.4.3.1-3.\nTable 6.2.3.4.3.1-2: Data structures supported by the POST Request Body on this resource\nData type\nP\nCardinality\nDescription\nSubscriptionData\nM\n1\nIdentifies the input data to create a subscription.\nTable 6.2.3.4.3.1-3: Data structures supported by the POST Response Body on this resource\nData type\nP\nCardinality\nResponse\ncodes\nDescription\nSubscriptionData\nM\n1\n200 OK\nUpon success, a response body containing the Routing IDs for the requested NF type and NF Group ID shall be returned.\nNOTE:\tIn addition, common data structures as listed in table 5.2.7.1-1 of 3GPP TS 29.500 [7] are supported.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_6.6",
+        "table_6.2.3.4.3.1-1",
+        "table_6.2.3.4.3.1-2",
+        "table_6.2.3.4.3.1-3",
+        "ts_29.500_table_5.2.7.1-1",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.504_6.2.3.5.1",
+      "section_id": "6.2.3.5.1",
+      "section_title": "Description",
+      "content": "This resource represents an individual subscription to changes on the mapping between user ID and NF Group ID.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.504_6.2.3.5.2",
+      "section_id": "6.2.3.5.2",
+      "section_title": "Resource Definition",
+      "content": "Resource URI: {apiRoot}/nudr-group-id-map/<apiVersion>/nf-group-ids/subscriptions/{subscriptionId}\nThis resource shall support the resource URI variables defined in table 6.2.3.5.2-1.\nTable 6.2.3.5.2-1: Resource URI variables for this resource\nName\nDefinition\napiRoot\nSee clause 6.2.1\nsubscriptionId\nIt identifies an individual subscription to notifications. The value is allocated by the UDR during creation of the IndividualSubscription resource.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_6.2.1",
+        "table_6.2.3.5.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.504_6.2.3.5.3",
+      "section_id": "6.2.3.5.3",
+      "section_title": "Resource Standard Methods",
+      "content": "6.2.3.5.3.1\tGET\nThis method shall support the URI query parameters specified in table 6.2.3.5.3.1-1.\nTable 6.2.3.5.3.1-1: URI query parameters supported by the GET method on this resource\nName\nData type\nP\nCardinality\nDescription\nn/a\nThis method shall support the request data structures specified in table 6.2.3.5.3.1-2 and the response data structures and response codes specified in table 6.2.3.5.3.1-3.\nTable 6.2.3.5.3.1-2: Data structures supported by the GET Request Body on this resource\nData type\nP\nCardinality\nDescription\nn/a\nTable 6.2.3.5.3.1-3: Data structures supported by the GET Response Body on this resource\nData type\nP\nCardinality\nResponse\ncodes\nDescription\nSubscriptionData\nM\n1\n200 OK\nUpon success, a response body containing the data that represents an individual subscription shall be returned.\nNOTE:\tIn addition, common data structures as listed in table 5.2.7.1-1 of 3GPP TS 29.500 [7] are supported.\n6.2.3.5.3.2\tPATCH\nThis method shall support the URI query parameters specified in table 6.2.3.5.3.2-1.\nTable 6.2.3.5.3.2-1: URI query parameters supported by the PATCH method on this resource\nName\nData type\nP\nCardinality\nDescription\nsupported-features\nSupportedFeatures\nO\n0..1\nsee 3GPP TS 29.500 [7] clause 6.6\nThis method shall support the request data structures specified in table 6.2.3.5.3.2-2 and the response data structures and response codes specified in table 6.2.3.5.3.2-3.\nTable 6.2.3.5.3.2-2: Data structures supported by the PATCH Request Body on this resource\nData type\nP\nCardinality\nDescription\narray(PatchItem)\nM\n1..N\nContains the delta data to the Individual Subscription.\nTable 6.2.3.5.3.2-3: Data structures supported by the PATCH Response Body on this resource\nData type\nP\nCardinality\nResponse\ncodes\nDescription\nn/a\n204 No Content\nUpon successful modification, when all the modification instructions in the PATCH request have been implemented, there is no body in the response message.\nSubscriptionData\nC\n1\n200 OK\nUpon partial success, if any of the requested modifications have not been accepted, but the server has set different values than those requested by the client, in any of the attributes of the resource, the modified individual SubscriptionData is returned with the accepted/confirmed values, e.g. the confirmed expiry time.\nNOTE:\tIn addition, common data structures as listed in table 5.2.7.1-1 of 3GPP TS 29.500 [7] are supported.\n6.2.3.5.3.3\tDELETE\nThis method shall support the URI query parameters specified in table 6.2.3.5.3.3-1.\nTable 6.2.3.5.3.3-1: URI query parameters supported by the DELETE method on this resource\nName\nData type\nP\nCardinality\nDescription\nn/a\nThis method shall support the request data structures specified in table 6.2.3.5.3.3-2 and the response data structures and response codes specified in table 6.2.3.5.3.3-3.\nTable 6.2.3.5.3.3-2: Data structures supported by the DELETE Request Body on this resource\nData type\nP\nCardinality\nDescription\nn/a\nThe request body shall be empty.\nTable 6.2.3.5.3.3-3: Data structures supported by the DELETE Response Body on this resource\nData type\nP\nCardinality\nResponse\ncodes\nDescription\nn/a\n204 No Content\nUpon success, an empty response body shall be returned.\nNOTE:\tIn addition, common data structures as listed in table 5.2.7.1-1 of 3GPP TS 29.500 [7] are supported.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_6.6",
+        "table_6.2.3.5.3.1-1",
+        "table_6.2.3.5.3.1-2",
+        "table_6.2.3.5.3.1-3",
+        "ts_29.500_table_5.2.7.1-1",
+        "table_6.2.3.5.3.2-1",
+        "table_6.2.3.5.3.2-2",
+        "table_6.2.3.5.3.2-3",
+        "table_6.2.3.5.3.3-1",
+        "table_6.2.3.5.3.3-2",
+        "table_6.2.3.5.3.3-3",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.504_6.2.4",
+      "section_id": "6.2.4",
+      "section_title": "Custom Operations without associated resources",
+      "content": "In this release of this specification, no custom operations without associated resources are defined for the Nudr_GroupIDmap Service.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.504_6.2.5.1",
+      "section_id": "6.2.5.1",
+      "section_title": "General",
+      "content": "This clause specifies the general mechanism of notifications in the following scenarios:\n-\tnotification of changed data of mapping between a subscriber ID and an NF Group ID",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.504_6.2.5.2",
+      "section_id": "6.2.5.2",
+      "section_title": "Data Change Notification",
+      "content": "The POST method shall be used to inform the NF Service Consumer about a change on the mapping between a subscriber ID and an NF Group ID.\nResource URI: {notificationUri}\nSupport of URI query parameters is specified in table 6.2.5.2-1.\nTable 6.2.5.2-1: URI query parameters supported by the POST method\nName\nData type\nP\nCardinality\nDescription\nn/a\nSupport of request data structures is specified in table 6.2.5.2-2 and of response data structures and response codes is specified in table 6.2.5.2-3.\nTable 6.2.5.2-2: Data structures supported by the POST Request Body\nData type\nP\nCardinality\nDescription\nGroupIdMapNotify\nM\n1\nContains the subscriber ID(s) whose mapping has changed, and the new NF Group ID (and NF type).\nTable 6.2.5.2-3: Data structures supported by the POST Response Body\nData type\nP\nCardinality\nResponse\ncodes\nDescription\nn/a\n204 No Content\nUpon success, an empty response body shall be returned.\nNOTE:\tIn addition, common data structures as listed in table 5.2.7.1-1 of 3GPP TS 29.500 [7] are supported.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.2.5.2-1",
+        "table_6.2.5.2-2",
+        "table_6.2.5.2-3",
+        "ts_29.500_table_5.2.7.1-1",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.504_6.2.6.1",
+      "section_id": "6.2.6.1",
+      "section_title": "General",
+      "content": "This clause specifies the application data model supported by the API.\nTable 6.2.6.1-1 specifies the structured data types defined for the Nudr_GroupIDmap service API. For simple data types defined for the Nudr_GroupIDmap service API see table 6.2.6.3.2-1.\nTable 6.2.6.1-1: Nudr_GroupIDmap specific Data Types\nData type\nClause defined\nDescription\nNfGroupIdMapResult\n6.2.6.2.2\nNF-Group IDs for the requested NF types\nRoutingIdResult\n6.2.6.2.3\nRouting Indicators for the requested NF type and NF Group ID\nSubscriptionData\n6.2.6.2.4\nInformation of a subscription to notifications to UDR GroupIDmap service, included in subscription requests and responses\nGroupIdMapNotify\n6.2.6.2.5\nData sent in notifications from UDR to entities subscribed to UDR GroupIDmap service\nSubscriberId\n6.2.6.3.2\nRepresents the Subscription Identifier SUPI or GPSI or IMPI or IMPU or Routing Indicator\nTable 6.2.6.1-2 specifies data types re-used by the Nudr_GroupIDmap service API from other specifications, including a reference to their respective specifications and when needed, a short description of their use within the Nudr_GroupIDmap service API.\nTable 6.2.6.1-2: Nudr_GroupIDmap re-used Data Types\nData type\nReference\nComments\nProblemDetails\n3GPP TS 29.571 [10]\nCommon data type used in response bodies\nSupportedFeatures\n3GPP TS 29.571 [10]\nNFType\n3GPP TS 29.510 [14]\nNfGroupId\n3GPP TS 29.571 [10]\nIdentityRanges\n3GPP TS 29.571 [10]",
+      "chunk_type": "definition",
+      "cross_references": [
+        "table_6.2.6.1-1",
+        "table_6.2.6.3.2-1",
+        "table_6.2.6.1-2",
+        "ts_29.571",
+        "ts_29.510"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.504_6.2.6.2.1",
+      "section_id": "6.2.6.2.1",
+      "section_title": "Introduction",
+      "content": "This clause defines the structures to be used in resource representations.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.504_6.2.6.2.2",
+      "section_id": "6.2.6.2.2",
+      "section_title": "Type: NfGroupIdMapResult",
+      "content": "Table 6.2.6.2.2-1: Definition of type NfGroupIdMapResult\nAttribute name\nData type\nP\nCardinality\nDescription\nnfGroupIDs\nmap(NfGroupId)\nM\n1..N\nA map (list of key-value pairs where NFType serves as key) of NFGroupIds",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.2.6.2.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.504_6.2.6.2.3",
+      "section_id": "6.2.6.2.3",
+      "section_title": "Type: RoutingIdResult",
+      "content": "Table 6.2.6.2.3-1: Definition of type NfGroupIdMapResult\nAttribute name\nData type\nP\nCardinality\nDescription\nroutingIndicators\narray(string)\nM\n1..N\nAn array of Routing Indicators.\npattern (of each item): '^[0-9]{1,4}$'",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.2.6.2.3-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.504_6.2.6.2.4",
+      "section_id": "6.2.6.2.4",
+      "section_title": "Type: SubscriptionData",
+      "content": "Table 6.2.6.2.4-1: Definition of type SubscriptionData\nAttribute name\nData type\nP\nCardinality\nDescription\nnotificationUri\nUri\nM\n1\nIdentifies the URI of the NF Service Consumer where the notification shall be sent by UDR.\nnfType\nNFType\nM\n1\nNF type of the NF Group ID that shall be monitored for changes on the mapping with subscriber IDs.\nnfGroupId\nNfGroupId\nM\n1\nNF Group ID that shall be monitored for changes on the mapping with subscriber IDs.\nsubscriptionId\nstring\nC\n0..1\nIdentity of the individual subscripton, as allocated by the UDR, and sent to the NF Service Consumer in the response message. It shall be absent in request messages and shall be present in response messages.\nreadOnly: true\nexpiry\nDateTime\nO\n0..1\nThis IE shall be included in a subscription response if, based on operator policy and taking into account the expiry time included in the request, the UDR needs to include an expiry time.\nThis IE may be included in a subscription request. When present, this IE shall represent the time after which the subscription becomes invalid.\nThe absence of this attribute in the subscription response means the subscription to be valid without an expiry time.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.2.6.2.4-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.504_6.2.6.2.5",
+      "section_id": "6.2.6.2.5",
+      "section_title": "Type: GroupIdMapNotify",
+      "content": "Table 6.2.6.2.5-1: Definition of type GroupIdMapNotify\nAttribute name\nData type\nP\nCardinality\nDescription\nsubscriberId\nSubscriberId\nM\n1\nIdentity of the subscriber whose mapping to an NF Group ID has changed.\nIf multiple subscriber identities are reported (by including the \"identityRanges\" attribute), the \"subscriberId\" attribute shall contain any of the identities included in those ranges.\nnfType\nNFType\nM\n1\nNF type of the NF Group that starts handling the subscribers identified by this notification.\nnfGroupId\nNfGroupId\nM\n1\nNF Group ID that starts handling the subscribers identified by this notification.\nidentityRanges\narray(IdentityRanges)\nO\n1..N\nRanges of identities whose mapping to an NF Group ID has changed.\nAbsence of this attribute indicates that only the user identified by the \"subscriberId\" attribute is affected by the NF Group ID mapping change.\nSee NOTE.\nNOTE:\tThe type of identity shall be the same for all elements of the IdentityRanges array, and it shall be the same as the type of identity indicated by the \"subscriberId\" attribute.\nEXAMPLE:\n-\tIf the following SUPI ranges: [ imsi-12345600000 to imsi-12345600099 ] (100 subscribers) and [ imsi-12345699990 to imsi-12345699999 ] (10 subscribers) have been migrated from UDM Group ID \"UDM_GROUP_1\" to \"UDM_GROUP_2\", the notification shall contain the following data:\n{\n\"subscriberId\": \"imsi-12345600000\",\n\"nfType\": \"UDM\",\n\"nfGroupId\": \"UDM_GROUP_2\",\n\"identityRanges\": [\n{ \"start\": \"12345600000\", \"end\": \"12345600099\" },\n{ \"start\": \"12345699990\", \"end\": \"12345699999\" }\n]\n}",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_6.2.6.2.5-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.504_6.2.6.3.1",
+      "section_id": "6.2.6.3.1",
+      "section_title": "Introduction",
+      "content": "This clause defines simple data types and enumerations that can be referenced from data structures defined in the previous clauses.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.504_6.2.6.3.2",
+      "section_id": "6.2.6.3.2",
+      "section_title": "Simple data types",
+      "content": "The simple data types defined in table 6.2.6.3.2-1 shall be supported.\nTable 6.2.6.3.2-1: Simple data types\nType Name\nType Definition\nDescription\nSubscriberId\nstring\nPattern: ^(imsi-[0-9]{5,15}|nai-.+|msisdn-[0-9]{5,15}|extid-[^@]+@[^@]+|impi-.+|impu-.+|rid-[0-9]{1,4}|.+)$",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_6.2.6.3.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.504_6.2.7.1",
+      "section_id": "6.2.7.1",
+      "section_title": "General",
+      "content": "HTTP error handling shall be supported as specified in clause 5.2.4 of 3GPP TS 29.500 [7].",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.500_clause_5.2.4",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.504_6.2.7.2",
+      "section_id": "6.2.7.2",
+      "section_title": "Protocol Errors",
+      "content": "Protocol errors handling shall be supported as specified in clause 5.2.7 of 3GPP TS 29.500 [7].",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_5.2.7",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.504_6.2.7.3",
+      "section_id": "6.2.7.3",
+      "section_title": "Application Errors",
+      "content": "The common application errors defined in the Table 5.2.7.2-1 in 3GPP TS 29.500 [7] may also be used for the Nudr_GroupIDmap service. The following application errors listed in Table 6.2.7.3-1 are specific for the Nudr_GroupIDmap service.\nTable 6.2.7.3-1: Application errors\nApplication Error\nHTTP status code\nDescription\nUSER_NOT_FOUND\n404 Not Found\nThe user does not exist in the HPLMN",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.500_table_5.2.7.2-1",
+        "table_6.2.7.3-1",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.504_6.2.8",
+      "section_id": "6.2.8",
+      "section_title": "Security",
+      "content": "As indicated in 3GPP TS 33.501 [12], the access to the Nudr_GroupIDmap API may be authorized by means of the OAuth2 protocol (see IETF RFC 6749 [13]), using the \"Client Credentials\" authorization grant, where the NRF (see 3GPP TS 29.510 [14]) plays the role of the authorization server.\nIf Oauth2 authorization is used, an NF Service Consumer, prior to consuming services offered by the Nudr_GroupIDmap API, shall obtain a \"token\" from the authorization server, by invoking the Access Token Request service, as described in 3GPP TS 29.510 [14], clause 5.4.2.2.\nNOTE:\tWhen multiple NRFs are deployed in a network, the NRF used as authorization server is the same NRF that the NF Service Consumer used for discovering the Nudr_GroupIDmap service.\nThe Nudr_GroupIDmap API defines scopes for OAuth2 authorization as specified in 3GPP TS 33.501 [12]; it defines a single scope consisting on the name of the service (i.e., \"nudr-group-id-map\"), and it does not define any additional scopes at resource or operation level.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.510_clause_5.4.2.2",
+        "ts_33.501",
+        "ts_29.510"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.504_6.2.9",
+      "section_id": "6.2.9",
+      "section_title": "Feature Negotiation",
+      "content": "The optional features in table 6.2.9-1 are defined for the Nudr_GroupIDmap API. They shall be negotiated using the extensibility mechanism defined in clause 6.6 of 3GPP TS 29.500 [7].\nTable 6.2.9-1: Supported Features\nFeature number\nFeature Name\nDescription\nAnnex A (normative):OpenAPI specification\nA.1\tGeneral\nThis document specifies the common service operations and the top level data model for Nudr_DataRepository Service Based Interface. There are no specific HTTP methods or custom operations on the four top level resources in Table 6.1.3.1-1. Hence, the top level OpenAPI specification is not needed.\nThis Annex takes precedence when being discrepant to other parts of the specification with respect to the encoding of information elements and methods within the API(s).\nNOTE:\tThe semantics and procedures, as well as conditions, e.g. for the applicability and allowed combinations of attributes or values, not expressed in the OpenAPI definitions but defined in other parts of the specification also apply.\nInformative copies of the OpenAPI specification files contained in this 3GPP Technical Specification are available on a Git-based repository, that uses the GitLab software version control system (see 3GPP TS 29.501 [8] clause 5.3.1 and 3GPP TR 21.900 [20] clause 5B).\nA.2\tNudr_DataRepository API\nThis Annex specifies the formal definition of the Nudr_DataRepository service. It consists of OpenAPI 3.0.0 specifications, in YAML format.\nThe OpenAPI 3.0.0 definition related to SubscriptionData shall comply with the definition in 3GPP TS 29.505 [2].\nThe OpenAPI 3.0.0 definition related to PolicyData, StructuredDataForExposure and ApplicationData shall comply with the definition in 3GPP TS 29.519 [3].\nThe OpenAPI file for the Nudr_DataRepository API is defined as follows:\nopenapi: 3.0.0\ninfo:\nversion: 2.3.3\ntitle: 'Nudr_DataRepository API OpenAPI file'\ndescription: |\nUnified Data Repository Service.\n© 2025, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).\nAll rights reserved.\nexternalDocs:\ndescription: 3GPP TS 29.504 V18.9.0; 5G System; Unified Data Repository Services; Stage 3\nurl: 'https://www.3gpp.org/ftp/Specs/archive/29_series/29.504/'\nservers:\n- description: API root\nurl: '{apiRoot}/nudr-dr/v2'\nvariables:\napiRoot:\ndefault: https://example.com\nsecurity:\n- {}\n- oAuth2ClientCredentials:\n- nudr-dr\npaths:\n/subscription-data/{ueId}/authentication-data/authentication-subscription:\n$ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1authentication-data~1authentication-subscription'\n/subscription-data/{ueId}/authentication-data/authentication-status:\n$ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1authentication-data~1authentication-status'\n/subscription-data/{ueId}/authentication-data/authentication-status/{servingNetworkName}:\n$ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1authentication-data~1authentication-status~1%7BservingNetworkName%7D'\n/subscription-data/{ueId}/ue-update-confirmation-data/sor-data:\n$ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1ue-update-confirmation-data~1sor-data'\n/subscription-data/{ueId}/ue-update-confirmation-data/upu-data:\n$ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1ue-update-confirmation-data~1upu-data'\n/subscription-data/{ueId}/ue-update-confirmation-data/subscribed-cag:\n$ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1ue-update-confirmation-data~1subscribed-cag'\n/subscription-data/{ueId}/ue-update-confirmation-data/subscribed-snssais:\n$ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1ue-update-confirmation-data~1subscribed-snssais'\n/subscription-data/{ueId}/{servingPlmnId}/provisioned-data:\n$ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1%7BservingPlmnId%7D~1provisioned-data'\n/subscription-data/{ueId}/{servingPlmnId}/provisioned-data/am-data:\n$ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1%7BservingPlmnId%7D~1provisioned-data~1am-data'\n/subscription-data/{ueId}/{servingPlmnId}/provisioned-data/smf-selection-subscription-data:\n$ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1%7BservingPlmnId%7D~1provisioned-data~1smf-selection-subscription-data'\n/subscription-data/{ueId}/{servingPlmnId}/provisioned-data/sm-data:\n$ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1%7BservingPlmnId%7D~1provisioned-data~1sm-data'\n/subscription-data/{ueId}/{servingPlmnId}/provisioned-data/lcs-bca-data:\n$ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1%7BservingPlmnId%7D~1provisioned-data~1lcs-bca-data'\n/subscription-data/{ueId}/context-data:\n$ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1context-data'\n/subscription-data/{ueId}/context-data/amf-3gpp-access:\n$ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1context-data~1amf-3gpp-access'\n/subscription-data/{ueId}/context-data/amf-non-3gpp-access:\n$ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1context-data~1amf-non-3gpp-access'\n/subscription-data/{ueId}/context-data/smf-registrations:\n$ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1context-data~1smf-registrations'\n/subscription-data/{ueId}/context-data/smf-registrations/{pduSessionId}:\n$ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1context-data~1smf-registrations~1%7BpduSessionId%7D'\n/subscription-data/{ueId}/operator-specific-data:\n$ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1operator-specific-data'\n/subscription-data/{ueId}/context-data/smsf-3gpp-access:\n$ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1context-data~1smsf-3gpp-access'\n/subscription-data/{ueId}/context-data/smsf-non-3gpp-access:\n$ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1context-data~1smsf-non-3gpp-access'\n/subscription-data/{ueId}/context-data/location:\n$ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1context-data~1location'\n/subscription-data/{ueId}/context-data/ip-sm-gw:\n$ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1context-data~1ip-sm-gw'\n/subscription-data/{ueId}/context-data/mwd:\n$ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1context-data~1mwd'\n/subscription-data/{ueId}/context-data/roaming-information:\n$ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1context-data~1roaming-information'\n/subscription-data/{ueId}/context-data/pei-info:\n$ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1context-data~1pei-info'\n/subscription-data/{ueId}/{servingPlmnId}/provisioned-data/sms-mng-data:\n$ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1%7BservingPlmnId%7D~1provisioned-data~1sms-mng-data'\n/subscription-data/{ueId}/{servingPlmnId}/provisioned-data/sms-data:\n$ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1%7BservingPlmnId%7D~1provisioned-data~1sms-data'\n/subscription-data/{ueId}/lcs-privacy-data:\n$ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1lcs-privacy-data'\n/subscription-data/{ueId}/lcs-mo-data:\n$ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1lcs-mo-data'\n/subscription-data/{ueId}/lcs-subscription-data:\n$ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1lcs-subscription-data'\n/subscription-data/{ueId}/pp-data:\n$ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1pp-data'\n/subscription-data/{ueId}/context-data/ee-subscriptions:\n$ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1context-data~1ee-subscriptions'\n/subscription-data/{ueId}/context-data/ee-subscriptions/{subsId}:\n$ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1context-data~1ee-subscriptions~1%7BsubsId%7D'\n/subscription-data/{ueId}/context-data/ee-subscriptions/{subsId}/amf-subscriptions:\n$ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1context-data~1ee-subscriptions~1%7BsubsId%7D~1amf-subscriptions'\n/subscription-data/{ueId}/context-data/ee-subscriptions/{subsId}/smf-subscriptions:\n$ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1context-data~1ee-subscriptions~1%7BsubsId%7D~1smf-subscriptions'\n/subscription-data/{ueId}/context-data/ee-subscriptions/{subsId}/hss-subscriptions:\n$ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1context-data~1ee-subscriptions~1%7BsubsId%7D~1hss-subscriptions'\n/subscription-data/group-data/{ueGroupId}/ee-subscriptions:\n$ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1group-data~1%7BueGroupId%7D~1ee-subscriptions'\n/subscription-data/group-data/{ueGroupId}/ee-subscriptions/{subsId}:\n$ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1group-data~1%7BueGroupId%7D~1ee-subscriptions~1%7BsubsId%7D'\n/subscription-data/group-data/{ueGroupId}/ee-subscriptions/{subsId}/amf-subscriptions:\n$ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1group-data~1%7BueGroupId%7D~1ee-subscriptions~1%7BsubsId%7D~1amf-subscriptions'\n/subscription-data/group-data/{ueGroupId}/ee-subscriptions/{subsId}/smf-subscriptions:\n$ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1group-data~1%7BueGroupId%7D~1ee-subscriptions~1%7BsubsId%7D~1smf-subscriptions'\n/subscription-data/group-data/{ueGroupId}/ee-subscriptions/{subsId}/hss-subscriptions:\n$ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1group-data~1%7BueGroupId%7D~1ee-subscriptions~1%7BsubsId%7D~1hss-subscriptions'\n/subscription-data/group-data/{ueGroupId}/ee-profile-data:\n$ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1group-data~1%7BueGroupId%7D~1ee-profile-data'\n/subscription-data/group-data/5g-vn-groups:\n$ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1group-data~15g-vn-groups'\n/subscription-data/group-data/5g-vn-groups/{externalGroupId}:\n$ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1group-data~15g-vn-groups~1%7BexternalGroupId%7D'\n/subscription-data/group-data/5g-vn-groups/internal:\n$ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1group-data~15g-vn-groups~1internal'\n/subscription-data/group-data/5g-vn-groups/pp-profile-data:\n$ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1group-data~15g-vn-groups~1pp-profile-data'\n/subscription-data/group-data/mbs-group-membership:\n$ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1group-data~1mbs-group-membership'\n/subscription-data/group-data/mbs-group-membership/{externalGroupId}:\n$ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1group-data~1mbs-group-membership~1%7BexternalGroupId%7D'\n/subscription-data/group-data/mbs-group-membership/internal:\n$ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1group-data~1mbs-group-membership~1internal'\n/subscription-data/group-data/mbs-group-membership/pp-profile-data:\n$ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1group-data~1mbs-group-membership~1pp-profile-data'\n/subscription-data/{ueId}/ee-profile-data:\n$ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1ee-profile-data'\n/subscription-data/{ueId}/context-data/sdm-subscriptions:\n$ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1context-data~1sdm-subscriptions'\n/subscription-data/{ueId}/context-data/sdm-subscriptions/{subsId}:\n$ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1context-data~1sdm-subscriptions~1%7BsubsId%7D'\n/subscription-data/{ueId}/context-data/nidd-authorizations:\n$ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1context-data~1nidd-authorizations'\n/subscription-data/{ueId}/context-data/sdm-subscriptions/{subsId}/hss-sdm-subscriptions:\n$ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1context-data~1sdm-subscriptions~1%7BsubsId%7D~1hss-sdm-subscriptions'\n/subscription-data/shared-data:\n$ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1shared-data'\n/subscription-data/shared-data/{sharedDataId}:\n$ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1shared-data~1%7BsharedDataId%7D'\n/subscription-data/subs-to-notify:\n$ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1subs-to-notify'\n/subscription-data/subs-to-notify/{subsId}:\n$ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1subs-to-notify~1%7BsubsId%7D'\n/subscription-data/{ueId}/{servingPlmnId}/provisioned-data/trace-data:\n$ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1%7BservingPlmnId%7D~1provisioned-data~1trace-data'\n/subscription-data/{ueId}/identity-data:\n$ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1identity-data'\n/subscription-data/{ueId}/operator-determined-barring-data:\n$ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1operator-determined-barring-data'\n/subscription-data/{ueId}/nidd-authorization-data:\n$ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1nidd-authorization-data'\n/subscription-data/{ueId}/service-specific-authorization-data/{serviceType}:\n$ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1service-specific-authorization-data~1%7BserviceType%7D'\n/subscription-data/{ueId}/v2x-data:\n$ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1v2x-data'\n/subscription-data/{ueId}/pp-profile-data:\n$ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1pp-profile-data'\n/subscription-data/{ueId}/coverage-restriction-data:\n$ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1coverage-restriction-data'\n/subscription-data/group-data/group-identifiers:\n$ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1group-data~1group-identifiers'\n/subscription-data/{ueId}/prose-data:\n$ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1prose-data'\n/subscription-data/{ueId}/pp-data-store:\n$ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1pp-data-store'\n/subscription-data/{ueId}/context-data/service-specific-authorizations/{serviceType}:\n$ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1context-data~1service-specific-authorizations~1%7BserviceType%7D'\n/subscription-data/{ueId}/5mbs-data:\n$ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~15mbs-data'\n/subscription-data/{ueId}/uc-data:\n$ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1uc-data'\n/subscription-data/{ueId}/time-sync-data:\n$ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1time-sync-data'\n/subscription-data/{ueId}/ranging-slpos-data:\n$ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1ranging-slpos-data'\n/subscription-data/{ueId}/a2x-data:\n$ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1a2x-data'\n/subscription-data/{ueId}/rangingsl-privacy-data:\n$ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1rangingsl-privacy-data'\n/policy-data/ues/{ueId}:\n$ref: 'TS29519_Policy_Data.yaml#/paths/~1policy-data~1ues~1%7BueId%7D'\n/policy-data/ues/{ueId}/am-data:\n$ref: 'TS29519_Policy_Data.yaml#/paths/~1policy-data~1ues~1%7BueId%7D~1am-data'\n/policy-data/ues/{ueId}/ue-policy-set:\n$ref: 'TS29519_Policy_Data.yaml#/paths/~1policy-data~1ues~1%7BueId%7D~1ue-policy-set'\n/policy-data/ues/{ueId}/sm-data:\n$ref: 'TS29519_Policy_Data.yaml#/paths/~1policy-data~1ues~1%7BueId%7D~1sm-data'\n/policy-data/ues/{ueId}/sm-data/{usageMonId}:\n$ref: 'TS29519_Policy_Data.yaml#/paths/~1policy-data~1ues~1%7BueId%7D~1sm-data~1%7BusageMonId%7D'\n/policy-data/sponsor-connectivity-data/{sponsorId}:\n$ref: 'TS29519_Policy_Data.yaml#/paths/~1policy-data~1sponsor-connectivity-data~1%7BsponsorId%7D'\n/policy-data/bdt-data:\n$ref: 'TS29519_Policy_Data.yaml#/paths/~1policy-data~1bdt-data'\n/policy-data/bdt-data/{bdtReferenceId}:\n$ref: 'TS29519_Policy_Data.yaml#/paths/~1policy-data~1bdt-data~1%7BbdtReferenceId%7D'\n/policy-data/subs-to-notify:\n$ref: 'TS29519_Policy_Data.yaml#/paths/~1policy-data~1subs-to-notify'\n/policy-data/subs-to-notify/{subsId}:\n$ref: 'TS29519_Policy_Data.yaml#/paths/~1policy-data~1subs-to-notify~1%7BsubsId%7D'\n/policy-data/ues/{ueId}/operator-specific-data:\n$ref: 'TS29519_Policy_Data.yaml#/paths/~1policy-data~1ues~1%7BueId%7D~1operator-specific-data'\n/application-data/pfds:\n$ref: 'TS29519_Application_Data.yaml#/paths/~1application-data~1pfds'\n/application-data/pfds/{appId}:\n$ref: 'TS29519_Application_Data.yaml#/paths/~1application-data~1pfds~1%7BappId%7D'\n/application-data/influenceData:\n$ref: 'TS29519_Application_Data.yaml#/paths/~1application-data~1influenceData'\n# The path segment is left not following the naming convention as defined in 3GPP TS 29.501 due to backward compatibility consideration.\n/application-data/influenceData/{influenceId}:\n$ref: 'TS29519_Application_Data.yaml#/paths/~1application-data~1influenceData~1%7BinfluenceId%7D'\n# The path segment is left not following the naming convention as defined in 3GPP TS 29.501 due to backward compatibility consideration.\n/policy-data/plmns/{plmnId}/ue-policy-set:\n$ref: 'TS29519_Policy_Data.yaml#/paths/~1policy-data~1plmns~1%7BplmnId%7D~1ue-policy-set'\n/application-data/bdtPolicyData:\n$ref: 'TS29519_Application_Data.yaml#/paths/~1application-data~1bdtPolicyData'\n# The path segment is left not following the naming convention as defined in 3GPP TS 29.501 due to backward compatibility consideration.\n/application-data/bdtPolicyData/{bdtPolicyId}:\n$ref: 'TS29519_Application_Data.yaml#/paths/~1application-data~1bdtPolicyData~1%7BbdtPolicyId%7D'\n# The path segment is left not following the naming convention as defined in 3GPP TS 29.501 due to backward compatibility consideration.\n/application-data/iptvConfigData:\n$ref: 'TS29519_Application_Data.yaml#/paths/~1application-data~1iptvConfigData'\n# The path segment is left not following the naming convention as defined in 3GPP TS 29.501 due to backward compatibility consideration.\n/application-data/iptvConfigData/{configurationId}:\n$ref: 'TS29519_Application_Data.yaml#/paths/~1application-data~1iptvConfigData~1%7BconfigurationId%7D'\n# The path segment is left not following the naming convention as defined in 3GPP TS 29.501 due to backward compatibility consideration.\n/application-data/serviceParamData:\n$ref: 'TS29519_Application_Data.yaml#/paths/~1application-data~1serviceParamData'\n# The path segment is left not following the naming convention as defined in 3GPP TS 29.501 due to backward compatibility consideration.\n/application-data/serviceParamData/{serviceParamId}:\n$ref: 'TS29519_Application_Data.yaml#/paths/~1application-data~1serviceParamData~1%7BserviceParamId%7D'\n# The path segment is left not following the naming convention as defined in 3GPP TS 29.501 due to backward compatibility consideration.\n/application-data/influenceData/subs-to-notify:\n$ref: 'TS29519_Application_Data.yaml#/paths/~1application-data~1influenceData~1subs-to-notify'\n# The path segment is left not following the naming convention as defined in 3GPP TS 29.501 due to backward compatibility consideration.\n/application-data/influenceData/subs-to-notify/{subscriptionId}:\n$ref: 'TS29519_Application_Data.yaml#/paths/~1application-data~1influenceData~1subs-to-notify~1%7BsubscriptionId%7D'\n# The path segment is left not following the naming convention as defined in 3GPP TS 29.501 due to backward compatibility consideration.\n/application-data/subs-to-notify:\n$ref: 'TS29519_Application_Data.yaml#/paths/~1application-data~1subs-to-notify'\n/application-data/subs-to-notify/{subsId}:\n$ref: 'TS29519_Application_Data.yaml#/paths/~1application-data~1subs-to-notify~1%7BsubsId%7D'\n/exposure-data/{ueId}/access-and-mobility-data:\n$ref: 'TS29519_Exposure_Data.yaml#/paths/~1exposure-data~1%7BueId%7D~1access-and-mobility-data'\n/exposure-data/{ueId}/session-management-data/{pduSessionId}:\n$ref: 'TS29519_Exposure_Data.yaml#/paths/~1exposure-data~1%7BueId%7D~1session-management-data~1%7BpduSessionId%7D'\n/exposure-data/subs-to-notify:\n$ref: 'TS29519_Exposure_Data.yaml#/paths/~1exposure-data~1subs-to-notify'\n/exposure-data/subs-to-notify/{subId}:\n$ref: 'TS29519_Exposure_Data.yaml#/paths/~1exposure-data~1subs-to-notify~1%7BsubId%7D'\n/data-restoration-events:\npost:\n# This is a pseudo operation, clients shall NOT invoke this method!\nsummary: subscribe to data restoration notifications\noperationId: CreateIndividualSubcription\ntags:\n- Subscriptions (Collection)\nrequestBody:\nrequired: true\ncontent:\napplication/json:\nschema: {}\nresponses:\ndefault:\n$ref: 'TS29571_CommonData.yaml#/components/responses/default'\ncallbacks:\nrestorationNotification:\n'{dataRestorationCallbackUri}':\n# The URI in {dataRestorationCallbackUri} is the default endpoint discovered from NRF.\npost:\nrequestBody:\nrequired: true\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/DataRestorationNotification'\nresponses:\n'204':\ndescription: No Content, Notification was succesfull\n'307':\ndescription: Temporary Redirect\ncontent:\napplication/json:\nschema:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/RedirectResponse'\nheaders:\nLocation:\ndescription: 'The URI pointing to the resource located on the redirect target NF service consumer'\nrequired: true\nschema:\ntype: string\n'308':\ndescription: Permanent Redirect\ncontent:\napplication/json:\nschema:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/RedirectResponse'\nheaders:\nLocation:\ndescription: 'The URI pointing to the resource located on the redirect target NF service consumer'\nrequired: true\nschema:\ntype: string\n'404':\n$ref: 'TS29571_CommonData.yaml#/components/responses/404'\ndefault:\n$ref: 'TS29571_CommonData.yaml#/components/responses/default'\ncomponents:\nsecuritySchemes:\noAuth2ClientCredentials:\ntype: oauth2\nflows:\nclientCredentials:\ntokenUrl: '{nrfApiRoot}/oauth2/token'\nscopes:\nnudr-dr: Access to the Nudr_DataRepository API\nnudr-dr:subscription-data: Access to the SubscriptionData data set\nnudr-dr:subscription-data:authentication-subscription:read: Access to read the AuthenticationSubscription resource of the SubscriptionData data set\nnudr-dr:subscription-data:authentication-subscription:modify: Access to update the AuthenticationSubscription resource of the SubscriptionData data set\nnudr-dr:subscription-data:registrations:write: Write access to NF registration resources of the SubscriptionData data set\nnudr-dr:policy-data: Access to the PolicyData data set\nnudr-dr:policy-data:ues:read: Access to read the UEs resource\nnudr-dr:policy-data:ues:am-data:read: Access to read the UEs Access and Mobility policy data\nnudr-dr:policy-data:ues:ue-policy-set:read: Access to read the UEs Policy Set data\nnudr-dr:policy-data:ues:ue-policy-set:create: Access to create the UEs Policy Set data\nnudr-dr:policy-data:ues:ue-policy-set:modify: Access to update the UEs Policy Set data\nnudr-dr:policy-data:ues:sm-data:read: Access to read the UEs Session Management Policy data\nnudr-dr:policy-data:ues:sm-data:modify: Access to update the UEs Session Management Policy data\nnudr-dr:policy-data:ues:sm-data:create: Access to create the UEs Session Management Policy data\nnudr-dr:policy-data:sponsor-connectivity-data:read: Access to read the sponsored Connectivity Data\nnudr-dr:policy-data:bdt-data:read: Access to read the BDT data resource\nnudr-dr:policy-data:bdt-data:create: Access to create the BDT data resource\nnudr-dr:policy-data:bdt-data:modify: Access to update the BDT data resource\nnudr-dr:policy-data:subs-to-notify:read: Access to read Subscription to Notification\nnudr-dr:policy-data:subs-to-notify:create: Access to create Subscriptions resources\nnudr-dr:policy-data:subs-to-notify:modify: Access to update Subscriptions resources\nnudr-dr:policy-data:ues:operator-specific-data:read: Access to read the UEs operator specific policy data\nnudr-dr:policy-data:ues:operator-specific-data:modify: Access to update the UEs operator specific policy data\nnudr-dr:policy-data:ues:operator-specific-data:create: Access to create the UEs operator specific policy data\nnudr-dr:policy-data:plmns:ue-policy-set:read: Access to read UE Policy SET\nnudr-dr:policy-data:slice-control-data:read: Access to read Slice specific Policy Control Data\nnudr-dr:policy-data:slice-control-data:modify: Access to update Slice specific Policy Control Data\nnudr-dr:policy-data:mbs-session-pol-data:read: Access to read MBS Session Policy Data\nnudr-dr:policy-data:group-control-data:read: Access to read Group Control Data\nnudr-dr:policy-data:group-control-data:modify: Access to update Group Control Data\nnudr-dr:policy-data:pdtq-data:read: Access to read PDTQ Data\nnudr-dr:policy-data:pdtq-data:create: Access to create PDTQ Data\nnudr-dr:policy-data:pdtq-data:modify: Access to update PDTQ Data\nnudr-dr:exposure-data: Access to the ExposureData data set\nnudr-dr:exposure-data:access-and-mobility-data:create: Access to create ExposureData\nnudr-dr:exposure-data:access-and-mobility-data:read: Access to read ExposureData\nnudr-dr:exposure-data:access-and-mobility-data:modify: Access to update ExposureData\nnudr-dr:exposure-data:session-management-data:create: Access to create ExposureData\nnudr-dr:exposure-data:session-management-data:read: Access to read ExposureData\nnudr-dr:exposure-data:session-management-data:modify: Access to update ExposureData\nnudr-dr:exposure-data:subs-to-notify:create: Access to create Subscriptions resources\nnudr-dr:exposure-data:subs-to-notify:modify: Access to update Subscriptions resources\nnudr-dr:application-data: Access to the ApplicationData data set\nnudr-dr:application-data:pfds:read: Access to read PFDData\nnudr-dr:application-data:pfds:modify: Access to update PFDData\nnudr-dr:application-data:pfds:create: Access to create PFDData\nnudr-dr:application-data:influence-data:read: Access to read Traffic Influence Data\nnudr-dr:application-data:influence-data:create: Access to create Traffic Influence Data.\nnudr-dr:application-data:influence-data:modify: Access to update Traffic Influence Data\nnudr-dr:application-data:influence-data:subscriptions:read: Access to read Traffic Influence Data Subscriptions\nnudr-dr:application-data:influence-data:subscriptions:create: Access to create Traffic Influence Data Subscriptions\nnudr-dr:application-data:influence-data:subscriptions:modify: Access to update Traffic Influence Data Subscriptions\nnudr-dr:application-data:bdt-policy-data:read: Access to read BDT Policy Data\nnudr-dr:application-data:bdt-policy-data:create: Access to create BDT Policy Data\nnudr-dr:application-data:bdt-policy-data:modify: Access to update BDT Policy Data\nnudr-dr:application-data:iptv-config-data:read: Access to read IPTV Configuration Data\nnudr-dr:application-data:iptv-config-data:create: Access to create IPTV Configuration Data\nnudr-dr:application-data:iptv-config-data:modify: Access to update IPTV Configuration Data\nnudr-dr:application-data:service-param-data:read: Access to read Service Parameter Data\nnudr-dr:application-data:service-param-data:create: Access to create Service Parameter Data\nnudr-dr:application-data:service-param-data:modify: Access to update Service Parameter Data\nnudr-dr:application-data:am-influence-data:read: Access to read AM Influence Data\nnudr-dr:application-data:am-influence-data:create: Access to create AM Influence Data\nnudr-dr:application-data:am-influence-data:modify: Access to update AM Influence Data\nnudr-dr:application-data:subs-to-notify:create: Access to create Subscriptions resources\nnudr-dr:application-data:subs-to-notify:read: Access to read Subscriptions resources\nnudr-dr:application-data:subs-to-notify:modify: Access to update Subscriptions resources\nnudr-dr:application-data:eas-deploy-data:read: Access to read EAS Deployment Information Data\nnudr-dr:application-data:eas-deploy-data:create: Access to create EAS Deployment Information Data\nnudr-dr:application-data:eas-deploy-data:modify: Access to update EAS Deployment Information Data\nnudr-dr:application-data:ecs-address-roaming:read: Access to read ECS Address Roaming Data\nnudr-dr:application-data:ecs-address-roaming:create: Access to create ECS Address Roaming Data\nnudr-dr:application-data:ecs-address-roaming:modify: Access to update ECS Address Roaming Data\nnudr-dr:application-data:dnai-eas:read: Access to read DNAI-EAS Mapping Data\nnudr-dr:application-data:af-qos-data-sets:read: Access to read AF Qos Data Sets\nnudr-dr:application-data:af-qos-data-sets:create: Access to create AF Qos Data Sets\nnudr-dr:application-data:af-qos-data-sets:modify: Access to update AF Qos Data Sets\nnudr-dr:application-data:ueid-mappings:read: Access to read UE Id Mappings\nnudr-dr:application-data:ueid-mappings:create: Access to create UE Id Mappings\nnudr-dr:application-data:ueid-mappings:delete: Access to delete UE Id Mappings\nschemas:\nDataRestorationNotification:\ndescription: Contains identities representing those UEs potentially affected by a data-loss event at the UDR\ntype: object\nproperties:\nsupiRanges:\ntype: array\nitems:\n$ref: 'TS29510_Nnrf_NFManagement.yaml#/components/schemas/SupiRange'\nminItems: 1\ngpsiRanges:\ntype: array\nitems:\n$ref: 'TS29510_Nnrf_NFManagement.yaml#/components/schemas/IdentityRange'\nminItems: 1\nresetIds:\ntype: array\nitems:\ntype: string\nminItems: 1\nsNssaiList:\ntype: array\nitems:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Snssai'\nminItems: 1\ndnnList:\ntype: array\nitems:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Dnn'\nminItems: 1\nudrGroupId:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/NfGroupId'\nA.3\tNudr_GroupIDmap API\nopenapi: 3.0.0\ninfo:\nversion: 1.2.0\ntitle: 'Nudr_GroupIDmap'\ndescription: |\nUnified Data Repository Service for NF-Group ID retrieval.\n© 2024, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).\nAll rights reserved.\nexternalDocs:\ndescription: 3GPP TS 29.504 V18.6.0; 5G System; Unified Data Repository Services; Stage 3\nurl: 'https://www.3gpp.org/ftp/Specs/archive/29_series/29.504/'\nservers:\n- description: API root\nurl: '{apiRoot}/nudr-group-id-map/v1'\nvariables:\napiRoot:\ndefault: https://example.com\nsecurity:\n- {}\n- oAuth2ClientCredentials:\n- nudr-group-id-map\npaths:\n/nf-group-ids:\nget:\nsummary: Retrieves NF-Group IDs for provided Subscriber and NF types\noperationId: GetNfGroupIDs\ntags:\n- NF Group IDs (Document)\nparameters:\n- name: nf-type\nin: query\ndescription: Type of NF\nrequired: true\nstyle: form\nexplode: false\nschema:\ntype: array\nitems:\n$ref: 'TS29510_Nnrf_NFManagement.yaml#/components/schemas/NFType'\nminItems: 1\n- name: subscriberId\n# The name of this query parameter is left not following the naming convention as defined in 3GPP TS 29.501 due to backward compatibility consideration.\nin: query\ndescription: Identifier of the subscriber\nrequired: true\nschema:\n$ref: '#/components/schemas/SubscriberId'\nresponses:\n'200':\ndescription: Expected response to a valid request\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/NfGroupIdMapResult'\n'400':\n$ref: 'TS29571_CommonData.yaml#/components/responses/400'\n'401':\n$ref: 'TS29571_CommonData.yaml#/components/responses/401'\n'403':\n$ref: 'TS29571_CommonData.yaml#/components/responses/403'\n'404':\n$ref: 'TS29571_CommonData.yaml#/components/responses/404'\n'406':\n$ref: 'TS29571_CommonData.yaml#/components/responses/406'\n'429':\n$ref: 'TS29571_CommonData.yaml#/components/responses/429'\n'500':\n$ref: 'TS29571_CommonData.yaml#/components/responses/500'\n'502':\n$ref: 'TS29571_CommonData.yaml#/components/responses/502'\n'503':\n$ref: 'TS29571_CommonData.yaml#/components/responses/503'\ndefault:\ndescription: Unexpected error\n/nf-group-ids/subscriptions:\npost:\nsummary: Create subscription to NF Group ID mapping\noperationId: CreateGroupIdSubscription\ntags:\n- NF Group ID Subscriptions (Collection)\nparameters:\n- name: supported-features\nin: query\ndescription: Features required to be supported by the target NF\nschema:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'\nrequestBody:\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/SubscriptionData'\nrequired: true\nresponses:\n'201':\ndescription: Expected response to a valid request\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/SubscriptionData'\nheaders:\nLocation:\ndescription: >\nContains the URI of the newly created resource, according to the structure:\n{apiRoot}/nudr-grup-id-map/<apiVersion>/nf-group-ids/subscriptions/{subscriptionId}\nrequired: true\nschema:\ntype: string\n'400':\n$ref: 'TS29571_CommonData.yaml#/components/responses/400'\n'401':\n$ref: 'TS29571_CommonData.yaml#/components/responses/401'\n'403':\n$ref: 'TS29571_CommonData.yaml#/components/responses/403'\n'404':\n$ref: 'TS29571_CommonData.yaml#/components/responses/404'\n'411':\n$ref: 'TS29571_CommonData.yaml#/components/responses/411'\n'413':\n$ref: 'TS29571_CommonData.yaml#/components/responses/413'\n'415':\n$ref: 'TS29571_CommonData.yaml#/components/responses/415'\n'429':\n$ref: 'TS29571_CommonData.yaml#/components/responses/429'\n'500':\n$ref: 'TS29571_CommonData.yaml#/components/responses/500'\n'502':\n$ref: 'TS29571_CommonData.yaml#/components/responses/502'\n'503':\n$ref: 'TS29571_CommonData.yaml#/components/responses/503'\ndefault:\n$ref: 'TS29571_CommonData.yaml#/components/responses/default'\ncallbacks:\nonGroupIdMapChange:\n'{$request.body#/notificationUri}':\npost:\nrequestBody:\nrequired: true\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/GroupIdMapNotify'\nresponses:\n'204':\ndescription: Expected response to a valid request\n'400':\n$ref: 'TS29571_CommonData.yaml#/components/responses/400'\n'401':\n$ref: 'TS29571_CommonData.yaml#/components/responses/401'\n'403':\n$ref: 'TS29571_CommonData.yaml#/components/responses/403'\n'404':\n$ref: 'TS29571_CommonData.yaml#/components/responses/404'\n'411':\n$ref: 'TS29571_CommonData.yaml#/components/responses/411'\n'413':\n$ref: 'TS29571_CommonData.yaml#/components/responses/413'\n'415':\n$ref: 'TS29571_CommonData.yaml#/components/responses/415'\n'429':\n$ref: 'TS29571_CommonData.yaml#/components/responses/429'\n'500':\n$ref: 'TS29571_CommonData.yaml#/components/responses/500'\n'502':\n$ref: 'TS29571_CommonData.yaml#/components/responses/502'\n'503':\n$ref: 'TS29571_CommonData.yaml#/components/responses/503'\ndefault:\n$ref: 'TS29571_CommonData.yaml#/components/responses/default'\n/nf-group-ids/subscriptions/{subscriptionId}:\nget:\nsummary: Retrieves a individual subscription to NF Group ID mapping\noperationId: QueryGroupIdSubscription\ntags:\n- NF Group ID Subscription (Document)\nparameters:\n- name: subscriptionId\nin: path\nrequired: true\ndescription: Unique ID of the subscription to retrieve\nschema:\ntype: string\nresponses:\n'200':\ndescription: Expected response to a valid request\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/SubscriptionData'\n'400':\n$ref: 'TS29571_CommonData.yaml#/components/responses/400'\n'401':\n$ref: 'TS29571_CommonData.yaml#/components/responses/401'\n'403':\n$ref: 'TS29571_CommonData.yaml#/components/responses/403'\n'404':\n$ref: 'TS29571_CommonData.yaml#/components/responses/404'\n'406':\n$ref: 'TS29571_CommonData.yaml#/components/responses/406'\n'429':\n$ref: 'TS29571_CommonData.yaml#/components/responses/429'\n'500':\n$ref: 'TS29571_CommonData.yaml#/components/responses/500'\n'502':\n$ref: 'TS29571_CommonData.yaml#/components/responses/502'\n'503':\n$ref: 'TS29571_CommonData.yaml#/components/responses/503'\ndefault:\n$ref: 'TS29571_CommonData.yaml#/components/responses/default'\npatch:\nsummary: Modify an individual subscription to NF Group ID mapping\noperationId: ModifyGroupIdSubscription\ntags:\n- NF Group ID Subscription (Document)\nparameters:\n- name: subscriptionId\nin: path\nrequired: true\nschema:\ntype: string\n- name: supported-features\nin: query\ndescription: Features required to be supported by the target NF\nschema:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'\nrequestBody:\ncontent:\napplication/json-patch+json:\nschema:\ntype: array\nitems:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/PatchItem'\nminItems: 1\nrequired: true\nresponses:\n'204':\ndescription: Successful response\n'200':\ndescription: Expected response to a valid request\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/SubscriptionData'\n'400':\n$ref: 'TS29571_CommonData.yaml#/components/responses/400'\n'401':\n$ref: 'TS29571_CommonData.yaml#/components/responses/401'\n'403':\n$ref: 'TS29571_CommonData.yaml#/components/responses/403'\n'404':\n$ref: 'TS29571_CommonData.yaml#/components/responses/404'\n'411':\n$ref: 'TS29571_CommonData.yaml#/components/responses/411'\n'413':\n$ref: 'TS29571_CommonData.yaml#/components/responses/413'\n'415':\n$ref: 'TS29571_CommonData.yaml#/components/responses/415'\n'429':\n$ref: 'TS29571_CommonData.yaml#/components/responses/429'\n'500':\n$ref: 'TS29571_CommonData.yaml#/components/responses/500'\n'502':\n$ref: 'TS29571_CommonData.yaml#/components/responses/502'\n'503':\n$ref: 'TS29571_CommonData.yaml#/components/responses/503'\ndefault:\n$ref: 'TS29571_CommonData.yaml#/components/responses/default'\ndelete:\nsummary: Deletes a subscription to NF Group ID mapping\noperationId: RemoveGroupIdSubscription\ntags:\n- NF Group ID Subscription (Document)\nparameters:\n- name: subscriptionId\nin: path\nrequired: true\ndescription: Unique ID of the subscription to remove\nschema:\ntype: string\nresponses:\n'204':\ndescription: Expected response to a successful subscription removal\n'400':\n$ref: 'TS29571_CommonData.yaml#/components/responses/400'\n'401':\n$ref: 'TS29571_CommonData.yaml#/components/responses/401'\n'403':\n$ref: 'TS29571_CommonData.yaml#/components/responses/403'\n'404':\n$ref: 'TS29571_CommonData.yaml#/components/responses/404'\n'429':\n$ref: 'TS29571_CommonData.yaml#/components/responses/429'\n'500':\n$ref: 'TS29571_CommonData.yaml#/components/responses/500'\n'502':\n$ref: 'TS29571_CommonData.yaml#/components/responses/502'\n'503':\n$ref: 'TS29571_CommonData.yaml#/components/responses/503'\ndefault:\n$ref: 'TS29571_CommonData.yaml#/components/responses/default'\n/routing-ids:\nget:\nsummary: Retrieves Routing Indicators for the provided NF type and NF Group ID\noperationId: GetRoutingIDs\ntags:\n- Routing IDs (Document)\nparameters:\n- name: nf-type\nin: query\ndescription: Type of NF\nrequired: true\nschema:\n$ref: 'TS29510_Nnrf_NFManagement.yaml#/components/schemas/NFType'\n- name: nf-group-id\nin: query\ndescription: Identifier of the NF Group\nrequired: true\nschema:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/NfGroupId'\nresponses:\n'200':\ndescription: Expected response to a valid request\ncontent:\napplication/json:\nschema:\n$ref: '#/components/schemas/RoutingIdResult'\n'400':\n$ref: 'TS29571_CommonData.yaml#/components/responses/400'\n'401':\n$ref: 'TS29571_CommonData.yaml#/components/responses/401'\n'403':\n$ref: 'TS29571_CommonData.yaml#/components/responses/403'\n'404':\n$ref: 'TS29571_CommonData.yaml#/components/responses/404'\n'406':\n$ref: 'TS29571_CommonData.yaml#/components/responses/406'\n'429':\n$ref: 'TS29571_CommonData.yaml#/components/responses/429'\n'500':\n$ref: 'TS29571_CommonData.yaml#/components/responses/500'\n'502':\n$ref: 'TS29571_CommonData.yaml#/components/responses/502'\n'503':\n$ref: 'TS29571_CommonData.yaml#/components/responses/503'\ndefault:\ndescription: Unexpected error\ncomponents:\nsecuritySchemes:\noAuth2ClientCredentials:\ntype: oauth2\nflows:\nclientCredentials:\ntokenUrl: '{nrfApiRoot}/oauth2/token'\nscopes:\nnudr-group-id-map: Access to the Nudr_GroupIDmap API\nschemas:\n# STRUCTURED TYPES:\nNfGroupIdMapResult:\ndescription: >\nContains the NFGroupIds for the requested NF types. The NFType is the key of the map.\ntype: object\nadditionalProperties:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/NfGroupId'\nminProperties: 1\nRoutingIdResult:\ndescription: >\nContains the Routing Indicators for the requested NF type and NF Group ID.\ntype: object\nproperties:\nroutingIndicators:\ntype: array\nitems:\ntype: string\npattern: '^[0-9]{1,4}$'\nminItems: 1\nSubscriptionData:\ndescription: >\nInformation of a subscription to notifications to UDR GroupIDmap service,\nincluded in subscription requests and responses\ntype: object\nrequired:\n- notificationUri\n- nfType\n- nfGroupId\nproperties:\nnotificationUri:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/Uri'\nnfType:\n$ref: 'TS29510_Nnrf_NFManagement.yaml#/components/schemas/NFType'\nnfGroupId:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/NfGroupId'\nsubscriptionId:\ntype: string\nreadOnly: true\nexpiry:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/DateTime'\nGroupIdMapNotify:\ndescription: >\nData sent in notifications from UDR to entities subscribed\nto UDR GroupIDmap service\ntype: object\nrequired:\n- subscriberId\n- nfType\n- nfGroupId\nproperties:\nsubscriberId:\n$ref: '#/components/schemas/SubscriberId'\nnfType:\n$ref: 'TS29510_Nnrf_NFManagement.yaml#/components/schemas/NFType'\nnfGroupId:\n$ref: 'TS29571_CommonData.yaml#/components/schemas/NfGroupId'\nidentityRanges:\ntype: array\nitems:\n$ref: 'TS29510_Nnrf_NFManagement.yaml#/components/schemas/IdentityRange'\nminItems: 1\n# SIMPLE TYPES:\nSubscriberId:\ndescription: >\nRepresents the Subscription Identifier SUPI or GPSI or IMPI or IMPU, or Routing Indicator.\ntype: string\npattern: '^(imsi-[0-9]{5,15}|nai-.+|msisdn-[0-9]{5,15}|extid-[^@]+@[^@]+|impi-.+|impu-.+|rid-[0-9]{1,4}|.+)$'\n# ENUMS:\nAnnex B (Normative):ABNF grammar for 3GPP SBI HTTP custom headers\nB.1\tGeneral\nThis Annex contains a self-contained set of ABNF rules, comprising the re-used rules from IETF RFCs, and the rules defined by the 3GPP custom headers defined in this specification (see clause 6.1.2.3).\nThis grammar may be used as input to existing tools to help implementations to parse 3GPP custom headers.\nB.2\tABNF definitions (Filename: \"TS29504_CustomHeaders.abnf\")\n; ----------------------------------------\n;   RFC 5234\n; ----------------------------------------\nHTAB   = %x09 ; horizontal tab\nLF     = %x0A ; linefeed\nCR     = %x0D ; carriage return\nSP     = %x20\nDQUOTE = %x22 ; \" (Double Quote)\nDIGIT  = %x30-39 ; 0-9\nALPHA  = %x41-5A / %x61-7A ; A-Z / a-z\nVCHAR  = %x21-7E ; visible (printing) characters\nWSP    = SP / HTAB ; white space\nCRLF   = CR LF ; Internet standard newline\n; ----------------------------------------\n;   RFC 5322\n; ----------------------------------------\nobs-FWS       = 1*WSP *( CRLF 1*WSP )\nFWS           = ( [ *WSP CRLF ] 1*WSP ) / obs-FWS\nobs-NO-WS-CTL = %d1-8 / %d11 / %d12 / %d14-31 / %d127\nobs-ctext     = obs-NO-WS-CTL\nctext         = %d33-39 / %d42-91 / %d93-126 / obs-ctext\nobs-qp        = \"\\\" ( obs-NO-WS-CTL / LF / CR )\nquoted-pair   = ( \"\\\" ( VCHAR / WSP ) ) / obs-qp\nccontent      = ctext / quoted-pair / comment\ncomment       = \"(\" *( [ FWS ] ccontent ) [ FWS ] \")\"\n; ----------------------------------------\n;   RFC 9110\n; ----------------------------------------\nOWS        = *( SP / HTAB )\ntchar      = \"!\" / \"#\" / \"$\" / \"%\" / \"&\" / \"'\" / \"*\" / \"+\" / \"-\"\n/ \".\" / \"^\" / \"_\" / \"`\" / \"|\" / \"~\" / DIGIT / ALPHA\ntoken      = 1*tchar\nobs-text   = %x80-FF\nentity-tag = [ weak ] opaque-tag\nweak       = %x57.2F ; \"W/\", case-sensitive\nopaque-tag = DQUOTE *etagc DQUOTE\netagc      = %x21 / %x23-7E / obs-text ; VCHAR except double quotes, plus obs-text\n; ----------------------------------------\n;   3GPP TS 29.504\n;\n;   Version: 18.5.0 (March 2024)\n;\n;   (c) 2024, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).\n; ----------------------------------------\n;\n; Header: 3gpp-Sbi-Notification-Correlation\n;\nSbi-Notification-Correlation-Header = \"3gpp-Sbi-Notification-Correlation:\" OWS subscriptionId\n*( OWS \",\" OWS subscriptionId ) OWS\nsubscriptionId                      = token\n;\n; Header: 3gpp-Sbi-Etags\n;\nSbi-Etags-Header        = \"3gpp-Sbi-Etags:\" OWS datasetEtag *( OWS \",\" OWS datasetEtag ) OWS\ndatasetEtag             = dataSetName \"=\" entity-tag\ndataSetName             = UeSubscribedDataSetName\nUeSubscribedDataSetName = 1*( ALPHA / DIGIT / \"_\" )\nAnnex C (informative):Change history\nChange history\nDate\nMeeting\nTDoc\nCR\nRev\nCat\nSubject/Comment\nNew version\n2018-01\nCT4#82\nC4-181365\nTS skeleton\n0.0.0\n2018-01\nCT4#82\nC4-181396\nInclusion of pCRs agreed at CT4#82, including C4-181366, C4-181367, C4-181323 and C4-181385.\n0.1.0\n2018-03\nCT4#83\nC4-182441\nInclusion of pCRs agreed at CT4#83, including C4-182337, C4-182429.\n0.2.0\n2018-04\nCT4#84\nC4-183522\nInclusion of pCRs agreed at CT4#84, including C4-183497, C4-183295, C4-183296, C4-183297, C4-183102, C4-183420, C4-183498.\n0.3.0\n2018-05\nCT4#85\nC4-184636\nInclusion of pCRs agreed at CT4#85, including C4-184482, C4-184484, C4-184167, C4-184168, C4-184489, C4-184564, C4-184637.\n0.4.0\n2018-06\nCT#80\nCP-181102\nPresented for information and approval\n1.0.0\n2018-06\nCT#80\nApproved in CT#80.\n15.0.0\n2018-09\nCT#81\nCP-182057\n0002\n1\nF\nService Name\n15.1.0\n2018-09\nCT#81\nCP-182057\n0006\n2\nF\nSupported Features Negotiation\n15.1.0\n2018-09\nCT#81\nCP-182057\n0004\n2\nF\nError handling in UDR\n15.1.0\n2018-09\nCT#81\nCP-182211\n0003\n4\nOpenAPI file for Nudr_DataRepository API\n15.1.0\n2018-10\nCT#82\nCP-183015\n0008\n-\nF\nUpdate the Reference point name\n15.2.0\n2018-10\nCT#82\nCP-183015\n0009\n-\nF\nIntroduction of Barring of Roaming in 5GC\n15.2.0\n2018-10\nCT#82\nCP-183015\n0010\n1\nF\nShared Data\n15.2.0\n2018-10\nCT#82\nCP-183015\n0011\n-\nGet multiple datasets for ProvsionedData\n15.2.0\n2018-10\nCT#82\nCP-183015\n0012\n1\nF\nDefinition of Authentication Data\n15.2.0\n2018-12\nCT#82\nCP-183015\n0013\n1\nF\nAdding headers for cache control and conditional request to the Nudr Services API\n15.2.0\n2018-12\nCT#82\nCP-183015\n0014\n-\nAPIRoot Clarification\n15.2.0\n2018-12\nCT#82\nCP-183015\n0015\n2\nF\nlifetime of subscription\n15.2.0\n2018-12\nCT#82\nCP-183015\n0016\n1\nF\nAuthorized Event Types\n15.2.0\n2018-12\nCT#82\nCP-183015\n0017\n-\nGroup Subscription Path\n15.2.0\n2018-12\nCT#82\nCP-183177\n0018\n2\nF\nPLMN ID as key for UE data sets\n15.2.0\n2018-12\nCT#82\nCP-183241\n0020\n1\nF\nCorrection to Nudr_DataRepository service OpenAPI\n15.2.0\n2019-03\nCT#83\nCP-190020\n0021\n1\nCR 0018r2 was not implemented\n15.3.0\n2019-03\nCT#83\nCP-190020\n0022\n2\nCorrections on openAPI\n15.3.0\n2019-03\nCT#83\nCP-190020\n0023\nUDR Application Errors\n15.3.0\n2019-03\nCT#83\nCP-190020\n0025\n1\nMissing URLs in UDR API\n15.3.0\n2019-03\nCT#83\nCP-190172\n0026\n1\n3GPP TS 29.504 API version update\n15.3.0\n2019-06\nCT#84\nCP-191031\n0027\n-\nF\nContent Type\n15.4.0\n2019-06\nCT#84\nCP-191031\n0028\n-\nF\nUE Parameter Update (UPU)\n15.4.0\n2019-06\nCT#84\nCP-191031\n0030\n1\nF\nGroup Identifier Translation\n15.4.0\n2019-06\nCT#84\nCP-191031\n0032\n2\nF\nStorage of OpenAPI specification files\n15.4.0\n2019-06\nCT#84\nCP-191031\n0034\n1\nF\nMissing Context Path\n15.4.0\n2019-06\nCT#84\nCP-191031\n0035\n-\nF\nCopyright Note in YAML file\n15.4.0\n2019-06\nCT#84\nCP-191031\n0038\n-\nF\n3GPP TS 29.504 API version update\n15.4.0\n2019-06\nCT#84\nCP-191031\n0036\n1\nF\nResource notification featurres for Policy and Exposure Data\n15.4.0\n2019-06\nCT#84\nCP-191048\n0037\n-\nF\n3GPP TS 29.504 API version update\n16.0.0\n2019-06\nCT#84\nCP-191051\n0029\n1\nB\nPFD extension for domain name\n16.0.0\n2019-09\nCT#85\nCP-192133\n0040\n-\nB\nClosed Access Group\n16.1.0\n2019-09\nCT#85\nCP-192133\n0041\n-\nB\nVN-Group parameter provisioning\n16.1.0\n2019-09\nCT#85\nCP-192123\n0042\n-\nB\nConditional POST / PUT / PATCH / DELETE requests\n16.1.0\n2019-09\nCT#85\nCP-192190\n0048\n1\nB\nNew supported features for xBDT\n16.1.0\n2019-09\nCT#85\nCP-192123\n0049\n1\nB\nSupport a set of MAC addresses in traffic filter\n16.1.0\n2019-09\nCT#85\nCP-192123\n0050\n1\nB\nMultiple temporal validity conditions for AF traffic influence\n16.1.0\n2019-09\nCT#85\nCP-192123\n0039\n1\nB\nNetwork Slicing Subscription Change\n16.1.0\n2019-09\nCT#85\nCP-192123\n0044\n1\nF\nUDR Application Errors\n16.1.0\n2019-09\nCT#85\nCP-192104\n0054\n1\nA\nCorrection on Feature numbers\n16.1.0\n2019-09\nCT#85\nCP-192120\n0056\n-\nF\n3GPP TS 29.504 API version update\n16.1.0\n2019-10\n-\n-\n-\n-\n-\nTS outlook fixed\n16.1.1\n2019-12\nCT#86\nCP-193028\n0066\nA\nWrong YAML Structure of OpenAPI 'info' Clause\n16.2.0\n2019-12\nCT#86\nCP-193028\n0068\nA\nCR 0026r1 was not correctly implemented\n16.2.0\n2019-12\nCT#86\nCP-193039\n0070\n1\nB\nUpdate Application Data Resources\n16.2.0\n2019-12\nCT#86\nCP-193044\n0073\nF\n3GPP TS 29.504 API version update\n16.2.0\n2019-12\nCT#86\nCP-193049\n0069\n1\nB\nNIDD Authorization Data\n16.2.0\n2019-12\nCT#86\nCP-193055\n0060\n1\nB\nLCS Private\n16.2.0\n2019-12\nCT#86\nCP-193055\n0061\n1\nB\nMobile Originated Data\n16.2.0\n2019-12\nCT#86\nCP-193060\n0058\n1\nB\nMissed URLLC feature from Application Data\n16.2.0\n2019-12\nCT#86\nCP-193063\n0059\nB\nPatch Report Feature\n16.2.0\n2019-12\nCT#86\nCP-193063\n0057\n2\nF\nClarification on Implicit Subscriptions to Notifications\n16.2.0\n2019-12\nCT#86\nCP-193130\n0064\n2\nB\nNudr_GroupIDmap Service\n16.2.0\n2019-12\nCT#86\nCP-193064\n0063\n1\nB\nDefinition of SessionManagementPolicyDataPatch feature\n16.2.0\n2020-03\nCT#87\nCP-200020\n0079\nB\nMute Notifications\n16.3.0\n2020-03\nCT#87\nCP-200039\n0074\n2\nF\nAdd Corresponding API descriptions in clause 5.1\n16.3.0\n2020-03\nCT#87\nCP-200020\n0080\n1\nB\nDefinition of ConditionalSubscription and NotificationResourceFragment features\n16.3.0\n2020-03\nCT#87\nCP-200052\n0082\nF\n3GPP TS 29.504 Rel16 API version and External doc update\n16.3.0\n2020-03\nCT#87\nCP-200098\n0083\nB\nDefinition of EnhancedInfluDataNotification feature\n16.3.0\n2020-06\nCT#88-e\nCP-201046\n0084\nB\nCoverage restriction data resource\n16.4.0\n2020-06\nCT#88-e\nCP-201032\n0086\nB\nLocation information retrieval for GMLC\n16.4.0\n2020-06\nCT#88-e\nCP-201032\n0087\nB\nResource LcsPrivacySubscriptionData\n16.4.0\n2020-06\nCT#88-e\nCP-201071\n0088\nF\nStorage of YAML files in ETSI Forge\n16.4.0\n2020-06\nCT#88-e\nCP-201020\n0090\nA\nDefinition of OpSpecDataMapNotification feature\n16.4.0\n2020-06\nCT#88-e\nCP-201049\n0091\nB\nCorrection on V2X Subscription data\n16.4.0\n2020-06\nCT#88-e\nCP-201034\n0093\nF\nCardinality of ProblemDetails\n16.4.0\n2020-06\nCT#88-e\nCP-201034\n0094\nB\nResource Level Authorization\n16.4.0\n2020-06\nCT#88-e\nCP-201033\n0095\nB\nSupport of SMSoIP\n16.4.0\n2020-06\nCT#88-e\nCP-201032\n0096\nF\nMobile Originated Data retrieval\n16.4.0\n2020-06\nCT#88-e\nCP-201034\n0097\nF\nNew feature of per UE per serving network authEvent\n16.4.0\n2020-06\nCT#88-e\nCP-201073\n0098\nF\n29.504 Rel16 API version and External doc update\n16.4.0\n2020-09\nCT#89-e\nCP-202110\n100\nF\nScopes for Resource Level Authorization\n16.5.0\n2020-09\nCT#89-e\nCP-202112\n104\nF\nStore Broadcast Location Assistance Data\n16.5.0\n2020-09\nCT#89-e\nCP-202110\n105\n1\nF\nCorrections with regard to references\n16.5.0\n2020-09\nCT#89-e\nCP-202096\n107\nF\nAPI version and External doc update\n16.5.0\n2020-09\nCT#89-e\nCP-202123\n101\nB\nResource Level Authorization for Data Sets\n17.0.0\n2020-09\nCT#89-e\nCP-202123\n102\nB\nResource Level Authorization for registrations\n17.0.0\n2020-09\nCT#89-e\nCP-202120\n106\nB\nAPI version and External doc update\n17.0.0\n2020-12\nCT#90-e\nCP-203049\n0111\n1\nA\nHSS can consume UDR services\n17.1.0\n2020-12\nCT#90-e\nCP-203042\n0113\nA\n5G VN Groups\n17.1.0\n2020-12\nCT#90-e\nCP-203035\n0115\nA\nStorage of YAML files in 3GPP Forge\n17.1.0\n2020-12\nCT#90-e\nCP-203061\n0117\nB\nData retrieval of multiple policy data sets\n17.1.0\n2020-12\nCT#90-e\nCP-203055\n0119\nF\nRel17 API version and External doc update\n17.1.0\n2021-03\nCT#91-e\nCP-210021\n0120\nF\nSCP may consume Nudr service\n17.2.0\n2021-03\nCT#91-e\nCP-210043\n0122\n1\nA\nIncorrect NfGroupIds definition and missing UDR access paths\n17.2.0\n2021-03\nCT#91-e\nCP-210021\n0123\n1\nB\nAdd Feature for Session Management Policy Data per PLMN\n17.2.0\n2021-03\nCT#91-e\nCP-210034\n0124\n1\nF\nOpenAPI Reference and description field for map data types\n17.2.0\n2021-03\nCT#91-e\nCP-210048\n0126\nA\nSMF Events Storage Resource Path\n17.2.0\n2021-03\nCT#91-e\nCP-210029\n0127\nF\n29.504 Rel-17 API version and External doc update\n17.2.0\n2021-06\nCT#92-e\nCP-211028\n0130\n1\nF\nChange Notification of Array to Stateless UDM\n17.3.0\n2021-06\nCT#92-e\nCP-211028\n0142\nF\nData Types Descriptions\n17.3.0\n2021-06\nCT#92-e\nCP-211031\n0131\n1\nB\nSupport of User Plane Latency requirements\n17.3.0\n2021-06\nCT#92-e\nCP-211039\n0132\nB\nStore ProSe Subscription Data\n17.3.0\n2021-06\nCT#92-e\nCP-211039\n0144\nB\nAdd new ProSe feature\n17.3.0\n2021-06\nCT#92-e\nCP-211045\n0141\nB\nCorrection to OSD Handling\n17.3.0\n2021-06\nCT#92-e\nCP-211045\n0143\nB\nNew feature ConditionalSubscriptionWithExcludeNotification\n17.3.0\n2021-06\nCT#92-e\nCP-211050\n0145\nF\n29.504 Rel-17 API version and External doc update\n17.3.0\n2021-06\nCT#92-e\nCP-211059\n0140\n1\nF\nCorrection to Charging Information\n17.3.0\n2021-06\nCT#92-e\nCP-211079\n0134\nA\nSubscribed EE profile data for a group\n17.3.0\n2021-06\nCT#92-e\nCP-211079\n0136\nA\nSubscribed PP profile data for 5g-VN-group\n17.3.0\n2021-06\nCT#92-e\nCP-211079\n0138\nA\nSubscribed PP profile data\n17.3.0\n2021-09\nCT#93-e\nCP-212030\n0148\n1\nB\nNew feature for NSAC\n17.4.0\n2021-09\nCT#93-e\nCP-212049\n0150\n1\nB\nGet the PP data of mutiple Afs\n17.4.0\n2021-09\nCT#93-e\nCP-212059\n0151\nF\n29.504 Rel-17 API version and External doc update\n17.4.0\n2021-09\nCT#93-e\nCP-212064\n0154\nA\nSharedDataId Resource\n17.4.0\n2021-12\nCT#94-e\nCP-213085\n0156\nB\nUE Subscription Data Sets Retrieve\n17.5.0\n2021-12\nCT#94-e\nCP-213085\n0157\nF\nCorrections to the API URI\n17.5.0\n2021-12\nCT#94-e\nCP-213085\n0159\nB\nShare Session Management Subscription Data\n17.5.0\n2021-12\nCT#94-e\nCP-213086\n0163\nF\nNIDD Authorization data storage\n17.5.0\n2021-12\nCT#94-e\nCP-213086\n0167\nF\nSubscription update\n17.5.0\n2021-12\nCT#94-e\nCP-213087\n0168\nB\nUpdate Roaming Status in EPC\n17.5.0\n2021-12\nCT#94-e\nCP-213087\n0162\n1\nF\nConsumer service logic\n17.5.0\n2021-12\nCT#94-e\nCP-213088\n0166\n1\nA\nNaming Convention\n17.5.0\n2021-12\nCT#94-e\nCP-213093\n0155\n1\nB\nSupport for Service Specific Authorization\n17.5.0\n2021-12\nCT#94-e\nCP-213093\n0164\nB\nSupported Features needed for the Enhanced Edge Computing functionality\n17.5.0\n2021-12\nCT#94-e\nCP-213097\n0158\nB\nStore 5MBS Subscription Data\n17.5.0\n2021-12\nCT#94-e\nCP-213121\n0169\nF\n29.504 Rel-17 API version and External doc update\n17.5.0\n2021-12\nCT#94-e\nCP-213136\n0161\nA\nPath definitions\n17.5.0\n2022-03\nCT#95-e\nCP-220023\n0176\nF\nResource paths in Group Subscription Storage\n17.6.0\n2022-03\nCT#95-e\nCP-220031\n0179\n1\nB\nHandling of supported features for Edge Computing\n17.6.0\n2022-03\nCT#95-e\nCP-220036\n0174\n1\nB\nUDR restoration notification\n17.6.0\n2022-03\nCT#95-e\nCP-220041\n0173\nB\nSOR-AF as NF consumer of UDR\n17.6.0\n2022-03\nCT#95-e\nCP-220042\n0178\n1\nB\nUDR features for TSC and DCAMP\n17.6.0\n2022-03\nCT#95-e\nCP-220047\n0172\n1\nB\nNew value for 404 status code\n17.6.0\n2022-03\nCT#95-e\nCP-220049\n0175\n1\nB\nUser Consent subscription\n17.6.0\n2022-03\nCT#95-e\nCP-220066\n0181\nF\n29.504 Rel-17 API version and External doc update\n17.6.0\n2022-03\nCT#95-e\nCP-220090\n0180\nF\nUpdate incorrect NOTE format\n17.6.0\n2022-06\nCT#96-e\nCP-221025\n0191\n1\nF\nUDR Restoration\n17.7.0\n2022-06\nCT#96-e\nCP-221028\n0185\n1\nF\nLogical Relationship of Query Parameters\n17.7.0\n2022-06\nCT#96-e\nCP-221028\n0186\n1\nF\nOAuth2 scopes for policy data\n17.7.0\n2022-06\nCT#96-e\nCP-221028\n0189\nF\nOAuth2 scopes for exposure data\n17.7.0\n2022-06\nCT#96-e\nCP-221029\n0188\n1\nF\nOAuth2 scopes for application data\n17.7.0\n2022-06\nCT#96-e\nCP-221029\n0190\n1\nF\nUDM to support Optimized EventExposure Subscriptions Data access over Nudr\n17.7.0\n2022-06\nCT#96-e\nCP-221034\n0184\n1\nF\nMissing supported features in Nudr service\n17.7.0\n2022-06\nCT#96-e\nCP-221051\n0193\nF\n29.504 Rel-17 API version and External doc update\n17.7.0\n2022-06\nCT#96-e\nCP-221052\n0192\nF\nUpdate of description of feature ConditionalSubscriptionWithExcludeNotification\n17.7.0\n2022-06\nCT#96-e\nCP-221057\n0183\nF\nFilterAnyUE feature\n17.7.0\n2022-09\nCT#97-e\nCP-222057\n0194\nF\nPEI Information\n17.8.0\n2022-09\nCT#97-e\nCP-222058\n0195\nF\n29.504 Rel-17 API version and External doc update\n17.8.0\n2022-12\nCT#98-e\nCP-223027\n0198\nB\nImmediate reporting for policy data\n18.0.0\n2022-12\nCT#98-e\nCP-223027\n0197\n1\nF\nMissing Mandatory Status Codes in OpenAPI\n18.0.0\n2022-12\nCT#98-e\nCP-223029\n0196\n1\nB\nImmediate Report in subscribe response\n18.0.0\n2022-12\nCT#98-e\nCP-223033\n0199\nF\n29.504 Rel-18 API version and External doc update\n18.0.0\n2023-03\nCT#99\nCP-230029\n0204\nB\nRetrieval of Provisioned data and Context data with a single GET request\n18.1.0\n2023-03\nCT#99\nCP-230029\n0205\n1\nB\nSuppFeatExt feature\n18.1.0\n2023-03\nCT#99\nCP-230029\n0206\n2\nB\nGranular UE Sets\n18.1.0\n2023-03\nCT#99\nCP-230042\n0201\nB\nTime Sync Subscription Data\n18.1.0\n2023-03\nCT#99\nCP-230044\n0208\nB\nService Function Chaining support in Nudr interface\n18.1.0\n2023-03\nCT#99\nCP-230071\n0209\nF\n29.504 Rel-18 API version and External doc update\n18.1.0\n2023-03\nCT#99\nCP-230072\n0203\n1\nA\nRemoving of unnecessary feature\n18.1.0\n2023-06\nCT#100\nCP-231025\n0213\nF\nInternalGroupIdentifier in 5GVnGroupConfiguration\n18.2.0\n2023-06\nCT#100\nCP-231026\n0216\nB\nDefinition of PolSubsRetrieval feature for Policy Data\n18.2.0\n2023-06\nCT#100\nCP-231029\n0222\n2\nB\nMultiple Data Set retrieval with Etags\n18.2.0\n2023-06\nCT#100\nCP-231031\n0212\n1\nB\nStorage and Retrieval of LCS Subscription Data\n18.2.0\n2023-06\nCT#100\nCP-231033\n0215\nB\nAdd CommonEASDNAI feature\n18.2.0\n2023-06\nCT#100\nCP-231049\n0223\n1\nB\nSupport of new feature “GMEC” in UDR\n18.2.0\n2023-06\nCT#100\nCP-231051\n0210\n1\nB\nSupport for A2X service parameters provisioning\n18.2.0\n2023-06\nCT#100\nCP-231052\n0224\nB\nRanging Sidelink Positioning Subscription data\n18.2.0\n2023-06\nCT#100\nCP-231054\n0214\n2\nB\nNew feature URSP provisioning in EPS\n18.2.0\n2023-06\nCT#100\nCP-231060\n0211\nB\nSupport for subscribed V2X policy data\n18.2.0\n2023-06\nCT#100\nCP-231068\n0221\nB\nDCAMP Roaming LBO feature\n18.2.0\n2023-06\nCT#100\nCP-231070\n0225\nF\n29.504 Rel-18 API version and External doc update\n18.2.0\n2023-06\nCT#100\nCP-231076\n0220\n1\nA\nUpdate on Multicast MBS group membership management parameters\n18.2.0\n2023-09\nCT#101\nCP-232033\n0227\n1\nF\nCustom Header ABNF\n18.3.0\n2023-09\nCT#101\nCP-232052\n0236\n1\nB\nNew feature for URSP enforcement and VPLMN specific URSP\n18.3.0\n2023-09\nCT#101\nCP-232056\n0228\n1\nB\nTNAP IDs support\n18.3.0\n2023-09\nCT#101\nCP-232057\n0233\n1\nB\nAdd new feature for 5G ProSe_Ph2\n18.3.0\n2023-09\nCT#101\nCP-232058\n0234\nB\nNew feature EnhancedUePolicy for Policy Data\n18.3.0\n2023-09\nCT#101\nCP-232058\n0237\n1\nB\nFeature support for Operator Specific Data in AccessandMobilityPolicyData\n18.3.0\n2023-09\nCT#101\nCP-232058\n0235\n1\nB\nNew feature SLAMUP for Policy Data\n18.3.0\n2023-09\nCT#101\nCP-232060\n0238\nF\n29.504 Rel-18 API version and External doc update\n18.3.0\n2023-09\nCT#101\nCP-232067\n0232\n1\nA\nCorrection to ServiceParameterDataPatch data type\n18.3.0\n2023-12\nCT#102\nCP-233029\n0248\nF\n3gpp-Sbi-Etags header clarification\n18.4.0\n2023-12\nCT#102\nCP-233030\n0252\nF\nProblemDetails RFC 7807 obsoleted by 9457\n18.4.0\n2023-12\nCT#102\nCP-233030\n0245\n2\nF\nHTTP RFCs obsoleted by IETF RFC 9110, 9111 and 9113\n18.4.0\n2023-12\nCT#102\nCP-233031\n0255\nF\nGranular UE Sets\n18.4.0\n2023-12\nCT#102\nCP-233038\n0241\n1\nB\nDNAI-EAS Mappings data subset in the UDR\n18.4.0\n2023-12\nCT#102\nCP-233038\n0251\nB\nECSAddressRoaming data subset\n18.4.0\n2023-12\nCT#102\nCP-233047\n0247\n1\nB\nSupport the change of the PDU Session Type for a 5G VN group\n18.4.0\n2023-12\nCT#102\nCP-233047\n0249\nB\nSecurity Scopes for access to AF QoS Data\n18.4.0\n2023-12\nCT#102\nCP-233047\n0250\nF\nSecurity Scopes for group policy control data\n18.4.0\n2023-12\nCT#102\nCP-233059\n0244\n1\nB\nMapping between Routing Indicator and NF Group ID\n18.4.0\n2023-12\nCT#102\nCP-233059\n0253\n1\nB\nMapping between NF Group ID and list of Routing Indicators\n18.4.0\n2023-12\nCT#102\nCP-233060\n0256\nF\n29.504 Rel-18 API version and External doc update\n18.4.0\n2023-12\nCT#102\nCP-233068\n0243\nA\nRemoval of SOR-AF as UDR consumer\n18.4.0\n2024-03\nCT#103\nCP-240028\n0261\nF\nABNF Corrections\n18.5.0\n2024-03\nCT#103\nCP-240028\n0264\nB\nGroupIdmap Subscriptions\n18.5.0\n2024-03\nCT#103\nCP-240028\n0258\n1\nF\nApplication errors for 412 Precondition Failed\n18.5.0\n2024-03\nCT#103\nCP-240031\n0260\nF\nRoaming ECS Address Provisioning feature\n18.5.0\n2024-03\nCT#103\nCP-240056\n0265\nF\n29.504 Rel-18 API version and External doc update\n18.5.0\n2024-03\nCT#103\nCP-240071\n0263\nA\nMissing Caching Timer feature in Nudr service\n18.5.0\n2024-06\nCT#104\nCP-241028\n0271\n1\nF\nSupport of URI reference\n18.6.0\n2024-06\nCT#104\nCP-241031\n0273\nB\nFeature support TrafficInfluSubExt\n18.6.0\n2024-06\nCT#104\nCP-241041\n0269\n1\nF\nAdding feature PfdDetermination\n18.6.0\n2024-06\nCT#104\nCP-241045\n0270\nF\nFeature support\n18.6.0\n2024-06\nCT#104\nCP-241045\n0272\n2\nF\nUE RangingSL Positioning privacy profile\n18.6.0\n2024-06\nCT#104\nCP-241050\n0268\n1\nF\nNew feature AccessAndMobilityPolicyDataModify for Policy Data\n18.6.0\n2024-06\nCT#104\nCP-241052\n0274\nF\n29.504 Rel-18 API version and External doc update\n18.6.0\n2024-09\nCT#105\nCP-242039\n0277\nF\nMissing OAuth2 Scopes\n18.7.0\n2024-09\nCT#105\nCP-242039\n0282\n1\nF\nRemoval of URI-reference feature\n18.7.0\n2024-09\nCT#105\nCP-242039\n0285\n3\nF\nCorrection to VPLMNSpecificURSP feature\n18.7.0\n2024-09\nCT#105\nCP-242047\n0279\nF\nFeature support MultiPduSessInfo\n18.7.0\n2024-09\nCT#105\nCP-242054\n0289\nF\n29.504 Rel-18 API version and External doc update\n18.7.0\n2024-12\nCT#106\nCP-243068\n0298\nF\n29.504 Rel-18 API version and External doc update\n18.8.0\n2025-03\nCT#107\nCP-250136\n0305\nF\n29.504 Rel-18 API version and External doc update\n18.9.0",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "ts_29.500_clause_6.6",
+        "ts_29.501_clause_5.3.1",
+        "ts_21.900_clause_5",
+        "clause_6.1.2.3",
+        "clause_16.2.0",
+        "clause_5.1",
+        "table_6.2.9-1",
+        "ts_29.500_table_6.2.9-1",
+        "table_6.1.3.1-1",
+        "ts_29.500",
+        "ts_29.501",
+        "ts_21.900",
+        "ts_29.505",
+        "ts_29.519",
+        "ts_29.504",
+        "ts_15.2",
+        "ts_16.1",
+        "ts_17.0",
+        "ts_17.1",
+        "ts_17.3",
+        "ts_18.1",
+        "ts_18.4"
+      ]
+    }
+  ]
+}

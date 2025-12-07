@@ -1,0 +1,554 @@
+{
+  "metadata": {
+    "specification_id": "ts_29.857",
+    "version": "Unknown",
+    "title": "3GPP TS 29.857",
+    "file_path": "/content/drive/MyDrive/RAG_thesis/data/29_series/29857-120/29857-120.docx"
+  },
+  "export_info": {
+    "export_date": "2025-07-26T08:48:32.636131",
+    "total_chunks": 60
+  },
+  "chunks": [
+    {
+      "chunk_id": "ts_29.857_1",
+      "section_id": "1",
+      "section_title": "Scope",
+      "content": "The present document identifies scenarios where excessive data may be exposed over SBI when an NF-Consumer accesses an API exposed by an NF-Producer, and studies potential solutions to limit the same. The document will focus on following aspects:\n-\tTo study the need and potential solutions for avoiding excessive data exposure over SBI.\n-\tTo study the need and potential solutions for avoiding indirect access to data via, e.g. subscriptions, even as direct access to the data-set is not allowed.\nNOTE 1:\tThe study does not preclude API specific solutions or a generic solution applicable to all APIs.\nNOTE 2:\tThe study does not preclude issues not relating to security aspects of excessive data exposure.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.857_2",
+      "section_id": "2",
+      "section_title": "References",
+      "content": "The following documents contain provisions which, through reference in this text, constitute provisions of the present document.\n-\tReferences are either specific (identified by date of publication, edition number, version number, etc.) or non‑specific.\n-\tFor a specific reference, subsequent revisions do not apply.\n-\tFor a non-specific reference, the latest version applies. In the case of a reference to a 3GPP document (including a GSM document), a non-specific reference implicitly refers to the latest version of that document in the same Release as the present document.\n[1]\t3GPP TR 21.905: \"Vocabulary for 3GPP Specifications\".\n[2]\t3GPP TS 29.510: \"Network Function Repository Services; Stage 3\".\n[3]\tGSMA LS C4-225023: \"Research highlighting potential need for granular level checks using \"Additional scope\" under the OAuth2.0 Token Access\" (https://www.3gpp.org/ftp/tsg_ct/WG4_protocollars_ex-CN4/TSGCT4_113_Toulouse/Docs/C4-225023.zip).\n[4]\tGSMA LS C4-213261: \"Prevention of attacks on sliced core network\". (https://www.3gpp.org/ftp/tsg_ct/WG4_protocollars_ex-CN4/TSGCT4_104e_meeting/Docs/C4-213261.zip).\n[5]\t3GPP TR 29.831: \"Study on NRF API enhancements to avoid signalling and storing of redundant data; Stage 3\".",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905",
+        "ts_29.510",
+        "ts_29.831"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.857_3",
+      "section_id": "3",
+      "section_title": "Definitions of terms, symbols and abbreviations",
+      "content": "This clause and its three subclauses are mandatory. The contents shall be shown as \"void\" if the TS/TR does not define any terms, symbols, or abbreviations.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.857_3.1",
+      "section_id": "3.1",
+      "section_title": "Terms",
+      "content": "For the purposes of the present document, the terms given in 3GPP TR 21.905 [1] and the following apply. A term defined in the present document takes precedence over the definition of the same term, if any, in 3GPP TR 21.905 [1].\nDefinition format (Normal)\n<defined term>: <definition>.\nexample: text used to clarify abstract rules by applying them literally.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.857_3.2",
+      "section_id": "3.2",
+      "section_title": "Symbols",
+      "content": "For the purposes of the present document, the following symbols apply:\nSymbol format (EW)\n<symbol>\t<Explanation>",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.857_3.3",
+      "section_id": "3.3",
+      "section_title": "Abbreviations",
+      "content": "For the purposes of the present document, the abbreviations given in 3GPP TR 21.905 [1] and the following apply. An abbreviation defined in the present document takes precedence over the definition of the same abbreviation, if any, in 3GPP TR 21.905 [1].\nAbbreviation format (EW)\n<ABBREVIATION>\t<Expansion>",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.857_4.1",
+      "section_id": "4.1",
+      "section_title": "Excessive Data Exposure",
+      "content": "APIs defined by SBI currently do not limit the amount of information exposed to different NF-Service Consumers. While OAuth2.0 mechanism does provide ability to define limited scopes to certain consumers, it is limited only to operation-level scopes as defined in 3GPP TS 29.510 [2]. If multiple consumers are allowed a certain operation-level scope on a resource, all the consumers of the API get access to entire representation of a resource. This leads to excessive information exposure which is undesirable in many scenarios and may result in potential security / privacy exposure.\nGSMA LS C4-225023 [3] and GSMA LS C4-213261 [4] highlighted potential security vulnerabilities within 5G Network functions encompassing OAuth2.0 as well as how excessive data exposure may allow a compromised NF trigger attacks on other network functions.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.510"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.857_5",
+      "section_id": "5",
+      "section_title": "General Requirements",
+      "content": "This clause specifies general requirements that shall be met by any candidate solution.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.857_6",
+      "section_id": "6",
+      "section_title": "Key Issues",
+      "content": "This clause describes the issues that needs to be considered for reducing excessive information exposure over SBI.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.857_6.1.1",
+      "section_id": "6.1.1",
+      "section_title": "Description of Use-case",
+      "content": "In the Service Based Architecture, when NF-Consumers are allowed access to an NF-Producer's resources, they are typically allowed access to the entire resource representation exposed by the NF-Producer, unless some information can be excluded due to, e.g. NF-Consumer or NF-Producer capabilities, or the information provided by the NF-Consumers (e.g. query parameters). This was the basic design principle of SBI that entire resource representation is provided to an NF-Consumer if it presents a valid access-token.\nHowever, in some scenarios, it may not be acceptable or desirable, as it may lead to excessive data exposure and result in potential security/privacy exposure. Following are few examples:\nExample 1: Consider the case of Nudm_UECM service on UDM. When a UE registers to AMF via 3gpp access, the AMF registers a lot of UE information into the UDM, e.g. PEI, Current RAT-Type, UE capabilities, SUPI etc. (contained in data-structure \"Amf3GppAccessRegistration\"); by performing a PUT operation on the resource \"~/registrations/amf-3gpp-access\". Subsequently, other NF-Consumers can perform GET operation on the resources to fetch UE's registration information when needed. For example, an NSSAAF can perform GET operation on this resources to know the current serving AMF of the UE. Similarly, another AMF can perform a GET operation on this resources to fetch the entire resource representation.\nHowever, even if a consumer NF just needs to know the current serving AMF of the UE (e.g. an NSSAAF), and performs a GET operation on the above resources, it will be provided with entire representation of the Amf3GppAccessRegistration data-structure. Every consumer NF may not need to know such sensitive information as SUPI & PEI of the UE.\nExample 2: Consider the case of Nnrf_NFDiscovery service on NRF. An NF Producer has registered, say, 3 S-NSSAIs in its profile into NRF, and allows NF-Consumers belonging to any of these S-NSSAIs discover its profile (by using allowedNssai parameter in the NF-Profile).\nEven as an NF-Consumer may belong to only one of these S-NSSAIs, when it downloads the NF-Profile of the NF Producer, it gets to know all the other S-NSSAIs too that the NF-Producer supports.\nExample 3: Consider the case of Namf_EE or Namf_Location Service. An NF-Consumer belonging to S-NSSAI=1 can subscribe to UE's location in AMF, and can get access to its location even if UE has not registered to S-NSSAI = 1.\nExample 4: Consider the case of BSF discovery via Nnrf_NFDiscovery service on NRF. The BSF registers its NFprofile with NRF, including attributes such as IPv4 address range, IPv6 address prefix range, ipdomainID, DNN, and/or SUPI/GPSI in each bsfInfo. These attributes and attribute combinations can be used by different NF consumer (e.g. AF, NEF, PCF, DRA, IMS P-CSCF) to discover the proper BSF. Even as an NF-consumer (e.g. DRA, P-CSCF) may only need to obtain the IPv6 address segment registered by the BSF for an IMS DNN, and then match the user IP address, when it downloads the NF-Profile of the NF-Producer, it gets to know all the other IP address registered by BSF for non-IMS DNN. Also, even an NF-consumer may only need to obtain the IP addresses registered by the BSF for DNN used for a specific vertical customer, when it downloads the NF-Profile of the NF-Producer, it gets to know all the other IP address registered by BSF for IMS DNN and other DNNs.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.857_6.1.2",
+      "section_id": "6.1.2",
+      "section_title": "Key Issue Definition",
+      "content": "This key issue will study the following aspects:\ni.\tWhether and how to restrict the information provided by an NF-Producer to different NF-consumers\nii.\tWhether and how to prevent an NRF reveal unintended information about NF-Producer. See NOTE 1.\niii.\tWhether and how to differentiate among NF-Consumers who possess same scope of authorization to a resource.\nNOTE 1: This would also apply to any intermediate node that exposes information on-behalf of NF-Producer (e.g. subscription to AMF events via UDM).\nNOTE 2: This Key Issue may overlap, in part; with Key Issue #2 in Study on NRF API enhancements to avoid signalling and storing of redundant data (see 3GPP TR 29.831 [5]). The impact of such overlap, if any, shall be determined when this study reaches evaluation/conclusion phase.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.831"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.857_6.2.1",
+      "section_id": "6.2.1",
+      "section_title": "Description of Use-case",
+      "content": "Many APIs expose a subscription resource through which NF-Consumers can subscribe to changes to a set of resources in the NF-Producer. Creation of subscription requires access rights to the subscription resource.\nFor example, an SMF which is allowed to only access, say, sm-data resource in Nudm_SDM API. However, it may still be allowed to subscribe to changes in am-data by creating a subscription to data-change notifications and thus have access to excessive data. This is because, as described below, access to ../sdm-subscriptions resource requires access-token granting access to the ../sdm-subscriptions resource, and not the data-sets for whose changes the NF-consumer is subscribing to.\nClause 6.1.3.3 of 3GPP TS 29.503 specifies that, to subscribe to a set of URIs, the NF-Consumer needs to send a POST request to following URI:\nResource URI: {apiRoot}/nudm-sdm/<apiVersion>/{ueId}/sdm-subscriptions\nThe POST request contains:\nTable 6.1.3.3.3.1-2: Data structures supported by the POST Request Body on this resource\nData type\nP\nCardinality\nDescription\nSdmSubscription\nM\n1\nThe subscription that is to be created.\nFurther, the SdmSubscription datatype is defined as:\nTable 6.1.3.3.3.1-2/1: SdmSubscription datatype definition\nAttribute name\nData type\nP\nCardinality\nDescription\nApplicability\nnfInstanceId\nNfInstanceId\nM\n1\nIdentity of the NF Instance creating the subscription.\n…\nSkipped for clarity\ncallbackReference\nUri\nM\n1\nURI provided by the NF service consumer to receive notifications\namfServiceName\nServiceName\nO\n0..1\nWhen present, this IE shall contain the name of the AMF service to which Data Change Notifications are to be sent (see clause 6.5.2.2 of 3GPP TS 29.500 [4]). This IE may be included if the NF service consumer is an AMF.\nmonitoredResourceUris\narray(Uri)\nM\n1..N\nA set of URIs that identify the resources for which a change triggers a notification.\nThe URI shall take the form of either an absolute URI or an absolute-path reference as defined in IETF RFC 3986 [31].\nSee NOTE 3.Monitored Resource URIs should not contain query parameters. Instead, attributes within the SdmSubscription (e.g. singleNssai, dnn, plmnId) may be used for filtering. Received query parameters may be ignored by the UDM.\n…\nSkipped for clarity\nThe NF-Consumer needs an access-token granting access to the ../sdm-subscriptions resource to send above request. It does not need to have access-tokens corresponding to each monitoredResourceUri presented in the above request to be able to receive the data-change corresponding to them.\nThus, even if an NF-Consumer is not allowed to access the monitored URLs individually by sending a GET request, (e.g. to, say URI representing am-data resource), it may still receive am-data change notifications by including am-data resource URI in the subscription request.\nSimilar issue exists with APIs supporting simultaneous retrieval of multiple data-sets, e.g. the retrieval of multiple subscription data-set in, e.g. Nudm_SDM service, the retrieval of multiple registration data-sets in Nudm_UECM service etc.\nCompare this with the NFStatusSubscribe service operation of Nnrf_NFManagement Service on NRF, which allows such subscription request only if the NF-Consumer creating subscription is allowed to access the NF-Producer as per the definition of allowedXXX policies in the nf-profile of NF-Producer.\nA similar approach may be needed for SMF as well in the above example.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.503_clause_6.1.3.3",
+        "ts_29.500_clause_6.5.2.2",
+        "table_6.1.3.3.3.1-2",
+        "ts_29.503",
+        "ts_29.500"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.857_6.2.2",
+      "section_id": "6.2.2",
+      "section_title": "Key Issue Definition",
+      "content": "This key issue will study the following aspects:\nWhether and how to prevent an NF-Producer reveal unintended information to the NF-Consumers when a service request is targeted to multiple URIs/datasets.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.857_6.3.0",
+      "section_id": "6.3.0",
+      "section_title": "General",
+      "content": "For the purposes of Key Issue #3, the terms \"Resource Segment\" denotes a subset of all representations of a resource that is determined by a set of values for the resource's path variables.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.857_6.3.1",
+      "section_id": "6.3.1",
+      "section_title": "Description of Use-case",
+      "content": "Operators may require that some NF consumers are allowed to access some instances of a resource exposed by the operator's NF producer but are not allowed to access other instances of the same resource.\nAn example use-case is multi-tenancy in subscriber data or unstructured data stored in UDRs or UDSFs:\nA UDR may hold subscriber data for multiple tenants (e.g. MVNO X and MVNO Y).\nA consumer of the UDR (e.g.UDM) assigned to serve subscribers for MVNO X is allowed to access the UDR's subscriber data for MVNO X (segment X) but not for MVNO Y (segment Y).\nIt is not possible with the current security and authorization mechanism to restrict access to segments of the same type of resources.\nA consequence of this is that once a consumer (e.g. UDM assigned to serve subscribers for MVNO X) has a valid OAuth token allowing access to a resource in segment X, the same token can be used for accessing a dis-allowed resource of segment Y.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.857_6.3.2",
+      "section_id": "6.3.2",
+      "section_title": "Key Issue Definition",
+      "content": "This key issue will study the following aspects:\nWhether and how to prevent an NF-Producer reveal dis-allowed information to the NF-Consumers when a service request is targeted to a resource belonging to a dis-allowed segment.\nWhether and how to prevent an NF-Consumer modifying, creating or deleting resources in restricted segments of NF-Producers.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.857_7.1.1",
+      "section_id": "7.1.1",
+      "section_title": "Description",
+      "content": "The solution is to address the Key Issue #1: Excessive Data Exposure over SBI. The solution addresses aspect i, ii and iii of the Key Issue as specified in 6.1.2:\nOne of the reason of the data-leakage identified in Key-Issue is that all the NF-Consumers are only assigned a single level of access – allow or deny. There is no layered approach to assigning access. Due to this, if NFs are allowed to access an NF-Producer's resource, they have access to all the data associated with that resource.\nMany OAM systems, on the other hand, implement a role-based access system where different levels of access is provided to its users – e.g. Administrator, Monitor, Operator etc.\nThis solution is design on similar principles. It proposes to assign different levels of access to different NF-Consumers and filter the information according to the access-level assigned to NF-Consumers. For example, a superior access can be assigned to NFs of same PLMN, whereas an inferior access to 3rd party NFs or NFs of a different PLMN.\nWith this approach, the solution works on following principles:\n-\tAccess-Level can be defined as, e.g. a number (e.g. 1-15) or as \"Full\", \"Highly Restricted\", \"Restricted\" etc.\n-\tPreventing Exposure when NF-Consumers access NF-Producers\na.\tOne of the following options are used. Preferred option can be decided during evaluation/conclusion.:\ni.\tNRF may be locally configured with rules of determining the access-level of NF-Consumers based on NF-Consumer properties (e.g. NFType, S-NSSAI, PLMN etc.). This option avoids API changes required to register the Access-levels by the NF-Producers into NRF.\nii.\tNF-Producers may register the access-level to be assigned to NF-Consumers based on NF-Consumer properties (e.g. NFType, S-NSSAI, PLMN etc.). This option introduces API changes to register Access-levels by the NF-Producers into NRF, however provides a more dynamic network where OAM is not required to change local configurations in NRFs whenever a new NF-Producer Instance is added into the network.\niii.\tNF-Producer locally defines access-level associated based on NF-Consumer properties (e.g. NFType, S-NSSAI, PLMN etc. This option avoids API changes required to register the Access-levels by the NF-Producers into NRF.\nb.\tIn case of a(i) and a(ii), NRF determines an access-level associated with the NF-Consumer during Access_Token_Get request, and communicates the same in access-token claims.\nc.\tNF-Producer is locally configured with the information to be exposed based on access-level assigned to the NF-Consumer.\nd.\tThen, based on the access-level of NF-Consumer presented in access-token, the information provided is filtered/restricted.\n-\tPreventing Exposure when NF-Consumers discover NF-Producers via NRF\na.\tOne of the following options are used. Preferred option can be decided during evaluation/conclusion:\ni.\tNRF may be locally configured with rules of determining the access-level. This option avoids API changes required to register the Access-levels by the NF-Producers into NRF.\nii.\tNF-Producers may register the access-level to be assigned to NF-Consumers based on NF-Consumer properties (e.g. NFType, S-NSSAI, PLMN etc.). This option introduces API changes to register Access-levels by the NF-Producers into NRF, however provides a more dynamic network where OAM is not required to change local configurations in NRFs whenever a new NF-Producer Instance is added into the network.\nb.\tNF-Producers register, in their NF-Profile, the parameters they want to restrict (or filter) to NFs with an access-level greater than a certain value.\nc.\tThen, based on the access-level of NF-Consumer, the information provided in NF-Discovery response is filtered/restricted.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.857_7.1.2",
+      "section_id": "7.1.2",
+      "section_title": "Example Flows",
+      "content": "Example 1: Following is an example flow of events with this solution for Example 1 in Key Issue Description:\nFigure 7.1.2-1: Example 1 Flow of Events\nStep #1: UDM categorizes the information in Amf3GppAccessRegistration locally, something like below:\nTable 7.1.2-1: Access Levels for Information in Amf3GppAccessRegistration\nAttribute name\nData type\nP\nMinimum Access Level\namfInstanceId\nNfInstanceId\nM\n15\nderegCallbackUri\nUri\nM\n15\nguami\nGuami\nM\n15\nratType\nRatType\nM\n15\nsupportedFeatures\nSupportedFeatures\nO\n10\npurgeFlag\nPurgeFlag\nO\n5\npei\nPei\nO\n1\nimsVoPs\nImsVoPs\nO\n1\n….[Skipped for clarity]\nurrpIndicator\nboolean\nO\n5\namfEeSubscriptionId\nUri\nC\n5\nepsInterworkingInfo\nEpsInterworkingInfo\nC\n5\nueSrvccCapability\nboolean\nO\n5\nregistrationTime\nDateTime\nC\n2\nvgmlcAddress\nVgmlcAddress\nO\n5\ncontextInfo\nContextInfo\nC\n5\nnoEeSubscriptionInd\nboolean\nO\n5\nsupi\nSupi\nC\n1\nueReachableInd\nUeReachableInd\nC\n2\n….[Skipped for clarity]\nStep #2: NRF is locally configured with rules to determine the access-level to be assigned to NF-Consumers, e.g.\n<Consumer PLMN-IDs><Consumer S-NSSAIs><Consumer nftype A>: assign Access-Level : <n1>\n<Consumer PLMN-IDs><Consumer S-NSSAIs><Consumer nftype B>: assign Access-Level : <n2>\n…\n<Consumer PLMN-IDs><Consumer S-NSSAIs><Consumer nftype C>: assign Access-Level : <n3>\nFor example, an NSSAAF is assigned an Access-Level = 15 based on local rules.\nStep #3: An NSSAAF requests access-token to perform GET operation on resource \"~/registrations/amf-3gpp-access\" in UDM. The scope in the Access-Token request is set to \"nudm-uecm\".\nStep #4: The Access-Token generated contains scope set to \"nudm-uecm\" and Access-Level set to 15 as below:\nTable 7.1.2-2: AccessTokenClaims\nAttribute name\nData type\nP\nCardinality\nDescription\niss\nNfInstanceId\nM\n1\n…\nsub\nNfInstanceId\nM\n1\n…\naud\nAudience\nM\n1\n…\nscope\nstring\nM\n1\n…\nexp\ninteger\nM\n1\n…\nconsumerPlmnId\nPlmnId\nC\n0..1\n…\n…[Skipped for Clarity]…\nconsumerAccessLevel\ninteger\nC\n0..1\nThis IE may be included if the NRF supports providing Access-Level to the Consumer NF in the access token claims.\nBackward compatibility is addressed similar to other attributes in the AccessTokenClaims - if an NF service producer receives the new IE in the token, it shall be ignored.\nStep #5: NSSAAF sends Nudm_UECM_Get request to UDM to know the current serving AMF of the UE, and presents Access-Level assigned by the NRF.\nStep #6: UDM provides filtered information as per information in Table 7.1.1-1.\nExample 2: Following is an example flow of events with this solution for Example 2 in Key Issue Description:\nFigure 7.1.2-2: Example 2 Flow of Events\nStep #1: NF-Producer registers its profile into NRF with a new parameter indicating the minimum access-level required to access certain parameters. NF-Producers and NRF may define a feature-bit to indicate support of this functionality as part of feature negotiation mechanism:\nTable 7.1.2-3: Definition of type NFProfile\nAttribute name\nData type\nP\nCardinality\nDescription\nnfInstanceId\nNfInstanceId\nM\n1\nUnique identity of the NF Instance.\nnfType\nNFType\nM\n1\nType of Network Function\nnfStatus\nNFStatus\nM\n1\nStatus of the NF Instance (NOTE 5) (NOTE 16)\n[Skipped for clarity]\naccessLevelInfo\narray(minAccessLevels)\nC\n1..N\nArray of strings containing attribute names per access-level.\n[Skipped for clarity]\nFurther, access-levels are registered as:\nTable 7.1.2-4: Definition of type minAccessLevels\nAttribute name\nData type\nP\nCardinality\nDescription\naccessLevel\ninteger\nM\n1\nMinimum Access Level Required for parameters contained in this array\nattributeNames\narray (string)\nM\n1..N\ne.g. /sNssais, /UdmInfo/supiRanges\nStep #2: NRF is locally configured with rules to determine the access-level to be assigned to NF-Consumers, e.g.\n<Consumer PLMN-IDs><Consumer S-NSSAIs><Consumer nftype A>: assign Access-Level : <n1>\n<Consumer PLMN-IDs><Consumer S-NSSAIs><Consumer nftype B>: assign Access-Level : <n2>\n…\n<Consumer PLMN-IDs><Consumer S-NSSAIs><Consumer nftype C>: assign Access-Level : <n3>\nStep #3: NF-Consumer sends Nnrf_NFDiscovery_Get request to NRF to discover NFs of certain type.\nStep #4: NRF determines the access-level of NF-Consumer and provides NF-Profile after filtering the information as updated in Step #1.",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "table_7.1.2-1",
+        "table_7.1.2-2",
+        "table_7.1.1-1",
+        "table_7.1.2-3",
+        "table_7.1.2-4",
+        "figure_7.1.2-1",
+        "figure_7.1.2-2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.857_7.1.3",
+      "section_id": "7.1.3",
+      "section_title": "Impacts on services, entities and interfaces",
+      "content": "NF-Consumers:\n-\tSupport receiving Access-Level in Access-Token\nNF-Producers:\n-\tCategorize information locally based on Access-Token\n-\tRegister the access-level to be assigned to NF-Consumers based on NF-Consumer properties (e.g. NFType, S-NSSAI, PLMN etc.)\n-\tNF-Producer locally defines access-level associated based on NF-Consumer properties (e.g. NFType, S-NSSAI, PLMN etc.)\n-\tSupport receiving Access-Level in Access-Token\nNRF:\n-\tNRF locally defines the access-level of NF-Consumers based on NF-Consumer properties (e.g. NFType, S-NSSAI, PLMN etc.)\n-\tSupport to register the access-level to be assigned to NF-Consumers based on NF-Consumer properties (e.g. NFType, S-NSSAI, PLMN etc.)\n-\tSupport assigning Access-Level in Access-Token",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.857_7.1.4",
+      "section_id": "7.1.4",
+      "section_title": "Pros",
+      "content": "This solution provides a simple and efficient way to reduce information exposure.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.857_7.1.5",
+      "section_id": "7.1.5",
+      "section_title": "Cons",
+      "content": "The solution may still expose excessive information for consumers, especially with superior access-level.\nEditor's Note:\tAnalysis and Evaluation of the solution is FFS.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.857_7.2.1",
+      "section_id": "7.2.1",
+      "section_title": "Description",
+      "content": "The solution is to address the Key Issue #1: Excessive Data Exposure over SBI. It addresses following aspects:\ni.\tWhether and how to restrict the information provided by an NF-Producer to different NF-consumers\nii.\tHow to differentiate among NF-Consumers who possess same scope of authorization to a resource.\nThe solution works on following principles:\n-\tAn NF-Service-Producer exposes two flavours of the same service – a normal flavour and a restricted flavour. For example, we may expose Nudm_UECM and Nudm_UECM_Restricted services. Each service has different authorization policy (w.r.t. NF-Consumer properties like NfType, S-NSSAI etc.).\n-\tThe service may define, e.g. a different resource URI for restricted access (e.g. /{ueId}/registrations/amf-3gpp-access/restricted/).\n-\tThe information exposed by the two services is different as per local policies.\n-\tWhen an NF-Consumer performs Nnrf_NFDiscover_Get service operation to discover a list of NF-Producers, NRF includes, in the NF-Profile(s), NF-Services according to authorization policies registered by the NF-Producers. For example, it may include the NF-Service corresponding to restricted service access.\n-\tNF-Consumer proceeds with requesting access-token for restricted service access followed by sending service-request to NF-Producer.\n-\tDepending on the service invoked, NF-Producer is able to restrict the information exposed to the NF-Consumers.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.857_7.2.2",
+      "section_id": "7.2.2",
+      "section_title": "Example Flows",
+      "content": "Example 1: Following is an example flow of events with this solution for Example 1 in Key Issue Description:\nFigure 7.2.2-1: Example Flow of Events\nStep #1: UDM exposes two services of Nudm_UECM service and registers into NRF. The authorization policy is registered as below:\nService 1(normal): allowedNfTypes = NfType1, NfType2…\nService 2 (restricted): allowedNfTypes = NSSAAF, LMF…\nStep #2: The information exposed by the two services is different. For example, the UDM categorizes the information in Amf3GppAccessRegistration locally, something like below:\nTable 7.2.2-1: Access Restrictions to elements of Amf3GppAccessRegistration\nAttribute name\nData type\nP\nAllowed Services\namfInstanceId\nNfInstanceId\nM\n1,2\nderegCallbackUri\nUri\nM\n1,2\nguami\nGuami\nM\n1,2\nratType\nRatType\nM\n1,2\nsupportedFeatures\nSupportedFeatures\nO\n1,2\npurgeFlag\nPurgeFlag\nO\n1,2\npei\nPei\nO\n1\nimsVoPs\nImsVoPs\nO\n1\n….[Skipped for clarity]\nurrpIndicator\nboolean\nO\n1,2\namfEeSubscriptionId\nUri\nC\n1,2\nepsInterworkingInfo\nEpsInterworkingInfo\nC\n1,2\nueSrvccCapability\nboolean\nO\n1,2\nregistrationTime\nDateTime\nC\n1,2\nvgmlcAddress\nVgmlcAddress\nO\n1,2\ncontextInfo\nContextInfo\nC\n1,2\nnoEeSubscriptionInd\nboolean\nO\n1,2\nsupi\nSupi\nC\n1\nueReachableInd\nUeReachableInd\nC\n1,2\n….[Skipped for clarity]\nStep #3: When NSSAAF performs Nnrf_NFDiscover_Get service operation to discover a list of UDMs serving a particular UE, NRF returns UDM Service 2, which only allows restricted service access.\nStep #4: NSSAAF proceeds with requesting access-token and sending service-request to UDM on Nudm_UECM_Restricted service.\nStep #5: NF-Producer provides information to the NSSAAF as per Table 7.2.2-1.",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "table_7.2.2-1",
+        "figure_7.2.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.857_7.2.3",
+      "section_id": "7.2.3",
+      "section_title": "Impacts on services, entities and interfaces",
+      "content": "NF-Consumers:\n-\tNo change\nNF-Producers:\n-\tRegister multiple services\nNRF:\n-\tNo change",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.857_7.2.4",
+      "section_id": "7.2.4",
+      "section_title": "Pros",
+      "content": "-\tThis solution provides a simple and efficient way to reduce information exposure.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.857_7.2.5",
+      "section_id": "7.2.5",
+      "section_title": "Cons",
+      "content": "-\tThe solution does not address Example 2 of the Key Issue – an NRF will not know which information to be restricted on behalf of NF-Producer.\n-\tThe solution requires NF-Producers register multiple service instances.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.857_7.3.1",
+      "section_id": "7.3.1",
+      "section_title": "Description",
+      "content": "The solution is to address the Key Issue #2: Access to dis-allowed data.\nThe solution works on following principles:\n-\tWhen an NF-Service-Consumer needs to subscribe to changes to a set of monitored resource URIs, or retrieve multiple data-sets simultaneously, it needs to request from NRF, in the Nnrf_AccessToken_Get request, the scopes corresponding to all the individual data-sets it needs to access or the scopes corresponding to the monitored resources. Subsequently, it present the access-token containing scopes corresponding to multiple individual data-sets or monitored resource URIs to the NF-Producer.\n-\tWhen an NF-Service-Producer receives a request from an NF-Service-Consumer to retrieve multiple data-sets simultaneously (or subscribe to data-change notification), it first validates if the requesting NF-Service-Consumer is authorized to access individual data-sets, by validating the information presented in access-token or through local configuration.\n-\tIf the NF-Service-Producer determines that NF-Service-Consumer has access-token to access only a subset of data-sets requested, but not all, the NF-Service-Producer accepts the request only partially – that is the NF-Service-Consumer is provided information (or allowed access) only to the data-sets (sub-resources) for which it presented a valid authorization in access-token. For the data-sets it is not allowed to access, an appropriate cause information is returned to the NF-Service-Consumer, so that it can take further action (e.g. requesting new access-token containing additional/updated scopes, from the NRF).\nFollowing is an example flow of events with this solution:\nFigure 7.3.1-1: Example Flow of Events\nStep #1: NF-Producer registers its profile into NRF by using Nnrf_NFManagement_NFRegister service operation. The profile includes authorization policies (defined by allowedXXX parameters) and optionally operation-level scopes.\nStep #2: NF-Consumer, having discovered the profile of potential NF-Producers, sends Nnrf_AccessToken_Get request to the NRF, to gain access to services provided by NF-Producer(s). The request includes request for multiple operation-level scopes (or service-level scope) if the NF-Consumer wishes to retrieve multiple data-sets, or subscribe to changes to a monitored URI. This is apart from the scope required to access the resource representing subscription collection of dataset collection itself.\nStep #3,4: NRF validates the request against the authorization policy registered by NF-Producer and grants Access-Token accordingly.\nStep #5: NF-Consumer sends a service request to the NF-Producer. The request may correspond to subscription to a set of monitored resource URI(s), or to retrieve a list of data-set. The Access-Token presented contains all the scopes received in Step #4.\nStep #6. NF-Producer validates the Access-Token and allows/denies full or partial request.\nStep #7: NF-Producer sends a response to the NF-Consumer, including partial failure reason, if any. The failure-reason may indicate which data-sets could not be retrieved or subscription request to URIs could not be accepted.",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_7.3.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.857_7.3.2",
+      "section_id": "7.3.2",
+      "section_title": "Impacts on services, entities and interfaces",
+      "content": "NF-Consumers:\n-\tNeeds to request access-token for all monitored URIs, or the data-sets to be retrieved, apart from the scope required to access the resource representing subscription collection of dataset collection itself.\nNF-Producers:\n-\tNeeds to support failure-reason when some of the data-sets cannot be retrieved, or subscription to some URIs cannot be accepted.\nNRF:\n-\tNone.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.857_7.3.3",
+      "section_id": "7.3.3",
+      "section_title": "Pros",
+      "content": "This solution provides a simple and efficient way to restrict access to resources, which should not be allowed to be retrieved or subscribed-to.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.857_7.3.4",
+      "section_id": "7.3.4",
+      "section_title": "Cons",
+      "content": "Expecting NF-Consumers to provide Access-Token for URIs unrelated to the resource to which CRUD request applies may not be clean from protocol point of view.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.857_7.4.1",
+      "section_id": "7.4.1",
+      "section_title": "Description",
+      "content": "The solution is to address the Key Issue #2: Access to dis-allowed data.\nThis solution works on following principles:\n-\tWhen an NF-Service-Consumer needs to subscribe to changes to a set of monitored resource URIs, or retrieve multiple data sets simultaneously, it needs to include, in the service-request to the NF-Producer, information that may be used by the NF-Producer to validate the access-rights to corresponding URIs/data-sets. The information could be, for example, requester NF-Type, requester NF-Instance FQDN, requester S-NSSAIs etc.\n-\tAlternatively, some of the information (e.g. PLMN-ID/SNPN-ID, nfType) can be validated as it is included in the TLS certificate. Other information may be included in the access-token granted by the NRF (e.g. NF-Consumer’s S-NSSAI, NFDomain etc.). This ensures that NF-Producer is presented with NRF validated information.\n-\tWhen an NF-Service-Producer receives a request from an NF-Service-Consumer to retrieve multiple data-sets simultaneously (or subscribe to data-change notification), it first validates if the requesting NF-Service-Consumer is authorized to access individual data-sets, by validating the requester information presented along with the service-request.\nThe assumption here is that since it is NF-Producer, which provides the allowedXXX parameters to the NRF for deciding on access-token, it can use the parameters on its own too to decide whether access to a monitored URI or data-set is allowed or not.\nFollowing is an example flow of events with this solution:\nFigure 7.4.1-1: Example Flow of Events\nStep #1: NF-Consumer sends a service request to the NF-Producer. The request may correspond to subscription to a set of monitored resource URI(s), or to retrieve a list of dataset.\nThe request includes additional information like requester NF-Type, requester NF-Instance FQDN, requester S-NSSAIs etc.\nStep #2. NF-Producer validates the requester’s information against the target URI’s authorization requirements (Monitored URIs in case of subscription request and datasets to be retrieved in case of GET request).\nStep #3: NF-Producer sends a response to the NF-Consumer, including partial failure reason, if any. The failure-reason may indicate which datasets could not be retrieved or subscription request to URIs could not be accepted.",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_7.4.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.857_7.4.2",
+      "section_id": "7.4.2",
+      "section_title": "Impacts on services, entities and interfaces",
+      "content": "NF-Consumers:\n-\tNeeds to provide additional information on requester NF-Type, requester NF-Instance FQDN, requester S-NSSAIs etc. to the NF-Producer in service-request (or in access-token).\nNF-Producers:\n-\tNeeds to validate that NF-Consumer is authorized to access the target URIs and support failure-reason when some of the data-sets cannot be retrieved, or subscription to some URIs cannot be accepted.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.857_7.4.3",
+      "section_id": "7.4.3",
+      "section_title": "Pros",
+      "content": "-\tThis solution provides a simple and efficient way to restrict access to resources, which should not be allowed to be retrieved or subscribed-to.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.857_7.4.4",
+      "section_id": "7.4.4",
+      "section_title": "Cons",
+      "content": "-\tThis solution does not work for the scenario where NF Authorization Information is not maintained in the NF-Producer itself, but is directly registered into NRF via OAM.\n-\tThe solution does not work for implementations where Authorization Information is not available at run-time (e.g. some implementations may register Authorization Information into NRF during boot-up and may not have access to it later)",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.857_7.5.1",
+      "section_id": "7.5.1",
+      "section_title": "Description",
+      "content": "The solution is to address the Key Issue #2: Access to dis-allowed data.\nThe solution proposes to utilize JSON Batch requests in Nudm_SDM and Nudm_UECM APIs to allow invoking multiple GET requests in a single POST request.\nAn example framework enabling such JSON Batching is OData (https://www.odata.org/), which is an ISO/IEC approved, OASIS standard and defines a set of best practices for building and consuming RESTful APIs. OData protocol defines a way to query and manipulate data using a simple set of operations. OData Batching is the feature of interest, which allows API consumers to combine multiple requests into one single POST request, then receive a full report back from an OData enabled API with the status and the results of each and every single request.\nIn the case of retrieval of multiple data-sets, the POST request may look like following:\nPOST https://{apiRoot}/nudm-sdm/v2/{supi}/$batch\nwith following request body:\nTable 7.5.1-1: Request Body with OData Json Batch\n{\n\"requests\": [\n{\n\"id\": \"1\",\n\"method\": \"GET\",\n\"url\": \"https://{apiRoot}/nudm-sdm/v2/{supi}/am-data\"\n\"headers\": {\n\"Content-Type\": \"application/json\"\n\"Authorization\": \"<access_token>\"\n}\n},\n{\n\"id\": \"2\",\n\"method\": \"GET\",\n\"url\": \"https://{apiRoot}/nudm-sdm/v2/{supi}/sm-data\"\n\"headers\": {\n\"Content-Type\": \"application/json\"\n\"Authorization\": \"<access_token>\"\n}\n},\n{\n\"id\": \"3\",\n\"method\": \"GET\",\n\"url\": \"https://{apiRoot}/nudm-sdm/v2/{supi}/sms-data\"\n\"headers\": {\n\"Content-Type\": \"application/json\"\n\"Authorization\": \"<access_token>\"\n}\n}\n]\n}\nThe NF-Consumer needs to obtain access-tokens corresponding to individual data-sets it wants to retrieve and include those in the corresponding GET request as shown above.\nThen, the response will look like below:\nTable 7.5.1-2: Response Body with OData Json Batch\n200 OK\nContent-Type: application/json\n{\n\"responses\": [\n{\n\"id\": \"1\",\n\"status\": 200,\n\"headers\": {\n\"content-type\": \"application/json\",\n\"odata-version\": \"4.0\"\n},\n\"body\": {\n…\n…\n…\n}\n},\n{\n\"id\": \"2\",\n\"status\": 401,\n\"body\": {\n\"error\": {\n\"code\": \"Forbidden\",\n\"message\": \"...\"\n}\n}\n},\n{\n\"id\": \"3\",\n\"status\": 302,\n\"headers\": {\n\"location\": \"<_link> \",\n},\n}\n]\n}\nThus, if the NF-Consumer does not possess the access-token to a \"target\" URI, it may not be able to retrieve the same even if it has access to a resource designed for multiple data-set retrievals.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_7.5.1-1",
+        "table_7.5.1-2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.857_7.5.2",
+      "section_id": "7.5.2",
+      "section_title": "Impacts on services, entities and interfaces",
+      "content": "NF-Consumers & NF-Producers:\n-\tNeed to support JSON Batching framework like OData.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.857_7.5.3",
+      "section_id": "7.5.3",
+      "section_title": "Pros",
+      "content": "This solution provides a simple and efficient way to restrict access to resources, which should not be allowed to be retrieved otherwise.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.857_7.5.4",
+      "section_id": "7.5.4",
+      "section_title": "Cons",
+      "content": "NF-Consumers and NF-Producers need to support JSON Batching using framework like OData protocol which introduces significantly large changes in the way SBI APIs is defined.\nThe OData mechanism conveys Access-Tokens using non-standard mechanisms as compared to the bearer access-tokens as defined by RFCs and adopted by 3GPP.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.857_7.6.1",
+      "section_id": "7.6.1",
+      "section_title": "Description",
+      "content": "The solution is to address the Key Issue #1: Excessive Data Exposure over SBI. The solution addresses aspects i) and iii) of the key issues specified in clause 6.1.2.\nThis solution also addresses Key Issue #3: Access to dis-allowed Resource Segments.\nOne of the causes of data-leakage identified in the key issues is that all the NF-Consumers are only assigned a single level of access – allow or deny. There is no finer resolution of access supported. The result of this is that NFs that are allowed to access an NF producer's resource have access to all the data associated with that resource.\nMany OAM systems, on the other hand, implement a role-based access system where different levels of access are provided to its users, based on the role(s) of the user, e.g. Administrator, Monitor, Operator etc., or the tasks the user is allowed to perform, e.g. read subscription data, update context data.\nThis solution addresses the restriction by allowing filters of the content of resources to be defined and associated with various access use cases, the filters being applied by the producer when presenting a resource to the consumer.\nThe solution works as follows:\nOperators may define resource content filters, each of which may relate to any resource representation defined in an API.\nThe resource content filters are stored (or cached) in the producer instances, so that the producer can apply the filters when representing a resource.\nEach resource content filter has an ID unique inside the operator network. These IDs are registered with the NRF by the producers that may apply the filters. The IDs are transparent to the NRF, it does not need to know the mapping of IDs to restricted data. It can be specified for each filter to which operation types the filter is applicable. If the operation applicability is not specified, the filters is applied for all operation types.\nNRF can be configured with authorisation mappings applicable to combinations of consumer characteristics and NF or NF service profiles. This is existing NRF behaviour, which is extended by this solution to allow these combinations to derive a list of resource content filter IDs that may be applied in a specific case of a consumer accessing a resource from a producer. In effect, in addition to the NRF making decisions on whether the consumer is authorised to access a resource or data set provided by a producer, the NRF also decides, using additional configuration data, which resource content filters must be applied by the producer being accessed.\nWhen a consumer requests generation of an OAuth token, NRF can determine the applicable resource content filters and include the IDs of these filters in the OAuth token.\nThe producer receiving the request with the OAuth token containing resource content filter IDs can look up the filter that is applicable to the resource being accessed (in local configuration) and apply the appropriate filter when sending the data from the requested resource to the consumer.\nThe definition of the filters is an implementation decision in each producer. They could take the form of a list of attributes within the resource that are allowed to be presented and/or a list of attributes within the resource that are not allowed to be presented. The specification of each item in these lists could be a JSON pointer that identifies an attribute within the structured resource. These pointers may also include variable values, e.g. snssaid=1, so that in cases where a resource contains multiple instances of an attribute, specific values of the attribute identified by the pointer may be allowed or restricted. The values in the pointers may be fixed in the variable definition, or they could be patterns (e.g. regular expressions), ranges, wildcards etc. They may also be derived from input parameters, such as values present in the request received from the consumer (URI, payload, OAuth token content etc.).\nFigure 7.6.1-1: Example producer filter definitions\nIn cases where the variable values in the pointers are derived from some information related to the consumer, the information required must be included in the content of the OAuth token. If filters that use this mechanism are in use, the NRF must be configured with a list of the consumer information that is to be included in the OAuth token. The NRF may contain multiple such lists each applying to one or more filters, so that NRF can avoid including consumer information not required by the applicable filter.\nThe additional configuration the NRF may use for selecting the filters that are applicable when authorizing a consumer's access to a producer's resources may take any form and use any information available to the NRF related to the consumer making the request, and the producer's resources being accessed.\nInformation related to filters stored by the NRF is shown below:\nFigure 7.6.1-2: NRF mapping of access cases to authorisation result and applicable filters\nFigure 7.6.1-3: NRF mapping of filters to consumer information included in OAuth token",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_6.1.2",
+        "figure_7.6.1-1",
+        "figure_7.6.1-2",
+        "figure_7.6.1-3"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.857_7.6.2",
+      "section_id": "7.6.2",
+      "section_title": "Examples",
+      "content": "Examples of the solution are given below.\nExample 1: Filter contains variable attribute with fixed value\nA producer, UDR, is configured with a resource content filter applicable to the SessionManagementPolicyData resource.\nRule ID:\n\"Nudr_dr_policy_SMPolicyData_snssai_1_only\"\nRestricted attributes:\nsmPolicySnssaiData/snssai=1 – Indicating that the attribute named snssai can only be presented if the snssai is 1.\nIn NRF, configuration exists that applies to the case where a PCF is attempting to access a UDR, and the PCF is known to the NRF to serve slice 1. This case is associated (through NRF configuration) with the application of resource content filter \"Nudr_dr_policy_SMPolicyData_snssai_1_only\".\nThe NRF provides in the OAuth token claims the applicable filter IDs so the Producer can apply corresponding filter instance.\n{\n...\n\"applicableResourceContentFilters\": [\n\"Nudr_dr_policy_SMPolicyData_snssai_1_only\"\n],\n...\n}\nExample 2: Filter contains variable attribute with value to be taken from consumer characteristics\nA producer, UDR, is configured with a resource content filter applicable to the SessionManagementPolicyData resource.\nRule ID:\n\"Nudr_dr_policy_SMPolicyData_snssai_of_consumer\"\nRestricted attributes:\nsmPolicySnssaiData/snssai=<consumerInfo/snssai> – Indicating that the attribute named snssai can only be presented if the snssai value is the same as the snssai value of the consumer supplied in the OAuth token.\nIn NRF, configuration exists that applies to the case where a PCF is attempting to access a UDR. This case is associated (through NRF configuration) with the application of resource content filter \"Nudr_dr_policy_SMPolicyData_snssai_of_consumer\".\nThe NRF provides in the OAuth token the applicable filter IDs and the slice ID(s) that the consumer serves so the Producer can apply the filter using the consumer's slice ID(s). The slice ID(s) are included in the consumerInfo attribute of the OAuth token claims.\n{\n...\n\"applicableResourceContentFilters\": [\n\"Nudr_dr_policy_SMPolicyData_snssai_of_consumer\"\n],\n\"consumerInfo\": {\n\"snssai\": [ \"1\", \"2\" ]\n}\n...\n}\nExample 3: Filter contains URI variable with value pattern to be taken from consumer characteristics\nA producer, UDR, is configured with a resource content filter applicable to the AccessAndMobilitySubscriptionData resource.\nRule ID:\n\"Nudr_dr_subscriptionData_AMData_ueId_pattern_imsi-123456.+_only\"\nAllowed resource URI variables:\nueId = imsi-123456.+\t\t\tIndicating that the allowed values of the ueId URI resource variable start with \"imsi-123456\".\nIn NRF, configuration exists that applies to the case where a UDM from PLMN 123456 is attempting to access a UDR. This case is associated (through NRF configuration) with the application of resource content filter \"Nudr_dr_subscriptionData_AMData_ueId_pattern_imsi-123456.+_only\".\nThe NRF provides in the OAuth token the applicable filter IDs and the Producer applies the filter using the ueId resource variable. Resources accessible by the consumer are only those where the ueId resource variable value matches the pattern in the filter definition.\n{\n...\n\"applicableResourceContentFilters\": [\n\"Nudr_dr_subscriptionData_AMData_ueId_pattern_imsi-123456.+_only \"\n],\n...\n}\nFlow of events and messaging for the examples described above.\nFigure 7.6.2-1: Example 1 Flow of Events\nExtensions to the data type used for access token claims is shown below. The applicableResourceContentFilters attribute has been added so that the list of applicable filters can be transported to the producer. The consumerInfo attribute has been added so that the consumer information used by the applicable filters can be transported to the producer.\nTable 7.6.2-2: AccessTokenClaims\nAttribute name\nData type\nP\nCardinality\nDescription\niss\nNfInstanceId\nM\n1\n…\nsub\nNfInstanceId\nM\n1\n…\naud\nAudience\nM\n1\n…\nscope\nstring\nM\n1\n…\nexp\ninteger\nM\n1\n…\nconsumerPlmnId\nPlmnId\nC\n0..1\n…\n…[Skipped for Clarity]…\napplicableResourceContentFilters\nArray(rcfID)\nC\n0..1\nThis IE may be included if the NRF supports providing applicable resource content filters in the access token claims for use by the producer.\nconsumerInfo\nmap(array(string))\nO\n1..N(1..M)\nA map of tag name/values pairs, where the tag name is a unique string name that is the primary key of the map and is paired with an array of string values.\nBackward compatibility is addressed in a similar way to other attributes in the AccessTokenClaims - if an NF service producer receives the new IE in the token, it shall be ignored.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_7.6.2-2",
+        "figure_7.6.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.857_7.6.3",
+      "section_id": "7.6.3",
+      "section_title": "Impacts on services, entities and interfaces",
+      "content": "NF-Consumers:\n-\tNo expected changes in behaviour. Receipt of applicable resource content filters in access tokens should be transparent to the consumer.\nNF-Producers:\n-\tAllow local configuration of resource content filter definitions and register their IDs at NRF\n-\tSupport receipt of access tokens containing applicable resource content filter IDs and consumer information applicable to the filters, and determination of the applicable resource content filters for the request for resource access\n-\tApplication of applicable resource content filters when constructing a representation of a requested resource in response to a consumer request\nNRF:\n-\tSupport to register resource content filter IDs by producer instances\n-\tAssociation of access request combinations of consumer and producer characteristics with list of applicable resource content filters (IDs)\n-\tAssociation of resource content filter (IDs) with list of consumer information to be included in the OAuth token\n-\tSupport inclusion of applicable resource content filter IDs and consumer information in generated access tokens",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.857_7.6.4",
+      "section_id": "7.6.4",
+      "section_title": "Pros",
+      "content": "This solution provides a flexible and extensible way to reduce information exposure. The level of exposure/restriction is entirely up to the network operator. The API definitions do not need to be updated whenever a new access case requiring a currently unsupported resource filter is required.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.857_7.6.5",
+      "section_id": "7.6.5",
+      "section_title": "Cons",
+      "content": "The solution may still expose excessive information for consumers if the filters are not defined by the network operator.\nThe configuration of filters may be complex, require large amounts of data, and may be difficult to manage in the producers. However, because the definition of filters is optional, the extent made of this filter can be decided on by the network operator, for example by prioritising use cases and producers that expose the most amount of unnecessary data. The benefits are then incremental.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.857_7.7.1",
+      "section_id": "7.7.1",
+      "section_title": "Description",
+      "content": "The solution is to address the Key Issue #1: Excessive Data Exposure over SBI. The solution addresses aspects i) and iii) of the key issues specified in clause 6.1.2.\nExisting solution where some consumers can indicate in the request to the producer that only certain data should be provided by the producer in the response. The attributes that can be used are specified as URI query parameters and only those defined in the API can be used.\nIn this solution the consumer could include in the request one or more filters to be applied by the producer when representing the requested resource. The filters can be any specification of part of a resource to be included or restricted in the resource representation. They could take the form of a list of attributes within the resource that are allowed to be presented and/or a list of attributes within the resource that are not allowed to be presented. The specification of each item in these lists could be a JSON pointer that identifies an attribute within the structured resource. These pointers may also include variable values, e.g. snssaid=1, so that in cases where a resource contains multiple instances of an attribute, specific values of the attribute identified by the pointer may be allowed or restricted. The values in the pointers may be fixed in the variable definition, or they could be patterns (e.g. regular expressions), ranges, wildcards etc.\nIf the producer does not support filters, or does not understand one or more of the filters, the response is not restricted and the producer sends all data allowed for given consumer, or optionally applies the filters that it does understand.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_6.1.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.857_7.7.2",
+      "section_id": "7.7.2",
+      "section_title": "Examples",
+      "content": "PCF requests the SessionManagementPolicyData resource from UDR but does not require the umDataLimits, and only the umData if the limitId is “abc”. It uses the following request URI:\n{apiRoot}/nudr-dr/<apiVersion>/policy-data/ues/{ueId}/sm-data?exclFilters=[“umDataLimits”]&inclFilters=[“umData/limitId=abc”]\nEditor's Note:\tFormat of the query parameters used for filters is FFS.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.857_7.7.3",
+      "section_id": "7.7.3",
+      "section_title": "Impacts on services, entities and interfaces",
+      "content": "NF-Consumers:\n-\tThe change is backward compatible. The new functionality is optional for consumers..\nNF-Producers:\n-\tThe change is backward compatible. The new parameters are optional. If the producer does not support them, it can ignore them and behave as if they were not present in the request.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.857_7.7.4",
+      "section_id": "7.7.4",
+      "section_title": "Pros",
+      "content": "This solution enables to consumer request from the producer only the data it currently needs so that the data sent in the message from producer are less. Any filter can be specified, so the solution is extensible and not limited to parameters currently specified in the API.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.857_7.7.5",
+      "section_id": "7.7.5",
+      "section_title": "Cons",
+      "content": "Specification of the filters in the request may involve complexity in the request URI (query parameters) and unmanageable URI lengths.\nThis solution does not address any security measures to prevent unauthorized consumers to retrieving the entire representation of a resource including not needed sensitive information.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.857_7.8.1",
+      "section_id": "7.8.1",
+      "section_title": "Description",
+      "content": "The solution is to address the Key Issue #1: Excessive Data Exposure over SBI. It addresses following aspects which only applied to all the similar scenarios for Nnrf_Discovery service like BSF discovery scenarios illustrated in example 4:\ni.\tWhether and how to restrict the information provided by an NF-Producer to different NF-consumers.\nii.\tHow to differentiate among NF-Consumers who possess same scope of authorization to a resource.\nThe general idea for this solution works as:\n-\tThe operator may plan different xxInfo(es) registration to NRF, each of which may related to a specific service scenario.\n-\textend the NF profile by introducing a service scenario indication as new attribute in each NF information data type (e.g. UpfInfo, SmfInfo, BsfInfo) to identify the specific service scenario. The service scenario indication can be flexible specified by operators depending on different implementation purpose.\n-\tduring the NF service discovery, NRF shall only provide the mapped NF information or the other NF information(es) with the same service scenario indications in NF-Discovery response.\nNote:\tThe new introduced attribute can be applied to the NF information data type including UdrInfo, UdmInfo, AusfInfo, AmfInfo, SmfInfo, UpfInfo, PcfInfo, BsfInfo, ChfInfo, UdsfInfo, NefInfo. NwdafInfo, PcscfInfo, HssInfo, AanfInfo, EasdfInfo, NsacfInfo, MbSmfInfo, TsctsfInfo, MbUpfInfo, DcsfInfo, MrfInfo, MrfpInfo, MfInfo etc as specified in NFProfile of Nnrf_NFManagement service and Nnrf_NFDiscovery Service API.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.857_7.8.2",
+      "section_id": "7.8.2",
+      "section_title": "Example solution for BSF discovery",
+      "content": "Take the BSF discovery scenarios illustrated in example A as an example, the solution works on following principles:\n-\tThe operator may plan:\n-\tdifferent bsfInfo registration to NRF, each of which may related to data services and/or voice services with data service session binding information and/or voice service session binding information.\n-\tdifferent bsfInfo registration to NRF, each of which may related to different DNN which belongs to specific PNI-NPN or vertical application, or related to different IP address ranges, GPSI/SUPI ranges belong to specific PNI-NPN or vertical application.\n-\tExtend the bsfInfo to identify the different service scenarios, e.g. extended with an attribute named service scenario indication, group indication, or domain indication. (the service scenario indication will be used in the following description).\n-\tDuring the BSF service discovery, NRF only provide the mapped bsfInfo or the other bsfInfo(es) with same service scenario indications in NF-Discovery response.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.857_7.8.3",
+      "section_id": "7.8.3",
+      "section_title": "Example Flows for BSF discovery",
+      "content": "Example 1: Following is an example flow of events with this solution for Example 4 in Key Issue #1Description:\nFigure 7.8.3-1: Example 1 Flow of Events\nStep #1: NF-Producer BSF registers its profile into NRF with a new parameter indicating the service scenario which the bsfInfo targeting for. NF-Producers and NRF may define a feature-bit to indicate support of this functionality as part of feature negotiation mechanism.\nTable 7.8.3-1: Definition of type BsfInfo\nAttribute name\nData type\nP\nCardinality\nDescription\nipv4AddressRanges\narray(Ipv4AddressRange)\nO\n1..N\nList of ranges of IPv4 addresses handled by BSF.\nIf not provided, the BSF can serve any IPv4 address.\ndnnList\narray(Dnn)\nO\n1..N\nList of DNNs handled by the BSF. The DNN shall contain the Network Identifier and it may additionally contain an Operator Identifier. If the Operator Identifier is not included, the DNN is supported for all the PLMNs in the plmnList of the NF Profile.\nIf not provided, the BSF can serve any DNN.\nipDomainList\narray(string)\nO\n1..N\nList of IPv4 address domains, as described in clause 6.2 of 3GPP TS 29.513 [28], handled by the BSF.\nIf not provided, the BSF can serve any IP domain.\nipv6PrefixRanges\narray(Ipv6PrefixRange)\nO\n1..N\nList of ranges of IPv6 prefixes handled by the BSF.\nIf not provided, the BSF can serve any IPv6 prefix.\nrxDiamHost\nDiameterIdentity\nC\n0..1\nThis IE shall be present if the BSF supports Rx interface.\nWhen present, this IE shall indicate the Diameter host of the Rx interface for the BSF.\nrxDiamRealm\nDiameterIdentity\nC\n0..1\nThis IE shall be present if the BSF supports Rx interface.\nWhen present, this IE shall indicate the Diameter realm of the Rx interface for the BSF.\ngroupId\nNfGroupId\nO\n0..1\nIdentity of the BSF group that is served by the BSF instance.\nIf not provided, the BSF instance does not pertain to any BSF group.\n(NOTE)\nsupiRanges\narray(SupiRange)\nO\n1..N\nList of ranges of SUPI's served by the BSF instance (NOTE)\ngpsiRanges\narray(IdentityRange)\nO\n1..N\nList of ranges of GPSIs served by the BSF instance (NOTE)\nserviceScenarioIn\nServiceScenarioIn\nO\n0..1\nWhen present, this IE shall indicate the service scenario which the bsfInfo targeting for.\nNOTE:\tIf none of these parameters are provided, the BSF can serve any SUPI or GPSI managed by the PLMN of the BSF instance. If \"supiRanges\" and \"gpsiRanges\" attributes are absent, and \"groupId\" is present, the SUPIs / GPSIs served by this BSF instance is determined by the NRF.\nFurther, the service scenario indication can be defined as enumeration values as:\nTable 7.8.3-2: Enumeration ServiceScenarioIn\nEnumeration value\nDescription\n\"VOICE SERVICE\"\nThe bsfInfo registered in NRF is targeting for voice service related session binding information.\n\"DATA SERVICE\"\nThe bsfInfo registered in NRF is targeting for data service related session binding information.\n\"VOICE AND DATA SERVICE\"\nThe bsfInfo registered in NRF is targeting for voice and data service related session binding information.\nStep #3: NF-Consumer sends Nnrf_NFDiscovery_Get request to NRF to discover BSF.\nStep #4: NRF only provide the mapped bsfInfo or the other bsfInfo(es) with same service scenario indications in NF-Discovery response.",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "ts_29.513_clause_6.2",
+        "table_7.8.3-1",
+        "table_7.8.3-2",
+        "figure_7.8.3-1",
+        "ts_29.513"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.857_7.8.4",
+      "section_id": "7.8.4",
+      "section_title": "Impacts on services, entities and interfaces",
+      "content": "NF-Producers:\n-\tCategorize xxInfo information based on difference service scenario.\n-\tRegister the xxInfo with service scenario indication.\nNRF:\n-\tSupport to register the service scenario indication for each xxInfo.\n-\tSupport to only provide the mapped xxInfo or the other xxInfo(es) with same service scenario indications in NF-Discovery response.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.857_7.8.5",
+      "section_id": "7.8.5",
+      "section_title": "Pros",
+      "content": "This solution provides a simple and efficient way to reduce information exposure.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.857_7.8.6",
+      "section_id": "7.8.6",
+      "section_title": "Cons",
+      "content": "None.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.857_8.1",
+      "section_id": "8.1",
+      "section_title": "Evaluation of Solutions for Key Issue#1",
+      "content": "Solutions addressing Key Issue#1 are solution #1, #2, #6, #7 and #8.\nSolution#2 works on the principle of defining two or multiple different variants of a given service where one variant is the non-restricted one, and other variants are restricted in different aspects. NF producers register all supported variants at the NRF, and the NRF, based on configuration data, provides the appropriate variant in discovery responses to NF consumers. As long as the number of variants is limited (e.g. one variant for non-restricted access, one for restricted access), solution#2 provides an efficient way to reduce information exposure, however, solution#2 does not efficiently address Example 2 in clause 6.1.1.\nSolution#1 works on the principle of defining a limited number (e.g.15) of access levels. The NRF, based on local configuration or on information received from NF producers during registration, includes the appropriate access level in the token returned to NF consumers. NF producers then can restrict access to resources based on the access level received in the access-token. For static use of access levels, solution#1 provides an efficient way to reduce information exposure, however dynamic restrictions taking into account multiple combinations of restricting conditions are not covered.\nSolution#6 is similar to solution#1 but allows dynamic use of Configurable Resource Content Filters rather than static access levels. It provides an efficient way to reduce information exposure and allows to flexibly address all identified use cases.\nSolution#7 is an independent solution (i.e. can be implemented in addition to but not as an alternative to one of the solutions #1, #2 and #6). It allows the NF consumer to indicate to the NF producer that only restricted information is requested, by use of conveyed filters to be applied by the producer. Solution#7 provides an efficient way to reduce information exposure, however, it does not prevent unauthorized consumers to retrieve the entire representation of a resource including not needed sensitive information, by simply not requesting any restriction. The filters defined and used in this solution need to be evaluated and specified in a way that they do not clash with the existing filters and mandatory and conditional parameters.\nSolution#8 extend the NF profile by introducing a service scenario indication as new attribute in each NF information data type (e.g. UpfInfo, SmfInfo, BsfInfo) to identify the specific service scenario. During the NF service discovery, NRF shall only provide the mapped NF information or the other NF information(es) with the same service scenario indications in NF-Discovery response. It provides an simple and efficient way to reduce the information exposure and allow the operators to flexibly specify different service scenario in different NF information. Solution #8 is independent solution (i.e. can be implemented in addition to but not as an alternative to one of the solutions #1, #2 and #6).",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_6.1.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.857_8.2",
+      "section_id": "8.2",
+      "section_title": "Evaluation of Solutions for Key Issue#2",
+      "content": "Solutions 3, 4 and 5 address Key-Issue #2.\nSolution #3 proposes that NF-Consumer presents access-tokens of all target/monitored URIs when it requests subscription to a set of monitored URIs or retrieves a set of target URIs. The solution however does not fully align with OAuth mechanism used in 3GPP SBI design, whereby the access-token typically apply to the resource to which the CRUD operation applies.\nSolution #4 proposes to include additional information in the Access-Token request to allow NF-Producer validate whether the NF-Consumer is allowed to access target URIs. This solution however does not work in deployments where NF Authorization information only maintained in the NRF. It also does not work for implementations where such information is only available during boot-up time.\nSolution #5 proposes to incorporate ODATA type framework allowing JSON batch requests. This solution requires very large changes and hence not considered feasible.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.857_8.3",
+      "section_id": "8.3",
+      "section_title": "Evaluation of Solutions for Key Issue#3",
+      "content": "Solution #6 addresses Key-Issue #3.\nSolution #6 provides an efficient way to restrict access to dis-allowed resources and allows to flexibly address all identified use cases.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.857_9.1",
+      "section_id": "9.1",
+      "section_title": "Conclusion of Solutions for Key Issue#1",
+      "content": "Based on the evaluation in clause 8.1 it is concluded to select solutions #6 , #7 and #8 for normative specification work.\nEditor's Note:\tSolution#6 need to be reviewed by SA3 before the normative work.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_8.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.857_9.2",
+      "section_id": "9.2",
+      "section_title": "Conclusion of Solutions for Key Issue#2",
+      "content": "Based on the evaluation in clause 8.2, no normative work will be progressed for this key issue.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_8.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.857_9.3",
+      "section_id": "9.3",
+      "section_title": "Conclusion of Solutions for Key Issue#3",
+      "content": "Based on the evaluation in clause 8.3 it is concluded to select solutions #6 for normative specification work.\nEditor's Note:\tSolution #6 need to be reviewed by SA3 before the normative work.\nAnnex A (informative):Change history\nChange history\nDate\nMeeting\nTDoc\nCR\nRev\nCat\nSubject/Comment\nNew version\n2023-08\nCT4#117\nC4-233808\n-\n-\n-\nVersion after CT4#117 including Agreed pCRs:\nC4-233051\nC4-233522\nC4-233523\nC4-233524\nC4-233525\nC4-233781\nC4-233782\nC4-233783\nC4-233784\n0.1.0\n2023-11\nCT4#119\nC4-235657\n-\n-\n-\nVersion after CT4#119 including Agreed pCRs:\nC4-235587\nC4-235436\nC4-235435\n0.2.0\n2024-03\nCT4#121\nC4-240849\n-\n-\n-\nVersion after CT4#121 including Agreed pCRs:\nC4-240829\nC4-240577\nC4-240576\nC4-240441\nC4-240261\n0.3.0\n2024-03\nCT#103\nCP-240086\nTR presented for information\n1.0.0\n2024-04\nCT4 #122\nC4-241478\n-\n-\n-\nVersion after CT4#122 including Agreed pCRs:\nC4-241240\nC4-241518\nC4-241519\n1.1.0\n2024-05\nCT4 #123\nC4-242548\n-\n-\n-\nVersion after CT4#123 including Agreed pCRs:\nC4-242021\n1.2.0",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_8.3"
+      ]
+    }
+  ]
+}

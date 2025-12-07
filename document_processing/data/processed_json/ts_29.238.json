@@ -1,0 +1,1077 @@
+{
+  "metadata": {
+    "specification_id": "ts_29.238",
+    "version": "18.2.0",
+    "title": "3GPP TS 29.238",
+    "file_path": "/content/drive/MyDrive/RAG_thesis/data/29_series/29238-i20/29238-i20.docx"
+  },
+  "export_info": {
+    "export_date": "2025-07-26T08:55:54.123488",
+    "total_chunks": 92
+  },
+  "chunks": [
+    {
+      "chunk_id": "ts_29.238_1",
+      "section_id": "1",
+      "section_title": "Scope",
+      "content": "The present document describes the protocol to be used on the Interconnection Border Control Function (IBCF) – Transition Gateway (TrGW) interface and the CS-IBCF – CS-TrGW interface. The basis for this protocol is the H.248 protocol as specified in ITU-T. The Profile provides MG control function for IMS and CS Border Control. The IMS architecture is described in 3GPP TS 23.228 [2]. The underlying reference model and stage 2 information is described in Annex I of 3GPP TS 23.228 [2] and in 3GPP TS 29.162 [18]. The CS architecture is described in Annex A of 3GPP TS 29.235 [17].\nThis specification describes the application of H.248 Ix profile for both Ix and CS-Ix interfaces (see Figure 1.1 and Figure 1.2). Required extensions use the H.248 standard extension mechanism. In addition certain aspects of the base protocol H.248 are not needed for this interface and thus excluded by this profile.\nFigure 1.1: Reference model for IMS Border Control Functions\nFigure 1.2: Reference model for CS Border Control Functions\nThe reference model for the IBCF and the TrGW supporting the ATCF/ATGW function is shown in Figure 1.x below.\nFigure 1.3: Reference model for IBCF/TrGW with ATCF/ATGW function\nSee 3GPP TS 23.237 [38] clause 5.2 for a comprehensive description of the reference model.\nNOTE:\tThe Ix profile is applied over both IMS and CS Ix interfaces.\nIn the following text the terms IBCF and TrGW also include respectively the CS-IBCF and CS-TrGW functionalities.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.237_clause_5.2",
+        "figure_1.1",
+        "figure_1.2",
+        "figure_1",
+        "figure_1.3",
+        "ts_23.228",
+        "ts_29.162",
+        "ts_29.235",
+        "ts_23.237"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.238_2",
+      "section_id": "2",
+      "section_title": "References",
+      "content": "The following documents contain provisions which, through reference in this text, constitute provisions of the present document.\n-\tReferences are either specific (identified by date of publication, edition number, version number, etc.) or non‑specific.\n-\tFor a specific reference, subsequent revisions do not apply.\n-\tFor a non-specific reference, the latest version applies.  In the case of a reference to a 3GPP document (including a GSM document), a non-specific reference implicitly refers to the latest version of that document in the same Release as the present document.\n[1]\t3GPP TR 21.905: \"Vocabulary for 3GPP Specifications\".\n[2]\t3GPP TS 23.228: \"IP Multimedia Subsystem (IMS); Stage 2\".\n[3]\tITU-T Recommendation H.248.1 (2002): \"Gateway Control Protocol: Version 2\" including the Corrigendum 1 for Version 2 (03/04).\n[4]\tETSI TS 183 018 V3.5.1(2009-07): \"Telecommunications and Internet converged Services and Protocols for Advanced Networking (TISPAN); Resource and Admission Control: H.248 Profile Version 3 for controlling Border Gateway Functions (BGF) in the Resource and Admission Control Subsystem (RACS); Protocol specification\".\n[5]\tITU-T Recommendation H.248.57 (06/2008): \"Gateway control protocol: RTP Control Protocol Package\".\n[6]\tITU-T Recommendation H.248.43 (06/2008): \"Gateway control protocol: Gate Management and Gate Control packages\".\n[7]\tIETF RFC 3605 (2003): \"Real Time Control Protocol (RTCP) attribute in Session Description Protocol (SDP)\".\n[8]\tIETF RFC 4566 (2006): \"SDP: Session Description Protocol\".\n[9]\tIETF RFC 4975 (2007): \"The Message Session Relay Protocol (MSRP)\".\n[10]\tIETF RFC 3551 (2003): \"RTP Profile for Audio and Video Conferences with Minimal Control\".\n[11]\tIETF RFC 4145 (2005): \"TCP-Based Media Transport in the Session Description Protocol (SDP)\".\n[12]\tITU-T Recommendation H.248.52 (06/2008): \"Gateway control protocol: QoS support packages \".\n[13]\tITU-T Recommendation H.248.53 (06/2008) inclusive Revision 1 (03/2009): \"Gateway control protocol: Traffic management packages\".\n[14]\tITU-T Recommendation H.248.41 Amendment 1 (06/2008): \"Gateway control protocol: IP domain connection package: IP Realm Availability Package\".\n[15]\tITU-T Recommendation H.248.36 (09/2005): \"Gateway control protocol: Hanging Termination Detection package\".\n[16]\tITU-T Recommendation H.248.11 (11/2002): \"Gateway control protocol: Media gateway overload control package\". Inclusive Corrigendum 1 (06/2008) to H.248.11 \"Gateway control protocol: Media gateway overload control package: Clarifying MG-overload event relationship to ADD commands\".\n[17]\t3GPP TS 29.235: \"Interworking between SIP-I based circuit-switched core network and other networks\".\n[18]\t3GPP TS 29.162: \"Interworking between the IM CN subsystem and IP networks\".\n[19]\tITU-T Recommendation H.248.14 (03/2009): \"Gateway control protocol: Inactivity timer package\".\n[20]\tITU-T Recommendation H.248.10 (07/2001): \"Media gateway resource congestion handling package\".\n[21]\t3GPP TS 29.232: \"Media Gateway Controller (MGC) - Media Gateway (MGW) interface; Stage 3\".\n[22]\t3GPP TS 33.210: \"Technical Specification Group Services and System Aspects; 3G Security; Network Domain Security; IP Network Layer Security\".\n[23]\tITU-T Recommendation V.152 (01/2005): \"Procedures for supporting voice-band data over IP networks\".\n[24]\tITU-T Supplement 7 to ITU-T H-series Recommendations  H.Sup7 (05/2008): \"Gateway control protocol: Establishment procedures for the H.248 MGC-MG control association\".\n[25]\tIETF RFC 5234 (2008): \"Augmented BNF for Syntax Specifications: ABNF \".\n[26]\tIETF RFC 4960 (2007): \"Stream control transmission protocol\".\n[27]\tITU-T Recommendation H.248.40 (01/2007): \"Gateway control protocol: Application Data Inactivity Detection package\".\n[28]\tITU-T Recommendation X.690 (11/2008): \"ASN.1 encoding rules: Specification of Basic Encoding Rules (BER), Canonical Encoding Rules (CER) and Distinguished Encoding Rules (DER)\".\n[29]\tIETF RFC 3556 (2003): \"Session Description Protocol (SDP) Bandwidth Modifiers for RTP Control Protocol (RTCP) Bandwidth\".\n[30]\tIETF RFC 4585 (2006): \"Extended RTP Profile for Real-time Transport Control Protocol (RTCP) - Based Feedback (RTP/AVPF)\".\n[31]\t3GPP TS 26.114: \"IP Multimedia Subsystem (IMS); Multimedia telephony; Media handling and interaction\".\n[32]\tIETF RFC 2216 (1997): \"Network Element Service Specification Template\".\n[33]\tIETF RFC 3711 (2004): \"The Secure Real-time Transport Protocol (SRTP)\".\n[34]\tIETF RFC 5124 (2008): \"Extended Secure RTP Profile for Real-time Transport Control Protocol (RTCP)-Based Feedback (RTP/SAVPF)\".\n[35]\tIETF RFC 6679 (2012): \"Explicit Congestion Notification (ECN) for RTP over UDP\".\n[36]\tIETF RFC 3611 (2003): \"RTP Control Protocol Extended Reports (RTCP XR)\".\n[37]\tIETF RFC 3168 (2001): \"The Addition of Explicit Congestion Notification (ECN) to IP\".\n[38]\t3GPP TS 23.237: \"IP Multimedia subsystem (IMS) Service Continuity; Stage 2\".\n[39]\t3GPP TS 22.153: \"Multimedia Priority Service\".\n[40]\tITU-T Recommendation H.248.82 (03/2013): \"Gateway control protocol: Explicit Congestion Notification Support\".\n[41]\tIETF RFC 5285: \"A General Mechanism for RTP Header Extensions\".\n[42]\tIETF RFC 6236: \"Negotiation of Generic Image Attributes in the Session Description Protocol (SDP)\".\n[43]\tVoid.\n[44]\tITU-T Recommendation H.248.50 (09/2010) Corrigendum 1 (02/12): \"Gateway control protocol: NAT traversal toolkit packages\".\n[45]\t3GPP TS 24.229: \"IP Multimedia Call Control Protocol based on SIP and SDP\".\n[46]\tITU-T Recommendation H.248.78 (11/2015): \"Gateway control protocol: Bearer-level message backhauling and application level gateway\".\n[47]\tIETF RFC 4573: \"MIME Type Registration for RTP Payload Format for H.224\".\n[48]\tITU-T Recommendation H.224 (01/2005): \"A real time control protocol for simplex applications using the H.221 LSD/HSD/MLP channels\".\n[49]\tITU-T Recommendation H.281 (11/1994): \"A far end camera control protocol for videoconferences using H.224\".\n[50]\tIETF RFC 5939: \"Session Description Protocol (SDP) Capability Negotiation\".\n[51]\tITU-T Recommendation H.248.80 (01/2014): \"Gateway control protocol: Usage of the revised SDP offer/answer model with ITU-T H.248\".\n[52]\tITU-T Recommendation H.248.88 (01/2014): \"Gateway control protocol: RTP topology dependent RTCP handling by ITU-T H.248 media gateways with IP terminations\".\n[53]\tIETF RFC 5104: \"Codec Control Messages in the RTP Audio-Visual Profile with Feedback (AVPF)\".\n[54]\tIETF RFC 7728: \"RTP Stream Pause and Resume\".\n[55]\tIETF RFC 8445: \"Interactive Connectivity Establishment (ICE): A Protocol for Network Address Translator (NAT) Traversal\".\n[56]\tIETF RFC 8839: \"Session Description Protocol (SDP) Offer/Answer Procedures for Interactive Connectivity Establishment (ICE)\".",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905",
+        "ts_23.228",
+        "ts_29.235",
+        "ts_29.162",
+        "ts_29.232",
+        "ts_33.210",
+        "ts_26.114",
+        "ts_23.237",
+        "ts_22.153",
+        "ts_24.229"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.238_3.1",
+      "section_id": "3.1",
+      "section_title": "Definitions",
+      "content": "For the purposes of the present document, the terms and definitions given in TR 21.905 [1] and the following apply. A term defined in the present document takes precedence over the definition of the same term, if any, in TR 21.905 [1].\nAddress: term used for \"network address\" (IP address)\nCS-TrGW: packet-to-packet gateway for user plane media traffic. The CS-TrGW performs both policy enforcement functions and NA(P)T functions under the control of the CS-IBCF\nPort: term used for \"transport port\" (L4 port).\nTRANSCODING: transcoding in general is the translation from one type of encoded media format to another different media format, e.g. G.711 A-law to μ-law or vice versa, G.729 to AMR with 4.75 rate.\nNOTE 1:\tThe definition of \"transcoding\" is according clause 3.10/ITU-T Recommendation V.152 [23].\nNOTE 2:\tTranscoding belongs to the category of \"media aware\" IP-to-IP interworking.\nTransparent Forwarding: media gateway packet forwarding behaviour with the characteristic of Lx-PDU integrity. This is a unidirectional characteristic of an Lx-PDU flow.\nNOTE 3:\tThe definition is according clause 3.2.10 of ITU-T Recommendation H.248.88 [52].\nNOTE 4:\tThe semantic covers both traffic directions when applied on H.248 Streams (due to their inherent characteristic of bidirectionality).\nTransport Address: term used for the combination of a Network Address and a Transport Port.\nTrGW: packet-to-packet gateway for user plane media traffic. The TrGW performs both policy enforcement functions and NA(P)T functions under the control of the IBCF\nNOTE 5:\tA Transition Gateway (TrGW) provides the interface between two IP-transport domains. The TrGW has the \"H.248 MG\" role in the scope of this Profile.\nFor the purposes of the present document, the following terms and definitions as defined in 3GPP TS 29.162 [18] apply:\nICE lite\nFull ICE.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_3.10",
+        "clause_3.2.10",
+        "ts_21.905",
+        "ts_29.162"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.238_3.2",
+      "section_id": "3.2",
+      "section_title": "Symbols",
+      "content": "For the purposes of the present document, the following symbols apply:\nIx\tInterface between IBCF and TrGW or CS-IBCF and CS-TrGW.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.238_3.3",
+      "section_id": "3.3",
+      "section_title": "Abbreviations",
+      "content": "For the purposes of the present document the abbreviations defined in 3GPP TR 21.905 [1] apply, with the following additions. An abbreviation defined in the present document takes precedence over the definition of the same abbreviation, if any, in 3GPP TR 21.905 [1].\nABNF\tAugmented Backus-Naur Form\nATCF\tAccess Transfer Control Function\nATGW\tAccess Transfer Gateway\nB-ALG\tBearer Level Application-Level Gateway\nBGF\tBorder Gateway Function\nCCM\tCodec Control Messages\nCE\tCongestion Experienced\nCVO\tCoordination of Video Orientation\nDBI\tDelay Budget Information\nECN\tExplicit Congestion Notification\nEVS\tEnhanced Voice Services\nFECC\tFar End Camera Control\nFIR\tFull Intra Request\nGCP\tGateway Control Protocol\nIBCF\tInterconnect Border Control Function\nICE\tInteractive Connectivity Establishment\nIVAS\tImmersive Voice and Audio Services\nLD\tLocal Descriptor (H.248 protocol element)\nMG\tMedia Gateway\nMGC\tMedia Gateway Controller\nMPS\tMultimedia Priority Service\nMSRP\tMessage Session Relay Protocol\nNA\tNot Applicable\nNAPT\tNetwork Address and Port Translation\nNAPT-PT\tNAPT and Protocol Translation\nNAT\tNetwork Address Translation\nPCI\tProtocol Control Information\nRD\tRemote Descriptor (H.248 protocol element)\nROI\tRegion of Interest\nRTCP\tRTP Control Protocol\nSDP\tSession Description Protocol\nSDPCapNeg\tSDP Capability Negotiation\nSRVCC\tSingle Radio Voice Call Continuity\nSTUN\tSession Traversal Utilities for NAT\nTCP\tTransmission Control Protocol\nTMMBN\tTemporary Maximum Media Stream Bit Rate Notification\nTMMBR\tTemporary Maximum Media Stream Bit Rate Request\nToS\tType-of-Service\nTrGW\tTransition Gateway\nTISPAN\tTelecommunications and Internet converged Services and Protocols for Advanced Networking\nWebRTC\tWeb Real-Time Communication",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.238_4",
+      "section_id": "4",
+      "section_title": "Applicability",
+      "content": "The support of the IMS and CS Ix interfaces capability sets shall be identified by the H.248 Ix profile and support of this profile shall be indicated in H.248 ServiceChange procedure (during the (re-)registration phase(s)).",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.238_4.1",
+      "section_id": "4.1",
+      "section_title": "Architecture",
+      "content": "See Annex I of 3GPP TS 23.228 [2], Annex A of 3GPP TS 29.235 [17] and 3GPP TS 29.162 [18].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.228",
+        "ts_29.235",
+        "ts_29.162"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.238_5.1",
+      "section_id": "5.1",
+      "section_title": "Profile Identification",
+      "content": "Table 5.1.1: Profile Identification\nProfile name:\nthreegIx\nVersion:\n7",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.1.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.238_5.2",
+      "section_id": "5.2",
+      "section_title": "Summary",
+      "content": "This profile supports the control of the following functionality in (IP-to-IP) Transition Gateways:\n-\tAllocation and translation of IP addresses and port numbers (NA(P)T and NA(P)T-PT);\n-\tHanging termination detection;\n-\tIP realm/domain indication;\n-\tMedia inactivity detection;\n-\tOpening and closing gates (i.e. packets filtering depending on \"IP address / port\");\n-\tPolicing of incoming traffic;\n-\tQoS packet marking for outgoing traffic (differentiated services);\n-\tRTCP handling;\n-\tExplicit Congestion Notification support;\n-\tMultimedia Priority Service;\n-\tapplication-aware MSRP interworking;\n-\tapplication-agnostic upper layer protocol forwarding (such as for end-to-end WebRTC).\nand when ATCF/ATGW is supported:\n-\tHandover of bearer connections between PS and CS access networks;\n-\tIP version interworking;\n-\tAudio transcoding.\nIn addition, optional settings and procedures are described which fulfil optional features. The minimum mandatory settings within the optional procedures and packages are identified that must be supported in order to support that feature.\n\"Optional\" or \"O\" means that it is optional for either the sender or the receiver to implement an element. If the receiving entity receives an optional element that it has not implemented it should send an Error Code (e.g. 445 \"Unsupported or Unknown Property\", 501\"Not Implemented\", etc.). \"Mandatory\" or \"M\" means that it is mandatory for the receiver to implement an element. Whether it is mandatory for the sender to implement depends on specific functions; detail of whether elements of the core protocol are mandatory to be sent are defined in the stage 2 procedures, stage 3 procedures and/or the descriptions of individual packages.\nThe setting or modification of elements described in the profile under the heading \"Used in Command\" has the meaning that the property can be set/modified with that command. The property may be present in other commands (in order to preserve its value in accordance with ITU-T Recommendation H.248.1 [3]) when those commands are used for other procedures that affect the same descriptor.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.238_5.3",
+      "section_id": "5.3",
+      "section_title": "Gateway Control Protocol Version",
+      "content": "Version 2 (ITU-T Recommendation H.248.1 [3]) shall be used as the minimum protocol version.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.238_5.4",
+      "section_id": "5.4",
+      "section_title": "Connection model",
+      "content": "Table 5.4.1: Connection Model\nMaximum number of contexts:\nProvisioned\nMaximum number of terminations per context:\n3\nAllowed termination type combinations in a context:\n(IP,IP) ;\n(IP,IP,IP) (NOTE)\nNOTE:\tThis is only a temporary context configuration, occurring during bearer access transfer phase (between PS to CS access networks or vice versa) or during the reservation of two sets of transport addresses/resources towards the access network to support the functionalities related to the Alternate Connectivity functionality (see 3GPP TS 29.162 [18]).",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.4.1",
+        "ts_29.162"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.238_5.5",
+      "section_id": "5.5",
+      "section_title": "Context attributes",
+      "content": "Table 5.5.1: Context Attributes\nContext Attribute\nSupported\nValues Supported\nTopology\nYes (NOTE 1)\nSee clause 5.7.9\nPriority Indicator\nOptional (NOTE 2)\n0-15 (NOTE 3)\nEmergency Indicator\nYes\nYES/NO\nIEPS Indicator\nNo\nNA\nContextAttribute Descriptor\nNo\nNA\nContextIdList Parameter\nNo\nNA\nAND/OR Context Attribute\nNo\nNA\nNOTE 1:\tStream ID in Topology Descriptor shall not be supported (because only used for SRVCC service support, which is a monomedia type of call (\"voice call\")).\nNOTE 2:\tThis Context Attribute parameter is allowed in ETSI TISPAN Ia Profile version 3. It is also used for MPS as specified in 3GPP TS 22.153 [39].\nNOTE 3:\tPriority values 11 – 15 of the Priority Indicator are reserved for MPS.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_5.7.9",
+        "table_5.5.1",
+        "ts_22.153"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.238_5.6.1.1.1",
+      "section_id": "5.6.1.1.1",
+      "section_title": "ABNF Coding Overview and prose specification",
+      "content": "The Termination ID structure shall follow the guidelines of H.248 and shall be based on four fields:\n-\t\"ip/<group>/<interface>/<id>\".\nThe individual fields are described and defined in table 5.6.1.1.1.1.\nTable 5.6.1.1.1.1: IP Termination Fields\nName\nDescription\nValues\nCHOOSE Wildcard\nALL Wildcard\nIp\n\"ip\" is a fixed prefix identifying the termination\n\"ip\"\nNo\nNo\nGroup\nGroup of Interface and Id\nInteger (0-65535)\nYes (NOTE 5)\nYes\nInterface\nLogical or physical interface to a network to/from which the termination will be sending/receiving media.\n(NOTE 1, NOTE 2).\nString of max 51 alphanumeric characters\nYes (NOTE 4)\nYes\nId\nTermination specific identifier\n(NOTE 3).\nNon-zero 32 bit integer\nYes (NOTE 4)\nYes\nNOTE 1:\tA specific <Interface> may be used together with different groups.\nNOTE 2:\tThe generic field <Interface> may relate specifically to an \"IP interface\", \"protocol layer 2 interface\" or others.\nNOTE 3:\tThe combination of Interface and Id is unique.\nNOTE 4:\tThe MGC shall always use CHOOSE in an ADD request command. If not, the MG shall reply with an error descriptor using error code #501 \"Not Implemented\".\nNOTE 5:\tThe CHOOSE wildcard on 'Group' is not allowed in ETSI TISPAN \"Ia Profiles\".\nNOTE:\tThe IBCF has the ability to choose the address space in which the TrGW will allocate an IP address for the termination by using the ipdc/realm property defined in the ITU-T Recommendation H.248.41 [14] IP domain connection package.\nH.248 wildcarding may be applied on IP Termination Identifiers. Wildcarding is limited according the two columns on the right hand side.\nThe corresponding ABNF grammar is given below:\nABNF (IETF RFC 5234 [25]) is used for the syntax specification. The ABNF for TerminationID and relation to pathNAME is defined in Annex B.2 of ITU-T Recommendation H.248.1 [3].\nABNF coding:\npathNAME\t\t\t= EphToken SLASH EPHsystem\nEphToken\t\t\t= \"ip\"\t\t\t\t; prefix\nEPHsystem\t\t\t= WildcardALL\n/ WildcardALL SLASH Interface\n/ Group SLASH WildcardALL\n/ (Group / WildcardCHOOSE) SLASH (Interface / WildcardCHOOSE) SLASH (Identifier / WildcardALL / WildcardCHOOSE)\nGroup\t\t\t\t= %d0-65535\t\t\t; data type: INT16\nInterface\t\t\t= 1*51ALPHANUM\nIdentifier\t\t= %d1-4294967295\t; data type: INT32\nALPHANUM\t\t\t= ALPHA / DIGIT\nWildcardCHOOSE\t= \"$\"\nWildcardALL\t\t= \"*\"",
+      "chunk_type": "definition",
+      "cross_references": [
+        "table_5.6.1.1.1.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.238_5.6.1.1.2",
+      "section_id": "5.6.1.1.2",
+      "section_title": "ASN.1 Coding Overview and prose specification",
+      "content": "The following general structure of termination ID shall be used:\n4 octets shall be used for the termination ID. The following defines the general structure for the termination ID:\nTable 5.6.1.1.2.1: ASN.1 coding\nTermination type\nX\nTermination type:\nLength 3 bits\nValues:\n000 Reserved\n001 IP (Ephemeral) termination\n010 Reserved (in 3GPP Mc and Mn profile used for TDM termination)\n011 - 110 Reserved\n111 Reserved for ROOT termination Id (ROOT Termination ID = 0xFFFFFFFF)\nX:\nLength 29 bits.\nFor IP termination, its usage is un-specified.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "table_5.6.1.1.2.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.238_5.6.2",
+      "section_id": "5.6.2",
+      "section_title": "Multiplexed terminations",
+      "content": "Table 5.6.2.1: Multiplexed Terminations\nMultiplex Terminations Supported?\nNo\nIf yes then:\nTable 5.6.2.2: Multiplex Types\nMultiplex Types Supported\nNone\nMaximum Number of Terminations Connected to Multiplex\n-",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.6.2.1",
+        "table_5.6.2.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.238_5.7.1",
+      "section_id": "5.7.1",
+      "section_title": "TerminationState Descriptor",
+      "content": "Table 5.7.1.1: ServiceState property\nServiceState property used:\nYes (InService/OutofService) NOTE 1, NOTE 2\nNOTE 1:\tThis is restricted to the ROOT termination (for MGW audit).\nNOTE 2:    Ephemeral H.248 Terminations have a ServiceState property according to ITU-T Recommendation H.248.1 [3], but explicit usage of the TerminationState Descriptor ServiceState property is not required by this Profile. ServiceState changes can still occur, however, and can be indicated in ServiceChange Commands (i.e. this means that the value of the ServiceState property may be implicitly changed by ServiceChange procedures.\nTable 5.7.1.2: EventBufferControl property\nEventBufferControl property used:\nNo\nTable 5.7.1.3: SDPCapNeg Extensions property\nSDPCapNeg Extensions property used:\nYes\nNOTE:\tThe property is used in conjunction with the Enhanced Revised Offer/Answer SDP Support package, see clause 5.14.3.x1.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_5.14.3",
+        "table_5.7.1.1",
+        "table_5.7.1.2",
+        "table_5.7.1.3"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.238_5.7.2.0",
+      "section_id": "5.7.2.0",
+      "section_title": "General",
+      "content": "Table 5.7.2.1: Stream descriptor\nMaximum number of streams per termination type:\nIP\nUnspecified (NOTE)\nNOTE:\tAt least one stream for each media component (e.g. video+audio = 2 streams). If only one stream is applicable, then the IBCF may omit the Stream Descriptor and the TrGW shall assume that StreamID = 1.\nTable 5.7.2.2: Stream configuration\nStream Configuration:\nALL configurations are allowed",
+      "chunk_type": "definition",
+      "cross_references": [
+        "table_5.7.2.1",
+        "table_5.7.2.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.238_5.7.2.1",
+      "section_id": "5.7.2.1",
+      "section_title": "LocalControl Descriptor",
+      "content": "Table 5.7.2.1.1: Reserve Group and Reserve Value\nTermination Type\nStream Type\nReserve group used:\nNo\nNA\nNA\nReserve value used:\nYes\nIP\nAudio, Video\nTable 5.7.2.1.2: Stream Mode\nTermination Type\nStream Type\nAllowed StreamMode Values\nIP\nRTP/AVP\nSendOnly, RecvOnly, SendRecv, Inactive\nRTP/SAVP\nSendOnly, RecvOnly, SendRecv, Inactive\nRTP/AVPF\nSendOnly, RecvOnly, SendRecv, Inactive\nRTP/SAVPF\nSendOnly, RecvOnly, SendRecv, Inactive\nTCP\nSendRecv, Inactive\nTCP/MSRP\nSendRecv, Inactive\nudptl\nSendRecv, Inactive\nudp\nSendOnly, RecvOnly, SendRecv, Inactive\nNOTE:\tSee table 5.15.2 for the stream types applicable to IMS-Ix and CS-Ix.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.7.2.1.1",
+        "table_5.7.2.1.2",
+        "table_5.15.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.238_5.7.3",
+      "section_id": "5.7.3",
+      "section_title": "Events descriptor",
+      "content": "Table 5.7.3.1: Events Descriptor\nEvents settable on termination types and stream types:\nYes\nIf yes\nEvent ID\nTermination Type\nStream Type\nCause (g/cause,  0x0001/0x0001)  - See clause 5.14.3.1\nALL except ROOT\nANY\nInactivity Timeout (it/ito, 0x0045/0x0001) – See clause 5.14.3.6\nonly ROOT\nNot applicable\nMG_Overload\n(ocp/mg_overload, 0x0051/0x0001) – See clause 5.14.3.8\nonly ROOT\nNot applicable\nTermination Heartbeat (hangterm/thb, 0x0098/0x0001) – See clause 5.14.3.9\nALL except ROOT\nNot applicable\nMGCon (chp/mgcon, 0x0029/0x0001) – See clause 5.14.3.10\nonly ROOT\nNot applicable\nAvailable Realms Changed (ipra/arc, 0x00e0/0x0001) – See clause 5.14.3.11\nonly ROOT\nNot applicable\nIP Flow Stop Detection (adid/ipstop, 0x009c/0x0001) – See clause 5.14.3.14\nALL except ROOT\nANY\nECN Failure (ecnrous/fail, 0x010b/0x0001) – See clause 5.14.3.15\nIP\nRTP Based\nICE New Peer Reflexive Candidate (ostuncc/nprc, 0x00c3/0x0002) – see clause 5.14.3.17\nIP\nAny, only applicable for full ICE\nICE Connectivity Check Result (ostuncc/ccr, 0x00c3/0x0001) – see clause 5.14.3.17\nIP\nAny, only applicable for full ICE\nTable 5.7.3.2: Event Buffer Control\nEvent Buffer Control used:\nNo\nTable 5.7.3.3: Keep Active\nKeepactive used on events:\nNo\nTable 5.7.3.4: Embedding in event\nEmbedded events in an event descriptor:\nNo\nEmbedded signals in an event descriptor:\nNo\nTable 5.7.3.5: Regulated Embedded Events\nRegulated Embedded events are triggered on:\nNone\nTable 5.7.3.6: Reset Events Descriptor Flag\nResetEventsDescriptor used with events:\nNone\nTable 5.7.3.7: Notification Behaviour\nNotifyImmediate:\nALL Events\nNotifyRegulated:\nNone\nNeverNotify:\nNone\nNOTE:\ttables 5.7.3.4 – 5.7.3.7 apply to version 3 of ITU-T Recommendation H.248.1 [3].",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_5.14.3.1",
+        "clause_5.14.3.6",
+        "clause_5.14.3.8",
+        "clause_5.14.3.9",
+        "clause_5.14.3.10",
+        "clause_5.14.3.11",
+        "clause_5.14.3.14",
+        "clause_5.14.3.15",
+        "clause_5.14.3.17",
+        "table_5.7.3.1",
+        "table_5.7.3.2",
+        "table_5.7.3.3",
+        "table_5.7.3.4",
+        "table_5.7.3.5",
+        "table_5.7.3.6",
+        "table_5.7.3.7"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.238_5.7.4",
+      "section_id": "5.7.4",
+      "section_title": "EventBuffer descriptor",
+      "content": "Table 5.7.4.1: Event Buffer\nEvent Buffer descriptor used:\nNo\nIf yes\nEventIDs",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.7.4.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.238_5.7.5",
+      "section_id": "5.7.5",
+      "section_title": "Signals descriptor",
+      "content": "Table 5.7.5.1: Signals dependant on termination or streams\nThe setting of signals is dependant on termination or streams types:\nNo\nNOTE – \"No\" means that all signals can be played on any termination or stream.\nIf yes\nSignal ID\nTermination Type\nStream Type / ID\nSend Connectivity Check (ostuncc/scc, 0x00c3/0x0001)\nIP\nAny, only applicable for full ICE\nSend Additional Connectivity Check (ostuncc/sacc, 0x00c3/0x0002)\nIP\nAny, only applicable for full ICE\nTable 5.7.5.2: Signal Lists\nSignals Lists supported:\nNo\nIf yes\nTermination Type Supporting Lists\n-\nStream Type Supporting lists\n-\nMaximum number of signals to a signal list\n-\nIntersignal delay parameter supported:\n-\nTable 5.7.5.3: Overriding Signal type and duration\nSignal type and duration supported:\nNo\nIf yes\nSignal ID\nType or duration override\n-\n-\nTable 5.7.5.4: Signal Direction\nSignal Direction supported:\nNo\nTable 5.7.5.5: Notify completion\nNotifyCompletion supported:\nNo\nIf yes\nSignal ID\nType of completion supported\n-\n-\nTable 5.7.5.6: RequestID Parameter\nRequestID Parameter Supported:\nNo\nTable 5.7.5.7: Signals played simultaneously\nSignals played simultaneously:\nNo\nIf yes\nSignalIDs that can be played simultaneously:\n-\nTable 5.7.5.8: Keep Active\nKeepActive used on signals:\nNo",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.7.5.1",
+        "table_5.7.5.2",
+        "table_5.7.5.3",
+        "table_5.7.5.4",
+        "table_5.7.5.5",
+        "table_5.7.5.6",
+        "table_5.7.5.7",
+        "table_5.7.5.8"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.238_5.7.6",
+      "section_id": "5.7.6",
+      "section_title": "DigitMap descriptor",
+      "content": "Table 5.7.6.1: DigitMap Descriptor\nDigitMaps supported:\nNo\nIf yes\nDigitMap Name\nStructure\nTimers\n-\n-\n-",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.7.6.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.238_5.7.7",
+      "section_id": "5.7.7",
+      "section_title": "Statistics descriptor",
+      "content": "Table 5.7.7.1: Statistics Descriptor\nStatistics supported on:\n-\nTable 5.7.7.2: Statistics reported on Subtract\nStatistics reported on Subtract:\nNo\nIf yes\nStatistic IDs Reported\nTermination Type\nStream Type\n-\n-\n-",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.7.7.1",
+        "table_5.7.7.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.238_5.7.8",
+      "section_id": "5.7.8",
+      "section_title": "ObservedEvents descriptor",
+      "content": "Table 5.7.8.1: ObservedEvents Descriptor\nEvent detection time supported:\nNo",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.7.8.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.238_5.7.9",
+      "section_id": "5.7.9",
+      "section_title": "Topology descriptor",
+      "content": "Table 5.7.9.1: Topology descriptor\nAllowed triples:\n(T1, T2, isolate)\n(T1, T2, bothway)\nNOTE:\tThe Topology Descriptor shall be supported by the MGW and MGC for handover only, when PS-to-CS access transfer is supported.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_5.7.9.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.238_5.7.10",
+      "section_id": "5.7.10",
+      "section_title": "Error descriptor",
+      "content": "Table 5.7.10.1: Error codes sent by the IBCF\nSupported H.248.8 Error Codes:\n#400 \"Syntax error in message\"\n#401 \"Protocol Error\"\n#402 \"Unauthorized\"\n#403 \"Syntax Error in TransactionRequest\"\n#406 \"Version Not Supported\"\n#410 \"Incorrect identifier\"\n#411 \"The transaction refers to an unknown ContextID\"\n#413 \"Number of transactions in message exceeds maximum\"\n#421 \"Unknown action or illegal combination of\nactions\"\n#422 \"Syntax Error in Action\"\n#430 \"Unknown TerminationID\"\n#431 \"No TerminationID matched a wildcard\"\n#442 \"Syntax Error in Command\"\n#443 \"Unsupported or Unknown Command\"\n#444 \"Unsupported or Unknown Descriptor\"\n#445 \"Unsupported or Unknown property\"\n#446 \"Unsupported or Unknown Parameter\"\n#447 \"Descriptor not legal in this command\"\n#448 \"Descriptor appears twice in a command\"\n#449 \"Unsupported parameter or property value\"\n#450 \"No such property in this package\n#451 \"No such event in this package\"\n#454 \"No such parameter value in this package\"\n#455 \"Property illegal in this Descriptor\"\n#456 \"Property appears twice in this Descriptor\"\n#457 \"Missing parameter in signal or event\"\n#458 \"Unexpected Event/RequestID\"\n#501 \"Not Implemented\"\n#502 \"Not ready\"\n#505 \"Transaction Request Received before a\nServiceChange Reply has been received\"\n#506 \"Number of TransactionPendings Exceeded\"\n#533 \"Response exceeds maximum transport PDU size\"\nSupported Error Codes defined in packages:\nAll error codes defined in supported packages are supported.\nNOTE:      the error codes listed need not be supplied by the IBCF to differentiate each and every error described by them. The TrGW shall be able to receive the error codes listed.\nTable 5.7.10.2: Error codes sent by the TrGW\nSupported H.248.8 Error Codes:\n#400 \"Syntax error in message\"\n#401 \"Protocol Error\"\n#402 \"Unauthorized\"\n#403 \"Syntax Error in TransactionRequest\"\n#406 \"Version Not Supported\"\n#410 \"Incorrect identifier\"\n#411 \"The transaction refers to an unknown ContextID\"\n#412 \"No ContextIDs available\"\n#413 \"Number of transactions in message exceeds maximum\"\n#421 \"Unknown action or illegal combination of\nactions\"\n#422 \"Syntax Error in Action\"\n#430 \"Unknown TerminationID\"\n#431 \"No TerminationID matched a wildcard\"\n#432 \"Out of TerminationIDs or No TerminationID available\"\n#433 \"TerminationID is already in a Context\"\n#434 \"Max number of Terminations in a Context exceeded\"\n#435 \"Termination ID is not in specified Context\"\n#440 \"Unsupported or unknown Package\"\n#441 \"Missing Remote or Local Descriptor\"\n#442 \"Syntax Error in Command\"\n#443 \"Unsupported or Unknown Command\"\n#444 \"Unsupported or Unknown Descriptor\"\n#445 #Unsupported of Unknown property\"\n#446 \"Unsupported or Unknown Parameter\"\n#447 \"Descriptor not legal in this command\"\n#448 \"Descriptor appears twice in a command\"\n#449 \"Unsupported parameter or property value\"\n#450 \"No such property in this package\n#451 \"No such event in this package\"\n#452 \"No such signal in this package\"\n#454 \"No such parameter value in this package\"\n#455 \"Property illegal in this Descriptor\"\n#456 \"Property appears twice in this Descriptor\"\n#457 \"Missing parameter in signal or event\"\n#471 \"Implied Add for Multiplex failure\"\n#500 \"Internal software Failure in MG or MGC\"\n#501 \"Not Implemented\"\n#502 \"Not ready\"\n#505 \"Transaction Request Received before a\nServiceChange Reply has been received\"\n#506 \"Number of TransactionPendings Exceeded\"\n#510 \"Insufficient resources\"\n#511 \"Temporarily Busy\"\n#512 \"Media Gateway unequipped to detect requested Event\"\n#513 \"Media Gateway unequipped to generate\nrequested Signals\"\n#515 \"Unsupported Media Type\"\n#517 \"Unsupported or invalid mode\"\n#522 \"Functionality Requested in Topology Triple Not Supported\"\n#526 \"Insufficient bandwidth\"\n#529 \"Internal hardware failure in MG\"\n#530 \"Temporary Network failure\n#531 \"Permanent Network failure\"\n#532 \"Audited Property, Statistic, Event or Signal does\nnot exist\"\n#533 \"Response exceeds maximum transport PDU size\"\n#534 \"Illegal write of read only property\"\n#542 \"Command is not allowed on this termination\"\nSupported Error Codes defined in packages:\nAll error codes defined in supported packages need to be supported.\nNOTE:      the error codes listed need not be supplied by the TrGW to differentiate each and every error described by them. The IBCF shall be able to receive the error codes listed.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.7.10.1",
+        "table_5.7.10.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.238_5.8.1",
+      "section_id": "5.8.1",
+      "section_title": "Add",
+      "content": "Table 5.8.1.1: Descriptors used by Add request\nDescriptors used by Add request:\nMedia (Stream(LocalControl, Local, Remote)), Event, Signals\nTable 5.8.1.2: Descriptors used by Add reply\nDescriptors used by Add reply:\nMedia (Stream (Local)), Error\nWhen command request excludes an Audit Descriptor, the MGW response shall only include descriptors which contained underspecified or overspecified properties in the command request. Furthermore, only those properties that were underspecified or overspecified in the request shall be sent in the reply. Exceptions to this rule are:\n-\tThe Error Descriptor\n-\tSDP properties returned in \"Reserve TrGW Connection Point\"  and \"Reserve and Configure TrGW Connection Point\" procedures, as specified in 15.17.2.2 and 15.17.2.4",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.8.1.1",
+        "table_5.8.1.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.238_5.8.2",
+      "section_id": "5.8.2",
+      "section_title": "Modify",
+      "content": "Table 5.8.2.1: Descriptors used by Modify request\nDescriptors used by Modify request:\nMedia (TerminationState, Stream (LocalControl,  Local, Remote)), Signals, Event\nTable 5.8.2.2: Descriptors used by Modify reply\nDescriptors used by Modify reply:\nMedia (Stream(Local)), Error\nWhen command request excludes an Audit Descriptor, the MGW response shall only include descriptors which contained underspecified or overspecified properties in the command request. Furthermore, only those properties that were underspecified or overspecified in the request shall be sent in the reply. Exceptions to this rule are:\n-\tThe Error Descriptor\n-\tSDP properties returned in \"Configure TrGW Connection Point\" procedure as specified in 15.17.2.3.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.8.2.1",
+        "table_5.8.2.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.238_5.8.3",
+      "section_id": "5.8.3",
+      "section_title": "Subtract",
+      "content": "Table 5.8.3.1: Descriptors used in Subtract request\nDescriptors used by Subtract request:\nNone or Audit() NOTE\nNOTE:     this is to explicitly avoid reporting any statistics.\nTable 5.8.3.2: Descriptors used in Subtract reply\nDescriptors used by Subtract reply:\nNone, Error",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.8.3.1",
+        "table_5.8.3.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.238_5.8.4",
+      "section_id": "5.8.4",
+      "section_title": "Move",
+      "content": "Table 5.8.4.1: Command Move\nMove command used:\nNo\nTable 5.8.4.2: Descriptor used by Move command\nDescriptors used by Move Request:\n-\nDescriptors used by Move Reply:\n-",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.8.4.1",
+        "table_5.8.4.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.238_5.8.5",
+      "section_id": "5.8.5",
+      "section_title": "AuditValue",
+      "content": "Table 5.8.5.1: Descriptors used by AuditValue\nAudited Properties:\nProperty Name and Identity\nDescriptor\nBase root properties:\n- root/* (ROOT)\nTerminationState Descriptor\nTerminationState:\n- Root (MGW Audit)\nTerminationState Descriptor\nFor Packages:\n- Root\nPackages Descriptor\nNone (MGW Audit) :\n- Root\nAudit (empty) Descriptor\nIP Realm Availability :\n- ipra/* (ROOT)\nTerminationState Descriptor\nSDPCapNeg Extensions:\n- sdpe/*\nTerminationState Descriptor\nAudited Statistics:\nNone\nAudited Signals:\nNone\nAudited Events:\nNone\nPackage Audit possible:\nYes",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.8.5.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.238_5.8.6",
+      "section_id": "5.8.6",
+      "section_title": "AuditCapabilities",
+      "content": "Table 5.8.6.1: AuditCapabilities\nAudited Properties:\nProperty Name and Identity\nDescriptor\nNone\n-\nAudited Statistics:\nNone\nAudited Signals:\nNone\nAudited Events:\nNone\nTable 5.8.6.2: Scoped Auditing\nAudited Properties / ContextAttributes used for a scoped audit :\nNone",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.8.6.1",
+        "table_5.8.6.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.238_5.8.7",
+      "section_id": "5.8.7",
+      "section_title": "Notify",
+      "content": "Table 5.8.7.1: Descriptors used by Notify\nDescriptors used by Notify Request:\nObservedEvents\nDescriptors used by Notify Reply:\nNone, Error",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.8.7.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.238_5.8.8",
+      "section_id": "5.8.8",
+      "section_title": "ServiceChange",
+      "content": "Table 5.8.8.1: ServiceChangeMethods and ServiceChangeReasons sent by IBCF\nServiceChangeMethods Supported:\nServiceChangeReasons supported:\nHandoff (NOTE 2, NOTE 3)\n\"903 MGC Directed Change\" (Optional, NOTE 4)\nRestart (NOTE 2)\n\"901 Cold Boot\" (Optional)\n\"902 Warm Boot\" (Optional)\nForced (NOTE 2)\n\"905 Termination Taken Out Of Service\" (Optional)\nGraceful (NOTE 2)\n\"905 Termination Taken Out Of Service\" (Optional)\nNOTE 1:\tWhen a Service Change command on the Root termination with a method other than Graceful is sent, the command shall always be sent as the only command in a message. The sending node shall always wait for the reply to a Service Change command on the Root termination with a method other than Graceful before sending further command requests.  A Service Change command on the Root termination with method Graceful may be combined with other commands in a single message.\nNOTE 2:\tROOT Only.\nNOTE 3:\tNot involving more than 1 IBCF.  This does not preclude the use of the MGCId in a ServiceChange (Handoff) scenario, nor does it change the expected TrGW behaviour upon receipt of such a message, as the TrGW has actually no means to differentiate whether the ServiceChangeMgcId parameter that may be received in a ServiceChange (handoff) message relates to a logical IBCF inside the same IBCF server or is part of another IBCF.\nNOTE 4:\tSupport of this procedure is mandatory in the TrGW.\nTable 5.8.8.2: Service Change Methods and Reason sent by TrGW\nService Change Methods Supported:\nServiceChange Reasons supported:\nForced\n\"904 Termination Malfunction\", ALL except ROOT (Optional, NOTE 4)\n\"905 Termination Taken Out Of Service\" , ALL(Mandatory)\n\"906 Loss Of Lower Layer Connectivity\" , ALL except ROOT (Optional, NOTE 4)\n\"907 Transmission Failure\" , ALL except ROOT (Optional, NOTE 4)\n\"908 MG Impending Failure\" ROOT only (Mandatory)\n\"910 Media Capability Failure\" , ALL except ROOT (Optional, NOTE 4\n\"915 State Loss\" ROOT only (Optional, NOTE 4)\nGraceful\n\"905 Termination Taken Out Of Service\" , (Optional, NOTE 4)\n\"908 MG Impending Failure\" (Optional, NOTE 4)\nDisconnected (NOTE 1)\n\"900 Service Restored\" (Mandatory)\n\"916 Packages Change\" (Optional)\n\"917 Capability Change\" (Optional)\nRestart (NOTE 1)\n\"900 Service Restored\" (Mandatory)\"901 Cold Boot\" (Mandatory) \"902 Warm Boot\" (Mandatory)\n\"916 Packages Change\" (Optional)\n\"917 Capability Change \"(Optional)\nHandoff (NOTE 1, NOTE 2)\n\"903 MGC Directed Change\" (Mandatory)\nNOTE 1:\tWhen a Service Change command on the Root termination with a method other than Graceful is sent, the command shall always be sent as the only command in a message. The sending node shall always wait for the reply to a Service Change command on the Root termination with a method other than Graceful before sending further command requests.  A Service Change command on the Root termination with method Graceful may be combined with other commands in a single message.\nNOTE 2:\tROOT Only.\nNOTE 3:\tIn response to an IBCF Ordered Re-Register.\nNOTE 4:\tSupport of this procedure is mandatory in the IBCF.\nTable 5.8.8.3: Service Change Address\nServiceChangeAddress used:\nNo\nTable 5.8.8.4: Service Change Delay\nServiceChangeDelay used:\nNo\nIf yes\nValid time period:\n-\nTable 5.8.8.5: Service Change Incomplete Flag\nServiceChange Incomplete Flag used:\nNo\nTable 5.8.8.6: Service Change Version\nVersion used in ServiceChangeVersion:\n2 or 3\nNOTE:\tVersion 2 shall be supported as the minimum protocol version. See clause 5.3.\nTable 5.8.8.7: ServiceChangeProfile\nServiceChangeProfile mandatory:\nYes\nNOTE:\tThe ServiceChangeProfile is mandatory in the TrGW Register and TrGW Re-Register procedures.\nTable 5.8.8.8: Profile negotiation\nProfile negotiation as per H.248.18:\nNo\nTable 5.8.8.9: ServiceChangeMGCId\nServiceChangeMGCId used:\nYes",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_5.3",
+        "table_5.8.8.1",
+        "table_5.8.8.2",
+        "table_5.8.8.3",
+        "table_5.8.8.4",
+        "table_5.8.8.5",
+        "table_5.8.8.6",
+        "table_5.8.8.7",
+        "table_5.8.8.8",
+        "table_5.8.8.9"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.238_5.8.9",
+      "section_id": "5.8.9",
+      "section_title": "Manipulating and auditing context attributes",
+      "content": "Table 5.8.9.1: Manipulating and Auditing Context Attributes\nContext Attributes Manipulated:\nEmergency Indicator, Priority Indicator\nContext Attributes Audited:\nNone",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.8.9.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.238_5.9",
+      "section_id": "5.9",
+      "section_title": "Generic command syntax and encoding",
+      "content": "Table 5.9.1: Command Encoding\nSupported Encodings:\nText (NOTE 1, NOTE 2, NOTE 3) and Binary.\nNOTE 1:\tThe receiver shall be capable of receiving both Short Token Notation and Long Token Notation on an H.248 control association.\nNOTE 2:\tThe transmitter may select between long and short token forms per H.248 control association.\nNOTE 3:\tETSI TISPAN \"Ia Profile\" [4] uses only text encoding.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_5.9.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.238_5.10",
+      "section_id": "5.10",
+      "section_title": "Transactions",
+      "content": "Table 5.10.1: Transactions\nMaximum number of Transaction Requests / Replies / TransResponseAcks / Segment Replies per message:\n10 (NOTE)\nNOTE:    ETSI TISPAN \"Ia Profile\" [4] maximum is \"1\", this is foreseen to be the typical case\nTable 5.10.2: Commands per Transaction Request\nMaximum number of commands per Transaction request:\nUnspecified (NOTE)\nNOTE:    ETSI TISPAN \"Ia Profile\" [4] maximum is \"2\", this is foreseen to be the typical case\nTable 5.10.3: Commands per Transaction Reply\nMaximum number of commands per Transaction reply:\nUnspecified (NOTE)\nNOTE:    ETSI TISPAN \"Ia Profile\" [4] maximum is \"2\", this is foreseen to be the typical case\nTable 5.10.4: Optional Commands\nCommands able to be marked \"Optional\":\nALL\nNOTE:\tThe meaning of this table is that if one of the listed commands failed then the possibly present subsequent command within the same transaction will be processed.\nTable 5.10.5: Commands marked for Wildcarded Responses\nWildcarded responses may be requested for:\nSubtract\nTable 5.10.6: Procedures for Wildcarded Responses\nProcedures that make use of wildcarded responses:\nRelease TrGW Termination\nTable 5.10.7: Transaction Timers\nTransaction Timer:\nValue\nNormalMGExecutionTime\nProvisioned\nNormalMGCExecutionTime\nProvisioned\nMGOriginatedPendingLimit\nProvisioned\nMGCOriginatedPendingLimit\nProvisioned\nMGProvisionalResponseTimerValue\nProvisioned\nMGCProvisionalResponseTimerValue\nProvisioned",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.10.1",
+        "table_5.10.2",
+        "table_5.10.3",
+        "table_5.10.4",
+        "table_5.10.5",
+        "table_5.10.6",
+        "table_5.10.7"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.238_5.11",
+      "section_id": "5.11",
+      "section_title": "Messages",
+      "content": "It is recommended that TrGW and IBCF names are in the form of fully qualified domain name. For example the domain name of the IBCF may be of the form: \"IBCF1.whatever.net.\" and the name of the TrGW may be of the form: \"TrGW1.whatever.net.\".\nThe fully qualified domain name will be used by the TrGW and IBCF as part of the \"Message Identifier\" in the H.248 messages which identifies the originator of the message.\nThe IBCF domain name is provisioned in the TrGW or retrieved from the DNS using SRV records.\nThe use of a domain name provides the following benefits:\n-\tTrGWs and IBCFs are identified by their domain name, not their network addresses. Several addresses can be associated with a domain name. If a command cannot be forwarded to one of the network addresses, implementations shall retry the transmission using another address.\nNOTE:\tThere are then e.g. multiple numerical address entries per single MGC entity in the \"MG database of MGC entries\"; see Table 5 in ITU-T H.Sup7 [24].\n-\tTrGWs and IBCFs may move to another platform. The association between a logical name (domain name) and the actual platform are kept in the Domain Name Service (DNS). TrGW and IBCF shall keep track of the record's time-to-live read from the DNS. They shall query the DNS to refresh the information if the time-to-live has expired.\nThe domain name may be used by IBCF/TrGW for authentication purposes.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.238_5.12",
+      "section_id": "5.12",
+      "section_title": "Transport",
+      "content": "Table 5.12.1: Transport\nSupported Transports:\n1.\tIPv4-based network control plane:\n-\tSCTP/IPv4 (Recommended) NOTE1\n-\tUDP/IPv4 (Optional)\n2.\tIPv6-based network control plane:\n-\tSCTP/IPv6 (Recommended) NOTE1\n-\tUDP/IPv6 (Optional)\nNOTE1:\tWhen using SCTP as defined in IETF RFC 4960 [26] the TrGW shall always be the node to perform the \"Initiation\".\nTable 5.12.2: Segmentation\nSegmentation Supported:\nSCTP: Inherent in Transport\nUDP: No\nTable 5.12.3: Control Association\nControl Association Monitoring Supported:\nMonitoring mechanism is dependent on used H.248 transport (see above table 5.12.1):\nSCTP: inherent capability of SCTP.\nUDP: H.248.14 (MG-driven monitoring).Empty AuditValue on ROOT (MGC-driven monitoring).",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.12.1",
+        "table_5.12.2",
+        "table_5.12.3"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.238_5.13",
+      "section_id": "5.13",
+      "section_title": "Security",
+      "content": "Table 5.13.1: Security\nSupported Security:\nNone\nNOTE:      IPsec shall not be used by the IBCF or TrGW for the Ix interface. Normally the Ix interface lies within a single operator's secure domain. If this is not the case then a Za interface (Security Gateway deploying IPSec) may be required, however this is a separate logical function/entity and thus is not applicable to the Ix profile, the IBCF or the TrGW; for further details see 3GPP TS 33.210 [22].",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_5.13.1",
+        "ts_33.210"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.238_5.14.1",
+      "section_id": "5.14.1",
+      "section_title": "Mandatory Packages",
+      "content": "Table 5.14.1.1: Mandatory Packages\nMandatory Packages\nPackage Name\nPackage ID\nVersion\nGeneric (ITU-T Recommendation H.248.1 [3], annex E.1)\ng, (0x0001)\n1\nBase root (ITU-T Recommendation H.248.1 [3], annex E.2)\nroot, (0x0051)\n2\nRTP Control Protocol Package (ITU-T Recommendation H.248.57 [5])\nrtcph. (0x00b5)\n1\nGate management Source Address/Port Filtering Package (ITU-T Recommendation H.248.43, Clause 7 [6])\ngm, (0x008c)\n2\nTraffic management (ITU-T Recommendation H.248.53 [13])\ntman, (0x008d)\n1\nIP Domain Connection (ITU-T Recommendation H.248.41 [14])\nipdc, (0x009d)\n1\nHanging Termination Detection (ITU-T Recommendation H.248.36 [15])\nhangterm, (0x0098)\n1\nDiffserv (ITU-T Recommendation H.248.52 [12])\nds, (0x008b)\n2",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_7",
+        "table_5.14.1.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.238_5.14.2",
+      "section_id": "5.14.2",
+      "section_title": "Optional Packages",
+      "content": "Table 5.14.2.1: Optional Packages\nOptional Packages\nPackage Name\nPackage ID\nVersion\nSupport dependent on\nInactivity Timer (ITU-T Recommendation H.248.14 [19])\nit, (0x0045)\n1\nMGC polling by MG.\nOnly applicable for UDP transport.\nMedia Gateway Overload Control (ITU-T Recommendation H.248.11 [16])\nocp, (0x0051)\n1\nSupport of message throttling, based on rate limitation, from MGC towards MG.\nMedia Gateway Resource Congestion Handling Package (see ITU-T Recommendation H.248.10 [20] )\nchp, (0x0029)\n1\nSupport of message throttling, based on percentage limitation, from MGC towards MG.\nIP realm availability (ITU-T Recommendation H.248.41  Amendment 1 [14])\nipra (0x00e0)\n1\nSupport of mechanisms allowing the MGC to discover the IP realms that are available at the MG at a certain time and allowing the MG to inform the MGC about any changes in the availability of realms.\n3G Interface Type package (see clause 15.2.11 of 3GPP TS 29.232 [21])\nthreegint (0x00e3)\n1\nIndication of interface type for statistical purposes at the MG.\nApplication Data Inactivity Detection (ITU-T Recommendation H.248.40 [27])\nadid (0x009c)\n1\nMGC requires to be explicitly informed of a cessation of an application data flow.\nExplicit Congestion Notification  for RTP-over-UDP Support (ITU-T Recommendation H.248.82 see [40])\necnrous (0x010b)\n1\nSupport of ECN feature\nMG Act-as STUN Server (ITU-T Recommendation H.248.50 [44])\nmgastuns (0x00c2)\n1\nSupport of incoming STUN connectivity checks.\nApplicable for ICE lite and full ICE\nOriginate STUN Continuity Check (see ITU-T Recommendation H.248.50 [44])\nostuncc (0x00c3)\n1\nSupport of originating STUN connectivity checks.\nOnly applicable for full ICE\nMG located Bearer Level ALG [ITU-T Recommendation H.248.78 [46])\nmgbalg (0x011d)\n1\nSupport of a bearer level application gateway (B-ALG) function for application-aware MSRP interworking.\nEnhanced Revised Offer/Answer SDP Support ([ITU-T Recommendation H.248.80 [51])\neroas, (0x0109)\n1\nSupport of the SDP Capability Negotiation syntax",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_29.232_clause_15.2.11",
+        "table_5.14.2.1",
+        "ts_29.232"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.238_5.14.3.1",
+      "section_id": "5.14.3.1",
+      "section_title": "Generic (g)",
+      "content": "Table 5.14.3.1.1: Generic package\nProperties\nMandatory/Optional\nUsed in command\nSupported Values\nProvisioned Value\nNone\n-\n-\n-\n-\nSignals\nMandatory/Optional\nUsed in command\nDuration Provisioned Value\nNone\n-\n-\n-\nSignal Parameters\nMandatory/Optional\nSupported Values\nDuration Provisioned Value\n-\n-\n-\n-\nEvents\nMandatory/Optional\nUsed in command\nCause (g/cause, 0x0001/0x0001)\nM\nADD, MOD, NOTIFY\nEvent Parameters\nMandatory/Optional\nSupported Values\nProvisioned Value\nNone\n-\n-\n-\nObservedEvent Parameters\nMandatory/Optional\nSupported Values\nProvisioned Value\nGeneral cause (Generalcause,  0x0001)\nM\n\"NR\" (0x0001) Normal Release \t\"UR\" (0x0002) Unavailable Resources\n\"FT\" (0x0003) Failure, Temporary \"FP\" (0x0004) Failure, Permanent \"IW\" (0x0005) Interworking Error \"UN\" (0x0006) Unsupported\nNot Applicable\nFailure cause (Failurecause, 0x0002)\nO\nOctet String\nNot Applicable\nEvents\nMandatory/Optional\nUsed in command\nSignal Completion. (g/sc, 0x0001/0x0002)\nNot Used\n-\nEvent Parameters\nMandatory/Optional\nSupported Values\nProvisioned Value\n-\n-\n-\n-\nObservedEvent Parameters\nMandatory/Optional\nSupported Values\nProvisioned Value\n-\n-\n-\n-\nStatistics\nMandatory/Optional\nUsed in command\nSupported Values\nNone\n-\n-\n-\nError Codes\nMandatory/Optional\nNone\n-",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.14.3.1.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.238_5.14.3.2",
+      "section_id": "5.14.3.2",
+      "section_title": "Base root (root)",
+      "content": "Table 5.14.3.2.1: Base root package\nProperties\nMandatory/Optional\nUsed in command\nSupported Values\nProvisioned Value\nMaxNrOfContexts (root/maxNumberOfContexts, 0x0002/0x0001)\nO\nAUDITVALUE\nALL\nYES\nMaxTerminationsPerContext (root/maxTerminationPerContext, 0x0002/0x0002)\nO\nAUDITVALUE\nALL\nYES\nnormalMGExecutionTime (root/normalMGExecutionTime, 0x0002/0x0003)\nO\nAUDITVALUE\nALL\nYES\nnormalMGCExecutionTime (root/normalMGCExecutionTime, 0x0002/0x0004)\nO\nAUDITVALUE\nALL\nYES\nMGProvisionalResponseTimerValue (root/MGProvisionalResponseTimerValue, 0x0002/0x0005)\nO\nAUDITVALUE\nALL\nYES\nMGCProvisionalResponseTimerValue (root/MGCProvisionalResponseTimerValue, 0x0002/0x0006)\nO\nAUDITVALUE\nALL\nYES\nMGCOriginatedPendingLimit (root/MGCOriginatedPendingLimit, 0x0002/0x0007)\nO\nAUDITVALUE\nALL\nYES\nMGOriginatedPendingLimit (root/MGOriginatedPendingLimit, 0x0002/0x0008)\nO\nAUDITVALUE\nALL\nYES\nSignals\nMandatory/Optional\nUsed in command\nDuration Provisioned Value\nNone\n-\n-\n-\nSignal Parameters\nMandatory/Optional\nSupported Values\nDuration Provisioned Value\n-\n-\n-\n-\nEvents\nMandatory/Optional\nUsed in command\nNone\n-\n-\nEvent\nParameters\nMandatory/Optional\nSupported Values\nProvisioned Value\n-\n-\n-\n-\nObservedEvent\nParameters\nMandatory/Optional\nSupported\nValues\nProvisioned Value\n-\n-\n-\n-\nStatistics\nMandatory/Optional\nUsed in command\nSupported Values\nNone\n-\n-\n-\nError Codes\nMandatory/Optional\nNone\n-",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.14.3.2.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.238_5.14.3.3",
+      "section_id": "5.14.3.3",
+      "section_title": "Differentiated Services (ds)",
+      "content": "Table 5.14.3.3.1: Differentiated Services package\nProperties\nMandatory/Optional\nUsed in command\nSupported Values\nProvisioned Value\nDifferentiated Services Code Point (ds/dscp,0x008b/0x0001)\nM\nADD, MODIFY\nALL\nYes\nTagging Behaviour(ds/tb, 0x008b/0x0002)\nO\nADD, MODIFY\nALL\nYes\nSignals\nMandatory/Optional\nUsed in command\nDuration Provisioned Value\nNone\n-\n-\n-\nSignal Parameters\nMandatory/Optional\nSupported Values\nDuration Provisioned Value\n-\n-\n-\n-\nEvents\nMandatory/Optional\nUsed in command\nNone\n-\n-\nEvent Parameters\nMandatory/Optional\nSupported Values\nProvisioned Value\n-\n-\n-\n-\nObservedEvent\nParameters\nMandatory/Optional\nSupported Values\nProvisioned Value\n-\n-\n-\n-\nStatistics\nMandatory/Optional\nUsed in command\nSupported Values\nNone\n-\n-\n-\nError Codes\nMandatory/Optional\nNone\n-",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.14.3.3.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.238_5.14.3.4",
+      "section_id": "5.14.3.4",
+      "section_title": "Gate Management (gm)",
+      "content": "Table 5.14.3.4.1: Gate Management Package\nProperties\nMandatory/Optional\nUsed in command\nSupported Values\nProvisioned Value\nRemote Source Address Filtering (gm/saf,0x008c/0x0001)\nM\nADD, MODIFY\nALL\nNot Applicable\nRemote Source Address Mask (gm/sam,0x008c/0x0002)\nO\nADD, MODIFY\nALL\nNot Applicable\nRemote Source Port Filtering (gm/spf,0x008c/0x0003)\nM\nADD, MODIFY\nALL\nNot Applicable\nRemote Source Port (gm/spr,0x008c/0x0004)\nO\nADD, MODIFY\nALL\nNot Applicable\nExplicit Source Address Setting (gm/esas,0x008c/0x0005)\nNot Supported\nNONE\n-\n-\nLocal Source Address (gm/lsa,0x008c/0x0006)\nNot Supported\nNONE\n-\n-\nExplicit Source Port Setting (gm/esps,0x008c/0x0007)\nNot Supported\nNONE\n-\n-\nLocal Source Port\n(gm/lsp,0x008c/0x0008)\nNot Supported\nNONE\n-\n-\nRemote Source Port Range (gm/sprr,0x008c/0x000A)\nO\nADD, MODIFY\nALL\nNot Applicable\nSignals\nMandatory/Optional\nUsed in command\nDuration Provisioned Value\nNone\n-\n-\n-\nSignal Parameters\nMandatory/\nOptional\nSupported\nValues\nDuration Provisioned Value\n-\n-\n-\n-\nEvents\nMandatory/Optional\nUsed in command\nNone\n-\n-\nEvent Parameters\nMandatory/\nOptional\nSupported\nValues\nProvisioned Value\n-\n-\n-\n-\nObservedEvent\nParameters\nMandatory/\nOptional\nSupported\nValues\nProvisioned Value\n-\n-\n-\n-\nStatistics\nMandatory/Optional\nUsed in command\nSupported Values\nDiscarded Packets(gm/dp,0x008c/0x0001)\nNot Supported\nNone\n-\nError Codes\nMandatory/Optional\nNone\n-\nNOTE :\tThis package extends RTP Control Protocol package (ITU-T Recommendation H.248.57 [5]) and thus inherits RTCP Allocation Specific Behaviour property (rsb).",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.14.3.4.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.238_5.14.3.5",
+      "section_id": "5.14.3.5",
+      "section_title": "Traffic management (tman)",
+      "content": "Table 5.14.3.5.1: Traffic Management Package\nProperties\nMandatory/Optional\nUsed in command\nSupported Values\nProvisioned Value\nPolicing (tman/pol, 0x008d/0x0005)\nM\nADD, MODIFY\nALL\nNot Applicable\nPeak Data Rate\n(tman/pdr, 0x008d/0x0001)\nO\nADD, MODIFY\nALL\nNot Applicable\nDelay Variation Tolerance\n(tman/dvt, 0x008d/0x0004)\nO\nADD, MODIFY\nALL\nANY\nSustainable Data Rate\n(tman/sdr, 0x008d/0x0002)\nM\nADD, MODIFY\nALL\nNot Applicable\nMaximum burst size\n(tman/mbs, 0x008d/0x0003)\nM\nADD, MODIFY\nALL\nNot Applicable\nSignals\nMandatory/Optional\nUsed in command\nDuration Provisioned Value\nNone\n-\n-\n-\nSignal Parameters\nMandatory/Optional\nSupported Values\nDuration Provisioned Value\n-\n-\n-\n-\nEvents\nMandatory/Optional\nUsed in command\nNone\n-\n-\nEvent Parameters\nMandatory/Optional\nSupported Values\nProvisioned Value\n-\n-\n-\n-\nObservedEvent\nParameters\nMandatory/Optional\nSupported Values\nProvisioned Value\n-\n-\n-\n-\nStatistics\nMandatory/Optional\nUsed in command\nSupported Values\nNone\n-\n-\n-\nError Codes\nMandatory/Optional\nNone\n-\nNOTE:\tThe data rate shall be calculated using the packet size from IP layer upwards. The Token Bucket method as described by ITU-T Recommendation H.248.53 [13] clause 9.4.3 (as per IETF RFC 2216 [32]) shall be followed where SDR = \"r\" and MBS = \"b\" (i.e. the additional \"M\" value does not apply).",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_9.4.3",
+        "table_5.14.3.5.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.238_5.14.3.6",
+      "section_id": "5.14.3.6",
+      "section_title": "Inactivity Timer (it)",
+      "content": "Table 5.14.3.6.1: Inactivity Timer Package\nProperties\nMandatory/Optional\nUsed in command\nSupported Values\nProvisioned Value\nNone\n-\n-\n-\n-\nSignals\nMandatory/Optional\nUsed in command\nDuration Provisioned Value\nNone\n-\n-\n-\nSignal Parameters\nMandatory/Optional\nSupported Values\nDuration Provisioned Value\n-\n-\n-\n-\nEvents\nMandatory/Optional\nUsed in command\nInactivity Timeout (it/ito, 0x0045/0x0001)\nM\nMODIFY, NOTIFY\nEvent Parameters\nMandatory/Optional\nSupported Values\nProvisioned Value\nMaximum Inactivity Time (mit, 0x0001)\nO\nALL\nYes\nObservedEvent\nParameters\nMandatory/Optional\nSupported Values\nProvisioned Value\nNone­­\n-\n-\n-\nStatistics\nMandatory/Optional\nUsed in command\nSupported Values\nNone\n-\n-\n-\nError Codes\nMandatory/Optional\nNone\n-",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.14.3.6.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.238_5.14.3.7",
+      "section_id": "5.14.3.7",
+      "section_title": "IP Domain Connection (ipdc)",
+      "content": "Table 5.14.3.7.1: IP domain connection package\nProperties\nMandatory/Optional\nUsed in command\nSupported Values\nProvisioned Value\nIP Realm Identifier  (ipdc/realm, 0x009d/0x0001)\nM\nADD, MODIFY (NOTE 2)\nALL(NOTE 1)\nYes\nSignals\nMandatory/Optional\nUsed in command\nDuration Provisioned Value\nNone\n-\n-\n-\nSignal Parameters\nMandatory/Optional\nSupported Values\nDuration Provisioned Value\n-\n-\n-\n-\nEvents\nMandatory/Optional\nUsed in command\nNone\n-\n-\nEvent Parameters\nMandatory/Optional\nSupported Values\nProvisioned Value\n-\n-\n-\n-\nObservedEvent Parameters\nMandatory/Optional\nSupported Values\nProvisioned Value\n-\n-\n-\n-\nStatistics\nMandatory/Optional\nUsed in command\nSupported Values\nNone\n-\n-\n-\nError Codes\nMandatory/Optional\nNo\n-\nNOTE 1:\tIf the MGC uses an ipdc/realm property exceeding the length limitation defined in ITU-T Recommendation H.248.41 [14], the MG shall reply with an error descriptor using error code #410: \"Incorrect identifier\".\nNOTE 2:\tThe MODIFY command is listed due to the ETSI TISPAN \"Ia profile\" [4]: subsequent Streams may be \"added\" by MODIFY requests in case of multi-Stream-per-Termination structures. The subsequent Streams do then carry the same ipdc/realm property value as the very first Stream.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.14.3.7.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.238_5.14.3.8",
+      "section_id": "5.14.3.8",
+      "section_title": "Media Gateway Overload Control Package (ocp)",
+      "content": "Table 5.14.3.8.1: Media Gateway Overload Control Package\nProperties\nMandatory/Optional\nUsed in command\nSupported Values\nProvisioned Value\nNone\n-\n-\n-\n-\nSignals\nMandatory/Optional\nUsed in command\nDuration Provisioned Value\nNone\n-\n-\n-\nSignal Parameters\nMandatory/Optional\nSupported Values\nDuration Provisioned Value\n-\n-\n-\n-\nEvents\nMandatory/Optional\nUsed in command\nMG_Overload\n(ocp/mg_overload, 0x0051/0x0001)\n(NOTE 1)\nM\nMODIFY, NOTIFY (NOTE 1)\nEvent Parameters\nMandatory/Optional\nSupported Values\nProvisioned Value\nNone\n-\n-\n-\nObservedEventParameters\nMandatory/Optional\nSupported Values\nProvisioned Value\nNone\n-\n-\n-\nStatistics\nMandatory/Optional\nUsed in command\nSupported Values\nNone\n-\n-\n-\nError Codes\nMandatory/Optional\nNone\n-\nNOTE 1\tWhen the MG is overloaded, overload Events may be sent either only following the first ADD.request which creates a new Context, or following all ADD.request commands (see ITU-T Recommendation H.248.11 [16] Corrigendum 1). These two options result in different normalisations of the overload event rate as an indicator of the level of MG overload.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.14.3.8.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.238_5.14.3.9",
+      "section_id": "5.14.3.9",
+      "section_title": "Hanging Termination Detection (hangterm)",
+      "content": "Table 5.14.3.9.1: Hanging Termination Detection Package\nProperties\nMandatory/Optional\nUsed in command\nSupported Values\nProvisioned Value\nNone\n-\n-\n-\n-\nSignals\nMandatory/Optional\nUsed in command\nDuration Provisioned Value\nNone\n-\n-\n-\nSignal Parameters\nMandatory/Optional\nSupported Values\nDuration Provisioned Value\n-\n-\n-\n-\nEvents\nMandatory/Optional\nUsed in command\nTermination Heartbeat (hangterm/thb, 0x0098/0x0001)\nM\nADD, MODIFY, NOTIFY\nEvent Parameters\nMandatory/Optional\nSupported Values\nProvisioned Value\nTimer X\n(timerx,0x0001)\nM (NOTE1)\nALL (NOTE2)\nYES\nObservedEvent\nParameters\nMandatory/Optional\nSupported Values\nProvisioned Value\n-\n-\n-\n-\nStatistics\nMandatory/Optional\nUsed in command\nSupported Values\nNone\n-\n-\n-\nError Codes\nMandatory/Optional\nNone\n-\nNOTE1:\tTimer X is optional in the ETSI TISPAN Ia version 3 profile [4].\nNOTE2:  The heartbeat timer shall be configured to a value much greater than the mean call holding time.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.14.3.9.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.238_5.14.3.10",
+      "section_id": "5.14.3.10",
+      "section_title": "Media Gateway Resource Congestion handling Package (chp)",
+      "content": "Table 5.14.3.10.1: Media Gateway Resource Congestion handling Package\nProperties\nMandatory/Optional\nUsed in command\nSupported Values\nProvisioned Value\nNone\n-\n-\n-\n-\nSignals\nMandatory/Optional\nUsed in command\nDuration Provisioned Value\nNone\n-\n-\n-\nSignal Parameters\nMandatory/Optional\nSupported Values\nDuration Provisioned Value\n-\n-\n-\n-\nEvents\nMandatory/Optional\nUsed in command\nMGCon (chp/mgcon, 0x0029/0x0001)\nM\nMODIFY, NOTIFY\nEvent Parameters\nMandatory/Optional\nSupported Values\nProvisioned Value\nNone\n-\n-\n-\nObservedEvent\nParameters\nMandatory/Optional\nSupported Values\nProvisioned Value\nReduction (reduction,0x0001)\nM\n0-100\nNot Applicable\nStatistics\nMandatory/Optional\nUsed in command\nSupported Values\nNone\n-\n-\n-\nError Codes\nMandatory/Optional\nNone\n-",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.14.3.10.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.238_5.14.3.11",
+      "section_id": "5.14.3.11",
+      "section_title": "IP Realm Availability (ipra)",
+      "content": "Table 5.14.3.11.1: IP Realm Availability Package\nProperties\nMandatory/Optional\nUsed in command\nSupported Values\nProvisioned Value\nAvailable Realms, (ipra/ar, 0x00e0/0x0001)\nM\nAUDITVALUE\nALL\nNot Applicable\nSignals\nMandatory/Optional\nUsed in command\nDuration Provisioned Value\nNone\n-\n-\n-\nSignal Parameters\nMandatory/Optional\nSupported Values\nDuration Provisioned Value\n-\n-\n-\n-\nEvents\nMandatory/Optional\nUsed in command\nAvailable Realms Changed, (ipra/arc, 0x00e0/0x001)\nM\nMODIFY,  NOTIFY\nEvent Parameters\nMandatory/Optional\nSupported\nValues:\nProvisioned Value\n-\n-\n-\n-\nObservedEvent\nParameters\nMandatory/Optional\nSupported Values\nProvisioned Value\nNewly Available Realms (nar, 0x0001)\nM\nALL\nNot applicable\nNewly Unavailable Realms (nur, 0x0002)\nM\nALL\nNot applicable\nStatistics\nMandatory/Optional\nUsed in command\nSupported Values\nNone\n-\n-\n-\nError Codes\nMandatory/Optional\nNone\n-",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.14.3.11.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.238_5.14.3.12",
+      "section_id": "5.14.3.12",
+      "section_title": "3G Interface Type package  (threegint)",
+      "content": "Table 5.14.3.12.1: 3G Interface Type Package\nProperties\nMandatory/Optional\nUsed in command\nSupported Values\nProvisioned Value\nIP Interface Type\n(threegint /ipint, (0x00e3/0x0001)\nM\nADD, MOD\n\"NboIP\" (0x0001)\n\"MboIP\" (0x0003)\n\"ExtSIPI\" (0x0004)\nNone\nSignals\nMandatory/Optional\nUsed in command\nDuration Provisioned Value\nNone\n-\n-\n-\nSignal Parameters\nMandatory/Optional\nSupported Values\nDuration Provisioned Value\n-\n-\n-\n-\nEvents\nMandatory/Optional\nUsed in command\nNone\n-\n-\nEvent Parameters\nMandatory/Optional\nSupported Values\nProvisioned Value\n-\n-\n-\n-\nObservedEvent\nParameters\nMandatory/Optional\nSupported Values\nProvisioned Value\n-\n-\n-\n-\nStatistics\nMandatory/Optional\nUsed in command\nSupported Values\nNone\n-\n-\n-\nError Codes\nMandatory/Optional\nNone\n-",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.14.3.12.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.238_5.14.3.13",
+      "section_id": "5.14.3.13",
+      "section_title": "RTCP Handling Package (rtcph)",
+      "content": "Table 5.14.3.13.1: RTCP Handling Package\nProperties\nMandatory/Optional\nUsed in command\nSupported Values\nProvisioned Value\nRTCP Allocation Specific Behaviour (rtcph/rsb,0x00b5/0x0009)\nM\nADD, MODIFY\nALL\nOFF\nSignals\nMandatory/Optional\nUsed in command\nDuration Provisioned Value\nNone\n-\n-\n-\nSignal Parameters\nMandatory/\nOptional\nSupported\nValues\nDuration Provisioned Value\n-\n-\n-\n-\nEvents\nMandatory/Optional\nUsed in command\nNone\n-\n-\nEvent Parameters\nMandatory/\nOptional\nSupported\nValues\nProvisioned Value\n-\n-\n-\n-\nObservedEvent\nParameters\nMandatory/\nOptional\nSupported\nValues\nProvisioned Value\n-\n-\n-\n-\nStatistics\nMandatory/Optional\nUsed in command\nSupported Values\nNone\n-\n-\n-\nError Codes\nMandatory/Optional\nNone\n-",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.14.3.13.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.238_5.14.3.14",
+      "section_id": "5.14.3.14",
+      "section_title": "Application Data Inactivity Detection (adid)",
+      "content": "Table 5.14.3.14.1: Application Data Inactivity Detection package\nProperties\nMandatory/Optional\nUsed in command\nSupported Values\nProvisioned Value\nNone\n-\n-\n-\n-\nSignals\nMandatory/Optional\nUsed in command\nDuration Provisioned Value\nNone\n-\n-\n-\nSignal Parameters\nMandatory/\nOptional\nSupported\nValues\nDuration Provisioned Value\n-\n-\n-\n-\nEvents\nMandatory/Optional\nUsed in command\nIP Flow Stop Detection (adid/ipstop, 0x009c/0x0001)\nM\nADD, MODIFY, NOTIFY\nEvent Parameters\nMandatory/\nOptional\nSupported\nValues\nProvisioned Value\nDetection time (dt,0x0001)\nM\nALL\nYes\nDirection (dir, 0x002)\nM\nALL\nYes\nObservedEvent\nParameters\nMandatory/\nOptional\nSupported\nValues\nProvisioned Value\n-\n-\n-\n-\nStatistics\nMandatory/Optional\nUsed in command\nSupported Values\nNone\n-\n-\n-\nError Codes\nMandatory/Optional\nNone\n-",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.14.3.14.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.238_5.14.3.15",
+      "section_id": "5.14.3.15",
+      "section_title": "Explicit Congestion Notification for RTP-over-UDP Support (ecnrous)",
+      "content": "Table 5.14.3.15.1: Explicit Congestion Notification for RTP-over-UDP Support package\nMandatory/Optional\nUsed in command\nSupported Values\nProvisioned Value\nECN Enabled (ecnrous/ecnen, 0x010b/0x0001)\nM\nADD, MODIFY\nTrue, False\n-\nCongestion Response Method (ecnrous/crm, 0x010b/0x0002)\nO\nADD, MODIFY\n\"SDCC\" (0x0001) (NOTE 2)\n\"RDCC\"(0x0002)\n(NOTE1)\n\"RDCC\"(0x0002)\nInitiation Method (ecnrous/initmethod, 0x010b/0x0003)\nM\nADD, MODIFY\n\"rtp\" (NOTE 2)\n\"leap\",\n\"inactive\"\n\"leap\"\nECN Mode (ecnrous/mode, 0x010b/0x0004)\nO\nADD, MODIFY\n\"setonly\" (0x0001) (NOTE 2)\n\"readonly\" (0x0002) (NOTE 2)\n\"setonly\" (0x0001) in the Remote Descriptor and \"readonly\" (0x0002) in the Local Descriptor\nECT Marking (ecnrous/ectmark, 0x010b/0x0005)\nO\nADD, MODIFY\n\"1\" (0x0001) (NOTE 2)\n\"0\" (0x0002)\n\"Random\" (0x0003) (NOTE 2)\n\"0\" (0x0002)\nECN Congestion Marking (ecnrous/congestmark, 0x010b/0x0006)\nNot Signalled\n-\n-\n\"nomark\" (0x0003)\nECN SDP Usage (ecnrous/ecnsdp, 0x010b/0x0007)\nNot Signalled\n-\n-\n\"P\"(0x0001)\nSignals\nMandatory/Optional\nUsed in command\nDuration Provisioned Value\nNone\n-\n-\n-\nSignal Parameters\nMandatory/\nOptional\nSupported\nValues\nDuration Provisioned Value\n-\n-\n-\n-\nEvents\nMandatory/Optional\nUsed in command\nECN Failure (ecnrous/fail, 0x010b/0x0001)\nM\nADD, MODIFY, NOTIFY\nEvent Parameters\nMandatory/\nOptional\nSupported\nValues\nProvisioned Value\n-\n-\n-\n-\n-\n-\n-\n-\nObservedEvent\nParameters\nMandatory/\nOptional\nSupported\nValues\nProvisioned Value\nFailure Type (type,0x0001)\nMandatory\nINIT, USE\n-\nMedia Sender SSRC (ssrc, 0x0002)\nNot Supported\n-\n-\nStatistics\nMandatory/Optional\nUsed in command\nSupported Values\nSource  (ecnrous/ssrc, 0x010b/0x0001)\nNot Supported\n-\n-\nCE Counter (ecnrous/cecount, 0x010b/0x0002)\nNot Supported\n-\n-\nECT0 Counter (ecnrous/ectzero, 0x010b/0x0003)\nNot Supported\n-\n-\nECT1 Counter (ecnrous/ectone, 0x010b/0x0004)\nNot Supported\n-\n-\nNot-ECT Counter (ecnrous/notect, 0x010b/0x0005)\nNot Supported\n-\n-\nLost Packets Counter (ecnrous/lost 0x010b/0x0006)\nNot Supported\n-\n-\nExtended Highest Sequence number (ecnrous/ehsn, 0x010b/0x0007)\nNot Supported\n-\n-\nDuplication Counter (ecnrous/dup, 0x010b/0x0008)\nNot Supported\n-\n-\nError Codes\nMandatory/Optional\nNone\n-\nNOTE1:\tApplication Specific Rate Adaptation shall be applied in accordance with 3GPP TS 26.114 [31]. For speech this requires support of CMR and TMMBR for video.\nNOTE 2:\tThis parameter is only supported for the termination towards the external IP network.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.14.3.15.1",
+        "ts_26.114"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.238_5.14.3.16",
+      "section_id": "5.14.3.16",
+      "section_title": "MG Act-as STUN Server (mgastuns)",
+      "content": "Table 5.14.3.16.1: MG Act-as STUN Server\nProperties\nMandatory/Optional\nUsed in command\nSupported Values\nProvisioned Value\nAct-as STUN Server (mgastuns/astuns, 0x00c2/0x0001)\nM\nADD, MODIFY\nALL\n-\nSignals\nMandatory/Optional\nUsed in command\nDuration Provisioned Value\nNone\n-\n-\n-\nSignal Parameters\nMandatory/\nOptional\nSupported\nValues\nDuration Provisioned Value\n-\n-\n-\n-\nEvents\nMandatory/Optional\nUsed in command\nNone\n-\n-\nEvent Parameters\nMandatory/\nOptional\nSupported\nValues\nProvisioned Value\n-\n-\n-\n-\n-\n-\n-\n-\nObservedEvent\nParameters\nMandatory/\nOptional\nSupported\nValues\nProvisioned Value\n-\n-\nStatistics\nMandatory/Optional\nUsed in command\nSupported Values\nNone\n-\n-\n-\nError Codes\nMandatory/Optional\nNone\n-",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.14.3.16.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.238_5.14.3.17",
+      "section_id": "5.14.3.17",
+      "section_title": "Originate STUN Continuity Check (ostuncc)",
+      "content": "Table 5.14.3.17.1: Originate STUN Continuity Check Package\nProperties\nMandatory/Optional\nUsed in command\nSupported Values\nProvisioned Value\nHost Candidate Realm (ostuncc/hcr, 0x00c3/0x0001)\nO\nADD, MODIFY\nALL\nYes\nSignals\nMandatory/Optional\nUsed in command\nDuration Provisioned Value\nSend Connectivity Check (ostuncc/scc, 0x00c3/0x0001)\nM\nADD, MODIFY\nNot Applicable\nSignal Parameters\nMandatory/Optional\nSupported Values\nDuration Provisioned Value\nControl (cntrl, 0x0001)\nO\n\"controlling\", \"controlled\"\nNot Applicable\nSend Additional Connectivity Check (ostuncc/sacc, 0x00c3/0x0002)\nMandatory/Optional\nUsed in command\nDuration Provisioned Value\nM\nMODIFY\nNot Applicable\nSignal Parameters\nMandatory/Optional\nSupported Values\nDuration Provisioned Value\nControl (cntrl, 0x0001)\nO\n\"controlling\", \"controlled\"\nNot Applicable\nEvents\nMandatory/Optional\nUsed in command\nConnectivity Check Result (ostuncc/ccr, 0x00c3/0x0001)\nM\nADD, MODIFY, NOTIFY\nEvent Parameters\nMandatory/Optional\nSupported Values\nProvisioned Value\n-\n-\n-\n-\nObservedEvent\nParameters\nMandatory/Optional\nSupported Values\nProvisioned Value\nCandidate/Transport Pair (ctp, 0x0001)\nM\nALL\nNot applicable\nNew Peer Reflexive Candidate (ostuncc/nprc, 0x00c3/0x0002)\nMandatory/Optional\nUsed in command\nM\nADD, MODIFY, NOTIFY\nEvent Parameters\nMandatory/Optional\nSupported Values\nProvisioned Value\n-\n-\n-\n-\nObservedEvent\nParameters\nMandatory/Optional\nSupported Values\nProvisioned Value\nCandidate (can, 0x0001)\nM\nALL\nNot applicable\nStatistics\nMandatory/Optional\nUsed in command\nSupported Values\nNone\n-\n-\n-\nError Codes\nMandatory/Optional\nNone\n-",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.14.3.17.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.238_5.14.3.18",
+      "section_id": "5.14.3.18",
+      "section_title": "MG located Bearer Level ALG (mgbalg)",
+      "content": "Table 5.14.3.18.1: MG located Bearer Level ALG package\nProperties\nMandatory/Optional\nUsed in command\nSupported Values\nProvisioned Value\nProtocol type bearer level ALG (mgbalg/ptbalg, 0x011d/0x0001)\nM\nADD, MODIFY\nALL\n\"OFF\"\nUpper layer protocol filter (mgbalg/ulpf, 0x011d/0x0002)\nO (NOTE)\nADD, MODIFY\n0\n\"0\"\nSource of replaced source address information part (mgbalg/sosaip, 0x011d/0x0003)\nO (NOTE)\nADD, MODIFY\nALL\n\"SD\"\nSource of replaced destination address information part (mgbalg/sodaip, 0x011d/0x0004)\nO (NOTE)\nADD, MODIFY\nALL\n\"SD\"\nSignals\nMandatory/Optional\nUsed in command\nDuration Provisioned Value\nNone\n-\n-\n-\nSignal Parameters\nMandatory/\nOptional\nSupported\nValues\nDuration Provisioned Value\n-\n-\n-\n-\nEvents\nMandatory/Optional\nUsed in command\nNone\n-\n-\nEvent Parameters\nMandatory/\nOptional\nSupported\nValues\nProvisioned Value\n-\n-\n-\n-\nObservedEvent\nParameters\nMandatory/\nOptional\nSupported\nValues\nProvisioned Value\n-\n-\n-\n-\nStatistics\nMandatory/Optional\nUsed in command\nSupported Values\nNone\n-\n-\n-\nError Codes\nMandatory/Optional\nNone\n-\nNOTE:\tWhen B-ALG service configuration is provisioned in TrGW.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.14.3.18.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.238_5.14.3.19",
+      "section_id": "5.14.3.19",
+      "section_title": "Enhanced Revised Offer/Answer SDP Support (eroas)",
+      "content": "Table 5.14.3.19.1: Enhanced Revised Offer/Answer SDP Support package\nProperties\nMandatory/Optional\nUsed in command\nSupported Values\nProvisioned Value\nSDPCapNeg Extensions (eroas/sdpe, 0x0109/0x0001)\nM\nAuditValue\n\"cap-v0\"\n\"cap-v0\"\nSignals\nMandatory/Optional\nUsed in command\nDuration Provisioned Value\nNone\n-\n-\n-\nSignal Parameters\nMandatory/Optional\nSupported Values\nDuration Provisioned Value\n-\n-\n-\n-\nEvents\nMandatory/Optional\nUsed in command\nNone\n-\n-\nEvent Parameters\nMandatory/Optional\nSupported Values\nProvisioned Value\n-\n-\n-\n-\nObservedEvent\nParameters\nMandatory/Optional\nSupported Values\nProvisioned Value\n-\n-\n-\n-\nStatistics\nMandatory/Optional\nUsed in command\nSupported Values\nNone\n-\n-\n-\nError Codes\nMandatory/Optional\nNone\n-",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.14.3.19.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.238_5.15",
+      "section_id": "5.15",
+      "section_title": "Mandatory support of SDP and Annex C information elements",
+      "content": "Table 5.15.1: Mandatory Annex C and SDP information elements\nInformation Element\nAnnex C Support\nSDP Support\nv-line\n\"SDP_V \"\nThe value must always be equal to zero: v=0\nc-line\n\"SDP_C \"\n<nettype> <addrtype> and <connection address> are required.\nThe network type shall be set to \"IN\".\nThe address type may be IPv4 or IPv6.\nThe MGC may apply parameter underspecification to the <connection address> subfield.\nm-line\n\"SDP_M \"\nThere are four fields (or SDP values) <media>, <port>, <proto> and <fmt> in the \"m=\" line (see IETF RFC 4566 [8]; NOTE 1).\nThe \"m=\" line may be omitted from SDP.\n<media>, <port>, <proto >  and <fmt-list> are required if the \"m=\" line is included.\nMedia type <media> :\nThe <media> field shall be set to \"audio\" or \"video\" or \"message\"  or \"-\",   When \"-\" is used for the media value then no media resources are required to be reserved at this stage (NOTE 1). If the MG does not support the requested media value it shall reject the command with error code 515.\nTransport port <port>\nThe port value may be underspecified with CHOOSE wildcard.\nTransport protocol <proto>\nAs in table 5.15.2.\nMedia format <fmt>\nVarious values may be used for media-format, dependent on the related <media>.\n\"-\" may be used for the format list value if no media reservation is required at this stage.\nIf the MG does not support the requested media format value the MG shall reject the command with error code 449.\nb-line\n\"SDP_B \"\nShall not be used without an \"m=\" line.\nThe modifier values shall be \"AS\", \"RS\" and \"RR\".\nThe \"AS\" modifier implies that the bandwidth-value represents the \"maximum bandwidth\" (see clause 5.8/IETF RFC 4566 [8]). The bandwidth-value relates therefore to the peak bitrate (NOTE 2).\nThe bandwidth-value value defines the IP layer bandwidth for the specific H.248 Stream.\nFor RTP flows, where RTCP resources are reserved together with the RTP resources using the \"RTP Specific Behaviour\" property of the Gate Management package (gm) property, the IBCF may also supply additional RTCP bandwidth modifiers (i.e. RR and RS, see IETF RFC 3556 [29]). The AS bandwidth value will include the bandwidth used by RTP. In the absence of the RTCP bandwidth modifiers, the TrGW shall allow an additional 5% of the AS bandwidth value for the bandwidth for RTCP, in accordance with IETF RFC 3556 [29].\no-line\n\"SDP_O\"\nThe origin line consists of six fields:\n(<username>, <sess-id>, <sess-version>, <nettype>, <addrtype> and <unicast-address>).\nThe MGC is not required to supply this line but shall accept it (see clause 7.1.8/ITU-T Recommendation H.248.1 [3]).\nThe MG shall return the value received from the MGC or if there is no o-line sent by the MGC, the MG shall populate this line as follows:\n- <user name> should contain an hyphen\n- <session ID> and <version> should contain one or mode digits as described in IETF RFC 4566 [8]\n- <network type> shall be set to IN\n- <address type> shall be set to IP4 or IP6 The Address Type shall be set to \"IP4\" or \"IP6\" depending on the addressing scheme used by the network to which the MG is connected.\n- <address> should contain the fully qualified domain name or IP address of the gateway.\ns-line\n\"SDP_S\"\nThe session name \"s=\" line contains a single field\ns= <session name>.\nThe MGC is not required to supply this line but shall accept it (see clause 7.1.8/ITU-T Recommendation H.248.1 [3]).\nThe MG  shall return the value received from the MGC or if there is no s-line sent by the MGC, the MG shall populate this line as follows:\n- \"s=-\"\nt-line\n\"SDP_T\"\nThe time \"t=\" line consists of two fields\nt= <start time> and <stop time>.\nThe MGC is not required to supply this line but shall accept it (see clause 7.1.8/ITU-T Recommendation H.248.1 [3]).\nThe MG  shall return the value received from the MGC or if there is no t-line sent by the MGC, the MG shall populate this line as follows:\n\"t=0 0\"\nNOTE 1:    IETF RFC 4566 [8] enables \"-\" as a valid character (i.e. for both IMS-Ix and CS-Ix).\nNOTE 2:\tThe unit for the bandwidth-value (peak bitrate) is \"kbit/s\". The \"b=\" line is not providing any information about the traffic characteristic, i.e. whether the traffic flow has a Constant BitRate (CBR) or Variable BitRate (VBR). The bandwidth-value is thus independent of the traffic characteristic and relates to the peak bitrate for CBR and VBR traffic.\nTable 5.15.2: Transport Protocol\nTransport Protocol <proto> in m-line:\nIf the MG does not support the requested transport protocol, it shall reject the command with error code 449.\nRTP/AVP\nRTP profile according IETF RFC 3551 [10]. Allow only L4 protocol = UDP (see NOTE 2)\nRTP/AVPF\nExtended RTP profile for RTCP-based Feedback (RTP/AVPF) according IETF RFC 4585 [30]. See 3GPP TS 26.114 [31]. Allow only L4 protocol = UDP (NOTE 2).\nRTP/SAVP\nSRTP profile according IETF RFC 3711 [33] (NOTE 4). Allow only L4 protocol = UDP (see NOTE 2)\nRTP/SAVPF\nExtended SRTP profile for RTCP-based Feedback (RTP/SAVPF) according IETF RFC 5124 [34] (NOTE 4).Allow only L4 protocol = UDP (see NOTE 2)\nTCP\nAllow only L4 protocol = TCP (NOTE 3)\nTCP/MSRP\nMessage service using IETF RFC 4975 [9].\nudp\nAllow only L4 protocol = UDP (NOTE 2, NOTE 5).\nudptl\nAllow only L4 protocol = UDP\nNOTE 1:\tFor IMS-Ix the above transports are applicable but for CS-Ix only RTP/AVP, TCP and udptl are applicable.\nNOTE 2:\tParameter \"udp\" is introduced by IETF RFC 4566 [8].\nNOTE 3:\tUpper case TCP is defined by IETF RFC 4145 [11] and registered by IANA. .\nNOTE 4:\tIncluded for support of e2e security, in order to permit rtcph/rsb property to be applied. TrGW does not support associated SRTP/SRTCP stream handling per se. If either RTP/SAVP is signalled at any termination in a context,or if RTP/SAVPF is signalled at any termination in a context, the TrGW shall not terminate SRTP / SRTCP streams and therefore shall not reserve any associated resources, but shall pass media transparently, and shall also pass related RTCP streams (as indicated with the rtcph/rsb property) transparently (for end-to-end media security).\nNOTE 5:\tCodepoint used for e.g. \"UDP payload transparent forwarding\" (such as DTLS-encrypted end-to-end WebRTC bearer traffic).",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_5.8",
+        "clause_7.1.8",
+        "table_5.15.1",
+        "table_5.15.2",
+        "ts_26.114"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.238_5.16",
+      "section_id": "5.16",
+      "section_title": "Optional support of SDP and Annex C information elements",
+      "content": "Table 5.16.1: Optional SDP Information Elements\nInformation Element\nAnnex C Support\nSDP Support\na-line\n\"SDP_A \"\n1) Application \"RTCP transport address control\":\nThe attribute \"a=rtcp\" line may either contain (a=rtcp: <port>) or (a=rtcp: <port> <network type> <address type> <connection address>) when the \"a=\" line is used for RTCP transport port and optionally network address transmission, see IETF RFC 3605 [7].\nThe MGC shall supply the \"a=rtcp\" line in the RD when non-default RTCP network address or transport port values are used by the peer media entity.\n\"RTCP transport address control\" should be supported by MG.\n2) Application \" Media interworking (transcoding)\":\nThe \"a=\" line provides the complementary information for the \"m=\" line with regards to a specified media type/format (e.g. an optional SDP „a=ptime\" line for a particular media format).\nFor a dynamic RTP payload type, for each media information on the codec type shall be provided in a separate SDP \"a=rtpmap\"line and possibly additional SDP \"a=fmtp\"-line(s). For AVPF transport, the \"rtcp-fb\" SDP attribute defined in IETF RFC 4585 [30] may be used to provide the feedback message types the TrGW is allowed to send and to indicate RTCP timing information. For ECN interworking, the \"rtcp-xr\" SDP attribute defined in IETF RFC 3611 [36] may be used with \"ecn-sum\" value as defined in IETF RFC 6679 [35]. (NOTE)\n3) Coordination of Video Orientation\nThe attribute \"a=extmap\" (see IETF RFC 5285 [41]) with CVO information may be provided for an m-line in the local and remote descriptor if the TrGW supports the extended RTP header with Coordination of Video Orientation information, see also 3GPP TS 26.114 [31].\n4) Generic Image Attribute\nThe attribute \"a=imageattr\" (see IETF RFC 6236 [42]) may be provided for an m-line in the local and remote descriptor if the TrGW supports the generic image attributes, see also 3GPP TS 26.114 [31]. The local descriptor indicates the image sizes which the TrGW supports in the receiving direction for the selected payload type and corresponds to the \"recv\" keyword (see IETF RFC 6236 [42]) in the \"a=imageattr\" that the IBCF will send within the SDP body on the Mx interface. The remote descriptor indicates the image sizes which the TrGW supports in the sending direction for the selected payload type and corresponds to the \"send\" keyword (see IETF RFC 6236 [42]) in the \"a=imageattr\" that the IBCF will send within the SDP body on the Mx interface.\n5) Interactive Connectivity Establishment support\nThe attributes \"a=candidate\", \"a=ice-pwd\", \"a=ice-ufrag\" and \"a=ice-pacing\" (see IETF RFC 8839 [56]) may be provided for an SDP m-line in the local and remote descriptor if the TrGW supports ICE, see also 3GPP TS 24.229 [45]. In the local descriptor, the IBCF shall provide \"a=ice-pwd\", and \"a=ice-ufrag\" with wildcard sign \"$\" to request the allocation of a password and user name fragment, and the \"a=candidate\" of type \"host\" with the transport, port and priority parameters with wildcard sign \"$\" to request the allocation of a host candidate, and \"a=ice-pacing\" with wildcard sign \"$\" to request the desired pacing value for connectivity checks. The TrGW shall then reply with completed \"a=ice-pwd\", \"a=ice-ufrag\", \"a=candidate\" and \"a=ice-pacing\" attributes in the local descriptor, and shall include \"a=ice-lite\" if it only supports ICE lite. In the remote descriptor, the IBCF may provide the \"a=candidate\", \"a=ice-pwd\", \"a=ice-ufrag\" and \"a=ice-pacing\".\n6) Handling of RTCP APP messages when transcoding between EVS and non EVS codecs, or between IVAS and non IVAS codecs:\nThe attribute \"a=3gpp_mtsi_app_adapt\" (see 3GPP TS 26.114 [31]) containing the allowed RTCP APP message types shall be provided when the TrGW is allowed to send RTCP APP messages.\n7) Pre-defined Video Region-of-Interest (ROI):\nThe attribute a=rtcp-fb\" with the \"Predefined ROI\" type expressed by the parameter \"3gpp-roi-predefined\" may be provided for an m-line in the local and remote descriptor if the TrGW supports the Predefined ROI mode, see also 3GPP TS 26.114 [31]. In addition, the attribute \"a=extmap\" (see IETF RFC 5285 [41]) may be provided for an m-line in the local and remote descriptor if the TrGW supports the extended RTP header for carriage of predefined video Region of Interest (ROI) information in the sent video, see also 3GPP TS 26.114 [31].\n8) Arbitrary Video Region of Interest (ROI):\nThe attribute a=rtcp-fb\" with the \"Arbitrary ROI\" type expressed by the parameter \"3gpp-roi-arbitrary\"  may be provided for an m-line in the local and remote descriptor if the TrGW supports the Arbitrary ROI mode, see also 3GPP TS 26.114 [31]. In addition, the attribute \"a=extmap\" (see IETF RFC 5285 [41]) may be provided for an m-line in the local and remote descriptor if the TrGW supports the extended RTP header for carriage of arbitrary video Region of Interest (ROI) information in the sent video, see also 3GPP TS 26.114 [31].\n9) SDP Capability Negotiation:The attributes of \"a=acap\", \"a=tcap\", \"a=pcfg\" and \"a=acfg\"  (see IETF RFC 5939 [50]) may be provided in the local descriptor and/or remote descriptor.\n10) Rate adaptation for media endpoints:\nIf the TrGW performs media transcoding and if the rate adaptation for media endpoints using the enhanced bandwidth negotiation is supported by the TrGW, attribute(s) \"a=bw-info\" with direction \"send\" or \"sendrecv\" may be provided for an m-line and the selected IP payload type and applicable IP version in the remote descriptor.\nThe following bandwidth properties, as defined in 3GPP TS 26.114 [31], clause 19, may be included in \"a=bw-info\" line: <payload type> <dir> <MaxSupBw>, <MaxDesBw>, <MinDesBw>, <MinSupBw> and <IpVer>.\n11) \"RTP-level pause and resume\" signalling:\nThe \"rtcp-fb\" SDP attribute with the \"ccm\" feedback parameter and the \"pause\" ccm parameter as defined in IETF RFC 7728 [54] may be provided for an m-line in the local and remote descriptor to indicate that the TrGW shall forward RTCP feedback \"CCM PAUSE-RESUME\" messages transparenty.\n12) \"RTCP Codec Control Commands and Indications\" signalling:\nThe \"rtcp-fb\" SDP attribute with the \"ccm\" feedback parameter and the \"fir\" and/or \"tmmbr\" ccm parameters as defined in IETF RFC 5104 [53] may be provided for an m-line in the local and remote descriptor to indicate that the TrGW shall be prepared to receive and is allowed to send, respectively, the RTCP CCM feedback messages FIR, and/or TMMBR and TMMBN.\n13) DBI signalling:\nThe \"rtcp-fb\" SDP attribute with the \"3gpp-delay-budget\" feedback parameter (as defined in 3GPP TS 26.114 [31] clause 6.2.8) may be provided for an m-line in the local and remote descriptor to indicate that the TrGW shall forward RTCP feedback messages for \"DBI\" signalling (as defined in 3GPP TS 26.114 [31] clause 7.3.8) transparently.\nNOTE:\tMedia Interworking is optional for IMS-Ix and not required for CS-Ix.",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_26.114_clause_19",
+        "ts_26.114_clause_6.2.8",
+        "ts_26.114_clause_7.3.8",
+        "table_5.16.1",
+        "ts_26.114",
+        "ts_24.229"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.238_5.17.1",
+      "section_id": "5.17.1",
+      "section_title": "Formats and Codes",
+      "content": "Table 5.17.1.1 shows the parameters which are required for the procedures defined in the following clauses.\nThe coding rules applied in ITU-T Recommendation H.248.1 [3] for the applicable coding technique shall be followed for the UMTS capability set.\nThe binary encoding rules which are applicable to the defined Abstract Syntaxes are the Basic Encoding Rules for Abstract Syntax Notation One, defined in ITU-T Recommendation X.690 [28].  Specifically in accordance with ITU-T Recommendation X.690 [28] clause 7.3, alternative encodings based on the definite and indefinite form of length are permitted by the basic encoding rules as a sender's option. Receivers shall support both alternatives.\nUnsupported values of parameters or properties may be reported by the TrGW and shall be supported by the IBCF as such by using H.248.1 error code #449 \"Unsupported or Unknown Parameter or Property Value\". The unsupported or unknown value is included in the error text in the error descriptor.\nTable 5.17.1.1: Information Elements Used in Procedures\nSignalling Object\nH.248 Descriptor\nCoding\nAdditional Bandwidth Properties\nRemote Descriptor\nThe \"a=bw-info\" SDP attribute defined in 3GPP TS 26.114 [31], see table 5.16.1.\nAlternate MGC Id\nServiceChange\nThe MGCIdToTry parameter in ITU-T Recommendation H.248.1 [3].\nAllowed RTCP APP message types\nRemote Descriptor\nThe \"a=3gpp_mtsi_app_adapt\" SDP attribute defined in 3GPP TS 26.114 [31].\nApplication-aware MSRP interworking request\nLocalControl\nThis is the ptbalg property from ITU-T Recommendation H.248.78 [46] concerning the configuration of a B-ALG service (for MSRP traffic).\nArbitrary ROI\nLocal Descriptor or Remote Descriptor\nThe \"rtcp-fb\" SDP attribute defined in IETF RFC 4585 [30] to indicate the \"Arbitrary ROI\" RTCP feedback message expressed by the \"3gpp-roi-arbitrary\" parameter, as described in 3GPP TS 26.114 [31].\nAvailable Realms\nTermination State\nAccording to Available Realms property in ITU-T Recommendation H.248.41 [14].\nBNC Release\nEvents, ObservedEvents Descriptor\nAs for the Events/ObservedEvents Descriptor in clause E.1.2.1/ITU-T Recommendation H.248.1 [3] \"Cause\"\nCause\nObservedEvents Descriptor\nAs for the ObservedEventsDescriptor Parameter in clause E.1.2.1/ ITU-T Recommendation H.248.1 [3] \"General cause\"\nCCM BASE\nLocal Descriptor or Remote Descriptor\n\"rtcp-fb\" SDP attribute (defined in IETF RFC 4585 [30]) with the \"ccm\" feedback parameter and the \"fir\" and/or \"tmmbr\" ccm parameters as defined in IETF RFC 5104 [53].\nCCM pause-resume\nLocal Descriptor or Remote Descriptor\n\"rtcp-fb\" SDP attribute (defined in IETF RFC 4585 [30]) with the \"ccm\" feedback parameter (defined in IETF RFC 5104 [53]) and the \"pause\" ccm parameter as defined in IETF RFC 7728 [54].\nChanged Realms\nObserved Events\nAccording to Observed Events Parameters for Available Realms Changed event in ITU-T Recommendation H.248.41 [14].\nCodec List\nLocal Descriptor or Remote Descriptor\n<fmt list> in a single SDP m-line.For a static RTP payload type, the codec type should be implied by the RTP payload type, if not then each codec type shall be provided in a separate SDP \"a=rtpmap\"-line and possibly additional SDP \"a=fmtp\"-line(s). For a dynamic RTP payload type, for each codec information on the codec type shall be provided in a separate SDP \"a=rtpmap\"-line and possibly additional SDP \"a=fmtp\"-line(s).\nConnectivity Mode\nLocal Control\nITU-T Recommendation H.248.1 [3] Mode property.\nBinary Encoding:\tEncoding as per ITU-T Recommendation H.248.1 Annex A [3] \"streamMode\"\nTextual Encoding:\tEncoding as per ITU-T Recommendation H.248.1 Annex B [3]\"streamMode\".\nContext ID\nNA\nBinary Encoding:\tAs per ITU-T Recommendation H.248.1 [3] Annex A.\nTextual Encoding:\tAs per ITU-T Recommendation H.248.1 [3] Annex B.\nDBI\nLocal Descriptor or Remote Descriptor\n\"rtcp-fb\" SDP attribute defined in IETF RFC 4585 [30] with the \"3gpp-delay-budget\" feedback parameter (as defined in 3GPP TS 26.114 [31] clause 6.2.8).\nDelay Variation Tolerance\nLocal Control\nThis is the tman/dvt property from ITU-T Recommendation H.248.53 [13]\nDiffserv Code Point\nLocal Control\nDefined according to the Differentiated Services Code Point property in ITU-T Recommendation H.248.52 [12].\nDiffserv Tagging Behaviour\nLocal Control\nDefined according to the Tagging Behaviour property in ITU-T Recommendation H.248.52 [12].\nECN Congestion Response\nLocal descriptor or Remote Descriptor\nDefined according to \"Congestion Response Method\" property in ITU-T Recommendation H.248.82 [40]. (NOTE)\nECN ECT Marking\nLocal descriptor or Remote Descriptor\nDefined according to \"ECT Marking\" property  in ITU-T Recommendation H.248.82 [40].\n(NOTE)\nECN Enabled\nLocal Descriptor or Remote Descriptor\nDefined according to the \"ECN Enabled\" property in ITU-T Recommendation H.248.82 [40].\nECN Failure\nEvents,\nObserved Events\nDefined according to the \"ECN Failure\" Event in ITU-T Recommendation H.248.82 [40].\nECN Failure Type\nObservedEvents Descriptor\nAs for the ObservedEventsDescriptor Parameter \"Failure Type\" in ITU-T Recommendation H.248.82 [40].\nECN Initiation Method\nLocal Descriptor or Remote Descriptor\nDefined according to \"Initiation Method\" property in ITU-T Recommendation H.248.82 [40].\nECN Mode\nLocal Descriptor or Remote Descriptor\nDefined according to the \"ECN Mode\" property in ITU-T Recommendation H.248.82 [40].\n(NOTE)\nECN RTCP Feedback\nLocal Descriptor or Remote Descriptor\n\"rtcp-fb\" SDP attribute with the \"nack\" feedback parameter as derfined in IETF RFC 4585 [30] and the \"ecn\" parameter value according to IETF RFC 6679 [35]\nECN XR Summary Report\nLocal Descriptor or Remote Descriptor\n\"ecn-sum\" value as defined in IETF RFC 6679 [35] within a \"rtcp-xr\" SDP attribute in accordance with IETF RFC 3611 [36]\nEmergency Call Indication\nNA\nITU-T Recommendation H.248.1 [3] 6.1.1 Emergency  Call Indicator Binary Encoding: Encoding as per ITU-T Recommendation H.248.1 [3] Annex A  \"Emergency\" context attribute\nTextual Encoding: Encoding as per ITU-T Recommendation H.248.1 [3] Annex B \"EmergencyToken\" context attribute\nExtended Header for CVO\nLocal Descriptor or Remote Descriptor\n\"extmap\" attribute in SDP a-line as defined in IETF RFC 5285 [41], see table 5.16.1.\nExtended RTP Header for Sent ROI\nLocal Descriptor or Remote Descriptor\n\"extmap\" attribute in SDP a-line to pass on the ROI extended RTP header as defined by IETF RFC 5285 [41] for carriage of predefined and/or arbitrary ROI information, see 5.16\nGeneric Image Attribute\nLocal Descriptor or Remote Descriptor\n\"imageattr\" attribute in SDP a-line as defined in IETF RFC 6236 [42], see table 5.16.1.\nICE host candidate request\nLocal Descriptor\nThe \"a=candidate\" SDP attribute defined in IETF RFC 8839 [56] of type \"host\" with the transport, port and priority parameters with wildcard sign \"$\" to request the allocation of a host candidate\nICE host candidate\nLocal Descriptor\nThe \"a=candidate\" SDP attribute defined in IETF RFC 8839 [56].\nICE lite indication\nLocal Descriptor\nThe \"a=ice-lite\" SDP attribute defined in IETF RFC 8839 [56].\nICE pacing\nLocal Descriptor\nThe \"a=ice-pacing\" SDP attribute defined in IETF RFC 8839 [56].\nOnly applicable for full ICE as specified in IETF RFC 8445 [55].\nICE pacing request\nLocal Descriptor\nThe \"a=ice-pacing\" SDP attribute defined in IETF RFC 8839 [56] with wildcard sign \"$\".\nOnly applicable for full ICE as specified in IETF RFC 8445 [55].\nICE password request\nLocal Descriptor\nThe \"a=ice-pwd\" SDP attribute defined in IETF RFC 8839 [56] with wildcard sign \"$\".\nICE password\nLocal Descriptor\nThe \"a=ice-pwd\" SDP attribute defined in IETF RFC 8839 [56].\nICE received candidate\nRemote Descriptor\nThe \"a=candidate\" SDP attribute defined in IETF RFC 8839 [56]\nICE received pacing\nRemote Descriptor\nThe \"a=ice-pacing\" SDP attribute defined in IETF RFC 8839 [56].\nOnly applicable for full ICE as specified in IETF RFC 8445 [55].\nICE received password\nRemote Descriptor\nThe \"a=ice-pwd\" SDP attribute defined in IETF RFC 8839 [56].\nICE received Ufrag\nRemote Descriptor\nThe \"a=ice-ufrag\"  SDP attribute defined in IETF RFC 8839 [56].\nICE Ufrag request\nLocal Descriptor\nThe \"a=ice-ufrag\"  SDP attribute defined in IETF RFC 8839 [56] with wildcard sign \"$\".\nICE Ufrag\nLocal Descriptor\nThe \"a=ice-ufrag\" SDP attribute defined in IETF RFC 8839 [56].\nICE Connectivity Check Result\nEvents,\nObserved Events\nDefined according to Connectivity Check Result event in ITU-T Recommendation H.248.50 [44].\nICE Send Connectivity Check\nSignals\nDefined as the ostuncc/scc signal in ITU-T Recommendation H.248.50 [44].\nICE New Peer Reflexive Candidate\nEvents,\nObserved Events\nDefined according to New Peer Reflexive Candidate event in ITU-T Recommendation H.248.50 [44], only applicable for full ICE.\nICE Send Additional Connectivity Check\nSignals\nDefined as the ostuncc/sacc signal in ITU-T Recommendation H.248.50 [44], only applicable for full ICE.\nInactivity Timeout\nEvents,\nObserved Events\nDefined according to Inactivity Timeout event in ITU-T Recommendation H.248.14 [19].\nIP Address\nLocal Descriptor or Remote Descriptor\n<connection address> in SDP \"c-line\"\nIP Interface\nLocal control\nAs for the property \"IP interface type\" in clause 15.2.11.1 in 3GPP TS 29.232 [21]\nIP Realm Identifier\nLocal Control\nAccording to IP Realm Identifier property in ITU-T Recommendation H.248.41 [14].\nIP Version\nLocal Descriptor or Remote Descriptor\n<address type> in SDP \"c-line\", see 5.15\nMaximum Burst Size\nLocal Control\nThis is the tman/mbs property from ITU-T Recommendation H.248.53 [13]\nMedia Inactivity Detection\nEvents,\nObserved Events\nDefined according to IP Flow Stop Detection event in ITU-T Recommendation H.248.40 [27].\nMedia Inactivity Detection Time\nEvents\nAs for the Event Parameter in ITU-T Recommendation H.248.40 [27] \"Detection Time\"\nMedia Inactivity Detection Direction\nEvents\nAs for the Event Parameter in ITU-T Recommendation H.248.40 [27] \"Direction\"\nMedia Type\nLocal Descriptor or Remote Descriptor\n<media> in SDP m-line\n\"audio\",  \"video\"  or \"-\"\nMSRP Path\nRemote Descriptor\nThe \"a=path\" SDP attribute defined in IETF RFC 4975 [9].\nOverload Notification\nEvents,\nObserved Events\nThis is the chp/mgcon event from ITU-T Recommendation H.248.10 [20] or the ocp/mg_overload event from ITU-T Recommendation H.248.11 [16].\nPeak Data Rate\nLocal Control\nThis is the tman/pdr property from ITU-T Recommendation H.248.53 [13].\nPolicing Required\nLocal Control\nThis is the tman/pol property from ITU-T Recommendation H.248.53 [13].\nPort\nLocal Descriptor or Remote Descriptor\n<port> in SDP m-line.\nPredefined ROI\nLocal Descriptor or Remote Descriptor\nThe \"rtcp-fb\" SDP attribute defined in IETF RFC 4585 [30] to indicate the \"Predefined ROI\" RTCP feedback message expressed by the \"3gpp-roi-predefined\" parameter, as described in 3GPP TS 26.114 [31].\nPriority Information\nNA\nPriority Indicator (clause 6.1.1 of ITU-T Recommendation H.248.1 [3])Binary Encoding: Encoding as per ITU-T Recommendation H.248.1 [3] Annex A \"priority\" context attributeTextual Encoding: Encoding as per ITU-T Recommendation H.248.1 [3] Annex B \"priority\" context attribute\nRealm Availability Change\nEvents,\nObserved Events\nAccording to Available Realms Changed event in ITU-T Recommendation H.248.41 [14].\nReduction\nObservedEvent Descriptor\nAs for the ObservedEventDescriptor in clause 4.2.1/ ITU-T Recommendation H.248.10 [20] \"MGCongestion\".\nRemote Source Address Filtering\nLocal Control\nDefined according to Remote Source Address Filtering property in ITU-T Recommendation H.248.43 [6].\nRemote Source Address Mask\nLocal Control\nDefined according to Remote Source Address Mask property in ITU-T Recommendation H.248.43 [6].\nRemote Source Port Filtering\nLocal Control\nDefined according to Remote Source Port Filtering property in ITU-T Recommendation H.248.43 [6].\nRemote Source Port\nLocal Control\nDefined according to Remote Source Port property in ITU-T Recommendation H.248.43 [6].\nRemote Source Port Range\nLocal Control\nDefined according to Remote Source Port Range property in ITU-T Recommendation H.248.43 [6].\nReserve_Value\nLocal Control\nITU-T Recommendation H.248.1 [3] Reserve property.\nBinary Encoding:\tEncoding as per ITU-T Recommendation H.248.1[3] Annex A \"reserveValue\"\nTextual Encoding: Encoding as per ITU-T Recommendation H.248.1 [3] Annex B \"reservedValueMode\".\nROOT Properties\nTermination State\nThe properties  in clause E.2.1/ITU-T Recommendation H.248.1 [3]\nRTCP allocation\nLocal Control\nDefined according to RTCP Allocation Specific Behaviour\nproperty in ITU-T Recommendation H.248.57 [5].\nRtcpbwRR\nLocal Descriptor or Remote Descriptor\n<bandwidth> in SDP \"b:RR\"-line. see 5.15\nRtcpbwRS\nLocal Descriptor or Remote Descriptor\n<bandwidth> in SDP \"b:RS\"-line. see 5.15\nRtpbw\nLocal Descriptor or Remote Descriptor\n<bandwidth> in SDP \"b:AS\"-line. see 5.15\nRTPpayload\nLocal Descriptor or Remote Descriptor\n<fmt list> in SDP m-line. This may be set to CHOOSE ($) in a LD sent from the IBCF toward the TrGW.\nSDPCapNeg configuration\nLocal Descriptor or Remote Descriptor\nThe SDP attributes for SDP capability negotiation according to IETF RFC 5939 [50].\nSDPCapNeg Supported Capabilities\nTermination State\nDefined according to SDPCapNeg Extensions property in ITU-T Recommendation H.248.80 [51].\nStream Number\nStream\nEncoding as per ITU-T Recommendation H.248.1 [3]Annex B \"Stream\"/\"ST\".\nFor a single stream, this may be omitted by the CS-IBCF.\nSTUN server request\nLocalControl\nEncoding as per ITU-T Recommendation H.248.50 [44] \"MG Act-as STUN Server\" (mgastuns) package \"Act-as STUN Server\" (astuns, 0x0001) property.\nSustainable Data Rate\nLocal Control\nThis is the tman/sdr property from ITU-T Recommendation H.248.53 [13]\nTermination heartbeat\nEvents\nObservedEvents\nAs per Termination Heartbeat defined in ITU-T Recommendation H.248.36 [15] Clause 5.2.1.\nTermination ID\nNA\nBinary Encoding:\tAs per ITU-T Recommendation H.248.1 [3] Annex A.\nTextual Encoding:\tAs per ITU-T Recommendation H.248.1 [3]  Annex B.\nTransaction ID\nNA\nBinary Encoding:\tAs per ITU-T Recommendation H.248.1 [3] Annex A.\nTextual Encoding:\tAs per ITU-T Recommendation H.248.1 [3] Annex B.\nTransport\nLocal Descriptor or Remote Descriptor\n<transport> in SDP m-line, see 5.15\nNOTE:\tThis property is only signalled for IP terminations towards external IP network",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_7.3",
+        "ts_26.114_clause_6.2.8",
+        "ts_29.232_clause_15.2.11.1",
+        "clause_6.1.1",
+        "clause_4.2.1",
+        "clause_5.2.1",
+        "table_5.17.1.1",
+        "ts_26.114_table_5.16.1",
+        "table_5.16.1",
+        "ts_26.114",
+        "ts_29.232"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.238_5.17.2.1",
+      "section_id": "5.17.2.1",
+      "section_title": "General",
+      "content": "This clause describes the various call related procedures performed by the TrGW, which are listed in table 15.17.2.1.1\nTable 5.17.2.1.1: TrGW Call Related Procedures\nTransaction defined in 3GPP TS 29.235 [17] or 3GPP TS 29.162 [18]\nSupported\nComment\nReserve TrGW Connection Point\nMandatory\nSee 5.17.2.2\nConfigure TrGW Connection Point\nMandatory\nSee 5.17.2.3\nReserve and Configure TrGW Connection Point\nMandatory\nSee 5.17.2.4\nRelease TrGW Termination\nMandatory\nSee 5.17.2.5\nTermination Heartbeat Indication\nMandatory\nSee 5.17.2.6\nIP Bearer Released\nMandatory\nSee 5.17.2.7\nMedia Inactivity Notification\nOptional\nSee 5.17.2.8\nChange Through Connection\nMandatory\nSee 5.17.2.9\nECN Failure Indication\nOptional\nSee 5.17.2.10\nChange Flow Direction\nOptional\nSee 5.17.2.11\nICE Connectivity Check Result Notification\nOptional\nSee 5.17.2.12\nOnly applicable if full ICE is supported\nICE New Peer Reflexive Candidate Notification\nOptional\nSee 5.17.2.13\nOnly applicable if full ICE is supported",
+      "chunk_type": "definition",
+      "cross_references": [
+        "table_15.17.2.1.1",
+        "table_5.17.2.1.1",
+        "ts_29.235",
+        "ts_29.162"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.238_5.17.2.2",
+      "section_id": "5.17.2.2",
+      "section_title": "Reserve TrGW Connection Point",
+      "content": "The IBCF sends an ADD request command as in Table 5.17.2.2.1.\nTable 5.17.2.2.1: Reserve TrGW Connection Point Request\nAddress Information\nControl information\nBearer information\nLocal Descriptor {\nPort = $\nIP Address = $\nIP Version = IPv4 or IPv6\n}\nTransaction ID = x\nIf Context Requested:\nContext ID= $\nIf Emergency Call:\nEmergency Call Indication\nIf MPS call/session:\nPriority Indicator = x\nIf Context Provided:\nContext ID = c1\nTermination ID = $\nIf Stream Number specified:-\nStream Number\nIf Resources for multiple Codecs required:\nReserve_Value\nIf IP Interface Type:\nIP interface = \"IP interface type\"\nIf indication on Bearer Released requested:\nNotificationRequested (Event ID = x, \"BNC Release \")\nIf diffserv required:-\nDiffserv Code Point\nIf tagging behaviour\nDiffserv Tagging Behaviour\nIf Remote Source Address Filtering required:-\nRemote Source Address Filtering\nIf Remote Source Address range required:-\nRemote Source Address Mask\nIf Remote Source Port Filtering\nrequired:-\nRemote Source Port Filtering\nIf individual port:-\nRemote Source Port\nIf range of ports:\nRemote Source Port Range\nNotificationRequested (Event ID = x,\n\"termination heartbeat\")\nIf multiple IP realms: IP realm Identifier = required IP realm identifier\nIf Media Inactivity Detection Required:\nNotificationRequested (Event ID = x, \"Media Inactivity Detection (Media Inactivity Detection Time, Media Inactivity Detection Direction) \") (NOTE 1)\nIf Sustainable Data Rate Policing Required:-\nPolicing Required\nSustainable Data Rate\nMaximum Burst Size\nIf peak data rate policing\nPolicing Required\nPeak Data Rate\nIf Delay Variation required\nDelay Variation Tolerance\nIf RTCP handling required:\nRTCP allocation\nIf ECN transparent support required:    ECN Enable = \"True\"\nInitiation Method = \"inactive\"\nIf ECN Endpoint support required\nECN Enable = \"True\"\nInitiation Method = \"ECN Initiation\nMethod\" NOTE 2\nCongestion Response = \"ECN\nCongestion Response\"\nNOTE 3\nECN Mode = \"ECN mode\"\nNOTE 3\nECT Marking  = \"ECN ECT\nmarking\" NOTE 3\nRTCP Feedback  = \"ECN RTCP\nFeedback\" NOTE 3\nXR Summary Report = \"ECN XR\nSummary Report\" NOTE 3\nIf notification of ECN Failure\nReport:\nNotificationRequested (Event     ID\n= x,\" ECN Failure\")\nIf ICE is applied:\nSTUN server request\nIf media is \"message\":\nIf B-ALG for MSRP required:\nApplication-aware MSRP interworking request\nLocal Descriptor {\nIf media is \"audio\" or \"video\":\nCodec List = Codec List\nRTP Payloads = RTP Payload\nRtpbw\nIf RTCP bandwidth\nRtcpbwRS\nRtcpbwRR\nIf media is \"video\":\nIf CVO required:\nExtended Header for CVO\n(NOTE 4, NOTE 5)\nIf media is \"video\":\nIf imageattr negotiation:\nGeneric Image Attribute\n(NOTE 6)\nIf Predefined ROI required:\nRTCP feedback for Predefined ROI\nExtended Header for Sent ROI\nIf Arbitrary ROI required:\nRTCP feedback for Arbitrary ROI\nExtended Header for Sent ROI\nIf ICE is applied:\nICE host candidate request\nICE password request\nICE Ufrag request\nICE pacing request\nIf SDPCapNeg is signalled to the gateway:\nSDPCapNeg configuration\n}\nNOTE 1:\tThe event parameters \"Media Inactivity Detection Time\" and \"Media Inactivity Detection Direction\" are optional.\nNOTE 2:\tThis shall be set to a value other than \"inactive\"\nNOTE 3:\tFor the IMS side/3GPP ECN profile terminations this property does not need to be signalled; default provisioned values are defined for this profile. For procedures to handle interworking between different ECN property settings see 3GPP TS 29.162 [18].\nNOTE 4:\tThe support of the CVO feature is optional for the TrGW. The IBCF shall send the \"extended RTP header for CVO\" information element only with supported CVO URN(s) to the TrGW. If the TrGW does not support the CVO feature, the IBCF shall not send the \"extended RTP header for CVO\" information element to the TrGW.\nNOTE 5:\tIf the TrGW supports the extended RTP header with Coordination of Video Orientation information it shall pass any received extended RTP header with CVO bits on to outgoing RTP streams. If the TrGW transcodes between video payloads and it supports the extended RTP header with CVO bits it shall keep the video orientation unchanged during the transcoding and convey received RTP header bytes on the outgoing RTP stream after transcoding associated packets as specified in 3GPP TS 26.114 [31], clause 7.4.5.\nNOTE 6:\tThe support of the generic image attributes is optional for the TrGW. The list of image sizes per payload type supported by the TrGW is preconfigured in the IBCF. If none of the image sizes received within an SDP body on Mx interface is supported by the TrGW then the IBCF shall not send the generic image attribute parameter to the TrGW.\nEditor's Note: IP Interface Type needs to be further clarified in stage 2 – possible exclusion for IMS Ix.\nOn reserving the termination, the TrGW responds as in Table 5.17.2.2.2.\nTable 5.17.2.2.2: Reserve TrGW Connection Point Acknowledge\nAddress Information\nControl information\nBearer information\nLocal Descriptor {\nPort\nIP Address\nIP Version\n}\nTransaction ID = x\nContext ID = C1\nTermination ID = T1\nStream Number\nLocal Descriptor {\nIf media is \"audio\" or \"video\":\nCodec List\nRTP Payloads\nRtpbw\nIf RTCP bandwidth\nRtcpbwRS\nRtcpbwRR\nIf media is \"video\":\nIf CVO extension header    provided in the request:\nExtended Header for CVO\nIf media is \"video\":\nIf image attribute negotiation:\nGeneric Image Attribute\nIf Predefined ROI provided in the request:\nRTCP feedback for Predefined ROI\nExtended Header for Sent ROI\nIf Arbitrary ROI provided in the request:\nRTCP feedback for Arbitrary ROI\nExtended Header for Sent ROI\nIf ICE is applied:\nICE host candidate\nICE password\nICE Ufrag\nICE pacing\nIf ICE lite implementation\nICE lite indication\nIf SDPCapNeg is signalled to the gateway:\nSDPCapNeg configuration\n}",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_26.114_clause_7.4.5",
+        "table_5.17.2.2.1",
+        "table_5.17.2.2.2",
+        "ts_29.162",
+        "ts_26.114"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.238_5.17.2.3",
+      "section_id": "5.17.2.3",
+      "section_title": "Configure TrGW Connection Point",
+      "content": "The IBCF sends a MODIFY request command as in Table 5.17.2.3.1.\nTable 5.17.2.3.1: Configure TrGW Connection Point Request\nAddress Information\nControl information\nBearer information\nIf local resources are modified:\nLocal Descriptor {\nPort\nIP Address\nIP Version\n}\nIf remote resources are modified:\nRemote Descriptor {\nPort\nIP Address\nIP Version\n}\nTransaction ID = x\nContext ID = C1\nTermination ID = T1\nIf MPS priority is modified:\nPriority Indicator = x (NOTE 5)\nIf Stream Number specified:\nStream Number\nIf Resources for multiple Codecs required:\nReserve_Value\nIf diffserv required:-\nDiffserv Code Point\nIf tagging behaviour\nDiffserv Tagging Behaviour\nIf Remote Source Address Filtering required:-\nRemote Source Address Filtering\nIf Remote Source Address range required:-\nRemote Source Address Mask\nIf Remote Source Port Filtering\nrequired:-\nRemote Source Port Filtering\nIf individual port:-\nRemote Source Port\nIf range of ports:\nRemote Source Port Range\nNotificationRequested (Event ID = x,\n\"termination heartbeat\")\nIf multiple IP realms: IP realm Identifier = required IP realm (NOTE 1)\nIf Media Inactivity Detection Required:\nNotificationRequested (Event ID = x, \"Media Inactivity Detection (Media Inactivity Detection Time, Media Inactivity Detection Direction) \") (NOTE 2)\nIf Sustainable Data Rate Policing Required:-\nPolicing Required\nSustainable Data Rate\nMaximum Burst Size\nIf peak data rate policing\nPolicing Required\nPeak Data Rate\nIf Delay Variation required\nDelay Variation Tolerance\nIf RTCP handling required:\nRTCP allocation\nIf ECN transparent support required:    ECN Enable = \"True\"\nInitiation Method = \"inactive\"\nIf ECN Endpoint support required\nECN Enable = \"True\"\nInitiation Method = \"ECN Initiation\nMethod\"  NOTE 3\nCongestion Response = \"ECN\nCongestion Response\"\nNOTE 4\nECN Mode = \"ECN mode\"\nNOTE 4\nECT Marking  = \"ECN ECT\nmarking\" NOTE 4\nRTCP Feedback  = \"ECN RTCP\nFeedback\" NOTE 4\nXR Summary Report = \"ECN XR\nSummary Report\" NOTE 4\nIf notification of ECN Failure\nReport:\nNotificationRequested (Event ID\n= x,\" ECN Failure\")\nIf full ICE is applied:\nSend Connectivity Check       (\"Control\")\nIf notification of ICE Connectivity Check Result Report:\nNotificationRequested (Event ID= xx,\n\"Connectivity Check Result\")\nIf notification of New Peer Reflexive Candidate:\nNotificationRequested (Event     ID\n= xy,\" New Peer Reflexive Candidate \")\nSend Additional Connectivity Check       (\"Control\")\nIf media is \"message\":\nIf B-ALG for MSRP required:\nApplication-aware MSRP       interworking request\nIf local resources are modified:\nLocal Descriptor {\nIf media is \"audio\" or \"video\":\nCodec List\nRTP Payloads\nRtpbw\nIf RTCP bandwidth\nRtcpbwRS\nRtcpbwRR\nIf RTP-level pause and resume:\nCCM pause-resume\nIf RTCP Codec Control Commands and Indications:\nCCM BASE\nIf RTCP Delay Budget Information:\nDBI\nIf media is \"video\":\nIf CVO required:\nExtended Header for CVO\n(NOTE 6, NOTE 7)\nIf media is \"video\":\nIf imageattr negotiation:\nGeneric Image Attribute\n(NOTE 8)\nIf Predefined ROI required:\nRTCP feedback for Predefined ROI\nExtended Header for Sent ROI\nIf Arbitrary ROI required:\nRTCP feedback for Arbitrary ROI\nExtended Header for Sent ROI\nIf SDPCapNeg is signalled to the gateway:\nSDPCapNeg configuration\n}\nIf remote resources are modified:\nRemote Descriptor {\nIf media is \"audio\" or \"video\":\nCodec List\nRTP Payloads\nRtpbw\nIf rate adaptation for media         endpoints:\nAdditional Bandwidth         Properties (NOTE 10)\nIf RTCP bandwidth\nRtcpbwRS\nRtcpbwRR\nIf RTP-level pause and resume:\nCCM pause-resume\nIf RTCP Codec Control Commands and Indications:\nCCM BASE\nIf RTCP Delay Budget Information:\nDBI\nIf media is \"video\":\nIf CVO required:\nExtended Header for CVO\n(NOTE 6, NOTE 7)\nIf media is \"video\":\nIf imageattr negotiation:\nGeneric Image Attribute\n(NOTE 8)\nIf Predefined ROI required:\nRTCP feedback for Predefined ROI\nExtended Header for Sent ROI\nIf Arbitrary ROI required:\nRTCP feedback for Arbitrary ROI\nExtended Header for Sent ROI\nIf media is \"message\":\nIf B-ALG for MSRP required:\nMSRP Path\nIf RTCP APP messages allowed\nAllowed RTCP APP message\ntypes\nIf ICE is applied:\nICE received candidate\nICE received password\nICE received Ufrag\n(NOTE 9)\nICE received pacing\n(NOTE 11)\nIf SDPCapNeg is signalled to the gateway:\nSDPCapNeg configuration\n}\nNOTE 1:\tThis shall only be set to the same IP realm as at the reservation stage which is specified in Table 5.17.2.2.1. If a different IP realm is specified, the TrGW shall return error 501 \"Not Implemented\". Additional streams may be added by the Configure_TrGW_Connection_Point procedure. The additional streams shall then carry the same IP Realm Identifier as the first stream.\nNOTE 2:\tThe event parameters \"Media Inactivity Detection Time\" and \"Media Inactivity Detection Direction\" are optional.\nNOTE 3:\tThis shall be set to a value other than \"inactive\".\nNOTE 4:\tFor the IMS side/3GPP ECN profile terminations this property does not need to be signalled; default provisioned values are defined for this profile. For procedures to handle interworking between different ECN property settings see 3GPP TS 29.162 [18].\nNOTE 5:   The support of the modification of the Priority Indicator value is optional for the TrGW and depends on implementation solution for Priority call/session authorisation (see 3GPP TS 29.162 [18]).\nNOTE 6:\tThe support of the CVO feature is optional for the TrGW. The IBCF shall send the \"extended RTP header for CVO\" information element only with supported CVO URN(s) to the TrGW. If the TrGW does not support the CVO feature, the IBCF shall not send the \"extended RTP header for CVO\" information element to the TrGW.\nNOTE 7:\tIf the TrGW supports the extended RTP header with Coordination of Video Orientation information it shall pass any received extended RTP header with CVO bits on to outgoing RTP streams. If the TrGW transcodes between video payloads and it supports the extended RTP header with CVO bits it shall keep the video orientation unchanged during the transcoding and convey received RTP header bytes on the outgoing RTP stream after transcoding associated packets as specified in 3GPP TS 26.114 [31], clause 7.4.5.\nNOTE 8: The support of the generic image attributes is optional for the TrGW. The list of image sizes per payload type supported by the TrGW is preconfigured in the IBCF. If none of the image sizes received within an SDP body on Mx interface is supported by the TrGW then the IBCF shall not send the generic image attribute parameter to the TrGW.\nNOTE 9:\tThe support of ICE received candidate, ICE received password, ICE received Ufrag are optional for ICE lite, as specified in 3GPP TS 29.162 [18].\nNOTE 10:\tThe support of rate adaptation for media endpoints using the additional bandwidth properties is optional for the TrGW. If media transcoding is required the IBCF may provide for the selected payload type and the used IP version the additional bandwidth properties.\nNOTE 11:\tThe ICE received pacing is only applicable for full ICE, as specified in IETF RFC 8445 [55].\nThe TrGW responds as in Table 5.17.2.3.2.\nTable 5.17.2.3.2: Configure TrGW Connection Point Request Acknowledge\nAddress Information\nControl information\nBearer information\nIf local resources were provided in request:\nLocal Descriptor {\nPort\nIP Address\nIP Version\n}\nIf remote resources are provided in request:\nRemote Descriptor {\nPort\nIP Address\nIP Version\n} NOTE\nTransaction ID = x\nContext ID = C1\nTermination ID = T1\nIf Stream Number Specified:\nStream Number\nIf local resources were provided in request:\nLocal Descriptor {\nIf media is \"audio\" or \"video\":\nCodec List\nRTP Payloads\nRtpbw\nIf RTCP bandwidth\nRtcpbwRS\nRtcpbwRR\nIf RTP-level pause and resume:\nCCM pause-resume\nIf RTCP Codec Control Commands and Indications:\nCCM BASE\nIf RTCP Delay Budget Information:\nDBI\nIf media is \"video\":\nIf CVO extension header       provided in the request:\nExtended Header for CVO\nIf media is \"video\":\nIf image attribute negotiation:\nGeneric Image Attribute\nIf Predefined ROI provided in the request:\nRTCP feedback for Predefined ROI\nExtended Header for Sent ROI\nIf Arbitrary ROI provided in the request:\nRTCP feedback for Arbitrary ROI\nExtended Header for Sent ROI\n}\nIf remote resources are provided in request:\nRemote Descriptor {\nIf media is \"audio\" or \"video\":\nCodec List\nRTP Payloads\nRtpbw\nIf rate adaptation for media         endpoints:\nAdditional Bandwidth         Properties\nIf RTCP bandwidth\nRtcpbwRS\nRtcpbwRR\nIf RTP-level pause and resume:\nCCM pause-resume\nIf RTCP Codec Control Commands and Indications:\nCCM BASE\nIf RTCP Delay Budget Information:\nDBI\nIf media is \"video\":\nIf CVO extension header       provided in the request:\nExtended Header for CVO\nIf media is \"video\":\nIf image attribute negotiation:\nGeneric Image Attribute\nIf Predefined ROI provided in the request:\nRTCP feedback for Predefined ROI\nExtended Header for Sent ROI\nIf Arbitrary ROI provided in the request:\nRTCP feedback for Arbitrary ROI\nExtended Header for Sent ROI\n} NOTE\nNOTE:\tSending of the Remote Descriptor is optional",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_26.114_clause_7.4.5",
+        "table_5.17.2.3.1",
+        "table_5.17.2.2.1",
+        "table_5.17.2.3.2",
+        "ts_29.162",
+        "ts_26.114"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.238_5.17.2.4",
+      "section_id": "5.17.2.4",
+      "section_title": "Reserve and Configure TrGW Connection Point",
+      "content": "The IBCF sends an ADD request command as in Table 5.17.2.4.1.\nTable 5.17.2.4.1: Reserve and Configure TrGW Connection Point Request\nAddress Information\nControl information\nBearer information\nLocal Descriptor {\nPort = $\nIP Address = $\nIP Version = IPv4 or IPv6\n}\nRemote Descriptor {\nPort\nIP Address\nIP Version\n}\nTransaction ID = x\nIf Context Requested:\nContext ID = $\nIf Emergency Call:\nEmergency Call Indication\nIf MPS call/session:\nPriority Indicator = x\nIf Context Provided:\nContext ID = c1\nTermination ID = $\nIf Stream Number Specified:\nStream Number\nIf Resources for multiple Codecs shall be reserved:\nReserve_Value\nIf IP Interface Type:\nIP interface = \"IP interface type\"\nIf indication on Bearer Released requested:\nNotificationRequested (Event ID = x, \"BNC Release \")\nIf diffserv required:-\nDiffserv Code Point\nIf tagging behaviour\nDiffserv Tagging Behaviour\nIf Remote Source Address Filtering required:-\nRemote Source Address Filtering\nIf Remote Source Address range required:-\nRemote Source Address Mask\nIf Remote Source Port Filtering\nrequired:-\nRemote Source Port Filtering\nIf individual port:-\nRemote Source Port\nIf range of ports:\nRemote Source Port Range\nNotificationRequested (Event ID = x,\n\"termination heartbeat\")\nIf multiple IP realms: IP realm Identifier = required IP realm identifier\nIf Media Inactivity Detection Required:\nNotificationRequested (Event ID = x, \"Media Inactivity Detection (Media Inactivity Detection Time, Media Inactivity Detection Direction) \") (NOTE 1)\nIf Sustainable Data Rate Policing Required:-\nPolicing Required\nSustainable Data Rate\nMaximum Burst Size\nIf peak data rate policing\nPolicing Required\nPeak Data Rate\nIf Delay Variation required\nDelay Variation Tolerance\nIf RTCP handling required:\nRTCP allocation\nIf ECN transparent support required:    ECN Enable = \"True\"\nInitiation Method = \"inactive\"\nIf ECN Endpoint support required\nECN Enable = \"True\"\nInitiation Method = \"ECN Initiation\nMethod\" NOTE 2\nCongestion Response = \"ECN\nCongestion Response\"\nNOTE 3\nECN Mode = \"ECN mode\"\nNOTE 3\nECT Marking  = \"ECN ECT\nmarking\" NOTE 3\nRTCP Feedback  = \"ECN RTCP\nFeedback\" NOTE 3\nXR Summary Report = \"ECN XR\nSummary Report\" NOTE 3\nIf notification of ECN Failure\nReport:\nNotificationRequested (Event ID\n= x,\" ECN Failure\")\nIf ICE is applied:\nSTUN server request\nIf full ICE is applied\nSend Connectivity Check      (\"Control\")\nIf notification of ICE Connectivity      Check Result Report:\nNotificationRequested (Event ID = xx,\"Connectivity Check Result\")\nIf notification of New Peer Reflexive Candidate:\nNotificationRequested (Event     ID = xy,\" New Peer Reflexive Candidate \")\nIf media is \"message\":\nIf B-ALG for MSRP required:\nApplication-aware MSRP      interworking request\nLocal Descriptor {\nIf media is \"audio\" or \"video\":\nCodec List\nRTP Payloads\nRtpbw\nIf RTCP bandwidth\nRtcpbwRS\nRtcpbwRR\nIf RTP-level pause and resume:\nCCM pause-resume\nIf RTCP Codec Control Commands and Indications:\nCCM BASE\nIf RTCP Delay Budget Information:\nDBI\nIf media is \"video\":\nIf CVO required:\nExtended Header for CVO\n(NOTE 4, NOTE 5)\nIf media is \"video\":\nIf imageattr negotiation:\nGeneric Image Attribute\n(NOTE 6)\nIf Predefined ROI required:\nRTCP feedback for Predefined ROI\nExtended Header for Sent ROI\nIf Arbitrary ROI required:\nRTCP feedback for Arbitrary ROI\nExtended Header for Sent ROI\nIf ICE is applied:\nICE host candidate request\nICE password request\nICE Ufrag request\nICE pacing request\nIf SDPCapNeg is signalled to the gateway:\nSDPCapNeg configuration\n}\nRemote Descriptor {\nIf media is \"audio\" or \"video\":\nCodec List\nRTP Payloads\nRtpbw\nIf rate adaptation for media      endpoints:\nAdditional Bandwidth Properties      (NOTE 8)\nIf RTCP bandwidth\nRtcpbwRS\nRtcpbwRR\nIf RTP-level pause and resume:\nCCM pause-resume\nIf RTCP Codec Control Commands and Indications:\nCCM BASE\nIf RTCP Delay Budget Information:\nDBI\nIf media is \"video\":\nIf CVO required:\nExtended Header for CVO\n(NOTE 4, NOTE 5)\nIf media is \"video\":\nIf imageattr negotiation:\nGeneric Image Attribute\n(NOTE 6)\nIf Predefined ROI required:\nRTCP feedback for Predefined ROI\nExtended Header for Sent ROI\nIf Arbitrary ROI required:\nRTCP feedback for Arbitrary ROI\nExtended Header for Sent ROI\nIf media is \"message\":\nIf B-ALG for MSRP required:\nMSRP Path\nIf RTCP APP messages allowed\nAllowed RTCP APP message\ntypes\nIf ICE is applied:\nICE received candidate\nICE received password\nICE received Ufrag\n(NOTE 7)\nICE received pacing\n(NOTE 9)\nIf SDPCapNeg is signalled to the gateway:\nSDPCapNeg configuration\n}\nNOTE 1:\tThe event parameters \"Media Inactivity Detection Time\" and \"Media Inactivity Detection Direction\" are optional.\nNOTE 2:\tThis shall be set to a value other than \"inactive\"\nNOTE 3:\tFor the IMS side/3GPP ECN profile terminations this property does not need to be signalled; default provisioned values are defined for this profile. For procedures to handle interworking between different ECN property settings see 3GPP TS 29.162 [18].\nNOTE 4:\tThe support of the CVO feature is optional for the TrGW. The IBCF shall send the \"extended RTP header for CVO\" information element only with supported CVO URN(s) to the TrGW. If the TrGW does not support the CVO feature, the IBCF shall not send the \"extended RTP header for CVO\" information element to the TrGW.\nNOTE 5:\tIf the TrGW supports the extended RTP header with Coordination of Video Orientation information it shall pass any received extended RTP header with CVO bits on to outgoing RTP streams. If the TrGW transcodes between video payloads and it supports the extended RTP header with CVO bits it shall keep the video orientation unchanged during the transcoding and convey received RTP header bytes on the outgoing RTP stream after transcoding associated packets as specified in 3GPP TS 26.114 [31], clause 7.4.5.\nNOTE 6:\tThe support of the generic image attributes is optional for the TrGW. The list of image sizes per payload type supported by the TrGW is preconfigured in the IBCF. If none of the image sizes received within an SDP body on Mx interface is supported by the TrGW then the IBCF shall not send the generic image attribute parameter to the TrGW.\nNOTE 7:\tThe support of ICE received candidate, ICE received password, ICE received Ufrag are optional for ICE lite, as specified in 3GPP TS 29.162 [18].\nNOTE 8:\tThe support of rate adaptation for media endpoints using the additional bandwidth properties is optional for the TrGW. If media transcoding is required the IBCF may provide for the selected payload type and the used IP version the additional bandwidth properties.\nNOTE 9:\tThe ICE received pacing is only applicable for full ICE, as specified in IETF RFC 8445 [55].\nThe TrGW responds as in Table 5.17.2.4.2.\nTable 5.17.2.4.2: Reserve and Configure TrGW Connection Point Request Acknowledge\nAddress Information\nControl information\nBearer information\nLocal Descriptor {\nPort\nIP Address\nIP Version\n}\nRemote Descriptor {\nPort\nIP Address\nIP Version\n} NOTE\nTransaction ID = x\nContext ID = C1\nTermination ID = T1\nStream Number\nLocal Descriptor {\nIf media is \"audio\" or \"video\":\nCodec List\nRTP Payloads\nRtpbw\nIf RTCP bandwidth\nRtcpbwRS\nRtcpbwRR\nIf RTP-level pause and resume:\nCCM pause-resume\nIf RTCP Codec Control Commands and Indications:\nCCM BASE\nIf RTCP Delay Budget Information:\nDBI\nIf media is \"video\":\nIf CVO extension header    provided in the request:\nExtended Header for CVO\nIf media is \"video\":\nIf image attribute negotiation:\nGeneric Image Attribute\nIf Predefined ROI provided in the request:\nRTCP feedback for Predefined ROI\nExtended Header for Sent ROI\nIf Arbitrary ROI provided in the request:\nRTCP feedback for Arbitrary ROI\nExtended Header for Sent ROI\nIf ICE is applied:\nICE host candidate\nICE password\nICE Ufrag\nICE pacing\nIf ICE lite implementation\nICE lite indication\nIf SDPCapNeg is signalled to the gateway:\nSDPCapNeg configuration\n}\nRemote Descriptor {\nIf media is \"audio\" or \"video\":\nCodec List\nRTP Payloads\nRtpbw\nIf rate adaptation for media      endpoints:\nAdditional Bandwidth Properties\nIf RTCP bandwidth\nRtcpbwRS\nRtcpbwRR\nIf RTP-level pause and resume:\nCCM pause-resume\nIf RTCP Codec Control Commands and Indications:\nCCM BASE\nIf RTCP Delay Budget Information:\nDBI\nIf media is \"video\":\nIf CVO extension header    provided in the request:\nExtended Header for CVO\nIf media is \"video\":\nIf image attribute negotiation:\nGeneric Image Attribute\nIf Predefined ROI provided in the request:\nRTCP feedback for Predefined ROI\nExtended Header for Sent ROI\nIf Arbitrary ROI provided in the request:\nRTCP feedback for Arbitrary ROI\nExtended Header for Sent ROI\nIf SDPCapNeg is signalled to the gateway:\nSDPCapNeg configuration\n} NOTE\nNOTE:\tSending of the Remote Descriptor is optional",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_26.114_clause_7.4.5",
+        "table_5.17.2.4.1",
+        "table_5.17.2.4.2",
+        "ts_29.162",
+        "ts_26.114"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.238_5.17.2.5",
+      "section_id": "5.17.2.5",
+      "section_title": "Release TrGW Termination",
+      "content": "The IBCF sends a SUBTRACT command as in Table 5.17.2.5.1.\nTable 5.17.2.5.1: Release TrGW Termination Request\nAddress Information\nControl information\nBearer information\nTransaction ID = x\nContext ID= C1/ALL\nTermination ID = T1/ALL\nOn releasing the termination, the TrGW responds as in Table 5.17.2.5.2\nTable 5.17.2.5.2: Release TrGW Termination Request Acknowledge\nAddress Information\nControl information\nBearer information\nTransaction ID = x\nContext ID = C1/ALL\nTermination ID = T1/ALL",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.17.2.5.1",
+        "table_5.17.2.5.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.238_5.17.2.6",
+      "section_id": "5.17.2.6",
+      "section_title": "Termination Heartbeat Indication",
+      "content": "When the procedure \"Termination heartbeat indication\" is required the following procedure is initiated: the TrGW sends a NOT.req command with the following information.\n5.17.2.6.1\tNOT.req (Termination heartbeat)\nAddress Information\nControl information\nBearer information\nTransaction ID = x\nContext ID = C1\nTermination ID = T1\nEvent_ID (Event ID = x, \"termination heartbeat\")\nWhen processing of the command is complete, the IBCF initiates the following procedure.\n5.17.2.6.2\tNOT.resp (Termination heartbeat)\nAddress Information\nControl information\nBearer information\nTransaction ID = x\nContext ID = C1\nTermination ID = T1\nThe IBCF is in charge of correcting any detected mismatch, by subtracting hanging terminations or clearing hanging contexts.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.238_5.17.2.7",
+      "section_id": "5.17.2.7",
+      "section_title": "IP Bearer Released",
+      "content": "When the procedure \"IP Bearer Released\" is required the following procedure is initiated: the TrGW sends a NOT.req command with the following information.\n5.17.2.7.1\tNOT.req (IP Bearer Released)\nAddress Information\nControl information\nBearer information\nTransaction ID = x\nContext ID = C1\nTermination ID = T1\nEvent_ID (Event ID = x,\n\"BNC Release (Cause)\")\nWhen the processing of command is complete, the IBCF initiates the following procedure.\n5.17.2.7.2\tNOT.resp (IP Bearer Released)\nAddress Information\nControl information\nBearer information\nTransaction ID = x\nContext ID = C1\nTermination ID = T1",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.238_5.17.2.8",
+      "section_id": "5.17.2.8",
+      "section_title": "Media Inactivity Notification",
+      "content": "When the procedure \"Media Inactivity Notification\" is required the following procedure is initiated: the TrGW sends a NOT.req command with the following information.\n5.17.2.8.1\tNOT.req (Media Inactivity)\nAddress Information\nControl information\nBearer information\nTransaction ID = x\nContext ID = C1\nTermination ID = T1\nEvent_ID (Event ID = x, \"Media Inactivity Detection\")\nWhen the processing of command is complete, the IBCF initiates the following procedure.\n5.17.2.8.2\tNOT.resp (Media Inactivity)\nAddress Information\nControl information\nBearer information\nTransaction ID = x\nContext ID = C1\nTermination ID = T1",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.238_5.17.2.9",
+      "section_id": "5.17.2.9",
+      "section_title": "Change Through Connection",
+      "content": "The IBCF sends an ADD or a MODIFY request command as in Table 5.17.2.9.1.\n5.17.2.9.1\tChange Through Connection Request\nAddress Information\nControl information\nBearer information\nTransaction ID = x\nIf Context Requested:\nContext ID = $\nIf Context Provided:\nContext ID = c1\nIf Termination Requested:\nTermination ID = $\nIf Termination Provided:\nTermination ID = T1\nThrough-Connection = Connectivity Mode\nThe TrGW  responds as in Table 5.17.2.9.2.\n5.17.2.9.2\tChange Through Connection Request Acknowledge\nAddress Information\nControl information\nBearer information\nTransaction ID = x\nContext ID = C1\nTermination ID = T1",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.17.2.9.1",
+        "table_5.17.2.9.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.238_5.17.2.10",
+      "section_id": "5.17.2.10",
+      "section_title": "ECN FailureIndication",
+      "content": "The TrGW sends a NOTIFY request command as in Table 5.17.2.10.1.\nTable 5.17.2.10.1: ECN Failure Indication\nAddress Information\nControl information\nBearer information\nTransaction ID = x\nContext ID= C1\nTermination ID = T1\nEvent_ID (Event ID = x,\n\" ECN Failure (ECN Failure Type)\")\nThe IBCF responds as in Table 5.17.2.10.2\nTable 5.17.2.10.2: ECN Failure Indication Ack\nAddress Information\nControl information\nBearer information\nTransaction ID = x\nContext ID = C1\nTermination ID = T1",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.17.2.10.1",
+        "table_5.17.2.10.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.238_5.17.2.11",
+      "section_id": "5.17.2.11",
+      "section_title": "Change Flow Direction",
+      "content": "The TrGW sends an ADD or a MODIFY request command as in Table 5.17.2.11.1.\n5.17.2.11.1\tChange Flow Direction\nAddress Information\nControl information\nBearer information\nTransaction ID = x\nIf Context Requested:\nContext ID = $\nIf Context Provided:\nContext ID = c1\nIf Termination Requested:\nTermination ID = $\nIf Termination Provided:\nTermination ID = T1\nConnection Configuration =\n(TerminationID= x1,\nTerminationID=x2,\t[type = x])\nThe IBCF responds as in Table 5.17.2.11.2.\n5.17.2.11.2\tChange Flow Direction Acknowledge\nAddress Information\nControl information\nBearer information\nTransaction ID = x\nContext ID = C1\nTermination ID = T1",
+      "chunk_type": "procedure",
+      "cross_references": [
+        "table_5.17.2.11.1",
+        "table_5.17.2.11.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.238_5.17.2.12",
+      "section_id": "5.17.2.12",
+      "section_title": "ICE Connectivity Check Result Notification",
+      "content": "The TrGW sends a NOTIFY request command as defined in Table 5.17.2.12.1.\nTable 5.17.2.12.1: ICE Connectivity Check Result Notification\nAddress Information\nControl information\nBearer information\nTransaction ID = x\nContext ID= C1\nTermination ID = T1\nEvent_ID (Event ID = x,\n\" Connectivity Check Result (Candidate/Transport Pair)\")\nThe IBCF responds as defined in Table 5.17.2.12.2\nTable 5.17.2.12.2: ICE Connectivity Check Result Notification Ack\nAddress Information\nControl information\nBearer information\nTransaction ID = x\nContext ID = C1\nTermination ID = T1",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.17.2.12.1",
+        "table_5.17.2.12.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.238_5.17.2.13",
+      "section_id": "5.17.2.13",
+      "section_title": "ICE New Peer Reflexive Candidate Notification",
+      "content": "The TrGW sends a NOTIFY request command as defined in Table 5.17.2.13.1.\nTable 5.17.2.13.1: ICE New Peer Reflexive Candidate Notification\nAddress Information\nControl information\nBearer information\nTransaction ID = x\nContext ID= C1\nTermination ID = T1\nEvent_ID (Event ID = x,\n\" New Peer Reflexive Candidate (Candidate)\")\nThe IBCF responds as defined in Table 5.17.2.13.2\nTable 5.17.2.13.2: ICE New Peer Reflexive Candidate Ack\nAddress Information\nControl information\nBearer information\nTransaction ID = x\nContext ID = C1\nTermination ID = T1",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.17.2.13.1",
+        "table_5.17.2.13.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.238_5.17.3.1",
+      "section_id": "5.17.3.1",
+      "section_title": "General",
+      "content": "This clause describes the various non-call related procedures which are listed in Table 5.17.3.1.1\nTable 5.17.3.1.1: TrGW Non-Call Related Procedures\nTransaction defined in\n3GPP TS 29.235 [17] or 3GPP TS 29.162 [18]\nSupport\nComment\nTrGW Out of service\nMandatory\n5.17.3.2\nTrGW Communication Up\nMandatory\n5.17.3.3\nTrGW Restoration\nMandatory\n5.17.3.4\nTrGW Register\nMandatory\n5.17.3.5\nTrGW Re-register\nOptional (NOTE 3\n5.17.3.6\nIBCF Ordered Re-register\nOptional (NOTE 3\n5.17.3.7\nIBCF Restoration\nOptional\n5.17.3.8\nIBCF Out of Service\nOptional\n5.17.3.9\nAudit Value\nOptional (NOTE 3\n5.17.3.10\nCommand Rejected\nMandatory\nThe \"Command Rejected\" procedure may be used in response both to call-related and non-call-related ITU-T Recommendation H.248 Commands – 5.17.3.11\nTrGW Capability Change\nOptional\n5.17.3.12\nTrGW Resource Congestion Handling – Activate\nOptional\n5.17.3.13\nTrGW Resource Congestion Handling – Indication\nOptional\n5.17.3.14\nInactivity timeout activation\nOptional (NOTE 4)\n5.17.3.15\nInactivity timeout indication\nOptional (NOTE 4)\n5.17.3.16\nRealm Availability Change activation\nOptional\n5.17.3.17\nRealm Availability Change indication\nOptional\n5.17.3.18\nTermination Out of Service\nOptional (NOTE 1)\n5.17.3.19 (NOTE 2)\nNOTE 1:\tSupport of this procedure is mandatory in the IBCF.\nNOTE 2:\tThe \"Termination Out-of-Service procedure\" is also used as a call-related  H.248 command\nNOTE 3:\tSupport of this procedure is mandatory in the TrGW.\nNOTE 4:\tSupport of this procedure is mandatory in the TrGW if UDP transport is supported.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "table_5.17.3.1.1",
+        "ts_29.235",
+        "ts_29.162"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.238_5.17.3.2",
+      "section_id": "5.17.3.2",
+      "section_title": "TrGW Out Of Service",
+      "content": "The TrGW sends a SERVICE CHANGE request command as in Table 5.17.3.2.1.\nTable 5.17.3.2.1: TrGW Out Of Service Request\nAddress Information\nControl information\nBearer information\nTransaction ID = x\nContext ID= -\nTermination ID = ROOT\nSC Method = FORCED or GRACEFUL\nSC Reason = 905 Termination Taken OOS or 908 MG Impending Failure or 915 State Loss\nThe IBCF responds as in Table 5.17.3.2.2.\nTable 5.17.3.2.2: TrGW Out Of Service Request Ack\nAddress Information\nControl information\nBearer information\nTransaction ID = x\nContext ID = -\nTermination ID = ROOT",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.17.3.2.1",
+        "table_5.17.3.2.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.238_5.17.3.3",
+      "section_id": "5.17.3.3",
+      "section_title": "TrGW Communication Up",
+      "content": "The TrGW sends a SERVICE CHANGE request command as in Table 5.17.3.3.1 to the IBCF address to which the control link association was previously established.\nTable 5.17.3.3.1: TrGW Communication Up\nAddress Information\nControl information\nBearer information\nTransaction ID = x\nContext ID= -\nTermination ID = ROOT\nSC Method = DISCONNECTED\nSC Reason = 900 , Service Restored\nThe IBCF may respond as in table 5.17.3.3.2. If a response is received, the control link association is re-established and the inactivity timer would be restarted.\nTable 5.17.3.3.2: TrGW Communication Up Ack\nAddress Information\nControl information\nBearer information\nTransaction ID = x\nContext ID = -\nTermination ID = ROOT\nIf required to register to new IBCF:\nAlternate MGC Id",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.17.3.3.1",
+        "table_5.17.3.3.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.238_5.17.3.4",
+      "section_id": "5.17.3.4",
+      "section_title": "TrGW Restoration",
+      "content": "When the TrGW has recovered, the TrGW sends a SERVICE CHANGE as in Table 5.17.3.4.1,\nTable 5.17.3.4.1: TrGW Restoration\nAddress Information\nControl information\nBearer information\nTransaction ID = x\nContext ID= -\nTermination ID = ROOT\nSC Method = RESTART\nSC Reason = 900, Service Restored\nThe IBCF responds as in Table 5.17.3.4.2.\nTable 5.17.3.4.2: TrGW Restoration Ack\nAddress Information\nControl information\nBearer information\nTransaction ID = x\nContext ID = -\nTermination ID = ROOT\nIf required to register to new IBCF :\nAlternate MGC Id\n5.17.3.5\tTrGW Register\nThe TrGW sends a SERVICE CHANGE request command as in Table 5.17.3.5.1.\nTable 5.17.3.5.1: TrGW Register\nAddress Information\nControl information\nBearer information\nTransaction ID = x\nContext ID= -\nTermination ID = ROOT\nSC Method = RESTART\nSC Reason =901, Cold Boot  or 902, Warm Boot\nH248 Profile Identity\nH248 Protocol Version\nThe IBCF responds as in Table 5.17.3.5.2.\nTable 5.17.3.5.2: TrGW Register Ack\nAddress Information\nControl information\nBearer information\nTransaction ID = x\nContext ID = -\nTermination ID = ROOT\nIf applicable (NOTE):    H248 Protocol Version\nIf applicable:-\nH248 Profile Identity\nIf required to register to new IBCF :\nAlternate MGC Id\nNOTE:\tThe IBCF shall include the H.248 Protocol Version if the protocol version it supports or offers is lower than that proposed by the TrGW. The IBCF may include the H.248 Protocol Version if the protocol version it supports or offers is the protocol version proposed by the TrGW.\n5.17.3.6\tTrGW Re-Register\nThe TrGW sends a SERVICE CHANGE request command as in Table 5.17.3.6.1.\nTable 5.17.3.6.1: Re-Registration\nAddress Information\nControl information\nBearer information\nTransaction ID = x\nContext ID= -\nTermination ID = ROOT\nSC Method = Handoff\nSC Reason = 903, MGC Directed Change\nH248 Profile Identity\nH248 Protocol Version\nThe IBCF responds as in Table 5.17.3.6.2.\nTable 5.17.3.6.2: Re-Registration Ack\nAddress Information\nControl information\nBearer information\nTransaction ID = x\nContext ID = -\nTermination ID = ROOT\nIf applicable (NOTE 1):\nH248 Protocol Version\nIf applicable:-\nH248 Profile Identity\nIf required to register to a new IBCF:\nAlternate MGC Id\nNOTE 1:\tThe IBCF shall include the H.248 Protocol Version if the protocol version it supports or offers is lower than that proposed by the TrGW. The IBCF may include the H.248 Protocol Version if the protocol version it supports or offers is the protocol version proposed by the TrGW.\nNOTE 2:\tThe ServiceChangeMGCId parameter may be returned in the TrGW Re-register response. If present in the response, the TrGW shall not consider itself registered and should preferably attempt to re-register with the IBCF specified in the ServiceChangeMgcID before any further alternate IBCFs.\n5.17.3.7\tIBCF Ordered Re-register\nThe IBCF sends a SERVICE CHANGE request command as in Table 5.17.3.7.1.\nTable 5.17.3.7.1: IBCF Ordered Re-Register\nAddress Information\nControl information\nBearer information\nTransaction ID = x\nContext ID= -\nTermination ID = ROOT\nSC Method = HANDOFF\nSC Reason = 903, MGC Directed Change\nAlternate MGC Id\nThe TrGW responds as in Table 5.17.3.7.2.\nTable 5.17.3.7.2: IBCF Ordered Re-Register Ack\nAddress Information\nControl information\nBearer information\nTransaction ID = x\nContext ID = -\nTermination ID = ROOT\nThe TrGW then performs a TrGW Re-Register procedure according to Clause 5.17.3.6.\n5.17.3.8\tIBCF Restoration\nWhen the IBCF has recovered, the IBCF sends a SERVICE CHANGE as in Table 5.17.3.8.1,\nTable 5.17.3.8.1: IBCF Restoration\nAddress Information\nControl information\nBearer information\nTransaction ID = x\nContext ID= -\nTermination ID = ROOT\nSC Method = RESTART\nSC Reason = 901, Cold Boot OR 902, Warm Boot\nThe TrGW responds as in Table 5.17.3.8.2.\nTable 5.17.3.8.2: IBCF Restoration Ack\nAddress Information\nControl information\nBearer information\nTransaction ID = x\nContext ID = -\nTermination ID = ROOT",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_5.17.3.6",
+        "table_5.17.3.4.1",
+        "table_5.17.3.4.2",
+        "table_5.17.3.5.1",
+        "table_5.17.3.5.2",
+        "table_5.17.3.6.1",
+        "table_5.17.3.6.2",
+        "table_5.17.3.7.1",
+        "table_5.17.3.7.2",
+        "table_5.17.3.8.1",
+        "table_5.17.3.8.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.238_5.17.3.9",
+      "section_id": "5.17.3.9",
+      "section_title": "IBCF Out of Service",
+      "content": "The IBCF sends a SERVICE CHANGE request command as in Table 5.17.3.9.1.\nTable 5.17.3.9.1: BCF Out Of Service\nAddress Information\nControl information\nBearer information\nTransaction ID = x\nContext ID= -\nTermination ID = ROOT\nSC Method = FORCED or GRACEFUL\nSC Reason = 905, Termination Taken OOS\nThe TrGW responds as in Table 5.17.3.9.2.\nTable 5.17.3.9.2: IBCF Out Of Service Ack\nAddress Information\nControl information\nBearer information\nTransaction ID = x\nContext ID = -\nTermination ID = ROOT",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.17.3.9.1",
+        "table_5.17.3.9.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.238_5.17.3.10",
+      "section_id": "5.17.3.10",
+      "section_title": "Audit Value",
+      "content": "The IBCF sends an AUDIT VALUE request command as in Table 5.17.3.10.1.\nTable 5.17.3.10.1: Audit Value\nAddress Information\nControl information\nBearer information\nTransaction ID = x\nContext ID= -/ALL/C1\nTermination ID = ROOT/ALL/T1/PartialWildcard (NOTE 4, NOTE5)\nAudit Packages (NOTE 1)\nAudit Descriptor = IndAuditParameter:=     IndAudMediaDescriptor:=     IndAudTerminationStateDescriptor:= serviceState\nAudit Descriptor = Empty (NOTE 2)\nAudit Descriptor = IndAuditParameter:=     IndAudMediaDescriptor:=     IndAudTerminationStateDescriptor:= Available Realms (NOTE 3)\nAudit Descriptor = IndAuditParameter:=     IndAudMediaDescriptor:=     IndAudTerminationStateDescriptor:= ROOT properties  (NOTE 6)\nAudit Descriptor = IndAuditParameter:=     IndAudMediaDescriptor:=     IndAudTerminationStateDescriptor:= SDPCapNeg Supported Capabilities (NOTE 7)\nNOTE 1: Packages is for Null/Root Combination.\nNOTE 2: Used for control association monitoring.\nNOTE 3: Used for auditing available IP realms\nNOTE 4:\tThe partial wildcard termination is used for the context audit (see table 5.17.3.10.3) and specifies the \"group\" part of the termination identity (e.g. \"ip/5/*\").\nNOTE 5:\tPartial wildcard shall only be used when text encoding is used on the H.248 interface.\nNOTE 6:    Used for auditing ROOT properties.\nNOTE 7:\tUsed for auditing SDPCapNeg Extensions when SDPCapNeg signalling to the gateway is supported.\nThe TrGW responds as in Table 5.17.3.10.2.\nTable 5.17.3.10.2: Audit Value Ack\nAddress Information\nControl information\nBearer information\nTransaction ID = x\nContext ID = -/C1\nTermination ID = ROOT/T1\nPackages List\nserviceState\nAvailable Realms\nROOT Properties\nSDPCapNeg Extensions\nUpon reception of the command in the TrGW:\n-\tThe Service State returns the current Service State\n-\tWhen Packages are requested, the Package Names and Versions are returned\n-\tWhen realm availability is audited, the list of available realms is returned.\n-\tWhen root properties are audited, the values of root properties are returned.\nThe following table illustrates the allowed combinations that can be obtained with the AuditValue Command:\nTable 5.17.3.10.3: Combinations of AuditValue Command\nContextID\nTerminationID\nInformation Obtained\nSpecific\nWildcard\nAudit of matching Terminations in a Context\nSpecific\nSpecific\nAudit of a single Termination in a Context\nNull\nRoot\nAudit of Media Gateway state and/or control association or available realms or supported packages or ROOT properties.\nAll\nSpecific\n(Non-null) ContextID in which the Termination currently exists\nAll\nPartial Wildcard\n(Non-null) ContextIDs in which the Terminations currently exist\nNOTE:\tPartial wildcard shall only be used when text encoding is used on the H.248 interface.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.17.3.10.1",
+        "table_5.17.3.10.3",
+        "table_5.17.3.10.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.238_5.17.3.11",
+      "section_id": "5.17.3.11",
+      "section_title": "Command Rejected",
+      "content": "When the procedure \"Command Reject\" is required the following procedure is initiated:\nThe TrGW / IBCF sends a response to any command.req with the following information.\nTable 5.17.3.11.1: ANYcommand.resp (command reject) TrGW/IBCF to IBCF/TrGW\nAddress Information\nControl information\nBearer information\nTransaction ID = z\nContext ID = c1 or no context\nTermination ID = T1 or no termination ID\nReason=Error",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.17.3.11.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.238_5.17.3.12",
+      "section_id": "5.17.3.12",
+      "section_title": "TrGW Capability Change",
+      "content": "The TrGW sends a SERVICE CHANGE request command as in Table 5.17.3.12.1.\nTable 5.17.3.12.1: Capability Update\nAddress Information\nControl information\nBearer information\nTransaction ID = x\nContext ID= -\nTermination ID = ROOT\nSC Method = RESTART or DISCONNECTED\nSC Reason = 916, Packages Change or 917, Capability Change\nThe IBCF responds as in table 5.17.3.12.2.\nTable 5.17.3.12.2 Capability Update Ack\nAddress Information\nControl information\nBearer information\nTransaction ID = x\nContext ID = -\nTermination ID = ROOT",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.17.3.12.1",
+        "table_5.17.3.12.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.238_5.17.3.13",
+      "section_id": "5.17.3.13",
+      "section_title": "TrGW Resource Congestion Handling – Activate",
+      "content": "The IBCF sends a MODIFY request command as in Table 5.17.3.13.1\nTable 5.17.3.13.1: TrGW Resource Congestion Handling – Activate\nAddress Information\nControl information\nBearer information\nTransaction ID = x\nContext ID= -\nTermination ID = ROOT\nNotificationRequested (Event ID = x,\n\"Overload Notification\")\nThe TrGW responds as in Table 5.17.3.13.2.\nTable 5.17.3.13.2: TrGW Resource Congestion Handling – Activate Ack\nAddress Information\nControl information\nBearer information\nTransaction ID = x\nContext ID = -\nTermination ID = ROOT",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.17.3.13.1",
+        "table_5.17.3.13.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.238_5.17.3.14",
+      "section_id": "5.17.3.14",
+      "section_title": "TrGW Resource Congestion Handling – Indication",
+      "content": "The TrGW sends a NOTIFY request command as in Table 5.17.3.14.1\nTable 5.17.3.14.1: TrGW Resource Congestion Handling – Indication\nAddress Information\nControl information\nBearer information\nTransaction ID = x\nContext ID= -\nTermination ID = ROOT\nIf H.248.11 used:\nEvent_ID (Event ID = x, \"Overload Notification\")\nIf H.248.10 used:\nEvent_ID (Event ID = x, \" Overload Notification (Reduction)\")\nThe IBCF responds as in Table 5.17.3.14.2\nTable 5.17.3.14.2: TrGW Resource Congestion Handling – Indication Ack\nAddress Information\nControl information\nBearer information\nTransaction ID = x\nContext ID = -\nTermination ID = ROOT",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.17.3.14.1",
+        "table_5.17.3.14.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.238_5.17.3.15",
+      "section_id": "5.17.3.15",
+      "section_title": "Inactivity Timeout – Activation",
+      "content": "The IBCF sends a MODIFY request command as in Table 5.17.3.15.1\nTable 5.17.3.15.1: Inactivity Timeout – Activation\nAddress Information\nControl information\nBearer information\nTransaction ID = x\nContext ID= NULL\nTermination ID = ROOT\nNotificationRequested (Event ID = x,\n\"Inactivity Timeout\")\nThe TrGW responds as in Table 5.17.3.15.2.\nTable 5.17.3.15.2: Inactivity Timeout – Activation Ack\nAddress Information\nControl information\nBearer information\nTransaction ID = x\nContext ID = NULL\nTermination ID = ROOT",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.17.3.15.1",
+        "table_5.17.3.15.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.238_5.17.3.16",
+      "section_id": "5.17.3.16",
+      "section_title": "Inactivity Timeout – Indication",
+      "content": "The TrGW sends a NOTIFY request command as in Table 5.17.3.16.1.\nTable 5.17.3.16.1: Inactivity Timeout – Indication\nAddress Information\nControl information\nBearer information\nTransaction ID = x\nContext ID= NULL\nTermination ID = ROOT\nEvent_ID (Event ID = x, \"Inactivity Timeout\")\nThe IBCF responds as in Table 5.17.3.16.2\nTable 5.17.3.16.2: Inactivity Timeout – Indication Ack\nAddress Information\nControl information\nBearer information\nTransaction ID = x\nContext ID = NULL\nTermination ID = ROOT",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.17.3.16.1",
+        "table_5.17.3.16.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.238_5.17.3.17",
+      "section_id": "5.17.3.17",
+      "section_title": "Realm Availability Change – Activation",
+      "content": "The IBCF sends a MODIFY request command as in Table 5.17.3.17.1.\nTable 5.17.3.17.1: Realm Availability Change – Activation\nAddress Information\nControl information\nBearer information\nTransaction ID = x\nContext ID= -\nTermination ID = ROOT\nNotificationRequested (Event ID = x,\n\"Realm Availability Change\")\nThe TrGW responds as in Table 5.17.3.17.2.\nTable 5.17.3.17.2: Realm Availability Change – Activation Ack\nAddress Information\nControl information\nBearer information\nTransaction ID = x\nContext ID = -\nTermination ID = ROOT",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.17.3.17.1",
+        "table_5.17.3.17.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.238_5.17.3.18",
+      "section_id": "5.17.3.18",
+      "section_title": "Realm Availability Change – Indication",
+      "content": "The TrGW sends a NOTIFY request command as in Table 5.17.3.18.1.\nTable 5.17.3.18.1: Realm Availability Change – Indication\nAddress Information\nControl information\nBearer information\nTransaction ID = x\nContext ID= -\nTermination ID = ROOT\nEvent_ID (Event ID = x,\n\"Realm Availability Change (Changed Realms)\")\nNOTE:    The ObservedEvent Parameters returned within the Changed Realms are defined as mandatory since it shall contain at minimum 1 parameter but may contain both Newly Available Realms and Newly Unavailable Realms.\nThe IBCF responds as in Table 5.17.3.18.2\nTable 5.17.3.18.2: Realm Availability Change – Indication Ack\nAddress Information\nControl information\nBearer information\nTransaction ID = x\nContext ID = -\nTermination ID = ROOT",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_5.17.3.18.1",
+        "table_5.17.3.18.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.238_5.17.3.19",
+      "section_id": "5.17.3.19",
+      "section_title": "Termination Out Of Service",
+      "content": "This procedure only applies when text encoding is used on the H.248 interface.\nThe TrGW sends a SERVICE CHANGE request command as in Table 5.17.3.19.1.\nTable 5.17.3.19.1: Termination Out Of Service Request\nAddress Information\nControl information\nBearer information\nTransaction ID = x\nContext ID= C1/ALL\nTermination ID = T1 or Wildcarded Termination (NOTE)\nSC Method = FORCED\nSC Reason = 904 (\"Termination Malfunction\") or 905 (\"Termination Taken OOS\") or 906 (\"Loss of Lower Layer Connectivity\"), or 907 (\"Transmission Failure\") or 910 (\"Media Capability Failure\")\nNOTE:\tThis is set to a specific termination identity or a partially wildcarded identity (i.e. specifying the \"interface\" part of the termination ID and wildcarding the \"group\" and \"Id\" parts) or a wholly wildcarded identity (i.e. ip/*).\nThe IBCF responds as in Table 5.17.3.19.2.\nTable 5.17.3.19.2: Termination Out Of Service Request Ack\nAddress Information\nControl information\nBearer information\nTransaction ID = x\nContext ID = C1/ALL\nTermination ID = As received\nAnnex A (informative):Illustration of Gate/Pinhole Concept\nA.1\tGeneral\nThe purpose of this informative annex is the illustration of the H.248 Stream/Termination model by showing exemplary realisations of gates for unidirectional versus bidirectional media flows.\nOnly point-to-point sessions are in scope of this H.248 Profile (see clause 5.4). Interconnection of individual H.248 Streams is based on the basic principle described in clause 7.1.6/ ITU-T Recommendation H.248.1 [3]. The H.248 Multiplex Descriptor is therefore not necessary (see clause 5.6.2). The H.248 Topology Descriptor definition includes individual H.248 Streams, but is also not necessary (see clause 5.7.8).\nNOTE:\t\tall sessions have unicast media flows. Potential multicast applications are transparent for MG point of view.\nA.2\tRelationships between gates and H.248 Streams\nThe realization of a gate is illustrated in figure A.2.1. There is a unidirectional media flow in that example, and there is a single H.248 Stream per Termination. A H.248 Stream covers per definition a single bidirectional media flow (clause 7.1.6/ITU-T Recommendation H.248.1 [3]). Media flows are interconnected by using the same StreamID (here: StreamID equals to S1 for T1 and T2).\nFigure A.2.1: H.248 Context - Illustration of Gate, Stream and Terminations\nThe uni- or bidirectional application of an H.248 Streams is controlled via usage of Local Descriptor (LD) and Remote Descriptor (RD). Figure A.2.2 shows a bidirectional session. There is again a single H.248 Stream per Termination. Gates are direction-dependent, there are consequently two gates in this example.\nFigure A.2.2: H.248 Context Bidirectional Session using single H.248 Streams\nAnnex B (informative):\tVoid\nAnnex C (informative):\tChange history\nDate\nTSG #\nTSG Doc.\nCR\nRev\nCat\nSubject/Comment\nNew\n2009-12\nCT#46\nCP-090821\n3GPP TS Presented for approval in CT#46\n9.0.0\n2010-03\nCT#47\nCP-100043\n0006\n1\nAnother Reference Tidy-Up\n9.1.0\n0007\n1\nServiceChange Correction\n0008\n1\nTermination Type Alignment\n0009\n1\nError Code Additions\n0010\nReturned SDP Properties\n0011\n1\nPackage Usage\n0012\n2\nCall Related Procedures\n0013\n1\nNon-Call Related Procedures\n0014\n1\nClean-up Proposals\n0015\nResolution of Editor's Notes\n2010-06\nCT#48\nCP-100289\n0016\n1\nTransport protocol to be indicated to gateway for end-to-end media security\n9.2.0\nCP-100283\n0017\n1\nHandling of Stream mode\nCP-100283\n0018\n1\nPackage Updates\nCP-100283\n0019\n1\nDescriptor Updates\n2010-09\nCT#49\nCP-100460\n0020\nProcedures for Emergency indicator\n9.3.0\nCP-100460\n0021\nPriority indicator\n2011-03\nCT#51\nCP-110274\n0022\n10\nECN Support in Ix Interface\n10.0.0\nCP-110058\n0023\n1\nHandling of rtcp-fb SDP attribute and SDP attribute for RTCP APP feedback messages\n2011-06\nCT#52\nCP-110368\n0024\nECN Failure improvements\n10.1.0\nCP-110368\n0026\n1\nInterworking with Non-3GPP ECN networks\nCP-110368\n0027\n1\nAlignment of 3GPP profiles with SG16 ECN package definition\n2011-09\nCT#53\nCP-110564\n0028\n1\nIncorportation of latest ITU-T ECN package and proposed ammendment\n10.2.0\n2011-12\nCT#54\nCP-110798\n0029\n1\nAdding of stage 3 for ATCF/ATGW function\n10.3.0\nCP-110796\n0030\nUpdate of reference to H.248.52\nCP-110789\n0031\n1\nECN Improvements\nCP-110789\n0032\nMissing \"rtcp-xr\" SDP attribute in Table about Optional SDP Information Elements\n2012-06\nCT#56\nCP-120226\n0033\n1\nReference update: draft-ietf-avtcore-ecn-for-rtp\n10.4.0\n2012-09\nCT#57\nCP-120478\n0034\n3\nSupport of Multimedia Priority Service (MPS) over Ix Interface – Stage 3\n11.0.0\n2012-12\nCT#58\nCP-120723\n0040\n1\nIx interface updates of ECN Support Package\n11.1.0\nCP-120734\n0041\n3\nSupport of Multimedia Priority Service (MPS) in Modify over Ix Interface – Stage 3\n2013-06\nCT#60\nCP-130294\n0043\n2\nReplacement of ECN for RTP-over-UDP Support package\n11.2.0\n2013-09\nCT#61\nCP-130452\n0048\n3\nIntroduction of support for Coordination of Video Orientation (CVO)\n12.0.0\nCP-130471\n0049\n3\nIntroduction of support for Generic Image Attribute/signalling of image size\n2014-03\nCT#63\nCP-140025\n0050\n1\nClarification on CVO handling\n12.1.0\nCP-140037\n0051\n1\nClarification on SIS handling\n2014-06\nCT#64\nCP-140248\n0052\n3\nICE support in Ix interface\n12.2.0\n2014-09\nCT#65\nCP-140520\n0053\n1\nCorrections to Transport Protocol table\n12.3.0\nCP-140520\n0054\n1\nTrGW Capability Change\n2014-12\nCT#66\nCP-140786\n0055\n1\nApplication-aware MSRP interworking\n12.4.0\nCP-140788\n0056\n1\nAdding support for EVS codec\nCP-140973\n0057\n-\nAlternative connection (ALTC) addresses management\n2015-03\nCT#67\nCP-150023\n0058\n1\nMG located Bearer Level ALG package\n12.5.0\n2015-12\nCT#70\nCP-150783\n0061\n3\nSupport for Video Enhancements by Region-of-Interest Information Signalling\n13.0.0\n2016-03\nCT#71\nCP-160032\n0062\n1\nTrGW configuration for end-to-end WebRTC calls (stage 3)\n13.1.0\nCP-160034\n0063\n1\nSupport of enhanced bandwidth negotiation mechanism for MTSI sessions\nCP-160021\n0064\n1\nIx stage 3 to support SDP Capability Negotiation\n2016-06\nCT#72\nCP-160229\n0065\n-\nClarifications related to the rate adaptation for media endpoints\n13.2.0\n2016-12\nCT#74\nCP-160684\n0066\n1\nSupport of RTP-level pause and resume functionality\n14.0.0\n2017-03\nCT#75\nCP-170051\n0067\n1\nRTCP Codec Control Commands and Indications\n14.1.0\n2018-10\nCT#81\n-\n-\n-\nUpdate to Rel-15 version (MCC)\n15.0.0\n2019-06\nCT#84\nCP-191053\n0068\n2\nIx interface enhancements to support DBI\n16.0.0\n2022-03\nCT#95e\nCP-220052\n0069\n1\nB\nUpdate of IETF references for ICE\n17.0.0\n2024-03\n-\n-\n-\n-\n-\nUpdate to Rel-18 version (MCC)\n18.0.0\n2024-06\nCT#104\nCP-241037\n0070\n-\nB\nAdding support for IVAS codec\n18.1.0\n2024-09\nCT#105\nCP-242072\n0077\n1\nA\nUpdates on the reference of draft ITU-T specs\n18.2.0",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_5.4",
+        "clause_7.1.6",
+        "clause_5.6.2",
+        "clause_5.7.8",
+        "table_5.17.3.19.1",
+        "table_5.17.3.19.2",
+        "table_12.3.0",
+        "ts_10.1",
+        "ts_13.2"
+      ]
+    }
+  ]
+}

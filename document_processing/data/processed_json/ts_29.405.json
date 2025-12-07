@@ -1,0 +1,441 @@
+{
+  "metadata": {
+    "specification_id": "ts_29.405",
+    "version": "18.0.0",
+    "title": "3GPP TS 29.405",
+    "file_path": "/content/drive/MyDrive/RAG_thesis/data/29_series/29405-i00/29405-i00.docx"
+  },
+  "export_info": {
+    "export_date": "2025-07-26T08:51:43.692351",
+    "total_chunks": 44
+  },
+  "chunks": [
+    {
+      "chunk_id": "ts_29.405_1",
+      "section_id": "1",
+      "section_title": "Scope",
+      "content": "The present document specifies the procedures and the Nq and Nq' Application Protocol (Nq-AP) messages used on the Nq/Nq' interfaces between the RAN Congestion Awareness Function (RCAF) and the Mobility Management Entity (MME) or the Serving GPRS Support Node (SGSN). The related stage 2 requirements are specified in 3GPP TS 23.401 [2] and 3GPP TS 23.060 [3].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.401",
+        "ts_23.060"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.405_2",
+      "section_id": "2",
+      "section_title": "References",
+      "content": "The following documents contain provisions which, through reference in this text, constitute provisions of the present document.\n-\tReferences are either specific (identified by date of publication, edition number, version number, etc.) or non‑specific.\n-\tFor a specific reference, subsequent revisions do not apply.\n-\tFor a non-specific reference, the latest version applies. In the case of a reference to a 3GPP document (including a GSM document), a non-specific reference implicitly refers to the latest version of that document in the same Release as the present document.\n[1]\t3GPP TR 21.905: \"Vocabulary for 3GPP Specifications\".\n[2]\t3GPP TS 23.401: \"General Packet Radio Service (GPRS) enhancements for Evolved Universal Terrestrial Radio Access Network (E-UTRAN) access\".\n[3]\t3GPP TS 23.060: \"General Packet Radio Service (GPRS); Service description; Stage 2\".\n[4]\t3GPP TS 29.303: \"Domain Name System Procedures; Stage 3\"\n[5]\t3GPP TS 23.003: \"Numbering, addressing and identification\".\n[6]\tIETF RFC 791 (September 1981): \"Internet Protocol\".\n[7]\tIETF RFC 2460 (December 1998): \"Internet Protocol, Version 6 (IPv6) Specification\".\n[8]\tIETF RFC 4960 (September 2007): \"Stream Control Transmission Protocol\".\n[9]\tITU-T Recommendation E.212: \"The international identification plan for mobile terminals and mobile users\".\n[10]\t3GPP TS 36.413: \"Evolved Universal Terrestrial Radio Access Network (E-UTRAN); S1 Application Protocol (S1AP)\".\n[11]\tIETF RFC 1035: \"Domain Names - Implementation and Specification\".",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905",
+        "ts_23.401",
+        "ts_23.060",
+        "ts_29.303",
+        "ts_23.003",
+        "ts_36.413"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.405_3.1",
+      "section_id": "3.1",
+      "section_title": "Definitions",
+      "content": "For the purposes of the present document, the terms and definitions given in TR 21.905 [1] and the following apply. A term defined in the present document takes precedence over the definition of the same term, if any, in TR 21.905 [1].",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_21.905"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.405_3.2",
+      "section_id": "3.2",
+      "section_title": "Abbreviations",
+      "content": "For the purposes of the present document, the abbreviations given in TR 21.905 [1] and the following apply. An abbreviation defined in the present document takes precedence over the definition of the same abbreviation, if any, in TR 21.905 [1].\nRCAF\tRAN Congestion Awareness Function",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_21.905"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.405_4",
+      "section_id": "4",
+      "section_title": "General Description",
+      "content": "This document describes the procedures, messages and information elements over the Nq and Nq' interfaces between the MME/SGSN and the RCAF to transfer the IMSI/APN information associated to the eNodeB or E-UTRAN cells or UTRAN Service Area experiencing user plane congestion.\nThe Nq interface is located between the RCAF and the MME. The Nq' interface is located between the RCAF and the SGSN.\nBoth the Nq and the Nq' interfaces use the Nq-AP protocol. The Nq-AP protocol described in this document uses a Type, Length and Value (TLV) encoding of messages over an SCTP transport. The SCTP transport is described in clause 6. The Nq-AP messages and the Information Elements are described in clause 8 and 9 respectively.",
+      "chunk_type": "definition",
+      "cross_references": [
+        "clause_6",
+        "clause_8"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.405_5.1",
+      "section_id": "5.1",
+      "section_title": "Introduction",
+      "content": "The Nq interface is used between the RCAF and MME for the IMSI and APN information retrieval procedures as specified in sub-clause 5.9.3 of 3GPP TS 23.401 [2].\nThe Nq' interface is used between the RCAF and SGSN for the APN information retrieval procedure as specified in sub-clause 6.17 of 3GPP TS 23.060 [3].",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.401_clause_5.9.3",
+        "ts_23.060_clause_6.17",
+        "ts_23.401",
+        "ts_23.060"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.405_5.2.1",
+      "section_id": "5.2.1",
+      "section_title": "General",
+      "content": "The IMSI and APN information retrieval procedure is used between the RCAF and the MME over the Nq interface. The RCAF uses this procedure to retrieve from the MME:\n-\tthe IMSIs that are currently in ECM-CONNECTED state and having active E-RABs under a given eNodeB or E-UTRAN cell;\n-\tfor each IMSI the list of APNs currently having active PDN connections.\nThe RCAF selects the MME(s) serving a user plane congested eNodeB or an E-UTRAN cell through the DNS procedure as specified in sub-clause 5.4 of 3GPP TS 29.303 [4].",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.303_clause_5.4",
+        "ts_29.303"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.405_5.2.2.1",
+      "section_id": "5.2.2.1",
+      "section_title": "Procedures in the RCAF",
+      "content": "When the RCAF needs to retrieve the IMSI(s) / APN(s) information for a given user plane congested area, the RCAF shall send the NqAP-IMSI-APN-INFORMATION-REQUEST message towards the MME(s).\nThe RCAF shall include in the NqAP-IMSI-APN-INFORMATION-REQUEST message:\n-\tthe Global eNodeB ID IE(s) if it requests the IMSI(s) and APN(s) for a given user plane congested area at an eNodeB level;\n-\tthe ECGI IE(s) if it requests the IMSI(s) and APN(s) for a given user plane congested area at an E-UTRAN cell level.\nNOTE:\tFor a given user plane congested area, the RCAF retrieves the IMSI and APN information from the MME at a eNodeB level or E-UTRAN cell level based on local policy at the RCAF.",
+      "chunk_type": "procedure",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.405_5.2.2.2",
+      "section_id": "5.2.2.2",
+      "section_title": "Procedures in the MME",
+      "content": "When the MME receives the NqAP-IMSI-APN-INFORMATION-REQUEST message from the RCAF, the MME shall report in the NqAP-IMSI-APN-INFORMATION-RESPONSE message, for each eNodeB or E-UTRAN cell requested by the RCAF, that has at least one subscriber:\n-\tthe Macro eNodeB ID or Home eNodeB ID or the E-UTRAN cell ID in the RAN Entity value field of the RAN Entity Identifier IE for which the MME(s) report the IMSI and the APN information.\n-\tall the subscribers that are currently in ECM-CONNECTED state and having active E-RABs, except the subscribers involved in an Emergency call,  under the given eNodeB or E-UTRAN cell in the Subscriber-Information IE. Multiple instances of the Subscriber-Information IE shall be included if there are multiple subscribers under the given eNodeB or E-UTRAN cell.\n-\tfor each subscriber, the IMSI in the IMSI IE and APNs currently having active PDN connections in the APN IE. Multiple instances of the APN IE shall be included under a Subscriber-Information IE if the subscriber has active PDN connections towards multiple APNs.\nThe information reported by the MME for each eNodeB or E-UTRAN cell shall be encoded as an instance of the RAN Associated Information IE.\nFor a single NqAP-IMSI-APN-INFORMATION-REQUEST message from the RCAF, the MME may send multiple NqAP-IMSI-APN-INFORMATION-RESPONSE messages.\nThere shall be no NqAP-IMSI-APN-INFORMATION-RESPONSE sent, if the MME does not find any subscriber under any of the requested eNodeB or E-UTRAN cell.",
+      "chunk_type": "procedure",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.405_5.3.1",
+      "section_id": "5.3.1",
+      "section_title": "General",
+      "content": "The APN information retrieval procedure is used between the RCAF and the SGSN over the Nq' interface. The RCAF uses this procedure to retrieve from the SGSN:\n-\tthe APNs that are currently having PDP contexts activated for each IMSI provided by the RCAF.\nThe RCAF selects the SGSN(s) serving a user plane congested SAI through the DNS procedure as specified in sub-clause 5.5 of 3GPP TS 29.303 [4].",
+      "chunk_type": "definition",
+      "cross_references": [
+        "ts_29.303_clause_5.5",
+        "ts_29.303"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.405_5.3.2.1",
+      "section_id": "5.3.2.1",
+      "section_title": "Procedures in the RCAF",
+      "content": "When the RCAF needs to retrieve the APN(s) for the list of IMSI(s) experiencing RAN user plane congestion, the RCAF shall send the NqAP-APN-INFORMATION-REQUEST message towards the SGSN(s).\nThe RCAF shall include the following information in the NqAP-APN-INFORMATION-REQUEST message\n-\tthe list of IMSI(s) in the IMSI IE. Multiple instances of the IMSI IE shall be included if there are multiple subscribers for which APN information needs to be queried from the SGSN.",
+      "chunk_type": "procedure",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.405_5.3.2.2",
+      "section_id": "5.3.2.2",
+      "section_title": "Procedures in the SGSN",
+      "content": "When the SGSN receives the NqAP-APN-INFORMATION-REQUEST message from the RCAF, the SGSN shall report in the NqAP-APN-INFORMATION-RESPONSE message, if there is at least one subscriber's information to report:\n-\tlist of subscribers for which the APN information is provided by the SGSN, in the Subscriber-Information IE. Multiple instances of the Subscriber-Information IE shall be included if there are multiple subscribers for which the SGSN is reporting the APN information. Each instance of the Subscriber-Information IE contains:\n-\tthe IMSI of the subscriber encoded in the IMSI IE;\n-\tthe APNs currently having active PDP contexts with active RABs, encoded in the APN IE. Multiple instances of the APN IE shall be included under a Subscriber-Information IE if the subscriber has active PDP contexts towards multiple APNs. Emergency call APNs shall be excluded.\n-\tIf the subscriber does not have any PDP context with active RABs, then the SGSN shall not include that subscriber's information in the NqAP-APN-INFORMATION-RESPONSE.\nIn a pooled SGSN scenario each SGSN may have only a subset of IMSIs registered. An SGSN shall report the APN information only for the IMSIs it knows.\nFor a single NqAP-APN-INFORMATION-REQUEST message from the RCAF, the SGSN may send multiple NqAP- APN-INFORMATION-RESPONSE messages.\nThere shall be no NqAP-APN-INFORMATION-RESPONSE sent, if the SGSN does not find any requested subscriber attached.",
+      "chunk_type": "procedure",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.405_6.1",
+      "section_id": "6.1",
+      "section_title": "General",
+      "content": "This subclause specifies the standards for signalling transport to be used across Nq/Nq' interface. Nq/Nq' interface is a logical interface between the RCAF and the MME/SGSN. All the Nq-AP messages described in the present document require an SCTP association between the RCAF and the MME/SGSN.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.405_6.2",
+      "section_id": "6.2",
+      "section_title": "IP layer",
+      "content": "The RCAF shall support IPv6 (see IETF RFC 2460 [7]) and IPv4 (see IETF RFC 791 [6]).",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.405_6.3",
+      "section_id": "6.3",
+      "section_title": "Transport layer",
+      "content": "SCTP (see IETF RFC 4960 [8]) shall be supported as the transport layer of Nq-AP messages.\nSemi-permanent SCTP associations shall be established between the RCAF and MME/SGSN, i.e. the SCTP associations shall remain up under normal circumstances when the RCAF needs to use the Nq-AP procedures towards the MME/SGSN.\nThe RCAF shall initiate establishment of the SCTP association.\nTransport network redundancy can be achieved by SCTP multi-homing between two end-points, of which one or both is assigned with multiple IP addresses. SCTP end-points shall support a multi-homed remote SCTP end-point. For SCTP endpoint redundancy, an SCTP endpoint (in the RCAF or MME/SGSN) may send an INIT, at any time for an already established SCTP association, which the other SCTP endpoint shall handle as defined in IETF RFC 4960 [8].\nRCAF and MME/SGSN shall support a configuration with a single SCTP association per RCAF/MME (or RCAF/SGSN) pair. Configurations with multiple SCTP endpoints per RCAF/MME (or RCAF/SGSN) pair may be supported.\nWithin the SCTP association established between one RCAF and one MME/SGSN, both RCAF and MME/SGSN shall reserve several stream identifiers, based on the INIT message exchange for the sole use of Nq-AP procedures.\nThe registered port number for Nq-AP is 36424.\nThe payload protocol identifier to be used for Nq-AP is 0.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.405_7.1",
+      "section_id": "7.1",
+      "section_title": "General",
+      "content": "This subclause specifies procedures for the handling of unknown, unforeseen, and erroneous protocol data by the receiving entity (i.e. the MME or the RCAF). These procedures are called \"error handling procedures\". If a protocol error is detected by the receiving NqAP entity, it should log the event including the erroneous message and may include the error in a statistical counter.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.405_7.2",
+      "section_id": "7.2",
+      "section_title": "Message too short",
+      "content": "When the receiving entity receives a message that is too short to contain a complete message type information element, the receiving entity shall ignore that message.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.405_7.3",
+      "section_id": "7.3",
+      "section_title": "Unknown or unforeseen message type",
+      "content": "The entity receiving a message with a message type that is not defined or is not implemented, it shall ignore the message.\nThe entity receiving a message that is not defined to be received by that entity (e.g. the message is sent in the wrong direction) shall treat the message as unknown message and shall ignore the message.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.405_7.4",
+      "section_id": "7.4",
+      "section_title": "Missing mandatory information element",
+      "content": "When the entity receiving a request message diagnoses a \"missing mandatory information element\" error, the receiving entity shall ignore the message and shall return a corresponding response message with the cause IE set to \"Mandatory IE missing\", together with the type of the missing mandatory IE.\nWhen the entity receiving a response message diagnoses a \"missing mandatory information element\" error, it shall ignore the message.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.405_7.5",
+      "section_id": "7.5",
+      "section_title": "Information elements unknown or unforeseen in the message",
+      "content": "The receiving entity shall ignore all information elements unknown or unforeseen in a message.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.405_7.6",
+      "section_id": "7.6",
+      "section_title": "Out of sequence information elements",
+      "content": "The receiving entity shall ignore all information elements that are out of sequence.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.405_7.7",
+      "section_id": "7.7",
+      "section_title": "Repeated information elements",
+      "content": "If an information element is repeated in a message in which repetition of the information element is not specified, the receiving entity shall only handle the contents of the information element appearing first and shall ignore all subsequent repetitions of the information element. When repetition of information elements is specified, the receiving entity shall only handle the contents of specified repeated information elements. If a limit on the repetition of information elements is specified and the limit is exceeded, the receiving entity shall handle the contents of information elements appearing first up to the limit of repetitions and shall ignore all subsequent repetitions of the information element.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.405_7.8",
+      "section_id": "7.8",
+      "section_title": "Syntactically incorrect mandatory information element.",
+      "content": "On receipt of a message, which contains a syntactically incorrect mandatory information element, the receiver shall ignore the message and shall return a corresponding response message with the cause IE set to \"Mandatory IE incorrect\", together with the type of the offending mandatory IE.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.405_7.9",
+      "section_id": "7.9",
+      "section_title": "Syntactically incorrect optional information elements",
+      "content": "The receiving entity shall treat all optional information elements that are syntactically incorrect in a message as not present in the message.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.405_7.10",
+      "section_id": "7.10",
+      "section_title": "Conditional information element errors",
+      "content": "When the entity receiving a request message diagnoses a \"missing conditional information element\" error, the receiving entity shall ignore the message and shall return a corresponding response message with the cause IE set to \"Conditional IE missing\", together with the type of the missing conditional IE.\nWhen the entity receiving a request message diagnoses an \"unexpected conditional information element\" error or when it receives a message containing at least one syntactically incorrect conditional information element which is required to be present in the message, the receiving entity shall ignore the message and shall return a corresponding response message with the cause IE set to \"Conditional IE incorrect\", together with the type of the offending conditional IE.\nWhen the entity receiving a response message diagnoses a \"missing conditional information element\" error, \"unexpected conditional information element\" error or when it receives a response message containing at least one syntactically incorrect conditional information element which is required to be present in the message, it shall ignore the message.\nWhen the entity receives a message containing a syntactically incorrect conditional information element, which is not required to be present in the message, nor required to be absent in the message, then the receiving entity shall ignore that information element.",
+      "chunk_type": "requirement",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.405_7.11",
+      "section_id": "7.11",
+      "section_title": "Information elements with semantically incorrect contents",
+      "content": "When an information element with semantically incorrect contents is received, the foreseen reactions of the procedural part of the present specification are performed.\nIf however no such reactions are specified, the receiving entity shall ignore that information element and treat the rest of the message. If the semantically incorrect information element in a request message is a mandatory information element, then the receiving entity shall return a corresponding response message with the cause IE set to \"Mandatory IE incorrect\", together with the type of the offending mandatory IE. If the semantically incorrect information element in a response message is a mandatory information element, then the receiving entity shall ignore the message.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.405_7.12",
+      "section_id": "7.12",
+      "section_title": "NqAP Message of Invalid Length",
+      "content": "If an NqAP entity receives a Request message within an IP/SCTP packet of a length that is inconsistent with the value specified in the Length field of the NqAP message header, then the receiving NqAP entity should log the error and shall send the Response message with the Cause IE value set to \"Invalid Length\".\nIf an NqAP entity receives a Response message within an IP/SCTP packet of a length that is inconsistent with the value specified in the Length field of the NqAP message header, then the receiving NqAP entity should log the error and shall silently discard the message.",
+      "chunk_type": "general",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.405_8.1.1",
+      "section_id": "8.1.1",
+      "section_title": "Message definition",
+      "content": "This message is sent by the RCAF to the MME to request the list of IMSIs and APNs activated for each IMSI under a given RAN Identifier (E-UTRAN cell Id or the eNodeB Id). Table 8.1.1 shows the content of the NqAP-IMSI-APN-INFORMATION-REQUEST message. Multiple instances of the RAN Entity Identifier IE shall be included if the RCAF is requesting the IMSI and APN information from MME for multiple eNodeB(s) or E-UTRAN Cell Ids.\nTable 8.1.1: NqAP-IMSI-APN-INFORMATION-REQUEST message content\nInformation element\nType/Reference\nPresence\nFormat\nLength\nMessage type\nMessage type\n9.2\nM\nV\n1\nRAN Entity Identifier\nRAN Entity Identifier\n9.4.3\nM\nTLV\n11-13",
+      "chunk_type": "definition",
+      "cross_references": [
+        "table_8.1.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.405_8.2.1",
+      "section_id": "8.2.1",
+      "section_title": "Message definition",
+      "content": "This message is sent by the MME to the RCAF in response to the NqAP-IMSI-APN-INFORMATION-REQUEST message. Table 8.2.1 shows the content of the NqAP-IMSI-APN-INFORMATION-RESPONSE message. The RAN-Associated-Information IE shall be encoded if the cause value in Cause IE is \"Request Accepted\". Multiple instances of the RAN-Associated-Information IE shall be included if the RCAF had requested IMSI and APN information for multiple eNodeB Id(s) or EUTRAN Cell Id(s) and if the particular instance of the NqAP-IMSI-APN-INFORMATION-RESPONSE message could find subscribers under some or all of these requested eNodeB Id(s) or EUTRAN Cell Id(s).\nThe MME Name IE shall be included if the cause value in Cause IE is anything other than \"Request Accepted\".\nTable 8.2.1: NqAP-IMSI-APN-INFORMATION-RESPONSE message content\nInformation element\nType/Reference\nPresence\nFormat\nLength\nMessage type\nMessage type\n9.2\nM\nV\n1\nCause\nCause\n9.4.6\nM\nTLV\n4\nRAN Associated Information\nRAN-Associated-Information\n9.4.5\nC\nTLV\nVariable\nMME Name\nFully Qualified Domain Name (FQDN)\n9.4.7\nC\nTLV\nVariable",
+      "chunk_type": "definition",
+      "cross_references": [
+        "table_8.2.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.405_8.3.1",
+      "section_id": "8.3.1",
+      "section_title": "Message definition",
+      "content": "This message shall be sent by the RCAF to the SGSN to request the list of APNs activated for a given set of IMSI(s). Table 8.3.1 shows the content of the NqAP-APN-INFORMATION-REQUEST message. Multiple instances of the IMSI IE shall be included if the RCAF is requesting the APN information from SGSN for multiple IMSIs.\nTable 8.3.1: NqAP-APN-INFORMATION-REQUEST message content\nInformation element\nType/Reference\nPresence\nFormat\nLength\nMessage type\nMessage type9.2\nM\nV\n1\nIMSI\nIMSI\n9.4.1\nM\nTLV\n6-11",
+      "chunk_type": "definition",
+      "cross_references": [
+        "table_8.3.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.405_8.4.1",
+      "section_id": "8.4.1",
+      "section_title": "Message definition",
+      "content": "This message is sent by the SGSN to the RCAF in response to the NqAP-APN-INFORMATION-REQUEST message. Table 8.4.1 shows the content of the NqAP-APN-INFORMATION-RESPONSE message. The Subscriber-Information IE shall be encoded if the cause value in Cause IE is \"Request Accepted\". Multiple instances of the Subscriber-Information IE shall be included if the RCAF had requested APN information for multiple IMSI(s) and if the particular instance of the NqAP-APN-INFORMATION-RESPONSE message carries more than one subscriber's information.\nThe SGSN Name IE shall be included if the cause value in Cause IE is anything other than \"Request Accepted\".\nTable 8.4.1: NqAP-APN-INFORMATION-RESPONSE message content\nInformation element\nType/Reference\nPresence\nFormat\nLength\nMessage type\nMessage type9.2\nM\nV\n1\nCause\nCause\n9.4.6\nM\nTLV\n4\nSubscriber Information\nSubscriber-Information\n9.4.4\nC\nTLV\nVariable\nSGSN Name\nFully Qualified Domain Name (FQDN)\n9.4.7\nC\nTLV\nVariable",
+      "chunk_type": "definition",
+      "cross_references": [
+        "table_8.4.1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.405_9.1",
+      "section_id": "9.1",
+      "section_title": "Overview",
+      "content": "This clause specifies the coding of the information elements used in by the Nq-AP protocol.\nThe spare bits in the coding of an information element shall be set to zero by the sender and shall be ignored by the receiver.",
+      "chunk_type": "definition",
+      "cross_references": []
+    },
+    {
+      "chunk_id": "ts_29.405_9.1.1",
+      "section_id": "9.1.1",
+      "section_title": "Presence requirements for Information Elements",
+      "content": "There are four different presence requirements (Mandatory, Conditional, Conditional-Optional, Optional) for an information element within a given Nq-AP message:\n-\tMandatory means that the IE shall be included by the sending side, and that the receiver diagnoses a \"missing mandatory information element\" error, when detecting that the IE is not present.\n-\tConditional means:\n-\tthat the IE shall be included by sending entity if the conditions specified in the relevant protocol specification are met;\n-\tthe receiver shall check the conditions as specified in the corresponding message type description, based on the parameter combination in the message and/or on the state of the receiving node, to infer if a conditional IE shall be expected. Only if a receiver has sufficient information the following applies. A conditional IE, which is absolutely necessary for the receiving entity to complete the procedure, is missing, then the receiver shall abort the procedure.\n-\tConditional-Optional means:\n-\tthat the IE shall be included by an entity complying with this version of the specification, if the conditions specified are met.\n-\tthe receiver need not check the presence of the IE in the message. If the receiver checks the presence of the Conditional-Optional IE, then the IE's absence shall not trigger any of the error handling procedures. The handling of an absence or erroneous such IEs shall be treated as Optional IEs.\n-\tOptional means:\n-\tthat the IE shall be included as a service option. Therefore, the IE may be included or not in a message. The handling of an absent optional IE, or an erroneous optional IE is specified in subclause 7 \"Error Handling\".\nFor grouped IEs, the presence requirement of the embedded IE shall follow the rules:\n-\tThe grouped IE is Mandatory within a given message: the presence requirements of individual embedded IEs are as stated within the Mandatory grouped IE for the given message.\n-\tThe grouped IE is Conditional within a given message: if the embedded IE in the grouped IE is Mandatory or Conditional, this embedded IE is viewed as Conditional IE by the receiver. If the embedded IE in the grouped IE is Optional, this embedded IE is viewed as Optional IE by the receiver.\n-\tThe grouped IE is Conditional-Optional within a given message: if the embedded IE in the grouped IE is Mandatory or Conditional, this embedded IE is viewed as Conditional-Optional IE by the receiver. If the embedded IE in the grouped IE is Conditional-Optional, this embedded IE is viewed as Optional IE by the receiver. If the embedded IE in the grouped IE is Optional, this embedded IE is viewed as Optional IE by the receiver.-\tThe grouped IE is Optional within a given message: all embedded IEs in the grouped IE are viewed as Optional IEs by the receiver.\nIn all of the above cases, appropriate error handling as described in subclause 7 shall be applied for protocol errors of the embedded IEs.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_7"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.405_9.1.2",
+      "section_id": "9.1.2",
+      "section_title": "Grouped Information Elements",
+      "content": "Information elements can contain other IEs. This type of IE is called \"Grouped IEs\".\nGrouped IEs have a length value in the TLV encoding, which includes the added length of all the embedded IEs. Overall coding of a grouped information element with 3 octets long IE header is defined in subclause 9.3.2 \"Information Element Format\". Each information element within a grouped IE shall also contain a 3-octet long IE header.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_9.3.2"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.405_9.2",
+      "section_id": "9.2",
+      "section_title": "Message Type",
+      "content": "Message type uniquely identifies the message being sent. It is a single octet information element, mandatory in all messages. Table 9.2-1 defines the value part of the Message type information element.\nTable 9.2-1: Message type information element\nMessage Type value\nMessage type\nReference\n0\nReserved\n1\nNqAP-IMSI-APN-INFORMATION-REQUEST\n8.1\n2\nNqAP-IMSI-APN-INFORMATION-RESPONSE\n8.2\n3\nNqAP-APN-INFORMATION-REQUEST\n8.3\n4\nNqAP-APN-INFORMATION-RESPONSE\n8.4\n5-255\nSpare. For future use.",
+      "chunk_type": "general",
+      "cross_references": [
+        "table_9.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.405_9.3.1",
+      "section_id": "9.3.1",
+      "section_title": "Information Element Types",
+      "content": "A Nq-AP message may contain several information elements. Except the Message type IE defined in subclause 9.2, all the other Information Elements shall be TLV (Type, Length, Value) coded. Nq-AP information element type values are specified in the Table 9.3.1-1.\nTable 9.3.1-1: Information Element types for Nq-AP\nIE Type value\n(Decimal)\nInformation elements\nReference\n0\nReserved\n1\nInternational Mobile Subscriber Identity (IMSI)\n9.4.1\n2\nAccess Point Name (APN)\n9.4.2\n3\nRAN Entity Identifier\n9.4.3\n4\nSubscriber-Information\n9.4.4\n5\nRAN Associated Information\n9.4.5\n6\nCause\n9.4.6\n7\nFully Qualified Domain Name (FQDN)\n9.4.7\n8-255\nSpare. For future use.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "clause_9.2",
+        "table_9.3.1-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.405_9.3.2",
+      "section_id": "9.3.2",
+      "section_title": "Information Element Format",
+      "content": "Figure 9.3.2-1 depicts the format of an information element.\nBits\nOctets\n8\n7\n6\n5\n4\n3\n2\n1\n1\nType = xxx (decimal)\n2 to 3\nLength = n\n4 to (n+3)\nIE specific data or content of a grouped IE\nFigure 9.3.2-1: Information Element Format\nAn IE has the following mandatory fields:\n-\tType field: This field indicates the type of Information Element. The valid values of the IE type are defined in clause 9.3.1.\n-\tLength: This field contains the length of the information element excluding the first three octets, which are common for all information elements (Type and Length) and is denoted \"n\" in Figure 9.3.2-1. For all the length fields, bit 8 of the lowest numbered octet is the most significant bit and bit 1 of the highest numbered octet is the least significant bit.",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_9.3.1",
+        "figure_9.3.2-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.405_9.4.1",
+      "section_id": "9.4.1",
+      "section_title": "International Mobile Subscriber Identity (IMSI)",
+      "content": "The International Mobile Subscriber Identity (IMSI) IE represents the IMSI of the subscriber. The sending entity copies the value part of the IMSI into octets 4 to (n+3) of the IMSI IE. IMSI is defined in 3GPP TS 23.003 [5].\nBits\nOctets\n8\n7\n6\n5\n4\n3\n2\n1\n1\nIE Type = 1(decimal)\n2 to 3\nLength = n\n4\nNumber digit 2\nNumber digit 1\n5\nNumber digit 4\nNumber digit 3\n…\n…\n…\nn+3\nNumber digit m\nNumber digit m-1\nFigure 9.4.1-1: IMSI\nOctets 4 to (n+3) represent the IMSI value as described in ITU-T Rec E.212 [9], encoded as TBCD digits, i.e. digits from 0 through 9 are encoded \"0000\" to \"1001\". When there is an odd number of digits, bits 8 to 5 of the last octet are encoded with the filler \"1111\". The maximum number of digits is 15.",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_9.4.1-1",
+        "ts_23.003"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.405_9.4.2",
+      "section_id": "9.4.2",
+      "section_title": "Access Point Name (APN)",
+      "content": "The Access Point Name information element specifies the APN towards which a subscriber has active PDN connection and is coded as shown in figure 9.4.2-1. The encoding the APN field follows 3GPP TS 23.003 [5] subclause 9.1. The content of the APN field shall be the full APN with both the APN Network Identifier and APN Operator Identifier being present as specified in 3GPP TS 23.003 [5] subclauses 9.1.1 and 9.1.2, 3GPP TS 23.060 [3] Annex A and 3GPP TS 23.401 [2] subclause 4.3.8.1.\nNOTE:\tThe APN field is not encoded as a dotted string as commonly used in documentation.\nBits\nOctets\n8\n7\n6\n5\n4\n3\n2\n1\n1\nIE Type = 2(decimal)\n2 to 3\nLength = n\n4 to (n+3)\nAccess Point Name (APN)\nFigure 9.4.2-1: APN",
+      "chunk_type": "general",
+      "cross_references": [
+        "ts_23.003_clause_9.1",
+        "ts_23.060_clause_4.3.8.1",
+        "figure_9.4.2-1",
+        "ts_23.003",
+        "ts_23.060",
+        "ts_23.401"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.405_9.4.3",
+      "section_id": "9.4.3",
+      "section_title": "RAN Entity Identifier",
+      "content": "The RAN Entity Identifier IE represents the location granularity for which subscriber information is provided. The RAN Entity Identifier shall either be a Macro eNodeB ID or a Home eNodeB ID or a E-UTRAN Cell Global Identity. The RAN Entity Identifier is coded as shown in figure 9.4.3-1.\nBits\nOctets\n8\n7\n6\n5\n4\n3\n2\n1\n1\nIE Type = 3 (decimal)\n2 to 3\nLength = n\n4\nRAN Entity Type\n5 to (n+4)\nRAN Entity Value\nFigure 9.4.3-1: RAN Entity Identifier\nThe RAN Entity Type values are given below in Table 9.4.3-1\nTable 9.4.3-1: RAN Entity Type values and their meanings\nRAN Entity Type\nRAN Entity Value (Decimal)\nMacro eNodeB ID\n0\nHome eNodeB ID\n1\nE-UTRAN Cell Global Identity\n2\n<Spare>\n3 to 255\nIf the RAN Entity Type is Macro eNodeB ID then the RAN Entity value shall represent a Macro eNodeB ID. The Macro eNodeB ID is encoded as shown below in Figure 9.4.3-2.\nBits\nOctets\n8\n7\n6\n5\n4\n3\n2\n1\n5\nMCC digit 2\nMCC digit 1\n6\nMNC digit 3\nMCC digit 3\n7\nMNC digit 2\nMNC digit 1\n8\nSpare\nMacro eNodeB ID\n9 to 10\nMacro eNodeB ID\n11 to 12\nTracking Area Code (TAC)\nFigure 9.4.3-2: Encoding of Macro eNodeB as the RAN Entity Value\nThe Macro eNodeB ID consists of 20 bits. Bit 4 of Octet 8 is the most significant bit and bit 1 of Octet 10 is the least significant bit. The coding of the Macro eNodeB ID is the responsibility of each administration. Coding using full hexadecimal representation shall be used.\nIf the RAN Entity Type is Home eNodeB ID then the Home eNodeB ID shall be encoded as the RAN Entity value as shown below in Figure 9.4.3-3.\nBits\nOctets\n8\n7\n6\n5\n4\n3\n2\n1\n5\nMCC digit 2\nMCC digit 1\n6\nMNC digit 3\nMCC digit 3\n7\nMNC digit 2\nMNC digit 1\n8\nSpare\nHome eNodeB ID\n9 to 11\nHome eNodeB ID\n12 to 13\nTracking Area Code (TAC)\nFigure 9.4.3-3: Encoding of Home eNodeB as the RAN Entity Value\nThe Home eNodeB ID consists of 28 bits. See 3GPP TS 36.413 [10]. Bit 4 of Octet 9 is the most significant bit and bit 1 of Octet 12 is the least significant bit. The coding of the Home eNodeB ID is the responsibility of each administration. Coding using full hexadecimal representation shall be used.\nIf the RAN Entity Type is E-UTRAN Cell Global Identity (ECGI) then the ECGI shall be encoded as the RAN Entity value as shown below in Figure 9.4.3-4.\nBits\nOctets\n8\n7\n6\n5\n4\n3\n2\n1\n5\nMCC digit 2\nMCC digit 1\n6\nMNC digit 3\nMCC digit 3\n7\nMNC digit 2\nMNC digit 1\n8\nSpare\nECI\n9 to 11\nECI (E-UTRAN Cell Identifier)\nFigure 9.4.3-4: Encoding of ECGI as the RAN Entity Value\nThe E-UTRAN Cell Identifier (ECI) consists of 28 bits. The ECI field shall start with Bit 4 of octet 8, which is the most significant bit. Bit 1 of Octet 11 is the least significant bit. The coding of the E-UTRAN cell identifier is the responsibility of each administration. Coding using full hexadecimal representation shall be used.",
+      "chunk_type": "parameter",
+      "cross_references": [
+        "table_9.4.3-1",
+        "figure_9.4.3-1",
+        "figure_9.4.3-2",
+        "figure_9.4.3-3",
+        "figure_9.4.3-4",
+        "ts_36.413"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.405_9.4.4",
+      "section_id": "9.4.4",
+      "section_title": "Subscriber-Information",
+      "content": "The Subscriber-Information IE is a grouped IE and it carries the information related to a subscriber (IMSI and APN).\nOctet 1\nIE Type = 4 (decimal)\nOctets 2 and 3\nLength = n\nInformation elements\nP\nCondition / Comment\nIE Type\nIMSI\nM\nIMSI\nAPN\nM\nIf there are more than one APN for which PDN connections are activated for a subscriber, then each APN shall be encoded as a separate instance of the APN IE\nAPN\nFigure 9.4.4-1: Subscriber Information",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_9.4.4-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.405_9.4.5",
+      "section_id": "9.4.5",
+      "section_title": "RAN Associated Information",
+      "content": "The RAN Associated Information IE is a grouped IE and it carries the information related to list of subscribers for a given RAN Entity Identifier.\nOctet 1\nIE Type = 5 (decimal)\nOctets 2 and 3\nLength = n\nInformation elements\nP\nCondition / Comment\nIE Type\nRAN Entity Identifier\nM\nRAN Entity Identifier\nSubscriber Information\nM\nIf there are more than one subscriber under the given RAN Entity Identifier, then each subscriber's information shall be encoded as a separate instance of the Subscriber Information IE\nSubscriber-Information\nFigure 9.4.5-1: RAN Associated Information",
+      "chunk_type": "general",
+      "cross_references": [
+        "figure_9.4.5-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.405_9.4.6",
+      "section_id": "9.4.6",
+      "section_title": "Cause",
+      "content": "The Cause IE shall be used to indicate the RCAF\n-\tSuccess / reason for failure of processing a request message;\nThe Cause IE shall be encoded as specified in figure 9.4.6-1 below.\n.\nBits\nOctets\n8\n7\n6\n5\n4\n3\n2\n1\n1\nIE Type = 6 (decimal)\n2 to 3\nLength = n\n4\nCause value\n5\nType of the offending IE\nFigure 9.4.6-1: Cause\nCause is a variable length IE, which may have either of the following two lengths values:\n-\tIf n = 1, then the Cause IE shall be 4 octets long. Therefore, octet 5 will not be present.\n-\tIf n = 2, then the Cause IE shall be 5 octets long.\nThe Cause value shall be included in a response message. In a response message, the Cause value indicates the acceptance or the rejection of the corresponding request message. The Cause value indicates the explicit reason for the rejection.\nIf the rejection is due to a mandatory IE or a verifiable conditional IE is faulty or missing, the offending IE shall be included in Octet 5.\nThe following table provides the various cause values\nTable 9.4.6-1: Cause values\nCause Type\nCause value\n(decimal)\nMeaning\n0\nReserved. Shall not be sent and if received the Cause shall be treated as an invalid IE\nAcceptance Cause\n1\nRequest Accepted\n2 to 15\nSpare. This value range shall be used for acceptance cause values.\nProtocol Errors\n16\nMandatory IE incorrect\n17\nMandatory IE missing\n18\nConditional IE incorrect\n19\nConditional IE missing\n20\nInvalid length\n21 to 63\nSpare. This value range shall be used by Cause values representing protocol errors.\nCause Codes Representing Status\n64\nMME/SGSN Congested\n65 to 255\nSpare. For Future Use.",
+      "chunk_type": "requirement",
+      "cross_references": [
+        "table_9.4.6-1",
+        "figure_9.4.6-1"
+      ]
+    },
+    {
+      "chunk_id": "ts_29.405_9.4.7",
+      "section_id": "9.4.7",
+      "section_title": "Fully Qualified Domain Name (FQDN)",
+      "content": "Fully Qualified Domain Name (FQDN) is coded as depicted in Figure 9.4.7-1.\nBits\nOctets\n8\n7\n6\n5\n4\n3\n2\n1\n1\nType = 7 (decimal)\n2 to 3\nLength = n\n4 to (n+3)\nFQDN\nFigure 9.4.7-1: Fully Qualified Domain Name (FQDN)\nThe FQDN field encoding shall be identical to the encoding of a FQDN within a DNS message of section 3.1 of IETF RFC 1035 [11] but excluding the trailing zero byte.\nNOTE:\tThe FQDN field in the IE is not encoded as a dotted string as commonly used in DNS master zone files.\nAnnex A (informative):Change history\nChange history\nDate\nMeeting\nTDoc\nCR\nRev\nCat\nSubject/Comment\nNew version\n2014-10\nCT4#66bis\nC4-142063\nTS skeleton\n0.1.0\n2014-10\nCT4#66bis\nC4-142064\nImplementation of C4-142065\n0.1.0\n2014-11\nCT4#67\nC4-142451\nImplementation of C4-142444, C4-142445, C4-142446, C4-142450, C4-142479\n0.2.0\n2015-02\nCT4#68\nC4-150347\nImplementation of C4-150251, C4-150254, C4-150376, C4-150256, C4-150258, C4-150259\n0.3.0\n2015-04\nCT4#68bis\nC4-150680\nImplementation of C4-150713, C4-150649\n0.4.0\n2015-05\nCT4#69\nC4-150982\nImplementation of C4-150830, C4-150873, C4-150981\n0.5.0\n2015-06\nCT#68\nCP-150278\nPresented for information and approval\n1.0.0\n2015-06\nApproved in CT#68\n13.0.0\n2015-12\nCT#70\nCP-150777\n0001\n-\nRegistered port number for Nq-AP\n13.1.0\n2017-03\nCT#75\n-\n-\n-\nUpdate to Rel-14 version (MCC)\n14.0.0\n2018-06\nCT#80\n-\n-\n-\nUpdate to Rel-15 version (MCC)\n15.0.0\n2020-07\nCT#88e\n-\n-\n-\nUpdate to Rel-16 version (MCC)\n16.0.0\n2022-04\n-\n-\n-\n-\n-\nUpdate to Rel-17 version (MCC)\n17.0.0\n2024-03\n-\n-\n-\n-\n-\nUpdate to Rel-18 version (MCC)\n18.0.0",
+      "chunk_type": "general",
+      "cross_references": [
+        "clause_3.1",
+        "figure_9.4.7-1"
+      ]
+    }
+  ]
+}
