@@ -26,12 +26,19 @@ Core Components
    - Term nodes store abbreviation→full_name mappings
    - Initialized via orchestrator.py or KG_builder.ipynb
 
-3. RAG System V2 (rag_system_v2.py)
+3. RAG System V3 (rag_system_v3.py) - ACTIVE
+   - HybridRetriever: Combines Vector Search + Graph Search
+   - SemanticQueryAnalyzer: LLM-based query understanding
+   - QueryExpander: Generate query variations for better recall
+   - PromptTemplates: Intent-specific prompts (7 types)
+   - EnhancedLLMIntegrator: Unified LLM backend (Claude + Ollama)
+
+4. RAG System V2 (rag_system_v2.py) - Legacy
    - CypherQueryGenerator: 8 question types
    - EnhancedKnowledgeRetriever: Neo4j query execution
    - LLMIntegrator: Unified API/local LLM support
 
-4. Web Interface (chatbot_project/)
+5. Web Interface (chatbot_project/)
    - Django 4.2.11
    - RAGManager singleton
    - Routes: / (chat UI), /api/ (JSON API)
@@ -77,13 +84,17 @@ Config: log_config.json
 
 Key Files
 ---------
-orchestrator.py      - System management
-rag_system_v2.py     - RAG core
-term_extractor.py    - Abbreviation extraction
-logging_config.py    - Logging (5 levels)
-cypher_sanitizer.py  - Query security
-log_config.json      - Log config
-.env                 - Environment variables
+orchestrator.py           - System management
+rag_system_v3.py          - RAG V3 (Hybrid) - Active
+rag_system_v2.py          - RAG V2 (Graph-only) - Legacy
+hybrid_retriever.py       - Vector + Graph retrieval
+prompt_templates.py       - Intent-specific prompts
+enhanced_query_processor.py - Advanced query understanding
+term_extractor.py         - Abbreviation extraction
+logging_config.py         - Logging (5 levels)
+cypher_sanitizer.py       - Query security
+log_config.json           - Log config
+.env                      - Environment variables
 
 
 Directory Structure
@@ -91,7 +102,11 @@ Directory Structure
 3GPP/
 ├── .env, .env.example       # Environment config
 ├── orchestrator.py          # System management
-├── rag_system_v2.py         # RAG core
+├── rag_system_v3.py         # RAG V3 (Hybrid) - Active
+├── rag_system_v2.py         # RAG V2 (Graph-only) - Legacy
+├── hybrid_retriever.py      # Vector + Graph retrieval
+├── prompt_templates.py      # Intent-specific prompts
+├── enhanced_query_processor.py # Query understanding
 ├── term_extractor.py        # Abbreviation extraction
 ├── logging_config.py        # Logging
 ├── cypher_sanitizer.py      # Security
@@ -102,13 +117,28 @@ Directory Structure
 │       └── templates/
 ├── document_processing/     # Doc processing
 ├── 3GPP_JSON_DOC/          # Processed data
-├── tests/                   # Test suite
+├── tests/                   # Test suite (196 tests)
 ├── logs/                    # Log files
 └── .md/                     # Documentation
 
 
-Request Flow
-------------
+Request Flow (V3 - Hybrid)
+--------------------------
+1. User sends question via chat UI
+2. Django receives POST /api/
+3. RAGManager.query() called
+4. SemanticQueryAnalyzer analyzes query intent
+5. QueryExpander generates query variations
+6. HybridRetriever executes:
+   - VectorRetriever: semantic similarity search
+   - CypherQueryGenerator: graph traversal search
+7. Results merged and reranked
+8. PromptTemplates selects intent-specific prompt
+9. EnhancedLLMIntegrator generates answer
+10. Response returned to user
+
+Request Flow (V2 - Legacy)
+--------------------------
 1. User sends question via chat UI
 2. Django receives POST /api/
 3. RAGManager.query() called
@@ -118,3 +148,40 @@ Request Flow
 7. Retrieved chunks passed to LLMIntegrator
 8. LLM generates answer with context
 9. Response returned to user
+
+
+RAG V3 Architecture
+-------------------
+```
+User Query
+    │
+    ▼
+SemanticQueryAnalyzer (intent detection)
+    │
+    ▼
+QueryExpander (generate variations)
+    │
+    ▼
+HybridRetriever
+    ├── VectorRetriever (semantic search)
+    │       │
+    │       ▼
+    │   Neo4j Vector Index
+    │
+    └── CypherQueryGenerator (graph search)
+            │
+            ▼
+        Neo4j Knowledge Graph
+    │
+    ▼
+Merger & Reranker (combine results)
+    │
+    ▼
+PromptTemplates (intent-specific prompt)
+    │
+    ▼
+EnhancedLLMIntegrator (Claude/Ollama)
+    │
+    ▼
+RAGResponseV3
+```

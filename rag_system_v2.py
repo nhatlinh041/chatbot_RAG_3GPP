@@ -814,12 +814,15 @@ Generate a Cypher query that:
                 OR (resolved_full_name IS NOT NULL AND toLower(c.content) CONTAINS toLower(resolved_full_name))
             )
             AND (
-                // Prioritize definition/overview sections or sections containing the full term name
-                toLower(c.section_title) CONTAINS 'definition'
+                // Match section_title exactly with entity abbreviation (e.g., section "SCP" for entity SCP)
+                toLower(c.section_title) = toLower('{entity}')
+                // Or section_title contains the full name
+                OR (resolved_full_name IS NOT NULL AND toLower(c.section_title) CONTAINS toLower(resolved_full_name))
+                // Or standard definition/overview sections
+                OR toLower(c.section_title) CONTAINS 'definition'
                 OR toLower(c.section_title) CONTAINS 'overview'
                 OR toLower(c.section_title) CONTAINS 'introduction'
                 OR toLower(c.section_title) CONTAINS 'general'
-                OR (resolved_full_name IS NOT NULL AND toLower(c.section_title) CONTAINS toLower(resolved_full_name))
                 OR c.chunk_type = 'definition'
                 OR c.chunk_type = 'architecture'
             )
@@ -829,13 +832,13 @@ Generate a Cypher query that:
                    c.complexity_score AS complexity_score, c.key_terms AS key_terms,
                    resolved_full_name AS resolved_term, target_specs AS term_sources
             ORDER BY
-                // Prioritize chunks from specs where the term is defined
-                CASE WHEN size(target_specs) > 0 AND c.spec_id IN target_specs THEN 0 ELSE 1 END,
-                // Then by section type relevance
-                CASE WHEN toLower(c.section_title) CONTAINS 'definition' THEN 0
+                // Prioritize section_title matching entity abbreviation exactly (e.g., section "SCP")
+                CASE WHEN toLower(c.section_title) = toLower('{entity}') THEN 0
                      WHEN resolved_full_name IS NOT NULL AND toLower(c.section_title) CONTAINS toLower(resolved_full_name) THEN 1
-                     WHEN toLower(c.section_title) CONTAINS 'overview' THEN 2
-                     ELSE 3 END,
+                     WHEN size(target_specs) > 0 AND c.spec_id IN target_specs THEN 2
+                     WHEN toLower(c.section_title) CONTAINS 'definition' THEN 3
+                     WHEN toLower(c.section_title) CONTAINS 'overview' THEN 4
+                     ELSE 5 END,
                 c.complexity_score ASC
             LIMIT 6
             """
