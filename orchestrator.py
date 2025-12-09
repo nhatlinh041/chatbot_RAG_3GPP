@@ -829,6 +829,33 @@ class Orchestrator:
         else:
             print_status("Not found - create with: python -m venv .venv", "error")
 
+        # Check RAG V3 status
+        print(f"\n{Colors.BOLD}RAG V3 (Hybrid Search):{Colors.RESET}")
+        try:
+            from rag_system_v3 import create_rag_system_v3
+            if self.neo4j.check_connection():
+                rag = create_rag_system_v3()
+                status = rag.check_vector_index_status()
+                rag.close()
+
+                print_status(f"Chunks with embeddings: {status['chunks_with_embeddings']}/{status['total_chunks']}", "info")
+                if status['vector_index_exists']:
+                    print_status("Vector index: exists", "ok")
+                else:
+                    print_status("Vector index: not created", "warn")
+
+                if status['ready_for_hybrid']:
+                    print_status("Hybrid search: READY", "ok")
+                else:
+                    print_status("Hybrid search: NOT READY", "warn")
+                    print_status("Run: python orchestrator.py setup-v3", "info")
+            else:
+                print_status("Cannot check - Neo4j not running", "warn")
+        except ImportError:
+            print_status("RAG V3 not available (missing dependencies)", "warn")
+        except Exception as e:
+            print_status(f"Error checking V3: {e}", "warn")
+
         print()
 
     def init_knowledge_graph(self, clear_first: bool = True):
@@ -950,6 +977,78 @@ class Orchestrator:
         print_header("Starting ngrok")
         return self.django.start_ngrok()
 
+    def setup_rag_v3(self):
+        """Setup RAG V3: create embeddings and vector index"""
+        print_header("RAG V3 Setup - Vector Search")
+
+        # Check Neo4j connection
+        if not self.neo4j.check_connection():
+            print_status("Neo4j is not running. Please start Neo4j first.", "error")
+            print_status("Run: python orchestrator.py start-neo4j", "info")
+            return False
+
+        # Check if KG has data
+        stats = self.neo4j.get_statistics()
+        chunk_count = stats.get('nodes', {}).get('Chunk', 0)
+        if chunk_count == 0:
+            print_status("Knowledge Graph is empty. Initialize KG first.", "error")
+            print_status("Run: python orchestrator.py init-kg", "info")
+            return False
+
+        print_status(f"Found {chunk_count} chunks in Knowledge Graph", "ok")
+        self.neo4j.close()
+
+        # Check sentence-transformers installed
+        try:
+            import sentence_transformers
+            print_status("sentence-transformers is installed", "ok")
+        except ImportError:
+            print_status("sentence-transformers not installed", "error")
+            print_status("Run: pip install sentence-transformers", "info")
+            return False
+
+        # Setup vector search
+        try:
+            from rag_system_v3 import create_rag_system_v3
+
+            print_status("Initializing RAG V3 system...", "info")
+            rag = create_rag_system_v3()
+
+            # Check current status
+            status = rag.check_vector_index_status()
+            print_status(f"Current status:", "info")
+            print_status(f"  Chunks with embeddings: {status['chunks_with_embeddings']}/{status['total_chunks']}", "info")
+            print_status(f"  Vector index exists: {status['vector_index_exists']}", "info")
+
+            if status['ready_for_hybrid']:
+                print_status("Vector search is already setup!", "ok")
+                rag.close()
+                return True
+
+            # Create embeddings and index
+            print_status("Creating embeddings (this may take 10-30 minutes)...", "info")
+            print_status("Progress will be shown below:", "info")
+            print()
+
+            rag.setup_vector_search(batch_size=50)
+
+            # Verify
+            status = rag.check_vector_index_status()
+            if status['ready_for_hybrid']:
+                print_status("Vector search setup complete!", "ok")
+                print_status(f"  Embeddings: {status['chunks_with_embeddings']}/{status['total_chunks']}", "ok")
+                print_status(f"  Vector index: {status['vector_index_exists']}", "ok")
+                rag.close()
+                return True
+            else:
+                print_status("Setup incomplete, please check logs", "error")
+                rag.close()
+                return False
+
+        except Exception as e:
+            print_status(f"Error during setup: {e}", "error")
+            return False
+
     def stop_all(self):
         """Stop all running services"""
         print_header("Stopping All Services")
@@ -1005,6 +1104,7 @@ Commands:
   install     Install dependencies in virtual environment
   start-neo4j Start Neo4j Docker container
   init-kg     Initialize/rebuild knowledge graph from JSON files
+  setup-v3    Setup RAG V3 (create embeddings and vector index)
   run         Start Django chatbot server
   ngrok       Start ngrok tunnels (ngrok start --all)
   all         Start everything: Neo4j, KG (if empty), ngrok, and Django server
@@ -1015,6 +1115,7 @@ Examples:
   python orchestrator.py install
   python orchestrator.py start-neo4j
   python orchestrator.py init-kg
+  python orchestrator.py setup-v3         # Setup vector search for RAG V3
   python orchestrator.py run --port 8080
   python orchestrator.py ngrok
   python orchestrator.py all              # Start all (skip KG init if already populated)
@@ -1025,7 +1126,7 @@ Examples:
 
     parser.add_argument(
         "command",
-        choices=["check", "install", "start-neo4j", "init-kg", "run", "ngrok", "all", "stop"],
+        choices=["check", "install", "start-neo4j", "init-kg", "setup-v3", "run", "ngrok", "all", "stop"],
         help="Command to execute"
     )
     parser.add_argument(
@@ -1067,6 +1168,10 @@ Examples:
 
     elif args.command == "init-kg":
         success = orchestrator.init_knowledge_graph(clear_first=not args.no_clear)
+        sys.exit(0 if success else 1)
+
+    elif args.command == "setup-v3":
+        success = orchestrator.setup_rag_v3()
         sys.exit(0 if success else 1)
 
     elif args.command == "run":

@@ -238,20 +238,11 @@ def main():
                        default='tests/tele_qna_representative_set.json',
                        help='Path to questions JSON file')
     parser.add_argument('--model',
-                       default='claude',
-                       help='Model to use (claude, deepseek-r1:7b, llama3.2, etc.)')
+                       default='deepseek-r1:14b',
+                       help='Model to use (deepseek-r1:14b, claude, deepseek-r1:7b, llama3.2, etc.)')
     parser.add_argument('--output',
                        default='tests/results/tele_qna_benchmark_results.json',
                        help='Output file for detailed results')
-    parser.add_argument('--neo4j-uri',
-                       default='neo4j://localhost:7687',
-                       help='Neo4j connection URI')
-    parser.add_argument('--neo4j-user',
-                       default='neo4j',
-                       help='Neo4j username')
-    parser.add_argument('--neo4j-password',
-                       default='password',
-                       help='Neo4j password')
 
     args = parser.parse_args()
 
@@ -261,6 +252,7 @@ def main():
 
     if not claude_api_key and args.model == 'claude':
         print("ERROR: CLAUDE_API_KEY environment variable not set")
+        print("TIP: Use local models like 'deepseek-r1:14b' to avoid API requirements")
         return 1
 
     # Create output directory if needed
@@ -271,10 +263,7 @@ def main():
     logger.info("Initializing RAG system...")
     rag_system = create_rag_system_v2(
         claude_api_key=claude_api_key,
-        deepseek_api_url=deepseek_api_url,
-        neo4j_uri=args.neo4j_uri,
-        neo4j_user=args.neo4j_user,
-        neo4j_password=args.neo4j_password
+        deepseek_api_url=deepseek_api_url
     )
 
     try:

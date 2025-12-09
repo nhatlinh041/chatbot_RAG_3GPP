@@ -21,6 +21,7 @@ python orchestrator.py check           # Check system status
 python orchestrator.py install         # Install dependencies in venv
 python orchestrator.py start-neo4j     # Start Neo4j Docker container
 python orchestrator.py init-kg         # Initialize knowledge graph
+python orchestrator.py setup-v3        # Setup vector search for RAG V3
 python orchestrator.py run             # Start Django server
 python orchestrator.py ngrok           # Start ngrok tunnels
 python orchestrator.py all             # Start everything: Neo4j, KG (if empty), ngrok, Django
@@ -70,16 +71,22 @@ Note: Orchestrator automatically loads `.env` file on startup.
    - Term nodes store abbreviation→full_name mappings (e.g., SCP→"Service Communication Proxy")
    - Use orchestrator.py for automated initialization
 
-3. **RAG System V2** (`rag_system_v2.py`) - Active version
-   - Entry: `create_rag_system_v2(claude_api_key, deepseek_api_url)`
-   - `CypherQueryGenerator`: Generates queries based on 8 question types (definition, comparison, procedure, reference, network function, relationship, specification, multiple-choice)
-   - `EnhancedKnowledgeRetriever`: Executes queries against Neo4j
-   - `LLMIntegrator`: Unified LLM backend supporting:
-     - API models: Claude (Anthropic API)
-     - Local models: DeepSeek, Llama, etc. (via Ollama)
-   - Uses internal routing to handle different model types
+3. **RAG System V3** (`rag_system_v3.py`) - **Active version**
+   - Entry: `create_rag_system_v3(claude_api_key, local_llm_url)`
+   - `HybridRetriever`: Combines Vector Search + Graph Search
+   - `SemanticQueryAnalyzer`: LLM-based query understanding
+   - `QueryExpander`: Generate query variations for better recall
+   - `PromptTemplates`: Intent-specific prompt templates (7 types)
+   - `EnhancedLLMIntegrator`: Unified LLM backend (Claude API + Ollama)
+   - Features: Hybrid retrieval, reranking, query expansion
 
-4. **Web Interface** (`chatbot_project/`)
+4. **RAG System V2** (`rag_system_v2.py`) - Legacy (still usable)
+   - Graph-only retrieval
+   - `CypherQueryGenerator`: 8 question types
+   - `EnhancedKnowledgeRetriever`: Neo4j query execution
+   - `LLMIntegrator`: Unified LLM backend
+
+5. **Web Interface** (`chatbot_project/`)
    - Django 4.2.11, SQLite for chat history
    - `RAGManager` singleton manages RAG system lifecycle
    - Routes: `/` (chat UI), `/api/` (JSON API)
@@ -111,20 +118,42 @@ safe_term = CypherSanitizer.sanitize_search_term(user_input)
 
 **Adding New Question Types:** Extend `CypherQueryGenerator.query_patterns` dict and add corresponding `_generate_X_query` method
 
-**Using LLM Models:**
+**Using RAG System V3 (Recommended):**
 ```python
-# Create RAG system with both API and local LLM
+from rag_system_v3 import create_rag_system_v3
+
+rag = create_rag_system_v3(
+    claude_api_key="sk-...",
+    local_llm_url="http://192.168.1.14:11434/api/chat"
+)
+
+# First time: setup vector search (10-30 min)
+status = rag.check_vector_index_status()
+if not status['ready_for_hybrid']:
+    rag.setup_vector_search()
+
+# Query with hybrid retrieval
+response = rag.query(
+    "Compare AMF and SMF",
+    model="deepseek-r1:14b",
+    use_hybrid=True,
+    use_vector=True,
+    use_graph=True
+)
+print(response.answer)
+print(f"Strategy: {response.retrieval_strategy}")
+```
+
+**Using RAG System V2 (Legacy):**
+```python
+from rag_system_v2 import create_rag_system_v2
+
 rag = create_rag_system_v2(
     claude_api_key="sk-...",
     deepseek_api_url="http://192.168.1.14:11434/api/chat"
 )
 
-# Use Claude API
-response = rag.query("What is AMF?", model="claude")
-
-# Use local LLM models (Ollama)
-response = rag.query("What is SMF?", model="deepseek-r1:7b")
-response = rag.query("Explain UPF", model="llama3.2")
+response = rag.query("What is AMF?", model="deepseek-r1:7b")
 ```
 
 ## Code Style
@@ -132,14 +161,17 @@ response = rag.query("Explain UPF", model="llama3.2")
 - Comment before code block it describes
 - Create markdown documentation in `.md/` folder for major changes
 - Prefer plain text over heavy formatting in docs
-- should provide mermaid diagrams for coding workflows where applicable in md files
+- Provide mermaid diagrams for coding workflows where applicable in md files
 
 ## Testing
 
 Test suite located in `tests/` folder:
 - `test_cypher_sanitizer.py` - Security and input sanitization tests
 - `test_logging_config.py` - Centralized logging tests
-- `test_rag_system_v2.py` - RAG system component tests
+- `test_rag_system_v2.py` - RAG V2 component tests
+- `test_rag_system_v3.py` - RAG V3 component tests
+- `test_hybrid_retriever.py` - Hybrid retrieval tests (21 tests)
+- `test_prompt_templates.py` - Prompt template tests (25 tests)
 - `test_hybrid_term_extraction.py` - Term extraction tests
 
 Run `pytest tests/ -v` to execute all tests.
@@ -150,7 +182,32 @@ Run `pytest tests/ -v` to execute all tests.
 - Always use local LLM instances for testing to avoid API costs.
 - Always run test suite after major changes.
 - Always update tests file to compatible with new changes but Always need my confirmation before changing test files.
-## Recent Changes (2025-12-07)
+- Do not use rm files or something similar, move all of them to trash folder
+
+## Recent Changes (2025-12-08)
+
+**RAG System V3 (NEW):**
+- `rag_system_v3.py`: Main orchestrator with hybrid retrieval
+- `hybrid_retriever.py`: Vector + Graph search (~750 LOC)
+  - `VectorIndexer`: Create embeddings & Neo4j vector index
+  - `VectorRetriever`: Semantic similarity search
+  - `SemanticQueryAnalyzer`: LLM-based query understanding
+  - `QueryExpander`: Generate query variations
+  - `HybridRetriever`: Combine & rerank results
+- `prompt_templates.py`: 7 intent-specific templates (~400 LOC)
+  - Definition, Comparison, Procedure, Network Function
+  - Relationship, Multiple Choice, General
+- 64 new tests for V3 components
+- See `.md/enhance/rag_system_v3_implementation.md` for details
+
+**Orchestrator Updates:**
+- Added `setup-v3` command for vector search initialization
+- `check` command now shows V3 readiness status
+- `all` command automatically starts Neo4j Docker container
+- Waits for Neo4j to be ready (up to 60 seconds)
+- Starts ngrok tunnels automatically
+
+## Previous Changes (2025-12-07)
 
 **Centralized Logging System:**
 - 5 custom log levels: CRITICAL > ERROR > MAJOR > MINOR > DEBUG
@@ -159,13 +216,6 @@ Run `pytest tests/ -v` to execute all tests.
 - All logs to `logs/app.log`
 - See `.md/logging_system.md` for details
 
-**Orchestrator Updates:**
-- `all` command now automatically starts Neo4j Docker container if not running
-- Waits for Neo4j to be ready (up to 60 seconds)
-- Waits for KG initialization to complete before starting Django
-- Starts ngrok tunnels automatically
-- Use `--init-kg` flag to force KG re-initialization
-
 **LLM Integrator Refactoring:**
 - Unified `LLMIntegrator` class replaces separate `ClaudeIntegrator` and `DeepSeekIntegrator`
 - Single class handles both API-based (Claude) and local LLM (Ollama) models
@@ -173,7 +223,7 @@ Run `pytest tests/ -v` to execute all tests.
 - Removed ~150 lines of duplicate code
 - See `.md/llm_integrator_unified.md` for details
 
-**Term Node System (NEW):**
+**Term Node System:**
 - `term_extractor.py`: Extracts abbreviations from 3GPP abbreviation sections
 - `TermNodeBuilder` in `KG_builder.ipynb`: Creates Term nodes in Neo4j
 - Definition/comparison queries now resolve abbreviations via Term nodes first
@@ -184,4 +234,26 @@ Run `pytest tests/ -v` to execute all tests.
 
 - REFERENCES_CHUNK relationships may be missing (run ReferencesFixer in `KG_builder.ipynb` to fix)
 - DeepSeek endpoint defaults to local Ollama instance (192.168.1.14:11434)
-- Term nodes need to be created after KG initialization (run TermNodeBuilder cells in KG_builder.ipynb)
+- Vector search requires Neo4j 5.11+ for vector index support
+
+## File Structure
+
+```
+3GPP/
+├── orchestrator.py          # System orchestrator
+├── rag_system_v3.py         # RAG V3 (Hybrid) - Active
+├── rag_system_v2.py         # RAG V2 (Graph-only) - Legacy
+├── hybrid_retriever.py      # Vector + Graph retrieval
+├── prompt_templates.py      # Intent-specific prompts
+├── cypher_sanitizer.py      # Query security
+├── term_extractor.py        # Abbreviation extraction
+├── logging_config.py        # Centralized logging
+├── log_config.json          # Log configuration
+├── .env                     # Environment variables
+├── chatbot_project/         # Django web app
+├── document_processing/     # Document processing
+├── 3GPP_JSON_DOC/          # Processed JSON files
+├── tests/                   # Test suite (64+ tests)
+├── logs/                    # Log files
+└── .md/                     # Documentation
+```
