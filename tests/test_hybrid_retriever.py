@@ -63,6 +63,44 @@ class TestScoredChunk:
 
         assert chunk.reference_path == []
 
+    def test_scored_chunk_subject_fields(self):
+        """Test that subject fields are properly set"""
+        chunk = ScoredChunk(
+            chunk_id="test",
+            spec_id="ts_23.501",
+            section_id="1",
+            section_title="Test",
+            content="Test content",
+            chunk_type="general",
+            complexity_score=0.0,
+            key_terms=[],
+            retrieval_score=0.5,
+            retrieval_method="graph",
+            subject="Lexicon",
+            subject_confidence=0.95
+        )
+
+        assert chunk.subject == "Lexicon"
+        assert chunk.subject_confidence == 0.95
+
+    def test_scored_chunk_default_subject(self):
+        """Test that subject defaults to empty string"""
+        chunk = ScoredChunk(
+            chunk_id="test",
+            spec_id="ts_23.501",
+            section_id="1",
+            section_title="Test",
+            content="Test content",
+            chunk_type="general",
+            complexity_score=0.0,
+            key_terms=[],
+            retrieval_score=0.5,
+            retrieval_method="graph"
+        )
+
+        assert chunk.subject == ""
+        assert chunk.subject_confidence == 0.0
+
 
 # ============================================================
 # QueryExpander Tests
@@ -281,7 +319,7 @@ class TestVectorRetriever:
         """Test that search returns ScoredChunk objects"""
         session = mock_driver.session.return_value.__enter__.return_value
 
-        # Mock query results
+        # Mock query results with subject fields
         mock_record = {
             'chunk_id': 'test_001',
             'spec_id': 'ts_23.501',
@@ -291,7 +329,9 @@ class TestVectorRetriever:
             'chunk_type': 'definition',
             'complexity_score': 0.5,
             'key_terms': ['AMF'],
-            'score': 0.9
+            'score': 0.9,
+            'subject': 'Standards specifications',
+            'subject_confidence': 0.8
         }
         session.run.return_value = [mock_record]
 
@@ -308,6 +348,8 @@ class TestVectorRetriever:
             assert len(results) == 1
             assert isinstance(results[0], ScoredChunk)
             assert results[0].retrieval_method == 'vector'
+            assert results[0].subject == 'Standards specifications'
+            assert results[0].subject_confidence == 0.8
 
 
 # ============================================================
@@ -412,6 +454,53 @@ class TestHybridRetriever:
         # chunk_001 should now be higher
         assert chunks["chunk_001"].retrieval_score > chunks["chunk_002"].retrieval_score
 
+    def test_rerank_with_subject_boost(self):
+        """Test that subject boost properly affects ranking"""
+        from subject_classifier import Subject
+
+        chunks = {
+            "chunk_001": ScoredChunk(
+                chunk_id="chunk_001",
+                spec_id="ts_23.501",
+                section_id="1",
+                section_title="Abbreviations",
+                content="AMF: Access and Mobility Management Function",
+                chunk_type="abbreviation",
+                complexity_score=0.5,
+                key_terms=[],
+                retrieval_score=0.7,
+                retrieval_method="vector",
+                subject="Lexicon",
+                subject_confidence=0.95
+            ),
+            "chunk_002": ScoredChunk(
+                chunk_id="chunk_002",
+                spec_id="ts_23.501",
+                section_id="2",
+                section_title="Procedures",
+                content="Registration procedure",
+                chunk_type="procedure",
+                complexity_score=0.5,
+                key_terms=[],
+                retrieval_score=0.8,
+                retrieval_method="vector",
+                subject="Standards specifications",
+                subject_confidence=0.85
+            )
+        }
+
+        # Simulate subject boost for Lexicon query (like "What does AMF stand for?")
+        expected_subjects = [(Subject.LEXICON, 1.5), (Subject.STANDARDS_SPECIFICATIONS, 1.2)]
+
+        for chunk in chunks.values():
+            for subject, weight in expected_subjects:
+                if chunk.subject == subject.value:
+                    chunk.retrieval_score *= weight
+                    break
+
+        # Lexicon chunk should now be higher due to 1.5x boost
+        assert chunks["chunk_001"].retrieval_score > chunks["chunk_002"].retrieval_score
+
 
 # ============================================================
 # Integration Tests (require Neo4j)
@@ -452,7 +541,8 @@ class TestHybridRetrieverIntegration:
                 use_vector=False,  # Skip vector if not setup
                 use_graph=True,
                 use_query_expansion=True,
-                use_llm_analysis=False
+                use_llm_analysis=False,
+                use_subject_boost=True
             )
 
             assert isinstance(chunks, list)

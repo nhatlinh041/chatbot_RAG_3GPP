@@ -350,8 +350,10 @@ The AMF handles mobility management and registration procedures.
         )
 
         assert "multiple choice" in prompt.lower()
-        assert "correct" in prompt.lower()
-        assert "Explanation" in prompt
+        # Check for new MCQ prompt format requirements
+        assert "Answer:" in prompt  # New format instruction
+        assert "FIRST LINE MUST BE" in prompt  # Format enforcement
+        assert "brief explanation" in prompt.lower()  # Explanation instruction
 
     def test_prompts_include_context(self, sample_context):
         """Test that all prompts include the context"""

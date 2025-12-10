@@ -1,26 +1,29 @@
 """
-RAG System V2 for 3GPP Knowledge Graph.
-Provides dynamic Cypher query generation and LLM-powered Q&A.
+RAG Core Components - Shared classes for RAG systems.
+Contains dataclasses and base classes used by both V2 (legacy) and V3 (active).
 """
 import json
 import re
-from typing import List, Dict, Optional, Set
+from typing import List, Dict, Optional
 from neo4j import GraphDatabase
-from pathlib import Path
 import anthropic
 import requests
 from dataclasses import dataclass
 from datetime import datetime
 from logging_config import setup_centralized_logging, get_logger, CRITICAL, ERROR, MAJOR, MINOR, DEBUG
-from cypher_sanitizer import CypherSanitizer, create_safe_cypher_query
+from cypher_sanitizer import CypherSanitizer
 
 # Initialize logging
 setup_centralized_logging()
-logger = get_logger('RAG_System')
+logger = get_logger('RAG_Core')
 
 
 @dataclass
 class RetrievedChunk:
+    """
+    Data structure for a retrieved chunk from Neo4j.
+    Used by both V2 and V3 RAG systems.
+    """
     chunk_id: str
     spec_id: str
     section_id: str
@@ -34,6 +37,10 @@ class RetrievedChunk:
 
 @dataclass
 class RAGResponse:
+    """
+    Response structure for V2 RAG queries.
+    Note: V3 uses RAGResponseV3 with additional metadata.
+    """
     answer: str
     sources: List[RetrievedChunk]
     query: str
@@ -46,6 +53,8 @@ class LLMIntegrator:
     """
     Unified LLM integrator supporting API-based (Claude) and local LLM (Ollama) models.
     Routes requests to appropriate backend based on model parameter.
+
+    Used as base class for enhanced LLM integrators in V3.
     """
 
     def __init__(self, claude_api_key: str = None, local_llm_url: str = "http://192.168.1.14:11434/api/chat"):
@@ -786,8 +795,9 @@ Generate a Cypher query that:
         Generate query for definition questions using Term nodes.
         Multi-stage retrieval:
         1. Resolve abbreviation via Term nodes to get full name and source specs
-        2. Search for content in relevant specs with full name
-        3. Fallback to general search if no Term found
+        2. Search for content that actually defines the term (not just mentions it)
+        3. Prioritize chunks with both abbreviation and full name (strong signal of definition)
+        4. Fallback to general search if no Term found
         """
         analysis = CypherSanitizer.sanitize_question_analysis(analysis)
         entities = analysis['entities']
@@ -806,25 +816,51 @@ Generate a Cypher query that:
                  CASE WHEN t IS NOT NULL THEN t.source_specs ELSE [] END AS target_specs,
                  CASE WHEN t IS NOT NULL THEN t.full_name ELSE null END AS resolved_full_name
 
-            // Stage 2: Search for definition content
+            // Stage 2: Calculate relevance signals first
             MATCH (c:Chunk)
             WHERE (
-                // Search using both abbreviation and full name
+                // Must contain the abbreviation or full name
                 toLower(c.content) CONTAINS toLower('{entity}')
                 OR (resolved_full_name IS NOT NULL AND toLower(c.content) CONTAINS toLower(resolved_full_name))
             )
-            AND (
-                // Match section_title exactly with entity abbreviation (e.g., section "SCP" for entity SCP)
-                toLower(c.section_title) = toLower('{entity}')
-                // Or section_title contains the full name
+
+            // Calculate content relevance score
+            WITH c, resolved_full_name, target_specs,
+                 // Check if content has both abbreviation and full name (strong definitional signal)
+                 CASE WHEN resolved_full_name IS NOT NULL
+                           AND toLower(c.content) CONTAINS toLower('{entity}')
+                           AND toLower(c.content) CONTAINS toLower(resolved_full_name)
+                      THEN 1
+                      ELSE 0
+                 END AS has_both_forms,
+                 // Check for definitional keywords near the term
+                 CASE WHEN toLower(c.content) CONTAINS 'refers to'
+                           OR toLower(c.content) CONTAINS 'is a'
+                           OR toLower(c.content) CONTAINS 'is the'
+                           OR toLower(c.content) CONTAINS 'defined as'
+                           OR toLower(c.content) CONTAINS 'represents'
+                      THEN 1
+                      ELSE 0
+                 END AS has_definition_keywords
+
+            // Filter: Include chunk if it matches any of these criteria
+            WHERE (
+                // Strong signal: Has both forms + definitional keywords
+                (has_both_forms = 1 AND has_definition_keywords = 1)
+                // Section title exactly matches entity
+                OR toLower(c.section_title) = toLower('{entity}')
+                // Section title contains full name
                 OR (resolved_full_name IS NOT NULL AND toLower(c.section_title) CONTAINS toLower(resolved_full_name))
-                // Or standard definition/overview sections
-                OR toLower(c.section_title) CONTAINS 'definition'
+                // Chunk type is definition/architecture
+                OR c.chunk_type = 'definition'
+                OR c.chunk_type = 'architecture'
+                // Has both forms (abbreviation + full name)
+                OR has_both_forms = 1
+                // Standard definition/overview sections
                 OR toLower(c.section_title) CONTAINS 'overview'
                 OR toLower(c.section_title) CONTAINS 'introduction'
                 OR toLower(c.section_title) CONTAINS 'general'
-                OR c.chunk_type = 'definition'
-                OR c.chunk_type = 'architecture'
+                OR toLower(c.section_title) CONTAINS 'definition'
             )
 
             RETURN c.chunk_id AS chunk_id, c.spec_id AS spec_id, c.section_id AS section_id,
@@ -832,13 +868,31 @@ Generate a Cypher query that:
                    c.complexity_score AS complexity_score, c.key_terms AS key_terms,
                    resolved_full_name AS resolved_term, target_specs AS term_sources
             ORDER BY
-                // Prioritize section_title matching entity abbreviation exactly (e.g., section "SCP")
-                CASE WHEN toLower(c.section_title) = toLower('{entity}') THEN 0
-                     WHEN resolved_full_name IS NOT NULL AND toLower(c.section_title) CONTAINS toLower(resolved_full_name) THEN 1
-                     WHEN size(target_specs) > 0 AND c.spec_id IN target_specs THEN 2
-                     WHEN toLower(c.section_title) CONTAINS 'definition' THEN 3
-                     WHEN toLower(c.section_title) CONTAINS 'overview' THEN 4
-                     ELSE 5 END,
+                // Priority 0: Section title matches entity exactly + has both forms
+                CASE WHEN toLower(c.section_title) = toLower('{entity}') AND has_both_forms = 1 THEN 0
+                     // Priority 1: Section title contains full name + has both forms
+                     WHEN resolved_full_name IS NOT NULL
+                          AND toLower(c.section_title) CONTAINS toLower(resolved_full_name)
+                          AND has_both_forms = 1 THEN 1
+                     // Priority 2: Has both forms + definitional keywords (STRONGEST signal)
+                     WHEN has_both_forms = 1 AND has_definition_keywords = 1 THEN 2
+                     // Priority 3: Has both abbreviation and full name in content
+                     WHEN has_both_forms = 1 THEN 3
+                     // Priority 4: Has definitional keywords
+                     WHEN has_definition_keywords = 1 THEN 4
+                     // Priority 5: Section title matches entity exactly
+                     WHEN toLower(c.section_title) = toLower('{entity}') THEN 5
+                     // Priority 6: Section title contains full name
+                     WHEN resolved_full_name IS NOT NULL AND toLower(c.section_title) CONTAINS toLower(resolved_full_name) THEN 6
+                     // Priority 7: Chunk type is definition or architecture
+                     WHEN c.chunk_type = 'definition' OR c.chunk_type = 'architecture' THEN 7
+                     // Priority 8: Section title contains 'overview' or 'introduction'
+                     WHEN toLower(c.section_title) CONTAINS 'overview'
+                          OR toLower(c.section_title) CONTAINS 'introduction' THEN 8
+                     // Priority 9: Generic 'definition' sections (low priority to avoid false matches)
+                     WHEN toLower(c.section_title) CONTAINS 'definition' THEN 9
+                     // Priority 10: Everything else
+                     ELSE 10 END,
                 c.complexity_score ASC
             LIMIT 6
             """
@@ -1053,328 +1107,16 @@ Generate a Cypher query that:
             """
 
 
-class EnhancedKnowledgeRetriever:
-    """
-    Retrieves knowledge from Neo4j using dynamically generated Cypher queries.
-    Includes fallback search on query failures.
-    Supports both rule-based and LLM-based query generation.
-    """
-
-    def __init__(self, neo4j_uri: str, neo4j_user: str, neo4j_password: str, local_llm_url: str = None):
-        """Initialize Neo4j connection and query generator"""
-        self.logger = get_logger('Knowledge_Retriever')
-        self.logger.log(MAJOR, f"Initializing Knowledge Retriever - URI: {neo4j_uri}")
-
-        self.driver = GraphDatabase.driver(neo4j_uri, auth=(neo4j_user, neo4j_password))
-
-        # Pass driver and LLM URL to generator for dynamic entity loading and LLM-based generation
-        self.cypher_generator = CypherQueryGenerator(neo4j_driver=self.driver, local_llm_url=local_llm_url)
-
-        self.logger.log(MAJOR, "Knowledge Retriever ready")
-
-    def close(self):
-        """Close Neo4j connection"""
-        self.driver.close()
-        self.logger.log(MINOR, "Neo4j connection closed")
-
-    def _execute_comparison_retrieval(self, entity1: str, entity2: str) -> List[RetrievedChunk]:
-        """
-        Execute multi-step retrieval for comparison questions.
-
-        Steps:
-        1. Get Term definition for entity1
-        2. Get Term definition for entity2
-        3. Get function/role chunks for entity1
-        4. Get function/role chunks for entity2
-        """
-        self.logger.log(MINOR, f"Multi-step comparison retrieval: {entity1} vs {entity2}")
-        chunks = []
-
-        with self.driver.session() as session:
-            # Step 1 & 2: Get Term definitions
-            for entity in [entity1, entity2]:
-                result = session.run("""
-                    MATCH (t:Term {abbreviation: $abbr})
-                    RETURN t.abbreviation AS abbr, t.full_name AS full_name,
-                           t.source_specs AS specs, t.primary_spec AS primary_spec
-                """, abbr=entity)
-
-                record = result.single()
-                if record:
-                    # Create a synthetic chunk with Term definition
-                    term_content = f"{record['abbr']}: {record['full_name']}\n"
-                    term_content += f"Defined in: {record['primary_spec']}\n"
-                    term_content += f"Also referenced in: {', '.join(record['specs'][:5])}"
-
-                    chunks.append(RetrievedChunk(
-                        chunk_id=f"term_{entity}",
-                        spec_id=record['primary_spec'] or "",
-                        section_id="term_definition",
-                        section_title=f"Definition of {entity}",
-                        content=term_content,
-                        chunk_type="term_definition",
-                        complexity_score=0.1,
-                        key_terms=[entity, record['full_name']],
-                        reference_path=[]
-                    ))
-
-            # Step 3 & 4: Get function/role chunks for each entity
-            for entity in [entity1, entity2]:
-                # Simple query - find chunks about this entity's function/role
-                result = session.run("""
-                    MATCH (c:Chunk)
-                    WHERE toLower(c.content) CONTAINS toLower($entity)
-                    AND (
-                        toLower(c.section_title) CONTAINS 'function'
-                        OR toLower(c.section_title) CONTAINS 'overview'
-                        OR toLower(c.section_title) CONTAINS 'architecture'
-                        OR toLower(c.section_title) CONTAINS 'role'
-                        OR toLower(c.section_title) CONTAINS 'description'
-                        OR c.chunk_type IN ['definition', 'architecture', 'overview']
-                    )
-                    RETURN c.chunk_id, c.spec_id, c.section_id, c.section_title,
-                           c.content, c.chunk_type, c.complexity_score, c.key_terms
-                    ORDER BY c.complexity_score ASC
-                    LIMIT 3
-                """, entity=entity)
-
-                records = list(result)
-                self.logger.log(MINOR, f"Found {len(records)} function chunks for {entity}")
-
-                for record in records:
-                    # Neo4j returns keys with 'c.' prefix when using RETURN c.field
-                    chunks.append(RetrievedChunk(
-                        chunk_id=record.get("c.chunk_id", ""),
-                        spec_id=record.get("c.spec_id", ""),
-                        section_id=record.get("c.section_id", ""),
-                        section_title=record.get("c.section_title", ""),
-                        content=record.get("c.content", ""),
-                        chunk_type=record.get("c.chunk_type", ""),
-                        complexity_score=record.get("c.complexity_score", 0.0),
-                        key_terms=record.get("c.key_terms", []),
-                        reference_path=[]
-                    ))
-
-        self.logger.log(MAJOR, f"Comparison retrieval: {len(chunks)} chunks for {entity1} vs {entity2}")
-        return chunks
-
-    def retrieve_with_cypher(self, question: str, use_llm: bool = False, llm_model: str = "deepseek-r1:7b") -> tuple[List[RetrievedChunk], str, str]:
-        """
-        Retrieve relevant chunks using dynamic Cypher query.
-        Falls back to simple search on query failure.
-
-        Args:
-            question: User's question
-            use_llm: If True, uses LocalLM for analysis and query generation
-            llm_model: Model to use for LLM-based operations
-        """
-        self.logger.log(MAJOR, f"Retrieving for: {question[:60]}... (LLM mode: {use_llm})")
-
-        # Analyze and generate query (optionally using LLM)
-        analysis = self.cypher_generator.analyze_question(question, use_llm=use_llm, llm_model=llm_model)
-        cypher_query = self.cypher_generator.generate_cypher_query(question, analysis, use_llm=use_llm, llm_model=llm_model)
-
-        # Check for multi-step comparison marker
-        if cypher_query.startswith("COMPARISON_MULTI_STEP:"):
-            parts = cypher_query.split(":")
-            if len(parts) >= 3:
-                entity1, entity2 = parts[1], parts[2]
-                chunks = self._execute_comparison_retrieval(entity1, entity2)
-                strategy = f"comparison multi-step - {len(chunks)} chunks for {entity1} vs {entity2}"
-                return chunks, f"Multi-step: {entity1} vs {entity2}", strategy
-
-        # Execute regular query
-        retrieved_chunks = []
-        with self.driver.session() as session:
-            try:
-                # Validate query safety
-                if not CypherSanitizer.validate_query_safety(cypher_query):
-                    raise ValueError("Query contains potentially dangerous patterns")
-
-                self.logger.log(MINOR, "Executing Cypher query")
-                result = session.run(cypher_query)
-
-                # Process results
-                for record in result:
-                    chunk = RetrievedChunk(
-                        chunk_id=record.get("chunk_id", ""),
-                        spec_id=record.get("spec_id", ""),
-                        section_id=record.get("section_id", ""),
-                        section_title=record.get("section_title", ""),
-                        content=record.get("content", ""),
-                        chunk_type=record.get("chunk_type", ""),
-                        complexity_score=record.get("complexity_score", 0.0),
-                        key_terms=record.get("key_terms", []),
-                        reference_path=record.get("referenced_specs", [])
-                    )
-                    retrieved_chunks.append(chunk)
-
-                self.logger.log(MAJOR, f"Retrieved {len(retrieved_chunks)} chunks")
-
-            except Exception as e:
-                self.logger.log(ERROR, f"Query execution failed: {e}")
-                self.logger.log(MINOR, "Falling back to simple search")
-
-                # Fallback query
-                fallback_query = f"""
-                MATCH (c:Chunk)
-                WHERE toLower(c.content) CONTAINS toLower($search_term)
-                RETURN c.chunk_id, c.spec_id, c.section_id, c.section_title,
-                       c.content, c.chunk_type, c.complexity_score, c.key_terms
-                ORDER BY c.complexity_score DESC
-                LIMIT 5
-                """
-
-                search_term = analysis.get('key_terms', ['system'])[0] if analysis.get('key_terms') else 'system'
-                safe_search_term = CypherSanitizer.sanitize_search_term(search_term)
-                self.logger.log(DEBUG, f"Fallback search term: {safe_search_term}")
-
-                result = session.run(fallback_query, search_term=safe_search_term)
-
-                for record in result:
-                    chunk = RetrievedChunk(
-                        chunk_id=record.get("chunk_id", ""),
-                        spec_id=record.get("spec_id", ""),
-                        section_id=record.get("section_id", ""),
-                        section_title=record.get("section_title", ""),
-                        content=record.get("content", ""),
-                        chunk_type=record.get("chunk_type", ""),
-                        complexity_score=record.get("complexity_score", 0.0),
-                        key_terms=record.get("key_terms", []),
-                        reference_path=[]
-                    )
-                    retrieved_chunks.append(chunk)
-
-                self.logger.log(MAJOR, f"Fallback retrieved {len(retrieved_chunks)} chunks")
-                cypher_query = fallback_query
-
-        strategy = f"{analysis['question_type']} query - {len(retrieved_chunks)} chunks"
-        return retrieved_chunks, cypher_query, strategy
-
-
-class RAGOrchestratorV2:
-    """
-    Main RAG orchestrator coordinating retrieval and LLM generation.
-    Entry point for RAG queries.
-    Supports both rule-based and LLM-based query generation.
-    """
-
-    def __init__(self, neo4j_uri: str, neo4j_user: str, neo4j_password: str,
-                 claude_api_key: str = None, deepseek_api_url: str = None):
-        """Initialize retriever and LLM integrator"""
-        self.logger = get_logger('RAG_System')
-        self.logger.log(MAJOR, "Initializing RAG Orchestrator V2")
-
-        local_llm_url = deepseek_api_url if deepseek_api_url else "http://192.168.1.14:11434/api/chat"
-
-        # Pass LLM URL to retriever for LLM-based query generation
-        self.retriever = EnhancedKnowledgeRetriever(neo4j_uri, neo4j_user, neo4j_password, local_llm_url=local_llm_url)
-        self.llm_integrator = LLMIntegrator(
-            claude_api_key=claude_api_key,
-            local_llm_url=local_llm_url
-        )
-
-        self.logger.log(MAJOR, "RAG Orchestrator V2 ready")
-
-    def close(self):
-        """Clean up resources"""
-        self.retriever.close()
-        self.logger.log(MINOR, "RAG Orchestrator closed")
-
-    def query(self, question: str, model: str = "claude", use_llm_query: bool = False, query_llm_model: str = "deepseek-r1:7b") -> RAGResponse:
-        """
-        Process RAG query: retrieve knowledge and generate answer.
-
-        Args:
-            question: User's question
-            model: LLM model for answer generation ("claude" or local model name like "deepseek-r1:7b")
-            use_llm_query: If True, uses LocalLM for question analysis and Cypher generation
-            query_llm_model: Model to use for LLM-based query generation
-        """
-        self.logger.log(MAJOR, f"RAG query - model: {model}, use_llm_query: {use_llm_query}")
-        self.logger.log(MINOR, f"Question: {question[:80]}...")
-
-        # Retrieve relevant knowledge (optionally using LLM for query generation)
-        retrieved_chunks, cypher_query, strategy = self.retriever.retrieve_with_cypher(
-            question, use_llm=use_llm_query, llm_model=query_llm_model
-        )
-
-        # Handle empty results
-        if not retrieved_chunks:
-            self.logger.log(ERROR, "No relevant information found")
-            return RAGResponse(
-                answer="No relevant information found in the knowledge base.",
-                sources=[],
-                query=question,
-                cypher_query=cypher_query,
-                retrieval_strategy=strategy,
-                timestamp=datetime.now()
-            )
-
-        # Generate answer
-        answer = self.llm_integrator.generate_answer(question, retrieved_chunks, cypher_query, model)
-
-        self.logger.log(MAJOR, "RAG query completed")
-        return RAGResponse(
-            answer=answer,
-            sources=retrieved_chunks,
-            query=question,
-            cypher_query=cypher_query,
-            retrieval_strategy=strategy,
-            timestamp=datetime.now()
-        )
-
-    def explain_query_strategy(self, question: str) -> Dict:
-        """Explain the query strategy for a given question (for debugging)"""
-        analysis = self.retriever.cypher_generator.analyze_question(question)
-        cypher_query = self.retriever.cypher_generator.generate_cypher_query(question, analysis)
-
-        return {
-            "question": question,
-            "analysis": analysis,
-            "cypher_query": cypher_query,
-            "strategy_explanation": f"This is a {analysis['question_type']} question about {', '.join([e['value'] for e in analysis['entities']])}"
-        }
-
-
-class RAGConfigV2:
-    """Default configuration for RAG system"""
-
-    def __init__(self):
-        self.neo4j_uri = "neo4j://localhost:7687"
-        self.neo4j_user = "neo4j"
-        self.neo4j_password = "password"
-        self.claude_api_key = None
-
-
-def create_rag_system_v2(claude_api_key: str = None, deepseek_api_url: str = None) -> RAGOrchestratorV2:
-    """
-    Factory function to create configured RAG system.
-
-    Args:
-        claude_api_key: Anthropic API key for Claude
-        deepseek_api_url: URL for local Ollama LLM
-    """
-    logger.log(MAJOR, "Creating RAG system V2")
-    config = RAGConfigV2()
-    if claude_api_key:
-        config.claude_api_key = claude_api_key
-
-    return RAGOrchestratorV2(
-        neo4j_uri=config.neo4j_uri,
-        neo4j_user=config.neo4j_user,
-        neo4j_password=config.neo4j_password,
-        claude_api_key=config.claude_api_key,
-        deepseek_api_url=deepseek_api_url
-    )
-
-
 if __name__ == "__main__":
-    print("RAG System V2 loaded successfully!")
-    print("Features:")
-    print("- Dynamic Cypher query generation based on question context")
-    print("- Enhanced knowledge retrieval with complexity scoring")
-    print("- Multiple choice question handling")
-    print("- Cross-reference analysis")
-    print("- Support for Claude and local LLM models")
-    print("\nTo use: rag_system = create_rag_system_v2('your-claude-api-key')")
+    print("RAG Core Components")
+    print("=" * 60)
+    print()
+    print("Shared classes for RAG systems:")
+    print("- RetrievedChunk: Retrieved content data structure")
+    print("- RAGResponse: V2 response structure")
+    print("- LLMIntegrator: Unified LLM backend (Claude API + Ollama)")
+    print("- CypherQueryGenerator: Cypher query generation (8 question types)")
+    print()
+    print("Usage:")
+    print("  from rag_core import LLMIntegrator, CypherQueryGenerator")
+    print()

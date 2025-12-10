@@ -1,7 +1,7 @@
 TELE QNA BENCHMARK - QUICK START
 =================================
 
-Test the RAG system against 25 representative telecom questions
+Test the RAG system against 95 representative telecom questions across 9 categories.
 
 SETUP
 -----
@@ -15,41 +15,51 @@ SETUP
 BASIC USAGE
 -----------
 
-# Run full benchmark (25 questions)
-python run_tele_qna_benchmark.py
+# Run full benchmark (95 questions)
+python tests/benchmark/run_tele_qna_benchmark.py
 
-# Quick test (first 5 questions)
-python run_tele_qna_benchmark.py --limit 5
+# Use specific model
+python tests/benchmark/run_tele_qna_benchmark.py --model deepseek-r1:14b
 
-# Use local LLM instead of Claude
-python run_tele_qna_benchmark.py --model deepseek-r1:7b
+# Run specific category
+python tests/benchmark/run_tele_qna_benchmark.py --category Definition
 
-# Quiet mode (summary only)
-python run_tele_qna_benchmark.py --quiet
+# Custom output file
+python tests/benchmark/run_tele_qna_benchmark.py --output my_results.json
 
 FILES
 -----
 
-run_tele_qna_benchmark.py              - Standalone test runner
-tests/test_tele_qna_benchmark.py       - Pytest-compatible version
-tests/tele_qna_representative_set.json - 25 test questions
-tests/results/benchmark_results.json   - Output results (created after run)
+tests/benchmark/
+├── run_tele_qna_benchmark.py              - Benchmark runner script
+├── tele_qna_benchmark_comprehensive.json  - 95 benchmark questions
+├── benchmark_results_latest.json          - Latest results
+└── __init__.py                            - Module init
+
+tests/
+├── test_mcq_extraction.py                 - MCQ extraction tests
+├── test_mcq_llm_integration.py            - MCQ LLM integration tests
+└── tele_qna_representative_set.json       - Alternative test set
 
 EXAMPLE OUTPUT
 --------------
 
 Overall Results:
-  Total Questions:     25
-  Correct:             20 (80.0%)
-  Incorrect:           4
-  Failed:              1
-  Total Time:          45.67s
-  Avg Time/Question:   1.83s
+  Total Questions:     95
+  Correct:             80 (84.21%)
+  Incorrect:           15
+  Total Time:          ~20 min
 
-Accuracy by Subject:
-  Standards specifications       11/13 ( 84.6%)
-  Lexicon                         7/ 8 ( 87.5%)
-  Standards overview              2/ 3 ( 66.7%)
+Accuracy by Category:
+  Use Case/Application       10/10 (100.0%)
+  Network Function           11/11 (100.0%)
+  Definition                 12/13 ( 92.3%)
+  Policy & QoS                9/10 ( 90.0%)
+  Procedure                   9/11 ( 81.8%)
+  Technical Detail            8/10 ( 80.0%)
+  Security                    8/10 ( 80.0%)
+  Comparison                  7/10 ( 70.0%)
+  Architecture                6/10 ( 60.0%)
 
 TROUBLESHOOTING
 ---------------
@@ -60,6 +70,6 @@ Neo4j not connected:
 
 CLAUDE_API_KEY not set:
   export CLAUDE_API_KEY="sk-ant-..."
-  Or use local model: --model deepseek-r1:7b
+  Or use local model: --model deepseek-r1:14b
 
-See .md/tele_qna_benchmark_usage.md for complete documentation
+See .md/benchmark_guide.md for complete documentation

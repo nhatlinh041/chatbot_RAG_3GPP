@@ -10,6 +10,7 @@ from dataclasses import dataclass, field
 from neo4j import GraphDatabase
 import requests
 from logging_config import setup_centralized_logging, get_logger, CRITICAL, ERROR, MAJOR, MINOR, DEBUG
+from subject_classifier import SubjectClassifier, Subject
 
 # Initialize logging
 setup_centralized_logging()
@@ -30,6 +31,8 @@ class ScoredChunk:
     retrieval_score: float
     retrieval_method: str  # 'vector', 'graph', or 'vector+graph'
     reference_path: List[str] = field(default_factory=list)
+    subject: str = ""  # Subject classification (Lexicon, Standards specifications, etc.)
+    subject_confidence: float = 0.0
 
 
 class VectorIndexer:
@@ -239,9 +242,9 @@ class VectorRetriever:
         # Generate query embedding
         query_embedding = self.model.encode(query)
 
-        self.logger.log(MINOR, f"Vector search for: {query[:50]}...")
+        self.logger.log(MINOR, f"Vector search for: {query}...")
 
-        # Search using Neo4j vector index
+        # Search using Neo4j vector index (including subject)
         with self.driver.session() as session:
             result = session.run("""
                 CALL db.index.vector.queryNodes('chunk_embeddings', $top_k, $query_vector)
@@ -254,6 +257,8 @@ class VectorRetriever:
                        node.chunk_type AS chunk_type,
                        node.complexity_score AS complexity_score,
                        node.key_terms AS key_terms,
+                       node.subject AS subject,
+                       node.subject_confidence AS subject_confidence,
                        score
                 ORDER BY score DESC
                 LIMIT $top_k
@@ -271,11 +276,83 @@ class VectorRetriever:
                     complexity_score=record['complexity_score'] or 0.0,
                     key_terms=record['key_terms'] or [],
                     retrieval_score=record['score'],
-                    retrieval_method='vector'
+                    retrieval_method='vector',
+                    subject=record['subject'] or "",
+                    subject_confidence=record['subject_confidence'] or 0.0
                 ))
 
             self.logger.log(MAJOR, f"Vector search returned {len(chunks)} chunks")
             return chunks
+
+
+class TermDefinitionResolver:
+    """
+    Resolves abbreviations to authoritative definitions from Neo4j Term nodes.
+    Provides ground truth definitions before retrieval to prevent hallucination.
+    """
+
+    def __init__(self, neo4j_driver):
+        """
+        Initialize resolver with Neo4j driver.
+
+        Args:
+            neo4j_driver: Neo4j driver instance
+        """
+        self.driver = neo4j_driver
+        self.logger = get_logger('Term_Resolver')
+
+    def resolve_terms(self, entities: List[str]) -> Dict[str, Dict]:
+        """
+        Lookup term definitions from Neo4j Term nodes.
+
+        Args:
+            entities: List of abbreviations (e.g., ['SCP', 'SEPP'])
+
+        Returns:
+            Dict mapping abbreviation to definition info:
+            {
+                'SCP': {
+                    'full_name': 'Service Communication Proxy',
+                    'specs': ['TS 23.501', 'TS 29.500'],
+                    'source': 'term_node'
+                }
+            }
+        """
+        if not entities:
+            return {}
+
+        definitions = {}
+
+        with self.driver.session() as session:
+            for entity in entities:
+                # Clean entity (remove punctuation, uppercase)
+                clean_entity = entity.strip().upper()
+
+                try:
+                    result = session.run("""
+                        MATCH (t:Term {abbreviation: $abbrev})
+                        OPTIONAL MATCH (t)-[:DEFINED_IN]->(d:Document)
+                        RETURN t.abbreviation AS abbrev,
+                               t.full_name AS full_name,
+                               collect(DISTINCT d.spec_id) AS specs
+                    """, abbrev=clean_entity)
+
+                    record = result.single()
+                    if record:
+                        definitions[entity] = {
+                            'full_name': record['full_name'],
+                            'specs': [s for s in record['specs'] if s],
+                            'source': 'term_node'
+                        }
+                        self.logger.log(MAJOR,
+                            f"Resolved {entity} = {record['full_name']}")
+                    else:
+                        self.logger.log(MINOR,
+                            f"No Term node found for {entity}")
+                except Exception as e:
+                    self.logger.log(ERROR, f"Failed to resolve {entity}: {e}")
+
+        return definitions
 
 
 class SemanticQueryAnalyzer:
@@ -338,11 +415,13 @@ Known 3GPP Terms (sample):
 
 Extract:
 1. primary_intent: One of [definition, comparison, procedure, reference, network_function, relationship, specification, multiple_choice, general]
+   - Use "multiple_choice" if question has options like "A. xxx", "B. xxx", "C. xxx", "D. xxx"
 2. entities: List of 3GPP entities mentioned (abbreviations or full names)
 3. key_terms: Important technical terms
 4. complexity: One of [simple, medium, complex]
 5. requires_multi_step: true if needs multiple retrieval steps (e.g., comparison)
-6. sub_questions: If complex, break into simpler sub-questions
+6. needs_term_resolution: true if question asks about definitions/meanings/stand-for OR compares entities (to ensure correct full names)
+7. sub_questions: If complex, break into simpler sub-questions
 
 Return ONLY valid JSON:
 {{
@@ -351,8 +430,17 @@ Return ONLY valid JSON:
     "key_terms": ["registration", "procedure"],
     "complexity": "medium",
     "requires_multi_step": false,
+    "needs_term_resolution": true,
     "sub_questions": []
-}}"""
+}}
+
+Examples:
+- "What is AMF?" → primary_intent: "definition", needs_term_resolution: true
+- "Compare SCP and SEPP" → primary_intent: "comparison", needs_term_resolution: true
+- "Explain registration procedure" → primary_intent: "procedure", needs_term_resolution: false
+- "What is AUSF responsible for?\\nA. Access management\\nB. Authentication\\nC. Session\\nD. User plane" → primary_intent: "multiple_choice" (has A/B/C/D options)
+- Question with "choices": ["option1", "option2", "option3", "option4"] → primary_intent: "multiple_choice" (JSON choices format)
+- "Which of the following is correct? (A) option1 (B) option2" → primary_intent: "multiple_choice" (inline format)"""
 
     def _call_llm(self, prompt: str, model: str) -> str:
         """Call local LLM"""
@@ -380,27 +468,135 @@ Return ONLY valid JSON:
         # If parsing fails, return fallback
         raise ValueError("Could not parse LLM response as JSON")
 
+    def _detect_mcq_format(self, query: str) -> bool:
+        """
+        Comprehensively detect if query is a Multiple Choice Question.
+
+        Supports multiple formats:
+        1. "A. option" / "A) option" format (traditional MCQ)
+        2. JSON-style with "choices" array
+        3. Inline options like "(A) xxx (B) xxx"
+        4. Numbered with letters "1. A) option"
+
+        Args:
+            query: The question text
+
+        Returns:
+            True if query appears to be MCQ format
+        """
+        # Pattern 1: Traditional MCQ format with newlines
+        # Matches: A. option, A) option, a. option, a) option
+        traditional_pattern = re.search(
+            r'\n\s*[A-Da-d][\.\)]\s*\S+',  # Line starting with A./A) etc
+            query
+        )
+        if traditional_pattern:
+            # Count how many options (need at least 2 for MCQ)
+            option_count = len(re.findall(r'\n\s*[A-Da-d][\.\)]\s*\S+', query))
+            if option_count >= 2:
+                self.logger.log(DEBUG, f"MCQ detected: traditional format ({option_count} options)")
+                return True
+
+        # Pattern 2: JSON-style "choices" array detection
+        # Matches: "choices": [...] or 'choices': [...]
+        choices_pattern = re.search(
+            r'["\']?choices["\']?\s*[:\=]\s*\[',
+            query,
+            re.IGNORECASE
+        )
+        if choices_pattern:
+            self.logger.log(DEBUG, "MCQ detected: JSON choices format")
+            return True
+
+        # Pattern 3: Inline options (A) xxx (B) xxx (C) xxx
+        inline_pattern = re.findall(
+            r'\([A-Da-d]\)\s*[^()]+',
+            query
+        )
+        if len(inline_pattern) >= 3:  # At least A, B, C
+            self.logger.log(DEBUG, f"MCQ detected: inline format ({len(inline_pattern)} options)")
+            return True
+
+        # Pattern 4: Options at start of line without newline separator
+        # Matches multiple A: xxx B: xxx patterns
+        colon_pattern = re.findall(
+            r'\b[A-Da-d]\s*[:\-]\s*\w+',
+            query
+        )
+        if len(colon_pattern) >= 3:
+            self.logger.log(DEBUG, f"MCQ detected: colon format ({len(colon_pattern)} options)")
+            return True
+
+        # Pattern 5: Detect by keywords suggesting options
+        mcq_keywords = [
+            r'\bwhich\s+(?:of\s+the\s+)?following\b',
+            r'\bselect\s+(?:the\s+)?(?:correct|best)\b',
+            r'\bchoose\s+(?:the\s+)?(?:correct|best)\b',
+            r'\bpick\s+(?:the\s+)?(?:correct|right)\b',
+        ]
+        for pattern in mcq_keywords:
+            if re.search(pattern, query, re.IGNORECASE):
+                # Also need at least some options present
+                has_options = re.search(r'[A-Da-d][\.\)\:]\s*\w', query)
+                if has_options:
+                    self.logger.log(DEBUG, "MCQ detected: keyword + options pattern")
+                    return True
+
+        return False
+
     def _fallback_analysis(self, query: str) -> Dict:
         """Rule-based fallback analysis"""
         query_lower = query.lower()
 
-        # Detect intent
-        if any(w in query_lower for w in ['compare', 'difference', 'versus', 'vs']):
-            intent = 'comparison'
-        elif any(w in query_lower for w in ['what is', 'define', 'definition']):
-            intent = 'definition'
-        elif any(w in query_lower for w in ['how', 'procedure', 'process', 'steps']):
-            intent = 'procedure'
-        elif any(w in query_lower for w in ['role', 'function', 'responsibility']):
-            intent = 'network_function'
+        # Detect intent with enhanced patterns
+        # FIRST: Check for multiple choice format using comprehensive detection
+        is_mcq = self._detect_mcq_format(query)
+        if is_mcq:
+            intent = 'multiple_choice'
+            self.logger.log(MINOR, "Detected multiple choice question format")
         else:
-            intent = 'general'
+            # Comparison detection with comprehensive patterns
+            comparison_patterns = [
+                'compare', 'comparison', 'difference', 'differences',
+                'versus', ' vs ', 'differ', 'differs', 'different',
+                'distinguish', 'distinguishes', 'differentiate', 'differentiates'
+            ]
+            # Check for comparison patterns including "how does X differ" type
+            is_comparison = any(w in query_lower for w in comparison_patterns)
+            # Also catch "X vs Y" or "between X and Y" patterns
+            if not is_comparison and (' and ' in query_lower or ' vs ' in query_lower):
+                # Check for comparison context words
+                if any(w in query_lower for w in ['main', 'key', 'primary', 'major']):
+                    is_comparison = True
+
+            if is_comparison:
+                intent = 'comparison'
+            elif any(w in query_lower for w in ['what is', 'what does', 'define', 'definition', 'stand for', 'stands for']):
+                # Check if it's actually a procedure question (e.g., "what is the first step")
+                if any(w in query_lower for w in ['step', 'procedure', 'process']):
+                    intent = 'procedure'
+                else:
+                    intent = 'definition'
+            elif any(w in query_lower for w in ['how', 'procedure', 'process', 'steps']):
+                intent = 'procedure'
+            elif any(w in query_lower for w in ['role', 'function', 'responsibility']):
+                intent = 'network_function'
+            else:
+                intent = 'general'
 
         # Extract entities from known terms
         entities = []
+        # Common words that should not be considered entities
+        COMMON_WORDS = {'IN', 'IS', 'ON', 'AT', 'TO', 'OF', 'A', 'AN', 'OR', 'IT', 'AS', 'BY', 'NO', 'SO'}
+
         for abbr in self.term_dict.keys():
             if re.search(r'\b' + re.escape(abbr) + r'\b', query, re.IGNORECASE):
-                entities.append(abbr)
+                # Filter out common words
+                if abbr.upper() not in COMMON_WORDS:
+                    entities.append(abbr)
+
+        # Decide if term resolution needed
+        needs_resolution = intent in ['definition', 'comparison', 'network_function']
 
         return {
             'primary_intent': intent,
@@ -408,6 +604,7 @@ Return ONLY valid JSON:
             'key_terms': re.findall(r'\b\w{3,}\b', query_lower),
             'complexity': 'medium' if len(entities) > 1 else 'simple',
             'requires_multi_step': intent == 'comparison' and len(entities) >= 2,
+            'needs_term_resolution': needs_resolution,
             'sub_questions': []
         }
 
@@ -438,45 +635,112 @@ class QueryExpander:
 
     def expand(self, query: str, max_variations: int = 4) -> List[str]:
         """
-        Generate query variations.
+        Generate DIVERSE query variations to reduce overlap.
+
+        Strategy:
+        - Original query (general definition)
+        - Practical/use case variation
+        - Comparative variation
+        - Contextual variation
 
         Args:
             query: Original query
             max_variations: Maximum number of variations to return
 
         Returns:
-            List of query variations including original
+            List of diverse query variations
         """
+        query_lower = query.lower()
         variations = [query]  # Original first
 
-        # 1. Expand abbreviations
-        expanded = self._expand_abbreviations(query)
-        if expanded != query:
-            variations.append(expanded)
+        # Detect query intent for smarter expansion
+        is_definition = any(word in query_lower for word in ['what is', 'what does', 'define', 'stand for'])
+        is_comparison = any(word in query_lower for word in ['compare', 'difference', 'vs', 'versus'])
+        is_procedure = any(word in query_lower for word in ['how', 'procedure', 'process', 'steps'])
 
-        # 2. Add synonym variations
-        for word, syns in self.synonyms.items():
-            if word in query.lower():
-                for syn in syns[:2]:  # Limit synonyms
+        # Strategy 1: DIVERSIFY instead of making similar variations
+        if is_definition:
+            # Instead of: "What is X?", "Define X", "X definition" (too similar!)
+            # Use: General + Practical + Comparative + Contextual
+
+            # Extract entity (e.g., "AMF" from "What is AMF?")
+            entities = self._extract_entities(query)
+            if entities:
+                entity = entities[0]
+                # Variation 1: Original (already in list)
+                # Variation 2: Practical/Use case
+                variations.append(f"{entity} use cases in 5G")
+                # Variation 3: Comparative
+                variations.append(f"{entity} vs similar network functions")
+                # Variation 4: Contextual
+                variations.append(f"{entity} role in network architecture")
+
+        elif is_comparison:
+            # Already comparing - add related aspects
+            entities = self._extract_entities(query)
+            if len(entities) >= 2:
+                e1, e2 = entities[0], entities[1]
+                # Variation 1: Original
+                # Variation 2: Functional aspect
+                variations.append(f"{e1} and {e2} functions")
+                # Variation 3: Interaction
+                variations.append(f"how {e1} and {e2} interact")
+                # Variation 4: Architecture
+                variations.append(f"{e1} {e2} in 5G architecture")
+
+        elif is_procedure:
+            # Procedure query - add steps and context
+            # Variation 1: Original
+            # Variation 2: Step-by-step
+            variations.append(query.replace("how", "steps for").replace("?", ""))
+            # Variation 3: Sequence
+            variations.append(query.replace("how", "sequence of").replace("?", ""))
+            # Variation 4: Message flow
+            if "procedure" in query_lower:
+                variations.append(query.replace("procedure", "message flow"))
+
+        else:
+            # General query - use old strategy with improvements
+            # 1. Expand abbreviations
+            expanded = self._expand_abbreviations(query)
+            if expanded != query:
+                variations.append(expanded)
+
+            # 2. Add ONE synonym variation (not all)
+            added_synonym = False
+            for word, syns in self.synonyms.items():
+                if word in query_lower and not added_synonym:
+                    syn = syns[0]  # Take only first synonym
                     var = re.sub(r'\b' + word + r'\b', syn, query, flags=re.IGNORECASE)
-                    if var != query and var not in variations:
+                    if var != query:
                         variations.append(var)
+                        added_synonym = True
+                        break
 
-        # 3. Extract keywords only
-        keywords = self._extract_keywords(query)
-        if keywords and keywords != query:
-            variations.append(keywords)
+            # 3. Keywords only (last resort)
+            keywords = self._extract_keywords(query)
+            if keywords and keywords != query:
+                variations.append(keywords)
 
         # Remove duplicates and limit
         seen = set()
         unique = []
         for v in variations:
-            if v not in seen:
-                seen.add(v)
-                unique.append(v)
+            v_clean = v.strip()
+            if v_clean and v_clean not in seen:
+                seen.add(v_clean)
+                unique.append(v_clean)
 
-        self.logger.log(MINOR, f"Generated {len(unique)} query variations")
+        self.logger.log(MINOR, f"Generated {len(unique)} DIVERSE query variations")
         return unique[:max_variations]
+
+    def _extract_entities(self, query: str) -> List[str]:
+        """Extract entities (abbreviations) from query"""
+        entities = []
+        for abbr in self.term_dict.keys():
+            if re.search(r'\b' + re.escape(abbr) + r'\b', query, re.IGNORECASE):
+                entities.append(abbr)
+        return entities
 
     def _expand_abbreviations(self, query: str) -> str:
         """Expand abbreviations to full names"""
@@ -522,6 +786,7 @@ class HybridRetriever:
 
         # Initialize components
         self.vector_retriever = VectorRetriever(neo4j_driver, embedding_model)
+        self.term_resolver = TermDefinitionResolver(neo4j_driver)
         self.query_analyzer = SemanticQueryAnalyzer(
             local_llm_url=local_llm_url,
             term_dict=getattr(cypher_generator, 'all_terms', {})
@@ -529,14 +794,19 @@ class HybridRetriever:
         self.query_expander = QueryExpander(
             term_dict=getattr(cypher_generator, 'all_terms', {})
         )
+        # Subject classifier for subject-aware retrieval
+        self.subject_classifier = SubjectClassifier()
 
-        self.logger.log(MAJOR, "Hybrid Retriever initialized")
+        self.logger.log(MAJOR, "Hybrid Retriever initialized with subject-aware retrieval")
 
     def retrieve(self, query: str, top_k: int = 6,
                  use_vector: bool = True,
                  use_graph: bool = True,
                  use_query_expansion: bool = True,
-                 use_llm_analysis: bool = False,
+                 use_llm_analysis: bool = True,
+                 use_subject_boost: bool = True,
+                 use_semantic_dedup: bool = False,
+                 dedup_threshold: float = 0.85,
                  analysis_model: str = "deepseek-r1:14b") -> Tuple[List[ScoredChunk], str, Dict]:
         """
         Perform hybrid retrieval combining vector and graph search.
@@ -546,15 +816,20 @@ class HybridRetriever:
             top_k: Number of final results
             use_vector: Enable vector search
             use_graph: Enable graph-based search
-            use_query_expansion: Enable query expansion
+            use_query_expansion: Enable query expansion (with diversification)
             use_llm_analysis: Use LLM for query analysis
+            use_subject_boost: Enable subject-aware score boosting
+            use_semantic_dedup: Use semantic similarity for deduplication (slower, more accurate)
+            dedup_threshold: Similarity threshold for deduplication (0.0-1.0)
             analysis_model: Model for LLM analysis
 
         Returns:
             Tuple of (scored_chunks, strategy_description, analysis)
         """
+        dedup_method = "semantic" if use_semantic_dedup else "Jaccard"
         self.logger.log(MAJOR, f"Hybrid retrieval - vector:{use_vector}, graph:{use_graph}, "
-                              f"expansion:{use_query_expansion}, llm_analysis:{use_llm_analysis}")
+                              f"expansion:{use_query_expansion}, llm_analysis:{use_llm_analysis}, "
+                              f"subject_boost:{use_subject_boost}, dedup:{dedup_method}")
 
         # Analyze query
         if use_llm_analysis:
@@ -562,12 +837,42 @@ class HybridRetriever:
         else:
             analysis = self.query_analyzer._fallback_analysis(query)
 
+        # ALWAYS check for MCQ format and override intent if detected
+        # This ensures MCQ questions always use the correct prompt template
+        mcq_pattern = re.search(r'\n\s*[A-Da-d][\.\)]\s*\w+', query)
+        if mcq_pattern and analysis.get('primary_intent') != 'multiple_choice':
+            self.logger.log(MINOR, f"Overriding intent to 'multiple_choice' (detected MCQ format)")
+            analysis['primary_intent'] = 'multiple_choice'
+
+        # Detect expected subjects for score boosting
+        expected_subjects = []
+        if use_subject_boost:
+            expected_subjects = self.subject_classifier.detect_query_subjects(query)
+            if expected_subjects:
+                subject_names = [(s.value, w) for s, w in expected_subjects]
+                self.logger.log(MINOR, f"Expected subjects: {subject_names}")
+                analysis['expected_subjects'] = subject_names
+
+        # NEW: Resolve term definitions ONLY if LLM/analysis says it's needed
+        needs_resolution = analysis.get('needs_term_resolution', False)
+        term_definitions = {}
+
+        if needs_resolution:
+            entities = analysis.get('entities', [])
+            term_definitions = self.term_resolver.resolve_terms(entities)
+            if term_definitions:
+                self.logger.log(MAJOR, f"Resolved {len(term_definitions)} term definitions (LLM requested)")
+        else:
+            self.logger.log(MINOR, "Skipping term resolution (not needed for this query)")
+
+        analysis['term_definitions'] = term_definitions
+
         # Expand query if enabled
         query_variations = [query]
         if use_query_expansion:
             query_variations = self.query_expander.expand(query)
 
-        # Collect results from both sources
+        # Traditional merging approach
         all_results = {}  # chunk_id -> ScoredChunk with aggregated scores
 
         # Vector search
@@ -581,8 +886,14 @@ class HybridRetriever:
             graph_results = self._execute_graph_search(query, analysis, top_k=10)
             self._merge_results(all_results, graph_results, source='graph')
 
-        # Rerank and select top results
-        final_results = self._rerank(all_results, top_k=top_k)
+        # Rerank and select top results with subject boosting and deduplication
+        final_results = self._rerank(
+            all_results,
+            top_k=top_k,
+            expected_subjects=expected_subjects,
+            use_semantic_dedup=use_semantic_dedup,
+            dedup_threshold=dedup_threshold
+        )
 
         # Build strategy description
         methods = []
@@ -590,6 +901,8 @@ class HybridRetriever:
             methods.append("vector")
         if use_graph:
             methods.append("graph")
+        if use_subject_boost and expected_subjects:
+            methods.append("subject-boost")
         strategy = f"hybrid ({'+'.join(methods)}) - {len(final_results)} chunks"
 
         self.logger.log(MAJOR, f"Hybrid retrieval complete: {strategy}")
@@ -643,7 +956,9 @@ class HybridRetriever:
                         key_terms=record.get("key_terms", []),
                         retrieval_score=score,
                         retrieval_method='graph',
-                        reference_path=record.get("referenced_specs", [])
+                        reference_path=record.get("referenced_specs", []),
+                        subject=record.get("subject", ""),
+                        subject_confidence=record.get("subject_confidence", 0.0)
                     ))
 
                 self.logger.log(MINOR, f"Graph search returned {len(chunks)} chunks")
@@ -665,7 +980,7 @@ class HybridRetriever:
         chunks = []
         with self.driver.session() as session:
             for entity in [entity1, entity2]:
-                # Get chunks about this entity
+                # Get chunks about this entity (including subject)
                 result = session.run("""
                     MATCH (c:Chunk)
                     WHERE toLower(c.content) CONTAINS toLower($entity)
@@ -677,7 +992,8 @@ class HybridRetriever:
                     RETURN c.chunk_id AS chunk_id, c.spec_id AS spec_id,
                            c.section_id AS section_id, c.section_title AS section_title,
                            c.content AS content, c.chunk_type AS chunk_type,
-                           c.complexity_score AS complexity_score, c.key_terms AS key_terms
+                           c.complexity_score AS complexity_score, c.key_terms AS key_terms,
+                           c.subject AS subject, c.subject_confidence AS subject_confidence
                     ORDER BY c.complexity_score ASC
                     LIMIT 3
                 """, entity=entity)
@@ -693,7 +1009,9 @@ class HybridRetriever:
                         complexity_score=record['complexity_score'] or 0.0,
                         key_terms=record['key_terms'] or [],
                         retrieval_score=0.9 - (i * 0.1),
-                        retrieval_method='graph'
+                        retrieval_method='graph',
+                        subject=record['subject'] or "",
+                        subject_confidence=record['subject_confidence'] or 0.0
                     ))
 
         return chunks
@@ -720,20 +1038,189 @@ class HybridRetriever:
             else:
                 all_results[chunk_id] = chunk
 
-    def _rerank(self, all_results: Dict[str, ScoredChunk], top_k: int) -> List[ScoredChunk]:
-        """Rerank merged results and return top_k"""
+    def _rerank(self, all_results: Dict[str, ScoredChunk], top_k: int,
+                expected_subjects: List[Tuple[Subject, float]] = None,
+                use_semantic_dedup: bool = False,
+                dedup_threshold: float = 0.85) -> List[ScoredChunk]:
+        """
+        Rerank merged results with subject boosting, content deduplication, and return top_k
 
+        Args:
+            all_results: Dict of chunk_id -> ScoredChunk
+            top_k: Number of results to return
+            expected_subjects: List of (Subject, weight) tuples for boosting
+            use_semantic_dedup: Use semantic similarity for deduplication (slower but more accurate)
+            dedup_threshold: Similarity threshold for deduplication (0.0-1.0)
+        """
         # Apply boost for chunks found in multiple sources
         for chunk in all_results.values():
             if chunk.retrieval_method == 'vector+graph':
                 chunk.retrieval_score *= 1.3  # 30% boost for multi-source match
 
-        # Sort by score
+        # Apply subject-based boosting if expected subjects provided
+        if expected_subjects:
+            for chunk in all_results.values():
+                if chunk.subject:
+                    boost = self.subject_classifier.get_subject_boost(
+                        chunk.subject, expected_subjects
+                    )
+                    if boost > 1.0:
+                        chunk.retrieval_score *= boost
+                        self.logger.log(DEBUG, f"Subject boost {boost:.2f}x for {chunk.chunk_id} "
+                                              f"(subject: {chunk.subject})")
+
+        # Sort by score first
         ranked = sorted(all_results.values(),
                        key=lambda x: x.retrieval_score,
                        reverse=True)
 
-        return ranked[:top_k]
+        # Content-based deduplication: remove chunks with very similar content
+        deduplicated = self._deduplicate_by_content(
+            ranked,
+            similarity_threshold=dedup_threshold,
+            use_semantic=use_semantic_dedup
+        )
+
+        self.logger.log(MINOR, f"Deduplication: {len(ranked)} -> {len(deduplicated)} chunks "
+                              f"(removed {len(ranked) - len(deduplicated)} duplicates)")
+
+        return deduplicated[:top_k]
+
+    def _deduplicate_by_content(self, chunks: List[ScoredChunk],
+                                similarity_threshold: float = 0.85,
+                                use_semantic: bool = False) -> List[ScoredChunk]:
+        """
+        Remove chunks with very similar content, keeping highest-scored ones.
+
+        Supports two modes:
+        1. Jaccard similarity (fast, default)
+        2. Semantic similarity (accurate, slower)
+
+        Args:
+            chunks: List of ScoredChunk sorted by score (descending)
+            similarity_threshold: Threshold for considering content as duplicate (0.0-1.0)
+            use_semantic: Use semantic similarity (embeddings) instead of Jaccard
+
+        Returns:
+            Deduplicated list of chunks
+        """
+        if len(chunks) <= 1:
+            return chunks
+
+        method = "semantic" if use_semantic else "Jaccard"
+        self.logger.log(MINOR, f"Deduplication using {method} similarity")
+
+        unique_chunks = []
+        seen_contents = []
+
+        for chunk in chunks:
+            content = chunk.content.lower().strip()
+
+            # Check if this content is too similar to any already seen
+            is_duplicate = False
+            for seen_content in seen_contents:
+                similarity = self._calculate_content_similarity(
+                    content, seen_content, use_semantic=use_semantic
+                )
+                if similarity >= similarity_threshold:
+                    is_duplicate = True
+                    self.logger.log(DEBUG,
+                        f"Skipping duplicate chunk {chunk.chunk_id} "
+                        f"({method} similarity: {similarity:.2f})")
+                    break
+
+            if not is_duplicate:
+                unique_chunks.append(chunk)
+                seen_contents.append(content)
+
+        return unique_chunks
+
+    def _calculate_content_similarity(self, content1: str, content2: str,
+                                       use_semantic: bool = False) -> float:
+        """
+        Calculate similarity between two text contents.
+
+        Supports two modes:
+        1. Jaccard (fast, word-level) - default
+        2. Semantic (accurate, embedding-based) - optional
+
+        Args:
+            content1: First text content
+            content2: Second text content
+            use_semantic: Use semantic similarity (embeddings) instead of Jaccard
+
+        Returns:
+            Similarity score (0.0 to 1.0)
+        """
+        if use_semantic:
+            return self._semantic_similarity(content1, content2)
+        else:
+            return self._jaccard_similarity(content1, content2)
+
+    def _jaccard_similarity(self, content1: str, content2: str) -> float:
+        """
+        Jaccard similarity: Fast, word-level matching.
+
+        Args:
+            content1: First text content
+            content2: Second text content
+
+        Returns:
+            Similarity score (0.0 to 1.0)
+        """
+        # Use word-level tokenization
+        words1 = set(content1.split())
+        words2 = set(content2.split())
+
+        if not words1 or not words2:
+            return 0.0
+
+        # Jaccard: intersection / union
+        intersection = len(words1 & words2)
+        union = len(words1 | words2)
+
+        return intersection / union if union > 0 else 0.0
+
+    def _semantic_similarity(self, content1: str, content2: str) -> float:
+        """
+        Semantic similarity using embeddings: More accurate semantic matching.
+
+        Uses existing embedding model from vector retriever.
+
+        Args:
+            content1: First text content
+            content2: Second text content
+
+        Returns:
+            Cosine similarity score (0.0 to 1.0)
+        """
+        try:
+            # Ensure model is loaded
+            self.vector_retriever._load_model()
+            model = self.vector_retriever.model
+
+            # Generate embeddings
+            embed1 = model.encode(content1)
+            embed2 = model.encode(content2)
+
+            # Cosine similarity
+            dot_product = sum(a * b for a, b in zip(embed1, embed2))
+            magnitude1 = sum(a * a for a in embed1) ** 0.5
+            magnitude2 = sum(b * b for b in embed2) ** 0.5
+
+            if magnitude1 == 0 or magnitude2 == 0:
+                return 0.0
+
+            cosine_sim = dot_product / (magnitude1 * magnitude2)
+
+            # Normalize to [0, 1] range (cosine is [-1, 1])
+            normalized = (cosine_sim + 1) / 2
+
+            return normalized
+
+        except Exception as e:
+            self.logger.log(ERROR, f"Semantic similarity failed: {e}, falling back to Jaccard")
+            return self._jaccard_similarity(content1, content2)
 
 
 # Factory function for easy initialization
@@ -761,7 +1248,7 @@ def create_hybrid_retriever(neo4j_uri: str = "neo4j://localhost:7687",
 
     # Create cypher generator if not provided
     if cypher_generator is None:
-        from rag_system_v2 import CypherQueryGenerator
+        from rag_core import CypherQueryGenerator
         cypher_generator = CypherQueryGenerator(neo4j_driver=driver, local_llm_url=local_llm_url)
 
     retriever = HybridRetriever(

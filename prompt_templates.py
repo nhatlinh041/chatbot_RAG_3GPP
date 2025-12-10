@@ -2,6 +2,7 @@
 Enhanced Prompt Templates for 3GPP RAG System.
 Provides specialized prompts for different question types.
 """
+import re
 from typing import List, Dict, Optional
 from logging_config import get_logger, MINOR
 
@@ -34,67 +35,152 @@ class PromptTemplates:
 
         intent = analysis.get('primary_intent', 'general')
         detected_entities = analysis.get('entities', entities or [])
+        term_definitions = analysis.get('term_definitions', {})
 
         # Select appropriate template
         if intent == 'definition':
-            return PromptTemplates.get_definition_prompt(query, context, detected_entities)
+            return PromptTemplates.get_definition_prompt(query, context, detected_entities, term_definitions)
         elif intent == 'comparison':
-            return PromptTemplates.get_comparison_prompt(query, context, detected_entities)
+            return PromptTemplates.get_comparison_prompt(query, context, detected_entities, term_definitions)
         elif intent == 'procedure':
-            return PromptTemplates.get_procedure_prompt(query, context)
+            return PromptTemplates.get_procedure_prompt(query, context, term_definitions)
         elif intent == 'network_function':
-            return PromptTemplates.get_network_function_prompt(query, context, detected_entities)
+            return PromptTemplates.get_network_function_prompt(query, context, detected_entities, term_definitions)
         elif intent == 'relationship':
-            return PromptTemplates.get_relationship_prompt(query, context, detected_entities)
+            return PromptTemplates.get_relationship_prompt(query, context, detected_entities, term_definitions)
         elif intent == 'multiple_choice':
-            return PromptTemplates.get_multiple_choice_prompt(query, context)
+            return PromptTemplates.get_multiple_choice_prompt(query, context, term_definitions)
         elif analysis.get('requires_multi_step', False):
             return PromptTemplates.get_multi_intent_prompt(query, context, analysis)
         else:
-            return PromptTemplates.get_general_prompt(query, context)
+            return PromptTemplates.get_general_prompt(query, context, term_definitions)
 
     @staticmethod
-    def get_definition_prompt(query: str, context: str, entities: List[str] = None) -> str:
+    def get_definition_prompt(query: str, context: str, entities: List[str] = None,
+                             term_definitions: Dict = None) -> str:
         """Prompt for definition questions"""
         entities = entities or []
+        term_definitions = term_definitions or {}
         entity_str = ', '.join(entities) if entities else "the term"
+
+        # Build authoritative definitions section
+        defs_section = PromptTemplates._build_definitions_section(term_definitions)
 
         return f"""You are a 3GPP telecommunications expert. Answer this definition question precisely.
 
+{defs_section}
 **Question:** {query}
 
 **Context from 3GPP specifications:**
 {context}
 
 **Instructions:**
-1. Provide clear, technical definition based ONLY on the context
-2. Structure your answer:
-   - **Definition**: Clear 1-2 sentence definition
+1. START with the AUTHORITATIVE DEFINITION from above (if available)
+2. Use the exact full name provided - do not modify or paraphrase it
+3. Structure your answer:
+   - **Definition**: Use the authoritative full name, then elaborate with context
    - **Key Characteristics**: Bullet points of main features/functions
    - **Related Components**: How it relates to other 3GPP entities (if mentioned in context)
    - **Specification Reference**: Which specs define it
 
-3. Use proper 3GPP terminology
-4. Bold important terms like **{entities[0] if entities else 'key terms'}**, **5G Core**, etc.
-5. If abbreviation, show format: **ABBR** (Full Name)
+4. Use proper 3GPP terminology
+5. Bold important terms like **{entities[0] if entities else 'key terms'}**, **5G Core**, etc.
+6. If abbreviation, show format: **ABBR** (Full Name from authoritative definition)
 
 **CRITICAL Anti-Hallucination Rules:**
-- Use ONLY information from the provided context
+- PRIORITIZE authoritative definitions above over any text in context
+- If context contradicts the authoritative definition, use the authoritative one
+- Use ONLY information from the provided context for elaboration
 - If context lacks sufficient info, state: "Based on the provided specifications, I can confirm [what you found]. Additional details about [missing info] are not available in these sections."
-- DO NOT use general knowledge - stick to the context
+- DO NOT use general knowledge - stick to authoritative definitions and context
 - Cite spec sections (e.g., "According to TS 23.501...")
 
-**Format:** Use Markdown with clear sections and bullet points."""
+**Format:** Use Markdown with clear sections and bullet points.
+
+{PromptTemplates._build_choice_instruction('definition', query)}"""
 
     @staticmethod
-    def get_comparison_prompt(query: str, context: str, entities: List[str] = None) -> str:
+    def _build_definitions_section(term_definitions: Dict) -> str:
+        """Helper to build authoritative definitions section"""
+        if not term_definitions:
+            return ""
+
+        defs_lines = ["**AUTHORITATIVE DEFINITIONS (from 3GPP Term Database):**"]
+        for abbrev, info in term_definitions.items():
+            full_name = info.get('full_name', '')
+            specs = info.get('specs', [])
+            specs_str = f" (Defined in: {', '.join(specs[:3])})" if specs else ""
+            defs_lines.append(f"- **{abbrev}**: {full_name}{specs_str}")
+
+        defs_lines.append("")  # Empty line after section
+        return "\n".join(defs_lines)
+
+    @staticmethod
+    def _build_choice_instruction(intent: str = None, query: str = "") -> str:
+        """
+        Helper to build explicit choice format instruction.
+        Only returns instruction if question is actually multiple choice.
+
+        Args:
+            intent: Primary intent from query analysis
+            query: Original question text
+
+        Returns:
+            Choice instruction string or empty string
+        """
+        # Only add choice instruction for multiple_choice intent
+        if intent != 'multiple_choice':
+            return ""
+
+        # Extract option labels from the question
+        options = []
+        for line in query.split('\n'):
+            # Match patterns like "A)", "A.", "(A)", "Option A:", etc.
+            match = re.match(r'^\s*[\(\[]?([A-Da-d])[\)\.][:)\s]', line.strip())
+            if match:
+                options.append(match.group(1).upper())
+
+        if not options:
+            # Fallback: look for inline options like "a) text b) text"
+            inline_matches = re.findall(r'[\(\[]?([A-Da-d])[\)\.]', query)
+            if len(inline_matches) >= 2:  # At least 2 options
+                options = [m.upper() for m in inline_matches[:4]]  # Max 4 options
+
+        # Build option list string
+        if options:
+            options_str = ", ".join(options[:-1]) + f", or {options[-1]}" if len(options) > 1 else options[0]
+        else:
+            options_str = "A, B, C, or D"
+
+        return f"""
+**IMPORTANT - Multiple Choice Question:**
+This is a multiple choice question with options: {options_str}
+
+You MUST:
+1. Quote the exact question and all options from above
+2. Analyze each option based on the provided context
+3. State your answer at the end using this EXACT format:
+
+**The correct answer is option ({options[0] if options else 'X'})**
+
+where the letter matches one of the options in the question.
+"""
+
+    @staticmethod
+    def get_comparison_prompt(query: str, context: str, entities: List[str] = None,
+                             term_definitions: Dict = None) -> str:
         """Prompt for comparison questions"""
         entities = entities or ['Entity1', 'Entity2']
+        term_definitions = term_definitions or {}
         e1 = entities[0] if len(entities) > 0 else 'Entity1'
         e2 = entities[1] if len(entities) > 1 else 'Entity2'
 
+        # Build authoritative definitions section
+        defs_section = PromptTemplates._build_definitions_section(term_definitions)
+
         return f"""You are a 3GPP telecommunications expert. Compare these entities based on specifications.
 
+{defs_section}
 **Question:** {query}
 
 **Entities to compare:** {e1} vs {e2}
@@ -135,15 +221,27 @@ graph LR
 - List relevant spec sections
 
 **CRITICAL Rules:**
+- YOU MUST compare ONLY these two entities: {e1} and {e2}
+- DO NOT compare any other entities, even if they appear in the context
+- USE the AUTHORITATIVE DEFINITIONS for full names - they are the ground truth
+- If authoritative definitions contradict context, TRUST the authoritative definitions
+- Start Overview section with proper full names from authoritative definitions
 - Base comparison ONLY on provided context
 - If information missing for one entity, explicitly state it
 - Use exact terminology from 3GPP specs
-- Cite specific sections for claims"""
+- Cite specific sections for claims
+
+{PromptTemplates._build_choice_instruction('comparison', query)}"""
 
     @staticmethod
-    def get_procedure_prompt(query: str, context: str) -> str:
+    def get_procedure_prompt(query: str, context: str, term_definitions: Dict = None) -> str:
         """Prompt for procedure/process questions"""
+        term_definitions = term_definitions or {}
+        defs_section = PromptTemplates._build_definitions_section(term_definitions)
+
         return f"""You are a 3GPP telecommunications expert. Explain this procedure step-by-step.
+
+{defs_section}
 
 **Question:** {query}
 
@@ -190,16 +288,22 @@ sequenceDiagram
 - Follow EXACT sequence from specifications
 - Don't skip steps mentioned in context
 - Don't add steps not in context
-- Use proper message/signal names from specs"""
+- Use proper message/signal names from specs
+
+{PromptTemplates._build_choice_instruction('procedure', query)}"""
 
     @staticmethod
-    def get_network_function_prompt(query: str, context: str, entities: List[str] = None) -> str:
+    def get_network_function_prompt(query: str, context: str, entities: List[str] = None,
+                                   term_definitions: Dict = None) -> str:
         """Prompt for network function role/responsibility questions"""
         entities = entities or []
+        term_definitions = term_definitions or {}
         nf = entities[0] if entities else "the network function"
+        defs_section = PromptTemplates._build_definitions_section(term_definitions)
 
         return f"""You are a 3GPP telecommunications expert. Explain the role and functions of this network component.
 
+{defs_section}
 **Question:** {query}
 
 **Network Function:** {nf}
@@ -239,12 +343,17 @@ graph TB
 **CRITICAL Rules:**
 - List ONLY functions mentioned in context
 - Use exact terminology from specs
-- Don't add functions from general knowledge"""
+- Don't add functions from general knowledge
+
+{PromptTemplates._build_choice_instruction('network_function', query)}"""
 
     @staticmethod
-    def get_relationship_prompt(query: str, context: str, entities: List[str] = None) -> str:
+    def get_relationship_prompt(query: str, context: str, entities: List[str] = None,
+                              term_definitions: Dict = None) -> str:
         """Prompt for relationship/interaction questions"""
         entities = entities or []
+        term_definitions = term_definitions or {}
+        defs_section = PromptTemplates._build_definitions_section(term_definitions)
         entities_str = ' and '.join(entities) if entities else "the entities"
 
         return f"""You are a 3GPP telecommunications expert. Explain the relationship between these components.
@@ -284,40 +393,74 @@ graph LR
 **CRITICAL Rules:**
 - Describe ONLY relationships mentioned in context
 - Use exact interface/protocol names from specs
-- If relationship not clear from context, state it"""
+- If relationship not clear from context, state it
+
+{PromptTemplates._build_choice_instruction('relationship', query)}"""
 
     @staticmethod
-    def get_multiple_choice_prompt(query: str, context: str) -> str:
-        """Prompt for multiple choice questions"""
-        return f"""You are a 3GPP telecommunications expert. This is a multiple choice question.
+    def get_multiple_choice_prompt(query: str, context: str, term_definitions: Dict = None) -> str:
+        """
+        Prompt for multiple choice questions.
+        CRITICAL: Output format must start with "Answer: X. [option text]" for extraction.
+        """
+        term_definitions = term_definitions or {}
+        defs_section = PromptTemplates._build_definitions_section(term_definitions)
 
+        # Extract options from query
+        options = []
+        for line in query.split('\n'):
+            match = re.match(r'^\s*([A-Da-d])[\.\)]\s*(.+)', line.strip())
+            if match:
+                options.append((match.group(1).upper(), match.group(2).strip()))
+
+        # Build options reminder
+        options_text = ""
+        if options:
+            options_text = "\n**Available Options:**\n"
+            for letter, text in options:
+                options_text += f"- {letter}. {text}\n"
+
+        # Build example based on actual options
+        example_letter = options[2][0] if len(options) > 2 else "C"
+        example_text = options[2][1] if len(options) > 2 else "14 symbols"
+
+        return f"""You are a 3GPP telecommunications expert answering a multiple choice question.
+
+{defs_section}
 **Question:** {query}
-
+{options_text}
 **Context from 3GPP specifications:**
 {context}
 
-**Instructions:**
-1. Carefully read each option in the question
-2. Find evidence in the context for/against each option
-3. Select the CORRECT answer based on specification content
-4. Explain your reasoning with specific references
+**CRITICAL OUTPUT FORMAT - YOU MUST FOLLOW THIS EXACTLY:**
 
-**Response Format:**
+Answer: [LETTER]. [EXACT TEXT OF THE CHOSEN OPTION]
 
-## Answer
-**[Letter/Option]** - [Brief statement of correct answer]
+[Then provide brief explanation]
 
-## Explanation
-- Why this answer is correct (cite specific context)
-- Why other options are incorrect (briefly)
+**Example correct output:**
+Answer: {example_letter}. {example_text}
 
-## Specification Reference
-- Section/spec that supports this answer
+According to the 3GPP specifications, this is correct because...
 
-**CRITICAL Rules:**
-- Base answer ONLY on provided context
-- If context doesn't clearly support any option, state which option is MOST likely based on available information
-- Use exact wording from context when explaining"""
+**RULES:**
+1. FIRST LINE MUST BE: "Answer: X. [exact option text]"
+   - X is the letter (A, B, C, or D)
+   - Follow with a period and the EXACT text of that option (copy it verbatim)
+2. Then provide brief explanation (2-3 sentences max)
+3. Base answer ONLY on provided context
+4. Do NOT add markdown headers or formatting before the answer
+
+**WRONG formats (DO NOT USE):**
+- "Answer: C" (missing option text) ❌
+- "The answer is C. 14 symbols" ❌
+- "**Answer:** C. 14 symbols" ❌
+- "C. 14 symbols" (missing "Answer:") ❌
+
+**CORRECT format:**
+Answer: {example_letter}. {example_text}
+
+[Brief explanation based on context]"""
 
     @staticmethod
     def get_multi_intent_prompt(query: str, context: str, analysis: Dict) -> str:
@@ -364,13 +507,19 @@ This is a complex question. Address each part systematically:
 - Address ALL parts of the question
 - If one part cannot be fully answered, state it clearly
 - Maintain technical accuracy
-- Base everything on provided context"""
+- Base everything on provided context
+
+{PromptTemplates._build_choice_instruction('multi_intent', query)}"""
 
     @staticmethod
-    def get_general_prompt(query: str, context: str) -> str:
+    def get_general_prompt(query: str, context: str, term_definitions: Dict = None) -> str:
         """General purpose prompt for unclassified questions"""
+        term_definitions = term_definitions or {}
+        defs_section = PromptTemplates._build_definitions_section(term_definitions)
+
         return f"""You are a 3GPP telecommunications expert. Answer this question based on the specifications.
 
+{defs_section}
 **Question:** {query}
 
 **Context from 3GPP specifications:**
@@ -395,6 +544,8 @@ This is a complex question. Address each part systematically:
 - If context doesn't contain relevant information, say: "Based on the retrieved specifications, I could not find detailed information about [topic]. The available context covers [what is covered]."
 - DO NOT use general knowledge about 3GPP - only the provided context
 - If unsure, say so rather than guessing
+
+{PromptTemplates._build_choice_instruction('general', query)}
 
 **Answer:**"""
 

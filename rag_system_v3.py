@@ -14,6 +14,39 @@ from datetime import datetime
 from logging_config import setup_centralized_logging, get_logger, CRITICAL, ERROR, MAJOR, MINOR, DEBUG
 from cypher_sanitizer import CypherSanitizer
 
+
+def extract_mcq_question_only(question: str) -> Tuple[str, bool]:
+    """
+    Extract the question part only from MCQ format, excluding choices.
+    This prevents choices from polluting retrieval results.
+
+    Args:
+        question: Full question text (may include A. B. C. D. choices)
+
+    Returns:
+        Tuple of (question_only, is_mcq)
+        - question_only: Just the question text without choices
+        - is_mcq: True if MCQ format was detected
+    """
+    # Pattern 1: Traditional MCQ with newline + A. B. C. D.
+    # Split at first occurrence of newline followed by A./A)
+    mcq_split = re.split(r'\n\s*[Aa][\.\)]\s*', question, maxsplit=1)
+    if len(mcq_split) > 1:
+        return mcq_split[0].strip(), True
+
+    # Pattern 2: Inline (A) (B) (C) format
+    inline_split = re.split(r'\s*\([Aa]\)\s*', question, maxsplit=1)
+    if len(inline_split) > 1:
+        return inline_split[0].strip(), True
+
+    # Pattern 3: A: B: C: format (space before A:)
+    colon_split = re.split(r'\s+[Aa]\s*:\s*', question, maxsplit=1)
+    if len(colon_split) > 1 and len(colon_split[0]) > 10:  # Ensure we have actual question
+        return colon_split[0].strip(), True
+
+    # Not MCQ format
+    return question, False
+
 # Import new components
 from hybrid_retriever import (
     HybridRetriever, VectorIndexer, VectorRetriever,
@@ -22,10 +55,9 @@ from hybrid_retriever import (
 )
 from prompt_templates import PromptTemplates, ContextBuilder
 
-# Import legacy components for compatibility
-from rag_system_v2 import (
-    RetrievedChunk, RAGResponse, CypherQueryGenerator,
-    EnhancedKnowledgeRetriever, LLMIntegrator
+# Import core components (shared with legacy V2)
+from rag_core import (
+    RetrievedChunk, RAGResponse, CypherQueryGenerator, LLMIntegrator
 )
 
 # Initialize logging
@@ -217,25 +249,36 @@ class RAGOrchestratorV3:
             'ready_for_hybrid': index_exists and with_embeddings == total
         }
 
-    def setup_vector_search(self, batch_size: int = 50):
+    def setup_vector_search(self, batch_size: int = 50) -> bool:
         """
         Setup vector search by creating embeddings and index.
         Call this once before using hybrid search.
 
         Args:
             batch_size: Number of chunks to process at once
+
+        Returns:
+            True if setup was successful, False otherwise
         """
-        self.logger.log(MAJOR, "Setting up vector search...")
+        try:
+            self.logger.log(MAJOR, "Setting up vector search...")
 
-        # Create embeddings
-        self.logger.log(MAJOR, "Creating embeddings for chunks...")
-        self.vector_indexer.create_embeddings_for_all_chunks(batch_size=batch_size)
+            # Create embeddings
+            self.logger.log(MAJOR, "Creating embeddings for chunks...")
+            self.vector_indexer.create_embeddings_for_all_chunks(batch_size=batch_size)
 
-        # Create vector index
-        self.logger.log(MAJOR, "Creating vector index...")
-        self.vector_indexer.create_vector_index()
+            # Create vector index
+            self.logger.log(MAJOR, "Creating vector index...")
+            self.vector_indexer.create_vector_index()
 
-        self.logger.log(MAJOR, "Vector search setup complete")
+            self.logger.log(MAJOR, "Vector search setup complete")
+            return True
+
+        except Exception as e:
+            self.logger.log(ERROR, f"Vector search setup failed: {e}")
+            import traceback
+            traceback.print_exc()
+            return False
 
     def query(self, question: str,
               model: str = "deepseek-r1:14b",
@@ -269,6 +312,12 @@ class RAGOrchestratorV3:
         self.logger.log(MAJOR, f"RAG V3 query - model: {model}, hybrid: {use_hybrid}")
         self.logger.log(MINOR, f"Question: {question[:80]}...")
 
+        # For MCQ: extract question only for retrieval (exclude choices to avoid noise)
+        # Full question with choices will still be used for LLM generation
+        retrieval_query, is_mcq = extract_mcq_question_only(question)
+        if is_mcq:
+            self.logger.log(MINOR, f"MCQ detected - using question only for retrieval: {retrieval_query[:60]}...")
+
         # Retrieval
         retrieval_start = time.time()
 
@@ -280,7 +329,7 @@ class RAGOrchestratorV3:
                 use_vector = False
 
             chunks, strategy, analysis = self.hybrid_retriever.retrieve(
-                query=question,
+                query=retrieval_query,  # Use question only for MCQ
                 top_k=top_k,
                 use_vector=use_vector,
                 use_graph=use_graph,
@@ -290,9 +339,14 @@ class RAGOrchestratorV3:
             )
         else:
             # Fallback to graph-only (V2 style)
-            chunks, strategy, analysis = self._fallback_graph_retrieval(question, top_k)
+            chunks, strategy, analysis = self._fallback_graph_retrieval(retrieval_query, top_k)
 
         retrieval_time = (time.time() - retrieval_start) * 1000
+
+        # Ensure MCQ intent is set if MCQ format was detected
+        if is_mcq and analysis.get('primary_intent') != 'multiple_choice':
+            self.logger.log(MINOR, "Overriding intent to 'multiple_choice' based on MCQ format detection")
+            analysis['primary_intent'] = 'multiple_choice'
 
         # Handle empty results
         if not chunks:

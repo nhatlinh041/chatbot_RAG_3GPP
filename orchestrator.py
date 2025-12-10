@@ -280,8 +280,14 @@ class Neo4jManager:
 class KnowledgeGraphInitializer:
     """Initialize Knowledge Graph from JSON files"""
 
-    def __init__(self):
-        self.json_dir = PROJECT_ROOT / "3GPP_JSON_DOC" / "processed_json_v2"
+    def __init__(self, json_version: str = "v3"):
+        """
+        Initialize KnowledgeGraphInitializer
+
+        Args:
+            json_version: Version of processed JSON to use ("v3" default)
+        """
+        self.json_dir = PROJECT_ROOT / "3GPP_JSON_DOC" / f"processed_json_{json_version}"
         self.neo4j_uri = "neo4j://localhost:7687"
         self.neo4j_user = "neo4j"
         self.neo4j_password = "password"
@@ -458,6 +464,11 @@ class KnowledgeGraphInitializer:
             term_count = self._create_term_nodes(driver, chunks)
             print_status(f"Created {term_count} Term nodes", "ok")
 
+            # Create Subject nodes and classify chunks
+            print_status("Creating Subject nodes and classifying chunks...", "info")
+            subject_count = self._create_subject_nodes(driver, chunks)
+            print_status(f"Created {subject_count} Subject classifications", "ok")
+
             print_status("Knowledge Graph initialized successfully!", "ok")
             return True
 
@@ -541,6 +552,58 @@ class KnowledgeGraphInitializer:
                     pass  # Skip problematic terms
 
         return created_count
+
+    def _create_subject_nodes(self, driver, chunks: list) -> int:
+        """Create Subject nodes and classify chunks by subject.
+
+        Creates 5 Subject nodes based on tele_qna benchmark categories and
+        classifies each chunk, creating HAS_SUBJECT relationships.
+
+        Args:
+            driver: Neo4j driver instance
+            chunks: List of chunk dictionaries
+
+        Returns:
+            Number of chunks classified
+        """
+        from subject_classifier import SubjectClassifier, SUBJECT_CYPHER_QUERIES
+
+        classifier = SubjectClassifier()
+        classified_count = 0
+
+        with driver.session() as session:
+            # Create Subject node constraint
+            try:
+                session.run("CREATE CONSTRAINT subject_name IF NOT EXISTS FOR (s:Subject) REQUIRE s.name IS UNIQUE")
+            except:
+                pass
+
+            # Create 5 Subject nodes
+            session.run(SUBJECT_CYPHER_QUERIES['create_subjects'])
+
+            # Classify each chunk and update its subject property
+            for chunk in chunks:
+                try:
+                    classification = classifier.classify_chunk(chunk)
+
+                    # Get chunk_id - handle both formats
+                    chunk_id = chunk.get("chunk_id", "")
+
+                    # Update chunk with subject classification
+                    session.run(
+                        SUBJECT_CYPHER_QUERIES['add_chunk_subject'],
+                        chunk_id=chunk_id,
+                        subject=classification.subject.value,
+                        confidence=classification.confidence
+                    )
+                    classified_count += 1
+                except Exception:
+                    pass  # Skip problematic chunks
+
+            # Create HAS_SUBJECT relationships
+            session.run(SUBJECT_CYPHER_QUERIES['create_has_subject'])
+
+        return classified_count
 
     def _merge_terms(self, term_dict: dict, terms: list):
         """Merge terms into consolidated dictionary.
@@ -794,7 +857,7 @@ class Orchestrator:
         print(f"\n{Colors.BOLD}JSON Data Files:{Colors.RESET}")
         has_files, count = self.kg_init.check_json_files()
         if has_files:
-            print_status(f"Found {count} JSON files in processed_json_v2/", "ok")
+            print_status(f"Found {count} JSON files in processed_json_v3/", "ok")
         else:
             print_status("No JSON files found - run document processing first", "error")
 
@@ -848,7 +911,6 @@ class Orchestrator:
                     print_status("Hybrid search: READY", "ok")
                 else:
                     print_status("Hybrid search: NOT READY", "warn")
-                    print_status("Run: python orchestrator.py setup-v3", "info")
             else:
                 print_status("Cannot check - Neo4j not running", "warn")
         except ImportError:
@@ -858,8 +920,51 @@ class Orchestrator:
 
         print()
 
-    def init_knowledge_graph(self, clear_first: bool = True):
-        """Initialize knowledge graph"""
+    def setup_vector_search(self) -> bool:
+        """Setup vector search for RAG V3 (create embeddings and index)"""
+        print_header("Vector Search Setup")
+
+        # Check Neo4j first
+        if not self.neo4j.check_connection():
+            print_status("Neo4j is not running. Please start Neo4j first.", "error")
+            return False
+
+        try:
+            from rag_system_v3 import create_rag_system_v3
+
+            print_status("Initializing RAG V3 system...", "info")
+            rag = create_rag_system_v3()
+
+            print_status("Creating embeddings and vector index...", "info")
+            print_status("This may take 10-30 minutes for ~80K chunks", "info")
+
+            success = rag.setup_vector_search()
+            rag.close()
+
+            if success:
+                print_status("Vector search setup complete", "ok")
+            else:
+                print_status("Vector search setup failed", "error")
+
+            return success
+
+        except ImportError as e:
+            print_status(f"Failed to import RAG V3: {e}", "error")
+            return False
+        except Exception as e:
+            print_status(f"Error during vector search setup: {e}", "error")
+            import traceback
+            traceback.print_exc()
+            return False
+
+    def init_knowledge_graph(self, clear_first: bool = True, json_version: str = "v3", setup_vector: bool = True):
+        """Initialize knowledge graph from JSON files
+
+        Args:
+            clear_first: Clear existing database before initializing
+            json_version: Version of processed JSON to use ("v3" default)
+            setup_vector: Setup vector search after KG initialization (default: True)
+        """
         print_header("Knowledge Graph Initialization")
 
         # Check Neo4j first
@@ -870,16 +975,19 @@ class Orchestrator:
 
         self.neo4j.close()
 
+        # Create KG initializer with specified JSON version
+        kg_init = KnowledgeGraphInitializer(json_version=json_version)
+
         # Check JSON files
-        has_files, count = self.kg_init.check_json_files()
+        has_files, count = kg_init.check_json_files()
         if not has_files:
-            print_status("No JSON files found to process", "error")
+            print_status(f"No JSON files found in processed_json_{json_version}/", "error")
             return False
 
-        print_status(f"Found {count} JSON files to process", "info")
+        print_status(f"Found {count} JSON files in processed_json_{json_version}/", "info")
 
         # Initialize
-        success = self.kg_init.initialize_graph(clear_first=clear_first)
+        success = kg_init.initialize_graph(clear_first=clear_first)
 
         if success:
             print_header("Initialization Complete")
@@ -892,6 +1000,15 @@ class Orchestrator:
                 print(f"  Terms: {stats.get('nodes', {}).get('Term', 0)}")
                 print(f"  Relationships: {sum(stats.get('relationships', {}).values())}")
                 self.neo4j.close()
+
+            # Setup vector search if requested
+            if setup_vector:
+                print_status("Setting up vector search for RAG V3...", "info")
+                vector_success = self.setup_vector_search()
+                if vector_success:
+                    print_status("Vector search setup complete", "ok")
+                else:
+                    print_status("Vector search setup failed (continuing anyway)", "warn")
 
         return success
 
@@ -938,16 +1055,11 @@ class Orchestrator:
                 stats = self.neo4j.get_statistics()
                 if stats.get('nodes', {}).get('Document', 0) > 0:
                     print_status("Knowledge Graph already populated", "ok")
-                    print_status("Skipping initialization (use --init-kg to rebuild)", "info")
                     kg_ready = True
                 else:
-                    print_status("Knowledge Graph is empty, initializing...", "info")
-                    self.neo4j.close()
-                    kg_ready = self.init_knowledge_graph()
-                    if not kg_ready:
-                        print_status("Failed to initialize KG, continuing anyway...", "warn")
-                    else:
-                        print_status("Knowledge Graph initialization complete", "ok")
+                    print_status("Knowledge Graph is empty - run 'init-kg' to populate", "warn")
+                    print_status("Continuing without KG data...", "info")
+                    kg_ready = False
         else:
             print_status("Neo4j not available, skipping KG check", "warn")
 
@@ -976,78 +1088,6 @@ class Orchestrator:
         """Start ngrok tunnels"""
         print_header("Starting ngrok")
         return self.django.start_ngrok()
-
-    def setup_rag_v3(self):
-        """Setup RAG V3: create embeddings and vector index"""
-        print_header("RAG V3 Setup - Vector Search")
-
-        # Check Neo4j connection
-        if not self.neo4j.check_connection():
-            print_status("Neo4j is not running. Please start Neo4j first.", "error")
-            print_status("Run: python orchestrator.py start-neo4j", "info")
-            return False
-
-        # Check if KG has data
-        stats = self.neo4j.get_statistics()
-        chunk_count = stats.get('nodes', {}).get('Chunk', 0)
-        if chunk_count == 0:
-            print_status("Knowledge Graph is empty. Initialize KG first.", "error")
-            print_status("Run: python orchestrator.py init-kg", "info")
-            return False
-
-        print_status(f"Found {chunk_count} chunks in Knowledge Graph", "ok")
-        self.neo4j.close()
-
-        # Check sentence-transformers installed
-        try:
-            import sentence_transformers
-            print_status("sentence-transformers is installed", "ok")
-        except ImportError:
-            print_status("sentence-transformers not installed", "error")
-            print_status("Run: pip install sentence-transformers", "info")
-            return False
-
-        # Setup vector search
-        try:
-            from rag_system_v3 import create_rag_system_v3
-
-            print_status("Initializing RAG V3 system...", "info")
-            rag = create_rag_system_v3()
-
-            # Check current status
-            status = rag.check_vector_index_status()
-            print_status(f"Current status:", "info")
-            print_status(f"  Chunks with embeddings: {status['chunks_with_embeddings']}/{status['total_chunks']}", "info")
-            print_status(f"  Vector index exists: {status['vector_index_exists']}", "info")
-
-            if status['ready_for_hybrid']:
-                print_status("Vector search is already setup!", "ok")
-                rag.close()
-                return True
-
-            # Create embeddings and index
-            print_status("Creating embeddings (this may take 10-30 minutes)...", "info")
-            print_status("Progress will be shown below:", "info")
-            print()
-
-            rag.setup_vector_search(batch_size=50)
-
-            # Verify
-            status = rag.check_vector_index_status()
-            if status['ready_for_hybrid']:
-                print_status("Vector search setup complete!", "ok")
-                print_status(f"  Embeddings: {status['chunks_with_embeddings']}/{status['total_chunks']}", "ok")
-                print_status(f"  Vector index: {status['vector_index_exists']}", "ok")
-                rag.close()
-                return True
-            else:
-                print_status("Setup incomplete, please check logs", "error")
-                rag.close()
-                return False
-
-        except Exception as e:
-            print_status(f"Error during setup: {e}", "error")
-            return False
 
     def stop_all(self):
         """Stop all running services"""
@@ -1103,9 +1143,8 @@ Commands:
   check       Check status of all components
   install     Install dependencies in virtual environment
   start-neo4j Start Neo4j Docker container
-  init-kg     Initialize/rebuild knowledge graph from JSON files
-  setup-v3    Setup RAG V3 (create embeddings and vector index)
-  run         Start Django chatbot server
+  init-kg     Initialize/rebuild knowledge graph from JSON files + setup vector search
+  run         Start Django chatbot server (uses RAG V3)
   ngrok       Start ngrok tunnels (ngrok start --all)
   all         Start everything: Neo4j, KG (if empty), ngrok, and Django server
   stop        Stop all services (Django, ngrok, Neo4j)
@@ -1114,8 +1153,9 @@ Examples:
   python orchestrator.py check
   python orchestrator.py install
   python orchestrator.py start-neo4j
-  python orchestrator.py init-kg
-  python orchestrator.py setup-v3         # Setup vector search for RAG V3
+  python orchestrator.py init-kg                    # Init KG + setup vector search (10-30 min)
+  python orchestrator.py init-kg --skip-vector      # Init KG only, skip vector search
+  python orchestrator.py init-kg --vector-only      # Setup vector search only (KG exists)
   python orchestrator.py run --port 8080
   python orchestrator.py ngrok
   python orchestrator.py all              # Start all (skip KG init if already populated)
@@ -1126,7 +1166,7 @@ Examples:
 
     parser.add_argument(
         "command",
-        choices=["check", "install", "start-neo4j", "init-kg", "setup-v3", "run", "ngrok", "all", "stop"],
+        choices=["check", "install", "start-neo4j", "init-kg", "run", "ngrok", "all", "stop"],
         help="Command to execute"
     )
     parser.add_argument(
@@ -1150,6 +1190,21 @@ Examples:
         action="store_true",
         help="Force KG initialization when using 'all' command"
     )
+    parser.add_argument(
+        "--json-version",
+        default="v3",
+        help="JSON version to use for KG initialization (default: v3)"
+    )
+    parser.add_argument(
+        "--skip-vector",
+        action="store_true",
+        help="Skip vector search setup after KG initialization"
+    )
+    parser.add_argument(
+        "--vector-only",
+        action="store_true",
+        help="Setup vector search only (skip KG initialization)"
+    )
 
     args = parser.parse_args()
 
@@ -1167,12 +1222,23 @@ Examples:
         sys.exit(0 if success else 1)
 
     elif args.command == "init-kg":
-        success = orchestrator.init_knowledge_graph(clear_first=not args.no_clear)
-        sys.exit(0 if success else 1)
+        # Validate flag combinations
+        if args.vector_only and args.skip_vector:
+            print_status("Error: Cannot use --vector-only and --skip-vector together", "error")
+            sys.exit(1)
 
-    elif args.command == "setup-v3":
-        success = orchestrator.setup_rag_v3()
-        sys.exit(0 if success else 1)
+        # Check for vector-only mode
+        if args.vector_only:
+            print_header("Vector Search Setup Only")
+            success = orchestrator.setup_vector_search()
+            sys.exit(0 if success else 1)
+        else:
+            success = orchestrator.init_knowledge_graph(
+                clear_first=not args.no_clear,
+                json_version=args.json_version,
+                setup_vector=not args.skip_vector
+            )
+            sys.exit(0 if success else 1)
 
     elif args.command == "run":
         orchestrator.run_chatbot(host=args.host, port=args.port)
@@ -1182,6 +1248,12 @@ Examples:
         sys.exit(0 if success else 1)
 
     elif args.command == "all":
+        # Validate: --vector-only makes no sense with 'all' command
+        if args.vector_only:
+            print_status("Error: --vector-only cannot be used with 'all' command", "error")
+            print_status("Use: python orchestrator.py init-kg --vector-only", "info")
+            sys.exit(1)
+
         orchestrator.run_all(host=args.host, port=args.port, init_kg=args.init_kg)
 
     elif args.command == "stop":

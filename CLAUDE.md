@@ -20,12 +20,14 @@ pip install -r document_processing/requirements.txt
 python orchestrator.py check           # Check system status
 python orchestrator.py install         # Install dependencies in venv
 python orchestrator.py start-neo4j     # Start Neo4j Docker container
-python orchestrator.py init-kg         # Initialize knowledge graph
-python orchestrator.py setup-v3        # Setup vector search for RAG V3
+python orchestrator.py init-kg         # Initialize KG + setup vector search (10-30 min)
+python orchestrator.py init-kg --skip-vector  # Init KG only, skip vector search
+python orchestrator.py init-kg --vector-only  # Setup vector search only (KG exists)
+python orchestrator.py setup-v3        # Setup vector search only (alternative)
 python orchestrator.py run             # Start Django server
 python orchestrator.py ngrok           # Start ngrok tunnels
 python orchestrator.py all             # Start everything: Neo4j, KG (if empty), ngrok, Django
-python orchestrator.py all --init-kg   # Force KG re-initialization
+python orchestrator.py all --init-kg   # Force KG re-initialization + vector search
 python orchestrator.py stop            # Stop all services
 
 # Manual commands
@@ -78,15 +80,10 @@ Note: Orchestrator automatically loads `.env` file on startup.
    - `QueryExpander`: Generate query variations for better recall
    - `PromptTemplates`: Intent-specific prompt templates (7 types)
    - `EnhancedLLMIntegrator`: Unified LLM backend (Claude API + Ollama)
+   - `CypherQueryGenerator`: 8 question types (imported from legacy v2)
    - Features: Hybrid retrieval, reranking, query expansion
 
-4. **RAG System V2** (`rag_system_v2.py`) - Legacy (still usable)
-   - Graph-only retrieval
-   - `CypherQueryGenerator`: 8 question types
-   - `EnhancedKnowledgeRetriever`: Neo4j query execution
-   - `LLMIntegrator`: Unified LLM backend
-
-5. **Web Interface** (`chatbot_project/`)
+4. **Web Interface** (`chatbot_project/`)
    - Django 4.2.11, SQLite for chat history
    - `RAGManager` singleton manages RAG system lifecycle
    - Routes: `/` (chat UI), `/api/` (JSON API)
@@ -116,8 +113,6 @@ from cypher_sanitizer import CypherSanitizer
 safe_term = CypherSanitizer.sanitize_search_term(user_input)
 ```
 
-**Adding New Question Types:** Extend `CypherQueryGenerator.query_patterns` dict and add corresponding `_generate_X_query` method
-
 **Using RAG System V3 (Recommended):**
 ```python
 from rag_system_v3 import create_rag_system_v3
@@ -144,17 +139,7 @@ print(response.answer)
 print(f"Strategy: {response.retrieval_strategy}")
 ```
 
-**Using RAG System V2 (Legacy):**
-```python
-from rag_system_v2 import create_rag_system_v2
-
-rag = create_rag_system_v2(
-    claude_api_key="sk-...",
-    deepseek_api_url="http://192.168.1.14:11434/api/chat"
-)
-
-response = rag.query("What is AMF?", model="deepseek-r1:7b")
-```
+**Note:** RAG System V2 has been removed. All functionality is now in V3.
 
 ## Code Style
 
@@ -168,13 +153,15 @@ response = rag.query("What is AMF?", model="deepseek-r1:7b")
 Test suite located in `tests/` folder:
 - `test_cypher_sanitizer.py` - Security and input sanitization tests
 - `test_logging_config.py` - Centralized logging tests
-- `test_rag_system_v2.py` - RAG V2 component tests
 - `test_rag_system_v3.py` - RAG V3 component tests
 - `test_hybrid_retriever.py` - Hybrid retrieval tests (21 tests)
 - `test_prompt_templates.py` - Prompt template tests (25 tests)
 - `test_hybrid_term_extraction.py` - Term extraction tests
+- `test_subject_classifier.py` - Subject classification tests (14 tests)
 
 Run `pytest tests/ -v` to execute all tests.
+
+**Note:** V2-related tests have been moved to `trash/` folder (2025-12-09).
 
 # IMPORTANT NOTES
 - Always provide md file into .md folder for any change that affects architecture or workflows.
@@ -184,7 +171,23 @@ Run `pytest tests/ -v` to execute all tests.
 - Always update tests file to compatible with new changes but Always need my confirmation before changing test files.
 - Do not use rm files or something similar, move all of them to trash folder
 
-## Recent Changes (2025-12-08)
+## Recent Changes (2025-12-09)
+
+**Subject-Based KG Enhancement:**
+- `subject_classifier.py`: NEW - Classifies chunks by subject type
+  - 5 subject types: Standards specifications, Standards overview, Lexicon, Research publications, Research overview
+  - Query subject detection for score boosting
+- `KG_builder.ipynb`: Added SubjectNodeBuilder (cells 13-15)
+  - Creates Subject nodes in Neo4j
+  - Classifies and updates all chunks with subject property
+  - Creates HAS_SUBJECT relationships
+- `hybrid_retriever.py`: Subject-aware retrieval
+  - Added `subject` and `subject_confidence` to ScoredChunk
+  - Added `use_subject_boost` parameter to `retrieve()`
+  - Boosts chunks matching expected subject types
+- See `.md/enhance/subject_based_kg_enhancement.md` for details
+
+## Changes (2025-12-08)
 
 **RAG System V3 (NEW):**
 - `rag_system_v3.py`: Main orchestrator with hybrid retrieval
@@ -242,8 +245,9 @@ Run `pytest tests/ -v` to execute all tests.
 3GPP/
 ├── orchestrator.py          # System orchestrator
 ├── rag_system_v3.py         # RAG V3 (Hybrid) - Active
-├── rag_system_v2.py         # RAG V2 (Graph-only) - Legacy
-├── hybrid_retriever.py      # Vector + Graph retrieval
+├── rag_core.py              # Shared RAG components
+├── hybrid_retriever.py      # Vector + Graph retrieval (with subject boost)
+├── subject_classifier.py    # Subject classification for chunks/queries
 ├── prompt_templates.py      # Intent-specific prompts
 ├── cypher_sanitizer.py      # Query security
 ├── term_extractor.py        # Abbreviation extraction
@@ -253,7 +257,9 @@ Run `pytest tests/ -v` to execute all tests.
 ├── chatbot_project/         # Django web app
 ├── document_processing/     # Document processing
 ├── 3GPP_JSON_DOC/          # Processed JSON files
-├── tests/                   # Test suite (64+ tests)
+├── tele_qna/               # Benchmark Q&A data (10k questions)
+├── tests/                   # Test suite (V3 tests)
 ├── logs/                    # Log files
+├── trash/                   # Removed/deprecated files
 └── .md/                     # Documentation
 ```
