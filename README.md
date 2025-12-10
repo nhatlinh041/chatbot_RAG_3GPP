@@ -5,12 +5,26 @@ AI-powered Q&A system for 3GPP 5G/telecom technical specifications. Combines Kno
 ## Features
 
 - **350+ 3GPP Specifications** - Processed and indexed for instant retrieval
-- **Knowledge Graph** - Neo4j graph database with Document, Chunk, and Term nodes
-- **Hybrid Retrieval (V3)** - Vector search + Graph search for better accuracy
-- **Enhanced Query Processing** - 10 intent categories with intelligent strategy selection
+- **Knowledge Graph** - Neo4j graph database with Document, Chunk, Term, and Subject nodes
+- **Hybrid Retrieval (V3)** - Vector search + Graph search + Subject-aware boosting
+- **MCQ Support** - Automatic detection and processing of Multiple Choice Questions
 - **Multi-LLM Support** - Claude API + Local models via Ollama (DeepSeek, Llama, etc.)
 - **Web Interface** - Django-based chat UI with conversation history
-- **Comprehensive Testing** - 196 tests with 100% pass rate
+
+## Benchmark Results (2025-12-10)
+
+| Category | Accuracy |
+|----------|----------|
+| Use Case/Application | **100%** |
+| Network Function | **100%** |
+| Definition | 92.31% |
+| Policy & QoS | 90% |
+| Procedure | 81.82% |
+| Technical Detail | 80% |
+| Security | 80% |
+| Comparison | 70% |
+| Architecture | 60% |
+| **Overall** | **84.21%** (80/95) |
 
 ## Architecture
 
@@ -30,15 +44,21 @@ graph TB
         KG --> DOC[Document Nodes]
         KG --> CHK[Chunk Nodes]
         KG --> TRM[Term Nodes]
+        KG --> SUB[Subject Nodes]
     end
 
     subgraph "RAG System V3"
-        Q[User Query] --> QA[Query Analyzer]
+        Q[User Query] --> MCQ{MCQ Detection}
+        MCQ -->|MCQ| MCQE[Extract Question Only]
+        MCQ -->|Normal| QA[Query Analyzer]
+        MCQE --> QA
         QA --> HR[Hybrid Retriever]
         HR --> VS[Vector Search]
         HR --> GS[Graph Search]
+        HR --> SB[Subject Boost]
         VS --> MRG[Merger & Reranker]
         GS --> MRG
+        SB --> MRG
         MRG --> PT[Prompt Templates]
         PT --> LLM[LLM Integrator]
     end
@@ -92,13 +112,10 @@ python orchestrator.py all --init-kg
 # 1. Start Neo4j
 python orchestrator.py start-neo4j
 
-# 2. Initialize Knowledge Graph
+# 2. Initialize Knowledge Graph + Vector Search (10-30 min)
 python orchestrator.py init-kg
 
-# 3. (Optional) Setup Vector Search for V3
-python orchestrator.py setup-v3
-
-# 4. Start Django server
+# 3. Start Django server
 python orchestrator.py run
 ```
 
@@ -111,11 +128,14 @@ Access the chat interface at `http://localhost:8000`
 | `check` | Check system status (Neo4j, KG, V3 readiness) |
 | `install` | Install dependencies in venv |
 | `start-neo4j` | Start Neo4j Docker container |
-| `init-kg` | Initialize Knowledge Graph from JSON |
-| `setup-v3` | Setup Vector Search for RAG V3 |
+| `init-kg` | Initialize KG + setup vector search (10-30 min) |
+| `init-kg --skip-vector` | Initialize KG only, skip vector search |
+| `init-kg --vector-only` | Setup vector search only (KG exists) |
+| `setup-v3` | Setup vector search only (alternative) |
 | `run` | Start Django server |
 | `ngrok` | Start ngrok tunnels |
 | `all` | Start everything |
+| `all --init-kg` | Start all + force KG re-initialization |
 | `stop` | Stop all services |
 
 ## Project Structure
@@ -124,15 +144,15 @@ Access the chat interface at `http://localhost:8000`
 3GPP/
 ├── orchestrator.py              # System orchestrator
 ├── rag_system_v3.py             # RAG V3 (Hybrid) - Active
-├── rag_system_v2.py             # RAG V2 (Graph-only) - Legacy
-├── hybrid_retriever.py          # Vector + Graph retrieval
+├── rag_core.py                  # Shared RAG components (LLM, Cypher Generator)
+├── hybrid_retriever.py          # Vector + Graph + Subject-aware retrieval
+├── subject_classifier.py        # Subject classification for chunks/queries
 ├── prompt_templates.py          # Intent-specific prompts (7 types)
 ├── enhanced_query_processor.py  # Advanced query understanding
 ├── cypher_sanitizer.py          # Query security
 ├── term_extractor.py            # Abbreviation extraction
 ├── logging_config.py            # Centralized logging
-├── log_config.json              # Log configuration
-├── .env                         # Environment variables
+├── run_tele_qna_benchmark.py    # Benchmark runner
 │
 ├── chatbot_project/             # Django web app
 │   └── chatbot/
@@ -145,32 +165,14 @@ Access the chat interface at `http://localhost:8000`
 ├── 3GPP_JSON_DOC/              # Processed JSON files
 │   └── processed_json_v2/
 │
-├── tests/                       # Test suite (196 tests)
-│   ├── test_rag_system_v3.py
-│   ├── test_rag_system_v2.py
-│   ├── test_hybrid_retriever.py
-│   ├── test_prompt_templates.py
-│   └── ...
-│
+├── tele_qna/                   # Benchmark Q&A data
+├── tests/                       # Test suite
+├── trash/                       # Removed/deprecated files
 ├── logs/                        # Log files
 └── .md/                         # Documentation
 ```
 
-## RAG System Versions
-
-### V2 (Graph-Only)
-
-```python
-from rag_system_v2 import create_rag_system_v2
-
-rag = create_rag_system_v2(
-    claude_api_key="sk-...",
-    deepseek_api_url="http://localhost:11434/api/chat"
-)
-
-response = rag.query("What is AMF?", model="deepseek-r1:14b")
-print(response.answer)
-```
+## RAG System Usage
 
 ### V3 (Hybrid - Recommended)
 
@@ -204,10 +206,17 @@ print(f"Strategy: {response.retrieval_strategy}")
 | Reference | "What specs reference UPF?" | Graph-preferred |
 | Network Function | "What is the role of PCF?" | Hybrid-balanced |
 | Relationship | "How do AMF and SMF interact?" | Graph-preferred |
-| Specification | "What does TS 23.501 cover?" | Graph-focused |
-| Multiple Choice | TeleQnA format questions | Structured |
+| Multiple Choice | MCQ with A/B/C/D options | MCQ-specific prompt |
 | Architecture | "5G core architecture" | Hybrid-expanded |
-| Protocol | "NAS protocol messages" | Protocol-specific |
+
+## MCQ Processing
+
+The system automatically detects MCQ format and optimizes retrieval:
+
+1. **Detection**: Supports A./A)/inline/(A) formats and JSON choices
+2. **Retrieval**: Uses question-only (without choices) to avoid noise
+3. **Generation**: Full question with choices sent to LLM
+4. **Extraction**: Robust answer extraction from LLM response
 
 ## LLM Models
 
@@ -225,50 +234,39 @@ print(f"Strategy: {response.retrieval_strategy}")
 ```cypher
 // Nodes
 (:Document {spec_id, title, version, total_chunks})
-(:Chunk {chunk_id, spec_id, section_id, section_title, content, chunk_type, complexity_score, key_terms})
+(:Chunk {chunk_id, spec_id, section_id, section_title, content, chunk_type, complexity_score, key_terms, subject})
 (:Term {abbreviation, full_name, term_type, source_specs, primary_spec})
+(:Subject {name})
 
 // Relationships
 (:Document)-[:CONTAINS]->(:Chunk)
 (:Chunk)-[:REFERENCES_SPEC]->(:Document)
 (:Chunk)-[:REFERENCES_CHUNK]->(:Chunk)
 (:Term)-[:DEFINED_IN]->(:Document)
+(:Chunk)-[:HAS_SUBJECT]->(:Subject)
 ```
 
 ## Testing
 
 ```bash
-# Run all tests (196 tests)
+# Run all tests
 pytest tests/ -v
 
 # Run with coverage
 pytest tests/ --cov=. --cov-report=term-missing
 
-# Run specific test file
-pytest tests/test_rag_system_v3.py -v
-
-# Run core test suite (guaranteed to pass)
-pytest tests/test_cypher_sanitizer.py tests/test_logging_config.py \
-       tests/test_hybrid_retriever.py tests/test_prompt_templates.py \
-       tests/test_rag_system_v3.py tests/test_orchestrator_simple.py \
-       tests/test_system_integration.py tests/test_rag_system_v2.py \
-       tests/test_hybrid_term_extraction.py -v
+# Run MCQ-specific tests
+pytest tests/test_mcq_extraction.py tests/test_mcq_llm_integration.py -v
 ```
 
-### Test Coverage
+## Running Benchmarks
 
-| Test File | Tests | Status |
-|-----------|-------|--------|
-| test_cypher_sanitizer.py | 28 | Passed |
-| test_logging_config.py | 16 | Passed |
-| test_hybrid_retriever.py | 21 | Passed |
-| test_prompt_templates.py | 25 | Passed |
-| test_rag_system_v3.py | 20 | Passed |
-| test_orchestrator_simple.py | 18 | Passed |
-| test_system_integration.py | 15 | Passed |
-| test_rag_system_v2.py | 35 | Passed |
-| test_hybrid_term_extraction.py | 18 | Passed |
-| **Total** | **196** | **100%** |
+```bash
+# Run benchmark with current settings
+python tests/benchmark/run_tele_qna_benchmark.py
+
+# Results saved to tests/benchmark/benchmark_results_latest.json
+```
 
 ## Logging
 
@@ -302,11 +300,17 @@ LOCAL_LLM_URL="http://localhost:11434/api/chat"
 See `.md/` folder for detailed documentation:
 
 - [project_architecture.md](.md/project_architecture.md) - System architecture
-- [system_evaluation_and_enhancements.md](.md/system_evaluation_and_enhancements.md) - System evaluation report
 - [rag_query_redesign.md](.md/rag_query_redesign.md) - Query system design
 - [logging_system.md](.md/logging_system.md) - Logging configuration
-- [enhance/rag_system_v3_implementation.md](.md/enhance/rag_system_v3_implementation.md) - V3 implementation details
-- [enhance/implementation_summary.md](.md/enhance/implementation_summary.md) - Enhancement summary
+- [mcq_retrieval_fix_20251210.md](.md/mcq_retrieval_fix_20251210.md) - MCQ processing
+- [enhance/subject_based_kg_enhancement.md](.md/enhance/subject_based_kg_enhancement.md) - Subject classification
+
+## Recent Changes (2025-12-10)
+
+- **MCQ Retrieval Fix**: Question-only retrieval for MCQ to avoid noise from wrong choices
+- **MCQ Format Detection**: Comprehensive detection for various MCQ formats
+- **Subject-Based Retrieval**: Chunks classified by subject type with query boosting
+- **Benchmark Accuracy**: Improved from 30.53% to 84.21%
 
 ## License
 

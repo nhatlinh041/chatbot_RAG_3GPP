@@ -9,12 +9,18 @@ Uses Knowledge Graph (Neo4j) + RAG (Retrieval Augmented Generation) + LLM.
 
 Features
 --------
-- 350+ 3GPP specifications indexed
-- 8 question types supported (definition, comparison, procedure, etc.)
+- 350+ 3GPP specifications indexed in Neo4j Knowledge Graph
+- RAG System V3 with Hybrid Retrieval (Vector + Graph Search)
+- 9 question types supported (definition, comparison, procedure, network_function, relationship, multiple_choice, multi_intent, troubleshooting, general)
+- Advanced features:
+  * Smarter query expansion with diversification
+  * Semantic similarity deduplication
+  * Subject-based retrieval boosting
+  * Intent-aware prompt templates
 - Multiple LLM backends (Claude API, local Ollama models)
-- Web-based chat interface
-- Centralized logging with 5 levels
-- TeleQnA benchmark integration
+- Web-based chat interface (Django)
+- Centralized logging with 5 custom levels (CRITICAL > ERROR > MAJOR > MINOR > DEBUG)
+- TeleQnA benchmark integration (10K questions)
 
 
 Quick Start
@@ -49,11 +55,21 @@ pytest tests/ -m "not slow"         # Skip slow tests
 
 Documentation
 -------------
-.md/project_architecture.md   - System architecture
-.md/logging_system.md         - Logging configuration
-.md/llm_integrator_unified.md - LLM integration
-.md/orchestrator.md           - Orchestrator usage
-.md/tele_qna_*.md            - Benchmark documentation
+Core Documentation:
+.md/project_architecture.md            - System architecture overview
+.md/benchmark_guide.md                 - Benchmark testing guide
+.md/logging_system.md                  - Logging configuration
+
+Recent Enhancements (2025-12-10):
+.md/advanced_features_20251210.md      - Smarter query expansion + semantic deduplication
+.md/fixes_summary_20251210.md          - MCQ instruction fix + content deduplication
+.md/mcq_instruction_fix_20251210.md    - MCQ formatting fix details
+.md/content_deduplication_fix_20251210.md - Deduplication implementation
+
+System Components:
+.md/llm_integrator_unified.md          - LLM integration (Claude + Ollama)
+.md/orchestrator.md                    - Orchestrator usage
+.md/enhance/                           - Enhancement documentation folder
 
 
 Tech Stack

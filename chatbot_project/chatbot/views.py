@@ -23,14 +23,14 @@ from logging_config import setup_centralized_logging, get_logger, CRITICAL, ERRO
 setup_centralized_logging()
 logger = get_logger('Chatbot')
 
-# Import RAG system
+# Import RAG system V3 (hybrid retrieval)
 try:
-    from rag_system_v2 import create_rag_system_v2
+    from rag_system_v3 import create_rag_system_v3
     RAG_AVAILABLE = True
-    logger.log(MAJOR, "RAG system module imported successfully")
+    logger.log(MAJOR, "RAG system V3 module imported successfully")
 except ImportError as e:
     RAG_AVAILABLE = False
-    logger.log(ERROR, f"Failed to import RAG system: {e}")
+    logger.log(ERROR, f"Failed to import RAG system V3: {e}")
 
 
 class RAGManager:
@@ -60,10 +60,10 @@ class RAGManager:
                     logger.log(ERROR, "CLAUDE_API_KEY environment variable not set")
                     return False
 
-                deepseek_api_url = "http://192.168.1.14:11434/api/chat"
-                self._rag_system = create_rag_system_v2(claude_api_key, deepseek_api_url)
+                local_llm_url = "http://192.168.1.14:11434/api/chat"
+                self._rag_system = create_rag_system_v3(claude_api_key, local_llm_url)
                 self._initialized = True
-                logger.log(MAJOR, "RAG system initialized successfully")
+                logger.log(MAJOR, "RAG system V3 initialized successfully")
                 return True
 
             except Exception as e:
