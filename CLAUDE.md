@@ -6,6 +6,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 3GPP Knowledge Graph & RAG System - Processes 3GPP technical specifications into a Neo4j knowledge graph with AI-powered Q&A capabilities for 5G/telecom standards.
 
+**Current Status (2025-12-11):**
+- Benchmark Accuracy: **84.21%** (80/95 correct) with deepseek-r1:14b
+- RAG System: V3 (Hybrid Vector + Graph retrieval)
+- Knowledge Graph: Neo4j with 4 node types (Document, Chunk, Term, Subject)
+- See README.md for detailed architecture diagrams
+
 ## Build & Run Commands
 
 ```bash
@@ -68,20 +74,22 @@ Note: Orchestrator automatically loads `.env` file on startup.
    - Output: `3GPP_JSON_DOC/processed_json_v2/`
 
 2. **Knowledge Graph** (`KG_builder.ipynb`)
-   - Neo4j with Document, Chunk, and Term nodes
-   - Relationships: CONTAINS, REFERENCES_SPEC, REFERENCES_CHUNK, DEFINED_IN
+   - Neo4j with 4 node types: Document, Chunk, Term, Subject
+   - 5 Relationships: CONTAINS, REFERENCES_SPEC, REFERENCES_CHUNK, DEFINED_IN, HAS_SUBJECT
    - Term nodes store abbreviation→full_name mappings (e.g., SCP→"Service Communication Proxy")
+   - Subject nodes classify chunks: Standards specs, Standards overview, Lexicon, Research pubs, Research overview
    - Use orchestrator.py for automated initialization
 
 3. **RAG System V3** (`rag_system_v3.py`) - **Active version**
    - Entry: `create_rag_system_v3(claude_api_key, local_llm_url)`
-   - `HybridRetriever`: Combines Vector Search + Graph Search
-   - `SemanticQueryAnalyzer`: LLM-based query understanding
-   - `QueryExpander`: Generate query variations for better recall
+   - `HybridRetriever`: Combines Vector Search + Graph Search + Subject Boost
+   - `SemanticQueryAnalyzer`: LLM-based query understanding with MCQ detection
+   - `TermDefinitionResolver`: Conditional term lookup (for definition/comparison queries)
+   - `QueryExpander`: Generate diverse query variations for better recall
    - `PromptTemplates`: Intent-specific prompt templates (7 types)
    - `EnhancedLLMIntegrator`: Unified LLM backend (Claude API + Ollama)
-   - `CypherQueryGenerator`: 8 question types (imported from legacy v2)
-   - Features: Hybrid retrieval, reranking, query expansion
+   - `SubjectClassifier`: Query subject detection for score boosting
+   - Features: Hybrid retrieval, subject boosting, Jaccard deduplication, reranking
 
 4. **Web Interface** (`chatbot_project/`)
    - Django 4.2.11, SQLite for chat history
@@ -171,20 +179,26 @@ Run `pytest tests/ -v` to execute all tests.
 - Always update tests file to compatible with new changes but Always need my confirmation before changing test files.
 - Do not use rm files or something similar, move all of them to trash folder
 
-## Recent Changes (2025-12-09)
+## Recent Changes (2025-12-11)
+
+**README Diagram Verification & Fixes:**
+- Verified all 7 mermaid diagrams against actual code implementation
+- Fixed RAG Query Processing Flow: Added conditional `needs_term_resolution?` decision node
+- Fixed Django Web Interface Flow: Added full params, HybridRetriever, internal steps
+- All diagrams now 100% accurate - see `.md/diagram_verification_report.md`
+
+**MCQ Processing Enhancement (2025-12-10):**
+- `extract_mcq_question_only()`: Extracts question-only for retrieval (excludes choices to avoid noise)
+- Comprehensive MCQ format detection: Traditional (A. B. C.), Inline ((A) (B)), JSON choices
+- MCQ prompt template with strict answer format: `Answer: X. [option text]`
+- Benchmark improved: 30.53% → 84.21%
+
+## Changes (2025-12-09)
 
 **Subject-Based KG Enhancement:**
-- `subject_classifier.py`: NEW - Classifies chunks by subject type
-  - 5 subject types: Standards specifications, Standards overview, Lexicon, Research publications, Research overview
-  - Query subject detection for score boosting
-- `KG_builder.ipynb`: Added SubjectNodeBuilder (cells 13-15)
-  - Creates Subject nodes in Neo4j
-  - Classifies and updates all chunks with subject property
-  - Creates HAS_SUBJECT relationships
-- `hybrid_retriever.py`: Subject-aware retrieval
-  - Added `subject` and `subject_confidence` to ScoredChunk
-  - Added `use_subject_boost` parameter to `retrieve()`
-  - Boosts chunks matching expected subject types
+- `subject_classifier.py`: Classifies chunks by subject type (5 types)
+- `KG_builder.ipynb`: SubjectNodeBuilder creates Subject nodes and HAS_SUBJECT relationships
+- `hybrid_retriever.py`: Subject-aware retrieval with `use_subject_boost` parameter
 - See `.md/enhance/subject_based_kg_enhancement.md` for details
 
 ## Changes (2025-12-08)
@@ -243,23 +257,57 @@ Run `pytest tests/ -v` to execute all tests.
 
 ```
 3GPP/
-├── orchestrator.py          # System orchestrator
-├── rag_system_v3.py         # RAG V3 (Hybrid) - Active
-├── rag_core.py              # Shared RAG components
-├── hybrid_retriever.py      # Vector + Graph retrieval (with subject boost)
-├── subject_classifier.py    # Subject classification for chunks/queries
-├── prompt_templates.py      # Intent-specific prompts
-├── cypher_sanitizer.py      # Query security
-├── term_extractor.py        # Abbreviation extraction
-├── logging_config.py        # Centralized logging
+├── orchestrator.py          # System orchestrator (start/stop/init commands)
+├── rag_system_v3.py         # RAG V3 orchestrator (main entry point)
+├── rag_core.py              # Shared components (LLMIntegrator, CypherQueryGenerator)
+├── hybrid_retriever.py      # Vector + Graph + Subject-aware retrieval (~1200 LOC)
+├── subject_classifier.py    # Subject classification (5 types)
+├── prompt_templates.py      # Intent-specific prompts (7 types)
+├── cypher_sanitizer.py      # Query security (input sanitization)
+├── term_extractor.py        # Abbreviation extraction from specs
+├── logging_config.py        # Centralized logging (5 custom levels)
 ├── log_config.json          # Log configuration
-├── .env                     # Environment variables
+├── .env                     # Environment variables (CLAUDE_API_KEY, NEO4J_*)
 ├── chatbot_project/         # Django web app
-├── document_processing/     # Document processing
+│   └── chatbot/views.py     # RAGManager singleton, ChatAPIView
+├── document_processing/     # Document processing pipeline
+├── KG_builder.ipynb         # Knowledge Graph builder notebook
 ├── 3GPP_JSON_DOC/          # Processed JSON files
-├── tele_qna/               # Benchmark Q&A data (10k questions)
-├── tests/                   # Test suite (V3 tests)
-├── logs/                    # Log files
+├── tests/                   # Test suite (~100 tests)
+│   └── benchmark/           # Benchmark runner & results
+├── logs/                    # Log files (app.log)
 ├── trash/                   # Removed/deprecated files
-└── .md/                     # Documentation
+└── .md/                     # Documentation folder
+    ├── diagram_verification_report.md  # Diagram accuracy report
+    └── enhance/             # Enhancement documentation
+```
+
+## Query Processing Pipeline (Summary)
+
+```
+User Query
+    ↓
+MCQ Detection → extract_mcq_question_only()
+    ↓
+SemanticQueryAnalyzer.analyze() → intent, entities, key_terms
+    ↓
+needs_term_resolution? ──Yes──→ TermDefinitionResolver
+    ↓ No                              ↓
+QueryExpander.expand() ←──────────────┘
+    ↓
+┌───────────────┬───────────────┐
+│ Vector Search │ Graph Search  │
+└───────┬───────┴───────┬───────┘
+        ↓               ↓
+      Merge Results + Subject Boost
+        ↓
+      Deduplicate (Jaccard)
+        ↓
+      Rerank → Top-K
+        ↓
+PromptTemplates.get_prompt(intent)
+        ↓
+EnhancedLLMIntegrator (Claude/Ollama)
+        ↓
+    Response
 ```
